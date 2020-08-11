@@ -54,5 +54,5 @@ jobs:
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #  uses: nivaes/download-release-assets@master
 
-    - name: Publish packages
-      run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}}
+    #- name: Publish packages
+    #  run: dotnet nuget push ./**/*.nupkg --skip-duplicate --source nuget.org --api-key ${{secrets.NIVAES_NUGET_TOKEN}}
