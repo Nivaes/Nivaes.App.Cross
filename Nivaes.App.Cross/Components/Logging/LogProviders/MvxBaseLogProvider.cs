@@ -5,11 +5,6 @@
 using System;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("MvvmCross.Tests")]
-[assembly: InternalsVisibleTo("MvvmCross.Forms")]
-[assembly: InternalsVisibleTo("MvvmCross.Platforms.Wpf")]
-[assembly: InternalsVisibleTo("MvvmCross.Forms.Platforms.Wpf")]
-
 namespace MvvmCross.Logging.LogProviders
 {
     public delegate bool Logger(MvxLogLevel logLevel, Func<string> messageFunc, Exception exception = null, params object[] formatParameters);

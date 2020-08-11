@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+
+    <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Mobile.Windows</RootNamespace>
+
+    <Platforms>AnyCPU;x86;x64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+
+    <Description>
+      Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+      This package contains the 'Core' libraries for Nivaes.App.Cross
+    </Description>
+    <PackageId>Nivaes.App.Cross.Windows</PackageId>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+</Project>

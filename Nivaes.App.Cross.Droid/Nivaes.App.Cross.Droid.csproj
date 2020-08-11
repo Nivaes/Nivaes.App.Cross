@@ -1,0 +1,31 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+<!--<Project Sdk="Microsoft.NET.Sdk">-->
+
+  <PropertyGroup>
+    <TargetFramework>monoandroid10.0</TargetFramework>
+    <!--<TargetFramework>net5.0-android</TargetFramework>-->
+
+    <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
+
+    <Description>
+      Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+      This package contains the 'Core' libraries for Nivaes.App.Cross
+    </Description>
+    <PackageId>Nivaes.App.Cross.Droid</PackageId>
+
+  </PropertyGroup>
+
+  <ItemGroup >
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.2.4.1" />
+    <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.1.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.ViewPager" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+</Project>

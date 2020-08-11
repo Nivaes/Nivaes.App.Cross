@@ -18,8 +18,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <LangVersion>preview</LangVersion>
-    <Nullable>enable</Nullable>
+    <!--<LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>-->
     <!--<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>-->
   </PropertyGroup>
@@ -29,7 +29,8 @@
     <BaseOutputPath>$(RepoRoot)Artifacts\$(Configuration)\bin\$(MSBuildProjectName)\</BaseOutputPath>
     <BaseIntermediateOutputPath>$(RepoRoot)Artifacts\$(Configuration)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>-->
 
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
+    <!--<LangVersion>latest</LangVersion>-->
     <Nullable>enable</Nullable>
     <NoWarn>$(NoWarn);1591;1701;1702;1705;VSX1000</NoWarn>
     <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>

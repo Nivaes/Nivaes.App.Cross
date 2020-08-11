@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <AssemblyName>Nivaes.App.Cross.Tests</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Tests</RootNamespace>
+    <Description>Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+This package contains the 'Test Helpers' for Nivaes.App.Cross</Description>
+    <PackageId>Nivaes.App.Cross.Tests</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+</Project>

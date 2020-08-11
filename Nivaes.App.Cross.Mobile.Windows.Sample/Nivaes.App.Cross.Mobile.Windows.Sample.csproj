@@ -39,8 +39,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
-    <ProjectReference Include="..\Nivaes.App.Mobile.Sample\Nivaes.App.Center.Mobile.Sample.csproj" />
-    <ProjectReference Include="..\Nivaes.App.Mobile.Windows\Nivaes.App.Center.Mobile.Windows.csproj" />
   </ItemGroup>
 
   <ItemGroup>
