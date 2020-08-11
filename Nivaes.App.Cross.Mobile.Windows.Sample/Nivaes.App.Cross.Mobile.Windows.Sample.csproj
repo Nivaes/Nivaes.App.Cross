@@ -14,8 +14,8 @@
     <XamlCodeGenerationControlFlags>DoNotGenerateOtherProviders</XamlCodeGenerationControlFlags>
     <Platforms>x86;x64</Platforms>
 
-    <RootNamespace>Nivaes.App.Mobele.Windows.Sample</RootNamespace>
-    <AssemblyName>Nivaes.App.Mobele.Windows.Sample</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Mobele.Windows.Sample</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Mobele.Windows.Sample</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

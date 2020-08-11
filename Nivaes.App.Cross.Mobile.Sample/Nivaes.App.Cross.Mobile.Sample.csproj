@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 
-    <RootNamespace>Nivaes.App.Mobile.Sample</RootNamespace>
-    <AssemblyName>Nivaes.App.Mobile.Sample</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Mobile.Sample</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Mobile.Sample</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-    <ProjectReference Include="..\Nivaes.App.Mobile\Nivaes.App.Center.Mobile.csproj" />
-    <ProjectReference Include="..\Nivaes.App.Sample\Nivaes.App.Center.Sample.csproj" />
   </ItemGroup>
 
 </Project>
