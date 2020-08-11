@@ -1,0 +1,15 @@
+{
+  //"sdk": {
+  //  "version": "5.0.0-preview.7.20366.15",
+  //  "rollForward": "latestMajor"
+  //},
+  //"sdk": {
+  //  "version": "3.1.302",
+  //  "rollForward": "disable"
+  //},
+  "msbuild-sdks": {
+    "MSBuild.Sdk.Extras": "2.1.2"
+    //"Microsoft.iOS.Sdk": "13.5.100-ci.main.260",
+    //"Microsoft.Android.Sdk": "11.0.100-ci.master.11"
+  }
+}
