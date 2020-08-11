@@ -3,7 +3,7 @@ Cross platfor for develop app's in Xamarin.
 
 ### Continuous Integration
 
-![CI](https://github.com/Nivaes/Nivaes.App/workflows/Continuous%20Integration/badge.svg)
+![CI](https://github.com/Nivaes/Nivaes.App.Cross/workflows/CI/badge.svg)
 
 ### Licensing
 
