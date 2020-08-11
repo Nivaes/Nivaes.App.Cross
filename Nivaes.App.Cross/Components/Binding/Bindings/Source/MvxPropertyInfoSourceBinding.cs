@@ -74,6 +74,8 @@ namespace MvvmCross.Binding.Bindings.Source
         // Note - this is public because we use it in weak referenced situations
         public void SourcePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             // we test for null or empty here - this means all properties have changed
             // - fix for https://github.com/slodge/MvvmCross/issues/280
             if (string.IsNullOrEmpty(e.PropertyName)

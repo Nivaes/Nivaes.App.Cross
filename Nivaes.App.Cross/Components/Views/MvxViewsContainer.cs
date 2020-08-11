@@ -22,6 +22,8 @@ namespace MvvmCross.Views
 
         public void AddAll(IDictionary<Type, Type> lookup)
         {
+            if (lookup == null) throw new ArgumentNullException(nameof(lookup));
+
             foreach (var pair in lookup)
             {
                 Add(pair.Key, pair.Value);

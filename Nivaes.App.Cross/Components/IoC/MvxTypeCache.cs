@@ -20,6 +20,8 @@ namespace MvvmCross.IoC
 
         public void AddAssembly(Assembly assembly)
         {
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+
             try
             {
                 if (CachedAssemblies.ContainsKey(assembly))

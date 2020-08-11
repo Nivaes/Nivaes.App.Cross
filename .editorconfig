@@ -207,7 +207,7 @@ csharp_prefer_simple_using_statement = true:none
 dotnet_diagnostic.CA2008.severity = none
 
 # CA1062: Validate arguments of public methods
-dotnet_diagnostic.CA1062.severity = error
+dotnet_diagnostic.CA1062.severity = Warning
 
 # CA2119: Seal methods that satisfy private interfaces
 dotnet_diagnostic.CA2119.severity = none

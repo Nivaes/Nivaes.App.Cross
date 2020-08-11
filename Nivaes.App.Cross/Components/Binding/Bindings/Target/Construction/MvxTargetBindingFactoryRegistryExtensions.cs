@@ -14,12 +14,16 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
             Func<TView, IMvxTargetBinding> creator)
             where TView : class
         {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
             registry.RegisterFactory(new MvxCustomBindingFactory<TView>(customName, creator));
         }
 
         public static void RegisterPropertyInfoBindingFactory(this IMvxTargetBindingFactoryRegistry registry,
                                                               Type bindingType, Type targetType, string targetName)
         {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
             registry.RegisterFactory(new MvxSimplePropertyInfoTargetBindingFactory(bindingType, targetType, targetName));
         }
     }

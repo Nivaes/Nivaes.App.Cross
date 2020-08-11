@@ -50,6 +50,8 @@ namespace MvvmCross.Binding.Binders
         public static void Fill<T>(this IMvxNamedInstanceRegistry<T> registry, IMvxNamedInstanceRegistryFiller<T> filler,
                                 Assembly assembly)
         {
+            if (filler == null) throw new ArgumentNullException(nameof(filler));
+
             filler.FillFrom(registry, assembly);
         }
 

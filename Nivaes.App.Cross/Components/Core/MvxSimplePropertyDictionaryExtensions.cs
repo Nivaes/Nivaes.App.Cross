@@ -32,6 +32,8 @@ namespace MvvmCross.Core
 
         public static void Write(this IDictionary<string, string> data, object toStore)
         {
+            if (data == null) throw new ArgumentNullException(nameof(data));
+
             if (toStore == null)
                 return;
 
@@ -50,6 +52,9 @@ namespace MvvmCross.Core
 
         public static object Read(this IDictionary<string, string> data, Type type)
         {
+            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             var t = Activator.CreateInstance(type);
             var propertyList =
                 type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy).Where(p => p.CanWrite);
@@ -72,6 +77,8 @@ namespace MvvmCross.Core
                                                              IEnumerable<ParameterInfo> requiredParameters,
                                                              string debugText)
         {
+            if (requiredParameters == null) throw new ArgumentNullException(nameof(requiredParameters));
+
             var argumentList = new List<object>();
             foreach (var requiredParameter in requiredParameters)
             {
@@ -83,6 +90,8 @@ namespace MvvmCross.Core
 
         public static object GetArgumentValue(this IDictionary<string, string> data, ParameterInfo requiredParameter, string debugText)
         {
+            if (requiredParameter == null) throw new ArgumentNullException(nameof(requiredParameter));
+
             string parameterValue;
             if (data == null ||
                 !data.TryGetValue(requiredParameter.Name, out parameterValue))
@@ -143,6 +152,8 @@ namespace MvvmCross.Core
 
         public static string GetPropertyValueAsString(this object input, PropertyInfo propertyInfo)
         {
+            if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+
             try
             {
                 var value = propertyInfo.GetValue(input, new object[] { });

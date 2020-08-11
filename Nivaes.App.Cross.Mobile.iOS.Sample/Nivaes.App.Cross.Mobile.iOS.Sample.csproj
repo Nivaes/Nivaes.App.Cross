@@ -127,19 +127,9 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\mvvmcross\MvvmCross\MvvmCross.csproj">
-      <Project>{7cb20f51-b9ff-48e0-b75b-d24ba862a3bb}</Project>
-      <Name>MvvmCross</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nivaes.App.Mobile.iOS\Nivaes.App.Center.Mobile.iOS.csproj">
-      <Project>{4d7c0b75-3663-435b-857c-021a4934416b}</Project>
-      <Name>Nivaes.App.Center.Mobile.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
-    </ProjectReference>
-    <ProjectReference Include="..\Nivaes.App.Mobile.Sample\Nivaes.App.Center.Mobile.Sample.csproj">
-      <Project>{b4b08222-c82a-4f1c-9dcc-c1b3032a824b}</Project>
-      <Name>Nivaes.App.Center.Mobile.Sample</Name>
+    <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
+      <Project>{34977945-dc28-4055-ae31-afcb0be0cda3}</Project>
+      <Name>Nivaes.App.Cross.Mobile.Sample</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -41,6 +41,8 @@ namespace MvvmCross.Binding.Bindings.Target
         // Note - this is public because we use it in weak referenced situations
         public void OnPropertyChanged(object sender, PropertyChangedEventArgs eventArgs)
         {
+            if (eventArgs == null) throw new ArgumentNullException(nameof(eventArgs));
+
             var target = Target;
             if (target == null)
             {

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MvvmCross.Exceptions;
@@ -79,6 +80,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
 
         protected virtual void ParseNextBindingDescriptionOptionInto(MvxSerializableBindingDescription description)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             if (IsComplete)
                 return;
 
@@ -123,6 +126,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
 
         protected virtual void ParseNonKeywordBlockInto(MvxSerializableBindingDescription description, string block)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             if (!IsComplete && CurrentChar == '(')
             {
                 ParseFunctionStyleBlockInto(description, block);
@@ -136,6 +141,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
 
         protected virtual void ParseFunctionStyleBlockInto(MvxSerializableBindingDescription description, string block)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             description.Converter = block;
             MoveNext();
             if (IsComplete)
@@ -161,6 +168,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
 
         protected void ReadConverterParameterAndClosingBracket(MvxSerializableBindingDescription description)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             SkipWhitespace();
             description.ConverterParameter = ReadValue();
             SkipWhitespace();
@@ -172,6 +181,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
         protected void ParseChildBindingDescriptionInto(MvxSerializableBindingDescription description,
             ParentIsLookingForComma parentIsLookingForComma = ParentIsLookingForComma.ParentIsLookingForComma)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             SkipWhitespace();
             description.Function = "Single";
             description.Sources = new[]
@@ -182,6 +193,8 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
 
         protected void ThrowExceptionIfPathAlreadyDefined(MvxSerializableBindingDescription description)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             if (description.Path != null && 
                 description.Literal != null && 
                 description.Function != null)

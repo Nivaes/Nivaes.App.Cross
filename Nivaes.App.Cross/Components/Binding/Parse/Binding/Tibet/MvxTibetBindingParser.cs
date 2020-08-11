@@ -47,6 +47,8 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
 
         protected override void ParseNextBindingDescriptionOptionInto(MvxSerializableBindingDescription description)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             if (IsComplete)
                 return;
 
@@ -65,6 +67,8 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
 
         protected override void ParseFunctionStyleBlockInto(MvxSerializableBindingDescription description, string block)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             description.Function = block;
             MoveNext();
             if (IsComplete)
@@ -112,6 +116,8 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
 
         protected override MvxSerializableBindingDescription ParseOperatorWithLeftHand(MvxSerializableBindingDescription description)
         {
+            if (description == null) throw new ArgumentNullException(nameof(description));
+
             // Parse the operator
             var parsed = ParseTwoCharacterOperator();
             var moveForwards = parsed.Item1;

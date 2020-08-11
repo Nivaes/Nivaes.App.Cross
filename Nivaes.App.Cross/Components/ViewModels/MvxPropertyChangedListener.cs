@@ -23,9 +23,6 @@ namespace MvvmCross.ViewModels
 
         public MvxPropertyChangedListener(INotifyPropertyChanged notificationObject)
         {
-            if (notificationObject == null)
-                throw new ArgumentNullException(nameof(notificationObject));
-
             _notificationObject = notificationObject;
             _token = _notificationObject.WeakSubscribe(NotificationObjectOnPropertyChanged);
         }
@@ -33,6 +30,8 @@ namespace MvvmCross.ViewModels
         // Note - this is public because we use it in weak referenced situations
         public virtual void NotificationObjectOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
+            if (propertyChangedEventArgs == null) throw new ArgumentNullException(nameof(propertyChangedEventArgs));
+
             var whichProperty = propertyChangedEventArgs.PropertyName;
 
             List<PropertyChangedEventHandler> handlers = null;

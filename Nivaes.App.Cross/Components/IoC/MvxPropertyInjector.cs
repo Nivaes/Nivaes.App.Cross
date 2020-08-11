@@ -33,6 +33,10 @@ namespace MvvmCross.IoC
 
         protected virtual void InjectProperty(object toReturn, PropertyInfo injectableProperty, IMvxPropertyInjectorOptions options)
         {
+            if (toReturn == null) throw new ArgumentNullException(nameof(toReturn));
+            if (injectableProperty == null) throw new ArgumentNullException(nameof(injectableProperty));
+            if (options == null) throw new ArgumentNullException(nameof(options));
+
             object propertyValue;
             if (Mvx.IoCProvider.TryResolve(injectableProperty.PropertyType, out propertyValue))
             {
@@ -56,6 +60,9 @@ namespace MvvmCross.IoC
 
         protected virtual IEnumerable<PropertyInfo> FindInjectableProperties(Type type, IMvxPropertyInjectorOptions options)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (options == null) throw new ArgumentNullException(nameof(options));
+
             var injectableProperties = type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy)
                 .Where(p => p.PropertyType.GetTypeInfo().IsInterface)

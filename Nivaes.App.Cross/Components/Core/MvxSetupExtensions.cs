@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-
-namespace MvvmCross.Core
+﻿namespace MvvmCross.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+
     public static class MvxSetupExtensions
     {
         public static void RegisterSetupType<TMvxSetup>(this object platformApplication,  params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
         {
+            if (platformApplication == null) throw new ArgumentNullException(nameof(platformApplication));
+
             MvxSetup.RegisterSetupType<TMvxSetup>(new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? new Assembly[] { }).ToArray());
         }
 

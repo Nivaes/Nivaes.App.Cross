@@ -89,6 +89,8 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
 
         public void RegisterFactory(IMvxPluginTargetBindingFactory factory)
         {
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+
             foreach (var supported in factory.SupportedTypes)
             {
                 var key = GenerateKey(supported.Type, supported.Name);

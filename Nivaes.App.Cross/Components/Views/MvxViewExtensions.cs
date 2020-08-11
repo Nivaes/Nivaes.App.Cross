@@ -13,6 +13,9 @@ namespace MvvmCross.Views
     {
         public static void OnViewCreate(this IMvxView view, Func<IMvxViewModel> viewModelLoader)
         {
+            if (view == null) throw new ArgumentNullException(nameof(view));
+            if (viewModelLoader == null) throw new ArgumentNullException(nameof(viewModelLoader));
+
             // note - we check the DataContent before the ViewModel to avoid casting errors
             //       in the case of 'simple' binding code
             if (view.DataContext != null)
@@ -68,6 +71,8 @@ namespace MvvmCross.Views
 
         public static IMvxBundle CreateSaveStateBundle(this IMvxView view)
         {
+            if (view == null) throw new ArgumentNullException(nameof(view));
+
             var viewModel = view.ViewModel;
             if (viewModel == null)
                 return new MvxBundle();

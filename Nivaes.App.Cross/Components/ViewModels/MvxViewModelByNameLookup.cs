@@ -33,6 +33,8 @@ namespace MvvmCross.ViewModels
 
         public void Add(Type viewModelType)
         {
+            if (viewModelType == null) throw new ArgumentNullException(nameof(viewModelType));
+
             _availableViewModelsByName[viewModelType.Name] = viewModelType;
             _availableViewModelsByFullName[viewModelType.FullName] = viewModelType;
         }

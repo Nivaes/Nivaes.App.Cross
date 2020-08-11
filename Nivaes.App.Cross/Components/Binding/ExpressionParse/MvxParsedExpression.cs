@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,8 +26,10 @@ namespace MvvmCross.Binding.ExpressionParse
 
             public void AppendPrintTo(StringBuilder builder)
             {
+                if (builder == null) throw new ArgumentNullException(nameof(builder));
+
                 if (builder.Length > 0)
-                    builder.Append(".");
+                    builder.Append('.');
 
                 builder.Append(PropertyName);
             }

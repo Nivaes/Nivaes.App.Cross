@@ -27,6 +27,8 @@ namespace MvvmCross.Binding.Binders
 
         protected virtual void FillFromInstance(IMvxNamedInstanceRegistry<T> registry, Type type)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             var instance = Activator.CreateInstance(type);
 
             var pairs = from field in type.GetFields()
@@ -49,6 +51,8 @@ namespace MvvmCross.Binding.Binders
 
         protected virtual void FillFromStatic(IMvxNamedInstanceRegistry<T> registry, Type type)
         {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
             var pairs = from field in type.GetFields()
                         where field.IsStatic
                         where field.IsPublic
@@ -69,6 +73,8 @@ namespace MvvmCross.Binding.Binders
 
         public virtual void FillFrom(IMvxNamedInstanceRegistry<T> registry, Assembly assembly)
         {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
             var pairs = from type in assembly.ExceptionSafeGetTypes()
                         where type.GetTypeInfo().IsPublic
                         where !type.GetTypeInfo().IsAbstract
@@ -97,6 +103,8 @@ namespace MvvmCross.Binding.Binders
 
         public virtual string FindName(Type type)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             var name = type.Name;
             name = RemoveHead(name, "Mvx");
             return name;
@@ -104,6 +112,9 @@ namespace MvvmCross.Binding.Binders
 
         protected static string RemoveHead(string name, string word)
         {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (word == null) throw new ArgumentNullException(nameof(word));
+
             if (name.StartsWith(word))
                 name = name.Substring(word.Length);
             return name;
@@ -111,6 +122,9 @@ namespace MvvmCross.Binding.Binders
 
         protected static string RemoveTail(string name, string word)
         {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (word == null) throw new ArgumentNullException(nameof(word));
+
             if (name.EndsWith(word))
                 name = name.Substring(0, name.Length - word.Length);
             return name;

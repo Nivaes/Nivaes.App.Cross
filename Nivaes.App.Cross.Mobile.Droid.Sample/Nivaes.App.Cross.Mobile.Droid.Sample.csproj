@@ -133,21 +133,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\mvvmcross\MvvmCross\MvvmCross.csproj">
-      <Project>{7cb20f51-b9ff-48e0-b75b-d24ba862a3bb}</Project>
-      <Name>MvvmCross</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nivaes.App.Mobile.Droid\Nivaes.App.Center.Mobile.Droid.csproj">
-      <Project>{f135abb8-2027-49d9-8a70-ccbeb81ea8e2}</Project>
-      <Name>Nivaes.App.Center.Mobile.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nivaes.App.Mobile.Sample\Nivaes.App.Center.Mobile.Sample.csproj">
-      <Project>{b4b08222-c82a-4f1c-9dcc-c1b3032a824b}</Project>
-      <Name>Nivaes.App.Center.Mobile.Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nivaes.App.Sample\Nivaes.App.Center.Sample.csproj">
-      <Project>{2a26920e-f920-4930-ad85-4841a54cbf7e}</Project>
-      <Name>Nivaes.App.Center.Sample</Name>
+    <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
+      <Project>{34977945-dc28-4055-ae31-afcb0be0cda3}</Project>
+      <Name>Nivaes.App.Cross.Mobile.Sample</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

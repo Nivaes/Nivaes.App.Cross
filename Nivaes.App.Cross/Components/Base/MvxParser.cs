@@ -212,6 +212,8 @@ namespace MvvmCross.Base
 
         protected void SkipWhitespaceAndCharacters(Dictionary<char, bool> toSkip)
         {
+            if (toSkip == null) throw new ArgumentNullException(nameof(toSkip));
+
             while (!IsComplete
                    && IsWhiteSpaceOrCharacter(CurrentChar, toSkip))
             {
@@ -299,6 +301,9 @@ namespace MvvmCross.Base
 
         protected bool TestKeywordInPeekString(string uppercaseKeyword, string peekString)
         {
+            if (uppercaseKeyword == null) throw new ArgumentNullException(nameof(uppercaseKeyword));
+            if (peekString == null) throw new ArgumentNullException(nameof(peekString));
+
             if (peekString.Length < uppercaseKeyword.Length)
                 return false;
 
@@ -393,7 +398,9 @@ namespace MvvmCross.Base
 
         protected ValueType NumberFromText(string numberText)
         {
-            return NumberFromText(numberText, numberText.Contains("."));
+            if (numberText == null) throw new ArgumentNullException(nameof(numberText));
+
+            return NumberFromText(numberText, numberText.Contains('.'));
         }
 
         protected ValueType NumberFromText(string numberText, bool decimalPeriodSeen)
@@ -425,6 +432,8 @@ namespace MvvmCross.Base
 
         protected object ReadEnumerationValue(Type enumerationType, bool ignoreCase = true)
         {
+            if (enumerationType == null) throw new ArgumentNullException(nameof(enumerationType));
+
             var name = ReadValidCSharpName();
             try
             {

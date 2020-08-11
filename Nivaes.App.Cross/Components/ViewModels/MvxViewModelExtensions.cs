@@ -2,16 +2,19 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Base;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Base;
+
     public static class MvxViewModelExtensions
     {
         public static void CallBundleMethods(this IMvxViewModel viewModel, string methodName, IMvxBundle bundle)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             var methods = viewModel
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy)
@@ -23,8 +26,12 @@ namespace MvvmCross.ViewModels
             }
         }
 
-        public static void CallBundleMethod(this IMvxViewModel viewModel, MethodInfo methodInfo, IMvxBundle bundle)
+        public static void CallBundleMethod(this IMvxViewModel viewModel, MethodInfo methodInfo, IMvxBundle? bundle)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (methodInfo == null) throw new ArgumentNullException(nameof(methodInfo));
+            if (bundle == null) throw new ArgumentNullException(nameof(bundle));
+
             var parameters = methodInfo.GetParameters().ToArray();
 
             //Make sure we have a bundle that matches function parameters
@@ -57,6 +64,8 @@ namespace MvvmCross.ViewModels
 
         public static IMvxBundle SaveStateBundle(this IMvxViewModel viewModel)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             var toReturn = new MvxBundle();
             var methods = viewModel.GetType()
                                    .GetMethods()

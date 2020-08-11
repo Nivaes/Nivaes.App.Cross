@@ -229,6 +229,8 @@ namespace MvvmCross.Core
 
         protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
         {
+            if (iocProvider == null) throw new ArgumentNullException(nameof(iocProvider));
+
             RegisterLogProvider(iocProvider);
             iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
@@ -279,6 +281,8 @@ namespace MvvmCross.Core
 
         protected virtual void RegisterLogProvider(IMvxIoCProvider iocProvider)
         {
+            if (iocProvider == null) throw new ArgumentNullException(nameof(iocProvider));
+
             Func<IMvxLogProvider> logProviderCreator;
             switch (GetDefaultLogProviderType())
             {
@@ -378,6 +382,8 @@ namespace MvvmCross.Core
 
         public virtual void LoadPlugins(IMvxPluginManager pluginManager)
         {
+            if (pluginManager == null) throw new ArgumentNullException(nameof(pluginManager));
+
             var pluginAttribute = typeof(MvxPluginAttribute);
             var pluginAssemblies = GetPluginAssemblies();
 
@@ -414,6 +420,8 @@ namespace MvvmCross.Core
 
         protected virtual void InitializeApp(IMvxPluginManager pluginManager, IMvxApplication app)
         {
+            if (app == null) throw new ArgumentNullException(nameof(app));
+
             app.LoadPlugins(pluginManager);
             SetupLog.Trace("Setup: Application Initialize - On background thread");
             app.Initialize();
@@ -445,6 +453,8 @@ namespace MvvmCross.Core
 
         protected virtual void LoadNavigationServiceRoutes(IMvxNavigationService navigationService)
         {
+            if (navigationService == null) throw new ArgumentNullException(nameof(navigationService));
+
             navigationService.LoadRoutes(GetViewModelAssemblies());
         }
 

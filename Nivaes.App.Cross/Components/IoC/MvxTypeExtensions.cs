@@ -16,6 +16,8 @@ namespace MvvmCross.IoC
     {
         public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)
         {
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+
             try
             {
                 return assembly.GetTypes();
@@ -119,10 +121,14 @@ namespace MvvmCross.IoC
             }
         }
 
-        public static bool IsGenericPartiallyClosed(this Type type) =>
-            type.GetTypeInfo().IsGenericType
+        public static bool IsGenericPartiallyClosed(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            return type.GetTypeInfo().IsGenericType
             && type.GetTypeInfo().ContainsGenericParameters
             && type.GetGenericTypeDefinition() != type;
+        }
 
         public class ServiceTypeAndImplementationTypePair
         {
@@ -167,6 +173,8 @@ namespace MvvmCross.IoC
 
         public static IEnumerable<ServiceTypeAndImplementationTypePair> ExcludeInterfaces(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs, params Type[] toExclude)
         {
+            if (pairs == null) throw new ArgumentNullException(nameof(pairs));
+
             foreach (var pair in pairs)
             {
                 var excludedList = pair.ServiceTypes.Where(c => !toExclude.Contains(c)).ToList();
@@ -181,6 +189,8 @@ namespace MvvmCross.IoC
 
         public static void RegisterAsSingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
+            if (pairs == null) throw new ArgumentNullException(nameof(pairs));
+
             foreach (var pair in pairs)
             {
                 if (!pair.ServiceTypes.Any())
@@ -196,6 +206,8 @@ namespace MvvmCross.IoC
 
         public static void RegisterAsLazySingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
+            if (pairs == null) throw new ArgumentNullException(nameof(pairs));
+
             foreach (var pair in pairs)
             {
                 if (!pair.ServiceTypes.Any())
@@ -213,6 +225,8 @@ namespace MvvmCross.IoC
 
         public static void RegisterAsDynamic(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
+            if (pairs == null) throw new ArgumentNullException(nameof(pairs));
+
             foreach (var pair in pairs)
             {
                 foreach (var serviceType in pair.ServiceTypes)
@@ -242,6 +256,8 @@ namespace MvvmCross.IoC
         
         public static ConstructorInfo FindApplicableConstructor(this Type type, IDictionary<string, object> arguments)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             var constructors = type.GetConstructors();
             if (arguments == null || arguments.Count == 0)
             {
@@ -272,6 +288,8 @@ namespace MvvmCross.IoC
         
         public static ConstructorInfo FindApplicableConstructor(this Type type, object[] arguments)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             var constructors = type.GetConstructors();
             if (arguments == null || arguments.Length == 0)
             {
