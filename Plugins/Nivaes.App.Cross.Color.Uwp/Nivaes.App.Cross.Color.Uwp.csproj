@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -7,8 +7,8 @@
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
 
-    <AssemblyName>Nivaes.App.Cross.Color.Windows</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.Color.Windows</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Color.Uwp</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Color.Uwp</RootNamespace>
 
     <Platforms>AnyCPU;x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
@@ -19,11 +19,15 @@
       This package contains the 'Color' plugin for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Color.Windows</PackageId>
-
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Nivaes.App.Cross.Windows\Nivaes.App.Cross.Windows.csproj" />
+    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
+    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Uwp\Nivaes.App.Cross.Uwp.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Color\Nivaes.App.Cross.Color.csproj" />
   </ItemGroup>
 

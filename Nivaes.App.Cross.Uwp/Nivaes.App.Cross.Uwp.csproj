@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -7,8 +7,8 @@
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
 
-    <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Uwp</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Uwp</RootNamespace>
 
     <!--<Platforms>x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>-->

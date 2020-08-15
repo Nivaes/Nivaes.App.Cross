@@ -41,7 +41,7 @@ namespace MvvmCross.Platforms.Uap.Binding
                 return;
             }
 
-            var newBinding = new Windows.UI.Xaml.Data.Binding
+            var newBinding = new Microsoft.UI.Xaml.Data.Binding
             {
                 Path = new PropertyPath(sourceStep.SourcePropertyPath),
                 Mode = ConvertMode(bindingDescription.Mode, property?.PropertyType ?? typeof(object)),

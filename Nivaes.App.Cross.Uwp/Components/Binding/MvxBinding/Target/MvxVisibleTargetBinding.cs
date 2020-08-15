@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Windows.UI.Xaml;
-using MvvmCross.Binding;
 
 namespace MvvmCross.Platforms.Uap.Binding.MvxBinding.Target
 {
+    using System;
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Binding;
+
     public class MvxVisibleTargetBinding : MvxDependencyPropertyTargetBinding
     {
         public MvxVisibleTargetBinding(object target)

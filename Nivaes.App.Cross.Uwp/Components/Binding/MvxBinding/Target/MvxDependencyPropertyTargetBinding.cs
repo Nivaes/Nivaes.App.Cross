@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Uap.Binding.MvxBinding.Target
             if (frameworkElement == null)
                 return;
 
-            var listenerBinding = new Windows.UI.Xaml.Data.Binding()
+            var listenerBinding = new Microsoft.UI.Xaml.Data.Binding()
             {
                 Path = new PropertyPath(_targetName),
                 Source = frameworkElement

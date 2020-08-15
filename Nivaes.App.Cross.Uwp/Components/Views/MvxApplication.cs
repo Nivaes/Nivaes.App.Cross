@@ -39,13 +39,13 @@ namespace MvvmCross.Platforms.Uap.Views
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs activationArgs)
         {
             base.OnLaunched(activationArgs);
-            ActivationArguments = activationArgs;
+            ActivationArguments = activationArgs.UWPLaunchActivatedEventArgs;
 
-            var rootFrame = InitializeFrame(activationArgs);
+            var rootFrame = InitializeFrame(activationArgs.UWPLaunchActivatedEventArgs);
 
-            if (activationArgs.PrelaunchActivated == false)
+            if (activationArgs.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
             {
-                RunAppStart(activationArgs);
+                RunAppStart(activationArgs.UWPLaunchActivatedEventArgs);
             }
 
             Window.Current.Activate();
