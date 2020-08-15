@@ -2,19 +2,19 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Platforms.Uap.Views.Suspension;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+    using MvvmCross.Platforms.Uap.Views.Suspension;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Windows.UI.Core;
+
     public class MvxWindowsPage
         : Page
         , IMvxWindowsView

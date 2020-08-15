@@ -2,20 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.Platforms.Uap.Core;
-using MvvmCross.Platforms.Uap.Views.Suspension;
-using MvvmCross.ViewModels;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System.Threading.Tasks;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Platforms.Uap.Core;
+    using MvvmCross.Platforms.Uap.Views.Suspension;
+    using MvvmCross.ViewModels;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+
     public abstract class MvxApplication : Application
     {
         protected IActivatedEventArgs ActivationArguments { get; private set; }
@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Uap.Views
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="activationArgs">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
+        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs activationArgs)
         {
             base.OnLaunched(activationArgs);
             ActivationArguments = activationArgs;

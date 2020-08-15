@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using MvvmCross.Platforms.Uap.Presenters.Attributes;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System;
+    using System.Linq;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Media;
+    using MvvmCross.Platforms.Uap.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+
     public static class MvxWindowsExtensions
     {
         public static void OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)

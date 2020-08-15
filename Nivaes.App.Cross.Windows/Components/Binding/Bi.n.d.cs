@@ -3,11 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using Windows.UI.Xaml;
 using MvvmCross.Base;
 using MvvmCross.Exceptions;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings;
+using Microsoft.UI.Xaml;
 
 namespace MvvmCross.Platforms.Uap.Binding
 {

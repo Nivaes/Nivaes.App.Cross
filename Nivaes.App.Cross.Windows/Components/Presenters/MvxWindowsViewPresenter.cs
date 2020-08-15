@@ -2,25 +2,24 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Platforms.Uap.Presenters.Attributes;
-using MvvmCross.Platforms.Uap.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Presenters;
-using MvvmCross.Views;
-using MvvmCross.Presenters.Attributes;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml;
-using System.Linq;
-
 namespace MvvmCross.Platforms.Uap.Presenters
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Media;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.Platforms.Uap.Presenters.Attributes;
+    using MvvmCross.Platforms.Uap.Views;
+    using MvvmCross.Presenters;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Windows.UI.Core;
+
     public class MvxWindowsViewPresenter
         : MvxAttributeViewPresenter, IMvxWindowsViewPresenter
     {

@@ -6,11 +6,10 @@
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
 using System.Collections.Generic;
+using Microsoft.UI.Xaml;
 using MvvmCross.Base;
-using MvvmCross.Core;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings;
-using Windows.UI.Xaml;
 
 namespace MvvmCross.Platforms.Uap.Binding
 {
