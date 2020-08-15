@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Base
 {
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.ViewModels;
+
     public class MvxSingletonCache
         : MvxSingleton<IMvxSingletonCache>, IMvxSingletonCache
     {
@@ -24,41 +24,41 @@ namespace MvvmCross.Base
         {
         }
 
-        private bool _inpcInterceptorResolveAttempted;
-        private IMvxInpcInterceptor _inpcInterceptor;
+        private bool mInpcInterceptorResolveAttempted;
+        private IMvxInpcInterceptor? mInpcInterceptor;
 
         public IMvxInpcInterceptor InpcInterceptor
         {
             get
             {
-                if (_inpcInterceptorResolveAttempted)
-                    return _inpcInterceptor;
+                if (mInpcInterceptorResolveAttempted)
+                    return mInpcInterceptor;
 
-                Mvx.IoCProvider.TryResolve<IMvxInpcInterceptor>(out _inpcInterceptor);
-                _inpcInterceptorResolveAttempted = true;
-                return _inpcInterceptor;
+                Mvx.IoCProvider.TryResolve<IMvxInpcInterceptor>(out mInpcInterceptor);
+                mInpcInterceptorResolveAttempted = true;
+                return mInpcInterceptor;
             }
         }
 
-        private IMvxStringToTypeParser _parser;
+        private IMvxStringToTypeParser? mParser;
 
         public IMvxStringToTypeParser Parser
         {
             get
             {
-                _parser = _parser ?? Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
-                return _parser;
+                mParser ??= Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
+                return mParser;
             }
         }
 
-        private IMvxSettings _settings;
+        private IMvxSettings? mSettings;
 
         public IMvxSettings Settings
         {
             get
             {
-                _settings = _settings ?? Mvx.IoCProvider.Resolve<IMvxSettings>();
-                return _settings;
+                mSettings ??= Mvx.IoCProvider.Resolve<IMvxSettings>();
+                return mSettings;
             }
         }
     }

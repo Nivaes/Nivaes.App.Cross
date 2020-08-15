@@ -2,22 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.ViewModels;
+
     public abstract class MvxViewsContainer
         : IMvxViewsContainer
     {
-        private readonly Dictionary<Type, Type> _bindingMap = new Dictionary<Type, Type>();
-        private readonly List<IMvxViewFinder> _secondaryViewFinders;
-        private IMvxViewFinder? _lastResortViewFinder;
+        private readonly Dictionary<Type, Type> mBindingMap = new Dictionary<Type, Type>();
+        private readonly List<IMvxViewFinder> mSecondaryViewFinders;
+        private IMvxViewFinder? mLastResortViewFinder;
 
         protected MvxViewsContainer()
         {
-            _secondaryViewFinders = new List<IMvxViewFinder>();
+            mSecondaryViewFinders = new List<IMvxViewFinder>();
         }
 
         public void AddAll(IDictionary<Type, Type> lookup)
@@ -32,7 +32,7 @@ namespace MvvmCross.Views
 
         public void Add(Type viewModelType, Type viewType)
         {
-            _bindingMap[viewModelType] = viewType;
+            mBindingMap[viewModelType] = viewType;
         }
 
         public void Add<TViewModel, TView>()
@@ -44,13 +44,12 @@ namespace MvvmCross.Views
 
         public Type GetViewType(Type viewModelType)
         {
-            Type binding;
-            if (_bindingMap.TryGetValue(viewModelType, out binding))
+            if (mBindingMap.TryGetValue(viewModelType, out Type binding))
             {
                 return binding;
             }
 
-            foreach (var viewFinder in _secondaryViewFinders)
+            foreach (var viewFinder in mSecondaryViewFinders)
             {
                 binding = viewFinder.GetViewType(viewModelType);
                 if (binding != null)
@@ -59,9 +58,9 @@ namespace MvvmCross.Views
                 }
             }
 
-            if (_lastResortViewFinder != null)
+            if (mLastResortViewFinder != null)
             {
-                binding = _lastResortViewFinder.GetViewType(viewModelType);
+                binding = mLastResortViewFinder.GetViewType(viewModelType);
                 if (binding != null)
                 {
                     return binding;
@@ -73,12 +72,12 @@ namespace MvvmCross.Views
 
         public void AddSecondary(IMvxViewFinder finder)
         {
-            _secondaryViewFinders.Add(finder);
+            mSecondaryViewFinders.Add(finder);
         }
 
         public void SetLastResort(IMvxViewFinder finder)
         {
-            _lastResortViewFinder = finder;
+            mLastResortViewFinder = finder;
         }
     }
 }

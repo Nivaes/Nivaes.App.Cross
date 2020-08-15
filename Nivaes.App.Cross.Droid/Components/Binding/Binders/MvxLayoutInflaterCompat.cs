@@ -18,8 +18,8 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     public static class MvxLayoutInflaterCompat
     {
         private static readonly int SdkInt = (int)Build.VERSION.SdkInt;
-        private static Field? _layoutInflaterFactory2Field;
-        private static bool _checkedField;
+        private static Field? mLayoutInflaterFactory2Field;
+        private static bool mCheckedField;
 
         internal class FactoryWrapper : Object, LayoutInflater.IFactory
         {
@@ -91,13 +91,13 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
         // log an error.
         private static void ForceSetFactory2(LayoutInflater inflater, LayoutInflater.IFactory2 factory)
         {
-            if (!_checkedField)
+            if (!mCheckedField)
             {
                 try
                 {
                     Class layoutInflaterClass = Class.FromType(typeof(LayoutInflater));
-                    _layoutInflaterFactory2Field = layoutInflaterClass.GetDeclaredField("mFactory2");
-                    _layoutInflaterFactory2Field.Accessible = true;
+                    mLayoutInflaterFactory2Field = layoutInflaterClass.GetDeclaredField("mFactory2");
+                    mLayoutInflaterFactory2Field.Accessible = true;
                 }
                 catch (NoSuchFieldException)
                 {
@@ -105,14 +105,14 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
                         "ForceSetFactory2 Could not find field 'mFactory2' on class {0}; inflation may have unexpected results.",
                         Class.FromType(typeof(LayoutInflater)).Name);
                 }
-                _checkedField = true;
+                mCheckedField = true;
             }
 
-            if (_layoutInflaterFactory2Field != null)
+            if (mLayoutInflaterFactory2Field != null)
             {
                 try
                 {
-                    _layoutInflaterFactory2Field.Set(inflater, (Object)factory);
+                    mLayoutInflaterFactory2Field.Set(inflater, (Object)factory);
                 }
                 catch (IllegalAccessException)
                 {
