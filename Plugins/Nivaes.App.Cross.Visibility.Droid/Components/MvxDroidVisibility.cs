@@ -5,7 +5,7 @@
 using Android.Views;
 
 namespace MvvmCross.Plugin.Visibility.Platforms.Android
-{ 
+{
     using MvvmCross.UI;
 
     [Preserve(AllMembers = true)]

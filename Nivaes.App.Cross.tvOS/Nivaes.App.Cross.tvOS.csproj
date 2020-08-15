@@ -1,0 +1,22 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+<!--<Project Sdk="Microsoft.NET.Sdk">-->
+
+  <PropertyGroup>
+    <TargetFrameworks>xamarin.tvos10</TargetFrameworks>
+
+    <AssemblyName>Nivaes.App.Cross.tvOS</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.tvOS</RootNamespace>
+
+    <Description>
+      Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+      This package contains the 'Core' libraries for Nivaes.App.Cross
+    </Description>
+    <PackageId>Nivaes.App.Cross.tvOS</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+</Project>

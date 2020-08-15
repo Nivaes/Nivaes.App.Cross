@@ -1,19 +1,17 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
-<!--<Project Sdk="Microsoft.NET.Sdk">-->
 
   <PropertyGroup>
-    <TargetFrameworks>xamarin.ios10</TargetFrameworks>
-    <!--<TargetFrameworks>net5.0-ios</TargetFrameworks>-->
+    <TargetFrameworks>xamarin.mac20</TargetFrameworks>
 
-    <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.iOS</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.macOS</RootNamespace>
 
     <Description>
       Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
 
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
-    <PackageId>Nivaes.App.Cross.iOS</PackageId>
+    <PackageId>Nivaes.App.Cross.macOS</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

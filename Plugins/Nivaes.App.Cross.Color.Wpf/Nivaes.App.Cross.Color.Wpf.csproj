@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+
+    <AssemblyName>Nivaes.App.Cross.Color.Wpf</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Color.Wpf</RootNamespace>
+
+     <Description>
+      Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+      This package contains the 'Color' plugin for Nivaes.App.Cross
+    </Description>
+    <PackageId>Nivaes.App.Cross.Color.Wpf</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Wpf\Nivaes.App.Cross.Wpf.csproj" />
+    <ProjectReference Include="..\Nivaes.App.Cross.Color\Nivaes.App.Cross.Color.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
+</Project>

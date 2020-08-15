@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross.Wpf\Nivaes.App.Cross.Wpf.csproj" />
+    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Color.Wpf\Nivaes.App.Cross.Color.Wpf.csproj" />
+    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Visibility.Wpf\Nivaes.App.Cross.Visibility.Wpf.csproj" />
+  </ItemGroup>
+
+</Project>
