@@ -18,7 +18,7 @@ namespace MvvmCross.Commands
     public class MvxStrongCommandHelper
         : IMvxCommandHelper
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public void RaiseCanExecuteChanged(object sender)
         {
@@ -29,28 +29,28 @@ namespace MvvmCross.Commands
     public class MvxWeakCommandHelper
         : IMvxCommandHelper
     {
-        private readonly List<WeakReference> _eventHandlers = new List<WeakReference>();
-        private readonly object _syncRoot = new object();
+        private readonly List<WeakReference> mEventHandlers = new List<WeakReference>();
+        private readonly object mSyncRoot = new object();
 
         public event EventHandler CanExecuteChanged
         {
             add
             {
-                lock (_syncRoot)
+                lock (mSyncRoot)
                 {
-                    _eventHandlers.Add(new WeakReference(value));
+                    mEventHandlers.Add(new WeakReference(value));
                 }
             }
             remove
             {
-                lock (_syncRoot)
+                lock (mSyncRoot)
                 {
-                    foreach (var thing in _eventHandlers)
+                    foreach (var thing in mEventHandlers)
                     {
                         var target = thing.Target;
                         if (target != null && (EventHandler)target == value)
                         {
-                            _eventHandlers.Remove(thing);
+                            mEventHandlers.Remove(thing);
                             break;
                         }
                     }
@@ -60,12 +60,12 @@ namespace MvvmCross.Commands
 
         private IEnumerable<EventHandler> SafeCopyEventHandlerList()
         {
-            lock (_syncRoot)
+            lock (mSyncRoot)
             {
                 var toReturn = new List<EventHandler>();
                 var deadEntries = new List<WeakReference>();
 
-                foreach (var thing in _eventHandlers)
+                foreach (var thing in mEventHandlers)
                 {
                     if (!thing.IsAlive)
                     {
@@ -81,7 +81,7 @@ namespace MvvmCross.Commands
 
                 foreach (var weakReference in deadEntries)
                 {
-                    _eventHandlers.Remove(weakReference);
+                    mEventHandlers.Remove(weakReference);
                 }
 
                 return toReturn;
@@ -101,13 +101,13 @@ namespace MvvmCross.Commands
     public class MvxCommandBase
         : MvxMainThreadDispatchingObject
     {
-        private readonly IMvxCommandHelper _commandHelper;
+        private readonly IMvxCommandHelper? mCommandHelper;
 
         public MvxCommandBase()
         {
             // fallback on MvxWeakCommandHelper if no IoC has been set up
-            if (!Mvx.IoCProvider?.TryResolve(out _commandHelper) ?? true)
-                _commandHelper = new MvxWeakCommandHelper();
+            if (!Mvx.IoCProvider?.TryResolve(out mCommandHelper) ?? true)
+                mCommandHelper = new MvxWeakCommandHelper();
 
             // default to true if no Singleton Cache has been set up
             var alwaysOnUIThread = MvxSingletonCache.Instance?.Settings.AlwaysRaiseInpcOnUserInterfaceThread ?? true;
@@ -118,11 +118,11 @@ namespace MvvmCross.Commands
         {
             add
             {
-                _commandHelper.CanExecuteChanged += value;
+                mCommandHelper.CanExecuteChanged += value;
             }
             remove
             {
-                _commandHelper.CanExecuteChanged -= value;
+                mCommandHelper.CanExecuteChanged -= value;
             }
         }
 
@@ -132,11 +132,11 @@ namespace MvvmCross.Commands
         {
             if (ShouldAlwaysRaiseCECOnUserInterfaceThread)
             {
-                InvokeOnMainThread(() => _commandHelper.RaiseCanExecuteChanged(this));
+                InvokeOnMainThread(() => mCommandHelper.RaiseCanExecuteChanged(this));
             }
             else
             {
-                _commandHelper.RaiseCanExecuteChanged(this);
+                mCommandHelper.RaiseCanExecuteChanged(this);
             }
         }
     }

@@ -15,11 +15,11 @@ namespace MvvmCross.Binding.Combiners
     [MvxUnconventional]
     public class MvxValueConverterValueCombiner : MvxValueCombiner
     {
-        private readonly IMvxValueConverter _valueConverter;
+        private readonly IMvxValueConverter mValueConverter;
 
         public MvxValueConverterValueCombiner(IMvxValueConverter valueConverter)
         {
-            _valueConverter = valueConverter;
+            mValueConverter = valueConverter;
         }
 
         public override void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
@@ -27,12 +27,12 @@ namespace MvvmCross.Binding.Combiners
             var sourceStep = steps.First();
             var parameter = GetParameterValue(steps);
 
-            if (_valueConverter == null)
+            if (mValueConverter == null)
             {
                 // null value converter always fails
                 return;
             }
-            var converted = _valueConverter.ConvertBack(value, sourceStep.SourceType, parameter,
+            var converted = mValueConverter.ConvertBack(value, sourceStep.SourceType, parameter,
                                                         CultureInfo.CurrentUICulture);
             sourceStep.SetValue(converted);
         }
@@ -74,13 +74,13 @@ namespace MvvmCross.Binding.Combiners
                 return true;
             }
 
-            if (_valueConverter == null)
+            if (mValueConverter == null)
             {
                 value = MvxBindingConstant.UnsetValue;
                 return true;
             }
 
-            value = _valueConverter.Convert(sourceValue, mTargetType, parameter, CultureInfo.CurrentUICulture);
+            value = mValueConverter.Convert(sourceValue, mTargetType, parameter, CultureInfo.CurrentUICulture);
             return true;
         }
     }

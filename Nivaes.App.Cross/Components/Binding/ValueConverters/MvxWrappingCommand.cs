@@ -15,18 +15,18 @@ namespace MvvmCross.Binding.ValueConverters
     {
         private static readonly EventInfo CanExecuteChangedEventInfo = typeof(ICommand).GetEvent("CanExecuteChanged");
 
-        private readonly ICommand _wrapped;
-        private readonly object _commandParameterOverride;
-        private readonly IDisposable _canChangedEventSubscription;
+        private readonly ICommand mWrapped;
+        private readonly object mCommandParameterOverride;
+        private readonly IDisposable mCanChangedEventSubscription;
 
         public MvxWrappingCommand(ICommand wrapped, object commandParameterOverride)
         {
-            _wrapped = wrapped;
-            _commandParameterOverride = commandParameterOverride;
+            mWrapped = wrapped;
+            mCommandParameterOverride = commandParameterOverride;
 
-            if (_wrapped != null)
+            if (mWrapped != null)
             {
-                _canChangedEventSubscription = CanExecuteChangedEventInfo.WeakSubscribe(_wrapped, WrappedOnCanExecuteChanged);
+                mCanChangedEventSubscription = CanExecuteChangedEventInfo.WeakSubscribe(mWrapped, WrappedOnCanExecuteChanged);
             }
         }
 
@@ -38,23 +38,23 @@ namespace MvvmCross.Binding.ValueConverters
 
         public bool CanExecute(object? parameter = null)
         {
-            if (_wrapped == null)
+            if (mWrapped == null)
                 return false;
 
             if (parameter != null)
                 MvxLog.Instance.Warn("Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
 
-            return _wrapped.CanExecute(_commandParameterOverride);
+            return mWrapped.CanExecute(mCommandParameterOverride);
         }
 
         public void Execute(object? parameter = null)
         {
-            if (_wrapped == null)
+            if (mWrapped == null)
                 return;
 
             if (parameter != null)
                 MvxLog.Instance.Warn("Non-null parameter overridden in MvxWrappingCommand");
-            _wrapped.Execute(_commandParameterOverride);
+            mWrapped.Execute(mCommandParameterOverride);
         }
 
         public event EventHandler CanExecuteChanged;
