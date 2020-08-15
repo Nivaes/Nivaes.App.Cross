@@ -11,18 +11,16 @@ namespace MvvmCross.Plugin.Visibility
     [Preserve(AllMembers = true)]
     public class MvxInvertedVisibilityValueConverter : MvxVisibilityValueConverter
     {
-        protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
+        protected override MvxVisibility Convert(object? value, object? parameter, CultureInfo culture)
         {
-            bool hide = parameter.ConvertToBooleanCore();
-            switch (base.Convert(value, parameter, culture))
+            bool hide = parameter?.ConvertToBooleanCore() == true;
+
+            return (base.Convert(value, parameter, culture)) switch
             {
-                case MvxVisibility.Visible when hide:
-                    return MvxVisibility.Hidden;
-                case MvxVisibility.Visible when !hide:
-                    return MvxVisibility.Collapsed;
-                default:
-                    return MvxVisibility.Visible;
-            }
+                MvxVisibility.Visible when hide => MvxVisibility.Hidden,
+                MvxVisibility.Visible when !hide => MvxVisibility.Collapsed,
+                _ => MvxVisibility.Visible,
+            };
         }
     }
 }

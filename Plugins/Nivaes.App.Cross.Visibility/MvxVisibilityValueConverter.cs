@@ -2,23 +2,23 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Globalization;
-using MvvmCross.Base;
-using MvvmCross.UI;
-
 namespace MvvmCross.Plugin.Visibility
 {
+    using System.Globalization;
+    using MvvmCross.Base;
+    using MvvmCross.UI;
+
     [Preserve(AllMembers = true)]
     public class MvxVisibilityValueConverter : MvxBaseVisibilityValueConverter
     {
-        protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
+        protected override MvxVisibility Convert(object? value, object? parameter, CultureInfo culture)
         {
-            bool visible = value.ConvertToBooleanCore();
-            bool hide = parameter.ConvertToBooleanCore();
+            bool? visible = value?.ConvertToBooleanCore();
+            bool? hide = parameter?.ConvertToBooleanCore();
 
-            if (!visible)
+            if (visible == false)
             {
-                return hide ? MvxVisibility.Hidden : MvxVisibility.Collapsed;
+                return hide == true ? MvxVisibility.Hidden : MvxVisibility.Collapsed;
             }
 
             return MvxVisibility.Visible;
