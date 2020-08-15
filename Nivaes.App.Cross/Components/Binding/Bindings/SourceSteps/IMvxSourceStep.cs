@@ -13,10 +13,10 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
 
         void SetValue(object value);
 
-        event EventHandler Changed;
+        event EventHandler? Changed;
 
-        object GetValue();
+        object? GetValue();
 
-        object DataContext { get; set; }
+        object? DataContext { get; set; }
     }
 }

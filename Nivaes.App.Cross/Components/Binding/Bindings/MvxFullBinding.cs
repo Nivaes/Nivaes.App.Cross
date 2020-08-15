@@ -21,33 +21,30 @@ namespace MvvmCross.Binding.Bindings
 
         private IMvxTargetBindingFactory TargetBindingFactory => MvxBindingSingletonCache.Instance.TargetBindingFactory;
 
-        private readonly MvxBindingDescription _bindingDescription;
-        private IMvxSourceStep _sourceStep;
-        private IMvxTargetBinding _targetBinding;
-        private readonly object _targetLocker = new object();
+        private readonly MvxBindingDescription mBindingDescription;
+        private IMvxSourceStep? mSourceStep;
+        private IMvxTargetBinding? mTargetBinding;
+        private readonly object mTargetLocker = new object();
 
-        private object _dataContext;
-        private EventHandler _sourceBindingOnChanged;
-        private EventHandler<MvxTargetChangedEventArgs> _targetBindingOnValueChanged;
+        private object? mDataContext;
+        private EventHandler? mSourceBindingOnChanged;
+        private EventHandler<MvxTargetChangedEventArgs> mTargetBindingOnValueChanged;
 
-        private object _defaultTargetValue;
-        private CancellationTokenSource _cancelSource = new CancellationTokenSource();
-        private IMvxMainThreadAsyncDispatcher dispatcher => MvxBindingSingletonCache.Instance.MainThreadDispatcher;
+        private object mDefaultTargetValue;
+        private CancellationTokenSource mCancelSource = new CancellationTokenSource();
+        private IMvxMainThreadAsyncDispatcher mDispatcher => MvxBindingSingletonCache.Instance.MainThreadDispatcher;
 
-        public object DataContext
+        public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
+            get => mDataContext;
             set
             {
-                if (_dataContext == value)
+                if (mDataContext == value)
                     return;
-                _dataContext = value;
+                mDataContext = value;
 
-                if (_sourceStep != null)
-                    _sourceStep.DataContext = value;
+                if (mSourceStep != null)
+                    mSourceStep.DataContext = value;
 
                 UpdateTargetOnBind();
             }
@@ -55,23 +52,23 @@ namespace MvvmCross.Binding.Bindings
 
         public MvxFullBinding(MvxBindingRequest bindingRequest)
         {
-            _bindingDescription = bindingRequest.Description;
+            mBindingDescription = bindingRequest.Description;
             CreateTargetBinding(bindingRequest.Target);
             CreateSourceBinding(bindingRequest.Source);
         }
 
         protected virtual void ClearSourceBinding()
         {
-            if (_sourceStep != null)
+            if (mSourceStep != null)
             {
-                if (_sourceBindingOnChanged != null)
+                if (mSourceBindingOnChanged != null)
                 {
-                    _sourceStep.Changed -= _sourceBindingOnChanged;
-                    _sourceBindingOnChanged = null;
+                    mSourceStep.Changed -= mSourceBindingOnChanged;
+                    mSourceBindingOnChanged = null;
                 }
 
-                _sourceStep.Dispose();
-                _sourceStep = null;
+                mSourceStep.Dispose();
+                mSourceStep = null;
             }
         }
 
@@ -81,23 +78,23 @@ namespace MvvmCross.Binding.Bindings
             // setting up the sourceStep.
             // If that method is updated we will need to make sure that this method
             // does the right thing.
-            _dataContext = source;
-            _sourceStep = SourceStepFactory.Create(_bindingDescription.Source);
-            _sourceStep.TargetType = _targetBinding.TargetType;
-            _sourceStep.DataContext = source;
+            mDataContext = source;
+            mSourceStep = SourceStepFactory.Create(mBindingDescription.Source);
+            mSourceStep.TargetType = mTargetBinding.TargetType;
+            mSourceStep.DataContext = source;
 
             if (NeedToObserveSourceChanges)
             {
-                _sourceBindingOnChanged = (sender, args) =>
+                mSourceBindingOnChanged = (sender, args) =>
                 {
                     //Capture the cancel token first
-                    var cancel = _cancelSource.Token;
+                    var cancel = mCancelSource.Token;
                     //GetValue can now be executed in a worker thread. Is it the responsibility of the caller to switch threads, or ours ?
                     //As the source is the viewmodel, i suppose it is the responsibility of the caller.
-                    var value = _sourceStep.GetValue();
+                    var value = mSourceStep.GetValue();
                     UpdateTargetFromSource(value, cancel);
                 };
-                _sourceStep.Changed += _sourceBindingOnChanged;
+                mSourceStep.Changed += mSourceBindingOnChanged;
             }
 
             UpdateTargetOnBind();
@@ -105,15 +102,15 @@ namespace MvvmCross.Binding.Bindings
 
         private void UpdateTargetOnBind()
         {
-            if (NeedToUpdateTargetOnBind && _sourceStep != null)
+            if (NeedToUpdateTargetOnBind && mSourceStep != null)
             {
-                _cancelSource.Cancel();
-                _cancelSource = new CancellationTokenSource();
-                var cancel = _cancelSource.Token;
+                mCancelSource.Cancel();
+                mCancelSource = new CancellationTokenSource();
+                var cancel = mCancelSource.Token;
 
                 try
                 {
-                    var currentValue = _sourceStep.GetValue();
+                    var currentValue = mSourceStep.GetValue();
                     UpdateTargetFromSource(currentValue, cancel);
                 }
                 catch (Exception exception)
@@ -125,40 +122,40 @@ namespace MvvmCross.Binding.Bindings
 
         protected virtual void ClearTargetBinding()
         {
-            lock (_targetLocker)
+            lock (mTargetLocker)
             {
-                if (_targetBinding != null)
+                if (mTargetBinding != null)
                 {
-                    if (_targetBindingOnValueChanged != null)
+                    if (mTargetBindingOnValueChanged != null)
                     {
-                        _targetBinding.ValueChanged -= _targetBindingOnValueChanged;
-                        _targetBindingOnValueChanged = null;
+                        mTargetBinding.ValueChanged -= mTargetBindingOnValueChanged;
+                        mTargetBindingOnValueChanged = null;
                     }
 
-                    _targetBinding.Dispose();
-                    _targetBinding = null;
+                    mTargetBinding.Dispose();
+                    mTargetBinding = null;
                 }
             }
         }
 
         private void CreateTargetBinding(object target)
         {
-            _targetBinding = TargetBindingFactory.CreateBinding(target, _bindingDescription.TargetName);
+            mTargetBinding = TargetBindingFactory.CreateBinding(target, mBindingDescription.TargetName);
 
-            if (_targetBinding == null)
+            if (mTargetBinding == null)
             {
-                MvxBindingLog.Warning("Failed to create target binding for {0}", _bindingDescription.ToString());
-                _targetBinding = new MvxNullTargetBinding();
+                MvxBindingLog.Warning("Failed to create target binding for {0}", mBindingDescription.ToString());
+                mTargetBinding = new MvxNullTargetBinding();
             }
 
             if (NeedToObserveTargetChanges)
             {
-                _targetBinding.SubscribeToEvents();
-                _targetBindingOnValueChanged = (sender, args) => UpdateSourceFromTarget(args.Value);
-                _targetBinding.ValueChanged += _targetBindingOnValueChanged;
+                mTargetBinding.SubscribeToEvents();
+                mTargetBindingOnValueChanged = (sender, args) => UpdateSourceFromTarget(args.Value);
+                mTargetBinding.ValueChanged += mTargetBindingOnValueChanged;
             }
 
-            _defaultTargetValue = _targetBinding.TargetType.CreateDefault();
+            mDefaultTargetValue = mTargetBinding.TargetType.CreateDefault();
         }
 
         private async void UpdateTargetFromSource(object value, CancellationToken cancel)
@@ -167,25 +164,25 @@ namespace MvvmCross.Binding.Bindings
                 return;
 
             if (value == MvxBindingConstant.UnsetValue)
-                value = _defaultTargetValue;
+                value = mDefaultTargetValue;
 
-            await dispatcher.ExecuteOnMainThreadAsync(() =>
+            await mDispatcher.ExecuteOnMainThreadAsync(() =>
             {
                 if (cancel.IsCancellationRequested)
                     return;
 
                 try
                 {
-                    lock (_targetLocker)
+                    lock (mTargetLocker)
                     {
-                        _targetBinding?.SetValue(value);
+                        mTargetBinding?.SetValue(value);
                     }
                 }
                 catch (Exception exception)
                 {
                     MvxBindingLog.Error(
                         "Problem seen during binding execution for {0} - problem {1}",
-                        _bindingDescription.ToString(),
+                        mBindingDescription.ToString(),
                         exception.ToLongString());
                 }
             });
@@ -201,13 +198,13 @@ namespace MvvmCross.Binding.Bindings
 
             try
             {
-                _sourceStep.SetValue(value);
+                mSourceStep.SetValue(value);
             }
             catch (Exception exception)
             {
                 MvxBindingLog.Error(
                     "Problem seen during binding execution for {0} - problem {1}",
-                    _bindingDescription.ToString(),
+                    mBindingDescription.ToString(),
                     exception.ToLongString());
             }
         }
@@ -243,9 +240,9 @@ namespace MvvmCross.Binding.Bindings
         {
             get
             {
-                var mode = _bindingDescription.Mode;
-                if (mode == MvxBindingMode.Default && _targetBinding != null)
-                    mode = _targetBinding.DefaultMode;
+                var mode = mBindingDescription.Mode;
+                if (mode == MvxBindingMode.Default && mTargetBinding != null)
+                    mode = mTargetBinding.DefaultMode;
                 return mode;
             }
         }

@@ -504,7 +504,7 @@ namespace MvvmCross.Navigation
             if (args.Cancel)
                 return false;
 
-            var result = await ViewDispatcher.ChangePresentation(hint);
+            var result = await ViewDispatcher.ChangePresentation(hint).ConfigureAwait(false);
 
             args.Result = result;
             OnAfterChangePresentation(this, args);
