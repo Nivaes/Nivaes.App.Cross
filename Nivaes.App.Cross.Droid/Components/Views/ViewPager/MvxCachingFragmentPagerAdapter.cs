@@ -45,7 +45,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 #endif
         }
 
-        public abstract Fragment GetItem(int position, Fragment.SavedState fragmentSavedState = null);
+        public abstract Fragment GetItem(int position, Fragment.SavedState? fragmentSavedState = null);
 
         public override void DestroyItem(ViewGroup container, int position, Java.Lang.Object objectValue)
         {

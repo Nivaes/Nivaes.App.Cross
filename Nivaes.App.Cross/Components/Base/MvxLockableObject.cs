@@ -20,7 +20,7 @@ namespace MvvmCross.Base
             MvxLockableObjectHelpers.RunAsyncWithLock(_lockObject, action);
         }
 
-        protected void RunSyncOrAsyncWithLock(Action action, Action whenComplete = null)
+        protected void RunSyncOrAsyncWithLock(Action action, Action? whenComplete = null)
         {
             MvxLockableObjectHelpers.RunSyncOrAsyncWithLock(_lockObject, action, whenComplete);
         }

@@ -18,12 +18,12 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     public static class MvxLayoutInflaterCompat
     {
         private static readonly int SdkInt = (int)Build.VERSION.SdkInt;
-        private static Field _layoutInflaterFactory2Field;
+        private static Field? _layoutInflaterFactory2Field;
         private static bool _checkedField;
 
         internal class FactoryWrapper : Object, LayoutInflater.IFactory
         {
-            protected readonly IMvxLayoutInflaterFactory DelegateFactory;
+            protected readonly IMvxLayoutInflaterFactory? DelegateFactory;
 
             public FactoryWrapper(IntPtr handle, JniHandleOwnership ownership)
                 : base(handle, ownership)

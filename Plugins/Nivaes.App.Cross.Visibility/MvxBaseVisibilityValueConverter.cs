@@ -23,9 +23,9 @@ namespace MvvmCross.Plugin.Visibility
     public abstract class MvxBaseVisibilityValueConverter
         : MvxValueConverter
     {
-        private IMvxNativeVisibility _nativeVisiblity;
+        private IMvxNativeVisibility? _nativeVisiblity;
 
-        private IMvxNativeVisibility NativeVisibility => _nativeVisiblity ?? (_nativeVisiblity = Mvx.IoCProvider.Resolve<IMvxNativeVisibility>());
+        private IMvxNativeVisibility NativeVisibility => _nativeVisiblity ??= Mvx.IoCProvider.Resolve<IMvxNativeVisibility>();
 
         protected abstract MvxVisibility Convert(object value, object parameter, CultureInfo culture);
 

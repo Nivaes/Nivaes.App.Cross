@@ -8,7 +8,7 @@
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
 
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.Mobile.Windows</RootNamespace>
+    <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
 
     <Platforms>AnyCPU;x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>

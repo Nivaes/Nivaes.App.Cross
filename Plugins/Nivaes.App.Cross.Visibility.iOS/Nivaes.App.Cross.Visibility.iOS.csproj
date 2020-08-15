@@ -1,9 +1,9 @@
-﻿<!--<Project Sdk="MSBuild.Sdk.Extras">-->
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+<!--<Project Sdk="Microsoft.NET.Sdk">-->
 
   <PropertyGroup>
-    <!--<TargetFrameworks>xamarin.ios10</TargetFrameworks>-->
-    <TargetFrameworks>net5.0-ios</TargetFrameworks>
+    <TargetFrameworks>xamarin.ios10</TargetFrameworks>
+    <!--<TargetFrameworks>net5.0-ios</TargetFrameworks>-->
 
     <AssemblyName>Nivaes.App.Cross.Visibility.iOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Visibility.iOS</RootNamespace>

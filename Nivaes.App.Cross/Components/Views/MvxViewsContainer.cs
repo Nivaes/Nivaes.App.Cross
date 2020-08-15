@@ -13,7 +13,7 @@ namespace MvvmCross.Views
     {
         private readonly Dictionary<Type, Type> _bindingMap = new Dictionary<Type, Type>();
         private readonly List<IMvxViewFinder> _secondaryViewFinders;
-        private IMvxViewFinder _lastResortViewFinder;
+        private IMvxViewFinder? _lastResortViewFinder;
 
         protected MvxViewsContainer()
         {

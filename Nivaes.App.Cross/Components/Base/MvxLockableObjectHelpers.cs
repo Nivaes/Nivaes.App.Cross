@@ -29,7 +29,7 @@ namespace MvvmCross.Base
                 });
         }
 
-        public static void RunSyncOrAsyncWithLock(object lockObject, Action action, Action whenComplete = null)
+        public static void RunSyncOrAsyncWithLock(object lockObject, Action action, Action? whenComplete = null)
         {
             if (Monitor.TryEnter(lockObject))
             {

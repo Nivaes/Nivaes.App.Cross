@@ -6,6 +6,6 @@ namespace MvvmCross.IoC
 {
     public interface IMvxPropertyInjector
     {
-        void Inject(object target, IMvxPropertyInjectorOptions options = null);
+        void Inject(object target, IMvxPropertyInjectorOptions? options = null);
     }
 }
