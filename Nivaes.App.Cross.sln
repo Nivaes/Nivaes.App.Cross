@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Visibility
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.iOS", "Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj", "{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Droid", "Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj", "{CE579BE4-97E8-4540-9EBD-655E9E96DF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid", "Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj", "{CE579BE4-97E8-4540-9EBD-655E9E96DF57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Uap", "Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj", "{19B3D13A-4B7A-4F85-9C80-F2D03102B719}"
 EndProject
@@ -82,6 +82,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Color", "Color", "{AB511A56-6EF3-46D4-80F3-474BDC93968F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visibility", "Visibility", "{534E391F-713D-4E4D-AA92-DE89B2D8D0A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Desktop.macOS.Sample", "Nivaes.App.Cross.Desktop.macOS.Sample\Nivaes.App.Cross.Desktop.macOS.Sample.csproj", "{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -595,6 +597,26 @@ Global
 		{A58A0D7A-97AC-40C0-9FF3-97146C47FDAD}.Release|x64.Build.0 = Release|Any CPU
 		{A58A0D7A-97AC-40C0-9FF3-97146C47FDAD}.Release|x86.ActiveCfg = Release|Any CPU
 		{A58A0D7A-97AC-40C0-9FF3-97146C47FDAD}.Release|x86.Build.0 = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|x64.Build.0 = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Debug|x86.Build.0 = Debug|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|iPhone.Build.0 = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|x64.ActiveCfg = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|x64.Build.0 = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|x86.ActiveCfg = Release|Any CPU
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -631,6 +653,7 @@ Global
 		{A58A0D7A-97AC-40C0-9FF3-97146C47FDAD} = {48E19FF0-143D-42C3-8D89-E42EF7A9449D}
 		{AB511A56-6EF3-46D4-80F3-474BDC93968F} = {37E5BBC8-0A0B-46B7-999B-12EB45813AFC}
 		{534E391F-713D-4E4D-AA92-DE89B2D8D0A5} = {37E5BBC8-0A0B-46B7-999B-12EB45813AFC}
+		{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82} = {48E19FF0-143D-42C3-8D89-E42EF7A9449D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06CF3158-9818-42C2-90FC-E484CBB76042}
