@@ -13,19 +13,19 @@ namespace MvvmCross.Commands
     public abstract class MvxAsyncCommandBase
         : MvxCommandBase
     {
-        private readonly object _syncRoot = new object();
-        private readonly bool _allowConcurrentExecutions;
-        private CancellationTokenSource _cts;
-        private int _concurrentExecutions;
+        private readonly object mSyncRoot = new object();
+        private readonly bool mAllowConcurrentExecutions;
+        private CancellationTokenSource mCts;
+        private int mConcurrentExecutions;
 
         protected MvxAsyncCommandBase(bool allowConcurrentExecutions = false)
         {
-            _allowConcurrentExecutions = allowConcurrentExecutions;
+            mAllowConcurrentExecutions = allowConcurrentExecutions;
         }
 
-        public bool IsRunning => _concurrentExecutions > 0;
+        public bool IsRunning => mConcurrentExecutions > 0;
 
-        protected CancellationToken CancelToken => _cts.Token;
+        protected CancellationToken CancelToken => mCts.Token;
 
         protected abstract bool CanExecuteImpl(object parameter);
 
@@ -33,15 +33,15 @@ namespace MvvmCross.Commands
 
         public void Cancel()
         {
-            lock (_syncRoot)
+            lock (mSyncRoot)
             {
-                if (_cts == null)
+                if (mCts == null)
                 {
                     MvxLog.Instance.Warn( "MvxAsyncCommand : Attempt to cancel a task that is not running");
                 }
                 else
                 {
-                    _cts.Cancel();
+                    mCts.Cancel();
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace MvvmCross.Commands
 
         public bool CanExecute(object parameter)
         {
-            if (!_allowConcurrentExecutions && IsRunning)
+            if (!mAllowConcurrentExecutions && IsRunning)
                 return false;
             else
                 return CanExecuteImpl(parameter);
@@ -90,21 +90,21 @@ namespace MvvmCross.Commands
             bool started = false;
             try
             {
-                lock (_syncRoot)
+                lock (mSyncRoot)
                 {
-                    if (_concurrentExecutions == 0)
+                    if (mConcurrentExecutions == 0)
                     {
                         InitCancellationTokenSource();
                     }
-                    else if (!_allowConcurrentExecutions)
+                    else if (!mAllowConcurrentExecutions)
                     {
                         MvxLog.Instance.Info("MvxAsyncCommand : execute ignored, already running.");
                         return;
                     }
-                    _concurrentExecutions++;
+                    mConcurrentExecutions++;
                     started = true;
                 }
-                if (!_allowConcurrentExecutions)
+                if (!mAllowConcurrentExecutions)
                 {
                     RaiseCanExecuteChanged();
                 }
@@ -131,15 +131,15 @@ namespace MvvmCross.Commands
             {
                 if (started)
                 {
-                    lock (_syncRoot)
+                    lock (mSyncRoot)
                     {
-                        _concurrentExecutions--;
-                        if (_concurrentExecutions == 0)
+                        mConcurrentExecutions--;
+                        if (mConcurrentExecutions == 0)
                         {
                             ClearCancellationTokenSource();
                         }
                     }
-                    if (!_allowConcurrentExecutions)
+                    if (!mAllowConcurrentExecutions)
                     {
                         RaiseCanExecuteChanged();
                     }
@@ -149,24 +149,24 @@ namespace MvvmCross.Commands
 
         private void ClearCancellationTokenSource()
         {
-            if (_cts == null)
+            if (mCts == null)
             {
                 MvxLog.Instance.Error("MvxAsyncCommand : Unexpected ClearCancellationTokenSource, no token available!");
             }
             else
             {
-                _cts.Dispose();
-                _cts = null;
+                mCts.Dispose();
+                mCts = null;
             }
         }
 
         private void InitCancellationTokenSource()
         {
-            if (_cts != null)
+            if (mCts != null)
             {
                 MvxLog.Instance.Error("MvxAsyncCommand : Unexpected InitCancellationTokenSource, a token is already available!");
             }
-            _cts = new CancellationTokenSource();
+            mCts = new CancellationTokenSource();
         }
     }
 
@@ -174,34 +174,34 @@ namespace MvvmCross.Commands
         : MvxAsyncCommandBase
         , IMvxAsyncCommand
     {
-        private readonly Func<CancellationToken, Task> _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Func<CancellationToken, Task> mExecute;
+        private readonly Func<bool>? mCanExecute;
 
-        public MvxAsyncCommand(Func<Task> execute, Func<bool> canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             if (execute == null)
                 throw new ArgumentNullException(nameof(execute));
 
-            _execute = (cancellationToken) => execute();
-            _canExecute = canExecute;
+            mExecute = (_) => execute();
+            mCanExecute = canExecute;
         }
 
         public MvxAsyncCommand(Func<CancellationToken, Task> execute, Func<bool> canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
+            mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
+            mCanExecute = canExecute;
         }
 
         protected override bool CanExecuteImpl(object parameter)
         {
-            return _canExecute == null || _canExecute();
+            return mCanExecute == null || mCanExecute();
         }
 
         protected override Task ExecuteAsyncImpl(object parameter)
         {
-            return _execute(CancelToken);
+            return mExecute(CancelToken);
         }
 
         public static MvxAsyncCommand<T> CreateCommand<T>(Func<T, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
@@ -224,24 +224,24 @@ namespace MvvmCross.Commands
         : MvxAsyncCommandBase
         , IMvxCommand, IMvxAsyncCommand<T>
     {
-        private readonly Func<T, CancellationToken, Task> _execute;
-        private readonly Func<T, bool> _canExecute;
+        private readonly Func<T, CancellationToken, Task> mExecute;
+        private readonly Func<T, bool>? mCanExecute;
 
-        public MvxAsyncCommand(Func<T, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<T, Task> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             if (execute == null)
                 throw new ArgumentNullException(nameof(execute));
 
-            _execute = (p, c) => execute(p);
-            _canExecute = canExecute;
+            mExecute = (p, _) => execute(p);
+            mCanExecute = canExecute;
         }
 
         public MvxAsyncCommand(Func<T, CancellationToken, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
+            mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
+            mCanExecute = canExecute;
         }
 
         public Task ExecuteAsync(T parameter)
@@ -254,9 +254,9 @@ namespace MvvmCross.Commands
             => base.CanExecute(parameter);
 
         protected override bool CanExecuteImpl(object parameter)
-            => _canExecute == null || _canExecute((T)typeof(T).MakeSafeValueCore(parameter));
+            => mCanExecute == null || mCanExecute((T)typeof(T).MakeSafeValueCore(parameter));
 
         protected override Task ExecuteAsyncImpl(object parameter)
-            => _execute((T)typeof(T).MakeSafeValueCore(parameter), CancelToken);
+            => mExecute((T)typeof(T).MakeSafeValueCore(parameter), CancelToken);
     }
 }

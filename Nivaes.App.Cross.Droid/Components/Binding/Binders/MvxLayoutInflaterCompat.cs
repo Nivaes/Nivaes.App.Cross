@@ -2,19 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Java.Lang;
-using Java.Lang.Reflect;
-using MvvmCross.Logging;
-using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Binding.Binders
 {
+    using System;
+    using Java.Lang;
+    using Java.Lang.Reflect;
+    using MvvmCross.Logging;
+    using Object = Java.Lang.Object;
+
     public static class MvxLayoutInflaterCompat
     {
         private static readonly int SdkInt = (int)Build.VERSION.SdkInt;
