@@ -37,18 +37,18 @@ namespace MvvmCross.Binding.Combiners
             sourceStep.SetValue(converted);
         }
 
-        private Type _targetType = typeof(object);
+        private Type mTargetType = typeof(object);
 
         public override IEnumerable<Type> SubStepTargetTypes(IEnumerable<IMvxSourceStep> subSteps, Type overallTargetType)
         {
-            _targetType = overallTargetType;
+            mTargetType = overallTargetType;
             return base.SubStepTargetTypes(subSteps, overallTargetType);
         }
 
-        private static object GetParameterValue(IEnumerable<IMvxSourceStep> steps)
+        private static object? GetParameterValue(IEnumerable<IMvxSourceStep> steps)
         {
             var parameterStep = steps.Skip(1).FirstOrDefault();
-            object parameter = null;
+            object? parameter = null;
             if (parameterStep != null)
             {
                 parameter = parameterStep.GetValue();
@@ -80,7 +80,7 @@ namespace MvvmCross.Binding.Combiners
                 return true;
             }
 
-            value = _valueConverter.Convert(sourceValue, _targetType, parameter, CultureInfo.CurrentUICulture);
+            value = _valueConverter.Convert(sourceValue, mTargetType, parameter, CultureInfo.CurrentUICulture);
             return true;
         }
     }

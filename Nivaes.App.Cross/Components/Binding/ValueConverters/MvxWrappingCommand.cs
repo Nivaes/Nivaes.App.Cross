@@ -36,7 +36,7 @@ namespace MvvmCross.Binding.ValueConverters
             CanExecuteChanged?.Invoke(this, eventArgs);
         }
 
-        public bool CanExecute(object parameter = null)
+        public bool CanExecute(object? parameter = null)
         {
             if (_wrapped == null)
                 return false;
@@ -47,7 +47,7 @@ namespace MvvmCross.Binding.ValueConverters
             return _wrapped.CanExecute(_commandParameterOverride);
         }
 
-        public void Execute(object parameter = null)
+        public void Execute(object? parameter = null)
         {
             if (_wrapped == null)
                 return;

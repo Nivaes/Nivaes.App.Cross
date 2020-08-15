@@ -214,7 +214,7 @@ namespace MvvmCross.Commands
             return new MvxAsyncCommand<T>(execute, canExecute, allowConcurrentExecutions);
         }
 
-        public async Task ExecuteAsync(object parameter = null)
+        public async Task ExecuteAsync(object? parameter = null)
         {
             await base.ExecuteAsync(parameter, false).ConfigureAwait(false);
         }
