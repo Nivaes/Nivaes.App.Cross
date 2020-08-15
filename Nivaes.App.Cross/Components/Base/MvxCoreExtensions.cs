@@ -17,12 +17,11 @@ namespace MvvmCross.Base
             if (result == null)
                 return false;
 
-            var s = result as string;
-            if (s != null)
+            if (result is string s)
                 return !string.IsNullOrEmpty(s);
 
-            if (result is bool)
-                return (bool)result;
+            if (result is bool x)
+                return x;
 
             var resultType = result.GetType();
             if (resultType.GetTypeInfo().IsValueType)
@@ -35,8 +34,10 @@ namespace MvvmCross.Base
         }
 
         // core implementation of MakeSafeValue
-        public static object MakeSafeValueCore(this Type propertyType, object value)
+        public static object MakeSafeValueCore(this Type propertyType, object? value)
         {
+            if (propertyType == null) throw new NullReferenceException(nameof(propertyType));
+
             if (value == null)
             {
                 return propertyType.CreateDefault();
@@ -51,8 +52,7 @@ namespace MvvmCross.Base
                 }
                 else if (propertyType.GetTypeInfo().IsEnum)
                 {
-                    var s = value as string;
-                    safeValue = s != null ? Enum.Parse(propertyType, s, true) : Enum.ToObject(propertyType, value);
+                    safeValue = value is string s ? Enum.Parse(propertyType, s, true) : Enum.ToObject(propertyType, value);
                 }
                 else if (propertyType.GetTypeInfo().IsValueType)
                 {

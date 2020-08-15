@@ -27,9 +27,9 @@ namespace MvvmCross.Commands
 
         protected CancellationToken CancelToken => mCts.Token;
 
-        protected abstract bool CanExecuteImpl(object parameter);
+        protected abstract bool CanExecuteImpl(object? parameter);
 
-        protected abstract Task ExecuteAsyncImpl(object parameter);
+        protected abstract Task ExecuteAsyncImpl(object? parameter);
 
         public void Cancel()
         {
@@ -51,7 +51,7 @@ namespace MvvmCross.Commands
             return CanExecute(null);
         }
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             if (!mAllowConcurrentExecutions && IsRunning)
                 return false;
@@ -59,7 +59,7 @@ namespace MvvmCross.Commands
                 return CanExecuteImpl(parameter);
         }
 
-        public async void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace MvvmCross.Commands
             Execute(null);
         }
         
-        protected async Task ExecuteAsync(object parameter, bool hideCanceledException)
+        protected async Task ExecuteAsync(object? parameter, bool hideCanceledException)
         {
             if (CanExecuteImpl(parameter))
             {
@@ -85,7 +85,7 @@ namespace MvvmCross.Commands
             }
         }
 
-        private async Task ExecuteConcurrentAsync(object parameter, bool hideCanceledException)
+        private async Task ExecuteConcurrentAsync(object? parameter, bool hideCanceledException)
         {
             bool started = false;
             try
@@ -194,29 +194,29 @@ namespace MvvmCross.Commands
             mCanExecute = canExecute;
         }
 
-        protected override bool CanExecuteImpl(object parameter)
+        protected override bool CanExecuteImpl(object? parameter)
         {
             return mCanExecute == null || mCanExecute();
         }
 
-        protected override Task ExecuteAsyncImpl(object parameter)
+        protected override Task ExecuteAsyncImpl(object? parameter)
         {
             return mExecute(CancelToken);
         }
 
-        public static MvxAsyncCommand<T> CreateCommand<T>(Func<T, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
+        public static MvxAsyncCommand<T> CreateCommand<T>(Func<T, Task> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
             return new MvxAsyncCommand<T>(execute, canExecute, allowConcurrentExecutions);
         }
 
-        public static MvxAsyncCommand<T> CreateCommand<T>(Func<T, CancellationToken, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
+        public static MvxAsyncCommand<T> CreateCommand<T>(Func<T, CancellationToken, Task> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
             return new MvxAsyncCommand<T>(execute, canExecute, allowConcurrentExecutions);
         }
 
-        public async Task ExecuteAsync(object? parameter = null)
+        public Task ExecuteAsync(object? parameter = null)
         {
-            await base.ExecuteAsync(parameter, false).ConfigureAwait(false);
+            return base.ExecuteAsync(parameter, false);
         }
     }
 
@@ -237,7 +237,7 @@ namespace MvvmCross.Commands
             mCanExecute = canExecute;
         }
 
-        public MvxAsyncCommand(Func<T, CancellationToken, Task> execute, Func<T, bool> canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<T, CancellationToken, Task> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
@@ -253,10 +253,10 @@ namespace MvvmCross.Commands
         public bool CanExecute(T parameter)
             => base.CanExecute(parameter);
 
-        protected override bool CanExecuteImpl(object parameter)
+        protected override bool CanExecuteImpl(object? parameter)
             => mCanExecute == null || mCanExecute((T)typeof(T).MakeSafeValueCore(parameter));
 
-        protected override Task ExecuteAsyncImpl(object parameter)
+        protected override Task ExecuteAsyncImpl(object? parameter)
             => mExecute((T)typeof(T).MakeSafeValueCore(parameter), CancelToken);
     }
 }

@@ -91,13 +91,13 @@ namespace MvvmCross.Binding.BindingContext
             return this;
         }
 
-        public MvxFluentBindingDescription<TTarget, TSource> CommandParameter(object parameter)
+        public MvxFluentBindingDescription<TTarget, TSource> CommandParameter(object? parameter)
         {
             return WithConversion(new MvxCommandParameterValueConverter(), parameter);
         }
 
         public MvxFluentBindingDescription<TTarget, TSource> WithConversion(string converterName,
-                                                                            object converterParameter = null)
+                                                                            object? converterParameter = null)
         {
             var converter = ValueConverterFromName(converterName);
             return WithConversion(converter, converterParameter);
@@ -226,27 +226,27 @@ namespace MvvmCross.Binding.BindingContext
             return this;
         }
 
-        public MvxFluentBindingDescription<TTarget> CommandParameter(object parameter)
+        public MvxFluentBindingDescription<TTarget> CommandParameter(object? parameter)
         {
             return WithConversion(new MvxCommandParameterValueConverter(), parameter);
         }
 
         public MvxFluentBindingDescription<TTarget> WithConversion(string converterName,
-                                                                   object converterParameter = null)
+                                                                   object? converterParameter = null)
         {
             var converter = ValueConverterFromName(converterName);
             return WithConversion(converter, converterParameter);
         }
 
         public MvxFluentBindingDescription<TTarget> WithConversion(IMvxValueConverter converter,
-                                                                   object converterParameter)
+                                                                   object? converterParameter)
         {
             SourceStepDescription.Converter = converter;
             SourceStepDescription.ConverterParameter = converterParameter;
             return this;
         }
 
-        public MvxFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object converterParameter = null)
+        public MvxFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object? converterParameter = null)
             where TValueConverter : IMvxValueConverter
         {
             var filler = Mvx.IoCProvider.Resolve<IMvxValueConverterRegistryFiller>();
