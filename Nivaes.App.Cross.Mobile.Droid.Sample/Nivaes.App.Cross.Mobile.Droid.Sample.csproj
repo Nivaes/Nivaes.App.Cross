@@ -133,9 +133,21 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj">
+      <Project>{ce579be4-97e8-4540-9ebd-655e9e96df57}</Project>
+      <Name>Nivaes.App.Cross.Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
       <Project>{34977945-dc28-4055-ae31-afcb0be0cda3}</Project>
       <Name>Nivaes.App.Cross.Mobile.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Color.Droid\Nivaes.App.Cross.Color.Droid.csproj">
+      <Project>{98bac508-d1f3-45d4-a7f0-bd3ba3b3ee08}</Project>
+      <Name>Nivaes.App.Cross.Color.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Visibility.Droid\Nivaes.App.Cross.Visibility.Droid.csproj">
+      <Project>{5c40abc5-02ac-4559-987c-81f0535a1302}</Project>
+      <Name>Nivaes.App.Cross.Visibility.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

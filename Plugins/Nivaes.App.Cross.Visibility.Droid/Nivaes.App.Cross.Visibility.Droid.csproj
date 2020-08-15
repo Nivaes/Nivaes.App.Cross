@@ -14,8 +14,16 @@
       This package contains the 'Visibility' plugin for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Visibility.Droid</PackageId>
-
   </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Include="Resources\*.cs" />
+    <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
+    <AndroidResource Include="Resources\**\*.jpg" Generator="MSBuild:UpdateAndroidResources" />
+    <AndroidResource Include="Resources\**\*.gif" Generator="MSBuild:UpdateAndroidResources" />
+    <AndroidResource Include="Resources\**\*.png" Generator="MSBuild:UpdateAndroidResources" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />

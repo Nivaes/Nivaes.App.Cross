@@ -8,7 +8,7 @@
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
 
     <AssemblyName>Nivaes.App.Cross.Visibility.Windows</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.Visibility.Mobile.Windows</RootNamespace>
+    <RootNamespace>Nivaes.App.Cross.Visibility.Windows</RootNamespace>
 
     <Platforms>AnyCPU;x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>

@@ -10,8 +10,8 @@
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
 
-    <Platforms>AnyCPU;x86;x64</Platforms>
-    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+    <!--<Platforms>x86;x64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>-->
 
     <Description>
       Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
@@ -19,8 +19,15 @@
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Windows</PackageId>
-
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
+    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />
+    <!--<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc3" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview2" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview2" />-->
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
