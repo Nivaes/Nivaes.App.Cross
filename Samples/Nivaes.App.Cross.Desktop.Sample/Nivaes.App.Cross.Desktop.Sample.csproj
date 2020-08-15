@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+
+    <RootNamespace>Nivaes.App.Cross.Mobile.Sample</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Mobile.Sample</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+</Project>

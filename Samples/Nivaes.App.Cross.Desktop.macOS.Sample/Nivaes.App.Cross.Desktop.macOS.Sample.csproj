@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,17 +29,21 @@
     <UseRefCounting>true</UseRefCounting>
     <HttpClientHandler>HttpClientHandler</HttpClientHandler>
     <LinkMode>None</LinkMode>
-    <XamMacArch></XamMacArch>
-    <NoWarn></NoWarn>
+    <XamMacArch>
+    </XamMacArch>
+    <NoWarn>
+    </NoWarn>
     <LangVersion>Default</LangVersion>
-    <Nullable></Nullable>
+    <Nullable>
+    </Nullable>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnableCodeSigning>false</EnableCodeSigning>
@@ -51,10 +55,13 @@
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
     <LinkMode>SdkOnly</LinkMode>
     <HttpClientHandler>HttpClientHandler</HttpClientHandler>
-    <XamMacArch></XamMacArch>
-    <NoWarn></NoWarn>
+    <XamMacArch>
+    </XamMacArch>
+    <NoWarn>
+    </NoWarn>
     <LangVersion>Default</LangVersion>
-    <Nullable></Nullable>
+    <Nullable>
+    </Nullable>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
   <ItemGroup>
@@ -95,9 +102,13 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nivaes.App.Cross.macOS\Nivaes.App.Cross.macOS.csproj">
+    <ProjectReference Include="..\..\Nivaes.App.Cross.macOS\Nivaes.App.Cross.macOS.csproj">
       <Project>{0D3714C6-171C-403A-B586-8268FE3BDB39}</Project>
       <Name>Nivaes.App.Cross.macOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nivaes.App.Cross.Desktop.Sample\Nivaes.App.Cross.Desktop.Sample.csproj">
+      <Project>{7da3409f-7dd2-478d-a9d9-8257c952f543}</Project>
+      <Name>Nivaes.App.Cross.Desktop.Sample</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
