@@ -154,7 +154,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var notified = new List<string>();
             var t = new TestInpc();
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
-            await t.RaisePropertyChanged(() => t.Foo);
+            await t.RaisePropertyChanged(() => t.Foo).ConfigureAwait(false);
 
             Assert.True(notified.Count == 1);
             Assert.True(notified[0] == "Foo");
@@ -170,7 +170,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var notified = new List<string>();
             var t = new TestInpc();
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
-            await t.RaisePropertyChanged("Foo");
+            await t.RaisePropertyChanged("Foo").ConfigureAwait(false);
 
             Assert.True(notified.Count == 1);
             Assert.True(notified[0] == "Foo");
@@ -186,7 +186,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var notified = new List<string>();
             var t = new TestInpc();
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.True(notified.Count == 1);
             Assert.True(notified[0] == "Foo");
@@ -217,8 +217,10 @@ namespace MvvmCross.UnitTest.ViewModels
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var notified = new List<string>();
-            var t = new TestInpc();
-            t.Foo = "Foobar";
+            var t = new TestInpc
+            {
+                Foo = "Foobar"
+            };
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
             t.Foo = "Foobar";
 
@@ -234,8 +236,10 @@ namespace MvvmCross.UnitTest.ViewModels
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var notified = new List<string>();
-            var t = new TestInpc();
-            t.Foo = "Default value";
+            var t = new TestInpc
+            {
+                Foo = "Default value"
+            };
             t.PropertyChanging += (sender, args) => (args as MvxPropertyChangingEventArgs<string>).Cancel = true;
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
             t.Foo = "Foobar";
@@ -255,14 +259,14 @@ namespace MvvmCross.UnitTest.ViewModels
             var t = new TestInpc();
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
             t.ShouldAlwaysRaiseInpcOnUserInterfaceThread(false);
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.True(dispatcher.Count == 0);
             Assert.True(notified.Count == 1);
             Assert.True(notified[0] == "Foo");
 
             t.ShouldAlwaysRaiseInpcOnUserInterfaceThread(true);
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.Equal(1, dispatcher.Count);
             Assert.True(notified.Count == 2);
@@ -273,7 +277,7 @@ namespace MvvmCross.UnitTest.ViewModels
         public void Test_SetPropertyAfterActionCalledAfterPropertyChanged()
         {
             _fixture.ClearAll();
-            var dispatcher = new InlineMockMainThreadDispatcher();
+            using var dispatcher = new InlineMockMainThreadDispatcher();
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var t2 = new TestInpc2();
@@ -336,7 +340,7 @@ namespace MvvmCross.UnitTest.ViewModels
         {
             _fixture.ClearAll();
 
-            var dispatcher = new CountingMockMainThreadDispatcher();
+            using var dispatcher = new CountingMockMainThreadDispatcher();
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var interceptor = new Interceptor();
@@ -347,19 +351,19 @@ namespace MvvmCross.UnitTest.ViewModels
             t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
             interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
             interceptor.Handler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanged;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.True(dispatcher.Count == 1);
 
             interceptor.Handler = (s, e) => MvxInpcInterceptionResult.DoNotRaisePropertyChanged;
             interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.True(dispatcher.Count == 1);
 
             interceptor.Handler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanged;
             interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo"));
+            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
 
             Assert.True(dispatcher.Count == 2);
         }

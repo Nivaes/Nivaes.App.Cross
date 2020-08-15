@@ -133,7 +133,7 @@ namespace MvvmCross.ViewModels
                 if (PropertyChanged == null)
                     return;
 
-                await InvokeOnMainThreadAsync(exceptionMasked);
+                await InvokeOnMainThreadAsync(exceptionMasked).ConfigureAwait(false);
             }
             else
             {
@@ -142,7 +142,7 @@ namespace MvvmCross.ViewModels
         }
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void SetProperty<T>(ref T storage, T value, Action<bool> action, [CallerMemberName] string propertyName = null)
+        protected virtual void SetProperty<T>(ref T storage, T value, Action<bool> action, [CallerMemberName] string propertyName = "")
         {
             if (action == null)
             {
@@ -153,7 +153,7 @@ namespace MvvmCross.ViewModels
         }
 
         [NotifyPropertyChangedInvocator]
-        protected virtual bool SetProperty<T>(ref T storage, T value, Action afterAction, [CallerMemberName] string propertyName = null)
+        protected virtual bool SetProperty<T>(ref T storage, T value, Action afterAction, [CallerMemberName] string propertyName = "")
         {
             if (SetProperty(ref storage, value, propertyName))
             {
@@ -165,7 +165,7 @@ namespace MvvmCross.ViewModels
         }
 
         [NotifyPropertyChangedInvocator]
-        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
         {
             if (EqualityComparer<T>.Default.Equals(storage, value))
             {

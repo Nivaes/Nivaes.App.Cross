@@ -185,7 +185,7 @@ namespace MvvmCross.Binding.Bindings
                         mBindingDescription.ToString(),
                         exception.ToLongString());
                 }
-            });
+            }).ConfigureAwait(false);
         }
 
         private void UpdateSourceFromTarget(object value)
