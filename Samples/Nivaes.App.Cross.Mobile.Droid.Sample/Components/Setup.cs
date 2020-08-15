@@ -1,9 +1,9 @@
 ﻿namespace Nivaes.App.Mobile.Droid.Sample
 {
-    using Nivaes.App.Mobile.Sample;
+    using MvvmCross.Platforms.Android.Core;
 
     public sealed class Setup :
-        NivAppCompatSetup<AppMobileSampleApplication<AppMobileSampleAppStart>>
+        MvxAndroidSetup<AppMobileSampleApplication<AppMobileSampleAppStart>>
     {
     }
 }

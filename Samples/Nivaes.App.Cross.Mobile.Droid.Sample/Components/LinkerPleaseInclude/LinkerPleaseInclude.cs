@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Droid.Sample
+﻿namespace Nivaes.App.Cross.Mobile.Droid.Sample
 {
     using System;
     using System.Collections.Generic;
