@@ -2,21 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Globalization;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Converters
 {
+    using System;
+    using System.Globalization;
+    using MvvmCross.Logging;
+
     public abstract class MvxValueConverter
         : IMvxValueConverter
     {
-        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             return MvxBindingConstant.UnsetValue;
         }
 
-        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             return MvxBindingConstant.UnsetValue;
         }
@@ -28,7 +28,7 @@ namespace MvvmCross.Converters
         protected static IMvxLog Log 
             => Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxValueConverter>();
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -41,12 +41,12 @@ namespace MvvmCross.Converters
             }
         }
 
-        protected virtual TTo Convert(TFrom value, Type targetType, object parameter, CultureInfo culture)
+        protected virtual TTo Convert(TFrom value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace MvvmCross.Converters
             }
         }
 
-        protected virtual TFrom ConvertBack(TTo value, Type targetType, object parameter, CultureInfo culture)
+        protected virtual TFrom ConvertBack(TTo value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -71,7 +71,7 @@ namespace MvvmCross.Converters
         protected static IMvxLog Log
             => Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxValueConverter>();
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -84,12 +84,12 @@ namespace MvvmCross.Converters
             }
         }
 
-        protected virtual object Convert(TFrom value, Type targetType, object parameter, CultureInfo culture)
+        protected virtual object? Convert(TFrom value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace MvvmCross.Converters
             }
         }
 
-        protected virtual TFrom TypedConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        protected virtual TFrom TypedConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

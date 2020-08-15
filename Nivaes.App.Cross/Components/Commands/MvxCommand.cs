@@ -145,31 +145,31 @@ namespace MvvmCross.Commands
         : MvxCommandBase
         , IMvxCommand
     {
-        private readonly Func<bool> _canExecute;
-        private readonly Action _execute;
+        private readonly Func<bool>? mCanExecute;
+        private readonly Action mExecute;
 
         public MvxCommand(Action execute)
             : this(execute, null)
         {
         }
 
-        public MvxCommand(Action execute, Func<bool> canExecute)
+        public MvxCommand(Action execute, Func<bool>? canExecute)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            mExecute = execute;
+            mCanExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-            => _canExecute == null || _canExecute();
+        public bool CanExecute(object? parameter)
+            => mCanExecute == null || mCanExecute();
 
         public bool CanExecute()
             => CanExecute(null);
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (CanExecute(parameter))
             {
-                _execute();
+                mExecute();
             }
         }
 
@@ -181,34 +181,34 @@ namespace MvvmCross.Commands
         : MvxCommandBase
         , IMvxCommand, IMvxCommand<T>
     {
-        private readonly Func<T, bool> _canExecute;
-        private readonly Action<T> _execute;
+        private readonly Func<T, bool>? mCanExecute;
+        private readonly Action<T> mExecute;
 
         public MvxCommand(Action<T> execute)
             : this(execute, null)
         {
         }
 
-        public MvxCommand(Action<T> execute, Func<T, bool> canExecute)
+        public MvxCommand(Action<T> execute, Func<T, bool>? canExecute)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            mExecute = execute;
+            mCanExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-            => _canExecute == null || _canExecute((T)typeof(T).MakeSafeValueCore(parameter));
+        public bool CanExecute(object? parameter)
+            => mCanExecute == null || mCanExecute((T)typeof(T).MakeSafeValueCore(parameter));
 
         public bool CanExecute()
             => CanExecute(null);
 
         public bool CanExecute(T parameter)
-            => _canExecute == null || _canExecute(parameter);
+            => mCanExecute == null || mCanExecute(parameter);
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (!CanExecute(parameter)) return;
 
-            _execute((T)typeof(T).MakeSafeValueCore(parameter));
+            mExecute((T)typeof(T).MakeSafeValueCore(parameter));
         }
 
         public void Execute()
@@ -218,7 +218,7 @@ namespace MvvmCross.Commands
         {
             if (!CanExecute(parameter)) return;
 
-            _execute(parameter);
+            mExecute(parameter);
         }
     }
 }

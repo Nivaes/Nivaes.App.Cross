@@ -12,14 +12,14 @@ namespace MvvmCross.UnitTest.Binding.Mocks
 {
     public class MockValueConverter : IMvxValueConverter
     {
-        public object ConversionResult { get; set; }
+        public object? ConversionResult { get; set; }
         public bool ThrowOnConversion { get; set; }
 
-        public List<object> ConversionsRequested { get; } = new List<object>();
-        public List<object> ConversionParameters { get; } = new List<object>();
+        public List<object?> ConversionsRequested { get; } = new List<object?>();
+        public List<object?> ConversionParameters { get; } = new List<object?>();
         public List<Type> ConversionTypes { get; } = new List<Type>();
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             ConversionsRequested.Add(value);
             ConversionParameters.Add(parameter);
@@ -29,13 +29,13 @@ namespace MvvmCross.UnitTest.Binding.Mocks
             return ConversionResult;
         }
 
-        public object ConversionBackResult { get; set; }
+        public object? ConversionBackResult { get; set; }
         public bool ThrowOnConversionBack { get; set; }
-        public List<object> ConversionsBackRequested { get; } = new List<object>();
-        public List<object> ConversionBackParameters { get; } = new List<object>();
+        public List<object?> ConversionsBackRequested { get; } = new List<object?>();
+        public List<object?> ConversionBackParameters { get; } = new List<object?>();
         public List<Type> ConversionBackTypes { get; } = new List<Type>();
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             ConversionsBackRequested.Add(value);
             ConversionBackParameters.Add(parameter);

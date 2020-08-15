@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.Converters;
+
     public class MvxAutoValueConverters
         : IMvxAutoValueConverters
     {
@@ -24,8 +24,7 @@ namespace MvvmCross.Binding.Binders
 
             public override bool Equals(object obj)
             {
-                var rhs = obj as Key;
-                if (rhs == null)
+                if (!(obj is Key rhs))
                     return false;
 
                 return ViewModelType == rhs.ViewModelType
