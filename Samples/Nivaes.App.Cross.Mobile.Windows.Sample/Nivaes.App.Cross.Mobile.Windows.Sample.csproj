@@ -37,10 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj" />
+    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.Uap\Nivaes.App.Cross.Color.Uap.csproj" />
+    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.Uap\Nivaes.App.Cross.Visibility.Uap.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
-    <ProjectReference Include="..\Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj" />
-    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Color.Uap\Nivaes.App.Cross.Color.Uap.csproj" />
-    <ProjectReference Include="..\Plugins\Nivaes.App.Cross.Visibility.Uap\Nivaes.App.Cross.Visibility.Uap.csproj" />
   </ItemGroup>
 
   <ItemGroup>
