@@ -4,6 +4,7 @@
 
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
@@ -38,6 +39,8 @@ namespace MvvmCross.Platforms.Uap.Views
         /// <param name="activationArgs">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs activationArgs)
         {
+            if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
+
             base.OnLaunched(activationArgs);
             ActivationArguments = activationArgs.UWPLaunchActivatedEventArgs;
 
@@ -80,13 +83,15 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
+        protected virtual object? GetAppStartHint(object? hint = null)
         {
             return hint;
         }
 
         protected virtual Frame InitializeFrame(IActivatedEventArgs activationArgs)
         {
+            if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
+
             var rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)
@@ -123,11 +128,13 @@ namespace MvvmCross.Platforms.Uap.Views
 
         protected virtual async void OnEnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var deferral = e.GetDeferral();
             try
             {
                 var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-                await EnteringBackground(suspension);
+                await EnteringBackground(suspension).ConfigureAwait(false);
             }
             finally
             {
@@ -135,18 +142,22 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        protected virtual async Task EnteringBackground(IMvxSuspensionManager suspensionManager)
+        protected virtual Task EnteringBackground(IMvxSuspensionManager suspensionManager)
         {
-            await suspensionManager.SaveAsync();
+            if (suspensionManager == null) throw new ArgumentNullException(nameof(suspensionManager));
+
+            return suspensionManager.SaveAsync();
         }
 
         protected virtual async void OnLeavingBackground(object sender, LeavingBackgroundEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var deferral = e.GetDeferral();
             try
             {
                 var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-                await LeaveBackground(suspension);
+                await LeaveBackground(suspension).ConfigureAwait(false);
             }
             finally
             {
@@ -159,18 +170,22 @@ namespace MvvmCross.Platforms.Uap.Views
             return Task.CompletedTask;
         }
 
-        protected virtual async Task Suspend(IMvxSuspensionManager suspensionManager)
+        protected virtual Task Suspend(IMvxSuspensionManager suspensionManager)
         {
-            await suspensionManager.SaveAsync();
+            if (suspensionManager == null) throw new ArgumentNullException(nameof(suspensionManager));
+
+            return suspensionManager.SaveAsync();
         }
 
         protected virtual async void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var deferral = e.SuspendingOperation.GetDeferral();
             try
             {
                 var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-                await Suspend(suspension);
+                await Suspend(suspension).ConfigureAwait(false);
             }
             finally
             {
@@ -181,7 +196,7 @@ namespace MvvmCross.Platforms.Uap.Views
         protected virtual async void OnResuming(object sender, object e)
         {
             var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-            await Resume(suspension);
+            await Resume(suspension).ConfigureAwait(false);
         }
 
         protected virtual Task Resume(IMvxSuspensionManager suspensionManager)
