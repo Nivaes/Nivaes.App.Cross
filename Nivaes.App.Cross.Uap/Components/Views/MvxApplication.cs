@@ -19,9 +19,9 @@ namespace MvvmCross.Platforms.Uap.Views
 
     public abstract class MvxApplication : Application
     {
-        protected IActivatedEventArgs ActivationArguments { get; private set; }
+        protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
-        protected Frame RootFrame { get; set; }
+        protected Frame? RootFrame { get; set; }
 
         public MvxApplication()
         {
@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
             var rootFrame = InitializeFrame(activationArgs.UWPLaunchActivatedEventArgs);
 
-            if (activationArgs.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
+            if (!activationArgs.UWPLaunchActivatedEventArgs.PrelaunchActivated)
             {
                 RunAppStart(activationArgs.UWPLaunchActivatedEventArgs);
             }
@@ -123,6 +123,8 @@ namespace MvvmCross.Platforms.Uap.Views
 
         protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             throw new MvxException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
         }
 
@@ -193,7 +195,7 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        protected virtual async void OnResuming(object sender, object e)
+        protected virtual async void OnResuming(object? sender, object e)
         {
             var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
             await Resume(suspension).ConfigureAwait(false);
