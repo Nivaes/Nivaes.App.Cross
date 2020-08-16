@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFrameworks>net5.0</TargetFrameworks>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <OutputType>Library</OutputType>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
 

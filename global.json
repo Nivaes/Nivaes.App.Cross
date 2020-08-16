@@ -9,7 +9,5 @@
   //},
   "msbuild-sdks": {
     "MSBuild.Sdk.Extras": "2.1.2"
-    //"Microsoft.iOS.Sdk": "13.5.100-ci.main.260",
-    //"Microsoft.Android.Sdk": "11.0.100-ci.master.11"
   }
 }
