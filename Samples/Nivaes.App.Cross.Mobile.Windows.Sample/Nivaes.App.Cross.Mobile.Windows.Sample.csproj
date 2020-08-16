@@ -6,7 +6,7 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <!--<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>-->
-    <ApplicationManifest>Nivaes.App.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
+    <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
     <!--
     There seems to be a codegen bug when referencing the cswinrt interop assembly of the Win32XamlHost
     project. Since we don't really need those metadata providers yet, this is just an easy workaround
@@ -31,7 +31,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Manifest Include="Nivaes.App.Mobile.Windows.Sample.exe.manifest">
+    <Manifest Include="Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest">
       <DeploymentContent>true</DeploymentContent>
     </Manifest>
   </ItemGroup>

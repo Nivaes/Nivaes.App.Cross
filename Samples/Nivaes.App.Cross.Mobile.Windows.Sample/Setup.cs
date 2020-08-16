@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Mobele.Windows.Sample
+﻿namespace Nivaes.App.Cross.Mobele.Windows.Sample
 {
     using MvvmCross.Platforms.Uap.Core;
     using Nivaes.App.Mobile.Sample;

@@ -131,6 +131,10 @@
       <Project>{837ce45d-c7f2-4040-91d3-3e2efae577d6}</Project>
       <Name>Nivaes.App.Cross.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj">
+      <Project>{0760352a-6c2d-4f4d-8f9b-05e3faa74f91}</Project>
+      <Name>Nivaes.App.Cross</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.iOS\Nivaes.App.Cross.Color.iOS.csproj">
       <Project>{ca38bea2-089e-4b55-9f08-5cd64115e882}</Project>
       <Name>Nivaes.App.Cross.Color.iOS</Name>
@@ -142,6 +146,10 @@
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
       <Project>{34977945-dc28-4055-ae31-afcb0be0cda3}</Project>
       <Name>Nivaes.App.Cross.Mobile.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj">
+      <Project>{267c00c4-cf12-40da-b214-614df8e83166}</Project>
+      <Name>Nivaes.App.Cross.Sample</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

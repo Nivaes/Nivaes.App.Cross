@@ -1,6 +1,6 @@
 ﻿using Windows.ApplicationModel;
 
-namespace Nivaes.App.Mobele.Windows.Sample
+namespace Nivaes.App.Cross.Mobile.Windows.Sample
 {
     using System;
     using global::Windows.ApplicationModel.Activation;
@@ -8,7 +8,7 @@ namespace Nivaes.App.Mobele.Windows.Sample
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using MvvmCross.Platforms.Uap.Views;
-    using Nivaes.App.Sample;
+    using Nivaes.App.Cross.Mobele.Windows.Sample;
     using Nivaes.App.Mobile.Sample;
 
     /// <summary>
