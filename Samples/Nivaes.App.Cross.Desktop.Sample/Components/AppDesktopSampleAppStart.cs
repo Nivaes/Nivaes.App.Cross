@@ -4,12 +4,12 @@
     using System.Threading.Tasks;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Sample;
+    using Nivaes.App.Cross.Mobile.Sample;
 
-    public sealed class AppMobileSampleAppStart
+    public sealed class AppDesktopSampleAppStart
         : AppSampleAppStart, IMvxAppStart
     {
-        public AppMobileSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public AppDesktopSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }

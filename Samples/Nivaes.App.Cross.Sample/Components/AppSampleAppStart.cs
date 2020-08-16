@@ -1,23 +1,22 @@
-﻿namespace Nivaes.App.Mobile.Sample
+﻿namespace Nivaes.App.Cross.Mobile.Sample
 {
     using System;
     using System.Threading.Tasks;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross.Mobile.Sample;
 
-    public sealed class AppMobileSampleAppStart
-        : AppSampleAppStart, IMvxAppStart
+    public abstract class AppSampleAppStart
+        : MvxAppStart
     {
-        public AppMobileSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        protected AppSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }
 
         protected override Task NavigateToFirstViewModel(object? hint = null)
         {
+            return Task.CompletedTask;
             //return base.NavigationService.Navigate<InitializingAppViewModel>();
-            throw new NotImplementedException();
         }
     }
 }

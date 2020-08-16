@@ -6,11 +6,11 @@ using Android.App;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Nivaes.App.Droid.Sample")]
+[assembly: AssemblyTitle("Nivaes.App.Cross.Mobile.Droid.Sample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Nivaes.App.Droid.Sample")]
+[assembly: AssemblyProduct("Nivaes.App.Cross.Mobile.Droid.Sample")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
