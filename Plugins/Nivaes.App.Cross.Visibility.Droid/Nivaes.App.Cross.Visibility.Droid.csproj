@@ -2,7 +2,7 @@
 <!--<Project Sdk="Microsoft.NET.Sdk">-->
 
   <PropertyGroup>
-    <TargetFramework>monoandroid10.0</TargetFramework>
+    <TargetFramework>monoandroid11.0</TargetFramework>
     <!--<TargetFramework>net5.0-android</TargetFramework>-->
 
     <AssemblyName>Nivaes.App.Cross.Visibility.Droid</AssemblyName>

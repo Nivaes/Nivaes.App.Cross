@@ -5,17 +5,18 @@
 using System.Collections.Concurrent;
 using Android.App;
 using Android.OS;
+using MvvmCross.Android.Views;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    public class MvxApplicationCallbacksCurrentTopActivity 
+    public class MvxApplicationCallbacksCurrentTopActivity
         : Java.Lang.Object, Application.IActivityLifecycleCallbacks, IMvxAndroidCurrentTopActivity
     {
         protected ConcurrentDictionary<string, ActivityInfo> Activities { get; }
             = new ConcurrentDictionary<string, ActivityInfo>();
 
         public Activity Activity => GetCurrentActivity();
-        private Activity _lastKnownActivity;
+        private Activity? mLastKnownActivity;
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
@@ -37,7 +38,7 @@ namespace MvvmCross.Platforms.Android.Views
         {
             UpdateActivityListItem(activity, true);
 
-            _lastKnownActivity = activity;
+            mLastKnownActivity = activity;
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
@@ -48,7 +49,7 @@ namespace MvvmCross.Platforms.Android.Views
         {
             UpdateActivityListItem(activity, true);
 
-            _lastKnownActivity = activity;
+            mLastKnownActivity = activity;
         }
 
         public void OnActivityStopped(Activity activity)
@@ -68,11 +69,11 @@ namespace MvvmCross.Platforms.Android.Views
             });
         }
 
-        protected virtual Activity GetCurrentActivity()
+        protected virtual Activity? GetCurrentActivity()
         {
-            if (Activities.Count > 0)
+            if (!Activities.IsEmpty)
             {
-                Activity currentActivity = null;
+                Activity? currentActivity = null;
 
                 using (var e = Activities.GetEnumerator())
                 {
@@ -89,10 +90,11 @@ namespace MvvmCross.Platforms.Android.Views
 
                 if (currentActivity == null)
                 {
-                    if (!_lastKnownActivity.IsActivityDead() && 
-                        _lastKnownActivity.GetType() != typeof(MvxSplashScreenActivity) &&
-                        _lastKnownActivity.GetType() != typeof(MvxSplashScreenActivity<,>))
-                        return _lastKnownActivity;
+                    if (!mLastKnownActivity.IsActivityDead() &&
+                        mLastKnownActivity.GetType() != typeof(SplashScreenActivity))
+                    {
+                        return mLastKnownActivity;
+                    }
                 }
 
                 return currentActivity;
@@ -101,8 +103,8 @@ namespace MvvmCross.Platforms.Android.Views
             return null;
         }
 
-        protected virtual string GetActivityName(Activity activity) => 
-            $"{activity.Class.SimpleName}_{activity.Handle.ToString()}";
+        protected virtual string GetActivityName(Activity activity) =>
+            $"{activity?.Class.SimpleName}_{activity?.Handle}";
 
         /// <summary>
         /// Used to store additional info along with an activity.
