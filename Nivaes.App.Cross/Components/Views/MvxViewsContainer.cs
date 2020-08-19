@@ -67,7 +67,7 @@ namespace MvvmCross.Views
                 }
             }
 
-            throw new KeyNotFoundException("Could not find view for " + viewModelType);
+            throw new KeyNotFoundException($"Could not find view for {viewModelType}");
         }
 
         public void AddSecondary(IMvxViewFinder finder)
