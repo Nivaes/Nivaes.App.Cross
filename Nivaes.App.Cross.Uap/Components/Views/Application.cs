@@ -76,11 +76,11 @@ namespace MvvmCross.Platforms.Uap.Views
             base.OnActivated(args);
             ActivationArguments = args;
 
-            var rootFrame = InitializeFrame(args);
+            mWindow!.Content = InitializeFrame(args);
             RunAppStart(args);
 
             //Window.Current.Activate();
-            mWindow?.Activate();
+            mWindow!.Activate();
         }
 
         protected virtual void RunAppStart(IActivatedEventArgs activationArgs)
