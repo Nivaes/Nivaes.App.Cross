@@ -16,8 +16,7 @@
 
         protected override Task NavigateToFirstViewModel(object? hint = null)
         {
-            //return base.NavigationService.Navigate<InitializingAppViewModel>();
-            throw new NotImplementedException();
+            return base.NavigationService.Navigate<RootViewModel>();
         }
     }
 }

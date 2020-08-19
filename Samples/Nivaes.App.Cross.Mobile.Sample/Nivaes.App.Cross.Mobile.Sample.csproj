@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\ViewModels\" />
+  </ItemGroup>
+
 </Project>

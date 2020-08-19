@@ -2,54 +2,54 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Converters;
-using MvvmCross.Exceptions;
-using MvvmCross.Plugin;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Uap.Binding;
-using MvvmCross.Platforms.Uap.Presenters;
-using MvvmCross.Platforms.Uap.Views;
-using MvvmCross.Platforms.Uap.Views.Suspension;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using Windows.ApplicationModel.Activation;
-using Microsoft.UI.Xaml.Controls;
-using MvvmCross.Binding;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Presenters;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Platforms.Uap.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Converters;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Plugin;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Uap.Binding;
+    using MvvmCross.Platforms.Uap.Presenters;
+    using MvvmCross.Platforms.Uap.Views;
+    using MvvmCross.Platforms.Uap.Views.Suspension;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Windows.ApplicationModel.Activation;
+    using Microsoft.UI.Xaml.Controls;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Presenters;
+    using MvvmCross.IoC;
+
     public abstract class MvxWindowsSetup
         : MvxSetup, IMvxWindowsSetup
     {
-        private IMvxWindowsFrame _rootFrame;
-        private string _suspensionManagerSessionStateKey;
-        private IMvxWindowsViewPresenter _presenter;
+        private IMvxWindowsFrame? mRootFrame;
+        private string? mSuspensionManagerSessionStateKey;
+        private IMvxWindowsViewPresenter? mPresenter;
 
         public virtual void PlatformInitialize(Frame rootFrame, IActivatedEventArgs activatedEventArgs,
-            string suspensionManagerSessionStateKey = null)
+            string? suspensionManagerSessionStateKey = null)
         {
             PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);
             ActivationArguments = activatedEventArgs;
         }
 
-        public virtual void PlatformInitialize(Frame rootFrame, string suspensionManagerSessionStateKey = null)
+        public virtual void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
         {
             PlatformInitialize(new MvxWrappedFrame(rootFrame));
-            _suspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
+            mSuspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
         }
 
         public virtual void PlatformInitialize(IMvxWindowsFrame rootFrame)
         {
-            _rootFrame = rootFrame;
+            mRootFrame = rootFrame;
         }
 
         public virtual void UpdateActivationArguments(IActivatedEventArgs e)
@@ -69,8 +69,8 @@ namespace MvvmCross.Platforms.Uap.Core
             var suspensionManager = CreateSuspensionManager();
             Mvx.IoCProvider.RegisterSingleton(suspensionManager);
 
-            if (_suspensionManagerSessionStateKey != null)
-                suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
+            if (mSuspensionManagerSessionStateKey != null)
+                suspensionManager.RegisterFrame(mRootFrame, mSuspensionManagerSessionStateKey);
         }
 
         protected virtual IMvxSuspensionManager CreateSuspensionManager()
@@ -83,8 +83,7 @@ namespace MvvmCross.Platforms.Uap.Core
             var container = CreateStoreViewsContainer();
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
-            var viewsContainer = container as MvxViewsContainer;
-            if (viewsContainer == null)
+            if (!(container is MvxViewsContainer viewsContainer))
                 throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
             return container;
         }
@@ -96,15 +95,15 @@ namespace MvvmCross.Platforms.Uap.Core
 
         protected override IMvxViewDispatcher CreateViewDispatcher()
         {
-            return CreateViewDispatcher(_rootFrame);
+            return CreateViewDispatcher(mRootFrame);
         }
 
         protected IMvxWindowsViewPresenter Presenter
         {
             get
             {
-                _presenter = _presenter ?? CreateViewPresenter(_rootFrame);
-                return _presenter;
+                mPresenter ??= CreateViewPresenter(mRootFrame);
+                return mPresenter;
             }
         }
 

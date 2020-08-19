@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{96EFCB7F-BB71-457A-9257-678C47411E02}</ProjectGuid>
+    <ProjectGuid>{4F3691B4-7864-48F5-A3FC-DC461094CEA0}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nivaes.App.Cross.Mobile.Windows.Sample</RootNamespace>

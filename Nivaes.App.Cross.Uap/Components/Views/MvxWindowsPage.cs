@@ -48,22 +48,22 @@ namespace MvvmCross.Platforms.Uap.Views
             base.OnNavigatingFrom(e);
         }
 
-        private IMvxViewModel _viewModel;
+        private IMvxViewModel? mViewModel;
 
         public IMvxWindowsFrame WrappedFrame => new MvxWrappedFrame(Frame);
 
-        public IMvxViewModel ViewModel
+        public IMvxViewModel? ViewModel
         {
             get
             {
-                return _viewModel;
+                return mViewModel;
             }
             set
             {
-                if (_viewModel == value)
+                if (mViewModel == value)
                     return;
 
-                _viewModel = value;
+                mViewModel = value;
                 DataContext = ViewModel;
                 OnViewModelSet();
             }
@@ -84,7 +84,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
             UpdateBackButtonVisibility();
         }
-        
+
         protected virtual void UpdateBackButtonVisibility()
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
@@ -140,30 +140,31 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        private string _pageKey;
+        private string? mPageKey;
 
-        private IMvxSuspensionManager _suspensionManager;
+        private IMvxSuspensionManager? mSuspensionManager;
+
         protected IMvxSuspensionManager SuspensionManager
         {
             get
             {
-                _suspensionManager = _suspensionManager ?? Mvx.IoCProvider.Resolve<IMvxSuspensionManager>();
-                return _suspensionManager;
+                mSuspensionManager ??= Mvx.IoCProvider.Resolve<IMvxSuspensionManager>();
+                return mSuspensionManager;
             }
         }
 
-        protected virtual IMvxBundle LoadStateBundle(NavigationEventArgs e)
+        protected virtual IMvxBundle? LoadStateBundle(NavigationEventArgs e)
         {
             // nothing loaded by default
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
-            _pageKey = "Page-" + Frame.BackStackDepth;
-             IMvxBundle bundle = null;
+            mPageKey = $"Page-{Frame.BackStackDepth}";
+            IMvxBundle? bundle = null;
 
             if (e.NavigationMode == NavigationMode.New)
             {
                 // Clear existing state for forward navigation when adding a new page to the
                 // navigation stack
-                var nextPageKey = _pageKey;
+                var nextPageKey = mPageKey;
                 var nextPageIndex = Frame.BackStackDepth;
                 while (frameState.Remove(nextPageKey))
                 {
@@ -173,7 +174,7 @@ namespace MvvmCross.Platforms.Uap.Views
             }
             else
             {
-                var dictionary = (IDictionary<string, string>)frameState[_pageKey];
+                var dictionary = (IDictionary<string, string>)frameState[mPageKey];
                 bundle = new MvxBundle(dictionary);
             }
 
@@ -183,7 +184,7 @@ namespace MvvmCross.Platforms.Uap.Views
         protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, IMvxBundle bundle)
         {
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
-            frameState[_pageKey] = bundle.Data;
+            frameState[mPageKey!] = bundle?.Data;
         }
 
         public void Dispose()
@@ -212,7 +213,7 @@ namespace MvvmCross.Platforms.Uap.Views
         : MvxWindowsPage
         , IMvxWindowsView<TViewModel> where TViewModel : class, IMvxViewModel
     {
-        public new TViewModel ViewModel
+        public new TViewModel? ViewModel
         {
             get { return (TViewModel)base.ViewModel; }
             set { base.ViewModel = value; }

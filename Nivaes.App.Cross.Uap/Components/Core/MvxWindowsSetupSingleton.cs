@@ -13,14 +13,14 @@ namespace MvvmCross.Platforms.Uap.Core
         : MvxSetupSingleton
     {
         public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, IActivatedEventArgs activatedEventArgs,
-          string suspensionManagerSessionStateKey = null)
+          string? suspensionManagerSessionStateKey = null)
         {
             var instance = EnsureSingletonAvailable<MvxWindowsSetupSingleton>();
             instance.PlatformSetup<MvxWindowsSetup>()?.PlatformInitialize(rootFrame, activatedEventArgs, suspensionManagerSessionStateKey);
             return instance;
         }
 
-        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string suspensionManagerSessionStateKey = null)
+        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
         {
             var instance = EnsureSingletonAvailable<MvxWindowsSetupSingleton>();
             instance.PlatformSetup<MvxWindowsSetup>()?.PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);

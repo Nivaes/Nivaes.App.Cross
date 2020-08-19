@@ -23,9 +23,9 @@ namespace MvvmCross.ViewModels
             NavigationService = navigationService;
         }
 
-        public void Start(object hint = null)
+        public void Start(object? hint = null)
         {
-            StartAsync(hint).GetAwaiter().GetResult();
+            _ = StartAsync(hint);
         }
 
         public async Task StartAsync(object? hint = null)

@@ -17,50 +17,56 @@ namespace MvvmCross.Platforms.Uap.Views
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
 
-    public abstract class MvxApplication : Application
+    public abstract class Application : Microsoft.UI.Xaml.Application
     {
         protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
         protected Frame? RootFrame { get; set; }
 
-        public MvxApplication()
+        protected Application()
         {
             RegisterSetup();
-            EnteredBackground += OnEnteredBackground;
-            LeavingBackground += OnLeavingBackground;
-            Suspending += OnSuspending;
-            Resuming += OnResuming;
+            base.EnteredBackground += OnEnteredBackground;
+            base.LeavingBackground += OnLeavingBackground;
+            base.Suspending += OnSuspending;
+            base.Resuming += OnResuming;
         }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
-        /// <param name="activationArgs">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs activationArgs)
+        /// <param name="args">Details about the launch request and process.</param>
+        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
+            if (args == null) throw new ArgumentNullException(nameof(args));
 
-            base.OnLaunched(activationArgs);
-            ActivationArguments = activationArgs.UWPLaunchActivatedEventArgs;
+            base.OnLaunched(args);
 
-            var rootFrame = InitializeFrame(activationArgs.UWPLaunchActivatedEventArgs);
+            //ActivationArguments = args.UWPLaunchActivatedEventArgs;
 
-            if (!activationArgs.UWPLaunchActivatedEventArgs.PrelaunchActivated)
+            var rootFrame = InitializeFrame(ActivationArguments);
+
+            if (true/*!ActivationArguments.PrelaunchActivated*/)
             {
-                RunAppStart(activationArgs.UWPLaunchActivatedEventArgs);
-            }
+                RunAppStart(ActivationArguments);
 
-            Window.Current.Activate();
+                //Window.Current.Activate();
+            }
         }
 
-        protected override void OnActivated(IActivatedEventArgs activationArgs)
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
-            base.OnActivated(activationArgs);
-            ActivationArguments = activationArgs;
+            base.OnWindowCreated(args);
+        }
 
-            var rootFrame = InitializeFrame(activationArgs);
-            RunAppStart(activationArgs);
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+            ActivationArguments = args;
+
+            var rootFrame = InitializeFrame(args);
+            RunAppStart(args);
 
             Window.Current.Activate();
         }
@@ -68,7 +74,7 @@ namespace MvvmCross.Platforms.Uap.Views
         protected virtual void RunAppStart(IActivatedEventArgs activationArgs)
         {
             var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, ActivationArguments, nameof(Suspend));
-            if (RootFrame.Content == null)
+            if (RootFrame?.Content == null)
             {
                 instance.EnsureInitialized();
 
@@ -90,31 +96,24 @@ namespace MvvmCross.Platforms.Uap.Views
 
         protected virtual Frame InitializeFrame(IActivatedEventArgs activationArgs)
         {
-            if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
+            //if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
 
-            var rootFrame = Window.Current.Content as Frame;
-
-            if (rootFrame == null)
-            {
-                rootFrame = CreateFrame();
+            //if (!(Window.Current.Content is Frame rootFrame))
+            //{
+                var rootFrame = new Frame();
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Window.Current.Content = rootFrame;
-            }
+            //    Window.Current.Content = rootFrame;
+            //}
 
-            if (activationArgs.PreviousExecutionState == ApplicationExecutionState.Terminated)
-            {
+            //if (activationArgs.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            //{
                 OnResumeFromTerminateState();
-            }
+            //}
 
             RootFrame = rootFrame;
 
             return rootFrame;
-        }
-
-        protected virtual Frame CreateFrame()
-        {
-            return new Frame();
         }
 
         protected virtual void OnResumeFromTerminateState()
@@ -195,10 +194,10 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        protected virtual async void OnResuming(object? sender, object e)
+        protected virtual void OnResuming(object? sender, object e)
         {
             var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-            await Resume(suspension).ConfigureAwait(false);
+            _ = Resume(suspension);
         }
 
         protected virtual Task Resume(IMvxSuspensionManager suspensionManager)
@@ -211,7 +210,7 @@ namespace MvvmCross.Platforms.Uap.Views
         }
     }
 
-    public class MvxApplication<TMvxUapSetup, TApplication> : MvxApplication
+    public class Application<TMvxUapSetup, TApplication> : Application
        where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
