@@ -56,7 +56,6 @@ namespace MvvmCross.Platforms.Uap.Views
 
                 var window = new Microsoft.UI.Xaml.Window
                 {
-                    //Content = new MainPage()
                     Content = rootFrame
                 };
 
