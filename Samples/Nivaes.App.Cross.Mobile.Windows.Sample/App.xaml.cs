@@ -1,12 +1,5 @@
-﻿using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-
-namespace Nivaes.App.Cross.Mobile.Windows.Sample
+﻿namespace Nivaes.App.Cross.Mobile.Windows.Sample
 {
-    using System;
-    using Microsoft.UI.Xaml;
-    using Microsoft.UI.Xaml.Controls;
-    using Microsoft.UI.Xaml.Navigation;
     using MvvmCross.Platforms.Uap.Views;
     using Nivaes.App.Cross.Mobele.Windows.Sample;
     using Nivaes.App.Mobile.Sample;

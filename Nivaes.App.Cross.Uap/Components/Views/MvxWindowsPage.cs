@@ -213,7 +213,7 @@ namespace MvvmCross.Platforms.Uap.Views
         : MvxWindowsPage
         , IMvxWindowsView<TViewModel> where TViewModel : class, IMvxViewModel
     {
-        public new TViewModel? ViewModel
+        public new TViewModel ViewModel
         {
             get { return (TViewModel)base.ViewModel; }
             set { base.ViewModel = value; }

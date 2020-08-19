@@ -14,6 +14,7 @@ namespace MvvmCross.Platforms.Uap.Views
     using MvvmCross.Platforms.Uap.Core;
     using MvvmCross.Platforms.Uap.Views.Suspension;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
 
@@ -22,6 +23,8 @@ namespace MvvmCross.Platforms.Uap.Views
         protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
         protected Frame? RootFrame { get; set; }
+
+        private Window? mWindow;
 
         protected Application()
         {
@@ -51,14 +54,23 @@ namespace MvvmCross.Platforms.Uap.Views
             {
                 RunAppStart(ActivationArguments);
 
+                var window = new Microsoft.UI.Xaml.Window
+                {
+                    //Content = new MainPage()
+                    Content = rootFrame
+                };
+
                 //Window.Current.Activate();
+                window.Activate();
+
+                mWindow = window;
             }
         }
 
-        protected override void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            base.OnWindowCreated(args);
-        }
+        //protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        //{
+        //    base.OnWindowCreated(args);
+        //}
 
         protected override void OnActivated(IActivatedEventArgs args)
         {
@@ -68,7 +80,8 @@ namespace MvvmCross.Platforms.Uap.Views
             var rootFrame = InitializeFrame(args);
             RunAppStart(args);
 
-            Window.Current.Activate();
+            //Window.Current.Activate();
+            mWindow?.Activate();
         }
 
         protected virtual void RunAppStart(IActivatedEventArgs activationArgs)
