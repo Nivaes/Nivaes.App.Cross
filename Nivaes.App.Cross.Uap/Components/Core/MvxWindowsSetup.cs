@@ -6,26 +6,24 @@ namespace MvvmCross.Platforms.Uap.Core
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
+    using Microsoft.UI.Xaml.Controls;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Converters;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Plugin;
     using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
     using MvvmCross.Platforms.Uap.Binding;
     using MvvmCross.Platforms.Uap.Presenters;
     using MvvmCross.Platforms.Uap.Views;
     using MvvmCross.Platforms.Uap.Views.Suspension;
+    using MvvmCross.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Windows.ApplicationModel.Activation;
-    using Microsoft.UI.Xaml.Controls;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.Target.Construction;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Presenters;
-    using MvvmCross.IoC;
 
     public abstract class MvxWindowsSetup
         : MvxSetup, IMvxWindowsSetup
@@ -83,7 +81,7 @@ namespace MvvmCross.Platforms.Uap.Core
             var container = CreateStoreViewsContainer();
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
-            if (!(container is MvxViewsContainer viewsContainer))
+            if (!(container is MvxViewsContainer))
                 throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
             return container;
         }
@@ -160,7 +158,7 @@ namespace MvvmCross.Platforms.Uap.Core
             // this base class does nothing
         }
 
-        protected IActivatedEventArgs ActivationArguments { get; private set; }
+        protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
         protected virtual List<Type> ValueConverterHolders => new List<Type>();
 
