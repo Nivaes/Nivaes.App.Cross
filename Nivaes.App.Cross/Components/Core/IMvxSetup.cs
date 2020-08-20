@@ -2,19 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Plugin;
-using MvvmCross.Logging;
-using System;
-using static MvvmCross.Core.MvxSetup;
-
 namespace MvvmCross.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Plugin;
+    using static MvvmCross.Core.MvxSetup;
+
     public interface IMvxSetup
     {
-        void InitializePrimary();
-        void InitializeSecondary();
+        MvxSetupState State { get; }
+
+        Task InitializePrimary();
+        Task InitializeSecondary();
 
         IEnumerable<Assembly> GetViewAssemblies();
         IEnumerable<Assembly> GetViewModelAssemblies();
@@ -28,6 +31,5 @@ namespace MvvmCross.Core
         MvxLogProviderType GetDefaultLogProviderType();
 
         event EventHandler<MvxSetupStateEventArgs> StateChanged;
-        MvxSetupState State { get; }
     }
 }

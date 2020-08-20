@@ -20,6 +20,7 @@ using MvvmCross.Views;
 using UIKit;
 using MvvmCross.Presenters;
 using MvvmCross.IoC;
+using System.Threading.Tasks;
 
 namespace MvvmCross.Platforms.Tvos.Core
 {
@@ -70,12 +71,15 @@ namespace MvvmCross.Platforms.Tvos.Core
             return new MvxTvosViewDispatcher(Presenter);
         }
 
-        protected override void InitializeFirstChance()
+        protected override async Task InitializeFirstChance()
         {
-            RegisterPlatformProperties();
-            RegisterPresenter();
-            RegisterLifetime();
-            base.InitializeFirstChance();
+            await Task.Run(() =>
+            {
+                RegisterPlatformProperties();
+                RegisterPresenter();
+                RegisterLifetime();
+            }).ConfigureAwait(false);
+            await base.InitializeFirstChance().ConfigureAwait(false);
         }
 
         protected virtual void RegisterPlatformProperties()
@@ -114,17 +118,20 @@ namespace MvvmCross.Platforms.Tvos.Core
             Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
         }
 
-        protected override void InitializeLastChance()
+        protected override async Task InitializeLastChance()
         {
-            InitializeBindingBuilder();
-            base.InitializeLastChance();
+            await InitializeBindingBuilder().ConfigureAwait(false);
+            await base.InitializeLastChance().ConfigureAwait(false);
         }
 
-        protected virtual void InitializeBindingBuilder()
+        protected virtual Task InitializeBindingBuilder()
         {
-            RegisterBindingBuilderCallbacks();
-            var bindingBuilder = CreateBindingBuilder();
-            bindingBuilder.DoRegistration();
+            return Task.Run(() =>
+            {
+                RegisterBindingBuilderCallbacks();
+                var bindingBuilder = CreateBindingBuilder();
+                bindingBuilder.DoRegistration();
+            });
         }
 
         protected virtual void RegisterBindingBuilderCallbacks()

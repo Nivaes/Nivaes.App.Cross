@@ -7,6 +7,7 @@ namespace MvvmCross.Platforms.Uap.Core
     using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using System.Threading.Tasks;
     using Microsoft.UI.Xaml.Controls;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
@@ -55,11 +56,11 @@ namespace MvvmCross.Platforms.Uap.Core
             ActivationArguments = e;
         }
 
-        protected override void InitializeFirstChance()
+        protected override async Task InitializeFirstChance()
         {
             InitializeSuspensionManager();
-            RegisterPresenter();
-            base.InitializeFirstChance();
+            await RegisterPresenter().ConfigureAwait(false);
+            await base.InitializeFirstChance().ConfigureAwait(false);
         }
 
         protected virtual void InitializeSuspensionManager()
@@ -115,24 +116,31 @@ namespace MvvmCross.Platforms.Uap.Core
             return new MvxWindowsViewDispatcher(Presenter, rootFrame);
         }
 
-        protected virtual void RegisterPresenter()
+        protected virtual Task RegisterPresenter()
         {
             var presenter = Presenter;
-            Mvx.IoCProvider.RegisterSingleton(presenter);
-            Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+
+            return Task.Run(() =>
+            {
+                Mvx.IoCProvider.RegisterSingleton(presenter);
+                Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            });
         }
 
-        protected override void InitializeLastChance()
+        protected override async Task InitializeLastChance()
         {
-            InitializeBindingBuilder();
-            base.InitializeLastChance();
+            await InitializeBindingBuilder().ConfigureAwait(false);
+            await base.InitializeLastChance().ConfigureAwait(false);
         }
 
-        protected virtual void InitializeBindingBuilder()
+        protected virtual Task InitializeBindingBuilder()
         {
-            RegisterBindingBuilderCallbacks();
-            var bindingBuilder = CreateBindingBuilder();
-            bindingBuilder.DoRegistration();
+            return Task.Run(() =>
+            {
+                RegisterBindingBuilderCallbacks();
+                var bindingBuilder = CreateBindingBuilder();
+                bindingBuilder.DoRegistration();
+            });
         }
 
         protected virtual void RegisterBindingBuilderCallbacks()

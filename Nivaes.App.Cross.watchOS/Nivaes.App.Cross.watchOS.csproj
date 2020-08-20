@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>xamarin.watchos10</TargetFrameworks>
+    <TargetFrameworks>xamarin.watchos</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.watchOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.watchOS</RootNamespace>
