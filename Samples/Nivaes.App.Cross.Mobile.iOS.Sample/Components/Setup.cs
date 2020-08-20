@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Mobile.iOS.Sample
+﻿namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     using MvvmCross.Platforms.Ios.Core;
     using Nivaes.App.Mobile.Sample;

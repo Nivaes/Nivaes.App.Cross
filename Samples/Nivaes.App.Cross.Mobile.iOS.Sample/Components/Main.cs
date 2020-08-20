@@ -1,7 +1,7 @@
-﻿using UIKit;
-
-namespace Nivaes.App.iOS.Sample
+﻿namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
+    using UIKit;
+
     public static class Application
     {
         // This is the main entry point of the application.

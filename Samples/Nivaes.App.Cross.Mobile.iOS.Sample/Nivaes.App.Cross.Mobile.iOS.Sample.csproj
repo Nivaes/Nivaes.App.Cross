@@ -60,9 +60,14 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
-    <Compile Include="Setup.cs" />
+    <Compile Include="Components\Views\RootView.cs" />
+    <Compile Include="Components\Views\RootView.designer.cs">
+      <DependentUpon>RootView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Main.cs" />
+    <Compile Include="Components\AppDelegate.cs" />
+    <Compile Include="Components\Setup.cs" />
+    <InterfaceDefinition Include="Components\Views\RootView.storyboard" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />

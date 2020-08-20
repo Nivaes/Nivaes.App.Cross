@@ -2,35 +2,35 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Converters;
-using MvvmCross.Plugin;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Ios;
-using MvvmCross.Platforms.Ios.Binding;
-using MvvmCross.Platforms.Ios.Presenters;
-using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using UIKit;
-using MvvmCross.Presenters;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Platforms.Ios.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using MvvmCross.Converters;
+    using MvvmCross.Plugin;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Ios;
+    using MvvmCross.Platforms.Ios.Binding;
+    using MvvmCross.Platforms.Ios.Presenters;
+    using MvvmCross.Platforms.Ios.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using UIKit;
+    using MvvmCross.Presenters;
+    using MvvmCross.IoC;
+
     public abstract class MvxIosSetup
         : MvxSetup, IMvxIosSetup
     {
-        protected IMvxApplicationDelegate ApplicationDelegate { get; private set; }
-        protected UIWindow Window { get; private set; }
+        protected IMvxApplicationDelegate? ApplicationDelegate { get; private set; }
+        protected UIWindow? Window { get; private set; }
 
-        private IMvxIosViewPresenter _presenter;
+        private IMvxIosViewPresenter? mPresenter;
 
         public virtual void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, UIWindow window)
         {
@@ -41,7 +41,7 @@ namespace MvvmCross.Platforms.Ios.Core
         public virtual void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
         {
             ApplicationDelegate = applicationDelegate;
-            _presenter = presenter;
+            mPresenter = presenter;
         }
 
         protected sealed override IMvxViewsContainer CreateViewsContainer()
@@ -94,8 +94,8 @@ namespace MvvmCross.Platforms.Ios.Core
         {
             get
             {
-                _presenter = _presenter ?? CreateViewPresenter();
-                return _presenter;
+                mPresenter ??= CreateViewPresenter();
+                return mPresenter;
             }
         }
 
