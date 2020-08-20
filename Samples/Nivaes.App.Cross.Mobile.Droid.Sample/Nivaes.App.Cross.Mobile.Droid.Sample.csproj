@@ -71,6 +71,7 @@
     <Compile Include="Components\LinkerPleaseInclude\LinkerPleaseInclude.cs" />
     <Compile Include="Components\MainApplication.cs" />
     <Compile Include="Components\Setup.cs" />
+    <Compile Include="Components\Views\RootView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -142,6 +143,9 @@
       <Project>{267c00c4-cf12-40da-b214-614df8e83166}</Project>
       <Name>Nivaes.App.Cross.Sample</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\root_view.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
