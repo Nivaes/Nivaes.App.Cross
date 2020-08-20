@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--xmlns:local="using:Nivaes.Professional365.UWP.Core">-->
 
     <!--<ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///Nivaes.Crm.App.Mobile.Windows/Components/Styles/CoreApp.xaml"/>
