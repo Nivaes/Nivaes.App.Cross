@@ -4,7 +4,6 @@
     using MvvmCross.IoC;
     using MvvmCross.ViewModels;
 
-    //ToDo: Crear clase base en Nivaes.App
     public class AppSampleApplication<TType>
         : MvxApplication
           where TType : class, IMvxAppStart

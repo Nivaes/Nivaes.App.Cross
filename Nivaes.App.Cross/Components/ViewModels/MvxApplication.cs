@@ -2,26 +2,26 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-using MvvmCross.Plugin;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MvvmCross.IoC;
+    using MvvmCross.Logging;
+    using MvvmCross.Plugin;
+
     public abstract class MvxApplication : IMvxApplication
     {
-        private IMvxViewModelLocator _defaultLocator;
+        private IMvxViewModelLocator? mDefaultLocator;
 
         private IMvxViewModelLocator DefaultLocator
         {
             get
             {
-                _defaultLocator = _defaultLocator ?? CreateDefaultViewModelLocator();
-                return _defaultLocator;
+                mDefaultLocator ??= CreateDefaultViewModelLocator();
+                return mDefaultLocator;
             }
         }
 
