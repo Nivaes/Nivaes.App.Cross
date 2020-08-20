@@ -103,6 +103,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Blazor", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Mobile.Windows.Sample", "Samples\Nivaes.App.Cross.Mobile.Windows.Sample\Nivaes.App.Cross.Mobile.Windows.Sample.csproj", "{96EFCB7F-BB71-457A-9257-678C47411E02}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Desktop.Browser.Sample", "Samples\Nivaes.App.Cross.Desktop.Browser.Sample\Nivaes.App.Cross.Desktop.Browser.Sample.csproj", "{E330025B-1827-4F45-B0E2-BA67794B882B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Develop = Debug|Develop
@@ -246,6 +248,10 @@ Global
 		{96EFCB7F-BB71-457A-9257-678C47411E02}.Debug|Develop.Build.0 = Debug|x64
 		{96EFCB7F-BB71-457A-9257-678C47411E02}.Debug|Develop.Deploy.0 = Debug|x64
 		{96EFCB7F-BB71-457A-9257-678C47411E02}.Release|Develop.ActiveCfg = Release|x86
+		{E330025B-1827-4F45-B0E2-BA67794B882B}.Debug|Develop.ActiveCfg = Debug|Any CPU
+		{E330025B-1827-4F45-B0E2-BA67794B882B}.Debug|Develop.Build.0 = Debug|Any CPU
+		{E330025B-1827-4F45-B0E2-BA67794B882B}.Release|Develop.ActiveCfg = Release|Any CPU
+		{E330025B-1827-4F45-B0E2-BA67794B882B}.Release|Develop.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +298,7 @@ Global
 		{267C00C4-CF12-40DA-B214-614DF8E83166} = {8202DDB8-391D-4470-A64C-036F0BF2A61D}
 		{A2C58F4F-0E30-4C0A-A77F-ADBE3EE58D11} = {D1C1BB1C-3D10-4FBF-B57A-428B318846F4}
 		{96EFCB7F-BB71-457A-9257-678C47411E02} = {A9292F2B-50D9-4B58-8E5C-A3AA83FB4BED}
+		{E330025B-1827-4F45-B0E2-BA67794B882B} = {48E19FF0-143D-42C3-8D89-E42EF7A9449D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06CF3158-9818-42C2-90FC-E484CBB76042}
