@@ -90,7 +90,7 @@ namespace MvvmCross.Core
             }
         }
 
-        public virtual ValueTask EnsureInitialized()
+        public virtual Task EnsureInitialized()
         {
             return StartSetupInitialization();
         }
@@ -107,7 +107,7 @@ namespace MvvmCross.Core
             }
         }
 
-        private async ValueTask StartSetupInitialization()
+        private async Task StartSetupInitialization()
         {
             if (mSetup == null) throw new MvxException("Not is initialize 'setup'");
 

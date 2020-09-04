@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.Ios.Core
         /// <summary>
         /// UIApplicationDelegate.Window doesn't really exist / work. It was added by Xamarin.iOS templates 
         /// </summary>
-        public new virtual UIWindow Window { get; set; }
+        public new virtual UIWindow? Window { get; set; }
 
         public MvxApplicationDelegate() : base()
         {
@@ -42,7 +42,7 @@ namespace MvvmCross.Platforms.Ios.Core
             if (Window == null)
                 Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            MvxIosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized();
+            MvxIosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized().Wait();
 
             RunAppStart(launchOptions);
 
@@ -56,7 +56,8 @@ namespace MvvmCross.Platforms.Ios.Core
             {
                 startup.Start(GetAppStartHint(hint));
             }
-            Window.MakeKeyAndVisible();
+
+            Window!.MakeKeyAndVisible();
         }
 
         protected virtual object GetAppStartHint(object hint = null)
