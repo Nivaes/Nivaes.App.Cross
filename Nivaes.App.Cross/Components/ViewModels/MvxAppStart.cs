@@ -23,12 +23,7 @@ namespace MvvmCross.ViewModels
             NavigationService = navigationService;
         }
 
-        public void Start(object? hint = null)
-        {
-            _ = StartAsync(hint);
-        }
-
-        public async Task StartAsync(object? hint = null)
+        public async ValueTask Start(object? hint = null)
         {
             // Check whether Start has commenced, and return if it has
             if (Interlocked.CompareExchange(ref startHasCommenced, 1, 0) == 1)

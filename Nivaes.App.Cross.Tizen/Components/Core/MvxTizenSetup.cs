@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.BindingContext;
@@ -42,10 +43,10 @@ namespace MvvmCross.Platforms.Tizen.Core
             }
         }
 
-        protected override void InitializeFirstChance()
+        protected override Task InitializeFirstChance()
         {
             RegisterPresenter();
-            base.InitializeFirstChance();
+            return base.InitializeFirstChance();
         }
 
         protected sealed override IMvxViewsContainer CreateViewsContainer()
@@ -72,10 +73,10 @@ namespace MvvmCross.Platforms.Tizen.Core
             Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
         }
 
-        protected override void InitializeLastChance()
+        protected override Task InitializeLastChance()
         {
             InitializeBindingBuilder();
-            base.InitializeLastChance();
+            return base.InitializeLastChance();
         }
 
         protected virtual void InitializeBindingBuilder()

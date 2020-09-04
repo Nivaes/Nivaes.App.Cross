@@ -3,11 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Nivaes.App.Cross.Mobile.Windows.Sample">
-    <!--<Application.Resources>
-        <ResourceDictionary>
+    <Application.Resources>
+        <x:String x:Key="WelcomeText">Hello World!</x:String>
+        <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" /
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>-->
+        </ResourceDictionary>-->
+    </Application.Resources>
 </local:AppParent>
