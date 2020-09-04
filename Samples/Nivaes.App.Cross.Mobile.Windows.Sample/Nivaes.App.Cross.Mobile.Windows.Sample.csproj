@@ -5,6 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
 
@@ -22,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-  <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <Manifest Include="Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest">
@@ -30,12 +31,12 @@
     </Manifest>
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj" />
     <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.Uap\Nivaes.App.Cross.Color.Uap.csproj" />
     <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.Uap\Nivaes.App.Cross.Visibility.Uap.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Folder Include="Components\Views\" />

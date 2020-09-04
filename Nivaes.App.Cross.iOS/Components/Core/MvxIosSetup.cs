@@ -76,6 +76,7 @@ namespace MvvmCross.Platforms.Ios.Core
                 RegisterPresenter();
                 RegisterLifetime();
             }).ConfigureAwait(false);
+
             await base.InitializeFirstChance().ConfigureAwait(false);
         }
 

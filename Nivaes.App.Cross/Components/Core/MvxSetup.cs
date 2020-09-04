@@ -539,9 +539,16 @@ namespace MvvmCross.Core
                 var viewModelByNameRegistry = CreateViewModelByNameRegistry();
 
                 var viewModelAssemblies = GetViewModelAssemblies();
-                foreach (var assembly in viewModelAssemblies)
+                try
                 {
-                    viewModelByNameRegistry.AddAll(assembly);
+                    foreach (var assembly in viewModelAssemblies)
+                    {
+                        viewModelByNameRegistry.AddAll(assembly);
+                    }
+                }
+                catch(Exception ex)
+                {
+
                 }
 
                 var nameMappingStrategy = CreateViewToViewModelNaming();
