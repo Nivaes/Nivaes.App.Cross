@@ -31,12 +31,13 @@
     </Manifest>
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj" />
+    <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
     <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.Uap\Nivaes.App.Cross.Color.Uap.csproj" />
     <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.Uap\Nivaes.App.Cross.Visibility.Uap.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
-  </ItemGroup>-->
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Components\Views\" />
