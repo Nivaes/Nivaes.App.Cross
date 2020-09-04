@@ -611,7 +611,8 @@ namespace MvvmCross.Core
             Initialized
         }
 
-        public class MvxSetupStateEventArgs : EventArgs
+        public class MvxSetupStateEventArgs
+            : EventArgs
         {
             public MvxSetupStateEventArgs(MvxSetupState setupState)
             {
