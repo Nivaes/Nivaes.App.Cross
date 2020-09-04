@@ -49,11 +49,7 @@ namespace MvvmCross.Core
 
         public static IMvxSetup Instance()
         {
-            var instance = SetupCreator?.Invoke();
-            if (instance == null)
-            {
-                instance = MvxSetupExtensions.CreateSetup<MvxSetup>();
-            }
+            var instance = (SetupCreator?.Invoke()) ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
             return instance;
         }
 
@@ -314,38 +310,16 @@ namespace MvvmCross.Core
 
         protected virtual void RegisterLogProvider(IMvxIoCProvider iocProvider)
         {
-            Func<IMvxLogProvider>? logProviderCreator;
-            switch (GetDefaultLogProviderType())
+            Func<IMvxLogProvider>? logProviderCreator = (GetDefaultLogProviderType()) switch
             {
-                case MvxLogProviderType.Console:
-                    logProviderCreator = () => new ConsoleLogProvider();
-                    break;
-
-                case MvxLogProviderType.EntLib:
-                    logProviderCreator = () => new EntLibLogProvider();
-                    break;
-
-                case MvxLogProviderType.Log4Net:
-                    logProviderCreator = () => new Log4NetLogProvider();
-                    break;
-
-                case MvxLogProviderType.Loupe:
-                    logProviderCreator = () => new LoupeLogProvider();
-                    break;
-
-                case MvxLogProviderType.NLog:
-                    logProviderCreator = () => new NLogLogProvider();
-                    break;
-
-                case MvxLogProviderType.Serilog:
-                    logProviderCreator = () => new SerilogLogProvider();
-                    break;
-
-                default:
-                    logProviderCreator = null;
-                    break;
-            }
-
+                MvxLogProviderType.Console => () => new ConsoleLogProvider(),
+                MvxLogProviderType.EntLib => () => new EntLibLogProvider(),
+                MvxLogProviderType.Log4Net => () => new Log4NetLogProvider(),
+                MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
+                MvxLogProviderType.NLog => () => new NLogLogProvider(),
+                MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
+                _ => null,
+            };
             if (logProviderCreator != null)
             {
                 iocProvider?.RegisterSingleton(logProviderCreator);
