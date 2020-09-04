@@ -4,26 +4,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Android.Content;
 using Android.Views;
-using MvvmCross.Converters;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Converters;
 using MvvmCross.Core;
+using MvvmCross.Exceptions;
+using MvvmCross.IoC;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters;
 using MvvmCross.Platforms.Android.Views;
+using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
-using MvvmCross.Presenters;
-using System.Linq;
 
 namespace MvvmCross.Platforms.Android.Core
 {
@@ -42,7 +43,7 @@ namespace MvvmCross.Platforms.Android.Core
 
         public Context ApplicationContext => _applicationContext;
 
-        protected override void InitializeFirstChance()
+        protected override Task InitializeFirstChance()
         {
             InitializeLifetimeMonitor();
             InitializeAndroidCurrentTopActivity();
@@ -59,7 +60,7 @@ namespace MvvmCross.Platforms.Android.Core
 
             var viewModelMultiTemporaryCache = new MvxMultipleViewModelCache();
             Mvx.IoCProvider.RegisterSingleton<IMvxMultipleViewModelCache>(viewModelMultiTemporaryCache);
-            base.InitializeFirstChance();
+            return base.InitializeFirstChance();
         }
 
         protected virtual void InitializeAndroidCurrentTopActivity()
@@ -144,12 +145,12 @@ namespace MvvmCross.Platforms.Android.Core
             Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
         }
 
-        protected override void InitializeLastChance()
+        protected override Task InitializeLastChance()
         {
             InitializeSavedStateConverter();
 
             InitializeBindingBuilder();
-            base.InitializeLastChance();
+            return base.InitializeLastChance();
         }
 
         protected virtual IMvxAndroidViewsContainer CreateViewsContainer(Context applicationContext)

@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="OpenTK" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
 
