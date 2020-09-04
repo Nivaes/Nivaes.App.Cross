@@ -113,9 +113,10 @@ namespace MvvmCross.Platforms.Android.Core
             var container = CreateViewsContainer(_applicationContext);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
-            var viewsContainer = container as MvxViewsContainer;
-            if (viewsContainer == null)
+
+            if (!(container is MvxViewsContainer viewsContainer))
                 throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
+
             return viewsContainer;
         }
 
@@ -123,7 +124,7 @@ namespace MvvmCross.Platforms.Android.Core
         {
             get
             {
-                _presenter = _presenter ?? CreateViewPresenter();
+                _presenter ??= CreateViewPresenter();
                 return _presenter;
             }
         }
