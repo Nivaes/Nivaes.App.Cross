@@ -112,18 +112,18 @@ namespace MvvmCross.Core
             if (mSetup == null) throw new MvxException("Not is initialize 'setup'");
 
             await mSetup.InitializePrimary()
-            .ContinueWith(async (t) =>
-            {
-                if (t.IsCompleted)
+                .ContinueWith(async t =>
                 {
-                    await mSetup.InitializeSecondary().ConfigureAwait(false);
-                }
-                else
-                {
-                    throw new MvxException("'InitializePrimary' is not completed successfully.");
-                }
-            }, TaskScheduler.Default)
-            .Unwrap().ConfigureAwait(false);
+                    if (t.IsCompleted)
+                    {
+                        await mSetup.InitializeSecondary().ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        throw new MvxException("'InitializePrimary' is not completed successfully.");
+                    }
+                }, TaskScheduler.Default)
+                .Unwrap().ConfigureAwait(false);
         }
     }
 }

@@ -145,6 +145,8 @@ namespace MvvmCross.Binding
         {
             get
             {
+                //ToDo: Si está en cacho ¿por qué está en IoCProvider?
+
                 _mainThreadDispatcher = _mainThreadDispatcher ?? Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
                 return _mainThreadDispatcher;
             }

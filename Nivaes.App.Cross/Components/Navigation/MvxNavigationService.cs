@@ -25,48 +25,48 @@ namespace MvvmCross.Navigation
     {
         protected readonly IMvxLog Log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxNavigationService>();
 
-        private IMvxViewDispatcher _viewDispatcher;
+        private IMvxViewDispatcher? mViewDispatcher;
 
         public IMvxViewDispatcher ViewDispatcher
         {
-            get => _viewDispatcher ?? (IMvxViewDispatcher)MvxMainThreadDispatcher.Instance;
-            set => _viewDispatcher = value;
+            get => mViewDispatcher ?? (IMvxViewDispatcher)MvxMainThreadDispatcher.Instance;
+            set => mViewDispatcher = value;
         }
 
-        private IMvxViewsContainer _viewsContainer;
+        private IMvxViewsContainer? mViewsContainer;
 
         protected IMvxViewsContainer ViewsContainer
         {
             get
             {
-                if (_viewsContainer == null)
-                    _viewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
-                return _viewsContainer;
+                if (mViewsContainer == null)
+                    mViewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
+                return mViewsContainer;
             }
-            set => _viewsContainer = value;
+            set => mViewsContainer = value;
         }
 
         protected readonly Dictionary<Regex, Type> Routes = new Dictionary<Regex, Type>();
 
-        protected virtual IMvxNavigationCache NavigationCache { get; private set; }
+        protected virtual IMvxNavigationCache? NavigationCache { get; private set; }
 
         protected IMvxViewModelLoader ViewModelLoader { get; set; }
 
         protected ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>> _tcsResults = new ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>>();
 
-        public event BeforeNavigateEventHandler BeforeNavigate;
+        public event BeforeNavigateEventHandler? BeforeNavigate;
 
-        public event AfterNavigateEventHandler AfterNavigate;
+        public event AfterNavigateEventHandler? AfterNavigate;
 
-        public event BeforeCloseEventHandler BeforeClose;
+        public event BeforeCloseEventHandler? BeforeClose;
 
-        public event AfterCloseEventHandler AfterClose;
+        public event AfterCloseEventHandler? AfterClose;
 
-        public event BeforeChangePresentationEventHandler BeforeChangePresentation;
+        public event BeforeChangePresentationEventHandler? BeforeChangePresentation;
 
-        public event AfterChangePresentationEventHandler AfterChangePresentation;
+        public event AfterChangePresentationEventHandler? AfterChangePresentation;
 
-        public MvxNavigationService(IMvxNavigationCache navigationCache, IMvxViewModelLoader viewModelLoader)
+        public MvxNavigationService(IMvxNavigationCache? navigationCache, IMvxViewModelLoader viewModelLoader)
         {
             NavigationCache = navigationCache;
             ViewModelLoader = viewModelLoader;

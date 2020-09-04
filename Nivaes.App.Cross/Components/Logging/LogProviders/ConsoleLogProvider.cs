@@ -27,10 +27,10 @@ namespace MvvmCross.Logging.LogProviders
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
-            stringBuilder.Append(" ");
+            stringBuilder.Append(' ');
 
             // Append a readable representation of the log level
-            stringBuilder.Append(("[" + level.ToString().ToUpper() + "]").PadRight(8));
+            _ = stringBuilder.Append(($"[{level.ToString().ToUpper()}]").PadRight(8));
             stringBuilder.Append("(" + loggerName + ") ");
 
             // Append the message
@@ -49,11 +49,11 @@ namespace MvvmCross.Logging.LogProviders
 
         public class ColouredConsoleLogger
         {
-            private readonly string _name;
+            private readonly string mName;
 
             public ColouredConsoleLogger(string name)
             {
-                _name = name;
+                mName = name;
             }
 
             public bool Log(MvxLogLevel logLevel, Func<string> messageFunc, Exception exception,
@@ -67,9 +67,9 @@ namespace MvvmCross.Logging.LogProviders
                 return true;
             }
 
-            protected void Write(MvxLogLevel logLevel, string message, Exception e = null)
+            protected void Write(MvxLogLevel logLevel, string message, Exception? e = null)
             {
-                var formattedMessage = MessageFormatter(_name, logLevel, message, e);
+                var formattedMessage = MessageFormatter(mName, logLevel, message, e);
 
                 if (Colors.TryGetValue(logLevel, out var color))
                 {

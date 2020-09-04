@@ -73,11 +73,11 @@ namespace MvvmCross.Android.Views
             Finish();
         }
 
-        private ValueTask Initialize(MvxAndroidSetupSingleton setup)
+        private async ValueTask Initialize(MvxAndroidSetupSingleton setup)
         {
-            setup.EnsureInitialized();
+            await setup.EnsureInitialized().ConfigureAwait(false);
 
-            return RunAppStar(mBundle);
+            await RunAppStar(mBundle).ConfigureAwait(false);
         }
 
         //protected override void OnPause()

@@ -95,9 +95,13 @@ namespace MvvmCross.ViewModels
         {
             var applicationHint = await base.ApplicationStartup(hint).ConfigureAwait(false);
             if (applicationHint is TParameter parameter && Application is IMvxApplication<TParameter> typedApplication)
+            {
                 return typedApplication.Startup(parameter);
+            }
             else
+            {
                 return applicationHint;
+            }
         }
 
         protected override async Task NavigateToFirstViewModel(object? hint = null)
@@ -105,7 +109,9 @@ namespace MvvmCross.ViewModels
             try
             {
                 if (hint is TParameter parameter)
+                {
                     NavigationService.Navigate<TViewModel, TParameter>(parameter).GetAwaiter().GetResult();
+                }
                 else
                 {
                     MvxLog.Instance.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");

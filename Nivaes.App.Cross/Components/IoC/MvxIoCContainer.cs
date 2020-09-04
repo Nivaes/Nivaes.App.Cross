@@ -15,9 +15,9 @@ namespace MvvmCross.IoC
     public class MvxIoCContainer
         : IMvxIoCProvider
     {
-        private readonly Dictionary<Type, IResolver> _resolvers = new Dictionary<Type, IResolver>();
-        private readonly Dictionary<Type, List<Action>> _waiters = new Dictionary<Type, List<Action>>();
-        private readonly Dictionary<Type, bool> _circularTypeDetection = new Dictionary<Type, bool>();
+        private readonly Dictionary<Type, IResolver> mResolvers = new Dictionary<Type, IResolver>();
+        private readonly Dictionary<Type, List<Action>> mWaiters = new Dictionary<Type, List<Action>>();
+        private readonly Dictionary<Type, bool> mCircularTypeDetection = new Dictionary<Type, bool>();
         private readonly object _lockObject = new object();
         private readonly IMvxIocOptions _options;
         private readonly IMvxPropertyInjector _propertyInjector;
@@ -199,7 +199,7 @@ namespace MvvmCross.IoC
         {
             lock (_lockObject)
             {
-                if (_resolvers.ContainsKey(t))
+                if (mResolvers.ContainsKey(t))
                 {
                     return true;
                 }
@@ -244,12 +244,15 @@ namespace MvvmCross.IoC
 
         public object Resolve(Type t)
         {
+            if (t == null) throw new NullReferenceException(nameof(t));
+
             lock (_lockObject)
             {
-                object resolved;
-                if (!InternalTryResolve(t, out resolved))
+                if (!InternalTryResolve(t, out object resolved))
                 {
-                    throw new MvxIoCResolveException("Failed to resolve type {0}", t.FullName);
+                    InternalTryResolve(t, out resolved);
+
+                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
                 }
                 return resolved;
             }
@@ -263,12 +266,13 @@ namespace MvvmCross.IoC
 
         public object GetSingleton(Type t)
         {
+            if (t == null) throw new NullReferenceException(nameof(t));
+
             lock (_lockObject)
             {
-                object resolved;
-                if (!InternalTryResolve(t, ResolverType.Singleton, out resolved))
+                if (!InternalTryResolve(t, ResolverType.Singleton, out object resolved))
                 {
-                    throw new MvxIoCResolveException("Failed to resolve type {0}", t.FullName);
+                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
                 }
                 return resolved;
             }
@@ -282,12 +286,13 @@ namespace MvvmCross.IoC
 
         public object Create(Type t)
         {
+            if (t == null) throw new NullReferenceException(nameof(t));
+
             lock (_lockObject)
             {
-                object resolved;
-                if (!InternalTryResolve(t, ResolverType.DynamicPerResolve, out resolved))
+                if (!InternalTryResolve(t, ResolverType.DynamicPerResolve, out object resolved))
                 {
-                    throw new MvxIoCResolveException("Failed to resolve type {0}", t.FullName);
+                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
                 }
                 return resolved;
             }
@@ -313,7 +318,7 @@ namespace MvvmCross.IoC
             {
                 var ret = constructor();
                 if (ret != null && !t.IsInstanceOfType(ret))
-                    throw new MvxIoCResolveException("Constructor failed to return a compatibly object for type {0}", t.FullName);
+                    throw new MvxIoCResolveException($"Constructor failed to return a compatibly object for type {t.FullName}");
 
                 return ret;
             });
@@ -323,7 +328,7 @@ namespace MvvmCross.IoC
 
         public void RegisterType(Type interfaceType, Type constructType)
         {
-            IResolver resolver = null;
+            IResolver resolver;
             if (interfaceType.GetTypeInfo().IsGenericTypeDefinition)
             {
                 resolver = new ConstructingOpenGenericResolver(constructType, this);
@@ -404,7 +409,7 @@ namespace MvvmCross.IoC
             return IoCConstruct(type, selectedConstructor, parameters.ToArray());
         }
 
-        public virtual object IoCConstruct(Type type, IDictionary<string, object> arguments)
+        public virtual object IoCConstruct(Type type, IDictionary<string, object>? arguments)
         {
             var selectedConstructor = type.FindApplicableConstructor(arguments);
 
@@ -419,6 +424,8 @@ namespace MvvmCross.IoC
 
         protected virtual object IoCConstruct(Type type, ConstructorInfo constructor, object[] arguments)
         {
+            if (constructor == null) throw new NullReferenceException(nameof(constructor));
+
             object toReturn;
             try
             {
@@ -456,14 +463,14 @@ namespace MvvmCross.IoC
                 if (!CanResolve(type))
                 {
                     List<Action> actions;
-                    if (_waiters.TryGetValue(type, out actions))
+                    if (mWaiters.TryGetValue(type, out actions))
                     {
                         actions.Add(action);
                     }
                     else
                     {
                         actions = new List<Action> { action };
-                        _waiters[type] = actions;
+                        mWaiters[type] = actions;
                     }
                     return;
                 }
@@ -475,9 +482,9 @@ namespace MvvmCross.IoC
 
         public void CleanAllResolvers()
         {
-            _resolvers.Clear();
-            _waiters.Clear();
-            _circularTypeDetection.Clear();
+            mResolvers.Clear();
+            mWaiters.Clear();
+            mCircularTypeDetection.Clear();
         }
 
         public enum ResolverType
@@ -505,8 +512,7 @@ namespace MvvmCross.IoC
 
         private bool InternalTryResolve(Type type, ResolverType? requiredResolverType, out object resolved)
         {
-            IResolver resolver;
-            if (!TryGetResolver(type, out resolver))
+            if (!TryGetResolver(type, out IResolver resolver))
             {
                 if (_parentProvider != null && _parentProvider.TryResolve(type, out resolved))
                 {
@@ -528,7 +534,7 @@ namespace MvvmCross.IoC
 
         private bool TryGetResolver(Type type, out IResolver resolver)
         {
-            if (_resolvers.TryGetValue(type, out resolver))
+            if (mResolvers.TryGetValue(type, out resolver))
             {
                 return true;
             }
@@ -538,7 +544,7 @@ namespace MvvmCross.IoC
                 return false;
             }
 
-            return _resolvers.TryGetValue(type.GetTypeInfo().GetGenericTypeDefinition(), out resolver);
+            return mResolvers.TryGetValue(type.GetTypeInfo().GetGenericTypeDefinition(), out resolver);
         }
 
         private bool ShouldDetectCircularReferencesFor(IResolver resolver)
@@ -565,7 +571,7 @@ namespace MvvmCross.IoC
             {
                 try
                 {
-                    _circularTypeDetection.Add(type, true);
+                    mCircularTypeDetection.Add(type, true);
                 }
                 catch (ArgumentException)
                 {
@@ -603,7 +609,7 @@ namespace MvvmCross.IoC
             {
                 if (detectingCircular)
                 {
-                    _circularTypeDetection.Remove(type);
+                    mCircularTypeDetection.Remove(type);
                 }
             }
         }
@@ -613,10 +619,10 @@ namespace MvvmCross.IoC
             List<Action> actions;
             lock (_lockObject)
             {
-                _resolvers[interfaceType] = resolver;
-                if (_waiters.TryGetValue(interfaceType, out actions))
+                mResolvers[interfaceType] = resolver;
+                if (mWaiters.TryGetValue(interfaceType, out actions))
                 {
-                    _waiters.Remove(interfaceType);
+                    mWaiters.Remove(interfaceType);
                 }
             }
 
