@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Foundation;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Core
 {
+    using System;
+    using Foundation;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using UIKit;
+
     public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
     {
         /// <summary>
@@ -69,13 +69,13 @@ namespace MvvmCross.Platforms.Ios.Core
         {
         }
 
+        public event EventHandler<MvxLifetimeEventArgs>? LifetimeChanged;
+
         private void FireLifetimeChanged(MvxLifetimeEvent which)
         {
             var handler = LifetimeChanged;
             handler?.Invoke(this, new MvxLifetimeEventArgs(which));
         }
-
-        public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
     }
 
     public abstract class MvxApplicationDelegate<TMvxIosSetup, TApplication> : MvxApplicationDelegate
