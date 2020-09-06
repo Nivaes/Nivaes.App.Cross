@@ -71,7 +71,27 @@
     <Compile Include="Components\LinkerPleaseInclude\LinkerPleaseInclude.cs" />
     <Compile Include="Components\MainApplication.cs" />
     <Compile Include="Components\Setup.cs" />
+    <Compile Include="Components\Views\ChildView.cs" />
+    <Compile Include="Components\Views\DictionaryBindingView.cs" />
+    <Compile Include="Components\Views\FluentBindingView.cs" />
+    <Compile Include="Components\Views\FragmentCloseView.cs" />
+    <Compile Include="Components\Views\ModalNavView.cs" />
+    <Compile Include="Components\Views\ModalView.cs" />
+    <Compile Include="Components\Views\NestedChildView.cs" />
+    <Compile Include="Components\Views\NestedModalView.cs" />
+    <Compile Include="Components\Views\OverrideAttributeView.cs" />
     <Compile Include="Components\Views\RootView.cs" />
+    <Compile Include="Components\Views\SecondChildView.cs" />
+    <Compile Include="Components\Views\SharedElementRootChildView.cs" />
+    <Compile Include="Components\Views\SharedElementSecondChildView.cs" />
+    <Compile Include="Components\Views\SheetView.cs" />
+    <Compile Include="Components\Views\SplitDetailNavView.cs" />
+    <Compile Include="Components\Views\SplitDetailView.cs" />
+    <Compile Include="Components\Views\SplitMasterView.cs" />
+    <Compile Include="Components\Views\Tab1View.cs" />
+    <Compile Include="Components\Views\Tab2View.cs" />
+    <Compile Include="Components\Views\Tab3View.cs" />
+    <Compile Include="Components\Views\TabsRootBView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlcipher">
@@ -146,6 +167,71 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\root_view.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tab1View.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tab2View.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tab3View.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TabsRootBView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TabsRootView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ChildView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\FluentBindingView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\FragmnetCloseView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SecondChildView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\NestedChildView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SplitRootView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ModalNavView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\dimens.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

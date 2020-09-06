@@ -68,7 +68,7 @@ namespace MvvmCross.Android.Views
         {
             if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
             {
-                await startup.StartAsync(GetAppStartHint(bundle)).ConfigureAwait(false);
+                await startup.Start(GetAppStartHint(bundle)).ConfigureAwait(false);
             }
             Finish();
         }
