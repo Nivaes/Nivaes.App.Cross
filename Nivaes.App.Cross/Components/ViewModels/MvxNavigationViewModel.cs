@@ -2,16 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-
 namespace MvvmCross.ViewModels
 {
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Navigation;
+
     public abstract class MvxNavigationViewModel
         : MvxViewModel
     {
-        private IMvxLog _log;
+        private IMvxLog? mLog;
 
         protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base()
         {
@@ -23,42 +23,47 @@ namespace MvvmCross.ViewModels
 
         protected virtual IMvxLogProvider LogProvider { get; }
 
-        protected virtual IMvxLog Log => _log ?? (_log = LogProvider.GetLogFor(GetType()));
+        protected virtual IMvxLog Log => mLog ??= LogProvider.GetLogFor(GetType());
     }
 
-    public abstract class MvxNavigationViewModel<TParameter> : MvxNavigationViewModel, IMvxViewModel<TParameter>
+    public abstract class MvxNavigationViewModel<TParameter>
+        : MvxNavigationViewModel, IMvxViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
         }
 
-        public abstract void Prepare(TParameter parameter);
+        public abstract ValueTask Prepare(TParameter parameter);
     }
 
     //TODO: Not possible to name MvxViewModel, name is MvxViewModelResult for now
-    public abstract class MvxNavigationViewModelResult<TResult> : MvxNavigationViewModel, IMvxViewModelResult<TResult>
+    public abstract class MvxNavigationViewModelResult<TResult>
+        : MvxNavigationViewModel, IMvxViewModelResult<TResult>
     {
-        protected MvxNavigationViewModelResult(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected MvxNavigationViewModelResult(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
         }
 
-        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
+        public TaskCompletionSource<object>? CloseCompletionSource { get; set; }
 
-        public override void ViewDestroy(bool viewFinishing = true)
+        public override ValueTask ViewDestroy(bool viewFinishing = true)
         {
-            if (viewFinishing && CloseCompletionSource != null && !CloseCompletionSource.Task.IsCompleted && !CloseCompletionSource.Task.IsFaulted)
+            if (viewFinishing && CloseCompletionSource?.Task.IsCompleted == false && !CloseCompletionSource.Task.IsFaulted)
                 CloseCompletionSource?.TrySetCanceled();
 
-            base.ViewDestroy(viewFinishing);
+            return base.ViewDestroy(viewFinishing);
         }
     }
 
-    public abstract class MvxNavigationViewModel<TParameter, TResult> : MvxNavigationViewModelResult<TResult>, IMvxViewModel<TParameter, TResult>
+    public abstract class MvxNavigationViewModel<TParameter, TResult>
+        : MvxNavigationViewModelResult<TResult>, IMvxViewModel<TParameter, TResult>
     {
         protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
 
-        public abstract void Prepare(TParameter parameter);
+        public abstract ValueTask Prepare(TParameter parameter);
     }
 }

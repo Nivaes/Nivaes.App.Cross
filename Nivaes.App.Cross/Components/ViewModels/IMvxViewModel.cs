@@ -2,52 +2,54 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Navigation;
-
 namespace MvvmCross.ViewModels
 {
+    using System.Threading.Tasks;
+    using MvvmCross.Navigation;
+
     public interface IMvxViewModel
     {
-        void ViewCreated();
+        ValueTask ViewCreated();
 
-        void ViewAppearing();
+        ValueTask ViewAppearing();
 
-        void ViewAppeared();
+        ValueTask ViewAppeared();
 
-        void ViewDisappearing();
+        ValueTask ViewDisappearing();
 
-        void ViewDisappeared();
+        ValueTask ViewDisappeared();
 
-        void ViewDestroy(bool viewFinishing = true);
+        ValueTask ViewDestroy(bool viewFinishing = true);
 
-        void Init(IMvxBundle parameters);
+        ValueTask Init(IMvxBundle parameters);
 
-        void ReloadState(IMvxBundle state);
+        ValueTask ReloadState(IMvxBundle state);
 
-        void Start();
+        ValueTask Start();
 
-        void SaveState(IMvxBundle state);
+        ValueTask SaveState(IMvxBundle state);
 
-        void Prepare();
+        ValueTask Prepare();
 
-        Task Initialize();
+        ValueTask Initialize();
 
         MvxNotifyTask InitializeTask { get; set; }
     }
 
     public interface IMvxViewModel<TParameter> : IMvxViewModel
     {
-        void Prepare(TParameter parameter);
+        ValueTask Prepare(TParameter parameter);
     }
 
     //TODO: Can we keep the IMvxViewModel syntax here? Compiler complains
-    public interface IMvxViewModelResult<TResult> : IMvxViewModel
+    public interface IMvxViewModelResult<TResult>
+        : IMvxViewModel
     {
         TaskCompletionSource<object> CloseCompletionSource { get; set; }
     }
 
-    public interface IMvxViewModel<TParameter, TResult> : IMvxViewModel<TParameter>, IMvxViewModelResult<TResult>
+    public interface IMvxViewModel<TParameter, TResult>
+        : IMvxViewModel<TParameter>, IMvxViewModelResult<TResult>
     {
     }
 }

@@ -2,12 +2,10 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-
 namespace MvvmCross.ViewModels
 {
+    using System.Threading.Tasks;
+
     public abstract class MvxViewModel
         : MvxNotifyPropertyChanged, IMvxViewModel
     {
@@ -15,99 +13,114 @@ namespace MvvmCross.ViewModels
         {
         }
 
-        public virtual void ViewCreated()
+        public virtual ValueTask ViewCreated()
         {
+            return new ValueTask();
         }
 
-        public virtual void ViewAppearing()
+        public virtual ValueTask ViewAppearing()
         {
+            return new ValueTask();
         }
 
-        public virtual void ViewAppeared()
+        public virtual ValueTask ViewAppeared()
         {
+            return new ValueTask();
         }
 
-        public virtual void ViewDisappearing()
+        public virtual ValueTask ViewDisappearing()
         {
+            return new ValueTask();
         }
 
-        public virtual void ViewDisappeared()
+        public virtual ValueTask ViewDisappeared()
         {
+            return new ValueTask();
         }
 
-        public virtual void ViewDestroy(bool viewFinishing = true)
+        public virtual ValueTask ViewDestroy(bool viewFinishing = true)
         {
+            return new ValueTask();
         }
 
-        public void Init(IMvxBundle parameters)
+        public ValueTask Init(IMvxBundle parameters)
         {
-            InitFromBundle(parameters);
+            return InitFromBundle(parameters);
         }
 
-        public void ReloadState(IMvxBundle state)
+        public ValueTask ReloadState(IMvxBundle state)
         {
-            ReloadFromBundle(state);
+            return ReloadFromBundle(state);
         }
 
-        public virtual void Start()
+        public virtual ValueTask Start()
         {
+            return new ValueTask();
         }
 
-        public void SaveState(IMvxBundle state)
+        public ValueTask SaveState(IMvxBundle state)
         {
-            SaveStateToBundle(state);
+            return SaveStateToBundle(state);
         }
 
-        protected virtual void InitFromBundle(IMvxBundle parameters)
+        protected virtual ValueTask InitFromBundle(IMvxBundle parameters)
         {
+            return new ValueTask();
         }
 
-        protected virtual void ReloadFromBundle(IMvxBundle state)
+        protected virtual ValueTask ReloadFromBundle(IMvxBundle state)
         {
+            return new ValueTask();
         }
 
-        protected virtual void SaveStateToBundle(IMvxBundle bundle)
+        protected virtual ValueTask SaveStateToBundle(IMvxBundle bundle)
         {
+            return new ValueTask();
         }
 
-        public virtual void Prepare()
+        public virtual ValueTask Prepare()
         {
+            return new ValueTask();
         }
 
-        public virtual Task Initialize()
+        public virtual ValueTask Initialize()
         {
-            return Task.FromResult(true);
+            return new ValueTask();
         }
 
-        private MvxNotifyTask _initializeTask;
-        public MvxNotifyTask InitializeTask
+        private MvxNotifyTask? mInitializeTask;
+
+        public MvxNotifyTask? InitializeTask
         {
-            get => _initializeTask;
-            set => SetProperty(ref _initializeTask, value);
+            get => mInitializeTask;
+            set => SetProperty(ref mInitializeTask, value);
         }
     }
 
-    public abstract class MvxViewModel<TParameter> : MvxViewModel, IMvxViewModel<TParameter>
+    public abstract class MvxViewModel<TParameter>
+        : MvxViewModel, IMvxViewModel<TParameter>
     {
-        public abstract void Prepare(TParameter parameter);
+        public abstract ValueTask Prepare(TParameter parameter);
     }
 
     //TODO: Not possible to name MvxViewModel, name is MvxViewModelResult for now
-    public abstract class MvxViewModelResult<TResult> : MvxViewModel, IMvxViewModelResult<TResult>
+    public abstract class MvxViewModelResult<TResult>
+        : MvxViewModel, IMvxViewModelResult<TResult>
     {
-        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
+        public TaskCompletionSource<object>? CloseCompletionSource { get; set; }
 
-        public override void ViewDestroy(bool viewFinishing = true)
+        public override ValueTask ViewDestroy(bool viewFinishing = true)
         {
-            if (viewFinishing && CloseCompletionSource != null && !CloseCompletionSource.Task.IsCompleted && !CloseCompletionSource.Task.IsFaulted)
+            if (viewFinishing && CloseCompletionSource?.Task.IsCompleted == false && !CloseCompletionSource.Task.IsFaulted)
                 CloseCompletionSource?.TrySetCanceled();
 
-            base.ViewDestroy(viewFinishing);
+            return base.ViewDestroy(viewFinishing);
         }
     }
 
-    public abstract class MvxViewModel<TParameter, TResult> : MvxViewModelResult<TResult>, IMvxViewModel<TParameter, TResult>
+    public abstract class MvxViewModel<TParameter, TResult>
+        : MvxViewModelResult<TResult>, IMvxViewModel<TParameter, TResult>
     {
-        public abstract void Prepare(TParameter parameter);
+        public abstract ValueTask Prepare(TParameter parameter);
     }
 }
