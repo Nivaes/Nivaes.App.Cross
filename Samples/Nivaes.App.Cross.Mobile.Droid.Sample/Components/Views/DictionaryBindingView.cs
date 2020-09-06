@@ -2,21 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Playground.Core.ViewModels;
-using System.Collections.Generic;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
-
 namespace Nivaes.App.Cross.Mobile.Droid.Sample
 {
+    using System.Collections.Generic;
+    using Android.Graphics;
+    using Android.Graphics.Drawables;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
+    using Android.Widget;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using Nivaes.App.Mobile.Sample;
+
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
                          Resource.Animation.abc_fade_in,
                          Resource.Animation.abc_fade_out,
