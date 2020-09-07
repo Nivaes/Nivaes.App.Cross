@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("ChildView")]
     [MvxChildPresentation]
     public partial class ChildView : MvxViewController<ChildViewModel>
     {

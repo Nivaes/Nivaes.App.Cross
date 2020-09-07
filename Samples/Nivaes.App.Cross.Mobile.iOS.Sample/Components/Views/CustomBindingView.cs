@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using ObjCRuntime;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("CustomBindingView")]
     [MvxChildPresentation]
     public partial class CustomBindingView : MvxViewController<CustomBindingViewModel>
     {
