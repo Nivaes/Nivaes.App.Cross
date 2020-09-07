@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("SecondChildView")]
     public partial class SecondChildView : MvxViewController<SecondChildViewModel>
     {
         public SecondChildView(IntPtr handle) : base(handle)
