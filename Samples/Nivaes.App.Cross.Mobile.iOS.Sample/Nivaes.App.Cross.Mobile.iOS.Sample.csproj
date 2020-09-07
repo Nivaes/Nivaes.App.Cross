@@ -59,7 +59,11 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\Controls\BinaryEdit.cs" />
     <Compile Include="Components\Views\ChildView.cs" />
     <Compile Include="Components\Views\ChildView.designer.cs">
       <DependentUpon>ChildView.cs</DependentUpon>

@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Playground.iOS.Views
+namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     [Register ("CustomBindingView")]
     partial class CustomBindingView

@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Playground.iOS.Views
+namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     [Register ("Tab2View")]
     partial class Tab2View
