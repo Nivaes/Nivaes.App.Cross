@@ -60,6 +60,46 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\Views\ChildView.cs" />
+    <Compile Include="Components\Views\ChildView.designer.cs">
+      <DependentUpon>ChildView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\CustomBindingView.cs" />
+    <Compile Include="Components\Views\CustomBindingView.designer.cs">
+      <DependentUpon>CustomBindingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\ModalNavView.cs" />
+    <Compile Include="Components\Views\ModalNavView.designer.cs">
+      <DependentUpon>ModalNavView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\ModalView.cs" />
+    <Compile Include="Components\Views\ModalView.designer.cs">
+      <DependentUpon>ModalView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\NestedModalView.cs" />
+    <Compile Include="Components\Views\NestedModalView.designer.cs">
+      <DependentUpon>NestedModalView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\OverrideAttributeView.cs" />
+    <Compile Include="Components\Views\OverrideAttributeView.designer.cs">
+      <DependentUpon>OverrideAttributeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Page1View.cs" />
+    <Compile Include="Components\Views\Page1View.designer.cs">
+      <DependentUpon>Page1View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Page2View.cs" />
+    <Compile Include="Components\Views\Page2View.designer.cs">
+      <DependentUpon>Page2View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Page3View.cs" />
+    <Compile Include="Components\Views\Page3View.designer.cs">
+      <DependentUpon>Page3View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\PagesRootView.cs" />
+    <Compile Include="Components\Views\PagesRootView.designer.cs">
+      <DependentUpon>PagesRootView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Views\RootView.cs" />
     <Compile Include="Components\Views\RootView.designer.cs">
       <DependentUpon>RootView.cs</DependentUpon>
@@ -68,7 +108,45 @@
     <Compile Include="Components\AppDelegate.cs" />
     <Compile Include="Components\Setup.cs" />
     <InterfaceDefinition Include="Components\Views\RootView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\ChildView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\CustomBindingView.storyboard" />
     <None Include="Info.plist" />
+    <Compile Include="Components\Views\SecondChildView.cs" />
+    <Compile Include="Components\Views\SecondChildView.designer.cs">
+      <DependentUpon>SecondChildView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\SplitDetailNavView.cs" />
+    <Compile Include="Components\Views\SplitDetailNavView.designer.cs">
+      <DependentUpon>SplitDetailNavView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\SplitDetailView.cs" />
+    <Compile Include="Components\Views\SplitDetailView.designer.cs">
+      <DependentUpon>SplitDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\SplitMasterView.cs" />
+    <Compile Include="Components\Views\SplitMasterView.designer.cs">
+      <DependentUpon>SplitMasterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\SplitRootView.cs" />
+    <Compile Include="Components\Views\SplitRootView.designer.cs">
+      <DependentUpon>SplitRootView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Tab1View.cs" />
+    <Compile Include="Components\Views\Tab1View.designer.cs">
+      <DependentUpon>Tab1View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Tab2View.cs" />
+    <Compile Include="Components\Views\Tab2View.designer.cs">
+      <DependentUpon>Tab2View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\Tab3View.cs" />
+    <Compile Include="Components\Views\Tab3View.designer.cs">
+      <DependentUpon>Tab3View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Views\TabsRootView.cs" />
+    <Compile Include="Components\Views\TabsRootView.designer.cs">
+      <DependentUpon>TabsRootView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
