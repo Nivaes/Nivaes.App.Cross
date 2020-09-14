@@ -2,21 +2,25 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.UnitTest.Mocks.ViewModels
+namespace Nivaes.App.Cross.UnitTest
 {
-    public class SimpleParameterTestViewModel : MvxViewModel<string>
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+
+    public class SimpleParameterTestViewModel
+        : MvxViewModel<string>
     {
-        public string Parameter { get; set; }
+        public string? Parameter { get; set; }
 
         public virtual void Init()
         {
         }
 
-        public override void Prepare(string parameter)
+        public override ValueTask Prepare(string parameter)
         {
             Parameter = parameter;
+
+            return new ValueTask();
         }
     }
 }

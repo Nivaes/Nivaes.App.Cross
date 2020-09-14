@@ -2,23 +2,24 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.UnitTest.Mocks.ViewModels
+namespace Nivaes.App.Cross.UnitTest
 {
-    public class SimpleResultTestViewModel : MvxViewModelResult<bool>
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+
+    public class SimpleResultTestViewModel
+        : MvxViewModelResult<bool>
     {
         public SimpleResultTestViewModel()
         {
         }
 
-        public override async Task Initialize()
+        public override async ValueTask Initialize()
         {
-            await base.Initialize();
+            await base.Initialize().ConfigureAwait(true);
 
-            await Task.Delay(2000);
-            CloseCompletionSource.SetResult(true);
+            await Task.Delay(2000).ConfigureAwait(true);
+            CloseCompletionSource?.SetResult(true);
         }
     }
 }

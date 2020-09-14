@@ -3,21 +3,22 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MvvmCross.ViewModels;
 
 namespace MvvmCross.UnitTest.Mocks.TestViewModels
 {
     public class Test3ViewModel : MvxViewModel
     {
-        public BundleObject SaveStateBundleObject { get; set; }
-        public Dictionary<string, string> AdditionalSaveStateFields { get; set; }
+        public BundleObject? SaveStateBundleObject { get; set; }
+        public Dictionary<string, string>? AdditionalSaveStateFields { get; set; }
 
         public BundleObject SaveState()
         {
             return SaveStateBundleObject;
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override ValueTask SaveStateToBundle(IMvxBundle bundle)
         {
             if (AdditionalSaveStateFields != null)
             {
@@ -26,7 +27,7 @@ namespace MvvmCross.UnitTest.Mocks.TestViewModels
                     bundle.Data[kvp.Key] = kvp.Value;
                 }
             }
-            base.SaveStateToBundle(bundle);
+            return base.SaveStateToBundle(bundle);
         }
     }
 }
