@@ -120,6 +120,10 @@
     <InterfaceDefinition Include="Components\Views\ModalView.storyboard" />
     <InterfaceDefinition Include="Components\Views\PagesRootView.storyboard" />
     <InterfaceDefinition Include="Components\Views\NestedModalView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\SplitRootView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\SplitMasterView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\SplitDetailView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\SplitDetailNavView.storyboard" />
     <None Include="Info.plist" />
     <Compile Include="Components\Views\SecondChildView.cs" />
     <Compile Include="Components\Views\SecondChildView.designer.cs">

@@ -9,11 +9,11 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("SplitRootView")]
     [MvxRootPresentation]
     public partial class SplitRootView : MvxSplitViewController<SplitRootViewModel>
     {
-        private bool _isPresentedFirstTime = true;
+        private bool mIsPresentedFirstTime = true;
 
         public SplitRootView(IntPtr handle) : base(handle)
         {
@@ -30,9 +30,9 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
         {
             base.ViewWillAppear(animated);
 
-            if (ViewModel != null && _isPresentedFirstTime)
+            if (ViewModel != null && mIsPresentedFirstTime)
             {
-                _isPresentedFirstTime = false;
+                mIsPresentedFirstTime = false;
                 ViewModel.ShowInitialMenuCommand.Execute(null);
 
                 //PreferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden;

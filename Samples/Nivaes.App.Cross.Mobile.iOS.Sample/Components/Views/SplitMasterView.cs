@@ -9,11 +9,13 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("SplitMasterView")]
     [MvxSplitViewPresentation(MasterDetailPosition.Master)]
-    public partial class SplitMasterView : MvxViewController<SplitMasterViewModel>
+    public partial class SplitMasterView
+        : MvxViewController<SplitMasterViewModel>
     {
-        public SplitMasterView(IntPtr handle) : base(handle)
+        public SplitMasterView(IntPtr handle)
+            : base(handle)
         {
         }
 

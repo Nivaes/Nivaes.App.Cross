@@ -384,7 +384,7 @@ namespace MvvmCross.Navigation
             {
                 return (TResult)await tcs.Task.ConfigureAwait(false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return default;
             }

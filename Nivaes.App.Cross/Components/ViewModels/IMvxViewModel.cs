@@ -45,7 +45,7 @@ namespace MvvmCross.ViewModels
     public interface IMvxViewModelResult<TResult>
         : IMvxViewModel
     {
-        TaskCompletionSource<object> CloseCompletionSource { get; set; }
+        TaskCompletionSource<object>? CloseCompletionSource { get; set; }
     }
 
     public interface IMvxViewModel<TParameter, TResult>
