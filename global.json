@@ -1,6 +1,7 @@
 {
   "sdk": {
-    "version": "5.0.100-rc.1.20365.11",
+    //"version": "5.0.100-rc.1.20365.11",
+    "version": "5.0.100-preview.8.20417.9",
     "rollForward": "latestMajor"
   },
   //"sdk": {

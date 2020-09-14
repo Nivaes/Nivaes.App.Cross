@@ -53,7 +53,7 @@ namespace MvvmCross.Navigation
 
         protected IMvxViewModelLoader ViewModelLoader { get; set; }
 
-        protected ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>> _tcsResults = new ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>>();
+        protected ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>> mTcsResults = new ConditionalWeakTable<IMvxViewModel, TaskCompletionSource<object>>();
 
         public event BeforeNavigateEventHandler? BeforeNavigate;
 
@@ -129,6 +129,8 @@ namespace MvvmCross.Navigation
 
         protected virtual IDictionary<string, string> BuildParamDictionary(Regex regex, Match match)
         {
+            if (regex == null) throw new NullReferenceException(nameof(regex));
+
             var paramDict = new Dictionary<string, string>();
 
             for (var i = 1 /* 0 == Match itself */; i < match.Groups.Count; i++)
@@ -143,9 +145,8 @@ namespace MvvmCross.Navigation
 
         protected virtual async Task<MvxViewModelInstanceRequest> NavigationRouteRequest(string path, IMvxBundle? presentationBundle = null)
         {
-            KeyValuePair<Regex, Type> entry;
 
-            if (!TryGetRoute(path, out entry))
+            if (!TryGetRoute(path, out KeyValuePair<Regex, Type> entry))
             {
                 throw new MvxException($"Navigation route request could not be obtained for path: {path}");
             }
@@ -312,7 +313,7 @@ namespace MvvmCross.Navigation
             OnBeforeNavigate(this, args);
 
             viewModel.CloseCompletionSource = tcs;
-            _tcsResults.Add(viewModel, tcs);
+            mTcsResults.Add(viewModel, tcs);
 
             if (cancellationToken?.IsCancellationRequested ?? false)
                 return default;
@@ -333,7 +334,7 @@ namespace MvvmCross.Navigation
             }
             catch (Exception)
             {
-                return default(TResult);
+                return default;
             }
         }
 
@@ -355,10 +356,10 @@ namespace MvvmCross.Navigation
 
             var tcs = new TaskCompletionSource<object>();
             viewModel.CloseCompletionSource = tcs;
-            _tcsResults.Add(viewModel, tcs);
+            mTcsResults.Add(viewModel, tcs);
 
             if (cancellationToken?.IsCancellationRequested ?? false)
-                return default(TResult);
+                return default;
 
             hasNavigated = await ViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
 
@@ -373,7 +374,7 @@ namespace MvvmCross.Navigation
             }
             catch (Exception)
             {
-                return default(TResult);
+                return default;
             }
         }
 
@@ -525,7 +526,7 @@ namespace MvvmCross.Navigation
 
         public virtual async Task<bool> Close<TResult>(IMvxViewModelResult<TResult> viewModel, TResult result, CancellationToken? cancellationToken = default)
         {
-            _tcsResults.TryGetValue(viewModel, out var _tcs);
+            mTcsResults.TryGetValue(viewModel, out var _tcs);
 
             //Disable cancelation of the Task when closing ViewModel through the service
             viewModel.CloseCompletionSource = null;
@@ -536,7 +537,7 @@ namespace MvvmCross.Navigation
                 if (closeResult)
                 {
                     _tcs?.TrySetResult(result);
-                    _tcsResults.Remove(viewModel);
+                    mTcsResults.Remove(viewModel);
                 }
                 else
                     viewModel.CloseCompletionSource = _tcs;

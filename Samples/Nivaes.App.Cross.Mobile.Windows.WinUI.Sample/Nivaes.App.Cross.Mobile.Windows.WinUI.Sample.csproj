@@ -74,8 +74,26 @@
     <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Setup.cs">
       <Link>Components\Setup.cs</Link>
     </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\ChildView.xaml.cs">
+      <Link>Components\Views\ChildView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\DialogView.xaml.cs">
+      <Link>Components\Views\DialogView.xaml.cs</Link>
+    </Compile>
     <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\RootView.xaml.cs">
       <Link>Components\Views\RootView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SecondChildView.xaml.cs">
+      <Link>Components\Views\SecondChildView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitDetailView.xaml.cs">
+      <Link>Components\Views\SplitDetailView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitMasterView.xaml.cs">
+      <Link>Components\Views\SplitMasterView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitRootView.xaml.cs">
+      <Link>Components\Views\SplitRootView.xaml.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,8 +119,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\ChildView.xaml">
+      <Link>Components\Views\ChildView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\DialogView.xaml">
+      <Link>Components\Views\DialogView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\RootView.xaml">
       <Link>Components\Views\RootView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SecondChildView.xaml">
+      <Link>Components\Views\SecondChildView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitDetailView.xaml">
+      <Link>Components\Views\SplitDetailView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitMasterView.xaml">
+      <Link>Components\Views\SplitMasterView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Nivaes.App.Cross.Mobile.Windows.Sample\Components\Views\SplitRootView.xaml">
+      <Link>Components\Views\SplitRootView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
