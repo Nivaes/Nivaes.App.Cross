@@ -23,7 +23,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle bundle, MvxViewModelRequest request = null)
+        public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle bundle, MvxViewModelRequest? request = null)
         {
             var cache = Mvx.IoCProvider.Resolve<IMvxMultipleViewModelCache>();
 

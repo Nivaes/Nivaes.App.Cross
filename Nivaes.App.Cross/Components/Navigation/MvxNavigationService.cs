@@ -357,7 +357,7 @@ namespace MvvmCross.Navigation
             cancellationToken?.Register(async () =>
             {
                 if (hasNavigated)
-                    await Close(viewModel, default(TResult)).ConfigureAwait(false);
+                    await Close(viewModel!, default).ConfigureAwait(false);
             });
 
             if (args == null)
@@ -538,6 +538,9 @@ namespace MvvmCross.Navigation
 
         public virtual async ValueTask<bool> Close<TResult>(IMvxViewModelResult<TResult> viewModel, TResult result, CancellationToken? cancellationToken = default)
         {
+            if (viewModel == null) throw new NullReferenceException(nameof(viewModel));
+            if (result == null) throw new NullReferenceException(nameof(result));
+
             mTcsResults.TryGetValue(viewModel, out var _tcs);
 
             //Disable cancelation of the Task when closing ViewModel through the service

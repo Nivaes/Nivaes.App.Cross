@@ -107,23 +107,22 @@ namespace MvvmCross.Core
             }
         }
 
-        private async Task StartSetupInitialization()
+        private Task StartSetupInitialization()
         {
             if (mSetup == null) throw new MvxException("Not is initialize 'setup'");
 
-            await mSetup.InitializePrimary()
+            return mSetup.InitializePrimary()
                 .ContinueWith(async t =>
                 {
                     if (t.IsCompleted)
                     {
-                        await mSetup.InitializeSecondary().ConfigureAwait(false);
+                        await mSetup.InitializeSecondary().ConfigureAwait(true);
                     }
                     else
                     {
                         throw new MvxException("'InitializePrimary' is not completed successfully.");
                     }
-                }, TaskScheduler.Default)
-                .Unwrap().ConfigureAwait(false);
+                }, TaskScheduler.Default);
         }
     }
 }

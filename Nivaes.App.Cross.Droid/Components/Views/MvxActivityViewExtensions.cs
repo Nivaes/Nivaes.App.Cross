@@ -136,7 +136,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var translatorService = Mvx.IoCProvider.Resolve<IMvxAndroidViewModelLoader>();
-            var viewModel = translatorService.Load(activity.Intent, savedState, viewModelType);
+            var viewModel = translatorService.Load(activity!.Intent!, savedState, viewModelType!);
 
             return viewModel;
         }
@@ -150,7 +150,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var activity = androidView.ToActivity();
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(activity.ApplicationContext);
+            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(activity!.ApplicationContext!);
             //_ = setup.EnsureInitialized();
         }
     }

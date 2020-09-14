@@ -2,22 +2,24 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.OS;
-using AndroidX.Fragment.App;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
+    using System;
+    using AndroidX.Fragment.App;
+    using MvvmCross.Base;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Presenters;
+    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxBindingFragmentAdapter
         : MvxBaseFragmentAdapter
     {
-        public IMvxFragmentView FragmentView => Fragment as IMvxFragmentView;
+        public IMvxFragmentView FragmentView => (IMvxFragmentView)Fragment;
 
         public MvxBindingFragmentAdapter(IMvxEventSourceFragment eventSource)
             : base(eventSource)
@@ -28,13 +30,12 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         protected override void HandleCreateCalled(object sender, MvxValueEventArgs<Bundle> bundleArgs)
         {
-            FragmentView.EnsureSetupInitialized();
+            //FragmentView.EnsureSetupInitialized();
 
             // Create is called after Fragment is attached to Activity
             // it's safe to assume that Fragment has activity
 
-            var hostMvxView = Fragment.Activity as IMvxAndroidView;
-            if (hostMvxView == null)
+            if (!(Fragment.Activity is IMvxAndroidView hostMvxView))
             {
                 MvxLog.Instance.Warn($"Fragment host for fragment type {Fragment.GetType()} is not of type IMvxAndroidView");
                 return;
@@ -51,8 +52,8 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
                 return;
             }
 
-            Bundle bundle = null;
-            MvxViewModelRequest request = null;
+            Bundle? bundle = null;
+            MvxViewModelRequest? request = null;
             if (bundleArgs?.Value != null)
             {
                 // saved state
@@ -64,25 +65,23 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
                 if (fragment?.Arguments != null)
                 {
                     bundle = fragment.Arguments;
-                    var json = bundle.GetString("__mvxViewModelRequest");
+                    var json = bundle.GetString(MvxAndroidViewPresenter.ViewModelRequestBundleKey);
                     if (!string.IsNullOrEmpty(json))
                     {
-                        IMvxNavigationSerializer serializer;
-                        if (!Mvx.IoCProvider.TryResolve(out serializer))
+                        if (!Mvx.IoCProvider.TryResolve(out IMvxNavigationSerializer serializer))
                         {
                             MvxLog.Instance.Warn(
                                 "Navigation Serializer not available, deserializing ViewModel Request will be hard");
                         }
                         else
                         {
-                            request = serializer.Serializer.DeserializeObject<MvxViewModelRequest>(json);
+                            request = serializer.Serializer.DeserializeObject<MvxViewModelRequest>(json!);
                         }
                     }
                 }
             }
 
-            IMvxSavedStateConverter converter;
-            if (!Mvx.IoCProvider.TryResolve(out converter))
+            if (!Mvx.IoCProvider.TryResolve(out IMvxSavedStateConverter converter))
             {
                 MvxLog.Instance.Warn("Saved state converter not available - saving state will be hard");
             }
@@ -110,8 +109,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             var mvxBundle = FragmentView.CreateSaveStateBundle();
             if (mvxBundle != null)
             {
-                IMvxSavedStateConverter converter;
-                if (!Mvx.IoCProvider.TryResolve(out converter))
+                if (!Mvx.IoCProvider.TryResolve(out IMvxSavedStateConverter converter))
                 {
                     MvxLog.Instance.Warn("Saved state converter not available - saving state will be hard");
                 }

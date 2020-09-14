@@ -58,8 +58,9 @@ namespace MvvmCross.Android.Views
 
         protected override void OnResume()
         {
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
-            Task.Run(async () => await Initialize(setup).ConfigureAwait(false));
+            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext!);
+
+            var _ = Initialize(setup);
 
             base.OnResume();
         }

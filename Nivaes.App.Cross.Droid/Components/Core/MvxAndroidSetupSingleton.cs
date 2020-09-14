@@ -3,10 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.Content;
-using MvvmCross.Core;
 
 namespace MvvmCross.Platforms.Android.Core
 {
+    using MvvmCross.Core;
+
     public class MvxAndroidSetupSingleton
         : MvxSetupSingleton
     {
