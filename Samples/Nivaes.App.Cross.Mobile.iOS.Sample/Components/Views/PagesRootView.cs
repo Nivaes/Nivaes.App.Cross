@@ -9,11 +9,12 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("PagesRootView")]
     [MvxRootPresentation(WrapInNavigationController = true)]
-    public partial class PagesRootView : MvxPageViewController<PagesRootViewModel>
+    public partial class PagesRootView
+        : MvxPageViewController<PagesRootViewModel>
     {
-        private bool _isPresentedFirstTime = true;
+        private bool mIsPresentedFirstTime = true;
 
         public PagesRootView(IntPtr handle) : base(handle)
         {
@@ -23,9 +24,9 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
         {
             base.ViewWillAppear(animated);
 
-            if (ViewModel != null && _isPresentedFirstTime)
+            if (ViewModel != null && mIsPresentedFirstTime)
             {
-                _isPresentedFirstTime = false;
+                mIsPresentedFirstTime = false;
                 ViewModel.ShowInitialViewModelsCommand.ExecuteAsync(null);
             }
         }

@@ -11,9 +11,10 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("ModalView")]
     [MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
-    public partial class ModalView : MvxViewController<ModalViewModel>
+    public partial class ModalView
+        : MvxViewController<ModalViewModel>
     {
         public ModalView(IntPtr handle) : base(handle)
         {

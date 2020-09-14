@@ -116,6 +116,10 @@
     <InterfaceDefinition Include="Components\Views\CustomBindingView.storyboard" />
     <InterfaceDefinition Include="Components\Views\SecondChildView.storyboard" />
     <InterfaceDefinition Include="Components\Views\TabsRootView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\ModalNavView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\ModalView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\PagesRootView.storyboard" />
+    <InterfaceDefinition Include="Components\Views\NestedModalView.storyboard" />
     <None Include="Info.plist" />
     <Compile Include="Components\Views\SecondChildView.cs" />
     <Compile Include="Components\Views\SecondChildView.designer.cs">

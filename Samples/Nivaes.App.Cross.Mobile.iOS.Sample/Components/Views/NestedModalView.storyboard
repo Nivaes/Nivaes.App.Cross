@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Nested Modal View-->
+        <scene sceneID="518">
+            <objects>
+                <viewController storyboardIdentifier="NestedModalView" id="519" customClass="NestedModalView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="516"/>
+                        <viewControllerLayoutGuide type="bottom" id="517"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="520">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="539">
+                                <rect key="frame" x="169.5" y="64" width="75" height="30"/>
+                                <state key="normal" title="Show Tabs">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="542">
+                                <rect key="frame" x="187.5" y="158" width="39" height="30"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="539" firstAttribute="top" secondItem="516" secondAttribute="bottom" constant="44" id="540"/>
+                            <constraint firstItem="539" firstAttribute="centerX" secondItem="520" secondAttribute="centerX" id="541"/>
+                            <constraint firstItem="542" firstAttribute="top" secondItem="539" secondAttribute="bottom" constant="64" id="543"/>
+                            <constraint firstItem="542" firstAttribute="centerX" secondItem="520" secondAttribute="centerX" id="544"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnClose" destination="542" id="name-outlet-542"/>
+                        <outlet property="btnTabs" destination="539" id="name-outlet-539"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="521" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3284" y="667"/>
+        </scene>
+    </scenes>
+</document>

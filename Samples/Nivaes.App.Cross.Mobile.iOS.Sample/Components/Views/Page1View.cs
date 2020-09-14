@@ -16,12 +16,13 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("PagesRootView")]
     [MvxPagePresentation(WrapInNavigationController = false)]
-    public partial class Page1View : MvxViewController<Page1ViewModel>
+    public partial class Page1View
+        : MvxViewController<Page1ViewModel>
     {
-        private UITableView _tableView;
-        private TableSource _source;
+        private UITableView mTableView;
+        private TableSource mSource;
 
         public Page1View(IntPtr handle) : base(handle)
         {
@@ -33,39 +34,39 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
 
             Title = "Page 1";
 
-            _tableView = new UITableView
+            mTableView = new UITableView
             {
                 TranslatesAutoresizingMaskIntoConstraints = false
             };
 
-            _tableView.TableFooterView = new UIView();
+            mTableView.TableFooterView = new UIView();
 
-            _tableView.RegisterClassForCellReuse(typeof(HeaderCell), HeaderCell.Identifier);
-            _tableView.RegisterClassForCellReuse(typeof(ItemCell), ItemCell.Identifier);
+            mTableView.RegisterClassForCellReuse(typeof(HeaderCell), HeaderCell.Identifier);
+            mTableView.RegisterClassForCellReuse(typeof(ItemCell), ItemCell.Identifier);
 
-            _source = new TableSource(_tableView);
-            _tableView.Source = _source;
+            mSource = new TableSource(mTableView);
+            mTableView.Source = mSource;
 
-            Add(_tableView);
+            Add(mTableView);
 
-            _tableView.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor).Active = true;
-            _tableView.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor).Active = true;
-            _tableView.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor).Active = true;
-            _tableView.BottomAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.BottomAnchor).Active = true;
+            mTableView.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor).Active = true;
+            mTableView.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor).Active = true;
+            mTableView.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor).Active = true;
+            mTableView.BottomAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.BottomAnchor).Active = true;
 
             var set = CreateBindingSet();
-            set.Bind(_source).To(vm => vm.Sections);
-            set.Bind(_source).For(v => v.HeaderTappedCommand).To(vm => vm.HeaderTappedCommand);
+            set.Bind(mSource).To(vm => vm.Sections);
+            set.Bind(mSource).For(v => v.HeaderTappedCommand).To(vm => vm.HeaderTappedCommand);
             set.Apply();
         }
 
         private class HeaderCell : MvxTableViewCell, IExpandableHeaderCell
         {
             public static NSString Identifier = new NSString(nameof(HeaderCell));
-            private static UIImage _arrowImage;
-            private UILabel _title;
-            private UIImageView _arrow;
-            private UISwitch _switch;
+            private static UIImage mArrowImage;
+            private UILabel mTitle;
+            private UIImageView mArrow;
+            private UISwitch mSwitch;
 
             public HeaderCell(IntPtr handle) : base(handle)
             {
@@ -79,58 +80,58 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
 
             private void Initialize()
             {
-                if (_arrowImage == null)
-                    _arrowImage = UIImage.FromBundle("ArrowDown");
+                if (mArrowImage == null)
+                    mArrowImage = UIImage.FromBundle("ArrowDown");
 
-                _title = new UILabel
+                mTitle = new UILabel
                 {
                     TranslatesAutoresizingMaskIntoConstraints = false
                 };
 
-                _arrow = new UIImageView(_arrowImage)
+                mArrow = new UIImageView(mArrowImage)
                 {
                     TranslatesAutoresizingMaskIntoConstraints = false,
                     Hidden = true
                 };
 
-                _switch = new UISwitch
+                mSwitch = new UISwitch
                 {
                     TranslatesAutoresizingMaskIntoConstraints = false,
                     TintColor = UIColor.Blue,
                     Hidden = true
                 };
 
-                ContentView.Add(_title);
-                ContentView.Add(_arrow);
-                ContentView.Add(_switch);
+                ContentView.Add(mTitle);
+                ContentView.Add(mArrow);
+                ContentView.Add(mSwitch);
 
-                _title.LeadingAnchor.ConstraintEqualTo(ContentView.LeadingAnchor, 10).Active = true;
-                _title.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
+                mTitle.LeadingAnchor.ConstraintEqualTo(ContentView.LeadingAnchor, 10).Active = true;
+                mTitle.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
 
-                _arrow.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor, -10).Active = true;
-                _arrow.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
-                _arrow.WidthAnchor.ConstraintEqualTo(15).Active = true;
-                _arrow.HeightAnchor.ConstraintEqualTo(_arrow.WidthAnchor).Active = true;
+                mArrow.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor, -10).Active = true;
+                mArrow.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
+                mArrow.WidthAnchor.ConstraintEqualTo(15).Active = true;
+                mArrow.HeightAnchor.ConstraintEqualTo(mArrow.WidthAnchor).Active = true;
 
-                _switch.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor, -10).Active = true;
-                _switch.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
+                mSwitch.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor, -10).Active = true;
+                mSwitch.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
 
                 var set = this.CreateBindingSet<HeaderCell, Page1ViewModel.SectionViewModel>();
-                set.Bind(_title).To(vm => vm.Title);
-                set.Bind(_arrow).For(v => v.BindHidden()).To(vm => vm.ShowsControl);
-                set.Bind(_switch).For(v => v.BindVisible()).To(vm => vm.ShowsControl);
-                set.Bind(_switch).To(vm => vm.On);
+                set.Bind(mTitle).To(vm => vm.Title);
+                set.Bind(mArrow).For(v => v.BindHidden()).To(vm => vm.ShowsControl);
+                set.Bind(mSwitch).For(v => v.BindVisible()).To(vm => vm.ShowsControl);
+                set.Bind(mSwitch).To(vm => vm.On);
                 set.Apply();
             }
 
             public void OnCollapsed()
             {
-                _arrow.Transform = CGAffineTransform.MakeIdentity();
+                mArrow.Transform = CGAffineTransform.MakeIdentity();
             }
 
             public void OnExpanded()
             {
-                _arrow.Transform = CGAffineTransform.MakeRotation(180 * ((float)Math.PI / 180.0f));
+                mArrow.Transform = CGAffineTransform.MakeRotation(180 * ((float)Math.PI / 180.0f));
             }
         }
 

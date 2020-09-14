@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("ModalNavView")]
     [MvxModalPresentation(WrapInNavigationController = true)]
     public partial class ModalNavView : MvxViewController<ModalNavViewModel>
     {

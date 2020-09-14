@@ -9,9 +9,10 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("PagesRootView")]
     [MvxPagePresentation(WrapInNavigationController = false)]
-    public partial class Page2View : MvxViewController<Page2ViewModel>
+    public partial class Page2View
+        : MvxViewController<Page2ViewModel>
     {
         public Page2View(IntPtr handle) : base(handle)
         {
