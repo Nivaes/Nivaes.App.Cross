@@ -4,11 +4,13 @@
 
 namespace MvvmCross.Base
 {
+    using System;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.ViewModels;
 
-    public class MvxSingletonCache
+    [Obsolete("Eliminar")]
+    public sealed class MvxSingletonCache
         : MvxSingleton<IMvxSingletonCache>, IMvxSingletonCache
     {
         public static MvxSingletonCache Initialize()

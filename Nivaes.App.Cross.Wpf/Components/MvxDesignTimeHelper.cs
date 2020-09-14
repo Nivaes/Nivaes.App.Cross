@@ -2,34 +2,34 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using MvvmCross.Base;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Wpf.Core;
-
 namespace MvvmCross.Platforms.Wpf
 {
+    using System.ComponentModel;
+    using System.Windows;
+    using System.Windows.Controls;
+    using MvvmCross.Base;
+    using MvvmCross.Core;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Wpf.Core;
+
     internal static class MvxDesignTimeHelper
     {
-        private static bool? _isInDesignTime;
+        private static bool? mIsInDesignTime;
 
         public static bool IsInDesignTime
         {
             get
             {
-                if (!_isInDesignTime.HasValue)
+                if (!mIsInDesignTime.HasValue)
                 {
-                    _isInDesignTime =
+                    mIsInDesignTime =
                         (bool)
                         DesignerProperties.IsInDesignModeProperty
                             .GetMetadata(typeof(DependencyObject))
                             .DefaultValue;
                 }
 
-                return _isInDesignTime.Value;
+                return mIsInDesignTime.Value;
             }
         }
 
@@ -46,7 +46,6 @@ namespace MvvmCross.Platforms.Wpf
 
             MvxSetup.RegisterSetupType<MvxWpfSetup<App>>(System.Reflection.Assembly.GetExecutingAssembly());
             var instance = MvxWpfSetupSingleton.EnsureSingletonAvailable(Application.Current.Dispatcher, new Content());
-            instance.InitializeAndMonitor(null);
         }
 
         class App : ViewModels.MvxApplication

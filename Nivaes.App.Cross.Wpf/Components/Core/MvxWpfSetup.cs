@@ -2,30 +2,31 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Wpf.Binding;
-using MvvmCross.Platforms.Wpf.Presenters;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Wpf.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using System.Windows.Controls;
+    using System.Windows.Threading;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Core;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Wpf.Binding;
+    using MvvmCross.Platforms.Wpf.Presenters;
+    using MvvmCross.Platforms.Wpf.Views;
+    using MvvmCross.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public abstract class MvxWpfSetup
-    : MvxSetup, IMvxWpfSetup
+        : MvxSetup, IMvxWpfSetup
     {
         private Dispatcher _uiThreadDispatcher;
         private ContentControl _root;
@@ -91,16 +92,16 @@ namespace MvvmCross.Platforms.Wpf.Core
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "Control");
         }
 
-        protected override void InitializeFirstChance()
+        protected override Task InitializeFirstChance()
         {
             RegisterPresenter();
-            base.InitializeFirstChance();
+            return base.InitializeFirstChance();
         }
 
-        protected override void InitializeLastChance()
+        protected override Task InitializeLastChance()
         {
             InitializeBindingBuilder();
-            base.InitializeLastChance();
+            return base.InitializeLastChance();
         }
 
         protected virtual void InitializeBindingBuilder()

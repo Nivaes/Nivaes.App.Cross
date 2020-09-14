@@ -8,6 +8,7 @@ using MvvmCross.Exceptions;
 
 namespace MvvmCross.Base
 {
+    [Obsolete("Eliminar")]
     public abstract class MvxSingleton
         : IDisposable
     {
@@ -48,6 +49,7 @@ namespace MvvmCross.Base
         }
     }
 
+    [Obsolete("Eliminar")]
     public abstract class MvxSingleton<TInterface>
         : MvxSingleton
         where TInterface : class

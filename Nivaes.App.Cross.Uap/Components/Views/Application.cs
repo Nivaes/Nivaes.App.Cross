@@ -21,9 +21,7 @@ namespace MvvmCross.Platforms.Uap.Views
     {
         protected IActivatedEventArgs ActivationArguments { get; private set; }
 
-        protected Frame? RootFrame { get; set; }
-
-        //private Window? mWindow;
+        protected Frame RootFrame { get; set; }
 
         protected Application()
         {
