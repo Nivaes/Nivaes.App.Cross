@@ -2,41 +2,44 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.Content;
 using Android.Content.Res;
 using Android.Util;
 using Android.Views;
-using MvvmCross.Exceptions;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
 
 namespace MvvmCross.Platforms.Android.Binding.Binders
 {
-    public class MvxAndroidViewBinder : IMvxAndroidViewBinder
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
+
+    public class MvxAndroidViewBinder
+        : IMvxAndroidViewBinder
     {
-        private readonly List<KeyValuePair<object, IMvxUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, IMvxUpdateableBinding>>();
+        private readonly List<KeyValuePair<object, IMvxUpdateableBinding>> mViewBindings = new List<KeyValuePair<object, IMvxUpdateableBinding>>();
         private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>());
 
-        private readonly object _source;
+        private readonly object mSource;
+        private IMvxBinder? mBinder;
 
         public MvxAndroidViewBinder(object source)
         {
-            _source = source;
+            mSource = source;
         }
 
-        private IMvxBinder _binder;
+        protected IMvxBinder Binder => mBinder ??= Mvx.IoCProvider.Resolve<IMvxBinder>();
 
-        protected IMvxBinder Binder => _binder ?? (_binder = Mvx.IoCProvider.Resolve<IMvxBinder>());
-
-        public IList<KeyValuePair<object, IMvxUpdateableBinding>> CreatedBindings => _viewBindings;
+        public IList<KeyValuePair<object, IMvxUpdateableBinding>> CreatedBindings => mViewBindings;
 
         public virtual void BindView(View view, Context context, IAttributeSet attrs)
         {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+
             using (
                 var typedArray = context.ObtainStyledAttributes(attrs,
                                                                 mvxAndroidBindingResource.Value.BindingStylableGroupId))
@@ -64,7 +67,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             try
             {
                 var bindingText = typedArray.GetString(attributeId);
-                var newBindings = Binder.Bind(_source, view, bindingText);
+                var newBindings = Binder.Bind(mSource, view, bindingText!);
                 StoreBindings(view, newBindings);
             }
             catch (Exception exception)
@@ -78,7 +81,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
         {
             if (newBindings != null)
             {
-                _viewBindings.AddRange(newBindings.Select(b => new KeyValuePair<object, IMvxUpdateableBinding>(view, b)));
+                mViewBindings.AddRange(newBindings.Select(b => new KeyValuePair<object, IMvxUpdateableBinding>(view, b)));
             }
         }
 
@@ -87,7 +90,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             try
             {
                 var bindingText = typedArray.GetString(attributeId);
-                var newBindings = Binder.LanguageBind(_source, view, bindingText);
+                var newBindings = Binder.LanguageBind(mSource, view, bindingText!);
                 StoreBindings(view, newBindings);
             }
             catch (Exception exception)
