@@ -59,11 +59,11 @@ namespace MvvmCross.Commands
                 return CanExecuteImpl(parameter);
         }
 
-        public async void Execute(object? parameter)
+        public void Execute(object? parameter)
         {
             try
             {
-                await ExecuteAsync(parameter, true).ConfigureAwait(false);
+                var _ = ExecuteAsync(parameter, true);
             }
             catch (Exception e)
             {

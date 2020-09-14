@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using Android.Views;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;
@@ -25,6 +26,8 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle bundle, MvxViewModelRequest? request = null)
         {
+            if (fragmentView == null) throw new ArgumentNullException(nameof(fragmentView));
+
             var cache = Mvx.IoCProvider.Resolve<IMvxMultipleViewModelCache>();
 
             if (fragmentView.ViewModel != null)
@@ -49,7 +52,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         public static Fragment ToFragment(this IMvxFragmentView fragmentView)
         {
-            return fragmentView as Fragment;
+            return (Fragment)fragmentView;
         }
 
         public static void EnsureBindingContextIsSet(this IMvxFragmentView fragment, LayoutInflater inflater)
@@ -66,8 +69,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
             else
             {
-                var androidContext = fragment.BindingContext as IMvxAndroidBindingContext;
-                if (androidContext != null)
+                if (fragment.BindingContext is IMvxAndroidBindingContext androidContext)
                     androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(inflater);
             }
         }
@@ -87,8 +89,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
             else
             {
-                var androidContext = fragment.BindingContext as IMvxAndroidBindingContext;
-                if (androidContext != null)
+                if (fragment.BindingContext is IMvxAndroidBindingContext androidContext)
                     androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(actualFragment.Activity.LayoutInflater);
             }
         }
@@ -106,11 +107,13 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         public static TFragment FindFragmentById<TFragment>(this MvxActivity activity, int resourceId)
             where TFragment : Fragment
         {
+            if (activity == null) throw new ArgumentNullException(nameof(activity));
+
             var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
             if (fragment == null)
             {
                 MvxLog.Instance.Warn("Failed to find fragment id {0} in {1}", resourceId, activity.GetType().Name);
-                return default(TFragment);
+                return default;
             }
 
             return SafeCast<TFragment>(fragment);
@@ -119,11 +122,13 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         public static TFragment FindFragmentByTag<TFragment>(this MvxActivity activity, string tag)
             where TFragment : Fragment
         {
+            if (activity == null) throw new ArgumentNullException(nameof(activity));
+
             var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
             if (fragment == null)
             {
                 MvxLog.Instance.Warn("Failed to find fragment tag {0} in {1}", tag, activity.GetType().Name);
-                return default(TFragment);
+                return default;
             }
 
             return SafeCast<TFragment>(fragment);
@@ -135,14 +140,16 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             {
                 MvxLog.Instance.Warn("Fragment type mismatch got {0} but expected {1}", fragment.GetType().FullName,
                             typeof(TFragment).FullName);
-                return default(TFragment);
+                return default;
             }
 
             return (TFragment)fragment;
         }
 
-        public static void LoadViewModelFrom(this Android.Views.IMvxFragmentView view, MvxViewModelRequest request, IMvxBundle savedState = null)
+        public static void LoadViewModelFrom(this Android.Views.IMvxFragmentView view, MvxViewModelRequest request, IMvxBundle? savedState = null)
         {
+            if (view == null) throw new ArgumentNullException(nameof(view));
+
             var loader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
             var viewModel = loader.LoadViewModel(request, savedState);
             if (viewModel == null)

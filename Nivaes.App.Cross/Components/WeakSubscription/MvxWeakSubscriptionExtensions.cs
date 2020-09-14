@@ -2,16 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Windows.Input;
-using MvvmCross.Base;
-
 namespace MvvmCross.WeakSubscription
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using System.Windows.Input;
+    using MvvmCross.Base;
+
     public static class MvxWeakSubscriptionExtensions
     {
         public static MvxNotifyPropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,

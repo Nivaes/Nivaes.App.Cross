@@ -98,11 +98,15 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         protected override void HandleCreateViewCalled(object sender,
                                                MvxValueEventArgs<MvxCreateViewParameters> args)
         {
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
             FragmentView.EnsureBindingContextIsSet(args.Value.Inflater);
         }
 
         protected override void HandleSaveInstanceStateCalled(object sender, MvxValueEventArgs<Bundle> bundleArgs)
         {
+            if (bundleArgs == null) throw new ArgumentNullException(nameof(bundleArgs));
+
             // it is guarannted that SaveInstanceState call will be executed before OnStop (thus before Fragment detach)
             // it is safe to assume that Fragment has activity attached
 
