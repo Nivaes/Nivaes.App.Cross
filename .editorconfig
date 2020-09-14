@@ -48,10 +48,10 @@ dotnet_style_null_propagation = true:warning
 dotnet_style_object_initializer = true:warning
 dotnet_style_predefined_type_for_locals_parameters_members = true:warning
 dotnet_style_predefined_type_for_member_access = true:warning
-dotnet_style_qualification_for_event = false:warning
-dotnet_style_qualification_for_field = false:warning
-dotnet_style_qualification_for_method = false:warning
-dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_event = false:none
+dotnet_style_qualification_for_field = false:none
+dotnet_style_qualification_for_method = false:none
+dotnet_style_qualification_for_property = false:none
 
 # Naming Symbols
 # constant_fields - Define constant fields
