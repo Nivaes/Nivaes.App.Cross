@@ -9,9 +9,10 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("TabsRootView")]
     [MvxTabPresentation(WrapInNavigationController = false)]
-    public partial class Tab3View : MvxViewController<Tab3ViewModel>, IMvxTabBarItemViewController
+    public partial class Tab3View
+        : MvxViewController<Tab3ViewModel>, IMvxTabBarItemViewController
     {
         public Tab3View(IntPtr handle) : base(handle)
         {

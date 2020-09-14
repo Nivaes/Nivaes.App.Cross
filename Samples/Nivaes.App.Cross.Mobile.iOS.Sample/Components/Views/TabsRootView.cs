@@ -11,11 +11,12 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
-    [MvxFromStoryboard("Main")]
+    [MvxFromStoryboard("TabsRootView")]
     [MvxRootPresentation(WrapInNavigationController = true)]
-    public partial class TabsRootView : MvxTabBarViewController<TabsRootViewModel>
+    public partial class TabsRootView
+        : MvxTabBarViewController<TabsRootViewModel>
     {
-        private bool _isPresentedFirstTime = true;
+        private bool mIsPresentedFirstTime = true;
 
         public TabsRootView(IntPtr handle) : base(handle)
         {
@@ -25,9 +26,9 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
         {
             base.ViewWillAppear(animated);
 
-            if (ViewModel != null && _isPresentedFirstTime)
+            if (ViewModel != null && mIsPresentedFirstTime)
             {
-                _isPresentedFirstTime = false;
+                mIsPresentedFirstTime = false;
                 ViewModel.ShowInitialViewModelsCommand.ExecuteAsync(null);
             }
         }
