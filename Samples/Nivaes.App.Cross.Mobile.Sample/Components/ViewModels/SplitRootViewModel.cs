@@ -26,15 +26,15 @@ namespace Nivaes.App.Mobile.Sample
 
         public override ValueTask ViewAppeared()
         {
-            return new ValueTask(Task.WhenAll(ShowInitialViewModel(), ShowDetailViewModel()));
+            return new ValueTask(Task.WhenAll(ShowInitialViewModel().AsTask(), ShowDetailViewModel().AsTask()));
         }
 
-        private Task ShowInitialViewModel()
+        private ValueTask<bool> ShowInitialViewModel()
         {
             return NavigationService.Navigate<SplitMasterViewModel>();
         }
 
-        private Task ShowDetailViewModel()
+        private ValueTask<bool> ShowDetailViewModel()
         {
             return NavigationService.Navigate<SplitDetailViewModel>();
         }

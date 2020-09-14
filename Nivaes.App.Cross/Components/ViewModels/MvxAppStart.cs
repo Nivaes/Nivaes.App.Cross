@@ -38,7 +38,7 @@ namespace MvvmCross.ViewModels
             await NavigateToFirstViewModel(applicationHint).ConfigureAwait(false);
         }
 
-        protected abstract Task NavigateToFirstViewModel(object? hint = null);
+        protected abstract ValueTask<bool> NavigateToFirstViewModel(object? hint = null);
 
         protected virtual async Task<object?> ApplicationStartup(object? hint = null)
         {
@@ -67,11 +67,11 @@ namespace MvvmCross.ViewModels
         {
         }
 
-        protected override async Task NavigateToFirstViewModel(object? hint = null)
+        protected override ValueTask<bool> NavigateToFirstViewModel(object? hint = null)
         {
             try
             {
-                await NavigationService.Navigate<TViewModel>().ConfigureAwait(false);
+                return NavigationService.Navigate<TViewModel>();
             }
             catch (System.Exception exception)
             {
@@ -99,18 +99,18 @@ namespace MvvmCross.ViewModels
             }
         }
 
-        protected override async Task NavigateToFirstViewModel(object? hint = null)
+        protected override ValueTask<bool> NavigateToFirstViewModel(object? hint = null)
         {
             try
             {
                 if (hint is TParameter parameter)
                 {
-                    NavigationService.Navigate<TViewModel, TParameter>(parameter).GetAwaiter().GetResult();
+                    return NavigationService.Navigate<TViewModel, TParameter>(parameter);
                 }
                 else
                 {
                     MvxLog.Instance.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");
-                    await base.NavigateToFirstViewModel(hint).ConfigureAwait(false);
+                    return base.NavigateToFirstViewModel(hint);
                 }
             }
             catch (System.Exception exception)

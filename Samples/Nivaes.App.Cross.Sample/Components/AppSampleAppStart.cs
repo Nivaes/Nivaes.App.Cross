@@ -13,9 +13,9 @@
         {
         }
 
-        protected override Task NavigateToFirstViewModel(object? hint = null)
+        protected override ValueTask<bool> NavigateToFirstViewModel(object? hint = null)
         {
-            return Task.CompletedTask;
+            return new ValueTask<bool>(false);
             //return base.NavigationService.Navigate<InitializingAppViewModel>();
         }
     }

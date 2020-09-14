@@ -24,9 +24,9 @@ namespace Nivaes.App.Mobile.Sample
         {
             var tasks = new[]
             {
-                NavigationService.Navigate<Page1ViewModel>(),
-                NavigationService.Navigate<Page2ViewModel>(),
-                NavigationService.Navigate<Page3ViewModel>(),
+                NavigationService.Navigate<Page1ViewModel>().AsTask(),
+                NavigationService.Navigate<Page2ViewModel>().AsTask(),
+                NavigationService.Navigate<Page3ViewModel>().AsTask()
             };
             return Task.WhenAll(tasks);
         }

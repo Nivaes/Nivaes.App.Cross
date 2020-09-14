@@ -14,7 +14,7 @@
         {
         }
 
-        protected override Task NavigateToFirstViewModel(object? hint = null)
+        protected override ValueTask<bool> NavigateToFirstViewModel(object? hint = null)
         {
             //return base.NavigationService.Navigate<InitializingAppViewModel>();
             throw new NotImplementedException();

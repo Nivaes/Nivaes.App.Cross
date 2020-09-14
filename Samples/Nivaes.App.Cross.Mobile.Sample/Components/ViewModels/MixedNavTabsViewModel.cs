@@ -27,8 +27,8 @@ namespace Nivaes.App.Mobile.Sample
         {
             var tasks = new[]
             {
-                NavigationService.Navigate<MixedNavTab1ViewModel>(),
-                NavigationService.Navigate<MixedNavTab2ViewModel>(),
+                NavigationService.Navigate<MixedNavTab1ViewModel>().AsTask(),
+                NavigationService.Navigate<MixedNavTab2ViewModel>().AsTask(),
                 //NavigationService.Navigate<Tab1ViewModel, string>("test").AsTask(),
                 //NavigationService.Navigate<Tab2ViewModel>().AsTask(),
                 //NavigationService.Navigate<Tab3ViewModel>().AsTask()
