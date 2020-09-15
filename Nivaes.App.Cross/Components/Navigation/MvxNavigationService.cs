@@ -286,15 +286,13 @@ namespace MvvmCross.Navigation
         {
             if (viewModel == null) throw new NullReferenceException(nameof(viewModel));
 
-            var hasNavigated = false;
-
             var args = new MvxNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);
             OnBeforeNavigate(this, args);
 
             if (args.Cancel)
                 return false;
 
-            hasNavigated = await ViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
+            var hasNavigated = await ViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
             if (!hasNavigated)
                 return false;
 
