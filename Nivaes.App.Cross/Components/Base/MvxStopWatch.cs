@@ -21,14 +21,14 @@ namespace MvvmCross.Base
         {
             _log = _defaultLog;
             _startTickCount = Environment.TickCount;
-            _message = string.Format(text, args, CultureInfo.CurrentCulture);
+            _message = string.Format(CultureInfo.CurrentCulture, text, args);
         }
 
         private MvxStopWatch(string tag, string text, params object[] args)
         {
             _log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor(tag);
             _startTickCount = Environment.TickCount;
-            _message = string.Format(text, args, CultureInfo.CurrentCulture);
+            _message = string.Format(CultureInfo.CurrentCulture, text, args);
         }
 
         public void Dispose()

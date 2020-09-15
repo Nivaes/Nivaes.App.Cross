@@ -2,11 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Runtime.Serialization;
-
 namespace MvvmCross.Exceptions
 {
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class MvxException : Exception
     {
@@ -20,14 +21,14 @@ namespace MvvmCross.Exceptions
         }
 
         public MvxException(string messageFormat, params object[] messageFormatArguments)
-            : base(string.Format(messageFormat, messageFormatArguments))
+            : base(string.Format(CultureInfo.CurrentCulture, messageFormat, messageFormatArguments))
         {
         }
 
         // the order of parameters here is slightly different to that normally expected in an exception
         // - but this order allows us to put string.Format in place
         public MvxException(Exception innerException, string messageFormat, params object[] formatArguments)
-            : base(string.Format(messageFormat, formatArguments), innerException)
+            : base(string.Format(CultureInfo.CurrentCulture, messageFormat, formatArguments), innerException)
         {
         }
 
@@ -37,6 +38,6 @@ namespace MvvmCross.Exceptions
 
         protected MvxException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-        }        
+        }
     }
 }

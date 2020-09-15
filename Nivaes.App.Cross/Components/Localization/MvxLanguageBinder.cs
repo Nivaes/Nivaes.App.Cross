@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using MvvmCross.Exceptions;
 
 namespace MvvmCross.Localization
@@ -38,8 +39,7 @@ namespace MvvmCross.Localization
                     Mvx.IoCProvider.TryResolve(out _cachedTextProvider);
                     if (_cachedTextProvider == null)
                     {
-                        throw new MvxException(
-                            "Missing text provider - please initialize IoC with a suitable IMvxTextProvider");
+                        throw new MvxException("Missing text provider - please initialize IoC with a suitable IMvxTextProvider");
                     }
                     return _cachedTextProvider;
                 }
@@ -54,7 +54,7 @@ namespace MvvmCross.Localization
         public virtual string GetText(string entryKey, params object[] args)
         {
             var format = GetText(entryKey);
-            return string.Format(format, args);
+            return string.Format(CultureInfo.CurrentCulture, format, args);
         }
 
         protected virtual string GetText(string namespaceKey, string typeKey, string entryKey)

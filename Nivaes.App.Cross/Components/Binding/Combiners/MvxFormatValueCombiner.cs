@@ -52,7 +52,7 @@ namespace MvvmCross.Binding.Combiners
                 return true;
             }
 
-            value = string.Format(formatString, values, CultureInfo.CurrentCulture);
+            value = string.Format(CultureInfo.CurrentCulture, formatString, values);
             return true;
         }
     }
