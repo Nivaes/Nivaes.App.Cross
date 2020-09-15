@@ -2,16 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Base
 {
+    using System;
+    using System.Globalization;
+    using MvvmCross.Logging;
+
     public class MvxStopWatch
         : IDisposable
     {
         private static readonly IMvxLog _defaultLog = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("mvxStopWatch");
-        
+
         private readonly IMvxLog _log;
         private readonly string _message;
         private readonly int _startTickCount;
@@ -20,14 +21,14 @@ namespace MvvmCross.Base
         {
             _log = _defaultLog;
             _startTickCount = Environment.TickCount;
-            _message = string.Format(text, args);
+            _message = string.Format(text, args, CultureInfo.CurrentCulture);
         }
 
         private MvxStopWatch(string tag, string text, params object[] args)
         {
             _log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor(tag);
             _startTickCount = Environment.TickCount;
-            _message = string.Format(text, args);
+            _message = string.Format(text, args, CultureInfo.CurrentCulture);
         }
 
         public void Dispose()

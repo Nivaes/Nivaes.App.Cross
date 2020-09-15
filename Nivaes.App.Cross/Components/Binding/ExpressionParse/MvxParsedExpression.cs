@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace MvvmCross.Binding.ExpressionParse
@@ -35,7 +36,8 @@ namespace MvvmCross.Binding.ExpressionParse
             }
         }
 
-        public class IndexedNode : INode
+        public class IndexedNode
+            : INode
         {
             public IndexedNode(string indexValue)
             {
@@ -46,7 +48,7 @@ namespace MvvmCross.Binding.ExpressionParse
 
             public void AppendPrintTo(StringBuilder builder)
             {
-                builder.AppendFormat("[{0}]", IndexValue);
+                builder.AppendFormat("[{0}]", IndexValue, CultureInfo.CurrentCulture, CultureInfo.CurrentCulture);
             }
         }
 

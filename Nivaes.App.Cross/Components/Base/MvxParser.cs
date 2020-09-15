@@ -164,7 +164,7 @@ namespace MvvmCross.Base
         private char ReadFourDigitUnicodeCharacter()
         {
             var digits = ReadNDigits(4);
-            var number = uint.Parse(digits, NumberStyles.HexNumber);
+            var number = uint.Parse(digits, NumberStyles.HexNumber, CultureInfo.CurrentCulture);
             if (number > ushort.MaxValue)
                 throw new MvxException("\\u unicode character {0} out of range in {1}", number, FullText);
             return (char)number;

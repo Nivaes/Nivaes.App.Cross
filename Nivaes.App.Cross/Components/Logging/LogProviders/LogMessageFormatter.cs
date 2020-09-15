@@ -60,7 +60,7 @@ namespace MvvmCross.Logging.LogProviders
 
                 if (!int.TryParse(arg, out var notUsed))
                 {
-                    processedArguments = processedArguments ?? new List<string>(formatParameters.Length);
+                    processedArguments ??= new List<string>(formatParameters.Length);
                     int argumentIndex = processedArguments.IndexOf(arg);
                     if (argumentIndex == -1)
                     {
@@ -69,7 +69,7 @@ namespace MvvmCross.Logging.LogProviders
                     }
 
                     targetMessage = ReplaceFirst(targetMessage, match.Value,
-                        string.Concat("{", argumentIndex.ToString(), match.Groups["format"].Value, "}"));
+                        string.Concat("{", argumentIndex.ToString(CultureInfo.CurrentCulture), match.Groups["format"].Value, "}"));
                 }
             }
 

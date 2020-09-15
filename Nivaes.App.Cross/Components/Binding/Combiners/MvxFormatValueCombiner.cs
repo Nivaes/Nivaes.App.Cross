@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Combiners
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Converters;
+
     public class MvxFormatValueCombiner : MvxValueCombiner
     {
         public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
@@ -51,7 +52,7 @@ namespace MvvmCross.Binding.Combiners
                 return true;
             }
 
-            value = string.Format(formatString, values);
+            value = string.Format(formatString, values, CultureInfo.CurrentCulture);
             return true;
         }
     }

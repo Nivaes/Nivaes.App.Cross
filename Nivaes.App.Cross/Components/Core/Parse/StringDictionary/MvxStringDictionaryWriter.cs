@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace MvvmCross.Core.Parse.StringDictionary
@@ -21,9 +22,9 @@ namespace MvvmCross.Core.Parse.StringDictionary
             foreach (var kvp in dictionary)
             {
                 if (output.Length > 0)
-                    output.Append(";");
+                    output.Append(';');
 
-                output.AppendFormat("{0}={1}", Quote(kvp.Key), Quote(kvp.Value));
+                output.AppendFormat(CultureInfo.CurrentCulture, "{0}={1}", Quote(kvp.Key), Quote(kvp.Value));
             }
             return output.ToString();
         }

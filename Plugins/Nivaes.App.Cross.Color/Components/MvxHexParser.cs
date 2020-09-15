@@ -52,16 +52,16 @@ namespace MvvmCross.Plugin.Color
 
         private static System.Drawing.Color Parse3DigitColor(string value)
         {
-            var red = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber);
-            var green = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber);
-            var blue = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber);
+            var red = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var green = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var blue = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             return System.Drawing.Color.FromArgb(UpByte(red), UpByte(green), UpByte(blue));
         }
 
         private static System.Drawing.Color Parse6DigitColor(string value)
         {
-            var rgb = int.Parse(value, NumberStyles.HexNumber);
+            var rgb = int.Parse(value, NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             //Parse the individual RGB values from the RGB Integer
             int red = (rgb >> 16) & 0xFF;
@@ -75,28 +75,28 @@ namespace MvvmCross.Plugin.Color
 
         private static System.Drawing.Color Parse4DigitARBGColor(string value)
         {
-            var alpha = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber);
-            var red = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber);
-            var green = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber);
-            var blue = int.Parse(value.Substring(3, 1), NumberStyles.HexNumber);
+            var alpha = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var red = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var green = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var blue = int.Parse(value.Substring(3, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             return System.Drawing.Color.FromArgb(UpByte(alpha), UpByte(red), UpByte(green), UpByte(blue));
         }
 
         private static System.Drawing.Color Parse4DigitRBGAColor(string value)
         {
-            var red = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber);
-            var green = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber);
-            var blue = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber);
-            var alpha = int.Parse(value.Substring(3, 1), NumberStyles.HexNumber);
+            var red = int.Parse(value.Substring(0, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var green = int.Parse(value.Substring(1, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var blue = int.Parse(value.Substring(2, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var alpha = int.Parse(value.Substring(3, 1), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             return System.Drawing.Color.FromArgb(UpByte(alpha), UpByte(red), UpByte(green), UpByte(blue));
         }
 
         private static System.Drawing.Color Parse8DigitARGBColor(string value)
         {
-            var a = int.Parse(value.Substring(0, 2), NumberStyles.HexNumber);
-            var rgb = int.Parse(value.Substring(2, 6), NumberStyles.HexNumber);
+            var a = int.Parse(value.Substring(0, 2), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var rgb = int.Parse(value.Substring(2, 6), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             ParseRGBInteger(rgb, out int red, out int green, out int blue);
 
@@ -105,8 +105,8 @@ namespace MvvmCross.Plugin.Color
 
         private static System.Drawing.Color Parse8DigitRGBAColor(string value)
         {
-            var rgb = int.Parse(value.Substring(0, 6), NumberStyles.HexNumber);
-            var a = int.Parse(value.Substring(6, 2), NumberStyles.HexNumber);
+            var rgb = int.Parse(value.Substring(0, 6), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
+            var a = int.Parse(value.Substring(6, 2), NumberStyles.HexNumber, CultureInfo.CurrentCulture);
 
             ParseRGBInteger(rgb, out int red, out int green, out int blue);
 
