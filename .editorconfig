@@ -229,3 +229,6 @@ dotnet_diagnostic.CA1032.severity = none
 
 # CA1028: Enum storage should be Int32
 dotnet_diagnostic.ca1028.severity = none
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none

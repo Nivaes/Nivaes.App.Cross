@@ -2,19 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-
 namespace MvvmCross
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.IoC;
+
     public static class Mvx
     {
         /// <summary>
         /// Returns a singleton instance of the default IoC Provider. If possible use dependency injection instead.
         /// </summary>
-        public static IMvxIoCProvider IoCProvider => MvxSingleton<IMvxIoCProvider>.Instance;
+        public static IMvxIoCProvider IoCProvider => MvxIoCProvider.Provider; //MvxSingleton<IMvxIoCProvider>.Instance
 
         [Obsolete("Use Mvx.IoCProvider instead")]
         public static bool CanResolve<TService>() where TService : class

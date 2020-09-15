@@ -2,17 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-
 namespace MvvmCross.IoC
 {
-    public class MvxIoCContainer
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+
+    internal class MvxIoCContainer
         : IMvxIoCProvider
     {
         private readonly Dictionary<Type, IResolver> mResolvers = new Dictionary<Type, IResolver>();
@@ -27,7 +27,7 @@ namespace MvvmCross.IoC
 
         protected IMvxIocOptions Options => _options;
 
-        public MvxIoCContainer(IMvxIocOptions options, IMvxIoCProvider parentProvider = null)
+        public MvxIoCContainer(IMvxIocOptions? options, IMvxIoCProvider? parentProvider = null)
         {
             _options = options ?? new MvxIocOptions();
             if (_options.PropertyInjectorType != null)

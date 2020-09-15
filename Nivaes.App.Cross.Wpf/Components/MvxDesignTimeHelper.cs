@@ -7,7 +7,6 @@ namespace MvvmCross.Platforms.Wpf
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
-    using MvvmCross.Base;
     using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Wpf.Core;
@@ -38,7 +37,7 @@ namespace MvvmCross.Platforms.Wpf
             if (!IsInDesignTime)
                 return;
 
-            if (MvxSingleton<IMvxIoCProvider>.Instance == null)
+            if (!MvxIoCProvider.IsValueCreated)
             {
                 var iocProvider = MvxIoCProvider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);

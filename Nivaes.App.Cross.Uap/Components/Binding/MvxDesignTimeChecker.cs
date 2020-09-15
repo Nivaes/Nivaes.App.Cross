@@ -2,28 +2,27 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Windows.ApplicationModel;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-using MvvmCross.Binding.Parse.Binding;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
+    using MvvmCross.Binding.Parse.Binding;
+    using MvvmCross.IoC;
+    using Windows.ApplicationModel;
+
     public static class MvxDesignTimeChecker
     {
-        private static bool _checked;
+        private static bool mChecked;
 
         public static void Check()
         {
-            if (_checked)
+            if (mChecked)
                 return;
 
-            _checked = true;
+            mChecked = true;
 
             if (!DesignMode.DesignModeEnabled)
                 return;
 
-            if (MvxSingleton<IMvxIoCProvider>.Instance == null)
+            if (!MvxIoCProvider.IsValueCreated)
             {
                 var iocProvider = MvxIoCProvider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);

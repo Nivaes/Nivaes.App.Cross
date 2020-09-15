@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Reflection;
-using MvvmCross.Base;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-using MvvmCross.Binding.Combiners;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
+    using System.Reflection;
+    using MvvmCross.Base;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Binding.Combiners;
+
     public class Import
     {
         static Import()
@@ -17,30 +17,27 @@ namespace MvvmCross.Platforms.Uap.Binding
             MvxDesignTimeChecker.Check();
         }
 
-        private object _from;
+        private object? mFrom;
 
         public object From
         {
-            get 
-            { 
-                return _from; 
-            }
+            get => mFrom;
             set
             {
-                if (_from == value)
+                if (mFrom == value)
                     return;
 
-                _from = value;
-                if (_from != null)
+                mFrom = value;
+                if (mFrom != null)
                 {
-                    RegisterAssembly(_from.GetType().GetTypeInfo().Assembly);
+                    RegisterAssembly(mFrom.GetType().GetTypeInfo().Assembly);
                 }
             }
         }
 
         private static void RegisterAssembly(Assembly assembly)
         {
-            if (MvxSingleton<IMvxIoCProvider>.Instance == null)
+            if (!MvxIoCProvider.IsValueCreated)
             {
                 MvxWindowsAssemblyCache.EnsureInitialized();
                 MvxWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);
