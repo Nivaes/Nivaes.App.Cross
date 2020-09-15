@@ -48,7 +48,7 @@ namespace MvvmCross.Binding.ExpressionParse
 
             public void AppendPrintTo(StringBuilder builder)
             {
-                builder.AppendFormat(CultureInfo.CurrentCulture, "[{0}]", IndexValue);
+                builder?.AppendFormat(CultureInfo.CurrentCulture, "[{0}]", IndexValue);
             }
         }
 
