@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetFramework>net5.0-windows10</TargetFramework>
+    <!--<TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>-->
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+    <!-- <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>-->
     <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
 
@@ -14,6 +14,8 @@
 
     <RootNamespace>Nivaes.App.Cross.Mobile.Windows.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Mobile.Windows.Sample</AssemblyName>
+
+    <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>
 
   <ItemGroup>

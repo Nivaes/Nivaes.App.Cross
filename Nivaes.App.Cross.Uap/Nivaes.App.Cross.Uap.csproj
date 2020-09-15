@@ -1,16 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFrameworks>net5.0</TargetFrameworks>
-    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+    <!--<OutputType>Library</OutputType>-->
+    <!--<TargetFrameworks>net5.0-windows10.0.19041</TargetFrameworks>-->
+    <TargetFrameworks>net5.0-windows10</TargetFrameworks>
+    <!--<TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>-->
+   <!--<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>-->
+     <!--<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>-->
 
     <AssemblyName>Nivaes.App.Cross.Uap</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Uap</RootNamespace>
 
-    <!--<Platforms>x86;x64</Platforms>
+    <!--<Platforms>x86;x64</Platforms>-->
+    <!--<Platforms>AnyCPU;x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>-->
 
     <Description>
@@ -19,6 +22,8 @@
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Uap</PackageId>
+
+    <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +38,10 @@
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="Windows.Foundation.UniversalApiContract">
       <HintPath>..\..\..\..\Program Files (x86)\Windows Kits\10\References\10.0.19041.0\Windows.Foundation.UniversalApiContract\10.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>
