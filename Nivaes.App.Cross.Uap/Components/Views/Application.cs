@@ -43,7 +43,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
             base.OnLaunched(args);
 
-            if (!(Window.Current.Content is Frame rootFrame))
+            if (Window.Current.Content is not Frame rootFrame)
             {
                 ActivationArguments = args.UWPLaunchActivatedEventArgs;
 
