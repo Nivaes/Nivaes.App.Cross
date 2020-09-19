@@ -55,8 +55,6 @@ namespace MvvmCross.Platforms.Uap.Views
                 };
 
                 window.Activate();
-
-                //mWindow = window;
             }
             else
             {
@@ -102,13 +100,11 @@ namespace MvvmCross.Platforms.Uap.Views
             base.OnActivated(args);
             ActivationArguments = args;
 
-            //mWindow!.Content = InitializeFrame(args);
             var rootFrame = InitializeFrame(args);
 
             _ = RunAppStart(args);
 
             Window.Current.Activate();
-            //mWindow!.Activate();
         }
 
         protected virtual async Task RunAppStart(IActivatedEventArgs activationArgs)
@@ -129,7 +125,7 @@ namespace MvvmCross.Platforms.Uap.Views
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null) => hint;
+        protected virtual object? GetAppStartHint(object? hint = null) => hint;
 
         /// <summary>
         /// Función probisional.
