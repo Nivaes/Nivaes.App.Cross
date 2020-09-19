@@ -20,15 +20,23 @@ namespace MvvmCross.Platforms.Android.Views
             mPresenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            await ExecuteOnMainThreadAsync(() => mPresenter.Show(request)).ConfigureAwait(false);
+            await ExecuteOnMainThreadAsync(async () =>
+            {
+                await mPresenter.Show(request).ConfigureAwait(false);
+            }).ConfigureAwait(false);
+
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(() => mPresenter.ChangePresentation(hint)).ConfigureAwait(false);
+            await ExecuteOnMainThreadAsync(async () =>
+            {
+                await mPresenter.ChangePresentation(hint).ConfigureAwait(false);
+            }).ConfigureAwait(false);
+
             return true;
         }
     }

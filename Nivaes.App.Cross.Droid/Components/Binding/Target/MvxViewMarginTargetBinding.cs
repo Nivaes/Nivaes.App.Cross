@@ -2,21 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content.Res;
 using Android.Views;
-using MvvmCross.Binding;
 
 namespace MvvmCross.Platforms.Android.Binding.Target
 {
+    using System;
+    using MvvmCross.Binding;
+
     public class MvxViewMarginTargetBinding : MvxAndroidTargetBinding
     {
-        private string _whichMargin;
+        private readonly string mWhichMargin;
 
         public MvxViewMarginTargetBinding(View target, string whichMargin) : base(target)
         {
-            if (whichMargin == null) throw new ArgumentNullException(nameof(whichMargin));
-            _whichMargin = whichMargin;
+            mWhichMargin = whichMargin ?? throw new ArgumentNullException(nameof(whichMargin));
         }
 
         public override Type TargetType => typeof(int);
@@ -24,16 +24,14 @@ namespace MvvmCross.Platforms.Android.Binding.Target
 
         protected override void SetValueImpl(object target, object value)
         {
-            var view = target as View;
-            if (view == null) return;
+            if (target is not View view) return;
 
-            var layoutParameters = view.LayoutParameters as ViewGroup.MarginLayoutParams;
-            if (layoutParameters == null) return;
+            if (view.LayoutParameters is not ViewGroup.MarginLayoutParams layoutParameters) return;
 
             var dpMargin = (int)value;
             var pxMargin = DpToPx(dpMargin);
 
-            switch (_whichMargin)
+            switch (mWhichMargin)
             {
                 case MvxAndroidPropertyBinding.View_Margin:
                     layoutParameters.SetMargins(pxMargin, pxMargin, pxMargin, pxMargin);

@@ -2,36 +2,50 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Windows.UI.Core;
-using MvvmCross.Base;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
-    public class MvxWindowsMainThreadDispatcher : MvxMainThreadAsyncDispatcher
+    using System;
+    using Windows.UI.Core;
+    using MvvmCross.Base;
+    using System.Threading.Tasks;
+
+    public class MvxWindowsMainThreadDispatcher
+        : MvxMainThreadDispatcher
     {
-        private readonly CoreDispatcher _uiDispatcher;
+        private readonly CoreDispatcher mUiDispatcher;
 
         public MvxWindowsMainThreadDispatcher(CoreDispatcher uiDispatcher)
         {
-            _uiDispatcher = uiDispatcher;
+            mUiDispatcher = uiDispatcher ?? throw new ArgumentNullException(nameof(uiDispatcher));
         }
 
-        public override bool IsOnMainThread => _uiDispatcher.HasThreadAccess;
+        public override bool IsOnMainThread => mUiDispatcher.HasThreadAccess;
 
-        public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
+        public override async ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
                 ExceptionMaskedAction(action, maskExceptions);
-                return true;
+                return;
             }
 
-            _uiDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => 
+            await mUiDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 ExceptionMaskedAction(action, maskExceptions);
             });
-            return true;
+        }
+
+        public override async ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        {
+            if (IsOnMainThread)
+            {
+                await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
+            }
+
+            await mUiDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
+            });
         }
     }
 }

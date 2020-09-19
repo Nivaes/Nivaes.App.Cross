@@ -473,7 +473,7 @@ namespace MvvmCross.Core
                 //ToDo: Investigar porque se registra 3 veces.
 
                 Mvx.IoCProvider.RegisterSingleton(dispatcher);
-                Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadAsyncDispatcher>(dispatcher);
+                Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
                 Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
             });
         }

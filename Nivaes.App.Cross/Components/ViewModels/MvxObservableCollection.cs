@@ -251,15 +251,16 @@ namespace MvvmCross.ViewModels
                 new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
         }
 
-        protected virtual Task InvokeOnMainThread(Action action)
+        protected virtual ValueTask InvokeOnMainThread(Action action)
         {
-            var dispatcher = Mvx.IoCProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
-            return dispatcher?.ExecuteOnMainThreadAsync(action);
+            var dispatcher = Mvx.IoCProvider.Resolve<IMvxMainThreadDispatcher>();
+
+            return dispatcher.ExecuteOnMainThread(action);
         }
 
-        protected async override void OnPropertyChanged(PropertyChangedEventArgs e)
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            await InvokeOnMainThread(() => base.OnPropertyChanged(e));
+            var _ = InvokeOnMainThread(() => base.OnPropertyChanged(e));
         }
     }
 }

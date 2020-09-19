@@ -1,33 +1,39 @@
-<app:RootViewPage x:Class="Nivaes.App.Cross.Mobele.Windows.Sample.Views.RootView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:app="using:Nivaes.App.Cross.Mobele.Windows.Sample.Views"
-                      mc:Ignorable="d">
+<app:RootViewPage
+    x:Class="Nivaes.App.Cross.Mobele.Windows.Sample.Views.RootView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:app="using:Nivaes.App.Cross.Mobele.Windows.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <StackPanel>
         <TextBlock Text="{StaticResource WelcomeText}" />
-        <Button Content="Show Child (Stack Navigation)"
-                Command="{Binding ShowChildCommand}"
-                Margin="5"
-                Padding="5" />
-        <Button Content="Show SplitView"
-                Command="{Binding ShowSplitCommand}"
-                Margin="5"
-                Padding="5" />
-        <Button Content="Show Modaliew"
-                Command="{Binding ShowModalCommand}"
-                Margin="5"
-                Padding="5" />
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding ShowChildCommand}"
+            Content="Show Child (Stack Navigation)" />
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding ShowSplitCommand}"
+            Content="Show SplitView" />
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding ShowModalCommand}"
+            Content="Show Modaliew" />
 
-        <Button Content="Register and Resolve With Reflection"
-                Command="{Binding RegisterAndResolveWithReflectionCommand}"
-                Margin="5"
-                Padding="5" />
-        <Button Content="Register and Resolve With No Reflection"
-                Command="{Binding RegisterAndResolveWithNoReflectionCommand}"
-                Margin="5"
-                Padding="5" />
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding RegisterAndResolveWithReflectionCommand}"
+            Content="Register and Resolve With Reflection" />
+        <Button
+            Margin="5"
+            Padding="5"
+            Command="{Binding RegisterAndResolveWithNoReflectionCommand}"
+            Content="Register and Resolve With No Reflection" />
         <TextBlock Text="{Binding TimeToRegister}" />
         <TextBlock Text="{Binding TimeToResolve}" />
         <TextBlock Text="{Binding TotalTime}" />

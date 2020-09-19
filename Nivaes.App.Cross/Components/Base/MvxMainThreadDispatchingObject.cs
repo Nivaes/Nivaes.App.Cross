@@ -2,38 +2,50 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading.Tasks;
-
 namespace MvvmCross.Base
 {
+    using System;
+    using System.Threading.Tasks;
+
     public abstract class MvxMainThreadDispatchingObject
     {
-        protected IMvxMainThreadAsyncDispatcher AsyncDispatcher => MvxMainThreadDispatcher.Instance as IMvxMainThreadAsyncDispatcher;
+        protected IMvxMainThreadDispatcher AsyncDispatcher => (IMvxMainThreadDispatcher)MvxMainThreadDispatcher.Instance!;
 
         protected void InvokeOnMainThread(Action action, bool maskExceptions = true)
         {
-            InvokeOnMainThreadAsync(action, maskExceptions);
-        }
+            if (action == null) throw new NullReferenceException(nameof(action));
 
-        protected Task InvokeOnMainThreadAsync(Action action, bool maskExceptions = true)
-        {
-            // this corner case should only happen when there is no IoC
-            // i.e. when running in a UnitTest environment, falling back
-            // to just executing action
             if (AsyncDispatcher == null)
             {
                 try
                 {
                     action();
                 }
-                catch
+                catch when (maskExceptions)
                 {
-                    if (!maskExceptions)
-                        throw;
                 }
-                
-                return Task.CompletedTask;
+
+                return;
+            }
+
+            var _ = AsyncDispatcher.ExecuteOnMainThread(action, maskExceptions).AsTask();
+        }
+
+        protected ValueTask InvokeOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        {
+            if (action == null) throw new NullReferenceException(nameof(action));
+
+            if (AsyncDispatcher == null)
+            {
+                try
+                {
+                    return action();
+                }
+                catch when (maskExceptions)
+                {
+                }
+
+                return new ValueTask();
             }
 
             return AsyncDispatcher.ExecuteOnMainThreadAsync(action, maskExceptions);

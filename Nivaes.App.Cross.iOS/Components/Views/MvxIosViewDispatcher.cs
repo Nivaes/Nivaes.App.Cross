@@ -2,39 +2,42 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Ios.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Ios.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxIosViewDispatcher
         : MvxIosUIThreadDispatcher, IMvxViewDispatcher
     {
-        private readonly IMvxIosViewPresenter _presenter;
+        private readonly IMvxIosViewPresenter mPresenter;
 
         public MvxIosViewDispatcher(IMvxIosViewPresenter presenter)
         {
-            _presenter = presenter;
+            mPresenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<Task> action = () =>
-                {
-                    MvxLog.Instance.Trace("iOSNavigation", "Navigate requested");
-                    return _presenter.Show(request);
-                };
-            await ExecuteOnMainThreadAsync(action);
+            await ExecuteOnMainThreadAsync(async () =>
+            {
+                MvxLog.Instance.Trace("iOSNavigation", "Navigate requested");
+                await mPresenter.Show(request).ConfigureAwait(false);
+            }).ConfigureAwait(false);
+
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+            await ExecuteOnMainThreadAsync(async () =>
+            {
+                await mPresenter.ChangePresentation(hint).ConfigureAwait(false);
+            }).ConfigureAwait(false);
+
             return true;
         }
     }
