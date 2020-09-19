@@ -214,8 +214,7 @@ namespace MvvmCross.IoC
         {
             try
             {
-                object item;
-                var toReturn = TryResolve(typeof(T), out item);
+                var toReturn = TryResolve(typeof(T), out object item);
                 resolved = (T)item;
                 return toReturn;
             }
@@ -636,7 +635,7 @@ namespace MvvmCross.IoC
             var parameters = new List<object>();
             foreach (var parameterInfo in selectedConstructor.GetParameters())
             {
-                if (arguments != null && arguments.ContainsKey(parameterInfo.Name))
+                if (arguments?.ContainsKey(parameterInfo.Name) == true)
                 {
                     parameters.Add(arguments[parameterInfo.Name]);
                 }

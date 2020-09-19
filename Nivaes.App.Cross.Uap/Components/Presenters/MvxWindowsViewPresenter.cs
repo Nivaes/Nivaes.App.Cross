@@ -222,10 +222,10 @@ namespace MvvmCross.Platforms.Uap.Presenters
                 HandleBackButtonVisibility();
                 return Task.FromResult(true);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MvxLog.Instance.Trace("Error seen during navigation request to {0} - error {1}", request.ViewModelType.Name,
-                    exception.ToLongString());
+                MvxLog.Instance.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
+                    ex.ToLongString());
                 return Task.FromResult(false);
             }
         }
@@ -243,10 +243,10 @@ namespace MvvmCross.Platforms.Uap.Presenters
 
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MvxLog.Instance.Trace("Error seen during navigation request to {0} - error {1}", request.ViewModelType.Name,
-                    exception.ToLongString());
+                MvxLog.Instance.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
+                    ex.ToLongString());
                 return false;
             }
         }

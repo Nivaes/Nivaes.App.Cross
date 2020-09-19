@@ -37,40 +37,58 @@ namespace MvvmCross.Platforms.Uap.Views
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             if (args == null) throw new ArgumentNullException(nameof(args));
 
             base.OnLaunched(args);
 
-            if (Window.Current.Content is not Frame rootFrame)
+            if (Window.Current == null)
             {
-                ActivationArguments = args.UWPLaunchActivatedEventArgs;
+                var rootFrame = InitializeFrame();
 
-                rootFrame = InitializeFrame(ActivationArguments);
-                Window.Current.Content = rootFrame;
-            }
+                var _ = RunAppStart(ActivationArguments);
 
-            //if (true/*!ActivationArguments.PrelaunchActivated*/)
-            //if (ActivationArguments.PreviousExecutionState == ApplicationExecutionState.NotRunning)
-            if(args.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
-            {
-                Window.Current.Activate();
+                var window = new Microsoft.UI.Xaml.Window
+                {
+                    Content = rootFrame
+                };
 
-                //if (rootFrame.Content == null)
-                //{
-                await RunAppStart(ActivationArguments).ConfigureAwait(false);
-                //}
-
-                //var window = new Microsoft.UI.Xaml.Window
-                //{
-                //    Content = rootFrame
-                //};
-
-                //Window.Current.Activate();
-                //window.Activate();
+                window.Activate();
 
                 //mWindow = window;
+            }
+            else
+            {
+                if (Window.Current.Content is not Frame rootFrame)
+                {
+                    ActivationArguments = args.UWPLaunchActivatedEventArgs;
+
+                    rootFrame = InitializeFrame(ActivationArguments);
+                    Window.Current.Content = rootFrame;
+                }
+
+                //if (true/*!ActivationArguments.PrelaunchActivated*/)
+                //if (ActivationArguments.PreviousExecutionState == ApplicationExecutionState.NotRunning)
+                if (args.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
+                {
+                    Window.Current.Activate();
+
+                    //if (rootFrame.Content == null)
+                    //{
+                    var _ = RunAppStart(ActivationArguments);
+                    //}
+
+                    //var window = new Microsoft.UI.Xaml.Window
+                    //{
+                    //    Content = rootFrame
+                    //};
+
+                    //Window.Current.Activate();
+                    //window.Activate();
+
+                    //mWindow = window;
+                }
             }
         }
 
@@ -79,7 +97,7 @@ namespace MvvmCross.Platforms.Uap.Views
         //    base.OnWindowCreated(args);
         //}
 
-        protected override async void OnActivated(IActivatedEventArgs args)
+        protected override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
             ActivationArguments = args;
@@ -87,13 +105,13 @@ namespace MvvmCross.Platforms.Uap.Views
             //mWindow!.Content = InitializeFrame(args);
             var rootFrame = InitializeFrame(args);
 
-            await RunAppStart(args).ConfigureAwait(false);
+            _ = RunAppStart(args);
 
             Window.Current.Activate();
             //mWindow!.Activate();
         }
 
-        protected virtual async ValueTask RunAppStart(IActivatedEventArgs activationArgs)
+        protected virtual async Task RunAppStart(IActivatedEventArgs activationArgs)
         {
             var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, ActivationArguments, nameof(Suspend));
             if (RootFrame?.Content == null)
@@ -112,6 +130,21 @@ namespace MvvmCross.Platforms.Uap.Views
         }
 
         protected virtual object GetAppStartHint(object hint = null) => hint;
+
+        /// <summary>
+        /// Función probisional.
+        /// </summary>
+        protected virtual Frame InitializeFrame()
+        {
+            var rootFrame = new Frame();
+            rootFrame.NavigationFailed += OnNavigationFailed;
+
+            OnResumeFromTerminateState();
+
+            RootFrame = rootFrame;
+
+            return rootFrame;
+        }
 
         protected virtual Frame InitializeFrame(IActivatedEventArgs activationArgs)
         {
