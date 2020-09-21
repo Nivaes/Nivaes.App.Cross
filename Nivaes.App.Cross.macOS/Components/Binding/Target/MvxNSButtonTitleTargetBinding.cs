@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using AppKit;
-using MvvmCross.Binding;
-
 namespace MvvmCross.Platforms.Mac.Binding.Target
 {
+    using System;
+    using AppKit;
+    using MvvmCross.Binding;
+
     public class MvxNSButtonTitleTargetBinding : MvxMacTargetBinding
     {
         protected NSButton Button

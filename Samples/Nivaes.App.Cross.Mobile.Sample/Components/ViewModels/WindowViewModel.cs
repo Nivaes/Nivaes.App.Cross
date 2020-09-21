@@ -24,8 +24,8 @@ namespace Nivaes.App.Mobile.Sample
 
         public string Title => $"No.{Count} Window View";
 
-        private Modes mMode = Modes.Blue;
-        public Modes Mode
+        private Mode mMode = Mode.Blue;
+        public Mode Mode
         {
             get => mMode;
             set
@@ -48,7 +48,7 @@ namespace Nivaes.App.Mobile.Sample
             }
         }
 
-        private bool mIsItem2 = false;
+        private bool mIsItem2;
         public bool IsItem2
         {
             get => mIsItem2;
@@ -102,12 +102,12 @@ namespace Nivaes.App.Mobile.Sample
 
             CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
 
-            ToggleSettingCommand = new MvxAsyncCommand(async () => 
+            ToggleSettingCommand = new MvxAsyncCommand(async () =>
             {
                 await Task.Run(() =>
                 {
                     IsItemSetting = !IsItemSetting;
-                });
+                }).ConfigureAwait(true);
             });
         }
 

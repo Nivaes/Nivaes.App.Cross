@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
-    public enum Modes
+    public enum Mode
     {
         Red = 0,
         Green = 1,

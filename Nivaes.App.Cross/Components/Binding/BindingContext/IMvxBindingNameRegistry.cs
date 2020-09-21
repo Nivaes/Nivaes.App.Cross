@@ -2,11 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Linq.Expressions;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Linq.Expressions;
+
     public interface IMvxBindingNameRegistry
     {
         void AddOrOverwrite(Type type, string name);
