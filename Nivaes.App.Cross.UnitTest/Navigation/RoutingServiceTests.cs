@@ -2,22 +2,10 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
-using Moq;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
+
 using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
-using MvvmCross.Tests;
-using MvvmCross.UnitTest.Mocks.Dispatchers;
 using MvvmCross.UnitTest.Mocks.TestViewModels;
-using MvvmCross.UnitTest.Mocks.ViewModels;
 using MvvmCross.UnitTest.Stubs;
-using MvvmCross.ViewModels;
-using Xunit;
 
 [assembly: MvxNavigation(typeof(ViewModelA), @"https?://mvvmcross.com/blog")]
 [assembly: MvxNavigation(typeof(ViewModelB), @"mvx://test/\?id=00000000000000000000000000000000$")]
@@ -26,6 +14,20 @@ using Xunit;
 
 namespace MvvmCross.UnitTest.Navigation
 {
+    using System;
+    using System.IO;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using Moq;
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Navigation.EventArguments;
+    using MvvmCross.Tests;
+    using MvvmCross.UnitTest.Mocks.Dispatchers;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.UnitTest;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class RoutingServiceTests
     {
@@ -74,10 +76,10 @@ namespace MvvmCross.UnitTest.Navigation
         {
             var url = "mvx://fail/?id=" + Guid.NewGuid();
 
-            var canNavigate = await RoutingService.CanNavigate(url);
+            var canNavigate = await RoutingService.CanNavigate(url).ConfigureAwait(true);
             Assert.False(canNavigate);
 
-            await Assert.ThrowsAsync<MvxException>(() => RoutingService.Navigate(url));
+            await Assert.ThrowsAsync<MvxException>(() => RoutingService.Navigate(url).AsTask()).ConfigureAwait(true);
 
             MockDispatcher.Verify(x => x.ShowViewModel(It.IsAny<MvxViewModelRequest>()), Times.Never);
         }
@@ -85,7 +87,7 @@ namespace MvvmCross.UnitTest.Navigation
         [Fact]
         public async Task TestDirectMatchRegexAsync()
         {
-            await RoutingService.Navigate("mvx://test/?id=" + Guid.Empty.ToString("N"));
+            await RoutingService.Navigate("mvx://test/?id=" + Guid.Empty.ToString("N")).ConfigureAwait(true);
 
             MockDispatcher.Verify(
                 x => x.ShowViewModel(It.Is<MvxViewModelRequest>(t => t.ViewModelType == typeof(ViewModelB))),
@@ -95,7 +97,7 @@ namespace MvvmCross.UnitTest.Navigation
         [Fact]
         public async Task TestRegexWithParametersAsync()
         {
-            await RoutingService.Navigate("mvx://test/?id=" + Guid.NewGuid().ToString("N"));
+            await RoutingService.Navigate("mvx://test/?id=" + Guid.NewGuid().ToString("N")).ConfigureAwait(true);
 
             MockDispatcher.Verify(
                 x => x.ShowViewModel(It.Is<MvxViewModelRequest>(t => t.ViewModelType == typeof(ViewModelC))),

@@ -2,23 +2,32 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Base;
-
 namespace MvvmCross.UnitTest.Mocks.Dispatchers
 {
+    using System;
+    using System.Threading.Tasks;
+    using MvvmCross.Base;
+
     public class CountingMockMainThreadDispatcher
-        : MvxMainThreadAsyncDispatcher
+        : MvxMainThreadDispatcher
     {
         public int Count { get; set; }
 
         public override bool IsOnMainThread => true;
 
-        public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
+        public override ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
+
             ExceptionMaskedAction(action, maskExceptions);
             Count++;
-            return true;
+
+            return new ValueTask();
+        }
+
+        public override async ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        {
+            await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
+            Count++;
         }
     }
 }

@@ -2,21 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Moq;
-using MvvmCross.Core;
-using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
-using MvvmCross.Presenters.Hints;
-using MvvmCross.Tests;
-using MvvmCross.UnitTest.Mocks.Dispatchers;
-using MvvmCross.UnitTest.Mocks.ViewModels;
-using MvvmCross.ViewModels;
-using Xunit;
-
 namespace MvvmCross.UnitTest.Navigation
 {
+    using System.Threading.Tasks;
+    using Moq;
+    using MvvmCross.Core;
+    using MvvmCross.Navigation;
+    using MvvmCross.Navigation.EventArguments;
+    using MvvmCross.Presenters.Hints;
+    using MvvmCross.Tests;
+    using MvvmCross.UnitTest.Mocks.Dispatchers;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.UnitTest;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class NavigationServiceTests
     {
@@ -43,7 +42,7 @@ namespace MvvmCross.UnitTest.Navigation
                        {
                            var vm = new SimpleTestViewModel();
                            vm.Prepare();
-                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize());
+                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                            return vm;
                        });
             MockLoader.Setup(
@@ -52,7 +51,7 @@ namespace MvvmCross.UnitTest.Navigation
                        {
                            var vm = new SimpleResultTestViewModel();
                            vm.Prepare();
-                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize());
+                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                            return vm;
                        });
             MockLoader.Setup(
@@ -62,7 +61,7 @@ namespace MvvmCross.UnitTest.Navigation
                           var vm = new SimpleParameterTestViewModel();
                           vm.Prepare();
                           vm.Prepare("");
-                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize());
+                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });
             MockLoader.Setup(
@@ -71,7 +70,7 @@ namespace MvvmCross.UnitTest.Navigation
                       {
                           var vm = new SimpleTestViewModel();
                           vm.Prepare();
-                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize());
+                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });
             MockLoader.Setup(
@@ -81,7 +80,7 @@ namespace MvvmCross.UnitTest.Navigation
                           var vm = new SimpleParameterTestViewModel();
                           vm.Prepare();
                           vm.Prepare("");
-                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize());
+                          vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });
 
@@ -259,12 +258,12 @@ namespace MvvmCross.UnitTest.Navigation
 
             var tasks = new Task[]
             {
-                navigationService.Navigate<SimpleTestViewModel>(),
-                navigationService.Navigate<SimpleTestViewModel>(new MvxBundle()),
-                navigationService.Navigate<SimpleResultTestViewModel, bool>(),
-                navigationService.Navigate<SimpleResultTestViewModel, bool>(new MvxBundle()),
-                navigationService.Navigate<SimpleParameterTestViewModel, string>("hello"),
-                navigationService.Navigate<SimpleParameterTestViewModel, string>("hello", new MvxBundle())
+                navigationService.Navigate<SimpleTestViewModel>().AsTask(),
+                navigationService.Navigate<SimpleTestViewModel>(new MvxBundle()).AsTask(),
+                navigationService.Navigate<SimpleResultTestViewModel, bool>().AsTask(),
+                navigationService.Navigate<SimpleResultTestViewModel, bool>(new MvxBundle()).AsTask(),
+                navigationService.Navigate<SimpleParameterTestViewModel, string>("hello").AsTask(),
+                navigationService.Navigate<SimpleParameterTestViewModel, string>("hello", new MvxBundle()).AsTask()
             };
             await Task.WhenAll(tasks).ConfigureAwait(false);
             await Task.Delay(200).ConfigureAwait(false);
@@ -285,8 +284,8 @@ namespace MvvmCross.UnitTest.Navigation
 
             var tasks = new Task[]
             {
-                navigationService.Close(new SimpleTestViewModel()),
-                navigationService.Close<bool>(new SimpleResultTestViewModel(), false)
+                navigationService.Close(new SimpleTestViewModel()).AsTask(),
+                navigationService.Close<bool>(new SimpleResultTestViewModel(), false).AsTask()
             };
             await Task.WhenAll(tasks).ConfigureAwait(false);
 
