@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Tizen.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Tizen.Views
 {
+    using System;
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Tizen.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxTizenViewDispatcher
         : MvxTizenMainThreadDispatcher, IMvxViewDispatcher
     {
@@ -21,20 +21,20 @@ namespace MvvmCross.Platforms.Tizen.Views
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<Task> action = () =>
+            Func<ValueTask> action = async () =>
             {
                 MvxLog.Instance.Trace("TizenNavigation", "Navigate requested");
-                return _presenter.Show(request);
+                await _presenter.Show(request).ConfigureAwait(true);
             };
-            await ExecuteOnMainThreadAsync(action);
+            await ExecuteOnMainThreadAsync(action).ConfigureAwait(true);
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+            await ExecuteOnMainThreadAsync(async () => await _presenter.ChangePresentation(hint).ConfigureAwait(true)).ConfigureAwait(true);
             return true;
         }
     }
