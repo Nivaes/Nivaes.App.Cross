@@ -5,26 +5,19 @@
 namespace MvvmCross.UnitTest.ViewModels
 {
     using System;
-    using System.Linq;
     using Moq;
-    using MvvmCross.Core;
     using MvvmCross.Logging;
-    using MvvmCross.Navigation;
-    using MvvmCross.Tests;
-    using MvvmCross.UnitTest.Mocks.Dispatchers;
-    using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using MvvmCross.UnitTest.Mocks.ViewModels;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.UnitTest;
     using Xunit;
 
     [Collection("MvxTest")]
     public class MvxNavigationViewModelTest
     {
-        private readonly NavigationTestFixture _fixture;
+        private readonly NavigationTestFixture mFixture;
 
         public MvxNavigationViewModelTest(NavigationTestFixture fixture)
         {
-            _fixture = fixture;
+            mFixture = fixture;
 
             var logProvider = new Mock<IMvxLogProvider>();
             logProvider.Setup(
@@ -34,20 +27,19 @@ namespace MvvmCross.UnitTest.ViewModels
                           var vm = new Mock<IMvxLog>();
                           return vm.Object;
                       });
-            _fixture.Ioc.RegisterSingleton(logProvider.Object);
+            mFixture.Ioc.RegisterSingleton(logProvider.Object);
 
-            fixture.Ioc.RegisterType<NavigationTestViewModel, NavigationTestViewModel>();
+            mFixture.Ioc.RegisterType<NavigationTestViewModel, NavigationTestViewModel>();
         }
 
         [Fact]
-        public void Test_RoundTrip()
+        public void TestRoundTrip()
         {
-            var navViewModel = _fixture.Ioc.Resolve<NavigationTestViewModel>();
+            var navViewModel = mFixture.Ioc.Resolve<NavigationTestViewModel>();
             Assert.NotNull(navViewModel);
             Assert.NotNull(navViewModel.NavService);
             Assert.NotNull(navViewModel.LoggingProvider);
             Assert.NotNull(navViewModel.ViewModelLog);
         }
-
     }
 }

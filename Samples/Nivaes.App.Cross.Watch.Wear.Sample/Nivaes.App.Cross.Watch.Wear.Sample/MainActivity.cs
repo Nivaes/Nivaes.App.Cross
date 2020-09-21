@@ -1,24 +1,19 @@
-﻿using System;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
 
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Android.Support.Wearable.Views;
-using Android.Support.V4.App;
-using Android.Support.V4.View;
 using Android.Support.Wearable.Activity;
-using Java.Interop;
-using Android.Views.Animations;
+using Android.Widget;
 
 namespace Nivaes.App.Cross.Watch.Wear.Sample
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
-    public class MainActivity : WearableActivity
+    public class MainActivity
+        : WearableActivity
     {
-        TextView textView;
+        private TextView textView;
 
         protected override void OnCreate(Bundle bundle)
         {

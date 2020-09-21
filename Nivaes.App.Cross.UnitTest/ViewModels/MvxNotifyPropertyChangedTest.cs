@@ -274,10 +274,10 @@ namespace MvvmCross.UnitTest.ViewModels
         }
 
         [Fact]
-        public void Test_SetPropertyAfterActionCalledAfterPropertyChanged()
+        public void TestSetPropertyAfterActionCalledAfterPropertyChanged()
         {
             _fixture.ClearAll();
-            using var dispatcher = new InlineMockMainThreadDispatcher();
+            var dispatcher = new InlineMockMainThreadDispatcher();
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var t2 = new TestInpc2();
@@ -340,7 +340,7 @@ namespace MvvmCross.UnitTest.ViewModels
         {
             _fixture.ClearAll();
 
-            using var dispatcher = new CountingMockMainThreadDispatcher();
+            var dispatcher = new CountingMockMainThreadDispatcher();
             _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
 
             var interceptor = new Interceptor();

@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Specialized;
-using System.Threading.Tasks;
-using MvvmCross.Base;
-using MvvmCross.Tests;
-using MvvmCross.ViewModels;
-using Xunit;
-
 namespace MvvmCross.UnitTest.ViewModels
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.Threading.Tasks;
+    using MvvmCross.Base;
+    using MvvmCross.ViewModels;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class MvxObservableCollectionTest
     {
@@ -21,22 +20,27 @@ namespace MvvmCross.UnitTest.ViewModels
         {
             _fixture = fixture;
             _fixture.ClearAll();
-            _fixture.Ioc.RegisterSingleton<IMvxMainThreadAsyncDispatcher>(new DummyDispatcher());
+            _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(new DummyDispatcher());
         }
 
-        public class DummyDispatcher : MvxSingleton<IMvxMainThreadAsyncDispatcher>, IMvxMainThreadAsyncDispatcher
+        public class DummyDispatcher
+            : MvxSingleton<IMvxMainThreadDispatcher>, IMvxMainThreadDispatcher
         {
             public bool IsOnMainThread => true;
 
-            public Task ExecuteOnMainThreadAsync(Action action, bool maskExceptions = true)
+            public ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
             {
+                if (action == null) throw new ArgumentNullException(nameof(action));
+
                 action?.Invoke();
-                return Task.CompletedTask;
+                return new ValueTask();
             }
 
-            public Task ExecuteOnMainThreadAsync(Func<Task> action, bool maskExceptions = true)
+            public ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
             {
-                return action?.Invoke();
+                if (action == null) throw new ArgumentNullException(nameof(action));
+
+                return action.Invoke();
             }
         }
 

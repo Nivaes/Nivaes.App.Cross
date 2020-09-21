@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Tests;
-using MvvmCross.UnitTest.Mocks.TestViewModels;
-using MvvmCross.UnitTest.Mocks.TestViews;
-using MvvmCross.ViewModels;
-using Xunit;
-
 namespace MvvmCross.UnitTest.Platform
 {
+    using MvvmCross.UnitTest.Mocks.TestViewModels;
+    using MvvmCross.UnitTest.Mocks.TestViews;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.UnitTest;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class MvxViewModelViewLookupBuilderTest
     {
