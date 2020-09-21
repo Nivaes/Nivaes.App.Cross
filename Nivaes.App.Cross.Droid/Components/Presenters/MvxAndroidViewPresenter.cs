@@ -198,7 +198,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         #region Show implementations
-        protected virtual Task<bool> ShowActivity(
+        protected virtual ValueTask<bool> ShowActivity(
             Type view,
             MvxActivityPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -208,7 +208,7 @@ namespace MvvmCross.Platforms.Android.Presenters
                 intent.PutExtras(attribute.Extras);
 
             ShowIntent(intent, CreateActivityTransitionOptions(intent, attribute, request));
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
         protected virtual Bundle CreateActivityTransitionOptions(Intent intent, MvxActivityPresentationAttribute attribute, MvxViewModelRequest request)
@@ -296,7 +296,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             Show(hostViewModelRequest);
         }
 
-        protected virtual Task<bool> ShowFragment(
+        protected virtual ValueTask<bool> ShowFragment(
             Type view,
             MvxFragmentPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -306,7 +306,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             {
                 ShowNestedFragment(view, attribute, request);
 
-                return Task.FromResult(true);
+                return new ValueTask<bool>(true);
             }
 
             // if there is no Activity host associated, assume is the current activity
@@ -328,7 +328,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
                 PerformShowFragmentTransaction(CurrentActivity.SupportFragmentManager, attribute, request);
             }
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
         protected virtual void ShowNestedFragment(
@@ -451,7 +451,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         {
         }
 
-        protected virtual Task<bool> ShowDialogFragment(
+        protected virtual ValueTask<bool> ShowDialogFragment(
             Type view,
             MvxDialogFragmentPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -485,42 +485,42 @@ namespace MvvmCross.Platforms.Android.Presenters
             dialog.Show(ft, fragmentName);
 
             OnFragmentChanged(ft, dialog, attribute, request);
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
         #endregion
 
         #region Close implementations
-        protected virtual Task<bool> CloseActivity(IMvxViewModel viewModel, MvxActivityPresentationAttribute attribute)
+        protected virtual ValueTask<bool> CloseActivity(IMvxViewModel viewModel, MvxActivityPresentationAttribute attribute)
         {
             var currentView = CurrentActivity as IMvxView;
 
             if (currentView == null)
             {
                 MvxLog.Instance.Warn("Ignoring close for viewmodel - rootframe has no current page");
-                return Task.FromResult(false);
+                return new ValueTask<bool>(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
                 MvxLog.Instance.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
-                return Task.FromResult(false);
+                return new ValueTask<bool>(false);
             }
 
             CurrentActivity.Finish();
 
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
-        protected virtual Task<bool> CloseFragmentDialog(IMvxViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
+        protected virtual ValueTask<bool> CloseFragmentDialog(IMvxViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
         {
             string tag = attribute.ViewType.FragmentJavaName();
             var toClose = CurrentFragmentManager.FindFragmentByTag(tag);
             if (toClose != null && toClose is DialogFragment dialog)
             {
                 dialog.DismissAllowingStateLoss();
-                return Task.FromResult(true);
+                return new ValueTask<bool>(true);
             }
-            return Task.FromResult(false);
+            return new ValueTask<bool>(false);
         }
 
         protected virtual bool CloseFragments()
@@ -536,7 +536,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             return true;
         }
 
-        protected virtual Task<bool> CloseFragment(IMvxViewModel viewModel, MvxFragmentPresentationAttribute attribute)
+        protected virtual ValueTask<bool> CloseFragment(IMvxViewModel viewModel, MvxFragmentPresentationAttribute attribute)
         {
             // try to close nested fragment first
             if (attribute.FragmentHostViewType != null)
@@ -544,18 +544,18 @@ namespace MvvmCross.Platforms.Android.Presenters
                 var fragmentHost = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragmentHost != null
                     && TryPerformCloseFragmentTransaction(fragmentHost.ChildFragmentManager, attribute))
-                    return Task.FromResult(true);
+                    return new ValueTask<bool>(true);
             }
 
             // Close fragment. If it isn't successful, then close the current Activity
             if (TryPerformCloseFragmentTransaction(CurrentFragmentManager, attribute))
             {
-                return Task.FromResult(true);
+                return new ValueTask<bool>(true);
             }
             else
             {
                 CurrentActivity.Finish();
-                return Task.FromResult(true);
+                return new ValueTask<bool>(true);
             }
         }
 

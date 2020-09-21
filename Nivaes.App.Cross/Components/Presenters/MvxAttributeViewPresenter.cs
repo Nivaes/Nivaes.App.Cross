@@ -2,19 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.Presenters.Hints;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Presenters
 {
-    public abstract class MvxAttributeViewPresenter : MvxViewPresenter, IMvxAttributeViewPresenter
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.Presenters.Hints;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
+    public abstract class MvxAttributeViewPresenter
+        : MvxViewPresenter, IMvxAttributeViewPresenter
     {
         protected IMvxViewModelTypeFinder _viewModelTypeFinder;
         public virtual IMvxViewModelTypeFinder ViewModelTypeFinder
@@ -152,7 +153,7 @@ namespace MvvmCross.Presenters
             throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
         }
 
-        public override async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public override async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
             if (await HandlePresentationChange(hint).ConfigureAwait(false)) return true;
 
@@ -165,12 +166,12 @@ namespace MvvmCross.Presenters
             return false;
         }
 
-        public override Task<bool> Close(IMvxViewModel viewModel)
+        public override ValueTask<bool> Close(IMvxViewModel viewModel)
         {
             return GetPresentationAttributeAction(new MvxViewModelInstanceRequest(viewModel), out MvxBasePresentationAttribute attribute).CloseAction.Invoke(viewModel, attribute);
         }
 
-        public override Task<bool> Show(MvxViewModelRequest request)
+        public override ValueTask<bool> Show(MvxViewModelRequest request)
         {
             return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction.Invoke(attribute.ViewType, attribute, request);
         }
