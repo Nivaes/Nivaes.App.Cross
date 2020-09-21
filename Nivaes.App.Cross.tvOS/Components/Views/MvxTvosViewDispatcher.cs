@@ -2,39 +2,39 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading.Tasks;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Tvos.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Tvos.Views
 {
+    using System;
+    using System.Threading.Tasks;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Tvos.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxTvosViewDispatcher
         : MvxTvosUIThreadDispatcher, IMvxViewDispatcher
     {
-        private readonly IMvxTvosViewPresenter _presenter;
+        private readonly IMvxTvosViewPresenter mPresenter;
 
         public MvxTvosViewDispatcher(IMvxTvosViewPresenter presenter)
         {
-            _presenter = presenter;
+            mPresenter = presenter;
         }
 
         public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<Task> action = () =>
+            Func<ValueTask> action = async () =>
                 {
                     MvxLog.Instance.Trace("tvOSNavigation", "Navigate requested");
-                    return _presenter.Show(request);
+                    await mPresenter.Show(request).ConfigureAwait(false);
                 };
-            await ExecuteOnMainThreadAsync(action);
+            await ExecuteOnMainThreadAsync(action).ConfigureAwait(false);
             return true;
         }
 
         public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+            await ExecuteOnMainThreadAsync(async () => await mPresenter.ChangePresentation(hint).ConfigureAwait(false)).ConfigureAwait(false);
             return true;
         }
     }
