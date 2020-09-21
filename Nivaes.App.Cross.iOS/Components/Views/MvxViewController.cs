@@ -2,39 +2,44 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views.Base;
-using MvvmCross.ViewModels;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using System;
+    using Foundation;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Ios.Views.Base;
+    using MvvmCross.ViewModels;
+    using UIKit;
+
     public class MvxViewController
         : MvxEventSourceViewController, IMvxIosView
     {
-        public MvxViewController() : base()
+        public MvxViewController()
+            : base()
         {
             this.AdaptForBinding();
         }
 
-        public MvxViewController(NSCoder coder) : base(coder)
+        public MvxViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxViewController(NSObjectFlag t) : base(t)
+        protected MvxViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxViewController(IntPtr handle) : base(handle)
+        protected internal MvxViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxViewController(string nibName, NSBundle bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
@@ -58,38 +63,40 @@ namespace MvvmCross.Platforms.Ios.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ViewModel?.ViewCreated();
+            var _ = ViewModel?.ViewCreated();
         }
 
         public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			ViewModel?.ViewAppearing();
+            var _ = ViewModel?.ViewAppearing();
 		}
 
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			ViewModel?.ViewAppeared();
+            var _ = ViewModel?.ViewAppeared();
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
-			ViewModel?.ViewDisappearing();
+            var _ = ViewModel?.ViewDisappearing();
 		}
 
 		public override void ViewDidDisappear(bool animated)
 		{
 			base.ViewDidDisappear(animated);
-			ViewModel?.ViewDisappeared();
+			var _ = ViewModel?.ViewDisappeared();
 		}
 
         public override void DidMoveToParentViewController(UIViewController parent)
         {
             base.DidMoveToParentViewController(parent);
             if (parent == null)
-                ViewModel?.ViewDestroy();
+            {
+                var _ = ViewModel?.ViewDestroy();
+            }
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender) {
@@ -98,7 +105,8 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxViewController<TViewModel> : MvxViewController, IMvxIosView<TViewModel> 
+    public class MvxViewController<TViewModel>
+        : MvxViewController, IMvxIosView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public MvxViewController()

@@ -2,27 +2,29 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CoreGraphics;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.Presenters.Hints;
-using MvvmCross.ViewModels;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Presenters
 {
-    public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresenter
+
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using CoreGraphics;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using MvvmCross.Presenters;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.Presenters.Hints;
+    using MvvmCross.ViewModels;
+    using UIKit;
+
+    public class MvxIosViewPresenter
+        : MvxAttributeViewPresenter, IMvxIosViewPresenter
     {
-        protected readonly IUIApplicationDelegate _applicationDelegate;
-        protected readonly UIWindow _window;
+        protected readonly IUIApplicationDelegate mApplicationDelegate;
+        protected readonly UIWindow mWindow;
 
         public UINavigationController MasterNavigationController { get; protected set; }
 
@@ -81,8 +83,8 @@ namespace MvvmCross.Platforms.Ios.Presenters
 
         public MvxIosViewPresenter(IUIApplicationDelegate applicationDelegate, UIWindow window)
         {
-            _applicationDelegate = applicationDelegate;
-            _window = window;
+            mApplicationDelegate = applicationDelegate;
+            mWindow = window;
         }
 
         public override void RegisterAttributeTypes()
@@ -368,7 +370,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             viewController.ModalTransitionStyle = attribute.ModalTransitionStyle;
 
             // Check if there is a modal already presented first. Otherwise use the window root
-            var modalHost = ModalViewControllers.LastOrDefault() ?? _window.RootViewController;
+            var modalHost = ModalViewControllers.LastOrDefault() ?? mWindow.RootViewController;
 
             modalHost.PresentViewController(
                 viewController,
@@ -606,7 +608,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
 
         protected void RemoveWindowSubviews()
         {
-            foreach (var v in _window.Subviews)
+            foreach (var v in mWindow.Subviews)
                 v.RemoveFromSuperview();
         }
 
@@ -621,13 +623,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
 
             if (attribute == null || attribute.AnimationOptions == UIViewAnimationOptions.TransitionNone)
             {
-                _window.RootViewController = controller;
+                mWindow.RootViewController = controller;
                 return;
             }
 
             UIView.Transition(
-                _window, attribute.AnimationDuration, attribute.AnimationOptions,
-                () => _window.RootViewController = controller, null
+                mWindow, attribute.AnimationDuration, attribute.AnimationOptions,
+                () => mWindow.RootViewController = controller, null
             );
         }
     }

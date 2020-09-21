@@ -44,7 +44,7 @@ namespace MvvmCross.Platforms.Ios.Views
             ViewDidLoad();
         }
 
-        private int _tabsCount = 0;
+        private int mTabsCount = 0;
 
         public virtual UIViewController VisibleUIViewController
         {
@@ -107,12 +107,12 @@ namespace MvvmCross.Platforms.Ios.Views
 
         protected virtual void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
         {
-            _tabsCount++;
+            mTabsCount++;
 
             viewController.Title = attribute.TabName;
 
             if (!string.IsNullOrEmpty(attribute.TabIconName))
-                viewController.TabBarItem = new UITabBarItem(attribute.TabName, UIImage.FromBundle(attribute.TabIconName), _tabsCount);
+                viewController.TabBarItem = new UITabBarItem(attribute.TabName, UIImage.FromBundle(attribute.TabIconName), mTabsCount);
 
             if (!string.IsNullOrEmpty(attribute.TabSelectedIconName))
                 viewController.TabBarItem.SelectedImage = UIImage.FromBundle(attribute.TabSelectedIconName);
