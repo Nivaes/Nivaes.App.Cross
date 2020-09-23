@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Android.Views.Base
         {
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             CreateWillBeCalled.Raise(this, savedInstanceState);
             base.OnCreate(savedInstanceState);

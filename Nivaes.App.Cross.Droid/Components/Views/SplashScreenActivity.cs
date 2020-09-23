@@ -39,7 +39,7 @@ namespace MvvmCross.Android.Views
         {
         }
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.RequestWindowFeature(WindowFeatures.NoTitle);
 
@@ -69,7 +69,7 @@ namespace MvvmCross.Android.Views
         {
             if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
             {
-                await startup.Start(GetAppStartHint(bundle)).ConfigureAwait(false);
+                await startup.Start(bundle).ConfigureAwait(false);
             }
             Finish();
         }
@@ -80,44 +80,5 @@ namespace MvvmCross.Android.Views
 
             await RunAppStar(mBundle).ConfigureAwait(false);
         }
-
-        //protected override void OnPause()
-        //{
-        //    base.OnPause();
-        //}
-
-        //protected virtual async Task RunAppStartAsync(Bundle bundle)
-        //{
-        //    if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup))
-        //    {
-        //        if(!startup.IsStarted)
-        //        {
-        //            await startup.StartAsync(GetAppStartHint(bundle)).ConfigureAwait(false);
-        //        }
-        //        else
-        //        {
-        //            Finish();
-        //        }
-        //    }
-        //}
-
-        protected object? GetAppStartHint(object? hint = null)
-        {
-            return hint;
-        }
     }
-
-    //public abstract class MvxSplashScreenActivity<TMvxAndroidSetup, TApplication> : SplashScreenActivity
-    //        where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
-    //        where TApplication : class, IMvxApplication, new()
-    //{
-    //    protected MvxSplashScreenActivity(int resourceId = NoContent) : base(resourceId)
-    //    {
-    //    }
-
-    //    protected override void RegisterSetup()
-    //    {
-    //        this.RegisterSetupType<TMvxAndroidSetup>();
-    //    }
-    //}
 }

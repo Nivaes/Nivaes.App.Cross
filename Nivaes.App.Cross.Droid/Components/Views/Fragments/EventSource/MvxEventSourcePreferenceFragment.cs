@@ -65,7 +65,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 #pragma warning restore CS0618 // Type or member is obsolete
         }
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             CreateWillBeCalled.Raise(this, savedInstanceState);
             base.OnCreate(savedInstanceState);

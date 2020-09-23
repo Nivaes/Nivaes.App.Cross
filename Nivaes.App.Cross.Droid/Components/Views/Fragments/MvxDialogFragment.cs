@@ -62,7 +62,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle bundle)
+        public override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
             ViewModel?.ViewCreated();

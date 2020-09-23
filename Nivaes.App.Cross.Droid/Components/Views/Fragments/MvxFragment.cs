@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.OS;
 using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
+    using System;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
+    using MvvmCross.ViewModels;
+
     [Register("mvvmcross.platforms.android.views.fragments.MvxFragment")]
     public class MvxFragment
         : MvxEventSourceFragment
@@ -40,19 +41,16 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             this.AddEventListeners();
         }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
-        private object _dataContext;
+        private object? mDataContext;
 
-        public object DataContext
+        public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
+            get => mDataContext;
             set
             {
-                _dataContext = value;
+                mDataContext = value;
                 if (BindingContext != null)
                     BindingContext.DataContext = value;
             }
@@ -77,7 +75,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();
@@ -114,7 +112,8 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
     }
 
-    public abstract class MvxFragment<TViewModel> : MvxFragment, IMvxFragmentView<TViewModel> 
+    public abstract class MvxFragment<TViewModel>
+        : MvxFragment, IMvxFragmentView<TViewModel> 
         where TViewModel : class, IMvxViewModel
     {
         protected MvxFragment()

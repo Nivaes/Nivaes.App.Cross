@@ -61,7 +61,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();

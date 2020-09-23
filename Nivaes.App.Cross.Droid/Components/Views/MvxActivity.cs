@@ -110,7 +110,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
             ViewModel?.ViewCreated();
