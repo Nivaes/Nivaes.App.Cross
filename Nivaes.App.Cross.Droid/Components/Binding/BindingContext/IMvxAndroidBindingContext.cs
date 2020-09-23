@@ -3,18 +3,19 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.Views;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.Views;
 
 namespace MvvmCross.Platforms.Android.Binding.BindingContext
 {
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.Views;
+
     public interface IMvxAndroidBindingContext
         : IMvxBindingContext
     {
         IMvxLayoutInflaterHolder LayoutInflaterHolder { get; set; }
 
-        View BindingInflate(int resourceId, ViewGroup viewGroup);
+        View BindingInflate(int resourceId, ViewGroup? viewGroup);
 
-        View BindingInflate(int resourceId, ViewGroup viewGroup, bool attachToParent);
+        View BindingInflate(int resourceId, ViewGroup? viewGroup, bool attachToParent);
     }
 }

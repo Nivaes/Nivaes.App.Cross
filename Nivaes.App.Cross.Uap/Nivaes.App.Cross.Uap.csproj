@@ -21,7 +21,7 @@
 
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
-    <PackageId>Nivaes.App.Cross.Uap</PackageId>
+    <PackageId>Nivaes.App.Cross.Windows</PackageId>
 
     <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>

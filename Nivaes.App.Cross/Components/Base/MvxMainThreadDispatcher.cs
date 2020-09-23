@@ -15,11 +15,6 @@ namespace MvvmCross.Base
     {
         public static MvxMainThreadDispatcher? Instance { get; protected set; }
 
-        //public static MvxMainThreadDispatcher()
-        //{
-        //    Instance = new MvxMainThreadDispatcher();
-        //}
-
         protected MvxMainThreadDispatcher()
         {
             Instance = this;
