@@ -11,7 +11,7 @@
     </Description>
     <PackageId>Nivaes.App.Cross</PackageId>
     <UserSecretsId>b0e3de2a-e1b2-4912-ade5-ab7aeb644181</UserSecretsId>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <!--<ProduceReferenceAssembly>true</ProduceReferenceAssembly>-->
   </PropertyGroup>
 
   <ItemGroup>

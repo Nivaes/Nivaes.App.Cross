@@ -20,7 +20,7 @@
       This package contains the 'Color' plugin for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Color.Uap</PackageId>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <!--<ProduceReferenceAssembly>true</ProduceReferenceAssembly>-->
 
     <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>

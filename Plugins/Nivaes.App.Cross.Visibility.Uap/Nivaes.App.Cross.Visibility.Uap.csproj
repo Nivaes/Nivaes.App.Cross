@@ -20,7 +20,7 @@
       This package contains the 'Visibility' plugin for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Visibility.Uap</PackageId>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <!--<ProduceReferenceAssembly>true</ProduceReferenceAssembly>-->
 
     <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>

@@ -9,8 +9,8 @@
      <!--<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>-->
 
-    <AssemblyName>Nivaes.App.Cross.Uap</AssemblyName>
-    <RootNamespace>Nivaes.App.Cross.Uap</RootNamespace>
+    <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
 
     <!--<Platforms>x86;x64</Platforms>-->
     <!--<Platforms>AnyCPU;x86;x64</Platforms>
