@@ -2,13 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
     using System;
-    using MvvmCross.Presenters.Attributes;
+    using MvvmCross;
+    using MvvmCross.Platforms.Android;
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class MvxFragmentPresentationAttribute : MvxBasePresentationAttribute
+    public class MvxFragmentPresentationAttribute
+        : MvxBasePresentationAttribute
     {
         public MvxFragmentPresentationAttribute()
         {

@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using Android.Views;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Collections.Generic;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
+
     /// <summary>
     /// Used by Android presenters to check if they need to include shared element animations on navigation
     /// </summary>

@@ -5,9 +5,9 @@
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Threading.Tasks;
-    using MvvmCross.Platforms.Android.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
 
     public class MvxAndroidViewDispatcher
         : MvxAndroidMainThreadDispatcher

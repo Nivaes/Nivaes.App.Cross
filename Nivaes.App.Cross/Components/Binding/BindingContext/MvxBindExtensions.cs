@@ -75,8 +75,8 @@ namespace MvvmCross.Binding.BindingContext
                                             Expression<Func<T, object>> targetPropertyPath,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
                                             IMvxValueConverter converter,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             MvxBindingMode mode = MvxBindingMode.Default)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));

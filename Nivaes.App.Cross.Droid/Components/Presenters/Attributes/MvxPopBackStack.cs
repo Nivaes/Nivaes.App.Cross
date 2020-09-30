@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
     public enum MvxPopBackStack
     {

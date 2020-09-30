@@ -17,9 +17,9 @@ namespace MvvmCross.Navigation
     using MvvmCross.Exceptions;
     using MvvmCross.Logging;
     using MvvmCross.Navigation.EventArguments;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
 
     public class MvxNavigationService
         : IMvxNavigationService

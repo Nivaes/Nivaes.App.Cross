@@ -2,17 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-namespace MvvmCross.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public abstract class MvxBasePresentationAttribute : Attribute, IMvxPresentationAttribute
-    {
-        /// <inheritdoc />
-        public Type ViewModelType { get; set; }
+    using System;
 
-        /// <inheritdoc />
-        public Type ViewType { get; set; }
+    [AttributeUsage(AttributeTargets.Class)]
+    public abstract class MvxBasePresentationAttribute
+        : Attribute, IMvxPresentationAttribute
+    {
+        public Type? ViewModelType { get; set; }
+
+        public Type? ViewType { get; set; }
     }
 }

@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Linq;
-using Android.App;
-using MvvmCross.Logging;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
+    using System;
+    using System.Linq;
+    using Android.App;
+    using MvvmCross;
+    using MvvmCross.Logging;
+    using MvvmCross.ViewModels;
+
     public static class MvxAndroidPresentationAttributeExtensions
     {
         private static Type GetActivityViewModelType(Type activityType)

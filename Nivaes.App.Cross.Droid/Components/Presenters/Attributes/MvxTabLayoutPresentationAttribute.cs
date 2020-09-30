@@ -2,34 +2,49 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
+    using System;
+    using MvvmCross;
+    using MvvmCross.Platforms.Android;
+
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class MvxTabLayoutPresentationAttribute : MvxViewPagerFragmentPresentationAttribute
+    public class MvxTabLayoutPresentationAttribute
+        : MvxViewPagerFragmentPresentationAttribute
     {
         public MvxTabLayoutPresentationAttribute()
         {
         }
 
-        public MvxTabLayoutPresentationAttribute(string title, int viewPagerResourceId, int tabLayoutResourceId,
-            Type activityHostViewModelType = null, bool addToBackStack = false, Type fragmentHostViewType = null,
-            bool isCacheableFragment = false) : base(title, viewPagerResourceId, activityHostViewModelType,
+        public MvxTabLayoutPresentationAttribute(
+            string title,
+            int viewPagerResourceId,
+            int tabLayoutResourceId,
+            Type? activityHostViewModelType = null,
+            bool addToBackStack = false,
+            Type? fragmentHostViewType = null,
+            bool isCacheableFragment = false)
+            : base(title, viewPagerResourceId, activityHostViewModelType,
             addToBackStack, fragmentHostViewType, isCacheableFragment)
         {
             TabLayoutResourceId = tabLayoutResourceId;
         }
 
-        public MvxTabLayoutPresentationAttribute(string title, string viewPagerResourceName,
-            string tabLayoutResourceName, Type activityHostViewModelType = null, bool addToBackStack = false,
-            Type fragmentHostViewType = null, bool isCacheableFragment = false) : base(title, viewPagerResourceName,
+        public MvxTabLayoutPresentationAttribute(
+            string title,
+            string viewPagerResourceName,
+            string tabLayoutResourceName,
+            Type? activityHostViewModelType = null,
+            bool addToBackStack = false,
+            Type? fragmentHostViewType = null,
+            bool isCacheableFragment = false)
+            : base(title, viewPagerResourceName,
             activityHostViewModelType, addToBackStack, fragmentHostViewType, isCacheableFragment)
         {
             var context = Mvx.IoCProvider.Resolve<IMvxAndroidGlobals>().ApplicationContext;
 
             TabLayoutResourceId = !string.IsNullOrEmpty(tabLayoutResourceName)
-                ? context.Resources.GetIdentifier(tabLayoutResourceName, "id", context.PackageName)
+                ? context.Resources?.GetIdentifier(tabLayoutResourceName, "id", context.PackageName) ?? 0
                 : global::Android.Resource.Id.Content;
         }
 

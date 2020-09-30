@@ -2,13 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
+
 using Android.OS;
 using Android.Views;
-using MvvmCross.Platforms.Android.Presenters;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Collections.Generic;
+    using Nivaes.App.Cross.Presenters;
+
     public static class MvxSharedElementsExtensions
     {
         /// <summary>

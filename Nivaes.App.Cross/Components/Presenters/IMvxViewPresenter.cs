@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Threading.Tasks;
@@ -14,7 +14,7 @@ namespace MvvmCross.Presenters
 
         ValueTask<bool> ChangePresentation(MvxPresentationHint hint);
 
-        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
+        void AddPresentationHintHandler<THint>(Func<THint, ValueTask<bool>> action)
             where THint : MvxPresentationHint;
 
         ValueTask<bool> Close(IMvxViewModel toClose);

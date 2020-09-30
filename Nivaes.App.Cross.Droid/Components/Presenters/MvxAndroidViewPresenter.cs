@@ -6,9 +6,8 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Collections.Generic;
@@ -17,13 +16,13 @@ namespace MvvmCross.Platforms.Android.Presenters
     using System.Threading.Tasks;
     using Android.Views;
     using Java.Lang;
+    using MvvmCross;
     using MvvmCross.Exceptions;
     using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
@@ -38,7 +37,8 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
         public const string ViewModelRequestBundleKey = "__viewModelRequest";
         public const string SharedElementsBundleKey = "__sharedElementsKey";
-        private MvxViewModelRequest? mPendingRequest;
+
+        protected MvxViewModelRequest? PendingRequest { get; set; }
 
         protected virtual FragmentManager? CurrentFragmentManager => CurrentActivity?.SupportFragmentManager;
 
@@ -85,10 +85,10 @@ namespace MvvmCross.Platforms.Android.Presenters
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            if (e.ActivityState == MvxActivityState.OnResume && mPendingRequest != null)
+            if (e.ActivityState == MvxActivityState.OnResume && PendingRequest != null)
             {
-                _ = Show(mPendingRequest).AsTask();
-                mPendingRequest = null;
+                _ = Show(PendingRequest).AsTask();
+                PendingRequest = null;
             }
             else if (e.ActivityState == MvxActivityState.OnCreate && e.Extras is Bundle savedBundle)
             {
@@ -107,6 +107,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected Type GetAssociatedViewModelType(Type fromFragmentType)
         {
             Type viewModelType = ViewModelTypeFinder.FindTypeOrNull(fromFragmentType);
+
             return viewModelType ?? fromFragmentType.GetBasePresentationAttributes().First().ViewModelType;
         }
 
@@ -127,12 +128,12 @@ namespace MvvmCross.Platforms.Android.Presenters
             if (overrideAttribute != null)
                 return overrideAttribute;
 
-            IList<MvxBasePresentationAttribute> attributes = viewType.GetCustomAttributes<MvxBasePresentationAttribute>(true).ToList();
-            if (attributes != null && attributes.Count > 0)
+            var attributes = viewType.GetCustomAttributes<MvxBasePresentationAttribute>(true);
+            if (attributes != null && attributes.Any())
             {
                 MvxBasePresentationAttribute? attribute = null;
 
-                if (attributes.Count > 1)
+                if (attributes.Count() > 1)
                 {
                     var fragmentAttributes = attributes.OfType<MvxFragmentPresentationAttribute>();
 
@@ -295,13 +296,15 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         protected virtual void ShowHostActivity(MvxFragmentPresentationAttribute attribute)
         {
+            if (attribute == null) throw new ArgumentNullException(nameof(attribute));
+
             var viewType = ViewsContainer.GetViewType(attribute.ActivityHostViewModelType);
-            if (!viewType.IsSubclassOf(typeof(Activity)))
+            if (viewType == null || !viewType.IsSubclassOf(typeof(Activity)))
                 throw new MvxException("The host activity doesn't inherit Activity");
 
             var hostViewModelRequest = MvxViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
-            hostViewModelRequest.PresentationValues = mPendingRequest.PresentationValues;
-            _ = Show(hostViewModelRequest);
+            hostViewModelRequest.PresentationValues = PendingRequest?.PresentationValues;
+            _ = Show(hostViewModelRequest).AsTask();
         }
 
         protected virtual ValueTask<bool> ShowFragment(
@@ -309,6 +312,8 @@ namespace MvvmCross.Platforms.Android.Presenters
             MvxFragmentPresentationAttribute attribute,
             MvxViewModelRequest request)
         {
+            if (attribute == null) throw new ArgumentNullException(nameof(attribute));
+
             // if attribute has a Fragment Host, then show it as nested and return
             if (attribute.FragmentHostViewType != null)
             {
@@ -326,7 +331,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             {
                 MvxLog.Instance.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
                     attribute.ActivityHostViewModelType, attribute.ViewModelType);
-                mPendingRequest = request;
+                PendingRequest = request;
                 ShowHostActivity(attribute);
             }
             else
@@ -357,7 +362,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         protected virtual void PerformShowFragmentTransaction(
-            FragmentManager fragmentManager,
+            FragmentManager? fragmentManager,
             MvxFragmentPresentationAttribute attribute,
             MvxViewModelRequest request)
         {

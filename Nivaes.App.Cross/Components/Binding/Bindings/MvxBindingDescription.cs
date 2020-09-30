@@ -14,7 +14,7 @@ namespace MvvmCross.Binding.Bindings
             TargetName = string.Empty;
         }
 
-        public MvxBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter converter,
+        public MvxBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter? converter,
                                      object? converterParameter, object? fallbackValue, MvxBindingMode mode)
         {
             TargetName = targetName;

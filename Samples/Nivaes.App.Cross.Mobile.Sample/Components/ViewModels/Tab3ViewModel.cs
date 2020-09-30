@@ -7,8 +7,8 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
 
     public class Tab3ViewModel
         : MvxNavigationViewModel
@@ -22,10 +22,10 @@ namespace Nivaes.App.Mobile.Sample
             ShowPageOneCommand = new MvxCommand(() => NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab1ViewModel))));
         }
 
-        public IMvxAsyncCommand ShowRootViewModelCommand { get; private set; }
+        public IMvxAsyncCommand ShowRootViewModelCommand { get; }
 
-        public IMvxAsyncCommand CloseViewModelCommand { get; private set; }
+        public IMvxAsyncCommand CloseViewModelCommand { get; }
 
-        public IMvxCommand ShowPageOneCommand { get; private set; }
+        public IMvxCommand ShowPageOneCommand { get; }
     }
 }

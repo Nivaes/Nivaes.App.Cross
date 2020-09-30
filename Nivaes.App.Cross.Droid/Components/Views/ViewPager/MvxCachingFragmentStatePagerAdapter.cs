@@ -2,57 +2,57 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using AndroidX.Fragment.App;
-using Java.Lang;
-using MvvmCross.Platforms.Android.Presenters;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using JavaObject = Java.Lang.Object;
-using JavaString = Java.Lang.String;
 
 namespace MvvmCross.Platforms.Android.Views.ViewPager
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AndroidX.Fragment.App;
+    using Java.Lang;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
+    using JavaObject = Java.Lang.Object;
+    using JavaString = Java.Lang.String;
+
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
     public class MvxCachingFragmentStatePagerAdapter : MvxCachingFragmentPagerAdapter
     {
-        private readonly Context _context;
-        private readonly Type _activityType;
+        private readonly Context? mContext;
+        private readonly Type mActivityType;
 
-        public List<MvxViewPagerFragmentInfo> FragmentsInfo { get; }
+        public List<MvxViewPagerFragmentInfo>? FragmentsInfo { get; }
 
         public override int Count => FragmentsInfo?.Count ?? 0;
 
         protected MvxCachingFragmentStatePagerAdapter(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
-            _activityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            mActivityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
         public MvxCachingFragmentStatePagerAdapter(Context context, FragmentManager fragmentManager,
             List<MvxViewPagerFragmentInfo> fragmentsInfo) : base(fragmentManager)
         {
-            _context = context;
+            mContext = context;
             FragmentsInfo = fragmentsInfo;
-            _activityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            mActivityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
-        public override Fragment GetItem(int position, Fragment.SavedState fragmentSavedState = null)
+        public override Fragment GetItem(int position, Fragment.SavedState? fragmentSavedState = null)
         {
             var fragmentInfo = FragmentsInfo.ElementAt(position);
-            var fragment = Fragment.Instantiate(_context, fragmentInfo.FragmentType.FragmentJavaName());
+            var fragment = Fragment.Instantiate(mContext, fragmentInfo.FragmentType.FragmentJavaName());
 
             if (!(fragment is IMvxFragmentView mvxFragment))
             {
                 return fragment;
             }
 
-            if (mvxFragment.GetType().IsFragmentCacheable(_activityType) && fragmentSavedState != null)
+            if (mvxFragment.GetType().IsFragmentCacheable(mActivityType) && fragmentSavedState != null)
             {
                 return fragment;
             }

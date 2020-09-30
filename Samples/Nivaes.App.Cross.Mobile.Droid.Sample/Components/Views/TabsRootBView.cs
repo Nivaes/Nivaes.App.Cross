@@ -8,13 +8,13 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.Runtime;
     using Android.Views;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Mobile.Sample;
 
     //[MvxFragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
     [Register(nameof(TabsRootBView))]
-    public class TabsRootBView : MvxFragment<TabsRootBViewModel>
+    public class TabsRootBView
+        : MvxFragment<TabsRootBViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

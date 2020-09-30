@@ -7,8 +7,8 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
 
     public class NestedChildViewModel
         : MvxNavigationViewModel

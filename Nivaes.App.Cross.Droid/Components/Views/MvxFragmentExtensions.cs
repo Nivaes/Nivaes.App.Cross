@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
+
     public static class MvxFragmentExtensions
     {
         public static Type FindAssociatedViewModelType(this IMvxFragmentView fragmentView, Type fragmentActivityParentType)
@@ -36,7 +35,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         public static IMvxViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle savedState, Type fragmentParentActivityType,
-            MvxViewModelRequest request = null)
+            MvxViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
             if (viewModelType == typeof(MvxNullViewModel))

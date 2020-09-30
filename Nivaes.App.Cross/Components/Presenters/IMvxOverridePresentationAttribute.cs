@@ -2,11 +2,10 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
+    using MvvmCross.ViewModels;
+
     public interface IMvxOverridePresentationAttribute
     {
         MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request);

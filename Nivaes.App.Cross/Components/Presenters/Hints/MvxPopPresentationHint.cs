@@ -2,28 +2,31 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Presenters.Hints
+namespace Nivaes.App.Cross.Presenters
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.ViewModels;
+
     public class MvxPopPresentationHint
         : MvxPresentationHint
     {
-        public MvxPopPresentationHint(Type viewModelToPopTo, bool animated = false) : base()
+        public MvxPopPresentationHint(Type viewModelToPopTo, bool animated = false)
+            : base()
         {
             ViewModelToPopTo = viewModelToPopTo;
             Animated = animated;
         }
 
-        public MvxPopPresentationHint(MvxBundle body, Type viewModelToPopTo, bool animated = true) : base(body)
+        public MvxPopPresentationHint(MvxBundle body, Type viewModelToPopTo, bool animated = true)
+            : base(body)
         {
             ViewModelToPopTo = viewModelToPopTo;
             Animated = animated;
         }
 
-        public MvxPopPresentationHint(IDictionary<string, string> hints, Type viewModelToPopTo, bool animated = true) : this(new MvxBundle(hints), viewModelToPopTo, animated)
+        public MvxPopPresentationHint(IDictionary<string, string> hints, Type viewModelToPopTo, bool animated = true)
+            : this(new MvxBundle(hints), viewModelToPopTo, animated)
         {
         }
 

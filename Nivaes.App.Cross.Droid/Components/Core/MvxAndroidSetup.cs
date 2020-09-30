@@ -2,46 +2,46 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Android.Content;
 using Android.Views;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Android.Binding;
-using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.Platforms.Android.Presenters;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Android.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Android.Binding;
+    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using MvvmCross.Platforms.Android.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
+
     public abstract class MvxAndroidSetup
         : MvxSetup, IMvxAndroidGlobals, IMvxAndroidSetup
     {
-        private Context _applicationContext;
-        private IMvxAndroidViewPresenter _presenter;
+        private Context? mApplicationContext;
+        private IMvxAndroidViewPresenter? mPresenter;
 
         public void PlatformInitialize(Context applicationContext)
         {
-            _applicationContext = applicationContext;
+            mApplicationContext = applicationContext;
         }
 
         public virtual Assembly ExecutableAssembly => ViewAssemblies?.FirstOrDefault() ?? GetType().Assembly;
 
-        public Context ApplicationContext => _applicationContext;
+        public Context? ApplicationContext => mApplicationContext;
 
         protected override Task InitializeFirstChance()
         {
@@ -110,7 +110,7 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected sealed override IMvxViewsContainer CreateViewsContainer()
         {
-            var container = CreateViewsContainer(_applicationContext);
+            var container = CreateViewsContainer(mApplicationContext);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
 
@@ -124,8 +124,8 @@ namespace MvvmCross.Platforms.Android.Core
         {
             get
             {
-                _presenter ??= CreateViewPresenter();
-                return _presenter;
+                mPresenter ??= CreateViewPresenter();
+                return mPresenter;
             }
         }
 

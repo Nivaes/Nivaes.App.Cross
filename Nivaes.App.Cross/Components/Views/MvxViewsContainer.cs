@@ -42,8 +42,11 @@ namespace MvvmCross.Views
             Add(typeof(TViewModel), typeof(TView));
         }
 
-        public Type GetViewType(Type viewModelType)
+        public Type? GetViewType(Type? viewModelType)
         {
+            if (viewModelType == null)
+                return null;
+
             if (mBindingMap.TryGetValue(viewModelType, out Type binding))
             {
                 return binding;
@@ -51,19 +54,19 @@ namespace MvvmCross.Views
 
             foreach (var viewFinder in mSecondaryViewFinders)
             {
-                binding = viewFinder.GetViewType(viewModelType);
-                if (binding != null)
+                var bindingView = viewFinder.GetViewType(viewModelType);
+                if (bindingView != null)
                 {
-                    return binding;
+                    return bindingView;
                 }
             }
 
             if (mLastResortViewFinder != null)
             {
-                binding = mLastResortViewFinder.GetViewType(viewModelType);
-                if (binding != null)
+                var lastResortViewbinding = mLastResortViewFinder.GetViewType(viewModelType);
+                if (lastResortViewbinding != null)
                 {
-                    return binding;
+                    return lastResortViewbinding;
                 }
             }
 

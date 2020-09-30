@@ -203,6 +203,9 @@ csharp_preserve_single_line_statements = false:warning
 # IDE0063: Use simple 'using' statement
 csharp_prefer_simple_using_statement = true:none
 
+# IDE0027: Use expression body for accessors
+dotnet_diagnostic.IDE0027.severity = none
+
 # CA2008: Do not create tasks without passing a TaskScheduler
 dotnet_diagnostic.CA2008.severity = none
 

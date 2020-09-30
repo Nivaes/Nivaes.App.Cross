@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Collections.Generic;
@@ -12,22 +12,24 @@ namespace MvvmCross.Presenters
     public abstract class MvxViewPresenter
         : IMvxViewPresenter
     {
-        private readonly Dictionary<Type, Func<MvxPresentationHint, Task<bool>>> _presentationHintHandlers = new Dictionary<Type, Func<MvxPresentationHint, Task<bool>>>();
+        private readonly Dictionary<Type, Func<MvxPresentationHint, ValueTask<bool>>> mPresentationHintHandlers = new Dictionary<Type, Func<MvxPresentationHint, ValueTask<bool>>>();
 
-        public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : MvxPresentationHint
+        public void AddPresentationHintHandler<THint>(Func<THint, ValueTask<bool>> action)
+            where THint : MvxPresentationHint
         {
-            _presentationHintHandlers[typeof(THint)] = hint => action((THint)hint);
+            mPresentationHintHandlers[typeof(THint)] = hint => action((THint)hint);
         }
 
-        protected Task<bool> HandlePresentationChange(MvxPresentationHint hint)
+        protected ValueTask<bool> HandlePresentationChange(MvxPresentationHint hint)
         {
+            if (hint == null) throw new ArgumentNullException(nameof(hint));
 
-            if (_presentationHintHandlers.TryGetValue(hint.GetType(), out Func<MvxPresentationHint, Task<bool>> handler))
+            if (mPresentationHintHandlers.TryGetValue(hint.GetType(), out Func<MvxPresentationHint, ValueTask<bool>> handler))
             {
                 return handler(hint);
             }
 
-            return Task.FromResult(false);
+            return new ValueTask<bool>(false);
         }
 
         public abstract ValueTask<bool> Show(MvxViewModelRequest request);

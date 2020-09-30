@@ -11,10 +11,10 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     using MvvmCross.Base;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Presenters;
     using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
 
     public class MvxBindingFragmentAdapter
         : MvxBaseFragmentAdapter

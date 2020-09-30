@@ -2,66 +2,67 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using MvvmCross;
     using MvvmCross.Logging;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
 
     public abstract class MvxAttributeViewPresenter
         : MvxViewPresenter, IMvxAttributeViewPresenter
     {
-        protected IMvxViewModelTypeFinder _viewModelTypeFinder;
+        private IMvxViewModelTypeFinder? mViewModelTypeFinder;
         public virtual IMvxViewModelTypeFinder ViewModelTypeFinder
         {
             get
             {
-                if (_viewModelTypeFinder == null)
-                    _viewModelTypeFinder = Mvx.IoCProvider.Resolve<IMvxViewModelTypeFinder>();
-                return _viewModelTypeFinder;
+                if (mViewModelTypeFinder == null)
+                    mViewModelTypeFinder = Mvx.IoCProvider.Resolve<IMvxViewModelTypeFinder>();
+
+                return mViewModelTypeFinder;
             }
             set
             {
-                _viewModelTypeFinder = value;
+                mViewModelTypeFinder = value;
             }
         }
 
-        protected IMvxViewsContainer _viewsContainer;
+        private IMvxViewsContainer? mViewsContainer;
         public virtual IMvxViewsContainer ViewsContainer
         {
             get
             {
-                if (_viewsContainer == null)
-                    _viewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
-                return _viewsContainer;
+                if (mViewsContainer == null)
+                    mViewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
+
+                return mViewsContainer;
             }
             set
             {
-                _viewsContainer = value;
+                mViewsContainer = value;
             }
         }
 
-        protected IDictionary<Type, MvxPresentationAttributeAction> _attributeTypesActionsDictionary;
+        private IDictionary<Type, MvxPresentationAttributeAction>? mAttributeTypesActionsDictionary;
         public virtual IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary
         {
             get
             {
-                if (_attributeTypesActionsDictionary == null)
+                if (mAttributeTypesActionsDictionary == null)
                 {
-                    _attributeTypesActionsDictionary = new Dictionary<Type, MvxPresentationAttributeAction>();
+                    mAttributeTypesActionsDictionary = new Dictionary<Type, MvxPresentationAttributeAction>();
                     RegisterAttributeTypes();
                 }
-                return _attributeTypesActionsDictionary;
+                return mAttributeTypesActionsDictionary;
             }
             set
             {
-                _attributeTypesActionsDictionary = value;
+                mAttributeTypesActionsDictionary = value;
             }
         }
 
@@ -69,7 +70,7 @@ namespace MvvmCross.Presenters
 
         public abstract MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
 
-        public virtual MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
+        public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
             if (viewType?.GetInterfaces().Contains(typeof(IMvxOverridePresentationAttribute)) ?? false)
             {
@@ -113,10 +114,9 @@ namespace MvvmCross.Presenters
             if (overrideAttribute != null)
                 return overrideAttribute;
 
-            var attribute = viewType
+            if (viewType
                 .GetCustomAttributes(typeof(MvxBasePresentationAttribute), true)
-                .FirstOrDefault() as MvxBasePresentationAttribute;
-            if (attribute != null)
+                .FirstOrDefault() is MvxBasePresentationAttribute attribute)
             {
                 if (attribute.ViewType == null)
                     attribute.ViewType = viewType;
@@ -132,6 +132,8 @@ namespace MvvmCross.Presenters
 
         protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(MvxViewModelRequest request, out MvxBasePresentationAttribute attribute)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             attribute = GetPresentationAttribute(request);
             attribute.ViewModelType = request.ViewModelType;
             var viewType = attribute.ViewType;
@@ -168,12 +170,12 @@ namespace MvvmCross.Presenters
 
         public override ValueTask<bool> Close(IMvxViewModel viewModel)
         {
-            return GetPresentationAttributeAction(new MvxViewModelInstanceRequest(viewModel), out MvxBasePresentationAttribute attribute).CloseAction.Invoke(viewModel, attribute);
+            return GetPresentationAttributeAction(new MvxViewModelInstanceRequest(viewModel), out MvxBasePresentationAttribute attribute).CloseAction!.Invoke(viewModel, attribute);
         }
 
         public override ValueTask<bool> Show(MvxViewModelRequest request)
         {
-            return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction.Invoke(attribute.ViewType, attribute, request);
+            return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction!.Invoke(attribute.ViewType, attribute, request);
         }
     }
 }
