@@ -934,7 +934,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.up = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.up;
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.useLogo = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.useLogo;
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.view_tree_saved_state_registry_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_saved_state_registry_owner;
-			global::Nivaes.App.Cross.Color.Droid.Resource.Id.view_tree_view_model_store_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_view_model_store_owner;
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.visible_removing_fragment_view_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.visible_removing_fragment_view_tag;
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.withText = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.withText;
 			global::Nivaes.App.Cross.Color.Droid.Resource.Id.wrap_content = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.wrap_content;
@@ -2976,7 +2975,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Droid.Resource.Id.up = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.up;
 			global::Nivaes.App.Cross.Droid.Resource.Id.useLogo = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.useLogo;
 			global::Nivaes.App.Cross.Droid.Resource.Id.view_tree_saved_state_registry_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_saved_state_registry_owner;
-			global::Nivaes.App.Cross.Droid.Resource.Id.view_tree_view_model_store_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_view_model_store_owner;
 			global::Nivaes.App.Cross.Droid.Resource.Id.visible_removing_fragment_view_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.visible_removing_fragment_view_tag;
 			global::Nivaes.App.Cross.Droid.Resource.Id.withText = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.withText;
 			global::Nivaes.App.Cross.Droid.Resource.Id.wrap_content = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.wrap_content;
@@ -5018,7 +5016,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.up = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.up;
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.useLogo = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.useLogo;
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.view_tree_saved_state_registry_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_saved_state_registry_owner;
-			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.view_tree_view_model_store_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_view_model_store_owner;
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.visible_removing_fragment_view_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.visible_removing_fragment_view_tag;
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.withText = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.withText;
 			global::Nivaes.App.Cross.Visibility.Droid.Resource.Id.wrap_content = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.wrap_content;
@@ -10618,8 +10615,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			// aapt resource value: 0x7F080100
 			public const int useLogo = 2131230976;
 			
-			// aapt resource value: 0x7F080104
-			public const int viewpager = 2131230980;
+			// aapt resource value: 0x7F080103
+			public const int viewpager = 2131230979;
 			
 			// aapt resource value: 0x7F080101
 			public const int view_offset_helper = 2131230977;
@@ -10627,20 +10624,17 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			// aapt resource value: 0x7F080102
 			public const int view_tree_saved_state_registry_owner = 2131230978;
 			
-			// aapt resource value: 0x7F080103
-			public const int view_tree_view_model_store_owner = 2131230979;
+			// aapt resource value: 0x7F080104
+			public const int visible = 2131230980;
 			
 			// aapt resource value: 0x7F080105
-			public const int visible = 2131230981;
+			public const int visible_removing_fragment_view_tag = 2131230981;
 			
 			// aapt resource value: 0x7F080106
-			public const int visible_removing_fragment_view_tag = 2131230982;
+			public const int withText = 2131230982;
 			
 			// aapt resource value: 0x7F080107
-			public const int withText = 2131230983;
-			
-			// aapt resource value: 0x7F080108
-			public const int wrap_content = 2131230984;
+			public const int wrap_content = 2131230983;
 			
 			static Id()
 			{
