@@ -56,51 +56,55 @@ namespace MvvmCross.Platforms.Ios.Views
             set { DataContext = value; }
         }
 
-        public MvxViewModelRequest Request { get; set; }
+        public MvxViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            var _ = ViewModel?.ViewCreated();
+            _ = ViewModel?.ViewCreated().AsTask();
         }
 
         public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-            var _ = ViewModel?.ViewAppearing();
+            _ = ViewModel?.ViewAppearing().AsTask();
 		}
 
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-            var _ = ViewModel?.ViewAppeared();
+            _ = ViewModel?.ViewAppeared().AsTask();
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
-            var _ = ViewModel?.ViewDisappearing();
+            _ = ViewModel?.ViewDisappearing().AsTask();
 		}
 
 		public override void ViewDidDisappear(bool animated)
 		{
 			base.ViewDidDisappear(animated);
-			var _ = ViewModel?.ViewDisappeared();
+
+			_ = ViewModel?.ViewDisappeared().AsTask();
 		}
 
-        public override void DidMoveToParentViewController(UIViewController parent)
+        public override void DidMoveToParentViewController(UIViewController? parent)
         {
             base.DidMoveToParentViewController(parent);
+
             if (parent == null)
             {
-                var _ = ViewModel?.ViewDestroy();
+                _ = ViewModel?.ViewDestroy().AsTask();
             }
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender) {
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject? sender)
+        {
             base.PrepareForSegue(segue, sender);
+
             this.ViewModelRequestForSegue(segue, sender);
         }
     }

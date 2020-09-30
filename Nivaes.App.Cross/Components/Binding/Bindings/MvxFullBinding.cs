@@ -2,18 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading;
-using MvvmCross.Base;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Converters;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Binding.Bindings
 {
+    using System;
+    using System.Threading;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Bindings.Target;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+
     public class MvxFullBinding
         : MvxBinding, IMvxUpdateableBinding
     {
@@ -28,9 +28,9 @@ namespace MvvmCross.Binding.Bindings
 
         private object? mDataContext;
         private EventHandler? mSourceBindingOnChanged;
-        private EventHandler<MvxTargetChangedEventArgs> mTargetBindingOnValueChanged;
+        private EventHandler<MvxTargetChangedEventArgs>? mTargetBindingOnValueChanged;
 
-        private object mDefaultTargetValue;
+        private object? mDefaultTargetValue;
         private CancellationTokenSource mCancelSource = new CancellationTokenSource();
         private IMvxMainThreadDispatcher mDispatcher => MvxBindingSingletonCache.Instance.MainThreadDispatcher;
 
@@ -52,6 +52,8 @@ namespace MvvmCross.Binding.Bindings
 
         public MvxFullBinding(MvxBindingRequest bindingRequest)
         {
+            if (bindingRequest == null) throw new ArgumentNullException(nameof(bindingRequest));
+
             mBindingDescription = bindingRequest.Description;
             CreateTargetBinding(bindingRequest.Target);
             CreateSourceBinding(bindingRequest.Source);
@@ -79,8 +81,8 @@ namespace MvvmCross.Binding.Bindings
             // If that method is updated we will need to make sure that this method
             // does the right thing.
             mDataContext = source;
-            mSourceStep = SourceStepFactory.Create(mBindingDescription.Source);
-            mSourceStep.TargetType = mTargetBinding.TargetType;
+            mSourceStep = SourceStepFactory.Create(mBindingDescription?.Source);
+            mSourceStep.TargetType = mTargetBinding?.TargetType;
             mSourceStep.DataContext = source;
 
             if (NeedToObserveSourceChanges)
@@ -138,7 +140,7 @@ namespace MvvmCross.Binding.Bindings
             }
         }
 
-        private void CreateTargetBinding(object target)
+        private void CreateTargetBinding(object? target)
         {
             mTargetBinding = TargetBindingFactory.CreateBinding(target, mBindingDescription.TargetName);
 
@@ -158,7 +160,7 @@ namespace MvvmCross.Binding.Bindings
             mDefaultTargetValue = mTargetBinding.TargetType.CreateDefault();
         }
 
-        private void UpdateTargetFromSource(object value, CancellationToken cancel)
+        private void UpdateTargetFromSource(object? value, CancellationToken cancel)
         {
             if (value == MvxBindingConstant.DoNothing || cancel.IsCancellationRequested)
                 return;
@@ -166,7 +168,7 @@ namespace MvvmCross.Binding.Bindings
             if (value == MvxBindingConstant.UnsetValue)
                 value = mDefaultTargetValue;
 
-            var _ = mDispatcher.ExecuteOnMainThread(() =>
+            _ = mDispatcher.ExecuteOnMainThread(() =>
             {
                 if (cancel.IsCancellationRequested)
                     return;
@@ -185,7 +187,7 @@ namespace MvvmCross.Binding.Bindings
                         mBindingDescription.ToString(),
                         exception.ToLongString());
                 }
-            });
+            }).AsTask();
         }
 
         private void UpdateSourceFromTarget(object value)
@@ -198,7 +200,7 @@ namespace MvvmCross.Binding.Bindings
 
             try
             {
-                mSourceStep.SetValue(value);
+                mSourceStep?.SetValue(value);
             }
             catch (Exception exception)
             {
@@ -253,7 +255,13 @@ namespace MvvmCross.Binding.Bindings
             {
                 ClearTargetBinding();
                 ClearSourceBinding();
+
+                mSourceStep?.Dispose();
+                mCancelSource?.Dispose();
+                mTargetBinding?.Dispose();
             }
+
+            base.Dispose(isDisposing);
         }
     }
 }

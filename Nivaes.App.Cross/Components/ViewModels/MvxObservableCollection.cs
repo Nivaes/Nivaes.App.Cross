@@ -260,7 +260,7 @@ namespace MvvmCross.ViewModels
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            var _ = InvokeOnMainThread(() => base.OnPropertyChanged(e));
+            _ = InvokeOnMainThread(() => base.OnPropertyChanged(e));
         }
     }
 }

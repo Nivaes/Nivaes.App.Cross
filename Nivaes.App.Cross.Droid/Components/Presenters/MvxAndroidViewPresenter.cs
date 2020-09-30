@@ -2,89 +2,93 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
 using Android.Views;
-using Java.Lang;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace MvvmCross.Platforms.Android.Presenters
 {
-    public class MvxAndroidViewPresenter : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using Android.Views;
+    using Java.Lang;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.Presenters;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Activity = AndroidX.AppCompat.App.AppCompatActivity;
+    using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+
+    public class MvxAndroidViewPresenter
+        : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
     {
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
-        public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
+        public const string ViewModelRequestBundleKey = "__viewModelRequest";
         public const string SharedElementsBundleKey = "__sharedElementsKey";
-        protected MvxViewModelRequest _pendingRequest;
+        private MvxViewModelRequest? mPendingRequest;
 
-        protected virtual FragmentManager CurrentFragmentManager => CurrentActivity.SupportFragmentManager;
+        protected virtual FragmentManager? CurrentFragmentManager => CurrentActivity?.SupportFragmentManager;
 
-        private IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;
-        protected virtual Activity CurrentActivity
+        private IMvxAndroidCurrentTopActivity? mAndroidCurrentTopActivity;
+        protected virtual Activity? CurrentActivity
         {
             get
             {
-                if (_androidCurrentTopActivity == null)
-                    _androidCurrentTopActivity = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
-                return _androidCurrentTopActivity.Activity as Activity;
+                if (mAndroidCurrentTopActivity == null)
+                    mAndroidCurrentTopActivity = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+                return mAndroidCurrentTopActivity.Activity as Activity;
             }
         }
 
-        private IMvxAndroidActivityLifetimeListener _activityLifetimeListener;
+        private IMvxAndroidActivityLifetimeListener? mActivityLifetimeListener;
         protected IMvxAndroidActivityLifetimeListener ActivityLifetimeListener
         {
             get
             {
-                if (_activityLifetimeListener == null)
-                    _activityLifetimeListener = Mvx.IoCProvider.Resolve<IMvxAndroidActivityLifetimeListener>();
-                return _activityLifetimeListener;
+                if (mActivityLifetimeListener == null)
+                    mActivityLifetimeListener = Mvx.IoCProvider.Resolve<IMvxAndroidActivityLifetimeListener>();
+                return mActivityLifetimeListener;
             }
         }
 
-        private IMvxNavigationSerializer _navigationSerializer;
+        private IMvxNavigationSerializer? mNavigationSerializer;
         protected IMvxNavigationSerializer NavigationSerializer
         {
             get
             {
-                if (_navigationSerializer == null)
-                    _navigationSerializer = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
-                return _navigationSerializer;
+                if (mNavigationSerializer == null)
+                    mNavigationSerializer = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+                return mNavigationSerializer;
             }
         }
 
         public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies)
         {
             AndroidViewAssemblies = androidViewAssemblies;
-            ActivityLifetimeListener.ActivityChanged += ActivityLifetimeListener_ActivityChanged;
+            ActivityLifetimeListener.ActivityChanged += ActivityLifetimeListenerActivityChanged;
         }
 
-        protected virtual void ActivityLifetimeListener_ActivityChanged(object sender, MvxActivityEventArgs e)
+        protected virtual void ActivityLifetimeListenerActivityChanged(object sender, MvxActivityEventArgs e)
         {
-            if (e.ActivityState == MvxActivityState.OnResume && _pendingRequest != null)
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            if (e.ActivityState == MvxActivityState.OnResume && mPendingRequest != null)
             {
-                Show(_pendingRequest);
-                _pendingRequest = null;
+                _ = Show(mPendingRequest).AsTask();
+                mPendingRequest = null;
             }
             else if (e.ActivityState == MvxActivityState.OnCreate && e.Extras is Bundle savedBundle)
             {
@@ -115,6 +119,8 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             var viewType = ViewsContainer.GetViewType(request.ViewModelType);
 
             var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
@@ -124,7 +130,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             IList<MvxBasePresentationAttribute> attributes = viewType.GetCustomAttributes<MvxBasePresentationAttribute>(true).ToList();
             if (attributes != null && attributes.Count > 0)
             {
-                MvxBasePresentationAttribute attribute = null;
+                MvxBasePresentationAttribute? attribute = null;
 
                 if (attributes.Count > 1)
                 {
@@ -133,7 +139,7 @@ namespace MvvmCross.Platforms.Android.Presenters
                     // check if fragment can be displayed as child fragment first
                     foreach (var item in fragmentAttributes.Where(att => att.FragmentHostViewType != null))
                     {
-                        var fragment = GetFragmentByViewType(item.FragmentHostViewType);
+                        var fragment = GetFragmentByViewType(item.FragmentHostViewType!);
 
                         // if the fragment exists, and is on top, then use the current attribute 
                         if (fragment != null && fragment.IsVisible && fragment.View.FindViewById(item.FragmentContentId) != null)
@@ -149,7 +155,7 @@ namespace MvvmCross.Platforms.Android.Presenters
                         var currentActivityHostViewModelType = GetCurrentActivityViewModelType();
                         foreach (var item in fragmentAttributes.Where(att => att.ActivityHostViewModelType != null))
                         {
-                            if (CurrentActivity.FindViewById(item.FragmentContentId) != null && item.ActivityHostViewModelType == currentActivityHostViewModelType)
+                            if (CurrentActivity!.FindViewById(item.FragmentContentId) != null && item.ActivityHostViewModelType == currentActivityHostViewModelType)
                             {
                                 attribute = item;
                                 break;
@@ -171,6 +177,8 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
+            if (viewType == null) throw new ArgumentNullException(nameof(viewType));
+
             if (viewType.IsSubclassOf(typeof(DialogFragment)))
             {
                 MvxLog.Instance.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
@@ -191,7 +199,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         protected Type GetCurrentActivityViewModelType()
         {
-            Type currentActivityType = CurrentActivity?.GetType();
+            var currentActivityType = CurrentActivity?.GetType();
 
             var activityViewModelType = ViewModelTypeFinder.FindTypeOrNull(currentActivityType);
             return activityViewModelType;
@@ -292,8 +300,8 @@ namespace MvvmCross.Platforms.Android.Presenters
                 throw new MvxException("The host activity doesn't inherit Activity");
 
             var hostViewModelRequest = MvxViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
-            hostViewModelRequest.PresentationValues = _pendingRequest.PresentationValues;
-            Show(hostViewModelRequest);
+            hostViewModelRequest.PresentationValues = mPendingRequest.PresentationValues;
+            _ = Show(hostViewModelRequest);
         }
 
         protected virtual ValueTask<bool> ShowFragment(
@@ -318,12 +326,12 @@ namespace MvvmCross.Platforms.Android.Presenters
             {
                 MvxLog.Instance.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
                     attribute.ActivityHostViewModelType, attribute.ViewModelType);
-                _pendingRequest = request;
+                mPendingRequest = request;
                 ShowHostActivity(attribute);
             }
             else
             {
-                if (CurrentActivity.FindViewById(attribute.FragmentContentId) == null)
+                if (CurrentActivity?.FindViewById(attribute.FragmentContentId) == null)
                     throw new NullReferenceException("FrameLayout to show Fragment not found");
 
                 PerformShowFragmentTransaction(CurrentActivity.SupportFragmentManager, attribute, request);
@@ -353,12 +361,14 @@ namespace MvvmCross.Platforms.Android.Presenters
             MvxFragmentPresentationAttribute attribute,
             MvxViewModelRequest request)
         {
+            if (attribute == null) throw new ArgumentNullException(nameof(attribute));
+
             var fragmentName = attribute.ViewType.FragmentJavaName();
 
-            IMvxFragmentView fragment = null;
+            IMvxFragmentView? fragment = null;
             if (attribute.IsCacheableFragment)
             {
-                fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
+                fragment = (IMvxFragmentView)fragmentManager?.FindFragmentByTag(fragmentName);
             }
             fragment = fragment ?? CreateFragment(fragmentManager, attribute, attribute.ViewType);
 
@@ -371,7 +381,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             }
 
             // save MvxViewModelRequest in the Fragment's Arguments
-            var bundle = new Bundle();
+            using var bundle = new Bundle();
             var serializedRequest = NavigationSerializer.Serializer.SerializeObject(request);
             bundle.PutString(ViewModelRequestBundleKey, serializedRequest);
 

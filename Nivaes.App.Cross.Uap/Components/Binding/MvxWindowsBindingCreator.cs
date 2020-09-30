@@ -2,21 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Media;
-using MvvmCross.Converters;
-using MvvmCross.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Platforms.Uap.Converters;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
-    public class MvxWindowsBindingCreator : MvxBindingCreator
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+    using Microsoft.UI.Xaml.Media;
+    using MvvmCross.Converters;
+    using MvvmCross.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Platforms.Uap.Converters;
+
+    public class MvxWindowsBindingCreator
+        : MvxBindingCreator
     {
         protected virtual void ApplyBinding(MvxBindingDescription bindingDescription, Type actualType,
                                             FrameworkElement attachedObject)
@@ -34,8 +35,7 @@ namespace MvvmCross.Platforms.Uap.Binding
                 MvxLog.Instance.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
             }
 
-            var sourceStep = bindingDescription.Source as MvxPathSourceStepDescription;
-            if (sourceStep == null)
+            if (bindingDescription.Source is not MvxPathSourceStepDescription sourceStep)
             {
                 MvxLog.Instance.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
@@ -63,7 +63,7 @@ namespace MvvmCross.Platforms.Uap.Binding
             }
         }
 
-        protected static IValueConverter GetConverter(IMvxValueConverter converter)
+        protected static IValueConverter? GetConverter(IMvxValueConverter? converter)
         {
             if (converter == null)
                 return null;

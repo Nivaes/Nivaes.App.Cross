@@ -9,13 +9,15 @@ namespace MvvmCross.Base
 
     public abstract class MvxMainThreadDispatchingObject
     {
-        protected IMvxMainThreadDispatcher AsyncDispatcher => (IMvxMainThreadDispatcher)MvxMainThreadDispatcher.Instance!;
+        protected static IMvxMainThreadDispatcher AsyncDispatcher => (IMvxMainThreadDispatcher)MvxMainThreadDispatcher.Instance!;
 
         protected void InvokeOnMainThread(Action action, bool maskExceptions = true)
         {
             if (action == null) throw new NullReferenceException(nameof(action));
 
-            if (AsyncDispatcher == null)
+            var asyncDispatcher = AsyncDispatcher;
+
+            if (asyncDispatcher == null)
             {
                 try
                 {
@@ -24,18 +26,20 @@ namespace MvvmCross.Base
                 catch when (maskExceptions)
                 {
                 }
-
-                return;
             }
-
-            var _ = AsyncDispatcher.ExecuteOnMainThread(action, maskExceptions).AsTask();
+            else
+            {
+                _ = asyncDispatcher.ExecuteOnMainThread(action, maskExceptions).AsTask();
+            }
         }
 
         protected ValueTask InvokeOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
         {
             if (action == null) throw new NullReferenceException(nameof(action));
 
-            if (AsyncDispatcher == null)
+            var asyncDispatcher = AsyncDispatcher;
+
+            if (asyncDispatcher == null)
             {
                 try
                 {
@@ -47,8 +51,10 @@ namespace MvvmCross.Base
 
                 return new ValueTask();
             }
-
-            return AsyncDispatcher.ExecuteOnMainThreadAsync(action, maskExceptions);
+            else
+            {
+                return asyncDispatcher.ExecuteOnMainThreadAsync(action, maskExceptions);
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         public abstract Type TargetType { get; }
 
-        public abstract void SetValue(object value);
+        public abstract void SetValue(object? value);
 
         public event EventHandler<MvxTargetChangedEventArgs> ValueChanged;
 
@@ -73,7 +73,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         protected abstract void SetValue(TValue value);
 
-        public void SetValue(object value)
+        public void SetValue(object? value)
         {
             if (value != null && !(value is TValue))
                 MvxBindingLog.Error($"Invalid value type for target binding {GetType().Name}: received {value.GetType().Name} but expects {typeof(TValue).Name}. And cast failed.");

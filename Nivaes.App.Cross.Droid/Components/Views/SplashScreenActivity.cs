@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.Droid
         {
             var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext!);
 
-            var _ = Initialize(setup);
+            _ = Initialize(setup).AsTask();
 
             base.OnResume();
         }

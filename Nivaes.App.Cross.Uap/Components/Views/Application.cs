@@ -47,7 +47,7 @@ namespace MvvmCross.Platforms.Uap.Views
             {
                 var rootFrame = InitializeFrame();
 
-                var _ = RunAppStart(ActivationArguments);
+                _ = RunAppStart(ActivationArguments);
 
                 var window = new Microsoft.UI.Xaml.Window
                 {
@@ -74,7 +74,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
                     //if (rootFrame.Content == null)
                     //{
-                    var _ = RunAppStart(ActivationArguments);
+                    _ = RunAppStart(ActivationArguments);
                     //}
 
                     //var window = new Microsoft.UI.Xaml.Window

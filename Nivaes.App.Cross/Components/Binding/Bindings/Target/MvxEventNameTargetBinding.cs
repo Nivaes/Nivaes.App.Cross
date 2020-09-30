@@ -41,7 +41,7 @@ namespace MvvmCross.Binding.Bindings.Target
                 _currentCommand.Execute(commandParameter);
         }
 
-        public override void SetValue(object value)
+        public override void SetValue(object? value)
         {
             var command = value as ICommand;
             _currentCommand = command;

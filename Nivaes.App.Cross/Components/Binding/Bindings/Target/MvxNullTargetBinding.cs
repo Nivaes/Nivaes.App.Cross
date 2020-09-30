@@ -17,7 +17,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         public override Type TargetType => typeof(object);
 
-        public override void SetValue(object value)
+        public override void SetValue(object? value)
         {
             // ignored
         }

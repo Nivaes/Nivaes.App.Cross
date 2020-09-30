@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Ios.Views
             return prop?.PropertyType;
         }
 
-        internal static void ViewModelRequestForSegue(this IMvxEventSourceViewController self, UIStoryboardSegue segue, NSObject sender)
+        internal static void ViewModelRequestForSegue(this IMvxEventSourceViewController self, UIStoryboardSegue segue, NSObject? sender)
         {
             var view = self as IMvxIosViewSegue;
             var parameterValues = view == null ? null : view.PrepareViewModelParametersForSegue(segue, sender);

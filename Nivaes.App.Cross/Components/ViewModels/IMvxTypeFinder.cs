@@ -8,6 +8,6 @@ namespace MvvmCross.ViewModels
 {
     public interface IMvxTypeFinder
     {
-        Type FindTypeOrNull(Type candidateType);
+        Type FindTypeOrNull(Type? candidateType);
     }
 }

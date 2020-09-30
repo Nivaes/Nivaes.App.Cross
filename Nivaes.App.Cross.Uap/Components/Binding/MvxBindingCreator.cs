@@ -2,19 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using Microsoft.UI.Xaml;
-using MvvmCross.Logging;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
-    public abstract class MvxBindingCreator : IMvxBindingCreator
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Logging;
+    using MvvmCross.Binding.Bindings;
+
+    public abstract class MvxBindingCreator
+        : IMvxBindingCreator
     {
         public void CreateBindings(object sender, DependencyPropertyChangedEventArgs args,
                                    Func<string, IEnumerable<MvxBindingDescription>> parseBindingDescriptions)
         {
+            if (parseBindingDescriptions == null) throw new ArgumentNullException(nameof(parseBindingDescriptions));
+
             var attachedObject = sender as FrameworkElement;
             if (attachedObject == null)
             {

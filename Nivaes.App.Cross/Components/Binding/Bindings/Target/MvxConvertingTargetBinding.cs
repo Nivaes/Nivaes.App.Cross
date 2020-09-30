@@ -22,7 +22,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         protected abstract void SetValueImpl(object target, object value);
 
-        public override void SetValue(object value)
+        public override void SetValue(object? value)
         {
             MvxBindingLog.Trace("Receiving SetValue to " + (value ?? ""));
             var target = Target;

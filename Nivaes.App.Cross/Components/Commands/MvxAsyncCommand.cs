@@ -63,7 +63,7 @@ namespace MvvmCross.Commands
         {
             try
             {
-                var _ = ExecuteAsync(parameter, true);
+                _ = ExecuteAsync(parameter, true);
             }
             catch (Exception e)
             {
