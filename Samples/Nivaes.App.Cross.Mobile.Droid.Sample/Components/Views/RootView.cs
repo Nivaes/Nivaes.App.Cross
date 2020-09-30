@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme",
         WindowSoftInputMode = SoftInput.AdjustPan)]
-    public class RootView : MvxActivity<RootViewModel>
+    public class RootView
+        : MvxActivity<RootViewModel>
     {
         protected override void OnCreate(Bundle bundle)
         {

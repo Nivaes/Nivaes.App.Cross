@@ -19,7 +19,7 @@ namespace MvvmCross.Platforms.Android.Views
         public Activity Activity => GetCurrentActivity();
         private Activity? mLastKnownActivity;
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        public void OnActivityCreated(Activity activity, Bundle? savedInstanceState)
         {
             UpdateActivityListItem(activity, true);
         }
@@ -91,8 +91,8 @@ namespace MvvmCross.Platforms.Android.Views
 
                 if (currentActivity == null)
                 {
-                    if (!mLastKnownActivity.IsActivityDead() &&
-                        mLastKnownActivity.GetType() != typeof(SplashScreenActivity))
+                    if (!mLastKnownActivity!.IsActivityDead() &&
+                        mLastKnownActivity!.GetType() != typeof(SplashScreenActivity))
                     {
                         return mLastKnownActivity;
                     }
@@ -113,7 +113,7 @@ namespace MvvmCross.Platforms.Android.Views
         protected class ActivityInfo
         {
             public bool IsCurrent { get; set; }
-            public Activity Activity { get; set; }
+            public Activity? Activity { get; set; }
         }
     }
 }
