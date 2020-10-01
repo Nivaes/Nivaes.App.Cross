@@ -2,13 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Globalization;
-using System.Reflection;
-using MvvmCross.IoC;
-
-namespace MvvmCross.Base
+namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Globalization;
+    using System.Reflection;
+    using MvvmCross.IoC;
+
     public static class MvxCoreExtensions
     {
         // core implementation of ConvertToBoolean

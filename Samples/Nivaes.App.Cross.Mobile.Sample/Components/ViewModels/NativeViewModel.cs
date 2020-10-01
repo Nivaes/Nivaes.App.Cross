@@ -4,10 +4,9 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class NativeViewModel
         : MvxViewModel

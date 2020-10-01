@@ -4,10 +4,10 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class OverrideAttributeViewModel
         : MvxNavigationViewModel
@@ -22,10 +22,10 @@ namespace Nivaes.App.Mobile.Sample
             ShowSecondChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowTabsCommand { get; private set; }
+        public IMvxAsyncCommand ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public IMvxAsyncCommand CloseCommand { get; }
 
-        public IMvxAsyncCommand ShowSecondChildCommand { get; private set; }
+        public IMvxAsyncCommand ShowSecondChildCommand { get; }
     }
 }

@@ -5,10 +5,10 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
 
     public class Tab1ViewModel

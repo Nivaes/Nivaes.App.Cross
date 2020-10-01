@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
 namespace MvvmCross.Commands
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using Nivaes.App.Cross;
+
     public class MvxCommandCollectionBuilder
         : IMvxCommandCollectionBuilder
     {
@@ -168,8 +169,8 @@ namespace MvvmCross.Commands
 
             public override IMvxCommand ToCommand(object owner)
             {
-                var executeAction = new Action(() => ExecuteMethodInfo.Invoke(owner, new object[0]));
-                Func<bool> canExecuteFunc = null;
+                var executeAction = new Action(() => ExecuteMethodInfo.Invoke(owner, Array.Empty<object>()));
+                Func<bool>? canExecuteFunc = null;
                 if (CanExecutePropertyInfo != null)
                     canExecuteFunc = () => (bool)CanExecutePropertyInfo.GetValue(owner, null);
 
@@ -177,7 +178,8 @@ namespace MvvmCross.Commands
             }
         }
 
-        public class MvxParameterizedCommandBuilder : MvxBaseCommandBuilder
+        public class MvxParameterizedCommandBuilder
+            : MvxBaseCommandBuilder
         {
             public MvxParameterizedCommandBuilder(MethodInfo executeMethodInfo, PropertyInfo canExecutePropertyInfo)
                 : base(executeMethodInfo, canExecutePropertyInfo)
@@ -187,7 +189,7 @@ namespace MvvmCross.Commands
             public override IMvxCommand ToCommand(object owner)
             {
                 var executeAction = new Action<object>((obj) => ExecuteMethodInfo.Invoke(owner, new[] { obj }));
-                Func<object, bool> canExecuteFunc = null;
+                Func<object, bool>? canExecuteFunc = null;
                 if (CanExecutePropertyInfo != null)
                     canExecuteFunc = (ignored) => (bool)CanExecutePropertyInfo.GetValue(owner, null);
 

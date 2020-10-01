@@ -2,50 +2,52 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Windows.Input;
 using Android.Views;
-using MvvmCross.Binding;
-using MvvmCross.WeakSubscription;
 
 namespace MvvmCross.Platforms.Android.Binding.Target
 {
-    public class MvxViewClickBinding : MvxAndroidTargetBinding
+    using System;
+    using System.Windows.Input;
+    using MvvmCross.Binding;
+    using MvvmCross.WeakSubscription;
+
+    public class MvxViewClickBinding
+        : MvxAndroidTargetBinding
     {
-        private ICommand _command;
-        private IDisposable _clickSubscription;
-        private IDisposable _canExecuteSubscription;
-        private readonly EventHandler<EventArgs> _canExecuteEventHandler;
+        private ICommand? mCommand;
+        private IDisposable? mClickSubscription;
+        private IDisposable? mCanExecuteSubscription;
+        private readonly EventHandler<EventArgs> mCanExecuteEventHandler;
 
         protected View View => (View)Target;
 
         public MvxViewClickBinding(View view)
             : base(view)
         {
-            _canExecuteEventHandler = OnCanExecuteChanged;
-            _clickSubscription = view.WeakSubscribe(nameof(view.Click), ViewOnClick);
+            mCanExecuteEventHandler = OnCanExecuteChanged;
+            mClickSubscription = view.WeakSubscribe(nameof(view.Click), ViewOnClick);
         }
 
         private void ViewOnClick(object sender, EventArgs args)
         {
-            if (_command == null)
+            if (mCommand == null)
                 return;
 
-            if (!_command.CanExecute(null))
+            if (!mCommand.CanExecute(null))
                 return;
 
-            _command.Execute(null);
+            mCommand.Execute(null);
         }
 
         protected override void SetValueImpl(object target, object value)
         {
-            _canExecuteSubscription?.Dispose();
-            _canExecuteSubscription = null;
+            mCanExecuteSubscription?.Dispose();
+            mCanExecuteSubscription = null;
 
-            _command = value as ICommand;
-            if (_command != null)
+            mCommand = value as ICommand;
+            if (mCommand != null)
             {
-                _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
+                mCanExecuteSubscription = mCommand.WeakSubscribe(mCanExecuteEventHandler);
             }
             RefreshEnabledState();
         }
@@ -57,9 +59,9 @@ namespace MvvmCross.Platforms.Android.Binding.Target
                 return;
 
             var shouldBeEnabled = false;
-            if (_command != null)
+            if (mCommand != null)
             {
-                shouldBeEnabled = _command.CanExecute(null);
+                shouldBeEnabled = mCommand.CanExecute(null);
             }
             view.Enabled = shouldBeEnabled;
         }
@@ -77,11 +79,11 @@ namespace MvvmCross.Platforms.Android.Binding.Target
         {
             if (isDisposing)
             {
-                _clickSubscription?.Dispose();
-                _clickSubscription = null;
+                mClickSubscription?.Dispose();
+                mClickSubscription = null;
 
-                _canExecuteSubscription?.Dispose();
-                _canExecuteSubscription = null;
+                mCanExecuteSubscription?.Dispose();
+                mCanExecuteSubscription = null;
             }
             base.Dispose(isDisposing);
         }

@@ -7,9 +7,8 @@ namespace Nivaes.App.Mobile.Sample
     using System;
     using System.Drawing;
     using System.Linq;
-    using MvvmCross.Commands;
-    using MvvmCross.UI;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class CollectionViewModel : MvxViewModel
     {

@@ -4,22 +4,23 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
 
     public class Tab3ViewModel
         : MvxNavigationViewModel
     {
-        public Tab3ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public Tab3ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
             ShowRootViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 
             CloseViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
-            ShowPageOneCommand = new MvxCommand(() => NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab1ViewModel))));
+            ShowPageOneCommand = new MvxAsyncCommand(async () => await NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab1ViewModel))).ConfigureAwait(true));
         }
 
         public IMvxAsyncCommand ShowRootViewModelCommand { get; }

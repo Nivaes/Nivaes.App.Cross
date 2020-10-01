@@ -4,12 +4,10 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using System;
-    using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class MixedNavResultDetailViewModel
         : MvxNavigationViewModelResult<DetailResultResult>, IMvxViewModelResult<DetailResultResult>

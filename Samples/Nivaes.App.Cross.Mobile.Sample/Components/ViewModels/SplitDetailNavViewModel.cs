@@ -4,10 +4,10 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class SplitDetailNavViewModel : MvxNavigationViewModel
     {
@@ -18,8 +18,7 @@ namespace Nivaes.App.Mobile.Sample
             CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand MainMenuCommand { get; private set; }
-        public IMvxAsyncCommand CloseCommand { get; private set; }
-
+        public IMvxAsyncCommand MainMenuCommand { get; }
+        public IMvxAsyncCommand CloseCommand { get; }
     }
 }

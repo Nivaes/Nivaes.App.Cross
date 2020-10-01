@@ -2,19 +2,23 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-
-namespace MvvmCross.Commands
+namespace Nivaes.App.Cross
 {
-    public interface IMvxAsyncCommand : IMvxCommand
+    using System.Threading.Tasks;
+
+    public interface IMvxAsyncCommand
+        : IMvxCommand
     {
-        Task ExecuteAsync(object? parameter = null);
+        ValueTask ExecuteAsync(object? parameter = null);
+
         void Cancel();
     }
 
-    public interface IMvxAsyncCommand<T> : IMvxCommand<T>
+    public interface IMvxAsyncCommand<T>
+        : IMvxCommand<T>
     {
-        Task ExecuteAsync(T parameter);
+        ValueTask ExecuteAsync(T parameter);
+
         void Cancel();
     }
 }

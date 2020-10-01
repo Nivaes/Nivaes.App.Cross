@@ -5,10 +5,10 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class SplitRootViewModel : MvxNavigationViewModel
     {
@@ -20,9 +20,9 @@ namespace Nivaes.App.Mobile.Sample
                 async () => await ShowDetailViewModel().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowInitialMenuCommand { get; private set; }
+        public IMvxAsyncCommand ShowInitialMenuCommand { get; }
 
-        public IMvxAsyncCommand ShowDetailCommand { get; private set; }
+        public IMvxAsyncCommand ShowDetailCommand { get; }
 
         public override ValueTask ViewAppeared()
         {

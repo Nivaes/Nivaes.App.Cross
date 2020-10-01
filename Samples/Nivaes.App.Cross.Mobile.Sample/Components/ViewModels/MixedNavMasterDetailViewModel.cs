@@ -6,10 +6,10 @@ namespace Nivaes.App.Mobile.Sample
 {
     using System;
     using System.Collections.Generic;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class MixedNavMasterDetailViewModel
         : MvxNavigationViewModel

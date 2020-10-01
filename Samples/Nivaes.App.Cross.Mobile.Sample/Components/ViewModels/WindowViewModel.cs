@@ -10,6 +10,7 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.Commands;
     using MvvmCross.Logging;
     using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross;
 
     public class WindowChildParam
     {
@@ -100,7 +101,7 @@ namespace Nivaes.App.Mobile.Sample
                 }).ConfigureAwait(false);
             });
 
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
+            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(false));
 
             ToggleSettingCommand = new MvxAsyncCommand(async () =>
             {
@@ -111,9 +112,9 @@ namespace Nivaes.App.Mobile.Sample
             });
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
-        public IMvxAsyncCommand<int> ShowWindowChildCommand { get; private set; }
+        public IMvxAsyncCommand CloseCommand { get; }
+        public IMvxAsyncCommand<int> ShowWindowChildCommand { get; }
 
-        public IMvxAsyncCommand ToggleSettingCommand { get; private set; }    
+        public IMvxAsyncCommand ToggleSettingCommand { get; }    
     }
 }

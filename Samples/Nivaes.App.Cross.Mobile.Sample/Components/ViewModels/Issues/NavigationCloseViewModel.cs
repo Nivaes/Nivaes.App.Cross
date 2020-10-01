@@ -9,6 +9,7 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.Commands;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class NavigationCloseViewModel : MvxViewModel
     {
@@ -19,19 +20,19 @@ namespace Nivaes.App.Mobile.Sample
             mMvxNavigationService = mvxNavigationService;
         }
 
-        public IMvxAsyncCommand OpenChildThenCloseThisCommand => new MvxAsyncCommand(CloseThisAndOpenChildAsync);
+        public IMvxAsyncCommand OpenChildThenCloseThisCommand => new MvxAsyncCommand(CloseThisAndOpenChild);
 
-        public IMvxAsyncCommand TryToCloseNewViewModelCommand => new MvxAsyncCommand(TryToCloseNewViewModelAsync);
+        public IMvxAsyncCommand TryToCloseNewViewModelCommand => new MvxAsyncCommand(TryToCloseNewViewModel);
 
-        private async Task CloseThisAndOpenChildAsync()
+        private async ValueTask CloseThisAndOpenChild()
         {
             await mMvxNavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(false);
             await mMvxNavigationService.Close(this).ConfigureAwait(false);
         }
 
-        private async Task TryToCloseNewViewModelAsync()
+        private async ValueTask TryToCloseNewViewModel()
         {
-            await mMvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>());
+            _ = await mMvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>()).ConfigureAwait(false);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace MvvmCross.Core
     using MvvmCross.Plugin;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
 
     public abstract class MvxSetup
         : IMvxSetup

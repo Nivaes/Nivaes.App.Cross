@@ -4,10 +4,10 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class FragmentCloseViewModel
         : MvxNavigationViewModel
@@ -32,6 +32,7 @@ namespace Nivaes.App.Mobile.Sample
         }
 
         public IMvxAsyncCommand ForwardCommand { get; }
+
         public IMvxAsyncCommand CloseCommand { get; }
     }
 }

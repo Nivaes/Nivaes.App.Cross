@@ -7,10 +7,10 @@ namespace Nivaes.App.Mobile.Sample
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class Page1ViewModel
         : MvxNavigationViewModel

@@ -5,8 +5,8 @@
 namespace MvvmCross.Plugin.Visibility
 {
     using System.Globalization;
-    using MvvmCross.Base;
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     [Preserve(AllMembers = true)]
     public class MvxVisibilityValueConverter : MvxBaseVisibilityValueConverter

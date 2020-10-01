@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Commands
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxCommandCollection
         : IMvxCommandCollection
     {
@@ -24,8 +25,7 @@ namespace MvvmCross.Commands
 
         private void SubscribeToNotifyPropertyChanged()
         {
-            var inpc = _owner as INotifyPropertyChanged;
-            if (inpc == null)
+            if (_owner is not INotifyPropertyChanged inpc)
                 return;
 
             inpc.PropertyChanged += OnPropertyChanged;
@@ -40,8 +40,7 @@ namespace MvvmCross.Commands
                 return;
             }
 
-            List<IMvxCommand> commands;
-            if (!_canExecuteLookup.TryGetValue(args.PropertyName, out commands))
+            if (!_canExecuteLookup.TryGetValue(args.PropertyName, out List<IMvxCommand>? commands))
                 return;
 
             foreach (var command in commands)
@@ -58,7 +57,7 @@ namespace MvvmCross.Commands
             }
         }
 
-        public IMvxCommand this[string name]
+        public IMvxCommand? this[string name]
         {
             get
             {
@@ -68,8 +67,7 @@ namespace MvvmCross.Commands
                     return null;
                 }
 
-                IMvxCommand toReturn;
-                _commandLookup.TryGetValue(name, out toReturn);
+                _commandLookup.TryGetValue(name, out IMvxCommand toReturn);
                 return toReturn;
             }
         }
@@ -99,10 +97,9 @@ namespace MvvmCross.Commands
                 return;
 
             // Get collection
-            List<IMvxCommand> commands;
 
             // If no collection exists, create a new one
-            if (!lookup.TryGetValue(name, out commands))
+            if (!lookup.TryGetValue(name, out List<IMvxCommand> commands))
             {
                 commands = new List<IMvxCommand>();
                 lookup[name] = commands;

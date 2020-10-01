@@ -5,8 +5,8 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class ListViewModel
         : MvxViewModel
@@ -27,10 +27,9 @@ namespace Nivaes.App.Mobile.Sample
             });
         }
 
-        private Task ItemClicked(TestItem arg)
+        private ValueTask ItemClicked(TestItem item)
         {
-            var item = arg;
-            return Task.CompletedTask;
+            return new ValueTask();
         }
     }
 

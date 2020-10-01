@@ -19,8 +19,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
         {
         }
 
-        protected IMvxAndroidGlobals AndroidGlobals
-            => _androidGlobals ?? (_androidGlobals = Mvx.IoCProvider.Resolve<IMvxAndroidGlobals>());
+        protected IMvxAndroidGlobals AndroidGlobals => _androidGlobals ??= Mvx.IoCProvider.Resolve<IMvxAndroidGlobals>();
 
         protected override bool ShouldSkipSetValueForPlatformSpecificReasons(object target, object value)
         {

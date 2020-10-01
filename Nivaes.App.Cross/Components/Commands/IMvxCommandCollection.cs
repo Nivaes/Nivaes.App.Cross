@@ -4,8 +4,10 @@
 
 namespace MvvmCross.Commands
 {
+    using Nivaes.App.Cross;
+
     public interface IMvxCommandCollection
     {
-        IMvxCommand this[string name] { get; }
+        IMvxCommand? this[string name] { get; }
     }
 }

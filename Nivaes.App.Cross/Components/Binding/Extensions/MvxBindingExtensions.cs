@@ -6,6 +6,7 @@ using System;
 using System.Globalization;
 using MvvmCross.Base;
 using MvvmCross.IoC;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Binding.Extensions
 {
@@ -44,10 +45,7 @@ namespace MvvmCross.Binding.Extensions
             return false;
         }
 
-        public static bool ConvertToBoolean(this object result)
-        {
-            return result.ConvertToBooleanCore();
-        }
+        public static bool ConvertToBoolean(this object result) => result.ConvertToBooleanCore();
 
         public static object MakeSafeValue(this Type propertyType, object value)
         {

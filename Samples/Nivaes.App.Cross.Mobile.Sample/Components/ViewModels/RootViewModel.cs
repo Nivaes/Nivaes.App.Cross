@@ -5,15 +5,12 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System;
-    using System.Diagnostics;
-    using System.Net;
     using System.Threading.Tasks;
-    using MvvmCross;
-    using MvvmCross.Commands;
     using MvvmCross.Localization;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Sample;
 
 
@@ -51,41 +48,33 @@ namespace Nivaes.App.Mobile.Sample
 
             ShowModalCommand = new MvxAsyncCommand(async () => await Navigate().ConfigureAwait(true));
 
-            ShowModalNavCommand =
-                new MvxAsyncCommand(async () => await NavigationService.Navigate<ModalNavViewModel>().ConfigureAwait(true));
+            ShowModalNavCommand = new MvxAsyncNavigationCommand<ModalNavViewModel>();
 
-            ShowTabsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<TabsRootViewModel>().ConfigureAwait(true));
+            ShowTabsCommand = new MvxAsyncNavigationCommand<TabsRootViewModel>();
 
-            ShowPagesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<PagesRootViewModel>().ConfigureAwait(true));
+            ShowPagesCommand = new MvxAsyncNavigationCommand<PagesRootViewModel>();
 
-            ShowSplitCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SplitRootViewModel>().ConfigureAwait(true));
+            ShowSplitCommand = new MvxAsyncNavigationCommand<SplitRootViewModel>();
 
-            ShowNativeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<NativeViewModel>().ConfigureAwait(true));
+            ShowNativeCommand = new MvxAsyncNavigationCommand<NativeViewModel>();
 
-            ShowOverrideAttributeCommand = new MvxAsyncCommand(async () =>
-                await NavigationService.Navigate<OverrideAttributeViewModel>().ConfigureAwait(true));
+            ShowOverrideAttributeCommand = new MvxAsyncNavigationCommand<OverrideAttributeViewModel>();
 
-            ShowSheetCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SheetViewModel>().ConfigureAwait(true));
+            ShowSheetCommand = new MvxAsyncNavigationCommand<SheetViewModel>();
 
-            ShowWindowCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<WindowViewModel>().ConfigureAwait(true));
+            ShowWindowCommand = new MvxAsyncNavigationCommand<WindowViewModel>();
 
-            ShowMixedNavigationCommand =
-                new MvxAsyncCommand(async () => await NavigationService.Navigate<MixedNavFirstViewModel>().ConfigureAwait(true));
+            ShowMixedNavigationCommand = new MvxAsyncNavigationCommand<MixedNavFirstViewModel>();
 
-            ShowDictionaryBindingCommand = new MvxAsyncCommand(async () =>
-                await NavigationService.Navigate<DictionaryBindingViewModel>().ConfigureAwait(true));
+            ShowDictionaryBindingCommand = new MvxAsyncNavigationCommand<DictionaryBindingViewModel>();
 
-            ShowCollectionViewCommand =
-                new MvxAsyncCommand(async () => await NavigationService.Navigate<CollectionViewModel>().ConfigureAwait(true));
+            ShowCollectionViewCommand = new MvxAsyncNavigationCommand<CollectionViewModel>();
 
-            ShowSharedElementsCommand = new MvxAsyncCommand(async () =>
-                await NavigationService.Navigate<SharedElementRootChildViewModel>().ConfigureAwait(true));
+            ShowSharedElementsCommand = new MvxAsyncNavigationCommand<SharedElementRootChildViewModel>();
 
-            ShowCustomBindingCommand =
-                new MvxAsyncCommand(async () => await NavigationService.Navigate<CustomBindingViewModel>().ConfigureAwait(true));
+            ShowCustomBindingCommand = new MvxAsyncNavigationCommand<CustomBindingViewModel>();
 
-            ShowFluentBindingCommand =
-                new MvxAsyncCommand(async () => await NavigationService.Navigate<FluentBindingViewModel>().ConfigureAwait(true));
+            ShowFluentBindingCommand = new MvxAsyncNavigationCommand<FluentBindingViewModel>();
 
             //RegisterAndResolveWithReflectionCommand = new MvxAsyncCommand(
             //    async () => await RegisterAndResolveWithReflection().ConfigureAwait(true));
@@ -94,11 +83,9 @@ namespace Nivaes.App.Mobile.Sample
 
             mCounter = 3;
 
-            TriggerVisibilityCommand =
-                new MvxCommand(() => IsVisible = !IsVisible);
+            TriggerVisibilityCommand = new MvxCommand(() => IsVisible = !IsVisible);
 
-            FragmentCloseCommand = new MvxAsyncCommand(
-                async () => await NavigationService.Navigate<FragmentCloseViewModel>().ConfigureAwait(true));
+            FragmentCloseCommand = new MvxAsyncNavigationCommand<FragmentCloseViewModel>();
 
             //ShowLocationCommand = new MvxAsyncCommand(
             //    async () => await NavigationService.Navigate<LocationViewModel>().ConfigureAwait(true));
@@ -229,15 +216,9 @@ namespace Nivaes.App.Mobile.Sample
             mCounter = int.Parse(state.Data["MyKey"]);
         }
 
-        private async Task Navigate()
+        private async ValueTask Navigate()
         {
-            try
-            {
-                await NavigationService.Navigate<ModalViewModel>().ConfigureAwait(true);
-            }
-            catch (Exception)
-            {
-            }
+            _ = await NavigationService.Navigate<ModalViewModel>().ConfigureAwait(true);
         }
 
         //public async Task<MvxRestResponse> MakeRequest()

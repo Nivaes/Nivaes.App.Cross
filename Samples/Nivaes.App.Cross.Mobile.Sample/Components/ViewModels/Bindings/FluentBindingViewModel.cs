@@ -4,15 +4,15 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class FluentBindingViewModel
         : MvxNavigationViewModel
     {
-        bool _bindingsEnabled = true;
+        private bool mBindingsEnabled = true;
 
         public FluentBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
@@ -24,17 +24,17 @@ namespace Nivaes.App.Mobile.Sample
 
         public MvxInteraction<bool> ClearBindingInteraction { get; } = new MvxInteraction<bool>();
 
-        string _textValue;
+        private string mTextValue = string.Empty;
         public string TextValue
         {
-            get => _textValue;
-            set => SetProperty(ref _textValue, value);
+            get => mTextValue;
+            set => SetProperty(ref mTextValue, value);
         }
 
-        void ClearBindings()
+        private void ClearBindings()
         {
-            _bindingsEnabled = !_bindingsEnabled;
-            ClearBindingInteraction.Raise(_bindingsEnabled);
+            mBindingsEnabled = !mBindingsEnabled;
+            ClearBindingInteraction.Raise(mBindingsEnabled);
         }
     }
 }

@@ -2,18 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-
 namespace Nivaes.App.Mobile.Sample
 {
-    public class ParentContentViewModel : MvxViewModel
-    {
-        private ChildContentViewModel mChildViewModel1;
+    using System.Threading.Tasks;
+    using MvvmCross;
+    using MvvmCross.Commands;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
-        public ChildContentViewModel ChildViewModel1
+    public class ParentContentViewModel
+        : MvxViewModel
+    {
+        private ChildContentViewModel? mChildViewModel1;
+
+        public ChildContentViewModel? ChildViewModel1
         {
             get => mChildViewModel1;
             set
@@ -23,8 +25,8 @@ namespace Nivaes.App.Mobile.Sample
         }
 
 
-        private ChildContentViewModel mChildBindingContext2;
-        public ChildContentViewModel ChildBindingContext2
+        private ChildContentViewModel? mChildBindingContext2;
+        public ChildContentViewModel? ChildBindingContext2
         {
             get => mChildBindingContext2;
             set
@@ -44,10 +46,10 @@ namespace Nivaes.App.Mobile.Sample
             }
         }
 
-        public IMvxCommand ChangeButtonCmd1 => new MvxCommand(() => ChildViewModel1.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+        public IMvxCommand ChangeButtonCmd1 => new MvxCommand(() => ChildViewModel1!.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
         public IMvxCommand ToggleChild1EnabledCmd => new MvxCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
 
-        public IMvxCommand ChangeButtonCmd2 => new MvxCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+        public IMvxCommand ChangeButtonCmd2 => new MvxCommand(() => ChildBindingContext2!.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
 
         public override ValueTask Prepare()
         {

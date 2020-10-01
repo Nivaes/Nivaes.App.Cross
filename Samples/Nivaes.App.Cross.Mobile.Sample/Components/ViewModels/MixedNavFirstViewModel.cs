@@ -5,10 +5,10 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class MixedNavFirstViewModel
         : MvxNavigationViewModel
@@ -18,16 +18,14 @@ namespace Nivaes.App.Mobile.Sample
         {
         }
 
-        public IMvxAsyncCommand LoginCommand => new MvxAsyncCommand(
-            async ()=> await GotoMasterDetailPage().ConfigureAwait(true), 
-            CanLogin);
+        public IMvxAsyncCommand LoginCommand => new MvxAsyncCommand(GotoMasterDetailPage, CanLogin);
 
         private bool CanLogin()
         {
             return true;
         }
 
-        private async Task GotoMasterDetailPage()
+        private async ValueTask GotoMasterDetailPage()
         {
             await NavigationService.Navigate<MixedNavMasterDetailViewModel>().ConfigureAwait(true);
             await NavigationService.Navigate<MixedNavMasterRootContentViewModel>().ConfigureAwait(true);

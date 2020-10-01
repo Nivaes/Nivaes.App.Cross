@@ -4,34 +4,34 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class DictionaryBindingViewModel
         : MvxNavigationViewModel
     {
-        int _value = 0;
+        private int mValue;
         public int Value
         {
-            get => _value;
-            set => SetProperty(ref _value, value);
+            get => mValue;
+            set => SetProperty(ref mValue, value);
         }
 
-        IMvxAsyncCommand _closeCommand;
+        private IMvxAsyncCommand? mCloseCommand;
         public IMvxAsyncCommand CloseCommand =>
-            _closeCommand ?? (_closeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true)));
+            mCloseCommand ?? (mCloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true)));
 
 
-        IMvxCommand _incrementCommand;
+        private IMvxCommand? mIncrementCommand;
+        public IMvxCommand IncrementCommand =>
+            mIncrementCommand ?? (mIncrementCommand = new MvxCommand(Increment));
 
-        public DictionaryBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public DictionaryBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
         }
-
-        public IMvxCommand IncrementCommand =>
-            _incrementCommand ?? (_incrementCommand = new MvxCommand(Increment));
 
         private void Increment()
         {

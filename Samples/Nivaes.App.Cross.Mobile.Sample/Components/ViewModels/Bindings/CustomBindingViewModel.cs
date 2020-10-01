@@ -5,15 +5,15 @@
 namespace Nivaes.App.Mobile.Sample
 {
     using System;
-    using MvvmCross.Commands;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class CustomBindingViewModel
         : MvxNavigationViewModel
     {
-        private IMvxAsyncCommand _closeCommand;
+        private IMvxAsyncCommand? mCloseCommand;
 
         private int _counter = 2;
 
@@ -32,9 +32,9 @@ namespace Nivaes.App.Mobile.Sample
             set => SetProperty(ref _hello, value);
         }
 
-        public IMvxAsyncCommand CloseCommand => _closeCommand ??
-                                                (_closeCommand = new MvxAsyncCommand(async () =>
-                                                    await NavigationService.Close(this)));
+        public IMvxAsyncCommand CloseCommand => mCloseCommand ??
+                                                (mCloseCommand = new MvxAsyncCommand(async () =>
+                                                    await NavigationService.Close(this).ConfigureAwait(false)));
 
         public int Counter
         {
