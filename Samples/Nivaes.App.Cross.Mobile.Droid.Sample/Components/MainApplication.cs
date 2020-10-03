@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Mobile.Sample;
 
-    [Activity()]
+    [Application]
     public class MainApplication
         : MvxAndroidApplication<Setup, AppMobileSampleApplication<AppMobileSampleAppStart>>
     {

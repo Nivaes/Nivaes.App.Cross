@@ -110,7 +110,7 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected sealed override IMvxViewsContainer CreateViewsContainer()
         {
-            var container = CreateViewsContainer(mApplicationContext);
+            var container = CreateViewsContainer(mApplicationContext!);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
 
@@ -184,6 +184,8 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected virtual void FillViewTypes(IMvxTypeCache<View> cache)
         {
+            if (cache == null) throw new ArgumentNullException(nameof(cache));
+
             foreach (var assembly in AndroidViewAssemblies)
             {
                 cache.AddAssembly(assembly);
@@ -197,6 +199,8 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected virtual void FillAxmlViewTypeResolver(IMvxAxmlNameViewTypeResolver viewTypeResolver)
         {
+            if (viewTypeResolver == null) throw new ArgumentNullException(nameof(viewTypeResolver));
+
             foreach (var kvp in ViewNamespaceAbbreviations)
             {
                 viewTypeResolver.ViewNamespaceAbbreviations[kvp.Key] = kvp.Value;
@@ -205,6 +209,8 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected virtual void FillNamespaceListViewTypeResolver(IMvxNamespaceListViewTypeResolver viewTypeResolver)
         {
+            if (viewTypeResolver == null) throw new ArgumentNullException(nameof(viewTypeResolver));
+
             foreach (var viewNamespace in ViewNamespaces)
             {
                 viewTypeResolver.Add(viewNamespace);
@@ -232,8 +238,7 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected virtual IDictionary<string, string> ViewNamespaceAbbreviations => new Dictionary<string, string>
         {
-            { "Mvx", "mvvmcross.platforms.android.binding.views"
-            }
+            { "Mvx", "mvvmcross.platforms.android.binding.views" }
         };
 
         protected virtual IEnumerable<string> ViewNamespaces => new List<string>
@@ -263,7 +268,8 @@ namespace MvvmCross.Platforms.Android.Core
         }
     }
 
-    public class MvxAndroidSetup<TApplication> : MvxAndroidSetup
+    public class MvxAndroidSetup<TApplication>
+        : MvxAndroidSetup
         where TApplication : class, IMvxApplication, new()
     {
         protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();

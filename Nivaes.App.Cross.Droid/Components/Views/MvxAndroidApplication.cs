@@ -2,16 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.App;
 using Android.Runtime;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    public abstract class MvxAndroidApplication : Application, IMvxAndroidApplication
+    using System;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.ViewModels;
+
+    public abstract class MvxAndroidApplication
+        : Application, IMvxAndroidApplication
     {
         public static MvxAndroidApplication Instance { get; private set; }
 
@@ -21,7 +23,8 @@ namespace MvvmCross.Platforms.Android.Views
             RegisterSetup();
         }
 
-        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
         {
             Instance = this;
             RegisterSetup();
