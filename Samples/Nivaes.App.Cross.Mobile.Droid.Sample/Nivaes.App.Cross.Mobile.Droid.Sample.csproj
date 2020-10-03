@@ -76,6 +76,7 @@
     <Compile Include="Components\LinkerPleaseInclude\LinkerPleaseInclude.cs" />
     <Compile Include="Components\MainApplication.cs" />
     <Compile Include="Components\Setup.cs" />
+    <Compile Include="Components\Views\BaseSplitDetailView.cs" />
     <Compile Include="Components\Views\ChildView.cs" />
     <Compile Include="Components\Views\DictionaryBindingView.cs" />
     <Compile Include="Components\Views\FluentBindingView.cs" />
@@ -93,10 +94,12 @@
     <Compile Include="Components\Views\SplitDetailNavView.cs" />
     <Compile Include="Components\Views\SplitDetailView.cs" />
     <Compile Include="Components\Views\SplitMasterView.cs" />
+    <Compile Include="Components\Views\SplitRootView.cs" />
     <Compile Include="Components\Views\Tab1View.cs" />
     <Compile Include="Components\Views\Tab2View.cs" />
     <Compile Include="Components\Views\Tab3View.cs" />
     <Compile Include="Components\Views\TabsRootBView.cs" />
+    <Compile Include="Components\Views\TabsRootView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,7 +135,6 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlcipher">
@@ -247,6 +249,31 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\SharedElementSecondChildView.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SplitDetailNavView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SplitDetailView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SplitMasterView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\navigation_header.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\navigation_drawer.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

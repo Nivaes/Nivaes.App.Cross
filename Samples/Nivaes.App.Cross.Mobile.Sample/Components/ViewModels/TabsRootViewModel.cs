@@ -10,7 +10,8 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class TabsRootViewModel : MvxNavigationViewModel
+    public class TabsRootViewModel
+        : MvxNavigationViewModel
     {
         public TabsRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
@@ -21,9 +22,9 @@ namespace Nivaes.App.Mobile.Sample
                 async () => await NavigationService.Navigate<TabsRootBViewModel>().ConfigureAwait(false));
         }
 
-        public IMvxAsyncCommand ShowInitialViewModelsCommand { get; private set; }
+        public IMvxAsyncCommand ShowInitialViewModelsCommand { get; }
 
-        public IMvxAsyncCommand ShowTabsRootBCommand { get; private set; }
+        public IMvxAsyncCommand ShowTabsRootBCommand { get; }
 
         private Task ShowInitialViewModels()
         {

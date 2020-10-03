@@ -9,9 +9,10 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.Views;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
 
-    //[MvxFragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
+    [MvxFragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
     [Register(nameof(TabsRootBView))]
     public class TabsRootBView
         : MvxFragment<TabsRootBViewModel>

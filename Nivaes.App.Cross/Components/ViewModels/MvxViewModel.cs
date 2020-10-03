@@ -43,12 +43,12 @@ namespace MvvmCross.ViewModels
             return new ValueTask();
         }
 
-        public ValueTask Init(IMvxBundle parameters)
+        public ValueTask Init(IMvxBundle? parameters)
         {
             return InitFromBundle(parameters);
         }
 
-        public ValueTask ReloadState(IMvxBundle state)
+        public ValueTask ReloadState(IMvxBundle? state)
         {
             return ReloadFromBundle(state);
         }
@@ -58,22 +58,22 @@ namespace MvvmCross.ViewModels
             return new ValueTask();
         }
 
-        public ValueTask SaveState(IMvxBundle state)
+        public ValueTask SaveState(IMvxBundle? state)
         {
             return SaveStateToBundle(state);
         }
 
-        protected virtual ValueTask InitFromBundle(IMvxBundle parameters)
+        protected virtual ValueTask InitFromBundle(IMvxBundle? parameters)
         {
             return new ValueTask();
         }
 
-        protected virtual ValueTask ReloadFromBundle(IMvxBundle state)
+        protected virtual ValueTask ReloadFromBundle(IMvxBundle? state)
         {
             return new ValueTask();
         }
 
-        protected virtual ValueTask SaveStateToBundle(IMvxBundle bundle)
+        protected virtual ValueTask SaveStateToBundle(IMvxBundle? bundle)
         {
             return new ValueTask();
         }

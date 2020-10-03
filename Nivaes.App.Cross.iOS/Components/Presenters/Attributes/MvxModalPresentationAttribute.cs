@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using CoreGraphics;
-using MvvmCross.Presenters.Attributes;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Presenters.Attributes
 {
+    using CoreGraphics;
+    using Nivaes.App.Cross.Presenters;
+    using UIKit;
+
     public class MvxModalPresentationAttribute : MvxBasePresentationAttribute
     {
         public static bool DefaultWrapInNavigationController = false;

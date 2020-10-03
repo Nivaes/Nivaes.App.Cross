@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using System;
+    using System.Globalization;
     using System.Threading.Tasks;
     using MvvmCross.Localization;
     using MvvmCross.Logging;
@@ -13,7 +13,8 @@ namespace Nivaes.App.Mobile.Sample
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Sample;
 
-    public class RootViewModel : MvxNavigationViewModel
+    public class RootViewModel
+        : MvxNavigationViewModel
     {
         private readonly IMvxViewModelLoader mMvxViewModelLoader;
 
@@ -205,14 +206,16 @@ namespace Nivaes.App.Mobile.Sample
         {
             await base.SaveStateToBundle(bundle).ConfigureAwait(false);
 
-            bundle!.Data["MyKey"] = mCounter.ToString();
+            if(bundle != null)
+                bundle.Data["MyKey"] = mCounter.ToString(CultureInfo.CurrentCulture);
         }
 
-        protected override async ValueTask ReloadFromBundle(IMvxBundle state)
+        protected override async ValueTask ReloadFromBundle(IMvxBundle? bundle)
         {
-            await base.ReloadFromBundle(state).ConfigureAwait(false);
+            await base.ReloadFromBundle(bundle).ConfigureAwait(false);
 
-            mCounter = int.Parse(state.Data["MyKey"]);
+            if (bundle != null)
+                mCounter = int.Parse(bundle.Data["MyKey"], CultureInfo.CurrentCulture);
         }
 
         private async ValueTask Navigate()

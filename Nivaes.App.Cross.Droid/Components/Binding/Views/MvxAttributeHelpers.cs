@@ -2,13 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
 using Android.Util;
-using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
+
     public static class MvxAttributeHelpers
     {
         private static readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>());
@@ -41,10 +44,11 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                                       mvxAndroidBindingResource.Value.GroupItemTemplateId);
         }
 
-        public static int ReadAttributeValue(Context context, IAttributeSet attrs, int[] groupId,
-                                             int requiredAttributeId)
+        public static int ReadAttributeValue(Context context, IAttributeSet attrs, IEnumerable<int> groupId, int requiredAttributeId)
         {
-            var typedArray = context.ObtainStyledAttributes(attrs, groupId);
+            if (context == null) throw new ArgumentNullException(nameof(context));
+
+            var typedArray = context.ObtainStyledAttributes(attrs, groupId.ToArray());
 
             try
             {

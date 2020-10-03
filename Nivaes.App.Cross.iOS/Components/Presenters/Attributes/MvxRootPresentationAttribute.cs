@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Presenters.Attributes;
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+namespace Nivaes.App.Cross.Presenters
 {
-    public class MvxRootPresentationAttribute : MvxBasePresentationAttribute
+    using UIKit;
+
+    public class MvxRootPresentationAttribute
+        : MvxBasePresentationAttribute
     {
         public static float DefaultAnimationDuration = 1.0f;
 

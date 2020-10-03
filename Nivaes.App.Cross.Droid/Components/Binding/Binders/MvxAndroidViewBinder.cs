@@ -40,9 +40,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
 
-            using (
-                var typedArray = context.ObtainStyledAttributes(attrs,
-                                                                mvxAndroidBindingResource.Value.BindingStylableGroupId))
+            using (var typedArray = context.ObtainStyledAttributes(attrs, mvxAndroidBindingResource.Value.BindingStylableGroupId.ToArray()))
             {
                 int numStyles = typedArray.IndexCount;
                 for (var i = 0; i < numStyles; ++i)

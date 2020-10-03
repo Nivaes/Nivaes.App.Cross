@@ -2,16 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
+    using UIKit;
+
     public interface IMvxPageViewController
     {
         void AddPage(UIViewController viewController, MvxPagePresentationAttribute attribute);
 
-        bool RemovePage (IMvxViewModel viewModel);
+        bool RemovePage(IMvxViewModel viewModel);
     }
 }

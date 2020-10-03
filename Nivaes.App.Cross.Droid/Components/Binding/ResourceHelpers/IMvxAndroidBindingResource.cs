@@ -4,18 +4,30 @@
 
 namespace MvvmCross.Platforms.Android.Binding.ResourceHelpers
 {
+    using System.Collections.Generic;
+
     public interface IMvxAndroidBindingResource
     {
         int BindingTagUnique { get; }
-        int[] BindingStylableGroupId { get; }
+
+        IEnumerable<int> BindingStylableGroupId { get; }
+
         int BindingBindId { get; }
+
         int BindingLangId { get; }
-        int[] ControlStylableGroupId { get; }
+
+        IEnumerable<int> ControlStylableGroupId { get; }
+
         int TemplateId { get; }
-        int[] ListViewStylableGroupId { get; }
+
+        IEnumerable<int> ListViewStylableGroupId { get; }
+
         int ListItemTemplateId { get; }
+
         int DropDownListItemTemplateId { get; }
-        int[] ExpandableListViewStylableGroupId { get; }
+
+        IEnumerable<int> ExpandableListViewStylableGroupId { get; }
+
         int GroupItemTemplateId { get; }
     }
 }

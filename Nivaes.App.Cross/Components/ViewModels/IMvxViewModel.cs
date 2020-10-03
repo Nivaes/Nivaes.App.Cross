@@ -5,7 +5,6 @@
 namespace MvvmCross.ViewModels
 {
     using System.Threading.Tasks;
-    using MvvmCross.Navigation;
 
     public interface IMvxViewModel
     {
@@ -36,12 +35,12 @@ namespace MvvmCross.ViewModels
         MvxNotifyTask InitializeTask { get; set; }
     }
 
-    public interface IMvxViewModel<TParameter> : IMvxViewModel
+    public interface IMvxViewModel<TParameter>
+        : IMvxViewModel
     {
         ValueTask Prepare(TParameter parameter);
     }
 
-    //TODO: Can we keep the IMvxViewModel syntax here? Compiler complains
     public interface IMvxViewModelResult<TResult>
         : IMvxViewModel
     {

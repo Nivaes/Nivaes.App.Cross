@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Ios.Presenters
+namespace Nivaes.App.Cross.Presenters
 {
 
     using System;
@@ -14,9 +14,6 @@ namespace MvvmCross.Platforms.Ios.Presenters
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
     using UIKit;
 

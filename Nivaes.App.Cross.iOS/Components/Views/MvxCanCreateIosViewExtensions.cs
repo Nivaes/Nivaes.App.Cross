@@ -48,7 +48,7 @@ namespace MvvmCross.Platforms.Ios.Views
 
         public static IMvxIosView CreateViewControllerFor(
             this IMvxCanCreateIosView view, Type viewType,
-            MvxViewModelRequest request)
+            MvxViewModelRequest? request)
         {
             return Mvx.IoCProvider.Resolve<IMvxIosViewCreator>().CreateViewOfType(viewType, request);
         }
