@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Presenters
                                                  .Select(baseAttribute => baseAttribute as MvxFragmentPresentationAttribute)
                                                  .Where(fragmentAttribute => fragmentAttribute != null);
 
-            var currentAttribute = fragmentAttributes.FirstOrDefault(fragmentAttribute => fragmentAttribute.ActivityHostViewModelType == fragmentActivityParentType);
+            var currentAttribute = fragmentAttributes.FirstOrDefault(fragmentAttribute => fragmentAttribute!.ActivityHostViewModelType == fragmentActivityParentType);
 
             return currentAttribute != null ? currentAttribute.IsCacheableFragment : false;
         }

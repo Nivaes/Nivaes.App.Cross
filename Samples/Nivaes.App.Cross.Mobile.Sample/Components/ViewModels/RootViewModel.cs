@@ -13,7 +13,6 @@ namespace Nivaes.App.Mobile.Sample
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Sample;
 
-
     public class RootViewModel : MvxNavigationViewModel
     {
         private readonly IMvxViewModelLoader mMvxViewModelLoader;

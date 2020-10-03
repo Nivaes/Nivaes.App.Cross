@@ -2,48 +2,49 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
-using Java.Lang;
-using MvvmCross.Base;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.ViewModels;
-using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Java.Lang;
+    using MvvmCross.Base;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.ViewModels;
+    using Object = Java.Lang.Object;
+
     [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
     public abstract class MvxTabsFragmentActivity
         : MvxActivity, TabHost.IOnTabChangeListener
     {
         private const string SavedTabIndexStateKey = "__savedTabIndex";
-        private readonly Dictionary<string, TabInfo> _lookup = new Dictionary<string, TabInfo>();
-        private readonly int _layoutId;
-        private TabHost _tabHost;
-        private TabInfo _currentTab;
-        private readonly int _tabContentId;
+        private readonly Dictionary<string, TabInfo> mLookup = new Dictionary<string, TabInfo>();
+        private readonly int mLayoutId;
+        private TabHost? mTabHost;
+        private TabInfo? mCurrentTab;
+        private readonly int mTabContentId;
 
         protected MvxTabsFragmentActivity(int layoutId, int tabContentId)
         {
-            _layoutId = layoutId;
-            _tabContentId = tabContentId;
+            mLayoutId = layoutId;
+            mTabContentId = tabContentId;
         }
 
         protected class TabInfo
         {
-            public string Tag { get; private set; }
-            public Type FragmentType { get; private set; }
-            public Bundle Bundle { get; private set; }
-            public IMvxViewModel ViewModel { get; private set; }
+            public string Tag { get; }
+            public Type FragmentType { get;  }
+            public Bundle Bundle { get; }
+            public IMvxViewModel ViewModel { get; }
 
-            public Fragment CachedFragment { get; set; }
+            public Fragment? CachedFragment { get; set; }
 
             public TabInfo(string tag, Type fragmentType, Bundle bundle, IMvxViewModel viewModel)
             {
@@ -55,8 +56,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         private class TabFactory
-            : Object
-              , TabHost.ITabContentFactory
+            : Object, TabHost.ITabContentFactory
         {
             private readonly Context _context;
 
@@ -78,7 +78,7 @@ namespace MvvmCross.Platforms.Android.Views
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(_layoutId);
+            SetContentView(mLayoutId);
 
             _view = Window.DecorView.RootView;
 
@@ -86,7 +86,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             if (savedInstanceState != null)
             {
-                _tabHost.SetCurrentTabByTag(savedInstanceState.GetString(SavedTabIndexStateKey));
+                mTabHost.SetCurrentTabByTag(savedInstanceState.GetString(SavedTabIndexStateKey));
             }
         }
 
@@ -99,21 +99,21 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
-            outState.PutString(SavedTabIndexStateKey, _tabHost.CurrentTabTag);
+            outState.PutString(SavedTabIndexStateKey, mTabHost.CurrentTabTag);
             base.OnSaveInstanceState(outState);
         }
 
         private void InitializeTabHost(Bundle args)
         {
-            _tabHost = (TabHost)FindViewById(global::Android.Resource.Id.TabHost);
-            _tabHost.Setup();
+            mTabHost = (TabHost)FindViewById(global::Android.Resource.Id.TabHost);
+            mTabHost.Setup();
 
             AddTabs(args);
 
-            if (_lookup.Any())
-                OnTabChanged(_lookup.First().Key);
+            if (mLookup.Any())
+                OnTabChanged(mLookup.First().Key);
 
-            _tabHost.SetOnTabChangedListener(this);
+            mTabHost.SetOnTabChangedListener(this);
         }
 
         protected abstract void AddTabs(Bundle args);
@@ -121,15 +121,15 @@ namespace MvvmCross.Platforms.Android.Views
         protected void AddTab<TFragment>(string tagAndSpecName, string tabName, Bundle args,
                                          IMvxViewModel viewModel)
         {
-            var tabSpec = _tabHost.NewTabSpec(tagAndSpecName).SetIndicator(tabName);
+            var tabSpec = mTabHost.NewTabSpec(tagAndSpecName).SetIndicator(tabName);
             AddTab<TFragment>(args, viewModel, tabSpec);
         }
 
         protected void AddTab<TFragment>(Bundle args, IMvxViewModel viewModel, TabHost.TabSpec tabSpec)
         {
             var tabInfo = new TabInfo(tabSpec.Tag, typeof(TFragment), args, viewModel);
-            AddTab(this, _tabHost, tabSpec, tabInfo);
-            _lookup.Add(tabInfo.Tag, tabInfo);
+            AddTab(this, mTabHost, tabSpec, tabInfo);
+            mLookup.Add(tabInfo.Tag, tabInfo);
         }
 
         private static void AddTab(MvxTabsFragmentActivity activity,
@@ -150,7 +150,7 @@ namespace MvvmCross.Platforms.Android.Views
                 var ft = activity.SupportFragmentManager.BeginTransaction();
                 ft.Detach(tabInfo.CachedFragment);
                 ft.Commit();
-                activity.FragmentManager.ExecutePendingTransactions();
+                activity.SupportFragmentManager.ExecutePendingTransactions();
             }
 
             tabHost.AddTab(tabSpec);
@@ -158,24 +158,26 @@ namespace MvvmCross.Platforms.Android.Views
 
         public virtual void OnTabChanged(string tag)
         {
-            var newTab = _lookup[tag];
-            if (_currentTab != newTab)
+            var newTab = mLookup[tag];
+            if (mCurrentTab != newTab)
             {
                 var ft = SupportFragmentManager.BeginTransaction();
                 OnTabFragmentChanging(tag, ft);
-                if (_currentTab?.CachedFragment != null)
+                if (mCurrentTab?.CachedFragment != null)
                 {
-                    ft.Detach(_currentTab.CachedFragment);
+                    ft.Detach(mCurrentTab.CachedFragment);
                 }
                 if (newTab != null)
                 {
                     if (newTab.CachedFragment == null)
                     {
-                        newTab.CachedFragment = Fragment.Instantiate(this,
-                                                                     FragmentJavaName(newTab.FragmentType),
-                                                                     newTab.Bundle);
+                        var fragmentClass = Class.FromType(newTab.FragmentType);
+                        newTab.CachedFragment = SupportFragmentManager.FragmentFactory.Instantiate(
+                            fragmentClass.ClassLoader,
+                            fragmentClass.Name
+                        );
                         FixupDataContext(newTab);
-                        ft.Add(_tabContentId, newTab.CachedFragment, newTab.Tag);
+                        ft.Add(mTabContentId, newTab.CachedFragment, newTab.Tag);
                     }
                     else
                     {
@@ -184,9 +186,9 @@ namespace MvvmCross.Platforms.Android.Views
                     }
                 }
 
-                _currentTab = newTab;
+                mCurrentTab = newTab;
                 ft.Commit();
-                FragmentManager.ExecutePendingTransactions();
+                SupportFragmentManager.ExecutePendingTransactions();
             }
         }
 
