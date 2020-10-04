@@ -6,6 +6,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
+using Google.Android.Material.Tabs;
 
 namespace Nivaes.App.Cross.Presenters
 {
@@ -15,6 +16,7 @@ namespace Nivaes.App.Cross.Presenters
     using System.Reflection;
     using System.Threading.Tasks;
     using Android.Views;
+    using AndroidX.ViewPager.Widget;
     using Java.Lang;
     using MvvmCross;
     using MvvmCross.Exceptions;
@@ -23,6 +25,7 @@ namespace Nivaes.App.Cross.Presenters
     using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.Platforms.Android.Views.ViewPager;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
@@ -34,46 +37,42 @@ namespace Nivaes.App.Cross.Presenters
     public class MvxAndroidViewPresenter
         : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
     {
+        private readonly Lazy<IMvxAndroidCurrentTopActivity> mAndroidCurrentTopActivity =
+            new Lazy<IMvxAndroidCurrentTopActivity>(() => Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>());
+
+        private readonly Lazy<IMvxAndroidActivityLifetimeListener> mActivityLifetimeListener =
+            new Lazy<IMvxAndroidActivityLifetimeListener>(() => Mvx.IoCProvider.Resolve<IMvxAndroidActivityLifetimeListener>());
+
+        private readonly Lazy<IMvxNavigationSerializer> mNavigationSerializer =
+            new Lazy<IMvxNavigationSerializer>(() => Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>());
+
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
         public const string ViewModelRequestBundleKey = "__viewModelRequest";
         public const string SharedElementsBundleKey = "__sharedElementsKey";
 
         protected MvxViewModelRequest? PendingRequest { get; set; }
 
-        protected virtual FragmentManager? CurrentFragmentManager => CurrentActivity?.SupportFragmentManager;
+        protected virtual FragmentManager? CurrentFragmentManager
+        {
+            get
+            {
+                if (CurrentActivity.IsActivityDead())
+                    return null;
 
-        private IMvxAndroidCurrentTopActivity? mAndroidCurrentTopActivity;
+                return CurrentActivity!.SupportFragmentManager;
+            }
+        }
         protected virtual Activity? CurrentActivity
         {
             get
             {
-                if (mAndroidCurrentTopActivity == null)
-                    mAndroidCurrentTopActivity = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
-                return mAndroidCurrentTopActivity.Activity as Activity;
+                return mAndroidCurrentTopActivity.Value?.Activity as Activity;
             }
         }
 
-        private IMvxAndroidActivityLifetimeListener? mActivityLifetimeListener;
-        protected IMvxAndroidActivityLifetimeListener ActivityLifetimeListener
-        {
-            get
-            {
-                if (mActivityLifetimeListener == null)
-                    mActivityLifetimeListener = Mvx.IoCProvider.Resolve<IMvxAndroidActivityLifetimeListener>();
-                return mActivityLifetimeListener;
-            }
-        }
+        protected IMvxAndroidActivityLifetimeListener ActivityLifetimeListener => mActivityLifetimeListener.Value;
 
-        private IMvxNavigationSerializer? mNavigationSerializer;
-        protected IMvxNavigationSerializer NavigationSerializer
-        {
-            get
-            {
-                if (mNavigationSerializer == null)
-                    mNavigationSerializer = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
-                return mNavigationSerializer;
-            }
-        }
+        protected IMvxNavigationSerializer NavigationSerializer => mNavigationSerializer.Value;
 
         public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies)
         {
@@ -116,6 +115,9 @@ namespace Nivaes.App.Cross.Presenters
             AttributeTypesToActionsDictionary.Register<MvxActivityPresentationAttribute>(ShowActivity, CloseActivity);
             AttributeTypesToActionsDictionary.Register<MvxFragmentPresentationAttribute>(ShowFragment, CloseFragment);
             AttributeTypesToActionsDictionary.Register<MvxDialogFragmentPresentationAttribute>(ShowDialogFragment, CloseFragmentDialog);
+
+            AttributeTypesToActionsDictionary.Register<MvxTabLayoutPresentationAttribute>(ShowTabLayout, CloseViewPagerFragment);
+            AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
         }
 
         public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
@@ -143,7 +145,7 @@ namespace Nivaes.App.Cross.Presenters
                         var fragment = GetFragmentByViewType(item.FragmentHostViewType!);
 
                         // if the fragment exists, and is on top, then use the current attribute 
-                        if (fragment != null && fragment.IsVisible && fragment.View.FindViewById(item.FragmentContentId) != null)
+                        if (fragment?.IsVisible == true && fragment.View.FindViewById(item.FragmentContentId) != null)
                         {
                             attribute = item;
                             break;
@@ -198,6 +200,62 @@ namespace Nivaes.App.Cross.Presenters
             return null;
         }
 
+        public override ValueTask<bool> ChangePresentation(MvxPresentationHint? hint)
+        {
+            if (hint is MvxPagePresentationHint pagePresentationHint)
+            {
+                var request = new MvxViewModelRequest(pagePresentationHint.ViewModel);
+                var attribute = GetPresentationAttribute(request);
+
+                if (attribute is MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
+                {
+                    var viewPager = FindViewPagerInFragmentPresentation(pagerFragmentAttribute);
+                    if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
+                    {
+                        var fragmentInfo = FindFragmentInfoFromAttribute(pagerFragmentAttribute, adapter);
+                        var index = adapter.FragmentsInfo.IndexOf(fragmentInfo);
+                        if (index < 0)
+                        {
+                            MvxLog.Instance.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
+                                pagerFragmentAttribute.Tag);
+
+                            return new ValueTask<bool>(false);
+                        }
+
+                        viewPager.SetCurrentItem(index, true);
+                        return new ValueTask<bool>(true);
+                    }
+                }
+            }
+
+            return base.ChangePresentation(hint);
+        }
+
+        protected virtual ViewPager? FindViewPagerInFragmentPresentation(
+            MvxViewPagerFragmentPresentationAttribute? pagerFragmentAttribute)
+        {
+            if (pagerFragmentAttribute == null)
+                throw new ArgumentNullException(nameof(pagerFragmentAttribute));
+
+            ViewPager? viewPager = null;
+
+            // check for a ViewPager inside a Fragment
+            if (pagerFragmentAttribute.FragmentHostViewType != null)
+            {
+                var fragment = GetFragmentByViewType(pagerFragmentAttribute.FragmentHostViewType);
+                viewPager = fragment?.View.FindViewById<ViewPager>(pagerFragmentAttribute.ViewPagerResourceId);
+            }
+
+            // check for a ViewPager inside an Activity
+            if (viewPager == null && pagerFragmentAttribute.ActivityHostViewModelType != null &&
+                CurrentActivity.IsActivityAlive())
+            {
+                viewPager = CurrentActivity!.FindViewById<ViewPager>(pagerFragmentAttribute.ViewPagerResourceId);
+            }
+
+            return viewPager;
+        }
+
         protected Type GetCurrentActivityViewModelType()
         {
             var currentActivityType = CurrentActivity?.GetType();
@@ -213,7 +271,7 @@ namespace Nivaes.App.Cross.Presenters
             MvxViewModelRequest request)
         {
             var intent = CreateIntentForRequest(request);
-            if (attribute.Extras != null)
+            if (attribute!.Extras != null)
                 intent.PutExtras(attribute.Extras);
 
             ShowIntent(intent, CreateActivityTransitionOptions(intent, attribute, request));
@@ -418,7 +476,7 @@ namespace Nivaes.App.Cross.Presenters
             OnFragmentChanged(ft, fragmentView, attribute, request);
         }
 
-        protected virtual void OnBeforeFragmentChanging(FragmentTransaction ft, Fragment fragment, MvxFragmentPresentationAttribute attribute, MvxViewModelRequest request)
+        protected virtual void OnBeforeFragmentChanging(FragmentTransaction fragmentTransaction, Fragment fragment, MvxFragmentPresentationAttribute attribute, MvxViewModelRequest request)
         {
             if (CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity)
             {
@@ -429,7 +487,7 @@ namespace Nivaes.App.Cross.Presenters
                     var transitionName = item.Value.GetTransitionNameSupport();
                     if (!string.IsNullOrEmpty(transitionName))
                     {
-                        ft.AddSharedElement(item.Value, transitionName);
+                        fragmentTransaction.AddSharedElement(item.Value, transitionName);
                         elements.Add($"{item.Key}:{transitionName}");
                     }
                     else
@@ -445,13 +503,13 @@ namespace Nivaes.App.Cross.Presenters
             if (!attribute.EnterAnimation.Equals(int.MinValue) && !attribute.ExitAnimation.Equals(int.MinValue))
             {
                 if (!attribute.PopEnterAnimation.Equals(int.MinValue) && !attribute.PopExitAnimation.Equals(int.MinValue))
-                    ft.SetCustomAnimations(attribute.EnterAnimation, attribute.ExitAnimation, attribute.PopEnterAnimation, attribute.PopExitAnimation);
+                    fragmentTransaction.SetCustomAnimations(attribute.EnterAnimation, attribute.ExitAnimation, attribute.PopEnterAnimation, attribute.PopExitAnimation);
                 else
-                    ft.SetCustomAnimations(attribute.EnterAnimation, attribute.ExitAnimation);
+                    fragmentTransaction.SetCustomAnimations(attribute.EnterAnimation, attribute.ExitAnimation);
             }
 
             if (attribute.TransitionStyle != int.MinValue)
-                ft.SetTransitionStyle(attribute.TransitionStyle);
+                fragmentTransaction.SetTransitionStyle(attribute.TransitionStyle);
         }
 
         protected virtual void OnFragmentChanged(FragmentTransaction ft, Fragment fragment, MvxFragmentPresentationAttribute attribute, MvxViewModelRequest request)
@@ -501,6 +559,117 @@ namespace Nivaes.App.Cross.Presenters
 
             OnFragmentChanged(ft, dialog, attribute, request);
             return new ValueTask<bool>(true);
+        }
+
+        protected virtual ValueTask<bool> ShowViewPagerFragment(
+           Type? view,
+           MvxViewPagerFragmentPresentationAttribute? attribute,
+           MvxViewModelRequest? request)
+        {
+            ValidateArguments(view, attribute, request);
+
+            // if the attribute doesn't supply any host, assume current activity!
+            if (attribute!.FragmentHostViewType == null && attribute!.ActivityHostViewModelType == null)
+                attribute!.ActivityHostViewModelType = GetCurrentActivityViewModelType();
+
+            ViewPager? viewPager = null;
+            FragmentManager? fragmentManager = null;
+
+            // check for a ViewPager inside a Fragment
+            if (attribute!.FragmentHostViewType != null)
+            {
+                var fragment = GetFragmentByViewType(attribute!.FragmentHostViewType);
+                if (fragment == null)
+                    throw new MvxException("Fragment not found", attribute!.FragmentHostViewType.Name);
+
+                if (fragment.View == null)
+                    throw new MvxException("Fragment.View is null. Please consider calling Navigate later in your code",
+                        attribute!.FragmentHostViewType.Name);
+
+                viewPager = fragment.View.FindViewById<ViewPager>(attribute!.ViewPagerResourceId);
+                fragmentManager = fragment.ChildFragmentManager;
+            }
+
+            // check for a ViewPager inside an Activity
+            if (attribute!.ActivityHostViewModelType != null)
+            {
+                var currentActivityViewModelType = GetCurrentActivityViewModelType();
+
+                // if the host Activity is not the top-most Activity, then show it before proceeding, and return false for now
+                if (attribute!.ActivityHostViewModelType != currentActivityViewModelType)
+                {
+                    PendingRequest = request;
+                    ShowHostActivity(attribute);
+                    return new ValueTask<bool>(false);
+                }
+
+                if (CurrentActivity.IsActivityAlive())
+                    viewPager = CurrentActivity!.FindViewById<ViewPager>(attribute!.ViewPagerResourceId);
+                fragmentManager = CurrentFragmentManager;
+            }
+
+            // no more cases to check. Just throw if ViewPager wasn't found
+            if (viewPager == null)
+                throw new MvxException("ViewPager not found");
+
+            var tag = attribute!.Tag ?? attribute!.ViewType.FragmentJavaName();
+            var fragmentInfo = new MvxViewPagerFragmentInfo(attribute!.Title, tag, attribute!.ViewType, request);
+
+            if (viewPager.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
+            {
+                adapter.FragmentsInfo.Add(fragmentInfo);
+                adapter.NotifyDataSetChanged();
+            }
+            else
+            {
+                viewPager.Adapter = new MvxCachingFragmentStatePagerAdapter(
+                    CurrentActivity,
+                    fragmentManager,
+                    new List<MvxViewPagerFragmentInfo>
+                    {
+                        fragmentInfo
+                    }
+                );
+            }
+
+            return new ValueTask<bool>(true);
+        }
+
+        protected virtual async ValueTask<bool> ShowTabLayout(
+            Type? view,
+            MvxTabLayoutPresentationAttribute? attribute,
+            MvxViewModelRequest? request)
+        {
+            ValidateArguments(view, attribute, request);
+
+            var showViewPagerFragment = await ShowViewPagerFragment(view, attribute, request).ConfigureAwait(true);
+            if (!showViewPagerFragment)
+                return false;
+
+            ViewPager? viewPager = null;
+            TabLayout? tabLayout = null;
+
+            // check for a ViewPager inside a Fragment
+            if (attribute?.FragmentHostViewType != null)
+            {
+                var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
+
+                viewPager = fragment?.View.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                tabLayout = fragment?.View.FindViewById<TabLayout>(attribute.TabLayoutResourceId);
+            }
+
+            // check for a ViewPager inside an Activity
+            if (CurrentActivity.IsActivityAlive() && attribute?.ActivityHostViewModelType != null)
+            {
+                viewPager = CurrentActivity?.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                tabLayout = CurrentActivity?.FindViewById<TabLayout>(attribute.TabLayoutResourceId);
+            }
+
+            if (viewPager == null || tabLayout == null)
+                throw new MvxException("ViewPager or TabLayout not found");
+
+            tabLayout.SetupWithViewPager(viewPager);
+            return true;
         }
         #endregion
 
@@ -623,6 +792,87 @@ namespace Nivaes.App.Cross.Presenters
 
             return false;
         }
+
+        protected virtual ValueTask<bool> CloseViewPagerFragment(
+            IMvxViewModel? viewModel,
+            MvxViewPagerFragmentPresentationAttribute? attribute)
+        {
+            if (attribute == null)
+                throw new ArgumentNullException(nameof(attribute));
+
+            ViewPager? viewPager = null;
+            FragmentManager? fragmentManager;
+
+            if (attribute.FragmentHostViewType != null)
+            {
+                var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
+                if (fragment == null)
+                    throw new MvxException("Fragment not found", attribute.FragmentHostViewType.Name);
+
+                viewPager = fragment.View.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                fragmentManager = fragment.ChildFragmentManager;
+            }
+            else
+            {
+                if (CurrentActivity.IsActivityAlive())
+                    viewPager = CurrentActivity!.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                fragmentManager = CurrentFragmentManager;
+            }
+
+            if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter && fragmentManager != null)
+            {
+                var ft = fragmentManager.BeginTransaction();
+                var fragmentInfo = FindFragmentInfoFromAttribute(attribute, adapter);
+                if (fragmentInfo != null)
+                {
+                    var fragment = fragmentManager.FindFragmentByTag(fragmentInfo.Tag);
+                    adapter.FragmentsInfo.Remove(fragmentInfo);
+                    ft.Remove(fragment);
+                    ft.CommitAllowingStateLoss();
+                    adapter.NotifyDataSetChanged();
+
+                    OnFragmentPopped(ft, fragment, attribute);
+                    return new ValueTask<bool>(true);
+                }
+            }
+
+            return new ValueTask<bool>(false);
+        }
+
+        protected virtual MvxViewPagerFragmentInfo? FindFragmentInfoFromAttribute(
+            MvxFragmentPresentationAttribute? attribute,
+            MvxCachingFragmentStatePagerAdapter? adapter)
+        {
+            if (attribute == null)
+                throw new ArgumentNullException(nameof(attribute));
+
+            if (adapter == null)
+                throw new ArgumentNullException(nameof(adapter));
+
+            MvxViewPagerFragmentInfo? fragmentInfo = null;
+            if (attribute.Tag != null)
+            {
+                fragmentInfo = adapter.FragmentsInfo?.FirstOrDefault(f => f.Tag == attribute.Tag);
+            }
+
+            if (fragmentInfo != null)
+                return fragmentInfo;
+
+            bool IsMatch(MvxViewPagerFragmentInfo? info)
+            {
+                if (attribute.ViewType == null) return false;
+
+                var viewTypeMatches = info?.FragmentType == attribute.ViewType;
+
+                if (attribute.ViewModelType != null)
+                    return viewTypeMatches && info?.Request?.ViewModelType == attribute.ViewModelType;
+
+                return viewTypeMatches;
+            }
+
+            fragmentInfo = adapter.FragmentsInfo?.FirstOrDefault(IsMatch);
+            return fragmentInfo;
+        }
         #endregion
 
         protected virtual IMvxFragmentView CreateFragment(FragmentManager fragmentManager, MvxBasePresentationAttribute attribute,
@@ -653,7 +903,7 @@ namespace Nivaes.App.Cross.Presenters
             return FindFragmentInChildren(fragmentName, CurrentFragmentManager);
         }
 
-        protected virtual Fragment FindFragmentInChildren(string fragmentName, FragmentManager fragManager)
+        protected virtual Fragment? FindFragmentInChildren(string fragmentName, FragmentManager fragManager)
         {
             if (fragManager == null)
                 return null;
@@ -682,6 +932,23 @@ namespace Nivaes.App.Cross.Presenters
             }
 
             return null;
+        }
+
+        private static void ValidateArguments(Type? view, MvxBasePresentationAttribute? attribute, MvxViewModelRequest? request)
+        {
+            if (view == null)
+                throw new ArgumentNullException(nameof(view));
+
+            ValidateArguments(attribute, request);
+        }
+
+        private static void ValidateArguments(MvxBasePresentationAttribute? attribute, MvxViewModelRequest? request)
+        {
+            if (attribute == null)
+                throw new ArgumentNullException(nameof(attribute));
+
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
         }
     }
 }

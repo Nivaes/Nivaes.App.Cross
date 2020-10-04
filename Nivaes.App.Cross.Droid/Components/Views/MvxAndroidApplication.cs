@@ -39,11 +39,13 @@ namespace MvvmCross.Platforms.Android.Views
       where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
       where TApplication : class, IMvxApplication, new()
     {
-        public MvxAndroidApplication() : base()
+        public MvxAndroidApplication()
+            : base()
         {
         }
 
-        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
         {
         }
 
