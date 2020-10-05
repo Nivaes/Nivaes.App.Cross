@@ -2,32 +2,36 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Logging.LogProviders;
-
 namespace MvvmCross.Logging
 {
-    internal class MvxLog : IMvxLog
+    using System;
+    using MvvmCross.Logging.LogProviders;
+
+    internal class MvxLog
+        : IMvxLog
     {
         internal static IMvxLog Instance { get; set; }
 
         internal const string FailedToGenerateLogMessage = "Failed to generate log message";
 
-        private readonly Logger _logger;
+        private readonly Logger mLogger;
 
         internal MvxLog(Logger logger)
         {
-            _logger = logger;
+            mLogger = logger;
         }
 
-        public bool IsLogLevelEnabled(MvxLogLevel logLevel) => _logger(logLevel, null);
+        public bool IsLogLevelEnabled(MvxLogLevel logLevel) => mLogger(logLevel, null);
 
-        public bool Log(MvxLogLevel logLevel, Func<string> messageFunc, Exception exception = null, params object[] formatParameters)
+        public bool Log(MvxLogLevel logLevel, Func<string> messageFunc, Exception? exception = null, params object[] formatParameters)
         {
             if (messageFunc == null)
-                return _logger(logLevel, null);
+                return mLogger(logLevel, null);
 
-            Func<string> wrappedMessageFunc = () =>
+            if (exception is null) throw new ArgumentNullException(nameof(exception));
+            if (formatParameters is null) throw new ArgumentNullException(nameof(formatParameters));
+
+            string wrappedMessageFunc()
             {
                 try
                 {
@@ -38,10 +42,10 @@ namespace MvvmCross.Logging
                     Log(MvxLogLevel.Error, () => FailedToGenerateLogMessage, ex);
                 }
 
-                return null;
-            };
+                return string.Empty;
+            }
 
-            return _logger(logLevel, wrappedMessageFunc, exception, formatParameters);
+            return mLogger(logLevel, wrappedMessageFunc, exception, formatParameters);
         }
     }
 }

@@ -153,12 +153,12 @@ namespace Nivaes.App.Cross.Presenters
                     }
 
                     // if attribute is still null, check if fragment can be displayed in current activity
-                    if (attribute == null)
+                    if (attribute == null && CurrentActivity != null)
                     {
                         var currentActivityHostViewModelType = GetCurrentActivityViewModelType();
                         foreach (var item in fragmentAttributes.Where(att => att.ActivityHostViewModelType != null))
                         {
-                            if (CurrentActivity!.FindViewById(item.FragmentContentId) != null && item.ActivityHostViewModelType == currentActivityHostViewModelType)
+                            if (CurrentActivity.FindViewById(item.FragmentContentId) != null && item.ActivityHostViewModelType == currentActivityHostViewModelType)
                             {
                                 attribute = item;
                                 break;
@@ -301,7 +301,7 @@ namespace Nivaes.App.Cross.Presenters
                     }
                 }
 
-                if(!transitionElementPairs.Any())
+                if (!transitionElementPairs.Any())
                 {
                     MvxLog.Instance.Warn("No transition elements are provided");
                     return bundle;

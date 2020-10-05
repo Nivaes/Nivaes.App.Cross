@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace MvvmCross.Logging.LogProviders
 {
-    public delegate bool Logger(MvxLogLevel logLevel, Func<string> messageFunc, Exception exception = null, params object[] formatParameters);
+    public delegate bool Logger(MvxLogLevel logLevel, Func<string>? messageFunc, Exception? exception = null, params object[] formatParameters);
 
     public abstract class MvxBaseLogProvider : IMvxLogProvider
     {
