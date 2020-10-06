@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
     using MvvmCross.Platforms.Uap.Views;

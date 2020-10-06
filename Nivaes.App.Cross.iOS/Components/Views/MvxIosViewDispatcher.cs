@@ -5,7 +5,7 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
     using System.Threading.Tasks;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;

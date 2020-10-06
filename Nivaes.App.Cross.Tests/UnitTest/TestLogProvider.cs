@@ -6,7 +6,7 @@ using System;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Logging.LogProviders;
 
 namespace MvvmCross.Tests

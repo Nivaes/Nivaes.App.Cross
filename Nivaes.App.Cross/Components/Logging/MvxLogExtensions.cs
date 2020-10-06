@@ -2,56 +2,72 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-namespace MvvmCross.Logging
+namespace Nivaes.App.Cross.Logging
 {
+    using System;
+
     public static class MvxLogExtensions
     {
         public static bool IsDebugEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Debug);
         }
 
         public static bool IsErrorEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Error);
         }
 
         public static bool IsFatalEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Fatal);
         }
 
         public static bool IsInfoEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Info);
         }
 
         public static bool IsTraceEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Trace);
         }
 
         public static bool IsWarnEnabled(this IMvxLog logger)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             return logger.IsLogLevelEnabled(MvxLogLevel.Warn);
         }
 
         public static void Debug(this IMvxLog logger, Func<string> messageFunc)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             logger.Log(MvxLogLevel.Debug, messageFunc);
         }
 
         public static void Debug(this IMvxLog logger, string message)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsDebugEnabled())
             {
                 logger.Log(MvxLogLevel.Debug, message.AsFunc());
@@ -60,16 +76,22 @@ namespace MvvmCross.Logging
 
         public static void Debug(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.DebugFormat(message, args);
         }
 
         public static void Debug(this IMvxLog logger, Exception exception, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.DebugException(message, exception, args);
         }
 
         public static void DebugFormat(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsDebugEnabled())
             {
                 logger.LogFormat(MvxLogLevel.Debug, message, args);
@@ -78,6 +100,8 @@ namespace MvvmCross.Logging
 
         public static void DebugException(this IMvxLog logger, string message, Exception exception)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsDebugEnabled())
             {
                 logger.Log(MvxLogLevel.Debug, message.AsFunc(), exception);
@@ -86,6 +110,8 @@ namespace MvvmCross.Logging
 
         public static void DebugException(this IMvxLog logger, string message, Exception exception, params object[] formatParams)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsDebugEnabled())
             {
                 logger.Log(MvxLogLevel.Debug, message.AsFunc(), exception, formatParams);
@@ -94,12 +120,16 @@ namespace MvvmCross.Logging
 
         public static void Error(this IMvxLog logger, Func<string> messageFunc)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             logger.Log(MvxLogLevel.Error, messageFunc);
         }
 
         public static void Error(this IMvxLog logger, string message)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsErrorEnabled())
             {
                 logger.Log(MvxLogLevel.Error, message.AsFunc());
@@ -108,16 +138,22 @@ namespace MvvmCross.Logging
 
         public static void Error(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.ErrorFormat(message, args);
         }
 
         public static void Error(this IMvxLog logger, Exception exception, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.ErrorException(message, exception, args);
         }
 
         public static void ErrorFormat(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsErrorEnabled())
             {
                 logger.LogFormat(MvxLogLevel.Error, message, args);
@@ -126,6 +162,8 @@ namespace MvvmCross.Logging
 
         public static void ErrorException(this IMvxLog logger, string message, Exception exception, params object[] formatParams)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsErrorEnabled())
             {
                 logger.Log(MvxLogLevel.Error, message.AsFunc(), exception, formatParams);
@@ -134,11 +172,15 @@ namespace MvvmCross.Logging
 
         public static void Fatal(this IMvxLog logger, Func<string> messageFunc)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.Log(MvxLogLevel.Fatal, messageFunc);
         }
 
         public static void Fatal(this IMvxLog logger, string message)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsFatalEnabled())
             {
                 logger.Log(MvxLogLevel.Fatal, message.AsFunc());
@@ -147,16 +189,22 @@ namespace MvvmCross.Logging
 
         public static void Fatal(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.FatalFormat(message, args);
         }
 
         public static void Fatal(this IMvxLog logger, Exception exception, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             logger.FatalException(message, exception, args);
         }
 
         public static void FatalFormat(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsFatalEnabled())
             {
                 logger.LogFormat(MvxLogLevel.Fatal, message, args);
@@ -165,6 +213,8 @@ namespace MvvmCross.Logging
 
         public static void FatalException(this IMvxLog logger, string message, Exception exception, params object[] formatParams)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsFatalEnabled())
             {
                 logger.Log(MvxLogLevel.Fatal, message.AsFunc(), exception, formatParams);
@@ -173,12 +223,16 @@ namespace MvvmCross.Logging
 
         public static void Info(this IMvxLog logger, Func<string> messageFunc)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             GuardAgainstNullLogger(logger);
             logger.Log(MvxLogLevel.Info, messageFunc);
         }
 
         public static void Info(this IMvxLog logger, string message)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsInfoEnabled())
             {
                 logger.Log(MvxLogLevel.Info, message.AsFunc());
@@ -197,6 +251,8 @@ namespace MvvmCross.Logging
 
         public static void InfoFormat(this IMvxLog logger, string message, params object[] args)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsInfoEnabled())
             {
                 logger.LogFormat(MvxLogLevel.Info, message, args);
@@ -205,6 +261,8 @@ namespace MvvmCross.Logging
 
         public static void InfoException(this IMvxLog logger, string message, Exception exception, params object[] formatParams)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsInfoEnabled())
             {
                 logger.Log(MvxLogLevel.Info, message.AsFunc(), exception, formatParams);
@@ -219,6 +277,8 @@ namespace MvvmCross.Logging
 
         public static void Trace(this IMvxLog logger, string message)
         {
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
+
             if (logger.IsTraceEnabled())
             {
                 logger.Log(MvxLogLevel.Trace, message.AsFunc());

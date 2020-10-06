@@ -8,7 +8,7 @@ using System.Linq;
 using AppKit;
 using CoreGraphics;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Mac.Presenters.Attributes;
 using MvvmCross.Platforms.Mac.Views;
 using MvvmCross.ViewModels;

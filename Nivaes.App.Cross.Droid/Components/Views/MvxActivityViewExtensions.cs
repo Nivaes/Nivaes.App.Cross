@@ -2,20 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.App;
 using Android.OS;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.Base;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using MvvmCross.Core;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using MvvmCross.Core;
+
     public static class MvxActivityViewExtensions
     {
         public static void AddEventListeners(this IMvxEventSourceActivity activity)
@@ -52,8 +53,7 @@ namespace MvvmCross.Platforms.Android.Views
             if (bundle == null)
                 return null;
 
-            IMvxSavedStateConverter converter;
-            if (!Mvx.IoCProvider.TryResolve<IMvxSavedStateConverter>(out converter))
+            if (!Mvx.IoCProvider.TryResolve<IMvxSavedStateConverter>(out IMvxSavedStateConverter converter))
             {
                 MvxLog.Instance.Trace("No saved state converter available - this is OK if seen during start");
                 return null;

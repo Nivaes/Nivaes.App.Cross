@@ -5,7 +5,7 @@
 using System;
 using Android.Content;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
 

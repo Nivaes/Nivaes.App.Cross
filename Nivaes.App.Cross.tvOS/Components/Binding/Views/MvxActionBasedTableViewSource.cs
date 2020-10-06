@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using Foundation;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Bindings;
 using UIKit;
 

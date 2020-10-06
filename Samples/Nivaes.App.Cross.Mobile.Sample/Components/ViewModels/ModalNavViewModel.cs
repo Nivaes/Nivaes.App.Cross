@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Mobile.Sample
 {
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;

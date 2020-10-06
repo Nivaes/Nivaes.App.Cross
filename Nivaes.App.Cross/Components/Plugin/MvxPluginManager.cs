@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Plugin
 {

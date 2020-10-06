@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Tvos.Presenters.Attributes;
 using MvvmCross.Platforms.Tvos.Views;
 using MvvmCross.ViewModels;

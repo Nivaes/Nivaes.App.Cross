@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Tvos.Views
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;

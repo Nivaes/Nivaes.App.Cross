@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Presenters
     using System.Linq;
     using System.Threading.Tasks;
     using MvvmCross;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
 

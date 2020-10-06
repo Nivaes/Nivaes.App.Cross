@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Runtime.CompilerServices;
-
-namespace MvvmCross.Logging.LogProviders
+namespace Nivaes.App.Cross.Logging
 {
+    using System;
+    using Nivaes.App.Cross.Logging;
+
     public delegate bool Logger(MvxLogLevel logLevel, Func<string>? messageFunc, Exception? exception = null, params object[] formatParameters);
 
-    public abstract class MvxBaseLogProvider : IMvxLogProvider
+    public abstract class MvxBaseLogProvider
+        : IMvxLogProvider
     {
         protected delegate IDisposable OpenNdc(string message);
         protected delegate IDisposable OpenMdc(string key, string value);

@@ -7,7 +7,7 @@ using MvvmCross.Base;
 using MvvmCross.Binding;
 using MvvmCross.Core;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Tests
 {

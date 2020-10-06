@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-namespace MvvmCross.Logging.LogProviders
+namespace Nivaes.App.Cross.Logging
 {
+    using System;
+
     internal class DisposableAction : IDisposable
     {
         private readonly Action _onDispose;
 
-        public DisposableAction(Action onDispose = null)
+        public DisposableAction(Action? onDispose = null)
         {
             _onDispose = onDispose;
         }

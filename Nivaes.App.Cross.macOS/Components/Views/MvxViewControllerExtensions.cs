@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Core;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;

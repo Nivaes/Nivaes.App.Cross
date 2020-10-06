@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.UnitTest
 {
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
 

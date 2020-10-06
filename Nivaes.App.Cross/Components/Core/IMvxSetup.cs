@@ -8,7 +8,7 @@ namespace MvvmCross.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Plugin;
     using static MvvmCross.Core.MvxSetup;
 
@@ -27,8 +27,6 @@ namespace MvvmCross.Core
         IEnumerable<Type> CreatableTypes(Assembly assembly);
 
         void LoadPlugins(IMvxPluginManager pluginManager);
-
-        MvxLogProviderType GetDefaultLogProviderType();
 
         event EventHandler<MvxSetupStateEventArgs> StateChanged;
     }

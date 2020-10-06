@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using MvvmCross.Binding.Parse.Binding;
 using MvvmCross.Binding.Parse.Binding.Tibet;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
 using Xunit;
 using Xunit.Abstractions;

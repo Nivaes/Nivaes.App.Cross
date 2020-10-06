@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using MvvmCross.Base;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Core
 {

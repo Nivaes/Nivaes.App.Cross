@@ -17,13 +17,13 @@ namespace MvvmCross.Platforms.Android.Views
     {
         public static MvxAndroidApplication Instance { get; private set; }
 
-        public MvxAndroidApplication()
+        protected MvxAndroidApplication()
         {
             Instance = this;
             RegisterSetup();
         }
 
-        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
+        protected MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
             Instance = this;
@@ -35,16 +35,17 @@ namespace MvvmCross.Platforms.Android.Views
         }
     }
 
-    public abstract class MvxAndroidApplication<TMvxAndroidSetup, TApplication> : MvxAndroidApplication
+    public abstract class MvxAndroidApplication<TMvxAndroidSetup, TApplication>
+        : MvxAndroidApplication
       where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
       where TApplication : class, IMvxApplication, new()
     {
-        public MvxAndroidApplication()
+        protected MvxAndroidApplication()
             : base()
         {
         }
 
-        public MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
+        protected MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
         }

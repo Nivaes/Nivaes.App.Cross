@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Views;
 
 namespace MvvmCross.ViewModels

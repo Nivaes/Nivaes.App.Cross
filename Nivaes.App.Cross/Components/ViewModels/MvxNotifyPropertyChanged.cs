@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using MvvmCross.Annotations;
 using MvvmCross.Base;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.ViewModels
 {

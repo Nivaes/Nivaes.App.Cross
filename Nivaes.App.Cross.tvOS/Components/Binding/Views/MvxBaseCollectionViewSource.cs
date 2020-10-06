@@ -7,7 +7,7 @@ using System.Windows.Input;
 using Foundation;
 using MvvmCross.Base;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Binding.Views

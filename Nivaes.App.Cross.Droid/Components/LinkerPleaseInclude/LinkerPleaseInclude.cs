@@ -11,17 +11,22 @@
     using Android.Runtime;
     using Android.Views;
     using Android.Widget;
+    using MvvmCross.Platforms.Android.Views;
 
     [Android.Runtime.Preserve(AllMembers = true)]
-    public class LinkerPleaseInclude
+    public static class LinkerPleaseInclude
     {
-#pragma warning disable CA1822 // Mark members as static
-        public void Include(SplashScreenActivity activity)
+
+        public static void Include(SplashScreenActivity activity)
         {
             activity = new SplashScreenActivity();
 
             activity.Dispose();
         }
-#pragma warning restore CA1822 // Mark members as static
+
+        //public static void Include(MvxAndroidApplication _)
+        //{
+
+        //}
     }
 }

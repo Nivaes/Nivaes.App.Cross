@@ -7,7 +7,7 @@ namespace MvvmCross.Commands
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross;
 
     public class MvxCommandCollection

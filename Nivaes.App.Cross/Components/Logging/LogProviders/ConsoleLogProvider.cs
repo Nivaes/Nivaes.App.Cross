@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-
-namespace MvvmCross.Logging.LogProviders
+namespace Nivaes.App.Cross.Logging
 {
-    internal sealed class ConsoleLogProvider : MvxBaseLogProvider
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Text;
+
+    internal sealed class ConsoleLogProvider
+        : MvxBaseLogProvider
     {
         private static readonly IDictionary<MvxLogLevel, ConsoleColor> Colors = new Dictionary<MvxLogLevel, ConsoleColor>
         {
@@ -23,25 +24,25 @@ namespace MvvmCross.Logging.LogProviders
 
         protected override Logger GetLogger(string name) => new ColouredConsoleLogger(name).Log;
 
-        private static string MessageFormatter(string loggerName, MvxLogLevel level, object message, Exception e)
+        private static string MessageFormatter(string loggerName, MvxLogLevel level, object message, Exception? exception)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
             stringBuilder.Append(' ');
 
             // Append a readable representation of the log level
-            _ = stringBuilder.Append(($"[{level.ToString().ToUpper()}]").PadRight(8));
-            stringBuilder.Append("(" + loggerName + ") ");
+            _ = stringBuilder.Append($"[{level.ToString().ToUpper(CultureInfo.DefaultThreadCurrentCulture)}]".PadRight(8));
+            _ = stringBuilder.Append($"({loggerName}) ");
 
             // Append the message
             stringBuilder.Append(message);
 
             // Append stack trace if there is an exception
-            if (e != null)
+            if (exception != null)
             {
-                stringBuilder.Append(Environment.NewLine).Append(e.GetType());
-                stringBuilder.Append(Environment.NewLine).Append(e.Message);
-                stringBuilder.Append(Environment.NewLine).Append(e.StackTrace);
+                stringBuilder.Append(Environment.NewLine).Append(exception.GetType());
+                stringBuilder.Append(Environment.NewLine).Append(exception.Message);
+                stringBuilder.Append(Environment.NewLine).Append(exception.StackTrace);
             }
 
             return stringBuilder.ToString();
@@ -67,26 +68,26 @@ namespace MvvmCross.Logging.LogProviders
                 return true;
             }
 
-            protected void Write(MvxLogLevel logLevel, string message, Exception? e = null)
+            protected void Write(MvxLogLevel logLevel, string message, Exception? exception = null)
             {
-                var formattedMessage = MessageFormatter(mName, logLevel, message, e);
+                var formattedMessage = MessageFormatter(mName, logLevel, message, exception);
 
                 if (Colors.TryGetValue(logLevel, out var color))
                 {
-                    var originalColor = System.Console.ForegroundColor;
+                    var originalColor = Console.ForegroundColor;
                     try
                     {
-                        System.Console.ForegroundColor = color;
-                        System.Console.WriteLine(formattedMessage);
+                        Console.ForegroundColor = color;
+                        Console.WriteLine(formattedMessage);
                     }
                     finally
                     {
-                        System.Console.ForegroundColor = originalColor;
+                        Console.ForegroundColor = originalColor;
                     }
                 }
                 else
                 {
-                    System.Console.WriteLine(formattedMessage);
+                    Console.WriteLine(formattedMessage);
                 }
             }
         }

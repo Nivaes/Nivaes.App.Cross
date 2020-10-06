@@ -11,7 +11,7 @@ using Android.Views;
 using Java.Interop;
 using Java.Lang;
 using Java.Lang.Reflect;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Android.Binding.Binders;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using Boolean = Java.Lang.Boolean;

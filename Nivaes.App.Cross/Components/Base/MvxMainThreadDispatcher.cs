@@ -8,7 +8,7 @@ namespace MvvmCross.Base
     using System.Reflection;
     using System.Threading.Tasks;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
 
     public abstract class MvxMainThreadDispatcher
         : IMvxMainThreadDispatcher

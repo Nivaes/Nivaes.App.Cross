@@ -2,18 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Views;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
+    using System;
+
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+
     public static class MvxFragmentExtensions
     {
         public static void AddEventListeners(this IMvxEventSourceFragment fragment)

@@ -7,7 +7,7 @@ using System.Globalization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using MvvmCross.Converters;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Platforms.Uap.Converters
 {

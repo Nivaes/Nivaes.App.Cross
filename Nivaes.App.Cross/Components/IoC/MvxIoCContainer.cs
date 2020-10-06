@@ -10,7 +10,7 @@ namespace MvvmCross.IoC
     using System.Reflection;
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
 
     internal class MvxIoCContainer
         : IMvxIoCProvider
@@ -534,6 +534,8 @@ namespace MvvmCross.IoC
             {
                 return true;
             }
+
+            var aa = mResolvers.Keys.ToArray();
 
             if (!type.GetTypeInfo().IsGenericType)
             {

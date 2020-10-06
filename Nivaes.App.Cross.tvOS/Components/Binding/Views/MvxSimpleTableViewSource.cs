@@ -4,7 +4,7 @@
 
 using System;
 using Foundation;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Tvos;
 using UIKit;
 

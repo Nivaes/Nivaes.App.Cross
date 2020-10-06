@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Presenters
     using System.Threading.Tasks;
     using CoreGraphics;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.ViewModels;

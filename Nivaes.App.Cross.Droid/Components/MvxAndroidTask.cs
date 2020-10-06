@@ -6,7 +6,7 @@ using System;
 using Android.App;
 using Android.Content;
 using MvvmCross.Base;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Android.Views.Base;
 
 namespace MvvmCross.Platforms.Android

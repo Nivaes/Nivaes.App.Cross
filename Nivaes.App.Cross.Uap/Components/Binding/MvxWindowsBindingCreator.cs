@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.Uap.Binding
     using Microsoft.UI.Xaml.Data;
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Converters;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Bindings;
     using MvvmCross.Binding.Bindings.SourceSteps;

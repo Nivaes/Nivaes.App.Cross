@@ -2,15 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Logging
+namespace Nivaes.App.Cross.Logging
 {
     using System;
-    using MvvmCross.Logging.LogProviders;
 
     internal class MvxLog
         : IMvxLog
     {
-        internal static IMvxLog Instance { get; set; }
+        internal static IMvxLog? Instance { get; set; }
 
         internal const string FailedToGenerateLogMessage = "Failed to generate log message";
 
@@ -27,9 +26,6 @@ namespace MvvmCross.Logging
         {
             if (messageFunc == null)
                 return mLogger(logLevel, null);
-
-            if (exception is null) throw new ArgumentNullException(nameof(exception));
-            if (formatParameters is null) throw new ArgumentNullException(nameof(formatParameters));
 
             string wrappedMessageFunc()
             {

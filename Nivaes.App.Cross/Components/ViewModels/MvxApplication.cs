@@ -9,7 +9,7 @@ namespace MvvmCross.ViewModels
     using System.Reflection;
     using System.Threading.Tasks;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Plugin;
 
     public abstract class MvxApplication : IMvxApplication

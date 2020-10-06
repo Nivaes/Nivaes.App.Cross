@@ -1,5 +1,5 @@
 ﻿using System;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
 using Xunit.Abstractions;
 

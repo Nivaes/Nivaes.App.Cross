@@ -4,7 +4,7 @@
 
 using System;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 

@@ -8,7 +8,7 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using MvvmCross.Commands;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Sample;
     using Nivaes.App.Cross;
 

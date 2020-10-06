@@ -20,7 +20,6 @@ namespace Nivaes.App.Cross.Presenters
     using Java.Lang;
     using MvvmCross;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views;
@@ -28,6 +27,7 @@ namespace Nivaes.App.Cross.Presenters
     using MvvmCross.Platforms.Android.Views.ViewPager;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Logging;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
     using DialogFragment = AndroidX.Fragment.App.DialogFragment;
     using Fragment = AndroidX.Fragment.App.Fragment;

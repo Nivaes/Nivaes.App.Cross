@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Uap.Binding
     using System;
     using System.Collections.Generic;
     using Microsoft.UI.Xaml;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding.Bindings;
 
     public abstract class MvxBindingCreator

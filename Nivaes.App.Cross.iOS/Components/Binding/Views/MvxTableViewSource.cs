@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using Foundation;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Attributes;
 using MvvmCross.Binding.Extensions;
 using MvvmCross.WeakSubscription;

@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     using System;
     using Java.Lang;
     using Java.Lang.Reflect;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using Object = Java.Lang.Object;
 
     public static class MvxLayoutInflaterCompat

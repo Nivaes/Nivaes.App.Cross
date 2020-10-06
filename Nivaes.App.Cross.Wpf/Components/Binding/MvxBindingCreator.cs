@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Bindings;
 
 namespace MvvmCross.Platforms.Wpf.Binding

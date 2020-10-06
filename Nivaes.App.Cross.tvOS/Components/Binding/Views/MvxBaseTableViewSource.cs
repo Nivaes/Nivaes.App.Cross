@@ -6,7 +6,7 @@ using System;
 using System.Windows.Input;
 using Foundation;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
 

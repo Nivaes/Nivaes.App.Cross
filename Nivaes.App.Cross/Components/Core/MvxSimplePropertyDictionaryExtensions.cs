@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using MvvmCross.Base;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.ViewModels;
 
 namespace MvvmCross.Core

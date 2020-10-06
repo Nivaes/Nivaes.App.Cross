@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using Android.OS;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Platforms.Android.Core;
 using MvvmCross.ViewModels;
 

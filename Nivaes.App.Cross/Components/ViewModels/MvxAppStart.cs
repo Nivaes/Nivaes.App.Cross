@@ -5,7 +5,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 using MvvmCross.Navigation;
 
 namespace MvvmCross.ViewModels

@@ -2,20 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
+    using System;
+
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Binding.Attributes;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
     public class MvxFrameControl
         : FrameLayout, IMvxBindingContextOwner

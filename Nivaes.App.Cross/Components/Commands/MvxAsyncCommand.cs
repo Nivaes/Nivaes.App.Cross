@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
 
     public abstract class MvxAsyncCommandBase
         : MvxCommandBase, IDisposable

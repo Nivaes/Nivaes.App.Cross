@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Tizen.Views
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Tizen.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;

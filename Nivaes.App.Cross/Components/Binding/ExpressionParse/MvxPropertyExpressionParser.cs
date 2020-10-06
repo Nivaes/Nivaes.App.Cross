@@ -5,7 +5,7 @@
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using MvvmCross.Logging;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Binding.ExpressionParse
 {

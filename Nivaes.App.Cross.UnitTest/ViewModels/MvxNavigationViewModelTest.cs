@@ -6,7 +6,7 @@ namespace MvvmCross.UnitTest.ViewModels
 {
     using System;
     using Moq;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.UnitTest;
     using Xunit;
 

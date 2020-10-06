@@ -6,7 +6,7 @@ namespace MvvmCross.Base
 {
     using System;
     using System.Globalization;
-    using MvvmCross.Logging;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxStopWatch
         : IDisposable

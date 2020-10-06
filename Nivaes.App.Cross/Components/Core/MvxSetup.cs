@@ -13,13 +13,12 @@ namespace MvvmCross.Core
     using MvvmCross.Commands;
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
-    using MvvmCross.Logging.LogProviders;
     using MvvmCross.Navigation;
     using MvvmCross.Plugin;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public abstract class MvxSetup
         : IMvxSetup
@@ -314,11 +313,11 @@ namespace MvvmCross.Core
             Func<IMvxLogProvider>? logProviderCreator = (GetDefaultLogProviderType()) switch
             {
                 MvxLogProviderType.Console => () => new ConsoleLogProvider(),
-                MvxLogProviderType.EntLib => () => new EntLibLogProvider(),
-                MvxLogProviderType.Log4Net => () => new Log4NetLogProvider(),
-                MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
-                MvxLogProviderType.NLog => () => new NLogLogProvider(),
-                MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
+                //MvxLogProviderType.EntLib => () => new EntLibLogProvider(),
+                //MvxLogProviderType.Log4Net => () => new Log4NetLogProvider(),
+                //MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
+                //MvxLogProviderType.NLog => () => new NLogLogProvider(),
+                //MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
                 _ => null,
             };
             if (logProviderCreator != null)
