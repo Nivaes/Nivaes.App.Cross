@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross.Logging
                 mName = name;
             }
 
-            public bool Log(MvxLogLevel logLevel, Func<string> messageFunc, Exception exception,
+            public bool Log(MvxLogLevel logLevel, Func<string>? messageFunc, Exception? exception,
                 params object[] formatParameters)
             {
                 if (messageFunc == null) return true;

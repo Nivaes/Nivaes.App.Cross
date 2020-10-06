@@ -11,6 +11,7 @@ namespace Nivaes.App.Cross.Logging
         Log4Net,
         Loupe,
         NLog,
-        Serilog
+        Serilog,
+        AppCenter,
     }
 }

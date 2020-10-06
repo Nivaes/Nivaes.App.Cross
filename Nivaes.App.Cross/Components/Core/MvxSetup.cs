@@ -306,7 +306,7 @@ namespace MvvmCross.Core
         }
 
         public virtual MvxLogProviderType GetDefaultLogProviderType()
-            => MvxLogProviderType.Console;
+            => MvxLogProviderType.AppCenter;
 
         protected virtual void RegisterLogProvider(IMvxIoCProvider iocProvider)
         {
@@ -318,6 +318,7 @@ namespace MvvmCross.Core
                 //MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
                 //MvxLogProviderType.NLog => () => new NLogLogProvider(),
                 //MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
+                MvxLogProviderType.AppCenter => () => new AppCenterLogProvider(),
                 _ => null,
             };
             if (logProviderCreator != null)
