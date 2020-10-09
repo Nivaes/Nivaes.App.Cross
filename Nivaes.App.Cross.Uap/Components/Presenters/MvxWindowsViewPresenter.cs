@@ -11,14 +11,13 @@ namespace MvvmCross.Platforms.Uap.Presenters
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
     using MvvmCross.Platforms.Uap.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Presenters;
     using Windows.UI.Core;
 
     public class MvxWindowsViewPresenter

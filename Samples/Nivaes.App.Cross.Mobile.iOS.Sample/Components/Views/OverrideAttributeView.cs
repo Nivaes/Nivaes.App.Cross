@@ -7,14 +7,14 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using System;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
     [MvxFromStoryboard("Main")]
-    public partial class OverrideAttributeView : MvxViewController<OverrideAttributeViewModel>, IMvxOverridePresentationAttribute
+    public partial class OverrideAttributeView
+        : MvxViewController<OverrideAttributeViewModel>, IMvxOverridePresentationAttribute
     {
         public OverrideAttributeView(IntPtr handle) : base(handle)
         {

@@ -2,29 +2,28 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Converters;
-using MvvmCross.Plugin;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Tvos.Binding;
-using MvvmCross.Platforms.Tvos.Presenters;
-using MvvmCross.Platforms.Tvos.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using UIKit;
-using MvvmCross.Presenters;
-using MvvmCross.IoC;
-using System.Threading.Tasks;
-
 namespace MvvmCross.Platforms.Tvos.Core
 {
-    public abstract class MvxTvosSetup 
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Core;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Tvos.Binding;
+    using MvvmCross.Platforms.Tvos.Presenters;
+    using MvvmCross.Platforms.Tvos.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
+    using UIKit;
+
+    public abstract class MvxTvosSetup
         : MvxSetup, IMvxTvosSetup
     {
         private IMvxApplicationDelegate _applicationDelegate;

@@ -21,9 +21,9 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Platforms.Wpf.Binding;
     using MvvmCross.Platforms.Wpf.Presenters;
     using MvvmCross.Platforms.Wpf.Views;
-    using MvvmCross.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
 
     public abstract class MvxWpfSetup
         : MvxSetup, IMvxWpfSetup
@@ -65,7 +65,7 @@ namespace MvvmCross.Platforms.Wpf.Core
         {
             get
             {
-                _presenter = _presenter ?? CreateViewPresenter(_root);
+                _presenter ??= CreateViewPresenter(_root);
                 return _presenter;
             }
         }

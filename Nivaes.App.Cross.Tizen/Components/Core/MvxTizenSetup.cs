@@ -2,27 +2,28 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Tizen.Binding;
-using MvvmCross.Platforms.Tizen.Presenters;
-using MvvmCross.Platforms.Tizen.Views;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
 using Tizen.Applications;
 
 namespace MvvmCross.Platforms.Tizen.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Core;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Tizen.Binding;
+    using MvvmCross.Platforms.Tizen.Presenters;
+    using MvvmCross.Platforms.Tizen.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
+
     public abstract class MvxTizenSetup
         : MvxSetup, IMvxTizenSetup
     {

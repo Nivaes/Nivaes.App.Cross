@@ -8,8 +8,8 @@ using Android.Widget;
 namespace MvvmCross.Plugin.Color.Platforms.Android.BindingTargets
 {
     using MvvmCross.Binding.Bindings.Target.Construction;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Plugin.Color.Platforms.Android.Binding;
+    using Nivaes.App.Cross.Logging;
 
     [Preserve(AllMembers = true)]
     public class MvxDefaultColorBindingSet

@@ -4,11 +4,11 @@
 
 namespace MvvmCross.Platforms.Mac.Presenters.Attributes
 {
-    using MvvmCross.Presenters.Attributes;
+    using Nivaes.App.Cross.Presenters;
 
     public class MvxContentPresentationAttribute
         : MvxBasePresentationAttribute
     {
-        public string WindowIdentifier { get; set; }
+        public string WindowIdentifier { get; set; } = string.Empty;
     }
 }

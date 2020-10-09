@@ -1,8 +1,7 @@
-﻿using System;
-using MvvmCross.Commands;
-
-namespace MvvmCross.Tests
+﻿namespace MvvmCross.Tests
 {
+    using Nivaes.App.Cross;
+
     public static class MvxUnitTestCommandExtensions
     {
         public static void ListenForRaiseCanExecuteChanged(this IMvxCommand command)

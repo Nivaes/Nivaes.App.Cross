@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Logging
             stringBuilder.Append(' ');
 
             // Append a readable representation of the log level
-            _ = stringBuilder.Append($"[{level.ToString().ToUpper(CultureInfo.DefaultThreadCurrentCulture)}]".PadRight(8));
+            _ = stringBuilder.Append($"[{level.ToString().ToUpper(CultureInfo.InvariantCulture)}]".PadRight(8));
             _ = stringBuilder.Append($"({loggerName}) ");
 
             // Append the message

@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using AppKit;
-using MvvmCross.Presenters.Attributes;
-
 namespace MvvmCross.Platforms.Mac.Presenters.Attributes
 {
-    public class MvxWindowPresentationAttribute : MvxBasePresentationAttribute
+    using AppKit;
+    using Nivaes.App.Cross.Presenters;
+
+    public class MvxWindowPresentationAttribute
+        : MvxBasePresentationAttribute
     {
         public static float DefaultPositionX = 200;
         public static float DefaultPositionY = 200;

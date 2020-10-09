@@ -2,22 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using AppKit;
-using CoreGraphics;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using MvvmCross.Platforms.Mac.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using System.Threading.Tasks;
-
 namespace MvvmCross.Platforms.Mac.Presenters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AppKit;
+    using CoreGraphics;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Platforms.Mac.Presenters.Attributes;
+    using MvvmCross.Platforms.Mac.Views;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Presenters;
+
     public class MvxMacViewPresenter
         : MvxAttributeViewPresenter, IMvxMacViewPresenter, IMvxAttributeViewPresenter
     {
@@ -110,7 +109,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
                     (viewModel, attribute) => Close(viewModel));
         }
 
-        protected virtual Task<bool> ShowWindowViewController(
+        protected virtual ValueTask<bool> ShowWindowViewController(
             NSViewController viewController,
             MvxWindowPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -148,7 +147,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             window.ContentView = viewController.View;
             window.ContentViewController = viewController;
             windowController.ShowWindow(null);
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
         protected virtual void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
@@ -204,7 +203,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             return windowController;
         }
 
-        protected virtual Task<bool> ShowContentViewController(
+        protected virtual ValueTask<bool> ShowContentViewController(
             NSViewController viewController,
             MvxContentPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -216,10 +215,10 @@ namespace MvvmCross.Platforms.Mac.Presenters
 
             window.ContentView = viewController.View;
             window.ContentViewController = viewController;
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
-        protected virtual Task<bool> ShowModalViewController(
+        protected virtual ValueTask<bool> ShowModalViewController(
             NSViewController viewController,
             MvxModalPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -227,10 +226,10 @@ namespace MvvmCross.Platforms.Mac.Presenters
             var window = Windows.FirstOrDefault(w => w.Identifier == attribute.WindowIdentifier) ?? Windows.Last();
 
             window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
-        protected virtual Task<bool> ShowSheetViewController(
+        protected virtual ValueTask<bool> ShowSheetViewController(
             NSViewController viewController,
             MvxSheetPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -238,10 +237,10 @@ namespace MvvmCross.Platforms.Mac.Presenters
             var window = Windows.FirstOrDefault(w => w.Identifier == attribute.WindowIdentifier) ?? Windows.Last();
 
             window.ContentViewController.PresentViewControllerAsSheet(viewController);
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
-        protected virtual Task<bool> ShowTabViewController(
+        protected virtual ValueTask<bool> ShowTabViewController(
             NSViewController viewController,
             MvxTabPresentationAttribute attribute,
             MvxViewModelRequest request)
@@ -253,10 +252,10 @@ namespace MvvmCross.Platforms.Mac.Presenters
                 throw new MvxException($"trying to display a tab but there is no TabViewController! View type: {viewController.GetType()}");
 
             tabViewController.ShowTabView(viewController, attribute.TabTitle);
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
-        public override Task<bool> Close(IMvxViewModel viewModel)
+        public override ValueTask<bool> Close(IMvxViewModel viewModel)
         {
             var currentWindows = Windows;
             for (int i = currentWindows.Count - 1; i >= 0; i--)
@@ -273,14 +272,14 @@ namespace MvvmCross.Platforms.Mac.Presenters
                     if (modal != null)
                     {
                         window.ContentViewController.DismissViewController(modal);
-                        return Task.FromResult(true);
+                        return new ValueTask<bool>(true);
                     }
                 }
                 // if toClose is a tab
                 var tabViewController = window.ContentViewController as IMvxTabViewController;
                 if (tabViewController != null && tabViewController.CloseTabView(viewModel))
                 {
-                    return Task.FromResult(true);
+                    return new ValueTask<bool>(true);
                 }
 
                 // toClose is a content
@@ -288,10 +287,10 @@ namespace MvvmCross.Platforms.Mac.Presenters
                 if (controller != null && controller.ViewModel == viewModel)
                 {
                     window.Close();
-                    return Task.FromResult(true);
+                    return new ValueTask<bool>(true);
                 }
             }
-            return Task.FromResult(true);
+            return new ValueTask<bool>(true);
         }
 
         protected virtual MvxWindowController CreateWindowController(NSWindow window)

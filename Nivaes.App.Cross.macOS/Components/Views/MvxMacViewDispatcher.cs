@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading.Tasks;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Mac.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Mac.Views
 {
+    using System;
+    using System.Threading.Tasks;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Platforms.Mac.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxMacViewDispatcher
         : MvxMacUIThreadDispatcher
         , IMvxViewDispatcher
@@ -22,26 +22,26 @@ namespace MvvmCross.Platforms.Mac.Views
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<Task> action = () =>
+            Func<ValueTask<bool>> action = () =>
             {
-                MvxLog.Instance.Trace("MacNavigation", "Navigate requested");
+                MvxLog.Instance?.Trace("MacNavigation", "Navigate requested");
                 return _presenter.Show(request);
             };
-            await ExecuteOnMainThreadAsync(action);
-            return true;
+
+            return ExecuteOnMainThreadAsync(action);
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            Func<Task> action = () =>
-                                {
-                                    MvxLog.Instance.Trace("MacNavigation", "Change presentation requested");
-                                    return _presenter.ChangePresentation(hint);
-                                };
-            await ExecuteOnMainThreadAsync(action);
-            return true;
+            Func<ValueTask<bool>> action = () =>
+            {
+                MvxLog.Instance?.Trace("MacNavigation", "Change presentation requested");
+                return _presenter.ChangePresentation(hint);
+            };
+
+            return ExecuteOnMainThreadAsync(action);
         }
     }
 }

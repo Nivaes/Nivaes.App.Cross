@@ -2,22 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using CoreGraphics;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Tvos.Presenters.Attributes;
-using MvvmCross.Platforms.Tvos.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Presenters;
-using UIKit;
-using MvvmCross.Presenters.Attributes;
-using System.Threading.Tasks;
-
 namespace MvvmCross.Platforms.Tvos.Presenters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using CoreGraphics;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Platforms.Tvos.Presenters.Attributes;
+    using MvvmCross.Platforms.Tvos.Views;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Presenters;
+    using UIKit;
+
     public class MvxTvosViewPresenter
         : MvxAttributeViewPresenter, IMvxTvosViewPresenter
     {

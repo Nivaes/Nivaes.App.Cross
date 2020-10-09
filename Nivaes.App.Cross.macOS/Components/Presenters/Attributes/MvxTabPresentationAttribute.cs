@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Presenters.Attributes;
-
 namespace MvvmCross.Platforms.Mac.Presenters.Attributes
 {
-    public class MvxTabPresentationAttribute : MvxBasePresentationAttribute
-    {
-        public string WindowIdentifier { get; set; }
+    using Nivaes.App.Cross.Presenters;
 
-        public string TabTitle { get; set; }
+    public class MvxTabPresentationAttribute
+        : MvxBasePresentationAttribute
+    {
+        public string WindowIdentifier { get; set; } = string.Empty;
+
+        public string TabTitle { get; set; } = string.Empty;
     }
 }

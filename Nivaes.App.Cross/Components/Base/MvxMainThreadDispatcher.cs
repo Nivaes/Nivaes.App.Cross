@@ -20,9 +20,9 @@ namespace MvvmCross.Base
             Instance = this;
         }
 
-        public abstract ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true);
+        public abstract ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true);
 
-        public abstract ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true);
+        public abstract ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true);
 
         public abstract bool IsOnMainThread { get; }
 

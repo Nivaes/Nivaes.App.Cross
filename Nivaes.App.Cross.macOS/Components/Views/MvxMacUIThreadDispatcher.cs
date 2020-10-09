@@ -2,17 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading;
-
-using AppKit;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Platforms.Mac.Views
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AppKit;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+
     public abstract class MvxMacUIThreadDispatcher
-        : MvxMainThreadAsyncDispatcher
+        : MvxMainThreadDispatcher
     {
         private readonly SynchronizationContext _uiSynchronizationContext;
 
@@ -23,7 +23,7 @@ namespace MvvmCross.Platforms.Mac.Views
                 throw new MvxException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }
 
-        public override bool RequestMainThreadAction(Action action,
+        public virtual bool RequestMainThreadAction(Action action,
             bool maskExceptions = true)
         {
             if (IsOnMainThread)
@@ -34,6 +34,16 @@ namespace MvvmCross.Platforms.Mac.Views
                     ExceptionMaskedAction(action, maskExceptions);
                 });
             return true;
+        }
+
+        public override ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool IsOnMainThread => _uiSynchronizationContext == SynchronizationContext.Current;

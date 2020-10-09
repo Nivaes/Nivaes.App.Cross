@@ -2,12 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Logging.LogProviders;
-
 namespace MvvmCross.Tests
 {
+    using System;
+    using Nivaes.App.Cross.Logging;
+
     public abstract class TestLogger
     {
         private readonly string _name;

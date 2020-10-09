@@ -21,7 +21,6 @@ namespace MvvmCross.Platforms.Uap.Core
     using MvvmCross.Platforms.Uap.Presenters;
     using MvvmCross.Platforms.Uap.Views;
     using MvvmCross.Platforms.Uap.Views.Suspension;
-    using MvvmCross.Presenters;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Windows.ApplicationModel.Activation;

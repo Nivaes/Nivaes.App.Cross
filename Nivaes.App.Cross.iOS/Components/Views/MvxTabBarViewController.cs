@@ -2,17 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Foundation;
-using MvvmCross.Platforms.Ios.Presenters;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Foundation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
+    using UIKit;
+
     public class MvxTabBarViewController : MvxBaseTabBarViewController, IMvxTabBarViewController
     {
         public MvxTabBarViewController() : base()

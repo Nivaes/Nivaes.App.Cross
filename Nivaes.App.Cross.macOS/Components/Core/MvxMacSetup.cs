@@ -2,26 +2,28 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using AppKit;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Mac.Binding;
-using MvvmCross.Platforms.Mac.Presenters;
-using MvvmCross.Platforms.Mac.Views;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Mac.Core
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using AppKit;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
+    using MvvmCross.Core;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Mac.Binding;
+    using MvvmCross.Platforms.Mac.Presenters;
+    using MvvmCross.Platforms.Mac.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
+
     public abstract class MvxMacSetup
         : MvxSetup, IMvxMacSetup
     {
@@ -85,11 +87,12 @@ namespace MvvmCross.Platforms.Mac.Core
             return new MvxMacViewDispatcher(_presenter);
         }
 
-        protected override void InitializeFirstChance()
+        protected override Task InitializeFirstChance()
         {
             RegisterPresenter();
             RegisterLifetime();
-            base.InitializeFirstChance();
+
+            return base.InitializeFirstChance();
         }
 
         protected virtual void RegisterLifetime()
@@ -101,7 +104,7 @@ namespace MvvmCross.Platforms.Mac.Core
         {
             get
             {
-                _presenter = _presenter ?? CreateViewPresenter();
+                _presenter ??= CreateViewPresenter();
                 return _presenter;
             }
         }
@@ -118,10 +121,11 @@ namespace MvvmCross.Platforms.Mac.Core
             Mvx.IoCProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
         }
 
-        protected override void InitializeLastChance()
+        protected override Task InitializeLastChance()
         {
             InitialiseBindingBuilder();
-            base.InitializeLastChance();
+
+            return base.InitializeLastChance();
         }
 
         protected virtual void InitialiseBindingBuilder()

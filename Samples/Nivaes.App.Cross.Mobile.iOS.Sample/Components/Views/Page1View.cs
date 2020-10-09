@@ -10,9 +10,9 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Binding.Views;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.Platforms.Ios.Views.Expandable;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 

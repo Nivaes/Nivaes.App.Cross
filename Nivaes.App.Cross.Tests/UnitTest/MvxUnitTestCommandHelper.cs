@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Commands;
-
-namespace MvvmCross.Tests
+﻿namespace MvvmCross.Tests
 {
-    public class MvxUnitTestCommandHelper : IMvxCommandHelper
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Nivaes.App.Cross;
+
+    public class MvxUnitTestCommandHelper
+        : IMvxCommandHelper
     {
         public event EventHandler CanExecuteChanged;
 
@@ -18,7 +19,7 @@ namespace MvvmCross.Tests
 
         public bool HasCalledRaisePropertyChangedFor(object item)
         {
-            if(item != null && items.Any() && items.ContainsKey(item))
+            if (item != null && items.Any() && items.ContainsKey(item))
             {
                 return items[item] > 0;
             }

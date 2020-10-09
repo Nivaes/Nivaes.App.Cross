@@ -6,15 +6,16 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     using System;
     using System.Drawing;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
     using ObjCRuntime;
     using UIKit;
 
     [MvxFromStoryboard("CustomBindingView")]
     [MvxChildPresentation]
-    public partial class CustomBindingView : MvxViewController<CustomBindingViewModel>
+    public partial class CustomBindingView
+        : MvxViewController<CustomBindingViewModel>
     {
         private UIDatePicker _datePicker;
 

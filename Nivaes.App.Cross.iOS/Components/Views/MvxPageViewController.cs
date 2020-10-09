@@ -10,6 +10,7 @@ using MvvmCross.ViewModels;
 using UIKit;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using System.Linq;
+using Nivaes.App.Cross.Presenters;
 
 namespace MvvmCross.Platforms.Ios.Views
 {

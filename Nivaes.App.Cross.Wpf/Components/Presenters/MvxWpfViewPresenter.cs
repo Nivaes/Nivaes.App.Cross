@@ -2,21 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using System.Threading.Tasks;
-
 namespace MvvmCross.Platforms.Wpf.Presenters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+    using MvvmCross.Platforms.Wpf.Views;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Presenters;
+
     public class MvxWpfViewPresenter
         : MvxAttributeViewPresenter, IMvxWpfViewPresenter
     {

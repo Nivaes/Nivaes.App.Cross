@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Logging.LogProviders;
-
 namespace MvvmCross.Tests
 {
-    public class TestLogProvider : MvxBaseLogProvider
+    using System;
+    using System.Globalization;
+    using System.Text;
+    using Nivaes.App.Cross.Logging;
+
+    public class TestLogProvider
+        : MvxBaseLogProvider
     {
         private TestLogger _logger;
 
@@ -44,7 +43,8 @@ namespace MvvmCross.Tests
             stringBuilder.Append(message);
 
             // Append stack trace if there is an exception
-            if (e != null) {
+            if (e != null)
+            {
                 stringBuilder.Append(Environment.NewLine).Append(e.GetType());
                 stringBuilder.Append(Environment.NewLine).Append(e.Message);
                 stringBuilder.Append(Environment.NewLine).Append(e.StackTrace);

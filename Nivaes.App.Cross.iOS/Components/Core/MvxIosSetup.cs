@@ -7,23 +7,21 @@ namespace MvvmCross.Platforms.Ios.Core
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using MvvmCross.Converters;
-    using MvvmCross.Plugin;
+    using System.Threading.Tasks;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Converters;
     using MvvmCross.Core;
+    using MvvmCross.IoC;
     using MvvmCross.Platforms.Ios;
     using MvvmCross.Platforms.Ios.Binding;
-    using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Presenters;
     using UIKit;
-    using MvvmCross.Presenters;
-    using MvvmCross.IoC;
-    using System.Threading.Tasks;
 
     public abstract class MvxIosSetup
         : MvxSetup, IMvxIosSetup

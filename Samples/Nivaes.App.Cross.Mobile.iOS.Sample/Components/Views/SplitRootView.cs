@@ -5,13 +5,14 @@
 namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     using System;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
 
     [MvxFromStoryboard("SplitRootView")]
     [MvxRootPresentation]
-    public partial class SplitRootView : MvxSplitViewController<SplitRootViewModel>
+    public partial class SplitRootView
+        : MvxSplitViewController<SplitRootViewModel>
     {
         private bool mIsPresentedFirstTime = true;
 

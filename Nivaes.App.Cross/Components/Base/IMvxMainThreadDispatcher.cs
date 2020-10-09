@@ -9,8 +9,8 @@ namespace MvvmCross.Base
 
     public interface IMvxMainThreadDispatcher
     {
-        ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true);
-        ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true);
+        ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true);
+        ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true);
         bool IsOnMainThread { get; }
     }
 }
