@@ -39,17 +39,19 @@ namespace MvvmCross.Base
             }
         }
 
-        protected internal static async ValueTask ExceptionMaskedActionAsync(Func<ValueTask> action, bool maskExceptions)
+        protected internal static ValueTask<bool> ExceptionMaskedActionAsync(Func<ValueTask<bool>> action, bool maskExceptions)
         {
             if (action == null) throw new NullReferenceException(nameof(action));
 
             try
             {
-                await action().ConfigureAwait(false);
+                return action();
             }
             catch (Exception ex) when (!TraceException(ex, maskExceptions))
             {
             }
+
+            return new ValueTask<bool>(false);
         }
 
         private static bool TraceException(Exception exception, bool maskExceptions)

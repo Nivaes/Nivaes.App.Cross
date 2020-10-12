@@ -118,16 +118,16 @@ namespace MvvmCross.ViewModels
                 == MvxInpcInterceptionResult.DoNotRaisePropertyChanged)
                 return;
 
-            ValueTask raiseChange()
+            ValueTask<bool> raiseChange()
             {
                 if (ShouldLogInpc())
                     MvxLog.Instance.Trace($"Property '{changedArgs.PropertyName}' value changed");
                 PropertyChanged?.Invoke(this, changedArgs);
 
-                return new ValueTask();
+                return new ValueTask<bool>(true);
             }
 
-            ValueTask exceptionMasked() => MvxMainThreadDispatcher.ExceptionMaskedActionAsync(raiseChange, true);
+            ValueTask<bool> exceptionMasked() => MvxMainThreadDispatcher.ExceptionMaskedActionAsync(raiseChange, true);
 
             if (ShouldAlwaysRaiseInpcOnUserInterfaceThread())
             {

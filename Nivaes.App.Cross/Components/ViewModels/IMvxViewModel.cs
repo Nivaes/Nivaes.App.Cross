@@ -32,7 +32,7 @@ namespace MvvmCross.ViewModels
 
         ValueTask Initialize();
 
-        MvxNotifyTask InitializeTask { get; set; }
+        MvxNotifyTask? InitializeTask { get; set; }
     }
 
     public interface IMvxViewModel<TParameter>

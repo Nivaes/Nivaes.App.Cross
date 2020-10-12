@@ -33,7 +33,7 @@ namespace MvvmCross.Base
             }
         }
 
-        protected ValueTask InvokeOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        protected ValueTask<bool> InvokeOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
             if (action == null) throw new NullReferenceException(nameof(action));
 
@@ -49,7 +49,7 @@ namespace MvvmCross.Base
                 {
                 }
 
-                return new ValueTask();
+                return new ValueTask<bool>(false);
             }
             else
             {

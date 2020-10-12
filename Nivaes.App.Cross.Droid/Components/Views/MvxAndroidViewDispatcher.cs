@@ -22,9 +22,9 @@ namespace MvvmCross.Platforms.Android.Views
 
         public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            await ExecuteOnMainThreadAsync(async () =>
+            await ExecuteOnMainThreadAsync(() =>
             {
-                await mPresenter.Show(request).ConfigureAwait(false);
+                return mPresenter.Show(request);
             }).ConfigureAwait(false);
 
             return true;
@@ -32,9 +32,9 @@ namespace MvvmCross.Platforms.Android.Views
 
         public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(async () =>
+            await ExecuteOnMainThreadAsync(() =>
             {
-                await mPresenter.ChangePresentation(hint).ConfigureAwait(false);
+                return mPresenter.ChangePresentation(hint);
             }).ConfigureAwait(false);
 
             return true;

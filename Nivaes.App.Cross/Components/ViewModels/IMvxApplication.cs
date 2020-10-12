@@ -2,18 +2,19 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Plugin;
-
 namespace MvvmCross.ViewModels
 {
-    public interface IMvxApplication : IMvxViewModelLocatorCollection
+    using System.Threading.Tasks;
+    using MvvmCross.Plugin;
+
+    public interface IMvxApplication
+        : IMvxViewModelLocatorCollection
     {
         void LoadPlugins(IMvxPluginManager pluginManager);
 
-        void Initialize();
+        ValueTask Initialize();
 
-        Task Startup();
+        ValueTask Startup();
 
         void Reset();
     }

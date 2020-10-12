@@ -2,13 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading.Tasks;
-using MvvmCross.Platforms.Uap.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System.Threading.Tasks;
+    using MvvmCross.Platforms.Uap.Presenters;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxWindowsViewDispatcher
         : MvxWindowsMainThreadDispatcher, IMvxViewDispatcher
     {
@@ -22,9 +22,9 @@ namespace MvvmCross.Platforms.Uap.Views
 
         public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            await ExecuteOnMainThreadAsync(async () =>
+            await ExecuteOnMainThreadAsync(() =>
             {
-                await _presenter.Show(request).ConfigureAwait(false);
+                return _presenter.Show(request);
             }).ConfigureAwait(false);
 
             return true;
@@ -32,9 +32,9 @@ namespace MvvmCross.Platforms.Uap.Views
 
         public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(async () =>
+            await ExecuteOnMainThreadAsync(() =>
             {
-                await _presenter.ChangePresentation(hint).ConfigureAwait(false);
+                return _presenter.ChangePresentation(hint);
             }).ConfigureAwait(false);
 
             return true;

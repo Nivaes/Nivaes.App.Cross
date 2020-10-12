@@ -9,10 +9,10 @@ namespace MvvmCross.ViewModels
     using System.Reflection;
     using System.Threading.Tasks;
     using MvvmCross.IoC;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Plugin;
 
-    public abstract class MvxApplication : IMvxApplication
+    public abstract class MvxApplication
+        : IMvxApplication
     {
         private IMvxViewModelLocator? mDefaultLocator;
 
@@ -38,18 +38,17 @@ namespace MvvmCross.ViewModels
         /// <summary>
         /// Any initialization steps that can be done in the background
         /// </summary>
-        public virtual void Initialize()
+        public virtual ValueTask Initialize()
         {
-            // do nothing
+            return new ValueTask();
         }
 
         /// <summary>
         /// Any initialization steps that need to be done on the UI thread
         /// </summary>
-        public virtual Task Startup()
+        public virtual ValueTask Startup()
         {
-            MvxLog.Instance.Trace("AppStart: Application Startup - On UI thread");
-            return Task.CompletedTask;
+            return new ValueTask();
         }
 
         /// <summary>
@@ -101,7 +100,8 @@ namespace MvvmCross.ViewModels
         }
     }
 
-    public class MvxApplication<TParameter> : MvxApplication, IMvxApplication<TParameter>
+    public class MvxApplication<TParameter>
+        : MvxApplication, IMvxApplication<TParameter>
     {
         public virtual TParameter Startup(TParameter parameter)
         {

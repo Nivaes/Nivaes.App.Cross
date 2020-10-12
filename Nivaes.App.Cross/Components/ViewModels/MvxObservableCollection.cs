@@ -2,22 +2,23 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using MvvmCross.Base;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MvvmCross.Base;
+
     public class MvxObservableCollection<T>
         : ObservableCollection<T>
         , IList<T>
     {
-        protected struct SuppressEventsDisposable : IDisposable
+        protected struct SuppressEventsDisposable
+            : IDisposable
         {
             private readonly MvxObservableCollection<T> _collection;
 
@@ -251,7 +252,7 @@ namespace MvvmCross.ViewModels
                 new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
         }
 
-        protected virtual ValueTask InvokeOnMainThread(Action action)
+        protected virtual ValueTask<bool> InvokeOnMainThread(Action action)
         {
             var dispatcher = Mvx.IoCProvider.Resolve<IMvxMainThreadDispatcher>();
 

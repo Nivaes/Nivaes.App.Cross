@@ -23,7 +23,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 throw new MvxException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }
 
-        public override ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
@@ -37,10 +37,10 @@ namespace MvvmCross.Platforms.Ios.Views
                 });
             }
 
-            return new ValueTask();
+            return new ValueTask<bool>(true);
         }
 
-        public override ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
@@ -53,7 +53,7 @@ namespace MvvmCross.Platforms.Ios.Views
                     await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
                 });
 
-                return new ValueTask();
+                return new ValueTask<bool>(true);
             }
         }
 

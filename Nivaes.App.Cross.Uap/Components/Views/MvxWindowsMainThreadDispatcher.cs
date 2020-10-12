@@ -21,21 +21,23 @@ namespace MvvmCross.Platforms.Uap.Views
 
         public override bool IsOnMainThread => mUiDispatcher.HasThreadAccess;
 
-        public override async ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        public override async ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
                 ExceptionMaskedAction(action, maskExceptions);
-                return;
+                return false;
             }
 
             await mUiDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 ExceptionMaskedAction(action, maskExceptions);
             });
+
+            return true;
         }
 
-        public override async ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        public override async ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
@@ -46,6 +48,8 @@ namespace MvvmCross.Platforms.Uap.Views
             {
                 await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
             });
+
+            return true;
         }
     }
 }

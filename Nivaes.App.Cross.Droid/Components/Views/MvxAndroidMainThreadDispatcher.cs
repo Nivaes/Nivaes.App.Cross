@@ -16,7 +16,7 @@ namespace MvvmCross.Platforms.Android.Views
     {
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 
-        public override ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
@@ -30,10 +30,10 @@ namespace MvvmCross.Platforms.Android.Views
                 }, null);
             }
 
-            return new ValueTask();
+            return new ValueTask<bool>(true);
         }
 
-        public override ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
             {
@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Android.Views
                     await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(true);
                 }, null);
 
-                return new ValueTask();
+                return new ValueTask<bool>(true);
             }
         }
     }
