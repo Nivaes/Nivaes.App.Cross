@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Ios.Views
             var mvxView = viewController as IMvxIosView;
             if (mvxView == null)
             {
-                MvxLog.Instance.Warn($"Could not get IMvxIosView from ViewController {viewController.GetType().Name}");
+                MvxLog.Instance?.Warn($"Could not get IMvxIosView from ViewController {viewController.GetType().Name}");
             }
             return mvxView;
         }

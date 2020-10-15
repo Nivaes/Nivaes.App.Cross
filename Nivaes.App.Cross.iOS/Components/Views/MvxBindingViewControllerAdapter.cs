@@ -26,7 +26,7 @@ namespace MvvmCross.Platforms.Ios.Views
         {
             if (IosView == null)
             {
-                MvxLog.Instance.Warn($"{nameof(IosView)} is null for clearup of bindings");
+                MvxLog.Instance?.Warn($"{nameof(IosView)} is null for clearup of bindings");
                 return;
             }
             IosView.ClearAllBindings();

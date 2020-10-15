@@ -16,7 +16,7 @@ namespace MvvmCross.Binding.Combiners
     {
         public override void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
         {
-            MvxLog.Instance.Trace("The Add Combiner does not support SetValue");
+            MvxLog.Instance?.Trace("The Add Combiner does not support SetValue");
         }
 
         public override Type SourceType(IEnumerable<IMvxSourceStep> steps)
@@ -174,7 +174,7 @@ namespace MvvmCross.Binding.Combiners
                 CombinerFunc<object, object> combinerFunc;
                 if (!_combinerActions.TryGetValue(new TypeTuple(firstType, secondType), out combinerFunc))
                 {
-                    MvxLog.Instance.Error("Unknown type pair in Pairwise combiner {0}, {1}", firstType, secondType);
+                    MvxLog.Instance?.Error("Unknown type pair in Pairwise combiner {0}, {1}", firstType, secondType);
                     value = MvxBindingConstant.UnsetValue;
                     return true;
                 }

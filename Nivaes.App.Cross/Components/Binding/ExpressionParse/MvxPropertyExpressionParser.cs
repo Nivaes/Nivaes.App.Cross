@@ -114,7 +114,7 @@ namespace MvvmCross.Binding.ExpressionParse
             }
             catch
             {
-                MvxLog.Instance.Trace("Failed to evaluate member expression.");
+                MvxLog.Instance?.Trace("Failed to evaluate member expression.");
             }
 
             return argument;

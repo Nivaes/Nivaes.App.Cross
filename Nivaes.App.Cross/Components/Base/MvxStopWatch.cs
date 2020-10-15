@@ -33,7 +33,7 @@ namespace MvvmCross.Base
 
         public void Dispose()
         {
-            MvxLog.Instance.Trace("{0} - {1}", Environment.TickCount - _startTickCount, _message);
+            MvxLog.Instance?.Trace("{0} - {1}", Environment.TickCount - _startTickCount, _message);
             GC.SuppressFinalize(this);
         }
 

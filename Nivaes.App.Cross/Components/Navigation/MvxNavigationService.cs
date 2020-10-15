@@ -505,7 +505,7 @@ namespace MvvmCross.Navigation
 
         public virtual async ValueTask<bool> ChangePresentation(MvxPresentationHint hint, CancellationToken? cancellationToken = default)
         {
-            MvxLog.Instance.Trace("Requesting presentation change");
+            MvxLog.Instance?.Trace("Requesting presentation change");
             var args = new ChangePresentationEventArgs(hint, cancellationToken);
             OnBeforeChangePresentation(this, args);
 

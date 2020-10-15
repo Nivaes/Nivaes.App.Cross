@@ -29,7 +29,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
             catch (Exception)
             {
-                MvxLog.Instance.Error("Problem getting the saved state - will return null - from {0}",
+                MvxLog.Instance?.Error("Problem getting the saved state - will return null - from {0}",
                                extras);
                 return null;
             }

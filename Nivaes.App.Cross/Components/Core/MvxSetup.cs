@@ -85,7 +85,8 @@ namespace MvvmCross.Core
                 InitializeSingletonCache(),
                 InitializeViewDispatcher(),
                 InitializeApp(),
-                InitializeViewModelTypeFinder()
+                InitializeViewModelTypeFinder(),
+                InitializeViewLookup()
             }).ConfigureAwait(false);
 
             State = MvxSetupState.InitializedPrimary;
@@ -107,7 +108,7 @@ namespace MvvmCross.Core
                 InitializeFillableStringToTypeParser(),
                 InitializeNavigationService(),
                 InitializeViewsContainer(),
-                InitializeViewLookup(),
+                //InitializeViewLookup(),
                 InitializeCommandCollectionBuilder(),
                 InitializeNavigationSerializer(),
                 InitializeInpcInterception(),
@@ -475,7 +476,7 @@ namespace MvvmCross.Core
 
                 Mvx.IoCProvider.RegisterSingleton(dispatcher);
                 Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
-                Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
+                //Mvx.IoCProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
             });
         }
 

@@ -85,7 +85,7 @@ namespace MvvmCross.ViewModels
                 return !changingArgs.Cancel;
 
             if (ShouldLogInpc())
-                MvxLog.Instance.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue.ToString()}");
+                MvxLog.Instance?.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue.ToString()}");
 
             PropertyChanging?.Invoke(this, changingArgs);
 
@@ -121,7 +121,7 @@ namespace MvvmCross.ViewModels
             ValueTask<bool> raiseChange()
             {
                 if (ShouldLogInpc())
-                    MvxLog.Instance.Trace($"Property '{changedArgs.PropertyName}' value changed");
+                    MvxLog.Instance?.Trace($"Property '{changedArgs.PropertyName}' value changed");
                 PropertyChanged?.Invoke(this, changedArgs);
 
                 return new ValueTask<bool>(true);

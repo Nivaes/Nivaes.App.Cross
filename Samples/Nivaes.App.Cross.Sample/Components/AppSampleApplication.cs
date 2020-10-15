@@ -1,5 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
+    using System.Threading.Tasks;
     using MvvmCross;
     using MvvmCross.IoC;
     using MvvmCross.ViewModels;
@@ -8,7 +9,7 @@
         : MvxApplication
           where TType : class, IMvxAppStart
     {
-        public override void Initialize()
+        public override ValueTask Initialize()
         {
             // Construct custom application start object
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IMvxAppStart, TType>();
@@ -17,7 +18,7 @@
             // register the appstart object
             base.RegisterAppStart(appStart);
 
-            base.Initialize();
+            return base.Initialize();
         }
     }
 }

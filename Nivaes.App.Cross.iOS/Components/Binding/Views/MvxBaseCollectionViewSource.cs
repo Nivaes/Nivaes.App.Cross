@@ -45,7 +45,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             }
             catch (Exception exception)
             {
-                MvxLog.Instance.Warn("Exception masked during CollectionView ReloadData {0}", exception.ToLongString());
+                MvxLog.Instance?.Warn("Exception masked during CollectionView ReloadData {0}", exception.ToLongString());
             }
         }
 

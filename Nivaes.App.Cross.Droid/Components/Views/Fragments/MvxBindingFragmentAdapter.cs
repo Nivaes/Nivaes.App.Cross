@@ -37,7 +37,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
             if (!(Fragment.Activity is IMvxAndroidView hostMvxView))
             {
-                MvxLog.Instance.Warn($"Fragment host for fragment type {Fragment.GetType()} is not of type IMvxAndroidView");
+                MvxLog.Instance?.Warn($"Fragment host for fragment type {Fragment.GetType()} is not of type IMvxAndroidView");
                 return;
             }
 
@@ -48,7 +48,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
             if (viewModelType == null)
             {
-                MvxLog.Instance.Warn($"ViewModel type for Activity {Fragment.Activity.GetType()} not found when trying to show fragment: {Fragment.GetType()}");
+                MvxLog.Instance?.Warn($"ViewModel type for Activity {Fragment.Activity.GetType()} not found when trying to show fragment: {Fragment.GetType()}");
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
                     {
                         if (!Mvx.IoCProvider.TryResolve(out IMvxNavigationSerializer serializer))
                         {
-                            MvxLog.Instance.Warn(
+                            MvxLog.Instance?.Warn(
                                 "Navigation Serializer not available, deserializing ViewModel Request will be hard");
                         }
                         else
@@ -83,7 +83,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
             if (!Mvx.IoCProvider.TryResolve(out IMvxSavedStateConverter converter))
             {
-                MvxLog.Instance.Warn("Saved state converter not available - saving state will be hard");
+                MvxLog.Instance?.Warn("Saved state converter not available - saving state will be hard");
             }
             else
             {
@@ -115,7 +115,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             {
                 if (!Mvx.IoCProvider.TryResolve(out IMvxSavedStateConverter converter))
                 {
-                    MvxLog.Instance.Warn("Saved state converter not available - saving state will be hard");
+                    MvxLog.Instance?.Warn("Saved state converter not available - saving state will be hard");
                 }
                 else
                 {

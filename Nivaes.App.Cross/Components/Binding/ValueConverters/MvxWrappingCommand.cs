@@ -42,7 +42,7 @@ namespace MvvmCross.Binding.ValueConverters
                 return false;
 
             if (parameter != null)
-                MvxLog.Instance.Warn("Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
+                MvxLog.Instance?.Warn("Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
 
             return mWrapped.CanExecute(mCommandParameterOverride);
         }
@@ -53,7 +53,7 @@ namespace MvvmCross.Binding.ValueConverters
                 return;
 
             if (parameter != null)
-                MvxLog.Instance.Warn("Non-null parameter overridden in MvxWrappingCommand");
+                MvxLog.Instance?.Warn("Non-null parameter overridden in MvxWrappingCommand");
             mWrapped.Execute(mCommandParameterOverride);
         }
 

@@ -58,10 +58,10 @@ namespace MvvmCross.Base
         {
             if (exception is TargetInvocationException targetInvocationException)
             {
-                MvxLog.Instance.TraceException("Exception throw when invoking action via dispatcher", exception);
+                MvxLog.Instance?.TraceException("Exception throw when invoking action via dispatcher", exception);
                 if (maskExceptions)
                 {
-                    MvxLog.Instance.Trace("TargetInvocateException masked " + exception.InnerException.ToLongString());
+                    MvxLog.Instance?.Trace("TargetInvocateException masked " + exception.InnerException.ToLongString());
                     return false;
                 }
                 else
@@ -71,10 +71,10 @@ namespace MvvmCross.Base
             }
             else
             {
-                MvxLog.Instance.TraceException("Exception throw when invoking action via dispatcher", exception);
+                MvxLog.Instance?.TraceException("Exception throw when invoking action via dispatcher", exception);
                 if (maskExceptions)
                 {
-                    MvxLog.Instance.Warn("Exception masked " + exception.ToLongString());
+                    MvxLog.Instance?.Warn("Exception masked " + exception.ToLongString());
                     return false;
                 }
                 else

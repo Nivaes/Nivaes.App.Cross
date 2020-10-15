@@ -7,7 +7,8 @@ namespace MvvmCross.Platforms.Android.Binding.ResourceHelpers
     using System.Collections.Generic;
     using Nivaes.App.Cross.Droid;
 
-    public class MvxAndroidBindingResource : IMvxAndroidBindingResource
+    public class MvxAndroidBindingResource
+        : IMvxAndroidBindingResource
     {
         public int BindingTagUnique => Resource.Id.MvxBindingTagUnique;
 

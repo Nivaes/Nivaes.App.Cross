@@ -184,17 +184,17 @@ namespace Nivaes.App.Cross.Presenters
 
             if (viewType.IsSubclassOf(typeof(DialogFragment)))
             {
-                MvxLog.Instance.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
+                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
                 return new MvxDialogFragmentPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
             }
             else if (viewType.IsSubclassOf(typeof(Fragment)))
             {
-                MvxLog.Instance.Trace("PresentationAttribute not found for {0}. Assuming Fragment presentation", viewType.Name);
+                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Fragment presentation", viewType.Name);
                 return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content) { ViewType = viewType, ViewModelType = viewModelType };
             }
             else if (viewType.IsSubclassOf(typeof(Activity)))
             {
-                MvxLog.Instance.Trace("PresentationAttribute not found for {0}. Assuming Activity presentation", viewType.Name);
+                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Activity presentation", viewType.Name);
                 return new MvxActivityPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
             }
             return null;
@@ -216,7 +216,7 @@ namespace Nivaes.App.Cross.Presenters
                         var index = adapter.FragmentsInfo.IndexOf(fragmentInfo);
                         if (index < 0)
                         {
-                            MvxLog.Instance.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
+                            MvxLog.Instance?.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
                                 pagerFragmentAttribute.Tag);
 
                             return new ValueTask<bool>(false);
@@ -297,13 +297,13 @@ namespace Nivaes.App.Cross.Presenters
                     }
                     else
                     {
-                        MvxLog.Instance.Warn("A XML transitionName is required in order to transition a control when navigating.");
+                        MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
                     }
                 }
 
                 if (!transitionElementPairs.Any())
                 {
-                    MvxLog.Instance.Warn("No transition elements are provided");
+                    MvxLog.Instance?.Warn("No transition elements are provided");
                     return bundle;
                 }
 
@@ -315,7 +315,7 @@ namespace Nivaes.App.Cross.Presenters
                 }
                 else
                 {
-                    MvxLog.Instance.Warn("Shared element transition requires Android v21+.");
+                    MvxLog.Instance?.Warn("Shared element transition requires Android v21+.");
                 }
             }
 
@@ -344,7 +344,7 @@ namespace Nivaes.App.Cross.Presenters
             var activity = CurrentActivity;
             if (activity == null)
             {
-                MvxLog.Instance.Warn("Cannot Resolve current top activity. Creating new activity from Application Context");
+                MvxLog.Instance?.Warn("Cannot Resolve current top activity. Creating new activity from Application Context");
                 intent.AddFlags(ActivityFlags.NewTask);
                 Application.Context.StartActivity(intent, bundle);
                 return;
@@ -387,7 +387,7 @@ namespace Nivaes.App.Cross.Presenters
             var currentHostViewModelType = GetCurrentActivityViewModelType();
             if (attribute.ActivityHostViewModelType != currentHostViewModelType)
             {
-                MvxLog.Instance.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
+                MvxLog.Instance?.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
                     attribute.ActivityHostViewModelType, attribute.ViewModelType);
                 PendingRequest = request;
                 ShowHostActivity(attribute);
@@ -414,7 +414,7 @@ namespace Nivaes.App.Cross.Presenters
                 throw new NullReferenceException($"Fragment host not found when trying to show View {view.Name} as Nested Fragment");
 
             if (!fragmentHost.IsVisible)
-                MvxLog.Instance.Warn("Fragment host is not visible when trying to show View {0} as Nested Fragment", view.Name);
+                MvxLog.Instance?.Warn("Fragment host is not visible when trying to show View {0} as Nested Fragment", view.Name);
 
             PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
         }
@@ -492,7 +492,7 @@ namespace Nivaes.App.Cross.Presenters
                     }
                     else
                     {
-                        MvxLog.Instance.Warn("A XML transitionName is required in order to transition a control when navigating.");
+                        MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
                     }
                 }
 
@@ -680,13 +680,13 @@ namespace Nivaes.App.Cross.Presenters
 
             if (currentView == null)
             {
-                MvxLog.Instance.Warn("Ignoring close for viewmodel - rootframe has no current page");
+                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
                 return new ValueTask<bool>(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
-                MvxLog.Instance.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
+                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
                 return new ValueTask<bool>(false);
             }
 
@@ -715,7 +715,7 @@ namespace Nivaes.App.Cross.Presenters
             }
             catch (System.Exception ex)
             {
-                MvxLog.Instance.Trace("Cannot close any fragments", ex);
+                MvxLog.Instance?.Trace("Cannot close any fragments", ex);
             }
             return true;
         }
@@ -786,7 +786,7 @@ namespace Nivaes.App.Cross.Presenters
             }
             catch (System.Exception ex)
             {
-                MvxLog.Instance.Error("Cannot close fragment transaction", ex);
+                MvxLog.Instance?.Error("Cannot close fragment transaction", ex);
                 return false;
             }
 

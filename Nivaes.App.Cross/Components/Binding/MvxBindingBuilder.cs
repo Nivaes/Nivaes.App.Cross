@@ -63,7 +63,7 @@ namespace MvvmCross.Binding
             }
             else
             {
-                MvxLog.Instance.Trace("source binding factory extension host not provided - so no source extensions will be used");
+                MvxLog.Instance?.Trace("source binding factory extension host not provided - so no source extensions will be used");
             }
         }
 

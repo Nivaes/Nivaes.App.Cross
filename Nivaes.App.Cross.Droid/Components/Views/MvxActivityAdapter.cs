@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Android.Views
             switch (requestCode)
             {
                 case (int)MvxIntentRequestCode.PickFromFile:
-                    MvxLog.Instance.Warn("Warning - activity request code may clash with Mvx code for {0}",
+                    MvxLog.Instance?.Warn("Warning - activity request code may clash with Mvx code for {0}",
                                    (MvxIntentRequestCode)requestCode);
                     break;
             }
@@ -84,7 +84,7 @@ namespace MvvmCross.Platforms.Android.Views
                 IMvxSavedStateConverter converter;
                 if (!Mvx.IoCProvider.TryResolve<IMvxSavedStateConverter>(out converter))
                 {
-                    MvxLog.Instance.Warn("Saved state converter not available - saving state will be hard");
+                    MvxLog.Instance?.Warn("Saved state converter not available - saving state will be hard");
                 }
                 else
                 {

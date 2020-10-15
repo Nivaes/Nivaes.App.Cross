@@ -45,7 +45,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                 {
                     if (Content == null && _templateId != 0)
                     {
-                        MvxLog.Instance.Trace("DataContext is {0}", DataContext?.ToString() ?? "Null");
+                        MvxLog.Instance?.Trace("DataContext is {0}", DataContext?.ToString() ?? "Null");
                         Content = _bindingContext.BindingInflate(_templateId, this);
                     }
                 });

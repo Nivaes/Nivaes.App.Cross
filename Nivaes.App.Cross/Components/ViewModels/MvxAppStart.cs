@@ -32,7 +32,7 @@ namespace MvvmCross.ViewModels
             var applicationHint = await ApplicationStartup(hint).ConfigureAwait(false);
             if (applicationHint != null)
             {
-                MvxLog.Instance.Trace("Hint ignored in default MvxAppStart");
+                MvxLog.Instance?.Trace("Hint ignored in default MvxAppStart");
             }
 
             await NavigateToFirstViewModel(applicationHint).ConfigureAwait(false);
@@ -109,7 +109,7 @@ namespace MvvmCross.ViewModels
                 }
                 else
                 {
-                    MvxLog.Instance.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");
+                    MvxLog.Instance?.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");
                     return base.NavigateToFirstViewModel(hint);
                 }
             }

@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Ios
             Mvx.IoCProvider.TryResolve<IMvxIosSystem>(out iosSystem);
             if (iosSystem == null)
             {
-                MvxLog.Instance.Warn("IMvxIosSystem not found - so assuming we {1} on iOS {0} or later", target, defaultValue ? "are" : "are not");
+                MvxLog.Instance?.Warn("IMvxIosSystem not found - so assuming we {1} on iOS {0} or later", target, defaultValue ? "are" : "are not");
                 return defaultValue;
             }
 

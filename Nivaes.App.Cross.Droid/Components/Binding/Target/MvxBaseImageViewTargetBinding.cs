@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             }
             catch (Exception ex)
             {
-                MvxLog.Instance.Error(ex.ToLongString());
+                MvxLog.Instance?.Error(ex.ToLongString());
                 throw;
             }
         }

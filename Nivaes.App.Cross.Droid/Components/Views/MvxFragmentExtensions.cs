@@ -44,7 +44,7 @@ namespace MvvmCross.Platforms.Android.Views
             if (viewModelType == null
                 || viewModelType == typeof(IMvxViewModel))
             {
-                MvxLog.Instance.Trace("No ViewModel class specified for {0} in LoadViewModel",
+                MvxLog.Instance?.Trace("No ViewModel class specified for {0} in LoadViewModel",
                     fragmentView.GetType().Name);
             }
 

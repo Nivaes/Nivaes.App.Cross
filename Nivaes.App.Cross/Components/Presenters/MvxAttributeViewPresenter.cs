@@ -80,7 +80,7 @@ namespace Nivaes.App.Cross.Presenters
                     var presentationAttribute = (viewInstance as IMvxOverridePresentationAttribute)?.PresentationAttribute(request);
                     if (presentationAttribute == null)
                     {
-                        MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
+                        MvxLog.Instance?.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {
@@ -164,7 +164,7 @@ namespace Nivaes.App.Cross.Presenters
                 return await Close(presentationHint.ViewModelToClose).ConfigureAwait(false);
             }
 
-            MvxLog.Instance.Warn("Hint ignored {0}", hint.GetType().Name);
+            MvxLog.Instance?.Warn("Hint ignored {0}", hint.GetType().Name);
             return false;
         }
 
