@@ -175,7 +175,7 @@ namespace Nivaes.App.Cross.Presenters
 
         public override ValueTask<bool> Show(MvxViewModelRequest request)
         {
-            return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction!.Invoke(attribute.ViewType, attribute, request);
+            return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction!.Invoke(attribute.ViewType!, attribute, request);
         }
     }
 }

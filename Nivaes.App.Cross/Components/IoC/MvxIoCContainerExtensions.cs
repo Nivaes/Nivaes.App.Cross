@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MvvmCross.IoC
+﻿namespace MvvmCross.IoC
 {
+    using System;
+    using System.Collections.Generic;
+
     public static class MvxIoCContainerExtensions
     {
         private static Func<TInterface> CreateResolver<TInterface, TParameter1>(
@@ -93,6 +93,8 @@ namespace MvvmCross.IoC
         public static void CallbackWhenRegistered<T>(this IMvxIoCProvider ioc, Action<T> action)
             where T : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             Action simpleAction = () =>
             {
                 var t = ioc.Resolve<T>();
@@ -105,6 +107,8 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TType : class, TInterface
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct<TType>();
             ioc.RegisterSingleton<TInterface>(instance);
             return instance;
@@ -114,6 +118,8 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TType : class, TInterface
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct<TType>(arguments);
             ioc.RegisterSingleton<TInterface>(instance);
             return instance;
@@ -123,6 +129,8 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TType : class, TInterface
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct<TType>(arguments);
             ioc.RegisterSingleton<TInterface>(instance);
             return instance;
@@ -132,6 +140,8 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TType : class, TInterface
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct<TType>(arguments);
             ioc.RegisterSingleton<TInterface>(instance);
             return instance;
@@ -139,6 +149,8 @@ namespace MvvmCross.IoC
 
         public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct(type);
             ioc.RegisterSingleton(type, instance);
             return instance;
@@ -146,6 +158,8 @@ namespace MvvmCross.IoC
 
         public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, IDictionary<string, object> arguments)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct(type, arguments);
             ioc.RegisterSingleton(type, instance);
             return instance;
@@ -153,6 +167,8 @@ namespace MvvmCross.IoC
 
         public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, object arguments)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct(type, arguments);
             ioc.RegisterSingleton(type, instance);
             return instance;
@@ -160,6 +176,8 @@ namespace MvvmCross.IoC
 
         public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, params object[] arguments)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var instance = ioc.IoCConstruct(type, arguments);
             ioc.RegisterSingleton(type, instance);
             return instance;
@@ -169,17 +187,23 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TType : class, TInterface
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             ioc.RegisterSingleton<TInterface>(() => ioc.IoCConstruct<TType>());
         }
 
         public static void LazyConstructAndRegisterSingleton<TInterface>(this IMvxIoCProvider ioc, Func<TInterface> constructor)
             where TInterface : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             ioc.RegisterSingleton<TInterface>(constructor);
         }
 
         public static void LazyConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, Func<object> constructor)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             ioc.RegisterSingleton(type, constructor);
         }
 
@@ -187,6 +211,8 @@ namespace MvvmCross.IoC
             where TInterface : class
             where TParameter1 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterSingleton(resolver);
         }
@@ -196,6 +222,8 @@ namespace MvvmCross.IoC
             where TParameter1 : class
             where TParameter2 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterSingleton(resolver);
         }
@@ -206,6 +234,8 @@ namespace MvvmCross.IoC
             where TParameter2 : class
             where TParameter3 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterSingleton(resolver);
         }
@@ -217,6 +247,8 @@ namespace MvvmCross.IoC
             where TParameter3 : class
             where TParameter4 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterSingleton(resolver);
         }
@@ -229,6 +261,8 @@ namespace MvvmCross.IoC
             where TParameter4 : class
             where TParameter5 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterSingleton(resolver);
         }
@@ -236,11 +270,15 @@ namespace MvvmCross.IoC
         public static void RegisterType<TType>(this IMvxIoCProvider ioc)
             where TType : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             ioc.RegisterType<TType, TType>();
         }
 
         public static void RegisterType(this IMvxIoCProvider ioc, Type tType)
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             ioc.RegisterType(tType, tType);
         }
 
@@ -248,6 +286,8 @@ namespace MvvmCross.IoC
            where TInterface : class
            where TParameter1 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterType(resolver);
         }
@@ -257,6 +297,8 @@ namespace MvvmCross.IoC
             where TParameter1 : class
             where TParameter2 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterType(resolver);
         }
@@ -267,6 +309,8 @@ namespace MvvmCross.IoC
             where TParameter2 : class
             where TParameter3 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterType(resolver);
         }
@@ -278,6 +322,8 @@ namespace MvvmCross.IoC
             where TParameter3 : class
             where TParameter4 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterType(resolver);
         }
@@ -290,6 +336,8 @@ namespace MvvmCross.IoC
             where TParameter4 : class
             where TParameter5 : class
         {
+            if (ioc == null) throw new ArgumentNullException(nameof(ioc));
+
             var resolver = ioc.CreateResolver(constructor);
             ioc.RegisterType(resolver);
         }

@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Threading;
-using System.Threading.Tasks;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Navigation;
-
 namespace MvvmCross.ViewModels
 {
-    public abstract class MvxAppStart : IMvxAppStart
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Navigation;
+
+    public abstract class MvxAppStart
+        : IMvxAppStart
     {
         protected readonly IMvxNavigationService NavigationService;
         protected readonly IMvxApplication Application;

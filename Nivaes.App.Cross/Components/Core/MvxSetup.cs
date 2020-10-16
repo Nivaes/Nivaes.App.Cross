@@ -86,8 +86,11 @@ namespace MvvmCross.Core
                 InitializeViewDispatcher(),
                 InitializeApp(),
                 InitializeViewModelTypeFinder(),
-                InitializeViewLookup()
-            }).ConfigureAwait(false);
+
+                //InitializeViewsContainer(),
+                //InitializeViewLookup()
+            })
+            .ConfigureAwait(false);
 
             State = MvxSetupState.InitializedPrimary;
         }
@@ -107,14 +110,17 @@ namespace MvvmCross.Core
                 InitializeStringToTypeParser(),
                 InitializeFillableStringToTypeParser(),
                 InitializeNavigationService(),
+
                 InitializeViewsContainer(),
-                //InitializeViewLookup(),
+                InitializeViewLookup(),
+
                 InitializeCommandCollectionBuilder(),
                 InitializeNavigationSerializer(),
                 InitializeInpcInterception(),
                 InitializeViewModelCache(),
                 InitializeLastChance()
-            }).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
 
             SetupLog?.Trace("Setup: Secondary end");
             State = MvxSetupState.Initialized;
