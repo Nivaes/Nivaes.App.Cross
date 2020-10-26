@@ -722,6 +722,8 @@ namespace Nivaes.App.Cross.Presenters
 
         protected virtual ValueTask<bool> CloseFragment(IMvxViewModel viewModel, MvxFragmentPresentationAttribute attribute)
         {
+            if (attribute == null) throw new ArgumentNullException(nameof(attribute));
+
             // try to close nested fragment first
             if (attribute.FragmentHostViewType != null)
             {

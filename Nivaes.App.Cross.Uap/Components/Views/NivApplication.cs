@@ -17,13 +17,13 @@ namespace MvvmCross.Platforms.Uap.Views
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
 
-    public abstract class Application : Microsoft.UI.Xaml.Application
+    public abstract class NivApplication : Microsoft.UI.Xaml.Application
     {
         protected IActivatedEventArgs ActivationArguments { get; private set; }
 
         protected Frame RootFrame { get; set; }
 
-        protected Application()
+        protected NivApplication()
         {
             RegisterSetup();
             base.EnteredBackground += OnEnteredBackground;
@@ -258,7 +258,7 @@ namespace MvvmCross.Platforms.Uap.Views
         }
     }
 
-    public class Application<TMvxUapSetup, TApplication> : Application
+    public class NivApplication<TMvxUapSetup, TApplication> : NivApplication
        where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
