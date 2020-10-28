@@ -13,7 +13,7 @@ using MvvmCross.Binding.Attributes;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("mvvmcross.platforms.android.binding.views.MvxSpinner")]
+    [Register("con.nivaes.app.MvxSpinner")]
     public class MvxSpinner : Spinner
     {
         public MvxSpinner(Context context, IAttributeSet attrs)

@@ -13,7 +13,7 @@ using DialogFragment = AndroidX.Fragment.App.DialogFragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceDialogFragment")]
+    [Register("con.nivaes.app.MvxEventSourceDialogFragment")]
     public class MvxEventSourceDialogFragment
         : DialogFragment
         , IMvxEventSourceFragment

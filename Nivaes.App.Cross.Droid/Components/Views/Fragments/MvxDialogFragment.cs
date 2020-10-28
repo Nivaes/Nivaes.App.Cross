@@ -11,7 +11,7 @@ using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
-    [Register("mvvmcross.platforms.android.views.fragments.MvxDialogFragment")]
+    [Register("con.nivaes.app.MvxDialogFragment")]
     public abstract class MvxDialogFragment
         : MvxEventSourceDialogFragment, IMvxFragmentView
     {

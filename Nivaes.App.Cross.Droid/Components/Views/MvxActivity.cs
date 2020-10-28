@@ -2,23 +2,24 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.Base;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Core;
-using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    [Register("mvvmcross.platforms.android.views.MvxActivity")]
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Core;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+
+    [Register("con.nivaes.app.MvxActivity")]
     public abstract class MvxActivity
         : MvxEventSourceActivity
         , IMvxAndroidView
@@ -147,7 +148,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
     }
 
-    public abstract class MvxActivity<TViewModel> : MvxActivity, IMvxAndroidView<TViewModel> 
+    public abstract class MvxActivity<TViewModel> : MvxActivity, IMvxAndroidView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel

@@ -11,7 +11,7 @@ using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
-    [Register("mvvmcross.platforms.android.views.fragments.MvxPreferenceFragment")]
+    [Register("con.nivaes.app.MvxPreferenceFragment")]
     public abstract class MvxPreferenceFragment : MvxEventSourcePreferenceFragment, IMvxFragmentView
     {
         protected MvxPreferenceFragment()

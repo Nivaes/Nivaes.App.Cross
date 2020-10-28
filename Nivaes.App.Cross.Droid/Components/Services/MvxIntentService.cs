@@ -11,7 +11,7 @@ using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Services
 {
-    [Register("mvvmcross.droid.services.MvxIntentService")]
+    [Register("con.nivaes.app.services.MvxIntentService")]
     public abstract class MvxIntentService : IntentService
     {
         protected MvxIntentService(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)

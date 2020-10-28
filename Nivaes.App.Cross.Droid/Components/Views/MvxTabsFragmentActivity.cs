@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.ViewModels;
     using Object = Java.Lang.Object;
 
-    [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
+    [Register("con.nivaes.app.MvxTabsFragmentActivity")]
     public abstract class MvxTabsFragmentActivity
         : MvxActivity, TabHost.IOnTabChangeListener
     {

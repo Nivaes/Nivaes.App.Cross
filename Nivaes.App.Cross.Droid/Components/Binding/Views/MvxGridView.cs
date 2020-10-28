@@ -15,7 +15,7 @@ using MvvmCross.Binding.Attributes;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("mvvmcross.platforms.android.binding.views.MvxGridView")]
+    [Register("con.nivaes.app.MvxGridView")]
     public class MvxGridView
         : GridView
     {

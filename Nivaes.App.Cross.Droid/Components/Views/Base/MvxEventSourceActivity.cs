@@ -12,7 +12,7 @@ using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
 namespace MvvmCross.Platforms.Android.Views.Base
 {
-    [Register("mvvmcross.platforms.android.views.base.MvxEventSourceActivity")]
+    [Register("con.nivaes.app.MvxEventSourceActivity")]
     public abstract class MvxEventSourceActivity
         : Activity, IMvxEventSourceActivity
     {

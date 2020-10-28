@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
     /// Tint-aware version of MvxSpinner styled properly with AppCompat V22.2+.
     /// TODO: We may want to figure out a way to delegate to a common class for both.
     /// </summary>
-    [Register("mvvmcross.platforms.android.binding.views.MvxAppCompatSpinner")]
+    [Register("con.nivaes.app.MvxAppCompatSpinner")]
     public class MvxAppCompatSpinner : AppCompatSpinner
     {
         public MvxAppCompatSpinner(Context context, IAttributeSet attrs)

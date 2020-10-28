@@ -13,7 +13,7 @@ using PreferenceFragment = AndroidX.Preference.PreferenceFragmentCompat;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourcePreferenceFragment")]
+    [Register("con.nivaes.app.MvxEventSourcePreferenceFragment")]
     public abstract class MvxEventSourcePreferenceFragment : PreferenceFragment
     , IMvxEventSourceFragment
     {

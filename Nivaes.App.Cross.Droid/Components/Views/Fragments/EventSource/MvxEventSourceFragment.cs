@@ -13,7 +13,7 @@ using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceFragment")]
+    [Register("con.nivaes.app.MvxEventSourceFragment")]
     public class MvxEventSourceFragment
         : Fragment
         , IMvxEventSourceFragment

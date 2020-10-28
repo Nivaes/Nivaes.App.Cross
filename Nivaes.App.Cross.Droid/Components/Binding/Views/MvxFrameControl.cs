@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
 
-    [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
+    [Register("con.nivaes.app.MvxFrameControl")]
     public class MvxFrameControl
         : FrameLayout, IMvxBindingContextOwner
     {

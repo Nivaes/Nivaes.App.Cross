@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.WeakSubscription;
 
-    [Register("mvvmcross.droidx.recyclerview.MvxRecyclerViewHolder")]
+    [Register("con.nivaes.app.MvxRecyclerViewHolder")]
     public class MvxRecyclerViewHolder
         : AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder, IMvxRecyclerViewHolder
     {

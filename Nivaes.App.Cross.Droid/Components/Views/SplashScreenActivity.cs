@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
         , RoundIcon = "@mipmap/ic_launcher_round"
         , Theme = "@style/AppTheme.Splash"
         , NoHistory = true)]
-    [Register("nivaes.app.cross.SplashScreenActivity")]
+    [Register("con.nivaes.app.SplashScreenActivity")]
     public class SplashScreenActivity
         : Activity
     {

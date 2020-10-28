@@ -17,7 +17,7 @@ using MvvmCross.Binding.BindingContext;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("mvvmcross.platforms.android.binding.views.MvxRadioGroup")]
+    [Register("con.nivaes.app.MvxRadioGroup")]
     public class MvxRadioGroup : RadioGroup, IMvxWithChangeAdapter
     {
         public MvxRadioGroup(Context context, IAttributeSet attrs)

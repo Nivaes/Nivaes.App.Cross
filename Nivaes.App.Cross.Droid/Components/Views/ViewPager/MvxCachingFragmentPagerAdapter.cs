@@ -19,7 +19,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     //http://speakman.net.nz/blog/2014/02/20/a-bug-in-and-a-fix-for-the-way-fragmentstatepageradapter-handles-fragment-restoration/
     //https://github.com/adamsp/FragmentStatePagerIssueExample/blob/master/app/src/main/java/com/example/fragmentstatepagerissueexample/app/FixedFragmentStatePagerAdapter.java
     //https://android.googlesource.com/platform/frameworks/support/+/320113721c2e14bbc2403809046fa2959a665c11/fragment/src/main/java/androidx/fragment/app/FragmentStatePagerAdapter.java
-    [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentPagerAdapter")]
+    [Register("con.nivaes.app.MvxCachingFragmentPagerAdapter")]
     public abstract class MvxCachingFragmentPagerAdapter
         : PagerAdapter
     {

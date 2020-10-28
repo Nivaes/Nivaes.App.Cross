@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
     using Nivaes.App.Cross.Logging;
     using Object = Java.Lang.Object;
 
-    [Register("mvvmcross.droidx.recyclerview.MvxRecyclerAdapter")]
+    [Register("con.nivaes.app.MvxRecyclerAdapter")]
     public class MvxRecyclerAdapter
         : AndroidX.RecyclerView.Widget.RecyclerView.Adapter, IMvxRecyclerAdapter, IMvxRecyclerAdapterBindableHolder
     {
