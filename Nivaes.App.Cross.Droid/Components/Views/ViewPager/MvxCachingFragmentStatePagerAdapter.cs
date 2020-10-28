@@ -19,7 +19,8 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     using JavaString = Java.Lang.String;
 
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
-    public class MvxCachingFragmentStatePagerAdapter : MvxCachingFragmentPagerAdapter
+    public class MvxCachingFragmentStatePagerAdapter
+        : MvxCachingFragmentPagerAdapter
     {
         private readonly Context? mContext;
         private readonly Type mActivityType;

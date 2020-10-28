@@ -168,8 +168,8 @@
     <Compile Include="..\Nivaes.App.Cross.Uap\Components\Presenters\MvxWindowsViewPresenter.cs">
       <Link>Components\Presenters\MvxWindowsViewPresenter.cs</Link>
     </Compile>
-    <Compile Include="..\Nivaes.App.Cross.Uap\Components\Views\Application.cs">
-      <Link>Components\Views\Application.cs</Link>
+    <Compile Include="..\Nivaes.App.Cross.Uap\Components\Views\NivApplication.cs">
+      <Link>Components\Views\NivApplication.cs</Link>
     </Compile>
     <Compile Include="..\Nivaes.App.Cross.Uap\Components\Views\IMvxStoreViewsContainer.cs">
       <Link>Components\Views\IMvxStoreViewsContainer.cs</Link>

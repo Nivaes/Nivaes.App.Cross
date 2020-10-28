@@ -20,7 +20,8 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     //https://github.com/adamsp/FragmentStatePagerIssueExample/blob/master/app/src/main/java/com/example/fragmentstatepagerissueexample/app/FixedFragmentStatePagerAdapter.java
     //https://android.googlesource.com/platform/frameworks/support/+/320113721c2e14bbc2403809046fa2959a665c11/fragment/src/main/java/androidx/fragment/app/FragmentStatePagerAdapter.java
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentPagerAdapter")]
-    public abstract class MvxCachingFragmentPagerAdapter : PagerAdapter
+    public abstract class MvxCachingFragmentPagerAdapter
+        : PagerAdapter
     {
         private Fragment _currentPrimaryItem;
         private FragmentTransaction _curTransaction;
