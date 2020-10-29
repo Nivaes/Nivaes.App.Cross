@@ -11,11 +11,4 @@
     <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
 </Project>
