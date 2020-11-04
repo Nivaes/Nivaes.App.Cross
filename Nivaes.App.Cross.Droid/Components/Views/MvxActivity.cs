@@ -19,12 +19,14 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.Core;
     using Fragment = AndroidX.Fragment.App.Fragment;
 
-    [Register("con.nivaes.app.MvxActivity")]
+    [Register("nivaes.app.MvxActivity")]
     public abstract class MvxActivity
         : MvxEventSourceActivity
         , IMvxAndroidView
     {
-        protected View _view;
+        protected View? View { get; set; }
+
+        public IMvxBindingContext? BindingContext { get; set; }
 
         protected MvxActivity(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
@@ -37,7 +39,7 @@ namespace MvvmCross.Platforms.Android.Views
             this.AddEventListeners();
         }
 
-        public object DataContext
+        public object? DataContext
         {
             get { return BindingContext.DataContext; }
             set { BindingContext.DataContext = value; }
@@ -61,20 +63,18 @@ namespace MvvmCross.Platforms.Android.Views
             StartActivityForResult(intent, requestCode);
         }
 
-        public IMvxBindingContext BindingContext { get; set; }
-
         public override void SetContentView(int layoutResId)
         {
-            _view = this.BindingInflate(layoutResId, null);
+            View = this.BindingInflate(layoutResId, null);
 
-            SetContentView(_view);
+            SetContentView(View);
         }
 
         protected virtual void OnViewModelSet()
         {
         }
 
-        protected override void AttachBaseContext(Context @base)
+        protected override void AttachBaseContext(Context? @base)
         {
             if (this is IMvxSetupMonitor)
             {
@@ -114,37 +114,37 @@ namespace MvvmCross.Platforms.Android.Views
         protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
-            ViewModel?.ViewCreated();
+            _ = ViewModel?.ViewCreated().AsTask();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            ViewModel?.ViewDestroy(IsFinishing);
+            _ = ViewModel?.ViewDestroy(IsFinishing).AsTask();
         }
 
         protected override void OnStart()
         {
             base.OnStart();
-            ViewModel?.ViewAppearing();
+            _ = ViewModel?.ViewAppearing().AsTask();
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            ViewModel?.ViewAppeared();
+            _ = ViewModel?.ViewAppeared().AsTask();
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            ViewModel?.ViewDisappearing();
+            _= ViewModel?.ViewDisappearing().AsTask();
         }
 
         protected override void OnStop()
         {
             base.OnStop();
-            ViewModel?.ViewDisappeared();
+            _ = ViewModel?.ViewDisappeared().AsTask();
         }
     }
 

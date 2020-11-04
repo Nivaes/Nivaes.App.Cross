@@ -12,7 +12,7 @@ using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("con.nivaes.app.MvxListItemView")]
+    [Register("nivaes.app.MvxListItemView")]
     public class MvxListItemView : Object, IMvxListItemView, 
         IMvxBindingContextOwner, View.IOnAttachStateChangeListener
     {

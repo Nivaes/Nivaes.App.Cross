@@ -16,7 +16,7 @@ using MvvmCross.Binding.BindingContext;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("con.nivaes.app.MvxLinearLayout")]
+    [Register("nivaes.app.MvxLinearLayout")]
     public class MvxLinearLayout
         : LinearLayout, IMvxWithChangeAdapter
     {

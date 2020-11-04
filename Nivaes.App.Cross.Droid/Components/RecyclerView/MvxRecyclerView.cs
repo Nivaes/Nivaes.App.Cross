@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
     using MvvmCross.Binding.Attributes;
     using MvvmCross.Platforms.Android.Binding.Views;
 
-    [Register("con.nivaes.app.MvxRecyclerView")]
+    [Register("nivaes.app.MvxRecyclerView")]
     public class MvxRecyclerView : AndroidX.RecyclerView.Widget.RecyclerView
     {
         public MvxRecyclerView(Context context, IAttributeSet attrs) :

@@ -569,8 +569,8 @@ namespace Nivaes.App.Cross.Presenters
             ValidateArguments(view, attribute, request);
 
             // if the attribute doesn't supply any host, assume current activity!
-            if (attribute!.FragmentHostViewType == null && attribute!.ActivityHostViewModelType == null)
-                attribute!.ActivityHostViewModelType = GetCurrentActivityViewModelType();
+            if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)
+                attribute.ActivityHostViewModelType = GetCurrentActivityViewModelType();
 
             ViewPager? viewPager = null;
             FragmentManager? fragmentManager = null;

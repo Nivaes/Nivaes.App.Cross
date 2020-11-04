@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
     using MvvmCross.Binding;
     using Nivaes.App.Cross.Logging;
 
-    [Register("con.nivaes.app.MvxGuardedGridLayoutManager")]
+    [Register("nivaes.app.MvxGuardedGridLayoutManager")]
     public class MvxGuardedGridLayoutManager : GridLayoutManager
     {
         public MvxGuardedGridLayoutManager(Context context, int spanCount) : base(context, spanCount)

@@ -13,7 +13,7 @@ using MvvmCross.Binding.Attributes;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("con.nivaes.app.MvxListView")]
+    [Register("nivaes.app.MvxListView")]
     public class MvxListView
         : ListView
     {

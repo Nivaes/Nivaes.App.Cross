@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
     /// Heavily based on Calligraphy's CalligraphyLayoutInflater
     /// See: https://github.com/chrisjenx/Calligraphy/blob/master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/CalligraphyLayoutInflater.java" />
     /// </summary>
-    [Register("con.nivaes.app.MvxLayoutInflater")]
+    [Register("nivaes.app.MvxLayoutInflater")]
     public class MvxLayoutInflater
         : LayoutInflater
     {

@@ -13,7 +13,7 @@ namespace MvvmCross.Base
             eventHandler?.Invoke(sender, EventArgs.Empty);
         }
 
-        public static void Raise<T>(this EventHandler<MvxValueEventArgs<T>> eventHandler, object sender, T value)
+        public static void Raise<T>(this EventHandler<MvxValueEventArgs<T>> eventHandler, object sender, T? value)
         {
             eventHandler?.Invoke(sender, new MvxValueEventArgs<T>(value));
         }

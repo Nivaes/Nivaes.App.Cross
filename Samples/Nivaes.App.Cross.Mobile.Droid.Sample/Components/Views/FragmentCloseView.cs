@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     [Register(nameof(FragmentCloseView))]
     //[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true, popBackStackImmediateName: null, popBackStackImmediateFlag: MvxPopBackStack.None)]
-    class FragmentCloseView : MvxFragment<FragmentCloseViewModel>
+    public class FragmentCloseView
+        : MvxFragment<FragmentCloseViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

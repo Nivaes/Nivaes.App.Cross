@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.ViewModels;
     using Object = Java.Lang.Object;
 
-    [Register("con.nivaes.app.MvxTabsFragmentActivity")]
+    [Register("nivaes.app.MvxTabsFragmentActivity")]
     public abstract class MvxTabsFragmentActivity
         : MvxActivity, TabHost.IOnTabChangeListener
     {
@@ -80,7 +80,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             SetContentView(mLayoutId);
 
-            _view = Window.DecorView.RootView;
+            base.View = Window.DecorView.RootView;
 
             InitializeTabHost(savedInstanceState);
 

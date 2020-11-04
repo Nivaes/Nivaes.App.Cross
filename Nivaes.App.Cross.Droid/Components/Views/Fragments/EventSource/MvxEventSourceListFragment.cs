@@ -13,7 +13,7 @@ using ListFragment = AndroidX.Fragment.App.ListFragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
-    [Register("con.nivaes.app.MvxEventSourceListFragment")]
+    [Register("nivaes.app.MvxEventSourceListFragment")]
     public class MvxEventSourceListFragment
         : ListFragment
         , IMvxEventSourceFragment

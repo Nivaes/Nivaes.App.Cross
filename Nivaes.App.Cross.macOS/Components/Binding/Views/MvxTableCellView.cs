@@ -11,7 +11,7 @@ using MvvmCross.Binding.BindingContext;
 
 namespace MvvmCross.Platforms.Mac.Binding.Views
 {
-    [Register("MvxTableCellView")]
+    [Register("nivaes.app.MvxTableCellView")]
     public class MvxTableCellView : NSTableCellView, IMvxBindingContextOwner, IMvxDataConsumer
     {
         // Called when created from unmanaged code

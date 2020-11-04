@@ -2,7 +2,7 @@
 <!--<Project Sdk="Microsoft.NET.Sdk">-->
 
   <PropertyGroup>
-    <TargetFramework>monoandroid11.0</TargetFramework>
+    <TargetFrameworks>monoandroid11.0</TargetFrameworks>
     <!--<TargetFramework>net5.0-android</TargetFramework>-->
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
@@ -35,33 +35,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AndroidResource Update="Resources\layout\splash_screen.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\colors.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\ic_launcher_background.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\Ids.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\MvxBindingAttributes.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\splashstyle.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\strings.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
-    <AndroidResource Update="Resources\values\styles.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </AndroidResource>
   </ItemGroup>
 
 </Project>

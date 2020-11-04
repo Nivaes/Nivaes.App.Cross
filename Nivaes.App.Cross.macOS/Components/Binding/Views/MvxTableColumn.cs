@@ -8,7 +8,7 @@ using Foundation;
 
 namespace MvvmCross.Platforms.Mac.Binding.Views
 {
-    [Register("MvxTableColumn")]
+    [Register("nivaes.app.MvxTableColumn")]
     public class MvxTableColumn : NSTableColumn
     {
         // Called when created from unmanaged code

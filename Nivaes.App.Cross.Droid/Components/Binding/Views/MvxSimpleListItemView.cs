@@ -9,7 +9,7 @@ using Android.Widget;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("con.nivaes.app.MvxSimpleListItemView")]
+    [Register("nivaes.app.MvxSimpleListItemView")]
     public class MvxSimpleListItemView : MvxListItemView
     {
         public MvxSimpleListItemView(Context context, IMvxLayoutInflaterHolder layoutInflaterHolder, 

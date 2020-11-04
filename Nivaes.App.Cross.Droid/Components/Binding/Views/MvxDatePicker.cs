@@ -10,7 +10,7 @@ using Android.Widget;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    [Register("con.nivaes.app.MvxDatePicker")]
+    [Register("nivaes.app.MvxDatePicker")]
     public class MvxDatePicker
         : DatePicker
         , DatePicker.IOnDateChangedListener

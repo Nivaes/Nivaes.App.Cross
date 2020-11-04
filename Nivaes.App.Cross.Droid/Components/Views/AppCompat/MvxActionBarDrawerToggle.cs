@@ -43,7 +43,7 @@ namespace MvvmCross.Platforms.Android.Views.AppCompat
         }
     }
 
-    [Register("con.nivaes.app.MvxActionBarDrawerToggle")]
+    [Register("nivaes.app.MvxActionBarDrawerToggle")]
     public sealed class MvxActionBarDrawerToggle : ActionBarDrawerToggle
     {
         public MvxActionBarDrawerToggle(IntPtr handle, JniHandleOwnership ownership)

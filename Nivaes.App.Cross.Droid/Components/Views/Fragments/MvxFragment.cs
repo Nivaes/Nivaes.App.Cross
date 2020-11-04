@@ -12,7 +12,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
     using MvvmCross.ViewModels;
 
-    [Register("con.nivaes.app.MvxFragment")]
+    [Register("nivaes.app.MvxFragment")]
     public class MvxFragment
         : MvxEventSourceFragment
         , IMvxFragmentView
@@ -78,37 +78,37 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            ViewModel?.ViewCreated();
+            _ = ViewModel?.ViewCreated().AsTask();
         }
 
         public override void OnDestroy()
         {
             base.OnDestroy();
-            ViewModel?.ViewDestroy(viewFinishing: IsRemoving || Activity == null || Activity.IsFinishing);
+            _ = ViewModel?.ViewDestroy(viewFinishing: IsRemoving || Activity == null || Activity.IsFinishing).AsTask();
         }
 
         public override void OnStart()
         {
             base.OnStart();
-            ViewModel?.ViewAppearing();
+            _ = ViewModel?.ViewAppearing().AsTask();
         }
 
         public override void OnResume()
         {
             base.OnResume();
-            ViewModel?.ViewAppeared();
+            _ = ViewModel?.ViewAppeared().AsTask();
         }
 
         public override void OnPause()
         {
             base.OnPause();
-            ViewModel?.ViewDisappearing();
+            _ = ViewModel?.ViewDisappearing().AsTask();
         }
 
         public override void OnStop()
         {
             base.OnStop();
-            ViewModel?.ViewDisappeared();
+            _ = ViewModel?.ViewDisappeared().AsTask();
         }
     }
 

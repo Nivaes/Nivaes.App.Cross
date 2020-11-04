@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     using JavaObject = Java.Lang.Object;
     using JavaString = Java.Lang.String;
 
-    [Register("con.nivaes.app.MvxCachingFragmentStatePagerAdapter")]
+    [Register("nivaes.app.MvxCachingFragmentStatePagerAdapter")]
     public class MvxCachingFragmentStatePagerAdapter
         : MvxCachingFragmentPagerAdapter
     {
