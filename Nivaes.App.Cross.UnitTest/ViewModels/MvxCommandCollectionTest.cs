@@ -7,6 +7,7 @@ using System.Windows.Input;
 using MvvmCross.Base;
 using MvvmCross.Commands;
 using MvvmCross.UnitTest.Mocks.Dispatchers;
+using Nivaes.App.Cross;
 using Xunit;
 
 namespace MvvmCross.UnitTest.ViewModels

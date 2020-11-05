@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Mobile.Sample;
     using UIKit;
 
@@ -51,7 +52,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
             if (appDelegate.Window.RootViewController.PresentedViewController != null)
             {
                 appDelegate.Window.RootViewController.DismissViewController(true, null);
-                presenter.CloseModalViewControllers();
+                _ = presenter.CloseModalViewControllers().AsTask();
             }
             else
             {

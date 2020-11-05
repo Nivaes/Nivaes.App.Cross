@@ -78,9 +78,9 @@ namespace MvvmCross.Platforms.Uap.Views.Suspension
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new MvxSuspensionManagerException(e);
+                throw new MvxSuspensionManagerException(ex);
             }
         }
 
@@ -119,9 +119,9 @@ namespace MvvmCross.Platforms.Uap.Views.Suspension
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new MvxSuspensionManagerException(e);
+                throw new MvxSuspensionManagerException(ex);
             }
         }
 

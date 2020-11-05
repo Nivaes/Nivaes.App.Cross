@@ -318,54 +318,5 @@ namespace MvvmCross.UnitTest.ViewModels
             Assert.Equal(2, t4.TestActionValue);
             Assert.NotEqual(0, t4.TestActionValue);
         }
-
-        public class Interceptor : IMvxInpcInterceptor
-        {
-            public Func<IMvxNotifyPropertyChanged, PropertyChangedEventArgs, MvxInpcInterceptionResult> Handler;
-            public Func<IMvxNotifyPropertyChanged, PropertyChangingEventArgs, MvxInpcInterceptionResult> ChangingHandler;
-
-            public MvxInpcInterceptionResult Intercept(IMvxNotifyPropertyChanged sender, PropertyChangedEventArgs args)
-            {
-                return Handler(sender, args);
-            }
-
-            public MvxInpcInterceptionResult Intercept(IMvxNotifyPropertyChanged sender, PropertyChangingEventArgs args)
-            {
-                return ChangingHandler(sender, args);
-            }
-        }
-
-        [Fact]
-        public async Task Test_Interceptor()
-        {
-            _fixture.ClearAll();
-
-            var dispatcher = new CountingMockMainThreadDispatcher();
-            _fixture.Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
-
-            var interceptor = new Interceptor();
-            _fixture.Ioc.RegisterSingleton<IMvxInpcInterceptor>(interceptor);
-
-            var notified = new List<string>();
-            var t = new TestInpc();
-            t.PropertyChanged += (sender, args) => notified.Add(args.PropertyName);
-            interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
-            interceptor.Handler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanged;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
-
-            Assert.True(dispatcher.Count == 1);
-
-            interceptor.Handler = (s, e) => MvxInpcInterceptionResult.DoNotRaisePropertyChanged;
-            interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
-
-            Assert.True(dispatcher.Count == 1);
-
-            interceptor.Handler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanged;
-            interceptor.ChangingHandler = (s, e) => MvxInpcInterceptionResult.RaisePropertyChanging;
-            await t.RaisePropertyChanged(new PropertyChangedEventArgs("Foo")).ConfigureAwait(false);
-
-            Assert.True(dispatcher.Count == 2);
-        }
     }
 }

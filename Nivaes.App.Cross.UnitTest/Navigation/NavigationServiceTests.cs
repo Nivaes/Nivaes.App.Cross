@@ -9,10 +9,10 @@ namespace MvvmCross.UnitTest.Navigation
     using MvvmCross.Core;
     using MvvmCross.Navigation;
     using MvvmCross.Navigation.EventArguments;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.UnitTest;
     using Xunit;
 
@@ -94,7 +94,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateNoBundle()
+        public async Task TestNavigateNoBundle()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -109,7 +109,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateWithBundle()
+        public async Task TestNavigateWithBundle()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -125,7 +125,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateViewModelInstance()
+        public async Task TestNavigateViewModelInstance()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -144,7 +144,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateWithParameter()
+        public async Task TestNavigateWithParameter()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -162,7 +162,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateViewModelInstanceWithParameter()
+        public async Task TestNavigateViewModelInstanceWithParameter()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -182,7 +182,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateTypeOfNoBundle()
+        public async Task TestNavigateTypeOfNoBundle()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -197,7 +197,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateTypeOfWithBundle()
+        public async Task TestNavigateTypeOfWithBundle()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -211,7 +211,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateTypeOfWithParameter()
+        public async Task TestNavigateTypeOfWithParameter()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -229,7 +229,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateForResult()
+        public async Task TestNavigateForResult()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -247,7 +247,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_NavigateCallbacks()
+        public async Task TestNavigateCallbacks()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -273,7 +273,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public async Task Test_CloseCallbacks()
+        public async Task TestCloseCallbacks()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -294,7 +294,7 @@ namespace MvvmCross.UnitTest.Navigation
         }
 
         [Fact]
-        public void Test_ChangePresentationCallbacks()
+        public async Task TestChangePresentationCallbacks()
         {
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
 
@@ -303,7 +303,7 @@ namespace MvvmCross.UnitTest.Navigation
             navigationService.BeforeChangePresentation += (sender, e) => beforeChangePresentation++;
             navigationService.AfterChangePresentation += (sender, e) => afterChangePresentation++;
 
-            navigationService.ChangePresentation(new MvxClosePresentationHint(new SimpleTestViewModel()));
+            await navigationService.ChangePresentation(new MvxClosePresentationHint(new SimpleTestViewModel())).ConfigureAwait(true);
 
             Assert.Equal(1, beforeChangePresentation);
             Assert.Equal(1, afterChangePresentation);

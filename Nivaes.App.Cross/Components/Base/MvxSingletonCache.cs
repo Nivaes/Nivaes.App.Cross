@@ -7,7 +7,6 @@ namespace MvvmCross.Base
     using System;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
 
     [Obsolete("Eliminar")]
     public sealed class MvxSingletonCache
@@ -24,22 +23,6 @@ namespace MvvmCross.Base
 
         private MvxSingletonCache()
         {
-        }
-
-        private bool mInpcInterceptorResolveAttempted;
-        private IMvxInpcInterceptor? mInpcInterceptor;
-
-        public IMvxInpcInterceptor InpcInterceptor
-        {
-            get
-            {
-                if (mInpcInterceptorResolveAttempted)
-                    return mInpcInterceptor;
-
-                Mvx.IoCProvider.TryResolve<IMvxInpcInterceptor>(out mInpcInterceptor);
-                mInpcInterceptorResolveAttempted = true;
-                return mInpcInterceptor;
-            }
         }
 
         private IMvxStringToTypeParser? mParser;

@@ -23,19 +23,18 @@ namespace MvvmCross.Platforms.Tvos.Views
 
         public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<ValueTask> action = async () =>
+            Func<ValueTask<bool>> action = async () =>
                 {
-                    MvxLog.Instance.Trace("tvOSNavigation", "Navigate requested");
-                    await mPresenter.Show(request).ConfigureAwait(false);
+                    MvxLog.Instance?.Trace("tvOSNavigation", "Navigate requested");
+                    return await mPresenter.Show(request).ConfigureAwait(false);
                 };
-            await ExecuteOnMainThreadAsync(action).ConfigureAwait(false);
-            return true;
+
+            return await ExecuteOnMainThreadAsync(action).ConfigureAwait(false);
         }
 
         public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(async () => await mPresenter.ChangePresentation(hint).ConfigureAwait(false)).ConfigureAwait(false);
-            return true;
+            return await ExecuteOnMainThreadAsync(async () => await mPresenter.ChangePresentation(hint).ConfigureAwait(false)).ConfigureAwait(false);
         }
     }
 }

@@ -20,24 +20,24 @@ namespace MvvmCross.UnitTest.Mocks.Dispatchers
 
         public override bool IsOnMainThread => true;
 
-        public override ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
             mCallback(() =>
             {
                 ExceptionMaskedAction(action, maskExceptions);
             });
 
-            return new ValueTask();
+            return new ValueTask<bool>(true);
         }
 
-        public override ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        public override ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
             mCallback(async () =>
             {
                 await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
             });
 
-            return new ValueTask();
+            return new ValueTask<bool>(true);
         }
     }
 }

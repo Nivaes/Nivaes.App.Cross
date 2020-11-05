@@ -26,11 +26,13 @@ namespace MvvmCross.Exceptions
         {
         }
 
-        public MvxException(string message, Exception innerException) : base(message, innerException)
+        public MvxException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected MvxException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected MvxException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

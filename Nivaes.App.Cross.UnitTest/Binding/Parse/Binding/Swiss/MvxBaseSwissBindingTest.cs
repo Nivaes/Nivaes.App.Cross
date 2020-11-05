@@ -280,7 +280,7 @@ namespace MvvmCross.UnitTest.Binding.Parse.Binding.Swiss
             if (!string.IsNullOrEmpty(testParams.Source))
             {
                 if (firstOptionAdded)
-                    toReturn.Append(@",");
+                    toReturn.Append(',');
                 firstOptionAdded = true;
                 if (testParams.UseInlinePath)
                 {
@@ -288,7 +288,7 @@ namespace MvvmCross.UnitTest.Binding.Parse.Binding.Swiss
                 }
                 else
                 {
-                    toReturn.AppendFormat("Path={0}", testParams.Source);
+                    _ = toReturn.AppendFormat("Path={0}", testParams.Source);
                 }
             }
 
@@ -303,7 +303,7 @@ namespace MvvmCross.UnitTest.Binding.Parse.Binding.Swiss
             if (testParams.TestBindingMode)
             {
                 if (firstOptionAdded)
-                    toReturn.Append(@",");
+                    toReturn.Append(',');
                 firstOptionAdded = true;
                 toReturn.AppendFormat("Mode={0}", testParams.BindingMode);
             }
@@ -311,7 +311,7 @@ namespace MvvmCross.UnitTest.Binding.Parse.Binding.Swiss
             if (testParams.ConverterParameterValue.Key != string.Empty)
             {
                 if (firstOptionAdded)
-                    toReturn.Append(@",");
+                    toReturn.Append(',');
                 firstOptionAdded = true;
                 toReturn.AppendFormat("ConverterParameter={0}", testParams.ConverterParameterValue.Key);
             }
@@ -319,7 +319,7 @@ namespace MvvmCross.UnitTest.Binding.Parse.Binding.Swiss
             if (testParams.FallbackValue.Key != string.Empty)
             {
                 if (firstOptionAdded)
-                    toReturn.Append(@",");
+                    toReturn.Append(',');
                 firstOptionAdded = true;
                 toReturn.AppendFormat("FallbackValue={0}", testParams.FallbackValue.Key);
             }

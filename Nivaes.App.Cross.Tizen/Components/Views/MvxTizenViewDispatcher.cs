@@ -23,19 +23,17 @@ namespace MvvmCross.Platforms.Tizen.Views
 
         public async ValueTask<bool> ShowViewModel(MvxViewModelRequest request)
         {
-            Func<ValueTask> action = async () =>
+            Func<ValueTask<bool>> action = async () =>
             {
                 MvxLog.Instance.Trace("TizenNavigation", "Navigate requested");
-                await _presenter.Show(request).ConfigureAwait(true);
+                return await _presenter.Show(request).ConfigureAwait(true);
             };
-            await ExecuteOnMainThreadAsync(action).ConfigureAwait(true);
-            return true;
+            return await ExecuteOnMainThreadAsync(action).ConfigureAwait(true);
         }
 
         public async ValueTask<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(async () => await _presenter.ChangePresentation(hint).ConfigureAwait(true)).ConfigureAwait(true);
-            return true;
+            return await ExecuteOnMainThreadAsync(async () => await _presenter.ChangePresentation(hint).ConfigureAwait(true)).ConfigureAwait(true);
         }
     }
 }

@@ -11,6 +11,8 @@ using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
+using System.Net.Http.Headers;
+using Xunit.Sdk;
 
 namespace MvvmCross.UnitTest.Mocks.Dispatchers
 {
@@ -58,28 +60,33 @@ namespace MvvmCross.UnitTest.Mocks.Dispatchers
             return new ValueTask<bool>(true);
         }
 
-        public ValueTask ExecuteOnMainThread(Action action, bool maskExceptions = true)
+        public ValueTask<bool> ExecuteOnMainThread(Action action, bool maskExceptions = true)
         {
-            return new ValueTask(Task.Run(() =>
+            return new ValueTask<bool>(Task.Run(() =>
             {
                 try
                 {
                     action();
+                    return true;
                 }
                 catch (Exception) when (maskExceptions)
                 {
+                    return false;
                 }
             }));
         }
 
-        public async ValueTask ExecuteOnMainThreadAsync(Func<ValueTask> action, bool maskExceptions = true)
+        public async ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
         {
+            if (action == null) throw new NullReferenceException(nameof(action));
+
             try
             {
-                await action();
+                return await action().ConfigureAwait(false);
             }
             catch (Exception) when (maskExceptions)
             {
+                return false;
             }
         }
     }

@@ -2,19 +2,30 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Platforms.Uap.Views.Suspension
 {
-    public class MvxSuspensionManagerException : MvxException
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+    using MvvmCross.Exceptions;
+
+    [Serializable]
+    [SuppressMessage("Design", "RCS1194:Implement exception constructors.", Justification = "Not message.")]
+    public class MvxSuspensionManagerException
+        : MvxException
     {
         public MvxSuspensionManagerException()
+            : base("MvxSuspensionManager failed")
         {
         }
 
-        public MvxSuspensionManagerException(Exception e)
-            : base(e, "MvxSuspensionManager failed")
+        public MvxSuspensionManagerException(Exception ex)
+            : base("MvxSuspensionManager failed", ex)
+        {
+        }
+
+        protected MvxSuspensionManagerException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

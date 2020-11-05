@@ -2,18 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using MvvmCross.Annotations;
-using MvvmCross.Base;
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using System.Runtime.CompilerServices;
+    using System.Threading.Tasks;
+    using MvvmCross.Annotations;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross.Logging;
+
     public abstract class MvxNotifyPropertyChanged
         : MvxMainThreadDispatchingObject
         , IMvxNotifyPropertyChanged
@@ -79,13 +79,10 @@ namespace MvvmCross.ViewModels
 
         public virtual bool RaisePropertyChanging<T>(MvxPropertyChangingEventArgs<T> changingArgs)
         {
-            // check for interception before broadcasting change
-            if (InterceptRaisePropertyChanging(changingArgs)
-                == MvxInpcInterceptionResult.DoNotRaisePropertyChanging)
-                return !changingArgs.Cancel;
+            if (changingArgs == null) throw new ArgumentNullException(nameof(changingArgs));
 
             if (ShouldLogInpc())
-                MvxLog.Instance?.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue.ToString()}");
+                MvxLog.Instance?.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue}");
 
             PropertyChanging?.Invoke(this, changingArgs);
 
@@ -113,11 +110,6 @@ namespace MvvmCross.ViewModels
 
         public virtual async Task RaisePropertyChanged(PropertyChangedEventArgs changedArgs)
         {
-            // check for interception before broadcasting change
-            if (InterceptRaisePropertyChanged(changedArgs)
-                == MvxInpcInterceptionResult.DoNotRaisePropertyChanged)
-                return;
-
             ValueTask<bool> raiseChange()
             {
                 if (ShouldLogInpc())
@@ -146,10 +138,7 @@ namespace MvvmCross.ViewModels
         [NotifyPropertyChangedInvocator]
         protected virtual void SetProperty<T>(ref T storage, T value, Action<bool> action, [CallerMemberName] string propertyName = "")
         {
-            if (action == null)
-            {
-                throw new ArgumentException($"{nameof(action)} should not be null", nameof(action));
-            }
+            if (action == null) throw new ArgumentNullException(nameof(action), $"{nameof(action)} should not be null");
 
             action.Invoke(SetProperty(ref storage, value, propertyName));
         }
@@ -184,34 +173,6 @@ namespace MvvmCross.ViewModels
             storage = value;
             RaisePropertyChanged(propertyName);
             return true;
-        }
-
-        protected virtual MvxInpcInterceptionResult InterceptRaisePropertyChanged(PropertyChangedEventArgs changedArgs)
-        {
-            if (MvxSingletonCache.Instance != null)
-            {
-                var interceptor = MvxSingletonCache.Instance.InpcInterceptor;
-                if (interceptor != null)
-                {
-                    return interceptor.Intercept(this, changedArgs);
-                }
-            }
-
-            return MvxInpcInterceptionResult.NotIntercepted;
-        }
-
-        protected virtual MvxInpcInterceptionResult InterceptRaisePropertyChanging(PropertyChangingEventArgs changingArgs)
-        {
-            if (MvxSingletonCache.Instance != null)
-            {
-                var interceptor = MvxSingletonCache.Instance.InpcInterceptor;
-                if (interceptor != null)
-                {
-                    return interceptor.Intercept(this, changingArgs);
-                }
-            }
-
-            return MvxInpcInterceptionResult.NotIntercepted;
         }
     }
 }

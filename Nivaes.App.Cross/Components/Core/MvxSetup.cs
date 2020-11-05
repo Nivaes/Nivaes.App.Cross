@@ -200,7 +200,6 @@ namespace MvvmCross.Core
                 }
             }
 
-
             SetupLog?.Trace("Setup: Secondary end");
             State = MvxSetupState.Initialized;
         }
@@ -467,7 +466,7 @@ namespace MvvmCross.Core
             {
                 return assembly.GetReferencedAssemblies().Any(a => a.Name == mvvmCrossAssemblyName);
             }
-            catch (Exception)
+            catch
             {
                 // TODO: Should the response here be true or false? Surely if exception we should return false?
                 return true;

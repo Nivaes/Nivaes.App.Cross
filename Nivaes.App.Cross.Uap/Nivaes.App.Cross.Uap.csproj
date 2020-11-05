@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <!--<OutputType>Library</OutputType>-->
-    <TargetFrameworks>net5.0-windows10</TargetFrameworks>
+    <TargetFrameworks>net5.0-windows10.0.19041.0</TargetFrameworks> 
+    <Platforms>x64</Platforms>
 
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <!--<PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />-->
     <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />
+    <!--<PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.0.1" />-->
     <!--<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc3" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview2" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview2" />-->
@@ -32,11 +34,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <Reference Include="Windows.Foundation.UniversalApiContract">
-      <HintPath>..\..\..\..\Program Files (x86)\Windows Kits\10\References\10.0.19041.0\Windows.Foundation.UniversalApiContract\10.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
-    </Reference>
-  </ItemGroup>-->
 
 </Project>

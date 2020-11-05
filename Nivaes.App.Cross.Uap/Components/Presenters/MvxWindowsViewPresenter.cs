@@ -252,6 +252,8 @@ namespace MvvmCross.Platforms.Uap.Presenters
 
         public virtual Control CreateControl(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
         {
+            if (viewType == null) throw new ArgumentNullException(nameof(viewType));
+
             try
             {
                 var control = Activator.CreateInstance(viewType) as Control;
@@ -267,7 +269,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
             }
             catch (Exception ex)
             {
-                throw new MvxException(ex, $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
+                throw new MvxException($"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?", ex);
             }
         }
 
