@@ -6,26 +6,27 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
-using MvvmCross.Core;
 using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Services
 {
     [Register("nivaes.app.services.MvxIntentService")]
-    public abstract class MvxIntentService : IntentService
+    public abstract class MvxIntentService
+        : IntentService
     {
         protected MvxIntentService(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
         }
 
-        protected MvxIntentService(string name) : base(name)
+        protected MvxIntentService(string name)
+            : base(name)
         {
         }
 
-        protected override void OnHandleIntent(Intent intent)
+        protected override void OnHandleIntent(Intent? intent)
         {
             var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
-            setup.EnsureInitialized();
+            _ = setup.EnsureInitialized();
        }
     }
 }

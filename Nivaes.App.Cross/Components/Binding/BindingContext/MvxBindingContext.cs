@@ -31,16 +31,16 @@ namespace MvvmCross.Binding.BindingContext
         private readonly List<KeyValuePair<object, IList<TargetAndBinding>>> _viewBindings =
             new List<KeyValuePair<object, IList<TargetAndBinding>>>();
 
-        private object _dataContext;
+        private object? mDataContext;
 
         public MvxBindingContext()
-            : this((object)null)
+            : this((object?)null)
         {
         }
 
-        public MvxBindingContext(object dataContext)
+        public MvxBindingContext(object? dataContext)
         {
-            _dataContext = dataContext;
+            mDataContext = dataContext;
         }
 
         public MvxBindingContext(IDictionary<object, string> firstBindings)
@@ -63,8 +63,10 @@ namespace MvvmCross.Binding.BindingContext
             Init(dataContext, firstBindings);
         }
 
-        public MvxBindingContext Init(object dataContext, IDictionary<object, IEnumerable<MvxBindingDescription>> firstBindings)
+        public MvxBindingContext Init(object? dataContext, IDictionary<object, IEnumerable<MvxBindingDescription>> firstBindings)
         {
+            if (firstBindings == null) throw new ArgumentNullException(nameof(firstBindings));
+
             foreach (var kvp in firstBindings)
             {
                 AddDelayedAction(kvp);
@@ -75,8 +77,10 @@ namespace MvvmCross.Binding.BindingContext
             return this;
         }
 
-        public MvxBindingContext Init(object dataContext, IDictionary<object, string> firstBindings)
+        public MvxBindingContext Init(object? dataContext, IDictionary<object, string> firstBindings)
         {
+            if (firstBindings == null) throw new ArgumentNullException(nameof(firstBindings));
+
             foreach (var kvp in firstBindings)
             {
                 AddDelayedAction(kvp);
@@ -87,7 +91,7 @@ namespace MvvmCross.Binding.BindingContext
             return this;
         }
 
-        public IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<MvxBindingDescription> firstBindingValue)
+        public IMvxBindingContext Init(object? dataContext, object firstBindingKey, IEnumerable<MvxBindingDescription> firstBindingValue)
         {
             AddDelayedAction(firstBindingKey, firstBindingValue);
             if (dataContext != null)
@@ -96,7 +100,7 @@ namespace MvvmCross.Binding.BindingContext
             return this;
         }
 
-        public IMvxBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue)
+        public IMvxBindingContext Init(object? dataContext, object firstBindingKey, string firstBindingValue)
         {
             AddDelayedAction(firstBindingKey, firstBindingValue);
             if (dataContext != null)
@@ -175,18 +179,18 @@ namespace MvvmCross.Binding.BindingContext
             }
         }
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {
-                return _dataContext;
+                return mDataContext;
             }
             set
             {
-                if (_dataContext == value)
+                if (mDataContext == value)
                     return;
 
-                _dataContext = value;
+                mDataContext = value;
                 OnDataContextChange();
                 DataContextChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -201,13 +205,13 @@ namespace MvvmCross.Binding.BindingContext
             {
                 foreach (var bind in binding.Value)
                 {
-                    bind.Binding.DataContext = _dataContext;
+                    bind.Binding.DataContext = mDataContext;
                 }
             }
 
             foreach (var binding in _directBindings)
             {
-                binding.Binding.DataContext = _dataContext;
+                binding.Binding.DataContext = mDataContext;
             }
 
             // add new bindings

@@ -109,9 +109,16 @@
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
-            var instance = ioc.IoCConstruct<TType>();
-            ioc.RegisterSingleton<TInterface>(instance);
-            return instance;
+            try
+            {
+                var instance = ioc.IoCConstruct<TType>();
+                ioc.RegisterSingleton<TInterface>(instance);
+                return instance;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc, IDictionary<string, object> arguments)

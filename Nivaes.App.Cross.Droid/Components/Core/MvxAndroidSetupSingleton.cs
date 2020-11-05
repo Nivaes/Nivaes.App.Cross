@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Android.Core
     public class MvxAndroidSetupSingleton
         : MvxSetupSingleton
     {
-        public static MvxAndroidSetupSingleton EnsureSingletonAvailable(Context applicationContext)
+        public static MvxAndroidSetupSingleton EnsureSingletonAvailable(Context? applicationContext)
         {
             var instance = EnsureSingletonAvailable<MvxAndroidSetupSingleton>();
             instance.PlatformSetup<MvxAndroidSetup>()?.PlatformInitialize(applicationContext);

@@ -9,15 +9,18 @@ using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Plugin
 {
-    public class MvxPluginManager : IMvxPluginManager
+    public class MvxPluginManager
+        : IMvxPluginManager
     {
+        private readonly object mLockObject = new object();
+
         private readonly HashSet<Type> _loadedPlugins = new HashSet<Type>();
 
-        public Func<Type, IMvxPluginConfiguration> ConfigurationSource { get; }
+        public Func<Type, IMvxPluginConfiguration?> ConfigurationSource { get; }
 
         public IEnumerable<Type> LoadedPlugins => _loadedPlugins;
 
-        public MvxPluginManager(Func<Type, IMvxPluginConfiguration> configurationSource)
+        public MvxPluginManager(Func<Type, IMvxPluginConfiguration?> configurationSource)
         {
             ConfigurationSource = configurationSource;
         }
@@ -30,9 +33,8 @@ namespace MvvmCross.Plugin
         public virtual void EnsurePluginLoaded(Type type, bool forceLoad = false)
         {
             if (forceLoad == false && IsPluginLoaded(type)) return;
-            
-            var plugin = Activator.CreateInstance(type) as IMvxPlugin;
-            if (plugin == null)
+
+            if (Activator.CreateInstance(type) is not IMvxPlugin plugin)
                 throw new MvxException($"Type {type} is not an IMvxPlugin");
 
             if (plugin is IMvxConfigurablePlugin configurablePlugin)
@@ -46,14 +48,14 @@ namespace MvvmCross.Plugin
             _loadedPlugins.Add(type);
         }
 
-        protected IMvxPluginConfiguration ConfigurationFor(Type toLoad) => ConfigurationSource?.Invoke(toLoad);
+        protected IMvxPluginConfiguration? ConfigurationFor(Type toLoad) => ConfigurationSource?.Invoke(toLoad);
 
-        public bool IsPluginLoaded<T>() where T : IMvxPlugin    
+        public bool IsPluginLoaded<T>() where T : IMvxPlugin
             => IsPluginLoaded(typeof(T));
 
         public bool IsPluginLoaded(Type type)
         {
-            lock (this)
+            lock (mLockObject)
             {
                 return _loadedPlugins.Contains(type);
             }
@@ -71,7 +73,7 @@ namespace MvvmCross.Plugin
             }
             catch (Exception ex)
             {
-                MvxLog.Instance?.Warn("Failed to load plugin {0} with exception {1}", type.FullName, ex.ToLongString());
+                MvxLog.Instance?.Warn("Failed to load plugin {0} with exception {1}", type!.FullName, ex.ToLongString());
                 return false;
             }
         }

@@ -34,7 +34,7 @@ namespace MvvmCross.Platforms.Android.Core
         private Context? mApplicationContext;
         private IMvxAndroidViewPresenter? mPresenter;
 
-        public void PlatformInitialize(Context applicationContext)
+        public void PlatformInitialize(Context? applicationContext)
         {
             mApplicationContext = applicationContext;
         }

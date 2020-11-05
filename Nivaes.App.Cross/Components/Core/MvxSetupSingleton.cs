@@ -92,7 +92,14 @@ namespace MvvmCross.Core
 
         public virtual Task EnsureInitialized()
         {
-            return StartSetupInitialization();
+            try
+            {
+                return StartSetupInitialization();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         protected virtual void CreateSetup()

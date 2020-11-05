@@ -77,7 +77,7 @@ namespace MvvmCross.Core
             RegisterDefaultSetupDependencies(iocProvider);
             RegisterSetupDependencies?.Invoke(iocProvider);
 
-            await Task.WhenAll(new[]
+            var taskResult = Task.WhenAll(new[]
             {
                 InitializeLoggingServices(),
                 InitializeFirstChance(),
@@ -89,8 +89,28 @@ namespace MvvmCross.Core
 
                 //InitializeViewsContainer(),
                 //InitializeViewLookup()
-            })
-            .ConfigureAwait(false);
+            });
+
+            try
+            {
+                await taskResult.ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                if (taskResult.IsCanceled)
+                {
+                    // Cancellation is most likely due to a shared cancellation token. Handle as needed, possibly check if ((TaskCanceledException)e).CancellationToken == token etc.       
+                }
+                else if (taskResult.IsFaulted)
+                {
+                    // use taskResult.Exception which is an AggregateException - which you can iterate over (it's a tree! .Flatten() might help)
+                    // caught exception is only the first observed exception
+                }
+                else
+                {
+                    // Well, this should not really happen because it would mean: Exception thrown, not faulted nor cancelled but completed
+                }
+            }
 
             State = MvxSetupState.InitializedPrimary;
         }
@@ -104,7 +124,7 @@ namespace MvvmCross.Core
 
             State = MvxSetupState.InitializingSecondary;
 
-            await Task.WhenAll(new[]
+            var taskResult = Task.WhenAll(new[]
             {
                 PerformBootstrapActions(),
                 InitializeStringToTypeParser(),
@@ -119,8 +139,29 @@ namespace MvvmCross.Core
                 InitializeInpcInterception(),
                 InitializeViewModelCache(),
                 InitializeLastChance()
-            })
-            .ConfigureAwait(false);
+            });
+
+            try
+            {
+                await taskResult.ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                if (taskResult.IsCanceled)
+                {
+                    // Cancellation is most likely due to a shared cancellation token. Handle as needed, possibly check if ((TaskCanceledException)e).CancellationToken == token etc.       
+                }
+                else if (taskResult.IsFaulted)
+                {
+                    // use taskResult.Exception which is an AggregateException - which you can iterate over (it's a tree! .Flatten() might help)
+                    // caught exception is only the first observed exception
+                }
+                else
+                {
+                    // Well, this should not really happen because it would mean: Exception thrown, not faulted nor cancelled but completed
+                }
+            }
+
 
             SetupLog?.Trace("Setup: Secondary end");
             State = MvxSetupState.Initialized;
@@ -266,8 +307,7 @@ namespace MvvmCross.Core
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp);
             iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelLoader, MvxViewModelLoader>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader>(loader =>
-                new MvxNavigationService(null, loader));
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader>(loader => new MvxNavigationService(null, loader));
             iocProvider.RegisterSingleton(() => new MvxViewModelByNameLookup());
             iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameLookup, MvxViewModelByNameLookup>(nameLookup => nameLookup);
             iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameRegistry, MvxViewModelByNameLookup>(nameLookup => nameLookup);
@@ -449,14 +489,13 @@ namespace MvvmCross.Core
             await InitializeApp(pluginManager, app).ConfigureAwait(false);
         }
 
-        protected virtual Task InitializeApp(IMvxPluginManager pluginManager, IMvxApplication app)
+        protected virtual ValueTask InitializeApp(IMvxPluginManager pluginManager, IMvxApplication app)
         {
-            return Task.Run(() =>
-            {
-                app.LoadPlugins(pluginManager);
-                SetupLog?.Trace("Setup: Application Initialize - On background thread");
-                app.Initialize();
-            });
+            if (app == null) throw new ArgumentNullException(nameof(app));
+
+            app.LoadPlugins(pluginManager);
+            SetupLog?.Trace("Setup: Application Initialize - On background thread");
+            return app.Initialize();
         }
 
         protected virtual Task InitializeViewsContainer()

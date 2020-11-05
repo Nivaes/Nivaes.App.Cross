@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Android.Binding.BindingContext
     {
         private readonly Context _droidContext;
 
-        public MvxAndroidBindingContext(Context droidContext, IMvxLayoutInflaterHolder layoutInflaterHolder, object source = null)
+        public MvxAndroidBindingContext(Context droidContext, IMvxLayoutInflaterHolder layoutInflaterHolder, object? source = null)
             : base(source)
         {
             _droidContext = droidContext;
@@ -28,7 +28,7 @@ namespace MvvmCross.Platforms.Android.Binding.BindingContext
             return BindingInflate(resourceId, viewGroup, true);
         }
 
-        public virtual View BindingInflate(int resourceId, ViewGroup viewGroup, bool attachToRoot)
+        public virtual View BindingInflate(int resourceId, ViewGroup? viewGroup, bool attachToRoot)
         {
             var view = CommonInflate(
                 resourceId,
@@ -37,7 +37,7 @@ namespace MvvmCross.Platforms.Android.Binding.BindingContext
             return view;
         }
 
-        protected virtual View CommonInflate(int resourceId, ViewGroup viewGroup, bool attachToRoot)
+        protected virtual View CommonInflate(int resourceId, ViewGroup? viewGroup, bool attachToRoot)
         {
             using (new MvxBindingContextStackRegistration<IMvxAndroidBindingContext>(this))
             {

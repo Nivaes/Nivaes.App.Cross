@@ -9,7 +9,7 @@ namespace MvvmCross.Plugin
 {
     public interface IMvxPluginManager
     {
-        Func<Type, IMvxPluginConfiguration> ConfigurationSource { get; }
+        Func<Type, IMvxPluginConfiguration?> ConfigurationSource { get; }
 
         IEnumerable<Type> LoadedPlugins { get; }
 
@@ -18,11 +18,11 @@ namespace MvvmCross.Plugin
         bool IsPluginLoaded<TPlugin>() where TPlugin : IMvxPlugin;
 
         void EnsurePluginLoaded(Type type, bool forceLoad = false);
-        
+       
         void EnsurePluginLoaded<TPlugin>(bool forceLoad = false) where TPlugin : IMvxPlugin;
 
         bool TryEnsurePluginLoaded(Type type, bool forceLoad = false);
-        
+    
         bool TryEnsurePluginLoaded<TPlugin>(bool forceLoad = false) where TPlugin : IMvxPlugin;
      }
 }
