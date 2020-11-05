@@ -37,16 +37,15 @@ namespace MvvmCross.IoC
             if (injectableProperty == null) throw new ArgumentNullException(nameof(injectableProperty));
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            object propertyValue;
-            if (Mvx.IoCProvider.TryResolve(injectableProperty.PropertyType, out propertyValue))
+            if (Mvx.IoCProvider.TryResolve(injectableProperty.PropertyType, out object propertyValue))
             {
                 try
                 {
                     injectableProperty.SetValue(toReturn, propertyValue, null);
                 }
-                catch (TargetInvocationException invocation)
+                catch (TargetInvocationException ex)
                 {
-                    throw new MvxIoCResolveException(invocation, "Failed to inject into {0} on {1}", injectableProperty.Name, toReturn.GetType().Name);
+                    throw new MvxIoCResolveException($"Failed to inject into {injectableProperty.Name} on {toReturn.GetType().Name}", ex);
                 }
             }
             else

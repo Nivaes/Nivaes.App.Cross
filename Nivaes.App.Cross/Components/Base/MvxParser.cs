@@ -407,11 +407,10 @@ namespace MvvmCross.Base
         {
             if (decimalPeriodSeen)
             {
-                double doubleResult;
                 if (double.TryParse(numberText,
                                     NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
                                     CultureInfo.InvariantCulture,
-                                    out doubleResult))
+                                    out double doubleResult))
                     return doubleResult;
 
                 throw new MvxException("Failed to parse double from {0} in {1}", numberText, FullText);
@@ -419,11 +418,10 @@ namespace MvvmCross.Base
             else
             {
                 // note that we use Int64 because Json.Net doe...
-                long intResult;
                 if (long.TryParse(numberText,
                                    NumberStyles.AllowLeadingSign,
                                    CultureInfo.InvariantCulture,
-                                   out intResult))
+                                   out long intResult))
                     return intResult;
 
                 throw new MvxException("Failed to parse Int64 from {0} in {1}", numberText, FullText);
@@ -439,9 +437,9 @@ namespace MvvmCross.Base
             {
                 return Enum.Parse(enumerationType, name, ignoreCase);
             }
-            catch (ArgumentException exception)
+            catch (ArgumentException ex)
             {
-                throw exception.MvxWrap("Problem parsing {0} from {1} in {2}", enumerationType.Name, name, FullText);
+                throw new MvxException($"Problem parsing {enumerationType.Name} from {name} in {FullText}", ex);
             }
         }
 

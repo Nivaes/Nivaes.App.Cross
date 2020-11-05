@@ -28,11 +28,9 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = viewModelLocator.Reload(viewModel, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap(
-                    "Failed to reload a previously created created ViewModel for type {0} from locator {1} - check InnerException for more information",
-                    request.ViewModelType, viewModelLocator.GetType().Name);
+                throw new MvxException($"Failed to reload a previously created created ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
 
             return viewModel;
@@ -47,11 +45,9 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = viewModelLocator.Reload(viewModel, param, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap(
-                    "Failed to reload a previously created created ViewModel for type {0} from locator {1} - check InnerException for more information",
-                    request.ViewModelType, viewModelLocator.GetType().Name);
+                throw new MvxException($"Failed to reload a previously created created ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
 
             return viewModel;
@@ -72,11 +68,9 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = viewModelLocator.Load(request.ViewModelType, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap(
-                    "Failed to construct and initialize ViewModel for type {0} from locator {1} - check InnerException for more information",
-                    request.ViewModelType, viewModelLocator.GetType().Name);
+                throw new MvxException($"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
             return viewModel;
         }
@@ -96,11 +90,9 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = viewModelLocator.Load(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap(
-                    "Failed to construct and initialize ViewModel for type {0} from locator {1} - check InnerException for more information",
-                    request.ViewModelType, viewModelLocator.GetType().Name);
+                throw new MvxException($"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
             return viewModel;
         }

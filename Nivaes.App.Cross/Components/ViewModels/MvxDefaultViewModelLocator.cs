@@ -2,36 +2,38 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Threading.Tasks;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Navigation;
+    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross.Logging;
+
     public class MvxDefaultViewModelLocator
         : IMvxViewModelLocator
     {
-        private IMvxNavigationService _navigationService;
-        protected IMvxNavigationService NavigationService => _navigationService ?? (_navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>());
+        private IMvxNavigationService? mNavigationService;
+        protected IMvxNavigationService NavigationService => mNavigationService ?? (mNavigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>());
 
-        private IMvxLogProvider _logProvider;
-        protected IMvxLogProvider LogProvider => _logProvider ?? (_logProvider = Mvx.IoCProvider.Resolve<IMvxLogProvider>());
+        private IMvxLogProvider? mLogProvider;
+        protected IMvxLogProvider LogProvider => mLogProvider ?? (mLogProvider = Mvx.IoCProvider.Resolve<IMvxLogProvider>());
 
-        public MvxDefaultViewModelLocator() : this(null) { }
+        public MvxDefaultViewModelLocator()
+            : this(null) { }
 
         public MvxDefaultViewModelLocator(IMvxNavigationService navigationService)
         {
             if (navigationService != null)
-                _navigationService = navigationService;
+                mNavigationService = navigationService;
         }
 
         public virtual IMvxViewModel Reload(IMvxViewModel viewModel,
                                             IMvxBundle parameterValues,
                                             IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
         {
-            RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
+            _ = RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
 
             return viewModel;
         }
@@ -55,12 +57,12 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = (IMvxViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw new MvxException($"Problem creating viewModel of type {viewModelType?.Name ?? "-"}", ex);
             }
 
-            RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
+            _ = RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
 
             return viewModel;
         }
@@ -75,9 +77,9 @@ namespace MvvmCross.ViewModels
             {
                 viewModel = (IMvxViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw new MvxException($"Problem creating viewModel of type {viewModelType?.Name ?? "-"}", ex);
             }
 
             RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -95,37 +97,43 @@ namespace MvvmCross.ViewModels
             viewModel.CallBundleMethods("ReloadState", savedState);
         }
 
-        protected void RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        protected async Task RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             try
             {
                 CallCustomInitMethods(viewModel, parameterValues);
                 if (navigationArgs?.Cancel == true)
                     return;
+
                 if (savedState != null)
                 {
                     CallReloadStateMethods(viewModel, savedState);
                     if (navigationArgs?.Cancel == true)
                         return;
                 }
-                viewModel.Start();
+
+                await viewModel.Start().ConfigureAwait(false);
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.Prepare();
+                await viewModel.Prepare().ConfigureAwait(false);
                 if (navigationArgs?.Cancel == true)
                     return;
 
                 viewModel.InitializeTask = MvxNotifyTask.Create(async () => await viewModel.Initialize().ConfigureAwait(false));
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw new MvxException($"Problem running viewModel lifecycle of type {viewModel.GetType().Name}", ex);
             }
         }
 
-        protected void RunViewModelLifecycle<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        protected async Task RunViewModelLifecycle<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             try
             {
                 CallCustomInitMethods(viewModel, parameterValues);
@@ -137,23 +145,24 @@ namespace MvvmCross.ViewModels
                     if (navigationArgs?.Cancel == true)
                         return;
                 }
-                viewModel.Start();
+
+                await viewModel.Start().ConfigureAwait(false);
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.Prepare();
+                await viewModel.Prepare().ConfigureAwait(false);
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.Prepare(param);
+                await viewModel.Prepare(param).ConfigureAwait(false);
                 if (navigationArgs?.Cancel == true)
                     return;
 
                 viewModel.InitializeTask = MvxNotifyTask.Create(async () => await viewModel.Initialize().ConfigureAwait(false));
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw new MvxException($"Problem running viewModel lifecycle of type {viewModel.GetType().Name}", ex);
             }
         }
     }

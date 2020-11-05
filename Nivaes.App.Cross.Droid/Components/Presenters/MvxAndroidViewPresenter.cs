@@ -888,7 +888,7 @@ namespace Nivaes.App.Cross.Presenters
             }
             catch (System.Exception ex)
             {
-                throw new MvxException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
+                throw new MvxException($"Cannot create Fragment '{fragmentType.Name}'", ex);
             }
         }
 

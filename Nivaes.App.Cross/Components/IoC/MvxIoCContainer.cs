@@ -428,9 +428,9 @@ namespace MvvmCross.IoC
             {
                 toReturn = constructor.Invoke(arguments);
             }
-            catch (TargetInvocationException invocation)
+            catch (TargetInvocationException ex)
             {
-                throw new MvxIoCResolveException(invocation, "Failed to construct {0}", type.Name);
+                throw new MvxIoCResolveException($"Failed to construct {type.Name}", ex);
             }
 
             try
@@ -536,7 +536,7 @@ namespace MvvmCross.IoC
                 return true;
             }
 
-            //var aa = mResolvers.Keys.ToArray();
+            var aa = mResolvers.Keys.ToArray();
 
             if (!type.GetTypeInfo().IsGenericType)
             {

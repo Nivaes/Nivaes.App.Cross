@@ -95,20 +95,39 @@ namespace MvvmCross.Core
             {
                 await taskResult.ConfigureAwait(false);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (taskResult.IsCanceled)
                 {
-                    // Cancellation is most likely due to a shared cancellation token. Handle as needed, possibly check if ((TaskCanceledException)e).CancellationToken == token etc.       
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializePrimary),
+                        ["Cause"] = "IsCanceled"
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
                 else if (taskResult.IsFaulted)
                 {
-                    // use taskResult.Exception which is an AggregateException - which you can iterate over (it's a tree! .Flatten() might help)
-                    // caught exception is only the first observed exception
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializePrimary),
+                        ["Cause"] = "IsFaulted"
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
                 else
                 {
-                    // Well, this should not really happen because it would mean: Exception thrown, not faulted nor cancelled but completed
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializePrimary),
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
             }
 
@@ -145,20 +164,39 @@ namespace MvvmCross.Core
             {
                 await taskResult.ConfigureAwait(false);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (taskResult.IsCanceled)
                 {
-                    // Cancellation is most likely due to a shared cancellation token. Handle as needed, possibly check if ((TaskCanceledException)e).CancellationToken == token etc.       
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializeSecondary),
+                        ["Cause"] = "IsCanceled"
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
                 else if (taskResult.IsFaulted)
                 {
-                    // use taskResult.Exception which is an AggregateException - which you can iterate over (it's a tree! .Flatten() might help)
-                    // caught exception is only the first observed exception
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializeSecondary),
+                        ["Cause"] = "IsFaulted"
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
                 else
                 {
-                    // Well, this should not really happen because it would mean: Exception thrown, not faulted nor cancelled but completed
+                    var propeties = new Dictionary<string, string>()
+                    {
+                        ["Origin"] = nameof(MvxSetup),
+                        ["Method"] = nameof(InitializeSecondary),
+                    };
+
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex, propeties);
                 }
             }
 

@@ -13,8 +13,8 @@ namespace MvvmCross.ViewModels
     public abstract class MvxAppStart
         : IMvxAppStart
     {
-        protected readonly IMvxNavigationService NavigationService;
-        protected readonly IMvxApplication Application;
+        protected IMvxNavigationService NavigationService { get; }
+        protected IMvxApplication Application { get; }
 
         private int startHasCommenced;
 
@@ -74,20 +74,21 @@ namespace MvvmCross.ViewModels
             {
                 return NavigationService.Navigate<TViewModel>();
             }
-            catch (System.Exception exception)
+            catch (System.Exception ex)
             {
-                throw exception.MvxWrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
+                throw new MvxException($"Problem navigating to ViewModel {typeof(TViewModel).Name}", ex);
             }
         }
     }
 
-    public class MvxAppStart<TViewModel, TParameter> : MvxAppStart<TViewModel> where TViewModel : IMvxViewModel<TParameter>
+    public class MvxAppStart<TViewModel, TParameter>
+        : MvxAppStart<TViewModel> where TViewModel : IMvxViewModel<TParameter>
     {
         public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
         {
         }
 
-        protected override async Task<object> ApplicationStartup(object? hint = null)
+        protected override async Task<object?> ApplicationStartup(object? hint = null)
         {
             var applicationHint = await base.ApplicationStartup(hint).ConfigureAwait(false);
             if (applicationHint is TParameter parameter && Application is IMvxApplication<TParameter> typedApplication)
@@ -114,9 +115,9 @@ namespace MvvmCross.ViewModels
                     return base.NavigateToFirstViewModel(hint);
                 }
             }
-            catch (System.Exception exception)
+            catch (System.Exception ex)
             {
-                throw exception.MvxWrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
+                throw new MvxException($"Problem navigating to ViewModel {typeof(TViewModel).Name}", ex);
             }
         }
     }

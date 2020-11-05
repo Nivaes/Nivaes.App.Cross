@@ -194,7 +194,7 @@ namespace MvvmCross.Navigation
                 }
                 catch (Exception ex)
                 {
-                    throw ex.MvxWrap($"{nameof(MvxNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+                    throw new MvxException($"{nameof(MvxNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}", ex);
                 }
             }
             else
@@ -249,7 +249,7 @@ namespace MvvmCross.Navigation
                 }
                 catch (Exception ex)
                 {
-                    ex.MvxWrap($"{nameof(MvxNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+                    throw new MvxException($"{nameof(MvxNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}", ex);
                 }
             }
             else

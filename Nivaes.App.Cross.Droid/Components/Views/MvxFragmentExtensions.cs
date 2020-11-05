@@ -10,6 +10,7 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross.Presenters;
+    using System.Threading.Tasks;
 
     public static class MvxFragmentExtensions
     {
@@ -65,9 +66,11 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModel;
         }
 
-        public static void RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle savedState,
+        public static async Task RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle savedState,
             MvxViewModelRequest request)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             try
             {
                 if (request != null)
@@ -79,11 +82,11 @@ namespace MvvmCross.Platforms.Android.Views
                 {
                     viewModel.CallBundleMethods("ReloadState", savedState);
                 }
-                viewModel.Start();
+                await viewModel.Start().ConfigureAwait(false);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw new MvxException($"Problem running viewModel lifecycle of type {viewModel.GetType().Name}", ex);
             }
         }
 

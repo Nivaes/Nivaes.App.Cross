@@ -92,14 +92,7 @@ namespace MvvmCross.Core
 
         public virtual Task EnsureInitialized()
         {
-            try
-            {
-                return StartSetupInitialization();
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
+            return StartSetupInitialization();
         }
 
         protected virtual void CreateSetup()
@@ -108,9 +101,9 @@ namespace MvvmCross.Core
             {
                 mSetup = MvxSetup.Instance();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.MvxWrap("Failed to create setup instance");
+                throw new MvxException("Failed to create setup instance", ex);
             }
         }
 
@@ -127,7 +120,7 @@ namespace MvvmCross.Core
                     }
                     else
                     {
-                        throw new MvxException("'InitializePrimary' is not completed successfully.");
+                        throw new MvxException($"'{nameof(mSetup.InitializePrimary)}' is not completed successfully.");
                     }
                 }, TaskScheduler.Default);
         }

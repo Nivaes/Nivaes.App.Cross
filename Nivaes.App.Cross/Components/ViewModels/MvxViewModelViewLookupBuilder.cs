@@ -2,15 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+
     public class MvxViewModelViewLookupBuilder
         : IMvxTypeToTypeLookupBuilder
     {
@@ -53,14 +53,13 @@ namespace MvvmCross.ViewModels
             if (overSizedCounts.Length == 0)
             {
                 // no idea what the error is - so throw the original
-                return exception.MvxWrap("Unknown problem in ViewModelViewLookup construction");
+                return new MvxException("Unknown problem in ViewModelViewLookup construction");
             }
             else
             {
                 var overSizedText = string.Join(";", overSizedCounts);
-                return exception.MvxWrap(
-                    "Problem seen creating View-ViewModel lookup table - you have more than one View registered for the ViewModels: {0}",
-                    overSizedText);
+
+                return new MvxException($"Problem seen creating View-ViewModel lookup table - you have more than one View registered for the ViewModels: '{overSizedText}'");
             }
         }
     }
