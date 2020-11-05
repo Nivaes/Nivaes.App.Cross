@@ -445,6 +445,7 @@ namespace MvvmCross.IoC
                 toReturn.DisposeIfDisposable();
                 throw;
             }
+
             return toReturn;
         }
 
@@ -501,12 +502,12 @@ namespace MvvmCross.IoC
             return resolver.ResolveType == requiredResolverType.Value;
         }
 
-        private bool InternalTryResolve(Type type, out object resolved)
+        private bool InternalTryResolve(Type type, out object? resolved)
         {
             return InternalTryResolve(type, ResolverTypeNoneSpecified, out resolved);
         }
 
-        private bool InternalTryResolve(Type type, ResolverType? requiredResolverType, out object resolved)
+        private bool InternalTryResolve(Type type, ResolverType? requiredResolverType, out object? resolved)
         {
             if (!TryGetResolver(type, out IResolver resolver))
             {
@@ -535,7 +536,7 @@ namespace MvvmCross.IoC
                 return true;
             }
 
-            var aa = mResolvers.Keys.ToArray();
+            //var aa = mResolvers.Keys.ToArray();
 
             if (!type.GetTypeInfo().IsGenericType)
             {
@@ -556,7 +557,7 @@ namespace MvvmCross.IoC
             };
         }
 
-        private bool InternalTryResolve(Type type, IResolver resolver, out object resolved)
+        private bool InternalTryResolve(Type type, IResolver resolver, out object? resolved)
         {
             var detectingCircular = ShouldDetectCircularReferencesFor(resolver);
             if (detectingCircular)
@@ -632,7 +633,7 @@ namespace MvvmCross.IoC
             mPropertyInjector?.Inject(toReturn, mOptions.PropertyInjectorOptions);
         }
 
-        protected virtual List<object> GetIoCParameterValues(Type type, ConstructorInfo selectedConstructor, IDictionary<string, object> arguments)
+        protected virtual List<object> GetIoCParameterValues(Type type, ConstructorInfo selectedConstructor, IDictionary<string, object>? arguments)
         {
             var parameters = new List<object>();
             foreach (var parameterInfo in selectedConstructor.GetParameters())

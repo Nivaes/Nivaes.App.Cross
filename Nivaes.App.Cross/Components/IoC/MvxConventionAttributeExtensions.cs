@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Linq;
-using System.Reflection;
-
 namespace MvvmCross.IoC
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+
     public static class MvxConventionAttributeExtensions
     {
         /// <summary>
@@ -19,8 +19,9 @@ namespace MvvmCross.IoC
         /// <returns></returns>
         public static bool IsConventional(this Type candidateType)
         {
-            var unconventionalAttributes = candidateType.GetCustomAttributes(typeof(MvxUnconventionalAttribute),
-                                                                             true);
+            if (candidateType == null) throw new ArgumentNullException(nameof(candidateType));
+
+            var unconventionalAttributes = candidateType.GetCustomAttributes(typeof(MvxUnconventionalAttribute), true);
             if (unconventionalAttributes.Length > 0)
                 return false;
 
@@ -29,6 +30,8 @@ namespace MvvmCross.IoC
 
         public static bool SatisfiesConditionalConventions(this Type candidateType)
         {
+            if (candidateType == null) throw new ArgumentNullException(nameof(candidateType));
+
             var conditionalAttributes =
                 candidateType.GetCustomAttributes(typeof(MvxConditionalConventionalAttribute), true);
 
@@ -50,8 +53,9 @@ namespace MvvmCross.IoC
         /// <returns></returns>
         public static bool IsConventional(this PropertyInfo propertyInfo)
         {
-            var unconventionalAttributes = propertyInfo.GetCustomAttributes(typeof(MvxUnconventionalAttribute),
-                                                                             true);
+            if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+
+            var unconventionalAttributes = propertyInfo.GetCustomAttributes(typeof(MvxUnconventionalAttribute), true);
             if (unconventionalAttributes.Any())
                 return false;
 
@@ -60,6 +64,8 @@ namespace MvvmCross.IoC
 
         public static bool SatisfiesConditionalConventions(this PropertyInfo propertyInfo)
         {
+            if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+
             var conditionalAttributes =
                 propertyInfo.GetCustomAttributes(typeof(MvxConditionalConventionalAttribute), true);
 

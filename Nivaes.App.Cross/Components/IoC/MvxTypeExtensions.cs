@@ -178,7 +178,7 @@ namespace MvvmCross.IoC
             foreach (var pair in pairs)
             {
                 var excludedList = pair.ServiceTypes.Where(c => !toExclude.Contains(c)).ToList();
-                if (excludedList.Any())
+                if (excludedList.Count > 0)
                 {
                     var newPair = new ServiceTypeAndImplementationTypePair(
                         excludedList, pair.ImplementationType);
@@ -193,7 +193,7 @@ namespace MvvmCross.IoC
 
             foreach (var pair in pairs)
             {
-                if (!pair.ServiceTypes.Any())
+                if (pair.ServiceTypes.Count == 0)
                     continue;
 
                 var instance = Mvx.IoCProvider.IoCConstruct(pair.ImplementationType);
@@ -210,7 +210,7 @@ namespace MvvmCross.IoC
 
             foreach (var pair in pairs)
             {
-                if (!pair.ServiceTypes.Any())
+                if (pair.ServiceTypes.Count == 0)
                     continue;
 
                 var typeToCreate = pair.ImplementationType;
@@ -236,7 +236,7 @@ namespace MvvmCross.IoC
             }
         }
 
-        public static object CreateDefault(this Type type)
+        public static object? CreateDefault(this Type type)
         {
             if (type == null)
             {
@@ -253,8 +253,8 @@ namespace MvvmCross.IoC
 
             return Activator.CreateInstance(type);
         }
-        
-        public static ConstructorInfo FindApplicableConstructor(this Type type, IDictionary<string, object> arguments)
+
+        public static ConstructorInfo? FindApplicableConstructor(this Type type, IDictionary<string, object>? arguments)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -286,7 +286,7 @@ namespace MvvmCross.IoC
             return null;
         }
         
-        public static ConstructorInfo FindApplicableConstructor(this Type type, object[] arguments)
+        public static ConstructorInfo? FindApplicableConstructor(this Type type, object[] arguments)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
