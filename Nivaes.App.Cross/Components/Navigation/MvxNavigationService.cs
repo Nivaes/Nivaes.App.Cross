@@ -24,13 +24,13 @@ namespace MvvmCross.Navigation
     public class MvxNavigationService
         : IMvxNavigationService
     {
-        protected readonly IMvxLog Log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxNavigationService>();
+        protected IMvxLog Log { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxNavigationService>();
 
         private IMvxViewDispatcher? mViewDispatcher;
 
         public IMvxViewDispatcher ViewDispatcher
         {
-            get => mViewDispatcher ?? (IMvxViewDispatcher)MvxMainThreadDispatcher.Instance;
+            get => mViewDispatcher ?? (IMvxViewDispatcher?)MvxMainThreadDispatcher.Instance;
             set => mViewDispatcher = value;
         }
 
@@ -47,7 +47,7 @@ namespace MvvmCross.Navigation
             set => mViewsContainer = value;
         }
 
-        protected readonly Dictionary<Regex, Type> Routes = new Dictionary<Regex, Type>();
+        protected Dictionary<Regex, Type> Routes { get; } = new Dictionary<Regex, Type>();
 
         protected virtual IMvxNavigationCache? NavigationCache { get; private set; }
 

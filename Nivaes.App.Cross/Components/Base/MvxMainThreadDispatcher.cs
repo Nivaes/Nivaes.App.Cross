@@ -7,6 +7,7 @@ namespace MvvmCross.Base
     using System;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Microsoft.AppCenter.Crashes;
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross.Logging;
 
@@ -36,6 +37,8 @@ namespace MvvmCross.Base
             }
             catch (Exception ex) when (!TraceException(ex, maskExceptions))
             {
+                Crashes.TrackError(ex);
+                throw;
             }
         }
 
@@ -49,9 +52,9 @@ namespace MvvmCross.Base
             }
             catch (Exception ex) when (!TraceException(ex, maskExceptions))
             {
+                Crashes.TrackError(ex);
+                throw;
             }
-
-            return new ValueTask<bool>(false);
         }
 
         private static bool TraceException(Exception exception, bool maskExceptions)

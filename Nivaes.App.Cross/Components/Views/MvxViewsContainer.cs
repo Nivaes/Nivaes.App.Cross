@@ -6,6 +6,7 @@ namespace MvvmCross.Views
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using MvvmCross.ViewModels;
 
     public abstract class MvxViewsContainer
@@ -32,7 +33,7 @@ namespace MvvmCross.Views
 
         public void Add(Type viewModelType, Type viewType)
         {
-            mBindingMap[viewModelType] = viewType;
+            mBindingMap.Add(viewModelType, viewType);
         }
 
         public void Add<TViewModel, TView>()
@@ -46,6 +47,8 @@ namespace MvvmCross.Views
         {
             if (viewModelType == null)
                 return null;
+
+            var aa = mBindingMap.Select(b => b.Key.FullName).ToArray();
 
             if (mBindingMap.TryGetValue(viewModelType, out Type binding))
             {

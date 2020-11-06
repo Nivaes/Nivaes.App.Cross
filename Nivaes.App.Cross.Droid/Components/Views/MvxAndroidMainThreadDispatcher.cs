@@ -43,7 +43,7 @@ namespace MvvmCross.Platforms.Android.Views
             {
                 Application.SynchronizationContext.Post(async _ =>
                 {
-                    await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(true);
+                    _ = await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(true);
                 }, null);
 
                 return new ValueTask<bool>(true);

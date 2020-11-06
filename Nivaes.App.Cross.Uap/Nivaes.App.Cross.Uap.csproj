@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <!--<OutputType>Library</OutputType>-->
-    <TargetFrameworks>net5.0-windows10.0.19041.0</TargetFrameworks> 
-    <Platforms>x64</Platforms>
+    <TargetFrameworks>net5.0-windows10</TargetFrameworks> 
+    <!--<Platforms>x64</Platforms>-->
 
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>

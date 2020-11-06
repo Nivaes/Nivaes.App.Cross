@@ -240,7 +240,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: MvvmCross settings start");
                 _ = CreateSettings();
             });
         }
@@ -254,8 +253,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: StringToTypeParser start");
-
                 var parser = CreateStringToTypeParser();
                 return parser;
             });
@@ -270,7 +267,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: FillableStringToTypeParser start");
                 var parser = CreateFillableStringToTypeParser();
                 Mvx.IoCProvider.RegisterSingleton(parser);
                 return parser;
@@ -286,8 +282,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: Bootstrap actions");
-
                 var bootstrapRunner = new MvxBootstrapRunner();
                 foreach (var assembly in GetBootstrapOwningAssemblies())
                 {
@@ -300,8 +294,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: NavigationSerializer start");
-
                 _ = CreateNavigationSerializer();
             });
         }
@@ -617,8 +609,6 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: ViewModelTypeFinder start");
-
                 var viewModelByNameLookup = CreateViewModelByNameLookup();
                 var viewModelByNameRegistry = CreateViewModelByNameRegistry();
 
@@ -635,11 +625,9 @@ namespace MvvmCross.Core
 
         private async Task InitializeViewLookup()
         {
-            SetupLog?.Trace("Setup: Lookup Dictionary start");
             var lookup = await InitializeLookupDictionary().ConfigureAwait(false);
 
-            SetupLog?.Trace("Setup: Views start");
-            await InitializeViewLookup(lookup).ConfigureAwait(false);
+            _ = await InitializeViewLookup(lookup).ConfigureAwait(false);
         }
 
         protected virtual Task<IDictionary<Type, Type>> InitializeLookupDictionary()

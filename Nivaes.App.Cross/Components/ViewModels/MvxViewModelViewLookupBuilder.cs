@@ -24,25 +24,19 @@ namespace MvvmCross.ViewModels
                         where viewModelType != null
                         select new KeyValuePair<Type, Type>(viewModelType, candidateViewType);
 
-            var filteredViews = FilterViews(views);
+            var aa = views.Select(a => a.Value.FullName).ToArray();
 
             try
             {
-                return filteredViews.ToDictionary(x => x.Key, x => x.Value);
+                return views.ToDictionary(x => x.Key, x => x.Value);
             }
-            catch (ArgumentException exception)
+            catch (ArgumentException ex)
             {
-                throw ReportBuildProblem(views, exception);
+                throw ReportBuildProblem(views, ex);
             }
         }
 
-        protected virtual IEnumerable<KeyValuePair<Type, Type>> FilterViews(IEnumerable<KeyValuePair<Type, Type>> views)
-        {
-            return views;
-        }
-
-        protected virtual Exception ReportBuildProblem(IEnumerable<KeyValuePair<Type, Type>> views,
-                                                    ArgumentException exception)
+        private Exception ReportBuildProblem(IEnumerable<KeyValuePair<Type, Type>> views, ArgumentException ex)
         {
             var overSizedCounts = views.GroupBy(x => x.Key)
                                        .Select(x => new { x.Key.Name, Count = x.Count(), ViewNames = x.Select(v => v.Value.Name).ToList() })
@@ -53,13 +47,13 @@ namespace MvvmCross.ViewModels
             if (overSizedCounts.Length == 0)
             {
                 // no idea what the error is - so throw the original
-                return new MvxException("Unknown problem in ViewModelViewLookup construction");
+                return new MvxException("Unknown problem in ViewModelViewLookup construction", ex);
             }
             else
             {
                 var overSizedText = string.Join(";", overSizedCounts);
 
-                return new MvxException($"Problem seen creating View-ViewModel lookup table - you have more than one View registered for the ViewModels: '{overSizedText}'");
+                return new MvxException($"Problem seen creating View-ViewModel lookup table - you have more than one View registered for the ViewModels: '{overSizedText}'", ex);
             }
         }
     }

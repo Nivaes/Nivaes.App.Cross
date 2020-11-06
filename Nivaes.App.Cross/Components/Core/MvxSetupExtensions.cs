@@ -12,7 +12,7 @@
         {
             if (platformApplication == null) throw new ArgumentNullException(nameof(platformApplication));
 
-            MvxSetup.RegisterSetupType<TMvxSetup>(new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? new Assembly[] { }).ToArray());
+            MvxSetup.RegisterSetupType<TMvxSetup>(new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? Array.Empty<Assembly>()).ToArray());
         }
 
         public static TSetup CreateSetup<TSetup>(Assembly assembly, params object[] parameters) where TSetup : MvxSetup

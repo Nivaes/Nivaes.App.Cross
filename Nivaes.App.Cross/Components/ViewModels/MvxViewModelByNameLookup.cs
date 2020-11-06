@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.IoC;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.IoC;
+
     public class MvxViewModelByNameLookup : IMvxViewModelByNameLookup, IMvxViewModelByNameRegistry
     {
         private readonly Dictionary<string, Type> _availableViewModelsByName;
@@ -39,7 +39,8 @@ namespace MvvmCross.ViewModels
             _availableViewModelsByFullName[viewModelType.FullName] = viewModelType;
         }
 
-        public void Add<TViewModel>() where TViewModel : IMvxViewModel
+        public void Add<TViewModel>()
+            where TViewModel : IMvxViewModel
         {
             Add(typeof(TViewModel));
         }

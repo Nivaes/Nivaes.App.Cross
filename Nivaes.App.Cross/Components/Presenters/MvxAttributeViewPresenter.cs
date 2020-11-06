@@ -21,10 +21,7 @@ namespace Nivaes.App.Cross.Presenters
         {
             get
             {
-                if (mViewModelTypeFinder == null)
-                    mViewModelTypeFinder = Mvx.IoCProvider.Resolve<IMvxViewModelTypeFinder>();
-
-                return mViewModelTypeFinder;
+                return mViewModelTypeFinder ??= Mvx.IoCProvider.Resolve<IMvxViewModelTypeFinder>();
             }
             set
             {
@@ -37,10 +34,7 @@ namespace Nivaes.App.Cross.Presenters
         {
             get
             {
-                if (mViewsContainer == null)
-                    mViewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
-
-                return mViewsContainer;
+                return mViewsContainer ??= Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
             }
             set
             {

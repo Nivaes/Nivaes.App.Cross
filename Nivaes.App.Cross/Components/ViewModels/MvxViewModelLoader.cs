@@ -2,16 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Exceptions;
-using MvvmCross.Navigation.EventArguments;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Navigation.EventArguments;
+
     public class MvxViewModelLoader
         : IMvxViewModelLoader
     {
-        protected IMvxViewModelLocatorCollection LocatorCollection { get; private set; }
+        protected IMvxViewModelLocatorCollection LocatorCollection { get; }
 
         public MvxViewModelLoader(IMvxViewModelLocatorCollection locatorCollection)
         {
@@ -19,8 +19,10 @@ namespace MvvmCross.ViewModels
         }
 
         // Reload should be used to re-run cached ViewModels lifecycle if required.
-        public IMvxViewModel ReloadViewModel(IMvxViewModel viewModel, MvxViewModelRequest request, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public IMvxViewModel ReloadViewModel(IMvxViewModel viewModel, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             var viewModelLocator = FindViewModelLocator(request);
 
             var parameterValues = new MvxBundle(request.ParameterValues);
@@ -36,8 +38,10 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public IMvxViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public IMvxViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             var viewModelLocator = FindViewModelLocator(request);
 
             var parameterValues = new MvxBundle(request.ParameterValues);
@@ -53,8 +57,10 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public IMvxViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public IMvxViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             if (request.ViewModelType == typeof(MvxNullViewModel))
             {
                 return new MvxNullViewModel();
@@ -62,21 +68,23 @@ namespace MvvmCross.ViewModels
 
             var viewModelLocator = FindViewModelLocator(request);
 
-            IMvxViewModel viewModel = null;
             var parameterValues = new MvxBundle(request.ParameterValues);
             try
             {
-                viewModel = viewModelLocator.Load(request.ViewModelType, parameterValues, savedState, navigationArgs);
+                var viewModel = viewModelLocator.Load(request.ViewModelType, parameterValues, savedState, navigationArgs);
+
+                return viewModel;
             }
             catch (Exception ex)
             {
                 throw new MvxException($"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
-            return viewModel;
         }
 
-        public IMvxViewModel LoadViewModel<TParameter>(MvxViewModelRequest request, TParameter param, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public IMvxViewModel LoadViewModel<TParameter>(MvxViewModelRequest request, TParameter param, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             if (request.ViewModelType == typeof(MvxNullViewModel))
             {
                 return new MvxNullViewModel();
@@ -84,17 +92,16 @@ namespace MvvmCross.ViewModels
 
             var viewModelLocator = FindViewModelLocator(request);
 
-            IMvxViewModel<TParameter> viewModel = null;
             var parameterValues = new MvxBundle(request.ParameterValues);
             try
             {
-                viewModel = viewModelLocator.Load(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
+                var viewModel = viewModelLocator.Load(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
+                return viewModel;
             }
             catch (Exception ex)
             {
                 throw new MvxException($"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information", ex);
             }
-            return viewModel;
         }
 
         private IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request)

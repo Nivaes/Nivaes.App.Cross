@@ -2,11 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Base;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using MvvmCross.Base;
+
     public interface IMvxInteraction
     {
         event EventHandler Requested;

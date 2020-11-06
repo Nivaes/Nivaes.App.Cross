@@ -2,10 +2,10 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Navigation.EventArguments;
-
 namespace MvvmCross.ViewModels
 {
+    using MvvmCross.Navigation.EventArguments;
+
     public interface IMvxViewModelLoader
     {
         IMvxViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
