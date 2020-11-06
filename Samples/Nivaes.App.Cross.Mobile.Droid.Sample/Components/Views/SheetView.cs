@@ -10,12 +10,13 @@
 //    using Android.Runtime;
 //    using Android.Views;
 //    using MvvmCross.Platforms.Android.Binding.BindingContext;
-//    using MvvmCross.Platforms.Android.Presenters.Attributes;
+//    using Nivaes.App.Cross.Presenters;
 //    using Nivaes.App.Mobile.Sample;
 
 //    [MvxDialogFragmentPresentation]
 //    [Register(nameof(SheetView))]
-//    public class SheetView : MvxBottomSheetDialogFragment<SheetViewModel>
+//    public class SheetView
+//        : MvxBottomSheetDialogFragment<SheetViewModel>
 //    {
 //        public SheetView()
 //        {

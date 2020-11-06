@@ -9,8 +9,8 @@ namespace MvvmCross.Platforms.Android.Core
 {
     public interface IMvxSavedStateConverter
     {
-        IMvxBundle Read(Bundle bundle);
+        IMvxBundle? Read(Bundle? bundle);
 
-        void Write(Bundle bundle, IMvxBundle savedState);
+        void Write(Bundle? bundle, IMvxBundle? savedState);
     }
 }

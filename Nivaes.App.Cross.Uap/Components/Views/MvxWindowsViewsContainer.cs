@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.Uap.Views
         private const string ExtrasKey = "MvxLaunchData";
         private const string SubViewModelKey = "MvxSubViewModelKey";
 
-        public IMvxViewModel Load(string requestText, IMvxBundle savedState)
+        public IMvxViewModel Load(string requestText, IMvxBundle? savedState)
         {
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);

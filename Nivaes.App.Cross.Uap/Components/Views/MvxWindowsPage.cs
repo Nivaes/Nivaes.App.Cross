@@ -181,7 +181,7 @@ namespace MvvmCross.Platforms.Uap.Views
             return bundle;
         }
 
-        protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, IMvxBundle bundle)
+        protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, IMvxBundle? bundle)
         {
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
             frameState[mPageKey!] = bundle?.Data;

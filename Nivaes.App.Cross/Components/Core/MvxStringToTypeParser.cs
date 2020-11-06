@@ -26,7 +26,8 @@ namespace MvvmCross.Core
             object ReadValue(Type t, string input, string fieldOrParameterName);
         }
 
-        public class EnumParser : IExtraParser
+        public class EnumParser
+            : IExtraParser
         {
             public bool Parses(Type t)
             {
@@ -77,8 +78,7 @@ namespace MvvmCross.Core
 
             public object ReadValue(string input, string fieldOrParameterName)
             {
-                object result;
-                if (!TryParse(input, out result))
+                if (!TryParse(input, out object result))
                 {
                     MvxLog.Instance?.Error("Failed to parse {0} parameter {1} from string {2}",
                                    GetType().Name, fieldOrParameterName, input);
@@ -161,12 +161,12 @@ namespace MvvmCross.Core
         }
 #endif
 
-        public class DateTimeParser : ValueParser
+        public class DateTimeParser
+            : ValueParser
         {
             protected override bool TryParse(string input, out object result)
             {
-                DateTime value;
-                var toReturn = DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out value);
+                var toReturn = DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out DateTime value);
                 result = value;
                 return toReturn;
             }
@@ -214,8 +214,9 @@ namespace MvvmCross.Core
 
         public object ReadValue(string rawValue, Type targetType, string fieldOrParameterName)
         {
-            IParser parser;
-            if (TypeParsers.TryGetValue(targetType, out parser))
+            if (targetType == null) throw new ArgumentNullException(nameof(targetType));
+
+            if (TypeParsers.TryGetValue(targetType, out IParser parser))
             {
                 return parser.ReadValue(rawValue, fieldOrParameterName);
             }
@@ -226,8 +227,7 @@ namespace MvvmCross.Core
                 return extra.ReadValue(targetType, rawValue, fieldOrParameterName);
             }
 
-            MvxLog.Instance?.Error("Parameter {0} is invalid targetType {1}", fieldOrParameterName,
-                           targetType.Name);
+            MvxLog.Instance?.Error($"Parameter {fieldOrParameterName} is invalid targetType {targetType.Name}");
             return null;
         }
     }

@@ -2,20 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
 using Android.OS;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    public class MvxSavedStateConverter : IMvxSavedStateConverter
+    using System.Collections.Generic;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Logging;
+
+    public class MvxSavedStateConverter
+        : IMvxSavedStateConverter
     {
         private const string ExtrasKey = "MvxSaved";
 
-        public IMvxBundle Read(Bundle bundle)
+        public IMvxBundle? Read(Bundle? bundle)
         {
             var extras = bundle?.GetString(ExtrasKey);
             if (string.IsNullOrEmpty(extras))
@@ -24,18 +25,17 @@ namespace MvvmCross.Platforms.Android.Views
             try
             {
                 var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
-                var data = converter.Serializer.DeserializeObject<Dictionary<string, string>>(extras);
+                var data = converter.Serializer.DeserializeObject<Dictionary<string, string>>(extras!);
                 return new MvxBundle(data);
             }
-            catch (Exception)
+            catch
             {
-                MvxLog.Instance?.Error("Problem getting the saved state - will return null - from {0}",
-                               extras);
+                MvxLog.Instance?.Error($"Problem getting the saved state - will return null - from {extras}");
                 return null;
             }
         }
 
-        public void Write(Bundle bundle, IMvxBundle savedState)
+        public void Write(Bundle? bundle, IMvxBundle? savedState)
         {
             if (savedState == null)
                 return;
@@ -45,7 +45,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var data = converter.Serializer.SerializeObject(savedState.Data);
-            bundle.PutString(ExtrasKey, data);
+            bundle?.PutString(ExtrasKey, data);
         }
     }
 }

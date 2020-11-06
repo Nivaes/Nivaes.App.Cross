@@ -1,50 +1,51 @@
-﻿//// Licensed to the .NET Foundation under one or more agreements.
-//// The .NET Foundation licenses this file to you under the MS-PL license.
-//// See the LICENSE file in the project root for more information.
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
 
-//namespace Nivaes.App.Cross.Mobile.Droid.Sample
-//{
-//    using Android.OS;
-//    using Android.Views;
-//    using Android.Widget;
-//    using AndroidX.RecyclerView.Widget;
-//    using MvvmCross.Platforms.Android.Binding.BindingContext;
-//    using MvvmCross.Platforms.Android.Presenters.Attributes;
-//    using MvvmCross.Platforms.Android.Views.Fragments;
-//    using Nivaes.App.Mobile.Sample;
+namespace Nivaes.App.Cross.Mobile.Droid.Sample
+{
+    using Android.OS;
+    using Android.Views;
+    using Android.Widget;
+    using AndroidX.RecyclerView.Widget;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using Nivaes.App.Cross.Droid.RecyclerView;
+    using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Mobile.Sample;
 
-//    [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
-//    public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
-//    {
-//        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-//        {
-//            base.OnCreateView(inflater, container, savedInstanceState);
+    [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
+    public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
+    {
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            base.OnCreateView(inflater, container, savedInstanceState);
 
-//            var view = this.BindingInflate(Resource.Layout.SharedElementRootChildView, null);
+            var view = this.BindingInflate(Resource.Layout.SharedElementRootChildView, null);
 
-//            var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
-//            if (recyclerView != null)
-//            {
-//                recyclerView.HasFixedSize = true;
-//                var layoutManager = new LinearLayoutManager(Activity);
-//                recyclerView.SetLayoutManager(layoutManager);
+            var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
+            if (recyclerView != null)
+            {
+                recyclerView.HasFixedSize = true;
+                var layoutManager = new LinearLayoutManager(Activity);
+                recyclerView.SetLayoutManager(layoutManager);
 
-//                var adapter = new SelectedItemRecyclerAdapter(BindingContext as IMvxAndroidBindingContext);
-//                adapter.OnItemClick += AdapterOnItemClick;
-//                recyclerView.Adapter = adapter;
-//            }
+                var adapter = new SelectedItemRecyclerAdapter(BindingContext as IMvxAndroidBindingContext);
+                adapter.OnItemClick += AdapterOnItemClick;
+                recyclerView.Adapter = adapter;
+            }
 
-//            return view;
-//        }
+            return view;
+        }
 
-//        private void AdapterOnItemClick(object sender, SelectedItemRecyclerAdapter.SelectedItemEventArgs e)
-//        {
-//            Toast.MakeText(Activity, $"Selected item {e.Position + 1}", ToastLength.Short)
-//                .Show();
+        private void AdapterOnItemClick(object sender, SelectedItemRecyclerAdapter.SelectedItemEventArgs e)
+        {
+            Toast.MakeText(Activity, $"Selected item {e.Position + 1}", ToastLength.Short)
+                .Show();
 
-//            (Activity as SharedElementRootView).SelectedListItem = e.Position;
+            (Activity as SharedElementRootView).SelectedListItem = e.Position;
 
-//            ViewModel.SelectItemExecution(e.DataContext as ListItemViewModel);
-//        }
-//    }
-//}
+            ViewModel.SelectItemExecution(e.DataContext as ListItemViewModel);
+        }
+    }
+}

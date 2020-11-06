@@ -10,7 +10,8 @@ namespace Nivaes.App.Mobile.Sample
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class CollectionViewModel : MvxViewModel
+    public class CollectionViewModel
+        : MvxViewModel
     {
         private readonly Random mRandom;
 

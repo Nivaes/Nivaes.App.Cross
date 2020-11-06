@@ -2,18 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxAndroidViewsContainer
-        : MvxViewsContainer
-         , IMvxAndroidViewsContainer
+        : MvxViewsContainer, IMvxAndroidViewsContainer
     {
         private const string ExtrasKey = "MvxLaunchData";
         private const string SubViewModelKey = "MvxSubViewModelKey";
@@ -27,12 +27,12 @@ namespace MvvmCross.Platforms.Android.Views
 
         #region Implementation of IMvxAndroidViewModelRequestTranslator
 
-        public virtual IMvxViewModel Load(Intent intent, IMvxBundle savedState)
+        public virtual IMvxViewModel? Load(Intent intent, IMvxBundle? savedState)
         {
             return Load(intent, null, null);
         }
 
-        public virtual IMvxViewModel Load(Intent intent, IMvxBundle savedState, Type viewModelTypeHint)
+        public virtual IMvxViewModel? Load(Intent intent, IMvxBundle? savedState, Type? viewModelTypeHint)
         {
             if (intent == null)
             {
@@ -52,8 +52,7 @@ namespace MvvmCross.Platforms.Android.Views
                 return DirectLoad(savedState, viewModelTypeHint);
             }
 
-            IMvxViewModel mvxViewModel;
-            if (TryGetEmbeddedViewModel(intent, out mvxViewModel))
+            if (TryGetEmbeddedViewModel(intent, out IMvxViewModel? mvxViewModel))
             {
                 MvxLog.Instance?.Trace("Embedded ViewModel used");
                 return mvxViewModel;
@@ -68,7 +67,7 @@ namespace MvvmCross.Platforms.Android.Views
             return DirectLoad(savedState, viewModelTypeHint);
         }
 
-        protected virtual IMvxViewModel DirectLoad(IMvxBundle savedState, Type viewModelTypeHint)
+        protected virtual IMvxViewModel DirectLoad(IMvxBundle? savedState, Type? viewModelTypeHint)
         {
             if (viewModelTypeHint == null)
             {
@@ -82,7 +81,7 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModel;
         }
 
-        protected virtual IMvxViewModel CreateViewModelFromIntent(Intent intent, IMvxBundle savedState)
+        protected virtual IMvxViewModel? CreateViewModelFromIntent(Intent intent, IMvxBundle? savedState)
         {
             var extraData = intent.Extras.GetString(ExtrasKey);
             if (extraData == null)
@@ -94,14 +93,14 @@ namespace MvvmCross.Platforms.Android.Views
             return ViewModelFromRequest(viewModelRequest, savedState);
         }
 
-        protected virtual IMvxViewModel ViewModelFromRequest(MvxViewModelRequest viewModelRequest, IMvxBundle savedState)
+        protected virtual IMvxViewModel ViewModelFromRequest(MvxViewModelRequest viewModelRequest, IMvxBundle? savedState)
         {
             var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
             var viewModel = loaderService.LoadViewModel(viewModelRequest, savedState);
             return viewModel;
         }
 
-        protected virtual bool TryGetEmbeddedViewModel(Intent intent, out IMvxViewModel mvxViewModel)
+        protected virtual bool TryGetEmbeddedViewModel(Intent intent, out IMvxViewModel? mvxViewModel)
         {
             var embeddedViewModelKey = intent.Extras.GetInt(SubViewModelKey);
             if (embeddedViewModelKey != 0)

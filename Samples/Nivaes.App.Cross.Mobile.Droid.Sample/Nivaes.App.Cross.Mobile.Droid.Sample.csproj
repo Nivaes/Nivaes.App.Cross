@@ -73,6 +73,10 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Activities\CollectionView.cs" />
+    <Compile Include="Components\Activities\CustomBindingView.cs" />
+    <Compile Include="Components\Adapter\SelectedItemRecyclerAdapter.cs" />
+    <Compile Include="Components\Adapter\SelectedItemRecyclerAdapter.SelectedItemEventArgs.cs" />
     <Compile Include="Components\LinkerPleaseInclude\LinkerPleaseInclude.cs" />
     <Compile Include="Components\MainApplication.cs" />
     <Compile Include="Components\Setup.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Components\Views\RootView.cs" />
     <Compile Include="Components\Views\SecondChildView.cs" />
     <Compile Include="Components\Views\SharedElementRootChildView.cs" />
+    <Compile Include="Components\Views\SharedElementRootView.cs" />
     <Compile Include="Components\Views\SharedElementSecondChildView.cs" />
     <Compile Include="Components\Views\SheetView.cs" />
     <Compile Include="Components\Views\SplitDetailNavView.cs" />
@@ -272,6 +277,31 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\navigation_drawer.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CollectionView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CustomBindingView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SharedElementSecondView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SharedElementRootChildView.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ItemListSharedElementsTemplate.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>

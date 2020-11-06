@@ -35,7 +35,7 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModelType;
         }
 
-        public static IMvxViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle savedState, Type fragmentParentActivityType,
+        public static IMvxViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle? savedState, Type fragmentParentActivityType,
             MvxViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);

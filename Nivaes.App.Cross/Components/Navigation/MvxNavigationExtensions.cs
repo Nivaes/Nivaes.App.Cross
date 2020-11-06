@@ -2,13 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Navigation
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+
     public static class MvxNavigationExtensions
     {
         /// <summary>
@@ -33,30 +33,34 @@ namespace MvvmCross.Navigation
         /// <param name="presentationBundle"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>A task to await upon</returns>
-        public static ValueTask<bool> Navigate(this IMvxNavigationService navigationService, Uri path, IMvxBundle presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static ValueTask<bool> Navigate(this IMvxNavigationService navigationService, Uri path, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (navigationService == null) throw new NullReferenceException(nameof(navigationService));
+            if (path == null) throw new NullReferenceException(nameof(path));
 
             return navigationService.Navigate(path.ToString(), presentationBundle, cancellationToken);
         }
 
-        public static ValueTask<bool> Navigate<TParameter>(this IMvxNavigationService navigationService, Uri path, TParameter param, IMvxBundle presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static ValueTask<bool> Navigate<TParameter>(this IMvxNavigationService navigationService, Uri path, TParameter param, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (navigationService == null) throw new NullReferenceException(nameof(navigationService));
+            if (path == null) throw new NullReferenceException(nameof(path));
 
             return navigationService.Navigate<TParameter>(path.ToString(), param, presentationBundle, cancellationToken);
         }
 
-        public static ValueTask<TResult> Navigate<TResult>(this IMvxNavigationService navigationService, Uri path, IMvxBundle presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static ValueTask<TResult> Navigate<TResult>(this IMvxNavigationService navigationService, Uri path, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (navigationService == null) throw new NullReferenceException(nameof(navigationService));
+            if (path == null) throw new NullReferenceException(nameof(path));
 
             return navigationService.Navigate<TResult>(path.ToString(), presentationBundle, cancellationToken);
         }
 
-        public static ValueTask<TResult> Navigate<TParameter, TResult>(this IMvxNavigationService navigationService, Uri path, TParameter param, IMvxBundle presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static ValueTask<TResult> Navigate<TParameter, TResult>(this IMvxNavigationService navigationService, Uri path, TParameter param, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (navigationService == null) throw new NullReferenceException(nameof(navigationService));
+            if (path == null) throw new NullReferenceException(nameof(path));
 
             return navigationService.Navigate<TParameter, TResult>(path.ToString(), param, presentationBundle, cancellationToken);
         }

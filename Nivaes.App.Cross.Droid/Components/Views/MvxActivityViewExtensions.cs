@@ -48,7 +48,7 @@ namespace MvvmCross.Platforms.Android.Views
             view.OnViewCreate(() => cached ?? androidView.LoadViewModel(savedState));
         }
 
-        private static IMvxBundle GetSavedStateFromBundle(Bundle bundle)
+        private static IMvxBundle? GetSavedStateFromBundle(Bundle bundle)
         {
             if (bundle == null)
                 return null;
@@ -120,7 +120,7 @@ namespace MvvmCross.Platforms.Android.Views
             return activity;
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxAndroidView androidView, IMvxBundle savedState)
+        private static IMvxViewModel? LoadViewModel(this IMvxAndroidView androidView, IMvxBundle savedState)
         {
             var activity = androidView.ToActivity();
 
@@ -136,7 +136,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var translatorService = Mvx.IoCProvider.Resolve<IMvxAndroidViewModelLoader>();
-            var viewModel = translatorService.Load(activity!.Intent!, savedState, viewModelType!);
+            var viewModel = translatorService.Load(activity!.Intent, savedState, viewModelType!);
 
             return viewModel;
         }

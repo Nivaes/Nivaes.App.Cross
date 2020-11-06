@@ -2,32 +2,33 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.ViewModels;
+
     public static class MvxSimplePropertyDictionaryExtensions
     {
         public static IDictionary<string, string> ToSimpleStringPropertyDictionary(
             this IDictionary<string, object> input)
         {
-            if (input == null)
-                return new Dictionary<string, string>();
+            if (input == null) return new Dictionary<string, string>();
 
             return input.ToDictionary(x => x.Key, x => x.Value?.ToStringInvariant());
         }
 
         public static IDictionary<string, string> SafeGetData(this IMvxBundle bundle)
         {
-            return bundle?.Data;
+            if (bundle == null) throw new NullReferenceException(nameof(bundle));
+
+            return bundle.Data;
         }
 
         public static void Write(this IDictionary<string, string> data, object toStore)
@@ -61,8 +62,7 @@ namespace MvvmCross.Core
 
             foreach (var propertyInfo in propertyList)
             {
-                string textValue;
-                if (!data.TryGetValue(propertyInfo.Name, out textValue))
+                if (!data.TryGetValue(propertyInfo.Name, out string textValue))
                     continue;
 
                 var typedValue = MvxSingletonCache.Instance.Parser.ReadValue(textValue, propertyInfo.PropertyType,
@@ -92,9 +92,8 @@ namespace MvvmCross.Core
         {
             if (requiredParameter == null) throw new ArgumentNullException(nameof(requiredParameter));
 
-            string parameterValue;
             if (data == null ||
-                !data.TryGetValue(requiredParameter.Name, out parameterValue))
+                !data.TryGetValue(requiredParameter.Name, out string? parameterValue))
             {
                 if (requiredParameter.IsOptional)
                 {

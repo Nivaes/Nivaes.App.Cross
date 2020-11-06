@@ -20,13 +20,13 @@ namespace MvvmCross.ViewModels
 
         ValueTask ViewDestroy(bool viewFinishing = true);
 
-        ValueTask Init(IMvxBundle parameters);
+        ValueTask Init(IMvxBundle? parameters);
 
-        ValueTask ReloadState(IMvxBundle state);
+        ValueTask ReloadState(IMvxBundle? state);
 
         ValueTask Start();
 
-        ValueTask SaveState(IMvxBundle state);
+        ValueTask SaveState(IMvxBundle? state);
 
         ValueTask Prepare();
 

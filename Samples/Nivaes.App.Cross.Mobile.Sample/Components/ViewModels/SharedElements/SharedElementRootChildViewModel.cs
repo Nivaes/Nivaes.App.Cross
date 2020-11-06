@@ -33,9 +33,9 @@ namespace Nivaes.App.Mobile.Sample
             set => SetProperty(ref mItems, value);
         }
 
-        private ListItemViewModel mSelectedItem;
+        private ListItemViewModel? mSelectedItem;
 
-        public ListItemViewModel SelectedItem
+        public ListItemViewModel? SelectedItem
         {
             get => mSelectedItem;
             set => SetProperty(ref mSelectedItem, value);

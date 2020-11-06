@@ -26,7 +26,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle bundle, MvxViewModelRequest? request = null)
+        public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle? bundle, MvxViewModelRequest? request = null)
         {
             if (fragmentView == null) throw new ArgumentNullException(nameof(fragmentView));
 
