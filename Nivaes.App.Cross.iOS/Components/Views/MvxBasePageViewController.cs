@@ -28,27 +28,32 @@ namespace MvvmCross.Platforms.Ios.Views
             this.AdaptForBinding();
         }
 
-        public MvxBasePageViewController(NSCoder coder) : base(coder)
+        public MvxBasePageViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxBasePageViewController(NSObjectFlag t) : base(t)
+        protected MvxBasePageViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxBasePageViewController(IntPtr handle) : base(handle)
+        protected internal MvxBasePageViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxBasePageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBasePageViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
+        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options)
+            : base(style, navigationOrientation, options)
         {
             this.AdaptForBinding();
         }
@@ -125,35 +130,43 @@ namespace MvvmCross.Platforms.Ios.Views
         {
         }
 
-        public MvxBasePageViewController(NSCoder coder) : base(coder)
+        public MvxBasePageViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation) : base(style, navigationOrientation)
+        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation)
+            : base(style, navigationOrientation)
         {
         }
 
-        public MvxBasePageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBasePageViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)
+        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation)
+            : base(style, navigationOrientation, spineLocation)
         {
         }
 
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
+        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options)
+            : base(style, navigationOrientation, options)
         {
         }
 
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation, float interPageSpacing) : base(style, navigationOrientation, spineLocation, interPageSpacing)
+        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation, float interPageSpacing)
+            : base(style, navigationOrientation, spineLocation, interPageSpacing)
         {
         }
 
-        protected MvxBasePageViewController(NSObjectFlag t) : base(t)
+        protected MvxBasePageViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxBasePageViewController(IntPtr handle) : base(handle)
+        protected internal MvxBasePageViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

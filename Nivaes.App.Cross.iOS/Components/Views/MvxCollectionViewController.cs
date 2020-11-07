@@ -19,27 +19,32 @@ namespace MvvmCross.Platforms.Ios.Views
             this.AdaptForBinding();
         }
 
-        public MvxCollectionViewController(NSCoder coder) : base(coder)
+        public MvxCollectionViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxCollectionViewController(NSObjectFlag t) : base(t)
+        protected MvxCollectionViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxCollectionViewController(IntPtr handle) : base(handle)
+        protected internal MvxCollectionViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxCollectionViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxCollectionViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxCollectionViewController(UICollectionViewLayout layout) : base(layout)
+        public MvxCollectionViewController(UICollectionViewLayout layout)
+            : base(layout)
         {
             this.AdaptForBinding();
         }
@@ -104,30 +109,36 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxCollectionViewController<TViewModel> : MvxCollectionViewController, IMvxIosView<TViewModel> 
+    public class MvxCollectionViewController<TViewModel>
+        : MvxCollectionViewController, IMvxIosView<TViewModel> 
         where TViewModel : class, IMvxViewModel
     {
         public MvxCollectionViewController()
         {
         }
 
-        public MvxCollectionViewController(NSCoder coder) : base(coder)
+        public MvxCollectionViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxCollectionViewController(UICollectionViewLayout layout) : base(layout)
+        public MvxCollectionViewController(UICollectionViewLayout layout)
+            : base(layout)
         {
         }
 
-        public MvxCollectionViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxCollectionViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxCollectionViewController(NSObjectFlag t) : base(t)
+        protected MvxCollectionViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxCollectionViewController(IntPtr handle) : base(handle)
+        protected internal MvxCollectionViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

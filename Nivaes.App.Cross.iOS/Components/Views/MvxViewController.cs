@@ -38,7 +38,7 @@ namespace MvvmCross.Platforms.Ios.Views
             this.AdaptForBinding();
         }
 
-        public MvxViewController(string nibName, NSBundle bundle)
+        public MvxViewController(string? nibName, NSBundle? bundle)
             : base(nibName, bundle)
         {
             this.AdaptForBinding();
@@ -117,19 +117,23 @@ namespace MvvmCross.Platforms.Ios.Views
         {
         }
 
-        public MvxViewController(NSCoder coder) : base(coder)
+        public MvxViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxViewController(NSObjectFlag t) : base(t)
+        protected MvxViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxViewController(IntPtr handle) : base(handle)
+        protected internal MvxViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

@@ -4,17 +4,17 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.ViewModels;
-using UIKit;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using System.Linq;
 using Nivaes.App.Cross.Presenters;
+using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    public class MvxPageViewController : MvxBasePageViewController, IMvxPageViewController
+    public class MvxPageViewController
+        : MvxBasePageViewController, IMvxPageViewController
     {
         public MvxPageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
         {
@@ -28,19 +28,23 @@ namespace MvvmCross.Platforms.Ios.Views
         {
         }
 
-        public MvxPageViewController(NSCoder coder) : base(coder)
+        public MvxPageViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxPageViewController(NSObjectFlag t) : base(t)
+        protected MvxPageViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxPageViewController(IntPtr handle) : base(handle)
+        protected internal MvxPageViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxPageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxPageViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 

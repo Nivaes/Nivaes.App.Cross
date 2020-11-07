@@ -11,29 +11,35 @@ using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    public class MvxBaseSplitViewController : MvxEventSourceSplitViewController, IMvxIosView
+    public class MvxBaseSplitViewController :
+        MvxEventSourceSplitViewController, IMvxIosView
     {
-        public MvxBaseSplitViewController() : base()
+        public MvxBaseSplitViewController()
+            : base()
         {
             this.AdaptForBinding();
         }
 
-        public MvxBaseSplitViewController(NSCoder coder) : base(coder)
+        public MvxBaseSplitViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxBaseSplitViewController(NSObjectFlag t) : base(t)
+        protected MvxBaseSplitViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxBaseSplitViewController(IntPtr handle) : base(handle)
+        protected internal MvxBaseSplitViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxBaseSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBaseSplitViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
@@ -98,26 +104,31 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxBaseSplitViewController<TViewModel> : MvxBaseSplitViewController, IMvxIosView<TViewModel>
+    public class MvxBaseSplitViewController<TViewModel> :
+        MvxBaseSplitViewController, IMvxIosView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public MvxBaseSplitViewController()
         {
         }
 
-        public MvxBaseSplitViewController(NSCoder coder) : base(coder)
+        public MvxBaseSplitViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxBaseSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBaseSplitViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxBaseSplitViewController(NSObjectFlag t) : base(t)
+        protected MvxBaseSplitViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxBaseSplitViewController(IntPtr handle) : base(handle)
+        protected internal MvxBaseSplitViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

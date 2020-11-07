@@ -14,7 +14,8 @@ namespace MvvmCross.Platforms.Ios.Views
     /// <summary>
 	/// Mvx base view controller that provides a few extra bits of implementation over the standard View Controllers.
 	/// </summary>
-	public abstract class MvxBaseViewController<TViewModel> : MvxViewController where TViewModel : IMvxViewModel
+	public abstract class MvxBaseViewController<TViewModel>
+        : MvxViewController where TViewModel : IMvxViewModel
     {
         private readonly MvxIosMajorVersionChecker _iosVersion11Checker = new MvxIosMajorVersionChecker(11);
     
@@ -22,19 +23,23 @@ namespace MvvmCross.Platforms.Ios.Views
         {
         }
 
-        public MvxBaseViewController(NSCoder coder) : base(coder)
+        public MvxBaseViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxBaseViewController(NSObjectFlag t) : base(t)
+        protected MvxBaseViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxBaseViewController(IntPtr handle) : base(handle)
+        protected internal MvxBaseViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxBaseViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBaseViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 

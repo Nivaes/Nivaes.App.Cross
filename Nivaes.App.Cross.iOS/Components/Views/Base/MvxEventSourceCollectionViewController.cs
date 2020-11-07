@@ -28,11 +28,13 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         {
         }
 
-        public MvxEventSourceCollectionViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourceCollectionViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        public MvxEventSourceCollectionViewController(UICollectionViewLayout layout) : base(layout)
+        public MvxEventSourceCollectionViewController(UICollectionViewLayout layout)
+            : base(layout)
         {
         }
 

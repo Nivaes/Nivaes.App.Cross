@@ -8,33 +8,40 @@ using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    public class MvxNavigationController : UINavigationController
+    public class MvxNavigationController
+        : UINavigationController
     {
         public MvxNavigationController()
         {
         }
 
-        public MvxNavigationController(UIViewController rootViewController) : base(rootViewController)
+        public MvxNavigationController(UIViewController rootViewController)
+            : base(rootViewController)
         {
         }
 
-        public MvxNavigationController(NSCoder coder) : base(coder)
+        public MvxNavigationController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxNavigationController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxNavigationController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        public MvxNavigationController(Type navigationBarType, Type toolbarType) : base(navigationBarType, toolbarType)
+        public MvxNavigationController(Type navigationBarType, Type toolbarType)
+            : base(navigationBarType, toolbarType)
         {
         }
 
-        protected MvxNavigationController(NSObjectFlag t) : base(t)
+        protected MvxNavigationController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxNavigationController(IntPtr handle) : base(handle)
+        protected internal MvxNavigationController(IntPtr handle)
+            : base(handle)
         {
         }
 

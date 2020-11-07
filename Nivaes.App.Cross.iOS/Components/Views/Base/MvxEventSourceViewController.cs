@@ -24,11 +24,13 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         {
         }
 
-        protected internal MvxEventSourceViewController(IntPtr handle) : base(handle)
+        protected internal MvxEventSourceViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxEventSourceViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourceViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 

@@ -10,25 +10,31 @@ using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views.Base
 {
-    public class MvxEventSourceSplitViewController : UISplitViewController, IMvxEventSourceViewController
+    public class MvxEventSourceSplitViewController
+        : UISplitViewController, IMvxEventSourceViewController
     {
-        public MvxEventSourceSplitViewController() : base()
+        public MvxEventSourceSplitViewController()
+            : base()
         {
         }
 
-        public MvxEventSourceSplitViewController(NSCoder coder) : base(coder)
+        public MvxEventSourceSplitViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxEventSourceSplitViewController(NSObjectFlag t) : base(t)
+        protected MvxEventSourceSplitViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxEventSourceSplitViewController(IntPtr handle) : base(handle)
+        protected internal MvxEventSourceSplitViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxEventSourceSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourceSplitViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 

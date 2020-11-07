@@ -11,29 +11,35 @@ using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    public class MvxBaseTabBarViewController : MvxEventSourceTabBarController, IMvxIosView
+    public class MvxBaseTabBarViewController :
+        MvxEventSourceTabBarController, IMvxIosView
     {
-        public MvxBaseTabBarViewController() : base()
+        public MvxBaseTabBarViewController()
+            : base()
         {
             this.AdaptForBinding();
         }
 
-        public MvxBaseTabBarViewController(NSCoder coder) : base(coder)
+        public MvxBaseTabBarViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxBaseTabBarViewController(NSObjectFlag t) : base(t)
+        protected MvxBaseTabBarViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxBaseTabBarViewController(IntPtr handle) : base(handle)
+        protected internal MvxBaseTabBarViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxBaseTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBaseTabBarViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
@@ -105,26 +111,31 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxBaseTabBarViewController<TViewModel> : MvxBaseTabBarViewController, IMvxIosView<TViewModel>
+    public class MvxBaseTabBarViewController<TViewModel>
+        : MvxBaseTabBarViewController, IMvxIosView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public MvxBaseTabBarViewController()
         {
         }
 
-        public MvxBaseTabBarViewController(NSCoder coder) : base(coder)
+        public MvxBaseTabBarViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxBaseTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxBaseTabBarViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxBaseTabBarViewController(NSObjectFlag t) : base(t)
+        protected MvxBaseTabBarViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxBaseTabBarViewController(IntPtr handle) : base(handle)
+        protected internal MvxBaseTabBarViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

@@ -23,27 +23,33 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         {
         }
 
-        public MvxEventSourcePageViewController() : base()
+        public MvxEventSourcePageViewController()
+            : base()
         {
         }
 
-        public MvxEventSourcePageViewController(NSCoder coder) : base(coder)
+        public MvxEventSourcePageViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxEventSourcePageViewController(NSObjectFlag t) : base(t)
+        protected MvxEventSourcePageViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxEventSourcePageViewController(IntPtr handle) : base(handle)
+        protected internal MvxEventSourcePageViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxEventSourcePageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourcePageViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        public MvxEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
+        public MvxEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options)
+            : base(style, navigationOrientation, options)
         {
         }
 

@@ -16,19 +16,23 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         {
         }
 
-        public MvxEventSourceTableViewController(NSCoder coder) : base(coder)
+        public MvxEventSourceTableViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxEventSourceTableViewController(NSObjectFlag t) : base(t)
+        protected MvxEventSourceTableViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxEventSourceTableViewController(IntPtr handle) : base(handle)
+        protected internal MvxEventSourceTableViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxEventSourceTableViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourceTableViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 

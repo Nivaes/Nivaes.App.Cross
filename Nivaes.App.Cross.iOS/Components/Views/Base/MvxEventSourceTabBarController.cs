@@ -12,23 +12,28 @@ namespace MvvmCross.Platforms.Ios.Views.Base
     public class MvxEventSourceTabBarController
         : UITabBarController, IMvxEventSourceViewController
     {
-        public MvxEventSourceTabBarController() : base()
+        public MvxEventSourceTabBarController()
+            : base()
         {
         }
 
-        public MvxEventSourceTabBarController(NSCoder coder) : base(coder)
+        public MvxEventSourceTabBarController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxEventSourceTabBarController(NSObjectFlag t) : base(t)
+        protected MvxEventSourceTabBarController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxEventSourceTabBarController(IntPtr handle) : base(handle)
+        protected internal MvxEventSourceTabBarController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxEventSourceTabBarController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxEventSourceTabBarController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
