@@ -2,14 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Foundation;
-using MvvmCross.Base;
-using MvvmCross.Platforms.Ios.Views.Base;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views.Base
 {
+    using System;
+    using Foundation;
+    using MvvmCross.Base;
+    using UIKit;
+
     public class MvxEventSourceSplitViewController
         : UISplitViewController, IMvxEventSourceViewController
     {
@@ -41,60 +40,60 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
-            ViewWillDisappearCalled.Raise(this, animated);
+            ViewWillDisappearCalled?.Raise(this, animated);
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            ViewDidAppearCalled.Raise(this, animated);
+            ViewDidAppearCalled?.Raise(this, animated);
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            ViewWillAppearCalled.Raise(this, animated);
+            ViewWillAppearCalled?.Raise(this, animated);
         }
 
         public override void ViewDidDisappear(bool animated)
         {
             base.ViewDidDisappear(animated);
-            ViewDidDisappearCalled.Raise(this, animated);
+            ViewDidDisappearCalled?.Raise(this, animated);
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            ViewDidLoadCalled.Raise(this);
+            ViewDidLoadCalled?.Raise(this);
         }
 
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
-            ViewDidLayoutSubviewsCalled.Raise(this);
+            ViewDidLayoutSubviewsCalled?.Raise(this);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                DisposeCalled.Raise(this);
+                DisposeCalled?.Raise(this);
             }
             base.Dispose(disposing);
         }
 
-        public event EventHandler ViewDidLoadCalled;
+        public event EventHandler? ViewDidLoadCalled;
 
-        public event EventHandler ViewDidLayoutSubviewsCalled;
+        public event EventHandler? ViewDidLayoutSubviewsCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillAppearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>>? ViewWillAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidAppearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>>? ViewDidAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidDisappearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>>? ViewDidDisappearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillDisappearCalled;
+        public event EventHandler<MvxValueEventArgs<bool>>? ViewWillDisappearCalled;
 
-        public event EventHandler DisposeCalled;
+        public event EventHandler? DisposeCalled;
     }
 }
