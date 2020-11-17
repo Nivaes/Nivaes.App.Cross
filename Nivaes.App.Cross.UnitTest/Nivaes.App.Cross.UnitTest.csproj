@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <AssemblyName>Nivaes.App.Cross.UnitTest</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.UnitTest</RootNamespace>
