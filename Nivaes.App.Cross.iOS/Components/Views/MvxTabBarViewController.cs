@@ -12,31 +12,37 @@ namespace MvvmCross.Platforms.Ios.Views
     using Nivaes.App.Cross.Presenters;
     using UIKit;
 
-    public class MvxTabBarViewController : MvxBaseTabBarViewController, IMvxTabBarViewController
+    public class MvxTabBarViewController
+        : MvxBaseTabBarViewController, IMvxTabBarViewController
     {
-        public MvxTabBarViewController() : base()
+        public MvxTabBarViewController()
+            : base()
         {
             // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
             // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null
             ViewDidLoad();
         }
 
-        public MvxTabBarViewController(NSCoder coder) : base(coder)
+        public MvxTabBarViewController(NSCoder coder)
+            : base(coder)
         {
             // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
             // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null
             ViewDidLoad();
         }
 
-        protected MvxTabBarViewController(NSObjectFlag t) : base(t)
+        protected MvxTabBarViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxTabBarViewController(IntPtr handle) : base(handle)
+        protected internal MvxTabBarViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxTabBarViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
             // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null
@@ -229,26 +235,31 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxTabBarViewController<TViewModel> : MvxTabBarViewController
+    public class MvxTabBarViewController<TViewModel>
+        : MvxTabBarViewController
         where TViewModel : IMvxViewModel
     {
         public MvxTabBarViewController()
         {
         }
 
-        public MvxTabBarViewController(NSCoder coder) : base(coder)
+        public MvxTabBarViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxTabBarViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxTabBarViewController(NSObjectFlag t) : base(t)
+        protected MvxTabBarViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxTabBarViewController(IntPtr handle) : base(handle)
+        protected internal MvxTabBarViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

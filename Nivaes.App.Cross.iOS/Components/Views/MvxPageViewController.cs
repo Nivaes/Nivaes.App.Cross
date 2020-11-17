@@ -101,22 +101,26 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxPageViewController<TViewModel> : MvxPageViewController, IMvxIosView<TViewModel> 
+    public class MvxPageViewController<TViewModel>
+        : MvxPageViewController, IMvxIosView<TViewModel> 
         where TViewModel : class, IMvxViewModel
     {
         public MvxPageViewController()
         {
         }
 
-        public MvxPageViewController(NSCoder coder) : base(coder)
+        public MvxPageViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation) : base(style, navigationOrientation)
+        public MvxPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation)
+            : base(style, navigationOrientation)
         {
         }
 
-        public MvxPageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxPageViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
@@ -132,11 +136,13 @@ namespace MvvmCross.Platforms.Ios.Views
         {
         }
 
-        protected MvxPageViewController(NSObjectFlag t) : base(t)
+        protected MvxPageViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxPageViewController(IntPtr handle) : base(handle)
+        protected internal MvxPageViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

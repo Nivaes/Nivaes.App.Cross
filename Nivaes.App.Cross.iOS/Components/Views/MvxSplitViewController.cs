@@ -11,25 +11,31 @@ namespace MvvmCross.Platforms.Ios.Views
     using Nivaes.App.Cross.Presenters;
     using UIKit;
 
-    public class MvxSplitViewController : MvxBaseSplitViewController, IMvxSplitViewController
+    public class MvxSplitViewController
+        : MvxBaseSplitViewController, IMvxSplitViewController
     {
-        public MvxSplitViewController() : base()
+        public MvxSplitViewController()
+            : base()
         {
         }
 
-        public MvxSplitViewController(NSCoder coder) : base(coder)
+        public MvxSplitViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        protected MvxSplitViewController(NSObjectFlag t) : base(t)
+        protected MvxSplitViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxSplitViewController(IntPtr handle) : base(handle)
+        protected internal MvxSplitViewController(IntPtr handle)
+            : base(handle)
         {
         }
 
-        public MvxSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxSplitViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
@@ -81,26 +87,31 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxSplitViewController<TViewModel> : MvxSplitViewController
+    public class MvxSplitViewController<TViewModel>
+        : MvxSplitViewController
         where TViewModel : IMvxViewModel
     {
         public MvxSplitViewController()
         {
         }
 
-        public MvxSplitViewController(NSCoder coder) : base(coder)
+        public MvxSplitViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxSplitViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxSplitViewController(NSObjectFlag t) : base(t)
+        protected MvxSplitViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxSplitViewController(IntPtr handle) : base(handle)
+        protected internal MvxSplitViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

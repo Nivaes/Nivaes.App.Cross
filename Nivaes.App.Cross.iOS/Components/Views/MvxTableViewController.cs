@@ -14,27 +14,32 @@ namespace MvvmCross.Platforms.Ios.Views
     public class MvxTableViewController
         : MvxEventSourceTableViewController, IMvxIosView
     {
-        public MvxTableViewController(UITableViewStyle style = UITableViewStyle.Plain) : base(style)
+        public MvxTableViewController(UITableViewStyle style = UITableViewStyle.Plain)
+            : base(style)
         {
             this.AdaptForBinding();
         }
 
-        public MvxTableViewController(NSCoder coder) : base(coder)
+        public MvxTableViewController(NSCoder coder)
+            : base(coder)
         {
             this.AdaptForBinding();
         }
 
-        protected MvxTableViewController(NSObjectFlag t) : base(t)
+        protected MvxTableViewController(NSObjectFlag t)
+            : base(t)
         {
             this.AdaptForBinding();
         }
 
-        protected internal MvxTableViewController(IntPtr handle) : base(handle)
+        protected internal MvxTableViewController(IntPtr handle)
+            : base(handle)
         {
             this.AdaptForBinding();
         }
 
-        public MvxTableViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxTableViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
             this.AdaptForBinding();
         }
@@ -124,26 +129,31 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxTableViewController<TViewModel> : MvxTableViewController, IMvxIosView<TViewModel>
+    public class MvxTableViewController<TViewModel>
+        : MvxTableViewController, IMvxIosView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public MvxTableViewController(UITableViewStyle style = UITableViewStyle.Plain) : base(style)
         {
         }
 
-        public MvxTableViewController(NSCoder coder) : base(coder)
+        public MvxTableViewController(NSCoder coder)
+            : base(coder)
         {
         }
 
-        public MvxTableViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public MvxTableViewController(string? nibName, NSBundle? bundle)
+            : base(nibName, bundle)
         {
         }
 
-        protected MvxTableViewController(NSObjectFlag t) : base(t)
+        protected MvxTableViewController(NSObjectFlag t)
+            : base(t)
         {
         }
 
-        protected internal MvxTableViewController(IntPtr handle) : base(handle)
+        protected internal MvxTableViewController(IntPtr handle)
+            : base(handle)
         {
         }
 

@@ -10,18 +10,21 @@
     <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
 
     <XamlCodeGenerationControlFlags>DoNotGenerateOtherProviders</XamlCodeGenerationControlFlags>
-    <Platforms>x86;x64</Platforms>
+    <Platforms>AnyCPU;x86;x64;ARM;ARM64</Platforms>
 
     <RootNamespace>Nivaes.App.Cross.Mobile.Windows.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Mobile.Windows.Sample</AssemblyName>
 
-    <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
+    <!--<MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>-->
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
     <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />
+
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="0.1.0-prerelease.200623.5" />
+    <PackageReference Include="Microsoft.Windows.SDK.NET" Version="10.0.18362.3-preview" />
   </ItemGroup>
 
   <ItemGroup>
