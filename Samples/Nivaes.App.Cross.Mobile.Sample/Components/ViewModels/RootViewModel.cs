@@ -22,7 +22,8 @@ namespace Nivaes.App.Mobile.Sample
 
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("Playground.Core", "Text");
 
-        public RootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMvxViewModelLoader mvxViewModelLoader) : base(logProvider, navigationService)
+        public RootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMvxViewModelLoader mvxViewModelLoader)
+            : base(logProvider, navigationService)
         {
             mMvxViewModelLoader = mvxViewModelLoader;
             //try
@@ -91,33 +92,33 @@ namespace Nivaes.App.Mobile.Sample
             //    async () => await NavigationService.Navigate<LocationViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowChildCommand { get; }
+        public IMvxAsyncCommand? ShowChildCommand { get; }
 
-        public IMvxAsyncCommand ShowModalCommand { get; }
+        public IMvxAsyncCommand? ShowModalCommand { get; }
 
-        public IMvxAsyncCommand ShowModalNavCommand { get; }
+        public IMvxAsyncCommand? ShowModalNavCommand { get; }
 
-        public IMvxAsyncCommand ShowCustomBindingCommand { get; }
+        public IMvxAsyncCommand? ShowCustomBindingCommand { get; }
 
-        public IMvxAsyncCommand ShowTabsCommand { get; }
+        public IMvxAsyncCommand? ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand ShowPagesCommand { get; }
+        public IMvxAsyncCommand? ShowPagesCommand { get; }
 
-        public IMvxAsyncCommand ShowSplitCommand { get; }
+        public IMvxAsyncCommand? ShowSplitCommand { get; }
 
-        public IMvxAsyncCommand ShowOverrideAttributeCommand { get; }
+        public IMvxAsyncCommand? ShowOverrideAttributeCommand { get; }
 
-        public IMvxAsyncCommand ShowNativeCommand { get; }
+        public IMvxAsyncCommand? ShowNativeCommand { get; }
 
-        public IMvxAsyncCommand ShowSheetCommand { get; }
+        public IMvxAsyncCommand? ShowSheetCommand { get; }
 
-        public IMvxAsyncCommand ShowWindowCommand { get; }
+        public IMvxAsyncCommand? ShowWindowCommand { get; }
 
-        public IMvxAsyncCommand ShowMixedNavigationCommand { get; }
+        public IMvxAsyncCommand? ShowMixedNavigationCommand { get; }
 
-        public IMvxAsyncCommand ShowDictionaryBindingCommand { get; }
+        public IMvxAsyncCommand? ShowDictionaryBindingCommand { get; }
 
-        public IMvxAsyncCommand ShowCollectionViewCommand { get; }
+        public IMvxAsyncCommand? ShowCollectionViewCommand { get; }
 
         public IMvxAsyncCommand ShowListViewCommand =>
             new MvxAsyncCommand(async () => await NavigationService.Navigate<ListViewModel>().ConfigureAwait(true));
@@ -141,14 +142,14 @@ namespace Nivaes.App.Mobile.Sample
 
         public IMvxAsyncCommand ShowFluentBindingCommand { get; }
 
-        //public IMvxAsyncCommand RegisterAndResolveWithReflectionCommand { get; }
+        public IMvxAsyncCommand? RegisterAndResolveWithReflectionCommand { get; }
 
-        //public IMvxAsyncCommand RegisterAndResolveWithNoReflectionCommand { get; }
+        public IMvxAsyncCommand? RegisterAndResolveWithNoReflectionCommand { get; }
 
         public IMvxCommand TriggerVisibilityCommand { get; }
 
         public IMvxCommand FragmentCloseCommand { get; }
-        public IMvxAsyncCommand ShowLocationCommand { get; }
+        public IMvxAsyncCommand? ShowLocationCommand { get; }
 
         private bool mIsVisible;
 
@@ -171,11 +172,11 @@ namespace Nivaes.App.Mobile.Sample
             }
         }
 
-        public string TimeToRegister { get; set; }
+        public string? TimeToRegister { get; set; }
 
-        public string TimeToResolve { get; set; }
+        public string? TimeToResolve { get; set; }
 
-        public string TotalTime { get; set; }
+        public string? TotalTime { get; set; }
 
         public override async ValueTask Initialize()
         {

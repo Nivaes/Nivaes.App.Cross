@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
+    using System.Collections.Generic;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+
     public class MvxWindowsViewsContainer
         : MvxViewsContainer
         , IMvxStoreViewsContainer
@@ -28,7 +28,7 @@ namespace MvvmCross.Platforms.Uap.Views
                 var key = int.Parse(viewModelKey);
                 var viewModel = Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>().Get(key);
                 if (savedState != null)
-                    viewModel.ReloadState(savedState);
+                    _ = viewModel.ReloadState(savedState).AsTask();
                 return viewModel;
             }
 

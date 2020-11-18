@@ -14,12 +14,12 @@ namespace Nivaes.App.Mobile.Sample
     public class ChildViewModel
         : MvxNavigationViewModel<SampleModel, SampleModel>
     {
-        public string BrokenTextValue { get => _brokenTextValue; set => SetProperty(ref _brokenTextValue, value); }
-        public string AnotherBrokenTextValue { get => _anotherBrokenTextValue; set => SetProperty(ref _anotherBrokenTextValue, value); }
+        public string BrokenTextValue { get => mBrokenTextValue; set => SetProperty(ref mBrokenTextValue, value); }
+        public string AnotherBrokenTextValue { get => mAnotherBrokenTextValue; set => SetProperty(ref mAnotherBrokenTextValue, value); }
 
-        private SampleModel _parameter;
-        private string _brokenTextValue;
-        private string _anotherBrokenTextValue;
+        private SampleModel? mParameter;
+        private string mBrokenTextValue = string.Empty;
+        private string mAnotherBrokenTextValue = string.Empty;
 
         public ChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
@@ -51,7 +51,7 @@ namespace Nivaes.App.Mobile.Sample
 
         public override ValueTask Prepare(SampleModel parameter)
         {
-            _parameter = parameter;
+            mParameter = parameter;
             return new ValueTask();
         }
 
@@ -83,16 +83,13 @@ namespace Nivaes.App.Mobile.Sample
 
         public IMvxAsyncCommand ShowRootCommand { get; private set; }
 
-        public override ValueTask ViewAppeared()
+        public override async ValueTask ViewAppeared()
         {
-            base.ViewAppeared();
+            await base.ViewAppeared().ConfigureAwait(true);
 
-            return new ValueTask(Task.Run(async () =>
-            {
-                await Task.Delay(1000).ConfigureAwait(true);
-                BrokenTextValue = "This will throw exception in UI layer";
-                AnotherBrokenTextValue = "This will throw exception in page";
-            }));
+            await Task.Delay(1000).ConfigureAwait(true);
+            BrokenTextValue = "This will throw exception in UI layer";
+            AnotherBrokenTextValue = "This will throw exception in page";
         }
     }
 }

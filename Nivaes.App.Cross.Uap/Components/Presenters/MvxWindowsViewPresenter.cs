@@ -216,7 +216,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
                 var requestText = GetRequestText(request);
                 var viewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
 
-                _rootFrame.Navigate(viewType, requestText); //Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
+                _ = _rootFrame.Navigate(viewType, requestText); //Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
 
                 HandleBackButtonVisibility();
                 return new ValueTask<bool>(true);

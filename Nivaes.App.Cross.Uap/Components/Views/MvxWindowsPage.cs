@@ -29,22 +29,22 @@ namespace MvvmCross.Platforms.Uap.Views
 
         private void MvxWindowsPage_Loading(FrameworkElement sender, object args)
         {
-            ViewModel?.ViewAppearing();
+            _ = ViewModel?.ViewAppearing().AsTask();
         }
 
         private void MvxWindowsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel?.ViewAppeared();
+            _ = ViewModel?.ViewAppeared().AsTask();
         }
 
         private void MvxWindowsPage_Unloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel?.ViewDestroy();
+            _ = ViewModel?.ViewDestroy().AsTask();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            ViewModel?.ViewDisappearing();
+            _ = ViewModel?.ViewDisappearing().AsTask();
             base.OnNavigatingFrom(e);
         }
 
@@ -77,7 +77,7 @@ namespace MvvmCross.Platforms.Uap.Views
         {
             var backStack = base.Frame?.BackStack;
 
-            while (backStack != null && backStack.Any())
+            while (backStack != null && backStack.Count > 0)
             {
                 backStack.RemoveAt(0);
             }
@@ -95,13 +95,13 @@ namespace MvvmCross.Platforms.Uap.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel?.ViewCreated();
+            _ = ViewModel?.ViewCreated().AsTask();
 
             if (_reqData != string.Empty)
             {
                 var viewModelLoader = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelLoader>();
                 ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
-                ViewModel?.ViewCreated();
+                _ = ViewModel?.ViewCreated().AsTask();
             }
             _reqData = (string)e.Parameter;
 
@@ -110,7 +110,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            ViewModel?.ViewDisappeared();
+            _ = ViewModel?.ViewDisappeared().AsTask();
             base.OnNavigatedFrom(e);
             var bundle = this.CreateSaveStateBundle();
             SaveStateBundle(e, bundle);

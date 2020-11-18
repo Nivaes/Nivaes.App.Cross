@@ -2,13 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Views
 {
-    public interface IMvxViewsContainer : IMvxViewFinder
+
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.ViewModels;
+
+    public interface IMvxViewsContainer
+        : IMvxViewFinder
     {
         void AddAll(IDictionary<Type, Type> viewModelViewLookup);
 

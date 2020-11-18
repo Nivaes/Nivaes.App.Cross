@@ -1,8 +1,9 @@
-﻿namespace Nivaes.App.Cross.Mobile.Windows.Sample
+﻿using Windows.ApplicationModel;
+
+namespace Nivaes.App.Cross.Mobile.Windows.Sample
 {
-    using global::Windows.ApplicationModel;
-    using MvvmCross.Platforms.Uap.Views;
     using Nivaes.App.Cross.Mobele.Windows.Sample;
+    using Nivaes.App.Cross.Views;
     using Nivaes.App.Mobile.Sample;
 
     /// <summary>
@@ -18,7 +19,7 @@
         public App()
         {
             this.InitializeComponent();
-            //this.Suspending += OnSuspending;
+            this.Suspending += OnSuspending;
         }
 
         ///// <summary>

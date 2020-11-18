@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Uap.Views
+namespace Nivaes.App.Cross.Views
 {
     using System;
     using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
+    using MvvmCross;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Uap.Core;
@@ -17,7 +18,8 @@ namespace MvvmCross.Platforms.Uap.Views
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
 
-    public abstract class NivApplication : Microsoft.UI.Xaml.Application
+    public abstract class NivApplication
+        : Microsoft.UI.Xaml.Application
     {
         protected IActivatedEventArgs ActivationArguments { get; private set; }
 
@@ -25,7 +27,6 @@ namespace MvvmCross.Platforms.Uap.Views
 
         protected NivApplication()
         {
-            RegisterSetup();
             base.EnteredBackground += OnEnteredBackground;
             base.LeavingBackground += OnLeavingBackground;
             base.Suspending += OnSuspending;
@@ -54,6 +55,8 @@ namespace MvvmCross.Platforms.Uap.Views
                     Content = rootFrame
                 };
 
+                DebugAttached();
+
                 window.Activate();
             }
             else
@@ -65,6 +68,8 @@ namespace MvvmCross.Platforms.Uap.Views
                     rootFrame = InitializeFrame(ActivationArguments);
                     Window.Current.Content = rootFrame;
                 }
+
+                DebugAttached();
 
                 //if (true/*!ActivationArguments.PrelaunchActivated*/)
                 //if (ActivationArguments.PreviousExecutionState == ApplicationExecutionState.NotRunning)
@@ -88,6 +93,19 @@ namespace MvvmCross.Platforms.Uap.Views
                     //mWindow = window;
                 }
             }
+        }
+
+        private void DebugAttached()
+        {
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                this.DebugSettings.BindingFailed += DebugSettings_BindingFailed;
+            }
+        }
+
+        private void DebugSettings_BindingFailed(object sender, BindingFailedEventArgs e)
+        {
+
         }
 
         //protected override void OnWindowCreated(WindowCreatedEventArgs args)
@@ -245,24 +263,20 @@ namespace MvvmCross.Platforms.Uap.Views
         protected virtual void OnResuming(object? sender, object e)
         {
             var suspension = Mvx.IoCProvider.GetSingleton<IMvxSuspensionManager>();
-            _ = Resume(suspension);
+            //_ = Resume(suspension).AsTask();
         }
 
-        protected virtual Task Resume(IMvxSuspensionManager suspensionManager)
-        {
-            return Task.CompletedTask;
-        }
-
-        protected virtual void RegisterSetup()
-        {
-        }
+        //protected virtual ValueTask Resume(IMvxSuspensionManager suspensionManager)
+        //{
+        //    return new ValueTask();
+        //}
     }
 
     public class NivApplication<TMvxUapSetup, TApplication> : NivApplication
        where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
        where TApplication : class, IMvxApplication, new()
     {
-        protected override void RegisterSetup()
+        public NivApplication()
         {
             this.RegisterSetupType<TMvxUapSetup>();
         }
