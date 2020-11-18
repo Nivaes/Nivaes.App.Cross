@@ -1,17 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--<OutputType>Library</OutputType>-->
-    <!--<TargetFrameworks>net5.0</TargetFrameworks>-->
-    <TargetFrameworks>net5.0-windows10</TargetFrameworks>
-    <!--<Platforms>x64</Platforms>-->
+    <TargetFrameworks>net5.0-windows10.0.18362.0</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
-
-    <!--<Platforms>x86;x64</Platforms>-->
-    <!--<Platforms>AnyCPU;x86;x64</Platforms>
-    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>-->
 
     <Description>
       Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
@@ -19,13 +12,11 @@
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
     <PackageId>Nivaes.App.Cross.Windows</PackageId>
-
-    <MsAppxPackageTargets>$(MSBuildThisFileDirectory)Net5_WinUI_Fixup.Targets</MsAppxPackageTargets>
   </PropertyGroup>
 
   <ItemGroup>
     <!--<PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />-->
-    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />
+    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
     <!--<PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.0.1" />-->
     <!--<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc3" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview2" />
