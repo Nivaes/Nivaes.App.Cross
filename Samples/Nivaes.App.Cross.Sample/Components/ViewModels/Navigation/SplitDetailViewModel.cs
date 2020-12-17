@@ -4,11 +4,10 @@
 
 namespace Nivaes.App.Cross.Sample
 {
-    using System.Threading.Tasks;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class SplitDetailViewModel
         : MvxNavigationViewModel
@@ -26,10 +25,5 @@ namespace Nivaes.App.Cross.Sample
         public IMvxAsyncCommand ShowTabbedChildCommand { get; }
 
         public string ContentText => "Text for the Content Area";
-
-        public override ValueTask ViewAppeared()
-        {
-            return base.ViewAppeared();
-        }
     }
 }

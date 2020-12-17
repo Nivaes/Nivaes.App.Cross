@@ -3,7 +3,7 @@
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
     using MvvmCross.Platforms.Uap.Views;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxViewFor(typeof(RootViewModel))]
     [MvxPagePresentation]

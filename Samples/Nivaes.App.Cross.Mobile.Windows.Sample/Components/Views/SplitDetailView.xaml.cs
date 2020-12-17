@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Mobele.Windows.Sample.Views
 {
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
     using MvvmCross.Platforms.Uap.Views;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

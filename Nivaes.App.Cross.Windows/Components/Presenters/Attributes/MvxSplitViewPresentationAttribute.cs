@@ -4,6 +4,7 @@
 
 namespace MvvmCross.Platforms.Uap.Presenters.Attributes
 {
+    using System.Runtime.Versioning;
     using Nivaes.App.Cross.Presenters;
 
     public class MvxSplitViewPresentationAttribute
@@ -20,6 +21,7 @@ namespace MvvmCross.Platforms.Uap.Presenters.Attributes
             Position = position;
         }
 
+        [SupportedOSPlatform("windows")]
         public SplitPanePosition Position { get; set; }
     }
 

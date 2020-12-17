@@ -3,8 +3,8 @@
 namespace Nivaes.App.Cross.Mobile.Windows.Sample
 {
     using Nivaes.App.Cross.Mobele.Windows.Sample;
+    using Nivaes.App.Cross.Mobile.Sample;
     using Nivaes.App.Cross.Views;
-    using Nivaes.App.Mobile.Sample;
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
