@@ -232,14 +232,6 @@
       <Project>{0760352a-6c2d-4f4d-8f9b-05e3faa74f91}</Project>
       <Name>Nivaes.App.Cross</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.iOS\Nivaes.App.Cross.Color.iOS.csproj">
-      <Project>{ca38bea2-089e-4b55-9f08-5cd64115e882}</Project>
-      <Name>Nivaes.App.Cross.Color.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.iOS\Nivaes.App.Cross.Visibility.iOS.csproj">
-      <Project>{4d7ff92f-f42f-4a82-bd2b-425ba985541a}</Project>
-      <Name>Nivaes.App.Cross.Visibility.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
       <Project>{34977945-dc28-4055-ae31-afcb0be0cda3}</Project>
       <Name>Nivaes.App.Cross.Mobile.Sample</Name>

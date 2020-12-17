@@ -1,7 +1,8 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<!--<Project Sdk="MSBuild.Sdk.Extras">-->
+<Project Sdk="Tizen.NET.Sdk/1.1.5">
 
   <PropertyGroup>
-    <TargetFramework>tizen40</TargetFramework>
+    <TargetFramework>tizen80</TargetFramework>
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>

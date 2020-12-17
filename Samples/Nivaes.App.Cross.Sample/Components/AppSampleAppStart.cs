@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Mobile.Sample
+﻿namespace Nivaes.App.Cross.Sample
 {
     using System;
     using System.Threading.Tasks;

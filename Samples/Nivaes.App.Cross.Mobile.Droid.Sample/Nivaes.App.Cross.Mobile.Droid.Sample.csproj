@@ -158,14 +158,6 @@
       <Project>{0760352a-6c2d-4f4d-8f9b-05e3faa74f91}</Project>
       <Name>Nivaes.App.Cross</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.Droid\Nivaes.App.Cross.Color.Droid.csproj">
-      <Project>{98bac508-d1f3-45d4-a7f0-bd3ba3b3ee08}</Project>
-      <Name>Nivaes.App.Cross.Color.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.Droid\Nivaes.App.Cross.Visibility.Droid.csproj">
-      <Project>{5c40abc5-02ac-4559-987c-81f0535a1302}</Project>
-      <Name>Nivaes.App.Cross.Visibility.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj">
       <Project>{a79d484a-2355-4f29-95d9-b87629dadbc1}</Project>
       <Name>Nivaes.App.Cross.Mobile.Sample</Name>

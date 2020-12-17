@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Mobile.Sample
+﻿namespace Nivaes.App.Cross.Mobile.Sample
 {
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Sample;

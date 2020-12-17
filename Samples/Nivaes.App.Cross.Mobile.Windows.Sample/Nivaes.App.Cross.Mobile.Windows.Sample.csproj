@@ -4,8 +4,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
-    <!--<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>-->
-    <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Sample.exe.manifest</ApplicationManifest>
+    <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Wpf.Sample.exe.manifest</ApplicationManifest>
 
     <!--<XamlCodeGenerationControlFlags>DoNotGenerateOtherProviders</XamlCodeGenerationControlFlags>-->
     <Platforms>x86;x64;arm;arm64</Platforms>
@@ -36,10 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Nivaes.App.Cross.Uap\Nivaes.App.Cross.Uap.csproj" />
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Windows\Nivaes.App.Cross.Windows.csproj" />
     <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Color.Uap\Nivaes.App.Cross.Color.Uap.csproj" />
-    <ProjectReference Include="..\..\Plugins\Nivaes.App.Cross.Visibility.Uap\Nivaes.App.Cross.Visibility.Uap.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
   </ItemGroup>
 
@@ -48,37 +45,5 @@
       Microsoft.Graphics.Canvas
     </CSWinRTIncludes>
   </PropertyGroup>
-
-  <!--<UsingTask TaskName="FixWUXReferences" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-    <ParameterGroup>
-      <CsWinrtFiles ParameterType="System.String[]" Required="true" />
-    </ParameterGroup>
-    <Task>
-      <Using Namespace="System" />
-      <Using Namespace="System.IO" />
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-          foreach (string csWinrtFile in CsWinrtFiles)
-          {
-              string fileContents = System.IO.File.ReadAllText(csWinrtFile);
-              fileContents = fileContents.Replace("Windows.UI.Xaml", "Microsoft.UI.Xaml");
-              System.IO.File.WriteAllText(csWinrtFile, fileContents);
-          }
-]]>
-      </Code>
-    </Task>
-  </UsingTask>-->
-  <!--<Target Name="FixWin2DProjection" AfterTargets="CsWinRTGenerateProjection" BeforeTargets="XamlPreCompile;CoreCompile">
-    <FixWUXReferences CsWinrtFiles="$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.cs;$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.UI.Xaml.cs" />
-  </Target>-->
-
-  <!--<PropertyGroup Condition="'$(IsInWinUIRepo)' != 'true'">
-    <CoreCompileDependsOn Condition="'$(CsWinRTExe)' != ''">
-      $(CoreCompileDependsOn);
-      CsWinRTIncludeProjection
-    </CoreCompileDependsOn>
-
-    <CsWinRTWindowsMetadata>10.0.18362.0</CsWinRTWindowsMetadata>
-  </PropertyGroup>-->
 
 </Project>

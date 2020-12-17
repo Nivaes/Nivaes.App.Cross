@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+
+    <AssemblyName>Nivaes.App.Cross.Windows.Wpf</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Windows.Wpf</RootNamespace>
+
+    <Description>
+      Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
+
+      This package contains the 'Core' libraries for Nivaes.App.Cross
+    </Description>
+    <PackageId>Nivaes.App.Cross.Windows.Wpf</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Plugins\Color\" />
+  </ItemGroup>
+
+</Project>
