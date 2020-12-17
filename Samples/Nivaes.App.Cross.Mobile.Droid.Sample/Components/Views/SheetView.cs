@@ -11,7 +11,7 @@
 //    using Android.Views;
 //    using MvvmCross.Platforms.Android.Binding.BindingContext;
 //    using Nivaes.App.Cross.Presenters;
-//    using Nivaes.App.Mobile.Sample;
+//    using Nivaes.App.Cross.Sample;
 
 //    [MvxDialogFragmentPresentation]
 //    [Register(nameof(SheetView))]

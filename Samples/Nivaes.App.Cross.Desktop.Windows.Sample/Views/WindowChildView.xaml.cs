@@ -3,7 +3,7 @@
     using MvvmCross.Platforms.Wpf.Presenters.Attributes;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     public partial class WindowChildView
         : IMvxOverridePresentationAttribute

@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [Register(nameof(FragmentCloseView))]
     //[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]

@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.OS;
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]

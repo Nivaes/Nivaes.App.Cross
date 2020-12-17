@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.App;
     using Android.Runtime;
     using MvvmCross.Platforms.Android.Views;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Mobile.Sample;
 
     [Application]
     public class MainApplication

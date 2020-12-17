@@ -5,7 +5,7 @@
 namespace Nivaes.App.Cross.Mobile.Droid.Sample
 {
     using MvvmCross.Platforms.Android.Core;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Mobile.Sample;
 
     public sealed class Setup :
         MvxAndroidSetup<AppMobileSampleApplication<AppMobileSampleAppStart>>

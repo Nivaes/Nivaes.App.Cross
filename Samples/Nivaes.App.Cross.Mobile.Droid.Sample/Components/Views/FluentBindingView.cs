@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
     public class FluentBindingView : MvxFragment<FluentBindingViewModel>

@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Droid.RecyclerView;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme")]

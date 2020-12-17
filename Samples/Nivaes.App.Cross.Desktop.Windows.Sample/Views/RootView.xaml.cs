@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Desktop.Windows.Wpf.Sample
 {
     using MvvmCross.ViewModels;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxViewFor(typeof(RootViewModel))]
     public partial class RootView

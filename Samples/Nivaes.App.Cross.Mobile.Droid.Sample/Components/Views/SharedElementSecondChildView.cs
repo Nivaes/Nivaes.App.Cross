@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame, true)]
     public class SharedElementSecondChildView : MvxFragment<SharedElementSecondChildViewModel>

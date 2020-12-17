@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using AndroidX.DrawerLayout.Widget;
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxActivityPresentation]
     [Activity(

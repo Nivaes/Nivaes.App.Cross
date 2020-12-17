@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 {
     using Android.Runtime;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame, AddToBackStack = true)]
     [Register(nameof(SplitDetailNavView))]
