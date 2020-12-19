@@ -4,8 +4,11 @@
 
 namespace Nivaes.App.Cross.Sample
 {
+    using System.Diagnostics;
     using System.Globalization;
+    using System.Net;
     using System.Threading.Tasks;
+    using MvvmCross;
     using MvvmCross.Localization;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;

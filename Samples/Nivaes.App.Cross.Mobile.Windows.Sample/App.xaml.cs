@@ -2,6 +2,9 @@
 
 namespace Nivaes.App.Cross.Mobile.Windows.Sample
 {
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
     using Nivaes.App.Cross.Mobele.Windows.Sample;
     using Nivaes.App.Cross.Mobile.Sample;
     using Nivaes.App.Cross.Views;
@@ -18,6 +21,9 @@ namespace Nivaes.App.Cross.Mobile.Windows.Sample
         /// </summary>
         public App()
         {
+            //AppCenter.Start("",
+            //                typeof(Analytics), typeof(Crashes));
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

@@ -600,7 +600,6 @@ namespace MvvmCross.IoC
 
         private void InternalSetResolver(Type interfaceType, IResolver resolver)
         {
-
             mResolvers.TryAdd(interfaceType, resolver);
 
             if (mWaiters.TryGetValue(interfaceType, out List<Action>? actions))

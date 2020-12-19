@@ -8,35 +8,41 @@
     mc:Ignorable="d">
     <StackPanel>
         <TextBlock Text="{StaticResource WelcomeText}" />
-       
+
         <Button
             Margin="5"
             Padding="5"
-            Command="{Binding ShowChildCommand}"
+            Command="{Binding ShowChildCommand, Mode=OneTime}"
             Content="Show Child (Stack Navigation)" />
+
         <Button
             Margin="5"
             Padding="5"
-            Command="{Binding ShowSplitCommand}"
+            Command="{Binding ShowSplitCommand, Mode=OneTime}"
             Content="Show SplitView" />
+
         <Button
             Margin="5"
             Padding="5"
-            Command="{Binding ShowModalCommand}"
+            Command="{Binding ShowModalCommand, Mode=OneTime}"
             Content="Show Modaliew" />
 
         <Button
             Margin="5"
             Padding="5"
-            Command="{Binding RegisterAndResolveWithReflectionCommand}"
+            Command="{Binding RegisterAndResolveWithReflectionCommand, Mode=OneTime}"
             Content="Register and Resolve With Reflection" />
+
         <Button
             Margin="5"
             Padding="5"
-            Command="{Binding RegisterAndResolveWithNoReflectionCommand}"
+            Command="{Binding RegisterAndResolveWithNoReflectionCommand, Mode=OneTime}"
             Content="Register and Resolve With No Reflection" />
-        <TextBlock Text="{Binding TimeToRegister}" />
-        <TextBlock Text="{Binding TimeToResolve}" />
-        <TextBlock Text="{Binding TotalTime}" />
+
+        <TextBlock Text="{Binding TimeToRegister, Mode=OneWay}" />
+
+        <TextBlock Text="{Binding TimeToResolve, Mode=OneWay}" />
+
+        <TextBlock Text="{Binding TotalTime, Mode=OneWay}" />
     </StackPanel>
 </app:RootViewPage>
