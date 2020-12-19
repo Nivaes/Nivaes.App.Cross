@@ -2,25 +2,25 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Core.Parse.StringDictionary
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.ViewModels;
+
     public class MvxViewModelRequestCustomTextSerializer
         : IMvxTextSerializer
     {
-        private IMvxViewModelByNameLookup _byNameLookup;
+        private IMvxViewModelByNameLookup? mByNameLookup;
 
         protected IMvxViewModelByNameLookup ByNameLookup
         {
             get
             {
-                _byNameLookup = _byNameLookup ?? Mvx.IoCProvider.Resolve<IMvxViewModelByNameLookup>();
-                return _byNameLookup;
+                mByNameLookup ??= Mvx.IoCProvider.Resolve<IMvxViewModelByNameLookup>();
+                return mByNameLookup;
             }
         }
 
@@ -31,11 +31,11 @@ namespace MvvmCross.Core.Parse.StringDictionary
 
         public string SerializeObject(object toSerialise)
         {
-            if (toSerialise is MvxViewModelRequest)
-                return Serialize((MvxViewModelRequest)toSerialise);
+            if (toSerialise is MvxViewModelRequest mvxViewModelRequest)
+                return Serialize(mvxViewModelRequest);
 
-            if (toSerialise is IDictionary<string, string>)
-                return Serialize((IDictionary<string, string>)toSerialise);
+            if (toSerialise is IDictionary<string, string> dictionarySerilise)
+                return Serialize(dictionarySerilise);
 
             throw new MvxException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
         }
@@ -78,32 +78,40 @@ namespace MvvmCross.Core.Parse.StringDictionary
 
         protected virtual string Serialize(MvxViewModelRequest toSerialise)
         {
+            if (toSerialise == null)
+                throw new NullReferenceException(nameof(toSerialise));
+
             var stringDictionaryWriter = new MvxStringDictionaryWriter();
 
-            var dictionary = new Dictionary<string, string>();
-            dictionary["Type"] = SerializeViewModelName(toSerialise.ViewModelType);
-            dictionary["Params"] = stringDictionaryWriter.Write(toSerialise.ParameterValues);
-            dictionary["Pres"] = stringDictionaryWriter.Write(toSerialise.PresentationValues);
+            var dictionary = new Dictionary<string, string>
+            {
+                ["Type"] = SerializeViewModelName(toSerialise.ViewModelType),
+                ["Params"] = stringDictionaryWriter.Write(toSerialise.ParameterValues),
+                ["Pres"] = stringDictionaryWriter.Write(toSerialise.PresentationValues)
+            };
+
             return stringDictionaryWriter.Write(dictionary);
         }
 
         protected virtual string SerializeViewModelName(Type viewModelType)
         {
+            if (viewModelType == null)
+                throw new NullReferenceException(nameof(viewModelType));
+
             return viewModelType.FullName;
         }
 
         protected virtual Type DeserializeViewModelType(string viewModelTypeName)
         {
-            Type toReturn;
-            if (!ByNameLookup.TryLookupByFullName(viewModelTypeName, out toReturn))
+            if (!ByNameLookup.TryLookupByFullName(viewModelTypeName, out Type toReturn))
                 throw new MvxException("Failed to find viewmodel for {0} - is the ViewModel in the same Assembly as App.cs? If not, you can add it by overriding GetViewModelAssemblies() in setup", viewModelTypeName);
+
             return toReturn;
         }
 
         private string SafeGetValue(IDictionary<string, string> dictionary, string key)
         {
-            string value;
-            if (!dictionary.TryGetValue(key, out value))
+            if (!dictionary.TryGetValue(key, out string value))
                 throw new MvxException("Dictionary missing required keyvalue pair for key {0}", key);
             return value;
         }

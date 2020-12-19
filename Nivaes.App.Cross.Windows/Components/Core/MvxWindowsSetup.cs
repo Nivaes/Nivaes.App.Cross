@@ -69,7 +69,7 @@ namespace MvvmCross.Platforms.Uap.Core
             Mvx.IoCProvider.RegisterSingleton(suspensionManager);
 
             if (mSuspensionManagerSessionStateKey != null)
-                suspensionManager.RegisterFrame(mRootFrame, mSuspensionManagerSessionStateKey);
+                suspensionManager.RegisterFrame(mRootFrame!, mSuspensionManagerSessionStateKey);
         }
 
         protected virtual IMvxSuspensionManager CreateSuspensionManager()
@@ -82,8 +82,10 @@ namespace MvvmCross.Platforms.Uap.Core
             var container = CreateStoreViewsContainer();
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
             Mvx.IoCProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
+
             if (!(container is MvxViewsContainer))
                 throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
+
             return container;
         }
 
@@ -94,14 +96,14 @@ namespace MvvmCross.Platforms.Uap.Core
 
         protected override IMvxViewDispatcher CreateViewDispatcher()
         {
-            return CreateViewDispatcher(mRootFrame);
+            return CreateViewDispatcher(mRootFrame!);
         }
 
         protected IMvxWindowsViewPresenter Presenter
         {
             get
             {
-                mPresenter ??= CreateViewPresenter(mRootFrame);
+                mPresenter ??= CreateViewPresenter(mRootFrame!);
                 return mPresenter;
             }
         }
@@ -168,7 +170,7 @@ namespace MvvmCross.Platforms.Uap.Core
 
         protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
-        protected virtual List<Type> ValueConverterHolders => new List<Type>();
+        protected virtual List<Type> ValueConverterHolders => new();
 
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {

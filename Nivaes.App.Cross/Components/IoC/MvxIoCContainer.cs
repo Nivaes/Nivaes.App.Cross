@@ -6,6 +6,7 @@ namespace MvvmCross.IoC
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Reflection;
     using MvvmCross.Base;
@@ -15,10 +16,9 @@ namespace MvvmCross.IoC
     internal class MvxIoCContainer
         : IMvxIoCProvider
     {
-        private readonly Dictionary<Type, IResolver> mResolvers = new Dictionary<Type, IResolver>();
-        private readonly Dictionary<Type, List<Action>> mWaiters = new Dictionary<Type, List<Action>>();
-        private readonly Dictionary<Type, bool> mCircularTypeDetection = new Dictionary<Type, bool>();
-        private readonly object mLockObject = new object();
+        private readonly ConcurrentDictionary<Type, IResolver> mResolvers = new();
+        private readonly ConcurrentDictionary<Type, List<Action>> mWaiters = new();
+        private readonly ConcurrentDictionary<Type, bool> mCircularTypeDetection = new();
         private readonly IMvxIocOptions mOptions;
         private readonly IMvxPropertyInjector? mPropertyInjector;
         private readonly IMvxIoCProvider? mParentProvider;
@@ -60,7 +60,8 @@ namespace MvvmCross.IoC
             void SetGenericTypeParameters(Type[] genericTypeParameters);
         }
 
-        public class ConstructingResolver : IResolver
+        public class ConstructingResolver
+            : IResolver
         {
             private readonly Type _type;
             private readonly IMvxIoCProvider _parent;
@@ -84,18 +85,19 @@ namespace MvvmCross.IoC
             public ResolverType ResolveType => ResolverType.DynamicPerResolve;
         }
 
-        public class FuncConstructingResolver : IResolver
+        public class FuncConstructingResolver
+            : IResolver
         {
-            private readonly Func<object> _constructor;
+            private readonly Func<object> mConstructor;
 
             public FuncConstructingResolver(Func<object> constructor)
             {
-                _constructor = constructor;
+                mConstructor = constructor;
             }
 
             public object Resolve()
             {
-                return _constructor();
+                return mConstructor();
             }
 
             public void SetGenericTypeParameters(Type[] genericTypeParameters)
@@ -106,7 +108,8 @@ namespace MvvmCross.IoC
             public ResolverType ResolveType => ResolverType.DynamicPerResolve;
         }
 
-        public class SingletonResolver : IResolver
+        public class SingletonResolver
+            : IResolver
         {
             private readonly object mTheObject;
 
@@ -128,7 +131,8 @@ namespace MvvmCross.IoC
             public ResolverType ResolveType => ResolverType.Singleton;
         }
 
-        public class ConstructingSingletonResolver : IResolver
+        public class ConstructingSingletonResolver
+            : IResolver
         {
             private readonly object mSyncObject = new object();
             private readonly Func<object> mConstructor;
@@ -161,27 +165,28 @@ namespace MvvmCross.IoC
             public ResolverType ResolveType => ResolverType.Singleton;
         }
 
-        public class ConstructingOpenGenericResolver : IResolver
+        public class ConstructingOpenGenericResolver
+            : IResolver
         {
-            private readonly Type _genericTypeDefinition;
-            private readonly IMvxIoCProvider _parent;
+            private readonly Type mGenericTypeDefinition;
+            private readonly IMvxIoCProvider mParent;
 
-            private Type[] _genericTypeParameters;
+            private Type[]? mGenericTypeParameters;
 
             public ConstructingOpenGenericResolver(Type genericTypeDefinition, IMvxIoCProvider parent)
             {
-                _genericTypeDefinition = genericTypeDefinition;
-                _parent = parent;
+                mGenericTypeDefinition = genericTypeDefinition;
+                mParent = parent;
             }
 
             public void SetGenericTypeParameters(Type[] genericTypeParameters)
             {
-                _genericTypeParameters = genericTypeParameters;
+                mGenericTypeParameters = genericTypeParameters;
             }
 
             public object Resolve()
             {
-                return _parent.IoCConstruct(_genericTypeDefinition.MakeGenericType(_genericTypeParameters));
+                return mParent.IoCConstruct(mGenericTypeDefinition.MakeGenericType(mGenericTypeParameters!));
             }
 
             public ResolverType ResolveType => ResolverType.DynamicPerResolve;
@@ -195,18 +200,15 @@ namespace MvvmCross.IoC
 
         public bool CanResolve(Type t)
         {
-            lock (mLockObject)
+            if (mResolvers.ContainsKey(t))
             {
-                if (mResolvers.ContainsKey(t))
-                {
-                    return true;
-                }
-                if (mParentProvider != null && mParentProvider.CanResolve(t))
-                {
-                    return true;
-                }
-                return false;
+                return true;
             }
+            if (mParentProvider?.CanResolve(t) == true)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool TryResolve<T>(out T resolved)
@@ -225,12 +227,9 @@ namespace MvvmCross.IoC
             }
         }
 
-        public bool TryResolve(Type type, out object resolved)
+        public bool TryResolve(Type type, out object? resolved)
         {
-            lock (mLockObject)
-            {
-                return InternalTryResolve(type, out resolved);
-            }
+            return InternalTryResolve(type, out resolved);
         }
 
         public T Resolve<T>()
@@ -243,16 +242,13 @@ namespace MvvmCross.IoC
         {
             if (t == null) throw new NullReferenceException(nameof(t));
 
-            lock (mLockObject)
+            if (!InternalTryResolve(t, out object? resolved))
             {
-                if (!InternalTryResolve(t, out object resolved))
-                {
-                    InternalTryResolve(t, out resolved);
+                //InternalTryResolve(t, out resolved);
 
-                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
-                }
-                return resolved;
+                throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
             }
+            return resolved!;
         }
 
         public T GetSingleton<T>()
@@ -265,14 +261,12 @@ namespace MvvmCross.IoC
         {
             if (t == null) throw new NullReferenceException(nameof(t));
 
-            lock (mLockObject)
+            if (!InternalTryResolve(t, ResolverType.Singleton, out object? resolved))
             {
-                if (!InternalTryResolve(t, ResolverType.Singleton, out object resolved))
-                {
-                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
-                }
-                return resolved;
+                throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
             }
+
+            return resolved!;
         }
 
         public T Create<T>()
@@ -281,18 +275,16 @@ namespace MvvmCross.IoC
             return (T)Create(typeof(T));
         }
 
-        public object Create(Type t)
+        public object? Create(Type t)
         {
             if (t == null) throw new NullReferenceException(nameof(t));
 
-            lock (mLockObject)
+            if (!InternalTryResolve(t, ResolverType.DynamicPerResolve, out object? resolved))
             {
-                if (!InternalTryResolve(t, ResolverType.DynamicPerResolve, out object resolved))
-                {
-                    throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
-                }
-                return resolved;
+                throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
             }
+
+            return resolved;
         }
 
         public void RegisterType<TInterface, TToConstruct>()
@@ -317,7 +309,7 @@ namespace MvvmCross.IoC
                 if (ret != null && !t.IsInstanceOfType(ret))
                     throw new MvxIoCResolveException($"Constructor failed to return a compatibly object for type {t.FullName}");
 
-                return ret;
+                return ret!;
             });
 
             InternalSetResolver(t, resolver);
@@ -456,21 +448,18 @@ namespace MvvmCross.IoC
 
         public void CallbackWhenRegistered(Type type, Action action)
         {
-            lock (mLockObject)
+            if (!CanResolve(type))
             {
-                if (!CanResolve(type))
+                if (mWaiters.TryGetValue(type, out List<Action>? actions))
                 {
-                    if (mWaiters.TryGetValue(type, out List<Action> actions))
-                    {
-                        actions.Add(action);
-                    }
-                    else
-                    {
-                        actions = new List<Action> { action };
-                        mWaiters[type] = actions;
-                    }
-                    return;
+                    actions.Add(action);
                 }
+                else
+                {
+                    actions = new List<Action> { action };
+                    mWaiters[type] = actions;
+                }
+                return;
             }
 
             // if we get here then the type is already registered - so call the aciton immediately
@@ -495,7 +484,7 @@ namespace MvvmCross.IoC
 
         private static readonly ResolverType? ResolverTypeNoneSpecified = null;
 
-        private bool Supports(IResolver resolver, ResolverType? requiredResolverType)
+        private bool Supports(IResolver? resolver, ResolverType? requiredResolverType)
         {
             if (!requiredResolverType.HasValue)
                 return true;
@@ -509,7 +498,7 @@ namespace MvvmCross.IoC
 
         private bool InternalTryResolve(Type type, ResolverType? requiredResolverType, out object? resolved)
         {
-            if (!TryGetResolver(type, out IResolver resolver))
+            if (!TryGetResolver(type, out IResolver? resolver))
             {
                 if (mParentProvider != null && mParentProvider.TryResolve(type, out resolved))
                 {
@@ -529,14 +518,16 @@ namespace MvvmCross.IoC
             return InternalTryResolve(type, resolver, out resolved);
         }
 
-        private bool TryGetResolver(Type type, out IResolver resolver)
+        private bool TryGetResolver(Type type, out IResolver? resolver)
         {
             if (mResolvers.TryGetValue(type, out resolver))
             {
                 return true;
             }
 
-            var aa = mResolvers.Keys.ToArray();
+#if DEBUG
+            var debugResolvers = mResolvers.Keys.ToArray();
+#endif
 
             if (!type.GetTypeInfo().IsGenericType)
             {
@@ -564,7 +555,7 @@ namespace MvvmCross.IoC
             {
                 try
                 {
-                    mCircularTypeDetection.Add(type, true);
+                    mCircularTypeDetection.TryAdd(type, true);
                 }
                 catch (ArgumentException)
                 {
@@ -602,21 +593,19 @@ namespace MvvmCross.IoC
             {
                 if (detectingCircular)
                 {
-                    mCircularTypeDetection.Remove(type);
+                    mCircularTypeDetection.TryRemove(type, out bool _);
                 }
             }
         }
 
         private void InternalSetResolver(Type interfaceType, IResolver resolver)
         {
-            List<Action> actions;
-            lock (mLockObject)
+
+            mResolvers.TryAdd(interfaceType, resolver);
+
+            if (mWaiters.TryGetValue(interfaceType, out List<Action>? actions))
             {
-                mResolvers[interfaceType] = resolver;
-                if (mWaiters.TryGetValue(interfaceType, out actions))
-                {
-                    mWaiters.Remove(interfaceType);
-                }
+                mWaiters.TryRemove(interfaceType, out List<Action> _);
             }
 
             if (actions != null)
@@ -649,16 +638,16 @@ namespace MvvmCross.IoC
             }
             return parameters;
         }
-        
+
         protected virtual List<object> GetIoCParameterValues(Type type, ConstructorInfo selectedConstructor, object[] arguments)
         {
             var parameters = new List<object>();
             var unusedArguments = arguments.ToList();
-            
+
             foreach (var parameterInfo in selectedConstructor.GetParameters())
             {
                 var argumentMatch = unusedArguments.FirstOrDefault(arg => parameterInfo.ParameterType.IsInstanceOfType(arg));
-                
+
                 if (argumentMatch != null)
                 {
                     parameters.Add(argumentMatch);
@@ -674,6 +663,8 @@ namespace MvvmCross.IoC
 
         private bool TryResolveParameter(Type type, ParameterInfo parameterInfo, out object parameterValue)
         {
+            if (parameterInfo == null) throw new ArgumentNullException(nameof(parameterInfo));
+
             if (!TryResolve(parameterInfo.ParameterType, out parameterValue))
             {
                 if (parameterInfo.IsOptional)
