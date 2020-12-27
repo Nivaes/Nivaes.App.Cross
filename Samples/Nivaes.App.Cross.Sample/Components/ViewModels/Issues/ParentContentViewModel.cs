@@ -5,10 +5,9 @@
 namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross;
-    using MvvmCross.Commands;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
 
     public class ParentContentViewModel
         : MvxViewModel

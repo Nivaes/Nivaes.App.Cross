@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Sample
 {
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
 

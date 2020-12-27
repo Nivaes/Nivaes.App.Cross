@@ -1,6 +1,7 @@
 ﻿namespace MvvmCross.Tests
 {
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
 
     public static class MvxUnitTestCommandExtensions
     {

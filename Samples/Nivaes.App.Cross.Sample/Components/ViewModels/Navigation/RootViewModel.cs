@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Sample
     using System.Threading.Tasks;
     using MvvmCross.Localization;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
 

@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Presenters;
@@ -14,7 +14,8 @@ namespace Nivaes.App.Cross.Sample
     public class Tab1ViewModel
         : MvxNavigationViewModel<string>
     {
-        public Tab1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public Tab1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
             OpenChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
 

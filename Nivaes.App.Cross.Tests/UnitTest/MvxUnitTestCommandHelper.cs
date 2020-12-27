@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
 
     public class MvxUnitTestCommandHelper
         : IMvxCommandHelper
