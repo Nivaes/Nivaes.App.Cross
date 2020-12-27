@@ -2,10 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.Platforms.Ios
 {
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxIosMajorVersionChecker
     {
         public bool IsVersionOrHigher { get; private set; }
@@ -17,8 +18,7 @@ namespace MvvmCross.Platforms.Ios
 
         private static bool ReadIsIosVersionOrHigher(int target, bool defaultValue)
         {
-            IMvxIosSystem iosSystem;
-            Mvx.IoCProvider.TryResolve<IMvxIosSystem>(out iosSystem);
+            Mvx.IoCProvider.TryResolve<IMvxIosSystem>(out IMvxIosSystem iosSystem);
             if (iosSystem == null)
             {
                 MvxLog.Instance?.Warn("IMvxIosSystem not found - so assuming we {1} on iOS {0} or later", target, defaultValue ? "are" : "are not");

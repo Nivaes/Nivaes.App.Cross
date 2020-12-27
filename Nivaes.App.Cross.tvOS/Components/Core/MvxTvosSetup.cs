@@ -20,6 +20,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using MvvmCross.Platforms.Tvos.Views;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
     using UIKit;
 

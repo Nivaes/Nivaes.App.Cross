@@ -8,9 +8,10 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxAndroidViewsContainer
         : MvxViewsContainer, IMvxAndroidViewsContainer

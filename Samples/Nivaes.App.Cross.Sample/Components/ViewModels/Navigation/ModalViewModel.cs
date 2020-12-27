@@ -5,10 +5,10 @@
 namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class ModalViewModel
         : MvxNavigationViewModel

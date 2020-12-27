@@ -2,16 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
 using Tizen.Applications;
 
 namespace MvvmCross.Platforms.Tizen.Core
 {
-    public abstract class MvxCoreUIApplication : CoreUIApplication, IMvxLifetime
+    using System;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public abstract class MvxCoreUIApplication
+        : CoreUIApplication, IMvxLifetime
     {
-        public MvxCoreUIApplication() : base()
+        public MvxCoreUIApplication()
+            : base()
         {
             RegisterSetup();
         }

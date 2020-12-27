@@ -17,6 +17,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.Bindings;
     using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
+    using Nivaes.App.Cross;
 
     public class MvxAndroidViewBinder
         : IMvxAndroidViewBinder

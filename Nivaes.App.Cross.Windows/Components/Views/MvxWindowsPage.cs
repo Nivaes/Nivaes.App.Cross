@@ -6,13 +6,13 @@ namespace MvvmCross.Platforms.Uap.Views
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using MvvmCross.Platforms.Uap.Views.Suspension;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
     using Windows.UI.Core;
 
     public class MvxWindowsPage

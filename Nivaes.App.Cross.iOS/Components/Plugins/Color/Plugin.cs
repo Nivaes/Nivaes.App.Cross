@@ -5,6 +5,7 @@
 namespace MvvmCross.Plugin.Color.Platforms.Ios
 {
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]

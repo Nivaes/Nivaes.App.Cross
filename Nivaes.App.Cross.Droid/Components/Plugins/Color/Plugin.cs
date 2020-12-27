@@ -7,6 +7,7 @@ namespace MvvmCross.Plugin.Color.Platforms.Android
     using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Plugin.Color.Platforms.Android.BindingTargets;
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]

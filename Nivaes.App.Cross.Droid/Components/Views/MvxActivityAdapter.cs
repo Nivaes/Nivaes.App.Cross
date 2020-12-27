@@ -2,18 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
 using Android.OS;
-using MvvmCross.Base;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Android;
-using MvvmCross.Platforms.Android.Views.Base;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Platforms.Android;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross;
+
     public class MvxActivityAdapter : MvxBaseActivityAdapter
     {
         protected IMvxAndroidView AndroidView => Activity as IMvxAndroidView;
@@ -33,7 +35,7 @@ namespace MvvmCross.Platforms.Android.Views
             AndroidView.OnViewStart();
         }
 
-        protected override void EventSourceOnStartActivityForResultCalled(object sender, 
+        protected override void EventSourceOnStartActivityForResultCalled(object sender,
                                                                           MvxValueEventArgs<MvxStartActivityForResultParameters> MvxValueEventArgs)
         {
             var requestCode = MvxValueEventArgs.Value.RequestCode;

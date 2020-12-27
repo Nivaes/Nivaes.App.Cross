@@ -5,12 +5,13 @@
 namespace MvvmCross.Platforms.Android.Views
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
-    using System.Threading.Tasks;
 
     public static class MvxFragmentExtensions
     {

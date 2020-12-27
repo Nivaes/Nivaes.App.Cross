@@ -5,14 +5,15 @@
 //
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
-using System.Collections.Generic;
-using Microsoft.UI.Xaml;
-using MvvmCross.Base;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
+    using System.Collections.Generic;
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Base;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     // ReSharper disable InconsistentNaming
     public static class La
     // ReSharper restore InconsistentNaming

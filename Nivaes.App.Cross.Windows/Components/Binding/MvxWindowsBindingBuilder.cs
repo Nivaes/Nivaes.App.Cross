@@ -14,6 +14,7 @@ namespace MvvmCross.Platforms.Uap.Binding
     using MvvmCross.Converters;
     using MvvmCross.Platforms.Uap.Binding.MvxBinding;
     using MvvmCross.Platforms.Uap.Binding.MvxBinding.Target;
+    using Nivaes.App.Cross;
 
     public class MvxWindowsBindingBuilder : MvxBindingBuilder
     {

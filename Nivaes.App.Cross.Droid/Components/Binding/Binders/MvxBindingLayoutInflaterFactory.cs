@@ -2,14 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using Android.Content;
 using Android.Util;
 using Android.Views;
-using MvvmCross.Binding.Bindings;
 
 namespace MvvmCross.Platforms.Android.Binding.Binders
 {
+    using System.Collections.Generic;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public class MvxBindingLayoutInflaterFactory
         : IMvxLayoutInflaterHolderFactory
     {

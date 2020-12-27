@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Navigation;
 
     public abstract class AppSampleAppStart
         : MvxAppStart

@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-using Microsoft.UI.Xaml;
-
 namespace MvvmCross.Platforms.Uap.Binding
 {
+    using System.Collections.Generic;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using Microsoft.UI.Xaml;
+    using Nivaes.App.Cross;
+
     // ReSharper disable InconsistentNaming
     public static class Bi
     // ReSharper restore InconsistentNaming

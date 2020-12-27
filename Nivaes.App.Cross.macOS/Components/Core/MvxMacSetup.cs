@@ -22,6 +22,7 @@ namespace MvvmCross.Platforms.Mac.Core
     using MvvmCross.Platforms.Mac.Views;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
 
     public abstract class MvxMacSetup

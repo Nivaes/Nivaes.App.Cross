@@ -2,25 +2,26 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Java.Interop;
-using Java.Lang;
-using Java.Lang.Reflect;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Android.Binding.Binders;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Boolean = Java.Lang.Boolean;
-using Exception = Java.Lang.Exception;
-using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
     using Nivaes.App.Cross.Droid;
+    using System;
+    using Java.Interop;
+    using Java.Lang;
+    using Java.Lang.Reflect;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Platforms.Android.Binding.Binders;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Boolean = Java.Lang.Boolean;
+    using Exception = Java.Lang.Exception;
+    using Object = Java.Lang.Object;
+    using Nivaes.App.Cross;
 
     /// <summary>
     /// Custom LayoutInflater responsible for inflating views and hooking up bindings
@@ -206,7 +207,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                 {
                     return CreateView(name, prefix, attrs);
                 }
-                catch (ClassNotFoundException) 
+                catch (ClassNotFoundException)
                 {
                 }
             }
@@ -340,7 +341,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                         constructorArgsArr[0] = viewContext;
                         _constructorArgs.Set(this, constructorArgsArr);
                     }
-                    
+
                     try
                     {
 #if __ANDROID_29__
@@ -350,7 +351,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
 #endif
                             view = CreateView(name, null, attrs);
                     }
-                    catch (ClassNotFoundException) 
+                    catch (ClassNotFoundException)
                     {
                     }
                     finally
@@ -366,7 +367,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             return view;
         }
 
-        protected IMvxAndroidViewFactory AndroidViewFactory 
+        protected IMvxAndroidViewFactory AndroidViewFactory
         {
             get
             {
@@ -378,7 +379,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                     MvxLog.Instance?.Error("{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
                     return null;
                 }
-                
+
                 if (Mvx.IoCProvider.TryResolve(out IMvxAndroidViewFactory viewFactory))
                 {
                     _androidViewFactory = viewFactory;
@@ -400,7 +401,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                     MvxLog.Instance?.Error("{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
                     return null;
                 }
-                
+
                 if (Mvx.IoCProvider.TryResolve(out IMvxLayoutInflaterHolderFactoryFactory factoryFactory))
                 {
                     _layoutInflaterHolderFactoryFactory = factoryFactory;

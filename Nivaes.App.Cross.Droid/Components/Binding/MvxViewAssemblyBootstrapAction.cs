@@ -3,12 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.Views;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
 
 namespace MvvmCross.Platforms.Android.Binding
 {
+    using MvvmCross.Base;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
+    using Nivaes.App.Cross;
+
     public class MvxViewAssemblyBootstrapAction<TView>
         : IMvxBootstrapAction
     {

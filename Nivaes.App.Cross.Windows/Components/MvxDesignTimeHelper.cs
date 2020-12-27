@@ -5,6 +5,7 @@
 namespace MvvmCross.Platforms.Uap
 {
     using MvvmCross.IoC;
+    using Nivaes.App.Cross;
     using Windows.ApplicationModel;
 
     public abstract class MvxDesignTimeHelper

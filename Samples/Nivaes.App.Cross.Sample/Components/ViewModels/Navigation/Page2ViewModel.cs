@@ -4,9 +4,9 @@
 
 namespace Nivaes.App.Cross.Sample
 {
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class Page2ViewModel
         : MvxNavigationViewModel

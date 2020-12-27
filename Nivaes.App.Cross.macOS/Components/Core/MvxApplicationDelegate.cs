@@ -2,19 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using AppKit;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Mac.Core
 {
+    using System;
+    using AppKit;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate
     {
         private NSWindow window;
         public virtual NSWindow MainWindow
         {
-            get {
+            get
+            {
                 if (window == null)
                 {
                     var style = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled;

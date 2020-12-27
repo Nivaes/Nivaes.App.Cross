@@ -8,6 +8,7 @@ namespace MvvmCross.Platforms.Ios.Core
     using Foundation;
     using MvvmCross.Core;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using UIKit;
 
     public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate

@@ -2,10 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.Platforms.Tvos
 {
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+
     public class MvxTvosMajorVersionChecker
     {
         public bool IsVersionOrHigher { get; private set; }

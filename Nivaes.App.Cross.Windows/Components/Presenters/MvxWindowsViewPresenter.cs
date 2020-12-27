@@ -15,6 +15,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
     using MvvmCross.Platforms.Uap.Views;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Presenters;

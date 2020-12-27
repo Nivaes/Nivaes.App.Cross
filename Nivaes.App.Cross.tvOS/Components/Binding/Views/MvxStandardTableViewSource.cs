@@ -2,17 +2,18 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using Foundation;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using UIKit;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using Foundation;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using UIKit;
+    using Nivaes.App.Cross;
+
     public class MvxStandardTableViewSource : MvxTableViewSource
     {
         private static readonly NSString DefaultCellIdentifier = new NSString("SimpleBindableTableViewCell");

@@ -5,6 +5,7 @@
 namespace MvvmCross.Plugin.Visibility.Platforms.Android
 {
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]

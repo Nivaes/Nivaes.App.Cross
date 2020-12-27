@@ -2,13 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using Android.Content;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Collections.Generic;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public static class MvxChildViewModelOwnerExtensions
     {
         public static Intent CreateIntentFor<TTargetViewModel>(this IMvxAndroidView view, object parameterObject)

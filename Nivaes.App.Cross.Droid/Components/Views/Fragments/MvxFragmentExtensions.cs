@@ -7,13 +7,13 @@ using Android.Views;
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
     using System;
-
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Core;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
     using Fragment = AndroidX.Fragment.App.Fragment;
 
     public static class MvxFragmentExtensions

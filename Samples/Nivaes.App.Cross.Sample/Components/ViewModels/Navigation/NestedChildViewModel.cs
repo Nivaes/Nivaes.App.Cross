@@ -4,10 +4,10 @@
 
 namespace Nivaes.App.Cross.Sample
 {
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Presenters;
 
     public class NestedChildViewModel
@@ -16,9 +16,9 @@ namespace Nivaes.App.Cross.Sample
         public NestedChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
-            PopToChildCommand = new MvxCommand(() => NavigationService.ChangePresentation(new MvxPopPresentationHint(typeof(ChildViewModel))));
-            PopToRootCommand = new MvxCommand(() => NavigationService.ChangePresentation(new MvxPopToRootPresentationHint()));
-            RemoveCommand = new MvxCommand(() => NavigationService.ChangePresentation(new MvxRemovePresentationHint(typeof(SecondChildViewModel))));
+            PopToChildCommand = new MvxAsyncCommand(() => NavigationService.ChangePresentation(new MvxPopPresentationHint(typeof(ChildViewModel))));
+            PopToRootCommand = new MvxAsyncCommand(() => NavigationService.ChangePresentation(new MvxPopToRootPresentationHint()));
+            RemoveCommand = new MvxAsyncCommand(() => NavigationService.ChangePresentation(new MvxRemovePresentationHint(typeof(SecondChildViewModel))));
         }
 
         public IMvxAsyncCommand CloseCommand { get; private set; }

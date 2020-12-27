@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Platforms.Android.Binding.ResourceHelpers
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     public class MvxAppResourceTypeFinder : IMvxAppResourceTypeFinder
     {
         private Type FindResourceType(Assembly assembly)
