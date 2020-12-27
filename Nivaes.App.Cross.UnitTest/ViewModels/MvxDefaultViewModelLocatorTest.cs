@@ -2,18 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
-using MvvmCross.Tests;
-using MvvmCross.UnitTest.Mocks.TestViewModels;
-using MvvmCross.ViewModels;
-using Xunit;
-
 namespace MvvmCross.UnitTest.ViewModels
 {
+    using System;
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.UnitTest.Mocks.TestViewModels;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Navigation;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class MvxDefaultViewModelLocatorTest
     {

@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 
-using MvvmCross.Navigation;
 using MvvmCross.UnitTest.Mocks.TestViewModels;
 using MvvmCross.UnitTest.Stubs;
+using Nivaes.App.Cross.Navigation;
 
 [assembly: MvxNavigation(typeof(ViewModelA), @"https?://mvvmcross.com/blog")]
 [assembly: MvxNavigation(typeof(ViewModelB), @"mvx://test/\?id=00000000000000000000000000000000$")]
@@ -21,7 +21,6 @@ namespace MvvmCross.UnitTest.Navigation
     using Moq;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using MvvmCross.Navigation.EventArguments;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
     using MvvmCross.ViewModels;

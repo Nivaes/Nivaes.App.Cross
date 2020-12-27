@@ -1,10 +1,9 @@
-﻿using System;
-using MvvmCross.Commands;
-using MvvmCross.Tests;
-using Xunit;
-
-namespace MvvmCross.UnitTest.Helpers
+﻿namespace MvvmCross.UnitTest.Helpers
 {
+    using System;
+    using MvvmCross.Tests;
+    using Xunit;
+
     public class MvxUnitTestCommandHelperTests
     {
         [Fact]

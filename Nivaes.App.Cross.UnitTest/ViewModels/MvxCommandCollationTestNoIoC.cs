@@ -4,9 +4,7 @@
 
 namespace MvvmCross.UnitTest.ViewModels
 {
-    using System;
-    using MvvmCross.Commands;
-    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Commands;
     using Xunit;
 
     [Collection("MvxTest")]

@@ -7,11 +7,10 @@ namespace MvvmCross.UnitTest.Navigation
     using System.Threading.Tasks;
     using Moq;
     using MvvmCross.Core;
-    using MvvmCross.Navigation;
-    using MvvmCross.Navigation.EventArguments;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.UnitTest;
     using Xunit;
