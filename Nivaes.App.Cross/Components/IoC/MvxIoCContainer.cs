@@ -244,8 +244,6 @@ namespace MvvmCross.IoC
 
             if (!InternalTryResolve(t, out object? resolved))
             {
-                //InternalTryResolve(t, out resolved);
-
                 throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
             }
             return resolved!;

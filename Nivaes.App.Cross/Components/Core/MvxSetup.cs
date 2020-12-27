@@ -643,10 +643,12 @@ namespace MvvmCross.Core
 
         protected virtual Task<IMvxViewsContainer?> InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 if (viewModelViewLookup == null)
                     return null;
+
+                await Task.Delay(100).ConfigureAwait(false);
 
                 var container = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
                 container.AddAll(viewModelViewLookup);

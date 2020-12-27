@@ -46,6 +46,8 @@ namespace MvvmCross.Platforms.Uap.Views
 
             await mUiDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                await Task.Delay(100).ConfigureAwait(true);
+
                 await ExceptionMaskedActionAsync(action, maskExceptions).ConfigureAwait(false);
             });
 
