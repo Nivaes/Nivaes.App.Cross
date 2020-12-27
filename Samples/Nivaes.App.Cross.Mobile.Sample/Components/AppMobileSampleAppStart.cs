@@ -1,8 +1,8 @@
 ﻿namespace Nivaes.App.Cross.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Sample;
 
     public sealed class AppMobileSampleAppStart
