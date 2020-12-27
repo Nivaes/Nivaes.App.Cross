@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Base;
-using MvvmCross.IoC;
-using Xunit;
-
 namespace MvvmCross.UnitTest.Base
 {
+    using MvvmCross.Base;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class MvxIocPropertyInjectionTest
     {
@@ -15,7 +16,7 @@ namespace MvvmCross.UnitTest.Base
         {
         }
 
-        public interface IB 
+        public interface IB
         {
         }
 
@@ -40,7 +41,7 @@ namespace MvvmCross.UnitTest.Base
             public C CNever { get; set; }
         }
 
-        public class B : IB 
+        public class B : IB
         {
         }
 

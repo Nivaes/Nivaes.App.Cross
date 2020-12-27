@@ -2,16 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-using Xunit;
-
 namespace MvvmCross.UnitTest.Base
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+    using Xunit;
+
     [Collection("MvxTest")]
     public class MvxIocTest : IDisposable
     {
@@ -260,10 +261,10 @@ namespace MvvmCross.UnitTest.Base
         public virtual void TryResolve_CircularButSafeDynamicWithOptionOff_ReturnsTrue()
         {
             COdd.FirstTime = true;
-            
+
             Dispose();
-            _iocProvider = CreateIoCProvider(new MvxIocOptions {TryToDetectDynamicCircularReferences = false});
-            
+            _iocProvider = CreateIoCProvider(new MvxIocOptions { TryToDetectDynamicCircularReferences = false });
+
             _iocProvider.RegisterType<IA, A>();
             _iocProvider.RegisterType<IB, B>();
             _iocProvider.RegisterType<IC, COdd>();
@@ -403,7 +404,7 @@ namespace MvvmCross.UnitTest.Base
             _iocProvider.RegisterType<IB, IC>(c => new B(c));
             _iocProvider.RegisterType<IC>(() => new C2());
 
-            var typesToResolve = new[] {typeof(IA), typeof(IB), typeof(IC)};
+            var typesToResolve = new[] { typeof(IA), typeof(IB), typeof(IC) };
             foreach (var type in typesToResolve)
             {
                 var obj1 = _iocProvider.Resolve(type);
@@ -581,7 +582,7 @@ namespace MvvmCross.UnitTest.Base
         public virtual void IocConstruct_WithDictionaryArguments_CreatesObject()
         {
             var c = new C2();
-            var arguments = new Dictionary<string, object> {["c"] = c};
+            var arguments = new Dictionary<string, object> { ["c"] = c };
             _iocProvider.IoCConstruct<B>(arguments);
         }
 
@@ -589,7 +590,7 @@ namespace MvvmCross.UnitTest.Base
         public virtual void IocConstruct_WithAnonymousTypeArguments_CreatesObject()
         {
             var c = new C2();
-            _iocProvider.IoCConstruct<B>(new {c});
+            _iocProvider.IoCConstruct<B>(new { c });
         }
 
         [Fact]
@@ -599,7 +600,7 @@ namespace MvvmCross.UnitTest.Base
             var subtitle = "The subtitle";
             var description = "The description";
 
-            var arguments = new Dictionary<string, object> {["title"] = title, ["subtitle"] = subtitle, ["description"] = description};
+            var arguments = new Dictionary<string, object> { ["title"] = title, ["subtitle"] = subtitle, ["description"] = description };
             var d = _iocProvider.IoCConstruct<D>(arguments);
 
             Assert.Equal(title, d.Title);
@@ -614,7 +615,7 @@ namespace MvvmCross.UnitTest.Base
             var subtitle = "The subtitle";
             var description = "The description";
 
-            var arguments = new {title, subtitle, description};
+            var arguments = new { title, subtitle, description };
             var d = _iocProvider.IoCConstruct<D>(arguments);
 
             Assert.Equal(title, d.Title);
@@ -654,7 +655,7 @@ namespace MvvmCross.UnitTest.Base
             var second = 2;
 
             var f = _iocProvider.IoCConstruct<F>(first, second);
-            
+
             Assert.NotNull(f);
             Assert.NotNull(f.C);
             Assert.Equal(first, f.First);
