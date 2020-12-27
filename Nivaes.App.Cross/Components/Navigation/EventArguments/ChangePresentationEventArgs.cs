@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Navigation.EventArguments
+namespace Nivaes.App.Cross.Navigation
 {
     using System.Threading;
     using MvvmCross.ViewModels;

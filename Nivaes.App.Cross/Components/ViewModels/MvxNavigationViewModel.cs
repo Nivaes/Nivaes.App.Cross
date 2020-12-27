@@ -6,14 +6,15 @@ namespace MvvmCross.ViewModels
 {
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
+    using Nivaes.App.Cross.Navigation;
 
     public abstract class MvxNavigationViewModel
         : MvxViewModel
     {
         private IMvxLog? mLog;
 
-        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base()
+        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base()
         {
             LogProvider = logProvider;
             NavigationService = navigationService;

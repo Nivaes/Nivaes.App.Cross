@@ -150,6 +150,13 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj"
+        PrivateAssets="all"
+        OutputItemType="Analyzer"
+        ReferenceOutputAssembly="false">
+      <Project>{3d0a9258-5272-4aa5-ab15-59594b5aed56}</Project>
+      <Name>Nivaes.App.Cross.Compilers.Toolset</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj">
       <Project>{ce579be4-97e8-4540-9ebd-655e9e96df57}</Project>
       <Name>Nivaes.App.Cross.Droid</Name>

@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using MvvmCross.Navigation.EventArguments;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Navigation
+namespace Nivaes.App.Cross.Navigation
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+
     public delegate void BeforeNavigateEventHandler(object sender, IMvxNavigateEventArgs e);
 
     public delegate void AfterNavigateEventHandler(object sender, IMvxNavigateEventArgs e);

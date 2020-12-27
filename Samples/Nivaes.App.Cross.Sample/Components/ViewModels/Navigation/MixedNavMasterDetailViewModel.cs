@@ -6,26 +6,27 @@ namespace Nivaes.App.Cross.Sample
 {
     using System;
     using System.Collections.Generic;
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class MixedNavMasterDetailViewModel
         : MvxNavigationViewModel
     {
-        private MenuItem _menuItem;
-        private IMvxAsyncCommand<MenuItem> _onSelectedChangedCommand;
+        private MenuItem? mMenuItem;
+        private IMvxAsyncCommand<MenuItem>? mOnSelectedChangedCommand;
 
         public class MenuItem
         {
-            public string Title { get; set; }
+            public string? Title { get; set; }
 
-            public string Description { get; set; }
-            public Type ViewModelType { get; set; }
+            public string? Description { get; set; }
+            public Type? ViewModelType { get; set; }
         }
 
-        public MixedNavMasterDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public MixedNavMasterDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
             Menu = new[] {
                 new MenuItem { Title = "Root", Description = "The root page", ViewModelType = typeof(MixedNavMasterRootContentViewModel) },
@@ -36,15 +37,15 @@ namespace Nivaes.App.Cross.Sample
 
         public IEnumerable<MenuItem> Menu { get; set; }
 
-        public MenuItem SelectedMenu {
-            get => _menuItem;
+        public MenuItem? SelectedMenu {
+            get => mMenuItem;
             set {
-                if (SetProperty(ref _menuItem, value))
+                if (SetProperty(ref mMenuItem, value))
                     OnSelectedChangedCommand.Execute(value);
             }
         }
 
-        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand => _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
+        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand => mOnSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
                  {
                      if (item == null)
                          return false;

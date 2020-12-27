@@ -167,244 +167,244 @@
             {
                 lock (lockObject)
                 {
-                    if (syntaxNode is CompilationUnitSyntax compilationUnitSyntax)
-                    //&& compilationUnitSyntax.AttributeLists.Any())
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CompilationUnitSyntax:");
-                    }
-                    else if (syntaxNode is NamespaceDeclarationSyntax namespaceDeclarationSyntax)
-                    //&& compilationUnitSyntax.AttributeLists.Any())
-                    {
-                        var usings = namespaceDeclarationSyntax.Usings.ToArray();
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NamespaceDeclarationSyntax:");
-                    }
-                    else if (syntaxNode is InterfaceDeclarationSyntax interfaceDeclarationSyntax)
-                    //&& interfaceDeclarationSyntax.AttributeLists.Any())
-                    {
-                        //Interfaces.Add(interfaceDeclarationSyntax);
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterfaceDeclarationSyntax:");
-                    }
-                    else if (syntaxNode is FieldDeclarationSyntax fieldDeclarationSyntax)
-                    //&& fieldDeclarationSyntax.AttributeLists.Any())
-                    {
-                        //CandidateFields.Add(fieldDeclarationSyntax);
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.FieldDeclarationSyntax:");
-                    }
-                    else if (syntaxNode is ClassDeclarationSyntax classDeclarationSyntax)
-                    //&& fieldDeclarationSyntax.AttributeLists.Any())
-                    {
-                        var members = classDeclarationSyntax.Members.ToArray();
-                        var types = classDeclarationSyntax.BaseList?.Types.ToArray();
-                        var modifiers = classDeclarationSyntax.Modifiers.ToArray();
-                        var parent = classDeclarationSyntax.Parent;
-                        var parentNamespace = classDeclarationSyntax.Parent as NamespaceDeclarationSyntax;
-                        var identifierValue = classDeclarationSyntax.Identifier.Value;
-                        var identifierValueText = classDeclarationSyntax.Identifier.ValueText;
+//                    if (syntaxNode is CompilationUnitSyntax compilationUnitSyntax)
+//                    //&& compilationUnitSyntax.AttributeLists.Any())
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CompilationUnitSyntax:");
+//                    }
+//                    else if (syntaxNode is NamespaceDeclarationSyntax namespaceDeclarationSyntax)
+//                    //&& compilationUnitSyntax.AttributeLists.Any())
+//                    {
+//                        var usings = namespaceDeclarationSyntax.Usings.ToArray();
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NamespaceDeclarationSyntax:");
+//                    }
+//                    else if (syntaxNode is InterfaceDeclarationSyntax interfaceDeclarationSyntax)
+//                    //&& interfaceDeclarationSyntax.AttributeLists.Any())
+//                    {
+//                        //Interfaces.Add(interfaceDeclarationSyntax);
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterfaceDeclarationSyntax:");
+//                    }
+//                    else if (syntaxNode is FieldDeclarationSyntax fieldDeclarationSyntax)
+//                    //&& fieldDeclarationSyntax.AttributeLists.Any())
+//                    {
+//                        //CandidateFields.Add(fieldDeclarationSyntax);
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.FieldDeclarationSyntax:");
+//                    }
+//                    else if (syntaxNode is ClassDeclarationSyntax classDeclarationSyntax)
+//                    //&& fieldDeclarationSyntax.AttributeLists.Any())
+//                    {
+//                        var members = classDeclarationSyntax.Members.ToArray();
+//                        var types = classDeclarationSyntax.BaseList?.Types.ToArray();
+//                        var modifiers = classDeclarationSyntax.Modifiers.ToArray();
+//                        var parent = classDeclarationSyntax.Parent;
+//                        var parentNamespace = classDeclarationSyntax.Parent as NamespaceDeclarationSyntax;
+//                        var identifierValue = classDeclarationSyntax.Identifier.Value;
+//                        var identifierValueText = classDeclarationSyntax.Identifier.ValueText;
 
-                        if (classDeclarationSyntax.AttributeLists.Any(x => x.Attributes.Any(a => a.Name.ToString().Equals("ProtoContract"))))
-                        {
-                            Classes.Add(classDeclarationSyntax);
-                        }
+//                        if (classDeclarationSyntax.AttributeLists.Any(x => x.Attributes.Any(a => a.Name.ToString().Equals("ProtoContract"))))
+//                        {
+//                            Classes.Add(classDeclarationSyntax);
+//                        }
 
-                        var classFullName = classDeclarationSyntax.GetFullName();
+//                        var classFullName = classDeclarationSyntax.GetFullName();
 
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ClassDeclarationSyntax:");
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ClassDeclarationSyntax:");
 
-#if DEBUG
-                        //System.Diagnostics.Debugger.Launch();
-#endif
-                    }
-                    else if (syntaxNode is QualifiedNameSyntax qualifiedNameSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.QualifiedNameSyntax:");
-                    }
-                    else if (syntaxNode is IdentifierNameSyntax identifierNameSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.IdentifierNameSyntax:");
-                    }
-                    else if (syntaxNode is UsingDirectiveSyntax usingDirectiveSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.UsingDirectiveSyntax:");
-                    }
-                    else if (syntaxNode is AttributeListSyntax attributeListSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeListSyntax:");
-                    }
-                    else if (syntaxNode is AttributeArgumentListSyntax attributeArgumentListSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeArgumentListSyntax:");
-                    }
-                    else if (syntaxNode is AttributeArgumentSyntax attributeArgumentSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeArgumentSyntax:");
-                    }
-                    else if (syntaxNode is NameEqualsSyntax nameEqualsSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NameEqualsSyntax:");
-                    }
-                    else if (syntaxNode is SimpleBaseTypeSyntax simpleBaseTypeSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.SimpleBaseTypeSyntax:");
-                    }
-                    else if (syntaxNode is AttributeSyntax attributeSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeSyntax:");
-                    }
-                    else if (syntaxNode is LiteralExpressionSyntax literalExpressionSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.LiteralExpressionSyntax:");
-                    }
-                    else if (syntaxNode is MemberAccessExpressionSyntax memberAccessExpressionSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.MemberAccessExpressionSyntax:");
-                    }
-                    else if (syntaxNode is BaseListSyntax baseListSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BaseListSyntax:");
-                    }
-                    else if (syntaxNode is PropertyDeclarationSyntax propertyDeclarationSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.PropertyDeclarationSyntax:");
-                    }
-                    else if (syntaxNode is AccessorListSyntax accessorListSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AccessorListSyntax:");
-                    }
-                    else if (syntaxNode is AccessorDeclarationSyntax accessorDeclarationSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AccessorDeclarationSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is BlockSyntax blockSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BlockSyntax:");
-                    }
-                    else if (syntaxNode is LocalDeclarationStatementSyntax localDeclarationStatementSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.LocalDeclarationStatementSyntax:");
-                    }
-                    else if (syntaxNode is VariableDeclarationSyntax variableDeclarationSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.VariableDeclarationSyntax:");
-                    }
-                    else if (syntaxNode is IdentifierNameSyntax IdentifierNameSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.IdentifierNameSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is InterpolationSyntax interpolationSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterpolationSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is InterpolatedStringTextSyntax interpolatedStringTextSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterpolatedStringTextSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ArgumentSyntax argumentSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArgumentSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is CatchClauseSyntax catchClauseSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CatchClauseSyntax:");
-                    }
-                    else if (syntaxNode is NullableTypeSyntax nullableTypeSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NullableTypeSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is PredefinedTypeSyntax predefinedTypeSyntax)
-                    {
-                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.PredefinedTypeSyntax:");
-                    }
-                    else if (syntaxNode is EqualsValueClauseSyntax equalsValueClauseSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.EqualsValueClauseSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is InvocationExpressionSyntax invocationExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InvocationExpressionSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ArrowExpressionClauseSyntax arrowExpressionClauseSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArrowExpressionClauseSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is BaseExpressionSyntax baseExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BaseExpressionSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ConstructorDeclarationSyntax constructorDeclarationSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ConstructorDeclarationSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ParameterListSyntax parameterListSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ParameterListSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is VariableDeclaratorSyntax variableDeclaratorSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.VariableDeclaratorSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ArgumentListSyntax argumentListSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArgumentListSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is TypeOfExpressionSyntax typeOfExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.TypeOfExpressionSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is CatchDeclarationSyntax catchDeclarationSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CatchDeclarationSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ReturnStatementSyntax returnStatementSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ReturnStatementSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is CastExpressionSyntax castExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CastExpressionSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ObjectCreationExpressionSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is ExpressionStatementSyntax expressionStatementSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ExpressionStatementSyntax:");
-                        return;
-                    }
-                    else if (syntaxNode is AssignmentExpressionSyntax assignmentExpressionSyntax)
-                    {
-                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AssignmentExpressionSyntax:");
-                        return;
-                    }
-                    else
-                    {
-                        //System.Diagnostics.Debugger.Launch();
+//#if DEBUG
+//                        //System.Diagnostics.Debugger.Launch();
+//#endif
+//                    }
+//                    else if (syntaxNode is QualifiedNameSyntax qualifiedNameSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.QualifiedNameSyntax:");
+//                    }
+//                    else if (syntaxNode is IdentifierNameSyntax identifierNameSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.IdentifierNameSyntax:");
+//                    }
+//                    else if (syntaxNode is UsingDirectiveSyntax usingDirectiveSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.UsingDirectiveSyntax:");
+//                    }
+//                    else if (syntaxNode is AttributeListSyntax attributeListSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeListSyntax:");
+//                    }
+//                    else if (syntaxNode is AttributeArgumentListSyntax attributeArgumentListSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeArgumentListSyntax:");
+//                    }
+//                    else if (syntaxNode is AttributeArgumentSyntax attributeArgumentSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeArgumentSyntax:");
+//                    }
+//                    else if (syntaxNode is NameEqualsSyntax nameEqualsSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NameEqualsSyntax:");
+//                    }
+//                    else if (syntaxNode is SimpleBaseTypeSyntax simpleBaseTypeSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.SimpleBaseTypeSyntax:");
+//                    }
+//                    else if (syntaxNode is AttributeSyntax attributeSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AttributeSyntax:");
+//                    }
+//                    else if (syntaxNode is LiteralExpressionSyntax literalExpressionSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.LiteralExpressionSyntax:");
+//                    }
+//                    else if (syntaxNode is MemberAccessExpressionSyntax memberAccessExpressionSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.MemberAccessExpressionSyntax:");
+//                    }
+//                    else if (syntaxNode is BaseListSyntax baseListSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BaseListSyntax:");
+//                    }
+//                    else if (syntaxNode is PropertyDeclarationSyntax propertyDeclarationSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.PropertyDeclarationSyntax:");
+//                    }
+//                    else if (syntaxNode is AccessorListSyntax accessorListSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AccessorListSyntax:");
+//                    }
+//                    else if (syntaxNode is AccessorDeclarationSyntax accessorDeclarationSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AccessorDeclarationSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is BlockSyntax blockSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BlockSyntax:");
+//                    }
+//                    else if (syntaxNode is LocalDeclarationStatementSyntax localDeclarationStatementSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.LocalDeclarationStatementSyntax:");
+//                    }
+//                    else if (syntaxNode is VariableDeclarationSyntax variableDeclarationSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.VariableDeclarationSyntax:");
+//                    }
+//                    else if (syntaxNode is IdentifierNameSyntax IdentifierNameSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.IdentifierNameSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is InterpolationSyntax interpolationSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterpolationSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is InterpolatedStringTextSyntax interpolatedStringTextSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InterpolatedStringTextSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ArgumentSyntax argumentSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArgumentSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is CatchClauseSyntax catchClauseSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CatchClauseSyntax:");
+//                    }
+//                    else if (syntaxNode is NullableTypeSyntax nullableTypeSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.NullableTypeSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is PredefinedTypeSyntax predefinedTypeSyntax)
+//                    {
+//                        mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.PredefinedTypeSyntax:");
+//                    }
+//                    else if (syntaxNode is EqualsValueClauseSyntax equalsValueClauseSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.EqualsValueClauseSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is InvocationExpressionSyntax invocationExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.InvocationExpressionSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ArrowExpressionClauseSyntax arrowExpressionClauseSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArrowExpressionClauseSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is BaseExpressionSyntax baseExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.BaseExpressionSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ConstructorDeclarationSyntax constructorDeclarationSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ConstructorDeclarationSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ParameterListSyntax parameterListSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ParameterListSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is VariableDeclaratorSyntax variableDeclaratorSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.VariableDeclaratorSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ArgumentListSyntax argumentListSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ArgumentListSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is TypeOfExpressionSyntax typeOfExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.TypeOfExpressionSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is CatchDeclarationSyntax catchDeclarationSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CatchDeclarationSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ReturnStatementSyntax returnStatementSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ReturnStatementSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is CastExpressionSyntax castExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.CastExpressionSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ObjectCreationExpressionSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is ExpressionStatementSyntax expressionStatementSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.ExpressionStatementSyntax:");
+//                        return;
+//                    }
+//                    else if (syntaxNode is AssignmentExpressionSyntax assignmentExpressionSyntax)
+//                    {
+//                        //mDebuggerLog.DebugAppendLog($"OnVisitSyntaxNode.AssignmentExpressionSyntax:");
+//                        return;
+//                    }
+//                    else
+//                    {
+//                        //System.Diagnostics.Debugger.Launch();
 
-                        mDebuggerLog.DebugAppendLog($"aaa-OnVisitSyntaxNode: {syntaxNode.GetType().Name}");
-                    }
+//                        mDebuggerLog.DebugAppendLog($"aaa-OnVisitSyntaxNode: {syntaxNode.GetType().Name}");
+//                    }
 
-                    mDebuggerLog.DebugAppendLog(syntaxNode.SyntaxTree.FilePath);
-                    mDebuggerLog.DebugAppendLog(syntaxNode.GetText().ToString());
-                    mDebuggerLog.DebugAppendLog("---------------------------------------------------------------");
+//                    mDebuggerLog.DebugAppendLog(syntaxNode.SyntaxTree.FilePath);
+//                    mDebuggerLog.DebugAppendLog(syntaxNode.GetText().ToString());
+//                    mDebuggerLog.DebugAppendLog("---------------------------------------------------------------");
                 }
             }
         }

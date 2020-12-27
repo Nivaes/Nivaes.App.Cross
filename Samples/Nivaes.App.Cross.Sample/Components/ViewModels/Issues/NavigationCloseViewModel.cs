@@ -6,10 +6,9 @@ namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
     using MvvmCross;
-    using MvvmCross.Commands;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Navigation;
 
     public class NavigationCloseViewModel : MvxViewModel
     {

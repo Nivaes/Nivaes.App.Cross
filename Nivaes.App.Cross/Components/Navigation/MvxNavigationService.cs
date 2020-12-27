@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Navigation
+namespace Nivaes.App.Cross.Navigation
 {
     using System;
     using System.Collections.Generic;
@@ -12,13 +12,13 @@ namespace MvvmCross.Navigation
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
+    using MvvmCross;
     using MvvmCross.Base;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation.EventArguments;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
 
     public class MvxNavigationService

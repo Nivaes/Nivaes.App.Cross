@@ -224,6 +224,13 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj"
+        PrivateAssets="all"
+        OutputItemType="Analyzer"
+        ReferenceOutputAssembly="false">
+      <Project>{3d0a9258-5272-4aa5-ab15-59594b5aed56}</Project>
+      <Name>Nivaes.App.Cross.Compilers.Toolset</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj">
       <Project>{837ce45d-c7f2-4040-91d3-3e2efae577d6}</Project>
       <Name>Nivaes.App.Cross.iOS</Name>

@@ -37,6 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj"
+        PrivateAssets="all"
+        OutputItemType="Analyzer"
+        ReferenceOutputAssembly="false"/>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Windows\Nivaes.App.Cross.Windows.csproj" />
     <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
@@ -48,7 +52,7 @@
     </CSWinRTIncludes>
   </PropertyGroup>
 
-  <Import Project="Standalone.props" Condition="'$(IsInWinUIRepo)' != 'true'"/>
+  <Import Project="Standalone.props" Condition="'$(IsInWinUIRepo)' != 'true'" />
 
   <UsingTask TaskName="FixWUXReferences" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
