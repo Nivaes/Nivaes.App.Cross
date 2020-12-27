@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
 
         protected abstract bool CanExecuteImpl(object? parameter);
 
-        protected abstract ValueTask ExecuteAsyncImpl(object? parameter);
+        protected abstract ValueTask<bool> ExecuteAsyncImpl(object? parameter);
 
         public void Cancel()
         {
@@ -202,20 +202,10 @@ namespace Nivaes.App.Cross
         : MvxAsyncCommandBase
         , IMvxAsyncCommand
     {
-        private readonly Func<CancellationToken, ValueTask> mExecute;
+        private readonly Func<CancellationToken, ValueTask<bool>> mExecute;
         private readonly Func<bool>? mCanExecute;
 
-        //public MvxAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
-        //    : base(allowConcurrentExecutions)
-        //{
-        //    if (execute == null)
-        //        throw new ArgumentNullException(nameof(execute));
-
-        //    mExecute = (_) => new ValueTask(execute());
-        //    mCanExecute = canExecute;
-        //}
-
-        public MvxAsyncCommand(Func<ValueTask> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<ValueTask<bool>> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
            : base(allowConcurrentExecutions)
         {
             if (execute == null)
@@ -225,17 +215,7 @@ namespace Nivaes.App.Cross
             mCanExecute = canExecute;
         }
 
-        //public MvxAsyncCommand(Func<CancellationToken, Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
-        //    : base(allowConcurrentExecutions)
-        //{
-        //    if (execute == null)
-        //        throw new ArgumentNullException(nameof(execute));
-
-        //    mExecute = (c) => new ValueTask(execute(c));
-        //    mCanExecute = canExecute;
-        //}
-
-        public MvxAsyncCommand(Func<CancellationToken, ValueTask> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<CancellationToken, ValueTask<bool>> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
            : base(allowConcurrentExecutions)
         {
             mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
@@ -247,7 +227,7 @@ namespace Nivaes.App.Cross
             return mCanExecute == null || mCanExecute();
         }
 
-        protected override ValueTask ExecuteAsyncImpl(object? parameter)
+        protected override ValueTask<bool> ExecuteAsyncImpl(object? parameter)
         {
             return mExecute(CancelToken);
         }
@@ -262,20 +242,10 @@ namespace Nivaes.App.Cross
         : MvxAsyncCommandBase
         , IMvxCommand, IMvxAsyncCommand<T>
     {
-        private readonly Func<T, CancellationToken, ValueTask> mExecute;
+        private readonly Func<T, CancellationToken, ValueTask<bool>> mExecute;
         private readonly Func<T, bool>? mCanExecute;
 
-        //public MvxAsyncCommand(Func<T, Task<T>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
-        //    : base(allowConcurrentExecutions)
-        //{
-        //    if (execute == null)
-        //        throw new ArgumentNullException(nameof(execute));
-
-        //    mExecute = (p, _) => new ValueTask<T>(execute(p));
-        //    mCanExecute = canExecute;
-        //}
-
-        public MvxAsyncCommand(Func<T, ValueTask> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<T, ValueTask<bool>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
            : base(allowConcurrentExecutions)
         {
             if (execute == null)
@@ -285,17 +255,7 @@ namespace Nivaes.App.Cross
             mCanExecute = canExecute;
         }
 
-        //public MvxAsyncCommand(Func<T, CancellationToken, Task<T>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
-        //    : base(allowConcurrentExecutions)
-        //{
-        //    if (execute == null)
-        //        throw new ArgumentNullException(nameof(execute));
-
-        //    mExecute = (p, c) => new ValueTask<T>(execute(p, c));
-        //    mCanExecute = canExecute;
-        //}
-
-        public MvxAsyncCommand(Func<T, CancellationToken, ValueTask> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public MvxAsyncCommand(Func<T, CancellationToken, ValueTask<bool>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             if (execute == null)
@@ -317,7 +277,7 @@ namespace Nivaes.App.Cross
         protected override bool CanExecuteImpl(object? parameter)
             => mCanExecute == null || mCanExecute((T)typeof(T).MakeSafeValueCore(parameter));
 
-        protected override ValueTask ExecuteAsyncImpl(object? parameter)
+        protected override ValueTask<bool> ExecuteAsyncImpl(object? parameter)
             => mExecute((T)typeof(T).MakeSafeValueCore(parameter), CancelToken);
     }
 }

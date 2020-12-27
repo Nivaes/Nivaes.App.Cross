@@ -23,9 +23,9 @@ namespace Nivaes.App.Cross
         {
         }
 
-        private static async ValueTask Navigate()
+        private static ValueTask<bool> Navigate()
         {
-            _ = await NavigationService.Navigate<TViewModel>().ConfigureAwait(false);
+            return NavigationService.Navigate<TViewModel>();
         }
 
         protected override bool CanExecuteImpl(object? parameter)

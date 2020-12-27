@@ -16,17 +16,15 @@ namespace Nivaes.App.Cross.Sample
         public TabsRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowInitialViewModelsCommand = new MvxAsyncCommand(
-                async () => await ShowInitialViewModels().ConfigureAwait(false));
-            ShowTabsRootBCommand = new MvxAsyncCommand(
-                async () => await NavigationService.Navigate<TabsRootBViewModel>().ConfigureAwait(false));
+            ShowInitialViewModelsCommand = new MvxAsyncCommand(ShowInitialViewModels);
+            ShowTabsRootBCommand = new MvxAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());
         }
 
         public IMvxAsyncCommand ShowInitialViewModelsCommand { get; }
 
         public IMvxAsyncCommand ShowTabsRootBCommand { get; }
 
-        private Task ShowInitialViewModels()
+        private async ValueTask<bool> ShowInitialViewModels()
         {
             var tasks = new[]
             {
@@ -34,7 +32,9 @@ namespace Nivaes.App.Cross.Sample
                 NavigationService.Navigate<Tab2ViewModel>().AsTask(),
                 NavigationService.Navigate<Tab3ViewModel>().AsTask()
             };
-            return Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            return true;
         }
 
         private int mItemIndex;

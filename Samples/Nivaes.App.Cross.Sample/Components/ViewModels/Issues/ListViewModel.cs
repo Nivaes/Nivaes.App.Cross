@@ -27,9 +27,9 @@ namespace Nivaes.App.Cross.Sample
             });
         }
 
-        private ValueTask ItemClicked(TestItem item)
+        private ValueTask<bool> ItemClicked(TestItem item)
         {
-            return new ValueTask();
+            return new ValueTask<bool>(true);
         }
     }
 

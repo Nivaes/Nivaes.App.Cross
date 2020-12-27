@@ -24,15 +24,15 @@ namespace Nivaes.App.Cross.Sample
 
         public IMvxAsyncCommand TryToCloseNewViewModelCommand => new MvxAsyncCommand(TryToCloseNewViewModel);
 
-        private async ValueTask CloseThisAndOpenChild()
+        private async ValueTask<bool> CloseThisAndOpenChild()
         {
             await mMvxNavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(false);
-            await mMvxNavigationService.Close(this).ConfigureAwait(false);
+            return await mMvxNavigationService.Close(this).ConfigureAwait(false);
         }
 
-        private async ValueTask TryToCloseNewViewModel()
+        private ValueTask<bool> TryToCloseNewViewModel()
         {
-            _ = await mMvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>()).ConfigureAwait(false);
+            return mMvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>());
         }
     }
 }

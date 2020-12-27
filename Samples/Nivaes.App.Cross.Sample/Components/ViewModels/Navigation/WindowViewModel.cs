@@ -7,10 +7,8 @@ namespace Nivaes.App.Cross.Sample
     using System.Threading.Tasks;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
-    using MvvmCross.Commands;
-    using Nivaes.App.Cross.Logging;
-    using Nivaes.App.Cross.Sample;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class WindowChildParam
     {
@@ -94,7 +92,7 @@ namespace Nivaes.App.Cross.Sample
 
             ShowWindowChildCommand = new MvxAsyncCommand<int>(async no =>
             {
-                await NavigationService.Navigate<WindowChildViewModel, WindowChildParam>(new WindowChildParam
+                return await NavigationService.Navigate<WindowChildViewModel, WindowChildParam>(new WindowChildParam
                 {
                     ParentNo = Count,
                     ChildNo = no
@@ -109,12 +107,14 @@ namespace Nivaes.App.Cross.Sample
                 {
                     IsItemSetting = !IsItemSetting;
                 }).ConfigureAwait(true);
+
+                return true;
             });
         }
 
         public IMvxAsyncCommand CloseCommand { get; }
         public IMvxAsyncCommand<int> ShowWindowChildCommand { get; }
 
-        public IMvxAsyncCommand ToggleSettingCommand { get; }    
+        public IMvxAsyncCommand ToggleSettingCommand { get; }
     }
 }

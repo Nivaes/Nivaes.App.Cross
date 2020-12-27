@@ -25,10 +25,12 @@ namespace Nivaes.App.Cross.Sample
             return true;
         }
 
-        private async ValueTask GotoMasterDetailPage()
+        private async ValueTask<bool> GotoMasterDetailPage()
         {
             await NavigationService.Navigate<MixedNavMasterDetailViewModel>().ConfigureAwait(true);
             await NavigationService.Navigate<MixedNavMasterRootContentViewModel>().ConfigureAwait(true);
+
+            return true;
         }
     }
 }

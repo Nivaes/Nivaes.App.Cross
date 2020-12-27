@@ -40,16 +40,17 @@ namespace Nivaes.App.Cross.Sample
 
             ShowChildCommand = new MvxAsyncCommand(async () =>
             {
-                var result = await NavigationService.Navigate<ChildViewModel, SampleModel, SampleModel>(
+                _ = await NavigationService.Navigate<ChildViewModel, SampleModel, SampleModel>(
                     new SampleModel
                     {
                         Message = "Hey",
                         Value = 1.23m
                     }).ConfigureAwait(false);
-                var testIfReturn = result;
+
+                return true;
             });
 
-            ShowModalCommand = new MvxAsyncCommand(async () => await Navigate().ConfigureAwait(true));
+            ShowModalCommand = new MvxAsyncCommand(Navigate);
 
             ShowModalNavCommand = new MvxAsyncNavigationCommand<ModalNavViewModel>();
 
@@ -221,9 +222,9 @@ namespace Nivaes.App.Cross.Sample
                 mCounter = int.Parse(bundle.Data["MyKey"], CultureInfo.CurrentCulture);
         }
 
-        private async ValueTask Navigate()
+        private ValueTask<bool> Navigate()
         {
-            _ = await NavigationService.Navigate<ModalViewModel>().ConfigureAwait(true);
+            return NavigationService.Navigate<ModalViewModel>();
         }
 
         //public async Task<MvxRestResponse> MakeRequest()

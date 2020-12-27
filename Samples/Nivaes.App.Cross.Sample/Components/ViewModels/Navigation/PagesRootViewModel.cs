@@ -14,13 +14,12 @@ namespace Nivaes.App.Cross.Sample
     {
         public PagesRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            ShowInitialViewModelsCommand = new MvxAsyncCommand(
-                async () => await ShowInitialViewModels().ConfigureAwait(false));
+            ShowInitialViewModelsCommand = new MvxAsyncCommand(ShowInitialViewModels);
         }
 
         public IMvxAsyncCommand ShowInitialViewModelsCommand { get; private set; }
 
-        private Task ShowInitialViewModels()
+        private async ValueTask<bool> ShowInitialViewModels()
         {
             var tasks = new[]
             {
@@ -28,7 +27,9 @@ namespace Nivaes.App.Cross.Sample
                 NavigationService.Navigate<Page2ViewModel>().AsTask(),
                 NavigationService.Navigate<Page3ViewModel>().AsTask()
             };
-            return Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            return true;
         }
     }
 }

@@ -44,17 +44,13 @@ namespace Nivaes.App.Cross.Sample
             }
         }
 
-        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand {
-            get {
-                return _onSelectedChangedCommand ?? (_onSelectedChangedCommand = new MvxAsyncCommand<MenuItem>(async (item) => 
-                {
-                    if (item == null)
-                        return;
+        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand => _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
+                 {
+                     if (item == null)
+                         return false;
 
-                    var vmType = item.ViewModelType;
-                    await NavigationService.Navigate(vmType).ConfigureAwait(false);
-                }));
-            }
-        }
+                     var vmType = item.ViewModelType;
+                     return await NavigationService.Navigate(vmType).ConfigureAwait(false);
+                 });
     }
 }
