@@ -147,7 +147,7 @@
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.Utils" Version="1.0.0.6" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.3.0.4" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0-rc1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj">
