@@ -47,8 +47,12 @@
   </ItemGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
+      <SDKIdentifier>Windows</SDKIdentifier>
+      <SDKVersion>10.0</SDKVersion>
+      <AppxBundlePlatforms>$(Platform)</AppxBundlePlatforms>
   </PropertyGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
+  <Import Project="common.props" />
   <PropertyGroup>
     <ProjectGuid>926e0295-ea44-4c8c-88e1-fde77aa1bcfc</ProjectGuid>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
@@ -61,6 +65,11 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0" />
+    <!-- Needed for ucrtbased.dll when running a debug build. -->
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\SplashScreen.scale-200.png" />

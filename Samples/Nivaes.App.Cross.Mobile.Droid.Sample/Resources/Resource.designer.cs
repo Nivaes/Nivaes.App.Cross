@@ -9855,73 +9855,76 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			public const int SharedElementSecondView = 2131427445;
 			
 			// aapt resource value: 0x7F0B0076
-			public const int splash_screen = 2131427446;
+			public const int SheetView = 2131427446;
 			
 			// aapt resource value: 0x7F0B0077
-			public const int SplitDetailNavView = 2131427447;
+			public const int splash_screen = 2131427447;
 			
 			// aapt resource value: 0x7F0B0078
-			public const int SplitDetailView = 2131427448;
+			public const int SplitDetailNavView = 2131427448;
 			
 			// aapt resource value: 0x7F0B0079
-			public const int SplitMasterView = 2131427449;
+			public const int SplitDetailView = 2131427449;
 			
 			// aapt resource value: 0x7F0B007A
-			public const int SplitRootView = 2131427450;
+			public const int SplitMasterView = 2131427450;
 			
 			// aapt resource value: 0x7F0B007B
-			public const int support_simple_spinner_dropdown_item = 2131427451;
+			public const int SplitRootView = 2131427451;
 			
 			// aapt resource value: 0x7F0B007C
-			public const int Tab1View = 2131427452;
+			public const int support_simple_spinner_dropdown_item = 2131427452;
 			
 			// aapt resource value: 0x7F0B007D
-			public const int Tab2View = 2131427453;
+			public const int Tab1View = 2131427453;
 			
 			// aapt resource value: 0x7F0B007E
-			public const int Tab3View = 2131427454;
+			public const int Tab2View = 2131427454;
 			
 			// aapt resource value: 0x7F0B007F
-			public const int TabsRootBView = 2131427455;
+			public const int Tab3View = 2131427455;
 			
 			// aapt resource value: 0x7F0B0080
-			public const int TabsRootView = 2131427456;
+			public const int TabsRootBView = 2131427456;
 			
 			// aapt resource value: 0x7F0B0081
-			public const int test_action_chip = 2131427457;
+			public const int TabsRootView = 2131427457;
 			
 			// aapt resource value: 0x7F0B0082
-			public const int test_design_checkbox = 2131427458;
+			public const int test_action_chip = 2131427458;
 			
 			// aapt resource value: 0x7F0B0083
-			public const int test_reflow_chipgroup = 2131427459;
+			public const int test_design_checkbox = 2131427459;
 			
 			// aapt resource value: 0x7F0B0084
-			public const int test_toolbar = 2131427460;
+			public const int test_reflow_chipgroup = 2131427460;
 			
 			// aapt resource value: 0x7F0B0085
-			public const int test_toolbar_custom_background = 2131427461;
+			public const int test_toolbar = 2131427461;
 			
 			// aapt resource value: 0x7F0B0086
-			public const int test_toolbar_elevation = 2131427462;
+			public const int test_toolbar_custom_background = 2131427462;
 			
 			// aapt resource value: 0x7F0B0087
-			public const int test_toolbar_surface = 2131427463;
-			
-			// aapt resource value: 0x7F0B008C
-			public const int text_view_without_line_height = 2131427468;
+			public const int test_toolbar_elevation = 2131427463;
 			
 			// aapt resource value: 0x7F0B0088
-			public const int text_view_with_line_height_from_appearance = 2131427464;
+			public const int test_toolbar_surface = 2131427464;
+			
+			// aapt resource value: 0x7F0B008D
+			public const int text_view_without_line_height = 2131427469;
 			
 			// aapt resource value: 0x7F0B0089
-			public const int text_view_with_line_height_from_layout = 2131427465;
+			public const int text_view_with_line_height_from_appearance = 2131427465;
 			
 			// aapt resource value: 0x7F0B008A
-			public const int text_view_with_line_height_from_style = 2131427466;
+			public const int text_view_with_line_height_from_layout = 2131427466;
 			
 			// aapt resource value: 0x7F0B008B
-			public const int text_view_with_theme_line_height = 2131427467;
+			public const int text_view_with_line_height_from_style = 2131427467;
+			
+			// aapt resource value: 0x7F0B008C
+			public const int text_view_with_theme_line_height = 2131427468;
 			
 			static Layout()
 			{
