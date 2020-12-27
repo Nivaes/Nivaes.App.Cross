@@ -8,10 +8,10 @@
     <ApplicationManifest>Nivaes.App.Cross.Mobile.Windows.Wpf.Sample.exe.manifest</ApplicationManifest>
 
     <!--<XamlCodeGenerationControlFlags>DoNotGenerateOtherProviders</XamlCodeGenerationControlFlags>-->
-    <Platforms>x86;x64</Platforms>
+     <Platforms>x86;x64;arm;arm64</Platforms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RuntimeIdentifiers>win10-x86;win10-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 
     <RootNamespace>Nivaes.App.Cross.Mobile.Windows.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Mobile.Windows.Sample</AssemblyName>
