@@ -8,6 +8,7 @@ namespace MvvmCross.Plugin.Visibility
     using System.Globalization;
     using MvvmCross.Converters;
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     public abstract class MvxBaseVisibilityValueConverter<T>
         : MvxBaseVisibilityValueConverter

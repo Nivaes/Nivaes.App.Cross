@@ -5,11 +5,10 @@
 namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class ChildViewModel
         : MvxNavigationViewModel<SampleModel, SampleModel>
@@ -21,7 +20,8 @@ namespace Nivaes.App.Cross.Sample
         private string mBrokenTextValue = string.Empty;
         private string mAnotherBrokenTextValue = string.Empty;
 
-        public ChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public ChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
             CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this, new SampleModel
             {

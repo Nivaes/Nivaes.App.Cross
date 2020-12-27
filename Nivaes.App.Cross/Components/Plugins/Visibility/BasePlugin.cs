@@ -6,6 +6,7 @@ namespace MvvmCross.Plugin.Visibility
 {
     using System.Reflection;
     using MvvmCross.Converters;
+    using Nivaes.App.Cross;
 
     public abstract class BasePlugin
         : IMvxPlugin

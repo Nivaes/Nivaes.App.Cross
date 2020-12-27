@@ -7,9 +7,9 @@ namespace MvvmCross.ViewModels
     using System;
     using System.Threading.Tasks;
     using MvvmCross.Exceptions;
-    using MvvmCross.Navigation;
-    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class MvxDefaultViewModelLocator
         : IMvxViewModelLocator

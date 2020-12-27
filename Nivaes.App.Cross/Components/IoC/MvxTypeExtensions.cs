@@ -2,16 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.IoC
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
+
     public static class MvxTypeExtensions
     {
         public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)
@@ -265,7 +266,7 @@ namespace MvvmCross.IoC
             }
 
             var unusedKeys = new List<string>(arguments.Keys);
-            
+
             foreach (var constructor in constructors)
             {
                 var parameters = constructor.GetParameters();
@@ -285,7 +286,7 @@ namespace MvvmCross.IoC
 
             return null;
         }
-        
+
         public static ConstructorInfo? FindApplicableConstructor(this Type type, object[] arguments)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -295,7 +296,7 @@ namespace MvvmCross.IoC
             {
                 return constructors.OrderBy(c => c.GetParameters().Length).FirstOrDefault();
             }
-            
+
             foreach (var constructor in constructors)
             {
                 var parameterTypes = constructor.GetParameters().Select(p => p.ParameterType);

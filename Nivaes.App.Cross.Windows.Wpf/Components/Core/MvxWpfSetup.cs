@@ -23,6 +23,7 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Platforms.Wpf.Views;
     using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
 
     public abstract class MvxWpfSetup

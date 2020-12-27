@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Base;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public static class MvxRegistryFillerExtensions
     {
         public static void Fill<T>(this IMvxNamedInstanceRegistry<T> registry, IEnumerable<Assembly> assemblies,

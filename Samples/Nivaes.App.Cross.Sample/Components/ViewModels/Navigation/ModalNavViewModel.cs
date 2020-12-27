@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Sample
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Navigation;
 
     public class ModalNavViewModel
         : MvxNavigationViewModel

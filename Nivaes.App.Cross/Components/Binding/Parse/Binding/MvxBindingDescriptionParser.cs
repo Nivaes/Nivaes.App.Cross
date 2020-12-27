@@ -2,18 +2,19 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.Parse.Binding.Lang;
-using MvvmCross.Binding.Parse.Binding.Tibet;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Parse.Binding
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.Parse.Binding.Lang;
+    using MvvmCross.Binding.Parse.Binding.Tibet;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxBindingDescriptionParser
         : IMvxBindingDescriptionParser
     {

@@ -5,6 +5,7 @@
 namespace MvvmCross.Plugin.Visibility.Platforms.Ios
 {
     using MvvmCross.UI;
+    using Nivaes.App.Cross;
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]

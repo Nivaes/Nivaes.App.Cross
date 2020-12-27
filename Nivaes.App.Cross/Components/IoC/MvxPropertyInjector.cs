@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.IoC
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxPropertyInjector : IMvxPropertyInjector
     {
         public virtual void Inject(object target, IMvxPropertyInjectorOptions options = null)

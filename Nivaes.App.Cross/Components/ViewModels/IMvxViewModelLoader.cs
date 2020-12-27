@@ -4,7 +4,7 @@
 
 namespace MvvmCross.ViewModels
 {
-    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross.Navigation;
 
     public interface IMvxViewModelLoader
     {

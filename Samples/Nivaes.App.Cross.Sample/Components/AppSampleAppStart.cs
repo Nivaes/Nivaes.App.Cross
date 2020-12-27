@@ -1,8 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
-    using System;
     using System.Threading.Tasks;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
 
     public abstract class AppSampleAppStart

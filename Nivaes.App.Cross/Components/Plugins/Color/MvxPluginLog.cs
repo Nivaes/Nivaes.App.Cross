@@ -5,6 +5,7 @@
 namespace MvvmCross.Plugin.Color
 {
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
 
     internal static class MvxPluginLog
     {

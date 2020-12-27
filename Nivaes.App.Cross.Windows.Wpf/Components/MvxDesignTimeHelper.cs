@@ -10,6 +10,7 @@ namespace MvvmCross.Platforms.Wpf
     using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Wpf.Core;
+    using Nivaes.App.Cross;
 
     internal static class MvxDesignTimeHelper
     {

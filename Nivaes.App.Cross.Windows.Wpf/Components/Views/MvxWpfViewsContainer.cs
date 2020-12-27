@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Windows;
-using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Wpf.Views
 {
+    using System;
+    using System.Windows;
+    using MvvmCross.Exceptions;
+    using MvvmCross.ViewModels;
+    using MvvmCross.Views;
+    using Nivaes.App.Cross;
+
     public class MvxWpfViewsContainer
         : MvxViewsContainer
         , IMvxWpfViewsContainer
@@ -20,7 +21,7 @@ namespace MvvmCross.Platforms.Wpf.Views
             if (viewType == null)
                 throw new MvxException("View Type not found for " + request.ViewModelType);
 
-            var wpfView = CreateView(viewType) as IMvxWpfView;        
+            var wpfView = CreateView(viewType) as IMvxWpfView;
 
             if (request is MvxViewModelInstanceRequest instanceRequest)
             {

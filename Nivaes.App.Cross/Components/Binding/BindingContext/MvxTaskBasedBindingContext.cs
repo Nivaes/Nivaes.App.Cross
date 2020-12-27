@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     /// <summary>
     /// OnDataContextChange executes asynchronously on a worker thread
     /// </summary>
@@ -152,7 +153,7 @@ namespace MvvmCross.Binding.BindingContext
 
             if (RunSynchronously)
                 setBindingsAction();
-            else 
+            else
                 Task.Run(setBindingsAction);
         }
 

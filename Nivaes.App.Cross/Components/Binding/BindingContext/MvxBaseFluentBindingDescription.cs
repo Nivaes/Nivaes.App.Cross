@@ -2,20 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using MvvmCross.Base;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     public class MvxBaseFluentBindingDescription<TTarget>
         : MvxApplicableTo<TTarget>, IMvxBaseFluentBindingDescription
         where TTarget : class

@@ -10,6 +10,7 @@ namespace MvvmCross.ViewModels
     using System.Threading.Tasks;
     using MvvmCross.IoC;
     using MvvmCross.Plugin;
+    using Nivaes.App.Cross;
 
     public abstract class MvxApplication
         : IMvxApplication

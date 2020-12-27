@@ -7,17 +7,18 @@ namespace Nivaes.App.Cross.Sample
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Navigation;
 
     public class Page1ViewModel
         : MvxNavigationViewModel
     {
         public MvxCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public Page1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+            : base(logProvider, navigationService)
         {
             HeaderTappedCommand = new MvxCommand<int>(DoHeaderTappedCommand);
 

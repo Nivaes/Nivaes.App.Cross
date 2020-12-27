@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Wpf.Views
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class MvxWpfView : UserControl, IMvxWpfView, IDisposable
     {
         private IMvxViewModel _viewModel;
@@ -81,7 +82,7 @@ namespace MvvmCross.Platforms.Wpf.Views
         }
     }
 
-    public class MvxWpfView<TViewModel> : MvxWpfView, IMvxWpfView<TViewModel> 
+    public class MvxWpfView<TViewModel> : MvxWpfView, IMvxWpfView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel

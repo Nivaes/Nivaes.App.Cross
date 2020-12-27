@@ -12,6 +12,7 @@ namespace MvvmCross.ViewModels
     using System.Linq;
     using System.Threading.Tasks;
     using MvvmCross.Base;
+    using Nivaes.App.Cross;
 
     public class MvxObservableCollection<T>
         : ObservableCollection<T>

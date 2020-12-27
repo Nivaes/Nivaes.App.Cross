@@ -2,19 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Base;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Source.Construction;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.ExpressionParse;
-using MvvmCross.Binding.Parse.Binding.Lang;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding
 {
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Source.Construction;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.ExpressionParse;
+    using MvvmCross.Binding.Parse.Binding.Lang;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     // this class is not perfect OO and it gets in the way of testing
     // however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding
     public class MvxBindingSingletonCache

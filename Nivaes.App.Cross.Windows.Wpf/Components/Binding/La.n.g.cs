@@ -5,16 +5,17 @@
 //
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
-using System;
-using System.Windows;
-using System.Collections.Generic;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Base;
-using MvvmCross.Binding;
-using MvvmCross.Core;
-
 namespace MvvmCross.Platforms.Wpf.Binding
 {
+    using System;
+    using System.Windows;
+    using System.Collections.Generic;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Base;
+    using MvvmCross.Binding;
+    using MvvmCross.Core;
+    using Nivaes.App.Cross;
+
     // ReSharper disable InconsistentNaming
     public static class La
     // ReSharper restore InconsistentNaming

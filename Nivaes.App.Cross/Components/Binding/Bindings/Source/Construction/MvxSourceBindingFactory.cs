@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Binding.Parse.PropertyPath;
-using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Bindings.Source.Construction
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using MvvmCross.Binding.Parse.PropertyPath;
+    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     public class MvxSourceBindingFactory
         : IMvxSourceBindingFactory
         , IMvxSourceBindingFactoryExtensionHost

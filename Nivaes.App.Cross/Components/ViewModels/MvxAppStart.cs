@@ -8,7 +8,7 @@ namespace MvvmCross.ViewModels
     using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.Navigation;
+    using Nivaes.App.Cross.Navigation;
 
     public abstract class MvxAppStart
         : IMvxAppStart

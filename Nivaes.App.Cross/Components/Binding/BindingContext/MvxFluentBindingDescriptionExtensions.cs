@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Converters;
-using MvvmCross.Localization;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Converters;
+    using MvvmCross.Localization;
+    using Nivaes.App.Cross;
+
     public static class MvxFluentBindingDescriptionExtensions
     {
         public static MvxFluentBindingDescription<TTarget, TSource> ToLocalizationId<TTarget, TSource>(

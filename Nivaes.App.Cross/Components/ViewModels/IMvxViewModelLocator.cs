@@ -5,7 +5,7 @@
 namespace MvvmCross.ViewModels
 {
     using System;
-    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross.Navigation;
 
     public interface IMvxViewModelLocator
     {

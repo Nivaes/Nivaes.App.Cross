@@ -2,20 +2,21 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Windows;
-using MvvmCross.Base;
-using MvvmCross.Converters;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Platforms.Wpf.Binding.MvxBinding;
-using MvvmCross.Platforms.Wpf.Binding.MvxBinding.Target;
-using MvvmCross.Platforms.Wpf.Binding.WindowsBinding;
-
 namespace MvvmCross.Platforms.Wpf.Binding
 {
+    using System;
+    using System.Windows;
+    using MvvmCross.Base;
+    using MvvmCross.Converters;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Platforms.Wpf.Binding.MvxBinding;
+    using MvvmCross.Platforms.Wpf.Binding.MvxBinding.Target;
+    using MvvmCross.Platforms.Wpf.Binding.WindowsBinding;
+    using Nivaes.App.Cross;
+
     public class MvxWindowsBindingBuilder : MvxBindingBuilder
     {
         public enum BindingType

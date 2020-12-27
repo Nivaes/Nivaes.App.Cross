@@ -2,10 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Binding.Parse.Binding;
-
 namespace MvvmCross.Platforms.Wpf.Binding
 {
+    using MvvmCross.Binding.Parse.Binding;
+    using Nivaes.App.Cross;
+
     public static class MvxDesignTimeChecker
     {
         private static bool _checked;

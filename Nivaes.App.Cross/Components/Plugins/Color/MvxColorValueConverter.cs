@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Globalization;
-using MvvmCross.Converters;
-using MvvmCross.UI;
-
 namespace MvvmCross.Plugin.Color
 {
+    using System;
+    using System.Globalization;
+    using MvvmCross.Converters;
+    using MvvmCross.UI;
+    using Nivaes.App.Cross;
+
     public abstract class MvxColorValueConverter : MvxValueConverter
     {
         private IMvxNativeColor? mNativeColor;

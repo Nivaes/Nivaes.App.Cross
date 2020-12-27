@@ -7,6 +7,7 @@ namespace MvvmCross.Converters
     using System;
     using System.Globalization;
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
 
     public abstract class MvxValueConverter
         : IMvxValueConverter

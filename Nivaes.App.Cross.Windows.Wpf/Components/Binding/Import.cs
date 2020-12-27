@@ -8,6 +8,7 @@ namespace MvvmCross.Platforms.Wpf.Binding
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross;
 
     public class Import
     {

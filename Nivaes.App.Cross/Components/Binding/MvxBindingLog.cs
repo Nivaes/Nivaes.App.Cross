@@ -2,10 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.Binding
 {
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
+
     public static class MvxBindingLog
     {
         public static IMvxLog Instance { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("MvxBind");

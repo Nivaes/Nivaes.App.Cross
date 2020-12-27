@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Views
 {
+    using System;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public static class MvxViewExtensions
     {
         public static void OnViewCreate(this IMvxView view, Func<IMvxViewModel> viewModelLoader)
@@ -66,7 +67,7 @@ namespace MvvmCross.Views
         {
             var propertyInfo = view?.GetType().GetProperty("ViewModel");
 
-            return (IMvxViewModel) propertyInfo?.GetGetMethod().Invoke(view, new object[] { });
+            return (IMvxViewModel)propertyInfo?.GetGetMethod().Invoke(view, new object[] { });
         }
 
         public static IMvxBundle CreateSaveStateBundle(this IMvxView view)

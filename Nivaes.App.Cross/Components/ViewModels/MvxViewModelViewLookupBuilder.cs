@@ -10,6 +10,7 @@ namespace MvvmCross.ViewModels
     using System.Reflection;
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross;
 
     public class MvxViewModelViewLookupBuilder
         : IMvxTypeToTypeLookupBuilder

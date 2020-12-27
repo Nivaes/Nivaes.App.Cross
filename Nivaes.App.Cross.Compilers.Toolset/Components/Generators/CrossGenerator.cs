@@ -18,12 +18,12 @@
 
         public CrossGenerator()
         {
-            mDebuggerLog.DebugAppendLog("Create - ProtoBufGenerator");
+            //mDebuggerLog.DebugAppendLog("Create - ProtoBufGenerator");
         }
 
         public void Initialize(GeneratorInitializationContext context)
         {
-            mDebuggerLog.DebugAppendLog("Initialize");
+            //mDebuggerLog.DebugAppendLog("Initialize");
 
 #if DEBUG
             //System.Diagnostics.Debugger.Launch();
@@ -33,12 +33,12 @@
 
         public void Execute(GeneratorExecutionContext context)
         {
-            mDebuggerLog.DebugAppendLog("Execute");
+            //mDebuggerLog.DebugAppendLog("Execute");
 #if DEBUG
             //System.Diagnostics.Debugger.Launch();
 #endif     
 
-            mDebuggerLog.DebugAppendLog($"INI - Generating");
+            //mDebuggerLog.DebugAppendLog($"INI - Generating");
             try
             {
                 var classes = (context.SyntaxReceiver as SyntaxReceiver)?.Classes;
@@ -83,7 +83,7 @@
                 mDebuggerLog.DebugAppendLog(ex.ToString());
             }
 
-            mDebuggerLog.DebugAppendLog("FIN - Generating");
+            //mDebuggerLog.DebugAppendLog("FIN - Generating");
         }
 
         //private void Execute(GeneratorExecutionContext context, ClassDeclarationSyntax classSyntax)
@@ -434,7 +434,6 @@
                 {
                     try
                     {
-
                         File.AppendAllText($"{trazeFileName}.log", $"{DateTime.Now:T} {message}\n");
                     }
                     catch

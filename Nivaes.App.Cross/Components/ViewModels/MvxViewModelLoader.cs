@@ -6,7 +6,7 @@ namespace MvvmCross.ViewModels
 {
     using System;
     using MvvmCross.Exceptions;
-    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross.Navigation;
 
     public class MvxViewModelLoader
         : IMvxViewModelLoader

@@ -9,6 +9,7 @@ namespace MvvmCross.Binding
     using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.Binding.Bindings.Target.Construction;
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross;
 
     public class MvxBindingBuilder
         : MvxCoreBindingBuilder

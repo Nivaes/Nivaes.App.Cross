@@ -5,6 +5,7 @@
 namespace MvvmCross.Plugin.Color
 {
     using MvvmCross.Converters;
+    using Nivaes.App.Cross;
 
     public abstract class BasePlugin
         : IMvxPlugin

@@ -2,21 +2,22 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Base;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.ExpressionParse;
-using MvvmCross.Binding.Parse.Binding;
-using MvvmCross.Binding.Parse.Binding.Lang;
-using MvvmCross.Binding.Parse.Binding.Tibet;
-using MvvmCross.Binding.Parse.PropertyPath;
-using MvvmCross.Binding.ValueConverters;
-using MvvmCross.Converters;
-using MvvmCross.Localization;
-
 namespace MvvmCross.Binding
 {
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.ExpressionParse;
+    using MvvmCross.Binding.Parse.Binding;
+    using MvvmCross.Binding.Parse.Binding.Lang;
+    using MvvmCross.Binding.Parse.Binding.Tibet;
+    using MvvmCross.Binding.Parse.PropertyPath;
+    using MvvmCross.Binding.ValueConverters;
+    using MvvmCross.Converters;
+    using MvvmCross.Localization;
+    using Nivaes.App.Cross;
+
     public class MvxCoreBindingBuilder
     {
         public virtual void DoRegistration()
@@ -155,7 +156,7 @@ namespace MvvmCross.Binding
             registry.AddOrOverwrite("And", new MvxAndValueCombiner());
             registry.AddOrOverwrite("Or", new MvxOrValueCombiner());
             registry.AddOrOverwrite("XOr", new MvxXorValueCombiner());
-			registry.AddOrOverwrite("Inverted", new MvxInvertedValueCombiner());
+            registry.AddOrOverwrite("Inverted", new MvxInvertedValueCombiner());
 
             // Note: MvxValueConverterValueCombiner is not registered - it is unconventional
             //registry.AddOrOverwrite("ValueConverter", new MvxValueConverterValueCombiner());

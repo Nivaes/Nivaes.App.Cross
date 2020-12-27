@@ -11,6 +11,7 @@ namespace MvvmCross.Platforms.Ios.Views
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using UIKit;
+    using Nivaes.App.Cross;
 
     public class MvxTabBarViewController
         : MvxBaseTabBarViewController, IMvxTabBarViewController

@@ -13,6 +13,7 @@ namespace MvvmCross.Platforms.Wpf.Presenters
     using MvvmCross.Platforms.Wpf.Presenters.Attributes;
     using MvvmCross.Platforms.Wpf.Views;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
 

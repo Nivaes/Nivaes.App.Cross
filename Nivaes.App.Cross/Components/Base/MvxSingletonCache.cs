@@ -7,6 +7,7 @@ namespace MvvmCross.Base
     using System;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
 
     [Obsolete("Eliminar")]
     public sealed class MvxSingletonCache
