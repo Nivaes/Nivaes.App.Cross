@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
     using UIKit;
 
     [MvxFromStoryboard("Main")]

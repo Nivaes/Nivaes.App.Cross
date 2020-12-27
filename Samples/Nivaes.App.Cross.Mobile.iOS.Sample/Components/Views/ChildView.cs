@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using System;
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
     using UIKit;
 
     [MvxFromStoryboard("ChildView")]

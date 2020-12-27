@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Mobile.iOS.Sample
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.Platforms.Ios.Views.Expandable;
     using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Sample;
     using UIKit;
 
     [MvxFromStoryboard("PagesRootView")]

@@ -2,7 +2,7 @@
 {
     using Foundation;
     using MvvmCross.Platforms.Ios.Core;
-    using Nivaes.App.Mobile.Sample;
+    using Nivaes.App.Cross.Mobile.Sample;
     using UIKit;
 
     // The UIApplicationDelegate for the application. This class is responsible for launching the
