@@ -23,24 +23,21 @@
   <Import Project="Common.props" />
 
   <ItemGroup>
-    <PackageReference Include="ColorCode.Core" Version="2.0.5" />
+    <PackageReference Include="ColorCode.Core" Version="8.0.0-preview2" />
     <PackageReference Include="Win2d.uwp" Version="1.25.0" />
-    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />
+    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
     <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
-    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.1.0" />
     <Manifest Include="$(ApplicationManifest)" />
 
-    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.8.0-4.final">
+    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj"
-        PrivateAssets="all"
-        OutputItemType="Analyzer"
-        ReferenceOutputAssembly="false"/>
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj" PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\..\Nivaes.App.Cross.Windows\Nivaes.App.Cross.Windows.csproj" />
     <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
