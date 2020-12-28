@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Commands
     using System.ComponentModel;
     using System.Linq;
     using Nivaes.App.Cross.Logging;
-    using Nivaes.App.Cross;
 
     public class MvxCommandCollection
         : IMvxCommandCollection

@@ -6,10 +6,10 @@ namespace Nivaes.App.Cross.Commands
 {
     using System.Threading.Tasks;
 
-    public interface IMvxCommandAsync
-        : IMvxCommand
+    public interface IMvxCommandAsync<T>
+        : IMvxCommand<T>
     {
-        ValueTask ExecuteAsync(object? parameter = null);
+        ValueTask ExecuteAsync(T parameter);
 
         void Cancel();
     }
