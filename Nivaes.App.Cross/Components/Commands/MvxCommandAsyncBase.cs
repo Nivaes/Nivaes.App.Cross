@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Commands
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Logging;
 
-    public abstract class MvxAsyncCommandBase
+    public abstract class MvxCommandAsyncBase
         : MvxCommandBase, IDisposable
     {
         private readonly object mSyncRoot = new object();
@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Commands
         private CancellationTokenSource? mCancellationTokenSource;
         private int mConcurrentExecutions;
 
-        protected MvxAsyncCommandBase(bool allowConcurrentExecutions = false)
+        protected MvxCommandAsyncBase(bool allowConcurrentExecutions = false)
         {
             mAllowConcurrentExecutions = allowConcurrentExecutions;
         }
@@ -196,88 +196,5 @@ namespace Nivaes.App.Cross.Commands
                 mCancellationTokenSource?.Dispose();
             }
         }
-    }
-
-    public class MvxAsyncCommand
-        : MvxAsyncCommandBase
-        , IMvxAsyncCommand
-    {
-        private readonly Func<CancellationToken, ValueTask<bool>> mExecute;
-        private readonly Func<bool>? mCanExecute;
-
-        public MvxAsyncCommand(Func<ValueTask<bool>> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
-           : base(allowConcurrentExecutions)
-        {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-
-            mExecute = (_) => execute();
-            mCanExecute = canExecute;
-        }
-
-        public MvxAsyncCommand(Func<CancellationToken, ValueTask<bool>> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
-           : base(allowConcurrentExecutions)
-        {
-            mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
-            mCanExecute = canExecute;
-        }
-
-        protected override bool CanExecuteImpl(object? parameter)
-        {
-            return mCanExecute == null || mCanExecute();
-        }
-
-        protected override ValueTask<bool> ExecuteAsyncImpl(object? parameter)
-        {
-            return mExecute(CancelToken);
-        }
-
-        public ValueTask ExecuteAsync(object? parameter = null)
-        {
-            return base.ExecuteAsync(parameter, false);
-        }
-    }
-
-    public class MvxAsyncCommand<T>
-        : MvxAsyncCommandBase
-        , IMvxCommand, IMvxAsyncCommand<T>
-    {
-        private readonly Func<T, CancellationToken, ValueTask<bool>> mExecute;
-        private readonly Func<T, bool>? mCanExecute;
-
-        public MvxAsyncCommand(Func<T, ValueTask<bool>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
-           : base(allowConcurrentExecutions)
-        {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-
-            mExecute = (p, _) => execute(p);
-            mCanExecute = canExecute;
-        }
-
-        public MvxAsyncCommand(Func<T, CancellationToken, ValueTask<bool>> execute, Func<T, bool>? canExecute = null, bool allowConcurrentExecutions = false)
-            : base(allowConcurrentExecutions)
-        {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-
-            mExecute = execute ?? throw new ArgumentNullException(nameof(execute));
-            mCanExecute = canExecute;
-        }
-
-        public ValueTask ExecuteAsync(T parameter)
-            => ExecuteAsync(parameter, false);
-
-        public void Execute(T parameter)
-            => base.Execute(parameter);
-
-        public bool CanExecute(T parameter)
-            => base.CanExecute(parameter);
-
-        protected override bool CanExecuteImpl(object? parameter)
-            => mCanExecute == null || mCanExecute((T)typeof(T).MakeSafeValueCore(parameter));
-
-        protected override ValueTask<bool> ExecuteAsyncImpl(object? parameter)
-            => mExecute((T)typeof(T).MakeSafeValueCore(parameter), CancelToken);
     }
 }

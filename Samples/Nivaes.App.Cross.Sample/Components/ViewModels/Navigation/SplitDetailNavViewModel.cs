@@ -15,11 +15,11 @@ namespace Nivaes.App.Cross.Sample
         public SplitDetailNavViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            MainMenuCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MixedNavFirstViewModel>().ConfigureAwait(true));
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            MainMenuCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<MixedNavFirstViewModel>().ConfigureAwait(true));
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand MainMenuCommand { get; }
-        public IMvxAsyncCommand CloseCommand { get; }
+        public IMvxCommandAsync MainMenuCommand { get; }
+        public IMvxCommandAsync CloseCommand { get; }
     }
 }

@@ -16,13 +16,13 @@ namespace Nivaes.App.Cross.Sample
         public TabsRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowInitialViewModelsCommand = new MvxAsyncCommand(ShowInitialViewModels);
-            ShowTabsRootBCommand = new MvxAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());
+            ShowInitialViewModelsCommand = new MvxCommandAsync(ShowInitialViewModels);
+            ShowTabsRootBCommand = new MvxCommandAsync(() => NavigationService.Navigate<TabsRootBViewModel>());
         }
 
-        public IMvxAsyncCommand ShowInitialViewModelsCommand { get; }
+        public IMvxCommandAsync ShowInitialViewModelsCommand { get; }
 
-        public IMvxAsyncCommand ShowTabsRootBCommand { get; }
+        public IMvxCommandAsync ShowTabsRootBCommand { get; }
 
         private async ValueTask<bool> ShowInitialViewModels()
         {

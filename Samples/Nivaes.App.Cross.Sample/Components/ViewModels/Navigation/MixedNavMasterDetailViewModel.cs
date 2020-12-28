@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Sample
         : MvxNavigationViewModel
     {
         private MenuItem? mMenuItem;
-        private IMvxAsyncCommand<MenuItem>? mOnSelectedChangedCommand;
+        private IMvxCommandAsync<MenuItem>? mOnSelectedChangedCommand;
 
         public class MenuItem
         {
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.Sample
             }
         }
 
-        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand => mOnSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
+        private IMvxCommandAsync<MenuItem> OnSelectedChangedCommand => mOnSelectedChangedCommand ??= new MvxCommandAsync<MenuItem>(async (item) =>
                  {
                      if (item == null)
                          return false;

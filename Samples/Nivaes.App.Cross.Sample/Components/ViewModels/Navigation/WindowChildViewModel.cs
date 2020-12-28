@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Sample
         public int ParentNo => mParam!.ParentNo;
         public string Text => $"I'm No.{mParam!.ChildNo}. My parent is No.{mParam.ParentNo}";
 
-        public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+        public IMvxCommandAsync CloseCommand => new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
         public override ValueTask Prepare(WindowChildParam param)
         {

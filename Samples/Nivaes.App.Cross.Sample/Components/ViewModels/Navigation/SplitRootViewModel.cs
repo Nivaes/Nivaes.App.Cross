@@ -16,15 +16,15 @@ namespace Nivaes.App.Cross.Sample
         public SplitRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowInitialMenuCommand = new MvxAsyncCommand(
+            ShowInitialMenuCommand = new MvxCommandAsync(
                 async () => await ShowInitialViewModel().ConfigureAwait(true));
-            ShowDetailCommand = new MvxAsyncCommand(
+            ShowDetailCommand = new MvxCommandAsync(
                 async () => await ShowDetailViewModel().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowInitialMenuCommand { get; }
+        public IMvxCommandAsync ShowInitialMenuCommand { get; }
 
-        public IMvxAsyncCommand ShowDetailCommand { get; }
+        public IMvxCommandAsync ShowDetailCommand { get; }
 
         public override ValueTask ViewAppeared()
         {

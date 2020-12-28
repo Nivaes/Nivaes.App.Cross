@@ -20,9 +20,9 @@ namespace Nivaes.App.Cross.Sample
             ShowTabbedChildCommand = new MvxAsyncNavigationCommand<TabsRootViewModel>();
         }
 
-        public IMvxAsyncCommand ShowChildCommand { get; }
-        public IMvxAsyncCommand ShowTabsCommand { get; }
-        public IMvxAsyncCommand ShowTabbedChildCommand { get; }
+        public IMvxCommandAsync ShowChildCommand { get; }
+        public IMvxCommandAsync ShowTabsCommand { get; }
+        public IMvxCommandAsync ShowTabbedChildCommand { get; }
 
         public string ContentText => "Text for the Content Area";
     }

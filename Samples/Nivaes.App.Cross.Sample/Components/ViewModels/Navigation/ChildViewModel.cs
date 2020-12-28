@@ -23,15 +23,15 @@ namespace Nivaes.App.Cross.Sample
         public ChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this, new SampleModel
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this, new SampleModel
             {
                 Message = "This returned correctly",
                 Value = 5.67m
             }).ConfigureAwait(true));
 
-            ShowSecondChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(true));
+            ShowSecondChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(true));
 
-            ShowRootCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
+            ShowRootCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 
             PropertyChanged += ChildViewModel_PropertyChanged;
         }
@@ -77,11 +77,11 @@ namespace Nivaes.App.Cross.Sample
             return base.Start();
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public IMvxCommandAsync CloseCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowSecondChildCommand { get; private set; }
+        public IMvxCommandAsync ShowSecondChildCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowRootCommand { get; private set; }
+        public IMvxCommandAsync ShowRootCommand { get; private set; }
 
         public override async ValueTask ViewAppeared()
         {

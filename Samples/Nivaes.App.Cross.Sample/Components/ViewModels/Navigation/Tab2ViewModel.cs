@@ -13,13 +13,13 @@ namespace Nivaes.App.Cross.Sample
     {
         public Tab2ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            ShowRootViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
+            ShowRootViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 
-            CloseViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            CloseViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowRootViewModelCommand { get; private set; }
+        public IMvxCommandAsync ShowRootViewModelCommand { get; private set; }
 
-        public IMvxAsyncCommand CloseViewModelCommand { get; private set; }
+        public IMvxCommandAsync CloseViewModelCommand { get; private set; }
     }
 }

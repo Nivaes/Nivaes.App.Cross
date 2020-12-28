@@ -20,9 +20,9 @@ namespace Nivaes.App.Cross.Sample
             mMvxNavigationService = mvxNavigationService;
         }
 
-        public IMvxAsyncCommand OpenChildThenCloseThisCommand => new MvxAsyncCommand(CloseThisAndOpenChild);
+        public IMvxCommandAsync OpenChildThenCloseThisCommand => new MvxCommandAsync(CloseThisAndOpenChild);
 
-        public IMvxAsyncCommand TryToCloseNewViewModelCommand => new MvxAsyncCommand(TryToCloseNewViewModel);
+        public IMvxCommandAsync TryToCloseNewViewModelCommand => new MvxCommandAsync(TryToCloseNewViewModel);
 
         private async ValueTask<bool> CloseThisAndOpenChild()
         {

@@ -14,20 +14,20 @@ namespace Nivaes.App.Cross.Sample
     {
         public SplitMasterViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            OpenDetailCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SplitDetailViewModel>().ConfigureAwait(false));
+            OpenDetailCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<SplitDetailViewModel>().ConfigureAwait(false));
 
-            OpenDetailNavCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SplitDetailNavViewModel>().ConfigureAwait(false));
+            OpenDetailNavCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<SplitDetailNavViewModel>().ConfigureAwait(false));
 
-            ShowRootViewModel = new MvxAsyncCommand(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(false));
+            ShowRootViewModel = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(false));
         }
 
         public string PaneText => "Text for the Master Pane";
 
-        public IMvxAsyncCommand OpenDetailCommand { get; private set; }
+        public IMvxCommandAsync OpenDetailCommand { get; private set; }
 
-        public IMvxAsyncCommand OpenDetailNavCommand { get; private set; }
+        public IMvxCommandAsync OpenDetailNavCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowRootViewModel { get; private set; }
+        public IMvxCommandAsync ShowRootViewModel { get; private set; }
 
         public override ValueTask ViewAppeared()
         {

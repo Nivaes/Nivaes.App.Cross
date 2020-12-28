@@ -17,8 +17,8 @@ namespace Nivaes.App.Cross.Sample
         public FragmentCloseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ForwardCommand = new MvxAsyncCommand(async () => await base.NavigationService.Navigate<FragmentCloseViewModel>().ConfigureAwait(true));
-            CloseCommand = new MvxAsyncCommand(async () => await base.NavigationService.Close(this).ConfigureAwait(true));
+            ForwardCommand = new MvxCommandAsync(async () => await base.NavigationService.Navigate<FragmentCloseViewModel>().ConfigureAwait(true));
+            CloseCommand = new MvxCommandAsync(async () => await base.NavigationService.Close(this).ConfigureAwait(true));
 
             Description = $"View number {mCounter++}";
         }
@@ -31,8 +31,8 @@ namespace Nivaes.App.Cross.Sample
             set => SetProperty(ref mDescription, value);
         }
 
-        public IMvxAsyncCommand ForwardCommand { get; }
+        public IMvxCommandAsync ForwardCommand { get; }
 
-        public IMvxAsyncCommand CloseCommand { get; }
+        public IMvxCommandAsync CloseCommand { get; }
     }
 }

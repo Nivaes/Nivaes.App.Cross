@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Sample
         {
         }
 
-        public IMvxAsyncCommand LoginCommand => new MvxAsyncCommand(GotoMasterDetailPage, CanLogin);
+        public IMvxCommandAsync LoginCommand => new MvxCommandAsync(GotoMasterDetailPage, CanLogin);
 
         private bool CanLogin()
         {

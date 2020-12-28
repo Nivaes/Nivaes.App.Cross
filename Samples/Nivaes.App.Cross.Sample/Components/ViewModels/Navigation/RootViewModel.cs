@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Sample
             //    Console.WriteLine(e.ToString());
             //}
 
-            ShowChildCommand = new MvxAsyncCommand(async () =>
+            ShowChildCommand = new MvxCommandAsync(async () =>
             {
                 _ = await NavigationService.Navigate<ChildViewModel, SampleModel, SampleModel>(
                     new SampleModel
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.Sample
                 return true;
             });
 
-            ShowModalCommand = new MvxAsyncCommand(Navigate);
+            ShowModalCommand = new MvxCommandAsync(Navigate);
 
             ShowModalNavCommand = new MvxAsyncNavigationCommand<ModalNavViewModel>();
 
@@ -92,64 +92,64 @@ namespace Nivaes.App.Cross.Sample
             //    async () => await NavigationService.Navigate<LocationViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand? ShowChildCommand { get; }
+        public IMvxCommandAsync? ShowChildCommand { get; }
 
-        public IMvxAsyncCommand? ShowModalCommand { get; }
+        public IMvxCommandAsync? ShowModalCommand { get; }
 
-        public IMvxAsyncCommand? ShowModalNavCommand { get; }
+        public IMvxCommandAsync? ShowModalNavCommand { get; }
 
-        public IMvxAsyncCommand? ShowCustomBindingCommand { get; }
+        public IMvxCommandAsync? ShowCustomBindingCommand { get; }
 
-        public IMvxAsyncCommand? ShowTabsCommand { get; }
+        public IMvxCommandAsync? ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand? ShowPagesCommand { get; }
+        public IMvxCommandAsync? ShowPagesCommand { get; }
 
-        public IMvxAsyncCommand? ShowSplitCommand { get; }
+        public IMvxCommandAsync? ShowSplitCommand { get; }
 
-        public IMvxAsyncCommand? ShowOverrideAttributeCommand { get; }
+        public IMvxCommandAsync? ShowOverrideAttributeCommand { get; }
 
-        public IMvxAsyncCommand? ShowNativeCommand { get; }
+        public IMvxCommandAsync? ShowNativeCommand { get; }
 
-        public IMvxAsyncCommand? ShowSheetCommand { get; }
+        public IMvxCommandAsync? ShowSheetCommand { get; }
 
-        public IMvxAsyncCommand? ShowWindowCommand { get; }
+        public IMvxCommandAsync? ShowWindowCommand { get; }
 
-        public IMvxAsyncCommand? ShowMixedNavigationCommand { get; }
+        public IMvxCommandAsync? ShowMixedNavigationCommand { get; }
 
-        public IMvxAsyncCommand? ShowDictionaryBindingCommand { get; }
+        public IMvxCommandAsync? ShowDictionaryBindingCommand { get; }
 
-        public IMvxAsyncCommand? ShowCollectionViewCommand { get; }
+        public IMvxCommandAsync? ShowCollectionViewCommand { get; }
 
-        public IMvxAsyncCommand ShowListViewCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<ListViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ShowListViewCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<ListViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ShowBindingsViewCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<BindingsViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ShowBindingsViewCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<BindingsViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ShowCodeBehindViewCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<CodeBehindViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ShowCodeBehindViewCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<CodeBehindViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ShowNavigationCloseCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<NavigationCloseViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ShowNavigationCloseCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<NavigationCloseViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ShowContentViewCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<ParentContentViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ShowContentViewCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<ParentContentViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ConvertersCommand =>
-            new MvxAsyncCommand(async () => await NavigationService.Navigate<ConvertersViewModel>().ConfigureAwait(true));
+        public IMvxCommandAsync ConvertersCommand =>
+            new MvxCommandAsync(async () => await NavigationService.Navigate<ConvertersViewModel>().ConfigureAwait(true));
 
-        public IMvxAsyncCommand ShowSharedElementsCommand { get; }
+        public IMvxCommandAsync ShowSharedElementsCommand { get; }
 
-        public IMvxAsyncCommand ShowFluentBindingCommand { get; }
+        public IMvxCommandAsync ShowFluentBindingCommand { get; }
 
-        public IMvxAsyncCommand? RegisterAndResolveWithReflectionCommand { get; }
+        public IMvxCommandAsync? RegisterAndResolveWithReflectionCommand { get; }
 
-        public IMvxAsyncCommand? RegisterAndResolveWithNoReflectionCommand { get; }
+        public IMvxCommandAsync? RegisterAndResolveWithNoReflectionCommand { get; }
 
         public IMvxCommand TriggerVisibilityCommand { get; }
 
         public IMvxCommand FragmentCloseCommand { get; }
-        public IMvxAsyncCommand? ShowLocationCommand { get; }
+        public IMvxCommandAsync? ShowLocationCommand { get; }
 
         private bool mIsVisible;
 

@@ -17,15 +17,15 @@ namespace Nivaes.App.Cross.Sample
         public Tab1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            OpenChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
+            OpenChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
 
-            OpenModalCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ModalViewModel>().ConfigureAwait(true));
+            OpenModalCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ModalViewModel>().ConfigureAwait(true));
 
-            OpenNavModalCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ModalNavViewModel>().ConfigureAwait(true));
+            OpenNavModalCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ModalNavViewModel>().ConfigureAwait(true));
 
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
-            OpenTab2Command = new MvxAsyncCommand(async () => await NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab2ViewModel))).ConfigureAwait(true));
+            OpenTab2Command = new MvxCommandAsync(async () => await NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab2ViewModel))).ConfigureAwait(true));
         }
 
         public override ValueTask Initialize()
@@ -46,14 +46,14 @@ namespace Nivaes.App.Cross.Sample
             return base.ViewAppeared();
         }
 
-        public IMvxAsyncCommand OpenChildCommand { get; private set; }
+        public IMvxCommandAsync OpenChildCommand { get; private set; }
 
-        public IMvxAsyncCommand OpenModalCommand { get; private set; }
+        public IMvxCommandAsync OpenModalCommand { get; private set; }
 
-        public IMvxAsyncCommand OpenNavModalCommand { get; private set; }
+        public IMvxCommandAsync OpenNavModalCommand { get; private set; }
 
-        public IMvxAsyncCommand OpenTab2Command { get; private set; }
+        public IMvxCommandAsync OpenTab2Command { get; private set; }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public IMvxCommandAsync CloseCommand { get; private set; }
     }
 }

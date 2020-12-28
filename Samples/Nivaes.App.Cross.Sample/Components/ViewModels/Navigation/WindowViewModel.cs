@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross.Sample
             mCount++;
             Count = mCount;
 
-            ShowWindowChildCommand = new MvxAsyncCommand<int>(async no =>
+            ShowWindowChildCommand = new MvxCommandAsync<int>(async no =>
             {
                 return await NavigationService.Navigate<WindowChildViewModel, WindowChildParam>(new WindowChildParam
                 {
@@ -99,9 +99,9 @@ namespace Nivaes.App.Cross.Sample
                 }).ConfigureAwait(false);
             });
 
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(false));
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(false));
 
-            ToggleSettingCommand = new MvxAsyncCommand(async () =>
+            ToggleSettingCommand = new MvxCommandAsync(async () =>
             {
                 await Task.Run(() =>
                 {
@@ -112,9 +112,9 @@ namespace Nivaes.App.Cross.Sample
             });
         }
 
-        public IMvxAsyncCommand CloseCommand { get; }
-        public IMvxAsyncCommand<int> ShowWindowChildCommand { get; }
+        public IMvxCommandAsync CloseCommand { get; }
+        public IMvxCommandAsync<int> ShowWindowChildCommand { get; }
 
-        public IMvxAsyncCommand ToggleSettingCommand { get; }
+        public IMvxCommandAsync ToggleSettingCommand { get; }
     }
 }

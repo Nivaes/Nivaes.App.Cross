@@ -16,16 +16,16 @@ namespace Nivaes.App.Cross.Sample
         public Tab3ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowRootViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
+            ShowRootViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 
-            CloseViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            CloseViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
-            ShowPageOneCommand = new MvxAsyncCommand(async () => await NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab1ViewModel))).ConfigureAwait(true));
+            ShowPageOneCommand = new MvxCommandAsync(async () => await NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab1ViewModel))).ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowRootViewModelCommand { get; }
+        public IMvxCommandAsync ShowRootViewModelCommand { get; }
 
-        public IMvxAsyncCommand CloseViewModelCommand { get; }
+        public IMvxCommandAsync CloseViewModelCommand { get; }
 
         public IMvxCommand ShowPageOneCommand { get; }
     }

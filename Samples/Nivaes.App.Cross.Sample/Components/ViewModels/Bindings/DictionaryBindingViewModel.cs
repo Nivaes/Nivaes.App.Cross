@@ -19,9 +19,9 @@ namespace Nivaes.App.Cross.Sample
             set => SetProperty(ref mValue, value);
         }
 
-        private IMvxAsyncCommand? mCloseCommand;
-        public IMvxAsyncCommand CloseCommand =>
-            mCloseCommand ?? (mCloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true)));
+        private IMvxCommandAsync? mCloseCommand;
+        public IMvxCommandAsync CloseCommand =>
+            mCloseCommand ?? (mCloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true)));
 
 
         private IMvxCommand? mIncrementCommand;

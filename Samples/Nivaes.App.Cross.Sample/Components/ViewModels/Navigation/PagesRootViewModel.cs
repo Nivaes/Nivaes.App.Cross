@@ -16,10 +16,10 @@ namespace Nivaes.App.Cross.Sample
         public PagesRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowInitialViewModelsCommand = new MvxAsyncCommand(ShowInitialViewModels);
+            ShowInitialViewModelsCommand = new MvxCommandAsync(ShowInitialViewModels);
         }
 
-        public IMvxAsyncCommand ShowInitialViewModelsCommand { get; private set; }
+        public IMvxCommandAsync ShowInitialViewModelsCommand { get; private set; }
 
         private async ValueTask<bool> ShowInitialViewModels()
         {

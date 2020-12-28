@@ -14,17 +14,17 @@ namespace Nivaes.App.Cross.Sample
     {
         public ModalNavViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
-            ShowChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
+            ShowChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
 
-            ShowNestedModalCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<NestedModalViewModel>().ConfigureAwait(true));
+            ShowNestedModalCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<NestedModalViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public IMvxCommandAsync CloseCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowChildCommand { get; private set; }
+        public IMvxCommandAsync ShowChildCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowNestedModalCommand { get; private set; }
+        public IMvxCommandAsync ShowNestedModalCommand { get; private set; }
     }
 }

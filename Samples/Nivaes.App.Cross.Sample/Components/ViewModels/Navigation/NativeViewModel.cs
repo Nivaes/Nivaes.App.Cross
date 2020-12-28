@@ -15,9 +15,9 @@ namespace Nivaes.App.Cross.Sample
 
         public NativeViewModel(IMvxNavigationService navigationService)
         {
-            ForwardCommand = new MvxAsyncCommand(
+            ForwardCommand = new MvxCommandAsync(
                 async () => await navigationService.Navigate<NativeViewModel>().ConfigureAwait(false));
-            CloseCommand = new MvxAsyncCommand(
+            CloseCommand = new MvxCommandAsync(
                 async () => await navigationService.Close(this).ConfigureAwait(false));
 
             Description = $"View number {mCounter++}";
@@ -31,9 +31,9 @@ namespace Nivaes.App.Cross.Sample
             set => SetProperty(ref mDescription, value);
         }
 
-        public IMvxAsyncCommand ForwardCommand { get; }
+        public IMvxCommandAsync ForwardCommand { get; }
 
-        public IMvxAsyncCommand CloseCommand { get; }
+        public IMvxCommandAsync CloseCommand { get; }
 
     }
 }

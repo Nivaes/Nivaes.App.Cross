@@ -16,17 +16,17 @@ namespace Nivaes.App.Cross.Sample
         public OverrideAttributeViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this).ConfigureAwait(true));
+            CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
-            ShowTabsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<TabsRootViewModel>().ConfigureAwait(true));
+            ShowTabsCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<TabsRootViewModel>().ConfigureAwait(true));
 
-            ShowSecondChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(true));
+            ShowSecondChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<SecondChildViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowTabsCommand { get; }
+        public IMvxCommandAsync ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand CloseCommand { get; }
+        public IMvxCommandAsync CloseCommand { get; }
 
-        public IMvxAsyncCommand ShowSecondChildCommand { get; }
+        public IMvxCommandAsync ShowSecondChildCommand { get; }
     }
 }

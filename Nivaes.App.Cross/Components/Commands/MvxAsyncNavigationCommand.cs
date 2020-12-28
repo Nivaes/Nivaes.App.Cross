@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Commands
     using Nivaes.App.Cross.Navigation;
 
     public class MvxAsyncNavigationCommand<TViewModel>
-        : MvxAsyncCommand
+        : MvxCommandAsync
           where TViewModel : IMvxViewModel
     {
         private static IMvxNavigationService? mNavigationService;

@@ -16,10 +16,10 @@ namespace Nivaes.App.Cross.Sample
         public SheetViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(CloseSheet);
+            CloseCommand = new MvxCommandAsync(CloseSheet);
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public IMvxCommandAsync CloseCommand { get; private set; }
 
         private ValueTask<bool> CloseSheet()
         {

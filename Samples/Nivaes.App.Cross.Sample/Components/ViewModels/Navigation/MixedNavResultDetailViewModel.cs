@@ -14,11 +14,11 @@ namespace Nivaes.App.Cross.Sample
     {
         public MixedNavResultDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            CloseViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this, DetailResultResult.Build()).ConfigureAwait(true));
+            CloseViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Close(this, DetailResultResult.Build()).ConfigureAwait(true));
         }
 
 
-        public IMvxAsyncCommand CloseViewModelCommand { get; private set; }
+        public IMvxCommandAsync CloseViewModelCommand { get; private set; }
     }
 
     public class DetailResultParams

@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample
         : MvxViewModel
     {
         public MvxObservableCollection<TestItem> TestItems { get; } = new MvxObservableCollection<TestItem>();
-        public IMvxAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);
+        public IMvxCommandAsync<TestItem> ItemClickedCommand => new MvxCommandAsync<TestItem>(ItemClicked);
 
         public ListViewModel()
         {

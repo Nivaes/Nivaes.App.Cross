@@ -15,11 +15,11 @@ namespace Nivaes.App.Cross.Sample
         public MixedNavMasterRootContentViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowModalCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ModalNavViewModel>().ConfigureAwait(true));
-            ShowChildCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ChildViewModel, SampleModel>(new SampleModel { Message = "Hey", Value = 1.23m }).ConfigureAwait(true));
+            ShowModalCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ModalNavViewModel>().ConfigureAwait(true));
+            ShowChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ChildViewModel, SampleModel>(new SampleModel { Message = "Hey", Value = 1.23m }).ConfigureAwait(true));
         }
 
-        public IMvxAsyncCommand ShowModalCommand { get; private set; }
-        public IMvxAsyncCommand ShowChildCommand { get; private set; }
+        public IMvxCommandAsync ShowModalCommand { get; private set; }
+        public IMvxCommandAsync ShowChildCommand { get; private set; }
     }
 }

@@ -6,13 +6,13 @@ namespace Nivaes.App.Cross.Commands
 {
     using System.Windows.Input;
 
-    public interface IMvxCommand
+    public interface IMvxCommand<T>
         : ICommand
     {
         void RaiseCanExecuteChanged();
 
-        void Execute();
+        void Execute(T parameter);
 
-        bool CanExecute();
+        bool CanExecute(T parameter);
     }
 }

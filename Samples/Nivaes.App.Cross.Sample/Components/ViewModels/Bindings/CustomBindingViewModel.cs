@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample
     public class CustomBindingViewModel
         : MvxNavigationViewModel
     {
-        private IMvxAsyncCommand? mCloseCommand;
+        private IMvxCommandAsync? mCloseCommand;
 
         private int _counter = 2;
 
@@ -32,8 +32,8 @@ namespace Nivaes.App.Cross.Sample
             set => SetProperty(ref _hello, value);
         }
 
-        public IMvxAsyncCommand CloseCommand => mCloseCommand ??
-                                                (mCloseCommand = new MvxAsyncCommand(async () =>
+        public IMvxCommandAsync CloseCommand => mCloseCommand ??
+                                                (mCloseCommand = new MvxCommandAsync(async () =>
                                                     await NavigationService.Close(this).ConfigureAwait(false)));
 
         public int Counter
