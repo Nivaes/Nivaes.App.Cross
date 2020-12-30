@@ -10,7 +10,7 @@ This package contains the 'Test Helpers' for Nivaes.App.Cross</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit" />
   </ItemGroup>
 
   <ItemGroup>
