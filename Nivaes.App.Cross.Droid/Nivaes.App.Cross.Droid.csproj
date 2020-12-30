@@ -24,7 +24,7 @@
     <AndroidResource Include="Resources\**\*.png" Generator="MSBuild:UpdateAndroidResources" />
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" />
     <PackageReference Include="Xamarin.AndroidX.Fragment" />
     <PackageReference Include="Xamarin.AndroidX.Preference" />
@@ -35,6 +35,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-  </ItemGroup>-->
+  </ItemGroup>
 
 </Project>
