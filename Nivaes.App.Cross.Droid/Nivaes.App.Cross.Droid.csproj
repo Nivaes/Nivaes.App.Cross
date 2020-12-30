@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\values\MvxRecyclerViewBindingAttributes.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" />
     <PackageReference Include="Xamarin.AndroidX.Fragment" />
     <PackageReference Include="Xamarin.AndroidX.Preference" />
