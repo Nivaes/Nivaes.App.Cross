@@ -31,6 +31,6 @@
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="Moq" Version="4.15.2" />
 
-    <PackageReference Include="Nivaes.Async" />
+    <PackageReference Update="Nivaes.Async" Version="1.4.17" />
   </ItemGroup>
 </Project>
