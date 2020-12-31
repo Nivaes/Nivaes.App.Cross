@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
             Xamarin.Essentials.Platform.Init(this);
         }
 
-        //protected override void OnCreate(Bundle savedInstanceState)
+        //protected override void OnCreate(Bundle? savedInstanceState)
         //{
 
         //    base.OnCreate(savedInstanceState);

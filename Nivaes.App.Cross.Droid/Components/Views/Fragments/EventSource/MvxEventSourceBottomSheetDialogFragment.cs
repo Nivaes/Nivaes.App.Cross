@@ -57,7 +57,7 @@ namespace MvvmCross.DroidX.Material.EventSource
 			base.OnAttach(context);
 		}
 
-		public override void OnCreate(Bundle savedInstanceState)
+		public override void OnCreate(Bundle? savedInstanceState)
 		{
 			CreateWillBeCalled.Raise(this, savedInstanceState);
 			base.OnCreate(savedInstanceState);

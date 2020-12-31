@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     [Register(nameof(Tab2View))]
     public class Tab2View : MvxFragment<Tab2ViewModel>
     {
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
