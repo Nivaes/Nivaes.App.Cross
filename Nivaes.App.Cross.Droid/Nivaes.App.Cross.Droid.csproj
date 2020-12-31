@@ -16,6 +16,10 @@
     <PackageId>Nivaes.App.Cross.Droid</PackageId>
   </PropertyGroup>
 
+  <!--<ItemGroup>
+    <None Remove="Resources\values\MvxRecyclerViewBindingAttributes.xml" />
+  </ItemGroup>-->
+
   <ItemGroup>
     <None Include="Resources\*.cs" />
     <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
