@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
             return sharedElements;
         }
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
 

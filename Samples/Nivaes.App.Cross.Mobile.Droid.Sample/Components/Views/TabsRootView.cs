@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     public class TabsRootView
         : MvxActivity<TabsRootViewModel>
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
 

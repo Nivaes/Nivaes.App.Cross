@@ -9,7 +9,7 @@
     [Activity(Label = "View for CustomBindingViewModel")]
     public class CustomBindingView : MvxActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.CustomBindingView);

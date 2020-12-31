@@ -11,7 +11,7 @@
     public class CollectionView
         : MvxActivity<CollectionViewModel>
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
 
