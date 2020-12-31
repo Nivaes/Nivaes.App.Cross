@@ -6,7 +6,8 @@ using System;
 
 namespace MvvmCross.Tests
 {
-    public class MvxTestFixture : MvxIoCSupportingTest, IDisposable
+    public class MvxTestFixture
+        : MvxIoCSupportingTest, IDisposable
     {
         public MvxTestFixture()
         {

@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Watch.Wear.Sample
     public class MainActivity
         : WearableActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.activity_main);

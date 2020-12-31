@@ -71,9 +71,9 @@
     </Task>
   </UsingTask>
 
-  <Target Name="FixWin2DProjection" AfterTargets="CsWinRTGenerateProjection" BeforeTargets="XamlPreCompile;CoreCompile">
+  <!--<Target Name="FixWin2DProjection" AfterTargets="CsWinRTGenerateProjection" BeforeTargets="XamlPreCompile;CoreCompile">
     <FixWUXReferences CsWinrtFiles="$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.cs;$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.UI.Xaml.cs" />
-  </Target>
+  </Target>-->
 
   <!-- Standalone CSWinRT specific properties -->
   <PropertyGroup Condition="'$(IsInWinUIRepo)' != 'true'">

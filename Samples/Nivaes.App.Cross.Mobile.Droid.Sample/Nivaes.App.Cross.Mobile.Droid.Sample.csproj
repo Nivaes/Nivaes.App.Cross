@@ -105,7 +105,6 @@
     <Compile Include="Components\Views\Tab3View.cs" />
     <Compile Include="Components\Views\TabsRootBView.cs" />
     <Compile Include="Components\Views\TabsRootView.cs" />
-    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,10 +149,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj"
-        PrivateAssets="all"
-        OutputItemType="Analyzer"
-        ReferenceOutputAssembly="false">
+    <ProjectReference Include="..\..\Nivaes.App.Cross.Compilers.Toolset\Nivaes.App.Cross.Compilers.Toolset.csproj" PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
       <Project>{3d0a9258-5272-4aa5-ab15-59594b5aed56}</Project>
       <Name>Nivaes.App.Cross.Compilers.Toolset</Name>
     </ProjectReference>
