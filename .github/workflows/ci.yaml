@@ -12,7 +12,7 @@ on:
     - '**/*.md'
 
 jobs:
-  build-linux:
+  build:
 
     runs-on: ubuntu-18.04
 
@@ -43,67 +43,3 @@ jobs:
 
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal 
-
-  build-windows:
-
-    runs-on: windows-2019
-
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
-    - name: Setup .NET Core 5.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    - name: Build
-      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
-
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal 
-
-  build-macos:
-
-    runs-on: macos-10.15
-
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
-    - name: Setup .NET Core 5.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    - name: Build
-      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
-
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
