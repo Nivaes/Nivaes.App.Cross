@@ -14,7 +14,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [MvxFragmentPresentation(fragmentHostViewType: typeof(SecondChildView), fragmentContentId: Resource.Id.nested_frame)]
     [Register(nameof(NestedChildView))]
-    public class NestedChildView : MvxFragment<NestedChildViewModel>
+    public class NestedChildView
+        : MvxFragment<NestedChildViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

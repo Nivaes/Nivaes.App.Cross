@@ -14,7 +14,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [MvxTabLayoutPresentation(TabLayoutResourceId = Resource.Id.tabs, ViewPagerResourceId = Resource.Id.viewpager, Title = "Tab 3")]
     [Register(nameof(Tab3View))]
-    public class Tab3View : MvxFragment<Tab3ViewModel>
+    public class Tab3View
+        : MvxFragment<Tab3ViewModel>
     {
         public override void OnCreate(Bundle? savedInstanceState)
         {

@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [MvxDialogFragmentPresentation]
     [Register(nameof(NestedModalView))]
-    public class NestedModalView : MvxDialogFragment<NestedModalViewModel>
+    public class NestedModalView
+        : MvxDialogFragment<NestedModalViewModel>
     {
         public NestedModalView()
         {

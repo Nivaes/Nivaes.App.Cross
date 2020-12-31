@@ -17,7 +17,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_navigation_frame)]
     [Register(nameof(SplitMasterView))]
-    public class SplitMasterView : MvxFragment<SplitMasterViewModel>, NavigationView.IOnNavigationItemSelectedListener
+    public class SplitMasterView
+        : MvxFragment<SplitMasterViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private IMenuItem previousMenuItem;
 

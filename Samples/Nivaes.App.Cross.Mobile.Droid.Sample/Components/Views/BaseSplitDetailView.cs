@@ -13,7 +13,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.ViewModels;
 
-    public abstract class BaseSplitDetailView<TViewModel> : MvxFragment<TViewModel> where TViewModel : class, IMvxViewModel
+    public abstract class BaseSplitDetailView<TViewModel>
+        : MvxFragment<TViewModel> where TViewModel : class, IMvxViewModel
     {
         protected SplitRootView BaseActivity => (SplitRootView)Activity;
         protected Toolbar _toolbar;

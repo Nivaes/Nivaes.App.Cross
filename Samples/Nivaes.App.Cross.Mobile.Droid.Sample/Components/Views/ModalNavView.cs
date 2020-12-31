@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [MvxDialogFragmentPresentation]
     [Register(nameof(ModalNavView))]
-    public class ModalNavView : MvxDialogFragment<ModalNavViewModel>
+    public class ModalNavView
+        : MvxDialogFragment<ModalNavViewModel>
     {
         public ModalNavView()
         {

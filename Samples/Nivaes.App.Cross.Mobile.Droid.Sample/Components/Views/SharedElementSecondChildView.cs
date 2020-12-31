@@ -14,7 +14,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame, true)]
-    public class SharedElementSecondChildView : MvxFragment<SharedElementSecondChildViewModel>
+    public class SharedElementSecondChildView
+        : MvxFragment<SharedElementSecondChildViewModel>
     {
         public override void OnCreate(Bundle? savedInstanceState)
         {

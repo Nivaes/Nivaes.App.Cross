@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
-    public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
+    public class SharedElementRootChildView
+        : MvxFragment<SharedElementRootChildViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

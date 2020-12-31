@@ -17,7 +17,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Nivaes.App.Cross.Sample;
 
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
-    public class FluentBindingView : MvxFragment<FluentBindingViewModel>
+    public class FluentBindingView
+        : MvxFragment<FluentBindingViewModel>
     {
         EditText _inputText;
         TextView _outputText;

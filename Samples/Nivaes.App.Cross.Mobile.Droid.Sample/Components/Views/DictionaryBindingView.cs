@@ -23,7 +23,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
                          Resource.Animation.abc_fade_in,
                          Resource.Animation.abc_fade_out)]
     [Register(nameof(DictionaryBindingView))]
-    public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
+    public class DictionaryBindingView
+        : MvxFragment<DictionaryBindingViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
