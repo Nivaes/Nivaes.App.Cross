@@ -15,89 +15,93 @@ namespace Nivaes.App.Cross.ViewModels
         : IMvxViewModelLocator
     {
         private IMvxNavigationService? mNavigationService;
-        protected IMvxNavigationService NavigationService => mNavigationService ?? (mNavigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>());
+        protected IMvxNavigationService NavigationService => mNavigationService ??= Mvx.IoCProvider.Resolve<IMvxNavigationService>();
 
         private IMvxLogProvider? mLogProvider;
-        protected IMvxLogProvider LogProvider => mLogProvider ?? (mLogProvider = Mvx.IoCProvider.Resolve<IMvxLogProvider>());
+        protected IMvxLogProvider LogProvider => mLogProvider ??= Mvx.IoCProvider.Resolve<IMvxLogProvider>();
 
         public MvxDefaultViewModelLocator()
             : this(null) { }
 
-        public MvxDefaultViewModelLocator(IMvxNavigationService navigationService)
+        public MvxDefaultViewModelLocator(IMvxNavigationService? navigationService)
         {
             if (navigationService != null)
                 mNavigationService = navigationService;
         }
 
-        public virtual IMvxViewModel Reload(IMvxViewModel viewModel,
-                                            IMvxBundle parameterValues,
-                                            IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public virtual async ValueTask<IMvxViewModel> Reload(IMvxViewModel viewModel,
+                                            IMvxBundle? parameterValues,
+                                            IMvxBundle? savedState,
+                                            IMvxNavigateEventArgs? navigationArgs)
         {
-            _ = RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
+            await RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs).ConfigureAwait(false);
 
             return viewModel;
         }
 
-        public virtual IMvxViewModel<TParameter> Reload<TParameter>(IMvxViewModel<TParameter> viewModel,
+        public virtual async ValueTask<IMvxViewModel<TParameter>> Reload<TParameter>(IMvxViewModel<TParameter> viewModel,
                                                                     TParameter param,
-                                                                    IMvxBundle parameterValues,
-                                                                    IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+                                                                    IMvxBundle? parameterValues,
+                                                                    IMvxBundle? savedState,
+                                                                    IMvxNavigateEventArgs? navigationArgs)
         {
-            RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
+            await RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs).ConfigureAwait(false);
 
             return viewModel;
         }
 
-        public virtual IMvxViewModel Load(Type viewModelType,
-                                          IMvxBundle parameterValues,
-                                          IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        public virtual async ValueTask<IMvxViewModel> Load(Type viewModelType,
+                                          IMvxBundle? parameterValues,
+                                          IMvxBundle? savedState,
+                                          IMvxNavigateEventArgs? navigationArgs)
         {
-            IMvxViewModel viewModel;
             try
             {
-                viewModel = (IMvxViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
+                var viewModel = (IMvxViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
+
+                await RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs).ConfigureAwait(false);
+
+                return viewModel;
             }
             catch (Exception ex)
             {
                 throw new MvxException($"Problem creating viewModel of type {viewModelType?.Name ?? "-"}", ex);
             }
-
-            _ = RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
-
-            return viewModel;
         }
 
-        public virtual IMvxViewModel<TParameter> Load<TParameter>(Type viewModelType,
+        public virtual async ValueTask<IMvxViewModel<TParameter>> Load<TParameter>(Type viewModelType,
                                                                   TParameter param,
-                                                                  IMvxBundle parameterValues,
-                                                                  IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+                                                                  IMvxBundle? parameterValues,
+                                                                  IMvxBundle ?savedState,
+                                                                  IMvxNavigateEventArgs? navigationArgs)
         {
-            IMvxViewModel<TParameter> viewModel;
             try
             {
-                viewModel = (IMvxViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
+                var viewModel = (IMvxViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
+
+                await RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs).ConfigureAwait(false);
+
+                return viewModel;
             }
             catch (Exception ex)
             {
                 throw new MvxException($"Problem creating viewModel of type {viewModelType?.Name ?? "-"}", ex);
             }
 
-            RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
-
-            return viewModel;
         }
 
-        protected virtual void CallCustomInitMethods(IMvxViewModel viewModel, IMvxBundle parameterValues)
+        protected virtual void CallCustomInitMethods(IMvxViewModel viewModel, IMvxBundle? parameterValues)
         {
             viewModel.CallBundleMethods("Init", parameterValues);
         }
 
-        protected virtual void CallReloadStateMethods(IMvxViewModel viewModel, IMvxBundle savedState)
+        protected virtual void CallReloadStateMethods(IMvxViewModel viewModel, IMvxBundle? savedState)
         {
             viewModel.CallBundleMethods("ReloadState", savedState);
         }
 
-        protected async Task RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        protected async Task RunViewModelLifecycle(IMvxViewModel viewModel,
+            IMvxBundle? parameterValues, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
@@ -130,7 +134,8 @@ namespace Nivaes.App.Cross.ViewModels
             }
         }
 
-        protected async Task RunViewModelLifecycle<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs)
+        protected async ValueTask RunViewModelLifecycle<TParameter>(IMvxViewModel<TParameter> viewModel,
+            TParameter param, IMvxBundle? parameterValues, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs)
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 

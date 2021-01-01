@@ -7,6 +7,7 @@ using Android.Views;
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Core;
@@ -26,7 +27,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        public static void OnCreate(this IMvxFragmentView fragmentView, IMvxBundle? bundle, MvxViewModelRequest? request = null)
+        public static async Task OnCreate(this IMvxFragmentView fragmentView, IMvxBundle? bundle, MvxViewModelRequest? request = null)
         {
             if (fragmentView == null) throw new ArgumentNullException(nameof(fragmentView));
 
@@ -49,7 +50,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
 
             var cached = cache.GetAndClear(viewModelType, fragmentView.UniqueImmutableCacheTag);
 
-            view.OnViewCreate(() => cached ?? fragmentView.LoadViewModel(bundle, fragment.Activity.GetType(), request));
+            await view.OnViewCreate(async () =>  cached ?? await fragmentView.LoadViewModel(bundle, fragment.Activity.GetType(), request).ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         public static Fragment ToFragment(this IMvxFragmentView fragmentView)
@@ -148,12 +149,12 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             return (TFragment)fragment;
         }
 
-        public static void LoadViewModelFrom(this Android.Views.IMvxFragmentView view, MvxViewModelRequest request, IMvxBundle? savedState = null)
+        public static async ValueTask LoadViewModelFrom(this Android.Views.IMvxFragmentView view, MvxViewModelRequest request, IMvxBundle? savedState = null)
         {
             if (view == null) throw new ArgumentNullException(nameof(view));
 
             var loader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var viewModel = loader.LoadViewModel(request, savedState);
+            var viewModel = await loader.LoadViewModel(request, savedState).ConfigureAwait(false);
             if (viewModel == null)
             {
                 MvxLog.Instance?.Warn("ViewModel not loaded for {0}", request.ViewModelType.FullName);

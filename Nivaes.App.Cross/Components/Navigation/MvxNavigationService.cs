@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.Navigation
 
         public IMvxViewDispatcher ViewDispatcher
         {
-            get => mViewDispatcher ?? (IMvxViewDispatcher?)MvxMainThreadDispatcher.Instance;
+            get => mViewDispatcher ?? (IMvxViewDispatcher)MvxMainThreadDispatcher.Instance;
             set => mViewDispatcher = value;
         }
 
@@ -184,11 +184,11 @@ namespace Nivaes.App.Cross.Navigation
 
                     if (facadeRequest is MvxViewModelInstanceRequest instanceRequest)
                     {
-                        request.ViewModelInstance = instanceRequest.ViewModelInstance ?? ViewModelLoader.LoadViewModel(request, null);
+                        request.ViewModelInstance = instanceRequest.ViewModelInstance ?? await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
                     }
                     else
                     {
-                        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+                        request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
                     }
                 }
                 catch (Exception ex)
@@ -198,7 +198,7 @@ namespace Nivaes.App.Cross.Navigation
             }
             else
             {
-                request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+                request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
             }
 
             return request;
@@ -244,7 +244,7 @@ namespace Nivaes.App.Cross.Navigation
                         request.ParameterValues = facadeRequest.ParameterValues;
                     }
 
-                    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
+                    request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -253,7 +253,7 @@ namespace Nivaes.App.Cross.Navigation
             }
             else
             {
-                request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
+                request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
             }
 
             return request;
@@ -411,24 +411,24 @@ namespace Nivaes.App.Cross.Navigation
             return await Navigate<TParameter, TResult>(request, (IMvxViewModel<TParameter, TResult>)request.ViewModelInstance, param, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
 
-        public virtual ValueTask<bool> Navigate(Type viewModelType, IMvxBundle? presentationBundle = null, CancellationToken? cancellationToken = default)
+        public virtual async ValueTask<bool> Navigate(Type viewModelType, IMvxBundle? presentationBundle = null, CancellationToken? cancellationToken = default)
         {
             var request = new MvxViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
-            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-            return Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+            request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
+            return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
 
-        public virtual ValueTask<bool> Navigate<TParameter>(Type viewModelType, TParameter param, IMvxBundle? presentationBundle = null, CancellationToken? cancellationToken = default)
+        public virtual async ValueTask<bool> Navigate<TParameter>(Type viewModelType, TParameter param, IMvxBundle? presentationBundle = null, CancellationToken? cancellationToken = default)
         {
             var request = new MvxViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
-            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
-            return Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+            request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
+            return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
 
         public virtual async ValueTask<TResult> Navigate<TResult>(Type viewModelType, IMvxBundle? presentationBundle = null, CancellationToken? cancellationToken = default)
@@ -437,7 +437,7 @@ namespace Nivaes.App.Cross.Navigation
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
-            request.ViewModelInstance = (IMvxViewModelResult<TResult>)ViewModelLoader.LoadViewModel(request, null);
+            request.ViewModelInstance = (IMvxViewModelResult<TResult>) await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
             return await Navigate<TResult>(request, (IMvxViewModelResult<TResult>)request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
 
@@ -448,7 +448,7 @@ namespace Nivaes.App.Cross.Navigation
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
-            request.ViewModelInstance = (IMvxViewModel<TParameter, TResult>)ViewModelLoader.LoadViewModel(request, param, null);
+            request.ViewModelInstance = (IMvxViewModel<TParameter, TResult>)await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
             args.ViewModel = request.ViewModelInstance;
             return await Navigate<TParameter, TResult>(request, (IMvxViewModel<TParameter, TResult>)request.ViewModelInstance, param, presentationBundle, cancellationToken, args).ConfigureAwait(false);
         }

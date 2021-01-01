@@ -8,6 +8,7 @@ using Android.OS;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
@@ -36,8 +37,10 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        public static void OnViewCreate(this IMvxAndroidView androidView, Bundle bundle)
+        public static async Task OnViewCreate(this IMvxAndroidView androidView, Bundle bundle)
         {
+            if (androidView == null) throw new NullReferenceException(nameof(androidView));
+
             androidView.EnsureSetupInitialized();
             androidView.OnLifetimeEvent((listener, activity) => listener.OnCreate(activity, bundle));
 
@@ -46,7 +49,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             var view = (IMvxView)androidView;
             var savedState = GetSavedStateFromBundle(bundle);
-            view.OnViewCreate(() => cached ?? androidView.LoadViewModel(savedState));
+            await view.OnViewCreate(async () => cached ?? await androidView.LoadViewModel(savedState).ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         private static IMvxBundle? GetSavedStateFromBundle(Bundle bundle)
@@ -121,7 +124,7 @@ namespace MvvmCross.Platforms.Android.Views
             return activity;
         }
 
-        private static IMvxViewModel? LoadViewModel(this IMvxAndroidView androidView, IMvxBundle savedState)
+        private static async ValueTask<IMvxViewModel?> LoadViewModel(this IMvxAndroidView androidView, IMvxBundle? savedState)
         {
             var activity = androidView.ToActivity();
 
@@ -137,7 +140,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var translatorService = Mvx.IoCProvider.Resolve<IMvxAndroidViewModelLoader>();
-            var viewModel = translatorService.Load(activity!.Intent, savedState, viewModelType!);
+            var viewModel = await translatorService.Load(activity!.Intent, savedState, viewModelType!).ConfigureAwait(false);
 
             return viewModel;
         }

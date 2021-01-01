@@ -4,8 +4,12 @@
 
 namespace Nivaes.App.Cross.ViewModels
 {
+    using System;
+
+    [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.")]
     public interface IMvxViewModelLocatorCollection
     {
+        [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.")]
         IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request);
     }
 }

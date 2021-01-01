@@ -15,8 +15,10 @@ namespace Nivaes.App.Cross.ViewModels
     public abstract class MvxApplication
         : IMvxApplication
     {
+        [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.", true)]
         private IMvxViewModelLocator? mDefaultLocator;
 
+        [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.", true)]
         private IMvxViewModelLocator DefaultLocator
         {
             get
@@ -62,6 +64,7 @@ namespace Nivaes.App.Cross.ViewModels
             // do nothing
         }
 
+        [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.")]
         public IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request)
         {
             return DefaultLocator;

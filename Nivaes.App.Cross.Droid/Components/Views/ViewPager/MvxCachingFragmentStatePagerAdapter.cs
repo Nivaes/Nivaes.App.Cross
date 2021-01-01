@@ -11,6 +11,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using AndroidX.Fragment.App;
     using Java.Lang;
     using Nivaes.App.Cross;
@@ -44,7 +45,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
             mActivityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
-        public override Fragment GetItem(int position, Fragment.SavedState? fragmentSavedState = null)
+        public override async Task<Fragment> GetItem(int position, Fragment.SavedState? fragmentSavedState = null)
         {
             var fragmentInfo = FragmentsInfo![position];
             var fragmentClass = Class.FromType(fragmentInfo.FragmentType);
@@ -63,7 +64,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
                 return fragment;
             }
 
-            mvxFragment.ViewModel = GetViewModel(fragmentInfo);
+            mvxFragment.ViewModel = await GetViewModel(fragmentInfo).ConfigureAwait(false);
 
             fragment.Arguments = GetArguments(fragmentInfo);
 
@@ -85,7 +86,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
             return FragmentsInfo.ElementAt(position).Tag;
         }
 
-        private static IMvxViewModel GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
+        private static async ValueTask<IMvxViewModel> GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
         {
             if (fragmentInfo.Request is MvxViewModelInstanceRequest instanceRequest)
             {
@@ -94,7 +95,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 
             var viewModelLoader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
 
-            return viewModelLoader.LoadViewModel(fragmentInfo.Request, null);
+            return await viewModelLoader.LoadViewModel(fragmentInfo.Request, null).ConfigureAwait(false);
         }
 
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)

@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModelType;
         }
 
-        public static IMvxViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle? savedState, Type fragmentParentActivityType,
+        public static async Task<IMvxViewModel> LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle? savedState, Type fragmentParentActivityType,
             MvxViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
@@ -62,7 +62,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var viewModel = loaderService.LoadViewModel(request, savedState);
+            var viewModel = await loaderService.LoadViewModel(request, savedState).ConfigureAwait(false);
 
             return viewModel;
         }

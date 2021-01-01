@@ -7,6 +7,7 @@ using Android.Content;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
@@ -28,12 +29,12 @@ namespace MvvmCross.Platforms.Android.Views
 
         #region Implementation of IMvxAndroidViewModelRequestTranslator
 
-        public virtual IMvxViewModel? Load(Intent intent, IMvxBundle? savedState)
+        public virtual ValueTask<IMvxViewModel?> Load(Intent intent, IMvxBundle? savedState)
         {
             return Load(intent, null, null);
         }
 
-        public virtual IMvxViewModel? Load(Intent intent, IMvxBundle? savedState, Type? viewModelTypeHint)
+        public virtual async ValueTask<IMvxViewModel?> Load(Intent intent, IMvxBundle? savedState, Type? viewModelTypeHint)
         {
             if (intent == null)
             {
@@ -44,13 +45,13 @@ namespace MvvmCross.Platforms.Android.Views
             if (intent.Action == Intent.ActionMain)
             {
                 MvxLog.Instance?.Trace("Creating ViewModel for ActionMain");
-                return DirectLoad(savedState, viewModelTypeHint);
+                return await DirectLoad(savedState, viewModelTypeHint).ConfigureAwait(false);
             }
 
             if (intent.Extras == null)
             {
                 MvxLog.Instance?.Trace("Null Extras seen on Intent when creating ViewModel - have you tried to navigate to an MvvmCross View directly? Will try direct load");
-                return DirectLoad(savedState, viewModelTypeHint);
+                return await DirectLoad(savedState, viewModelTypeHint).ConfigureAwait(false);
             }
 
             if (TryGetEmbeddedViewModel(intent, out IMvxViewModel? mvxViewModel))
@@ -60,15 +61,15 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             MvxLog.Instance?.Trace("Attempting to load new ViewModel from Intent with Extras");
-            var toReturn = CreateViewModelFromIntent(intent, savedState);
+            var toReturn = await CreateViewModelFromIntent(intent, savedState).ConfigureAwait(false);
             if (toReturn != null)
                 return toReturn;
 
             MvxLog.Instance?.Trace("ViewModel not loaded from Extras - will try DirectLoad");
-            return DirectLoad(savedState, viewModelTypeHint);
+            return await DirectLoad(savedState, viewModelTypeHint).ConfigureAwait(false);
         }
 
-        protected virtual IMvxViewModel DirectLoad(IMvxBundle? savedState, Type? viewModelTypeHint)
+        protected virtual async ValueTask<IMvxViewModel> DirectLoad(IMvxBundle? savedState, Type? viewModelTypeHint)
         {
             if (viewModelTypeHint == null)
             {
@@ -78,32 +79,32 @@ namespace MvvmCross.Platforms.Android.Views
 
             var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
             var viewModelRequest = MvxViewModelRequest.GetDefaultRequest(viewModelTypeHint);
-            var viewModel = loaderService.LoadViewModel(viewModelRequest, savedState);
+            var viewModel = await loaderService.LoadViewModel(viewModelRequest, savedState).ConfigureAwait(false);
             return viewModel;
         }
 
-        protected virtual IMvxViewModel? CreateViewModelFromIntent(Intent intent, IMvxBundle? savedState)
+        protected virtual async ValueTask<IMvxViewModel?> CreateViewModelFromIntent(Intent intent, IMvxBundle? savedState)
         {
-            var extraData = intent.Extras.GetString(ExtrasKey);
+            var extraData = intent?.Extras?.GetString(ExtrasKey);
             if (extraData == null)
                 return null;
 
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var viewModelRequest = converter.Serializer.DeserializeObject<MvxViewModelRequest>(extraData);
 
-            return ViewModelFromRequest(viewModelRequest, savedState);
+            return await ViewModelFromRequest(viewModelRequest, savedState).ConfigureAwait(false);
         }
 
-        protected virtual IMvxViewModel ViewModelFromRequest(MvxViewModelRequest viewModelRequest, IMvxBundle? savedState)
+        protected virtual async ValueTask<IMvxViewModel> ViewModelFromRequest(MvxViewModelRequest viewModelRequest, IMvxBundle? savedState)
         {
             var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var viewModel = loaderService.LoadViewModel(viewModelRequest, savedState);
+            var viewModel = await loaderService.LoadViewModel(viewModelRequest, savedState).ConfigureAwait(false);
             return viewModel;
         }
 
         protected virtual bool TryGetEmbeddedViewModel(Intent intent, out IMvxViewModel? mvxViewModel)
         {
-            var embeddedViewModelKey = intent.Extras.GetInt(SubViewModelKey);
+            var embeddedViewModelKey = intent?.Extras?.GetInt(SubViewModelKey) ?? 0;
             if (embeddedViewModelKey != 0)
             {
                 {

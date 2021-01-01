@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.ViewModels
 
     public static class MvxViewModelExtensions
     {
-        public static void CallBundleMethods(this IMvxViewModel viewModel, string methodName, IMvxBundle bundle)
+        public static void CallBundleMethods(this IMvxViewModel viewModel, string methodName, IMvxBundle? bundle)
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross.ViewModels
                 if (!MvxSingletonCache.Instance.Parser.TypeSupported(parameters[0].ParameterType))
                 {
                     // call method using typed object
-                    var value = bundle.Read(parameters[0].ParameterType);
+                    var value = bundle?.Read(parameters[0].ParameterType);
                     methodInfo.Invoke(viewModel, new[] { value });
                     return;
                 }
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross.ViewModels
             foreach (var methodInfo in methods)
             {
                 // use methods like `public T SaveState()`
-                var stateObject = methodInfo.Invoke(viewModel, new object[0]);
+                var stateObject = methodInfo.Invoke(viewModel, Array.Empty<object>());
                 if (stateObject != null)
                 {
                     toReturn.Write(stateObject);
@@ -82,7 +82,7 @@ namespace Nivaes.App.Cross.ViewModels
             }
 
             // call the general `public void SaveState(bundle)` method too
-            viewModel.SaveState(toReturn);
+            _ = viewModel.SaveState(toReturn);
 
             return toReturn;
         }

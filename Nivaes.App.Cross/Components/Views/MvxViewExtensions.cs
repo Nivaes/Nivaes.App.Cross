@@ -5,6 +5,7 @@
 namespace MvvmCross.Views
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
@@ -12,7 +13,7 @@ namespace MvvmCross.Views
 
     public static class MvxViewExtensions
     {
-        public static void OnViewCreate(this IMvxView view, Func<IMvxViewModel> viewModelLoader)
+        public static async ValueTask OnViewCreate(this IMvxView view, Func<ValueTask<IMvxViewModel?>> viewModelLoader)
         {
             if (view == null) throw new ArgumentNullException(nameof(view));
             if (viewModelLoader == null) throw new ArgumentNullException(nameof(viewModelLoader));
@@ -25,7 +26,7 @@ namespace MvvmCross.Views
             if (view.ViewModel != null)
                 return;
 
-            var viewModel = viewModelLoader();
+            var viewModel = await viewModelLoader().ConfigureAwait(false);
             if (viewModel == null)
             {
                 MvxLog.Instance?.Warn("ViewModel not loaded for view {0}", view.GetType().Name);

@@ -7,12 +7,13 @@ using Android.Content;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System;
+    using System.Threading.Tasks;
     using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxAndroidViewModelLoader
     {
-        IMvxViewModel? Load(Intent intent, IMvxBundle? savedState);
+        ValueTask<IMvxViewModel?> Load(Intent intent, IMvxBundle? savedState);
 
-        IMvxViewModel? Load(Intent intent, IMvxBundle? savedState, Type? viewModelTypeHint);
+        ValueTask<IMvxViewModel?> Load(Intent intent, IMvxBundle? savedState, Type? viewModelTypeHint);
     }
 }

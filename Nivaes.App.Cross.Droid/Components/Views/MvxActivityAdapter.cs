@@ -16,7 +16,8 @@ namespace MvvmCross.Platforms.Android.Views
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
-    public class MvxActivityAdapter : MvxBaseActivityAdapter
+    public class MvxActivityAdapter
+        : MvxBaseActivityAdapter
     {
         protected IMvxAndroidView AndroidView => Activity as IMvxAndroidView;
 
@@ -75,7 +76,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected override void EventSourceOnCreateCalled(object sender, MvxValueEventArgs<Bundle> eventArgs)
         {
-            AndroidView.OnViewCreate(eventArgs.Value);
+            _ = AndroidView.OnViewCreate(eventArgs.Value);
         }
 
         protected override void EventSourceOnSaveInstanceStateCalled(object sender, MvxValueEventArgs<Bundle> bundleArgs)

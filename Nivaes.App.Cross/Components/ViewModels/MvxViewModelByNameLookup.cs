@@ -10,7 +10,8 @@ namespace Nivaes.App.Cross.ViewModels
     using System.Reflection;
     using MvvmCross.IoC;
 
-    public class MvxViewModelByNameLookup : IMvxViewModelByNameLookup, IMvxViewModelByNameRegistry
+    public class MvxViewModelByNameLookup
+        : IMvxViewModelByNameLookup, IMvxViewModelByNameRegistry
     {
         private readonly Dictionary<string, Type> _availableViewModelsByName;
         private readonly Dictionary<string, Type> _availableViewModelsByFullName;

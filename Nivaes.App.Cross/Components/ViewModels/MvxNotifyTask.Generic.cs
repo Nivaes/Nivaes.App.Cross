@@ -11,18 +11,25 @@ namespace Nivaes.App.Cross.ViewModels
     /// <summary>
     /// Watches a task and raises property-changed notifications when the task completes.
     /// </summary>
-    public sealed class MvxNotifyTask
-        : INotifyPropertyChanged
+    /// <typeparam name="TResult">The type of the task result.</typeparam>
+    public sealed class MvxNotifyTask<TResult> : INotifyPropertyChanged
     {
+        /// <summary>
+        /// The "result" of the task when it has not yet completed.
+        /// </summary>
+        private readonly TResult? mDefaultResult;
+
         private readonly Action<Exception>? mOnException;
 
         /// <summary>
         /// Initializes a task notifier watching the specified task.
         /// </summary>
         /// <param name="task">The task to watch.</param>
+        /// <param name="defaultResult">The value to return from <see cref="Result"/> while the task is not yet complete.</param>
         /// <param name="onException">Callback to be run when an error happens</param>
-        private MvxNotifyTask(Task task, Action<Exception>? onException)
+        internal MvxNotifyTask(Task<TResult> task, TResult? defaultResult, Action<Exception>? onException)
         {
+            mDefaultResult = defaultResult;
             Task = task;
             mOnException = onException;
             TaskCompleted = MonitorTaskAsync(task);
@@ -32,7 +39,7 @@ namespace Nivaes.App.Cross.ViewModels
         {
             try
             {
-                await Task.Yield();
+                await System.Threading.Tasks.Task.Yield();
                 await task.ConfigureAwait(false);
             }
             catch (Exception e)
@@ -66,6 +73,7 @@ namespace Nivaes.App.Cross.ViewModels
             }
             else
             {
+                propertyChanged(this, PropertyChangedEventArgsCache.Instance.Get(nameof(Result)));
                 propertyChanged(this, PropertyChangedEventArgsCache.Instance.Get(nameof(Status)));
                 propertyChanged(this, PropertyChangedEventArgsCache.Instance.Get(nameof(IsSuccessfullyCompleted)));
             }
@@ -76,12 +84,17 @@ namespace Nivaes.App.Cross.ViewModels
         /// <summary>
         /// Gets the task being watched. This property never changes and is never <c>null</c>.
         /// </summary>
-        public Task Task { get; }
+        public Task<TResult> Task { get; }
 
         /// <summary>
         /// Gets a task that completes successfully when <see cref="Task"/> completes (successfully, faulted, or canceled). This property never changes and is never <c>null</c>.
         /// </summary>
         public Task TaskCompleted { get; }
+
+        /// <summary>
+        /// Gets the result of the task. Returns the "default result" value specified in the constructor if the task has not yet completed successfully. This property raises a notification when the task completes successfully.
+        /// </summary>
+        public TResult Result => (Task.Status == TaskStatus.RanToCompletion) ? Task.Result : mDefaultResult;
 
         /// <summary>
         /// Gets the current task status. This property raises a notification when the task completes.
@@ -132,52 +145,5 @@ namespace Nivaes.App.Cross.ViewModels
         /// Event that notifies listeners of property value changes.
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        /// <summary>
-        /// Creates a new task notifier watching the specified task.
-        /// </summary>
-        /// <param name="task">The task to watch.</param>
-        /// <param name="onException">Callback to be run when an error happens</param>
-        public static MvxNotifyTask Create(Task task, Action<Exception>? onException = null)
-        {
-            return new MvxNotifyTask(task, onException);
-        }
-
-        /// <summary>
-        /// Creates a new task notifier watching the specified task.
-        /// </summary>
-        /// <typeparam name="TResult">The type of the task result.</typeparam>
-        /// <param name="task">The task to watch.</param>
-        /// <param name="defaultResult">The default "result" value for the task while it is not yet complete.</param>
-        /// <param name="onException">Callback to be run when an error happens</param>
-        public static MvxNotifyTask<TResult> Create<TResult>(Task<TResult> task, TResult? defaultResult = default, Action<Exception>? onException = null)
-        {
-            return new MvxNotifyTask<TResult>(task, defaultResult, onException);
-        }
-
-        /// <summary>
-        /// Executes the specified asynchronous code and creates a new task notifier watching the returned task.
-        /// </summary>
-        /// <param name="asyncAction">The asynchronous code to execute.</param>
-        /// <param name="onException">Callback to be run when an error happens</param>
-        public static MvxNotifyTask Create(Func<Task> asyncAction, Action<Exception>? onException = null)
-        {
-            if (asyncAction == null) throw new ArgumentNullException(nameof(asyncAction));
-
-            return Create(asyncAction(), onException);
-        }
-
-        /// <summary>
-        /// Executes the specified asynchronous code and creates a new task notifier watching the returned task.
-        /// </summary>
-        /// <param name="asyncAction">The asynchronous code to execute.</param>
-        /// <param name="defaultResult">The default "result" value for the task while it is not yet complete.</param>
-        /// <param name="onException">Callback to be run when an error happens</param>
-        public static MvxNotifyTask<TResult> Create<TResult>(Func<Task<TResult>> asyncAction, TResult defaultResult = default, Action<Exception>? onException = null)
-        {
-            if (asyncAction == null) throw new ArgumentNullException(nameof(asyncAction));
-
-            return Create(asyncAction(), defaultResult, onException);
-        }
     }
 }

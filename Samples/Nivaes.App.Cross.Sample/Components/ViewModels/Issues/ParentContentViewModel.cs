@@ -50,18 +50,18 @@ namespace Nivaes.App.Cross.Sample
 
         public IMvxCommand ChangeButtonCmd2 => new MvxCommand(() => ChildBindingContext2!.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
 
-        public override ValueTask Prepare()
+        public override async ValueTask Prepare()
         {
-            var vm = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+            var vm = await Mvx.IoCProvider.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null).ConfigureAwait(false) as ChildContentViewModel;
             vm.Test = "Child 1";
             ChildViewModel1 = vm;
-            var bc = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>()
-                    .LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+            var bc = await Mvx.IoCProvider.Resolve<IMvxViewModelLoader>()
+                    .LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null).ConfigureAwait(false) as ChildContentViewModel;
 
             bc.Test = "Child 2";
             ChildBindingContext2 = bc;
 
-            return base.Prepare();
+            await base.Prepare().ConfigureAwait(false);
         }
     }
 }
