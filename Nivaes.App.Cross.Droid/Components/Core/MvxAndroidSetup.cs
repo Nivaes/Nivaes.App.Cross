@@ -24,10 +24,10 @@ namespace MvvmCross.Platforms.Android.Core
     using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
     using MvvmCross.Platforms.Android.Binding.Views;
     using MvvmCross.Platforms.Android.Views;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxAndroidSetup
         : MvxSetup, IMvxAndroidGlobals, IMvxAndroidSetup

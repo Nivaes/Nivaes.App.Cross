@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nivaes.App.Cross.ViewModels;
 
 namespace Nivaes.App.Cross.ViewModels
 {

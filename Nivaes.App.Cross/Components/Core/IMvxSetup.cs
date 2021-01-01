@@ -8,7 +8,6 @@ namespace MvvmCross.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Plugin;
     using static MvvmCross.Core.MvxSetup;
 

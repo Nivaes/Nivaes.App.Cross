@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace MvvmCross.Base
 {
-	public static class MvxDictionaryExtensions
+    public static class MvxDictionaryExtensions
     {
 		public static IDictionary<string, object> ToPropertyDictionary(this object input)
 		{

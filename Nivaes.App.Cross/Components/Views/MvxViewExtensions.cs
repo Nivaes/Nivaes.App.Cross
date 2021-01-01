@@ -6,9 +6,9 @@ namespace MvvmCross.Views
 {
     using System;
     using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.ViewModels;
-    using Nivaes.App.Cross;
 
     public static class MvxViewExtensions
     {

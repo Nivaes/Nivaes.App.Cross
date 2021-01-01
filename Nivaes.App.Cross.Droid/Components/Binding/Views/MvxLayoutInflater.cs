@@ -10,18 +10,18 @@ using Android.Views;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-    using Nivaes.App.Cross.Droid;
     using System;
     using Java.Interop;
     using Java.Lang;
     using Java.Lang.Reflect;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Android.Binding.Binders;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Logging;
     using Boolean = Java.Lang.Boolean;
     using Exception = Java.Lang.Exception;
     using Object = Java.Lang.Object;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// Custom LayoutInflater responsible for inflating views and hooking up bindings

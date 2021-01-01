@@ -1,6 +1,6 @@
 ﻿using System;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
+using Nivaes.App.Cross.Logging;
 using Xunit.Abstractions;
 
 namespace MvvmCross.UnitTest.Common

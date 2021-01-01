@@ -7,12 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Base;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
-using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
-using System.Net.Http.Headers;
-using Xunit.Sdk;
+using Nivaes.App.Cross.Logging;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.UnitTest.Mocks.Dispatchers
 {

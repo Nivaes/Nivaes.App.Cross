@@ -9,12 +9,12 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System;
     using MvvmCross.Base;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Android;
-    using MvvmCross.Platforms.Android.Views.Base;
     using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Views.Base;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxActivityAdapter : MvxBaseActivityAdapter
     {

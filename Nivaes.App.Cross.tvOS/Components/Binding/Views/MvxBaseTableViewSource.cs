@@ -5,9 +5,9 @@
 using System;
 using System.Windows.Input;
 using Foundation;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Exceptions;
 using Nivaes.App.Cross.Logging;
-using MvvmCross.Binding.BindingContext;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Binding.Views

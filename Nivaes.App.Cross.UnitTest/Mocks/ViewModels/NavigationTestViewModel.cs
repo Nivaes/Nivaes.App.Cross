@@ -4,9 +4,9 @@
 
 namespace Nivaes.App.Cross.UnitTest
 {
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public class NavigationTestViewModel
         : MvxNavigationViewModel

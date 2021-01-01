@@ -12,9 +12,9 @@ namespace MvvmCross.Platforms.Tvos.Presenters
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Tvos.Presenters.Attributes;
     using MvvmCross.Platforms.Tvos.Views;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
     public class MvxTvosViewPresenter

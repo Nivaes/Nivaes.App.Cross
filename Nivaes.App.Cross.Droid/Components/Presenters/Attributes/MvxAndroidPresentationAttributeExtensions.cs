@@ -7,7 +7,6 @@ namespace Nivaes.App.Cross.Presenters
     using System;
     using System.Linq;
     using Android.App;
-    using MvvmCross;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.ViewModels;
 

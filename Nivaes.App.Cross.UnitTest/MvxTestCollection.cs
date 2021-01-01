@@ -6,8 +6,8 @@ namespace MvvmCross.UnitTest
 {
     using Moq;
     using MvvmCross.Tests;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
     using Xunit;
 
     [CollectionDefinition("MvxTest")]

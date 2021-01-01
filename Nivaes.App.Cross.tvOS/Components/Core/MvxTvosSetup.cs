@@ -18,10 +18,10 @@ namespace MvvmCross.Platforms.Tvos.Core
     using MvvmCross.Platforms.Tvos.Binding;
     using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.Platforms.Tvos.Views;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
     public abstract class MvxTvosSetup

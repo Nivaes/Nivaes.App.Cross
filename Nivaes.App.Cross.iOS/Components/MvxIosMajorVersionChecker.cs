@@ -4,8 +4,8 @@
 
 namespace MvvmCross.Platforms.Ios
 {
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxIosMajorVersionChecker
     {

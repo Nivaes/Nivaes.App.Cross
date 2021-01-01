@@ -14,7 +14,6 @@ using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
 using MvvmCross.Binding.ExpressionParse;
 using MvvmCross.Converters;
-using MvvmCross.Tests;
 using Xunit;
 
 namespace MvvmCross.UnitTest.Binding.ExpressionParse

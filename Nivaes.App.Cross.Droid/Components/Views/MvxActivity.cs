@@ -12,11 +12,11 @@ namespace MvvmCross.Platforms.Android.Views
     using System;
     using System.Collections.Generic;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Views.Base;
+    using MvvmCross.Core;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.Views;
+    using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross.ViewModels;
-    using MvvmCross.Core;
     using Fragment = AndroidX.Fragment.App.Fragment;
 
     [Register("nivaes.app.MvxActivity")]

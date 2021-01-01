@@ -6,10 +6,10 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Windows.Input;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Attributes;
 using MvvmCross.Binding.Extensions;
 using MvvmCross.WeakSubscription;
+using Nivaes.App.Cross.Logging;
 using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Binding.Views

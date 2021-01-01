@@ -5,11 +5,11 @@
 namespace MvvmCross.Platforms.Uap.Binding
 {
     using System.Collections.Generic;
+    using Microsoft.UI.Xaml;
     using MvvmCross.Base;
-    using MvvmCross.Exceptions;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Bindings;
-    using Microsoft.UI.Xaml;
+    using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
     // ReSharper disable InconsistentNaming

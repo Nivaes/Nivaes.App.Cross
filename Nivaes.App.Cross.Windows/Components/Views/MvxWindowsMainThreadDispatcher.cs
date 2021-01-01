@@ -5,9 +5,9 @@
 namespace MvvmCross.Platforms.Uap.Views
 {
     using System;
-    using Windows.UI.Core;
-    using MvvmCross.Base;
     using System.Threading.Tasks;
+    using MvvmCross.Base;
+    using Windows.UI.Core;
 
     public class MvxWindowsMainThreadDispatcher
         : MvxMainThreadDispatcher

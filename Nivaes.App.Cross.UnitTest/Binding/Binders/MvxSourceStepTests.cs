@@ -14,7 +14,6 @@ using MvvmCross.Binding.Bindings.SourceSteps;
 using MvvmCross.Binding.Combiners;
 using MvvmCross.Binding.Parse.PropertyPath;
 using MvvmCross.Converters;
-using MvvmCross.Tests;
 using Xunit;
 
 namespace MvvmCross.UnitTest.Binding.Binders

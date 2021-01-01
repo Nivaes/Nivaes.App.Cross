@@ -7,12 +7,12 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
     using System;
     using System.Collections.Generic;
     using Foundation;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.Bindings;
     using MvvmCross.Binding.Bindings.SourceSteps;
-    using UIKit;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using UIKit;
 
     public class MvxStandardTableViewSource : MvxTableViewSource
     {

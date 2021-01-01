@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UIKit;
 using Foundation;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Tvos.Views.Base;
-using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
+using Nivaes.App.Cross.ViewModels;
+using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Views
 {

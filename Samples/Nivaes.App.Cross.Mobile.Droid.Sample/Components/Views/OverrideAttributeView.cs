@@ -9,9 +9,9 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.Views;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross.ViewModels;
 
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
     [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]

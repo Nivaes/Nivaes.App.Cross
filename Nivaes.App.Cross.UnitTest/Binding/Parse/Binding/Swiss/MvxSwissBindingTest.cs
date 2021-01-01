@@ -4,8 +4,8 @@
 
 using MvvmCross.Binding.Parse.Binding;
 using MvvmCross.Binding.Parse.Binding.Swiss;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
+using Nivaes.App.Cross.Logging;
 using Xunit;
 using Xunit.Abstractions;
 

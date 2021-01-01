@@ -5,10 +5,10 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxIosViewDispatcher
         : MvxIosUIThreadDispatcher, IMvxViewDispatcher

@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Mac.Views.Base;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Platforms.Mac.Views
 {

@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using MvvmCross.Binding.BindingContext;
 using Foundation;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Tvos.Views.Base;
 using Nivaes.App.Cross.ViewModels;
 using UIKit;

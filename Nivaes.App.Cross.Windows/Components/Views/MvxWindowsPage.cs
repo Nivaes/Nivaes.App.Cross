@@ -10,9 +10,9 @@ namespace MvvmCross.Platforms.Uap.Views
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using MvvmCross.Platforms.Uap.Views.Suspension;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
     using Windows.UI.Core;
 
     public class MvxWindowsPage

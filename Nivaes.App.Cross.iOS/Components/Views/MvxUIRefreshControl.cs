@@ -9,11 +9,11 @@ using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-	/// <summary>
-	/// Mvx user interface refresh control.
-	/// http://motzcod.es/post/59125989518/mvxuirefreshcontrol-for-mvvmcross
-	/// </summary>
-	public class MvxUIRefreshControl : UIRefreshControl
+    /// <summary>
+    /// Mvx user interface refresh control.
+    /// http://motzcod.es/post/59125989518/mvxuirefreshcontrol-for-mvvmcross
+    /// </summary>
+    public class MvxUIRefreshControl : UIRefreshControl
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MvxUIRefreshControl"/> class.

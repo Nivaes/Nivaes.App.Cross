@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MvvmCross.Platforms.Ios.Views.Expandable.Controllers
 {
-	internal abstract class SectionExpandableController
+    internal abstract class SectionExpandableController
 	{
 		protected readonly HashSet<int> ExpandedIndexesSet = new HashSet<int>();
 

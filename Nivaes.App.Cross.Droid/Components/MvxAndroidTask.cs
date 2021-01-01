@@ -9,9 +9,9 @@ namespace MvvmCross.Platforms.Android
 {
     using System;
     using MvvmCross.Base;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxAndroidTask
         : MvxMainThreadDispatchingObject

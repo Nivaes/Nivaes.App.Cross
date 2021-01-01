@@ -5,7 +5,6 @@
 using System;
 using Foundation;
 using Nivaes.App.Cross.Logging;
-using MvvmCross.Platforms.Tvos;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Binding.Views

@@ -11,18 +11,18 @@ using Android.Content;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Attributes;
 using MvvmCross.Binding.Extensions;
+using MvvmCross.Exceptions;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.WeakSubscription;
+using Nivaes.App.Cross.Logging;
 using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
-	public class MvxAdapter
+    public class MvxAdapter
         : BaseAdapter
         , IMvxAdapter
 	{

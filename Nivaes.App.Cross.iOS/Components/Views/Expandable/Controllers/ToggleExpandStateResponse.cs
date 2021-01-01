@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MvvmCross.Platforms.Ios.Views.Expandable.Controllers
 {
-	internal class ToggleExpandStateResponse
+    internal class ToggleExpandStateResponse
 	{
 		public ToggleExpandStateResponse(IEnumerable<int> expandedIndexes, IEnumerable<int> collapsedIndexes)
 		{

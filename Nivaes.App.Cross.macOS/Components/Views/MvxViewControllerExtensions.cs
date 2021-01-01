@@ -6,12 +6,12 @@ namespace MvvmCross.Platforms.Mac.Views
 {
     using System;
     using System.Collections.Generic;
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Core;
-    using Nivaes.App.Cross.ViewModels;
+    using MvvmCross.Exceptions;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxViewControllerExtensions
     {

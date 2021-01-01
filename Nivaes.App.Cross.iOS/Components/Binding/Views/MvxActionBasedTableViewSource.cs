@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using Foundation;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Bindings;
+using Nivaes.App.Cross.Logging;
 using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Binding.Views

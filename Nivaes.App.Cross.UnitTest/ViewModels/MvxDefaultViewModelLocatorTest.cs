@@ -8,8 +8,8 @@ namespace MvvmCross.UnitTest.ViewModels
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
     using Xunit;
 
     [Collection("MvxTest")]

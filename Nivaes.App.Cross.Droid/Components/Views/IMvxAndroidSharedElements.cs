@@ -7,8 +7,8 @@ using Android.Views;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Collections.Generic;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     /// <summary>
     /// Used by Android presenters to check if they need to include shared element animations on navigation

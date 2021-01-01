@@ -5,9 +5,9 @@
 namespace MvvmCross.Platforms.Uap.Views
 {
     using System.Collections.Generic;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxWindowsViewsContainer
         : MvxViewsContainer

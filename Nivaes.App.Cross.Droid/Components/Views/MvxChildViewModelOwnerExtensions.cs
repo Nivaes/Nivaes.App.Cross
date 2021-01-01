@@ -8,8 +8,8 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System.Collections.Generic;
     using MvvmCross.Core;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxChildViewModelOwnerExtensions
     {

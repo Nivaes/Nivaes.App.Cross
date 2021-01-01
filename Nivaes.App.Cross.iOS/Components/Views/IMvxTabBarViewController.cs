@@ -4,8 +4,8 @@
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
     public interface IMvxTabBarViewController

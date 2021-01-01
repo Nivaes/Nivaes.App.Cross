@@ -4,8 +4,8 @@
 
 namespace MvvmCross.Binding
 {
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public static class MvxBindingLog
     {

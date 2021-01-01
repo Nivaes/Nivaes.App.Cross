@@ -6,9 +6,9 @@ namespace MvvmCross.Platforms.Android.Binding.Target
 {
     using System;
     using AndroidX.Preference;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding;
     using MvvmCross.Platforms.Android.WeakSubscription;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxPreferenceValueTargetBinding
         : MvxAndroidTargetBinding

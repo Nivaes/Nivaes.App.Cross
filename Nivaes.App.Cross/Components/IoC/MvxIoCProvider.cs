@@ -7,8 +7,6 @@ namespace MvvmCross.IoC
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using MvvmCross.Base;
-    using Nivaes;
 
     /// <summary>
     /// Singleton IoC Provider.

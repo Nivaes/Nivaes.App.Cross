@@ -11,7 +11,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross;
     using MvvmCross.Platforms.Android.Core;
     using Nivaes.App.Cross.ViewModels;
 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MvvmCross.Platforms.Ios.Views.Expandable.Controllers
 {
-	internal class DefaultAllSectionsExpandableController : SectionExpandableController
+    internal class DefaultAllSectionsExpandableController : SectionExpandableController
 	{
 		public override ToggleExpandStateResponse ToggleState(int atIndex)
 		{

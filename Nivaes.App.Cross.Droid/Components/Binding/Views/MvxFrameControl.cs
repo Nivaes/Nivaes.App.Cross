@@ -11,12 +11,11 @@ using Android.Widget;
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
     using System;
-
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross.Logging;
 
     [Register("nivaes.app.MvxFrameControl")]
     public class MvxFrameControl

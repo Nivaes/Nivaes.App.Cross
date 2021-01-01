@@ -12,10 +12,10 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using MvvmCross.Exceptions;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.Bindings;
+    using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
     using Nivaes.App.Cross;
 

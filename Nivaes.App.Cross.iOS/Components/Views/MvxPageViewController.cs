@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
-using Nivaes.App.Cross.ViewModels;
 using Nivaes.App.Cross.Presenters;
+using Nivaes.App.Cross.ViewModels;
 using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views

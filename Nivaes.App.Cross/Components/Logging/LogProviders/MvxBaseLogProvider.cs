@@ -5,7 +5,6 @@
 namespace Nivaes.App.Cross.Logging
 {
     using System;
-    using Nivaes.App.Cross.Logging;
 
     public delegate bool Logger(MvxLogLevel logLevel, Func<string>? messageFunc, Exception? exception = null, params object[] formatParameters);
 

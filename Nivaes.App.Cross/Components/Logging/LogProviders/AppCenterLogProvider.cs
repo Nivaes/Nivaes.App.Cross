@@ -5,9 +5,6 @@
 namespace Nivaes.App.Cross.Logging
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
 

@@ -5,8 +5,8 @@
 namespace MvvmCross.Binding.BindingContext
 {
     using System;
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxBindingContextStackRegistration<TBindingContext>
         : IDisposable

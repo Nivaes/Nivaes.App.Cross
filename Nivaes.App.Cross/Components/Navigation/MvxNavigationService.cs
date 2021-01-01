@@ -12,14 +12,13 @@ namespace Nivaes.App.Cross.Navigation
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using MvvmCross;
     using MvvmCross.Base;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxNavigationService
         : IMvxNavigationService

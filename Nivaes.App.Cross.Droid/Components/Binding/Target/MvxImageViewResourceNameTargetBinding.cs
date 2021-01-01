@@ -6,7 +6,7 @@ using Android.Widget;
 
 namespace MvvmCross.Platforms.Android.Binding.Target
 {
-	public class MvxImageViewResourceNameTargetBinding : MvxImageViewDrawableNameTargetBinding
+    public class MvxImageViewResourceNameTargetBinding : MvxImageViewDrawableNameTargetBinding
 	{
 		public MvxImageViewResourceNameTargetBinding(ImageView imageView)
 			: base(imageView)

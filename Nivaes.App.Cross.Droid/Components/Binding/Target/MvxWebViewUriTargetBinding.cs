@@ -1,7 +1,6 @@
 using System;
 using Android.Webkit;
 using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Target;
 
 namespace MvvmCross.Platforms.Android.Binding.Target
 {

@@ -10,8 +10,8 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
 {
     using System;
     using System.Threading;
-    using MvvmCross.Exceptions;
     using MvvmCross.Binding;
+    using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
     using Nivaes.App.Cross;
 

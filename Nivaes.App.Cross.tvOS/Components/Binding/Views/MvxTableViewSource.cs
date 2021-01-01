@@ -5,13 +5,13 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Linq;
 using Foundation;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Attributes;
 using MvvmCross.Binding.Extensions;
 using MvvmCross.WeakSubscription;
+using Nivaes.App.Cross.Logging;
 using UIKit;
-using System.Linq;
 
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {

@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.OS;
     using Android.Runtime;
     using Android.Views;
-    using MvvmCross;
     using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments;

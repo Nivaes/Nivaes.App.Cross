@@ -7,8 +7,8 @@ namespace MvvmCross.Platforms.Ios.Views
     using System;
     using System.Linq;
     using Foundation;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
     public class MvxSplitViewController

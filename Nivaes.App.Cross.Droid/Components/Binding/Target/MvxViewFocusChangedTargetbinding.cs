@@ -2,7 +2,6 @@ using System;
 using System.Windows.Input;
 using Android.Views;
 using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Target;
 using MvvmCross.WeakSubscription;
 using static Android.Views.View;
 

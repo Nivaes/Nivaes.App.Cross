@@ -4,7 +4,6 @@
 
 using System;
 using System.Globalization;
-using MvvmCross.Base;
 using MvvmCross.IoC;
 using Nivaes.App.Cross;
 

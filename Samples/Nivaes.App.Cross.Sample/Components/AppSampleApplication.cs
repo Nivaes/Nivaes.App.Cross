@@ -1,7 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross;
     using MvvmCross.IoC;
     using Nivaes.App.Cross.ViewModels;
 

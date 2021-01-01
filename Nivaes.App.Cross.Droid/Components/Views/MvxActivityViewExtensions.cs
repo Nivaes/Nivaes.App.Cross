@@ -13,10 +13,10 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxActivityViewExtensions
     {

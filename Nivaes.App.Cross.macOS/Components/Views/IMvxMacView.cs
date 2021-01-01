@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using MvvmCross.Binding.BindingContext;
-using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Mac.Views
 {

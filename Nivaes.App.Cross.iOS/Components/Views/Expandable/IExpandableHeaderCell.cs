@@ -4,7 +4,7 @@
 
 namespace MvvmCross.Platforms.Ios.Views.Expandable
 {
-	public interface IExpandableHeaderCell
+    public interface IExpandableHeaderCell
 	{
 		void OnExpanded();
 

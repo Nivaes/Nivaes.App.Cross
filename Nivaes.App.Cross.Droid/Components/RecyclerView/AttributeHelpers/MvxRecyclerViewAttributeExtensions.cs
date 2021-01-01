@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
     using Android.Content;
     using Android.Content.Res;
     using Android.Util;
-    using MvvmCross;
     using MvvmCross.Binding;
     using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
     using Nivaes.App.Cross.Logging;

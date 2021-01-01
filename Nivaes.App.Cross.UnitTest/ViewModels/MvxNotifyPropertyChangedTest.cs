@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using MvvmCross.Base;
-using MvvmCross.Tests;
 using MvvmCross.UnitTest.Mocks.Dispatchers;
 using Nivaes.App.Cross.ViewModels;
 using Xunit;

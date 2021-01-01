@@ -9,7 +9,7 @@ using Xunit;
 
 namespace MvvmCross.UnitTest.Binding.Parse.PropertyPath
 {
-    
+
     public class MvxSourcePropertyPathParserTest
     {
         [Fact]

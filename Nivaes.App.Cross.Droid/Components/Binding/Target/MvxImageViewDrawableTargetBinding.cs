@@ -10,7 +10,7 @@ using MvvmCross.Binding;
 
 namespace MvvmCross.Platforms.Android.Binding.Target
 {
-	public class MvxImageViewDrawableTargetBinding
+    public class MvxImageViewDrawableTargetBinding
 		: MvxAndroidTargetBinding
 	{
 		protected ImageView ImageView => (ImageView)Target;

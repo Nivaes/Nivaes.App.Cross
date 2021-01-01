@@ -3,10 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Nivaes.App.Cross.ViewModels;
-using MvvmCross.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Uap.Views
 {

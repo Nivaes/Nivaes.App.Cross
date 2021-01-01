@@ -13,9 +13,9 @@ namespace MvvmCross.Platforms.Mac.Presenters
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Mac.Presenters.Attributes;
     using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxMacViewPresenter
         : MvxAttributeViewPresenter, IMvxMacViewPresenter, IMvxAttributeViewPresenter

@@ -3,13 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-
 using Foundation;
-using UIKit;
-
 using MvvmCross.Binding.BindingContext;
-using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Platforms.Tvos.Views.Base;
+using Nivaes.App.Cross.ViewModels;
+using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Views
 {

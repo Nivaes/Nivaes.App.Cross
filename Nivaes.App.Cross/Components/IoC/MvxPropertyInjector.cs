@@ -9,8 +9,8 @@ namespace MvvmCross.IoC
     using System.Linq;
     using System.Reflection;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxPropertyInjector : IMvxPropertyInjector
     {

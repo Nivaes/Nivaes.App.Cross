@@ -6,7 +6,6 @@ using System;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.Extensions;
 using MvvmCross.Converters;
-using MvvmCross.Tests;
 using Xunit;
 
 namespace MvvmCross.UnitTest.Binding.ExtensionMethods

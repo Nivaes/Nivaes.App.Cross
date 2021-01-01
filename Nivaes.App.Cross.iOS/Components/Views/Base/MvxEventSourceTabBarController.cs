@@ -4,10 +4,10 @@
 
 namespace MvvmCross.Platforms.Ios.Views.Base
 {
-using System;
-using Foundation;
-using MvvmCross.Base;
-using UIKit;
+    using System;
+    using Foundation;
+    using MvvmCross.Base;
+    using UIKit;
 
     public class MvxEventSourceTabBarController
         : UITabBarController, IMvxEventSourceViewController

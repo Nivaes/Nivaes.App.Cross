@@ -9,8 +9,8 @@ namespace MvvmCross.Platforms.Uap.Views
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxWindowsExtensions
     {

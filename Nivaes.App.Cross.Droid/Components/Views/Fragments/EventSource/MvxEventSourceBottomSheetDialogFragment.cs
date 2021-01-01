@@ -13,7 +13,7 @@ using MvvmCross.Platforms.Android.Views;
 
 namespace MvvmCross.DroidX.Material.EventSource
 {
-	public class MvxEventSourceBottomSheetDialogFragment
+    public class MvxEventSourceBottomSheetDialogFragment
 		: BottomSheetDialogFragment, IMvxEventSourceFragment
 	{
 		public event EventHandler<MvxValueEventArgs<Context>> AttachCalled;

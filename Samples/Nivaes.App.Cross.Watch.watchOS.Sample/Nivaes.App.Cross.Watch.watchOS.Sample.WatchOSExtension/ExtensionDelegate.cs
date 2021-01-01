@@ -1,7 +1,4 @@
-﻿using System;
-
-using Foundation;
-using WatchKit;
+﻿using WatchKit;
 
 namespace Nivaes.App.Cross.Watch.watchOS.Sample.WatchOSExtension
 {

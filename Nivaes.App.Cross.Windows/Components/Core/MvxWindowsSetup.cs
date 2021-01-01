@@ -21,10 +21,10 @@ namespace MvvmCross.Platforms.Uap.Core
     using MvvmCross.Platforms.Uap.Presenters;
     using MvvmCross.Platforms.Uap.Views;
     using MvvmCross.Platforms.Uap.Views.Suspension;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using Windows.ApplicationModel.Activation;
 
     public abstract class MvxWindowsSetup

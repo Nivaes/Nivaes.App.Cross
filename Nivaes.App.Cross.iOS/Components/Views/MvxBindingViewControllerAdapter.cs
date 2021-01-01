@@ -5,10 +5,10 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
     using System;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Ios.Views.Base;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Logging;
 
     public class MvxBindingViewControllerAdapter : MvxBaseViewControllerAdapter
     {

@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using MvvmCross.Tests;
 using MvvmCross.UnitTest.Mocks.TestViewModels;
 using Nivaes.App.Cross.ViewModels;
 using Xunit;

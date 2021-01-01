@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-	public class MvxDefaultTemplateSelector
+    public class MvxDefaultTemplateSelector
         : IMvxTemplateSelector
     {
         public int ItemTemplateId { get; set; }

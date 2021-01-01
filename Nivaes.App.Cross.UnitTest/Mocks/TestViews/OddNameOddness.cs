@@ -4,8 +4,8 @@
 
 namespace MvvmCross.UnitTest.Mocks.TestViews
 {
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.ViewModels;
 
     public class OddNameOddness : IMvxView
     {

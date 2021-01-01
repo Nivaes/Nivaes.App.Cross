@@ -8,8 +8,8 @@ namespace MvvmCross.Platforms.Mac.Views
     using System.Reflection;
     using AppKit;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxMacViewsContainer
         : MvxViewsContainer, IMvxMacViewsContainer

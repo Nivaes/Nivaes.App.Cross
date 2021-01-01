@@ -5,7 +5,6 @@
 namespace Nivaes.App.Cross.Presenters
 {
     using System;
-    using MvvmCross;
     using MvvmCross.Platforms.Android;
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]

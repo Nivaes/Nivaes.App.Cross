@@ -13,9 +13,9 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     using System.Linq;
     using AndroidX.Fragment.App;
     using Java.Lang;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
     using JavaObject = Java.Lang.Object;
     using JavaString = Java.Lang.String;
 

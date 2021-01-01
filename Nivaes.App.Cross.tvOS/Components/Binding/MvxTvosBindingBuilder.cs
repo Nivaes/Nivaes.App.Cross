@@ -3,12 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using MvvmCross.Base;
-using MvvmCross.Converters;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Converters;
 using MvvmCross.Platforms.Tvos.Binding.Target;
 using MvvmCross.Platforms.Tvos.Binding.ValueConverters;
 using MvvmCross.Platforms.Tvos.Binding.Views;

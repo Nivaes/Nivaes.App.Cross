@@ -9,8 +9,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.Binding.Extensions;
+using Nivaes.App.Cross.Logging;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Binding.Views

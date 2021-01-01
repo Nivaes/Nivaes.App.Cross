@@ -5,9 +5,6 @@
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
-using System;
-using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {

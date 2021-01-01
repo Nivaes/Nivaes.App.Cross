@@ -5,8 +5,8 @@
 using System;
 using System.Reflection;
 using System.Windows.Input;
-using Nivaes.App.Cross.Logging;
 using MvvmCross.WeakSubscription;
+using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Binding.ValueConverters
 {
