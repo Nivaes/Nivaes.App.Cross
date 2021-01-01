@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
     using MvvmCross.Localization;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class BindingsViewModel
         : MvxViewModel

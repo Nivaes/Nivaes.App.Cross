@@ -7,7 +7,7 @@ using Android.Content;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxAndroidViewModelLoader
     {

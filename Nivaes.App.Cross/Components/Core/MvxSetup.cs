@@ -13,12 +13,12 @@ namespace MvvmCross.Core
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
     using MvvmCross.Plugin;
-    using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxSetup
         : IMvxSetup

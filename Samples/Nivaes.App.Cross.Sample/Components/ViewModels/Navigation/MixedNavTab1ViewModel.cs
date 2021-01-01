@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.Sample
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MixedNavTab1ViewModel
         : MvxViewModel

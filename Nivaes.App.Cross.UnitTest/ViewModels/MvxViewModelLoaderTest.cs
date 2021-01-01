@@ -9,7 +9,7 @@ namespace MvvmCross.UnitTest.ViewModels
     using Moq;
     using MvvmCross.Exceptions;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Navigation;
     using Xunit;
 

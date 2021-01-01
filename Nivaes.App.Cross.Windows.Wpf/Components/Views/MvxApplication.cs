@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Wpf.Views
     using System.Windows;
     using MvvmCross.Core;
     using MvvmCross.Platforms.Wpf.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
     public abstract class MvxApplication : Application

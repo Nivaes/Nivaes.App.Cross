@@ -6,7 +6,7 @@ namespace MvvmCross.Views
 {
     using System.Threading.Tasks;
     using MvvmCross.Base;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxViewDispatcher
         : IMvxMainThreadDispatcher

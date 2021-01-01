@@ -4,7 +4,7 @@
 
 using System.ComponentModel;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxPropertyChangingEventArgs<T> : PropertyChangingEventArgs
     {

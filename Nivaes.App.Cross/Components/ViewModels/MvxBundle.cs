@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace MvvmCross.ViewModels
             Data = data ?? new Dictionary<string, string>();
         }
 
-        public IDictionary<string, string> Data { get; private set; }
+        public IDictionary<string, string> Data { get; }
 
         public void Write(object toStore)
         {

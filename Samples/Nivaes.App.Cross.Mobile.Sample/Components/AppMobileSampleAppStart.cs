@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Mobile.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Sample;
 

@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using System;
     using Foundation;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
     using Nivaes.App.Cross;
 

@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public abstract class MvxPresentationHint
     {

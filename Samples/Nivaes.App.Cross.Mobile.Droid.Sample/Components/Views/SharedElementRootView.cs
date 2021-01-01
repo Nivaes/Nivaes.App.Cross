@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Android.Views;
     using Android.Widget;
     using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Droid.RecyclerView;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;

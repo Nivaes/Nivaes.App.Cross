@@ -8,8 +8,8 @@ namespace MvvmCross.Core.Parse.StringDictionary
     using System.Collections.Generic;
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxViewModelRequestCustomTextSerializer
         : IMvxTextSerializer

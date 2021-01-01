@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample
     using System;
     using System.Drawing;
     using System.Linq;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Commands;
 

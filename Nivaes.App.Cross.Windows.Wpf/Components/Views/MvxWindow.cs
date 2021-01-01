@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Wpf.Views
     using System;
     using System.Windows;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MvxWindow : Window, IMvxWindow, IMvxWpfView, IDisposable

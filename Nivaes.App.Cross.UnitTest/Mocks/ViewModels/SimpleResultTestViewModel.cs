@@ -5,7 +5,7 @@
 namespace Nivaes.App.Cross.UnitTest
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class SimpleResultTestViewModel
         : MvxViewModelResult<bool>

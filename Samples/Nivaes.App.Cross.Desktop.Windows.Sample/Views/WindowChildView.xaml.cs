@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Desktop.Windows.Wpf.Sample
 {
     using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
 

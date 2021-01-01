@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.Android.Views
     using Java.Lang;
     using MvvmCross.Base;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Object = Java.Lang.Object;
 
     [Register("nivaes.app.MvxTabsFragmentActivity")]

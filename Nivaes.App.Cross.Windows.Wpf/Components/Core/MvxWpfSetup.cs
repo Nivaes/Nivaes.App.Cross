@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Platforms.Wpf.Binding;
     using MvvmCross.Platforms.Wpf.Presenters;
     using MvvmCross.Platforms.Wpf.Views;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;

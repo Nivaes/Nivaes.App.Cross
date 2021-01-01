@@ -5,7 +5,7 @@
 namespace MvvmCross.Platforms.Uap.Views
 {
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
 

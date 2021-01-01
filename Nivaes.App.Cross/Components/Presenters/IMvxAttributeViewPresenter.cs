@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public interface IMvxAttributeViewPresenter

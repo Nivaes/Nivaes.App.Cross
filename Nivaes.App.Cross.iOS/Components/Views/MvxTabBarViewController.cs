@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Ios.Views
     using System.Collections.Generic;
     using System.Linq;
     using Foundation;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using UIKit;
     using Nivaes.App.Cross;

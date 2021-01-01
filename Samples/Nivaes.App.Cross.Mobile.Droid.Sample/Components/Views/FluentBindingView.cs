@@ -12,9 +12,9 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using MvvmCross.Platforms.Android.Binding;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross.ViewModels;
 
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
     public class FluentBindingView

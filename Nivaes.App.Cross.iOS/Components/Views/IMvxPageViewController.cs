@@ -4,7 +4,7 @@
 
 namespace MvvmCross.Platforms.Ios.Views
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
     using UIKit;
 

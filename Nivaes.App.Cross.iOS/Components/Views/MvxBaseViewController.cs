@@ -6,7 +6,7 @@ using System;
 using CoreGraphics;
 using Foundation;
 using MvvmCross.Platforms.Ios;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using UIKit;
 
 namespace MvvmCross.Platforms.Ios.Views

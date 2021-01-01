@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.UnitTest
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class SimpleTestViewModel : MvxViewModel
     {

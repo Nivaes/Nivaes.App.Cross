@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using MvvmCross;
     using MvvmCross.IoC;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class AppSampleApplication<TType>
         : MvxApplication

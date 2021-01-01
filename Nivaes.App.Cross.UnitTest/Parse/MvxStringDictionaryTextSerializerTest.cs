@@ -7,7 +7,7 @@ namespace MvvmCross.UnitTest.Parse
     using System.Collections.Generic;
     using MvvmCross.Core.Parse.StringDictionary;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
     using Xunit;
 

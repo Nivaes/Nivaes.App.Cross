@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     /// <summary>
     /// Watches a task and raises property-changed notifications when the task completes.

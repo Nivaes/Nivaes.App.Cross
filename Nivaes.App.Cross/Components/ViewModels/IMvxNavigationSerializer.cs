@@ -4,7 +4,7 @@
 
 using MvvmCross.Base;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public interface IMvxNavigationSerializer
     {

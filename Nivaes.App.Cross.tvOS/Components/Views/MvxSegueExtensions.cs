@@ -10,7 +10,7 @@ using UIKit;
 using Foundation;
 using MvvmCross.Core;
 using MvvmCross.Platforms.Tvos.Views.Base;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Tvos.Views

@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public interface IMvxChildViewModelCache
     {

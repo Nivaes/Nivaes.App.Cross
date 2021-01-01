@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.UnitTest.Mocks.TestViewModels
 {

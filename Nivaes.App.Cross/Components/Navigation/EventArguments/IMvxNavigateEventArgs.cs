@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.Navigation
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxNavigateEventArgs
     {

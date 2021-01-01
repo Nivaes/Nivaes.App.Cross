@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System.Collections.Generic;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 

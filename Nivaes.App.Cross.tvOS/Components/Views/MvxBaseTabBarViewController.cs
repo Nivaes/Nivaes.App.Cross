@@ -6,7 +6,7 @@ using System;
 using MvvmCross.Binding.BindingContext;
 using Foundation;
 using MvvmCross.Platforms.Tvos.Views.Base;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Views

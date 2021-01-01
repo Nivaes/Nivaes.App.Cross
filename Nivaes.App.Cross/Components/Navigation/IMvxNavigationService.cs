@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Navigation
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public delegate void BeforeNavigateEventHandler(object sender, IMvxNavigateEventArgs e);
 

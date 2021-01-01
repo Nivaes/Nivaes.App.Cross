@@ -8,7 +8,7 @@ using System.Linq;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Tvos.Presenters.Attributes;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using UIKit;
 
 namespace MvvmCross.Platforms.Tvos.Views

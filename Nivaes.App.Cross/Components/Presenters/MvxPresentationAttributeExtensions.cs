@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Presenters
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxPresentationAttributeExtensions
     {

@@ -5,7 +5,7 @@
 namespace Nivaes.App.Cross.Navigation
 {
     using System.Threading;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class ChangePresentationEventArgs : MvxCancelEventArgs
     {

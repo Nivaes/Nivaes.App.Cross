@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Ios.Core
     using MvvmCross.Platforms.Ios;
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;

@@ -5,7 +5,7 @@
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross.Presenters;
 

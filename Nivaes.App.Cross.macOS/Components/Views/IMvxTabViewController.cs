@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using AppKit;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Mac.Views
 {

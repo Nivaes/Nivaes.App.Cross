@@ -5,7 +5,7 @@
 using System;
 using System.ComponentModel;
 using Android.Runtime;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.ViewModels
 {

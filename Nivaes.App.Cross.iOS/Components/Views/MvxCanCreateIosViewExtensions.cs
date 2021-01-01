@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Ios.Views
     using System;
     using System.Collections.Generic;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
     public static class MvxCanCreateIosViewExtensions

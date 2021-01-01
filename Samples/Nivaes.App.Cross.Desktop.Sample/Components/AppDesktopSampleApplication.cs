@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Desktop.Sample
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Sample;
 
     public sealed class AppDesktopSampleApplication<TType>

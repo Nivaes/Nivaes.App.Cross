@@ -8,7 +8,7 @@ namespace MvvmCross.UnitTest.ViewModels
     using System.Collections.Specialized;
     using System.Threading.Tasks;
     using MvvmCross.Base;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Xunit;
 
     [Collection("MvxTest")]

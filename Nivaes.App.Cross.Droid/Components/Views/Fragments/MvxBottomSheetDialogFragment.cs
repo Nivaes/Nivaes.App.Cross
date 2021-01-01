@@ -12,7 +12,7 @@ namespace MvvmCross.DroidX.Material
     using MvvmCross.DroidX.Material.EventSource;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     [Register("mvvmcross.droidx.material.MvxBottomSheetDialogFragment")]
     public abstract class MvxBottomSheetDialogFragment

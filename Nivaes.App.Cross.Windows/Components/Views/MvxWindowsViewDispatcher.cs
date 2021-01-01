@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Uap.Views
 {
     using System.Threading.Tasks;
     using MvvmCross.Platforms.Uap.Presenters;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public class MvxWindowsViewDispatcher

@@ -12,7 +12,7 @@ namespace MvvmCross.Core
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxSimplePropertyDictionaryExtensions
     {

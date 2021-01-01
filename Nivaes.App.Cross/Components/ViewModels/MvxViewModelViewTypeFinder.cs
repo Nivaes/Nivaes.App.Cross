@@ -9,7 +9,7 @@ using MvvmCross.IoC;
 using Nivaes.App.Cross.Logging;
 using MvvmCross.Views;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxViewModelViewTypeFinder
         : IMvxViewModelTypeFinder

@@ -5,9 +5,9 @@
 namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public class SharedElementRootChildViewModel
         : MvxNavigationViewModel

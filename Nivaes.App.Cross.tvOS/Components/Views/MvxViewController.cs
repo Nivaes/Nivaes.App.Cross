@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Tvos.Views
     using Foundation;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Tvos.Views.Base;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
     public class MvxViewController

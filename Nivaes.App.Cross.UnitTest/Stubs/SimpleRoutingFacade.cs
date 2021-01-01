@@ -7,7 +7,7 @@ namespace MvvmCross.UnitTest.Stubs
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Navigation;
 
     public class SimpleRoutingFacade

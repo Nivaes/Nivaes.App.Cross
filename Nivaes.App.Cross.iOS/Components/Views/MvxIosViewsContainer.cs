@@ -5,7 +5,7 @@
 using System;
 using System.Reflection;
 using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
 using UIKit;
 

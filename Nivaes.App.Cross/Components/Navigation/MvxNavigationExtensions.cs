@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Navigation
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxNavigationExtensions
     {

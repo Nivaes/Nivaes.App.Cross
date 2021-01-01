@@ -5,7 +5,7 @@
 using System;
 using MvvmCross.Base;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxInteraction : IMvxInteraction
     {

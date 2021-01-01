@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Threading.Tasks;
     using MvvmCross;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     [Activity(
         Label = "@string/app_name"

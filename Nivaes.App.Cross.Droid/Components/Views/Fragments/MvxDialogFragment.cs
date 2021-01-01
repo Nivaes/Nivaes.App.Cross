@@ -7,7 +7,7 @@ using Android.OS;
 using Android.Runtime;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {

@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Mac.Core
     using MvvmCross.Platforms.Mac.Binding;
     using MvvmCross.Platforms.Mac.Presenters;
     using MvvmCross.Platforms.Mac.Views;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;

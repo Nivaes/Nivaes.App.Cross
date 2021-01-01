@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross.Presenters
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.Platforms.Android.Views.ViewPager;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross.Logging;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;

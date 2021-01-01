@@ -5,7 +5,7 @@
 namespace Nivaes.App.Cross.Presenters
 {
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxClosePresentationHint
         : MvxPresentationHint

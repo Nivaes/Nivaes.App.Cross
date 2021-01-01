@@ -4,7 +4,7 @@
 
 using System.Windows;
 using System;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Wpf.Views
 {

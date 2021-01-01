@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Ios.Core
     using System;
     using Foundation;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
     using UIKit;
 

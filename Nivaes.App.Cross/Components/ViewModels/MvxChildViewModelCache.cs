@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxChildViewModelCache : IMvxChildViewModelCache
     {

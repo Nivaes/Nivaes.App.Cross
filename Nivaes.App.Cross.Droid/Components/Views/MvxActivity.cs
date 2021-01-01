@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.Platforms.Android.Views.Base;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.Views;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Core;
     using Fragment = AndroidX.Fragment.App.Fragment;
 

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Presenters
     using Android.App;
     using MvvmCross;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public static class MvxAndroidPresentationAttributeExtensions
     {

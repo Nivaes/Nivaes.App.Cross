@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.OS;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {

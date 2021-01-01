@@ -6,7 +6,7 @@ using System;
 using MvvmCross.Base;
 using MvvmCross.WeakSubscription;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public static class MvxInteractionExtensions
     {

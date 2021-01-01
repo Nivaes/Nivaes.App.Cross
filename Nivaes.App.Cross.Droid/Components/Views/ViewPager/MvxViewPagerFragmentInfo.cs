@@ -4,7 +4,7 @@
 
 using System;
 using AndroidX.Fragment.App;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.ViewPager
 {

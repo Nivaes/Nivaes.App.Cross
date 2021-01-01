@@ -5,7 +5,7 @@
 namespace Nivaes.App.Cross.UnitTest
 {
     using MvvmCross.UnitTest.Mocks.TestViewModels;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public class NotTest2View : IMvxView

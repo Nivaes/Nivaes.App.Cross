@@ -6,7 +6,7 @@ using Android.Content;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxAndroidViewModelRequestTranslator
     {

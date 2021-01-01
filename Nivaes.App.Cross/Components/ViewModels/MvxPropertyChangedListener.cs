@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using MvvmCross.Base;
 using MvvmCross.WeakSubscription;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxPropertyChangedListener
         : IDisposable

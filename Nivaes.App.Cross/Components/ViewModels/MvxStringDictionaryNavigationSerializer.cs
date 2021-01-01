@@ -5,7 +5,7 @@
 using MvvmCross.Base;
 using MvvmCross.Core.Parse.StringDictionary;
 
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross.ViewModels
 {
     public class MvxStringDictionaryNavigationSerializer
         : IMvxNavigationSerializer

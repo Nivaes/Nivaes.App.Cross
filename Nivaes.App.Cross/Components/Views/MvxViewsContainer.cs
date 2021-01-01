@@ -7,7 +7,7 @@ namespace MvvmCross.Views
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxViewsContainer
         : IMvxViewsContainer

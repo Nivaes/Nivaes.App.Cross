@@ -6,8 +6,8 @@ namespace Nivaes.App.Cross.Commands
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxAsyncNavigationCommand<TViewModel>
         : MvxCommandAsync

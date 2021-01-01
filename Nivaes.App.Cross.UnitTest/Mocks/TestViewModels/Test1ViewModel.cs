@@ -6,7 +6,7 @@ namespace MvvmCross.UnitTest.Mocks.TestViewModels
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public class Test1ViewModel
         : MvxViewModel

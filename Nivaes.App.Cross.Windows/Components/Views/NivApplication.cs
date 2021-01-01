@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Views
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Uap.Core;
     using MvvmCross.Platforms.Uap.Views.Suspension;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
 

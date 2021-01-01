@@ -7,7 +7,7 @@ using Android.Views;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.Presenters;
 
     /// <summary>

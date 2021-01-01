@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Tvos.Views
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Tvos.Presenters;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public class MvxTvosViewDispatcher

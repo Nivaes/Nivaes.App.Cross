@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Wpf.Views
     using System.Windows;
     using System.Windows.Controls;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MvxWpfView : UserControl, IMvxWpfView, IDisposable

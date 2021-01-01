@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Presenters
     using System.Threading.Tasks;
     using MvvmCross;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public abstract class MvxAttributeViewPresenter

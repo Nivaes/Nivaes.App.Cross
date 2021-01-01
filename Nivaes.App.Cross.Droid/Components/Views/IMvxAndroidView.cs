@@ -5,7 +5,7 @@
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views.Base;
 using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
 
 namespace MvvmCross.Platforms.Android.Views

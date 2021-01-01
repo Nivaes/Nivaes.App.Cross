@@ -8,7 +8,7 @@ namespace MvvmCross.Platforms.Mac.Views
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Mac.Presenters;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public class MvxMacViewDispatcher

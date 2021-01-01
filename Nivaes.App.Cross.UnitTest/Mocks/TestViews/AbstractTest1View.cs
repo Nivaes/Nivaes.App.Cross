@@ -4,7 +4,7 @@
 
 namespace MvvmCross.UnitTest.Mocks.TestViews
 {
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public abstract class AbstractTest1View

@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Navigation
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public interface IMvxNavigationFacade
     {

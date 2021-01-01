@@ -23,7 +23,7 @@ namespace MvvmCross.UnitTest.Navigation
     using MvvmCross.Exceptions;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.UnitTest;
     using Xunit;
 

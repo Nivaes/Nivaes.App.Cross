@@ -6,7 +6,7 @@ namespace MvvmCross.UnitTest.Platform
 {
     using MvvmCross.UnitTest.Mocks.TestViewModels;
     using MvvmCross.UnitTest.Mocks.TestViews;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross.UnitTest;
     using Xunit;
 

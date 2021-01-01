@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Tvos.Views
 {
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross.Logging;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
 

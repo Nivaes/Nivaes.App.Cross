@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Mac.Core
     using System;
     using AppKit;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
     public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate

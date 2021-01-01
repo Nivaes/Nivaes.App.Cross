@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Wpf.Views
     using System.Threading.Tasks;
     using System.Windows.Threading;
     using MvvmCross.Platforms.Wpf.Presenters;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
 
     public class MvxWpfViewDispatcher

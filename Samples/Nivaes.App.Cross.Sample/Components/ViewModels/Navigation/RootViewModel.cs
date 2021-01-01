@@ -7,10 +7,10 @@ namespace Nivaes.App.Cross.Sample
     using System.Globalization;
     using System.Threading.Tasks;
     using MvvmCross.Localization;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public class RootViewModel
         : MvxNavigationViewModel

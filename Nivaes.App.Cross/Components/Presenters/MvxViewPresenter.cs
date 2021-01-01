@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Presenters
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxViewPresenter
         : IMvxViewPresenter

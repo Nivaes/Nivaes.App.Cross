@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     using System;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.ViewModels;
 
     [Register("nivaes.app.MvxFragment")]
     public class MvxFragment

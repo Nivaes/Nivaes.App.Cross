@@ -6,10 +6,10 @@ namespace Nivaes.App.Cross.Sample
 {
     using System;
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross.Commands;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MixedNavMasterDetailViewModel
         : MvxNavigationViewModel
@@ -37,9 +37,11 @@ namespace Nivaes.App.Cross.Sample
 
         public IEnumerable<MenuItem> Menu { get; set; }
 
-        public MenuItem? SelectedMenu {
+        public MenuItem? SelectedMenu
+        {
             get => mMenuItem;
-            set {
+            set
+            {
                 if (SetProperty(ref mMenuItem, value))
                     OnSelectedChangedCommand.Execute(value);
             }

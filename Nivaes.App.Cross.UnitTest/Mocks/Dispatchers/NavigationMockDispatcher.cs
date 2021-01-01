@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using MvvmCross.Base;
 using Nivaes.App.Cross.Logging;
 using MvvmCross.Tests;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross.ViewModels;
 using MvvmCross.Views;
 using System.Net.Http.Headers;
 using Xunit.Sdk;
