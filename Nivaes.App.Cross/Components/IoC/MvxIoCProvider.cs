@@ -7,6 +7,7 @@ namespace MvvmCross.IoC
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Nivaes.App.Cross.IoC;
 
     /// <summary>
     /// Singleton IoC Provider.
@@ -22,11 +23,11 @@ namespace MvvmCross.IoC
         public static IMvxIoCProvider Provider => mProviderLazy.Value;
         public static bool IsValueCreated => mProviderLazy.IsValueCreated;
 
-        private MvxIoCContainer mContainer;
+        private IoCContainer mContainer;
 
         protected MvxIoCProvider(IMvxIocOptions? options)
         {
-            mContainer = new MvxIoCContainer(options);
+            mContainer = new IoCContainer(options);
         }
 
         private static readonly TaskCompletionSource<IMvxIoCProvider> mInitializeTaskCompletation

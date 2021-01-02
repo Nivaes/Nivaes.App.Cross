@@ -18,6 +18,10 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     public class RootView
         : MvxActivity<RootViewModel>
     {
+        public RootView()
+        {
+        }
+
         protected override void OnCreate(Bundle? bundle)
         {
             base.OnCreate(bundle);

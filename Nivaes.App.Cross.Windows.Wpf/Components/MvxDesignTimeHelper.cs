@@ -38,9 +38,9 @@ namespace MvvmCross.Platforms.Wpf
             if (!IsInDesignTime)
                 return;
 
-            if (!MvxIoCProvider.IsValueCreated)
+            if (!Provider.IsValueCreated)
             {
-                var iocProvider = MvxIoCProvider.Initialize();
+                var iocProvider = Provider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
 

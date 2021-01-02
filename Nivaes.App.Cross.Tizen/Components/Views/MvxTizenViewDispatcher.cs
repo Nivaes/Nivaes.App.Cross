@@ -6,10 +6,10 @@ namespace MvvmCross.Platforms.Tizen.Views
 {
     using System;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Logging;
     using MvvmCross.Platforms.Tizen.Presenters;
-    using MvvmCross.ViewModels;
     using MvvmCross.Views;
+    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.ViewModels;
 
     public class MvxTizenViewDispatcher
         : MvxTizenMainThreadDispatcher, IMvxViewDispatcher

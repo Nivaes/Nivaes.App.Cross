@@ -8,8 +8,8 @@ namespace MvvmCross.Platforms.Tizen.Core
 {
     using System;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxCoreUIApplication
         : CoreUIApplication, IMvxLifetime

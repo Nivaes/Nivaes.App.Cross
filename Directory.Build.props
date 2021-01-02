@@ -18,13 +18,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!--<LangVersion>preview</LangVersion>
-    <Nullable>enable</Nullable>-->
-    <!--<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>-->
-  </PropertyGroup>
-
-  <PropertyGroup>
     <!--<RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</RepoRoot>
     <BaseOutputPath>$(RepoRoot)Artifacts\$(Configuration)\bin\$(MSBuildProjectName)\</BaseOutputPath>
     <BaseIntermediateOutputPath>$(RepoRoot)Artifacts\$(Configuration)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>-->

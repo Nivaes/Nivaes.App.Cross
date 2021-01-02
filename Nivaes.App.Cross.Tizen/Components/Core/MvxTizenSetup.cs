@@ -20,10 +20,10 @@ namespace MvvmCross.Platforms.Tizen.Core
     using MvvmCross.Platforms.Tizen.Binding;
     using MvvmCross.Platforms.Tizen.Presenters;
     using MvvmCross.Platforms.Tizen.Views;
-    using MvvmCross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxTizenSetup
         : MvxSetup, IMvxTizenSetup

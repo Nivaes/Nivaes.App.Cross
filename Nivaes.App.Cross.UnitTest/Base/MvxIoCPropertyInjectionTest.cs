@@ -53,7 +53,7 @@ namespace MvvmCross.UnitTest.Base
         public void TryResolve_WithNoInjection_NothingGetsInjected()
         {
             MvxSingleton.ClearAllSingletons();
-            var instance = MvxIoCProvider.Initialize();
+            var instance = Provider.Initialize();
 
             Mvx.IoCProvider.RegisterType<IA, A>();
             Mvx.IoCProvider.RegisterType<IB, B>();
@@ -82,7 +82,7 @@ namespace MvvmCross.UnitTest.Base
                     InjectIntoProperties = MvxPropertyInjection.MvxInjectInterfaceProperties
                 }
             };
-            var instance = MvxIoCProvider.Initialize(options);
+            var instance = Provider.Initialize(options);
 
             Mvx.IoCProvider.RegisterType<IA, A>();
             Mvx.IoCProvider.RegisterType<IB, B>();
@@ -112,7 +112,7 @@ namespace MvvmCross.UnitTest.Base
                     InjectIntoProperties = MvxPropertyInjection.AllInterfaceProperties
                 }
             };
-            var instance = MvxIoCProvider.Initialize(options);
+            var instance = Provider.Initialize(options);
 
             Mvx.IoCProvider.RegisterType<IA, A>();
             Mvx.IoCProvider.RegisterType<IB, B>();

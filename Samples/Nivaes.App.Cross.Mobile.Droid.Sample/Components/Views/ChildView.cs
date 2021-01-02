@@ -32,10 +32,5 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
             return view;
         }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
     }
 }

@@ -2,22 +2,26 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Base;
-using MvvmCross.WeakSubscription;
-
 namespace Nivaes.App.Cross.ViewModels
 {
+    using System;
+    using MvvmCross.Base;
+    using MvvmCross.WeakSubscription;
+
     public static class MvxInteractionExtensions
     {
         public static IDisposable WeakSubscribe(this IMvxInteraction interaction, EventHandler<EventArgs> action)
         {
+            if (interaction == null) throw new NullReferenceException(nameof(interaction));
+
             var eventInfo = interaction.GetType().GetEvent("Requested");
             return eventInfo.WeakSubscribe(interaction, action);
         }
 
         public static MvxValueEventSubscription<T> WeakSubscribe<T>(this IMvxInteraction<T> interaction, EventHandler<MvxValueEventArgs<T>> action)
         {
+            if (interaction == null) throw new NullReferenceException(nameof(interaction));
+
             var eventInfo = interaction.GetType().GetEvent("Requested");
             return eventInfo.WeakSubscribe<T>(interaction, action);
         }

@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.IoC
+namespace Nivaes.App.Cross.IoC
 {
     using System;
     using System.Collections.Concurrent;
@@ -11,9 +11,10 @@ namespace MvvmCross.IoC
     using System.Reflection;
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
     using Nivaes.App.Cross.Logging;
 
-    internal class MvxIoCContainer
+    internal class IoCContainer
         : IMvxIoCProvider
     {
         private readonly ConcurrentDictionary<Type, IResolver> mResolvers = new();
@@ -25,7 +26,7 @@ namespace MvvmCross.IoC
 
         protected IMvxIocOptions Options => mOptions;
 
-        public MvxIoCContainer(IMvxIocOptions? options, IMvxIoCProvider? parentProvider = null)
+        public IoCContainer(IMvxIocOptions? options, IMvxIoCProvider? parentProvider = null)
         {
             mOptions = options ?? new MvxIocOptions();
             if (mOptions.PropertyInjectorType != null)
@@ -42,22 +43,13 @@ namespace MvvmCross.IoC
             }
         }
 
-        public MvxIoCContainer(IMvxIoCProvider parentProvider)
+        public IoCContainer(IMvxIoCProvider parentProvider)
             : this(null, parentProvider)
         {
             if (parentProvider == null)
             {
                 throw new ArgumentNullException(nameof(parentProvider), "Provide a parent ioc provider to this constructor");
             }
-        }
-
-        public interface IResolver
-        {
-            object Resolve();
-
-            ResolverType ResolveType { get; }
-
-            void SetGenericTypeParameters(Type[] genericTypeParameters);
         }
 
         public class ConstructingResolver
@@ -471,14 +463,7 @@ namespace MvvmCross.IoC
             mCircularTypeDetection.Clear();
         }
 
-        public enum ResolverType
-        {
-            DynamicPerResolve,
-            Singleton,
-            Unknown
-        }
-
-        public virtual IMvxIoCProvider CreateChildContainer() => new MvxIoCContainer(this);
+        public virtual IMvxIoCProvider CreateChildContainer() => new IoCContainer(this);
 
         private static readonly ResolverType? ResolverTypeNoneSpecified = null;
 

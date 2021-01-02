@@ -37,7 +37,7 @@ namespace MvvmCross.Platforms.Wpf.Binding
 
         private static void RegisterAssembly(Assembly assembly)
         {
-            if (!MvxIoCProvider.IsValueCreated)
+            if (!Provider.IsValueCreated)
             {
                 MvxWindowsAssemblyCache.EnsureInitialized();
                 MvxWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);

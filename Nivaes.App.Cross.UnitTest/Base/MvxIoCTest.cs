@@ -16,7 +16,7 @@ namespace MvvmCross.UnitTest.Base
     [Collection("MvxTest")]
     public class MvxIocTest : IDisposable
     {
-        private IMvxIoCProvider _iocProvider;
+        private IMacIoCProvider _iocProvider;
 
         public MvxIocTest()
         {
@@ -24,9 +24,9 @@ namespace MvvmCross.UnitTest.Base
             _iocProvider = CreateIoCProvider();
         }
 
-        protected virtual IMvxIoCProvider CreateIoCProvider(IMvxIocOptions options = null)
+        protected virtual IMacIoCProvider CreateIoCProvider(IMvxIocOptions options = null)
         {
-            return MvxIoCProvider.Initialize(options);
+            return Provider.Initialize(options);
         }
 
         public void Dispose()

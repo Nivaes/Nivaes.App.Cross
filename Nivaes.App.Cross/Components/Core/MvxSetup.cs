@@ -16,6 +16,7 @@ namespace MvvmCross.Core
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Commands;
+    using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.ViewModels;

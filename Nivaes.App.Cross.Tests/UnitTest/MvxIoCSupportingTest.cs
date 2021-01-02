@@ -15,7 +15,7 @@ namespace MvvmCross.Tests
     {
         private TestLogger _logger;
 
-        public IMvxIoCProvider Ioc { get; private set; }
+        public IMacIoCProvider Ioc { get; private set; }
 
         public void Setup()
         {
@@ -39,7 +39,7 @@ namespace MvvmCross.Tests
             Reset();
             var logProvider = CreateLogProvider();
             var log = CreateLog(logProvider);
-            Ioc = MvxIoCProvider.Initialize(options ?? CreateIocOptions());
+            Ioc = Provider.Initialize(options ?? CreateIocOptions());
             Ioc.RegisterSingleton(Ioc);
             Ioc.RegisterSingleton(logProvider);
             Ioc.RegisterSingleton(log);

@@ -2,19 +2,20 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using MvvmCross.Base;
-
 namespace Nivaes.App.Cross.ViewModels
 {
-    public class MvxInteraction : IMvxInteraction
+    using System;
+    using MvvmCross.Base;
+
+    public class MvxInteraction
+        : IMvxInteraction
     {
         public void Raise()
         {
             Requested.Raise(this);
         }
 
-        public event EventHandler Requested;
+        public event EventHandler? Requested;
     }
 
     public class MvxInteraction<T> : IMvxInteraction<T>
@@ -24,6 +25,6 @@ namespace Nivaes.App.Cross.ViewModels
             Requested.Raise(this, request);
         }
 
-        public event EventHandler<MvxValueEventArgs<T>> Requested;
+        public event EventHandler<MvxValueEventArgs<T>>? Requested;
     }
 }
