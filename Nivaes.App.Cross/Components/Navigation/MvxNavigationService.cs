@@ -12,6 +12,7 @@ namespace Nivaes.App.Cross.Navigation
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.AppCenter;
     using MvvmCross.Base;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
@@ -418,6 +419,8 @@ namespace Nivaes.App.Cross.Navigation
                 PresentationValues = presentationBundle?.SafeGetData()
             };
 
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Navigate-{viewModelType.FullName}");
+
             request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
             return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
@@ -428,6 +431,8 @@ namespace Nivaes.App.Cross.Navigation
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
+
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Navigate-{viewModelType.FullName}");
 
             request.ViewModelInstance = await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
             return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
@@ -440,6 +445,8 @@ namespace Nivaes.App.Cross.Navigation
                 PresentationValues = presentationBundle?.SafeGetData()
             };
 
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Navigate-{viewModelType.FullName}");
+
             request.ViewModelInstance = (IMvxViewModelResult<TResult>) await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
             return await Navigate<TResult>(request, (IMvxViewModelResult<TResult>)request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
         }
@@ -451,6 +458,8 @@ namespace Nivaes.App.Cross.Navigation
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
+
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Navigate-{viewModelType.FullName}");
 
             request.ViewModelInstance = (IMvxViewModel<TParameter, TResult>)await ViewModelLoader.LoadViewModel(request, param, null).ConfigureAwait(false);
             args.ViewModel = request.ViewModelInstance;

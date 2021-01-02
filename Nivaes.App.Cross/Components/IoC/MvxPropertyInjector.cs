@@ -12,11 +12,12 @@ namespace MvvmCross.IoC
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
-    public class MvxPropertyInjector : IMvxPropertyInjector
+    public class MvxPropertyInjector
+        : IMvxPropertyInjector
     {
-        public virtual void Inject(object target, IMvxPropertyInjectorOptions options = null)
+        public virtual void Inject(object target, IMvxPropertyInjectorOptions? options = null)
         {
-            options = options ?? MvxPropertyInjectorOptions.All;
+            options ??= MvxPropertyInjectorOptions.All;
 
             if (options.InjectIntoProperties == MvxPropertyInjection.None)
                 return;
@@ -38,7 +39,7 @@ namespace MvvmCross.IoC
             if (injectableProperty == null) throw new ArgumentNullException(nameof(injectableProperty));
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            if (Mvx.IoCProvider.TryResolve(injectableProperty.PropertyType, out object propertyValue))
+            if (Mvx.IoCProvider.TryResolve(injectableProperty.PropertyType, out object? propertyValue))
             {
                 try
                 {
@@ -81,7 +82,7 @@ namespace MvvmCross.IoC
 
                 case MvxPropertyInjection.None:
                     MvxLog.Instance?.Error("Internal error - should not call FindInjectableProperties with MvxPropertyInjection.None");
-                    injectableProperties = new PropertyInfo[0];
+                    injectableProperties = Array.Empty<PropertyInfo>();
                     break;
 
                 default:

@@ -11,7 +11,8 @@ using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.IoC
 {
-    public class MvxTypeCache<TType> : IMvxTypeCache<TType>
+    public class MvxTypeCache<TType>
+        : IMvxTypeCache<TType>
     {
         public Dictionary<string, Type> LowerCaseFullNameCache { get; } = new Dictionary<string, Type>();
         public Dictionary<string, Type> FullNameCache { get; } = new Dictionary<string, Type>();

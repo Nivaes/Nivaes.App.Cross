@@ -24,7 +24,7 @@ namespace MvvmCross.Core
     public abstract class MvxSetup
         : IMvxSetup
     {
-        protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
+        protected static Action<IIoCProvider>? RegisterSetupDependencies { get; set; }
 
         protected static Func<IMvxSetup>? SetupCreator { get; set; }
 
@@ -318,7 +318,7 @@ namespace MvvmCross.Core
             return Mvx.IoCProvider.Resolve<IMvxCommandCollectionBuilder>();
         }
 
-        protected virtual IMvxIoCProvider InitializeIoC()
+        protected virtual IIoCProvider InitializeIoC()
         {
             // initialize the IoC registry, then add it to itself
             var iocProvider = CreateIocProvider();
@@ -327,7 +327,7 @@ namespace MvvmCross.Core
             return iocProvider;
         }
 
-        protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterDefaultSetupDependencies(IIoCProvider iocProvider)
         {
             if (iocProvider == null) throw new NullReferenceException(nameof(iocProvider));
 
@@ -355,9 +355,9 @@ namespace MvvmCross.Core
             return new MvxIocOptions();
         }
 
-        protected virtual IMvxIoCProvider CreateIocProvider()
+        protected virtual IIoCProvider CreateIocProvider()
         {
-            return MvxIoCProvider.Initialize(CreateIocOptions());
+            return IoCProvider.Initialize(CreateIocOptions());
         }
 
         protected virtual Task InitializeFirstChance()
@@ -385,7 +385,7 @@ namespace MvvmCross.Core
         public virtual MvxLogProviderType GetDefaultLogProviderType()
             => MvxLogProviderType.AppCenter;
 
-        protected virtual void RegisterLogProvider(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterLogProvider(IIoCProvider iocProvider)
         {
             Func<IMvxLogProvider>? logProviderCreator = (GetDefaultLogProviderType()) switch
             {

@@ -2,45 +2,43 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.IoC
+namespace Nivaes.App.Cross.IoC
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.IoC;
 
     /// <summary>
-    /// Singleton IoC Provider.
-    ///
-    /// Delegates to the <see cref="MvxIoCContainer"/> implementation
+    /// <para>Singleton IoC Provider.</para>
+    /// <para>Delegates to the <see cref="MvxIoCContainer"/> implementation</para>
     /// </summary>
-    public class MvxIoCProvider
-        : IMvxIoCProvider
+    public class IoCProvider
+        : IIoCProvider
     {
         #region Singleton
-        private static Lazy<IMvxIoCProvider> mProviderLazy = new Lazy<IMvxIoCProvider>(Initialize);
+        private static readonly Lazy<IIoCProvider> mProviderLazy = new Lazy<IIoCProvider>(Initialize);
 
-        public static IMvxIoCProvider Provider => mProviderLazy.Value;
+        public static IIoCProvider Provider => mProviderLazy.Value;
         public static bool IsValueCreated => mProviderLazy.IsValueCreated;
 
-        private IoCContainer mContainer;
+        private readonly IoCContainer mContainer;
 
-        protected MvxIoCProvider(IMvxIocOptions? options)
+        protected IoCProvider(IMvxIocOptions? options)
         {
             mContainer = new IoCContainer(options);
         }
 
-        private static readonly TaskCompletionSource<IMvxIoCProvider> mInitializeTaskCompletation
-            = new TaskCompletionSource<IMvxIoCProvider>();
+        private static readonly TaskCompletionSource<IIoCProvider> mInitializeTaskCompletation
+            = new TaskCompletionSource<IIoCProvider>();
 
-        private static IMvxIoCProvider Initialize()
+        private static IIoCProvider Initialize()
         {
             return mInitializeTaskCompletation.Task.GetAwaiter().GetResult();
         }
 
-        public static IMvxIoCProvider Initialize(IMvxIocOptions? options = null)
+        public static IIoCProvider Initialize(IMvxIocOptions? options = null)
         {
-            var privider = new MvxIoCProvider(options);
+            var privider = new IoCProvider(options);
 
             mInitializeTaskCompletation.SetResult(privider);
 
@@ -66,7 +64,7 @@ namespace MvvmCross.IoC
             return mContainer.TryResolve<T>(out resolved);
         }
 
-        public bool TryResolve(Type type, out object resolved)
+        public bool TryResolve(Type type, out object? resolved)
         {
             return mContainer.TryResolve(type, out resolved);
         }
@@ -99,7 +97,7 @@ namespace MvvmCross.IoC
             return mContainer.Create<T>();
         }
 
-        public object Create(Type t)
+        public object? Create(Type t)
         {
             return mContainer.Create(t);
         }
@@ -205,7 +203,7 @@ namespace MvvmCross.IoC
             mContainer.CleanAllResolvers();
         }
 
-        public IMvxIoCProvider CreateChildContainer()
+        public IIoCProvider CreateChildContainer()
         {
             return mContainer.CreateChildContainer();
         }

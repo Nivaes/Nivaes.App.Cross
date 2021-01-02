@@ -23,9 +23,9 @@ namespace MvvmCross.Platforms.Uap.Binding
             if (!DesignMode.DesignModeEnabled)
                 return;
 
-            if (!MvxIoCProvider.IsValueCreated)
+            if (!IoCProvider.IsValueCreated)
             {
-                var iocProvider = MvxIoCProvider.Initialize();
+                var iocProvider = IoCProvider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
 

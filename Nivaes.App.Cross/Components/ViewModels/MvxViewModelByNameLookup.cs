@@ -22,12 +22,12 @@ namespace Nivaes.App.Cross.ViewModels
             _availableViewModelsByFullName = new Dictionary<string, Type>();
         }
 
-        public bool TryLookupByName(string name, out Type viewModelType)
+        public bool TryLookupByName(string name, out Type? viewModelType)
         {
             return _availableViewModelsByName.TryGetValue(name, out viewModelType);
         }
 
-        public bool TryLookupByFullName(string name, out Type viewModelType)
+        public bool TryLookupByFullName(string name, out Type? viewModelType)
         {
             return _availableViewModelsByFullName.TryGetValue(name, out viewModelType);
         }

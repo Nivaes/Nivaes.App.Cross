@@ -5,17 +5,16 @@
 namespace Nivaes.App.Cross.IoC
 {
     using System;
-    using MvvmCross.IoC;
 
     internal class ConstructingOpenGenericResolver
         : IResolver
     {
         private readonly Type mGenericTypeDefinition;
-        private readonly IMvxIoCProvider mParent;
+        private readonly IIoCProvider mParent;
 
         private Type[]? mGenericTypeParameters;
 
-        public ConstructingOpenGenericResolver(Type genericTypeDefinition, IMvxIoCProvider parent)
+        public ConstructingOpenGenericResolver(Type genericTypeDefinition, IIoCProvider parent)
         {
             mGenericTypeDefinition = genericTypeDefinition;
             mParent = parent;

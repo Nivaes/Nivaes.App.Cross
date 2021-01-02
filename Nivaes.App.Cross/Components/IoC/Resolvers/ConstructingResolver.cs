@@ -5,15 +5,14 @@
 namespace Nivaes.App.Cross.IoC
 {
     using System;
-    using MvvmCross.IoC;
 
     internal class ConstructingResolver
         : IResolver
     {
         private readonly Type _type;
-        private readonly IMvxIoCProvider _parent;
+        private readonly IIoCProvider _parent;
 
-        public ConstructingResolver(Type type, IMvxIoCProvider parent)
+        public ConstructingResolver(Type type, IIoCProvider parent)
         {
             _type = type;
             _parent = parent;

@@ -15,9 +15,9 @@ namespace MvvmCross.Platforms.Uap
             if (!IsInDesignTool)
                 return;
 
-            if (!MvxIoCProvider.IsValueCreated)
+            if (!IoCProvider.IsValueCreated)
             {
-                var iocProvider = MvxIoCProvider.Initialize();
+                var iocProvider = IoCProvider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
         }

@@ -7,13 +7,14 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross.IoC;
 
     public static class Mvx
     {
         /// <summary>
         /// Returns a singleton instance of the default IoC Provider. If possible use dependency injection instead.
         /// </summary>
-        public static IMvxIoCProvider IoCProvider => MvxIoCProvider.Provider; //MvxSingleton<IMvxIoCProvider>.Instance
+        public static IIoCProvider IoCProvider => Nivaes.App.Cross.IoC.IoCProvider.Provider; //MvxSingleton<IMvxIoCProvider>.Instance
 
         [Obsolete("Use Mvx.IoCProvider instead")]
         public static bool CanResolve<TService>() where TService : class
@@ -44,7 +45,8 @@ namespace Nivaes.App.Cross
         }
 
         [Obsolete("Use Mvx.IoCProvider instead")]
-        public static bool TryResolve<TService>(out TService service) where TService : class
+        public static bool TryResolve<TService>(out TService service)
+            where TService : class
         {
             var ioc = IoCProvider;
             if (ioc == null)
@@ -289,7 +291,7 @@ namespace Nivaes.App.Cross
         }
 
         [Obsolete("Use Mvx.IoCProvider instead")]
-        public static IMvxIoCProvider CreateChildContainer()
+        public static IIoCProvider CreateChildContainer()
         {
             var ioc = IoCProvider;
             return ioc.CreateChildContainer();

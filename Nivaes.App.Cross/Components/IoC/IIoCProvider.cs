@@ -2,12 +2,12 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-
-namespace MvvmCross.IoC
+namespace Nivaes.App.Cross.IoC
 {
-    public interface IMvxIoCProvider
+    using System;
+    using System.Collections.Generic;
+
+    public interface IIoCProvider
     {
         bool CanResolve<T>()
             where T : class;
@@ -22,7 +22,7 @@ namespace MvvmCross.IoC
         bool TryResolve<T>(out T resolved)
             where T : class;
 
-        bool TryResolve(Type type, out object resolved);
+        bool TryResolve(Type type, out object? resolved);
 
         T Create<T>()
             where T : class;
@@ -79,6 +79,6 @@ namespace MvvmCross.IoC
 
         void CallbackWhenRegistered(Type type, Action action);
 
-        IMvxIoCProvider CreateChildContainer();
+        IIoCProvider CreateChildContainer();
     }
 }

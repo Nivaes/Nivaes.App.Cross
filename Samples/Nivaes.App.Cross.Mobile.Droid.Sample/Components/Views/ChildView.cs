@@ -24,6 +24,10 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     public class ChildView
         : MvxFragment<ChildViewModel>
     {
+        public ChildView()
+        {
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);

@@ -4,7 +4,8 @@
 
 namespace MvvmCross.IoC
 {
-    public class MvxPropertyInjectorOptions : IMvxPropertyInjectorOptions
+    public class MvxPropertyInjectorOptions
+        : IMvxPropertyInjectorOptions
     {
         public MvxPropertyInjectorOptions()
         {
@@ -15,33 +16,33 @@ namespace MvvmCross.IoC
         public MvxPropertyInjection InjectIntoProperties { get; set; }
         public bool ThrowIfPropertyInjectionFails { get; set; }
 
-        private static IMvxPropertyInjectorOptions _mvxInjectProperties;
+        private static IMvxPropertyInjectorOptions? mInjectProperties;
 
         public static IMvxPropertyInjectorOptions MvxInject
         {
             get
             {
-                _mvxInjectProperties = _mvxInjectProperties ?? new MvxPropertyInjectorOptions()
+                mInjectProperties ??= new MvxPropertyInjectorOptions()
                 {
                     InjectIntoProperties = MvxPropertyInjection.MvxInjectInterfaceProperties,
                     ThrowIfPropertyInjectionFails = false
                 };
-                return _mvxInjectProperties;
+                return mInjectProperties;
             }
         }
 
-        private static IMvxPropertyInjectorOptions _allProperties;
+        private static IMvxPropertyInjectorOptions? mAllProperties;
 
         public static IMvxPropertyInjectorOptions All
         {
             get
             {
-                _allProperties = _allProperties ?? new MvxPropertyInjectorOptions()
+                mAllProperties ??= new MvxPropertyInjectorOptions()
                 {
                     InjectIntoProperties = MvxPropertyInjection.AllInterfaceProperties,
                     ThrowIfPropertyInjectionFails = false
                 };
-                return _allProperties;
+                return mAllProperties;
             }
         }
     }

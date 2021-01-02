@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.IoC
     using System;
 
     internal class ConstructingSingletonResolver
-            : IResolver
+        : IResolver
     {
         private readonly object mSyncObject = new object();
         private readonly Func<object> mConstructor;

@@ -99,11 +99,13 @@ namespace MvvmCross.Core.Parse.StringDictionary
             if (viewModelType == null)
                 throw new NullReferenceException(nameof(viewModelType));
 
-            return viewModelType.FullName;
+            return viewModelType.FullName ?? string.Empty;
         }
 
         protected virtual Type DeserializeViewModelType(string viewModelTypeName)
         {
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"DeserializeViewModelType-{viewModelTypeName}");
+
             if (!ByNameLookup.TryLookupByFullName(viewModelTypeName, out Type toReturn))
                 throw new MvxException("Failed to find viewmodel for {0} - is the ViewModel in the same Assembly as App.cs? If not, you can add it by overriding GetViewModelAssemblies() in setup", viewModelTypeName);
 
@@ -112,8 +114,9 @@ namespace MvvmCross.Core.Parse.StringDictionary
 
         private string SafeGetValue(IDictionary<string, string> dictionary, string key)
         {
-            if (!dictionary.TryGetValue(key, out string value))
+            if (!dictionary.TryGetValue(key, out string? value))
                 throw new MvxException("Dictionary missing required keyvalue pair for key {0}", key);
+
             return value;
         }
     }

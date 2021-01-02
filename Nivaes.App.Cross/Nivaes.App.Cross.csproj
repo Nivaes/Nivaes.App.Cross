@@ -13,6 +13,11 @@
     <UserSecretsId>b0e3de2a-e1b2-4912-ade5-ab7aeb644181</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AppCenter.Analytics" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" />

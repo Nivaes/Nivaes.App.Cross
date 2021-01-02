@@ -15,23 +15,22 @@ namespace Nivaes.App.Cross.IoC
     using Nivaes.App.Cross.Logging;
 
     internal class IoCContainer
-        : IMvxIoCProvider
+        : IIoCProvider
     {
         private readonly ConcurrentDictionary<Type, IResolver> mResolvers = new();
         private readonly ConcurrentDictionary<Type, List<Action>> mWaiters = new();
         private readonly ConcurrentDictionary<Type, bool> mCircularTypeDetection = new();
-        private readonly IMvxIocOptions mOptions;
         private readonly IMvxPropertyInjector? mPropertyInjector;
-        private readonly IMvxIoCProvider? mParentProvider;
+        private readonly IIoCProvider? mParentProvider;
 
-        protected IMvxIocOptions Options => mOptions;
+        protected IMvxIocOptions Options { get; }
 
-        public IoCContainer(IMvxIocOptions? options, IMvxIoCProvider? parentProvider = null)
+        public IoCContainer(IMvxIocOptions? options, IIoCProvider? parentProvider = null)
         {
-            mOptions = options ?? new MvxIocOptions();
-            if (mOptions.PropertyInjectorType != null)
+            Options = options ?? new MvxIocOptions();
+            if (Options.PropertyInjectorType != null)
             {
-                mPropertyInjector = Activator.CreateInstance(mOptions.PropertyInjectorType) as IMvxPropertyInjector;
+                mPropertyInjector = Activator.CreateInstance(Options.PropertyInjectorType) as IMvxPropertyInjector;
             }
             if (mPropertyInjector != null)
             {
@@ -43,7 +42,7 @@ namespace Nivaes.App.Cross.IoC
             }
         }
 
-        public IoCContainer(IMvxIoCProvider parentProvider)
+        public IoCContainer(IIoCProvider parentProvider)
             : this(null, parentProvider)
         {
             if (parentProvider == null)
@@ -76,13 +75,13 @@ namespace Nivaes.App.Cross.IoC
         {
             try
             {
-                var toReturn = TryResolve(typeof(T), out object item);
-                resolved = (T)item;
+                var toReturn = TryResolve(typeof(T), out object? item);
+                resolved = (T)item!;
                 return toReturn;
             }
             catch (MvxIoCResolveException)
             {
-                resolved = (T)typeof(T).CreateDefault();
+                resolved = (T)typeof(T).CreateDefault()!;
                 return false;
             }
         }
@@ -133,7 +132,7 @@ namespace Nivaes.App.Cross.IoC
             return (T)Create(typeof(T));
         }
 
-        public object? Create(Type t)
+        public object Create(Type t)
         {
             if (t == null) throw new NullReferenceException(nameof(t));
 
@@ -142,7 +141,7 @@ namespace Nivaes.App.Cross.IoC
                 throw new MvxIoCResolveException($"Failed to resolve type {t.FullName}");
             }
 
-            return resolved;
+            return resolved!;
         }
 
         public void RegisterType<TInterface, TToConstruct>()
@@ -331,7 +330,7 @@ namespace Nivaes.App.Cross.IoC
             mCircularTypeDetection.Clear();
         }
 
-        public virtual IMvxIoCProvider CreateChildContainer() => new IoCContainer(this);
+        public virtual IIoCProvider CreateChildContainer() => new IoCContainer(this);
 
         private static readonly ResolverType? ResolverTypeNoneSpecified = null;
 
@@ -431,10 +430,10 @@ namespace Nivaes.App.Cross.IoC
                 {
                     throw new MvxException("Resolver returned null");
                 }
-                if (!type.IsInstanceOfType(raw))
+                else if (!type.IsInstanceOfType(raw))
                 {
                     throw new MvxException("Resolver returned object type {0} which does not support interface {1}",
-                                           raw.GetType().FullName, type.FullName);
+                                           raw!.GetType().FullName, type.FullName);
                 }
 
                 resolved = raw;
@@ -469,7 +468,7 @@ namespace Nivaes.App.Cross.IoC
 
         protected virtual void InjectProperties(object toReturn)
         {
-            mPropertyInjector?.Inject(toReturn, mOptions.PropertyInjectorOptions);
+            mPropertyInjector?.Inject(toReturn, Options.PropertyInjectorOptions);
         }
 
         protected virtual List<object> GetIoCParameterValues(Type type, ConstructorInfo selectedConstructor, IDictionary<string, object>? arguments)
@@ -525,9 +524,9 @@ namespace Nivaes.App.Cross.IoC
                 {
                     throw new MvxIoCResolveException(
                         "Failed to resolve parameter for parameter {0} of type {1} when creating {2}. You may pass it as an argument",
-                        parameterInfo.Name,
+                        parameterInfo.Name!,
                         parameterInfo.ParameterType.Name,
-                        type.FullName);
+                        type.FullName!);
                 }
             }
 

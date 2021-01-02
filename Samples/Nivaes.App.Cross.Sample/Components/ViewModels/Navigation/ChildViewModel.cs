@@ -33,10 +33,10 @@ namespace Nivaes.App.Cross.Sample
 
             ShowRootCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 
-            PropertyChanged += ChildViewModel_PropertyChanged;
+            PropertyChanged += ChildViewModelPropertyChanged;
         }
 
-        private void ChildViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ChildViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             // Demonstrates that exceptions can be raised on property changed but are swallowed by default to 
             // protect the app from crashing
@@ -55,12 +55,12 @@ namespace Nivaes.App.Cross.Sample
             return new ValueTask();
         }
 
-        protected override ValueTask SaveStateToBundle(IMvxBundle bundle)
+        protected override ValueTask SaveStateToBundle(IMvxBundle? bundle)
         {
             return base.SaveStateToBundle(bundle);
         }
 
-        protected override ValueTask ReloadFromBundle(IMvxBundle state)
+        protected override ValueTask ReloadFromBundle(IMvxBundle? state)
         {
             return base.ReloadFromBundle(state);
         }

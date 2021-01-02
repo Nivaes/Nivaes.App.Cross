@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using Nivaes.App.Cross.IoC;
 
     public static class MvxIoCContainerExtensions
     {
         private static Func<TInterface> CreateResolver<TInterface, TParameter1>(
-            this IMvxIoCProvider ioc,
+            this IIoCProvider ioc,
                 Func<TParameter1, TInterface> typedConstructor)
                 where TInterface : class
                 where TParameter1 : class
@@ -19,7 +20,7 @@
         }
 
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2>(
-            this IMvxIoCProvider ioc,
+            this IIoCProvider ioc,
             Func<TParameter1, TParameter2, TInterface> typedConstructor)
             where TInterface : class
             where TParameter1 : class
@@ -34,7 +35,7 @@
         }
 
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3>(
-            this IMvxIoCProvider ioc,
+            this IIoCProvider ioc,
             Func<TParameter1, TParameter2, TParameter3, TInterface> typedConstructor)
             where TInterface : class
             where TParameter1 : class
@@ -51,7 +52,7 @@
         }
 
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(
-            this IMvxIoCProvider ioc,
+            this IIoCProvider ioc,
             Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> typedConstructor)
             where TInterface : class
             where TParameter1 : class
@@ -70,7 +71,7 @@
         }
 
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(
-            this IMvxIoCProvider ioc,
+            this IIoCProvider ioc,
             Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> typedConstructor)
             where TInterface : class
             where TParameter1 : class
@@ -90,7 +91,7 @@
             };
         }
 
-        public static void CallbackWhenRegistered<T>(this IMvxIoCProvider ioc, Action<T> action)
+        public static void CallbackWhenRegistered<T>(this IIoCProvider ioc, Action<T> action)
             where T : class
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
@@ -103,7 +104,7 @@
             ioc.CallbackWhenRegistered<T>(simpleAction);
         }
 
-        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc)
+        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IIoCProvider ioc)
             where TInterface : class
             where TType : class, TInterface
         {
@@ -114,7 +115,7 @@
             return instance;
         }
 
-        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc, IDictionary<string, object> arguments)
+        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IIoCProvider ioc, IDictionary<string, object> arguments)
             where TInterface : class
             where TType : class, TInterface
         {
@@ -125,7 +126,7 @@
             return instance;
         }
 
-        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc, object arguments)
+        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IIoCProvider ioc, object arguments)
             where TInterface : class
             where TType : class, TInterface
         {
@@ -136,7 +137,7 @@
             return instance;
         }
 
-        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc, params object[] arguments)
+        public static TType ConstructAndRegisterSingleton<TInterface, TType>(this IIoCProvider ioc, params object[] arguments)
             where TInterface : class
             where TType : class, TInterface
         {
@@ -147,7 +148,7 @@
             return instance;
         }
 
-        public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type)
+        public static object ConstructAndRegisterSingleton(this IIoCProvider ioc, Type type)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
@@ -156,7 +157,7 @@
             return instance;
         }
 
-        public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, IDictionary<string, object> arguments)
+        public static object ConstructAndRegisterSingleton(this IIoCProvider ioc, Type type, IDictionary<string, object> arguments)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
@@ -165,7 +166,7 @@
             return instance;
         }
 
-        public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, object arguments)
+        public static object ConstructAndRegisterSingleton(this IIoCProvider ioc, Type type, object arguments)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
@@ -174,7 +175,7 @@
             return instance;
         }
 
-        public static object ConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, params object[] arguments)
+        public static object ConstructAndRegisterSingleton(this IIoCProvider ioc, Type type, params object[] arguments)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
@@ -183,7 +184,7 @@
             return instance;
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TType>(this IMvxIoCProvider ioc)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TType>(this IIoCProvider ioc)
             where TInterface : class
             where TType : class, TInterface
         {
@@ -192,7 +193,7 @@
             ioc.RegisterSingleton<TInterface>(() => ioc.IoCConstruct<TType>());
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface>(this IMvxIoCProvider ioc, Func<TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface>(this IIoCProvider ioc, Func<TInterface> constructor)
             where TInterface : class
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
@@ -200,14 +201,14 @@
             ioc.RegisterSingleton<TInterface>(constructor);
         }
 
-        public static void LazyConstructAndRegisterSingleton(this IMvxIoCProvider ioc, Type type, Func<object> constructor)
+        public static void LazyConstructAndRegisterSingleton(this IIoCProvider ioc, Type type, Func<object> constructor)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
             ioc.RegisterSingleton(type, constructor);
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1>(this IMvxIoCProvider ioc, Func<TParameter1, TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1>(this IIoCProvider ioc, Func<TParameter1, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
         {
@@ -217,7 +218,7 @@
             ioc.RegisterSingleton(resolver);
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -228,7 +229,7 @@
             ioc.RegisterSingleton(resolver);
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -240,7 +241,7 @@
             ioc.RegisterSingleton(resolver);
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -253,7 +254,7 @@
             ioc.RegisterSingleton(resolver);
         }
 
-        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
+        public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -267,7 +268,7 @@
             ioc.RegisterSingleton(resolver);
         }
 
-        public static void RegisterType<TType>(this IMvxIoCProvider ioc)
+        public static void RegisterType<TType>(this IIoCProvider ioc)
             where TType : class
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
@@ -275,14 +276,14 @@
             ioc.RegisterType<TType, TType>();
         }
 
-        public static void RegisterType(this IMvxIoCProvider ioc, Type tType)
+        public static void RegisterType(this IIoCProvider ioc, Type tType)
         {
             if (ioc == null) throw new ArgumentNullException(nameof(ioc));
 
             ioc.RegisterType(tType, tType);
         }
 
-        public static void RegisterType<TInterface, TParameter1>(this IMvxIoCProvider ioc, Func<TParameter1, TInterface> constructor)
+        public static void RegisterType<TInterface, TParameter1>(this IIoCProvider ioc, Func<TParameter1, TInterface> constructor)
            where TInterface : class
            where TParameter1 : class
         {
@@ -292,7 +293,7 @@
             ioc.RegisterType(resolver);
         }
 
-        public static void RegisterType<TInterface, TParameter1, TParameter2>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TInterface> constructor)
+        public static void RegisterType<TInterface, TParameter1, TParameter2>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -303,7 +304,7 @@
             ioc.RegisterType(resolver);
         }
 
-        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
+        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -315,7 +316,7 @@
             ioc.RegisterType(resolver);
         }
 
-        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
+        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class
@@ -328,7 +329,7 @@
             ioc.RegisterType(resolver);
         }
 
-        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this IMvxIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
+        public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this IIoCProvider ioc, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
             where TParameter2 : class

@@ -29,20 +29,20 @@ namespace MvvmCross.IoC
                 // Check for null
 
                 MvxLog.Instance?.Warn("ReflectionTypeLoadException masked during loading of {0} - error {1}",
-                                      assembly.FullName, e.ToLongString());
+                                      assembly.FullName ?? string.Empty, e.ToLongString());
 
                 if (e.LoaderExceptions != null)
                 {
                     foreach (var excp in e.LoaderExceptions)
                     {
-                        MvxLog.Instance?.Warn(excp.ToLongString());
+                        MvxLog.Instance?.Warn(excp?.ToLongString() ?? string.Empty);
                     }
                 }
 
                 if (Debugger.IsAttached)
                     Debugger.Break();
 
-                return new Type[0];
+                return Array.Empty<Type>();
             }
         }
 
@@ -51,8 +51,7 @@ namespace MvvmCross.IoC
             return assembly
                 .ExceptionSafeGetTypes()
                 .Select(t => t.GetTypeInfo())
-                .Where(t => !t.IsAbstract)
-                .Where(t => t.DeclaredConstructors.Any(c => !c.IsStatic && c.IsPublic))
+                .Where(t => !t.IsAbstract && t.DeclaredConstructors.Any(c => !c.IsStatic && c.IsPublic))
                 .Select(t => t.AsType());
         }
 
@@ -73,7 +72,7 @@ namespace MvvmCross.IoC
 
         public static IEnumerable<Type> InNamespace(this IEnumerable<Type> types, string namespaceBase)
         {
-            return types.Where(x => x.Namespace != null && x.Namespace.StartsWith(namespaceBase));
+            return types.Where(x => x.Namespace?.StartsWith(namespaceBase) == true);
         }
 
         public static IEnumerable<Type> WithAttribute(this IEnumerable<Type> types, Type attributeType)

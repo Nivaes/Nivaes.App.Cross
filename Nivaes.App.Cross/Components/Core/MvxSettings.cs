@@ -4,7 +4,8 @@
 
 namespace MvvmCross.Core
 {
-    public class MvxSettings : IMvxSettings
+    public class MvxSettings
+        : IMvxSettings
     {
         public bool AlwaysRaiseInpcOnUserInterfaceThread { get; set; }
 

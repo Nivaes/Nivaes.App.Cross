@@ -21,7 +21,7 @@ namespace MvvmCross.Exceptions
         {
         }
 
-        public MvxException(string messageFormat, params object[] messageFormatArguments)
+        public MvxException(string messageFormat, params object?[] messageFormatArguments)
             : base(string.Format(CultureInfo.CurrentCulture, messageFormat, messageFormatArguments))
         {
         }
