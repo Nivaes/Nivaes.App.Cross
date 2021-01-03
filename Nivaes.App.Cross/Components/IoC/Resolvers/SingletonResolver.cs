@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.IoC
 {
     using System;
 
+    [Obsolete("Sustituir por Autofac", true)]
     internal class SingletonResolver
         : IResolver
     {

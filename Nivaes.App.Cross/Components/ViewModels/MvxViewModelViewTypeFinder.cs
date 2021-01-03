@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.ViewModels
             _viewToViewModelNameMapping = viewToViewModelNameMapping;
         }
 
-        public virtual Type FindTypeOrNull(Type candidateType)
+        public virtual Type? FindTypeOrNull(Type candidateType)
         {
             if (!CheckCandidateTypeIsAView(candidateType))
                 return null;

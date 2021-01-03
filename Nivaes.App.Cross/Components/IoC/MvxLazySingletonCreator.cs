@@ -7,6 +7,7 @@ namespace MvvmCross.IoC
     using System;
     using Nivaes.App.Cross;
 
+    [Obsolete("Sustituir por Autofac")]
     public class MvxLazySingletonCreator
     {
         private readonly object _lockObject = new object();

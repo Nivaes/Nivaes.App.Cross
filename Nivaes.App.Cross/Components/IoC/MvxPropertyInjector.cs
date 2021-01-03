@@ -12,6 +12,7 @@ namespace MvvmCross.IoC
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Sustituir por Autofac")]
     public class MvxPropertyInjector
         : IMvxPropertyInjector
     {

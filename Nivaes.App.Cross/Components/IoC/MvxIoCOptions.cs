@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross.IoC
     using System;
     using MvvmCross.IoC;
 
+    [Obsolete("Sustituir por Autofac")]
     public class MvxIocOptions
         : IMvxIocOptions
     {

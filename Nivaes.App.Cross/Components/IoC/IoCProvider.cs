@@ -12,6 +12,7 @@ namespace Nivaes.App.Cross.IoC
     /// <para>Singleton IoC Provider.</para>
     /// <para>Delegates to the <see cref="MvxIoCContainer"/> implementation</para>
     /// </summary>
+    [Obsolete("Sustituir por Autofac")]
     public class IoCProvider
         : IIoCProvider
     {

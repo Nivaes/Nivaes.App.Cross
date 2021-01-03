@@ -8,6 +8,7 @@ namespace MvvmCross.IoC
     using System.Linq;
     using System.Reflection;
 
+    [Obsolete("Sustituir por Autofac")]
     public static class MvxConventionAttributeExtensions
     {
         /// <summary>

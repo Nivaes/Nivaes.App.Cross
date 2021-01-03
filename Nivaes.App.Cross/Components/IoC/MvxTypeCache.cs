@@ -11,6 +11,7 @@ using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Sustituir por Autofac")]
     public class MvxTypeCache<TType>
         : IMvxTypeCache<TType>
     {

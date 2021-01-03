@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Nivaes.App.Cross.IoC;
 
+    [Obsolete("Sustituir por Autofac")]
     public static class MvxIoCContainerExtensions
     {
         private static Func<TInterface> CreateResolver<TInterface, TParameter1>(

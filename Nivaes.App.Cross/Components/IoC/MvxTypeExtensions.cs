@@ -13,6 +13,7 @@ namespace MvvmCross.IoC
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Sustituir por Autofac")]
     public static class MvxTypeExtensions
     {
         public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)

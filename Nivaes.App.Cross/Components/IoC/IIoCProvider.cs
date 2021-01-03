@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross.IoC
     using System;
     using System.Collections.Generic;
 
+    [Obsolete("Sustituir por Autofac")]
     public interface IIoCProvider
     {
         bool CanResolve<T>()

@@ -6,6 +6,7 @@ using System;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Sustituir por Autofac")]
     public class MvxUnconventionalAttribute : Attribute
     {
     }

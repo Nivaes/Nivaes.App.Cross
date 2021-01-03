@@ -8,6 +8,7 @@ using System.Reflection;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Sustituir por Autofac")]
     public interface IMvxTypeCache<TType>
     {
         Dictionary<string, Type> LowerCaseFullNameCache { get; }

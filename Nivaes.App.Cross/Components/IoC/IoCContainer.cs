@@ -14,6 +14,7 @@ namespace Nivaes.App.Cross.IoC
     using MvvmCross.IoC;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Sustituir por Autofac")]
     internal class IoCContainer
         : IIoCProvider
     {
