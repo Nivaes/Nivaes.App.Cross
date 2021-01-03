@@ -4,8 +4,8 @@
     using MvvmCross.IoC;
     using Nivaes.App.Cross.ViewModels;
 
-    public class AppSampleApplication<TType>
-        : MvxApplication
+    public class SampleCrossApplication<TType>
+        : CrossApplication
           where TType : class, IMvxAppStart
     {
         public override ValueTask Initialize()

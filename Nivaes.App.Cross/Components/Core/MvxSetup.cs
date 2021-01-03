@@ -54,7 +54,7 @@ namespace MvvmCross.Core
             return instance;
         }
 
-        protected abstract IMvxApplication CreateApp();
+        protected abstract ICrossApplication CreateApp();
 
         protected abstract IMvxViewsContainer CreateViewsContainer();
 
@@ -492,12 +492,12 @@ namespace MvvmCross.Core
             bool TypeContainsPluginAttribute(Type type) => (type.GetCustomAttributes(pluginAttribute, false)?.Length ?? 0) > 0;
         }
 
-        protected virtual IMvxApplication CreateMvxApplication()
+        protected virtual ICrossApplication CreateMvxApplication()
         {
-            return Mvx.IoCProvider.Resolve<IMvxApplication>();
+            return Mvx.IoCProvider.Resolve<ICrossApplication>();
         }
 
-        protected virtual Task<IMvxApplication> InitializeMvxApplication()
+        protected virtual Task<ICrossApplication> InitializeMvxApplication()
         {
             return Task.Run(() =>
             {
@@ -519,7 +519,7 @@ namespace MvvmCross.Core
             await InitializeApp(pluginManager, app).ConfigureAwait(false);
         }
 
-        protected virtual ValueTask InitializeApp(IMvxPluginManager pluginManager, IMvxApplication app)
+        protected virtual ValueTask InitializeApp(IMvxPluginManager pluginManager, ICrossApplication app)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 
@@ -584,7 +584,7 @@ namespace MvvmCross.Core
 
         public virtual IEnumerable<Assembly> GetViewModelAssemblies()
         {
-            var app = Mvx.IoCProvider.Resolve<IMvxApplication>();
+            var app = Mvx.IoCProvider.Resolve<ICrossApplication>();
             var assembly = app.GetType().GetTypeInfo().Assembly;
             return new[] { assembly };
         }
@@ -718,9 +718,9 @@ namespace MvvmCross.Core
     }
 
     public abstract class MvxSetup<TApplication> : MvxSetup
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+        protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {

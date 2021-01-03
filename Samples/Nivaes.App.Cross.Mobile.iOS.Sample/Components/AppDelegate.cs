@@ -8,7 +8,7 @@
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
     public class AppDelegate
-        : MvxApplicationDelegate<Setup, AppMobileSampleApplication<AppMobileSampleAppStart>>
+        : MvxApplicationDelegate<Setup, MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
         // class-level declarations
 

@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Wpf.Views
 
     public class MvxApplication<TMvxWpfSetup, TApplication> : MvxApplication
        where TMvxWpfSetup : MvxWpfSetup<TApplication>, new()
-       where TApplication : class, IMvxApplication, new()
+       where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

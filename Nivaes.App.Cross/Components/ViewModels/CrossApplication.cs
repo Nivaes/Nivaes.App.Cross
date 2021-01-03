@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.ViewModels
     using MvvmCross.Plugin;
     using Nivaes.App.Cross;
 
-    public abstract class MvxApplication
-        : IMvxApplication
+    public abstract class CrossApplication
+        : ICrossApplication
     {
         [Obsolete("Quitar la sobrecarga de localizadores. Todo por Roslyn.", true)]
         private IMvxViewModelLocator? mDefaultLocator;
@@ -105,7 +105,7 @@ namespace Nivaes.App.Cross.ViewModels
     }
 
     public class MvxApplication<TParameter>
-        : MvxApplication, IMvxApplication<TParameter>
+        : CrossApplication, ICrossApplication<TParameter>
     {
         public virtual TParameter Startup(TParameter parameter)
         {

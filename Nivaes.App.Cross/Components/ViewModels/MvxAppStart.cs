@@ -14,11 +14,11 @@ namespace Nivaes.App.Cross.ViewModels
         : IMvxAppStart
     {
         protected IMvxNavigationService NavigationService { get; }
-        protected IMvxApplication Application { get; }
+        protected ICrossApplication Application { get; }
 
         private int startHasCommenced;
 
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel> : MvxAppStart
         where TViewModel : IMvxViewModel
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
         {
         }
 
@@ -84,14 +84,14 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel, TParameter>
         : MvxAppStart<TViewModel> where TViewModel : IMvxViewModel<TParameter>
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
         {
         }
 
         protected override async Task<object?> ApplicationStartup(object? hint = null)
         {
             var applicationHint = await base.ApplicationStartup(hint).ConfigureAwait(false);
-            if (applicationHint is TParameter parameter && Application is IMvxApplication<TParameter> typedApplication)
+            if (applicationHint is TParameter parameter && Application is ICrossApplication<TParameter> typedApplication)
             {
                 return typedApplication.Startup(parameter);
             }

@@ -273,7 +273,7 @@ namespace Nivaes.App.Cross.Views
 
     public class NivApplication<TMvxUapSetup, TApplication> : NivApplication
        where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
-       where TApplication : class, IMvxApplication, new()
+       where TApplication : class, ICrossApplication, new()
     {
         public NivApplication()
         {

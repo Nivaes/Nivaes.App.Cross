@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.ViewModels;
 
     public sealed class AppDesktopSampleApplication<TType>
-        : AppSampleApplication<TType>
+        : SampleCrossApplication<TType>
           where TType : class, IMvxAppStart
     {
     }

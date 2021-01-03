@@ -9,7 +9,7 @@
     public sealed class AppDesktopSampleAppStart
         : AppSampleAppStart, IMvxAppStart
     {
-        public AppDesktopSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public AppDesktopSampleAppStart(ICrossApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }

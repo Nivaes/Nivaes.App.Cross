@@ -7,7 +7,7 @@
     public abstract class AppSampleAppStart
         : MvxAppStart
     {
-        protected AppSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        protected AppSampleAppStart(ICrossApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }
