@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.IoC
     using Nivaes.App.Cross.Logging;
 
     [Obsolete("Sustituir por Autofac")]
-    internal class IoCContainer
+    internal class IoCContainerOld
         : IIoCProvider
     {
         private readonly ConcurrentDictionary<Type, IResolver> mResolvers = new();
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.IoC
 
         protected IMvxIocOptions Options { get; }
 
-        public IoCContainer(IMvxIocOptions? options, IIoCProvider? parentProvider = null)
+        public IoCContainerOld(IMvxIocOptions? options, IIoCProvider? parentProvider = null)
         {
             Options = options ?? new MvxIocOptions();
             if (Options.PropertyInjectorType != null)
@@ -43,7 +43,7 @@ namespace Nivaes.App.Cross.IoC
             }
         }
 
-        public IoCContainer(IIoCProvider parentProvider)
+        public IoCContainerOld(IIoCProvider parentProvider)
             : this(null, parentProvider)
         {
             if (parentProvider == null)
@@ -331,7 +331,7 @@ namespace Nivaes.App.Cross.IoC
             mCircularTypeDetection.Clear();
         }
 
-        public virtual IIoCProvider CreateChildContainer() => new IoCContainer(this);
+        public virtual IIoCProvider CreateChildContainer() => new IoCContainerOld(this);
 
         private static readonly ResolverType? ResolverTypeNoneSpecified = null;
 

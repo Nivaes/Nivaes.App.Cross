@@ -7,6 +7,8 @@ using MvvmCross.Base;
 using MvvmCross.Binding;
 using MvvmCross.Core;
 using MvvmCross.IoC;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.IoC;
 using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Tests
@@ -15,7 +17,7 @@ namespace MvvmCross.Tests
     {
         private TestLogger _logger;
 
-        public IMacIoCProvider Ioc { get; private set; }
+        public IIoCProvider Ioc { get; private set; }
 
         public void Setup()
         {
@@ -39,7 +41,7 @@ namespace MvvmCross.Tests
             Reset();
             var logProvider = CreateLogProvider();
             var log = CreateLog(logProvider);
-            Ioc = Provider.Initialize(options ?? CreateIocOptions());
+            Ioc = IoCProvider.Initialize(options ?? CreateIocOptions());
             Ioc.RegisterSingleton(Ioc);
             Ioc.RegisterSingleton(logProvider);
             Ioc.RegisterSingleton(log);

@@ -22,11 +22,11 @@ namespace Nivaes.App.Cross.IoC
         public static IIoCProvider Provider => mProviderLazy.Value;
         public static bool IsValueCreated => mProviderLazy.IsValueCreated;
 
-        private readonly IoCContainer mContainer;
+        private readonly IoCContainerOld mContainer;
 
         protected IoCProvider(IMvxIocOptions? options)
         {
-            mContainer = new IoCContainer(options);
+            mContainer = new IoCContainerOld(options);
         }
 
         private static readonly TaskCompletionSource<IIoCProvider> mInitializeTaskCompletation

@@ -37,15 +37,16 @@ namespace MvvmCross.Base
             }
         }
 
-        private IMvxSettings? mSettings;
+        //private IMvxSettings? mSettings;
 
-        public IMvxSettings Settings
-        {
-            get
-            {
-                mSettings ??= Mvx.IoCProvider.Resolve<IMvxSettings>();
-                return mSettings;
-            }
-        }
+        //public IMvxSettings Settings
+        //{
+        //    get
+        //    {
+        //        //mSettings ??= Mvx.IoCProvider.Resolve<IMvxSettings>();
+        //        mSettings ??= IoCContainer.
+        //        return mSettings;
+        //    }
+        //}
     }
 }

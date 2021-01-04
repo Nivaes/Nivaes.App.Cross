@@ -10,8 +10,10 @@ namespace Nivaes.App.Cross.ViewModels
     using System.Linq.Expressions;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
+    using Autofac;
     using MvvmCross.Annotations;
     using MvvmCross.Base;
+    using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.Logging;
 
     public abstract class MvxNotifyPropertyChanged
@@ -19,8 +21,8 @@ namespace Nivaes.App.Cross.ViewModels
         , IMvxNotifyPropertyChanged
     {
         private static readonly PropertyChangedEventArgs AllPropertiesChanged = new PropertyChangedEventArgs(string.Empty);
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangingEventHandler? PropertyChanging;
 
         private bool _shouldAlwaysRaiseInpcOnUserInterfaceThread;
         private bool _shouldRaisePropertyChanging;
@@ -57,11 +59,15 @@ namespace Nivaes.App.Cross.ViewModels
 
         protected MvxNotifyPropertyChanged()
         {
-            var alwaysOnUIThread = MvxSingletonCache.Instance == null || MvxSingletonCache.Instance.Settings.AlwaysRaiseInpcOnUserInterfaceThread;
+            var settings = IoCContainer.ComponentContext.Resolve<IMvxSettings>();
+
+            var alwaysOnUIThread = settings.AlwaysRaiseInpcOnUserInterfaceThread;
             ShouldAlwaysRaiseInpcOnUserInterfaceThread(alwaysOnUIThread);
-            var raisePropertyChanging = MvxSingletonCache.Instance == null || MvxSingletonCache.Instance.Settings.ShouldRaisePropertyChanging;
+
+            var raisePropertyChanging = settings.ShouldRaisePropertyChanging;
             ShouldRaisePropertyChanging(raisePropertyChanging);
-            var shouldLogInpc = MvxSingletonCache.Instance != null && MvxSingletonCache.Instance.Settings.ShouldLogInpc;
+
+            var shouldLogInpc = settings.ShouldLogInpc;
             ShouldLogInpc(shouldLogInpc);
         }
 

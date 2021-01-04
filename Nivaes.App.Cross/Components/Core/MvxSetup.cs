@@ -9,6 +9,7 @@ namespace MvvmCross.Core
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Autofac;
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
@@ -70,11 +71,13 @@ namespace MvvmCross.Core
             State = MvxSetupState.InitializingPrimary;
             var iocProvider = InitializeIoC();
 
-            // Register the default setup dependencies before
-            // invoking the static call back.
-            // Developers can either extend the MvxSetup and override
-            // the RegisterDefaultSetupDependencies method, or can provide a
-            // callback method by setting the RegisterSetupDependencies method
+            //IoCContainer.ContainerBuilder.Register<IMvxSetup>(_ => this);
+
+            IoCContainer.RegisterTypes(containerBuilder =>
+            {
+                containerBuilder.RegisterType<MvxSettings>().As<IMvxSettings>();
+            });
+
             RegisterDefaultSetupDependencies(iocProvider);
             RegisterSetupDependencies?.Invoke(iocProvider);
 
@@ -332,7 +335,7 @@ namespace MvvmCross.Core
             if (iocProvider == null) throw new NullReferenceException(nameof(iocProvider));
 
             RegisterLogProvider(iocProvider);
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
+            //iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp);

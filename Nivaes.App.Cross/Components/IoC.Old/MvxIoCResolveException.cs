@@ -7,6 +7,7 @@ namespace MvvmCross.Exceptions
     using System;
     using System.Runtime.Serialization;
 
+    [Obsolete("Sustituir por Autofac")]
     [Serializable]
     public class MvxIoCResolveException
         : MvxException
