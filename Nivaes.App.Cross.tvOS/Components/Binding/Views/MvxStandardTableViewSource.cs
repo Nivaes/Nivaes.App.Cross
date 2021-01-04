@@ -55,7 +55,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         public MvxStandardTableViewSource(IntPtr handle)
             : base(handle)
         {
-            MvxLog.Instance.Warn("MvxStandardTableViewSource IntPtr constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            //MvxLog.Instance.Warn("MvxStandardTableViewSource IntPtr constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
         public MvxStandardTableViewSource(

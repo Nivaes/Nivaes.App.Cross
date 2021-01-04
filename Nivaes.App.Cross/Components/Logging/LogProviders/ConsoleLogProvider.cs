@@ -9,6 +9,7 @@ namespace Nivaes.App.Cross.Logging
     using System.Globalization;
     using System.Text;
 
+    [Obsolete("Usar AppCenter", true)]
     internal sealed class ConsoleLogProvider
         : MvxBaseLogProvider
     {

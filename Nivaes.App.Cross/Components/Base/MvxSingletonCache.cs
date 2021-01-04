@@ -9,7 +9,7 @@ namespace MvvmCross.Base
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
-    [Obsolete("Eliminar")]
+    [Obsolete("Eliminar", true)]
     public sealed class MvxSingletonCache
         : MvxSingleton<IMvxSingletonCache>, IMvxSingletonCache
     {
@@ -26,16 +26,16 @@ namespace MvvmCross.Base
         {
         }
 
-        private IMvxStringToTypeParser? mParser;
+        //private IMvxStringToTypeParser? mParser;
 
-        public IMvxStringToTypeParser Parser
-        {
-            get
-            {
-                mParser ??= Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
-                return mParser;
-            }
-        }
+        //public IMvxStringToTypeParser Parser
+        //{
+        //    get
+        //    {
+        //        mParser ??= Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
+        //        return mParser;
+        //    }
+        //}
 
         //private IMvxSettings? mSettings;
 

@@ -93,8 +93,8 @@ namespace MvvmCross.Binding.ExpressionParse
             if (memberExpr == null)
                 return argument;
 
-            try
-            {
+            //try
+            //{
                 var constExpr = ConvertMemberAccessToConstant(memberExpr.Expression) as ConstantExpression;
                 var value = constExpr?.Value;
 
@@ -111,11 +111,11 @@ namespace MvvmCross.Binding.ExpressionParse
                     var constant = field.GetValue(value);
                     return Expression.Constant(constant);
                 }
-            }
-            catch
-            {
-                MvxLog.Instance?.Trace("Failed to evaluate member expression.");
-            }
+            //}
+            //catch
+            //{
+            //    MvxLog.Instance?.Trace("Failed to evaluate member expression.");
+            //}
 
             return argument;
         }

@@ -69,15 +69,15 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
 
         private async Task CollectionChangedOnCollectionChangedAsync(NotifyCollectionChangedEventArgs args, Task existingTask, IEnumerable itemsSource)
         {
-            MvxLog.Instance?.Trace($"CollectionChanged received action:{args.Action} newItems:{args.NewItems?.Count} oldItems:{args.OldItems?.Count} itemsSourceCount:{itemsSource.Count()}");
+            //MvxLog.Instance?.Trace($"CollectionChanged received action:{args.Action} newItems:{args.NewItems?.Count} oldItems:{args.OldItems?.Count} itemsSourceCount:{itemsSource.Count()}");
             await existingTask;
-            MvxLog.Instance?.Trace($"CollectionChanged starting action:{args.Action}");
+            //MvxLog.Instance?.Trace($"CollectionChanged starting action:{args.Action}");
             itemsSourceBeforeAnimation = itemsSource;
 
             if (args.NewItems?.Count > MaxAnimatedItems || args.OldItems?.Count > MaxAnimatedItems)
             {
                 //No animation change
-                await CollectionView.PerformBatchUpdatesAsync(() => { });
+                await CollectionView.PerformBatchUpdatesAsync(() => { }).ConfigureAwait(false);
                 ReloadData();
             }
             else if (args.Action == NotifyCollectionChangedAction.Move)
@@ -86,7 +86,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
                 {
                     if (args.NewItems.Count != 1 && args.OldItems.Count != 1)
                     {
-                        MvxLog.Instance?.Trace($"CollectionChanged {args.Action} action called with more than one movement. All data will be reloaded");
+                        //MvxLog.Instance?.Trace($"CollectionChanged {args.Action} action called with more than one movement. All data will be reloaded");
                         CollectionView.ReloadData();
                         return;
                     }
@@ -125,7 +125,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             }
 
             itemsSourceBeforeAnimation = null;
-            MvxLog.Instance?.Trace($"CollectionChanged done action:{args.Action} newItems:{args.NewItems?.Count} oldItems:{args.OldItems?.Count}");
+            //MvxLog.Instance?.Trace($"CollectionChanged done action:{args.Action} newItems:{args.NewItems?.Count} oldItems:{args.OldItems?.Count}");
         }
     }
 }

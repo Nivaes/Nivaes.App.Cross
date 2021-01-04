@@ -13,8 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class PagesRootViewModel
         : MvxNavigationViewModel
     {
-        public PagesRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public PagesRootViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowInitialViewModelsCommand = new MvxCommandAsync(ShowInitialViewModels);
         }

@@ -26,7 +26,7 @@ namespace MvvmCross.Platforms.Mac.Views
         {
             Func<ValueTask<bool>> action = () =>
             {
-                MvxLog.Instance?.Trace("MacNavigation", "Navigate requested");
+                //MvxLog.Instance?.Trace("MacNavigation", "Navigate requested");
                 return _presenter.Show(request);
             };
 
@@ -37,7 +37,7 @@ namespace MvvmCross.Platforms.Mac.Views
         {
             Func<ValueTask<bool>> action = () =>
             {
-                MvxLog.Instance?.Trace("MacNavigation", "Change presentation requested");
+                //MvxLog.Instance?.Trace("MacNavigation", "Change presentation requested");
                 return _presenter.ChangePresentation(hint);
             };
 

@@ -31,7 +31,7 @@ namespace MvvmCross.Core
 
         protected static IEnumerable<Assembly>? ViewAssemblies { get; set; }
 
-        protected IMvxLog? SetupLog { get; private set; }
+        //protected IMvxLog? SetupLog { get; private set; }
 
         public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
         {
@@ -75,7 +75,8 @@ namespace MvvmCross.Core
 
             IoCContainer.RegisterTypes(containerBuilder =>
             {
-                containerBuilder.RegisterType<MvxSettings>().As<IMvxSettings>();
+                RegisterInternalDependencies(containerBuilder);
+                RegisterDependencies(containerBuilder);
             });
 
             RegisterDefaultSetupDependencies(iocProvider);
@@ -83,10 +84,10 @@ namespace MvvmCross.Core
 
             var taskResult = Task.WhenAll(new[]
             {
-                InitializeLoggingServices(),
+                //InitializeLoggingServices(),
                 InitializeFirstChance(),
-                InitializeSettings(),
-                InitializeSingletonCache(),
+                //InitializeSettings(),
+                //InitializeSingletonCache(),
                 InitializeViewDispatcher(),
                 InitializeApp(),
                 InitializeViewModelTypeFinder(),
@@ -150,7 +151,7 @@ namespace MvvmCross.Core
             var taskResult = Task.WhenAll(new[]
             {
                 PerformBootstrapActions(),
-                InitializeStringToTypeParser(),
+                //InitializeStringToTypeParser(),
                 InitializeFillableStringToTypeParser(),
                 InitializeNavigationService(),
 
@@ -159,8 +160,8 @@ namespace MvvmCross.Core
 
                 InitializeCommandCollectionBuilder(),
                 InitializeNavigationSerializer(),
-                InitializeInpcInterception(),
-                InitializeViewModelCache(),
+                //InitializeInpcInterception(),
+                //InitializeViewModelCache(),
                 InitializeLastChance()
             });
 
@@ -204,35 +205,47 @@ namespace MvvmCross.Core
                 }
             }
 
-            SetupLog?.Trace("Setup: Secondary end");
+            //SetupLog?.Trace("Setup: Secondary end");
             State = MvxSetupState.Initialized;
         }
 
-        protected virtual Task InitializeSingletonCache()
+        //[Obsolete("Usar AppCenter", true)]
+        //protected virtual Task InitializeSingletonCache()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        SetupLog?.Trace("Setup: Singleton Cache start");
+        //        MvxSingletonCache.Initialize();
+        //    });
+        //}
+
+        //protected virtual Task InitializeInpcInterception()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        SetupLog?.Trace("Setup: InpcInterception start");
+        //        // by default no Inpc calls are intercepted
+        //    });
+        //}
+
+        //protected virtual Task InitializeViewModelCache()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        SetupLog?.Trace("Setup: InpcInterception start");
+        //        _ = CreateViewModelCache();
+        //    });
+        //}
+
+        private void RegisterInternalDependencies(ContainerBuilder containerBuilder)
         {
-            return Task.Run(() =>
-            {
-                SetupLog?.Trace("Setup: Singleton Cache start");
-                MvxSingletonCache.Initialize();
-            });
+            containerBuilder.RegisterType<MvxSettings>().As<IMvxSettings>();
+            containerBuilder.RegisterType<MvxStringToTypeParser>().As<IMvxStringToTypeParser>();
         }
 
-        protected virtual Task InitializeInpcInterception()
+        protected void RegisterDependencies(ContainerBuilder containerBuilder)
         {
-            return Task.Run(() =>
-            {
-                SetupLog?.Trace("Setup: InpcInterception start");
-                // by default no Inpc calls are intercepted
-            });
-        }
 
-        protected virtual Task InitializeViewModelCache()
-        {
-            return Task.Run(() =>
-            {
-                SetupLog?.Trace("Setup: InpcInterception start");
-                _ = CreateViewModelCache();
-            });
         }
 
         protected virtual IMvxChildViewModelCache CreateViewModelCache()
@@ -240,32 +253,32 @@ namespace MvvmCross.Core
             return Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>();
         }
 
-        protected virtual Task InitializeSettings()
-        {
-            return Task.Run(() =>
-            {
-                _ = CreateSettings();
-            });
-        }
+        //protected virtual Task InitializeSettings()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        _ = CreateSettings();
+        //    });
+        //}
 
-        protected virtual IMvxSettings CreateSettings()
-        {
-            return Mvx.IoCProvider.Resolve<IMvxSettings>();
-        }
+        //protected virtual IMvxSettings CreateSettings()
+        //{
+        //    return Mvx.IoCProvider.Resolve<IMvxSettings>();
+        //}
 
-        protected virtual Task<IMvxStringToTypeParser> InitializeStringToTypeParser()
-        {
-            return Task.Run(() =>
-            {
-                var parser = CreateStringToTypeParser();
-                return parser;
-            });
-        }
+        //protected virtual Task<IMvxStringToTypeParser> InitializeStringToTypeParser()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        var parser = CreateStringToTypeParser();
+        //        return parser;
+        //    });
+        //}
 
-        protected virtual IMvxStringToTypeParser CreateStringToTypeParser()
-        {
-            return Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
-        }
+        //protected virtual IMvxStringToTypeParser CreateStringToTypeParser()
+        //{
+        //    return Mvx.IoCProvider.Resolve<IMvxStringToTypeParser>();
+        //}
 
         protected virtual Task<IMvxFillableStringToTypeParser?> InitializeFillableStringToTypeParser()
         {
@@ -311,7 +324,7 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: CommandCollectionBuilder start");
+                //SetupLog?.Trace("Setup: CommandCollectionBuilder start");
                 _ = CreateCommandCollectionBuilder();
             });
         }
@@ -334,8 +347,10 @@ namespace MvvmCross.Core
         {
             if (iocProvider == null) throw new NullReferenceException(nameof(iocProvider));
 
-            RegisterLogProvider(iocProvider);
+
+            //RegisterLogProvider(iocProvider);
             //iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
+
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp);
@@ -363,54 +378,61 @@ namespace MvvmCross.Core
             return IoCProvider.Initialize(CreateIocOptions());
         }
 
+        [Obsolete("Sustituir por register.")]
         protected virtual Task InitializeFirstChance()
         {
-            return Task.Run(() =>
-            {
-                SetupLog?.Trace("Setup: FirstChance start");
-                // always the very first thing to get initialized - after IoC and base platform
-                // base class implementation is empty by default
-            });
+            return Task.CompletedTask;
+
+            //return Task.Run(() =>
+            //{
+            //    SetupLog?.Trace("Setup: FirstChance start");
+            //    // always the very first thing to get initialized - after IoC and base platform
+            //    // base class implementation is empty by default
+            //});
         }
 
-        protected virtual Task InitializeLoggingServices()
-        {
-            return Task.Run(() =>
-            {
-                var logProvider = CreateLogProvider();
-                SetupLog = logProvider.GetLogFor<MvxSetup>();
-                var globalLog = logProvider.GetLogFor<MvxLog>();
-                MvxLog.Instance = globalLog;
-                Mvx.IoCProvider.RegisterSingleton(globalLog);
-            });
-        }
+        //[Obsolete("Usar AppCenter", true)]
+        //protected virtual Task InitializeLoggingServices()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        var logProvider = CreateLogProvider();
+        //        SetupLog = logProvider.GetLogFor<MvxSetup>();
+        //        var globalLog = logProvider.GetLogFor<MvxLog>();
+        //        MvxLog.Instance = globalLog;
+        //        Mvx.IoCProvider.RegisterSingleton(globalLog);
+        //    });
+        //}
 
-        public virtual MvxLogProviderType GetDefaultLogProviderType()
-            => MvxLogProviderType.AppCenter;
+        //[Obsolete("Usar AppCenter", true)]
+        //public virtual MvxLogProviderType GetDefaultLogProviderType()
+        //    => MvxLogProviderType.AppCenter;
 
-        protected virtual void RegisterLogProvider(IIoCProvider iocProvider)
-        {
-            Func<IMvxLogProvider>? logProviderCreator = (GetDefaultLogProviderType()) switch
-            {
-                MvxLogProviderType.Console => () => new ConsoleLogProvider(),
-                //MvxLogProviderType.EntLib => () => new EntLibLogProvider(),
-                //MvxLogProviderType.Log4Net => () => new Log4NetLogProvider(),
-                //MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
-                //MvxLogProviderType.NLog => () => new NLogLogProvider(),
-                //MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
-                MvxLogProviderType.AppCenter => () => new AppCenterLogProvider(),
-                _ => null,
-            };
-            if (logProviderCreator != null)
-            {
-                iocProvider?.RegisterSingleton(logProviderCreator);
-            }
-        }
+        //[Obsolete("Usar AppCenter", true)]
+        //protected virtual void RegisterLogProvider(IIoCProvider iocProvider)
+        //{
+        //    Func<IMvxLogProvider>? logProviderCreator = (GetDefaultLogProviderType()) switch
+        //    {
+        //        MvxLogProviderType.Console => () => new ConsoleLogProvider(),
+        //        //MvxLogProviderType.EntLib => () => new EntLibLogProvider(),
+        //        //MvxLogProviderType.Log4Net => () => new Log4NetLogProvider(),
+        //        //MvxLogProviderType.Loupe => () => new LoupeLogProvider(),
+        //        //MvxLogProviderType.NLog => () => new NLogLogProvider(),
+        //        //MvxLogProviderType.Serilog => () => new SerilogLogProvider(),
+        //        MvxLogProviderType.AppCenter => () => new AppCenterLogProvider(),
+        //        _ => null,
+        //    };
+        //    if (logProviderCreator != null)
+        //    {
+        //        iocProvider?.RegisterSingleton(logProviderCreator);
+        //    }
+        //}
 
-        protected virtual IMvxLogProvider CreateLogProvider()
-        {
-            return Mvx.IoCProvider.Resolve<IMvxLogProvider>();
-        }
+        //[Obsolete("Usar AppCenter", true)]
+        //protected virtual IMvxLogProvider CreateLogProvider()
+        //{
+        //    return Mvx.IoCProvider.Resolve<IMvxLogProvider>();
+        //}
 
         protected virtual IMvxViewModelLoader CreateViewModelLoader()
         {
@@ -512,13 +534,13 @@ namespace MvvmCross.Core
 
         private async Task InitializeApp()
         {
-            SetupLog?.Trace("Setup: PluginManagerFramework start");
+            //SetupLog?.Trace("Setup: PluginManagerFramework start");
             var pluginManager = await InitializePluginFramework().ConfigureAwait(false);
 
-            SetupLog?.Trace("Setup: Create App");
+            //SetupLog?.Trace("Setup: Create App");
             var app = await InitializeMvxApplication().ConfigureAwait(false);
 
-            SetupLog?.Trace("Setup: App start");
+            //SetupLog?.Trace("Setup: App start");
             await InitializeApp(pluginManager, app).ConfigureAwait(false);
         }
 
@@ -527,7 +549,7 @@ namespace MvvmCross.Core
             if (app == null) throw new ArgumentNullException(nameof(app));
 
             app.LoadPlugins(pluginManager);
-            SetupLog?.Trace("Setup: Application Initialize - On background thread");
+            //SetupLog?.Trace("Setup: Application Initialize - On background thread");
             return app.Initialize();
         }
 
@@ -535,7 +557,7 @@ namespace MvvmCross.Core
         {
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: ViewsContainer start");
+                //SetupLog?.Trace("Setup: ViewsContainer start");
 
                 var container = CreateViewsContainer();
                 Mvx.IoCProvider.RegisterSingleton(container);
@@ -548,7 +570,7 @@ namespace MvvmCross.Core
 
             return Task.Run(() =>
             {
-                SetupLog?.Trace("Setup: ViewDispatcher start");
+                //SetupLog?.Trace("Setup: ViewDispatcher start");
 
                 //ToDo: Investigar porque se registra 3 veces.
 
@@ -560,13 +582,13 @@ namespace MvvmCross.Core
 
         protected virtual Task<IMvxNavigationService> InitializeNavigationService()
         {
-            SetupLog?.Trace("Setup: NavigationService");
+            //SetupLog?.Trace("Setup: NavigationService");
             var loader = CreateViewModelLoader();
 
             return Task.Run(() =>
             {
                 var navigationService = CreateNavigationService();
-                SetupLog?.Trace("Setup: Load navigation routes");
+                //SetupLog?.Trace("Setup: Load navigation routes");
                 LoadNavigationServiceRoutes(navigationService);
                 return navigationService;
             });
@@ -660,14 +682,10 @@ namespace MvvmCross.Core
             });
         }
 
+        [Obsolete("Sustituir por register.")]
         protected virtual Task InitializeLastChance()
         {
-            return Task.Run(() =>
-            {
-                SetupLog?.Trace("Setup: LastChance start");
-                // always the very last thing to get initialized
-                // base class implementation is empty by default
-            });
+            return Task.CompletedTask;
         }
 
         public IEnumerable<Type> CreatableTypes()

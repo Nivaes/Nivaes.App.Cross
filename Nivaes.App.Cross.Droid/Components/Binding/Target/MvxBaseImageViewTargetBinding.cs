@@ -27,22 +27,23 @@ namespace MvvmCross.Platforms.Android.Binding.Target
         {
             var imageView = (ImageView)target;
 
-            try
-            {
-                Bitmap bitmap;
-                if (!GetBitmap(value, out bitmap))
-                    return;
-                SetImageBitmap(imageView, bitmap);
-            }
-            catch (Exception ex)
-            {
-                MvxLog.Instance?.Error(ex.ToLongString());
-                throw;
-            }
+            //try
+            //{
+            if (!GetBitmap(value, out Bitmap bitmap))
+                return;
+            SetImageBitmap(imageView, bitmap);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MvxLog.Instance?.Error(ex.ToLongString());
+            //    throw;
+            //}
         }
 
         protected virtual void SetImageBitmap(ImageView imageView, Bitmap bitmap)
         {
+            if (imageView == null) throw new ArgumentNullException(nameof(imageView));
+
             imageView.SetImageBitmap(bitmap);
         }
 

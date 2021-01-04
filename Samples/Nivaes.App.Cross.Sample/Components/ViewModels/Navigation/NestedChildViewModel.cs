@@ -13,7 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class NestedChildViewModel
         : MvxNavigationViewModel
     {
-        public NestedChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public NestedChildViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
             PopToChildCommand = new MvxCommandAsync(() => NavigationService.ChangePresentation(new MvxPopPresentationHint(typeof(ChildViewModel))));

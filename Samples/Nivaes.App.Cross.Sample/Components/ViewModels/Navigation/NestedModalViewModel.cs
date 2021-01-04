@@ -12,15 +12,16 @@ namespace Nivaes.App.Cross.Sample
     public class NestedModalViewModel
         : MvxNavigationViewModel
     {
-        public NestedModalViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public NestedModalViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 
             ShowTabsCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<TabsRootViewModel>().ConfigureAwait(true));
         }
 
-        public IMvxCommandAsync ShowTabsCommand { get; private set; }
+        public IMvxCommandAsync ShowTabsCommand { get; }
 
-        public IMvxCommandAsync CloseCommand { get; private set; }
+        public IMvxCommandAsync CloseCommand { get; }
     }
 }

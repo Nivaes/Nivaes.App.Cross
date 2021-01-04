@@ -17,8 +17,8 @@ namespace Nivaes.App.Cross.Sample
     {
         public MvxCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public Page1ViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             HeaderTappedCommand = new MvxCommand<int>(DoHeaderTappedCommand);
 
@@ -52,15 +52,16 @@ namespace Nivaes.App.Cross.Sample
             System.Diagnostics.Debug.WriteLine($"Header {index} tapped");
         }
 
-        public class SectionViewModel : MvxNotifyPropertyChanged, IEnumerable<SectionItemViewModel>
+        public class SectionViewModel
+            : MvxNotifyPropertyChanged, IEnumerable<SectionItemViewModel>
         {
             private List<SectionItemViewModel> _items;
-            private string _title;
+            private string? _title;
             private bool _on;
 
             public bool ShowsControl { get; }
 
-            public string Title
+            public string? Title
             {
                 get => _title;
                 set => SetProperty(ref _title, value);

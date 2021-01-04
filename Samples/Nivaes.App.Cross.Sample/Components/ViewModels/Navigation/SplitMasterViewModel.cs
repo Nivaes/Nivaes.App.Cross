@@ -10,9 +10,11 @@ namespace Nivaes.App.Cross.Sample
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.ViewModels;
 
-    public class SplitMasterViewModel : MvxNavigationViewModel
+    public class SplitMasterViewModel
+        : MvxNavigationViewModel
     {
-        public SplitMasterViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SplitMasterViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             OpenDetailCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<SplitDetailViewModel>().ConfigureAwait(false));
 

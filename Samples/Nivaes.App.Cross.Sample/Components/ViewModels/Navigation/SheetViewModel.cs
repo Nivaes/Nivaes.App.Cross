@@ -13,8 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class SheetViewModel
         : MvxNavigationViewModel
     {
-        public SheetViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SheetViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseCommand = new MvxCommandAsync(CloseSheet);
         }

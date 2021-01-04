@@ -24,7 +24,7 @@ namespace MvvmCross.Platforms.Ios.Views
         {
             await ExecuteOnMainThreadAsync(() =>
             {
-                MvxLog.Instance?.Trace("iOSNavigation", "Navigate requested");
+                //MvxLog.Instance?.Trace("iOSNavigation", "Navigate requested");
                 return mPresenter.Show(request);
             }).ConfigureAwait(false);
 

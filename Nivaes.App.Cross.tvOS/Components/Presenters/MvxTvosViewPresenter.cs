@@ -47,8 +47,8 @@ namespace MvvmCross.Platforms.Tvos.Presenters
             if (MasterNavigationController == null &&
                (TabBarViewController == null || !TabBarViewController.CanShowChildView()))
             {
-                MvxLog.Instance.Trace($"PresentationAttribute nor MasterNavigationController found for {viewType.Name}. " +
-                    $"Assuming Root presentation");
+                //MvxLog.Instance.Trace($"PresentationAttribute nor MasterNavigationController found for {viewType.Name}. " +
+                //    $"Assuming Root presentation");
                 return new MvxRootPresentationAttribute()
                 {
                     WrapInNavigationController = true,
@@ -56,8 +56,8 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                     ViewModelType = viewModelType
                 };
             }
-            MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
-                $"Assuming animated Child presentation");
+            //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
+            //    $"Assuming animated Child presentation");
             return new MvxChildPresentationAttribute()
             {
                 ViewType = viewType,

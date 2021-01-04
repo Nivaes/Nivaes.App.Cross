@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Logging
 {
     using System;
 
+    [Obsolete("Usar AppCenter", true)]
     public static class MvxLogExtensions
     {
         public static bool IsDebugEnabled(this IMvxLog logger)

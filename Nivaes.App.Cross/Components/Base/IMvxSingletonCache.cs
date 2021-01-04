@@ -9,6 +9,6 @@ namespace MvvmCross.Base
     public interface IMvxSingletonCache
     {
         //IMvxSettings Settings { get; }
-        IMvxStringToTypeParser Parser { get; }
+        //IMvxStringToTypeParser Parser { get; }
     }
 }

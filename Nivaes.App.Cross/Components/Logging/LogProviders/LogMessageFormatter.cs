@@ -10,6 +10,7 @@ namespace Nivaes.App.Cross.Logging
     using System.Linq;
     using System.Text.RegularExpressions;
 
+    [Obsolete("Usar AppCenter", true)]
     internal static class LogMessageFormatter
     {
         private static readonly Regex Pattern = new Regex(@"(?<!{){@?(?<arg>[^\d{][^ }]*)}");

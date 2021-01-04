@@ -43,7 +43,7 @@ namespace Nivaes.App.Cross.ViewModels
             if (typeByName != null)
                 return typeByName;
 
-            MvxLog.Instance?.Trace("No view model association found for candidate view {0}", candidateType.Name);
+            //MvxLog.Instance?.Trace("No view model association found for candidate view {0}", candidateType.Name);
             return null;
         }
 

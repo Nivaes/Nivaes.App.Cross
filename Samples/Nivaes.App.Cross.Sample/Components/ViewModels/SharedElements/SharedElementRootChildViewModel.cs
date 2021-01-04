@@ -41,8 +41,8 @@ namespace Nivaes.App.Cross.Sample
             set => SetProperty(ref mSelectedItem, value);
         }
 
-        public SharedElementRootChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SharedElementRootChildViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

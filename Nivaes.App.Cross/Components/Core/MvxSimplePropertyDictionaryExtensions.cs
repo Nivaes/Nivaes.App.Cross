@@ -2,16 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using Autofac;
     using MvvmCross.Base;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.ViewModels;
 
     public static class MvxSimplePropertyDictionaryExtensions
@@ -62,12 +63,13 @@ namespace MvvmCross.Core
 
             foreach (var propertyInfo in propertyList)
             {
-                if (!data.TryGetValue(propertyInfo.Name, out string textValue))
+                if (!data.TryGetValue(propertyInfo.Name, out string? textValue))
                     continue;
 
-                var typedValue = MvxSingletonCache.Instance.Parser.ReadValue(textValue, propertyInfo.PropertyType,
-                                                                             propertyInfo.Name);
-                propertyInfo.SetValue(t, typedValue, new object[0]);
+                var parser = IoCContainer.ComponentContext.Resolve<IMvxStringToTypeParser>();
+                var typedValue = parser.ReadValue(textValue, propertyInfo.PropertyType, propertyInfo.Name);
+
+                propertyInfo.SetValue(t, typedValue, Array.Empty<object>());
             }
 
             return t;
@@ -100,15 +102,15 @@ namespace MvvmCross.Core
                     return Type.Missing;
                 }
 
-                MvxLog.Instance?.Trace(
-                    "Missing parameter for call to {0} - missing parameter {1} - asssuming null - this may fail for value types!",
-                    debugText,
-                    requiredParameter.Name);
+                //MvxLog.Instance?.Trace(
+                //    "Missing parameter for call to {0} - missing parameter {1} - asssuming null - this may fail for value types!",
+                //    debugText,
+                //    requiredParameter.Name);
                 parameterValue = null;
             }
 
-            var value = MvxSingletonCache.Instance.Parser.ReadValue(parameterValue, requiredParameter.ParameterType,
-                                                                    requiredParameter.Name);
+            var parser = IoCContainer.ComponentContext.Resolve<IMvxStringToTypeParser>();
+            var value = parser.ReadValue(parameterValue, requiredParameter.ParameterType, requiredParameter.Name);
             return value;
         }
 
@@ -117,8 +119,10 @@ namespace MvvmCross.Core
             if (input == null)
                 return new Dictionary<string, string>();
 
-            if (input is IDictionary<string, string>)
-                return (IDictionary<string, string>)input;
+            if (input is IDictionary<string, string> dictionary2)
+                return dictionary2;
+
+            var parser = IoCContainer.ComponentContext.Resolve<IMvxStringToTypeParser>();
 
             var propertyInfos = from property in input.GetType()
                                                       .GetProperties(BindingFlags.Instance | BindingFlags.Public |
@@ -127,7 +131,7 @@ namespace MvvmCross.Core
                                 select new
                                 {
                                     CanSerialize =
-                                    MvxSingletonCache.Instance.Parser.TypeSupported(property.PropertyType),
+                                    parser.TypeSupported(property.PropertyType),
                                     Property = property
                                 };
 
@@ -138,13 +142,13 @@ namespace MvvmCross.Core
                 {
                     dictionary[propertyInfo.Property.Name] = input.GetPropertyValueAsString(propertyInfo.Property);
                 }
-                else
-                {
-                    MvxLog.Instance?.Trace(
-                        "Skipping serialization of property {0} - don't know how to serialize type {1} - some answers on http://stackoverflow.com/questions/16524236/custom-types-in-navigation-parameters-in-v3",
-                        propertyInfo.Property.Name,
-                        propertyInfo.Property.PropertyType.Name);
-                }
+                //else
+                //{
+                //    MvxLog.Instance?.Trace(
+                //        "Skipping serialization of property {0} - don't know how to serialize type {1} - some answers on http://stackoverflow.com/questions/16524236/custom-types-in-navigation-parameters-in-v3",
+                //        propertyInfo.Property.Name,
+                //        propertyInfo.Property.PropertyType.Name);
+                //}
             }
             return dictionary;
         }

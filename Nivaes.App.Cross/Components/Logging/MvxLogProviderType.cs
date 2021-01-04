@@ -4,6 +4,9 @@
 
 namespace Nivaes.App.Cross.Logging
 {
+    using System;
+
+    [Obsolete("Usar AppCenter", true)]
     public enum MvxLogProviderType
     {
         Console,

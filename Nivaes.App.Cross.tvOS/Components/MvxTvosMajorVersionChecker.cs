@@ -22,7 +22,7 @@ namespace MvvmCross.Platforms.Tvos
             Mvx.IoCProvider.TryResolve<IMvxTvosSystem>(out tvosSystem);
             if (tvosSystem == null)
             {
-                MvxLog.Instance.Warn("IMvxTvosSystem not found - so assuming we {1} on tvOS {0} or later", target, defaultValue ? "are" : "are not");
+                //MvxLog.Instance.Warn("IMvxTvosSystem not found - so assuming we {1} on tvOS {0} or later", target, defaultValue ? "are" : "are not");
                 return defaultValue;
             }
 

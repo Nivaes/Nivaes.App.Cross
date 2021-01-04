@@ -47,15 +47,15 @@ namespace Nivaes.App.Cross.ViewModels
         {
             _shouldRaisePropertyChanging = value;
         }
-        public bool ShouldLogInpc()
-        {
-            return _shouldLogInpc;
-        }
+        //public bool ShouldLogInpc()
+        //{
+        //    return _shouldLogInpc;
+        //}
 
-        public void ShouldLogInpc(bool value)
-        {
-            _shouldLogInpc = value;
-        }
+        //public void ShouldLogInpc(bool value)
+        //{
+        //    _shouldLogInpc = value;
+        //}
 
         protected MvxNotifyPropertyChanged()
         {
@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross.ViewModels
             ShouldRaisePropertyChanging(raisePropertyChanging);
 
             var shouldLogInpc = settings.ShouldLogInpc;
-            ShouldLogInpc(shouldLogInpc);
+            //ShouldLogInpc(shouldLogInpc);
         }
 
         public bool RaisePropertyChanging<T>(T newValue, Expression<Func<T>> property)
@@ -87,8 +87,8 @@ namespace Nivaes.App.Cross.ViewModels
         {
             if (changingArgs == null) throw new ArgumentNullException(nameof(changingArgs));
 
-            if (ShouldLogInpc())
-                MvxLog.Instance?.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue}");
+            //if (ShouldLogInpc())
+            //    MvxLog.Instance?.Trace($"Property '{changingArgs.PropertyName}' changing value to {changingArgs.NewValue}");
 
             PropertyChanging?.Invoke(this, changingArgs);
 
@@ -118,8 +118,8 @@ namespace Nivaes.App.Cross.ViewModels
         {
             ValueTask<bool> raiseChange()
             {
-                if (ShouldLogInpc())
-                    MvxLog.Instance?.Trace($"Property '{changedArgs.PropertyName}' value changed");
+                //if (ShouldLogInpc())
+                //    MvxLog.Instance?.Trace($"Property '{changedArgs.PropertyName}' value changed");
                 PropertyChanged?.Invoke(this, changedArgs);
 
                 return new ValueTask<bool>(true);

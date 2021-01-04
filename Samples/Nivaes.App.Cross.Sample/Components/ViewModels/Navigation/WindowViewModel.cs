@@ -85,7 +85,8 @@ namespace Nivaes.App.Cross.Sample
 
         public int Count { get; set; }
 
-        public WindowViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public WindowViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             mCount++;
             Count = mCount;

@@ -11,27 +11,27 @@ namespace Nivaes.App.Cross.ViewModels
     public abstract class MvxNavigationViewModel
         : MvxViewModel
     {
-        private IMvxLog? mLog;
+        //private IMvxLog? mLog;
 
-        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+        protected MvxNavigationViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
             : base()
         {
-            LogProvider = logProvider;
+            //LogProvider = logProvider;
             NavigationService = navigationService;
         }
 
         protected virtual IMvxNavigationService NavigationService { get; }
 
-        protected virtual IMvxLogProvider LogProvider { get; }
+        //protected virtual IMvxLogProvider LogProvider { get; }
 
-        protected virtual IMvxLog Log => mLog ??= LogProvider.GetLogFor(GetType());
+        //protected virtual IMvxLog Log => mLog ??= LogProvider.GetLogFor(GetType());
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
         : MvxNavigationViewModel, IMvxViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        protected MvxNavigationViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 
@@ -42,8 +42,8 @@ namespace Nivaes.App.Cross.ViewModels
     public abstract class MvxNavigationViewModelResult<TResult>
         : MvxNavigationViewModel, IMvxViewModelResult<TResult>
     {
-        protected MvxNavigationViewModelResult(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        protected MvxNavigationViewModelResult(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 
@@ -61,7 +61,8 @@ namespace Nivaes.App.Cross.ViewModels
     public abstract class MvxNavigationViewModel<TParameter, TResult>
         : MvxNavigationViewModelResult<TResult>, IMvxViewModel<TParameter, TResult>
     {
-        protected MvxNavigationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected MvxNavigationViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Logging
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
 
+    [Obsolete("Usar AppCenter", true)]
     internal sealed class AppCenterLogProvider
         : MvxBaseLogProvider
     {

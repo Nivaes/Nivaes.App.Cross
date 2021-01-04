@@ -12,7 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class ModalNavViewModel
         : MvxNavigationViewModel
     {
-        public ModalNavViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public ModalNavViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 

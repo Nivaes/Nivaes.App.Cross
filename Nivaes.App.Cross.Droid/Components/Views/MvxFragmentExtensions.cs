@@ -43,12 +43,12 @@ namespace MvvmCross.Platforms.Android.Views
             if (viewModelType == typeof(MvxNullViewModel))
                 return new MvxNullViewModel();
 
-            if (viewModelType == null
-                || viewModelType == typeof(IMvxViewModel))
-            {
-                MvxLog.Instance?.Trace("No ViewModel class specified for {0} in LoadViewModel",
-                    fragmentView.GetType().Name);
-            }
+            //if (viewModelType == null
+            //    || viewModelType == typeof(IMvxViewModel))
+            //{
+            //    MvxLog.Instance?.Trace("No ViewModel class specified for {0} in LoadViewModel",
+            //        fragmentView.GetType().Name);
+            //}
 
             if (request == null)
                 request = MvxViewModelRequest.GetDefaultRequest(viewModelType);

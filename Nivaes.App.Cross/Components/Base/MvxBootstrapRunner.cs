@@ -25,23 +25,23 @@ namespace MvvmCross.Base
 
         protected virtual void Run(Type type)
         {
-            try
-            {
+            //try
+            //{
                 var toRun = Activator.CreateInstance(type);
                 var bootstrapAction = toRun as IMvxBootstrapAction;
                 if (bootstrapAction == null)
                 {
-                    MvxLog.Instance?.Warn("Could not run startup task {0} - it's not a startup task", type.Name);
+                    //MvxLog.Instance?.Warn("Could not run startup task {0} - it's not a startup task", type.Name);
                     return;
                 }
 
                 bootstrapAction.Run();
-            }
-            catch (Exception exception)
-            {
-                // pokemon handling
-                MvxLog.Instance?.Warn("Error running startup task {0} - error {1}", type.Name, exception.ToLongString());
-            }
+            //}
+            //catch (Exception exception)
+            //{
+            //    // pokemon handling
+            //    MvxLog.Instance?.Warn("Error running startup task {0} - error {1}", type.Name, exception.ToLongString());
+            //}
         }
     }
 }

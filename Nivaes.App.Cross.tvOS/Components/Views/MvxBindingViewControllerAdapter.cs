@@ -27,7 +27,7 @@ namespace MvvmCross.Platforms.Tvos.Views
         {
             if (TvosView == null)
             {
-                MvxLog.Instance.Warn($"{nameof(TvosView)} is null for clearup of bindings");
+                //MvxLog.Instance.Warn($"{nameof(TvosView)} is null for clearup of bindings");
                 return;
             }
             TvosView.ClearAllBindings();

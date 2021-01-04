@@ -13,8 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class MixedNavFirstViewModel
         : MvxNavigationViewModel
     {
-        public MixedNavFirstViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public MixedNavFirstViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

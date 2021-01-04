@@ -62,10 +62,10 @@ namespace MvvmCross.Binding
                 RegisterSourceBindingFactoryExtensions(extensionHost);
                 Mvx.IoCProvider.RegisterSingleton<IMvxSourceBindingFactoryExtensionHost>(extensionHost);
             }
-            else
-            {
-                MvxLog.Instance?.Trace("source binding factory extension host not provided - so no source extensions will be used");
-            }
+            //else
+            //{
+            //    MvxLog.Instance?.Trace("source binding factory extension host not provided - so no source extensions will be used");
+            //}
         }
 
         protected virtual void RegisterSourceBindingFactoryExtensions(IMvxSourceBindingFactoryExtensionHost extensionHost)

@@ -21,8 +21,8 @@ namespace Nivaes.App.Cross.Sample
 
         private string _hello = "Hello MvvmCross";
 
-        public CustomBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public CustomBindingViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

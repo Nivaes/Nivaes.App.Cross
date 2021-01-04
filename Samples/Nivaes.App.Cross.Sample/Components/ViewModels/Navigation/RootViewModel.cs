@@ -21,8 +21,8 @@ namespace Nivaes.App.Cross.Sample
 
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("Playground.Core", "Text");
 
-        public RootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMvxViewModelLoader mvxViewModelLoader)
-            : base(logProvider, navigationService)
+        public RootViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService, IMvxViewModelLoader mvxViewModelLoader)
+            : base(/*logProvider,*/ navigationService)
         {
             mMvxViewModelLoader = mvxViewModelLoader;
             //try
@@ -166,9 +166,9 @@ namespace Nivaes.App.Cross.Sample
             get => mWelcomeText;
             set
             {
-                ShouldLogInpc(true);
+                //ShouldLogInpc(true);
                 SetProperty(ref mWelcomeText, value);
-                ShouldLogInpc(false);
+                //ShouldLogInpc(false);
             }
         }
 
@@ -180,20 +180,20 @@ namespace Nivaes.App.Cross.Sample
 
         public override async ValueTask Initialize()
         {
-            Log.Warn(() => "Testing log");
+            //Log.Warn(() => "Testing log");
 
             await base.Initialize().ConfigureAwait(false);
 
             // Uncomment this to demonstrate use of StartAsync for async first navigation
             // await Task.Delay(5000);
 
-            mMvxViewModelLoader.LoadViewModel(MvxViewModelRequest.GetDefaultRequest(typeof(ChildViewModel)),
-                new SampleModel
-                {
-                    Message = "From locator",
-                    Value = 2
-                },
-                null);
+            _ = await mMvxViewModelLoader.LoadViewModel(MvxViewModelRequest.GetDefaultRequest(typeof(ChildViewModel)),
+                    new SampleModel
+                    {
+                        Message = "From locator",
+                        Value = 2
+                    },
+                    null).ConfigureAwait(false);
 
             //MakeRequest().ConfigureAwait(false);
         }

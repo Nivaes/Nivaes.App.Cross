@@ -77,8 +77,8 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
 
         protected virtual void CollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            MvxLog.Instance?.Trace(
-                "CollectionChanged called inside MvxPickerViewModel - beware that this isn't fully tested - picker might not fully support changes while the picker is visible");
+            //MvxLog.Instance?.Trace(
+            //    "CollectionChanged called inside MvxPickerViewModel - beware that this isn't fully tested - picker might not fully support changes while the picker is visible");
             Reload();
         }
 

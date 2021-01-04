@@ -77,13 +77,13 @@ namespace MvvmCross.Platforms.Wpf.Presenters
         {
             if (viewType.IsSubclassOf(typeof(Window)))
             {
-                MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
-                    $"Assuming window presentation");
+                //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
+                //    $"Assuming window presentation");
                 return new MvxWindowPresentationAttribute();
             }
 
-            MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
-                    $"Assuming content presentation");
+            //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
+            //        $"Assuming content presentation");
             return new MvxContentPresentationAttribute();
         }
 
@@ -100,7 +100,7 @@ namespace MvvmCross.Platforms.Wpf.Presenters
 
                     if (presentationAttribute == null)
                     {
-                        MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
+                        //MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {
@@ -186,7 +186,7 @@ namespace MvvmCross.Platforms.Wpf.Presenters
             if (FrameworkElementsDictionary.Any(i => i.Value.Any() && (i.Value.Peek() as IMvxWpfView)?.ViewModel == toClose) && await CloseContentView(toClose))
                 return true;
 
-            MvxLog.Instance.Warn($"Could not close ViewModel type {toClose.GetType().Name}");
+            //MvxLog.Instance.Warn($"Could not close ViewModel type {toClose.GetType().Name}");
             return false;
         }
 

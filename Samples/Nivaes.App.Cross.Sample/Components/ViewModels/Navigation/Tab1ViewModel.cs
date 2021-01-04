@@ -14,8 +14,8 @@ namespace Nivaes.App.Cross.Sample
     public class Tab1ViewModel
         : MvxNavigationViewModel<string>
     {
-        public Tab1ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public Tab1ViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             OpenChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<ChildViewModel>().ConfigureAwait(true));
 
