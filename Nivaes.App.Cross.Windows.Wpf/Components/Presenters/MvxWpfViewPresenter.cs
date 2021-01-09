@@ -73,21 +73,21 @@ namespace MvvmCross.Platforms.Wpf.Presenters
                     (viewModel, attribute) => CloseContentView(viewModel));
         }
 
-        public override ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             if (viewType.IsSubclassOf(typeof(Window)))
             {
                 //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
                 //    $"Assuming window presentation");
-                return new ValueTask<MvxBasePresentationAttribute>(new MvxWindowPresentationAttribute());
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxWindowPresentationAttribute());
             }
 
             //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
             //        $"Assuming content presentation");
-            return new ValueTask<MvxBasePresentationAttribute>(new MvxContentPresentationAttribute());
+            return new ValueTask<MvxBasePresentationAttribute?>(new MvxContentPresentationAttribute());
         }
 
-        public override async ValueTask<MvxBasePresentationAttribute> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
+        public override async ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
             if (viewType?.GetInterface(nameof(IMvxOverridePresentationAttribute)) != null)
             {

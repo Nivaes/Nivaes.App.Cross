@@ -119,7 +119,7 @@ namespace Nivaes.App.Cross.Presenters
             AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
         }
 
-        public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        public override ValueTask<MvxBasePresentationAttribute?> GetPresentationAttribute(MvxViewModelRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
@@ -171,40 +171,40 @@ namespace Nivaes.App.Cross.Presenters
 
                 attribute.ViewType = viewType;
 
-                return attribute;
+                return new ValueTask<MvxBasePresentationAttribute?>(attribute);
             }
 
             return CreatePresentationAttribute(request.ViewModelType, viewType);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             if (viewType == null) throw new ArgumentNullException(nameof(viewType));
 
             if (viewType.IsSubclassOf(typeof(DialogFragment)))
             {
                 //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
-                return new MvxDialogFragmentPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxDialogFragmentPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
             }
             else if (viewType.IsSubclassOf(typeof(Fragment)))
             {
                 //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Fragment presentation", viewType.Name);
-                return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content) { ViewType = viewType, ViewModelType = viewModelType };
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content) { ViewType = viewType, ViewModelType = viewModelType });
             }
             else if (viewType.IsSubclassOf(typeof(Activity)))
             {
                 //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Activity presentation", viewType.Name);
-                return new MvxActivityPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxActivityPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
             }
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute)null!);
         }
 
-        public override ValueTask<bool> ChangePresentation(MvxPresentationHint? hint)
+        public override async ValueTask<bool> ChangePresentation(MvxPresentationHint? hint)
         {
             if (hint is MvxPagePresentationHint pagePresentationHint)
             {
                 var request = new MvxViewModelRequest(pagePresentationHint.ViewModel);
-                var attribute = GetPresentationAttribute(request);
+                var attribute = await GetPresentationAttribute(request).ConfigureAwait(false);
 
                 if (attribute is MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
                 {
@@ -218,16 +218,16 @@ namespace Nivaes.App.Cross.Presenters
                             //MvxLog.Instance?.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
                             //    pagerFragmentAttribute.Tag);
 
-                            return new ValueTask<bool>(false);
+                            return false;
                         }
 
                         viewPager.SetCurrentItem(index, true);
-                        return new ValueTask<bool>(true);
+                        return true;
                     }
                 }
             }
 
-            return base.ChangePresentation(hint);
+            return await base.ChangePresentation(hint);
         }
 
         protected virtual ViewPager? FindViewPagerInFragmentPresentation(

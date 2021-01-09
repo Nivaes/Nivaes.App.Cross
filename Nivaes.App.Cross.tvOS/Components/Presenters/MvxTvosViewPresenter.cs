@@ -42,30 +42,30 @@ namespace MvvmCross.Platforms.Tvos.Presenters
             _window = window;
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             if (MasterNavigationController == null &&
                (TabBarViewController == null || !TabBarViewController.CanShowChildView()))
             {
                 //MvxLog.Instance.Trace($"PresentationAttribute nor MasterNavigationController found for {viewType.Name}. " +
                 //    $"Assuming Root presentation");
-                return new MvxRootPresentationAttribute()
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxRootPresentationAttribute()
                 {
                     WrapInNavigationController = true,
                     ViewType = viewType,
                     ViewModelType = viewModelType
-                };
+                });
             }
             //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. " +
             //    $"Assuming animated Child presentation");
-            return new MvxChildPresentationAttribute()
+            return new ValueTask<MvxBasePresentationAttribute?>(new MvxChildPresentationAttribute()
             {
                 ViewType = viewType,
                 ViewModelType = viewModelType
-            };
+            });
         }
 
-        public override MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
             if (viewType?.GetInterface(nameof(IMvxOverridePresentationAttribute)) != null)
             {
@@ -87,11 +87,11 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                         if (presentationAttribute.ViewModelType == null)
                             presentationAttribute.ViewModelType = request.ViewModelType;
 
-                        return presentationAttribute;
+                        return new ValueTask<MvxBasePresentationAttribute?>(presentationAttribute);
                     }
                 }
             }
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute)null);
         }
 
         public override void RegisterAttributeTypes()

@@ -11,9 +11,9 @@ namespace MvvmCross.Platforms.Tizen.Presenters
     public class MvxTizenViewPresenter
         : MvxAttributeViewPresenter, IMvxTizenViewPresenter
     {
-        public override ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
-            return new ValueTask<MvxBasePresentationAttribute>((MvxBasePresentationAttribute)null!);
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute)null!);
         }
 
         public override void RegisterAttributeTypes()

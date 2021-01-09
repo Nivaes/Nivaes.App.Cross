@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.Presenters
 
         public abstract void RegisterAttributeTypes();
 
-        public abstract ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType);
+        public abstract ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType);
 
         public virtual ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
@@ -98,7 +98,7 @@ namespace Nivaes.App.Cross.Presenters
             return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute?)null);
         }
 
-        public virtual async ValueTask<MvxBasePresentationAttribute> GetPresentationAttribute(MvxViewModelRequest request)
+        public virtual async ValueTask<MvxBasePresentationAttribute?> GetPresentationAttribute(MvxViewModelRequest request)
         {
             var viewType = ViewsContainer.GetViewType(request.ViewModelType);
 

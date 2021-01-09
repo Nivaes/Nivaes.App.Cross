@@ -18,8 +18,8 @@ namespace Nivaes.App.Cross.Presenters
         IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 
-        ValueTask<MvxBasePresentationAttribute> GetPresentationAttribute(MvxViewModelRequest request);
-        ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType);
-        ValueTask<MvxBasePresentationAttribute> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType);
+        ValueTask<MvxBasePresentationAttribute?> GetPresentationAttribute(MvxViewModelRequest request);
+        ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType);
+        ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType);
     }
 }
