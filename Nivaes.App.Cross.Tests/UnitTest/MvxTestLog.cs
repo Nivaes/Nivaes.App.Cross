@@ -4,9 +4,11 @@
 
 namespace MvvmCross.Tests
 {
+    using System;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Eliminar")]
     internal static class MvxTestLog
     {
         internal static IMvxLog Instance { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("MvxTest");

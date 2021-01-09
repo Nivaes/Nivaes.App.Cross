@@ -6,6 +6,7 @@ namespace MvvmCross.Platforms.Mac.Views
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.Views;
@@ -18,15 +19,15 @@ namespace MvvmCross.Platforms.Mac.Views
         public static void OnViewCreate(this IMvxMacView macView)
         {
             //var view = touchView as IMvxView<TViewModel>;
-            macView.OnViewCreate(() => { return macView.LoadViewModel(); });
+            macView.OnViewCreate(() => macView.LoadViewModel());
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxMacView macView)
+        private static async ValueTask<IMvxViewModel> LoadViewModel(this IMvxMacView macView)
         {
             if (macView.Request == null)
             {
-                MvxLog.Instance.Trace(
-                    "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
+                //MvxLog.Instance.Trace(
+                //    "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
                 macView.Request = Mvx.IoCProvider.Resolve<IMvxCurrentRequest>().CurrentRequest;
             }
 
@@ -37,7 +38,7 @@ namespace MvvmCross.Platforms.Mac.Views
             }
 
             var loader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var viewModel = loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
+            var viewModel = await loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
             if (viewModel == null)
                 throw new MvxException("ViewModel not loaded for " + macView.Request.ViewModelType);
             return viewModel;

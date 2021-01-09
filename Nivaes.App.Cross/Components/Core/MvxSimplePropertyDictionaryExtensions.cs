@@ -10,7 +10,6 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using System.Reflection;
     using Autofac;
-    using MvvmCross.Base;
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.ViewModels;

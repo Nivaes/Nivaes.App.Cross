@@ -2,7 +2,7 @@
   <!--<Project Sdk="Microsoft.NET.Sdk">-->
 
   <PropertyGroup>
-    <TargetFrameworks>monoandroid11.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid11.0;net5.0-android</TargetFrameworks>
     <!--<TargetFramework>net5.0-android</TargetFramework>-->
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>

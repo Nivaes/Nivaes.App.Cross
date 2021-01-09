@@ -9,6 +9,7 @@ namespace MvvmCross.UnitTest.Navigation
     using MvvmCross.Core;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.UnitTest;
@@ -37,48 +38,48 @@ namespace MvvmCross.UnitTest.Navigation
             MockLoader = new Mock<IMvxViewModelLoader>();
             MockLoader.Setup(
                 l => l.LoadViewModel(It.Is<MvxViewModelRequest>(val => val.ViewModelType == typeof(SimpleTestViewModel)), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                      .Returns(() =>
+                      .Returns(async () =>
                        {
                            var vm = new SimpleTestViewModel();
-                           vm.Prepare();
+                           await vm.Prepare().ConfigureAwait(false);
                            vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                            return vm;
                        });
             MockLoader.Setup(
                 l => l.LoadViewModel(It.Is<MvxViewModelRequest>(val => val.ViewModelType == typeof(SimpleResultTestViewModel)), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                      .Returns(() =>
+                      .Returns(async () =>
                        {
                            var vm = new SimpleResultTestViewModel();
-                           vm.Prepare();
+                           await vm.Prepare().ConfigureAwait(false);
                            vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                            return vm;
                        });
             MockLoader.Setup(
                 l => l.LoadViewModel<string>(It.IsAny<MvxViewModelRequest>(), It.IsAny<string>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                      .Returns(() =>
+                      .Returns(async () =>
                       {
                           var vm = new SimpleParameterTestViewModel();
-                          vm.Prepare();
-                          vm.Prepare("");
+                          await vm.Prepare().ConfigureAwait(false);
+                          await vm.Prepare("").ConfigureAwait(false);
                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });
             MockLoader.Setup(
                 l => l.ReloadViewModel(It.IsAny<IMvxViewModel>(), It.IsAny<MvxViewModelRequest>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                      .Returns(() =>
+                      .Returns(async () =>
                       {
                           var vm = new SimpleTestViewModel();
-                          vm.Prepare();
+                          await vm.Prepare().ConfigureAwait(false);
                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });
             MockLoader.Setup(
                 l => l.ReloadViewModel<string>(It.IsAny<IMvxViewModel<string>>(), It.IsAny<string>(), It.IsAny<MvxViewModelRequest>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                      .Returns(() =>
+                      .Returns(async () =>
                       {
                           var vm = new SimpleParameterTestViewModel();
-                          vm.Prepare();
-                          vm.Prepare("");
+                          await vm.Prepare().ConfigureAwait(false);
+                          await vm.Prepare("").ConfigureAwait(false);
                           vm.InitializeTask = MvxNotifyTask.Create(() => vm.Initialize().AsTask());
                           return vm;
                       });

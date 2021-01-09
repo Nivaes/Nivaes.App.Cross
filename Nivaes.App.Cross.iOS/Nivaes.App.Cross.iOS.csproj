@@ -6,7 +6,7 @@
     <!--<TargetFrameworks>net5.0-ios</TargetFrameworks>
     <RuntimeIdentifier>ios-x64</RuntimeIdentifier>-->
     <!--<OutputType>Library</OutputType>-->
-    <TargetFrameworks>xamarin.ios10</TargetFrameworks>
+    <TargetFrameworks>xamarin.ios10;net5.0-ios</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.iOS</RootNamespace>

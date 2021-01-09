@@ -25,6 +25,7 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Autofac;
 
     public abstract class MvxWpfSetup
         : MvxSetup, IMvxWpfSetup
@@ -163,6 +164,11 @@ namespace MvvmCross.Platforms.Wpf.Core
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

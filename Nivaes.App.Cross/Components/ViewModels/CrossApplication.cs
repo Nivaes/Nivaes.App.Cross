@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross.ViewModels
         }
     }
 
-    public class MvxApplication<TParameter>
+    public class CrossApplication<TParameter>
         : CrossApplication, ICrossApplication<TParameter>
     {
         public virtual TParameter Startup(TParameter parameter)

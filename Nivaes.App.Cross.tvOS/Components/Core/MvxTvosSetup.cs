@@ -8,6 +8,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
@@ -189,6 +190,11 @@ namespace MvvmCross.Platforms.Tvos.Core
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

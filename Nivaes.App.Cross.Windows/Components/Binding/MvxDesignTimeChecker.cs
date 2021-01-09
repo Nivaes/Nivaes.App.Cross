@@ -5,8 +5,8 @@
 namespace MvvmCross.Platforms.Uap.Binding
 {
     using MvvmCross.Binding.Parse.Binding;
-    using MvvmCross.IoC;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
     using Windows.ApplicationModel;
 
     public static class MvxDesignTimeChecker

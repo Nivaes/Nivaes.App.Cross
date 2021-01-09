@@ -5,14 +5,15 @@
 namespace MvvmCross.Platforms.Tizen.Presenters
 {
     using System;
+    using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
     public class MvxTizenViewPresenter
         : MvxAttributeViewPresenter, IMvxTizenViewPresenter
     {
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute>((MvxBasePresentationAttribute)null!);
         }
 
         public override void RegisterAttributeTypes()

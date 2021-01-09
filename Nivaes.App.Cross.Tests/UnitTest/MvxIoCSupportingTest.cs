@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Globalization;
 using MvvmCross.Base;
 using MvvmCross.Binding;
@@ -13,6 +14,7 @@ using Nivaes.App.Cross.Logging;
 
 namespace MvvmCross.Tests
 {
+    [Obsolete("Eliminar")]
     public class MvxIoCSupportingTest
     {
         private TestLogger _logger;
@@ -30,11 +32,13 @@ namespace MvvmCross.Tests
             Ioc = null;
         }
 
+        
         protected virtual IMvxIocOptions CreateIocOptions()
         {
             return null;
         }
 
+        [Obsolete("Usar AppCenter")]
         public virtual void ClearAll(IMvxIocOptions options = null)
         {
             // fake set up of the IoC
@@ -51,6 +55,7 @@ namespace MvvmCross.Tests
             AdditionalSetup();
         }
 
+        [Obsolete("Usar AppCenter")]
         public void InitializeSingletonCache()
         {
             if (MvxSingletonCache.Instance == null)
@@ -69,6 +74,7 @@ namespace MvvmCross.Tests
         {
         }
 
+        [Obsolete("Usar AppCenter")]
         public void SetupTestLogger(TestLogger logger)
         {
             _logger = logger;
@@ -80,12 +86,14 @@ namespace MvvmCross.Tests
             Ioc.RegisterSingleton(log);
         }
 
+        [Obsolete("Usar AppCenter", true)]
         protected virtual IMvxLogProvider CreateLogProvider()
         {
             var logProvider = new TestLogProvider(_logger);
             return logProvider;
         }
 
+        [Obsolete("Usar AppCenter", true)]
         protected virtual IMvxLog CreateLog(IMvxLogProvider logProvider)
         {
             var globalLog = logProvider.GetLogFor<MvxIoCSupportingTest>();

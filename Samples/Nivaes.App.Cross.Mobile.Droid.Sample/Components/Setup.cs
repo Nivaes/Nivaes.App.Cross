@@ -10,5 +10,9 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     public sealed class Setup :
         MvxAndroidSetup<MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
+        public Setup()
+        {
+
+        }
     }
 }

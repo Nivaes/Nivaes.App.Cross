@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>xamarin.tvos10</TargetFrameworks>
+    <TargetFrameworks>xamarin.tvos10;net5.0-tvos</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.tvOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.tvOS</RootNamespace>

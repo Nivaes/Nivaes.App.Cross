@@ -4,10 +4,10 @@
 
 namespace MvvmCross.Platforms.Tvos.Views
 {
+    using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.ViewModels;
 
     public static class MvxViewControllerExtensions
@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             tvOSView.OnViewCreate(tvOSView.LoadViewModel);
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxTvosView tvOSView)
+        private static async ValueTask<IMvxViewModel> LoadViewModel(this IMvxTvosView tvOSView)
         {
             if (tvOSView.Request == null)
             {
@@ -34,7 +34,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             }
 
             var loader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var viewModel = loader.LoadViewModel(tvOSView.Request, null /* no saved state on tvOS currently */);
+            var viewModel = await loader.LoadViewModel(tvOSView.Request, null /* no saved state on tvOS currently */);
             if (viewModel == null)
                 throw new MvxException("ViewModel not loaded for " + tvOSView.Request.ViewModelType);
             return viewModel;

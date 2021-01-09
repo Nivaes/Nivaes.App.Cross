@@ -5,6 +5,7 @@
 namespace MvvmCross.Platforms.Uap.Views
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.ViewModels;
@@ -16,7 +17,7 @@ namespace MvvmCross.Platforms.Uap.Views
         private const string ExtrasKey = "MvxLaunchData";
         private const string SubViewModelKey = "MvxSubViewModelKey";
 
-        public IMvxViewModel Load(string requestText, IMvxBundle? savedState)
+        public async ValueTask<IMvxViewModel> Load(string requestText, IMvxBundle? savedState)
         {
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
@@ -34,7 +35,7 @@ namespace MvvmCross.Platforms.Uap.Views
             }
 
             var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            return loaderService.LoadViewModel(request, savedState);
+            return await loaderService.LoadViewModel(request, savedState);
         }
 
         #region Implementation of IMvxWindowsViewModelRequestTranslator

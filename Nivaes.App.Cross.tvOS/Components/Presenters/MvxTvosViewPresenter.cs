@@ -77,7 +77,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
                     if (presentationAttribute == null)
                     {
-                        MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
+                        //MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {
@@ -148,7 +148,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         protected virtual ValueTask<bool> CloseRootViewController(IMvxViewModel viewModel,
                                      MvxRootPresentationAttribute attribute)
         {
-            MvxLog.Instance.Warn($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
+            //MvxLog.Instance.Warn($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
             return new ValueTask<bool>(false);
         }
 

@@ -56,10 +56,10 @@ namespace MvvmCross.Platforms.Uap.Presenters
             AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialog, CloseDialog);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             //MvxLog.Instance?.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming new page presentation");
-            return new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+            return new ValueTask<MvxBasePresentationAttribute>(new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
         }
 
         protected virtual async void BackButtonOnBackRequested(object sender, BackRequestedEventArgs backRequestedEventArgs)

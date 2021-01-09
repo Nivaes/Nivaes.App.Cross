@@ -6,7 +6,7 @@ using System;
 
 namespace MvvmCross.IoC
 {
-    [Obsolete("Sustituir por Autofac", true)]
+    [Obsolete("Sustituir por Autofac")]
     public class MvxPropertyInjectorOptions
         : IMvxPropertyInjectorOptions
     {

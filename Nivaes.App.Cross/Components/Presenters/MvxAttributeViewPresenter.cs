@@ -9,7 +9,6 @@ namespace Nivaes.App.Cross.Presenters
     using System.Linq;
     using System.Threading.Tasks;
     using MvvmCross.Views;
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.ViewModels;
 
     public abstract class MvxAttributeViewPresenter
@@ -61,9 +60,9 @@ namespace Nivaes.App.Cross.Presenters
 
         public abstract void RegisterAttributeTypes();
 
-        public abstract MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
+        public abstract ValueTask<MvxBasePresentationAttribute> CreatePresentationAttribute(Type viewModelType, Type viewType);
 
-        public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
+        public virtual ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
             if (viewType?.GetInterfaces().Contains(typeof(IMvxOverridePresentationAttribute)) ?? false)
             {
@@ -87,7 +86,7 @@ namespace Nivaes.App.Cross.Presenters
                             presentationAttribute.ViewModelType = request.ViewModelType;
                         }
 
-                        return presentationAttribute;
+                        return new ValueTask<MvxBasePresentationAttribute?>(presentationAttribute);
                     }
                 }
                 finally
@@ -96,14 +95,14 @@ namespace Nivaes.App.Cross.Presenters
                 }
             }
 
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute?)null);
         }
 
-        public virtual MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        public virtual async ValueTask<MvxBasePresentationAttribute> GetPresentationAttribute(MvxViewModelRequest request)
         {
             var viewType = ViewsContainer.GetViewType(request.ViewModelType);
 
-            var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
+            var overrideAttribute = await GetOverridePresentationAttribute(request, viewType).ConfigureAwait(false);
             if (overrideAttribute != null)
                 return overrideAttribute;
 
@@ -120,14 +119,14 @@ namespace Nivaes.App.Cross.Presenters
                 return attribute;
             }
 
-            return CreatePresentationAttribute(request.ViewModelType, viewType);
+            return await CreatePresentationAttribute(request.ViewModelType, viewType).ConfigureAwait(false);
         }
 
-        protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(MvxViewModelRequest request, out MvxBasePresentationAttribute attribute)
+        protected virtual async ValueTask<(MvxPresentationAttributeAction, MvxBasePresentationAttribute attribute)> GetPresentationAttributeAction(MvxViewModelRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            attribute = GetPresentationAttribute(request);
+            var attribute = await GetPresentationAttribute(request).ConfigureAwait(false);
             attribute.ViewModelType = request.ViewModelType;
             var viewType = attribute.ViewType;
             var attributeType = attribute.GetType();
@@ -142,7 +141,7 @@ namespace Nivaes.App.Cross.Presenters
                 if (attributeAction.CloseAction == null)
                     throw new NullReferenceException($"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
 
-                return attributeAction;
+                return (attributeAction, attribute);
             }
 
             throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
@@ -161,14 +160,16 @@ namespace Nivaes.App.Cross.Presenters
             return false;
         }
 
-        public override ValueTask<bool> Close(IMvxViewModel viewModel)
+        public override async ValueTask<bool> Close(IMvxViewModel viewModel)
         {
-            return GetPresentationAttributeAction(new MvxViewModelInstanceRequest(viewModel), out MvxBasePresentationAttribute attribute).CloseAction!.Invoke(viewModel, attribute);
+            var (attributeAction, attribute) = await GetPresentationAttributeAction(new MvxViewModelInstanceRequest(viewModel)).ConfigureAwait(false);
+            return await attributeAction.CloseAction!.Invoke(viewModel, attribute).ConfigureAwait(false);
         }
 
-        public override ValueTask<bool> Show(MvxViewModelRequest request)
+        public override async ValueTask<bool> Show(MvxViewModelRequest request)
         {
-            return GetPresentationAttributeAction(request, out MvxBasePresentationAttribute attribute).ShowAction!.Invoke(attribute.ViewType!, attribute, request);
+            var (attributeAction, attribute) = await GetPresentationAttributeAction(request).ConfigureAwait(false);
+            return await attributeAction.ShowAction!.Invoke(attribute.ViewType!, attribute, request).ConfigureAwait(false);
         }
     }
 }

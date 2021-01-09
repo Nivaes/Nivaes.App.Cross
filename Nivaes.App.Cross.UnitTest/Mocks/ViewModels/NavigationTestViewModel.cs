@@ -4,22 +4,24 @@
 
 namespace Nivaes.App.Cross.UnitTest
 {
+    using System;
     using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.ViewModels;
 
+    [Obsolete]
     public class NavigationTestViewModel
         : MvxNavigationViewModel
     {
-        public NavigationTestViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public NavigationTestViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 
         public IMvxNavigationService NavService => base.NavigationService;
 
-        public IMvxLogProvider LoggingProvider => base.LogProvider;
+        //public IMvxLogProvider LoggingProvider => base.LogProvider;
 
-        public IMvxLog ViewModelLog => base.Log;
+        //public IMvxLog ViewModelLog => base.Log;
     }
 }

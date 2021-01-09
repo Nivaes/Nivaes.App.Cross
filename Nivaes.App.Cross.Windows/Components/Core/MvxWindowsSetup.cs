@@ -8,6 +8,7 @@ namespace MvvmCross.Platforms.Uap.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Autofac;
     using Microsoft.UI.Xaml.Controls;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
@@ -204,5 +205,10 @@ namespace MvvmCross.Platforms.Uap.Core
         }
 
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

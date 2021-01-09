@@ -92,7 +92,7 @@ namespace MvvmCross.Platforms.Uap.Views
 
         private string _reqData = string.Empty;
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             _ = ViewModel?.ViewCreated().AsTask();
@@ -100,7 +100,7 @@ namespace MvvmCross.Platforms.Uap.Views
             if (_reqData != string.Empty)
             {
                 var viewModelLoader = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelLoader>();
-                ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
+                ViewModel = await viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e)).ConfigureAwait(true);
                 _ = ViewModel?.ViewCreated().AsTask();
             }
             _reqData = (string)e.Parameter;

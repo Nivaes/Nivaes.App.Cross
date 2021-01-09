@@ -10,6 +10,7 @@ namespace MvvmCross.Platforms.Mac.Core
     using System.Reflection;
     using System.Threading.Tasks;
     using AppKit;
+    using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
@@ -190,6 +191,11 @@ namespace MvvmCross.Platforms.Mac.Core
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

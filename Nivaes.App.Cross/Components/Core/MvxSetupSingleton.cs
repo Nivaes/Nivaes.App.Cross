@@ -95,6 +95,7 @@ namespace MvvmCross.Core
             return StartSetupInitialization();
         }
 
+        [Obsolete("Eliminar")]
         protected virtual void CreateSetup()
         {
             try

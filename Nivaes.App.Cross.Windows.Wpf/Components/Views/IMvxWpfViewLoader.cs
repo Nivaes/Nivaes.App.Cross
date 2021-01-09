@@ -5,13 +5,14 @@
 using System.Windows;
 using System;
 using Nivaes.App.Cross.ViewModels;
+using System.Threading.Tasks;
 
 namespace MvvmCross.Platforms.Wpf.Views
 {
     public interface IMvxWpfViewLoader
     {
-        FrameworkElement CreateView(MvxViewModelRequest request);
+        ValueTask<FrameworkElement> CreateView(MvxViewModelRequest request);
 
-        FrameworkElement CreateView(Type viewType);
+        ValueTask<FrameworkElement> CreateView(Type viewType);
     }
 }
