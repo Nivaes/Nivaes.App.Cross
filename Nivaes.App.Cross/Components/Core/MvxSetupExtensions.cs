@@ -8,6 +8,7 @@
 
     public static class MvxSetupExtensions
     {
+        [Obsolete("Eliminar")]
         public static void RegisterSetupType<TMvxSetup>(this object platformApplication,  params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
         {
             if (platformApplication == null) throw new ArgumentNullException(nameof(platformApplication));

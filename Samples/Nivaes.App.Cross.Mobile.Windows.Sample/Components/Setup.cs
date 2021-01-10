@@ -7,7 +7,7 @@
     using Nivaes.App.Cross.Sample;
 
     public sealed class Setup
-        : MvxWindowsSetup<AppMobileSampleApplication<AppMobileSampleAppStart>>
+        : MvxWindowsSetup<MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {

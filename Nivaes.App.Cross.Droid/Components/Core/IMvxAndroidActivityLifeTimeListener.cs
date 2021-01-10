@@ -10,7 +10,8 @@ using MvvmCross.Platforms.Android.Views;
 
 namespace MvvmCross.Platforms.Android.Core
 {
-    public interface IMvxAndroidActivityLifetimeListener : IMvxLifetime
+    public interface IMvxAndroidActivityLifetimeListener
+        : IMvxLifetime
     {
         void OnCreate(Activity activity, Bundle eventArgs);
 

@@ -12,10 +12,10 @@ namespace MvvmCross.Platforms.Ios.Views
         public static IMvxIosView GetIMvxIosView(this UIViewController viewController)
         {
             var mvxView = viewController as IMvxIosView;
-            if (mvxView == null)
-            {
-                MvxLog.Instance?.Warn($"Could not get IMvxIosView from ViewController {viewController.GetType().Name}");
-            }
+            //if (mvxView == null)
+            //{
+            //    MvxLog.Instance?.Warn($"Could not get IMvxIosView from ViewController {viewController.GetType().Name}");
+            //}
             return mvxView;
         }
     }

@@ -15,8 +15,8 @@ namespace Nivaes.App.Cross.Sample
     {
         private WindowChildParam? mParam;
 
-        public WindowChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public WindowChildViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

@@ -9,6 +9,7 @@ namespace MvvmCross.Platforms.Uap.Binding
     using MvvmCross.Converters;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
 
     public class Import
     {

@@ -9,6 +9,7 @@ namespace MvvmCross.Tests
     using System.Text;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Eliminar")]
     public class TestLogProvider
         : MvxBaseLogProvider
     {

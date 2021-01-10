@@ -24,7 +24,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         protected MvxBaseTableViewSource(IntPtr handle)
             : base(handle)
         {
-            MvxLog.Instance.Warn("MvxBaseTableViewSource IntPtr constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            //MvxLog.Instance.Warn("MvxBaseTableViewSource IntPtr constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
         protected UITableView TableView => _tableView;
@@ -50,14 +50,14 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
 
         public virtual void ReloadTableData()
         {
-            try
-            {
+            //try
+            //{
                 _tableView.ReloadData();
-            }
-            catch (Exception exception)
-            {
-                MvxLog.Instance.Warn("Exception masked during TableView ReloadData {0}", exception.ToLongString());
-            }
+            //}
+            //catch (Exception exception)
+            //{
+            //    MvxLog.Instance.Warn("Exception masked during TableView ReloadData {0}", exception.ToLongString());
+            //}
         }
 
         protected abstract UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item);

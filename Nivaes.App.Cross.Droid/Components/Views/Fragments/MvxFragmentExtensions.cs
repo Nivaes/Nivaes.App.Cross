@@ -115,7 +115,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
             if (fragment == null)
             {
-                MvxLog.Instance?.Warn("Failed to find fragment id {0} in {1}", resourceId, activity.GetType().Name);
+                //MvxLog.Instance?.Warn("Failed to find fragment id {0} in {1}", resourceId, activity.GetType().Name);
                 return default;
             }
 
@@ -130,7 +130,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
             if (fragment == null)
             {
-                MvxLog.Instance?.Warn("Failed to find fragment tag {0} in {1}", tag, activity.GetType().Name);
+                //MvxLog.Instance?.Warn("Failed to find fragment tag {0} in {1}", tag, activity.GetType().Name);
                 return default;
             }
 
@@ -141,8 +141,8 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         {
             if (!(fragment is TFragment))
             {
-                MvxLog.Instance?.Warn("Fragment type mismatch got {0} but expected {1}", fragment.GetType().FullName,
-                            typeof(TFragment).FullName);
+                //MvxLog.Instance?.Warn("Fragment type mismatch got {0} but expected {1}", fragment.GetType().FullName,
+                //            typeof(TFragment).FullName);
                 return default;
             }
 
@@ -157,7 +157,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             var viewModel = await loader.LoadViewModel(request, savedState).ConfigureAwait(false);
             if (viewModel == null)
             {
-                MvxLog.Instance?.Warn("ViewModel not loaded for {0}", request.ViewModelType.FullName);
+                //MvxLog.Instance?.Warn("ViewModel not loaded for {0}", request.ViewModelType.FullName);
                 return;
             }
 

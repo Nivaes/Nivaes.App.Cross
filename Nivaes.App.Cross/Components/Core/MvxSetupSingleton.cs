@@ -51,15 +51,15 @@ namespace MvvmCross.Core
         public virtual TMvxSetup PlatformSetup<TMvxSetup>()
             where TMvxSetup : IMvxSetup
         {
-            try
-            {
+            //try
+            //{
                 return (TMvxSetup)Setup;
-            }
-            catch (Exception ex)
-            {
-                MvxLog.Instance?.Error(ex, "Unable to cast setup to {0}", typeof(TMvxSetup));
-                throw;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MvxLog.Instance?.Error(ex, "Unable to cast setup to {0}", typeof(TMvxSetup));
+            //    throw;
+            //}
         }
 
         /// <summary>
@@ -95,6 +95,7 @@ namespace MvvmCross.Core
             return StartSetupInitialization();
         }
 
+        [Obsolete("Eliminar")]
         protected virtual void CreateSetup()
         {
             try

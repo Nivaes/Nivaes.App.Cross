@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class SplitDetailViewModel
         : MvxNavigationViewModel
     {
-        public SplitDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SplitDetailViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowChildCommand = new MvxAsyncNavigationCommand<SplitDetailNavViewModel>();
             ShowTabsCommand = new MvxAsyncNavigationCommand<TabsRootBViewModel>();

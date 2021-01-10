@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Tvos.Views
         {
             Func<ValueTask<bool>> action = async () =>
                 {
-                    MvxLog.Instance?.Trace("tvOSNavigation", "Navigate requested");
+                    //MvxLog.Instance?.Trace("tvOSNavigation", "Navigate requested");
                     return await mPresenter.Show(request).ConfigureAwait(false);
                 };
 

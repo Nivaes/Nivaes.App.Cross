@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Presenters
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using MvvmCross.Views;
     using Nivaes.App.Cross.ViewModels;
 
@@ -17,8 +18,8 @@ namespace Nivaes.App.Cross.Presenters
         IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 
-        MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request);
-        MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
-        MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType);
+        ValueTask<MvxBasePresentationAttribute?> GetPresentationAttribute(MvxViewModelRequest request);
+        ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType);
+        ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType);
     }
 }

@@ -81,7 +81,7 @@ namespace MvvmCross.Platforms.Ios.Core
 
     public abstract class MvxApplicationDelegate<TMvxIosSetup, TApplication> : MvxApplicationDelegate
        where TMvxIosSetup : MvxIosSetup<TApplication>, new()
-       where TApplication : class, IMvxApplication, new()
+       where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

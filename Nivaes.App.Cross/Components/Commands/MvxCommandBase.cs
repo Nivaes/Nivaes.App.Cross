@@ -6,6 +6,9 @@ namespace Nivaes.App.Cross.Commands
 {
     using System;
     using MvvmCross.Base;
+    using MvvmCross.Core;
+    using Nivaes.App.Cross.IoC;
+    using Autofac;
 
     public class MvxCommandBase
         : MvxMainThreadDispatchingObject
@@ -18,8 +21,7 @@ namespace Nivaes.App.Cross.Commands
             if (!Mvx.IoCProvider?.TryResolve(out mCommandHelper) ?? true)
                 mCommandHelper = new MvxWeakCommandHelper();
 
-            // default to true if no Singleton Cache has been set up
-            var alwaysOnUIThread = MvxSingletonCache.Instance?.Settings.AlwaysRaiseInpcOnUserInterfaceThread ?? true;
+            var alwaysOnUIThread = IoCContainer.ComponentContext.Resolve<IMvxSettings>().AlwaysRaiseInpcOnUserInterfaceThread;
             ShouldAlwaysRaiseCECOnUserInterfaceThread = alwaysOnUIThread;
         }
 

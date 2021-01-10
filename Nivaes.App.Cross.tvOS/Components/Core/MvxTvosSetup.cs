@@ -8,6 +8,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
@@ -182,13 +183,18 @@ namespace MvvmCross.Platforms.Tvos.Core
     }
 
     public class MvxTvosSetup<TApplication> : MvxTvosSetup
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+        protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

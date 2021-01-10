@@ -14,8 +14,8 @@ namespace Nivaes.App.Cross.Sample
     {
         private bool mBindingsEnabled = true;
 
-        public FluentBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public FluentBindingViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ClearBindingsCommand = new MvxCommand(ClearBindings);
         }

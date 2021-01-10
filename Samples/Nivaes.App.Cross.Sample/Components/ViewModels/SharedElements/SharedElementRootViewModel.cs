@@ -11,8 +11,8 @@ namespace Nivaes.App.Cross.Sample
     public class SharedElementRootViewModel
         : MvxNavigationViewModel
     {
-        public SharedElementRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SharedElementRootViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
     }

@@ -11,12 +11,13 @@ namespace MvvmCross.UnitTest.Base
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
     using Xunit;
 
     [Collection("MvxTest")]
     public class MvxIocTest : IDisposable
     {
-        private IMacIoCProvider _iocProvider;
+        private IIoCProvider _iocProvider;
 
         public MvxIocTest()
         {
@@ -24,9 +25,9 @@ namespace MvvmCross.UnitTest.Base
             _iocProvider = CreateIoCProvider();
         }
 
-        protected virtual IMacIoCProvider CreateIoCProvider(IMvxIocOptions options = null)
+        protected virtual IIoCProvider CreateIoCProvider(IMvxIocOptions options = null)
         {
-            return Provider.Initialize(options);
+            return IoCProvider.Initialize(options);
         }
 
         public void Dispose()

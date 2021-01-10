@@ -69,7 +69,7 @@ namespace MvvmCross.Platforms.Tizen.Core
 
     public abstract class MvxCoreUIApplication<TMvxTizenSetup, TApplication> : MvxCoreUIApplication
       where TMvxTizenSetup : MvxTizenSetup<TApplication>, new()
-      where TApplication : class, IMvxApplication, new()
+      where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

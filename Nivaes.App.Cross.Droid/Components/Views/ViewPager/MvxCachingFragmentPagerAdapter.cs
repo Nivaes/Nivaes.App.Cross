@@ -58,10 +58,10 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
             if (_curTransaction == null)
                 _curTransaction = _fragmentManager.BeginTransaction();
 
-#if DEBUG
-            MvxLog.Instance?.Trace(
-                $"Removing item #{position}: f={objectValue} v={((Fragment)objectValue).View} t={fragment.Tag}");
-#endif
+//#if DEBUG
+//            MvxLog.Instance?.Trace(
+//                $"Removing item #{position}: f={objectValue} v={((Fragment)objectValue).View} t={fragment.Tag}");
+//#endif
 
             while (_savedState.Count <= position)
             {
@@ -121,9 +121,9 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
                 fragmentTag = fragment.GetType().FragmentJavaName();
             }
 
-#if DEBUG
-            MvxLog.Instance?.Trace("Adding item #{0}: f={1} t={2}", position, fragment, fragmentTag);
-#endif
+//#if DEBUG
+//            MvxLog.Instance?.Trace("Adding item #{0}: f={1} t={2}", position, fragment, fragmentTag);
+//#endif
 
             while (_fragments.Count <= position)
                 _fragments.Add(null);

@@ -11,8 +11,8 @@ namespace Nivaes.App.Cross.Sample
     public class SharedElementSecondViewModel
         : MvxNavigationViewModel
     {
-        public SharedElementSecondViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SharedElementSecondViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
     }

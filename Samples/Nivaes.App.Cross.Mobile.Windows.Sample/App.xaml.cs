@@ -137,7 +137,7 @@ namespace Nivaes.App.Cross.Mobile.Windows.Sample
     }
 
     public abstract class AppParent
-        : NivApplication<Setup, AppMobileSampleApplication<AppMobileSampleAppStart>>
+        : NivApplication<Setup, MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
     }
 }

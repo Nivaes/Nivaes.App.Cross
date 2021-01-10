@@ -12,7 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class MixedNavResultDetailViewModel
         : MvxNavigationViewModelResult<DetailResultResult>, IMvxViewModelResult<DetailResultResult>
     {
-        public MixedNavResultDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public MixedNavResultDetailViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Close(this, DetailResultResult.Build()).ConfigureAwait(true));
         }

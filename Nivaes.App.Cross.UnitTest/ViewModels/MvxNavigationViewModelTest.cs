@@ -15,6 +15,7 @@ namespace MvvmCross.UnitTest.ViewModels
     {
         private readonly NavigationTestFixture mFixture;
 
+        [Obsolete("Usar AppCenter")]
         public MvxNavigationViewModelTest(NavigationTestFixture fixture)
         {
             mFixture = fixture;
@@ -38,8 +39,8 @@ namespace MvvmCross.UnitTest.ViewModels
             var navViewModel = mFixture.Ioc.Resolve<NavigationTestViewModel>();
             Assert.NotNull(navViewModel);
             Assert.NotNull(navViewModel.NavService);
-            Assert.NotNull(navViewModel.LoggingProvider);
-            Assert.NotNull(navViewModel.ViewModelLog);
+            //Assert.NotNull(navViewModel.LoggingProvider);
+            //Assert.NotNull(navViewModel.ViewModelLog);
         }
     }
 }

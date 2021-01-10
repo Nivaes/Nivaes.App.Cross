@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
     [Application]
     public class MainApplication
-        : MvxAndroidApplication<Setup, AppMobileSampleApplication<AppMobileSampleAppStart>>
+        : MvxAndroidApplication<Setup, MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)

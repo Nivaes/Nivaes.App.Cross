@@ -7,7 +7,9 @@ namespace Nivaes.App.Cross.ViewModels
     using System;
     using System.Linq;
     using System.Reflection;
+    using Autofac;
     using MvvmCross.Base;
+    using Nivaes.App.Cross.IoC;
 
     public static class MvxViewModelExtensions
     {
@@ -47,7 +49,8 @@ namespace Nivaes.App.Cross.ViewModels
                     return;
                 }
 
-                if (!MvxSingletonCache.Instance.Parser.TypeSupported(parameters[0].ParameterType))
+                var parser = IoCContainer.ComponentContext.Resolve<IMvxStringToTypeParser>();
+                if (!parser.TypeSupported(parameters[0].ParameterType))
                 {
                     // call method using typed object
                     var value = bundle?.Read(parameters[0].ParameterType);

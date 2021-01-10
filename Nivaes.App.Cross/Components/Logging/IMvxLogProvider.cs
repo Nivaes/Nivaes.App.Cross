@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Logging
 {
     using System;
 
+    [Obsolete("Usar AppCenter", true)]
     public interface IMvxLogProvider
     {
         IMvxLog GetLogFor(Type type);

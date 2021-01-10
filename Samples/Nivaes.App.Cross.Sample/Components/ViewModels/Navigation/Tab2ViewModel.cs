@@ -11,7 +11,8 @@ namespace Nivaes.App.Cross.Sample
 
     public class Tab2ViewModel : MvxNavigationViewModel
     {
-        public Tab2ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public Tab2ViewModel(/*IMvxLogProvider logProvider, */IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowRootViewModelCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<RootViewModel>().ConfigureAwait(true));
 

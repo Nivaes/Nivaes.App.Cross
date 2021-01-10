@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Navigation
     public class MvxNavigationService
         : IMvxNavigationService
     {
-        protected IMvxLog Log { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxNavigationService>();
+        //protected IMvxLog Log { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor<MvxNavigationService>();
 
         private IMvxViewDispatcher? mViewDispatcher;
 
@@ -95,7 +95,7 @@ namespace Nivaes.App.Cross.Navigation
                 {
                     case 0:
                         entry = default(KeyValuePair<Regex, Type>);
-                        Log.Trace("Unable to find routing for {0}", url);
+                        //Log.Trace("Unable to find routing for {0}", url);
                         return false;
 
                     case 1:
@@ -111,9 +111,9 @@ namespace Nivaes.App.Cross.Navigation
                     return true;
                 }
 
-                Log.Warn("The following regular expressions match the provided url ({0}), each RegEx must be unique (otherwise try using IMvxRoutingFacade): {1}",
-                    matches.Count - 1,
-                    string.Join(", ", matches.Select(t => t.Key.ToString())));
+                //Log.Warn("The following regular expressions match the provided url ({0}), each RegEx must be unique (otherwise try using IMvxRoutingFacade): {1}",
+                //    matches.Count - 1,
+                //    string.Join(", ", matches.Select(t => t.Key.ToString())));
 
                 // there is more than one match
                 entry = default(KeyValuePair<Regex, Type>);
@@ -121,7 +121,7 @@ namespace Nivaes.App.Cross.Navigation
             }
             catch (Exception ex)
             {
-                Log.Error("MvxNavigationService", "Unable to determine routability: {0}", ex);
+                //Log.Error("MvxNavigationService", "Unable to determine routability: {0}", ex);
                 entry = default;
                 return false;
             }
@@ -521,7 +521,7 @@ namespace Nivaes.App.Cross.Navigation
 
         public virtual async ValueTask<bool> ChangePresentation(MvxPresentationHint hint, CancellationToken? cancellationToken = default)
         {
-            MvxLog.Instance?.Trace("Requesting presentation change");
+            //MvxLog.Instance?.Trace("Requesting presentation change");
             var args = new ChangePresentationEventArgs(hint, cancellationToken);
             OnBeforeChangePresentation(this, args);
 

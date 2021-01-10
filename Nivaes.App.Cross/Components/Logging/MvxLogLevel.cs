@@ -4,9 +4,12 @@
 
 namespace Nivaes.App.Cross.Logging
 {
+    using System;
+
     /// <summary>
     /// The log level.
     /// </summary>
+    [Obsolete("Usar AppCenter")]
     public enum MvxLogLevel
     {
         Trace,

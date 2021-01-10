@@ -2,15 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using Nivaes.App.Cross.Logging;
-
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+
     public class MvxStringToTypeParser
         : IMvxStringToTypeParser, IMvxFillableStringToTypeParser
     {
@@ -36,29 +35,30 @@ namespace MvvmCross.Core
 
             public object ReadValue(Type t, string input, string fieldOrParameterName)
             {
-                object enumValue = null;
-                try
-                {
-                    enumValue = Enum.Parse(t, input, true);
-                }
-                catch (Exception)
-                {
-                    MvxLog.Instance?.Error("Failed to parse enum parameter {0} from string {1}",
-                                   fieldOrParameterName,
-                                   input);
-                }
+                object? enumValue = null;
+                //try
+                //{
+                enumValue = Enum.Parse(t, input, true);
+                //}
+                //catch (Exception)
+                //{
+                //    MvxLog.Instance?.Error("Failed to parse enum parameter {0} from string {1}",
+                //                   fieldOrParameterName,
+                //                   input);
+                //}
+
                 if (enumValue == null)
                 {
-                    try
-                    {
-                        // we set enumValue to 0 here - just have to hope that's the default
-                        enumValue = Enum.ToObject(t, 0);
-                    }
-                    catch (Exception)
-                    {
-                        MvxLog.Instance?.Error("Failed to create default enum value for {0} - will return null",
-                                       fieldOrParameterName);
-                    }
+                    //try
+                    //{
+                    // we set enumValue to 0 here - just have to hope that's the default
+                    enumValue = Enum.ToObject(t, 0);
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    MvxLog.Instance?.Error("Failed to create default enum value for {0} - will return null",
+                    //                   fieldOrParameterName);
+                    //}
                 }
                 return enumValue;
             }
@@ -80,8 +80,8 @@ namespace MvvmCross.Core
             {
                 if (!TryParse(input, out object result))
                 {
-                    MvxLog.Instance?.Error("Failed to parse {0} parameter {1} from string {2}",
-                                   GetType().Name, fieldOrParameterName, input);
+                    //MvxLog.Instance?.Error("Failed to parse {0} parameter {1} from string {2}",
+                    //               GetType().Name, fieldOrParameterName, input);
                 }
                 return result;
             }
@@ -212,7 +212,7 @@ namespace MvvmCross.Core
             return ExtraParsers.Any(x => x.Parses(targetType));
         }
 
-        public object ReadValue(string rawValue, Type targetType, string fieldOrParameterName)
+        public object? ReadValue(string rawValue, Type targetType, string fieldOrParameterName)
         {
             if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 
@@ -227,7 +227,7 @@ namespace MvvmCross.Core
                 return extra.ReadValue(targetType, rawValue, fieldOrParameterName);
             }
 
-            MvxLog.Instance?.Error($"Parameter {fieldOrParameterName} is invalid targetType {targetType.Name}");
+            //MvxLog.Instance?.Error($"Parameter {fieldOrParameterName} is invalid targetType {targetType.Name}");
             return null;
         }
     }

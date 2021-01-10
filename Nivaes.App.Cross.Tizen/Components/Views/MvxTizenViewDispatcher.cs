@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Tizen.Views
         {
             Func<ValueTask<bool>> action = async () =>
             {
-                MvxLog.Instance.Trace("TizenNavigation", "Navigate requested");
+                //MvxLog.Instance.Trace("TizenNavigation", "Navigate requested");
                 return await _presenter.Show(request).ConfigureAwait(true);
             };
             return await ExecuteOnMainThreadAsync(action).ConfigureAwait(true);

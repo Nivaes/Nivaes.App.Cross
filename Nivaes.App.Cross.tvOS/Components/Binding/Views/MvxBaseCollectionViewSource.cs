@@ -39,14 +39,14 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
 
         public virtual void ReloadData()
         {
-            try
-            {
+            //try
+            //{
                 _collectionView.ReloadData();
-            }
-            catch (Exception exception)
-            {
-                MvxLog.Instance.Warn("Exception masked during CollectionView ReloadData {0}", exception.ToLongString());
-            }
+            //}
+            //catch (Exception exception)
+            //{
+            //    MvxLog.Instance.Warn("Exception masked during CollectionView ReloadData {0}", exception.ToLongString());
+            //}
         }
 
         protected virtual UICollectionViewCell GetOrCreateCellFor(UICollectionView collectionView, NSIndexPath indexPath,

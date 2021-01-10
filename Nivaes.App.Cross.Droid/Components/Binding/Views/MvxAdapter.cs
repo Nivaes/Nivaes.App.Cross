@@ -137,18 +137,18 @@ namespace MvvmCross.Platforms.Android.Binding.Views
 
         protected virtual void RealNotifyDataSetChanged()
         {
-            try
-            {
+            //try
+            //{
                 base.NotifyDataSetChanged();
-            }
-            catch (Exception exception)
-            {
-                MvxLog.Instance?.Warn(
-                    "Exception masked during Adapter RealNotifyDataSetChanged " +
-                    "{0}. Are you trying to update your collection from a " +
-                    "background task? See http://goo.gl/0nW0L6",
-                    exception.ToLongString());
-            }
+            //}
+            //catch (Exception exception)
+            //{
+            //    MvxLog.Instance?.Warn(
+            //        "Exception masked during Adapter RealNotifyDataSetChanged " +
+            //        "{0}. Are you trying to update your collection from a " +
+            //        "background task? See http://goo.gl/0nW0L6",
+            //        exception.ToLongString());
+            //}
         }
 
         public virtual int GetPosition(object item)

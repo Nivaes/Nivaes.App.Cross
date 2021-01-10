@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class OverrideAttributeViewModel
         : MvxNavigationViewModel
     {
-        public OverrideAttributeViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public OverrideAttributeViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));
 

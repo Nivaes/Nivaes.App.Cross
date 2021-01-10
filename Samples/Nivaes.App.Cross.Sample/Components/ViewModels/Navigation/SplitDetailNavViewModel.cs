@@ -11,8 +11,8 @@ namespace Nivaes.App.Cross.Sample
 
     public class SplitDetailNavViewModel : MvxNavigationViewModel
     {
-        public SplitDetailNavViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SplitDetailNavViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             MainMenuCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<MixedNavFirstViewModel>().ConfigureAwait(true));
             CloseCommand = new MvxCommandAsync(async () => await NavigationService.Close(this).ConfigureAwait(true));

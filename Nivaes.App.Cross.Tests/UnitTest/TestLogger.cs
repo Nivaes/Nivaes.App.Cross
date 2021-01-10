@@ -7,6 +7,7 @@ namespace MvvmCross.Tests
     using System;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Eliminar")]
     public abstract class TestLogger
     {
         private readonly string _name;

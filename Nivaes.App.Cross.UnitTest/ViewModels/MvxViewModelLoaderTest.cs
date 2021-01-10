@@ -6,6 +6,7 @@ namespace MvvmCross.UnitTest.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Moq;
     using MvvmCross.Exceptions;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
@@ -39,7 +40,7 @@ namespace MvvmCross.UnitTest.ViewModels
         }
 
         [Fact]
-        public void Test_NormalViewModel()
+        public async Task Test_NormalViewModel()
         {
             _fixture.ClearAll();
 
@@ -48,7 +49,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var mockLocator = new Mock<IMvxViewModelLocator>();
             mockLocator.Setup(
                 m => m.Load(It.IsAny<Type>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>()))
-                       .Returns(() => outViewModel);
+                       .Returns(() => new ValueTask<IMvxViewModel>(outViewModel));
 
             var mockCollection = new Mock<IMvxViewModelLocatorCollection>();
             mockCollection.Setup(m => m.FindViewModelLocator(It.IsAny<MvxViewModelRequest>()))
@@ -59,7 +60,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var state = new MvxBundle();
             var loader = new MvxViewModelLoader(mockCollection.Object);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
-            var viewModel = loader.LoadViewModel(request, state, args);
+            var viewModel = await loader.LoadViewModel(request, state, args).ConfigureAwait(true);
 
             Assert.Equal(outViewModel, viewModel);
         }

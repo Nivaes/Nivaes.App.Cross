@@ -8,9 +8,9 @@ namespace MvvmCross.Platforms.Wpf
     using System.Windows;
     using System.Windows.Controls;
     using MvvmCross.Core;
-    using MvvmCross.IoC;
     using MvvmCross.Platforms.Wpf.Core;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
 
     internal static class MvxDesignTimeHelper
     {
@@ -38,9 +38,9 @@ namespace MvvmCross.Platforms.Wpf
             if (!IsInDesignTime)
                 return;
 
-            if (!Provider.IsValueCreated)
+            if (!IoCProvider.IsValueCreated)
             {
-                var iocProvider = Provider.Initialize();
+                var iocProvider = IoCProvider.Initialize();
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
 
@@ -48,7 +48,8 @@ namespace MvvmCross.Platforms.Wpf
             var instance = MvxWpfSetupSingleton.EnsureSingletonAvailable(Application.Current.Dispatcher, new Content());
         }
 
-        class App : ViewModels.MvxApplication
+        class App
+            : Nivaes.App.Cross.ViewModels.CrossApplication
         {
         }
 

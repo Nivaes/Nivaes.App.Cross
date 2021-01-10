@@ -7,8 +7,9 @@ using MvvmCross.Core;
 
 namespace MvvmCross.Platforms.Android.Core
 {
-    public interface IMvxAndroidSetup : IMvxSetup
+    public interface IMvxAndroidSetup
+        : IMvxSetup
     {
-        void PlatformInitialize(Context applicationContext);
+        void PlatformInitialize(Context? applicationContext);
     }
 }

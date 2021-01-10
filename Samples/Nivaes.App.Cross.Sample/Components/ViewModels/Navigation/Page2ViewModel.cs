@@ -11,8 +11,8 @@ namespace Nivaes.App.Cross.Sample
     public class Page2ViewModel
         : MvxNavigationViewModel
     {
-        public Page2ViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public Page2ViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
     }

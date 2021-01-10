@@ -4,9 +4,11 @@
 
 namespace MvvmCross.Binding
 {
+    using System;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Usar AppCenter")]
     public static class MvxBindingLog
     {
         public static IMvxLog Instance { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("MvxBind");
