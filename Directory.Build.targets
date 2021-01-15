@@ -17,7 +17,7 @@
 
     <PackageReference Update="ColorCode.Core" Version="8.0.0-preview2" />
     <PackageReference Update="Win2d.uwp" Version="1.25.0" />
-    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
+    <!--<PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />-->
     <PackageReference Update="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
     <PackageReference Update="Microsoft.Windows.CsWinRT" Version="1.1.0" />
 
