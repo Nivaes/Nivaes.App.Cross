@@ -23,11 +23,11 @@
   <Import Project="Common.props" />
 
   <ItemGroup>
-    <PackageReference Include="ColorCode.Core" Version="8.0.0-preview2" />
-    <PackageReference Include="Win2d.uwp" Version="1.25.0" />
-    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
-    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview3.201113.0" />
-    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.1.0" />
+    <PackageReference Include="ColorCode.Core" />
+    <PackageReference Include="Win2d.uwp" />
+    <PackageReference Include="Microsoft.VCRTForwarders.140" />
+    <PackageReference Include="Microsoft.WinUI" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" />
     <Manifest Include="$(ApplicationManifest)" />
 
     <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
