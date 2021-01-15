@@ -41,5 +41,12 @@ jobs:
     - name: Build
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
+    #- name: BuildWindows
+    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+
+    - name: BuildWindowsWpf
+      run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
+
+
     #- name: Test
     #  run: dotnet test --configuration Release --no-build --verbosity normal 
