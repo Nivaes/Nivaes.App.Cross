@@ -2,14 +2,11 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Reflection;
-using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Tizen.Views
 {
+    using MvvmCross.Views;
+    using Nivaes.App.Cross.ViewModels;
+
     public class MvxTizenViewsContainer
         : MvxViewsContainer
         , IMvxTizenViewsContainer

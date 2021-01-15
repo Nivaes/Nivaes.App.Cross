@@ -28,8 +28,8 @@ namespace Nivaes.App.Cross.Sample
         public IMvxCommand IncrementCommand =>
             mIncrementCommand ?? (mIncrementCommand = new MvxCommand(Increment));
 
-        public DictionaryBindingViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public DictionaryBindingViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

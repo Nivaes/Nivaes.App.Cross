@@ -56,10 +56,10 @@ namespace MvvmCross.Platforms.Uap.Presenters
             AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialog, CloseDialog);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
-            MvxLog.Instance?.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming new page presentation");
-            return new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+            //MvxLog.Instance?.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming new page presentation");
+            return new ValueTask<MvxBasePresentationAttribute?>(new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
         }
 
         protected virtual async void BackButtonOnBackRequested(object sender, BackRequestedEventArgs backRequestedEventArgs)
@@ -70,7 +70,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
             var currentView = _rootFrame.Content as IMvxView;
             if (currentView == null)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
                 return;
             }
 
@@ -187,19 +187,19 @@ namespace MvvmCross.Platforms.Uap.Presenters
             var currentView = _rootFrame.Content as IMvxView;
             if (currentView == null)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
                 return new ValueTask<bool>(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
                 return new ValueTask<bool>(false);
             }
 
             if (!_rootFrame.CanGoBack)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe refuses to go back");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe refuses to go back");
                 return new ValueTask<bool>(false);
             }
 
@@ -224,8 +224,8 @@ namespace MvvmCross.Platforms.Uap.Presenters
             }
             catch (Exception ex)
             {
-                MvxLog.Instance?.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
-                    ex.ToLongString());
+                //MvxLog.Instance?.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
+                //    ex.ToLongString());
                 return new ValueTask<bool>(false);
             }
         }
@@ -234,10 +234,10 @@ namespace MvvmCross.Platforms.Uap.Presenters
         {
             try
             {
-                var contentDialog = (ContentDialog)CreateControl(viewType, request, attribute);
+                var contentDialog = (ContentDialog)await CreateControl(viewType, request, attribute).ConfigureAwait(false);
                 if (contentDialog != null)
                 {
-                    await contentDialog.ShowAsync(attribute.Placement);
+                    _ = await contentDialog.ShowAsync(attribute.Placement);
                     return true;
                 }
 
@@ -245,13 +245,13 @@ namespace MvvmCross.Platforms.Uap.Presenters
             }
             catch (Exception ex)
             {
-                MvxLog.Instance?.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
-                    ex.ToLongString());
+                //MvxLog.Instance?.Trace("Error seen during navigation request to {0} - error {1}", request?.ViewModelType?.Name ?? string.Empty,
+                //    ex.ToLongString());
                 return false;
             }
         }
 
-        public virtual Control CreateControl(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
+        public virtual async ValueTask<Control> CreateControl(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
         {
             if (viewType == null) throw new ArgumentNullException(nameof(viewType));
 
@@ -263,7 +263,7 @@ namespace MvvmCross.Platforms.Uap.Presenters
                     if (request is MvxViewModelInstanceRequest instanceRequest)
                         mvxControl.ViewModel = instanceRequest.ViewModelInstance;
                     else
-                        mvxControl.ViewModel = ViewModelLoader.LoadViewModel(request, null);
+                        mvxControl.ViewModel = await ViewModelLoader.LoadViewModel(request, null).ConfigureAwait(false);
                 }
 
                 return control;

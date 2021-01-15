@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Presenters
             if (Mvx.IoCProvider.TryResolve(out IMvxViewModelTypeFinder associatedTypeFinder))
                 return associatedTypeFinder.FindTypeOrNull(activityType);
 
-            MvxLog.Instance?.Trace("No view model type finder available - assuming we are looking for a splash screen - returning null");
+            //MvxLog.Instance?.Trace("No view model type finder available - assuming we are looking for a splash screen - returning null");
             return typeof(MvxNullViewModel);
         }
 

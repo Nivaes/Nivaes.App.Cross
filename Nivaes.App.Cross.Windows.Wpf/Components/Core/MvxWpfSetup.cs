@@ -25,6 +25,7 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Autofac;
 
     public abstract class MvxWpfSetup
         : MvxSetup, IMvxWpfSetup
@@ -156,13 +157,18 @@ namespace MvvmCross.Platforms.Wpf.Core
     }
 
     public class MvxWpfSetup<TApplication> : MvxWpfSetup
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+        protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

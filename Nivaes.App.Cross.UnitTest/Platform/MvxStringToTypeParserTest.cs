@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using MvvmCross.Core;
+using Nivaes.App.Cross;
 using Xunit;
 
 namespace MvvmCross.UnitTest.Platform

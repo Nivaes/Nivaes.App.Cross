@@ -7,8 +7,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Wpf.Views
 {
     public interface IMvxWpfViewsContainer
-        : IMvxViewsContainer
-          , IMvxWpfViewLoader
+        : IMvxViewsContainer, IMvxWpfViewLoader
     {
     }
 }

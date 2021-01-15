@@ -38,7 +38,7 @@ namespace MvvmCross.Platforms.Android.Views
     public abstract class MvxAndroidApplication<TMvxAndroidSetup, TApplication>
         : MvxAndroidApplication
       where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
-      where TApplication : class, IMvxApplication, new()
+      where TApplication : class, ICrossApplication, new()
     {
         protected MvxAndroidApplication()
             : base()

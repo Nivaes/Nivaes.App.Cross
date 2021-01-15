@@ -13,8 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class TabsRootBViewModel
         : MvxNavigationViewModel
     {
-        public TabsRootBViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public TabsRootBViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowInitialViewModelsCommand = new MvxCommandAsync(ShowInitialViewModels);
         }
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.Sample
             {
                 if (mItemIndex == value) return;
                 mItemIndex = value;
-                Log.Trace($"Tab item changed to {mItemIndex}");
+                //Log.Trace($"Tab item changed to {mItemIndex}");
                 RaisePropertyChanged(() => ItemIndex);
             }
         }

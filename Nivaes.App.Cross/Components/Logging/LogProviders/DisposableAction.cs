@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Logging
 {
     using System;
 
+    [Obsolete("Usar AppCenter", true)]
     internal class DisposableAction : IDisposable
     {
         private readonly Action _onDispose;

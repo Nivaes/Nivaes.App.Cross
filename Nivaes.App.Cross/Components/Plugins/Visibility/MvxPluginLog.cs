@@ -4,9 +4,11 @@
 
 namespace MvvmCross.Plugin.Visibility
 {
+    using System;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Logging;
 
+    [Obsolete("Usar AppCenter", true)]
     internal static class MvxPluginLog
     {
         internal static IMvxLog Instance { get; } = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("MvxPlugin");

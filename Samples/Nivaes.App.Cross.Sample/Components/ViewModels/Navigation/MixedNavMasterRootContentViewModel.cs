@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class MixedNavMasterRootContentViewModel
         : MvxNavigationViewModel
     {
-        public MixedNavMasterRootContentViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public MixedNavMasterRootContentViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowModalCommand = new MvxCommandAsync(() => NavigationService.Navigate<ModalNavViewModel>());
             ShowChildCommand = new MvxCommandAsync(() => NavigationService.Navigate<ChildViewModel, SampleModel>(new SampleModel { Message = "Hey", Value = 1.23m }));

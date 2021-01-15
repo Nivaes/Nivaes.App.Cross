@@ -25,8 +25,8 @@ namespace Nivaes.App.Cross.Sample
             public Type? ViewModelType { get; set; }
         }
 
-        public MixedNavMasterDetailViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public MixedNavMasterDetailViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             Menu = new[] {
                 new MenuItem { Title = "Root", Description = "The root page", ViewModelType = typeof(MixedNavMasterRootContentViewModel) },

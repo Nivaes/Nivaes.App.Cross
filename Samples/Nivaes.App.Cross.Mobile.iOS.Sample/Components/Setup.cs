@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.Mobile.Sample;
 
     public sealed class Setup :
-        MvxIosSetup<AppMobileSampleApplication<AppMobileSampleAppStart>>
+        MvxIosSetup<MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
     }
 }

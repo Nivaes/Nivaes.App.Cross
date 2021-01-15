@@ -12,6 +12,7 @@ namespace MvvmCross.Platforms.Android.Core
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
@@ -26,11 +27,13 @@ namespace MvvmCross.Platforms.Android.Core
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxAndroidSetup
-        : MvxSetup, IMvxAndroidGlobals, IMvxAndroidSetup
+    public class MvxAndroidSetup<TApplication>
+            : MvxSetup, IMvxAndroidGlobals, IMvxAndroidSetup
+        where TApplication : class, ICrossApplication, new()
     {
         private Context? mApplicationContext;
         private IMvxAndroidViewPresenter? mPresenter;
@@ -68,6 +71,11 @@ namespace MvvmCross.Platforms.Android.Core
         {
             var currentTopActivity = CreateAndroidCurrentTopActivity();
             Mvx.IoCProvider.RegisterSingleton<IMvxAndroidCurrentTopActivity>(currentTopActivity);
+        }
+
+        protected override void RegisterDependencies(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterInstance(this).As<IMvxAndroidSetup>();
         }
 
         protected virtual IMvxAndroidCurrentTopActivity CreateAndroidCurrentTopActivity()
@@ -267,13 +275,8 @@ namespace MvvmCross.Platforms.Android.Core
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
         }
-    }
-
-    public class MvxAndroidSetup<TApplication>
-        : MvxAndroidSetup
-        where TApplication : class, IMvxApplication, new()
-    {
-        protected override IMvxApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
+   
+        protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {

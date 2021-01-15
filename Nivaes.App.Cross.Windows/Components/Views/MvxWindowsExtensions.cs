@@ -6,6 +6,7 @@ namespace MvvmCross.Platforms.Uap.Views
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Platforms.Uap.Presenters.Attributes;
@@ -14,17 +15,17 @@ namespace MvvmCross.Platforms.Uap.Views
 
     public static class MvxWindowsExtensions
     {
-        public static void OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)
+        public static Task OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)
         {
-            storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
+            return storeView.OnViewCreate(() => storeView.LoadViewModel(requestText, bundleLoader()));
         }
 
-        public static void OnViewCreate(this IMvxWindowsView storeView, Func<IMvxViewModel> viewModelLoader)
+        public static async Task OnViewCreate(this IMvxWindowsView storeView, Func<ValueTask<IMvxViewModel>> viewModelLoader)
         {
             if (storeView.ViewModel != null)
                 return;
 
-            var viewModel = viewModelLoader();
+            var viewModel = await viewModelLoader().ConfigureAwait(false);
             storeView.ViewModel = viewModel;
         }
 
@@ -85,7 +86,7 @@ namespace MvvmCross.Platforms.Uap.Views
             return result;
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxWindowsView storeView,
+        private static ValueTask<IMvxViewModel> LoadViewModel(this IMvxWindowsView storeView,
                                                     string requestText,
                                                     IMvxBundle bundle)
         {

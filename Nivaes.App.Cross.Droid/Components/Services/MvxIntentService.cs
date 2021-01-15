@@ -10,7 +10,8 @@ using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Services
 {
-    [Register("nivaes.app.services.MvxIntentService")]
+    [Obsolete("This class is obsoleted in this android platform", true)]
+    //[Register("nivaes.app.services.MvxIntentService")]
     public abstract class MvxIntentService
         : IntentService
     {

@@ -29,7 +29,7 @@ namespace MvvmCross.Platforms.Mac.Views
         {
             if (MacView == null)
             {
-                MvxLog.Instance.Warn($"{nameof(MacView)} is null for clearup of bindings");
+                //MvxLog.Instance.Warn($"{nameof(MacView)} is null for clearup of bindings");
                 return;
             }
             MacView.ClearAllBindings();

@@ -9,6 +9,7 @@ namespace MvvmCross.Platforms.Wpf.Binding
     using MvvmCross.Converters;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.IoC;
 
     public class Import
     {
@@ -37,7 +38,7 @@ namespace MvvmCross.Platforms.Wpf.Binding
 
         private static void RegisterAssembly(Assembly assembly)
         {
-            if (!Provider.IsValueCreated)
+            if (!IoCProvider.IsValueCreated)
             {
                 MvxWindowsAssemblyCache.EnsureInitialized();
                 MvxWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);

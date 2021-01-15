@@ -41,7 +41,7 @@ namespace MvvmCross.Platforms.Uap.Converters
         {
             if (toReturn == MvxBindingConstant.DoNothing)
             {
-                MvxLog.Instance?.Trace("DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
+                //MvxLog.Instance?.Trace("DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
                 return DependencyProperty.UnsetValue;
             }
 

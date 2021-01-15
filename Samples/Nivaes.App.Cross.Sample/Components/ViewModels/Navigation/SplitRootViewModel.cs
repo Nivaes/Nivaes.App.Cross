@@ -13,8 +13,8 @@ namespace Nivaes.App.Cross.Sample
     public class SplitRootViewModel
         : MvxNavigationViewModel
     {
-        public SplitRootViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public SplitRootViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowInitialMenuCommand = new MvxCommandAsync(
                 async () => await ShowInitialViewModel().ConfigureAwait(true));

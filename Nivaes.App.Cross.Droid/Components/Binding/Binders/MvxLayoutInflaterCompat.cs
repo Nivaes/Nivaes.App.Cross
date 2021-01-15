@@ -94,31 +94,31 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
         {
             if (!mCheckedField)
             {
-                try
-                {
+                //try
+                //{
                     Class layoutInflaterClass = Class.FromType(typeof(LayoutInflater));
                     mLayoutInflaterFactory2Field = layoutInflaterClass.GetDeclaredField("mFactory2");
                     mLayoutInflaterFactory2Field.Accessible = true;
-                }
-                catch (NoSuchFieldException)
-                {
-                    MvxLog.Instance?.Error(
-                        "ForceSetFactory2 Could not find field 'mFactory2' on class {0}; inflation may have unexpected results.",
-                        Class.FromType(typeof(LayoutInflater)).Name);
-                }
+                //}
+                //catch (NoSuchFieldException)
+                //{
+                //    MvxLog.Instance?.Error(
+                //        "ForceSetFactory2 Could not find field 'mFactory2' on class {0}; inflation may have unexpected results.",
+                //        Class.FromType(typeof(LayoutInflater)).Name);
+                //}
                 mCheckedField = true;
             }
 
             if (mLayoutInflaterFactory2Field != null)
             {
-                try
-                {
+                //try
+                //{
                     mLayoutInflaterFactory2Field.Set(inflater, (Object)factory);
-                }
-                catch (IllegalAccessException)
-                {
-                    MvxLog.Instance?.Error("ForceSetFactory2 could not set the Factory2 on LayoutInflater {0} ; inflation may have unexpected results.", inflater);
-                }
+                //}
+                //catch (IllegalAccessException)
+                //{
+                //    MvxLog.Instance?.Error("ForceSetFactory2 could not set the Factory2 on LayoutInflater {0} ; inflation may have unexpected results.", inflater);
+                //}
             }
         }
     }

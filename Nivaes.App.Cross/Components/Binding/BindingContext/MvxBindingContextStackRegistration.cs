@@ -20,7 +20,7 @@ namespace MvvmCross.Binding.BindingContext
 
         ~MvxBindingContextStackRegistration()
         {
-            MvxLog.Instance?.Error("You should always Dispose of MvxBindingContextStackRegistration");
+            //MvxLog.Instance?.Error("You should always Dispose of MvxBindingContextStackRegistration");
             Dispose(false);
         }
 

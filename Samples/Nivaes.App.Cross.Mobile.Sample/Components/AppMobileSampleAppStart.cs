@@ -8,7 +8,7 @@
     public sealed class AppMobileSampleAppStart
         : AppSampleAppStart, IMvxAppStart
     {
-        public AppMobileSampleAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public AppMobileSampleAppStart(ICrossApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }

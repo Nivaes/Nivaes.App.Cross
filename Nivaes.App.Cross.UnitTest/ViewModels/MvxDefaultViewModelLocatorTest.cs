@@ -5,9 +5,11 @@
 namespace MvvmCross.UnitTest.ViewModels
 {
     using System;
+    using System.Threading.Tasks;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.UnitTest.Mocks.TestViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Navigation;
     using Nivaes.App.Cross.ViewModels;
     using Xunit;
@@ -23,7 +25,7 @@ namespace MvvmCross.UnitTest.ViewModels
         }
 
         [Fact]
-        public void Test_NoReloadState()
+        public async Task Test_NoReloadState()
         {
             _fixture.ClearAll();
 
@@ -50,7 +52,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var toTest = new MvxDefaultViewModelLocator(navigationService);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
 
-            IMvxViewModel viewModel = toTest.Load(typeof(Test1ViewModel), bundle, null, args);
+            IMvxViewModel viewModel = await toTest.Load(typeof(Test1ViewModel), bundle, null, args);
 
             Assert.NotNull(viewModel);
             var typedViewModel = (Test1ViewModel)viewModel;
@@ -69,7 +71,7 @@ namespace MvvmCross.UnitTest.ViewModels
         }
 
         [Fact]
-        public void Test_WithReloadState()
+        public async Task Test_WithReloadState()
         {
             _fixture.ClearAll();
 
@@ -109,7 +111,7 @@ namespace MvvmCross.UnitTest.ViewModels
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
             var toTest = new MvxDefaultViewModelLocator(navigationService);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
-            IMvxViewModel viewModel = toTest.Load(typeof(Test1ViewModel), initBundle, reloadBundle, args);
+            IMvxViewModel viewModel = await toTest.Load(typeof(Test1ViewModel), initBundle, reloadBundle, args).ConfigureAwait(false);
 
             Assert.NotNull(viewModel);
             var typedViewModel = (Test1ViewModel)viewModel;
@@ -128,7 +130,7 @@ namespace MvvmCross.UnitTest.ViewModels
         }
 
         [Fact]
-        public void Test_MissingDependency()
+        public async Task Test_MissingDependency()
         {
             _fixture.ClearAll();
 
@@ -137,14 +139,14 @@ namespace MvvmCross.UnitTest.ViewModels
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
             var toTest = new MvxDefaultViewModelLocator(navigationService);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
-            Assert.Throws<MvxException>(() =>
+            await Assert.ThrowsAsync<MvxException>(async () =>
             {
-                IMvxViewModel viewModel = toTest.Load(typeof(Test4ViewModel), bundle, null, args);
-            });
+                IMvxViewModel viewModel = await toTest.Load(typeof(Test4ViewModel), bundle, null, args).ConfigureAwait(false);
+            }).ConfigureAwait(false);
         }
 
         [Fact]
-        public void Test_FailingDependency()
+        public async Task Test_FailingDependency()
         {
             _fixture.ClearAll();
 
@@ -156,14 +158,14 @@ namespace MvvmCross.UnitTest.ViewModels
             var toTest = new MvxDefaultViewModelLocator(navigationService);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
 
-            Assert.Throws<MvxException>(() =>
+            await Assert.ThrowsAsync<MvxException>(async () =>
             {
-                IMvxViewModel viewModel = toTest.Load(typeof(Test4ViewModel), bundle, null, args);
-            });
+                IMvxViewModel viewModel = await toTest.Load(typeof(Test4ViewModel), bundle, null, args).ConfigureAwait(false);
+            }).ConfigureAwait(false);
         }
 
         [Fact]
-        public void Test_FailingInitialisation()
+        public async Task Test_FailingInitialisation()
         {
             _fixture.ClearAll();
 
@@ -175,10 +177,10 @@ namespace MvvmCross.UnitTest.ViewModels
             var navigationService = _fixture.Ioc.Resolve<IMvxNavigationService>();
             var toTest = new MvxDefaultViewModelLocator(navigationService);
             var args = new MvxNavigateEventArgs(NavigationMode.Show);
-            Assert.Throws<MvxException>(() =>
-            {
-                IMvxViewModel viewModel = toTest.Load(typeof(Test4ViewModel), bundle, null, args);
-            });
+            await Assert.ThrowsAsync<MvxException>(async () =>
+             {
+                 IMvxViewModel viewModel = await toTest.Load(typeof(Test4ViewModel), bundle, null, args).ConfigureAwait(false);
+             }).ConfigureAwait(false);
         }
     }
 }

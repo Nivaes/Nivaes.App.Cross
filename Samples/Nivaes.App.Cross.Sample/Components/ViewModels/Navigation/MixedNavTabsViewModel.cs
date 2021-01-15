@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.Sample
     public class MixedNavTabsViewModel
         : MvxNavigationViewModel
     {
-        public MixedNavTabsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public MixedNavTabsViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
         }
 

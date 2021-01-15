@@ -10,6 +10,6 @@ namespace MvvmCross.Platforms.Uap.Views
         : IMvxViewsContainer
             , IMvxWindowsViewModelLoader
             , IMvxWindowsViewModelRequestTranslator
-    {        
+    {
     }
 }

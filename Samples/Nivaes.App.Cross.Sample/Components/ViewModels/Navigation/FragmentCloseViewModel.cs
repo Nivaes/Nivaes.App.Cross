@@ -14,8 +14,8 @@ namespace Nivaes.App.Cross.Sample
     {
         private static int mCounter;
 
-        public FragmentCloseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public FragmentCloseViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ForwardCommand = new MvxCommandAsync(async () => await base.NavigationService.Navigate<FragmentCloseViewModel>().ConfigureAwait(true));
             CloseCommand = new MvxCommandAsync(async () => await base.NavigationService.Close(this).ConfigureAwait(true));

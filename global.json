@@ -1,9 +1,12 @@
 {
   "sdk": {
-    "version": "5.0.101",
+    "version": "5.0.102",
     "rollForward": "latestMajor"
   },
+  "additionalSdks": [
+    "3.1.405"
+  ],
   "msbuild-sdks": {
-    "MSBuild.Sdk.Extras": "3.0.22"
+    "MSBuild.Sdk.Extras": "3.0.23"
   }
 }

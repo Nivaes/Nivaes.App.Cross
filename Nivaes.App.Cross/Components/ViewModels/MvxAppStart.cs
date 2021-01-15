@@ -14,11 +14,11 @@ namespace Nivaes.App.Cross.ViewModels
         : IMvxAppStart
     {
         protected IMvxNavigationService NavigationService { get; }
-        protected IMvxApplication Application { get; }
+        protected ICrossApplication Application { get; }
 
         private int startHasCommenced;
 
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;
@@ -31,10 +31,10 @@ namespace Nivaes.App.Cross.ViewModels
                 return;
 
             var applicationHint = await ApplicationStartup(hint).ConfigureAwait(false);
-            if (applicationHint != null)
-            {
-                MvxLog.Instance?.Trace("Hint ignored in default MvxAppStart");
-            }
+            //if (applicationHint != null)
+            //{
+            //    MvxLog.Instance?.Trace("Hint ignored in default MvxAppStart");
+            //}
 
             await NavigateToFirstViewModel(applicationHint).ConfigureAwait(false);
         }
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel> : MvxAppStart
         where TViewModel : IMvxViewModel
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
         {
         }
 
@@ -84,14 +84,14 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel, TParameter>
         : MvxAppStart<TViewModel> where TViewModel : IMvxViewModel<TParameter>
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
         {
         }
 
         protected override async Task<object?> ApplicationStartup(object? hint = null)
         {
             var applicationHint = await base.ApplicationStartup(hint).ConfigureAwait(false);
-            if (applicationHint is TParameter parameter && Application is IMvxApplication<TParameter> typedApplication)
+            if (applicationHint is TParameter parameter && Application is ICrossApplication<TParameter> typedApplication)
             {
                 return typedApplication.Startup(parameter);
             }
@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross.ViewModels
                 }
                 else
                 {
-                    MvxLog.Instance?.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");
+                    //MvxLog.Instance?.Trace($"Hint is not matching type of {nameof(TParameter)}. Doing navigation without typed parameter instead.");
                     return base.NavigateToFirstViewModel(hint);
                 }
             }

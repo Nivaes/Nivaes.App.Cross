@@ -12,29 +12,29 @@ namespace MvvmCross.Base
     public class MvxStopWatch
         : IDisposable
     {
-        private static readonly IMvxLog _defaultLog = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("mvxStopWatch");
+        //private static readonly IMvxLog _defaultLog = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor("mvxStopWatch");
 
-        private readonly IMvxLog _log;
+        //private readonly IMvxLog _log;
         private readonly string _message;
         private readonly int _startTickCount;
 
         private MvxStopWatch(string text, params object[] args)
         {
-            _log = _defaultLog;
+            //_log = _defaultLog;
             _startTickCount = Environment.TickCount;
             _message = string.Format(CultureInfo.CurrentCulture, text, args);
         }
 
         private MvxStopWatch(string tag, string text, params object[] args)
         {
-            _log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor(tag);
+            //_log = Mvx.IoCProvider.Resolve<IMvxLogProvider>().GetLogFor(tag);
             _startTickCount = Environment.TickCount;
             _message = string.Format(CultureInfo.CurrentCulture, text, args);
         }
 
         public void Dispose()
         {
-            MvxLog.Instance?.Trace("{0} - {1}", Environment.TickCount - _startTickCount, _message);
+            //MvxLog.Instance?.Trace("{0} - {1}", Environment.TickCount - _startTickCount, _message);
             GC.SuppressFinalize(this);
         }
 

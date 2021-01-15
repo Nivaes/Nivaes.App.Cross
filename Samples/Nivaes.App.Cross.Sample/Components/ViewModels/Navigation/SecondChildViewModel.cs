@@ -11,7 +11,8 @@ namespace Nivaes.App.Cross.Sample
 
     public class SecondChildViewModel : MvxNavigationViewModel
     {
-        public SecondChildViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SecondChildViewModel(/*IMvxLogProvider logProvider,*/ IMvxNavigationService navigationService)
+            : base(/*logProvider,*/ navigationService)
         {
             ShowNestedChildCommand = new MvxCommandAsync(async () => await NavigationService.Navigate<NestedChildViewModel>());
 

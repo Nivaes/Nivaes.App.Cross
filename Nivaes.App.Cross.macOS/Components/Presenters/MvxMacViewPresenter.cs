@@ -22,13 +22,13 @@ namespace MvvmCross.Platforms.Mac.Presenters
     {
         private readonly INSApplicationDelegate _applicationDelegate;
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
-            MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation");
-            return new MvxWindowPresentationAttribute();
+            //MvxLog.Instance.Trace($"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation");
+            return new ValueTask<MvxBasePresentationAttribute?>(new MvxWindowPresentationAttribute());
         }
 
-        public override MvxBasePresentationAttribute GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> GetOverridePresentationAttribute(MvxViewModelRequest request, Type viewType)
         {
             if (viewType?.GetInterface(nameof(IMvxOverridePresentationAttribute)) != null)
             {
@@ -39,7 +39,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
 
                     if (presentationAttribute == null)
                     {
-                        MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
+                        //MvxLog.Instance.Warn("Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {
@@ -49,12 +49,12 @@ namespace MvvmCross.Platforms.Mac.Presenters
                         if (presentationAttribute.ViewModelType == null)
                             presentationAttribute.ViewModelType = request.ViewModelType;
 
-                        return presentationAttribute;
+                        return new ValueTask<MvxBasePresentationAttribute?>(presentationAttribute);
                     }
                 }
             }
 
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute?)null);
         }
 
         protected virtual INSApplicationDelegate ApplicationDelegate => _applicationDelegate;

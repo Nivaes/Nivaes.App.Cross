@@ -23,6 +23,7 @@ namespace MvvmCross.UnitTest.Navigation
     using MvvmCross.Exceptions;
     using MvvmCross.Tests;
     using MvvmCross.UnitTest.Mocks.Dispatchers;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.UnitTest;
     using Nivaes.App.Cross.ViewModels;
     using Xunit;
@@ -49,9 +50,9 @@ namespace MvvmCross.UnitTest.Navigation
         {
             var mockLocator = new Mock<IMvxViewModelLocator>();
             mockLocator.Setup(
-                m => m.Load(It.IsAny<Type>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>())).Returns(() => new SimpleTestViewModel());
+                m => m.Load(It.IsAny<Type>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>())).Returns(() => new ValueTask<IMvxViewModel>(new SimpleTestViewModel()));
             mockLocator.Setup(
-                m => m.Reload(It.IsAny<IMvxViewModel>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>())).Returns(() => new SimpleTestViewModel());
+                m => m.Reload(It.IsAny<IMvxViewModel>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxBundle>(), It.IsAny<IMvxNavigateEventArgs>())).Returns(() => new ValueTask<IMvxViewModel>(new SimpleTestViewModel()));
 
             var mockCollection = new Mock<IMvxViewModelLocatorCollection>();
             mockCollection.Setup(m => m.FindViewModelLocator(It.IsAny<MvxViewModelRequest>()))

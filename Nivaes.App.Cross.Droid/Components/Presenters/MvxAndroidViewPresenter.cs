@@ -119,7 +119,7 @@ namespace Nivaes.App.Cross.Presenters
             AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
         }
 
-        public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        public override ValueTask<MvxBasePresentationAttribute?> GetPresentationAttribute(MvxViewModelRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
@@ -171,40 +171,40 @@ namespace Nivaes.App.Cross.Presenters
 
                 attribute.ViewType = viewType;
 
-                return attribute;
+                return new ValueTask<MvxBasePresentationAttribute?>(attribute);
             }
 
             return CreatePresentationAttribute(request.ViewModelType, viewType);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override ValueTask<MvxBasePresentationAttribute?> CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             if (viewType == null) throw new ArgumentNullException(nameof(viewType));
 
             if (viewType.IsSubclassOf(typeof(DialogFragment)))
             {
-                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
-                return new MvxDialogFragmentPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+                //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming DialogFragment presentation", viewType.Name);
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxDialogFragmentPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
             }
             else if (viewType.IsSubclassOf(typeof(Fragment)))
             {
-                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Fragment presentation", viewType.Name);
-                return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content) { ViewType = viewType, ViewModelType = viewModelType };
+                //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Fragment presentation", viewType.Name);
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content) { ViewType = viewType, ViewModelType = viewModelType });
             }
             else if (viewType.IsSubclassOf(typeof(Activity)))
             {
-                MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Activity presentation", viewType.Name);
-                return new MvxActivityPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
+                //MvxLog.Instance?.Trace("PresentationAttribute not found for {0}. Assuming Activity presentation", viewType.Name);
+                return new ValueTask<MvxBasePresentationAttribute?>(new MvxActivityPresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType });
             }
-            return null;
+            return new ValueTask<MvxBasePresentationAttribute?>((MvxBasePresentationAttribute)null!);
         }
 
-        public override ValueTask<bool> ChangePresentation(MvxPresentationHint? hint)
+        public override async ValueTask<bool> ChangePresentation(MvxPresentationHint? hint)
         {
             if (hint is MvxPagePresentationHint pagePresentationHint)
             {
                 var request = new MvxViewModelRequest(pagePresentationHint.ViewModel);
-                var attribute = GetPresentationAttribute(request);
+                var attribute = await GetPresentationAttribute(request).ConfigureAwait(false);
 
                 if (attribute is MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
                 {
@@ -215,19 +215,19 @@ namespace Nivaes.App.Cross.Presenters
                         var index = adapter.FragmentsInfo.IndexOf(fragmentInfo);
                         if (index < 0)
                         {
-                            MvxLog.Instance?.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
-                                pagerFragmentAttribute.Tag);
+                            //MvxLog.Instance?.Trace("Did not find ViewPager index for {0}, skipping presentation change...",
+                            //    pagerFragmentAttribute.Tag);
 
-                            return new ValueTask<bool>(false);
+                            return false;
                         }
 
                         viewPager.SetCurrentItem(index, true);
-                        return new ValueTask<bool>(true);
+                        return true;
                     }
                 }
             }
 
-            return base.ChangePresentation(hint);
+            return await base.ChangePresentation(hint);
         }
 
         protected virtual ViewPager? FindViewPagerInFragmentPresentation(
@@ -294,15 +294,15 @@ namespace Nivaes.App.Cross.Presenters
                         transitionElementPairs.Add(Pair.Create(item.Value, transitionName));
                         elements.Add($"{item.Key}:{transitionName}");
                     }
-                    else
-                    {
-                        MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
-                    }
+                    //else
+                    //{
+                    //    MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
+                    //}
                 }
 
                 if (!transitionElementPairs.Any())
                 {
-                    MvxLog.Instance?.Warn("No transition elements are provided");
+                    //MvxLog.Instance?.Warn("No transition elements are provided");
                     return bundle;
                 }
 
@@ -312,10 +312,10 @@ namespace Nivaes.App.Cross.Presenters
                     intent.PutExtra(SharedElementsBundleKey, string.Join("|", elements));
                     bundle = activityOptions.ToBundle();
                 }
-                else
-                {
-                    MvxLog.Instance?.Warn("Shared element transition requires Android v21+.");
-                }
+                //else
+                //{
+                //    MvxLog.Instance?.Warn("Shared element transition requires Android v21+.");
+                //}
             }
 
             return bundle;
@@ -343,7 +343,7 @@ namespace Nivaes.App.Cross.Presenters
             var activity = CurrentActivity;
             if (activity == null)
             {
-                MvxLog.Instance?.Warn("Cannot Resolve current top activity. Creating new activity from Application Context");
+                //MvxLog.Instance?.Warn("Cannot Resolve current top activity. Creating new activity from Application Context");
                 intent.AddFlags(ActivityFlags.NewTask);
                 Application.Context.StartActivity(intent, bundle);
                 return;
@@ -386,8 +386,8 @@ namespace Nivaes.App.Cross.Presenters
             var currentHostViewModelType = GetCurrentActivityViewModelType();
             if (attribute.ActivityHostViewModelType != currentHostViewModelType)
             {
-                MvxLog.Instance?.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
-                    attribute.ActivityHostViewModelType, attribute.ViewModelType);
+                //MvxLog.Instance?.Trace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
+                //    attribute.ActivityHostViewModelType, attribute.ViewModelType);
                 PendingRequest = request;
                 ShowHostActivity(attribute);
             }
@@ -412,8 +412,8 @@ namespace Nivaes.App.Cross.Presenters
             if (fragmentHost == null)
                 throw new NullReferenceException($"Fragment host not found when trying to show View {view.Name} as Nested Fragment");
 
-            if (!fragmentHost.IsVisible)
-                MvxLog.Instance?.Warn("Fragment host is not visible when trying to show View {0} as Nested Fragment", view.Name);
+            //if (!fragmentHost.IsVisible)
+            //    MvxLog.Instance?.Warn("Fragment host is not visible when trying to show View {0} as Nested Fragment", view.Name);
 
             PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
         }
@@ -489,10 +489,10 @@ namespace Nivaes.App.Cross.Presenters
                         fragmentTransaction.AddSharedElement(item.Value, transitionName);
                         elements.Add($"{item.Key}:{transitionName}");
                     }
-                    else
-                    {
-                        MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
-                    }
+                    //else
+                    //{
+                    //    MvxLog.Instance?.Warn("A XML transitionName is required in order to transition a control when navigating.");
+                    //}
                 }
 
                 if (elements.Count > 0)
@@ -679,13 +679,13 @@ namespace Nivaes.App.Cross.Presenters
 
             if (currentView == null)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe has no current page");
                 return new ValueTask<bool>(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
-                MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
+                //MvxLog.Instance?.Warn("Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
                 return new ValueTask<bool>(false);
             }
 
@@ -708,14 +708,14 @@ namespace Nivaes.App.Cross.Presenters
 
         protected virtual bool CloseFragments()
         {
-            try
-            {
+            //try
+            //{
                 CurrentFragmentManager.PopBackStackImmediate();
-            }
-            catch (System.Exception ex)
-            {
-                MvxLog.Instance?.Trace("Cannot close any fragments", ex);
-            }
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    MvxLog.Instance?.Trace("Cannot close any fragments", ex);
+            //}
             return true;
         }
 
@@ -787,7 +787,7 @@ namespace Nivaes.App.Cross.Presenters
             }
             catch (System.Exception ex)
             {
-                MvxLog.Instance?.Error("Cannot close fragment transaction", ex);
+                //MvxLog.Instance?.Error("Cannot close fragment transaction", ex);
                 return false;
             }
 

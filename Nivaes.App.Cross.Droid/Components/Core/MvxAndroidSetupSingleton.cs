@@ -6,15 +6,23 @@ using Android.Content;
 
 namespace MvvmCross.Platforms.Android.Core
 {
+    using System;
     using MvvmCross.Core;
+    using Autofac;
+    using Nivaes.App.Cross.IoC;
 
+    [Obsolete("Eliminar")]
     public class MvxAndroidSetupSingleton
         : MvxSetupSingleton
     {
         public static MvxAndroidSetupSingleton EnsureSingletonAvailable(Context? applicationContext)
         {
             var instance = EnsureSingletonAvailable<MvxAndroidSetupSingleton>();
-            instance.PlatformSetup<MvxAndroidSetup>()?.PlatformInitialize(applicationContext);
+            //instance.PlatformSetup<MvxAndroidSetup>()?.PlatformInitialize(applicationContext);
+
+            var setup = IoCContainer.ComponentContext.Resolve<IMvxAndroidSetup>();
+            setup?.PlatformInitialize(applicationContext);
+
             return instance;
         }
     }

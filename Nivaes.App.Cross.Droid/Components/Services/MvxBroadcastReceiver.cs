@@ -10,7 +10,8 @@ using MvvmCross.Platforms.Android.Core;
 namespace MvvmCross.Platforms.Android.Services
 {
     [Register("nivaes.app.services.MvxBroadcastReceiver")]
-    public abstract class MvxBroadcastReceiver : BroadcastReceiver
+    public abstract class MvxBroadcastReceiver
+        : BroadcastReceiver
     {
         protected MvxBroadcastReceiver(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)

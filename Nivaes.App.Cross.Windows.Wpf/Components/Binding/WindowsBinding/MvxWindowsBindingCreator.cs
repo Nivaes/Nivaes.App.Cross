@@ -24,20 +24,20 @@ namespace MvvmCross.Platforms.Wpf.Binding.WindowsBinding
             DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
             if (dependencyProperty == null)
             {
-                MvxLog.Instance.Warn("Dependency property not found for {0}", bindingDescription.TargetName);
+                //MvxLog.Instance.Warn("Dependency property not found for {0}", bindingDescription.TargetName);
                 return;
             }
 
             var property = actualType.FindActualProperty(bindingDescription.TargetName);
-            if (property == null)
-            {
-                MvxLog.Instance.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
-            }
+            //if (property == null)
+            //{
+            //    MvxLog.Instance.Warn("Property not returned {0} - may cause issues", bindingDescription.TargetName);
+            //}
 
             var sourceStep = bindingDescription.Source as MvxPathSourceStepDescription;
             if (sourceStep == null)
             {
-                MvxLog.Instance.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
+                //MvxLog.Instance.Warn("Binding description for {0} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace MvvmCross.Platforms.Wpf.Binding.WindowsBinding
                     return BindingMode.OneTime;
 
                 case MvxBindingMode.OneWayToSource:
-                    MvxLog.Instance.Warn("WinPhone doesn't support OneWayToSource");
+                    //MvxLog.Instance.Warn("WinPhone doesn't support OneWayToSource");
                     return BindingMode.TwoWay;
 
                 default:

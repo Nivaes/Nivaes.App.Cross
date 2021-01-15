@@ -17,8 +17,8 @@ namespace Nivaes.App.Cross.ViewModels
         private IMvxNavigationService? mNavigationService;
         protected IMvxNavigationService NavigationService => mNavigationService ??= Mvx.IoCProvider.Resolve<IMvxNavigationService>();
 
-        private IMvxLogProvider? mLogProvider;
-        protected IMvxLogProvider LogProvider => mLogProvider ??= Mvx.IoCProvider.Resolve<IMvxLogProvider>();
+        //private IMvxLogProvider? mLogProvider;
+        //protected IMvxLogProvider LogProvider => mLogProvider ??= Mvx.IoCProvider.Resolve<IMvxLogProvider>();
 
         public MvxDefaultViewModelLocator()
             : this(null) { }

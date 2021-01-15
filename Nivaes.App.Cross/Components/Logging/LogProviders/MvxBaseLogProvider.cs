@@ -6,8 +6,10 @@ namespace Nivaes.App.Cross.Logging
 {
     using System;
 
+    [Obsolete("Usar AppCenter", true)]
     public delegate bool Logger(MvxLogLevel logLevel, Func<string>? messageFunc, Exception? exception = null, params object[] formatParameters);
 
+    [Obsolete("Usar AppCenter", true)]
     public abstract class MvxBaseLogProvider
         : IMvxLogProvider
     {
