@@ -74,8 +74,11 @@ jobs:
     # - name: Build
     #  run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    #- name: BuildWindows
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+    - name: Build.Windows
+      run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
-    - name: BuildWindowsWpf
+    - name: Build.Windows.Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
+
+    - name: Build.Windows.Desktop.Sample
+      run: dotnet build ./Sample/Nivaes.App.Cross.Desktop.Windows.Sample/ --configuration Release
