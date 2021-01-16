@@ -2,6 +2,7 @@
 <Project Sdk="Tizen.NET.Sdk/1.1.5">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>tizen80</TargetFramework>
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>

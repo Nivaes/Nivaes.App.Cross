@@ -12,7 +12,6 @@
     <!--<RuntimeIdentifiers Condition=" '$(TargetFramework)' == 'net5.0-windows10' ">win10-x86;win10-x64;win10-arm;win10-arm64</RuntimeIdentifiers>-->
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 
-
     <AssemblyName>Nivaes.App.Cross.Windows</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows</RootNamespace>
 
@@ -35,6 +34,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>-->
+
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.19041.1" />
   </ItemGroup>
 
 </Project>

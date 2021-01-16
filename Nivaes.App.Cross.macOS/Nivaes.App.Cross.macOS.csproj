@@ -1,6 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFrameworks>xamarin.mac</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>

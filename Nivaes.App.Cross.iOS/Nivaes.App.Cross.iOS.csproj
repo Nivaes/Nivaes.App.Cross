@@ -3,6 +3,7 @@
   <!--<Project Sdk="Microsoft.iOS.Sdk">-->
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <!--<TargetFrameworks>net5.0-ios</TargetFrameworks>
     <RuntimeIdentifier>ios-x64</RuntimeIdentifier>-->
     <!--<OutputType>Library</OutputType>-->
