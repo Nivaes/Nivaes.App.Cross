@@ -62,16 +62,8 @@ jobs:
       with:
         dotnet-version: 3.1.x
 
-    - name: Setup .NET Core 5.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
     - name: Build.App.Cross
-      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
+      run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
     #- name: Build
     #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
@@ -89,11 +81,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
     - name: Setup .NET Core 5.0.x
       uses: actions/setup-dotnet@v1
       with:
@@ -109,7 +96,7 @@ jobs:
     #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build.Windows.Wpf
-      run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
+      run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --framework net5.0 --configuration Release
 
     - name: Build.Windows.Desktop.Sample
-      run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --configuration Release
+      run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0 --configuration Release
