@@ -81,4 +81,4 @@ jobs:
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
 
     - name: Build.Windows.Desktop.Sample
-      run: dotnet build ./Sample/Nivaes.App.Cross.Desktop.Windows.Sample/ --configuration Release
+      run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --configuration Release

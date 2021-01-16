@@ -30,10 +30,10 @@
     <PackageReference Include="Microsoft.Windows.CsWinRT" />
     <Manifest Include="$(ApplicationManifest)" />
 
-    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
+    <!--<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    </PackageReference>-->
   </ItemGroup>
 
   <ItemGroup>
