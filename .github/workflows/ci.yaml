@@ -38,9 +38,8 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build
+    - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
-
 
     #- name: Test
     #  run: dotnet test --configuration Release --no-build --verbosity normal
@@ -71,8 +70,11 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build
+    - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
+
+    #- name: Build
+    #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
   build-Windows:
     needs: build
