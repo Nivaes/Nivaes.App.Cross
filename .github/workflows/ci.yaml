@@ -109,7 +109,7 @@ jobs:
     #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build.Windows.Wpf
-      run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --framework net5.0 --configuration Release
+      run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --framework net5.0-windows --configuration Release
 
     - name: Build.Windows.Desktop.Sample
       run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0-windows --configuration Release
