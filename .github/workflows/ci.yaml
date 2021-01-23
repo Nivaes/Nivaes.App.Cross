@@ -131,8 +131,14 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    #- name: Build.Windows
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+    - name: setup nuget
+      uses: NuGet/setup-nuget@v1.0.2
+
+    - name: restore project packages
+      run: nuget restore Nivaes.App.Cross.sln
+
+    - name: Build.Windows
+      run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build.Windows.Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
