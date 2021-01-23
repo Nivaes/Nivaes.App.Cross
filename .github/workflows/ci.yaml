@@ -14,7 +14,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Dump GitHub context
@@ -46,7 +46,7 @@ jobs:
 
   build-Android:
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Dump GitHub context
@@ -110,3 +110,33 @@ jobs:
 
     - name: Build.Windows.Desktop.Sample
       run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0-windows --configuration Release
+
+
+  build-Mac:
+    needs: build
+    runs-on: macos-11.0
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core 3.1.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Setup .NET Core 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/Nivaes/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Build.App.Cross
+      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
