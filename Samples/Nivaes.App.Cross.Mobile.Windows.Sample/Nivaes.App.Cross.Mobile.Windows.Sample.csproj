@@ -6,6 +6,8 @@
     <!--<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>-->
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
 
+    <CsWinRTWindowsMetadata>10.0.18362.0</CsWinRTWindowsMetadata>
+
     <!--<DefineConstants>USING_CSWINRT;DESKTOP</DefineConstants>-->
     <ApplicationManifest>app.manifest</ApplicationManifest>
 
@@ -24,7 +26,7 @@
     <PackageReference Include="Win2d.uwp" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" />
     <PackageReference Include="Microsoft.WinUI" />
-    <PackageReference Include="Microsoft.Windows.CsWinRT" />
+    <!--<PackageReference Include="Microsoft.Windows.CsWinRT" />-->
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -34,9 +36,5 @@
     <ProjectReference Include="..\..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Mobile.Sample\Nivaes.App.Cross.Mobile.Sample.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <CsWinRTWindowsMetadata>10.0.18362.0</CsWinRTWindowsMetadata>
-  </PropertyGroup>
 
 </Project>
