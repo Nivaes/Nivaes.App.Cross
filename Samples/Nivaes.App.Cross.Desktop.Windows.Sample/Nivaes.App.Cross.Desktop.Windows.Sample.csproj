@@ -2,11 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
 
     <RootNamespace>Nivaes.App.Cross.Desktop.Windows.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Desktop.Windows.Sample</AssemblyName>
+
+    <Platforms>x86;x64;AnyCPU</Platforms>
+    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
+    <RuntimeIdentifiers>win10-x86;win10-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
