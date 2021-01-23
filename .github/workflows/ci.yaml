@@ -76,6 +76,35 @@ jobs:
     #- name: Build
     #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
+  build-MacOs:
+    needs: build
+    runs-on: macos-10.15
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core 3.1.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Setup .NET Core 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/Nivaes/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Build.App.Cross
+      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
+
   build-Windows:
     needs: build
     runs-on: windows-2019
@@ -103,7 +132,7 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Build.Restore
-      run: dotnet restore
+      run: dotnet restore ./Nivaes.App.Cross.Windows/
 
     - name: Build.Windows
       run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
@@ -113,33 +142,3 @@ jobs:
 
     - name: Build.Windows.Desktop.Sample
       run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0-windows --configuration Release
-
-
-  build-Mac:
-    needs: build
-    runs-on: macos-11.0
-
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
-    - name: Setup .NET Core 5.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    - name: Build.App.Cross
-      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
