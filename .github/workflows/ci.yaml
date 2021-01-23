@@ -102,6 +102,9 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+    - name: Build.Restore
+      run: dotnet restore
+
     - name: Build.Windows
       run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 

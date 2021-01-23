@@ -28,13 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-
-    <!--<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>-->
-
-    <!--<PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.19041.1" />-->
   </ItemGroup>
 
 </Project>
