@@ -78,7 +78,7 @@ jobs:
 
   build-MacOs:
     needs: build
-    runs-on: macos-10.15
+    runs-on: macos-11.0
 
     steps:
     - name: Dump GitHub context
