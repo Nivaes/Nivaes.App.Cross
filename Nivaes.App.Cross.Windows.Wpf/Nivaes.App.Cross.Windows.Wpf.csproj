@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net5.0-windows10.0.18362.0;net5.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks>net5.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
-
-    <Platforms>x86;x64;AnyCPU</Platforms>
-    <RuntimeIdentifiers>win10-x86;win10-x64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.Windows.Wpf</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Windows.Wpf</RootNamespace>
