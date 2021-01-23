@@ -1,39 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.1" />
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
-    <!--<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>-->
+    <!--<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>-->
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
 
-    <DefineConstants>USING_CSWINRT;DESKTOP</DefineConstants>
+    <!--<DefineConstants>USING_CSWINRT;DESKTOP</DefineConstants>-->
     <ApplicationManifest>app.manifest</ApplicationManifest>
 
     <!--<XamlCodeGenerationControlFlags>DoNotGenerateOtherProviders</XamlCodeGenerationControlFlags>-->
     <Platforms>x86;x64;arm64</Platforms>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 
     <RootNamespace>Nivaes.App.Cross.Mobile.Windows.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Mobile.Windows.Sample</AssemblyName>
   </PropertyGroup>
 
-  <Import Project="Common.props" />
-
   <ItemGroup>
     <PackageReference Include="ColorCode.Core" />
     <PackageReference Include="Win2d.uwp" />
-    <!--<PackageReference Include="Microsoft.VCRTForwarders.140" />-->
+    <PackageReference Include="Microsoft.VCRTForwarders.140" />
     <PackageReference Include="Microsoft.WinUI" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" />
     <Manifest Include="$(ApplicationManifest)" />
-
-    <!--<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>-->
   </ItemGroup>
 
   <ItemGroup>
@@ -44,46 +36,6 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <CSWinRTIncludes>
-      Microsoft.Graphics.Canvas
-    </CSWinRTIncludes>
-  </PropertyGroup>
-
-  <Import Project="Standalone.props" Condition="'$(IsInWinUIRepo)' != 'true'" />
-
-  <UsingTask TaskName="FixWUXReferences" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-    <ParameterGroup>
-      <CsWinrtFiles ParameterType="System.String[]" Required="true" />
-    </ParameterGroup>
-    <Task>
-      <Using Namespace="System" />
-      <Using Namespace="System.IO" />
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-          foreach (string csWinrtFile in CsWinrtFiles)
-          {
-              string fileContents = System.IO.File.ReadAllText(csWinrtFile);
-              fileContents = fileContents.Replace("Windows.UI.Xaml", "Microsoft.UI.Xaml");
-              System.IO.File.WriteAllText(csWinrtFile, fileContents);
-          }
-        ]]>
-      </Code>
-    </Task>
-  </UsingTask>
-
-  <!--<Target Name="FixWin2DProjection" AfterTargets="CsWinRTGenerateProjection" BeforeTargets="XamlPreCompile;CoreCompile">
-    <FixWUXReferences CsWinrtFiles="$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.cs;$(GeneratedFilesDir)\Microsoft.Graphics.Canvas.UI.Xaml.cs" />
-  </Target>-->
-
-  <!-- Standalone CSWinRT specific properties -->
-  <PropertyGroup Condition="'$(IsInWinUIRepo)' != 'true'">
-    <!-- TODO: Remove this when https://github.com/microsoft/CsWinRT/issues/530 is fixed and we've picked up a new version. -->
-    <CoreCompileDependsOn Condition="'$(CsWinRTExe)' != ''">
-      $(CoreCompileDependsOn);
-      CsWinRTIncludeProjection
-    </CoreCompileDependsOn>
-
-    <!-- ensure this is set for cswinrt -->
     <CsWinRTWindowsMetadata>10.0.18362.0</CsWinRTWindowsMetadata>
   </PropertyGroup>
 
