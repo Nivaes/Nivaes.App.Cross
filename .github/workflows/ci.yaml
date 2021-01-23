@@ -102,11 +102,8 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    # - name: Build
-    #  run: dotnet build ./Nivaes.App.Cross/ --configuration Release
-
-    #- name: Build.Windows
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+    - name: Build.Windows
+      run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build.Windows.Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --framework net5.0-windows --configuration Release
