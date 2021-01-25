@@ -7,9 +7,6 @@ namespace MvvmCross.Platforms.Wpf
     using System;
     using System.ComponentModel;
     using System.Windows;
-    using System.Windows.Controls;
-    using MvvmCross.Core;
-    using MvvmCross.Platforms.Wpf.Core;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.IoC;
 

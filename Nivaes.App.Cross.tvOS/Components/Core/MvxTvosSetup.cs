@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Tvos.Core
+namespace Nivaes.App.Cross.tvOS
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using MvvmCross.Converters;
     using MvvmCross.Core;
     using MvvmCross.IoC;
+    using MvvmCross.Platforms.Tvos;
     using MvvmCross.Platforms.Tvos.Binding;
     using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.Platforms.Tvos.Views;
@@ -25,8 +26,9 @@ namespace MvvmCross.Platforms.Tvos.Core
     using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
-    public abstract class MvxTvosSetup
+    public class MvxTvosSetup<TApplication>
         : MvxSetup, IMvxTvosSetup
+            where TApplication : class, ICrossApplication, new()
     {
         private IMvxApplicationDelegate _applicationDelegate;
         private UIWindow _window;
@@ -181,11 +183,7 @@ namespace MvvmCross.Platforms.Tvos.Core
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
-    }
 
-    public class MvxTvosSetup<TApplication> : MvxTvosSetup
-        where TApplication : class, ICrossApplication, new()
-    {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         [Obsolete("Not user reflector")]

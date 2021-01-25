@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.macOS
 {
     using System;
     using AppKit;
@@ -10,8 +10,13 @@ namespace MvvmCross.Platforms.Mac.Core
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate
+    public class MvxApplicationDelegate<TMvxMacSetup, TApplication>
+        : NSApplicationDelegate, IMvxApplicationDelegate
+            where TMvxMacSetup : MvxMacSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new()
     {
+        private IMvxMacSetup Setup { get; }
+
         private NSWindow window;
         public virtual NSWindow MainWindow
         {
@@ -28,14 +33,18 @@ namespace MvvmCross.Platforms.Mac.Core
             set { window = value; }
         }
 
-        public MvxApplicationDelegate() : base()
+        public MvxApplicationDelegate() 
         {
+            Setup = new TMvxMacSetup();
             RegisterSetup();
         }
 
         public override void DidFinishLaunching(Foundation.NSNotification notification)
         {
-            MvxMacSetupSingleton.EnsureSingletonAvailable(this, MainWindow).EnsureInitialized();
+            Setup.PlatformInitialize(this, MainWindow);
+            Setup.StartSetupInitialization();
+            //MvxMacSetupSingleton.EnsureSingletonAvailable(this, MainWindow).EnsureInitialized();
+
             RunAppStart(notification);
 
             FireLifetimeChanged(MvxLifetimeEvent.Launching);
@@ -79,15 +88,10 @@ namespace MvvmCross.Platforms.Mac.Core
         }
 
         public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
-    }
 
-    public class MvxApplicationDelegate<TMvxMacSetup, TApplication> : MvxApplicationDelegate
-   where TMvxMacSetup : MvxMacSetup<TApplication>, new()
-   where TApplication : class, ICrossApplication, new()
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxMacSetup>();
-        }
+        //protected override void RegisterSetup()
+        //{
+        //    this.RegisterSetupType<TMvxMacSetup>();
+        //}
     }
 }

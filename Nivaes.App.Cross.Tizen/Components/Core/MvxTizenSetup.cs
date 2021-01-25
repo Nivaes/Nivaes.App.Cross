@@ -26,8 +26,9 @@ namespace MvvmCross.Platforms.Tizen.Core
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxTizenSetup
+    public abstract class MvxTizenSetup<TApplication>
         : MvxSetup, IMvxTizenSetup
+            where TApplication : class, ICrossApplication, new()
     {
         protected CoreApplication CoreApplication { get; private set; }
 
@@ -140,12 +141,7 @@ namespace MvvmCross.Platforms.Tizen.Core
         {
             // this base class does nothing
         }
-    }
 
-    public class MvxTizenSetup<TApplication>
-        : MvxTizenSetup
-        where TApplication : class, ICrossApplication, new()
-    {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         [Obsolete("Not user reflector")]

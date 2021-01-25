@@ -5,23 +5,31 @@
 namespace MvvmCross.Platforms.Wpf.Views
 {
     using System.Windows;
-    using MvvmCross.Core;
-    using MvvmCross.Platforms.Wpf.Core;
-    using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.ViewModels;
+    using Nivaes.App.Cross.Wpf;
 
-    public abstract class MvxApplication : Application
+    public class MvxApplication<TMvxWpfSetup, TApplication>
+        : Application
+            where TMvxWpfSetup : MvxWpfSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new() 
     {
-        public MvxApplication() : base()
+        private IMvxWpfSetup Setup { get; }
+
+        public MvxApplication() 
         {
-            RegisterSetup();
+            Setup = new TMvxWpfSetup();
+            //RegisterSetup();
         }
 
         public virtual void ApplicationInitialized()
         {
             if (MainWindow == null) return;
 
-            MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
+            Setup.PlatformInitialize(Dispatcher, MainWindow);
+            Setup.StartSetupInitialization();
+
+            //MvxWpfSetupSingleton.EnsureSingletonAvailable(Dispatcher, MainWindow).EnsureInitialized();
 
             RunAppStart();
         }
@@ -42,15 +50,10 @@ namespace MvvmCross.Platforms.Wpf.Views
         protected virtual void RegisterSetup()
         {
         }
-    }
 
-    public class MvxApplication<TMvxWpfSetup, TApplication> : MvxApplication
-       where TMvxWpfSetup : MvxWpfSetup<TApplication>, new()
-       where TApplication : class, ICrossApplication, new()
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxWpfSetup>();
-        }
+        //protected override void RegisterSetup()
+        //{
+        //    this.RegisterSetupType<TMvxWpfSetup>();
+        //}
     }
 }

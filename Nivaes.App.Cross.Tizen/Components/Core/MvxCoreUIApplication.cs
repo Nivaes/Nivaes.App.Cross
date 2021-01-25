@@ -11,13 +11,18 @@ namespace MvvmCross.Platforms.Tizen.Core
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxCoreUIApplication
+    public abstract class MvxCoreUIApplication<TMvxTizenSetup, TApplication>
         : CoreUIApplication, IMvxLifetime
+            where TMvxTizenSetup : MvxTizenSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new()
     {
+        private IMvxTizenSetup Setup { get; }
+
         public MvxCoreUIApplication()
             : base()
         {
-            RegisterSetup();
+            Setup = new TMvxTizenSetup();
+            //RegisterSetup();
         }
 
         protected override void OnResume()
@@ -41,7 +46,11 @@ namespace MvvmCross.Platforms.Tizen.Core
         protected override void OnCreate()
         {
             base.OnCreate();
-            MvxTizenSetupSingleton.EnsureSingletonAvailable(this).EnsureInitialized();
+
+            Setup.StartSetupInitialization();
+            Setup.PlatformInitialize(this);
+            //MvxTizenSetupSingleton.EnsureSingletonAvailable(this).EnsureInitialized();
+
             RunAppStart();
             FireLifetimeChanged(MvxLifetimeEvent.Launching);
         }
@@ -65,15 +74,10 @@ namespace MvvmCross.Platforms.Tizen.Core
             var handler = LifetimeChanged;
             handler?.Invoke(this, new MvxLifetimeEventArgs(which));
         }
-    }
 
-    public abstract class MvxCoreUIApplication<TMvxTizenSetup, TApplication> : MvxCoreUIApplication
-      where TMvxTizenSetup : MvxTizenSetup<TApplication>, new()
-      where TApplication : class, ICrossApplication, new()
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxTizenSetup>();
-        }
+        //protected override void RegisterSetup()
+        //{
+        //    this.RegisterSetupType<TMvxTizenSetup>();
+        //}
     }
 }

@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.macOS
 {
 
     using System;
@@ -26,8 +26,9 @@ namespace MvvmCross.Platforms.Mac.Core
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxMacSetup
+    public class MvxMacSetup<TApplication>
         : MvxSetup, IMvxMacSetup
+            where TApplication : class, ICrossApplication, new()
     {
         private IMvxApplicationDelegate _applicationDelegate;
         private NSWindow _window;
@@ -182,11 +183,7 @@ namespace MvvmCross.Platforms.Mac.Core
         {
             // this base class does nothing
         }
-    }
 
-    public class MvxMacSetup<TApplication> : MvxMacSetup
-        where TApplication : class, ICrossApplication, new()
-    {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         [Obsolete("Not user reflector")]

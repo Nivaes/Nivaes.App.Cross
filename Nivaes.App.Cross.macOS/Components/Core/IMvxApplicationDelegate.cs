@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using AppKit;
-using MvvmCross.Core;
-
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.macOS
 {
-    public interface IMvxApplicationDelegate : INSApplicationDelegate, IMvxLifetime
+    using AppKit;
+    using MvvmCross.Core;
+
+    public interface IMvxApplicationDelegate
+        : INSApplicationDelegate, IMvxLifetime
     {
     }
 }

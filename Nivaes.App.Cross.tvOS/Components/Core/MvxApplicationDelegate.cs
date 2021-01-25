@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Tvos.Core
+namespace Nivaes.App.Cross.tvOS
 {
     using System;
     using Foundation;
@@ -11,8 +11,13 @@ namespace MvvmCross.Platforms.Tvos.Core
     using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
-    public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
+    public abstract class MvxApplicationDelegate<TMvxTvosSetup, TApplication>
+        : UIApplicationDelegate, IMvxApplicationDelegate
+            where TMvxTvosSetup : MvxTvosSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new()
     {
+        private IMvxTvosSetup Setup { get; }
+
         /// <summary>
         /// UIApplicationDelegate.Window doesn't really exist / work. It was added by Xamarin.iOS templates 
         /// </summary>
@@ -20,6 +25,8 @@ namespace MvvmCross.Platforms.Tvos.Core
 
         public MvxApplicationDelegate() : base()
         {
+            Setup = new TMvxTvosSetup();
+
             RegisterSetup();
         }
 
@@ -28,7 +35,10 @@ namespace MvvmCross.Platforms.Tvos.Core
             if (Window == null)
                 Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            MvxTvosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized();
+            Setup.PlatformInitialize(this, Window);
+            Setup.StartSetupInitialization();
+            //MvxTvosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized();
+
             RunAppStart(launchOptions);
 
             FireLifetimeChanged(MvxLifetimeEvent.Launching);
@@ -75,15 +85,10 @@ namespace MvvmCross.Platforms.Tvos.Core
         }
 
         public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
-    }
 
-    public abstract class MvxApplicationDelegate<TMvxTvosSetup, TApplication> : MvxApplicationDelegate
-       where TMvxTvosSetup : MvxTvosSetup<TApplication>, new()
-       where TApplication : class, ICrossApplication, new()
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxTvosSetup>();
-        }
+        //protected override void RegisterSetup()
+        //{
+        //    this.RegisterSetupType<TMvxTvosSetup>();
+        //}
     }
 }

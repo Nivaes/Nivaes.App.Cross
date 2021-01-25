@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Core;
-using MvvmCross.Platforms.Tvos.Presenters;
-using UIKit;
-
-namespace MvvmCross.Platforms.Tvos.Core
+namespace Nivaes.App.Cross.tvOS
 {
-    public interface IMvxTvosSetup : IMvxSetup
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Tvos.Presenters;
+    using UIKit;
+
+    public interface IMvxTvosSetup
+        : IMvxSetup
     {
         void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, UIWindow window);
         void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, IMvxTvosViewPresenter presenter);

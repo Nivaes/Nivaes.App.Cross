@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Wpf.Core
+namespace Nivaes.App.Cross.Wpf
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +11,7 @@ namespace MvvmCross.Platforms.Wpf.Core
     using System.Threading.Tasks;
     using System.Windows.Controls;
     using System.Windows.Threading;
+    using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
@@ -21,14 +22,14 @@ namespace MvvmCross.Platforms.Wpf.Core
     using MvvmCross.Platforms.Wpf.Binding;
     using MvvmCross.Platforms.Wpf.Presenters;
     using MvvmCross.Platforms.Wpf.Views;
-    using Nivaes.App.Cross.ViewModels;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
-    using Autofac;
+    using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxWpfSetup
+    public class MvxWpfSetup<TApplication>
         : MvxSetup, IMvxWpfSetup
+            where TApplication : class, ICrossApplication, new()
     {
         private Dispatcher _uiThreadDispatcher;
         private ContentControl _root;
@@ -156,11 +157,7 @@ namespace MvvmCross.Platforms.Wpf.Core
         {
             return new MvxWindowsBindingBuilder();
         }
-    }
 
-    public class MvxWpfSetup<TApplication> : MvxWpfSetup
-        where TApplication : class, ICrossApplication, new()
-    {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         [Obsolete("Not user reflector")]

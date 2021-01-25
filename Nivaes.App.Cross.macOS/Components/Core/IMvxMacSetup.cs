@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using AppKit;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Mac.Presenters;
-
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.macOS
 {
-    public interface IMvxMacSetup : IMvxSetup
+    using AppKit;
+    using MvvmCross.Platforms.Mac.Presenters;
+    using Nivaes.App.Cross;
+
+    public interface IMvxMacSetup
+        : IMvxSetup
     {
-        void PlatformInitialize(IMvxApplicationDelegate applicationDelegate);        
+        void PlatformInitialize(IMvxApplicationDelegate applicationDelegate);
         void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, NSWindow window);
         void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, IMvxMacViewPresenter presenter);
     }

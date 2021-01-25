@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using MvvmCross.Core;
-using UIKit;
-
-namespace MvvmCross.Platforms.Tvos.Core
+namespace Nivaes.App.Cross.tvOS
 {
-    public interface IMvxApplicationDelegate : IUIApplicationDelegate, IMvxLifetime
+    using MvvmCross.Core;
+    using UIKit;
+
+    public interface IMvxApplicationDelegate
+        : IUIApplicationDelegate, IMvxLifetime
     {
     }
 }
