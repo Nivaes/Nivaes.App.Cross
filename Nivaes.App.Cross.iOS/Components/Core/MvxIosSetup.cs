@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.iOS
 {
     using System;
     using System.Collections.Generic;
@@ -25,8 +25,9 @@ namespace MvvmCross.Platforms.Ios.Core
     using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
-    public abstract class MvxIosSetup
+    public class MvxIosSetup<TApplication>
         : MvxSetup, IMvxIosSetup
+            where TApplication : class, ICrossApplication, new()
     {
         protected IMvxApplicationDelegate? ApplicationDelegate { get; private set; }
         protected UIWindow? Window { get; private set; }
@@ -178,12 +179,7 @@ namespace MvvmCross.Platforms.Ios.Core
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
-    }
 
-    public class MvxIosSetup<TApplication>
-        : MvxIosSetup
-        where TApplication : class, ICrossApplication, new()
-    {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
         [Obsolete("Not user reflector")]

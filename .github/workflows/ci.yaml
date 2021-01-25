@@ -70,11 +70,14 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build.App.Cross
+    - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
     #- name: Build
     #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
+
+    #- name: Build App.Cross.Droid
+    #  run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
 
   #build-MacOs:
   #  needs: build
@@ -103,7 +106,10 @@ jobs:
     #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     #- name: Build.App.Cross
-    #  run: dotnet build ./Nivaes.App.Cross/ --configuration Release
+    #  run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
+
+    #- name: Build App.Cross.iOS
+    #  run: msbuild ./Nivaes.App.Cross.iOS/ /property:Configuration=Release
 
   build-Windows:
     needs: build
@@ -139,3 +145,46 @@ jobs:
 
     - name: Build.Windows.Desktop.Sample
       run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0-windows --configuration Release
+
+
+  build-Xamarin:
+    needs: build
+    runs-on: windows-2019
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core 3.1.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Setup .NET Core 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/Nivaes/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Build App.Cross.Droid
+      run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
+
+    - name: Build App.Cross.iOS
+      run: msbuild ./Nivaes.App.Cross.iOS/ /property:Configuration=Release
+
+    - name: Build App.Cross.macOS
+      run: msbuild ./Nivaes.App.Cross.macOS/ /property:Configuration=Release
+
+    - name: Build App.Cross.watchOS
+      run: msbuild ./Nivaes.App.Cross.macOS/ /property:Configuration=Release
+
+    - name: Build App.Cross.tvOS
+      run: msbuild ./Nivaes.App.Cross.tvOS/ /property:Configuration=Release
+

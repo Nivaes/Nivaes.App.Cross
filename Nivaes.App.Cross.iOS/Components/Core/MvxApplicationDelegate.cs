@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.iOS
 {
     using System;
     using Foundation;
@@ -11,8 +11,13 @@ namespace MvvmCross.Platforms.Ios.Core
     using Nivaes.App.Cross.ViewModels;
     using UIKit;
 
-    public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
+    public abstract class MvxApplicationDelegate<TMvxIosSetup, TApplication>
+        : UIApplicationDelegate, IMvxApplicationDelegate
+           where TMvxIosSetup : MvxIosSetup<TApplication>, new()
+           where TApplication : class, ICrossApplication, new()
     {
+        public IMvxIosSetup Setup { get; }
+
         /// <summary>
         /// UIApplicationDelegate.Window doesn't really exist / work. It was added by Xamarin.iOS templates 
         /// </summary>
@@ -20,6 +25,8 @@ namespace MvvmCross.Platforms.Ios.Core
 
         public MvxApplicationDelegate() : base()
         {
+            Setup = new TMvxIosSetup();
+
             RegisterSetup();
         }
 
@@ -43,7 +50,8 @@ namespace MvvmCross.Platforms.Ios.Core
             if (Window == null)
                 Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            _ = MvxIosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized();
+            //_ = MvxIosSetupSingleton.EnsureSingletonAvailable(this, Window).EnsureInitialized();
+            _ = Setup.StartSetupInitialization();
 
             RunAppStart(launchOptions);
 
@@ -79,13 +87,9 @@ namespace MvvmCross.Platforms.Ios.Core
         }
     }
 
-    public abstract class MvxApplicationDelegate<TMvxIosSetup, TApplication> : MvxApplicationDelegate
-       where TMvxIosSetup : MvxIosSetup<TApplication>, new()
-       where TApplication : class, ICrossApplication, new()
-    {
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<TMvxIosSetup>();
-        }
-    }
+
+        //protected override void RegisterSetup()
+        //{
+        //    this.RegisterSetupType<TMvxIosSetup>();
+        //}
 }
