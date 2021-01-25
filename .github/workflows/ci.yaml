@@ -167,7 +167,7 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.1
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build App.Cross.Droid
       run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
