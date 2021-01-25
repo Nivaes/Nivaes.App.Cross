@@ -156,7 +156,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.0
+      uses: microsoft/setup-msbuild@v1.0.1
 
     - name: Build App.Cross.Droid
       run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
