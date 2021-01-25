@@ -76,9 +76,6 @@ jobs:
     #- name: Build
     #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
-    #- name: Build App.Cross.Droid
-    #  run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
-
   #build-MacOs:
   #  needs: build
   #  runs-on: macos-11.0
@@ -108,8 +105,6 @@ jobs:
     #- name: Build.App.Cross
     #  run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    #- name: Build App.Cross.iOS
-    #  run: msbuild ./Nivaes.App.Cross.iOS/ /property:Configuration=Release
 
   build-Windows:
     needs: build
@@ -160,18 +155,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
-    - name: Setup .NET Core 5.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.0
 
     - name: Build App.Cross.Droid
       run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
