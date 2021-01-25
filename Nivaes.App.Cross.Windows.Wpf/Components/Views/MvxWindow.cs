@@ -10,7 +10,8 @@ namespace MvvmCross.Platforms.Wpf.Views
     using Nivaes.App.Cross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class MvxWindow : Window, IMvxWindow, IMvxWpfView, IDisposable
+    public class MvxWindow
+        : Window, IMvxWindow, IMvxWpfView, IDisposable
     {
         private IMvxViewModel _viewModel;
         private IMvxBindingContext _bindingContext;
@@ -56,7 +57,7 @@ namespace MvvmCross.Platforms.Wpf.Views
         {
             if (this == Application.Current.MainWindow)
             {
-                (Application.Current as MvxApplication).ApplicationInitialized();
+                (Application.Current as IMvxApplication).ApplicationInitialized();
             }
         }
 
@@ -103,7 +104,8 @@ namespace MvvmCross.Platforms.Wpf.Views
         }
     }
 
-    public class MvxWindow<TViewModel> : MvxWindow, IMvxWpfView<TViewModel>
+    public class MvxWindow<TViewModel>
+        : MvxWindow, IMvxWpfView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel

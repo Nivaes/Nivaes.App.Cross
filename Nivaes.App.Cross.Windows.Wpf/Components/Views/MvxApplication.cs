@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.Wpf.Views
     using Nivaes.App.Cross.Wpf;
 
     public class MvxApplication<TMvxWpfSetup, TApplication>
-        : Application
+        : Application, IMvxApplication
             where TMvxWpfSetup : MvxWpfSetup<TApplication>, new()
             where TApplication : class, ICrossApplication, new() 
     {
