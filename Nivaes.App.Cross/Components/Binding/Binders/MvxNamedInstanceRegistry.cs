@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-using System.Reflection;
-using MvvmCross.Base;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using MvvmCross.Base;
+
     public class MvxNamedInstanceRegistry<T>
         : IMvxNamedInstanceLookup<T>, IMvxNamedInstanceRegistry<T>
         where T : class
@@ -35,6 +36,7 @@ namespace MvvmCross.Binding.Binders
             _converters[name] = converter;
         }
 
+        [Obsolete("Not user reflector")]
         public void AddOrOverwriteFrom(Assembly assembly)
         {
             this.Fill(assembly);

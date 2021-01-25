@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
@@ -15,11 +15,15 @@ namespace MvvmCross.Core
     {
         MvxSetupState State { get; }
 
-        Task InitializePrimary();
-        Task InitializeSecondary();
+        Task StartSetupInitialization();
+        //Task InitializePrimary();
+        //Task InitializeSecondary();
 
+        [Obsolete("Not user reflector")]
         IEnumerable<Assembly> GetViewAssemblies();
+        [Obsolete("Not user reflector")]
         IEnumerable<Assembly> GetViewModelAssemblies();
+        [Obsolete("Not user reflector")]
         IEnumerable<Assembly> GetPluginAssemblies();
 
         IEnumerable<Type> CreatableTypes();

@@ -2,7 +2,9 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Uap.Core
+using Windows.ApplicationModel.Activation;
+
+namespace Nivaes.App.Cross.Windows
 {
     using System;
     using System.Collections.Generic;
@@ -26,16 +28,16 @@ namespace MvvmCross.Platforms.Uap.Core
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
-    using Windows.ApplicationModel.Activation;
 
-    public abstract class MvxWindowsSetup
+    public abstract class MvxWindowsSetup<TApplication>
         : MvxSetup, IMvxWindowsSetup
+            where TApplication : class, ICrossApplication, new()
     {
         private IMvxWindowsFrame? mRootFrame;
         private string? mSuspensionManagerSessionStateKey;
         private IMvxWindowsViewPresenter? mPresenter;
 
-        public virtual void PlatformInitialize(Frame rootFrame, IActivatedEventArgs activatedEventArgs,
+        public virtual void PlatformInitialize(Frame rootFrame, IActivatedEventArgs? activatedEventArgs,
             string? suspensionManagerSessionStateKey = null)
         {
             PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);
@@ -53,7 +55,7 @@ namespace MvvmCross.Platforms.Uap.Core
             mRootFrame = rootFrame;
         }
 
-        public virtual void UpdateActivationArguments(IActivatedEventArgs e)
+        public virtual void UpdateActivationArguments(IActivatedEventArgs? e)
         {
             ActivationArguments = e;
         }
@@ -174,6 +176,7 @@ namespace MvvmCross.Platforms.Uap.Core
 
         protected virtual List<Type> ValueConverterHolders => new();
 
+        [Obsolete("Not user reflector")]
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {
             get
@@ -194,11 +197,8 @@ namespace MvvmCross.Platforms.Uap.Core
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "Page");
         }
-    }
 
-    public class MvxWindowsSetup<TApplication> : MvxWindowsSetup
-         where TApplication : class, ICrossApplication, new()
-    {
+        [Obsolete("Not user reflector")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };

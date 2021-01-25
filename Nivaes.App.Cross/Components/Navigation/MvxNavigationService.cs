@@ -73,6 +73,7 @@ namespace Nivaes.App.Cross.Navigation
             ViewModelLoader = viewModelLoader;
         }
 
+        [Obsolete("Not user reflector")]
         public void LoadRoutes(IEnumerable<Assembly> assemblies)
         {
             Routes.Clear();

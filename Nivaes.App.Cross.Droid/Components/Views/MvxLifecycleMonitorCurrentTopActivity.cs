@@ -3,14 +3,16 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.App;
-using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using Nivaes.App.Cross.Droid;
+
     // Note that we set Activity = activity in multiple places
     // basically we just want to intercept the activity as early as possible
     // regardless of whether the activity has come from an app switch or a new start or...
-    public class MvxLifecycleMonitorCurrentTopActivity : IMvxAndroidCurrentTopActivity
+    public class MvxLifecycleMonitorCurrentTopActivity
+        : IMvxAndroidCurrentTopActivity
     {
         public MvxLifecycleMonitorCurrentTopActivity(IMvxAndroidActivityLifetimeListener listener)
         {

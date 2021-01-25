@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using Android.Content;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Core
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Android.Content;
+    using Android.Views;
     using Autofac;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
@@ -21,13 +20,13 @@ namespace MvvmCross.Platforms.Android.Core
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
+    using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Binding;
     using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
     using MvvmCross.Platforms.Android.Binding.Views;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.IoC;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
 
@@ -43,6 +42,7 @@ namespace MvvmCross.Platforms.Android.Core
             mApplicationContext = applicationContext;
         }
 
+        [Obsolete("Not user reflector")]
         public virtual Assembly ExecutableAssembly => ViewAssemblies?.FirstOrDefault() ?? GetType().Assembly;
 
         public Context? ApplicationContext => mApplicationContext;
@@ -69,8 +69,8 @@ namespace MvvmCross.Platforms.Android.Core
 
         protected virtual void InitializeAndroidCurrentTopActivity()
         {
-            var currentTopActivity = CreateAndroidCurrentTopActivity();
-            Mvx.IoCProvider.RegisterSingleton<IMvxAndroidCurrentTopActivity>(currentTopActivity);
+            //var currentTopActivity = CreateAndroidCurrentTopActivity();
+            //Mvx.IoCProvider.RegisterSingleton<IMvxAndroidCurrentTopActivity>(currentTopActivity);
         }
 
         protected override void RegisterDependencies(ContainerBuilder containerBuilder)
@@ -78,20 +78,20 @@ namespace MvvmCross.Platforms.Android.Core
             containerBuilder.RegisterInstance(this).As<IMvxAndroidSetup>();
         }
 
-        protected virtual IMvxAndroidCurrentTopActivity CreateAndroidCurrentTopActivity()
-        {
-            var mvxApplication = MvxAndroidApplication.Instance;
-            if (mvxApplication != null)
-            {
-                var activityLifecycleCallbacksManager = new MvxApplicationCallbacksCurrentTopActivity();
-                mvxApplication.RegisterActivityLifecycleCallbacks(activityLifecycleCallbacksManager);
-                return activityLifecycleCallbacksManager;
-            }
-            else
-            {
-                return new MvxLifecycleMonitorCurrentTopActivity(Mvx.IoCProvider.GetSingleton<IMvxAndroidActivityLifetimeListener>());
-            }
-        }
+        //protected virtual IMvxAndroidCurrentTopActivity CreateAndroidCurrentTopActivity()
+        //{
+        //    var mvxApplication = MvxAndroidApplication.Instance;
+        //    if (mvxApplication != null)
+        //    {
+        //        var activityLifecycleCallbacksManager = new MvxApplicationCallbacksCurrentTopActivity();
+        //        mvxApplication.RegisterActivityLifecycleCallbacks(activityLifecycleCallbacksManager);
+        //        return activityLifecycleCallbacksManager;
+        //    }
+        //    else
+        //    {
+        //        return new MvxLifecycleMonitorCurrentTopActivity(Mvx.IoCProvider.GetSingleton<IMvxAndroidActivityLifetimeListener>());
+        //    }
+        //}
 
         protected virtual void InitializeLifetimeMonitor()
         {
@@ -259,6 +259,7 @@ namespace MvvmCross.Platforms.Android.Core
             "MvvmCross.Platforms.Android.Binding.Views"
         };
 
+        [Obsolete("Not user reflector")]
         protected virtual IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>()
         {
             typeof(View).Assembly,
@@ -275,9 +276,10 @@ namespace MvvmCross.Platforms.Android.Core
         {
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
         }
-   
+
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
+        [Obsolete("Not user reflector")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };

@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.ViewModels
 
         private int startHasCommenced;
 
-        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+        protected MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;
@@ -64,7 +64,8 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel> : MvxAppStart
         where TViewModel : IMvxViewModel
     {
-        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+            : base(application, navigationService)
         {
         }
 
@@ -84,7 +85,8 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxAppStart<TViewModel, TParameter>
         : MvxAppStart<TViewModel> where TViewModel : IMvxViewModel<TParameter>
     {
-        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService) : base(application, navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+            : base(application, navigationService)
         {
         }
 

@@ -2,60 +2,61 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-
 namespace MvvmCross.Platforms.Uap.Views
 {
-    public class MvxWrappedFrame : IMvxWindowsFrame
+    using System;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+
+    public class MvxWrappedFrame
+        : IMvxWindowsFrame
     {
-        private readonly Frame _frame;
+        private readonly Frame mFrame;
 
         public MvxWrappedFrame(Frame frame)
         {
-            _frame = frame;
+            mFrame = frame;
         }
 
-        public Control UnderlyingControl => _frame;
+        public Control UnderlyingControl => mFrame;
 
-        public object Content => _frame.Content;
+        public object Content => mFrame.Content;
 
-        public bool CanGoBack => _frame.CanGoBack;
+        public bool CanGoBack => mFrame.CanGoBack;
 
         public bool Navigate(Type viewType, object parameter)
         {
-            return _frame.Navigate(viewType, parameter);
+            return mFrame.Navigate(viewType, parameter);
         }
 
         public void GoBack()
         {
-            _frame.GoBack();
+            mFrame.GoBack();
         }
 
         public void ClearValue(DependencyProperty property)
         {
-            _frame.ClearValue(property);
+            mFrame.ClearValue(property);
         }
 
         public object GetValue(DependencyProperty property)
         {
-            return _frame.GetValue(property);
+            return mFrame.GetValue(property);
         }
 
         public void SetValue(DependencyProperty property, object value)
         {
-            _frame.SetValue(property, value);
+            mFrame.SetValue(property, value);
         }
 
         public void SetNavigationState(string state)
         {
-            _frame.SetNavigationState(state);
+            mFrame.SetNavigationState(state);
         }
 
         public string GetNavigationState()
         {
-            return _frame.GetNavigationState();
+            return mFrame.GetNavigationState();
         }
     }
 }

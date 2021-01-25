@@ -13,6 +13,7 @@ namespace Nivaes.App.Cross.ViewModels
 
         void Add<TViewModel>() where TViewModel : IMvxViewModel;
 
+        [Obsolete("Not user reflector")]
         void AddAll(Assembly assembly);
     }
 }

@@ -20,12 +20,11 @@ namespace Nivaes.App.Cross.Presenters
     using Java.Lang;
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android;
-    using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.Platforms.Android.Views.ViewPager;
     using MvvmCross.Views;
-    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.ViewModels;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
     using DialogFragment = AndroidX.Fragment.App.DialogFragment;
@@ -45,6 +44,7 @@ namespace Nivaes.App.Cross.Presenters
         private readonly Lazy<IMvxNavigationSerializer> mNavigationSerializer =
             new Lazy<IMvxNavigationSerializer>(() => Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>());
 
+        [Obsolete("Not user reflector")]
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
         public const string ViewModelRequestBundleKey = "__viewModelRequest";
         public const string SharedElementsBundleKey = "__sharedElementsKey";
@@ -73,6 +73,7 @@ namespace Nivaes.App.Cross.Presenters
 
         protected IMvxNavigationSerializer NavigationSerializer => mNavigationSerializer.Value;
 
+        [Obsolete("Not user reflector")]
         public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies)
         {
             AndroidViewAssemblies = androidViewAssemblies;

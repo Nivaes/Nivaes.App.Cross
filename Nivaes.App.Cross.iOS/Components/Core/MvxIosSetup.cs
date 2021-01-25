@@ -157,6 +157,7 @@ namespace MvvmCross.Platforms.Ios.Core
 
         protected virtual List<Type> ValueConverterHolders => new List<Type>();
 
+        [Obsolete("Not user reflector")]
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {
             get
@@ -185,6 +186,7 @@ namespace MvvmCross.Platforms.Ios.Core
     {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
+        [Obsolete("Not user reflector")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };

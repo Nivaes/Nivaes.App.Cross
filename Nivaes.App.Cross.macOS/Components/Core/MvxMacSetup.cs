@@ -161,6 +161,7 @@ namespace MvvmCross.Platforms.Mac.Core
             registry.Fill(ValueConverterHolders);
         }
 
+        [Obsolete("Not user reflector")]
         protected virtual List<Assembly> ValueConverterAssemblies
         {
             get
@@ -188,6 +189,7 @@ namespace MvvmCross.Platforms.Mac.Core
     {
         protected override ICrossApplication CreateApp() => Mvx.IoCProvider.IoCConstruct<TApplication>();
 
+        [Obsolete("Not user reflector")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new[] { typeof(TApplication).GetTypeInfo().Assembly };

@@ -26,7 +26,7 @@
     <PackageReference Include="Win2d.uwp" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" />
     <PackageReference Include="Microsoft.WinUI" />
-    <!--<PackageReference Include="Microsoft.Windows.CsWinRT" />-->
+    <PackageReference Include="Microsoft.Windows.CsWinRT" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

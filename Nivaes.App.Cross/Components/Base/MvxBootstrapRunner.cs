@@ -2,16 +2,17 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Reflection;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-using Nivaes.App.Cross.Logging;
-
 namespace MvvmCross.Base
 {
+    using System;
+    using System.Reflection;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross.Logging;
+
     public class MvxBootstrapRunner
     {
+        [Obsolete("Not user reflector")]
         public virtual void Run(Assembly assembly)
         {
             var types = assembly.CreatableTypes()
@@ -23,19 +24,19 @@ namespace MvvmCross.Base
             }
         }
 
+        [Obsolete("Not user reflector")]
         protected virtual void Run(Type type)
         {
             //try
             //{
-                var toRun = Activator.CreateInstance(type);
-                var bootstrapAction = toRun as IMvxBootstrapAction;
-                if (bootstrapAction == null)
-                {
-                    //MvxLog.Instance?.Warn("Could not run startup task {0} - it's not a startup task", type.Name);
-                    return;
-                }
+            var toRun = Activator.CreateInstance(type);
+            if (toRun is not IMvxBootstrapAction bootstrapAction)
+            {
+                //MvxLog.Instance?.Warn("Could not run startup task {0} - it's not a startup task", type.Name);
+                return;
+            }
 
-                bootstrapAction.Run();
+            bootstrapAction.Run();
             //}
             //catch (Exception exception)
             //{

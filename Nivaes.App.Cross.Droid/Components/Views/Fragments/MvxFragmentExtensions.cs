@@ -10,10 +10,8 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     using System.Threading.Tasks;
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Logging;
     using Nivaes.App.Cross.ViewModels;
     using Fragment = AndroidX.Fragment.App.Fragment;
 
@@ -97,15 +95,15 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        public static void EnsureSetupInitialized(this IMvxFragmentView fragmentView)
-        {
-            var fragment = fragmentView.ToFragment();
-            if (fragment == null)
-                throw new MvxException($"{nameof(EnsureSetupInitialized)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+        //public static void EnsureSetupInitialized(this IMvxFragmentView fragmentView)
+        //{
+        //    var fragment = fragmentView.ToFragment();
+        //    if (fragment == null)
+        //        throw new MvxException($"{nameof(EnsureSetupInitialized)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
 
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(fragment.Activity.ApplicationContext);
-            _ = setup.EnsureInitialized();
-        }
+        //    //var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(fragment.Activity.ApplicationContext);
+        //    //_ = setup.EnsureInitialized();
+        //}
 
         public static TFragment FindFragmentById<TFragment>(this MvxActivity activity, int resourceId)
             where TFragment : Fragment

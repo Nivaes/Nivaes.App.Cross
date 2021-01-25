@@ -10,11 +10,11 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
-    using MvvmCross.Platforms.Android.Views;
+    using Nivaes.App.Cross.Droid.ViewModels;
     using Nivaes.App.Cross.Mobile.Sample;
 
     [Application]
-    public class MainApplication
+    public sealed class MainApplication
         : MvxAndroidApplication<Setup, MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)

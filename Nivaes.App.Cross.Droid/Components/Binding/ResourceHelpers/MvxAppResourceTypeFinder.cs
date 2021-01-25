@@ -12,6 +12,7 @@ namespace MvvmCross.Platforms.Android.Binding.ResourceHelpers
 
     public class MvxAppResourceTypeFinder : IMvxAppResourceTypeFinder
     {
+        [Obsolete("Not user reflector")]
         private Type FindResourceType(Assembly assembly)
         {
             var att =

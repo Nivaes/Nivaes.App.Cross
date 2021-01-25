@@ -9,11 +9,10 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     using System;
     using AndroidX.Fragment.App;
     using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.ViewModels;
 

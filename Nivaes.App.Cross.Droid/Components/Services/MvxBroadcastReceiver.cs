@@ -5,7 +5,6 @@
 using System;
 using Android.Content;
 using Android.Runtime;
-using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Services
 {
@@ -24,8 +23,8 @@ namespace MvvmCross.Platforms.Android.Services
 
         public override void OnReceive(Context? context, Intent? intent)
         {
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(context);
-            _ = setup.EnsureInitialized();
+            //var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(context);
+            //_ = setup.StartSetupInitialization();
         }
     }
 }

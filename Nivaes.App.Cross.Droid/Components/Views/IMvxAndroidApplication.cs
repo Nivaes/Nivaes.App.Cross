@@ -2,9 +2,13 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-namespace MvvmCross.Platforms.Android.Views
+
+namespace Nivaes.App.Cross.Droid.Views
 {
+    using Nivaes.App.Cross.Droid;
+
     public interface IMvxAndroidApplication
     {
+        IMvxAndroidSetup Setup { get; }
     }
 }

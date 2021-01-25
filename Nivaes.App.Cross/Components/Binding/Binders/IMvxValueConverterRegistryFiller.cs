@@ -15,6 +15,7 @@ namespace MvvmCross.Binding.Binders
 
         void FillFrom(IMvxNamedInstanceRegistry<T> registry, Type type);
 
+        [Obsolete("Not user reflector")]
         void FillFrom(IMvxNamedInstanceRegistry<T> registry, Assembly assembly);
     }
 

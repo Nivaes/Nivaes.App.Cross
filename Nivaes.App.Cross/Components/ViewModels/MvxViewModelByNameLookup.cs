@@ -46,6 +46,7 @@ namespace Nivaes.App.Cross.ViewModels
             Add(typeof(TViewModel));
         }
 
+        [Obsolete("Not user reflector")]
         public void AddAll(Assembly assembly)
         {
             var viewModelTypes = from type in assembly.ExceptionSafeGetTypes()

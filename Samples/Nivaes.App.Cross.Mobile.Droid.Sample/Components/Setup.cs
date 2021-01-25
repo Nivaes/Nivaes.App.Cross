@@ -4,7 +4,7 @@
 
 namespace Nivaes.App.Cross.Mobile.Droid.Sample
 {
-    using MvvmCross.Platforms.Android.Core;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Mobile.Sample;
 
     public sealed class Setup :
@@ -12,7 +12,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     {
         public Setup()
         {
-
         }
     }
 }

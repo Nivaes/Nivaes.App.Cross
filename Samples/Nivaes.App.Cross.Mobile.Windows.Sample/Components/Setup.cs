@@ -1,14 +1,16 @@
 ﻿namespace Nivaes.App.Cross.Mobele.Windows.Sample
 {
+    using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using MvvmCross.Platforms.Uap.Core;
     using Nivaes.App.Cross.Mobile.Sample;
     using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross.Windows;
 
     public sealed class Setup
         : MvxWindowsSetup<MobileSampleCrossApplication<AppMobileSampleAppStart>>
     {
+        [Obsolete("Not user reflector")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
             return new List<Assembly>(base.GetViewModelAssemblies())

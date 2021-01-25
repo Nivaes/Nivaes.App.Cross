@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Threading.Tasks;
-    using MvvmCross.Platforms.Android.Core;
+    using Nivaes.App.Cross.Droid.Views;
     using Nivaes.App.Cross.ViewModels;
 
     [Activity(
@@ -58,11 +58,31 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void OnResume()
         {
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext!);
+            //var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext!);
 
-            _ = Initialize(setup);
+            //_ = Initialize(setup);
+
+            _ = Initialize();
 
             base.OnResume();
+        }
+
+        //private async Task Initialize(MvxAndroidSetupSingleton setup)
+        //{
+        //    await setup.EnsureInitialized().ConfigureAwait(false);
+
+        //    await RunAppStar(mBundle).ConfigureAwait(false);
+        //}
+
+        private async Task Initialize()
+        {
+            var application = base.ApplicationContext as IMvxAndroidApplication;
+
+            await application!.Setup.StartSetupInitialization().ConfigureAwait(false);
+
+            //await setup.EnsureInitialized().ConfigureAwait(false);
+
+            await RunAppStar(mBundle).ConfigureAwait(false);
         }
 
         protected async ValueTask RunAppStar(Bundle? bundle)
@@ -72,13 +92,6 @@ namespace Nivaes.App.Cross.Droid
                 await startup.Start(bundle).ConfigureAwait(false);
             }
             base.Finish();
-        }
-
-        private async Task Initialize(MvxAndroidSetupSingleton setup)
-        {
-            await setup.EnsureInitialized().ConfigureAwait(false);
-
-            await RunAppStar(mBundle).ConfigureAwait(false);
         }
     }
 }

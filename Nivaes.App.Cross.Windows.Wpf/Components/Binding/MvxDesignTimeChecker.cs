@@ -4,9 +4,11 @@
 
 namespace MvvmCross.Platforms.Wpf.Binding
 {
+    using System;
     using MvvmCross.Binding.Parse.Binding;
     using Nivaes.App.Cross;
 
+    [Obsolete("Not user reflector.", true)]
     public static class MvxDesignTimeChecker
     {
         private static bool _checked;

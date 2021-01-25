@@ -2,6 +2,9 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
+
 namespace Nivaes.App.Cross.Views
 {
     using System;
@@ -11,18 +14,20 @@ namespace Nivaes.App.Cross.Views
     using Microsoft.UI.Xaml.Navigation;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using MvvmCross.Platforms.Uap.Core;
     using MvvmCross.Platforms.Uap.Views.Suspension;
     using Nivaes.App.Cross.ViewModels;
-    using Windows.ApplicationModel;
-    using Windows.ApplicationModel.Activation;
+    using Nivaes.App.Cross.Windows;
 
-    public abstract class NivApplication
-        : Microsoft.UI.Xaml.Application
+    public class NivApplication<TMvxUapSetup, TApplication>
+       : Microsoft.UI.Xaml.Application
+            where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new()
     {
-        protected IActivatedEventArgs ActivationArguments { get; private set; }
+        protected IActivatedEventArgs? ActivationArguments { get; private set; }
 
-        protected Frame RootFrame { get; set; }
+        protected Frame? RootFrame { get; set; }
+
+        private readonly IMvxWindowsSetup mSetup;
 
         protected NivApplication()
         {
@@ -30,6 +35,8 @@ namespace Nivaes.App.Cross.Views
             base.LeavingBackground += OnLeavingBackground;
             base.Suspending += OnSuspending;
             base.Resuming += OnResuming;
+
+            mSetup = new TMvxUapSetup();
         }
 
         /// <summary>
@@ -60,11 +67,11 @@ namespace Nivaes.App.Cross.Views
             }
             else
             {
-                if (Window.Current.Content is not Frame rootFrame)
+                if (Window.Current.Content is not Frame)
                 {
                     ActivationArguments = args.UWPLaunchActivatedEventArgs;
 
-                    rootFrame = InitializeFrame(ActivationArguments);
+                    Frame rootFrame = InitializeFrame(ActivationArguments);
                     Window.Current.Content = rootFrame;
                 }
 
@@ -72,7 +79,7 @@ namespace Nivaes.App.Cross.Views
 
                 //if (true/*!ActivationArguments.PrelaunchActivated*/)
                 //if (ActivationArguments.PreviousExecutionState == ApplicationExecutionState.NotRunning)
-                if (args.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
+                if (!args.UWPLaunchActivatedEventArgs.PrelaunchActivated)
                 {
                     Window.Current.Activate();
 
@@ -124,12 +131,17 @@ namespace Nivaes.App.Cross.Views
             Window.Current.Activate();
         }
 
-        protected virtual async Task RunAppStart(IActivatedEventArgs activationArgs)
+        protected virtual async Task RunAppStart(IActivatedEventArgs? activationArgs)
         {
-            var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, ActivationArguments, nameof(Suspend));
+            //var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, ActivationArguments, nameof(Suspend));
+
+            mSetup.PlatformInitialize(RootFrame!, ActivationArguments, nameof(Suspend));
+
             if (RootFrame?.Content == null)
             {
-                await instance.EnsureInitialized().ConfigureAwait(false);
+                //await instance.EnsureInitialized().ConfigureAwait(false);
+
+                await mSetup.StartSetupInitialization().ConfigureAwait(false);
 
                 if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
                 {
@@ -138,7 +150,8 @@ namespace Nivaes.App.Cross.Views
             }
             else
             {
-                instance.PlatformSetup<MvxWindowsSetup>().UpdateActivationArguments(activationArgs);
+                //instance.PlatformSetup<MvxWindowsSetup>().UpdateActivationArguments(activationArgs);
+                mSetup.UpdateActivationArguments(activationArgs);
             }
         }
 
@@ -163,7 +176,7 @@ namespace Nivaes.App.Cross.Views
         {
             if (activationArgs == null) throw new ArgumentNullException(nameof(activationArgs));
 
-            if (!(Window.Current.Content is Frame rootFrame))
+            if (Window.Current.Content is not Frame rootFrame)
             {
                 rootFrame = new Frame();
                 rootFrame.NavigationFailed += OnNavigationFailed;
@@ -269,15 +282,5 @@ namespace Nivaes.App.Cross.Views
         //{
         //    return new ValueTask();
         //}
-    }
-
-    public class NivApplication<TMvxUapSetup, TApplication> : NivApplication
-       where TMvxUapSetup : MvxWindowsSetup<TApplication>, new()
-       where TApplication : class, ICrossApplication, new()
-    {
-        public NivApplication()
-        {
-            this.RegisterSetupType<TMvxUapSetup>();
-        }
     }
 }

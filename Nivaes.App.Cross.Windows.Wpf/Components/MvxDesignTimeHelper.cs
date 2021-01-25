@@ -4,6 +4,7 @@
 
 namespace MvvmCross.Platforms.Wpf
 {
+    using System;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
@@ -33,6 +34,7 @@ namespace MvvmCross.Platforms.Wpf
             }
         }
 
+        [Obsolete("Generar por Roslyn.", true)]
         public static void Initialize()
         {
             if (!IsInDesignTime)
@@ -44,17 +46,18 @@ namespace MvvmCross.Platforms.Wpf
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
 
-            MvxSetup.RegisterSetupType<MvxWpfSetup<App>>(System.Reflection.Assembly.GetExecutingAssembly());
-            var instance = MvxWpfSetupSingleton.EnsureSingletonAvailable(Application.Current.Dispatcher, new Content());
+            //MvxSetup.RegisterSetupType<MvxWpfSetup<App>>(System.Reflection.Assembly.GetExecutingAssembly());
+            //var instance = MvxWpfSetupSingleton.EnsureSingletonAvailable(Application.Current.Dispatcher, new Content());
         }
 
-        class App
-            : Nivaes.App.Cross.ViewModels.CrossApplication
-        {
-        }
+        //class App
+        //    : Nivaes.App.Cross.ViewModels.CrossApplication
+        //{
+        //}
 
-        class Content : ContentControl
-        {
-        }
+        //class Content
+        //    : ContentControl
+        //{
+        //}
     }
 }

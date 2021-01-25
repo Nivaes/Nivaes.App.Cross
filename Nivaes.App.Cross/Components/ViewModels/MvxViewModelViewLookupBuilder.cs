@@ -15,6 +15,7 @@ namespace Nivaes.App.Cross.ViewModels
     public class MvxViewModelViewLookupBuilder
         : IMvxTypeToTypeLookupBuilder
     {
+        [Obsolete("Not user reflector")]
         public virtual IDictionary<Type, Type> Build(IEnumerable<Assembly> sourceAssemblies)
         {
             var associatedTypeFinder = Mvx.IoCProvider.Resolve<IMvxViewModelTypeFinder>();

@@ -5,54 +5,71 @@
 using Android.App;
 using Android.Runtime;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid.ViewModels
 {
     using System;
-    using MvvmCross.Core;
-    using MvvmCross.Platforms.Android.Core;
+    using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Droid.Views;
     using Nivaes.App.Cross.ViewModels;
 
-    public abstract class MvxAndroidApplication
-        : Application, IMvxAndroidApplication
-    {
-        public static MvxAndroidApplication Instance { get; private set; }
-
-        protected MvxAndroidApplication()
-        {
-            Instance = this;
-            RegisterSetup();
-        }
-
-        protected MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-            Instance = this;
-            RegisterSetup();
-        }
-
-        protected virtual void RegisterSetup()
-        {
-        }
-    }
-
     public abstract class MvxAndroidApplication<TMvxAndroidSetup, TApplication>
-        : MvxAndroidApplication
-      where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
-      where TApplication : class, ICrossApplication, new()
+        : Application, IMvxAndroidApplication
+            where TMvxAndroidSetup : MvxAndroidSetup<TApplication>, new()
+            where TApplication : class, ICrossApplication, new()
     {
-        protected MvxAndroidApplication()
-            : base()
-        {
-        }
+        public IMvxAndroidSetup Setup { get; }
+
+        //public static MvxAndroidApplication Instance { get; private set; }
+
+        //protected MvxAndroidApplication()
+        //{
+        //    //Instance = this;
+        //    //RegisterSetup();
+        //}
 
         protected MvxAndroidApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
+            //Instance = this;
+            //RegisterSetup();
+            Setup = new TMvxAndroidSetup();
         }
 
-        protected override void RegisterSetup()
+        public override void OnCreate()
         {
-            this.RegisterSetupType<TMvxAndroidSetup>();
+            //_ = mSetup.StartSetupInitialization();
+
+            base.OnCreate();
         }
+
+        public override void RegisterActivityLifecycleCallbacks(IActivityLifecycleCallbacks? callback)
+        {
+            base.RegisterActivityLifecycleCallbacks(callback);
+        }
+
+        public override void UnregisterActivityLifecycleCallbacks(IActivityLifecycleCallbacks? callback)
+        {
+            base.UnregisterActivityLifecycleCallbacks(callback);
+        }
+
+        public override void RegisterComponentCallbacks(global::Android.Content.IComponentCallbacks? callback)
+        {
+            base.RegisterComponentCallbacks(callback);
+        }
+
+        public override void UnregisterComponentCallbacks(global::Android.Content.IComponentCallbacks? callback)
+        {
+            base.UnregisterComponentCallbacks(callback);
+        }
+
+        public override void OnConfigurationChanged(global::Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+        }
+
+        //protected override void RegisterSetup()
+        //{
+        //    //this.RegisterSetupType<TMvxAndroidSetup>();
+        //}
     }
 }

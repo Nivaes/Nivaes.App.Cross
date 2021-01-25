@@ -16,6 +16,7 @@ namespace MvvmCross.IoC
     [Obsolete("Sustituir por Autofac")]
     public static class MvxTypeExtensions
     {
+        [Obsolete("Not user reflector")]
         public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)
         {
             if (assembly == null) throw new ArgumentNullException(nameof(assembly));
@@ -47,6 +48,7 @@ namespace MvvmCross.IoC
             }
         }
 
+        [Obsolete("Not user reflector")]
         public static IEnumerable<Type> CreatableTypes(this Assembly assembly)
         {
             return assembly

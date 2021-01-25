@@ -12,6 +12,7 @@ namespace MvvmCross.Binding.Binders
 
     public static class MvxRegistryFillerExtensions
     {
+        [Obsolete("Not user reflector")]
         public static void Fill<T>(this IMvxNamedInstanceRegistry<T> registry, IEnumerable<Assembly> assemblies,
                                 IEnumerable<Type> types)
             where T : class
@@ -21,6 +22,7 @@ namespace MvvmCross.Binding.Binders
             registry.Fill(filler, types);
         }
 
+        [Obsolete("Not user reflector")]
         public static void Fill<T>(this IMvxNamedInstanceRegistry<T> registry, IEnumerable<Assembly> assemblies)
         {
             if (assemblies == null)
@@ -42,6 +44,7 @@ namespace MvvmCross.Binding.Binders
             }
         }
 
+        [Obsolete("Not user reflector")]
         public static void Fill<T>(this IMvxNamedInstanceRegistry<T> registry, Assembly assembly)
         {
             var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();

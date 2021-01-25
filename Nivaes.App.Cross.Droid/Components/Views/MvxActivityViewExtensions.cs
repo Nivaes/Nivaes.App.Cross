@@ -12,11 +12,10 @@ namespace MvvmCross.Platforms.Android.Views
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Core;
     using MvvmCross.Exceptions;
-    using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Views.Base;
     using MvvmCross.Views;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Logging;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.ViewModels;
 
     public static class MvxActivityViewExtensions
@@ -154,7 +153,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             var activity = androidView.ToActivity();
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(activity!.ApplicationContext!);
+            //var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(activity!.ApplicationContext!);
             //_ = setup.EnsureInitialized();
         }
     }

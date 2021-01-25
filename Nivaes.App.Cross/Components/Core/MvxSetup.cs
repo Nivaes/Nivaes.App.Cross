@@ -29,34 +29,40 @@ namespace MvvmCross.Core
         [Obsolete("Generar por Roslyn.")]
         protected static Func<IMvxSetup>? SetupCreator { get; set; }
 
-        [Obsolete("Generar por Roslyn.")]
+        [Obsolete("Generar por Roslyn.", true)]
         protected static IEnumerable<Assembly>? ViewAssemblies { get; set; }
 
         //protected IMvxLog? SetupLog { get; private set; }
 
-        [Obsolete("Generar por Roslyn.")]
-        public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies)
-            where TMvxSetup : MvxSetup, new()
-        {
-            ViewAssemblies = assemblies;
-            if (!(ViewAssemblies?.Any() ?? false))
-            {
-                // fall back to all assemblies. Assembly.GetEntryAssembly() always returns
-                // null on Xamarin platforms do not use it!
-                ViewAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-            }
+        //[Obsolete("Generar por Roslyn.", true)]
+        //public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies)
+        //    where TMvxSetup : MvxSetup, new()
+        //{
+        //    ViewAssemblies = assemblies;
+        //    if (!(ViewAssemblies?.Any() ?? false))
+        //    {
+        //        // fall back to all assemblies. Assembly.GetEntryAssembly() always returns
+        //        // null on Xamarin platforms do not use it!
+        //        ViewAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+        //    }
 
-            // Avoid creating the instance of Setup right now, instead
-            // take a reference to the type in a way that we can avoid
-            // using reflection to create the instance.
-            SetupCreator = () => new TMvxSetup();
-        }
+        //    // Avoid creating the instance of Setup right now, instead
+        //    // take a reference to the type in a way that we can avoid
+        //    // using reflection to create the instance.
+        //    SetupCreator = () => new TMvxSetup();
+        //}
 
-        [Obsolete("Generar por Roslyn.", true)]
-        public static IMvxSetup Instance()
+        //[Obsolete("Generar por Roslyn.", true)]
+        //public static IMvxSetup Instance()
+        //{
+        //    var instance = SetupCreator?.Invoke(); // ?? (TSetup)Activator.CreateInstance(typeof(TMvxSetup));  /*MvxSetupExtensions.CreateSetup<MvxSetup>()*/;
+        //    return instance;
+        //}
+
+        public static IMvxSetup Instance<TMvxSetup>()
+             where TMvxSetup : MvxSetup, new()
         {
-            var instance = (SetupCreator?.Invoke()) ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
-            return instance;
+            return new TMvxSetup();
         }
 
         protected abstract ICrossApplication CreateApp();
@@ -64,6 +70,22 @@ namespace MvvmCross.Core
         protected abstract IMvxViewsContainer CreateViewsContainer();
 
         protected abstract IMvxViewDispatcher CreateViewDispatcher();
+
+        public Task StartSetupInitialization()
+        {
+            return InitializePrimary()
+                .ContinueWith(async t =>
+                {
+                    if (t.IsCompleted)
+                    {
+                        await InitializeSecondary().ConfigureAwait(true);
+                    }
+                    else
+                    {
+                        throw new MvxException($"'{nameof(InitializePrimary)}' is not completed successfully.");
+                    }
+                }, TaskScheduler.Default);
+        }
 
         public virtual async Task InitializePrimary()
         {
@@ -376,6 +398,7 @@ namespace MvvmCross.Core
             return null;
         }
 
+        [Obsolete("Not user reflector")]
         public virtual IEnumerable<Assembly> GetPluginAssemblies()
         {
             var mvvmCrossAssemblyName = typeof(MvxPluginAttribute).Assembly.GetName().Name;
@@ -390,6 +413,7 @@ namespace MvvmCross.Core
             return pluginAssemblies;
         }
 
+        [Obsolete("Not user reflector")]
         private bool AssemblyReferencesMvvmCross(Assembly assembly, string mvvmCrossAssemblyName)
         {
             try
@@ -513,12 +537,14 @@ namespace MvvmCross.Core
             navigationService.LoadRoutes(GetViewModelAssemblies());
         }
 
+        [Obsolete("Not user reflector")]
         public virtual IEnumerable<Assembly> GetViewAssemblies()
         {
             var assemblies = ViewAssemblies ?? new[] { GetType().GetTypeInfo().Assembly };
             return assemblies;
         }
 
+        [Obsolete("Not user reflector")]
         public virtual IEnumerable<Assembly> GetViewModelAssemblies()
         {
             var app = Mvx.IoCProvider.Resolve<ICrossApplication>();
@@ -526,6 +552,7 @@ namespace MvvmCross.Core
             return new[] { assembly };
         }
 
+        [Obsolete("Not user reflector")]
         protected virtual IEnumerable<Assembly> GetBootstrapOwningAssemblies()
         {
             return GetViewAssemblies().Distinct();
@@ -600,11 +627,13 @@ namespace MvvmCross.Core
             return Task.CompletedTask;
         }
 
+        [Obsolete("Not user reflector")]
         public IEnumerable<Type> CreatableTypes()
         {
             return CreatableTypes(GetType().GetTypeInfo().Assembly);
         }
 
+        [Obsolete("Not user reflector")]
         public IEnumerable<Type> CreatableTypes(Assembly assembly)
         {
             return assembly.CreatableTypes();
