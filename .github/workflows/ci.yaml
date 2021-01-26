@@ -170,7 +170,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Install dependencies
-      run: dotnet restore
+      run: msbuild /t:restore ./Nivaes.App.Cross.Droid/
 
     - name: Build App.Cross.Droid
       run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
@@ -182,7 +182,7 @@ jobs:
       run: msbuild ./Nivaes.App.Cross.macOS/ /property:Configuration=Release
 
     - name: Build App.Cross.watchOS
-      run: msbuild ./Nivaes.App.Cross.macOS/ /property:Configuration=Release
+      run: msbuild ./Nivaes.App.Cross.watchOS/ /property:Configuration=Release
 
     - name: Build App.Cross.tvOS
       run: msbuild ./Nivaes.App.Cross.tvOS/ /property:Configuration=Release
