@@ -169,6 +169,9 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
 
+    - name: Install dependencies
+      run: dotnet restore
+
     - name: Build App.Cross.Droid
       run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
 
