@@ -15,7 +15,6 @@
     <PackageReference Update="Xamarin.GooglePlayServices.Location" Version="117.1.0" />
     <PackageReference Update="Xamarin.Google.Android.Material" Version="1.2.1.1" />
 
-    <!--<PackageReference Update="ColorCode.Core" Version="8.0.0-preview2" />-->
     <PackageReference Update="Win2d.uwp" Version="1.25.0" />
     <PackageReference Update="Microsoft.WinUI" Version="3.0.0-preview4.210210.4" />
     <PackageReference Update="Microsoft.Windows.CsWinRT" Version="1.1.1" />
