@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ColorCode.Core" />
+    <!--<PackageReference Include="ColorCode.Core" />-->
     <PackageReference Include="Win2d.uwp" />
     <PackageReference Include="Microsoft.VCRTForwarders.140" />
     <PackageReference Include="Microsoft.WinUI" />
