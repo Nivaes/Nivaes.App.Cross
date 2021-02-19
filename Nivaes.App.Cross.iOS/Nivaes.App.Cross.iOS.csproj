@@ -1,12 +1,10 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
-<!--<Project Sdk="Microsoft.NET.Sdk">-->
-  <!--<Project Sdk="Microsoft.iOS.Sdk">-->
+﻿<!--<Project Sdk="MSBuild.Sdk.Extras">-->
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <!--<TargetFrameworks>net5.0-ios</TargetFrameworks>
-    <RuntimeIdentifier>ios-x64</RuntimeIdentifier>-->
-    <!--<OutputType>Library</OutputType>-->
+    <TargetFrameworks>net6.0-ios</TargetFrameworks>
+    <RuntimeIdentifier>ios-x64</RuntimeIdentifier>
     <TargetFrameworks>xamarin.ios10</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>

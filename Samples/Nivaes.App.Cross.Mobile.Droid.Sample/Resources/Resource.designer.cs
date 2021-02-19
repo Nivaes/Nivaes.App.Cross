@@ -53,13 +53,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.design_bottom_sheet_slide_out;
 			global::Nivaes.App.Cross.Droid.Resource.Animation.design_snackbar_in = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.design_snackbar_in;
 			global::Nivaes.App.Cross.Droid.Resource.Animation.design_snackbar_out = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.design_snackbar_out;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_close_enter = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_close_enter;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_close_exit = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_close_exit;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_fade_enter = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_fade_enter;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_fade_exit = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_fade_exit;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_fast_out_extra_slow_in = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_fast_out_extra_slow_in;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_open_enter = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_open_enter;
-			global::Nivaes.App.Cross.Droid.Resource.Animation.fragment_open_exit = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.fragment_open_exit;
 			global::Nivaes.App.Cross.Droid.Resource.Animation.mtrl_bottom_sheet_slide_in = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.mtrl_bottom_sheet_slide_in;
 			global::Nivaes.App.Cross.Droid.Resource.Animation.mtrl_bottom_sheet_slide_out = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.mtrl_bottom_sheet_slide_out;
 			global::Nivaes.App.Cross.Droid.Resource.Animation.mtrl_card_lowers_interpolator = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Animation.mtrl_card_lowers_interpolator;
@@ -1633,7 +1626,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Droid.Resource.Id.@fixed = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.@fixed;
 			global::Nivaes.App.Cross.Droid.Resource.Id.floating = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.floating;
 			global::Nivaes.App.Cross.Droid.Resource.Id.forever = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.forever;
-			global::Nivaes.App.Cross.Droid.Resource.Id.fragment_container_view_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.fragment_container_view_tag;
 			global::Nivaes.App.Cross.Droid.Resource.Id.FUNCTION = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.FUNCTION;
 			global::Nivaes.App.Cross.Droid.Resource.Id.ghost_view = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.ghost_view;
 			global::Nivaes.App.Cross.Droid.Resource.Id.ghost_view_holder = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.ghost_view_holder;
@@ -1812,9 +1804,7 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Droid.Resource.Id.up = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.up;
 			global::Nivaes.App.Cross.Droid.Resource.Id.useLogo = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.useLogo;
 			global::Nivaes.App.Cross.Droid.Resource.Id.view_offset_helper = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_offset_helper;
-			global::Nivaes.App.Cross.Droid.Resource.Id.view_tree_saved_state_registry_owner = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.view_tree_saved_state_registry_owner;
 			global::Nivaes.App.Cross.Droid.Resource.Id.visible = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.visible;
-			global::Nivaes.App.Cross.Droid.Resource.Id.visible_removing_fragment_view_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.visible_removing_fragment_view_tag;
 			global::Nivaes.App.Cross.Droid.Resource.Id.withinBounds = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.withinBounds;
 			global::Nivaes.App.Cross.Droid.Resource.Id.withText = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.withText;
 			global::Nivaes.App.Cross.Droid.Resource.Id.wrap_content = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Id.wrap_content;
@@ -3284,13 +3274,6 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.ForegroundLinearLayout_android_foreground;
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.Fragment = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.Fragment;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.FragmentContainerView = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.FragmentContainerView;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.FragmentContainerView_android_name = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.FragmentContainerView_android_name;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.FragmentContainerView_android_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.FragmentContainerView_android_tag;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.Fragment_android_id = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.Fragment_android_id;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.Fragment_android_name = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.Fragment_android_name;
-			global::Nivaes.App.Cross.Droid.Resource.Styleable.Fragment_android_tag = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.Fragment_android_tag;
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.GradientColor = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.GradientColor;
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.GradientColorItem = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.GradientColorItem;
 			global::Nivaes.App.Cross.Droid.Resource.Styleable.GradientColorItem_android_color = global::Nivaes.App.Cross.Mobile.Droid.Sample.Resource.Styleable.GradientColorItem_android_color;
@@ -4188,34 +4171,16 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			public const int design_snackbar_out = 2130771995;
 			
 			// aapt resource value: 0x7F01001C
-			public const int fragment_close_enter = 2130771996;
+			public const int fragment_fast_out_extra_slow_in = 2130771996;
 			
 			// aapt resource value: 0x7F01001D
-			public const int fragment_close_exit = 2130771997;
+			public const int mtrl_bottom_sheet_slide_in = 2130771997;
 			
 			// aapt resource value: 0x7F01001E
-			public const int fragment_fade_enter = 2130771998;
+			public const int mtrl_bottom_sheet_slide_out = 2130771998;
 			
 			// aapt resource value: 0x7F01001F
-			public const int fragment_fade_exit = 2130771999;
-			
-			// aapt resource value: 0x7F010020
-			public const int fragment_fast_out_extra_slow_in = 2130772000;
-			
-			// aapt resource value: 0x7F010021
-			public const int fragment_open_enter = 2130772001;
-			
-			// aapt resource value: 0x7F010022
-			public const int fragment_open_exit = 2130772002;
-			
-			// aapt resource value: 0x7F010023
-			public const int mtrl_bottom_sheet_slide_in = 2130772003;
-			
-			// aapt resource value: 0x7F010024
-			public const int mtrl_bottom_sheet_slide_out = 2130772004;
-			
-			// aapt resource value: 0x7F010025
-			public const int mtrl_card_lowers_interpolator = 2130772005;
+			public const int mtrl_card_lowers_interpolator = 2130771999;
 			
 			static Animation()
 			{
@@ -4240,40 +4205,58 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			public const int design_fab_show_motion_spec = 2130837506;
 			
 			// aapt resource value: 0x7F020003
-			public const int mtrl_btn_state_list_anim = 2130837507;
+			public const int fragment_close_enter = 2130837507;
 			
 			// aapt resource value: 0x7F020004
-			public const int mtrl_btn_unelevated_state_list_anim = 2130837508;
+			public const int fragment_close_exit = 2130837508;
 			
 			// aapt resource value: 0x7F020005
-			public const int mtrl_card_state_list_anim = 2130837509;
+			public const int fragment_fade_enter = 2130837509;
 			
 			// aapt resource value: 0x7F020006
-			public const int mtrl_chip_state_list_anim = 2130837510;
+			public const int fragment_fade_exit = 2130837510;
 			
 			// aapt resource value: 0x7F020007
-			public const int mtrl_extended_fab_change_size_motion_spec = 2130837511;
+			public const int fragment_open_enter = 2130837511;
 			
 			// aapt resource value: 0x7F020008
-			public const int mtrl_extended_fab_hide_motion_spec = 2130837512;
+			public const int fragment_open_exit = 2130837512;
 			
 			// aapt resource value: 0x7F020009
-			public const int mtrl_extended_fab_show_motion_spec = 2130837513;
+			public const int mtrl_btn_state_list_anim = 2130837513;
 			
 			// aapt resource value: 0x7F02000A
-			public const int mtrl_extended_fab_state_list_animator = 2130837514;
+			public const int mtrl_btn_unelevated_state_list_anim = 2130837514;
 			
 			// aapt resource value: 0x7F02000B
-			public const int mtrl_fab_hide_motion_spec = 2130837515;
+			public const int mtrl_card_state_list_anim = 2130837515;
 			
 			// aapt resource value: 0x7F02000C
-			public const int mtrl_fab_show_motion_spec = 2130837516;
+			public const int mtrl_chip_state_list_anim = 2130837516;
 			
 			// aapt resource value: 0x7F02000D
-			public const int mtrl_fab_transformation_sheet_collapse_spec = 2130837517;
+			public const int mtrl_extended_fab_change_size_motion_spec = 2130837517;
 			
 			// aapt resource value: 0x7F02000E
-			public const int mtrl_fab_transformation_sheet_expand_spec = 2130837518;
+			public const int mtrl_extended_fab_hide_motion_spec = 2130837518;
+			
+			// aapt resource value: 0x7F02000F
+			public const int mtrl_extended_fab_show_motion_spec = 2130837519;
+			
+			// aapt resource value: 0x7F020010
+			public const int mtrl_extended_fab_state_list_animator = 2130837520;
+			
+			// aapt resource value: 0x7F020011
+			public const int mtrl_fab_hide_motion_spec = 2130837521;
+			
+			// aapt resource value: 0x7F020012
+			public const int mtrl_fab_show_motion_spec = 2130837522;
+			
+			// aapt resource value: 0x7F020013
+			public const int mtrl_fab_transformation_sheet_collapse_spec = 2130837523;
+			
+			// aapt resource value: 0x7F020014
+			public const int mtrl_fab_transformation_sheet_expand_spec = 2130837524;
 			
 			static Animator()
 			{
@@ -9547,163 +9530,166 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			public const int spacer = 2131230984;
 			
 			// aapt resource value: 0x7F080109
-			public const int spinner = 2131230985;
+			public const int special_effects_controller_view_tag = 2131230985;
 			
 			// aapt resource value: 0x7F08010A
-			public const int split_action_bar = 2131230986;
+			public const int spinner = 2131230986;
 			
 			// aapt resource value: 0x7F08010B
-			public const int split_content_frame = 2131230987;
+			public const int split_action_bar = 2131230987;
 			
 			// aapt resource value: 0x7F08010C
-			public const int split_navigation_frame = 2131230988;
+			public const int split_content_frame = 2131230988;
 			
 			// aapt resource value: 0x7F08010D
-			public const int src_atop = 2131230989;
+			public const int split_navigation_frame = 2131230989;
 			
 			// aapt resource value: 0x7F08010E
-			public const int src_in = 2131230990;
+			public const int src_atop = 2131230990;
 			
 			// aapt resource value: 0x7F08010F
-			public const int src_over = 2131230991;
+			public const int src_in = 2131230991;
 			
 			// aapt resource value: 0x7F080110
-			public const int start = 2131230992;
+			public const int src_over = 2131230992;
 			
 			// aapt resource value: 0x7F080111
-			public const int stretch = 2131230993;
+			public const int start = 2131230993;
 			
 			// aapt resource value: 0x7F080112
-			public const int submenuarrow = 2131230994;
+			public const int stretch = 2131230994;
 			
 			// aapt resource value: 0x7F080113
-			public const int submit_area = 2131230995;
+			public const int submenuarrow = 2131230995;
 			
 			// aapt resource value: 0x7F080114
-			public const int switchWidget = 2131230996;
+			public const int submit_area = 2131230996;
+			
+			// aapt resource value: 0x7F080115
+			public const int switchWidget = 2131230997;
 			
 			// aapt resource value: 0x7F080009
 			public const int SYM = 2131230729;
 			
-			// aapt resource value: 0x7F080115
-			public const int tabMode = 2131230997;
-			
 			// aapt resource value: 0x7F080116
-			public const int tabs = 2131230998;
+			public const int tabMode = 2131230998;
 			
 			// aapt resource value: 0x7F080117
-			public const int tabs_frame = 2131230999;
+			public const int tabs = 2131230999;
 			
 			// aapt resource value: 0x7F080118
-			public const int tag_accessibility_actions = 2131231000;
+			public const int tabs_frame = 2131231000;
 			
 			// aapt resource value: 0x7F080119
-			public const int tag_accessibility_clickable_spans = 2131231001;
+			public const int tag_accessibility_actions = 2131231001;
 			
 			// aapt resource value: 0x7F08011A
-			public const int tag_accessibility_heading = 2131231002;
+			public const int tag_accessibility_clickable_spans = 2131231002;
 			
 			// aapt resource value: 0x7F08011B
-			public const int tag_accessibility_pane_title = 2131231003;
+			public const int tag_accessibility_heading = 2131231003;
 			
 			// aapt resource value: 0x7F08011C
-			public const int tag_screen_reader_focusable = 2131231004;
+			public const int tag_accessibility_pane_title = 2131231004;
 			
 			// aapt resource value: 0x7F08011D
-			public const int tag_transition_group = 2131231005;
+			public const int tag_screen_reader_focusable = 2131231005;
 			
 			// aapt resource value: 0x7F08011E
-			public const int tag_unhandled_key_event_manager = 2131231006;
+			public const int tag_transition_group = 2131231006;
 			
 			// aapt resource value: 0x7F08011F
-			public const int tag_unhandled_key_listeners = 2131231007;
+			public const int tag_unhandled_key_event_manager = 2131231007;
 			
 			// aapt resource value: 0x7F080120
-			public const int test_checkbox_android_button_tint = 2131231008;
+			public const int tag_unhandled_key_listeners = 2131231008;
 			
 			// aapt resource value: 0x7F080121
-			public const int test_checkbox_app_button_tint = 2131231009;
+			public const int test_checkbox_android_button_tint = 2131231009;
 			
 			// aapt resource value: 0x7F080122
-			public const int test_radiobutton_android_button_tint = 2131231010;
+			public const int test_checkbox_app_button_tint = 2131231010;
 			
 			// aapt resource value: 0x7F080123
-			public const int test_radiobutton_app_button_tint = 2131231011;
+			public const int test_radiobutton_android_button_tint = 2131231011;
 			
 			// aapt resource value: 0x7F080124
-			public const int text = 2131231012;
+			public const int test_radiobutton_app_button_tint = 2131231012;
 			
 			// aapt resource value: 0x7F080125
-			public const int text2 = 2131231013;
+			public const int text = 2131231013;
 			
 			// aapt resource value: 0x7F080126
-			public const int textEnd = 2131231014;
-			
-			// aapt resource value: 0x7F08012F
-			public const int textinput_counter = 2131231023;
-			
-			// aapt resource value: 0x7F080130
-			public const int textinput_error = 2131231024;
-			
-			// aapt resource value: 0x7F080131
-			public const int textinput_helper_text = 2131231025;
-			
-			// aapt resource value: 0x7F080132
-			public const int textinput_placeholder = 2131231026;
-			
-			// aapt resource value: 0x7F080133
-			public const int textinput_prefix_text = 2131231027;
-			
-			// aapt resource value: 0x7F080134
-			public const int textinput_suffix_text = 2131231028;
+			public const int text2 = 2131231014;
 			
 			// aapt resource value: 0x7F080127
-			public const int textSpacerNoButtons = 2131231015;
+			public const int textEnd = 2131231015;
 			
-			// aapt resource value: 0x7F080128
-			public const int textSpacerNoTitle = 2131231016;
+			// aapt resource value: 0x7F080130
+			public const int textinput_counter = 2131231024;
 			
-			// aapt resource value: 0x7F080129
-			public const int textStart = 2131231017;
+			// aapt resource value: 0x7F080131
+			public const int textinput_error = 2131231025;
 			
-			// aapt resource value: 0x7F08012A
-			public const int text_container = 2131231018;
+			// aapt resource value: 0x7F080132
+			public const int textinput_helper_text = 2131231026;
 			
-			// aapt resource value: 0x7F08012B
-			public const int text_input_end_icon = 2131231019;
+			// aapt resource value: 0x7F080133
+			public const int textinput_placeholder = 2131231027;
 			
-			// aapt resource value: 0x7F08012C
-			public const int text_input_start_icon = 2131231020;
-			
-			// aapt resource value: 0x7F08012D
-			public const int text_view_fullname = 2131231021;
-			
-			// aapt resource value: 0x7F08012E
-			public const int text_view_username = 2131231022;
+			// aapt resource value: 0x7F080134
+			public const int textinput_prefix_text = 2131231028;
 			
 			// aapt resource value: 0x7F080135
-			public const int time = 2131231029;
+			public const int textinput_suffix_text = 2131231029;
+			
+			// aapt resource value: 0x7F080128
+			public const int textSpacerNoButtons = 2131231016;
+			
+			// aapt resource value: 0x7F080129
+			public const int textSpacerNoTitle = 2131231017;
+			
+			// aapt resource value: 0x7F08012A
+			public const int textStart = 2131231018;
+			
+			// aapt resource value: 0x7F08012B
+			public const int text_container = 2131231019;
+			
+			// aapt resource value: 0x7F08012C
+			public const int text_input_end_icon = 2131231020;
+			
+			// aapt resource value: 0x7F08012D
+			public const int text_input_start_icon = 2131231021;
+			
+			// aapt resource value: 0x7F08012E
+			public const int text_view_fullname = 2131231022;
+			
+			// aapt resource value: 0x7F08012F
+			public const int text_view_username = 2131231023;
 			
 			// aapt resource value: 0x7F080136
-			public const int title = 2131231030;
+			public const int time = 2131231030;
 			
 			// aapt resource value: 0x7F080137
-			public const int titleDividerNoCustom = 2131231031;
+			public const int title = 2131231031;
 			
 			// aapt resource value: 0x7F080138
-			public const int title_template = 2131231032;
+			public const int titleDividerNoCustom = 2131231032;
 			
 			// aapt resource value: 0x7F080139
-			public const int toggleBtn = 2131231033;
+			public const int title_template = 2131231033;
 			
 			// aapt resource value: 0x7F08013A
-			public const int toolbar = 2131231034;
+			public const int toggleBtn = 2131231034;
 			
 			// aapt resource value: 0x7F08013B
-			public const int top = 2131231035;
+			public const int toolbar = 2131231035;
 			
 			// aapt resource value: 0x7F08013C
-			public const int topPanel = 2131231036;
+			public const int top = 2131231036;
+			
+			// aapt resource value: 0x7F08013D
+			public const int topPanel = 2131231037;
 			
 			// aapt resource value: 0x7F08000A
 			public const int TOP_END = 2131230730;
@@ -9711,71 +9697,77 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 			// aapt resource value: 0x7F08000B
 			public const int TOP_START = 2131230731;
 			
-			// aapt resource value: 0x7F08013D
-			public const int touch_outside = 2131231037;
-			
 			// aapt resource value: 0x7F08013E
-			public const int transition_current_scene = 2131231038;
+			public const int touch_outside = 2131231038;
 			
 			// aapt resource value: 0x7F08013F
-			public const int transition_layout_save = 2131231039;
+			public const int transition_current_scene = 2131231039;
 			
 			// aapt resource value: 0x7F080140
-			public const int transition_position = 2131231040;
+			public const int transition_layout_save = 2131231040;
 			
 			// aapt resource value: 0x7F080141
-			public const int transition_scene_layoutid_cache = 2131231041;
+			public const int transition_position = 2131231041;
 			
 			// aapt resource value: 0x7F080142
-			public const int transition_transform = 2131231042;
+			public const int transition_scene_layoutid_cache = 2131231042;
 			
 			// aapt resource value: 0x7F080143
-			public const int txt_description = 2131231043;
+			public const int transition_transform = 2131231043;
 			
 			// aapt resource value: 0x7F080144
-			public const int txt_name = 2131231044;
+			public const int txt_description = 2131231044;
 			
 			// aapt resource value: 0x7F080145
-			public const int @unchecked = 2131231045;
+			public const int txt_name = 2131231045;
 			
 			// aapt resource value: 0x7F080146
-			public const int uniform = 2131231046;
+			public const int @unchecked = 2131231046;
 			
 			// aapt resource value: 0x7F080147
-			public const int unlabeled = 2131231047;
+			public const int uniform = 2131231047;
 			
 			// aapt resource value: 0x7F080148
-			public const int up = 2131231048;
+			public const int unlabeled = 2131231048;
 			
 			// aapt resource value: 0x7F080149
-			public const int useLogo = 2131231049;
-			
-			// aapt resource value: 0x7F08014C
-			public const int viewpager = 2131231052;
+			public const int up = 2131231049;
 			
 			// aapt resource value: 0x7F08014A
-			public const int view_offset_helper = 2131231050;
-			
-			// aapt resource value: 0x7F08014B
-			public const int view_tree_saved_state_registry_owner = 2131231051;
-			
-			// aapt resource value: 0x7F08014D
-			public const int visible = 2131231053;
-			
-			// aapt resource value: 0x7F08014E
-			public const int visible_removing_fragment_view_tag = 2131231054;
-			
-			// aapt resource value: 0x7F080150
-			public const int withinBounds = 2131231056;
+			public const int useLogo = 2131231050;
 			
 			// aapt resource value: 0x7F08014F
-			public const int withText = 2131231055;
+			public const int viewpager = 2131231055;
+			
+			// aapt resource value: 0x7F08014B
+			public const int view_offset_helper = 2131231051;
+			
+			// aapt resource value: 0x7F08014C
+			public const int view_tree_lifecycle_owner = 2131231052;
+			
+			// aapt resource value: 0x7F08014D
+			public const int view_tree_saved_state_registry_owner = 2131231053;
+			
+			// aapt resource value: 0x7F08014E
+			public const int view_tree_view_model_store_owner = 2131231054;
+			
+			// aapt resource value: 0x7F080150
+			public const int visible = 2131231056;
 			
 			// aapt resource value: 0x7F080151
-			public const int wrap_content = 2131231057;
+			public const int visible_removing_fragment_view_tag = 2131231057;
+			
+			// aapt resource value: 0x7F080153
+			public const int withinBounds = 2131231059;
 			
 			// aapt resource value: 0x7F080152
-			public const int zero_corner_chip = 2131231058;
+			public const int withText = 2131231058;
+			
+			// aapt resource value: 0x7F080154
+			public const int wrap_content = 2131231060;
+			
+			// aapt resource value: 0x7F080155
+			public const int zero_corner_chip = 2131231061;
 			
 			static Id()
 			{

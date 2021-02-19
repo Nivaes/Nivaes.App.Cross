@@ -85,6 +85,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Compilers.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Toolset", "Toolset", "{1D957369-5CE1-4CAB-85F9-5E9D0D51983C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.macCatalyst", "Nivaes.App.Cross.macCatalyst\Nivaes.App.Cross.macCatalyst.csproj", "{63879F8D-BD57-4828-864C-333042000214}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|arm64 = Debug|arm64
@@ -544,6 +546,22 @@ Global
 		{3D0A9258-5272-4AA5-AB15-59594B5AED56}.Release|x64.Build.0 = Release|Any CPU
 		{3D0A9258-5272-4AA5-AB15-59594B5AED56}.Release|x86.ActiveCfg = Release|Any CPU
 		{3D0A9258-5272-4AA5-AB15-59594B5AED56}.Release|x86.Build.0 = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|arm64.Build.0 = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|Develop.ActiveCfg = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|Develop.Build.0 = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|x64.Build.0 = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|x86.Build.0 = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|arm64.ActiveCfg = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|arm64.Build.0 = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|Develop.ActiveCfg = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|Develop.Build.0 = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|x64.ActiveCfg = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|x64.Build.0 = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|x86.ActiveCfg = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -581,6 +599,7 @@ Global
 		{34274414-BF3A-42D0-8685-47269B56FEC9} = {D1C1BB1C-3D10-4FBF-B57A-428B318846F4}
 		{3D0A9258-5272-4AA5-AB15-59594B5AED56} = {1D957369-5CE1-4CAB-85F9-5E9D0D51983C}
 		{1D957369-5CE1-4CAB-85F9-5E9D0D51983C} = {D1C1BB1C-3D10-4FBF-B57A-428B318846F4}
+		{63879F8D-BD57-4828-864C-333042000214} = {D1C1BB1C-3D10-4FBF-B57A-428B318846F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06CF3158-9818-42C2-90FC-E484CBB76042}
