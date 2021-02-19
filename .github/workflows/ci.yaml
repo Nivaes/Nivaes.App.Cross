@@ -7,7 +7,7 @@ on:
     paths-ignore:
     - '**/*.md'
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened] 
     paths-ignore:
     - '**/*.md'
 
@@ -37,6 +37,11 @@ jobs:
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Setup .NET Core 6.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100-preview.1.21103.13
 
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
