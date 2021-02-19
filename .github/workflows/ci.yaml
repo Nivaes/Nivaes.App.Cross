@@ -83,8 +83,8 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    #- name: Build
-    #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
   #build-MacOs:
   #  needs: build
