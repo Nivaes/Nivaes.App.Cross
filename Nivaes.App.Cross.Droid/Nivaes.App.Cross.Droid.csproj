@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net6.0-android</TargetFramework>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
@@ -19,13 +20,13 @@
     <None Remove="Resources\values\MvxRecyclerViewBindingAttributes.xml" />
   </ItemGroup>-->
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <None Include="Resources\*.cs" />
     <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
     <AndroidResource Include="Resources\**\*.jpg" Generator="MSBuild:UpdateAndroidResources" />
     <AndroidResource Include="Resources\**\*.gif" Generator="MSBuild:UpdateAndroidResources" />
     <AndroidResource Include="Resources\**\*.png" Generator="MSBuild:UpdateAndroidResources" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" />
