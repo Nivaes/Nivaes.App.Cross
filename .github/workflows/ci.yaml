@@ -83,37 +83,57 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    #- name: Build
-    #  run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
-  #build-MacOs:
-  #  needs: build
-  #  runs-on: macos-11.0
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
 
-    #steps:
-    #- name: Dump GitHub context
-    #  env:
-    #    GITHUB_CONTEXT: ${{ toJson(github) }}
-    #  run: echo "$GITHUB_CONTEXT"
+  build-MacOs:
+    needs: build
+    runs-on: macos-11.0
 
-    #- name: Checkout
-    #  uses: actions/checkout@v2
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
-    #- name: Setup .NET Core 3.1.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 3.1.x
+    - name: Checkout
+      uses: actions/checkout@v2
 
-    #- name: Setup .NET Core 5.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 5.0.x
-    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
-    #  env:
-    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Setup .NET Core 3.1.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
 
-    #- name: Build.App.Cross
-    #  run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
+    - name: Setup .NET Core 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/Nivaes/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Setup .NET Core 6.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100-preview.1.21103.13
+
+    - name: Build App.Cross
+      run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
+
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
+
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
+
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
+
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.tvOS/ --configuration Release
 
   build-Windows:
     needs: build
@@ -146,75 +166,11 @@ jobs:
       with:
         dotnet-version: 6.0.100-preview.1.21103.13
 
-    #- name: Build.Windows
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+    - name: Build App.Cross
+      run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Build.Windows.Wpf
+    - name: Build
+      run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+
+    - name: Build
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
-
-    - name: Build.Windows.Desktop.Sample
-      run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --framework net5.0-windows --configuration Release
-
-  #build-Xamarin:
-  #  needs: build
-  #  runs-on: windows-2019
-
-  #  steps:
-  #  - name: Dump GitHub context
-  #    env:
-  #      GITHUB_CONTEXT: ${{ toJson(github) }}
-  #    run: echo "$GITHUB_CONTEXT"
-
-  #  - name: Checkout
-  #    uses: actions/checkout@v2
-
-  #  - name: Setup .NET Core 3.1.x
-  #    uses: actions/setup-dotnet@v1
-  #    with:
-  #      dotnet-version: 3.1.x
-
-  #  - name: Setup .NET Core 5.0.x
-  #    uses: actions/setup-dotnet@v1
-  #    with:
-  #      dotnet-version: 5.0.x
-  #      source-url: https://nuget.pkg.github.com/Nivaes/index.json
-  #    env:
-  #      NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-  #  - name: Setup .NET Core 6.0.x
-  #    uses: actions/setup-dotnet@v1
-  #    with:
-  #      dotnet-version: 6.0.100-preview.1.21103.13
-
-  #  - name: Setup MSBuild
-  #    uses: microsoft/setup-msbuild@v1.0.2
-
-  #  - name: Install dependencies droid
-  #    run: msbuild /t:restore ./Nivaes.App.Cross.Droid/
-
-  #  - name: Build App.Cross.Droid
-  #    run: msbuild ./Nivaes.App.Cross.Droid/ /property:Configuration=Release
-
-  #  - name: Install dependencies iOS
-  #    run: msbuild /t:restore ./Nivaes.App.Cross.iOS/
-
-  #  - name: Build App.Cross.iOS
-  #    run: msbuild ./Nivaes.App.Cross.iOS/ /property:Configuration=Release
-
-  #  - name: Install dependencies macOS
-  #    run: msbuild /t:restore ./Nivaes.App.Cross.macOS/
-
-  #  - name: Build App.Cross.macOS
-  #    run: msbuild ./Nivaes.App.Cross.macOS/ /property:Configuration=Release
-
-  #  - name: Install dependencies watchOS
-  #    run: msbuild /t:restore ./Nivaes.App.Cross.watchOS/
-
-  #  - name: Build App.Cross.watchOS
-  #    run: msbuild ./Nivaes.App.Cross.watchOS/ /property:Configuration=Release
-
-  #  - name: Install dependencies tvOS
-  #    run: msbuild /t:restore ./Nivaes.App.Cross.tvOS/
-
-  #  - name: Build App.Cross.tvOS
-  #    run: msbuild ./Nivaes.App.Cross.tvOS/ /property:Configuration=Release
