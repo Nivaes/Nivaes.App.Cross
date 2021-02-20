@@ -80,12 +80,6 @@ jobs:
       with:
         dotnet-version: 6.0.100-preview.1.21103.13
 
-    - name: setup-xamarin
-      uses: maxim-lobanov/setup-xamarin@v1
-      with:
-        mono-version: latest
-        xamarin-android-version: latest
-
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
