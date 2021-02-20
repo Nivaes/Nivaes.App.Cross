@@ -1,9 +1,10 @@
 ﻿ <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
+    <OutputType>Library1</OutputType>
     <TargetFramework>net6.0-android</TargetFramework>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>

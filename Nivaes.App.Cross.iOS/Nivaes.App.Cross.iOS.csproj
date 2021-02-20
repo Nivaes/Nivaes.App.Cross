@@ -3,8 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net6.0-ios</TargetFrameworks>
-    <RuntimeIdentifier>ios-x64</RuntimeIdentifier>
-    <TargetFrameworks>xamarin.ios10</TargetFrameworks>
+    <RuntimeIdentifiers>ios-x64;ios-arm64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.iOS</RootNamespace>

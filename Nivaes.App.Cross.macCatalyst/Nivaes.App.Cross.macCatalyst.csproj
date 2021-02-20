@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net6.0-maccatalyst</TargetFramework>
+    <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.macOS</RootNamespace>
@@ -15,9 +16,9 @@
     <PackageId>Nivaes.App.Cross.macCatalyst</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="OpenTK" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />

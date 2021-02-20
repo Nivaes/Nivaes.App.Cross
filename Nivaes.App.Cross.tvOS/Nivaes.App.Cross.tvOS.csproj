@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net6.0-tvos</TargetFrameworks>
+    <RuntimeIdentifiers>tvos-x64;tvos-arm64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.tvOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.tvOS</RootNamespace>
