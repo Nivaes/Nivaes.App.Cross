@@ -83,8 +83,8 @@ jobs:
     - name: setup-xamarin
       uses: maxim-lobanov/setup-xamarin@v1
       with:
-        mono-version: 6.6 
-        xamarin-android-version: 11.0.200.85
+        mono-version: latest
+        xamarin-android-version: latest
 
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
@@ -129,7 +129,7 @@ jobs:
     - name: setup-xamarin
       uses: maxim-lobanov/setup-xamarin@v1
       with:
-        mono-version: 6.6 
+        mono-version: latest
         xamarin-ios-version: latest
         xamarin-mac-version: latest 
         xcode-version: 12.x 
