@@ -83,10 +83,10 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Build
+    - name: Build Droid
       run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
-    - name: Build
+    - name: Build WatchOS
       run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
 
   build-MacOs:
@@ -123,16 +123,16 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Build
+    - name: Build iOS
       run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
-    - name: Build
+    - name: Build MacCatalyst
       run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
 
-    - name: Build
+    - name: Build MacOS
       run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
 
-    - name: Build
+    - name: Build TvOS
       run: dotnet build ./Nivaes.App.Cross.tvOS/ --configuration Release
 
   build-Windows:
@@ -169,8 +169,8 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Build
+    - name: Build Windows
       run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
-    - name: Build
+    - name: Build Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
