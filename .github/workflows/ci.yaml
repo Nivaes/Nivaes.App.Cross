@@ -202,11 +202,12 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Restore Windows
-      run: dotnet restore ./Nivaes.App.Cross.Windows/
+    #- name: Restore Windows
+    #  run: dotnet restore ./Nivaes.App.Cross.Windows/
 
     - name: Build Windows
-      run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+      run: msbuild ./Nivaes.App.Cross.Windows/ /t:build /p:Configuration=Release
+    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
