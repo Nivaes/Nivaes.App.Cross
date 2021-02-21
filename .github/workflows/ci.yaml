@@ -202,6 +202,9 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
+    - name: Restore Windows
+      run: dotnet restore ./Nivaes.App.Cross.Windows/
+
     - name: Build Windows
       run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
