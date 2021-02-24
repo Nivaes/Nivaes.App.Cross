@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <PackageReference Update="Xamarin.AndroidX.SwipeRefreshLayout" Version="1.1.0.4" /> 
-    <PackageReference Update="Xamarin.AndroidX.CardView" Version="1.0.0.6" />
+    <PackageReference Update="Xamarin.AndroidX.CardView" Version="1.0.0.8" />
     <PackageReference Update="Xamarin.AndroidX.CoordinatorLayout" Version="1.1.0.7" />
     <PackageReference Update="Xamarin.AndroidX.Leanback" Version="1.0.0.6" />
     <PackageReference Update="Xamarin.AndroidX.AppCompat" Version="1.2.0.7" />
