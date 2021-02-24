@@ -97,9 +97,6 @@ jobs:
     - name: Build Droid
       run: dotnet build ./Nivaes.App.Cross.Droid/ --configuration Release
 
-    - name: Build WatchOS
-      run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
-
   build-MacOs:
     needs: build
     runs-on: macos-11.0
@@ -161,6 +158,9 @@ jobs:
 
     - name: Build MacOS
       run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
+
+    - name: Build WatchOS
+      run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
 
     - name: Build TvOS
       run: dotnet build ./Nivaes.App.Cross.tvOS/ --configuration Release

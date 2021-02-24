@@ -1,14 +1,17 @@
-﻿ <Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library1</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0-android</TargetFramework>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>
+    <!--<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>-->
+    <!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
+  </PropertyGroup>
 
+  <PropertyGroup>
+    <Summary>???</Summary>
     <Description>
       Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
 
@@ -16,10 +19,6 @@
     </Description>
     <PackageId>Nivaes.App.Cross.Droid</PackageId>
   </PropertyGroup>
-
-  <!--<ItemGroup>
-    <None Remove="Resources\values\MvxRecyclerViewBindingAttributes.xml" />
-  </ItemGroup>-->
 
   <!--<ItemGroup>
     <None Include="Resources\*.cs" />
