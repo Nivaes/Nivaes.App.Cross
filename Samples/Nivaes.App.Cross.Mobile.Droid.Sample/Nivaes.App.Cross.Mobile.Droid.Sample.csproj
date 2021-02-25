@@ -2,9 +2,13 @@
   <PropertyGroup>
     <TargetFramework>net6.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
+    <!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
+    <!--<RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>-->
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
+    <!--<PackageReference Include="SQLitePCLRaw.bundle_e_sqlcipher" Version="2.0.5-pre20210119130047" />-->
+    <!--<PackageReference Include="SQLitePCLRaw.lib.sqlcipher.android" Version="1.1.14" />-->
     <PackageReference Include="Xamarin.Essentials" />
   </ItemGroup>
 
