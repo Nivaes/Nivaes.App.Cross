@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Mobile.iOS.Sample
 {
     using Foundation;
-    using MvvmCross.Platforms.Ios.Core;
+    using Nivaes.App.Cross.iOS;
     using Nivaes.App.Cross.Mobile.Sample;
 
     // The UIApplicationDelegate for the application. This class is responsible for launching the

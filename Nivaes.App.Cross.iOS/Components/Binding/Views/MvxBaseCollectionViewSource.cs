@@ -2,22 +2,24 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Windows.Input;
-using Foundation;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using Nivaes.App.Cross.Logging;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Binding.Views
 {
-    public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
+    using System;
+    using System.Windows.Input;
+    using Foundation;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross.Logging;
+    using UIKit;
+
+    public abstract class MvxBaseCollectionViewSource
+        : UICollectionViewSource
     {
-        public static readonly NSString UnknownCellIdentifier = null;
+        public static readonly NSString? UnknownCellIdentifier = null;
 
         private readonly NSString _cellIdentifier;
-        [Weak] private UICollectionView _collectionView;
+        //[field: Weak]
+        private UICollectionView _collectionView;
 
         protected virtual NSString DefaultCellIdentifier => _cellIdentifier;
 
