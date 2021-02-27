@@ -215,8 +215,8 @@ jobs:
     #  run: dotnet restore ./Nivaes.App.Cross.Windows/
 
     - name: Build Windows
-      run: msbuild ./Sample/Nivaes.App.Cross.Mobile.Windows.Sample/ /t:build /p:Configuration=Release
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+      run: msbuild ./Samples/Nivaes.App.Cross.Mobile.Windows.Sample/ /t:build
+    #  run: dotnet build ./Samples/Nivaes.App.Cross.Mobile.Windows.Sample/ --configuration Release
 
     - name: Build Wpf
-      run: dotnet build ./Sample/Nivaes.App.Cross.Mobile.Desktop.Windows.Sample/ --configuration Release
+      run: dotnet build ./Samples/Nivaes.App.Cross.Desktop.Windows.Sample/ --configuration Release
