@@ -3,10 +3,10 @@
     <TargetFramework>net6.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
     <!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
-    <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
+    <!--<RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>-->
 
-    <RootNamespace>Nivaes.App.Cross.Droid.Sample</RootNamespace>
-    <AssemblyName>Nivaes.App.Cross.Droid.Sample</AssemblyName>
+    <AssemblyName>Nivaes.App.Cross.Mobile.Droid.Sample</AssemblyName>
+    <RootNamespace>Nivaes.App.Cross.Mobile.Droid.Sample</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

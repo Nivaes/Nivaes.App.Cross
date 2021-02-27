@@ -20,19 +20,20 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
     public class FluentBindingView
         : MvxFragment<FluentBindingViewModel>
     {
-        EditText _inputText;
-        TextView _outputText;
-        private IMvxInteraction<bool> _clearBindingInteraction;
+        private EditText? mInputText;
+        private TextView? mOutputText;
+        private IMvxInteraction<bool>? mClearBindingInteraction;
+
         public IMvxInteraction<bool> ClearBindingInteraction
         {
-            get => _clearBindingInteraction;
+            get => mClearBindingInteraction;
             set
             {
-                if (_clearBindingInteraction != null)
-                    _clearBindingInteraction.Requested -= OnInteractionRequested;
+                if (mClearBindingInteraction != null)
+                    mClearBindingInteraction.Requested -= OnInteractionRequested;
 
-                _clearBindingInteraction = value;
-                _clearBindingInteraction.Requested += OnInteractionRequested;
+                mClearBindingInteraction = value;
+                mClearBindingInteraction.Requested += OnInteractionRequested;
             }
         }
 
@@ -42,8 +43,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
 
             var view = this.BindingInflate(Resource.Layout.FluentBindingView, null);
 
-            _inputText = view.FindViewById<EditText>(Resource.Id.inputText);
-            _outputText = view.FindViewById<TextView>(Resource.Id.outputText);
+            mInputText = view.FindViewById<EditText>(Resource.Id.inputText);
+            mOutputText = view.FindViewById<TextView>(Resource.Id.outputText);
             var toggleButton = view.FindViewById<Button>(Resource.Id.toggleBtn);
 
             var bindingSet = CreateBindingSet();
@@ -58,8 +59,8 @@ namespace Nivaes.App.Cross.Mobile.Droid.Sample
         void BindTextInput()
         {
             var bindingSet = CreateBindingSet();
-            bindingSet.Bind(_inputText).For(v => v.Text).To(vm => vm.TextValue);
-            bindingSet.Bind(_outputText).For(v => v.Text).To(vm => vm.TextValue);
+            bindingSet.Bind(mInputText).For(v => v.Text).To(vm => vm.TextValue);
+            bindingSet.Bind(mOutputText).For(v => v.Text).To(vm => vm.TextValue);
             bindingSet.Bind(this).For(v => v.ClearBindingInteraction).To(vm => vm.ClearBindingInteraction);
             bindingSet.ApplyWithClearBindingKey(nameof(FluentBindingView));
         }

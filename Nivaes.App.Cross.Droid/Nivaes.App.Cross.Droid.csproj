@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Summary>???</Summary>
+    <!--<Summary>???</Summary>-->
     <Description>
       Nivaes.App.Cross is the .NET framework for cross-platform solutions, including Xamarin iOS, Xamarin Android, Windows and Mac.
 

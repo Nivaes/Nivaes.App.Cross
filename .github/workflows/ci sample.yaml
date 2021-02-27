@@ -208,11 +208,8 @@ jobs:
       with:
         dotnet-version: 6.0.100-preview.1.21103.13
 
-    #- name: Setup MSBuild
-    #  uses: microsoft/setup-msbuild@v1.0.2
-
-    #- name: Build App.Cross
-    #  run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
 
     #- name: Restore Windows
     #  run: dotnet restore ./Nivaes.App.Cross.Windows/
