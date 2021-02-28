@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-android</TargetFramework>
     <!--<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>-->
     <!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
+    <RuntimeIdentifiers>linux-arm;linux-arm64;linux-x64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
