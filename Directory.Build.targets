@@ -41,4 +41,9 @@
 
     <PackageReference Update="Nivaes.Async" Version="1.4.17" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64;arm-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifier>
+  </PropertyGroup>
 </Project>
