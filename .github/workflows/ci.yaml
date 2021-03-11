@@ -43,7 +43,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.1.21103.13
+        dotnet-version: 6.0.100-preview.2.21155.3
 
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
@@ -81,7 +81,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.1.21103.13
+        dotnet-version: 6.0.100-preview.2.21103.13
 
     - name: Install Android Workloads
       #env:
@@ -128,7 +128,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.1.21103.13
+        dotnet-version: 6.0.100-preview.2.21155.3
 
     - name: Install iOS Workloads
       #env:
@@ -198,7 +198,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.1.21103.13
+        dotnet-version: 6.0.100-preview.2.21155.3
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
