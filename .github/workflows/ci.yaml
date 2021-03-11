@@ -90,7 +90,7 @@ jobs:
       shell: pwsh
       run: |
         dotnet tool install --global boots
-        && boots https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi
+        boots https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi
 
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
@@ -138,6 +138,9 @@ jobs:
         boots https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg
         boots https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg
 
+    - name: Install xcode
+      run: |
+        sudo xcode-select -s /Applications/Xcode_12.4.app
 
     #- name: setup-xamarin
     #  uses: maxim-lobanov/setup-xamarin@v1
@@ -148,7 +151,7 @@ jobs:
     #    xcode-version: 12.x 
 
     - name: Build App.Cross
-      run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
+      run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
     - name: Build iOS
       run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
