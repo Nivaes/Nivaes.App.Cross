@@ -124,10 +124,15 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+    #- name: Setup .NET Core 6.0.x
+    #  uses: actions/setup-dotnet@v1
+    #  with:
+    #    dotnet-version: 6.0.100-preview.2.21155.3
     - name: Setup .NET Core 6.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.100-preview.2.21155.3
+      run: |
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+        .\dotnet-install.ps1 -Version $(DotNetVersion) -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+        dotnet --list-sdks
 
     - name: Install iOS Workloads
       #env:
