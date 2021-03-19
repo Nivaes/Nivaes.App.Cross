@@ -130,18 +130,18 @@ jobs:
     #  env:
     #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    #- name: Setup .NET Core 6.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 6.0.100-preview.2.21155.3
+    - name: Setup .NET Core 6.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100-preview.2.21155.3
 
-    - name: Install .NET Core 6.0.x
-      run: |
-        export PATH="/usr/local/share/dotnet/:~/.dotnet/tools:$PATH" 
-        curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh 
-        sh dotnet-install.sh --version 6.0.100-preview.2.21155.3 --install-dir $DOTNET_ROOT --verbose 
-        dotnet --list-sdks
-        echo "##vso[task.setvariable variable=PATH]$PATH"
+    #- name: Install .NET Core 6.0.x
+    #  run: |
+    #    export PATH="/usr/local/share/dotnet/:~/.dotnet/tools:$PATH" 
+    #    curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh 
+    #    sh dotnet-install.sh --version 6.0.100-preview.2.21155.3 --install-dir $DOTNET_ROOT --verbose 
+    #    dotnet --list-sdks
+    #    echo "##vso[task.setvariable variable=PATH]$PATH"
 
     - name: Install iOS Workloads
       #env:
@@ -175,19 +175,19 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    - name: Build iOS
+    - name: Build App.Cross.iOS
       run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
-    - name: Build MacCatalyst
+    - name: Build App.Cross.macCatalyst
       run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
 
-    - name: Build MacOS
+    - name: Build App.Cross.macOS
       run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
 
-    - name: Build WatchOS
+    - name: Build App.Cross.watchOS
       run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
 
-    - name: Build TvOS
+    - name: Build App.Cross.tvOS
       run: dotnet build ./Nivaes.App.Cross.tvOS/ --configuration Release
 
   build-Windows:
