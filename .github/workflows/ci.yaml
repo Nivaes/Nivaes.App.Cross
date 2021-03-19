@@ -137,10 +137,10 @@ jobs:
 
     - name: Install .NET Core 6.0.x
       run: |
-        export PATH="/usr/local/share/dotnet/:~/.dotnet/tools:$PATH" &&
-        curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh &&
-        sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose &&
-        dotnet --list-sdks &&
+        export PATH="/usr/local/share/dotnet/:~/.dotnet/tools:$PATH" 
+        curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh 
+        sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose 
+        dotnet --list-sdks
         echo "##vso[task.setvariable variable=PATH]$PATH"
 
     - name: Install Xcode 12.4
@@ -162,10 +162,6 @@ jobs:
         dotnet tool install --global boots
         boots https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg
         boots https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg
-
-    - name: Install xcode
-      run: |
-        sudo xcode-select -s /Applications/Xcode_12.4.app
 
     #- name: setup-xamarin
     #  uses: maxim-lobanov/setup-xamarin@v1
