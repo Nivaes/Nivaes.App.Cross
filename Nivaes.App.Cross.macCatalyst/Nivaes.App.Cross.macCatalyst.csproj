@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-maccatalyst</TargetFrameworks>
-    <!--<TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>-->
-    <!--<RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>-->
+    <TargetFrameworks>net6.0-ios</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
 
     <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.macOS</RootNamespace>
@@ -14,12 +15,9 @@
 
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
+
     <PackageId>Nivaes.App.Cross.macCatalyst</PackageId>
   </PropertyGroup>
-
-  <!--<ItemGroup>
-    <Reference Include="OpenTK" />
-  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />

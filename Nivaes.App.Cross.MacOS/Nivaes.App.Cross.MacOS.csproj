@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-macos</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">net6.0-macos</TargetFrameworks>
 
     <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.macOS</RootNamespace>
@@ -12,12 +12,9 @@
 
       This package contains the 'Core' libraries for Nivaes.App.Cross
     </Description>
+
     <PackageId>Nivaes.App.Cross.macOS</PackageId>
   </PropertyGroup>
-
-  <!--<ItemGroup>
-    <Reference Include="OpenTK" />
-  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
