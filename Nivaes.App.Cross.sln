@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Mobile.iOS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Mobile.Droid.Sample", "Samples\Nivaes.App.Cross.Mobile.Droid.Sample\Nivaes.App.Cross.Mobile.Droid.Sample.csproj", "{4F920460-8A07-4211-8CF3-4756C84B7813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Desktop.macOS.Sample", "Samples\Nivaes.App.Cross.Desktop.macOS.Sample\Nivaes.App.Cross.Desktop.macOS.Sample.csproj", "{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Desktop.macOS.Sample", "Samples\Nivaes.App.Cross.Desktop.macOS.Sample\Nivaes.App.Cross.Desktop.macOS.Sample.csproj", "{FCBEB7C1-09E7-4B2F-8B22-7957CA70AA82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nivaes.App.Cross.Desktop.Windows.Sample", "Samples\Nivaes.App.Cross.Desktop.Windows.Sample\Nivaes.App.Cross.Desktop.Windows.Sample.csproj", "{9A0FB189-B26A-429E-8409-9BCF0003B5FF}"
 EndProject
