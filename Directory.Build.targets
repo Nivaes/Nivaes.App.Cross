@@ -6,11 +6,10 @@
     <PackageReference Update="Autofac" Version="6.1.0" />
     <PackageReference Update="System.Net.Http.Json" Version="6.0.0-preview.3.21178.2" />
 
-
     <PackageReference Update="Nivaes.Async" Version="1.4.17" />
 
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.3.21178.2" />
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.3.21178.2" PrivateAssets="all" />
+    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.4.21174.8" />
+    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.4.21174.8" PrivateAssets="all" />
 
     <PackageReference Update="Xamarin.AndroidX.AppCompat" Version="1.2.0.7-net6preview02.4535000" />
     <PackageReference Update="Xamarin.AndroidX.Arch.Core.Runtime" Version="2.1.0.8-net6preview02.4535000" />
@@ -40,7 +39,7 @@
 
     <PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.0.7" />
     <PackageReference Update="Microsoft.CodeAnalysis" Version="3.9.0" />
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.10.0-preview-20210219-03" />
 
     <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="4.2.0" />   
@@ -48,6 +47,8 @@
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="Moq" Version="4.16.1" />
     <PackageReference Update="XunitXml.TestLogger" Version="3.0.66" />
+
+    <PackageReference Update="Microsoft.CodeAnalysis.CSharp" Version="3.10.0-1.final" PrivateAssets="all" />
 
   </ItemGroup>
 
