@@ -1,6 +1,6 @@
 {
   "sdk": {
-    "version": "6.0.100-preview.2.21155.3",
+    "version": "6.0.100-preview.3.21174.8",
     "rollForward": "latestMajor"
   },
   "additionalSdks": [
@@ -8,6 +8,6 @@
   ],
   "msbuild-sdks": {
     "MSBuild.Sdk.Extras": "3.0.23",
-    "Xamarin.Legacy.Sdk": "0.1.0-alpha1"
+    "Xamarin.Legacy.Sdk": "0.1.0-alpha2"
   }
 }
