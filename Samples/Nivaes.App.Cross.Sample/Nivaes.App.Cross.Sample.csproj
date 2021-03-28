@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net5.0;net6.0</TargetFrameworks>
 
     <RootNamespace>Nivaes.App.Cross.Sample</RootNamespace>
     <AssemblyName>Nivaes.App.Cross.Sample</AssemblyName>
