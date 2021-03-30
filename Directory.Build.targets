@@ -33,13 +33,19 @@
 
     <PackageReference Update="SidebarNavigation" Version="2.1.0" />
 
-    <PackageReference Update="Win2d.uwp" Version="1.25.0" />
+    <!--<PackageReference Update="Win2d.uwp" Version="1.25.0" />
     <PackageReference Update="Microsoft.WinUI" Version="3.0.0-preview4.210210.4" />
-    <PackageReference Update="Microsoft.Windows.CsWinRT" Version="1.1.4" />
+    <PackageReference Update="Microsoft.Windows.CsWinRT" Version="1.1.4" />-->
+
+    <PackageReference Update="Microsoft.ProjectReunion" Version="0.5.0" />
+    <PackageReference Update="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
+    <PackageReference Update="Microsoft.ProjectReunion.WinUI" Version="0.5.0" />
 
     <PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.0.7" />
     <PackageReference Update="Microsoft.CodeAnalysis" Version="3.9.0" />
     <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.10.0-preview-20210219-03" />
+
+    <PackageReference Update="Microsoft.Build.Tasks.Core" Version="16.9.0" />
 
     <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="4.2.0" />   

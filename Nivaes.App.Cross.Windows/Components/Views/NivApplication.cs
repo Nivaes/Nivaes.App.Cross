@@ -31,10 +31,10 @@ namespace Nivaes.App.Cross.Views
 
         protected NivApplication()
         {
-            base.EnteredBackground += OnEnteredBackground;
-            base.LeavingBackground += OnLeavingBackground;
-            base.Suspending += OnSuspending;
-            base.Resuming += OnResuming;
+            //base.EnteredBackground += OnEnteredBackground;
+            //base.LeavingBackground += OnLeavingBackground;
+            //base.Suspending += OnSuspending;
+            //base.Resuming += OnResuming;
 
             mSetup = new TMvxUapSetup();
         }
@@ -119,17 +119,17 @@ namespace Nivaes.App.Cross.Views
         //    base.OnWindowCreated(args);
         //}
 
-        protected override void OnActivated(IActivatedEventArgs args)
-        {
-            base.OnActivated(args);
-            ActivationArguments = args;
+        //protected override void OnActivated(IActivatedEventArgs args)
+        //{
+        //    base.OnActivated(args);
+        //    ActivationArguments = args;
 
-            var rootFrame = InitializeFrame(args);
+        //    var rootFrame = InitializeFrame(args);
 
-            _ = RunAppStart(args);
+        //    _ = RunAppStart(args);
 
-            Window.Current.Activate();
-        }
+        //    Window.Current.Activate();
+        //}
 
         protected virtual async Task RunAppStart(IActivatedEventArgs? activationArgs)
         {

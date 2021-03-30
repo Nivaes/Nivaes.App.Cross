@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross.Mobile.Windows.Sample
             //                typeof(Analytics), typeof(Crashes));
 
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            //this.Suspending += OnSuspending;
         }
 
         ///// <summary>

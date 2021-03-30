@@ -164,6 +164,7 @@ Global
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|arm64.Build.0 = Release|Any CPU
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|Develop.ActiveCfg = Release|Any CPU
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|Develop.Build.0 = Release|Any CPU
+		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|Develop.Deploy.0 = Release|Any CPU
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|x64.ActiveCfg = Release|Any CPU
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|x64.Build.0 = Release|Any CPU
 		{837CE45D-C7F2-4040-91D3-3E2EFAE577D6}.Release|x86.ActiveCfg = Release|Any CPU
@@ -183,6 +184,7 @@ Global
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|arm64.Build.0 = Release|Any CPU
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|Develop.ActiveCfg = Release|Any CPU
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|Develop.Build.0 = Release|Any CPU
+		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|Develop.Deploy.0 = Release|Any CPU
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|x64.ActiveCfg = Release|Any CPU
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|x64.Build.0 = Release|Any CPU
 		{CE579BE4-97E8-4540-9EBD-655E9E96DF57}.Release|x86.ActiveCfg = Release|Any CPU
@@ -293,8 +295,8 @@ Global
 		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
 		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Debug|x86.Build.0 = Debug|iPhoneSimulator
 		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|arm64.ActiveCfg = Release|iPhone
-		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|Develop.ActiveCfg = Release|iPhoneSimulator
-		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|Develop.Build.0 = Release|iPhoneSimulator
+		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|Develop.ActiveCfg = Release|Any CPU
+		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|Develop.Build.0 = Release|Any CPU
 		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|x64.ActiveCfg = Release|iPhone
 		{31951B1C-AE16-43F6-B6E6-DAC9B99EC8B2}.Release|x86.ActiveCfg = Release|iPhone
 		{4F920460-8A07-4211-8CF3-4756C84B7813}.Debug|arm64.ActiveCfg = Debug|Any CPU
@@ -510,16 +512,16 @@ Global
 		{926E0295-EA44-4C8C-88E1-FDE77AA1BCFC}.Release|x86.Deploy.0 = Release|x86
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|arm64.ActiveCfg = Debug|arm64
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|arm64.Build.0 = Debug|arm64
-		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|Develop.ActiveCfg = Debug|x64
-		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|Develop.Build.0 = Debug|x64
+		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|Develop.ActiveCfg = Debug|Any CPU
+		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|Develop.Build.0 = Debug|Any CPU
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|x64.ActiveCfg = Debug|x64
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|x64.Build.0 = Debug|x64
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|x86.ActiveCfg = Debug|x86
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Debug|x86.Build.0 = Debug|x86
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|arm64.ActiveCfg = Release|Any CPU
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|arm64.Build.0 = Release|Any CPU
-		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|Develop.ActiveCfg = Release|x64
-		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|Develop.Build.0 = Release|x64
+		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|Develop.ActiveCfg = Release|Any CPU
+		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|Develop.Build.0 = Release|Any CPU
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|x64.ActiveCfg = Release|Any CPU
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|x64.Build.0 = Release|Any CPU
 		{AB60FF86-B528-4DDD-8FB9-3B53A67C493B}.Release|x86.ActiveCfg = Release|Any CPU
@@ -560,6 +562,7 @@ Global
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|arm64.Build.0 = Debug|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|Develop.ActiveCfg = Debug|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|Develop.Build.0 = Debug|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Debug|Develop.Deploy.0 = Debug|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|x64.Build.0 = Debug|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -568,6 +571,7 @@ Global
 		{63879F8D-BD57-4828-864C-333042000214}.Release|arm64.Build.0 = Release|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Release|Develop.ActiveCfg = Release|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Release|Develop.Build.0 = Release|Any CPU
+		{63879F8D-BD57-4828-864C-333042000214}.Release|Develop.Deploy.0 = Release|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Release|x64.ActiveCfg = Release|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Release|x64.Build.0 = Release|Any CPU
 		{63879F8D-BD57-4828-864C-333042000214}.Release|x86.ActiveCfg = Release|Any CPU
