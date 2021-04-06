@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-ios</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
-    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64;iossimulator-x64</RuntimeIdentifier>
+    <!--<TargetFrameworks>net6.0-ios</TargetFrameworks>-->
+    <!--<TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>-->
+    <TargetFrameworks>net6.0-maccatalyst</TargetFrameworks>
+    <RuntimeIdentifier>maccatalyst-x64</RuntimeIdentifier>
+    <!--<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64;iossimulator-x64</RuntimeIdentifier>-->
     <!--<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>-->
 
     <AssemblyName>Nivaes.App.Cross.macOS</AssemblyName>
