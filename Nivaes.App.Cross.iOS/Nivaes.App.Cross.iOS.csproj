@@ -5,7 +5,7 @@
     <TargetFrameworks>net6.0-ios</TargetFrameworks>
     <!--<RuntimeIdentifier>ios-x64</RuntimeIdentifier>-->
     <!--<RuntimeIdentifiers>ios-x64;ios-arm64</RuntimeIdentifiers>-->
-     <RuntimeIdentifiers>ios-x64</RuntimeIdentifiers>
+     <RuntimeIdentifiers>iossimulator-x64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.iOS</RootNamespace>
