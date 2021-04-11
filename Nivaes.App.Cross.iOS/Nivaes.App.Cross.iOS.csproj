@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net6.0-ios</TargetFramework>
+    <TargetFrameworks>net6.0-ios</TargetFrameworks>
     <!--<RuntimeIdentifier>ios-x64</RuntimeIdentifier>-->
     <!--<RuntimeIdentifiers>ios-x64;ios-arm64</RuntimeIdentifiers>-->
-     <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
+     <RuntimeIdentifiers>iossimulator-x64</RuntimeIdentifiers>
 
     <AssemblyName>Nivaes.App.Cross.iOS</AssemblyName>
     <RootNamespace>Nivaes.App.Cross.iOS</RootNamespace>
