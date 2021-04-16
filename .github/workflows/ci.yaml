@@ -176,8 +176,8 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    - name: Build App.Cross.iOS
-      run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
+    #- name: Build App.Cross.iOS
+    #  run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
     #- name: Build App.Cross.macCatalyst
     #  run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
