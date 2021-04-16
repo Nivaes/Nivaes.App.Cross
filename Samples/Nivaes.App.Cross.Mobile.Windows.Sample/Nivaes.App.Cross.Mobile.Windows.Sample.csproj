@@ -5,7 +5,6 @@
     <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
     <!--<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>-->
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
-
     <CsWinRTWindowsMetadata>10.0.18362.0</CsWinRTWindowsMetadata>
 
     <!--<DefineConstants>USING_CSWINRT;DESKTOP</DefineConstants>-->
