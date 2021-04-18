@@ -22,9 +22,9 @@
     <PackageId>Nivaes.App.Cross.Windows</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Microsoft.Build.Tasks.Core" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ProjectReunion" />
