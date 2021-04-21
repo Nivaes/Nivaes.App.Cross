@@ -33,10 +33,6 @@
 
     <PackageReference Update="SidebarNavigation" Version="2.1.0" />
 
-    <!--<PackageReference Update="Win2d.uwp" Version="1.25.0" />
-    <PackageReference Update="Microsoft.WinUI" Version="3.0.0-preview4.210210.4" />
-    <PackageReference Update="Microsoft.Windows.CsWinRT" Version="1.1.4" />-->
-
     <PackageReference Update="Microsoft.ProjectReunion" Version="0.5.0" />
     <PackageReference Update="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
     <PackageReference Update="Microsoft.ProjectReunion.WinUI" Version="0.5.0" />
