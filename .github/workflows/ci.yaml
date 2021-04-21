@@ -217,13 +217,19 @@ jobs:
     #  env:
     #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+    #- name: Setup .NET Core 6.0.x
+    #  uses: actions/setup-dotnet@v1
+    #  with:
+    #    dotnet-version: 6.0.100-preview.3.21202.5
+    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
+    #  env:
+    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
     - name: Setup .NET Core 6.0.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.100-preview.3.21202.5
-        source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      run: |
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+        .\dotnet-install.ps1 -Version 6.0.100-preview.3.21202.5 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+        dotnet --list-sdks
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
