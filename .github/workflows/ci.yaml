@@ -43,7 +43,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.3.21202.5
+        dotnet-version: 6.0.100-preview.4.21215.1
 
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
@@ -81,12 +81,12 @@ jobs:
     #- name: Setup .NET Core 6.0.x
     #  uses: actions/setup-dotnet@v1
     #  with:
-    #    dotnet-version: 6.0.100-preview.3.21202.5
+    #    dotnet-version: 6.0.100-preview.4.21215.1
 
     - name: Setup .NET Core 6.0.x
       run: |
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
-        .\dotnet-install.ps1 -Version 6.0.100-preview.3.21202.5 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+        .\dotnet-install.ps1 -Version 6.0.100-preview.4.21215.1 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
         dotnet --list-sdks
 
     - name: Install Android Workloads
@@ -131,13 +131,13 @@ jobs:
     #- name: Setup .NET Core 6.0.x
     #  uses: actions/setup-dotnet@v1
     #  with:
-    #    dotnet-version: 6.0.100-preview.3.21202.5
+    #    dotnet-version: 6.0.100-preview.4.21215.1
 
     - name: Install .NET Core 6.0.x
       run: |
         export PATH="/usr/local/share/dotnet/:~/.dotnet/tools:$PATH" 
         curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh 
-        sh dotnet-install.sh --version 6.0.100-preview.3.21202.5 --install-dir $DOTNET_ROOT --verbose 
+        sh dotnet-install.sh --version 6.0.100-preview.4.21215.1 --install-dir $DOTNET_ROOT --verbose 
         dotnet --list-sdks
         echo "##vso[task.setvariable variable=PATH]$PATH"
 
@@ -214,7 +214,7 @@ jobs:
     #- name: Setup .NET Core 6.0.x
     #  uses: actions/setup-dotnet@v1
     #  with:
-    #    dotnet-version: 6.0.100-preview.3.21202.5
+    #    dotnet-version: 6.0.100-preview.4.21215.1
     #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
     #  env:
     #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -222,7 +222,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       run: |
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
-        .\dotnet-install.ps1 -Version 6.0.100-preview.3.21202.5 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+        .\dotnet-install.ps1 -Version 6.0.100-preview.4.21215.1 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
         dotnet --list-sdks
 
     - name: Setup MSBuild
