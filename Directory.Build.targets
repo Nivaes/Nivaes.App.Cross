@@ -33,7 +33,7 @@
 
     <PackageReference Update="SidebarNavigation" Version="2.1.0" />
 
-    <PackageReference Update="Microsoft.ProjectReunion" Version="0.5.0" />
+    <PackageReference Update="Microsoft.ProjectReunion" Version="0.5.7" />
     <PackageReference Update="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
     <PackageReference Update="Microsoft.ProjectReunion.WinUI" Version="0.5.0" />
 
