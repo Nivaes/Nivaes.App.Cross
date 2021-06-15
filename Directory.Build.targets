@@ -4,7 +4,7 @@
     <PackageReference Update="FluentAssertions" Version="5.10.3" />
     <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Update="Autofac" Version="6.2.0" />
-    <PackageReference Update="System.Net.Http.Json" Version="6.0.0-preview.6.21310.7" />
+    <PackageReference Update="System.Net.Http.Json" Version="6.0.0-preview.6.21314.3" />
 
     <PackageReference Update="Nivaes.Async" Version="1.4.17" />
 
