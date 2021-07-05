@@ -41,9 +41,9 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Setup .NET Core 6.0.x
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v1 
       with:
-        dotnet-version: 6.0.100-preview.621354.2
+        dotnet-version: 6.0.100-preview.6.21354.2
 
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
