@@ -101,6 +101,7 @@ jobs:
       run: |
         dotnet tool update --global redth.net.maui.check --version 0.6.0-pre01 --add-source https://api.nuget.org/v3/index.json
         #maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        dotnet workload install microsoft-ios-sdk-full
 
 
     - name: Build App.Cross
@@ -159,7 +160,8 @@ jobs:
       shell: pwsh
       run: |
         dotnet tool update --global redth.net.maui.check --version 0.6.0-pre01 --add-source https://api.nuget.org/v3/index.json
-        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        #maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        dotnet workload install microsoft-android-sdk-full
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
@@ -183,15 +185,15 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    #- name: Restore iOS
-    #  run: dotnet restore ./Nivaes.App.Cross.iOS/
+    - name: Restore iOS
+      run: dotnet restore ./Nivaes.App.Cross.iOS/
 
     #- name: Build App.Cross.iOS
     #  run: msbuild ./Nivaes.App.Cross.iOS/ /t:build
     #  #run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
-    #- name: Restore macCatalyst
-    #  run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
+    - name: Restore macCatalyst
+      run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
 
     #- name: Build App.Cross.macCatalyst
     #  run: msbuild ./Nivaes.App.Cross.macCatalyst/ /t:build
@@ -269,7 +271,7 @@ jobs:
 
     - name: Build Windows
       run: msbuild ./Nivaes.App.Cross.Windows/ /t:build
-    #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
+           #  run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
 
     - name: Build Wpf
       run: dotnet build ./Nivaes.App.Cross.Windows.Wpf/ --configuration Release
