@@ -208,8 +208,8 @@ jobs:
     #  run: msbuild ./Nivaes.App.Cross.macCatalyst/ /t:build
     #  #run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
 
-    #- name: Restore macOS
-    #  run: dotnet restore ./Nivaes.App.Cross.macOS/
+    - name: Restore macOS
+      run: dotnet restore ./Nivaes.App.Cross.macOS/
 
     #- name: Build App.Cross.macOS
     #  run: msbuild ./Nivaes.App.Cross.macOS/ /t:build
