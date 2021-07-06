@@ -105,7 +105,7 @@ jobs:
     - name: Install Sdk
       shell: pwsh
       run: |
-        dotnet workload install microsoft-ios-sdk-full
+        dotnet workload install microsoft-android-sdk-full
 
 
     - name: Build App.Cross
@@ -170,6 +170,7 @@ jobs:
       shell: pwsh
       run: |
         dotnet workload install microsoft-ios-sdk-full
+        dotnet workload install microsoft-maccatalyst-sdk-full 
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
