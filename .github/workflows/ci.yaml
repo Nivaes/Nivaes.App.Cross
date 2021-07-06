@@ -219,8 +219,8 @@ jobs:
     #  run: msbuild ./Nivaes.App.Cross.macOS/ /t:build
     ##  run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
 
-    - name: Restore watchOS
-      run: dotnet restore ./Nivaes.App.Cross.watchOS/
+    #- name: Restore watchOS
+    #  run: dotnet restore ./Nivaes.App.Cross.watchOS/
 
     #- name: Build App.Cross.watchOS
     #  run: msbuild ./Nivaes.App.Cross.watchOS/ /t:build
