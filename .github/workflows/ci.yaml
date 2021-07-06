@@ -172,6 +172,9 @@ jobs:
         dotnet workload install microsoft-ios-sdk-full
         dotnet workload install microsoft-maccatalyst-sdk-full
         dotnet workload install microsoft-macos-sdk-full
+        dotnet workload install microsoft-macos-sdk-full
+        dotnet workload install microsoft-watchos-sdk-full
+        dotnet workload install microsoft-tvos-sdk-full
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
@@ -216,15 +219,15 @@ jobs:
     #  run: msbuild ./Nivaes.App.Cross.macOS/ /t:build
     ##  run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
 
-    #- name: Restore watchOS
-    #  run: dotnet restore ./Nivaes.App.Cross.watchOS/
+    - name: Restore watchOS
+      run: dotnet restore ./Nivaes.App.Cross.watchOS/
 
     #- name: Build App.Cross.watchOS
     #  run: msbuild ./Nivaes.App.Cross.watchOS/ /t:build
     #  #run: dotnet build ./Nivaes.App.Cross.watchOS/ --configuration Release
 
-    #- name: Restore tvOS
-    #  run: dotnet restore ./Nivaes.App.Cross.tvOS/
+    - name: Restore tvOS
+      run: dotnet restore ./Nivaes.App.Cross.tvOS/
 
     #- name: Build App.Cross.tvOS
     #  run: msbuild ./Nivaes.App.Cross.tvOS/ /t:build
