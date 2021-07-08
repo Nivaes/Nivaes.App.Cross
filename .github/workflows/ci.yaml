@@ -105,7 +105,7 @@ jobs:
     - name: Install Sdk
       shell: pwsh
       run: |
-        dotnet workload install microsoft-android-sdk-full
+        dotnet workload install microsoft-android-sdk-full maui-core microsoft-net-runtime-mono-tooling
 
 
     - name: Build App.Cross
