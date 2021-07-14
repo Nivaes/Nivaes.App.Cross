@@ -29,7 +29,7 @@
     <PackageReference Update="Xamarin.GooglePlayServices.Auth" Version="119.0.0" />
     <PackageReference Update="Xamarin.GooglePlayServices.Location" Version="118.0.0" />
 
-    <PackageReference Update="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Update="Xamarin.Essentials" Version="1.7.0" />
 
     <PackageReference Update="SidebarNavigation" Version="2.1.0" />
 
