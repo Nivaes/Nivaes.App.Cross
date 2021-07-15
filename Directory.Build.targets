@@ -8,8 +8,8 @@
 
     <PackageReference Update="Nivaes.Async" Version="1.4.17" />
 
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.6.21305.2" />
-    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.6.21305.2" PrivateAssets="all" />
+    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.7.21364.6" />
+    <PackageReference Update="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.7.21365.6" PrivateAssets="all" />
 
     <PackageReference Update="Xamarin.AndroidX.AppCompat" Version="1.2.0.7-net6preview03.4680155" />
     <PackageReference Update="Xamarin.AndroidX.Arch.Core.Runtime" Version="2.1.0.8-net6preview03.4680155" />
@@ -29,7 +29,7 @@
     <PackageReference Update="Xamarin.GooglePlayServices.Auth" Version="119.0.0" />
     <PackageReference Update="Xamarin.GooglePlayServices.Location" Version="118.0.0" />
 
-    <PackageReference Update="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Update="Xamarin.Essentials" Version="1.7.0" />
 
     <PackageReference Update="SidebarNavigation" Version="2.1.0" />
 
