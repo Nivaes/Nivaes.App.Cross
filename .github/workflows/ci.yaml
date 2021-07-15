@@ -83,6 +83,11 @@ jobs:
       with:
         dotnet-version: 6.0.100-preview.6.21355.2
 
+    - name: Install Maui
+      shell: pwsh
+      run: |
+        dotnet workload install maui
+
     #- name: Setup .NET Core 6.0.x
     #  run: |
     #    Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
@@ -102,10 +107,10 @@ jobs:
     #    dotnet tool update --global redth.net.maui.check --version 0.6.0-pre01 --add-source https://api.nuget.org/v3/index.json
         #maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
 
-    - name: Install Sdk
-      shell: pwsh
-      run: |
-        dotnet workload install microsoft-android-sdk-full maui-core microsoft-net-runtime-mono-tooling
+    #- name: Install Sdk
+    #  shell: pwsh
+    #  run: |
+    #    dotnet workload install microsoft-android-sdk-full maui-core microsoft-net-runtime-mono-tooling
 
 
     - name: Build App.Cross
@@ -163,18 +168,23 @@ jobs:
     - name: Install Maui
       shell: pwsh
       run: |
-        dotnet tool update --global redth.net.maui.check --version 0.6.0-pre01 --add-source https://api.nuget.org/v3/index.json
-        #maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        dotnet workload install maui
 
-    - name: Install SDK
-      shell: pwsh
-      run: |
-        dotnet workload install microsoft-ios-sdk-full
-        dotnet workload install microsoft-maccatalyst-sdk-full
-        dotnet workload install microsoft-macos-sdk-full
-        dotnet workload install microsoft-macos-sdk-full
-        dotnet workload install microsoft-watchos-sdk-full
-        dotnet workload install microsoft-tvos-sdk-full
+    #- name: Install Maui
+    #  shell: pwsh
+    #  run: |
+    #    dotnet tool update --global redth.net.maui.check --version 0.6.0-pre01 --add-source https://api.nuget.org/v3/index.json
+    #    #maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+
+    #- name: Install SDK
+    #  shell: pwsh
+    #  run: |
+    #    dotnet workload install microsoft-ios-sdk-full
+    #    dotnet workload install microsoft-maccatalyst-sdk-full
+    #    dotnet workload install microsoft-macos-sdk-full
+    #    dotnet workload install microsoft-macos-sdk-full
+    #    dotnet workload install microsoft-watchos-sdk-full
+    #    dotnet workload install microsoft-tvos-sdk-full
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
