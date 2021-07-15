@@ -129,6 +129,7 @@ jobs:
       shell: pwsh
       run: |
         dotnet workload install maui
+        dotnet workload install microsoft-macos-sdk-full
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
