@@ -53,8 +53,8 @@ jobs:
 
   build-Android:
     needs: build
-    #runs-on: windows-2019
-    runs-on: ubuntu-20.04
+    runs-on: windows-2019
+    #runs-on: ubuntu-20.04
 
     steps:
     - name: Dump GitHub context
@@ -133,7 +133,7 @@ jobs:
         dotnet workload install microsoft-ios-sdk-full
         dotnet workload install microsoft-maccatalyst-sdk-full
         dotnet workload install microsoft-macos-sdk-full
-        dotnet workload install microsoft-android-sdk-full
+        dotnet workload install microsoft-tvos-sdk-full
 
     - name: Install Xcode 12.4
       run: sudo xcode-select -s /Applications/Xcode_12.4.app
