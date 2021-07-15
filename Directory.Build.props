@@ -23,7 +23,7 @@
     <BaseIntermediateOutputPath>$(RepoRoot)Artifacts\$(Configuration)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 
     <LangVersion>9.0</LangVersion>
-    <!--<LangVersion>preview</LangVersion>-->
+    <LangVersion>preview</LangVersion>
     <!--<LangVersion>latest</LangVersion>-->
     <Nullable>enable</Nullable>
     <!--<NoWarn>$(NoWarn);1591;1701;1702;1705;VSX1000</NoWarn>-->
