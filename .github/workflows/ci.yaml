@@ -137,7 +137,7 @@ jobs:
         dotnet workload install microsoft-tvos-sdk-full
 
     - name: Install Xcode 12.4
-      run: sudo xcode-select -s /Applications/Xcode_12.4.app
+      run: sudo xcode-select -s /Applications/Xcode_12.5.app
 
     - name: configure vsmac xcode
       run: |
