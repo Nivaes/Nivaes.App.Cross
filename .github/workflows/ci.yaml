@@ -158,23 +158,23 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    #- name: Restore iOS
-    #  run: dotnet restore ./Nivaes.App.Cross.iOS/
+    - name: Restore iOS
+      run: dotnet restore ./Nivaes.App.Cross.iOS/
 
-    - name: Build App.Cross.iOS
-      run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
+    #- name: Build App.Cross.iOS
+    #  run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
-    #- name: Restore macCatalyst
-    #  run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
+    - name: Restore macCatalyst
+      run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
 
-    - name: Build App.Cross.macCatalyst  
-      run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
+    #- name: Build App.Cross.macCatalyst  
+    #  run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
 
-    #- name: Restore macOS
-    #  run: dotnet restore ./Nivaes.App.Cross.macOS/
+    - name: Restore macOS
+      run: dotnet restore ./Nivaes.App.Cross.macOS/
 
-    - name: Build App.Cross.macOS
-      run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
+    #- name: Build App.Cross.macOS
+    #  run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
 
     #- name: Restore watchOS
     #  run: dotnet restore ./Nivaes.App.Cross.watchOS/
