@@ -13,6 +13,9 @@ on:
     - '**/*.md'
     - 'Samples/**'
 
+env:
+    net_core_version: 6.0.100-preview.7.21365.2
+
 jobs:
   build:
 
@@ -43,7 +46,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1 
       with:
-        dotnet-version: 6.0.100-preview.7.21365.2
+        dotnet-version: ${{ env.net_core_version }}
 
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
@@ -81,7 +84,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.7.21365.2
+        dotnet-version: ${{ env.net_core_version }}
 
     - name: Install workload
       shell: pwsh
@@ -124,7 +127,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.7.21365.2
+        dotnet-version: ${{ env.net_core_version }}
 
     - name: Install workload
       shell: pwsh
@@ -136,8 +139,8 @@ jobs:
         dotnet workload install microsoft-macos-sdk-full
         dotnet workload install microsoft-tvos-sdk-full
 
-    - name: Install Xcode 12.5
-      run: sudo xcode-select -s /Applications/Xcode_12.5.app
+    - name: Install Xcode 12.4
+      run: sudo xcode-select -s /Applications/Xcode_12.4.app
 
     - name: configure vsmac xcode
       run: |
@@ -219,7 +222,7 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.100-preview.7.21365.2 
+        dotnet-version: ${{ env.net_core_version }} 
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
