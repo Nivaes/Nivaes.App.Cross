@@ -163,20 +163,20 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    - name: Restore iOS
-      run: dotnet restore ./Nivaes.App.Cross.iOS/
+    #- name: Restore iOS
+    #  run: dotnet restore ./Nivaes.App.Cross.iOS/
 
     - name: Build App.Cross.iOS
       run: dotnet build ./Nivaes.App.Cross.iOS/ --configuration Release
 
-    - name: Restore macCatalyst
-      run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
+    #- name: Restore macCatalyst
+    #  run: dotnet restore ./Nivaes.App.Cross.macCatalyst/
 
     #- name: Build App.Cross.macCatalyst  
     #  run: dotnet build ./Nivaes.App.Cross.macCatalyst/ --configuration Release
 
-    - name: Restore macOS
-      run: dotnet restore ./Nivaes.App.Cross.macOS/
+    #- name: Restore macOS
+    #  run: dotnet restore ./Nivaes.App.Cross.macOS/
 
     - name: Build App.Cross.macOS
       run: dotnet build ./Nivaes.App.Cross.macOS/ --configuration Release
@@ -224,10 +224,18 @@ jobs:
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.net_core_version }} 
+        dotnet-version: 6.0.0-preview.6.21352.12 
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    #- name: Setup .NET Core 6.0.x
+    #  uses: actions/setup-dotnet@v1
+    #  with:
+    #    dotnet-version: ${{ env.net_core_version }} 
+    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
+    #  env:
+    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     #- name: Setup .NET Core 6.0.x
     #  run: |
@@ -241,8 +249,8 @@ jobs:
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --framework netstandard2.1 --configuration Release
 
-    - name: Restore Windows
-      run: dotnet restore ./Nivaes.App.Cross.Windows/
+    #- name: Restore Windows
+    #  run: dotnet restore ./Nivaes.App.Cross.Windows/
 
     - name: Build Windows
       run: dotnet build ./Nivaes.App.Cross.Windows/ --configuration Release
