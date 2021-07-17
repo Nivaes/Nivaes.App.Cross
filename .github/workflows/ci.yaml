@@ -30,19 +30,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    #- name: Setup .NET Core 3.1.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 3.1.x
-
-    #- name: Setup .NET Core 5.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 5.0.x
-    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
-    #  env:
-    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1 
       with:
@@ -54,8 +41,8 @@ jobs:
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    #- name: Test
-    #  run: dotnet test --configuration Release --no-build --verbosity normal
+    - name: Test
+      run: dotnet test --configuration Release --no-build --verbosity normal
 
   build-Android:
     needs: build
@@ -70,19 +57,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-
-    #- name: Setup .NET Core 3.1.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 3.1.x
-
-    #- name: Setup .NET Core 5.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 5.0.x
-    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
-    #  env:
-    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
@@ -113,19 +87,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-
-    #- name: Setup .NET Core 3.1.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 3.1.x
-
-    #- name: Setup .NET Core 5.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 5.0.x
-    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
-    #  env:
-    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
@@ -158,14 +119,6 @@ jobs:
         /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist || true
         cat ~/Library/Preferences/Xamarin/Settings.plist || true
    
-    #- name: setup-xamarin
-    #  uses: maxim-lobanov/setup-xamarin@v1
-    #  with:
-    #    mono-version: latest
-    #    xamarin-ios-version: latest
-    #    xamarin-mac-version: latest 
-    #    xcode-version: 12.x 
-
     - name: Build App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
@@ -214,19 +167,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    #- name: Setup .NET Core 3.1.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 3.1.x
-
-    #- name: Setup .NET Core 5.0.x
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: 5.0.x
-    #    source-url: https://nuget.pkg.github.com/Nivaes/index.json
-    #  env:
-    #    NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
     - name: Setup .NET Core 6.0.x
       uses: actions/setup-dotnet@v1
       with:
@@ -234,12 +174,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    #- name: Setup .NET Core 6.0.x
-    #  run: |
-    #    Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
-    #    .\dotnet-install.ps1 -Version 6.0.100-preview.6.21354.2 -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
-    #    dotnet --list-sdks
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
