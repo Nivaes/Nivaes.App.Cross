@@ -41,8 +41,8 @@ jobs:
     - name: Build.App.Cross
       run: dotnet build ./Nivaes.App.Cross/ --configuration Release
 
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+    #- name: Test
+    #  run: dotnet test --configuration Release --no-build --verbosity normal
 
   build-Android:
     needs: build
@@ -106,8 +106,6 @@ jobs:
         dotnet workload install microsoft-macos-sdk-full
         dotnet workload install microsoft-tvos-sdk-full
 
-    #- name: Install Xcode 12.4
-    #  run: sudo xcode-select -s /Applications/Xcode_12.4.app
     - name: Install Xcode
       uses: devbotsxyz/xcode-select@v1
 
