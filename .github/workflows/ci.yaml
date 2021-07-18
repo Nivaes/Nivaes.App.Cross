@@ -101,10 +101,10 @@ jobs:
       run: |
         dotnet workload install maui-ios
         dotnet workload install maui-maccatalyst
-        dotnet workload install microsoft-ios-sdk-full
-        dotnet workload install microsoft-maccatalyst-sdk-full
-        dotnet workload install microsoft-macos-sdk-full
-        dotnet workload install microsoft-tvos-sdk-full
+        #dotnet workload install microsoft-ios-sdk-full
+        #dotnet workload install microsoft-maccatalyst-sdk-full
+        #dotnet workload install microsoft-macos-sdk-full
+        #dotnet workload install microsoft-tvos-sdk-full
 
     - name: Install Xcode
       uses: devbotsxyz/xcode-select@v1
