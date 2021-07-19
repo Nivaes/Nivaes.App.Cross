@@ -1,6 +1,6 @@
 {
   "sdk": {
-    "version": "6.0.0-rc.1.21368.4",
+    "version": "6.0.0-preview.7.21369.8",
     "rollForward": "latestMajor"
   },
   "additionalSdks": [
