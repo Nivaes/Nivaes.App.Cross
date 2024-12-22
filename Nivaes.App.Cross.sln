@@ -7,8 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{84AB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEA377E9-B6E9-48E8-A56F-E42DC80EE1EC}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -17,6 +22,20 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B4017FA5-55DA-4F11-BF0F-8CEED21A8187}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross", "sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj", "{341DF103-20E3-4770-88FB-E7356E38EE64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI", "sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj", "{0E27DA1F-4687-4764-9B47-C9C9774EB561}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{62445E9E-8580-4B40-A98E-3FE021EC089D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build_release.yaml = .github\workflows\build_release.yaml
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
+		.github\workflows\publish_release.yaml = .github\workflows\publish_release.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,11 +47,18 @@ Global
 		{341DF103-20E3-4770-88FB-E7356E38EE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{341DF103-20E3-4770-88FB-E7356E38EE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{341DF103-20E3-4770-88FB-E7356E38EE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E27DA1F-4687-4764-9B47-C9C9774EB561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E27DA1F-4687-4764-9B47-C9C9774EB561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E27DA1F-4687-4764-9B47-C9C9774EB561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E27DA1F-4687-4764-9B47-C9C9774EB561}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{341DF103-20E3-4770-88FB-E7356E38EE64} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{0E27DA1F-4687-4764-9B47-C9C9774EB561} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E} = {BEA377E9-B6E9-48E8-A56F-E42DC80EE1EC}
+		{62445E9E-8580-4B40-A98E-3FE021EC089D} = {9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E}
 	EndGlobalSection
 EndGlobal
