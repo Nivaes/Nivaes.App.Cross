@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.iOS.Sample
             {
                 BackgroundColor = UIColor.SystemBackground,
                 TextAlignment = UITextAlignment.Center,
-                Text = "Hello, iOS!",
+                Text = "Hello, cross iOS!",
                 AutoresizingMask = UIViewAutoresizing.All,
             });
             Window.RootViewController = vc;

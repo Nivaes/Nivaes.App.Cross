@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.MacCatalyst.Sample
             {
                 BackgroundColor = UIColor.SystemBackground,
                 TextAlignment = UITextAlignment.Center,
-                Text = "Hello, Mac Catalyst!",
+                Text = "Hello, Cross Mac Catalyst!",
                 AutoresizingMask = UIViewAutoresizing.All,
             });
             Window.RootViewController = vc;

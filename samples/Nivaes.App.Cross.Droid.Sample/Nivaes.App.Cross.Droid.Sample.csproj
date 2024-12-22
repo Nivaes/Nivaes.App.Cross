@@ -19,7 +19,4 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\Views\" />
-	</ItemGroup>
 </Project>
