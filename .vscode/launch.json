@@ -1,6 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
+      {
+        "name": ".NET MAUI",
+        "type": "maui",
+        "request": "launch",
+        "preLaunchTask": "maui: Build"
+      },
         // {
         //     "name": "ios",
         //     "type": "maui",
@@ -8,22 +14,22 @@
         //     "preLaunchTask": "maui: Build",
         //     "project": "Nivaes.App.Cross.iOS",
         // },
-        {
-            "name": "WinUI",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": 
-              "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/bin/x64/Debug/net9.0-windows10.0.19041.0/win10-x64/Nivaes.App.Cross.WinUI.exe",
-            "args": [],
-            "cwd": "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI",
-            "console": "internalConsole",
-            "stopAtEntry": false
-          },
-          {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
-          }
+        // {
+        //     "name": "WinUI",
+        //     "type": "coreclr",
+        //     "request": "launch",
+        //     "preLaunchTask": "build",
+        //     "program": 
+        //       "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/bin/x64/Debug/net9.0-windows10.0.19041.0/win10-x64/Nivaes.App.Cross.WinUI.exe",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI",
+        //     "console": "internalConsole",
+        //     "stopAtEntry": false
+        //   },
+        //   {
+        //     "name": ".NET Core Attach",
+        //     "type": "coreclr",
+        //     "request": "attach"
+        //   }
     ]
 }
