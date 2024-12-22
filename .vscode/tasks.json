@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": ["build", 
+                "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": ["publish",
+                "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": ["watch","run","--project",                
+                "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

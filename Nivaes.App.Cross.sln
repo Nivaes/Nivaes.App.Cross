@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{84ABC328-F5B5-4D79-BFE0-B3B9298662FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEA377E9-B6E9-48E8-A56F-E42DC80EE1EC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{4606C59B-F165-4FCD-A3E0-11D7F5A2A920}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B4017FA5-55DA-4F11-BF0F-8CEED21A8187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross", "sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj", "{341DF103-20E3-4770-88FB-E7356E38EE64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{341DF103-20E3-4770-88FB-E7356E38EE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{341DF103-20E3-4770-88FB-E7356E38EE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{341DF103-20E3-4770-88FB-E7356E38EE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{341DF103-20E3-4770-88FB-E7356E38EE64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{341DF103-20E3-4770-88FB-E7356E38EE64} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+	EndGlobalSection
+EndGlobal
