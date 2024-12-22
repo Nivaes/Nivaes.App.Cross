@@ -14,6 +14,6 @@
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
+    <Folder Include="Components\Views\" />
   </ItemGroup>
 </Project>
