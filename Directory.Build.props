@@ -1,7 +1,7 @@
 ﻿<Project>
 	<PropertyGroup>
 		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
-		<PackageLicenseUrl>http://opensource.org/licenses/ms-pl</PackageLicenseUrl>
+		<!--<PackageLicenseUrl>http://opensource.org/licenses/ms-pl</PackageLicenseUrl>-->
 		<PackageProjectUrl>https://github.com/Nivaes</PackageProjectUrl>
 		<PackageIconUrl>https://i.imgur.com/D3CfFea.png</PackageIconUrl>
 		<Authors>Nivaes Systems</Authors>
@@ -46,7 +46,7 @@
 
 		<NeutralLanguage>en</NeutralLanguage>
 		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>-dev</VersionSuffix>
+		<VersionSuffix>-dev-0.1</VersionSuffix>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -73,12 +73,11 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 
-		<!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
 		<GeneratePackageOnBuild Condition=" '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
 
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Release' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+	<!--<PropertyGroup Condition=" '$(Configuration)' == 'Release' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -92,7 +91,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild Condition=" '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
 
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<!--<ItemGroup Condition=" '$(Configuration)' == 'Debug' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' ">
     <PackageReference Include="xunit"/>
