@@ -17,6 +17,9 @@
     <Folder Include="Components\Views\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="nivaes.app.shared" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Update="Roslynator.Analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
