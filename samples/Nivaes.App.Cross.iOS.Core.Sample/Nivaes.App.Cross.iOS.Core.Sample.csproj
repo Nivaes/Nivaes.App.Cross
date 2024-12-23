@@ -17,4 +17,16 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Update="Roslynator.Analyzers">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Update="SonarAnalyzer.CSharp">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
 </Project>

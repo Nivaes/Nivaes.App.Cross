@@ -5,8 +5,8 @@
     <PackageVersion Include="AsyncFixer" Version="1.6.0" />
     <PackageVersion Include="Nivaes.App.Shared" Version="0.6.71" />
     <PackageVersion Include="Nivaes.IoC" Version="0.1.2" />
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.9" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.12.10" />
     <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.3.0.106239" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.4.0.108396" />
   </ItemGroup>
 </Project>
