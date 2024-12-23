@@ -53,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A6E7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample", "samples\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj", "{AD688D20-54D7-4078-9095-DE8B3AD7CA7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.Core.Sample", "samples\Nivaes.App.Cross.WinUI.Sample\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.Core.Sample", "samples\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -37,6 +37,7 @@
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
   </ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj" />
   </ItemGroup>

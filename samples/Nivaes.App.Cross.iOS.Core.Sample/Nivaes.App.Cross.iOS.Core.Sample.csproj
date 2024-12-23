@@ -15,6 +15,6 @@
 	  <Folder Include="Components\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj" />
+	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj" />
 	</ItemGroup>
 </Project>
