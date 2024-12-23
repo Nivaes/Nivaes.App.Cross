@@ -14,6 +14,10 @@
 	<ItemGroup>
 	  <Folder Include="Components\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="nivaes.app.shared" />
+	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj" />
 	</ItemGroup>

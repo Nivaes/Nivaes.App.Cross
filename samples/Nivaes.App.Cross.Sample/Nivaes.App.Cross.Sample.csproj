@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="nivaes.app.shared" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
   </ItemGroup>
 
