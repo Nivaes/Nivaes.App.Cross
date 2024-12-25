@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cross:CrossApplication
+<cross:WinUIApplication
     x:Class="Nivaes.App.Cross.WinUI.Sample.App"
     xmlns:cross="using:Nivaes.App.Cross.WinUI"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -14,4 +14,4 @@
             <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>
-</cross:CrossApplication>
+</cross:WinUIApplication>

@@ -1,32 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Nivaes.App.Shared" />
-    <PackageReference Include="Nivaes.IoC" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Nivaes.IoC" />
 
-  <ItemGroup>
-    <Folder Include="Components\Shared\" />
-  </ItemGroup>
+		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj" >
+			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+		</ProjectReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Components\Shared\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

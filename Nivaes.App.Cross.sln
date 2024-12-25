@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.Core.Sample", "samples\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.SourceGenerator", "sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj", "{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,5 +131,6 @@ Global
 		{B2DCBD13-1972-4F14-973B-95EACBCDBE66} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
 		{AD688D20-54D7-4078-9095-DE8B3AD7CA7F} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
 		{DA8134C5-1965-4C87-BA2C-3C46ED4EA987} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
+		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 	EndGlobalSection
 EndGlobal

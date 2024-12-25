@@ -8,9 +8,9 @@
     using Nivaes.App.Cross.Components.Navigation;
     using Nivaes.IoC;
 
-    public partial class CrossIoCContainer : IoCContainer, ICrossIoCContainer
+    public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCServiceContainer
     {
-        protected override void Bootstrap(IIoCContainerBootstrapper bootstrapper)
+        protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
             bootstrapper.AddSingleton<IApplication, CrossApplication>();
             bootstrapper.AddSingleton<INavigationService, NavigationService>();

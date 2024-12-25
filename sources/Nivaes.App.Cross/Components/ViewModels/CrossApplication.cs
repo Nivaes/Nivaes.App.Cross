@@ -49,15 +49,15 @@
         //    return Task.CompletedTask;
         //}
 
-        /// <summary>
-        /// If the application is restarted (eg primary activity on Android 
-        /// can be restarted) this method will be called before Startup
-        /// is called again
-        /// </summary>
-        public virtual void Reset()
-        {
-            // do nothing
-        }
+        ///// <summary>
+        ///// If the application is restarted (eg primary activity on Android 
+        ///// can be restarted) this method will be called before Startup
+        ///// is called again
+        ///// </summary>
+        //public virtual void Reset()
+        //{
+        //    // do nothing
+        //}
 
         //public IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request)
         //{

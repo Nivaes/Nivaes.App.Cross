@@ -11,12 +11,12 @@
     using Microsoft.UI.Xaml.Navigation;
     using Nivaes.IoC;
 
-    public abstract class CrossApplication : Application
+    public abstract class WinUIApplication : Application
     {
         protected Frame RootFrame { get; set; }
         public Window MainWindow { get; protected set; }
 
-        protected CrossApplication()
+        protected WinUIApplication()
         {
             //RegisterSetupType<TMvxWinUiSetup>();
         }
@@ -40,7 +40,7 @@
 
             if (RootFrame.Content == null)
             {
-                var startup = Nivaes.Singleton<CrossIoCContainer>.Instance.Resolve<CrossAppStart>();
+                var startup = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<IApplication>();
 
                 if (startup != null)
                 {
@@ -49,15 +49,10 @@
             }
         }
 
-        protected virtual object? GetAppStartHint(object? hint = null)
-        {
-            return hint;
-        }
-
-        protected virtual Window CreateWindow()
-        {
-            return new Window();
-        }
+        //protected virtual object? GetAppStartHint(object? hint = null)
+        //{
+        //    return hint;
+        //}
 
         protected virtual Frame InitializeFrame(string arguments)
         {
@@ -79,6 +74,11 @@
             RootFrame = rootFrame;
 
             return rootFrame;
+        }
+
+        protected virtual Window CreateWindow()
+        {
+            return new Window();
         }
 
         protected virtual Frame CreateFrame()
