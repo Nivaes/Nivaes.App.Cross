@@ -6,12 +6,8 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class ViewModel : IViewModel
+    public class ViewModel
+        : IViewModel
     {
-        public Task Navigate<TViewModel>(CancellationToken cancellationToken = default)
-            where TViewModel : IViewModel
-        {
-            return Task.CompletedTask;
-        }
     }
 }

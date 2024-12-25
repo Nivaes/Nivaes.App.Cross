@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Components.Navigation
+﻿namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;

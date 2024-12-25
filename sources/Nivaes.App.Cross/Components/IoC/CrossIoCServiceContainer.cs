@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Components.Navigation;
     using Nivaes.IoC;
 
     public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCServiceContainer
