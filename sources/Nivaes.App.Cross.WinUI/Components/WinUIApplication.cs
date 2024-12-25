@@ -16,9 +16,10 @@
         protected Frame RootFrame { get; set; }
         public Window MainWindow { get; protected set; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         protected WinUIApplication()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
-            //RegisterSetupType<TMvxWinUiSetup>();
         }
 
         /// <summary>
@@ -27,7 +28,7 @@
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            _ = InitializeFrame(args.Arguments);
+            InitializeFrame();
 
             RunAppStart(args.Arguments);
 
@@ -40,10 +41,11 @@
 
             if (RootFrame.Content == null)
             {
-                var startup = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
+                var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
 
-                if (startup != null)
+                if (application != null)
                 {
+                    application.ApplicationStart.NavigateToFirstViewModel();
                     //startup.Start(GetAppStartHint(arguments));
                 }
             }
@@ -54,7 +56,7 @@
         //    return hint;
         //}
 
-        protected virtual Frame InitializeFrame(string arguments)
+       private void InitializeFrame()
         {
             if (MainWindow == null)
             {
@@ -72,8 +74,6 @@
             }
 
             RootFrame = rootFrame;
-
-            return rootFrame;
         }
 
         protected virtual Window CreateWindow()

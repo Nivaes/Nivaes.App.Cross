@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross
 {
-    public abstract class CrossSetup
+    public abstract class SampleApplicationSetup : CrossApplicationSetup
     {
+        
     }
 }

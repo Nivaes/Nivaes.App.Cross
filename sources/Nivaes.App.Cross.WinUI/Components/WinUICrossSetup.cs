@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public abstract class WinUICrossSetup : CrossSetup
+    public abstract class WinUICrossSetup : CrossApplicationSetup
     {
     }
 }

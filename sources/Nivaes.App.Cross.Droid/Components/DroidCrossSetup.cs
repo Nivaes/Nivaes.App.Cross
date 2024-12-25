@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public abstract class DroidCrossSetup : CrossSetup
+    public abstract class DroidCrossSetup : CrossApplicationSetup
     {
     }
 }

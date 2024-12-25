@@ -11,6 +11,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Nivaes.App.Cross.Sample;
+using Nivaes.IoC;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -33,18 +35,19 @@ namespace Nivaes.App.Cross.WinUI.Sample
         public App()
         {
             this.InitializeComponent();
+
+            // ToDo: Buscar una forma de hacer esto más elegante.
+            Singleton<CrossIoCServiceContainer>.Instance.AddDelegate<ICrossApplicationStart>((container) =>
+            {
+                var navigationService = container.Resolve<INavigationService>();
+                return new SampleApplicationStart(navigationService!);
+            });
+
+           Singleton<CrossIoCServiceContainer>.Instance.AddDelegate<ICrossApplication>((container) =>
+                {
+                    var applicationStart = container.Resolve<ICrossApplicationStart>();
+                    return new SampleApplication(applicationStart!);
+                });
         }
-
-        ///// <summary>
-        ///// Invoked when the application is launched.
-        ///// </summary>
-        ///// <param name="args">Details about the launch request and process.</param>
-        //protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
-        //{
-        //    m_window = new MainWindow();
-        //    m_window.Activate();
-        //}
-
-        private Window? m_window;
     }
 }

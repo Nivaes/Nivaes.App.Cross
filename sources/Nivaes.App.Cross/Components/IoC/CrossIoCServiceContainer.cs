@@ -1,17 +1,14 @@
 ﻿namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Nivaes.IoC;
 
     public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCServiceContainer
     {
+        public CrossIoCServiceContainer()
+        { }
+
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<ICrossApplication, CrossApplication>();
             bootstrapper.AddSingleton<INavigationService, NavigationService>();
         }
     }

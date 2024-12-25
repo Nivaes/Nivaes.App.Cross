@@ -1,15 +1,18 @@
-﻿namespace Nivaes.App.Cross
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Intrinsics.X86;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
-    public abstract class CrossApplication : ICrossApplication
+namespace Nivaes.App.Cross
+{
+    public abstract class CrossApplication : ICrossApplication, IDisposable
     {
+        private ICrossApplicationStart? mApplicationStart;
+
+        public ICrossApplicationStart ApplicationStart { get => mApplicationStart!; }
+
+        public CrossApplication(ICrossApplicationStart applicationStart)
+        {
+            mApplicationStart = applicationStart;
+        }
+
         //private IMvxViewModelLocator? _defaultLocator;
 
         //private IMvxViewModelLocator DefaultLocator
@@ -95,5 +98,13 @@
         //{
         //    return assembly.CreatableTypes();
         //}
+
+        public void Dispose()
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+            else
+                Debugger.Launch();
+        }
     }
 }
