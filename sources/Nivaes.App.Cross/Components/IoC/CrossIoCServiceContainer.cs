@@ -12,7 +12,7 @@
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<IApplication, CrossApplication>();
+            bootstrapper.AddSingleton<ICrossApplication, CrossApplication>();
             bootstrapper.AddSingleton<INavigationService, NavigationService>();
         }
     }

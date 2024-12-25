@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross.Sample
 {
-    internal class SampleApplication : CrossApplication
+    public class SampleApplication : CrossApplication
     {
     }
 }

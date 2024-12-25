@@ -40,11 +40,11 @@
 
             if (RootFrame.Content == null)
             {
-                var startup = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<IApplication>();
+                var startup = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
 
                 if (startup != null)
                 {
-                    startup.Start(GetAppStartHint(arguments));
+                    //startup.Start(GetAppStartHint(arguments));
                 }
             }
         }

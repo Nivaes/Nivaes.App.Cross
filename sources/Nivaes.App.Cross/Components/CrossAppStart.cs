@@ -9,11 +9,11 @@ namespace Nivaes.App.Cross
     public class CrossAppStart
     {
         protected readonly INavigationService NavigationService;
-        protected readonly IApplication Application;
+        protected readonly ICrossApplication Application;
 
         private int startHasCommenced;
 
-        protected CrossAppStart(IApplication application, INavigationService navigationService)
+        protected CrossAppStart(ICrossApplication application, INavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;

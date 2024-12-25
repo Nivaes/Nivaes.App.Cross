@@ -9,7 +9,7 @@
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.IoC" />
 
-		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj" >
+		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+		<None Include="Images\icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

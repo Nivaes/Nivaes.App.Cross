@@ -8,8 +8,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    //public abstract class CrossApplication : IApplication
-    public class CrossApplication : IApplication
+    public abstract class CrossApplication : ICrossApplication
     {
         //private IMvxViewModelLocator? _defaultLocator;
 
