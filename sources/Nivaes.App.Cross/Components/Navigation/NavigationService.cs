@@ -8,10 +8,29 @@
 
     public class NavigationService : INavigationService
     {
-        public Task Navigate<TViewModel>(CancellationToken cancellationToken = default)
+        public IViewDispatcher ViewDispatcher { get; }
+
+        public NavigationService(IViewDispatcher viewDispatcher)
+        {
+            ViewDispatcher = viewDispatcher;
+        }
+
+        public Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
             where TViewModel : IViewModel
-        { 
-            return Task.CompletedTask;
+        {
+            IViewModelRequest request = new ViewModelRequest<TViewModel>();
+
+            return Navigate(request, cancellationToken);
+        }
+
+        private async Task<bool> Navigate(IViewModelRequest request, CancellationToken cancellationToken = default)
+        {
+            var hasNavigated  = await ViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
+
+            if (!hasNavigated)
+                return false;
+
+            return true;
         }
     }
 }

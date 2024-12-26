@@ -2,9 +2,14 @@
 {
     using System;
     using System.Diagnostics;
+    using Nivaes.IoC;
 
     public abstract class CrossApplicationSetup : ICrossApplicationSetup, IDisposable
     {
+        protected CrossApplicationSetup()
+        {
+        }
+
         public void Dispose()
         {
             Dispose(true);

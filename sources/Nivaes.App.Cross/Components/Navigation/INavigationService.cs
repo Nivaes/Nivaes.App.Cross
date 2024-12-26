@@ -4,7 +4,7 @@
 
     public interface INavigationService
     {
-        Task Navigate<TViewModel>(CancellationToken cancellationToken = default)
+        Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
             where TViewModel : IViewModel;
     }
 }

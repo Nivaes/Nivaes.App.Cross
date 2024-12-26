@@ -8,5 +8,8 @@ namespace Nivaes.App.Cross.WinUI
 {
     public abstract class WinUICrossSetup : CrossApplicationSetup
     {
+        protected WinUICrossSetup()
+        {
+        }
     }
 }

@@ -1,14 +1,10 @@
 ﻿namespace Nivaes.App.Cross.WinUI
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.Intrinsics.X86;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
+    using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
     public abstract class WinUIApplication : Application
@@ -20,6 +16,18 @@
         protected WinUIApplication()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+
+            container.AddDelegate<IViewPresenter>((container) =>
+            {
+                return new WinUIViewPresenter();
+            });
+
+            container.AddDelegate<IViewDispatcher>((container) =>
+            {
+                var presenter = container.Resolve<IViewPresenter>();
+                return new WinUIViewDispatcher(presenter!);
+            });
         }
 
         /// <summary>
