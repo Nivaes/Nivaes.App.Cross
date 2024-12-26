@@ -78,7 +78,13 @@ namespace Nivaes.App.Cross
 
         public void Dispose()
         {
-            if(Debugger.IsAttached)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (Debugger.IsAttached)
                 Debugger.Break();
             else
                 Debugger.Launch();

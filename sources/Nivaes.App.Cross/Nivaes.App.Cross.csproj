@@ -1,8 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<OutputType>Library</OutputType>
 		<TargetFramework>net9.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->
+
+		<AssemblyName>Nivaes.App.Cross</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross</RootNamespace>
+
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -14,14 +24,12 @@
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
 		</ProjectReference>
+
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Images\icon.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Components\Shared\" />
+		<None Include="Images\icon.png" Pack="true" PackagePath="\"/>
+		<None Include="Docs\Readme.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,9 +37,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
 
-	<ItemGroup>
 		<PackageReference Update="SonarAnalyzer.CSharp">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

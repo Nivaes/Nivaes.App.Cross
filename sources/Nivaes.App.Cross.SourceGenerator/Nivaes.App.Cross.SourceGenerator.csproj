@@ -3,8 +3,8 @@
   <PropertyGroup>
 	  <OutputType>Library</OutputType>
 	  <TargetFramework>netstandard2.0</TargetFramework>
-	  <AssemblyName>Nivaes.IoC.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.IoC.SourceGenerator</RootNamespace>
+	  <AssemblyName>Nivaes.App.Cross.SourceGenerator</AssemblyName>
+	  <RootNamespace>Nivaes.App.Cross.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -14,11 +14,11 @@
   </PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.IoC.SourceGenerator</PackageId>
+		<PackageId>Nivaes.App.Cross.SourceGenerator</PackageId>
 		<Title>Nivaes IoC SourceGenerator</Title>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-		<Product>Nivaes IoC SourceGenerator</Product>
-		<Description>Nivaes IoC source generator.</Description>
+		<Product>Nivaes App Cross SourceGenerator</Product>
+		<Description>Nivaes App Cross source generator.</Description>
 		<PackageTags>Nivaes;IoC;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
@@ -26,28 +26,30 @@
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+		<None Include="Docs\Readme.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 	</ItemGroup>
 
+	<!--<ItemGroup>
+		<PackageReference Include="Nivaes.IoC.SourceGenerator"/>
+	</ItemGroup>-->
+	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
-	</ItemGroup>
 
-	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
+	
 		<PackageReference Update="SonarAnalyzer.CSharp">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

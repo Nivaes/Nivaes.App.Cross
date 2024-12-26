@@ -4,11 +4,11 @@ namespace Nivaes.App.Cross
 {
     public abstract class CrossApplication : ICrossApplication, IDisposable
     {
-        private ICrossApplicationStart? mApplicationStart;
+        private readonly ICrossApplicationStart? mApplicationStart;
 
         public ICrossApplicationStart ApplicationStart { get => mApplicationStart!; }
 
-        public CrossApplication(ICrossApplicationStart applicationStart)
+        protected CrossApplication(ICrossApplicationStart applicationStart)
         {
             mApplicationStart = applicationStart;
         }
@@ -100,6 +100,12 @@ namespace Nivaes.App.Cross
         //}
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             if (Debugger.IsAttached)
                 Debugger.Break();

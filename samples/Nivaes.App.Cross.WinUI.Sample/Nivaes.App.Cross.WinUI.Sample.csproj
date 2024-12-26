@@ -37,8 +37,9 @@
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
   </ItemGroup>
+	
   <ItemGroup>
-    <PackageReference Include="nivaes.app.shared" />
+    <PackageReference Include="Nivaes.App.Shared" />
   </ItemGroup>
 	
   <ItemGroup>

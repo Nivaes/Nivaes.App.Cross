@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Diagnostics;
+
     public abstract class CrossApplicationSetup : ICrossApplicationSetup, IDisposable
     {
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             if (Debugger.IsAttached)
                 Debugger.Break();

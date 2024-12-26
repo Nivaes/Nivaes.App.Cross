@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross.Droid.Sample
 {
-    internal abstract class SampleCrossApplication : CrossApplication
+    public  class SampleCrossApplication : CrossApplication
     {
+        public SampleCrossApplication(ICrossApplicationStart applicationStart)
+            : base(applicationStart)
+        {
+        }
     }
 }
