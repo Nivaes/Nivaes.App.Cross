@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <OutputType>Library</OutputType>
-	  <TargetFramework>netstandard2.0</TargetFramework>
-	  <AssemblyName>Nivaes.App.Cross.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.SourceGenerator</RootNamespace>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
 
-	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-	  <IncludeBuildOutput>false</IncludeBuildOutput>
+		<AssemblyName>Nivaes.App.Cross.SourceGenerator</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.SourceGenerator</RootNamespace>
 
-	  <LangVersion>latest</LangVersion>
-	  <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.SourceGenerator</PackageId>
-		<Title>Nivaes App Cross SourceGenerator</Title>
+		<Title>Nivaes IoC SourceGenerator</Title>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Nivaes App Cross SourceGenerator</Product>
 		<Description>Nivaes App Cross source generator.</Description>
-		<PackageTags>Nivaes;app;cross;roslyn</PackageTags>
+		<PackageTags>Nivaes;IoC;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
@@ -30,22 +30,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Components\" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		
+
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
 
 		<PackageReference Update="Roslynator.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	
+
 		<PackageReference Update="SonarAnalyzer.CSharp">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
