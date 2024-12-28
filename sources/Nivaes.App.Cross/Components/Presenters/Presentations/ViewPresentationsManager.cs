@@ -5,22 +5,33 @@
 
     public class ViewPresentationsManager
     {
-        private IDictionary<int, IViewPresentation> mPresentations { get; } = new Dictionary<int, IViewPresentation>();
+        private IDictionary<int, Type> mPresentations { get; } = new Dictionary<int, Type>();
 
         public ViewPresentationsManager()
         {
         }
 
-        public void AddPresentation<TView>(IViewPresentation presentation)
+        public void AddPresentation<TView, TPresentationType>()
             where TView : IView
+            where TPresentationType : IViewPresentation
         {
-            mPresentations.Add(typeof(TView).GetHashCode(), presentation);
+            mPresentations.Add(typeof(TView).GetHashCode(), typeof(TPresentationType));
         }
 
-        public bool TryGetValue<TView>([MaybeNullWhen(false)] out IViewPresentation presentation)
+        public bool TryGetValue<TView>([MaybeNullWhen(false)] out Type presentationType)
             where TView : IView
         {
-            return mPresentations.TryGetValue(typeof(TView).GetHashCode(), out presentation);
+            return TryGetValue(typeof(TView), out presentationType);
+        }
+
+        public bool TryGetValue(Type viewType, [MaybeNullWhen(false)] out Type presentationType)
+        {
+            return TryGetValue(viewType.GetHashCode(), out presentationType);
+        }
+
+        private bool TryGetValue(int viewTypeHash, [MaybeNullWhen(false)] out Type presentationType)
+        {
+            return mPresentations.TryGetValue(viewTypeHash, out presentationType);
         }
     }
 }

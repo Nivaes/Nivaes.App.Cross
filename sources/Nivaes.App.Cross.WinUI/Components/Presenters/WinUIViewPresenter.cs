@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Controls;
 using Nivaes.App.Cross.Presenters;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI.Presenters
 {
@@ -25,9 +27,9 @@ namespace Nivaes.App.Cross.WinUI.Presenters
 
         public override Task<bool> Show(IViewModelRequest request)
         {
-            //mFrame.Navigate(request.ViewModel.GetType(), null);
+            var (viewType, viewPresentation) = GetViewPresentation(request);
 
-            return Task.FromResult(false);
+            return viewPresentation!.ShowView(viewType, request);
         }
 
         override public Task<bool> Close(IViewModel request)

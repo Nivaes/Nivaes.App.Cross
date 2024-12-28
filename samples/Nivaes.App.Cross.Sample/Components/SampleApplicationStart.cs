@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Sample
             mNavigationService = navigationService;
 
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.Merge(new ViewModelsIoCServiceContainer());
+            container.Merge(new ViewModelsSubcontainer());
         }
 
         public override async Task NavigateToFirstViewModel(object? hint = null)

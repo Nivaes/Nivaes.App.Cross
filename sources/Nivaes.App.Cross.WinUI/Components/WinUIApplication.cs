@@ -1,10 +1,12 @@
 ﻿namespace Nivaes.App.Cross.WinUI
 {
+    using System.ComponentModel;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.Sample.Presentations;
     using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
@@ -27,6 +29,10 @@
                 var presenter = container.Resolve<IViewPresenter>();
                 return new WinUIViewDispatcher(presenter!);
             });
+
+            
+
+            container.Merge(new PresentationsSubcontainer());
         }
 
         /// <summary>
@@ -44,9 +50,10 @@
 
         protected virtual void RunAppStart(string arguments)
         {
-            //var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddInstance(new WindowInformation(RootFrame!));
 
-            if (RootFrame.Content == null)
+            if (RootFrame!.Content == null)
             {
                 var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
 
