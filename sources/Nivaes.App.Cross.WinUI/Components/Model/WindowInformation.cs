@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.UI.Xaml.Controls;
-
-namespace Nivaes.App.Cross.WinUI
+﻿namespace Nivaes.App.Cross.WinUI
 {
+    using Microsoft.UI.Xaml.Controls;
+    using Nivaes.App.Cross.WinUI.Presenters;
+
     public sealed class WindowInformation
     {
-        public Frame MainFrame { get; }
+        public WrappedFrame MainFrame { get; }
 
         public WindowInformation(Frame mainFrame)
         {
-            this.MainFrame = mainFrame;
+            this.MainFrame = new WrappedFrame(mainFrame);
         }
     }
 }

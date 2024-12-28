@@ -16,7 +16,7 @@
 
         public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
         {
-            var result = WindowInformation.MainFrame.Navigate(viewType);
+            var result = WindowInformation.MainFrame.Navigate(viewType, new object());
 
             return Task.FromResult(result);
         }

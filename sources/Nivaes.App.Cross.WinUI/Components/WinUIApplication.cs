@@ -29,10 +29,10 @@
                 var presenter = container.Resolve<IViewPresenter>();
                 return new WinUIViewDispatcher(presenter!);
             });
-
             
-
             container.Merge(new PresentationsSubcontainer());
+
+            base.UnhandledException += OnUnhandledException;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@
 
             RunAppStart(args.Arguments);
 
-            MainWindow.Activate();
+            MainWindow!.Activate();
         }
 
         protected virtual void RunAppStart(string arguments)
@@ -72,22 +72,22 @@
 
        private void InitializeFrame()
         {
-            if (MainWindow == null)
+            if (this.MainWindow == null)
             {
-                MainWindow = CreateWindow();
+                this.MainWindow = CreateWindow();
             }
 
-            var rootFrame = MainWindow.Content as Frame;
+            var rootFrame = this.MainWindow.Content as Frame;
 
             if (rootFrame == null)
             {
                 rootFrame = CreateFrame();
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                MainWindow.Content = rootFrame;
+                this.MainWindow.Content = rootFrame;
             }
 
-            RootFrame = rootFrame;
+            this.RootFrame = rootFrame;
         }
 
         protected virtual Window CreateWindow()
@@ -108,6 +108,12 @@
         protected virtual void RegisterSetup()
         {
 
+        }
+
+        private void OnUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            // TODO: Log and handle exceptions as appropriate.
+            // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
         }
     }
 }

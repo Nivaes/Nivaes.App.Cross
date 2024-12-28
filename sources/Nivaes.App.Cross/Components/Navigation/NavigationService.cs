@@ -29,7 +29,7 @@
         {
             request.ViewModel = ViewModelLoader.LoadViewModel<TViewModel>();
 
-            var hasNavigated  = await mViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
+            var hasNavigated = await mViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
 
             if (!hasNavigated)
                 return false;
