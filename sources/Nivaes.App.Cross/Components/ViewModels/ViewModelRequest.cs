@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross
 {
-    public class ViewModelRequest<TViewModel> :
+    public record ViewModelRequest<TViewModel> :
         IViewModelRequest
         where TViewModel : IViewModel
     {
         public ViewModelRequest()
         {
         }
+
+        public IViewModel ViewModel { get; set; }
     }
 }

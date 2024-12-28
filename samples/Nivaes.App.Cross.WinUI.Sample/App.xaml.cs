@@ -11,7 +11,9 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Nivaes.App.Cross.Presenters;
 using Nivaes.App.Cross.Sample;
+using Nivaes.App.Cross.WinUI.Presenters;
 using Nivaes.IoC;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -40,16 +42,22 @@ namespace Nivaes.App.Cross.WinUI.Sample
 
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddDelegate<ICrossApplicationStart>((container) =>
-            {
-                var navigationService = container.Resolve<INavigationService>();
-                return new SampleApplicationStart(navigationService!);
-            });
+                {
+                    var navigationService = container.Resolve<INavigationService>();
+                    return new SampleApplicationStart(navigationService!);
+                });
 
             container.AddDelegate<ICrossApplication>((container) =>
                 {
                     var applicationStart = container.Resolve<ICrossApplicationStart>();
                     return new SampleApplication(applicationStart!);
                 });
+
+            var viewsManager = Singleton<ViewsManager>.Instance;
+            viewsManager.AddViewModelView<RootViewModel, RootView>();
+
+            var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
+            viewPresentationsManager.AddPresentation<RootView>(new WinUIPageViewPresentation());
         }
     }
 }

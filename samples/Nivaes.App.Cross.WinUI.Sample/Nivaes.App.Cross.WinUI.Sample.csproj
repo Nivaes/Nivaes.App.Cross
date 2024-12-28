@@ -13,6 +13,7 @@
     <Nullable>enable</Nullable>
 	
 	 <IsPackable>false</IsPackable>
+	 <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>

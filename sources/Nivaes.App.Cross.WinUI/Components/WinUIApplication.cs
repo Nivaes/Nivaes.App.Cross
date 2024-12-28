@@ -3,18 +3,17 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
     public abstract class WinUIApplication : Application
     {
-        protected Frame RootFrame { get; set; }
-        public Window MainWindow { get; protected set; }
+        protected Frame? RootFrame { get; set; }
+        public Window? MainWindow { get; protected set; }
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         protected WinUIApplication()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
 

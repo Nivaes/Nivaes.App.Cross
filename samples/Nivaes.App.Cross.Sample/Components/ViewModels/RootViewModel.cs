@@ -8,5 +8,11 @@
 
     public class RootViewModel : ViewModel
     {
+        private readonly INavigationService mNavigationService;
+
+        public RootViewModel(INavigationService navigationService)
+        {
+            mNavigationService = navigationService;
+        }
     }
 }

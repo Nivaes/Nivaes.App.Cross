@@ -5,14 +5,15 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Nivaes.IoC;
 
     public class NavigationService : INavigationService
     {
-        public IViewDispatcher ViewDispatcher { get; }
+        protected readonly IViewDispatcher mViewDispatcher;
 
         public NavigationService(IViewDispatcher viewDispatcher)
         {
-            ViewDispatcher = viewDispatcher;
+            mViewDispatcher = viewDispatcher;
         }
 
         public Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
@@ -20,12 +21,15 @@
         {
             IViewModelRequest request = new ViewModelRequest<TViewModel>();
 
-            return Navigate(request, cancellationToken);
+            return Navigate<TViewModel>(request, cancellationToken);
         }
 
-        private async Task<bool> Navigate(IViewModelRequest request, CancellationToken cancellationToken = default)
+        private async Task<bool> Navigate<TViewModel>(IViewModelRequest request, CancellationToken cancellationToken = default)
+             where TViewModel : IViewModel
         {
-            var hasNavigated  = await ViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
+            request.ViewModel = ViewModelLoader.LoadViewModel<TViewModel>();
+
+            var hasNavigated  = await mViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
 
             if (!hasNavigated)
                 return false;

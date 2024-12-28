@@ -8,5 +8,6 @@ namespace Nivaes.App.Cross
 {
     public interface IViewModelRequest
     {
+        IViewModel ViewModel { get; set; }
     }
 }
