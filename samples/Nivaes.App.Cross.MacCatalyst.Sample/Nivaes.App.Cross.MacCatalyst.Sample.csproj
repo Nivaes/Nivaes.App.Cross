@@ -1,44 +1,46 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9.0-maccatalyst</TargetFramework>
-    <!-- The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+	<PropertyGroup>
+		<TargetFramework>net9.0-maccatalyst</TargetFramework>
+		<!-- The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
          When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
          The App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
          either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
-    <!-- ex. <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-    <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+		<!-- ex. <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+		<OutputType>Exe</OutputType>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 
-    <!--
+		<!--
       Enable full trimming in Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
-    <TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
+		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 
-	  <IsPackable>false</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="nivaes.app.shared" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+		<IsPackable>false</IsPackable>
 
-  <!-- Notes about the values set below:
+		<PublishAot>true</PublishAot>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="nivaes.app.shared" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<!-- Notes about the values set below:
     1. For macOS it's possible to sign both the app bundle (EnableCodesigning=true) and the package (*.pkg) (EnablePackageSigning=true),
        and these are signed separately and with different certificates.
           CodesignKey: this is the signing key used for the app bundle
@@ -54,7 +56,7 @@
     5. Depending on the entitlements the app needs, a specific provisioning profile (CodesignProvision) might be needed.
     6. UseHardenedRuntime must be set to true when app sandbox is enabled in Info.plist.
     -->
-  <!--
+	<!--
   For Debug: (Note: Replace placeholder information before building)
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <CodesignKey>Apple Development: YOURNAME (*******)</CodesignKey>
@@ -62,7 +64,7 @@
     <CodesignProvision>YOUR PROFILE NAME</CodesignProvision>
   </PropertyGroup>
   -->
-  <!--
+	<!--
   For Release: (Note: Replace placeholder information before building)
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <EnableCodeSigning>True</EnableCodeSigning>

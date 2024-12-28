@@ -1,35 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9.0-ios</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+	<PropertyGroup>
+		<TargetFramework>net9.0-ios</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
 
-    <!--
+		<!--
       Enable full trimming in Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
-    <TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
+		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 
-	  <IsPackable>false</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="nivaes.app.shared" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+		<IsPackable>false</IsPackable>
+		<PublishAot>true</PublishAot>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="nivaes.app.shared" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 </Project>

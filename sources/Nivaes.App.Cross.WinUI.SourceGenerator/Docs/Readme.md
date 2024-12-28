@@ -1,1 +1,1 @@
-﻿# Nivaes.App.Cross.SourceGenerator
+﻿# Nivaes.App.Cross.WinUI.SourceGenerator

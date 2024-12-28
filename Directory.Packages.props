@@ -4,7 +4,7 @@
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
     <PackageVersion Include="AsyncFixer" Version="1.6.0" />
     <PackageVersion Include="Nivaes.App.Shared" Version="0.7.73" />
-    <PackageVersion Include="Nivaes.IoC" Version="0.1.4" />
+    <PackageVersion Include="Nivaes.IoC" Version="0.1.6" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.12.10" />
     <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.4.0.108396" />

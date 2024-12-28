@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+
+	  <ProjectReference Include="..\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
+		  <PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+		  <IncludeAssets>analyzers</IncludeAssets>
+		  <ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+	  </ProjectReference>
   </ItemGroup>
 
 	<ItemGroup>
