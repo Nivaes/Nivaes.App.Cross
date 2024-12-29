@@ -9,7 +9,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI.Presenters
 {
-    public class WinUIViewPresenter : ViewPresenter, IViewPresenter
+    public sealed class WinUIViewPresenter : ViewPresenter, IViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 

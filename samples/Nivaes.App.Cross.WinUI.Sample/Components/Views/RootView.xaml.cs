@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.WinUI.Sample
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            myButton.Content = "Clicked view";
         }
     }
 

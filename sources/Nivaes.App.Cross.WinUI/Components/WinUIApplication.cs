@@ -5,8 +5,7 @@
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Cross.Sample.Presentations;
+    using Nivaes.App.Cross.Presenters;    
     using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
@@ -24,13 +23,13 @@
                 return new WinUIViewPresenter();
             });
 
-            container.AddDelegate<IViewDispatcher>((container) =>
-            {
-                var presenter = container.Resolve<IViewPresenter>();
-                return new WinUIViewDispatcher(presenter!);
-            });
+            //container.AddDelegate<IViewDispatcher>((container) =>
+            //{
+            //    var presenter = container.Resolve<IViewPresenter>();
+            //    return new WinUIViewDispatcher(presenter!);
+            //});
             
-            container.Merge(new PresentationsSubcontainer());
+            container.Merge(new WinUISubcontainer());
 
             base.UnhandledException += OnUnhandledException;
         }

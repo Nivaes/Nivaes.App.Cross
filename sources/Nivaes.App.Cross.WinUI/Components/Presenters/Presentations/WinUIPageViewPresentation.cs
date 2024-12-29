@@ -6,7 +6,7 @@
     public sealed class WinUIPageViewPresentation : WinUIViewPresentation
     {
         public WinUIPageViewPresentation(WindowInformation windowInformation)
-            :base(windowInformation)
+            : base(windowInformation)
         {
 
         }

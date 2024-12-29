@@ -4,7 +4,7 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
 
-    public class WrappedFrame
+    public sealed class WrappedFrame
     {
         private readonly Frame mFrame;
 
