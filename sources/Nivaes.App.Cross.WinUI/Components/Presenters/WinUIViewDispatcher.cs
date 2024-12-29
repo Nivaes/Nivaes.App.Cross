@@ -16,6 +16,8 @@
             mViewPresenter = viewPresenter;
         }
 
+        override public bool IsOnMainThread => _uiDispatcher.HasThreadAccess;
+
         public override async Task<bool> ShowViewModel(IViewModelRequest request)
         {
             if (_uiDispatcher.HasThreadAccess)

@@ -8,9 +8,13 @@
 
     public abstract class ViewDispatcher : IViewDispatcher
     {
+        
+
         protected ViewDispatcher()
         {
         }
+
+        public abstract bool IsOnMainThread { get; }
 
         public abstract Task<bool> ShowViewModel(IViewModelRequest request);
     }
