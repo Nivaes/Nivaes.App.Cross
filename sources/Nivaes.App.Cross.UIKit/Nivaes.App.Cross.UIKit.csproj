@@ -14,7 +14,7 @@
 		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 
 
-		<ProjectReference Include="..\Nivaes.App.Cross.iOS.SourceGenerator\Nivaes.App.Cross.iOS.SourceGenerator.csproj">
+		<ProjectReference Include="..\Nivaes.App.Cross.UIKit.SourceGenerator\Nivaes.App.Cross.UIKit.SourceGenerator.csproj">
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>

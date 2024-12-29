@@ -39,11 +39,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid", "sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj", "{889AD5DE-C1D6-40C4-99D2-DFB1CAC33222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS", "sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj", "{37FB89FC-15F9-4617-A57B-23029B9AAC97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit", "sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj", "{37FB89FC-15F9-4617-A57B-23029B9AAC97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.Sample", "samples\Nivaes.App.Cross.iOS.Sample\Nivaes.App.Cross.iOS.Sample.csproj", "{3929BF40-A7B9-474B-970E-898C01EA5BF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.iOS.Sample", "samples\Nivaes.App.Cross.UIKit.iOS.Sample\Nivaes.App.Cross.UIKit.iOS.Sample.csproj", "{3929BF40-A7B9-474B-970E-898C01EA5BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.MacCatalyst.Sample", "samples\Nivaes.App.Cross.MacCatalyst.Sample\Nivaes.App.Cross.MacCatalyst.Sample.csproj", "{4CFD138C-3568-49BF-A353-E3D4C8759D17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.MacCatalyst.Sample", "samples\Nivaes.App.Cross.UIKit.MacCatalyst.Sample\Nivaes.App.Cross.UIKit.MacCatalyst.Sample.csproj", "{4CFD138C-3568-49BF-A353-E3D4C8759D17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid.Sample", "samples\Nivaes.App.Cross.Droid.Sample\Nivaes.App.Cross.Droid.Sample.csproj", "{2BF01060-9E90-45E5-B29B-B7E7630E2B22}"
 EndProject
@@ -53,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A6E7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample", "samples\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj", "{AD688D20-54D7-4078-9095-DE8B3AD7CA7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.Core.Sample", "samples\Nivaes.App.Cross.iOS.Core.Sample\Nivaes.App.Cross.iOS.Core.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.Sample", "samples\Nivaes.App.Cross.UIKit.Sample\Nivaes.App.Cross.UIKit.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.SourceGenerator", "sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj", "{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}"
 EndProject
@@ -61,7 +61,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI.Sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid.SourceGenerator", "sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj", "{32CE79F5-928A-4B3F-AB6A-898F83B4A53F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.iOS.SourceGenerator", "sources\Nivaes.App.Cross.iOS.SourceGenerator\Nivaes.App.Cross.iOS.SourceGenerator.csproj", "{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.SourceGenerator", "sources\Nivaes.App.Cross.UIKit.SourceGenerator\Nivaes.App.Cross.UIKit.SourceGenerator.csproj", "{179D56BF-143D-443A-B031-7F02133839A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,10 +128,10 @@ Global
 		{32CE79F5-928A-4B3F-AB6A-898F83B4A53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32CE79F5-928A-4B3F-AB6A-898F83B4A53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32CE79F5-928A-4B3F-AB6A-898F83B4A53F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179D56BF-143D-443A-B031-7F02133839A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179D56BF-143D-443A-B031-7F02133839A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179D56BF-143D-443A-B031-7F02133839A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179D56BF-143D-443A-B031-7F02133839A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +152,6 @@ Global
 		{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{EB82AFFC-4959-435E-900C-2571BBC69D72} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{32CE79F5-928A-4B3F-AB6A-898F83B4A53F} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
-		{8C19DDB4-7E32-4D24-B3E2-E0E6AA893DBC} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{179D56BF-143D-443A-B031-7F02133839A4} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 	EndGlobalSection
 EndGlobal

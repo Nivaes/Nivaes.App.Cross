@@ -19,7 +19,7 @@
 	  <PackageReference Include="nivaes.app.shared" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.iOS\Nivaes.App.Cross.iOS.csproj" />
+	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Update="Roslynator.Analyzers">
