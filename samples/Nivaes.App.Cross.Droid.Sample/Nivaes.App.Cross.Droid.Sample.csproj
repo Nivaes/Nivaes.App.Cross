@@ -17,7 +17,8 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="nivaes.app.shared" />
+	  <PackageReference Include="Nivaes.App.Shared" />
+	  <PackageReference Include="Xamarin.AndroidX.AppCompat" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />

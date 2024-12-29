@@ -24,7 +24,7 @@
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
-            RequestWindowFeature(WindowFeatures.NoTitle);
+            base.RequestWindowFeature(WindowFeatures.NoTitle);
 
             _bundle = savedInstanceState;
 
@@ -41,24 +41,24 @@
         {
             base.OnResume();
 
-            await RunAppStart(_bundle);
+            //await RunAppStart(_bundle);
         }
 
         protected async Task RunAppStart(Bundle? bundle)
         {
-            var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
+            //var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
 
-            if (application != null)
-            {
-                if (!application.ApplicationStart.IsStarted)
-                {
-                    await application.ApplicationStart.NavigateToFirstViewModel();
-                }
-                else
-                {
-                   base.Finish();
-                }
-            }
+            //if (application != null)
+            //{
+            //    if (!application.ApplicationStart.IsStarted)
+            //    {
+            //        await application.ApplicationStart.NavigateToFirstViewModel();
+            //    }
+            //    else
+            //    {
+            //       base.Finish();
+            //    }
+            //}
         }
     }
 }

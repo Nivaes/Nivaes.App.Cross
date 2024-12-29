@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid.Sample
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_root);
+            SetContentView(Resource.Layout.RootView);
         }
     }
 }
