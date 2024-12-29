@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid.Sample
         NoHistory = true)]
     public class SplashScreen : StartActivity
     {
-        public SplashScreen() 
+        public SplashScreen()
             : base(Resource.Layout.SplashScreenView)
         {
         }
