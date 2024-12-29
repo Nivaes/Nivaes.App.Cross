@@ -1,0 +1,64 @@
+﻿namespace Nivaes.App.Cross.Droid
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Intrinsics.X86;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Android.OS;
+    using Android.Views;
+    using Nivaes.IoC;
+
+    public abstract class StartActivity : Activity
+    {
+        protected const int NoContent = 0;
+
+        private readonly int _resourceId;
+        private Bundle? _bundle;
+
+        protected StartActivity(int resourceId = NoContent)
+        {
+            _resourceId = resourceId;
+        }
+
+        protected override void OnCreate(Bundle? savedInstanceState)
+        {
+            RequestWindowFeature(WindowFeatures.NoTitle);
+
+            _bundle = savedInstanceState;
+
+            base.OnCreate(savedInstanceState);
+
+            if (_resourceId != NoContent)
+            {
+                var content = LayoutInflater.Inflate(_resourceId, null);
+                SetContentView(content);
+            }
+        }
+
+        protected override async void OnResume()
+        {
+            base.OnResume();
+
+            await RunAppStart(_bundle);
+        }
+
+        protected async Task RunAppStart(Bundle? bundle)
+        {
+            var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
+
+            if (application != null)
+            {
+                if (!application.ApplicationStart.IsStarted)
+                {
+                    await application.ApplicationStart.NavigateToFirstViewModel();
+                }
+                else
+                {
+                   base.Finish();
+                }
+            }
+        }
+    }
+}

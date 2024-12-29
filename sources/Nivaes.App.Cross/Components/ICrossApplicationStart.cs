@@ -4,6 +4,8 @@
 
     public interface ICrossApplicationStart
     {
+        bool IsStarted { get; }
+
         Task NavigateToFirstViewModel(object? hint = null);
     }
 }

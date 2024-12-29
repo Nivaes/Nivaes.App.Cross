@@ -2,7 +2,7 @@
 {
     using Microsoft.UI.Xaml.Controls;
 
-    public abstract class WinUIPage<TViewModel>
+    public abstract class CrossPage<TViewModel>
         : Page, IView
         where TViewModel : class, IViewModel
     {

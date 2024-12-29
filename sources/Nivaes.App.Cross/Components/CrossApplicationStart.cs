@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         //protected readonly INavigationService NavigationService;
         //protected readonly ICrossApplication Application;
 
-        //private int startHasCommenced;
+        private int startHasCommenced;
 
         //protected CrossApplicationStart(ICrossApplication application, INavigationService navigationService)
         //{
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross
         //    return hint;
         //}
 
-        //public virtual bool IsStarted => startHasCommenced != 0;
+        public virtual bool IsStarted => startHasCommenced != 0;
 
         //public virtual void ResetStart()
         //{

@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI.Sample
         }
     }
 
-    public abstract class RootViewPage : WinUIPage<RootViewModel>
+    public abstract class RootViewPage : CrossPage<RootViewModel>
     {
     }
 }
