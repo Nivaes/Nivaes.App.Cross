@@ -1,5 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
+    using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.IoC;
 
     public partial class DroidSubcontainer : IoCServiceContainer
@@ -8,8 +9,7 @@
         {
             bootstrapper.AddSingleton<IViewDispatcher, DroidViewDispatcher>();
 
-            //bootstrapper.AddSingleton<WinUIPageViewPresentation>();
-            //bootstrapper.AddSingleton<WinUINewWindowViewPresentation>();
+            bootstrapper.AddSingleton<ActivityViewPresentation>();
         }
     }
 }

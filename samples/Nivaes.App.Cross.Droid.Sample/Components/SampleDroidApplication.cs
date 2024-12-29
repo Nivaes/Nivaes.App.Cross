@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
     using Nivaes.IoC;
@@ -31,11 +32,9 @@
 
             var viewsManager = Singleton<ViewsManager>.Instance;
             viewsManager.AddViewModelView<RootViewModel, RootView>();
-            //viewsManager.AddViewModelView<NewWindowViewModel, NewWindowView>();
 
             var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
-            //viewPresentationsManager.AddPresentation<RootView, WinUIPageViewPresentation>();
-            //viewPresentationsManager.AddPresentation<NewWindowView, WinUINewWindowViewPresentation>();
+            viewPresentationsManager.AddPresentation<RootView, ActivityViewPresentation>();
         }
     }
 }

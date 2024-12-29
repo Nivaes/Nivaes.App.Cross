@@ -9,8 +9,8 @@
         {
             bootstrapper.AddSingleton<IViewDispatcher, WinUIViewDispatcher>();
 
-            bootstrapper.AddSingleton<WinUIPageViewPresentation>();
-            bootstrapper.AddSingleton<WinUINewWindowViewPresentation>();
+            bootstrapper.AddSingleton<PageViewPresentation>();
+            bootstrapper.AddSingleton<NewWindowViewPresentation>();
         }
     }
 }

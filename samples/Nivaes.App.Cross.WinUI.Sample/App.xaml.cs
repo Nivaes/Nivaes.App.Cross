@@ -58,8 +58,8 @@ namespace Nivaes.App.Cross.WinUI.Sample
             viewsManager.AddViewModelView<NewWindowViewModel, NewWindowView>();
 
             var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
-            viewPresentationsManager.AddPresentation<RootView, WinUIPageViewPresentation>();
-            viewPresentationsManager.AddPresentation<NewWindowView, WinUINewWindowViewPresentation>();
+            viewPresentationsManager.AddPresentation<RootView, PageViewPresentation>();
+            viewPresentationsManager.AddPresentation<NewWindowView, NewWindowViewPresentation>();
         }
     }
 }
