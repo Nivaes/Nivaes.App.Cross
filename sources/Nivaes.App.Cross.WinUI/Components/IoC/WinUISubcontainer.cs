@@ -1,6 +1,5 @@
-﻿namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross.WinUI
 {
-    using Nivaes.App.Cross.WinUI;
     using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
