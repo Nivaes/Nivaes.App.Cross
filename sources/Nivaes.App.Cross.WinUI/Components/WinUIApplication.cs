@@ -50,7 +50,7 @@
         protected virtual void RunAppStart(string arguments)
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.AddInstance(new WindowInformation(RootFrame!));
+            container.AddInstance(new AppDataModel(RootFrame!));
 
             if (RootFrame!.Content == null)
             {

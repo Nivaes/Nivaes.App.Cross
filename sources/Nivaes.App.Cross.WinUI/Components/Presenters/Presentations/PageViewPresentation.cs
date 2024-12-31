@@ -5,7 +5,7 @@
 
     public sealed class PageViewPresentation : WinUIViewPresentation
     {
-        public PageViewPresentation(WindowInformation windowInformation)
+        public PageViewPresentation(AppDataModel windowInformation)
             : base(windowInformation)
         {
 

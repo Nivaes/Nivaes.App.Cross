@@ -9,7 +9,7 @@
 
         private readonly IViewPresenter mViewPresenter;
 
-        public WinUIViewDispatcher(IViewPresenter viewPresenter, WindowInformation windowInformation) : base()
+        public WinUIViewDispatcher(IViewPresenter viewPresenter, AppDataModel windowInformation) : base()
         {
             _uiDispatcher = windowInformation.MainFrame.UnderlyingControl.DispatcherQueue;
 

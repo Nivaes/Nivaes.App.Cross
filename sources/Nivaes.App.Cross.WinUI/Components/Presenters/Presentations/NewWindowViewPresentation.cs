@@ -4,7 +4,7 @@
 
     public sealed class NewWindowViewPresentation : WinUIViewPresentation
     {
-        public NewWindowViewPresentation(WindowInformation windowInformation)
+        public NewWindowViewPresentation(AppDataModel windowInformation)
             : base(windowInformation)
         {
 
