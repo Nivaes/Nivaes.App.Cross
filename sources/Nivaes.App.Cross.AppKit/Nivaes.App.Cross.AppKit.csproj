@@ -14,8 +14,6 @@
 		  <IncludeAssets>analyzers</IncludeAssets>
 		  <ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
 	  </ProjectReference>
-	  
-	  <Folder Include="Components\" />
   </ItemGroup>
 
 	<ItemGroup>

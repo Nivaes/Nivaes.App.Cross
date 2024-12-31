@@ -1,4 +1,4 @@
-using Nivaes.App.Cross.iOS.Sample;
+using Nivaes.App.Cross.UIKit.iOS.Sample;
 
 // This is the main entry point of the application.
 // If you want to use a different Application Delegate class from "AppDelegate"

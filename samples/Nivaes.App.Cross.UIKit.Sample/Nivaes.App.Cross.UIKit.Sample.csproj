@@ -12,14 +12,11 @@
   </PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Components\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="nivaes.app.shared" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+	  <ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Update="Roslynator.Analyzers">

@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.iOS.Sample
+namespace Nivaes.App.Cross.UIKit.iOS.Sample
 {
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate

@@ -73,6 +73,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{DDF2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Droid", "Droid", "{32D1DFCF-1237-4E27-95B0-11A2FE6A537D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.AppKit.MacOS.Sample", "samples\Nivaes.App.Cross.AppKit.MacOS.Sample\Nivaes.App.Cross.AppKit.MacOS.Sample.csproj", "{A3BDA65D-683F-44DF-B397-74E136E92C8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,10 @@ Global
 		{70172850-9943-4F9B-948B-7C864FB56B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70172850-9943-4F9B-948B-7C864FB56B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70172850-9943-4F9B-948B-7C864FB56B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,5 +182,6 @@ Global
 		{87159148-C45A-4239-B46C-E9E313B41F08} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{DDF23486-13E8-4693-B95B-5DC518A7B8F8} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{32D1DFCF-1237-4E27-95B0-11A2FE6A537D} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{A3BDA65D-683F-44DF-B397-74E136E92C8F} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
 	EndGlobalSection
 EndGlobal
