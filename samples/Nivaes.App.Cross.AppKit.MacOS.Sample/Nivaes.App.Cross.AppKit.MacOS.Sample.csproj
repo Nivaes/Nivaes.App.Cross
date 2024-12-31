@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0-macos</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -15,8 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\Views\" />
   </ItemGroup>
 </Project>
