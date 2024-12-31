@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
 	
+   <EnableWindowsTargeting>true</EnableWindowsTargeting>
 	 <IsPackable>false</IsPackable>
 	 <PublishAot>true</PublishAot>
   </PropertyGroup>
