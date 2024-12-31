@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid.Sample
     public class RootView : CrossActivity<RootViewModel>
     {
         public RootView()
-            : base(Resource.Layout.activity_root)
+            : base(Resource.Layout.RootView)
         {
 
         }
