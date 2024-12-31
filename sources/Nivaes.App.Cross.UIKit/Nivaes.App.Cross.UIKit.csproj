@@ -9,6 +9,8 @@
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
     -->
 		<IsTrimmable>true</IsTrimmable>
+
+		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
@@ -25,9 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components\Views\" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="nivaes.app.shared" />
 	</ItemGroup>
 	<ItemGroup>
@@ -35,8 +34,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
+
 		<PackageReference Update="SonarAnalyzer.CSharp">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

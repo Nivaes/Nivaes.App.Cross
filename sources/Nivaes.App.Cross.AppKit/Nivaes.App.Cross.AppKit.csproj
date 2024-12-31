@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-macos</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+
+	  <ProjectReference Include="..\Nivaes.App.Cross.AppKit.SourceGenerator\Nivaes.App.Cross.AppKit.SourceGenerator.csproj">
+		  <PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+		  <IncludeAssets>analyzers</IncludeAssets>
+		  <ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+	  </ProjectReference>
+	  
+	  <Folder Include="Components\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

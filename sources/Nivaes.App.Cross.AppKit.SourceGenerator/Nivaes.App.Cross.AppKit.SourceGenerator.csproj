@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-	  <AssemblyName>Nivaes.App.Cross.UIKit.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.UIKit.SourceGenerator</RootNamespace>
+	  <AssemblyName>Nivaes.App.Cross.App.SourceGenerator</AssemblyName>
+	  <RootNamespace>Nivaes.App.Cross.App.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -14,12 +14,12 @@
   </PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.App.Cross.UIKit.SourceGenerator</PackageId>
+		<PackageId>Nivaes.App.Cross.AppKit.SourceGenerator</PackageId>
 		<Title>Nivaes UIKit SourceGenerator</Title>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-		<Product>Nivaes App Cross iOS SourceGenerator</Product>
-		<Description>Nivaes App Cross iOS maccatalyst UIKit source generator.</Description>
-		<PackageTags>Nivaes;app;cross;iOS;UIKit;maccatalyst;roslyn</PackageTags>
+		<Product>Nivaes App Cross macos SourceGenerator</Product>
+		<Description>Nivaes App Cross macos AppKit source generator.</Description>
+		<PackageTags>Nivaes;app;cross;AppKit;macos;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
@@ -27,10 +27,6 @@
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
 		<None Include="Docs\Readme.md" Pack="true" PackagePath="\"/>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Components\" />
 	</ItemGroup>
 
 	<ItemGroup>

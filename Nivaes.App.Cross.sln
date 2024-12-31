@@ -63,6 +63,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid.Sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.SourceGenerator", "sources\Nivaes.App.Cross.UIKit.SourceGenerator\Nivaes.App.Cross.UIKit.SourceGenerator.csproj", "{179D56BF-143D-443A-B031-7F02133839A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.AppKit", "sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj", "{3D609193-F6D2-4014-8D0F-54C98B88E0A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.AppKit.SourceGenerator", "sources\Nivaes.App.Cross.AppKit.SourceGenerator\Nivaes.App.Cross.AppKit.SourceGenerator.csproj", "{70172850-9943-4F9B-948B-7C864FB56B56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +136,14 @@ Global
 		{179D56BF-143D-443A-B031-7F02133839A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179D56BF-143D-443A-B031-7F02133839A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179D56BF-143D-443A-B031-7F02133839A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D609193-F6D2-4014-8D0F-54C98B88E0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D609193-F6D2-4014-8D0F-54C98B88E0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D609193-F6D2-4014-8D0F-54C98B88E0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D609193-F6D2-4014-8D0F-54C98B88E0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70172850-9943-4F9B-948B-7C864FB56B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70172850-9943-4F9B-948B-7C864FB56B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70172850-9943-4F9B-948B-7C864FB56B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70172850-9943-4F9B-948B-7C864FB56B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,5 +165,7 @@ Global
 		{EB82AFFC-4959-435E-900C-2571BBC69D72} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{32CE79F5-928A-4B3F-AB6A-898F83B4A53F} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{179D56BF-143D-443A-B031-7F02133839A4} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{3D609193-F6D2-4014-8D0F-54C98B88E0A8} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{70172850-9943-4F9B-948B-7C864FB56B56} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 	EndGlobalSection
 EndGlobal
