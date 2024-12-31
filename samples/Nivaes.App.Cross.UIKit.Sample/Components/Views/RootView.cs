@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Sample;
 
+    [Register("RootView")]
     internal class RootView
         : CrossUIViewController<RootViewModel>
     {
