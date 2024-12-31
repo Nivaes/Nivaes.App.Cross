@@ -3,6 +3,7 @@
     using Microsoft.UI.Xaml.Controls;
     using Nivaes.App.Cross.WinUI.Presenters;
 
+    // ToDo: Cambiar nombre a la clase. (AppDataModel)
     public sealed class WindowInformation
     {
         public WrappedFrame MainFrame { get; }

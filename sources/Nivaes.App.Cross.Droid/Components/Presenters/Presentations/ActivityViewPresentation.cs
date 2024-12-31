@@ -4,8 +4,8 @@
 
     public sealed class ActivityViewPresentation : DroidViewPresentation
     {
-        public ActivityViewPresentation(/*WindowInformation windowInformation*/)
-            : base(/*windowInformation*/)
+        public ActivityViewPresentation(AppDataModel appDataModel)
+            : base(appDataModel)
         {
 
         }

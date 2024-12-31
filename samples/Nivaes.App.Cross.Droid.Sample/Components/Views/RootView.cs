@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid.Sample
     public class RootView : CrossActivity<RootViewModel>
     {
         public RootView()
-            //: base(Resource.Layout.activity_root)
+            : base(Resource.Layout.activity_root)
         {
 
         }
@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid.Sample
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.RootView);
+            //SetContentView(Resource.Layout.RootView);
         }
     }
 }

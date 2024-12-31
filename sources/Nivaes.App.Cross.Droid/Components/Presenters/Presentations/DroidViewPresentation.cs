@@ -1,25 +1,29 @@
 ﻿namespace Nivaes.App.Cross.Droid.Presenters
 {
+    using System.Reflection.Metadata;
+    using Android.Content;
+    using Android.OS;
     using Nivaes.App.Cross.Presenters;
 
     public abstract class DroidViewPresentation : ViewPresentation
     {
-        //protected WindowInformation WindowInformation { get; private set; }
+        protected AppDataModel AppDataModel { get; private set; }
 
-        //private readonly object _windowInformationLock = new();
-
-        protected DroidViewPresentation(/*WindowInformation windowInformation*/)
+        protected DroidViewPresentation(AppDataModel appDataModel)
         {
-            //this.WindowInformation = windowInformation;
+            this.AppDataModel = appDataModel;
         }
 
         public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
         {
-            //var aa = WindowInformation.MainFrame.UnderlyingControl.DispatcherQueue.HasThreadAccess;
+            var intent = new Intent(AppDataModel.ApplicationContext, viewType);
+            //intent.PutExtra("request", request);
+            //var activity = CurrentActivity;
+            //Bundle? bundle = new Bundle();
+            //Context context;
 
-            //var result = WindowInformation.MainFrame.Navigate(viewType, new object());
-
-            ////var result = WindowInformation.MainFrame.Navigate(typeof(Root2View), new object());
+            //AppDataModel.ApplicationContext.StartActivity(intent, bundle);
+            AppDataModel.ApplicationContext.StartActivity(intent);
 
             return Task.FromResult(false);
         }

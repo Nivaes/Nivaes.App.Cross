@@ -15,11 +15,7 @@
 
         public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
         {
-            var aa = WindowInformation.MainFrame.UnderlyingControl.DispatcherQueue.HasThreadAccess;
-
             var result = WindowInformation.MainFrame.Navigate(viewType, new object());
-
-            //var result = WindowInformation.MainFrame.Navigate(typeof(Root2View), new object());
 
             return Task.FromResult(result);
         }
