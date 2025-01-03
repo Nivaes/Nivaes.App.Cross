@@ -9,7 +9,7 @@
         {
             bootstrapper.AddSingleton<IViewDispatcher, UIKitViewDispatcher>();
 
-            bootstrapper.AddSingleton<RootViewPressentation>();
+            bootstrapper.AddSingleton<RootViewPresentation>();
         }
     }
 }

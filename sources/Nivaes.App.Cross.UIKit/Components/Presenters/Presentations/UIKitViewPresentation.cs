@@ -1,17 +1,13 @@
 ﻿namespace Nivaes.App.Cross.UIKit.Presenters
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class UIKitViewPressentation : ViewPresentation
+    public abstract class UIKitViewPresentation : ViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 
-        protected UIKitViewPressentation(AppDataModel appDataModel)
+        protected UIKitViewPresentation(AppDataModel appDataModel)
         {
             this.AppDataModel = appDataModel;
         }

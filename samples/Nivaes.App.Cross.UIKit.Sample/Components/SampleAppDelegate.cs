@@ -27,7 +27,7 @@
             var viewsManager = new ViewsManager(new[] { ViewsManager.New<RootViewModel, RootView>() });
             Singleton<ViewsManager>.Add(viewsManager);
 
-            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, RootViewPressentation>() });
+            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, RootViewPresentation>() });
             Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }

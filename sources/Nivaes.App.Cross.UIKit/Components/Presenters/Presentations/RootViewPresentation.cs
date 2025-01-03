@@ -3,9 +3,9 @@
     using System;
     using System.Threading.Tasks;
 
-    public class RootViewPressentation : UIKitViewPressentation
+    public class RootViewPresentation : UIKitViewPresentation
     {
-        public RootViewPressentation(AppDataModel appDataModel)
+        public RootViewPresentation(AppDataModel appDataModel)
             : base(appDataModel)
         {
         }
