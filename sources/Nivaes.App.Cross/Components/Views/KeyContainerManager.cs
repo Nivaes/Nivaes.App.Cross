@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nivaes.App.Cross.Presenters;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
-    internal class KeyContainerManager
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+
+    public class KeyContainerManager<TValue>
     {
-        private KeyPresentation[] mValues { get; }
+        private KeyPresentation[] mValues;
 
         public struct KeyPresentation
         {
             public int Key { get; set; }
-            public Type Value { get; set; }
+            public TValue Value { get; set; }
         }
 
         private class KeyPresentationComparer : IComparer<KeyPresentation>
@@ -36,6 +31,57 @@ namespace Nivaes.App.Cross
             mValues = values;
             var keyInstanceResolverValues = new Span<KeyPresentation>(mValues);
             keyInstanceResolverValues.Sort(new KeyPresentationComparer());
+        }
+
+        public void Merge(KeyPresentation[] newValues)
+        {
+            var oldValues = mValues;
+            var allValues = new KeyPresentation[oldValues.Length + newValues.Length];
+            int i = 0, j = 0, m = 0;
+
+            while (i < oldValues.Length && j < newValues.Length)
+            {
+                if (oldValues[i].Key < newValues[j].Key)
+                {
+                    allValues[m++] = oldValues[i++];
+                }
+                else
+                {
+                    allValues[m++] = newValues[j++];
+                }
+            }
+            while (i < oldValues.Length)
+            {
+                allValues[m++] = oldValues[i++];
+            }
+            while (j < newValues.Length)
+            {
+                allValues[m++] = newValues[j++];
+            }
+
+            mValues = allValues;
+        }
+
+        public bool TryGetValue<TView>([MaybeNullWhen(false)] out TValue presentationType)
+           where TView : IView
+        {
+            return TryGetValue(typeof(TView), out presentationType);
+        }
+
+        public bool TryGetValue(Type viewType, [MaybeNullWhen(false)] out TValue presentationType)
+        {
+            var result = TryGetValue(viewType.GetHashCode(), out int position);
+
+            if (result)
+            {
+                presentationType = mValues[position].Value;
+                return true;
+            }
+            else
+            {
+                presentationType = default;
+                return false;
+            }
         }
 
         protected bool TryGetValue(int key, [MaybeNullWhen(false)] out int position)
