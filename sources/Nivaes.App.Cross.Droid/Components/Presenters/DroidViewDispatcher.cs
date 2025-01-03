@@ -6,7 +6,7 @@
     {
         private readonly IViewPresenter mViewPresenter;
 
-        public DroidViewDispatcher(IViewPresenter viewPresenter/*, WindowInformation windowInformation*/) 
+        public DroidViewDispatcher(IViewPresenter viewPresenter) 
             : base()
         {
             mViewPresenter = viewPresenter;
@@ -14,20 +14,21 @@
 
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 
-        public override async Task<bool> ShowViewModel(IViewModelRequest request)
+        public override Task<bool> ShowViewModelOnMainThread(IViewModelRequest request)
         {
-            //if (_uiDispatcher.HasThreadAccess)
-            //{
-            return await mViewPresenter.Show(request);
-            //}
-            //else
-            //{
-            //    return _uiDispatcher.TryEnqueue(DispatcherQueuePriority.Normal,
-            //    async () =>
-            //    {
-            //        _ = await mViewPresenter.Show(request);
-            //    });
-            //}
+            return mViewPresenter.Show(request);
+        }
+
+        public override Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action)
+        {
+            var result = false;
+
+            Application.SynchronizationContext.Post(async ignored =>
+            {
+                result = await mViewPresenter.Show(request);
+            }, null);
+
+            return Task.FromResult(true);
         }
     }
 }

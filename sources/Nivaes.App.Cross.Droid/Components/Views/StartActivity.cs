@@ -50,7 +50,6 @@
             container.AddInstance(new AppDataModel(this));
 
             var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
-            Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Optimize(); // ToDo: Cambiar esto de aquí.
 
             if (application != null)
             {

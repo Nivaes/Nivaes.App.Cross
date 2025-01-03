@@ -21,6 +21,7 @@ csharp_style_expression_bodied_local_functions = false:silent
 dotnet_diagnostic.PBN0013.severity = suggestion
 dotnet_diagnostic.S3963.severity = suggestion
 dotnet_diagnostic.S1939.severity = silent
+csharp_prefer_system_threading_lock = true:suggestion
 
 [*.{cs,vb}]
 #### Naming styles ####
@@ -76,3 +77,6 @@ end_of_line = crlf
 dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = none

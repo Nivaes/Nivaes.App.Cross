@@ -3,7 +3,8 @@
     using Microsoft.UI.Xaml.Controls;
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class PageViewPresentation : WinUIViewPresentation
+    public sealed class PageViewPresentation 
+        : WinUIViewPresentation
     {
         public PageViewPresentation(AppDataModel windowInformation)
             : base(windowInformation)

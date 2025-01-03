@@ -3,35 +3,35 @@
     using Microsoft.UI.Dispatching;
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class WinUIViewDispatcher : ViewDispatcher, IViewDispatcher
+    public sealed class WinUIViewDispatcher 
+        : ViewDispatcher, IViewDispatcher
     {
-        private readonly DispatcherQueue _uiDispatcher;
+        private readonly DispatcherQueue mDispatcher;
 
         private readonly IViewPresenter mViewPresenter;
 
-        public WinUIViewDispatcher(IViewPresenter viewPresenter, AppDataModel windowInformation) : base()
+        public WinUIViewDispatcher(IViewPresenter viewPresenter, AppDataModel appDataModel) : base()
         {
-            _uiDispatcher = windowInformation.MainFrame.UnderlyingControl.DispatcherQueue;
+            mDispatcher = appDataModel.MainFrame.UnderlyingControl.DispatcherQueue;
 
             mViewPresenter = viewPresenter;
         }
 
-        override public bool IsOnMainThread => _uiDispatcher.HasThreadAccess;
+        override public bool IsOnMainThread => mDispatcher.HasThreadAccess;
 
-        public override async Task<bool> ShowViewModel(IViewModelRequest request)
+        public override Task<bool> ShowViewModelOnMainThread(IViewModelRequest request)
         {
-            if (_uiDispatcher.HasThreadAccess)
+            return mViewPresenter.Show(request);
+        }
+
+        public override Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action)
+        {
+            var result = mDispatcher.TryEnqueue(DispatcherQueuePriority.Normal, async () =>
             {
-                return await mViewPresenter.Show(request);
-            }
-            else
-            {
-                return _uiDispatcher.TryEnqueue(DispatcherQueuePriority.Normal,
-                async () =>
-                {
-                    _ = await mViewPresenter.Show(request);
-                });
-            }
+                _ = await mViewPresenter.Show(request);
+            });
+
+            return Task.FromResult(result);
         }
     }
 }

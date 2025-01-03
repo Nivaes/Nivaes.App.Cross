@@ -11,18 +11,16 @@
             mViewDispatcher = viewDispatcher;
         }
 
-        public Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
+        public async Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
             where TViewModel : IViewModel
         {
-            IViewModelRequest request = new ViewModelRequest<TViewModel>();
+            var viewModel = ViewModelLoader.LoadViewModel<TViewModel>();
+            if (viewModel == null)
+            {
+                throw new CrossException($"No se pudo crear el ViewModel of type {typeof(TViewModel)}.");
+            }
 
-            return Navigate<TViewModel>(request, cancellationToken);
-        }
-
-        private async Task<bool> Navigate<TViewModel>(IViewModelRequest request, CancellationToken cancellationToken = default)
-             where TViewModel : IViewModel
-        {
-            request.ViewModel = ViewModelLoader.LoadViewModel<TViewModel>();
+            IViewModelRequest request = new ViewModelRequest<TViewModel>(viewModel);
 
             var hasNavigated = await mViewDispatcher.ShowViewModel(request).ConfigureAwait(false);
 

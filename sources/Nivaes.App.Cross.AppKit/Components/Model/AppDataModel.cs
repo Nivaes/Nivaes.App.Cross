@@ -1,6 +1,6 @@
-﻿namespace Nivaes.App.Cross.WinUI
+﻿namespace Nivaes.App.Cross.AppKit
 {
-    using Nivaes.App.Cross.UIKit.Presenters;
+    using Nivaes.App.Cross.AppKit.Presenters;
 
     public sealed class AppDataModel
     {

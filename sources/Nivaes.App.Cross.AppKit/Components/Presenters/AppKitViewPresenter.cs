@@ -9,7 +9,7 @@
     using Nivaes.IoC;
 
 
-    public sealed class UIViewPresenter : ViewPresenter, IViewPresenter
+    public sealed class AppKitViewPresenter : ViewPresenter, IViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 

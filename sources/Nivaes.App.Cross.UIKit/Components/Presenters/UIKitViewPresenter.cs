@@ -8,7 +8,7 @@
     using Nivaes.App.Cross.Presenters;
     using Nivaes.IoC;
 
-    public sealed class UIViewPresenter : ViewPresenter, IViewPresenter
+    public sealed class UIKitViewPresenter : ViewPresenter, IViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 
