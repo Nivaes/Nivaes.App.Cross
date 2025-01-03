@@ -41,19 +41,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit", "sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj", "{37FB89FC-15F9-4617-A57B-23029B9AAC97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.iOS.Sample", "samples\Nivaes.App.Cross.UIKit.iOS.Sample\Nivaes.App.Cross.UIKit.iOS.Sample.csproj", "{3929BF40-A7B9-474B-970E-898C01EA5BF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.UIKit.iOS", "samples\Nivaes.App.Cross.Sample.UIKit.iOS\Nivaes.App.Cross.Sample.UIKit.iOS.csproj", "{3929BF40-A7B9-474B-970E-898C01EA5BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.MacCatalyst.Sample", "samples\Nivaes.App.Cross.UIKit.MacCatalyst.Sample\Nivaes.App.Cross.UIKit.MacCatalyst.Sample.csproj", "{4CFD138C-3568-49BF-A353-E3D4C8759D17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.UIKit.MacCatalyst", "samples\Nivaes.App.Cross.Sample.UIKit.MacCatalyst\Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj", "{4CFD138C-3568-49BF-A353-E3D4C8759D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid.Sample", "samples\Nivaes.App.Cross.Droid.Sample\Nivaes.App.Cross.Droid.Sample.csproj", "{2BF01060-9E90-45E5-B29B-B7E7630E2B22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.Droid", "samples\Nivaes.App.Cross.Sample.Droid\Nivaes.App.Cross.Sample.Droid.csproj", "{2BF01060-9E90-45E5-B29B-B7E7630E2B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI.Sample", "samples\Nivaes.App.Cross.WinUI.Sample\Nivaes.App.Cross.WinUI.Sample.csproj", "{B2DCBD13-1972-4F14-973B-95EACBCDBE66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.WinUI", "samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj", "{B2DCBD13-1972-4F14-973B-95EACBCDBE66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A6E7B574-3D44-464D-BFA8-6A05C3090F68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample", "samples\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj", "{AD688D20-54D7-4078-9095-DE8B3AD7CA7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.UIKit.Sample", "samples\Nivaes.App.Cross.UIKit.Sample\Nivaes.App.Cross.UIKit.Sample.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.UIKit", "samples\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj", "{DA8134C5-1965-4C87-BA2C-3C46ED4EA987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.SourceGenerator", "sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj", "{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}"
 EndProject
@@ -73,7 +73,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{DDF2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Droid", "Droid", "{32D1DFCF-1237-4E27-95B0-11A2FE6A537D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.AppKit.MacOS.Sample", "samples\Nivaes.App.Cross.AppKit.MacOS.Sample\Nivaes.App.Cross.AppKit.MacOS.Sample.csproj", "{A3BDA65D-683F-44DF-B397-74E136E92C8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.AppKit.MacOS", "samples\Nivaes.App.Cross.Sample.AppKit.MacOS\Nivaes.App.Cross.Sample.AppKit.MacOS.csproj", "{A3BDA65D-683F-44DF-B397-74E136E92C8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

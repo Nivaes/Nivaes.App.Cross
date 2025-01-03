@@ -30,11 +30,11 @@
                 return new SampleApplication(applicationStart!);
             });
 
-            var viewsManager = Singleton<ViewsManager>.Instance;
-            viewsManager.AddViewModelView<RootViewModel, RootView>();
+            var viewsManager = new ViewsManager(new[] { ViewsManager.New<RootViewModel, RootView>() });
+            Singleton<ViewsManager>.Add(viewsManager);
 
-            var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
-            viewPresentationsManager.AddPresentation<RootView, ActivityViewPresentation>();
+            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, ActivityViewPresentation>() });
+            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

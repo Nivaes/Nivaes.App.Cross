@@ -20,7 +20,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
-		<ProjectReference Include="..\Nivaes.App.Cross.UIKit.Sample\Nivaes.App.Cross.UIKit.Sample.csproj" />
+		<ProjectReference Include="..\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">
@@ -37,4 +37,5 @@
 	<ItemGroup>
 	  <Folder Include="Components\Views\" />
 	</ItemGroup>
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadMonoInterpreterErrorInfoBarNivaesAppCrossUIKitiOSSampleHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>
