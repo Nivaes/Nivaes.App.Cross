@@ -35,6 +35,21 @@
             base.WillTerminate(application);
         }
 
+        public override void WillEncodeRestorableState(UIApplication application, NSCoder coder)
+        {
+            base.WillEncodeRestorableState(application, coder);
+        }
+
+        public override bool WillContinueUserActivity(UIApplication application, string userActivityType)
+        {
+            return base.WillContinueUserActivity(application, userActivityType);
+        }
+
+        //public override bool WillFinishLaunching(UIApplication application, NSDictionary launchOptions)
+        //{
+        //    return base.WillFinishLaunching(application, launchOptions);
+        //}
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             Window ??= new UIWindow(UIScreen.MainScreen.Bounds);

@@ -12,13 +12,21 @@
 
         public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
         {
-            var UIKitRequest = (IUIKitViewModelRequest)request;
-            var storyboardName = UIKitRequest.StoryboardName ?? viewType.Name;
+            try
+            {
+                //var UIKitRequest = (IUIKitViewModelRequest)request;
+                //var storyboardName = UIKitRequest.StoryboardName ?? viewType.Name;
+                var storyboardName = viewType.Name; 
 
-            var storyboard = UIStoryboard.FromName(storyboardName, null);
-            var viewController = storyboard.InstantiateViewController(viewType.Name);
+                var storyboard = UIStoryboard.FromName(storyboardName, null);
+                var viewController = storyboard.InstantiateViewController(viewType.Name);
 
-            AppDataModel.Windows.RootViewController = viewController;
+                AppDataModel.Windows.RootViewController = viewController;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
 
             return Task.FromResult(true);
         }
