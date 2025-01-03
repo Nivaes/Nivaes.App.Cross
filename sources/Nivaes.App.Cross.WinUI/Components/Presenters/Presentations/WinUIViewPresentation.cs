@@ -4,11 +4,11 @@
 
     public abstract class WinUIViewPresentation : ViewPresentation
     {
-        protected WindowInformation WindowInformation { get; private set; }
+        protected AppDataModel WindowInformation { get; private set; }
 
         //private readonly object _windowInformationLock = new();
 
-        protected WinUIViewPresentation(WindowInformation windowInformation)
+        protected WinUIViewPresentation(AppDataModel windowInformation)
         {
             this.WindowInformation = windowInformation;
         }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nivaes.IoC;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
+    using Nivaes.IoC;
+
     public static class ViewModelLoader
     {
-        public static IViewModel LoadViewModel<TViewModel>()
+        public static TViewModel? LoadViewModel<TViewModel>()
              where TViewModel : IViewModel
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;

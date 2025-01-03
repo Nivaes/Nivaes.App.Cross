@@ -23,12 +23,6 @@
                 return new WinUIViewPresenter();
             });
 
-            //container.AddDelegate<IViewDispatcher>((container) =>
-            //{
-            //    var presenter = container.Resolve<IViewPresenter>();
-            //    return new WinUIViewDispatcher(presenter!);
-            //});
-            
             container.Merge(new WinUISubcontainer());
 
             base.UnhandledException += OnUnhandledException;
@@ -50,13 +44,11 @@
         protected virtual void RunAppStart(string arguments)
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.AddInstance(new WindowInformation(RootFrame!));
+            container.AddInstance(new AppDataModel(RootFrame!));
 
             if (RootFrame!.Content == null)
             {
                 var application = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ICrossApplication>();
-
-                Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Optimize(); // ToDo: Cambiar esto de aquí.
 
                 if (application != null)
                 {

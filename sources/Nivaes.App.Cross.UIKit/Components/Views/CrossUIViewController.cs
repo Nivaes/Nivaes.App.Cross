@@ -1,18 +1,22 @@
-﻿namespace Nivaes.App.Cross.AppKit
+﻿namespace Nivaes.App.Cross.UIKit
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using ObjCRuntime;
-    using System.ComponentModel;
 
     public abstract class CrossUIViewController<TViewModel>
-        : NSViewController, IView
+        : UIViewController, IView
         where TViewModel : class, IViewModel
     {
-        public CrossUIViewController() 
-            : base()
+        public CrossUIViewController()
+           : base()
         {
         }
-      
-        public CrossUIViewController(NSCoder coder) 
+
+        public CrossUIViewController(NSCoder coder)
             : base(coder)
         {
         }
@@ -26,7 +30,7 @@
             : base(t)
         {
         }
-       
+
         protected internal CrossUIViewController(NativeHandle handle)
             : base(handle)
         {

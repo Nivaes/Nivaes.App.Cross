@@ -10,10 +10,13 @@ namespace Nivaes.App.Cross
         IViewModelRequest
         where TViewModel : IViewModel
     {
-        public ViewModelRequest()
+        public ViewModelRequest(TViewModel viewModel)
         {
+            ViewModel = viewModel;
         }
 
-        public IViewModel ViewModel { get; set; }
+        public TViewModel ViewModel { get;}
+
+        IViewModel IViewModelRequest.ViewModel => ViewModel;
     }
 }
