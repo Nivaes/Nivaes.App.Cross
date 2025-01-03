@@ -8,8 +8,7 @@
     using Nivaes.App.Cross.Sample;
     using ObjCRuntime;
 
-    [Register("RootView")]
-    internal class RootView
+    public partial class RootView
         : CrossUIViewController<RootViewModel>
     {
         public RootView(NativeHandle handle)

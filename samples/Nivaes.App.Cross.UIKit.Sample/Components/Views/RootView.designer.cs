@@ -10,6 +10,7 @@ using System.CodeDom.Compiler;
 
 namespace Nivaes.App.Cross.UIKit.Sample
 {
+	[Register("RootView")]
 	partial class RootView
 	{
 		void ReleaseDesignerOutlets ()
