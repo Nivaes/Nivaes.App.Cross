@@ -1,9 +1,11 @@
-namespace Nivaes.App.Cross.WinUI.Sample
+namespace Nivaes.App.Cross.Sample.WinUI
 {
     using Microsoft.UI.Xaml;
     using Nivaes.App.Cross.Sample;
+    using Nivaes.App.Cross.WinUI;
 
-    public sealed partial class RootView : RootViewPage
+    public sealed partial class RootView 
+        : RootViewPage
     {
         public RootView()
         {
@@ -16,7 +18,8 @@ namespace Nivaes.App.Cross.WinUI.Sample
         }
     }
 
-    public abstract class RootViewPage : CrossPage<RootViewModel>
+    public abstract class RootViewPage 
+        : CrossPage<RootViewModel>
     {
     }
 }

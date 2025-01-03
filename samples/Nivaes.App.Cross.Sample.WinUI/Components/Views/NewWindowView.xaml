@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <app:NewWindowPage
-    x:Class="Nivaes.App.Cross.WinUI.Sample.NewWindowView"
+    x:Class="Nivaes.App.Cross.Sample.WinUI.NewWindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Nivaes.App.Cross.WinUI.Sample"
+    xmlns:local="using:Nivaes.App.Cross.Sample.WinUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:app="using:Nivaes.App.Cross.WinUI.Sample"
+    xmlns:app="using:Nivaes.App.Cross.Sample.WinUI"
     mc:Ignorable="d">
 
     <Grid>

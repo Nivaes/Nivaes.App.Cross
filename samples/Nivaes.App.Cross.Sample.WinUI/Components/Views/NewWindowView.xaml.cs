@@ -1,9 +1,10 @@
-namespace Nivaes.App.Cross.WinUI.Sample
+namespace Nivaes.App.Cross.Sample.WinUI
 {
     using Nivaes.App.Cross.Sample;
     using Nivaes.App.Cross.WinUI.Components.Views;
 
-    public sealed partial class NewWindowView : NewWindowPage
+    public sealed partial class NewWindowView 
+        : NewWindowPage
     {
         public NewWindowView()
         {
@@ -11,7 +12,8 @@ namespace Nivaes.App.Cross.WinUI.Sample
         }
     }
 
-    public abstract class NewWindowPage : NewWinUIPage<RootViewModel>
+    public abstract class NewWindowPage 
+        : NewWinUIPage<RootViewModel>
     {
     }
 }

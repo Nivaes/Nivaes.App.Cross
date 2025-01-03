@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cross:WinUIApplication
-    x:Class="Nivaes.App.Cross.WinUI.Sample.App"
+    x:Class="Nivaes.App.Cross.Sample.WinUI.App"
     xmlns:cross="using:Nivaes.App.Cross.WinUI"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Nivaes.App.Cross.WinUI.Sample">
+    xmlns:local="using:Nivaes.App.Cross.Sample.WinUI">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

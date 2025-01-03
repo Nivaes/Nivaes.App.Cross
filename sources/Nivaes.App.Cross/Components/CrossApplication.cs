@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross
             var meterProvider = Sdk
                 .CreateMeterProviderBuilder()
                 .AddMeter("Cross")
-                .AddPrometheusHttpListener(options => options.UriPrefixes = new string[] { "http://localhost:9464/" })
+                .AddPrometheusHttpListener(options => options.UriPrefixes = new string[] { "http://localhost:8464/" })
                 //.AddPrometheusHttpListener(options => options.UriPrefixes = new string[] { "http://10.0.2.2:9464/" }) // for android
                 .Build();
         }
