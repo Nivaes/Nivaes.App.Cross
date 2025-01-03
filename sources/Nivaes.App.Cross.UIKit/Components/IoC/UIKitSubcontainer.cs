@@ -9,8 +9,7 @@
         {
             bootstrapper.AddSingleton<IViewDispatcher, UIKitViewDispatcher>();
 
-            //bootstrapper.AddSingleton<PageViewPresentation>();
-            //bootstrapper.AddSingleton<NewWindowViewPresentation>();
+            bootstrapper.AddSingleton<RootViewPressentation>();
         }
     }
 }

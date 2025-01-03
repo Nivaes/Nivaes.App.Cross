@@ -20,6 +20,21 @@
             container.Merge(new UIKitSubcontainer());
         }
 
+        public override void WillEnterForeground(UIApplication application)
+        {
+            base.WillEnterForeground(application);
+        }
+
+        public override void DidEnterBackground(UIApplication application)
+        {
+            base.DidEnterBackground(application);
+        }
+
+        public override void WillTerminate(UIApplication application)
+        {
+            base.WillTerminate(application);
+        }
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             Window ??= new UIWindow(UIScreen.MainScreen.Bounds);

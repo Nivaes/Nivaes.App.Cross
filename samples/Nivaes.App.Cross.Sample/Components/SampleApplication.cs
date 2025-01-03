@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross.Sample
+﻿namespace Nivaes.App.Cross.Sample
 {
-    public class SampleApplication : CrossApplication
+    public class SampleApplication 
+        : CrossApplication
     {
         public SampleApplication(ICrossApplicationStart applicationStart)
             :base(applicationStart)

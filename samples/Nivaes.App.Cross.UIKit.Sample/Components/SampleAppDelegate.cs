@@ -1,10 +1,5 @@
 ﻿namespace Nivaes.App.Cross.UIKit.Sample
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
     using Nivaes.App.Cross.UIKit.Presenters;
@@ -32,8 +27,11 @@
             var viewsManager = Singleton<ViewsManager>.Instance;
             viewsManager.AddViewModelView<RootViewModel, RootView>();
 
-            var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
-            viewPresentationsManager.AddPresentation<RootView, RootViewPressentation>();
+            //var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
+            //viewPresentationsManager.AddPresentation<RootView, RootViewPressentation>();
+
+            var viewPresentationsManager = new ViewPresentationsManager(new[] { KeyPresentation.New<RootView, RootViewPressentation>() });
+            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

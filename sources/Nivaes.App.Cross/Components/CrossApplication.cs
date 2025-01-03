@@ -4,7 +4,8 @@ using OpenTelemetry.Metrics;
 
 namespace Nivaes.App.Cross
 {
-    public abstract class CrossApplication : ICrossApplication, IDisposable
+    public abstract class CrossApplication 
+        : ICrossApplication, IDisposable
     {
         private readonly ICrossApplicationStart? mApplicationStart;
 

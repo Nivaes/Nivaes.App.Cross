@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="Nivaes.IoC" />
 		<PackageReference Include="OpenTelemetry" />
 		<PackageReference Include="OpenTelemetry.Exporter.Prometheus.HttpListener" />

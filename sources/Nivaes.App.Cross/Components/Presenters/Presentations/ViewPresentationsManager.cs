@@ -1,21 +1,44 @@
 ﻿namespace Nivaes.App.Cross.Presenters
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    public struct KeyPresentation
+    {
+        public int Key { get; set; }
+        public Type Value { get; set; }
+
+        public static KeyPresentation New<TView, TPresentationType>()
+           where TView : IView
+           where TPresentationType : IViewPresentation
+        {
+            return new KeyPresentation { Key = typeof(TView).GetHashCode(), Value = typeof(TPresentationType) };
+        }
+    }
+
+    public class KeyPresentationComparer : IComparer<KeyPresentation>
+    {
+        public int Compare(KeyPresentation x, KeyPresentation y)
+        {
+            return x.Key.CompareTo(y.Key);
+        }
+    }
+
     public class ViewPresentationsManager
     {
-        private IDictionary<int, Type> mPresentations { get; } = new Dictionary<int, Type>();
+        private KeyPresentation[] mPresentations { get; }
 
         public ViewPresentationsManager()
         {
+            mPresentations = new KeyPresentation[0];
         }
 
-        public void AddPresentation<TView, TPresentationType>()
-            where TView : IView
-            where TPresentationType : IViewPresentation
+        public ViewPresentationsManager(KeyPresentation[] presentations)
         {
-            mPresentations.Add(typeof(TView).GetHashCode(), typeof(TPresentationType));
+            mPresentations = presentations;
+            var keyInstanceResolverValues = new Span<KeyPresentation>(mPresentations);
+            keyInstanceResolverValues.Sort(new KeyPresentationComparer());
         }
 
         public bool TryGetValue<TView>([MaybeNullWhen(false)] out Type presentationType)
@@ -26,12 +49,21 @@
 
         public bool TryGetValue(Type viewType, [MaybeNullWhen(false)] out Type presentationType)
         {
-            return TryGetValue(viewType.GetHashCode(), out presentationType);
+            var result = TryGetValue(viewType.GetHashCode(), out int position);
+
+            if (result)
+            {
+                presentationType = mPresentations[position].Value;
+                return true;
+            }
+            else
+            {
+                presentationType = default;
+                return false;
+            }
         }
 
-        private bool TryGetValue(int viewTypeHash, [MaybeNullWhen(false)] out Type presentationType)
-        {
-            return mPresentations.TryGetValue(viewTypeHash, out presentationType);
-        }
+
+       
     }
 }

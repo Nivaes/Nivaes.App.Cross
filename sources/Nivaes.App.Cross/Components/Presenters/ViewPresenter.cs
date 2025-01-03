@@ -25,14 +25,21 @@ namespace Nivaes.App.Cross.Presenters
             {
                 var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
 
-                if (viewPresentationsManager.TryGetValue(viewType, out var viewPresentationType))
+                try
                 {
-                    var container = Singleton<CrossIoCServiceContainer>.Instance;
-                    var viewPresentation = container.Resolve(viewPresentationType) as IViewPresentation;
+                    if (viewPresentationsManager.TryGetValue(viewType, out var viewPresentationType))
+                    {
+                        var container = Singleton<CrossIoCServiceContainer>.Instance;
+                        var viewPresentation = container.Resolve(viewPresentationType) as IViewPresentation;
 
-                    return (viewType!, viewPresentation!);
+                        return (viewType!, viewPresentation!);
+                    }
                 }
-
+                catch (Exception ex)
+                {
+                    throw new CrossException($"Error creating ViewPresentation for {viewType}", ex);
+                }
+                
                 throw new CrossException($"ViewPresentationsManager not found for {viewType}");
             }
 
