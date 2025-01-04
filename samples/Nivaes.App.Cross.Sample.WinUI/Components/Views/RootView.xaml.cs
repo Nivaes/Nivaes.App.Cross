@@ -12,9 +12,13 @@ namespace Nivaes.App.Cross.Sample.WinUI
             this.InitializeComponent();
         }
 
+        public string Cosa {get; set;} = "Prueba cosa2";
+
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
             myButton.Content = "Clicked view";
+
+            ViewModel!.Title = "Nuevo título";
         }
     }
 

@@ -6,7 +6,6 @@
     {
         protected AppDataModel WindowInformation { get; private set; }
 
-        //private readonly object _windowInformationLock = new();
 
         protected WinUIViewPresentation(AppDataModel windowInformation)
         {
@@ -15,7 +14,7 @@
 
         public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
         {
-            var result = WindowInformation.MainFrame.Navigate(viewType, new object());
+            var result = WindowInformation.MainFrame.Navigate(viewType, request.ViewModel);
 
             return Task.FromResult(result);
         }

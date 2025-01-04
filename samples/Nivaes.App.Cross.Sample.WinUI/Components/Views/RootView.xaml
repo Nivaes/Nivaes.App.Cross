@@ -6,10 +6,24 @@
     xmlns:local="using:Nivaes.App.Cross.Sample.WinUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:app="using:Nivaes.App.Cross.Sample.WinUI"
+    xmlns:app="using:Nivaes.App.Cross.Sample.WinUI" 
+    xmlns:sample="using:Nivaes.App.Cross.Sample" 
+    xmlns:converters="using:Nivaes.App.Cross.WinUI"
+    d:DataContext="{d:DesignInstance Type=sample:RootViewModel}"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Page.Resources>
+        <converters:DebugValueConverter x:Key="DebugValueConverter" />
+        <local:RootViewValueConverter x:Key="RootViewValueConverter" />
+    </Page.Resources>
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Binding Title" />
+        <TextBlock Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
+
+        <TextBlock Text="Binding Title" />
+        <TextBlock Text="{Binding Title, Mode=OneWay}" />        
+
         <Button x:Name="myButton" Click="myButton_Click">Click Me view</Button>
     </StackPanel>
 </app:RootViewPage>
