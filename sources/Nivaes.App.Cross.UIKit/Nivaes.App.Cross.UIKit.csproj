@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="nivaes.app.shared" />
+		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">
