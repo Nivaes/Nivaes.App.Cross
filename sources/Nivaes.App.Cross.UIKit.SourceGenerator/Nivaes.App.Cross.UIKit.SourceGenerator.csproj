@@ -16,7 +16,6 @@
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.UIKit.SourceGenerator</PackageId>
 		<Title>Nivaes UIKit SourceGenerator</Title>
-		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Nivaes App Cross iOS SourceGenerator</Product>
 		<Description>Nivaes App Cross iOS maccatalyst UIKit source generator.</Description>
 		<PackageTags>Nivaes;app;cross;iOS;UIKit;maccatalyst;roslyn</PackageTags>

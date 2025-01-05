@@ -5,16 +5,20 @@
 		<OutputType>Exe</OutputType>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ApplicationId>com.nivaes.app.cross.sample</ApplicationId>
+		<ApplicationId>com.nivaes.app.sample.cross</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<!--
+		<!--		
       Enables trim analyzers and full trimming during Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
 		<TrimMode>full</TrimMode>
-
+		
 		<IsPackable>false</IsPackable>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		
+		<IsAotCompatible>true</IsAotCompatible>
+		<!--<PublishAot>true</PublishAot>-->
 	</PropertyGroup>
 	<ItemGroup>
 	  <PackageReference Include="Nivaes.App.Shared" />
@@ -35,5 +39,8 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Properties\" />
 	</ItemGroup>
 </Project>

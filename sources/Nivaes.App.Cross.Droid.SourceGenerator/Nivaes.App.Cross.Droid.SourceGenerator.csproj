@@ -16,7 +16,6 @@
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.Droid.SourceGenerator</PackageId>
 		<Title>Nivaes Droid SourceGenerator</Title>
-		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Nivaes App Cross Droid SourceGenerator</Product>
 		<Description>Nivaes App Cross Droid source generator.</Description>
 		<PackageTags>Nivaes;app;cross;droid;roslyn</PackageTags>

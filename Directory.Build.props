@@ -7,7 +7,6 @@
 		<PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -21,13 +20,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-
-		<!--<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'ios'">13.4</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'android'">23.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion Condition="'$(TargetFramework)' == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'tizen'">6.5</SupportedOSPlatformVersion>-->
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -44,7 +36,7 @@
 
 		<NeutralLanguage>en</NeutralLanguage>
 		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>-dev-0.1</VersionSuffix>
+		<VersionSuffix>-dev-0.2</VersionSuffix>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -54,10 +46,11 @@
 
 	<PropertyGroup>
 		<IsTestProject>$(MSBuildProjectName.Contains('UnitTest'))</IsTestProject>
+		<IsBenchmarksProject>$(MSBuildProjectName.Contains('Benchmarks'))</IsBenchmarksProject>
+		<IsSampleProject>$(MSBuildProjectName.Contains('Sample'))</IsSampleProject>
 
 		<GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
-
+		<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -71,28 +64,6 @@
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 
-		<GeneratePackageOnBuild Condition=" '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
-
 	</PropertyGroup>
-
-	<!--<PropertyGroup Condition=" '$(Configuration)' == 'Release' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<IncludeSymbols>true</IncludeSymbols>
-		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-
-		<DesignTimeBuild>false</DesignTimeBuild>
-		<DebugType>portable</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild Condition=" '$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
-
-	</PropertyGroup>-->
-
-	<!--<ItemGroup Condition=" '$(Configuration)' == 'Debug' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' ">
-    <PackageReference Include="xunit"/>
-  </ItemGroup>-->
 
 </Project>

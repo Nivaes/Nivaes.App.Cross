@@ -16,7 +16,6 @@
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.WinUI.SourceGenerator</PackageId>
 		<Title>Nivaes WinUI SourceGenerator</Title>
-		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Nivaes App Cross WinUI SourceGenerator</Product>
 		<Description>Nivaes App Cross WinUI source generator.</Description>
 		<PackageTags>Nivaes;app;cross;WinUI;roslyn</PackageTags>

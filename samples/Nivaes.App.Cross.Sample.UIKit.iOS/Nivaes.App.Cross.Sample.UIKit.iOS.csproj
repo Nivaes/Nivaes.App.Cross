@@ -13,6 +13,8 @@
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 
 		<IsPackable>false</IsPackable>
+		
+		<IsAotCompatible>true</IsAotCompatible>
 		<PublishAot>true</PublishAot>
 	</PropertyGroup>
 	<ItemGroup>

@@ -16,7 +16,6 @@
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.SourceGenerator</PackageId>
 		<Title>Nivaes App Cross SourceGenerator</Title>
-		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Nivaes App Cross SourceGenerator</Product>
 		<Description>Nivaes App Cross source generator.</Description>
 		<PackageTags>Nivaes;app;cross;roslyn</PackageTags>

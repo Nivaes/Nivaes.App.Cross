@@ -14,6 +14,7 @@
 
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>false</IsPackable>
+		
 		<IsAotCompatible>true</IsAotCompatible>
 		<!--<PublishAot>true</PublishAot>-->
 	</PropertyGroup>

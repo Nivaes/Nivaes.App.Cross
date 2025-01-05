@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         //protected readonly INavigationService NavigationService;
         //protected readonly ICrossApplication Application;
 
-        private int startHasCommenced;
+        private int startHasCommenced =  0;
 
         //protected CrossApplicationStart(ICrossApplication application, INavigationService navigationService)
         //{
