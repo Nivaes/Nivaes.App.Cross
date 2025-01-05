@@ -15,7 +15,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="nivaes.app.shared" />
+		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />

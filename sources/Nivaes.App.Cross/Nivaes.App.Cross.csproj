@@ -11,10 +11,6 @@
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<PackageReadmeFile>Readme.md</PackageReadmeFile>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />
@@ -27,9 +23,19 @@
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
 		</ProjectReference>
-
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Nivaes.App.Cross.Droid" />
+		<InternalsVisibleTo Include="Nivaes.App.Cross.UIKit" />
+		<InternalsVisibleTo Include="Nivaes.App.Cross.AppKit" />
+		<InternalsVisibleTo Include="Nivaes.App.Cross.WinUI" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
 		<None Include="Docs\Readme.md" Pack="true" PackagePath="\" />
