@@ -24,31 +24,15 @@
         }
 
         #region ViewModel
-        private TViewModel? mViewModel;
-
         public TViewModel? ViewModel
         {
             get
             {
-                return mViewModel;
+                return (TViewModel)DataContext;
             }
             set
             {
-                if (mViewModel == value)
-                    return;
-
-                //base.Frame.DispatcherQueue.TryEnqueue(() =>
-                //{
-                //    mViewModel = value;
-                //    DataContext = mViewModel;
-                //    //RaisePropertyChanged();
-                //    //RaisePropertyChanged(nameof(DataContext));
-                //});
-
-                mViewModel = value;
-                DataContext = mViewModel;
-                //RaisePropertyChanged();
-                //RaisePropertyChanged(nameof(DataContext));
+                DataContext = value;
             }
         }
         #endregion

@@ -19,6 +19,7 @@
         private readonly int _resourceId;
         private Bundle? _bundle;
 
+        #region Constructors
         protected CrossActivity(int resourceId = NoContent)
         {
             _resourceId = resourceId;
@@ -31,15 +32,38 @@
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
-            _bundle = savedInstanceState;
+            _bundle = Intent?.Extras;
+
+            if(_bundle != null) 
+            {
+                var key = _bundle.GetInt("viewModelKey");
+                if(Singleton<TemporaryStore<IViewModel>>.Instance.TryGetAndRemove(key, out var viewModel))
+                {
+                    ViewModel = (TViewModel?)viewModel;
+                }
+            }
 
             base.OnCreate(savedInstanceState);
 
             if (_resourceId != NoContent)
             {
                 var content = LayoutInflater.Inflate(_resourceId, null);
-                SetContentView(content);
+                base.SetContentView(content);
             }
         }
+        #endregion
+
+        #region Properties
+        private TViewModel? mViewModel;
+
+        public TViewModel? ViewModel
+        {
+            get => mViewModel;
+            set
+            {
+                mViewModel = value;
+            }
+        }
+        #endregion
     }
 }

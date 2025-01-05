@@ -19,10 +19,12 @@
             var intent = new Intent(AppDataModel.ApplicationContext, viewType);
             //intent.PutExtra("request", request);
             //var activity = CurrentActivity;
-            //Bundle? bundle = new Bundle();
-            //Context context;
 
-            //AppDataModel.ApplicationContext.StartActivity(intent, bundle);
+            var viewModelKey = Singleton<TemporaryStore<IViewModel>>.Instance.Add(request.ViewModel);
+            Bundle bundle = new Bundle();
+            bundle.PutInt("viewModelKey", viewModelKey);
+            intent.PutExtras(bundle);
+
             AppDataModel.ApplicationContext.StartActivity(intent);
 
             return Task.FromResult(false);

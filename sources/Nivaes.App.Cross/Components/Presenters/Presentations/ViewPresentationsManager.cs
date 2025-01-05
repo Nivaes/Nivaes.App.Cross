@@ -1,21 +1,33 @@
 ﻿namespace Nivaes.App.Cross.Presenters
 {
-    public class ViewPresentationsManager : KeyContainerManager<Type>
+    using System.Diagnostics.CodeAnalysis;
+
+    public sealed class ViewPresentationsManager : KeyContainerManager<Type>
     {
-        public static KeyPresentation New<TView, TPresentationType>()
+        public static KeyStoreItem New<TView, TPresentationType>()
             where TView : IView
             where TPresentationType : IViewPresentation
         {
-            return new KeyPresentation { Key = typeof(TView).GetHashCode(), Value = typeof(TPresentationType) };
+            return new KeyStoreItem { Key = typeof(TView).GetHashCode(), Value = typeof(TPresentationType) };
         }
 
         public ViewPresentationsManager()
         {
         }
 
-        public ViewPresentationsManager(KeyPresentation[] presentations)
+        public ViewPresentationsManager(KeyStoreItem[] presentations)
             : base(presentations)
         {
-        }   
+        }
+
+        public bool TryGetValue<TView>([MaybeNullWhen(false)] out Type presentationType)
+        {
+            return TryGetValue(typeof(TView), out presentationType);
+        }
+
+        public bool TryGetValue(Type viewType, [MaybeNullWhen(false)] out Type presentationType)
+        {
+            return TryGetValue(viewType.GetHashCode(), out presentationType);
+        }
     }
 }
