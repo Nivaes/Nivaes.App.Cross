@@ -3,11 +3,11 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFramework>net9.0</TargetFramework>
-		<!--<ImplicitUsings>enable</ImplicitUsings>-->
-
+		
 		<AssemblyName>Nivaes.App.Cross</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross</RootNamespace>
 
+		<ImplicitUsings>enable</ImplicitUsings>
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
@@ -51,6 +51,10 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Components\Binding\" />
 	</ItemGroup>
 
 </Project>
