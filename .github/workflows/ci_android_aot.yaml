@@ -1,8 +1,9 @@
-name: CI_ANDROID_AOT
+name: ci android aot
 
 on:
   push:
     paths:
+    - '.github/workflows/ci_android_aot.yaml'
     - 'samples/Nivaes.App.Cross.Sample.Droid'
   pull_request:
     #types: [opened, synchronize, reopened]
