@@ -1,13 +1,12 @@
-﻿namespace Nivaes.App.Cross.Sample.Droid
+﻿namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Droid;
 
-    public abstract class SampleDroidCrossSetup : DroidCrossSetup
+    public class FluentBindingDescriptionSet<TSource>
     {
     }
 }

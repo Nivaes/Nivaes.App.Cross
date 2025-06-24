@@ -1,16 +1,13 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Android.Content;
     using Android.Runtime;
     using Android.Views;
 
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
-        : Activity, IView
+        : Activity, IView, IBindingView
         where TViewModel : class, IViewModel
     {
 
@@ -34,10 +31,10 @@
         {
             _bundle = Intent?.Extras;
 
-            if(_bundle != null) 
+            if (_bundle != null)
             {
                 var key = _bundle.GetInt("viewModelKey");
-                if(Singleton<TemporaryStore<IViewModel>>.Instance.TryGetAndRemove(key, out var viewModel))
+                if (Singleton<TemporaryStore<IViewModel>>.Instance.TryGetAndRemove(key, out var viewModel))
                 {
                     ViewModel = (TViewModel?)viewModel;
                 }
@@ -47,10 +44,51 @@
 
             if (_resourceId != NoContent)
             {
-                var content = LayoutInflater.Inflate(_resourceId, null);
-                base.SetContentView(content);
+                try
+                {
+                    var content = LayoutInflater.Inflate(_resourceId, null);
+                    base.SetContentView(content);
+                }
+                catch (Exception ex)
+                {
+                    throw new CrossException("Error al generar el recurso", ex);
+                }
             }
+
+            Binding();
         }
+
+        //protected override void AttachBaseContext(Context? @base)
+        //{
+        //    base.AttachBaseContext(new CrossContextWrapper(@base));
+        //}
+
+        protected abstract void Binding();
+
+
+        //public override void SetContentView(int layoutResID)
+        //{
+        //    if (BaseContextToAttach(this) is MvxContextWrapper)
+        //    {
+        //        var view = this.BindingInflate(layoutResID, null);
+        //        base.SetContentView(view);
+        //        return;
+        //    }
+
+        //    base.SetContentView(layoutResID);
+        //}
+
+        //public override View? OnCreateView(string name, Context context, IAttributeSet attrs)
+        //{
+        //    var aa = base.OnCreateView(name, context, attrs);
+        //    return aa;
+        //}
+
+        //public override View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
+        //{
+        //    var aa = base.OnCreateView(parent, name, context, attrs);
+        //    return aa;
+        //}
         #endregion
 
         #region Properties
@@ -58,7 +96,9 @@
 
         public TViewModel? ViewModel
         {
+            [System.Diagnostics.DebuggerStepThrough]
             get => mViewModel;
+            [System.Diagnostics.DebuggerStepThrough]
             set
             {
                 mViewModel = value;

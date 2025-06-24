@@ -1,5 +1,7 @@
-namespace Nivaes.App.Cross.Droid.Sample
+namespace Nivaes.App.Cross.Sample.Droid
 {
+    using Nivaes.App.Cross.Droid;
+
     [Activity(
         Label = "@string/app_name",
         Theme = "@style/AppTheme.Splash",

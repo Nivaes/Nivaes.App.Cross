@@ -1,10 +1,11 @@
-﻿namespace Nivaes.App.Cross.Droid.Sample
+﻿namespace Nivaes.App.Cross.Sample.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;

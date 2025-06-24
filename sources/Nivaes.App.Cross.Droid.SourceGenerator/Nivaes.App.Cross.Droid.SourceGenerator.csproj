@@ -1,17 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>netstandard2.0</TargetFramework>
 
-	  <AssemblyName>Nivaes.App.Cross.Droid.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.Droid.SourceGenerator</RootNamespace>
+		<AssemblyName>Nivaes.App.Cross.Droid.SourceGenerator</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Droid.SourceGenerator</RootNamespace>
 
-	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-	  <IncludeBuildOutput>false</IncludeBuildOutput>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
 
-	  <LangVersion>latest</LangVersion>
-	  <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.Droid.SourceGenerator</PackageId>
@@ -25,11 +26,7 @@
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
-		<None Include="Docs\Readme.md" Pack="true" PackagePath="\"/>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Components\" />
+		<None Include="Docs\Readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>

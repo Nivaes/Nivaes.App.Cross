@@ -1,5 +1,9 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
+    using System.Diagnostics;
+    using System.Windows.Input;
+    using System.Xml.Linq;
+
     public class RootViewModel
         : ViewModel
     {
@@ -9,17 +13,80 @@
         {
             mNavigationService = navigationService;
             mTitle = "Root View en RootViewModel";
+            mName = "Name in view model";
+            mAge = 44;
+            Command = new CrossCommand(() =>
+            {
+                Name = "Button click.";
+            });
+            //Command.Execute("aa");
         }
 
-        private string mTitle;
+        private string? mTitle;
 
-        public string Title 
+        public string? Title 
         {
-            get => mTitle; 
+            [DebuggerStepThrough]
+            get => mTitle;
+            [DebuggerStepThrough]
             set
             {
-                mTitle = value;
-                RaisePropertyChanged();
+                if (mTitle != value)
+                {
+                    mTitle = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string? mName;
+
+        public string? Name
+        {
+            [DebuggerStepThrough]
+            get => mName;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mName != value)
+                {
+                    mName = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private int? mAge;
+
+        public int? Age
+        {
+            [DebuggerStepThrough]
+            get => mAge;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mAge != value)
+                {
+                    mAge = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private ICommand? mCommand;
+
+        public ICommand? Command
+        {
+            [DebuggerStepThrough]
+            get => mCommand;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mCommand != value)
+                {
+                    mCommand = value;
+                    RaisePropertyChanged();
+                }
             }
         }
     }
