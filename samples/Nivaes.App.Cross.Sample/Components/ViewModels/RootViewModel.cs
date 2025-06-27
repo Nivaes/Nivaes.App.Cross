@@ -18,6 +18,7 @@
             Command = new CrossCommand(() =>
             {
                 Name = "Button click.";
+                Age++;
             });
             //Command.Execute("aa");
         }

@@ -6,6 +6,8 @@
     using Android.Content;
     using Android.Runtime;
     using Android.Views;
+    using Android.Widget;
+    using Java.Security;
 
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
@@ -109,25 +111,30 @@
         #endregion
 
         #region Binding
+        private string GetSourcePropertyName(LambdaExpression lambdaExpression)
+        {
+            var sourcePropertyName = string.Empty;
+            if (lambdaExpression.Body is MemberExpression member)
+                sourcePropertyName = member.Member.Name;
+
+            if (lambdaExpression.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
+                sourcePropertyName = memberOperand.Member.Name;
+
+            return sourcePropertyName;
+        }
+
         public void Binding<TSource>(TextView? textView, Expression<Func<TSource, string?>> sourceProperty)
             where TSource : TViewModel
         {
             if (textView != null && ViewModel != null)
             {
                 var propertyFunc = sourceProperty.Compile();
-
                 textView.Text = propertyFunc?.Invoke((TSource)ViewModel);
 
                 ViewModel.PropertyChanged += (sender, e) =>
                 {
-                    var sourcePropertyName = string.Empty;
-                    if (sourceProperty.Body is MemberExpression member)
-                        sourcePropertyName = member.Member.Name;
+                    var sourcePropertyName = GetSourcePropertyName(sourceProperty);
 
-                    if (sourceProperty.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
-                        sourcePropertyName = memberOperand.Member.Name;
-
-                    var aa = sourceProperty;
                     if (!string.IsNullOrEmpty(sourcePropertyName))
                     {
                         if (e.PropertyName == sourcePropertyName)
@@ -148,9 +155,7 @@
         {
             if (textView != null && ViewModel != null)
             {
-                //textView.Text = ViewModel.Age.ToString();
                 var propertyFunc = sourceProperty.Compile();
-
                 textView.Text = propertyFunc?.Invoke((TSource)ViewModel).ToString();
 
                 textView.EditorAction += (sender, e) =>
@@ -159,10 +164,19 @@
 
                 ViewModel.PropertyChanged += (sender, e) =>
                 {
-                    //if (e.PropertyName == nameof(ViewModel.Age) && textView.Text != ViewModel.Age.ToString())
-                    //{
-                    //    textView.Text = ViewModel.Age.ToString();
-                    //}
+                    var sourcePropertyName = GetSourcePropertyName(sourceProperty);
+
+                    if (!string.IsNullOrEmpty(sourcePropertyName))
+                    {
+                        if (e.PropertyName == sourcePropertyName)
+                        {
+                            var value = propertyFunc?.Invoke((TSource)ViewModel).ToString();
+                            if (textView.Text != value)
+                            {
+                                textView.Text = value;
+                            }
+                        }
+                    }
                 };
             }
         }
@@ -172,30 +186,59 @@
         {
             if (editText != null && ViewModel != null)
             {
-                //editText.Text = ViewModel.Name;
-                //editText.EditorAction += (sender, e) =>
-                //{
-                //    if (ViewModel.Name != editText.Text)
-                //    {
-                //        ViewModel.Name = editText.Text;
-                //    }
-                //};
+                var propertyFunc = sourceProperty.Compile();
+                editText.Text = propertyFunc?.Invoke((TSource)ViewModel);
 
-                //editText.TextChanged += (sender, e) =>
-                //{
-                //    if (ViewModel.Name != editText.Text)
-                //    {
-                //        ViewModel.Name = editText.Text;
-                //    }
-                //};
+                editText.EditorAction += (sender, e) =>
+                {
+                    if (sourceProperty.Body is not MemberExpression member)
+                    {
+                        if (sourceProperty.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
+                            member = memberOperand;
+                        else
+                            return;
+                    }
 
-                //ViewModel.PropertyChanged += (sender, e) =>
-                //{
-                //    if (e.PropertyName == nameof(base.ViewModel.Name) && editText.Text != base.ViewModel.Name)
-                //    {
-                //        editText.Text = base.ViewModel.Name;
-                //    }
-                //};
+                    var parameter = Expression.Parameter(typeof(string), "value");
+                    var assign = Expression.Assign(member, parameter);
+                    var lambda = Expression.Lambda<Action<TSource, string?>>(assign, sourceProperty.Parameters[0], parameter);
+                    var action = lambda.Compile();
+                    action((TSource)ViewModel, editText.Text);
+                };
+
+                editText.TextChanged += (sender, e) =>
+                {
+                    if (sourceProperty.Body is not MemberExpression member)
+                    {
+                        if (sourceProperty.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
+                            member = memberOperand;
+                        else
+                            return;
+                    }
+
+                    var parameter = Expression.Parameter(typeof(string), "value");
+                    var assign = Expression.Assign(member, parameter);
+                    var lambda = Expression.Lambda<Action<TSource, string?>>(assign, sourceProperty.Parameters[0], parameter);
+                    var action = lambda.Compile();
+                    action((TSource)ViewModel, editText.Text);
+                };
+
+                ViewModel.PropertyChanged += (sender, e) =>
+                {
+                    var sourcePropertyName = GetSourcePropertyName(sourceProperty);
+
+                    if (!string.IsNullOrEmpty(sourcePropertyName))
+                    {
+                        if (e.PropertyName == sourcePropertyName)
+                        {
+                            var value = propertyFunc?.Invoke((TSource)ViewModel)?.ToString();
+                            if (editText.Text != value)
+                            {
+                                editText.Text = value;
+                            }
+                        }
+                    }
+                };
             }
         }
 
@@ -204,36 +247,65 @@
         {
             if (editText != null && ViewModel != null)
             {
-                //editText.Text = ViewModel.Age.ToString();
-                //editText.EditorAction += (sender, e) =>
-                //{
-                //    if (int.TryParse(editText.Text, out int result))
-                //    {
-                //        if (ViewModel.Age != result)
-                //        {
-                //            ViewModel.Age = result;
-                //        }
-                //    }
-                //};
-                //editText.TextChanged += (sender, e) =>
-                //{
-                //    if (int.TryParse(editText.Text, out int result))
-                //    {
-                //        if (ViewModel.Age != result)
-                //        {
-                //            ViewModel.Age = result;
-                //        }
-                //    }
-                //};
+                var propertyFunc = sourceProperty.Compile();
+                editText.Text = propertyFunc?.Invoke((TSource)ViewModel).ToString();
 
-                //ViewModel.PropertyChanged += (sender, e) =>
-                //{
-                //    if (e.PropertyName == nameof(base.ViewModel.Age) &&
-                //        editText.Text != base.ViewModel.Age.ToString())
-                //    {
-                //        editText.Text = base.ViewModel.Age.ToString();
-                //    }
-                //};
+                editText.EditorAction += (sender, e) =>
+                {
+                    if (sourceProperty.Body is not MemberExpression member)
+                    {
+                        if (sourceProperty.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
+                            member = memberOperand;
+                        else
+                            return;
+                    }
+
+                    var parameter = Expression.Parameter(typeof(int?), "value");
+                    var assign = Expression.Assign(member, parameter);
+                    var lambda = Expression.Lambda<Action<TSource, int?>>(assign, sourceProperty.Parameters[0], parameter);
+                    var action = lambda.Compile();
+                    if (int.TryParse(editText.Text, out int result))
+                    {
+                        action((TSource)ViewModel, result);
+                    }
+                };
+
+                editText.TextChanged += (sender, e) =>
+                {
+                    if (sourceProperty.Body is not MemberExpression member)
+                    {
+                        if (sourceProperty.Body is UnaryExpression unary && unary.Operand is MemberExpression memberOperand)
+                            member = memberOperand;
+                        else
+                            return;
+                    }
+
+                    var parameter = Expression.Parameter(typeof(int?), "value");
+                    var assign = Expression.Assign(member, parameter);
+                    var lambda = Expression.Lambda<Action<TSource, int?>>(assign, sourceProperty.Parameters[0], parameter);
+                    var action = lambda.Compile();
+                    if (int.TryParse(editText.Text, out int result))
+                    {
+                        action((TSource)ViewModel, result);
+                    }
+                };
+
+                ViewModel.PropertyChanged += (sender, e) =>
+                {
+                    var sourcePropertyName = GetSourcePropertyName(sourceProperty);
+
+                    if (!string.IsNullOrEmpty(sourcePropertyName))
+                    {
+                        if (e.PropertyName == sourcePropertyName)
+                        {
+                            var value = propertyFunc?.Invoke((TSource)ViewModel)?.ToString();
+                            if (editText.Text != value)
+                            {
+                                editText.Text = value;
+                            }
+                        }
+                    }
+                };
             }
         }
 
