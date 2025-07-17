@@ -39,8 +39,8 @@ namespace Nivaes.App.Cross.Sample.WinUI
 
             var viewsManager = new ViewsManager(new[]
             {
-                    ViewsManager.New<RootViewModel, RootView>(),
-                    ViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                ViewsManager.New<RootViewModel, RootView>(),
+                ViewsManager.New<NewWindowViewModel, NewWindowView>(),
             });
             Singleton<ViewsManager>.Add(viewsManager);
 

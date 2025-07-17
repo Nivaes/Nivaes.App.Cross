@@ -12,80 +12,47 @@
         public RootViewModel(INavigationService navigationService)
         {
             mNavigationService = navigationService;
-            mTitle = "Root View en RootViewModel";
-            mName = "Name in view model";
-            mAge = 44;
-            Command = new CrossCommand(() =>
+
+            ShowNewWindowCommand = new CrossCommand(() =>
             {
-                Name = "Button click.";
-                Age++;
+                mNavigationService.Navigate<NewWindowViewModel>().ConfigureAwait(false);
             });
-            //Command.Execute("aa");
+
+            FormCommand = new CrossCommand(() =>
+            {
+                mNavigationService.Navigate<FormViewModel>().ConfigureAwait(false);
+            });
         }
 
-        private string? mTitle;
+        private ICommand? mShowNewWindowCommand;
 
-        public string? Title 
+        public ICommand? ShowNewWindowCommand
         {
             [DebuggerStepThrough]
-            get => mTitle;
+            get => mShowNewWindowCommand;
             [DebuggerStepThrough]
             set
             {
-                if (mTitle != value)
+                if (mShowNewWindowCommand != value)
                 {
-                    mTitle = value;
+                    mShowNewWindowCommand = value;
                     RaisePropertyChanged();
                 }
             }
         }
 
-        private string? mName;
+        private ICommand? mFormCommand;
 
-        public string? Name
+        public ICommand? FormCommand
         {
             [DebuggerStepThrough]
-            get => mName;
+            get => mFormCommand;
             [DebuggerStepThrough]
             set
             {
-                if (mName != value)
+                if (mFormCommand != value)
                 {
-                    mName = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private int? mAge;
-
-        public int? Age
-        {
-            [DebuggerStepThrough]
-            get => mAge;
-            [DebuggerStepThrough]
-            set
-            {
-                if (mAge != value)
-                {
-                    mAge = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private ICommand? mCommand;
-
-        public ICommand? Command
-        {
-            [DebuggerStepThrough]
-            get => mCommand;
-            [DebuggerStepThrough]
-            set
-            {
-                if (mCommand != value)
-                {
-                    mCommand = value;
+                    mFormCommand = value;
                     RaisePropertyChanged();
                 }
             }

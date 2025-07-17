@@ -9,12 +9,12 @@ namespace Nivaes.App.Cross.Sample.Droid
     using static Android.Renderscripts.ScriptGroup;
 
     [Activity(Label = "@string/app_name")]
-    public partial class RootView
-        : CrossActivity<RootViewModel>,
+    public partial class NewWindowView
+        : CrossActivity<NewWindowViewModel>,
         IBindingView
     {
-        public RootView()
-            : base(Resource.Layout.RootView)
+        public NewWindowView()
+            : base(Resource.Layout.NewWindowView)
         {
         }
 
@@ -37,11 +37,8 @@ namespace Nivaes.App.Cross.Sample.Droid
             //var ageEditText = base.FindViewById<EditText>(Resource.Id.ageEditText);
             //Binding<RootViewModel>(ageEditText, vm => vm.Age);
 
-            var showNewWindowCommand = base.FindViewById<Button>(Resource.Id.buttonShowNewWindow);
-            Binding(showNewWindowCommand, base.ViewModel?.ShowNewWindowCommand);
-
-            var buttonShowForm = base.FindViewById<Button>(Resource.Id.buttonShowForm);
-            Binding(buttonShowForm, base.ViewModel?.FormCommand);
+            //var button1 = base.FindViewById<Button>(Resource.Id.buttonShowChildren);
+            //Binding(button1, base.ViewModel?.ShowChildrenCommand);
         }
     }
 }
