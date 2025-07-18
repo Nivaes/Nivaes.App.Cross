@@ -4,7 +4,10 @@
 
     public interface INavigationService
     {
-        Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
+        Task<bool> Navigate<TViewModel>(IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TViewModel : IViewModel;
+
+        Task<bool> Navigate<TViewModel, TParameter>(TParameter parameter, IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+           where TViewModel : IViewModel<TParameter>;
     }
 }

@@ -11,7 +11,7 @@
             mViewDispatcher = viewDispatcher;
         }
 
-        public async Task<bool> Navigate<TViewModel>(CancellationToken cancellationToken = default)
+        public async Task<bool> Navigate<TViewModel>(IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TViewModel : IViewModel
         {
             var viewModel = ViewModelLoader.LoadViewModel<TViewModel>();
@@ -27,6 +27,12 @@
             if (!hasNavigated)
                 return false;
 
+            return true;
+        }
+
+        public async Task<bool> Navigate<TViewModel, TParameter>(TParameter parameter, IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+            where TViewModel : IViewModel<TParameter>
+        {
             return true;
         }
     }
