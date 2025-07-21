@@ -18,7 +18,7 @@
         protected const int NoContent = 0;
 
         private readonly int _resourceId;
-        private Bundle? _bundle;
+        private Android.OS.Bundle? _bundle;
 
         #region Constructors
         protected CrossActivity(int resourceId = NoContent)
@@ -31,7 +31,7 @@
         {
         }
 
-        protected override void OnCreate(Bundle? savedInstanceState)
+        protected override void OnCreate(Android.OS.Bundle? savedInstanceState)
         {
             _bundle = Intent?.Extras;
 

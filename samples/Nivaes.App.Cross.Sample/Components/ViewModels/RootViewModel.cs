@@ -1,6 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
     using System.Diagnostics;
+    using System.Reflection;
     using System.Windows.Input;
     using System.Xml.Linq;
 
@@ -9,6 +10,7 @@
     {
         private readonly INavigationService mNavigationService;
 
+        
         public RootViewModel(INavigationService navigationService)
         {
             mNavigationService = navigationService;

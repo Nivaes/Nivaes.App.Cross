@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Sample.Droid
         {
         }
 
-        protected override void OnCreate(Bundle? savedInstanceState)
+        protected override void OnCreate(Android.OS.Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }

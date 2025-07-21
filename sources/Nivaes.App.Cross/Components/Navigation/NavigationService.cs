@@ -35,5 +35,17 @@
         {
             return true;
         }
+
+        public async Task<TResult> Navigate<TViewModel, TResult>(IBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+           where TViewModel : IViewModelResult<TResult>
+        {
+            return default(TResult);
+        }
+
+        public async Task<TResult> Navigate<TViewModel, TParameter, TResult>(TParameter param, IBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+            where TViewModel : IViewModel<TParameter, TResult>
+        {
+            return default(TResult);
+        }
     }
 }
