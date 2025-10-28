@@ -2,16 +2,29 @@
 {
     using System.Threading.Tasks;
 
-    public class NavigationService : INavigationService
+    public sealed class NavigationService : INavigationService
     {
-        protected readonly IViewDispatcher mViewDispatcher;
+        public readonly IViewDispatcher mViewDispatcher;
+
+        public event BeforeNavigateEventHandler BeforeNavigate;
+
+        public event AfterNavigateEventHandler AfterNavigate;
+
+        public event BeforeCloseEventHandler BeforeClose;
+
+        public event AfterCloseEventHandler AfterClose;
+
+        public event BeforeChangePresentationEventHandler BeforeChangePresentation;
+
+        public event AfterChangePresentationEventHandler AfterChangePresentation;
+
 
         public NavigationService(IViewDispatcher viewDispatcher)
         {
             mViewDispatcher = viewDispatcher;
         }
 
-        public async Task<bool> Navigate<TViewModel>(IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public async Task<bool> Navigate<TViewModel>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TViewModel : IViewModel
         {
             var viewModel = ViewModelLoader.LoadViewModel<TViewModel>();
@@ -30,19 +43,19 @@
             return true;
         }
 
-        public async Task<bool> Navigate<TViewModel, TParameter>(TParameter parameter, IBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public async Task<bool> Navigate<TViewModel, TParameter>(TParameter parameter, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TViewModel : IViewModel<TParameter>
         {
             return true;
         }
 
-        public async Task<TResult> Navigate<TViewModel, TResult>(IBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TResult?> Navigate<TViewModel, TResult>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
            where TViewModel : IViewModelResult<TResult>
         {
             return default(TResult);
         }
 
-        public async Task<TResult> Navigate<TViewModel, TParameter, TResult>(TParameter param, IBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TResult?> Navigate<TViewModel, TParameter, TResult>(TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
             where TViewModel : IViewModel<TParameter, TResult>
         {
             return default(TResult);

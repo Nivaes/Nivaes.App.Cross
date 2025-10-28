@@ -17,7 +17,7 @@
                 return new DroidViewPresenter();
             });
 
-            container.Merge(new DroidSubcontainer());
+            container.Merge(new DroidIoCServiceContainer());
         }
 
         public override void OnCreate()

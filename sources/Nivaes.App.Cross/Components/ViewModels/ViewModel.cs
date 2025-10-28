@@ -36,12 +36,12 @@
         {
         }
 
-        public void Init(IBundle parameters)
+        public void Init(ICrossBundle parameters)
         {
             InitFromBundle(parameters);
         }
 
-        public void ReloadState(IBundle state)
+        public void ReloadState(ICrossBundle state)
         {
             ReloadFromBundle(state);
         }
@@ -50,20 +50,20 @@
         {
         }
 
-        public void SaveState(IBundle state)
+        public void SaveState(ICrossBundle state)
         {
             SaveStateToBundle(state);
         }
 
-        protected virtual void InitFromBundle(IBundle parameters)
+        protected virtual void InitFromBundle(ICrossBundle parameters)
         {
         }
 
-        protected virtual void ReloadFromBundle(IBundle state)
+        protected virtual void ReloadFromBundle(ICrossBundle state)
         {
         }
 
-        protected virtual void SaveStateToBundle(IBundle bundle)
+        protected virtual void SaveStateToBundle(ICrossBundle bundle)
         {
         }
 

@@ -24,6 +24,11 @@
             {
                 mNavigationService.Navigate<FormViewModel>().ConfigureAwait(false);
             });
+
+            SubFormCommand = new CrossCommand(() =>
+            {
+                mNavigationService.Navigate<SubFormViewModel>().ConfigureAwait(false);
+            });
         }
 
         private ICommand? mShowNewWindowCommand;
@@ -55,6 +60,23 @@
                 if (mFormCommand != value)
                 {
                     mFormCommand = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private ICommand? mSubFormCommand;
+
+        public ICommand? SubFormCommand
+        {
+            [DebuggerStepThrough]
+            get => mSubFormCommand;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mSubFormCommand != value)
+                {
+                    mSubFormCommand = value;
                     RaisePropertyChanged();
                 }
             }

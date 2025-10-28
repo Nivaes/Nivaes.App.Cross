@@ -1,13 +1,13 @@
-﻿using Nivaes.App.Cross.Presenters;
-using Nivaes.App.Cross.WinUI;
-using Nivaes.App.Cross.WinUI.Presenters;
-using Nivaes.IoC;
-
-// To learn more about WinUI, the WinUI project structure,
+﻿// To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Nivaes.App.Cross.Sample.WinUI
 {
+    using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.WinUI;
+    using Nivaes.App.Cross.WinUI.Presenters;
+    using Nivaes.IoC;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>

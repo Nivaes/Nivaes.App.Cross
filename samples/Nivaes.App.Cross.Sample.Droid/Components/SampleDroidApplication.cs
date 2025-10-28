@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Android.Views;
     using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.App.Cross.Presenters;
@@ -31,10 +32,22 @@
                 return new SampleApplication(applicationStart!);
             });
 
-            var viewsManager = new ViewsManager(new[] { ViewsManager.New<RootViewModel, RootView>() });
+            var viewsManager = new ViewsManager(new[] { 
+                ViewsManager.New<RootViewModel, RootView>(),
+                ViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                ViewsManager.New<FormViewModel, FormView>(), 
+                ViewsManager.New<SubFormViewModel, SubFormView>(),
+                ViewsManager.New<SubSubFormViewModel, SubSubFormView>()
+            });
             Singleton<ViewsManager>.Add(viewsManager);
-
-            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, ActivityViewPresentation>() });
+            
+            var viewPresentationsManager = new ViewPresentationsManager(new[] { 
+                ViewPresentationsManager.New<RootView, ActivityViewPresentation>(),
+                ViewPresentationsManager.New<NewWindowView, ActivityViewPresentation>(),
+                ViewPresentationsManager.New<FormView, ActivityViewPresentation>(),
+                ViewPresentationsManager.New<SubFormView, ActivityViewPresentation>(),
+                ViewPresentationsManager.New<SubSubFormView, ActivityViewPresentation>()
+            });
             Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }

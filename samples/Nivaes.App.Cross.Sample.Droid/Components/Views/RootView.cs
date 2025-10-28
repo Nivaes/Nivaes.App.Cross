@@ -42,6 +42,9 @@ namespace Nivaes.App.Cross.Sample.Droid
 
             var buttonShowForm = base.FindViewById<Button>(Resource.Id.buttonShowForm);
             Binding(buttonShowForm, base.ViewModel?.FormCommand);
+
+            var buttonShowSubForm = base.FindViewById<Button>(Resource.Id.buttonShowSubForm);
+            Binding(buttonShowSubForm, base.ViewModel?.SubFormCommand);
         }
     }
 }

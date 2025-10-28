@@ -30,5 +30,13 @@
 			   android:layout_marginTop="10dp"
 			   android:text="Show Form" />
 		
+		<Button
+			   android:id="@+id/buttonShowSubForm"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			   android:ems="10"
+			   android:layout_marginTop="10dp"
+			   android:text="Show SubForm" />
+		
 	</LinearLayout>
 </ScrollView>
