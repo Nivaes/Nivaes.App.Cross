@@ -4,7 +4,7 @@
 
     public abstract class NewWinUIPage<TViewModel>
          : Page, IView
-        where TViewModel : class, IViewModel
+        where TViewModel : class, ICrossViewModel
     {
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Nivaes.App.Cross
 {
     public record UIKitViewModelRequest<TViewModel>
-        : ViewModelRequest<TViewModel>,
+        : CrossViewModelRequest<TViewModel>,
             IUIKitViewModelRequest
-        where TViewModel : IViewModel
+        where TViewModel : ICrossViewModel
     {
         public UIKitViewModelRequest(TViewModel viewModel, string storyboardName)
             : base(viewModel)

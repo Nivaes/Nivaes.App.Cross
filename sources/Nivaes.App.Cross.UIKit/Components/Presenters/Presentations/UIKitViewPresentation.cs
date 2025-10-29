@@ -21,7 +21,7 @@
         //    return Task.FromResult(false);
         //}
 
-        public override Task<bool> CloseView(IViewModel request)
+        public override Task<bool> CloseView(ICrossViewModel request)
         {
             return Task.FromResult(false);
         }

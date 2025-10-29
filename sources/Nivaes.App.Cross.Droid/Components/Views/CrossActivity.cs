@@ -3,16 +3,14 @@
     using System;
     using System.Linq.Expressions;
     using System.Windows.Input;
-    using Android.Content;
     using Android.Runtime;
     using Android.Views;
     using Android.Widget;
-    using Java.Security;
 
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
         : Activity, IView, IBindingView
-        where TViewModel : class, IViewModel
+        where TViewModel : class, ICrossViewModel
     {
 
         protected const int NoContent = 0;
@@ -38,7 +36,7 @@
             if (_bundle != null)
             {
                 var key = _bundle.GetInt("viewModelKey");
-                if (Singleton<TemporaryStore<IViewModel>>.Instance.TryGetAndRemove(key, out var viewModel))
+                if (Singleton<TemporaryStore<ICrossViewModel>>.Instance.TryGetAndRemove(key, out var viewModel))
                 {
                     ViewModel = (TViewModel?)viewModel;
                 }

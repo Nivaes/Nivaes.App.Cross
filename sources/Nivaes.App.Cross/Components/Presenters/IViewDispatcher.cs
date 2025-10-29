@@ -4,10 +4,12 @@
 
     public interface IViewDispatcher
     {
-        Task<bool> ShowViewModel(IViewModelRequest request);
+        Task<bool> ShowViewModel(ICrossViewModelRequest request);
 
-        Task<bool> ShowViewModelOnMainThread(IViewModelRequest request);
+        Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request);
 
-        Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action);
+        Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action);
+
+        Task<bool> ChangePresentation(CrossPresentationHint hint);
     }
 }

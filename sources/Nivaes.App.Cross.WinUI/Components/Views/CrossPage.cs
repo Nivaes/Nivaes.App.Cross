@@ -11,7 +11,7 @@
 
     public abstract class CrossPage<TViewModel>
         : Page, IView, IDisposable
-        where TViewModel : class, IViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public CrossPage()
         {

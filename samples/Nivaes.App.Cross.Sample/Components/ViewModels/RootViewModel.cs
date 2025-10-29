@@ -6,12 +6,12 @@
     using System.Xml.Linq;
 
     public class RootViewModel
-        : ViewModel
+        : CrossViewModel
     {
-        private readonly INavigationService mNavigationService;
+        private readonly ICrossNavigationService mNavigationService;
 
         
-        public RootViewModel(INavigationService navigationService)
+        public RootViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
 

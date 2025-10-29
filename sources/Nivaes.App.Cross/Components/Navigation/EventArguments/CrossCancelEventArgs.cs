@@ -5,13 +5,12 @@
     public class CrossCancelEventArgs 
         : CancelEventArgs
     {
-        public CrossCancelEventArgs(CancellationToken cancellationToken = default)
+        public CrossCancelEventArgs(CancellationToken? cancellationToken = default)
         {
             CancellationToken = cancellationToken;
-            if (CancellationToken != default)
-                CancellationToken.Register(Canceled);
+            CancellationToken?.Register(Canceled);
         }
-        protected CancellationToken CancellationToken { get; }
+        protected CancellationToken? CancellationToken { get; }
 
         protected virtual void Canceled()
         {

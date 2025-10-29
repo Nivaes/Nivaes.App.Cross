@@ -24,14 +24,14 @@
         //    mFrame = new WrappedFrame(rootFrame);
         //}
 
-        public override Task<bool> Show(IViewModelRequest request)
+        public override Task<bool> Show(ICrossViewModelRequest request)
         {
             var (viewType, viewPresentation) = GetViewPresentation(request);
 
             return viewPresentation!.ShowView(viewType, request);
         }
 
-        override public Task<bool> Close(IViewModel request)
+        override public Task<bool> Close(ICrossViewModel request)
         {
             return Task.FromResult(false);
         }

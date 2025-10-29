@@ -3,7 +3,7 @@
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.IoC;
 
-    public partial class DroidSubcontainer : IoCServiceContainer
+    public partial class DroidIoCServiceContainer : IoCServiceContainer
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {

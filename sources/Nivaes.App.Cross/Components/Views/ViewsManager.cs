@@ -6,7 +6,7 @@
     public sealed class ViewsManager : KeyContainerManager<Type>
     {
         public static KeyStoreItem New<TViewModel, TView>()
-            where TViewModel : IViewModel
+            where TViewModel : ICrossViewModel
             where TView : IView
         {
             return new KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) };

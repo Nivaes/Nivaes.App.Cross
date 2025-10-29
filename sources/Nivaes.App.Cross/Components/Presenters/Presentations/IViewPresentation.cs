@@ -2,8 +2,8 @@
 {
     public interface IViewPresentation
     {
-        Task<bool> ShowView(Type viewType, IViewModelRequest request);
+        Task<bool> ShowView(Type viewType, ICrossViewModelRequest request);
 
-        Task<bool> CloseView(IViewModel request);
+        Task<bool> CloseView(ICrossViewModel request);
     }
 }

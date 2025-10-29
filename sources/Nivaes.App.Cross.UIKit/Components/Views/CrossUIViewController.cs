@@ -9,7 +9,7 @@
 
     public abstract class CrossUIViewController<TViewModel>
         : UIViewController, IView
-        where TViewModel : class, IViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public CrossUIViewController()
            : base()

@@ -11,11 +11,11 @@
 
         public abstract bool IsOnMainThread { get; }
 
-        public abstract Task<bool> ShowViewModelOnMainThread(IViewModelRequest request);
+        public abstract Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request);
 
-        public abstract Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action);
+        public abstract Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action);
 
-        public Task<bool> ShowViewModel(IViewModelRequest request)
+        public Task<bool> ShowViewModel(ICrossViewModelRequest request)
         {
             if (IsOnMainThread)
             {
@@ -27,7 +27,7 @@
             }
         }
 
-        private async Task<bool> RunBackgroundThread(IViewModelRequest request)
+        private async Task<bool> RunBackgroundThread(ICrossViewModelRequest request)
         {
             var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
@@ -47,6 +47,11 @@
             }
 
             return await completion.Task;
+        }
+
+        public Task<bool> ChangePresentation(CrossPresentationHint hint)
+        {
+            throw new NotImplementedException();
         }
     }
 }

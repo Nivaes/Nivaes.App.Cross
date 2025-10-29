@@ -5,9 +5,9 @@
     public class SampleApplicationStart 
         : CrossApplicationStart
     {
-        private readonly INavigationService mNavigationService;
+        private readonly ICrossNavigationService mNavigationService;
 
-        public SampleApplicationStart(INavigationService navigationService)
+        public SampleApplicationStart(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
 

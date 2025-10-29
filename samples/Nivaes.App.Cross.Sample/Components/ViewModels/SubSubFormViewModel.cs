@@ -4,12 +4,12 @@
     using System.Windows.Input;
     using System.Xml.Linq;
 
-    public class FormViewModel
+    public class SubSubFormViewModel
         : CrossViewModel
     {
         private readonly ICrossNavigationService mNavigationService;
 
-        public FormViewModel(ICrossNavigationService navigationService)
+        public SubSubFormViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
             mTitle = "Root View en RootViewModel";

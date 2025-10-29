@@ -2,8 +2,8 @@
 {
     public interface IViewPresenter
     {
-        Task<bool> Show(IViewModelRequest request);
+        Task<bool> Show(ICrossViewModelRequest request);
 
-        Task<bool> Close(IViewModel request);
+        Task<bool> Close(ICrossViewModel request);
     }
 }

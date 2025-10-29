@@ -12,11 +12,11 @@ namespace Nivaes.App.Cross.Presenters
         {
         }
 
-        public abstract Task<bool> Show(IViewModelRequest request);
+        public abstract Task<bool> Show(ICrossViewModelRequest request);
 
-        public abstract Task<bool> Close(IViewModel request);
+        public abstract Task<bool> Close(ICrossViewModel request);
 
-        protected static (Type, IViewPresentation) GetViewPresentation(IViewModelRequest request)
+        protected static (Type, IViewPresentation) GetViewPresentation(ICrossViewModelRequest request)
         {
             var viewsManager = Singleton<ViewsManager>.Instance;
             var viewModelType = request.ViewModel.GetType();

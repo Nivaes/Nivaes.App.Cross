@@ -22,7 +22,7 @@
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddDelegate<ICrossApplicationStart>((container) =>
             {
-                var navigationService = container.Resolve<INavigationService>();
+                var navigationService = container.Resolve<ICrossNavigationService>();
                 return new SampleApplicationStart(navigationService!);
             });
 

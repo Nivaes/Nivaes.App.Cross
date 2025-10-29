@@ -3,14 +3,11 @@
     using System;
     using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    public abstract class ViewModel
-        : IViewModel, INotifyPropertyChanged
+    public abstract class CrossViewModel
+        : ICrossViewModel, INotifyPropertyChanged
     {
-        public string Title { get; set; } = "Root View";
-
         #region IViewModel
         public virtual void ViewCreated()
         {
@@ -195,6 +192,8 @@
         {
             mPropertyChanged?.Invoke(sender, e);
         }
+
+        public CrossNotifyTask? InitializeTask { get; set; }
         #endregion
     }
 }
