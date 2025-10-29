@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.Droid
         Theme = "@style/AppTheme.Splash",
         MainLauncher = true,
         NoHistory = true)]
-    public class SplashScreen : StartActivity
+    public class SplashScreen : CrossStartActivity
     {
         public SplashScreen()
             : base(Resource.Layout.SplashScreenView)

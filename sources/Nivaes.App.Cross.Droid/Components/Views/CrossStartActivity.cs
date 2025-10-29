@@ -1,23 +1,18 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.Intrinsics.X86;
-    using System.Text;
     using System.Threading.Tasks;
     using Android.OS;
     using Android.Views;
     using Nivaes.IoC;
 
-    public abstract class StartActivity : Activity
+    public abstract class CrossStartActivity : Activity
     {
         protected const int NoContent = 0;
 
         private readonly int _resourceId;
         private Bundle? _bundle;
 
-        protected StartActivity(int resourceId = NoContent)
+        protected CrossStartActivity(int resourceId = NoContent)
         {
             _resourceId = resourceId;
         }
