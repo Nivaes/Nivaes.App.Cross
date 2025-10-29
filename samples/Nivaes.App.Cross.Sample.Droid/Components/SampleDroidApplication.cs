@@ -13,7 +13,7 @@
     using Nivaes.IoC;
 
     [Application]
-    public  class SampleDroidApplication : DroidApplication
+    public  class SampleDroidApplication : DroidCrossApplication
     {
         public SampleDroidApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)

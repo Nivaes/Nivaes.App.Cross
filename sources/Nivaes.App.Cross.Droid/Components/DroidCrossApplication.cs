@@ -5,9 +5,9 @@
     using Nivaes.App.Cross.Presenters;
     using Nivaes.IoC;
 
-    public abstract class DroidApplication : Application
+    public abstract class DroidCrossApplication : Application
     {
-        protected DroidApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+        protected DroidCrossApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
