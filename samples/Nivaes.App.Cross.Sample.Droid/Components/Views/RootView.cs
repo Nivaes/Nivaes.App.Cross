@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.Droid
     [Activity(Label = "@string/app_name")]
     public partial class RootView
         : CrossActivity<RootViewModel>,
-        IBindingView
+        ICrossBindingView
     {
         public RootView()
             : base(Resource.Layout.RootView)

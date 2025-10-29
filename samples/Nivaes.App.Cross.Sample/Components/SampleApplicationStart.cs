@@ -11,6 +11,7 @@
         {
             mNavigationService = navigationService;
 
+            // ToDo: Cargar esto con roslyn
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.Merge(new ViewModelsSubcontainer());
         }

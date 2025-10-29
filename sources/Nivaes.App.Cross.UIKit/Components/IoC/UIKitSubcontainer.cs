@@ -7,7 +7,7 @@
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<IViewDispatcher, UIKitViewDispatcher>();
+            bootstrapper.AddSingleton<ICrossViewDispatcher, UIKitViewDispatcher>();
 
             bootstrapper.AddSingleton<RootViewPresentation>();
         }

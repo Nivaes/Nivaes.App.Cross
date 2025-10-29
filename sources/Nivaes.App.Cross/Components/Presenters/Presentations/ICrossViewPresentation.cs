@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Presenters
 {
-    public interface IViewPresentation
+    public interface ICrossViewPresentation
     {
         Task<bool> ShowView(Type viewType, ICrossViewModelRequest request);
 

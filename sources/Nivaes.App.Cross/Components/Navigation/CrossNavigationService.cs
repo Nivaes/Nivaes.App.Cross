@@ -8,7 +8,7 @@
     {
         private ConditionalWeakTable<ICrossViewModel, TaskCompletionSource<object>> _tcsResults = new ConditionalWeakTable<ICrossViewModel, TaskCompletionSource<object>>();
 
-        public readonly IViewDispatcher mViewDispatcher;
+        public readonly ICrossViewDispatcher mViewDispatcher;
 
         public event BeforeNavigateEventHandler? BeforeNavigate;
 
@@ -23,7 +23,7 @@
         public event AfterChangePresentationEventHandler? AfterChangePresentation;
 
 
-        public CrossNavigationService(IViewDispatcher viewDispatcher)
+        public CrossNavigationService(ICrossViewDispatcher viewDispatcher)
         {
             mViewDispatcher = viewDispatcher;
         }

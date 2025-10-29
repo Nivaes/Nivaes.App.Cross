@@ -9,7 +9,7 @@
     using Nivaes.IoC;
 
 
-    public sealed class AppKitViewPresenter : ViewPresenter, IViewPresenter
+    public sealed class AppKitViewPresenter : CrossViewPresenter, ICrossViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 

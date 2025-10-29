@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross
 {
-    public interface IView
+    public interface ICrossView
     {
     }
 }

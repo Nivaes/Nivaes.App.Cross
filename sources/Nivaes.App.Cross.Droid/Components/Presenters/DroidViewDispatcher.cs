@@ -2,11 +2,11 @@
 {
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class DroidViewDispatcher : ViewDispatcher, IViewDispatcher
+    public sealed class DroidViewDispatcher : CrossViewDispatcher, ICrossViewDispatcher
     {
-        private readonly IViewPresenter mViewPresenter;
+        private readonly ICrossViewPresenter mViewPresenter;
 
-        public DroidViewDispatcher(IViewPresenter viewPresenter) 
+        public DroidViewDispatcher(ICrossViewPresenter viewPresenter) 
             : base()
         {
             mViewPresenter = viewPresenter;

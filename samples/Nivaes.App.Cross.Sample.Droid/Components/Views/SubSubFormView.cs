@@ -10,8 +10,8 @@ namespace Nivaes.App.Cross.Sample.Droid
 
     [Activity(Label = "@string/app_name")]
     public partial class SubSubFormView
-        : CrossActivity<FormViewModel>,
-        IBindingView
+        : CrossActivity<SubSubFormViewModel>,
+        ICrossBindingView
     {
         public SubSubFormView()
             : base(Resource.Layout.FormView)
@@ -26,16 +26,16 @@ namespace Nivaes.App.Cross.Sample.Droid
         protected override void Binding()
         {
             var nameTextView = base.FindViewById<TextView>(Resource.Id.nameTextView);
-            Binding<FormViewModel>(nameTextView, vm => vm.Name);
+            Binding<SubSubFormViewModel>(nameTextView, vm => vm.Name);
 
             var ageTextView = base.FindViewById<TextView>(Resource.Id.ageTextView);
-            Binding<FormViewModel>(ageTextView, vm => vm.Age);
+            Binding<SubSubFormViewModel>(ageTextView, vm => vm.Age);
 
             var nameEditText = base.FindViewById<EditText>(Resource.Id.nameEditText);
-            Binding<FormViewModel>(nameEditText, vm => vm.Name);
+            Binding<SubSubFormViewModel>(nameEditText, vm => vm.Name);
 
             var ageEditText = base.FindViewById<EditText>(Resource.Id.ageEditText);
-            Binding<FormViewModel>(ageEditText, vm => vm.Age);
+            Binding<SubSubFormViewModel>(ageEditText, vm => vm.Age);
 
             var button1 = base.FindViewById<Button>(Resource.Id.button1);
             Binding(button1, base.ViewModel?.Command);

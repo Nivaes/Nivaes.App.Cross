@@ -12,7 +12,7 @@
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
 
-            container.AddDelegate<IViewPresenter>((container) =>
+            container.AddDelegate<ICrossViewPresenter>((container) =>
             {
                 return new DroidViewPresenter();
             });

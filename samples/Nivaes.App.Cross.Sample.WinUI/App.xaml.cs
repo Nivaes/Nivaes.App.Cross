@@ -37,19 +37,19 @@ namespace Nivaes.App.Cross.Sample.WinUI
                     return new SampleApplication(applicationStart!);
                 });
 
-            var viewsManager = new ViewsManager(new[]
+            var viewsManager = new CrossViewsManager(new[]
             {
-                ViewsManager.New<RootViewModel, RootView>(),
-                ViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                CrossViewsManager.New<RootViewModel, RootView>(),
+                CrossViewsManager.New<NewWindowViewModel, NewWindowView>(),
             });
-            Singleton<ViewsManager>.Add(viewsManager);
+            Singleton<CrossViewsManager>.Add(viewsManager);
 
-            var viewPresentationsManager = new ViewPresentationsManager(new[] 
+            var viewPresentationsManager = new CrossViewPresentationsManager(new[] 
             { 
-                ViewPresentationsManager.New<RootView, PageViewPresentation>(),
-                ViewPresentationsManager.New<NewWindowView, NewWindowViewPresentation>(),
+                CrossViewPresentationsManager.New<RootView, PageViewPresentation>(),
+                CrossViewPresentationsManager.New<NewWindowView, NewWindowViewPresentation>(),
             });
-            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
+            Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

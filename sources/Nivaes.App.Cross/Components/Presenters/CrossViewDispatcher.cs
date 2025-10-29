@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using static System.Net.Mime.MediaTypeNames;
 
-    public abstract class ViewDispatcher : IViewDispatcher
+    public abstract class CrossViewDispatcher : ICrossViewDispatcher
     {
-        protected ViewDispatcher()
+        protected CrossViewDispatcher()
         {
         }
 

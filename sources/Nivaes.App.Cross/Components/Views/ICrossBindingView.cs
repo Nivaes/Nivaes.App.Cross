@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross
 {
-    public interface IBindingView
+    public interface ICrossBindingView
     {
     }
 }

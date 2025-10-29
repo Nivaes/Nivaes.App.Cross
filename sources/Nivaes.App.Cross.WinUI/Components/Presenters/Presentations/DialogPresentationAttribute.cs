@@ -5,7 +5,7 @@
     using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class DialogPresentationAttribute : PresentationAttribute
+    public sealed class DialogPresentationAttribute : CrossPresentationAttribute
     {
         public DialogPresentationAttribute(ContentDialogPlacement placement)
         {

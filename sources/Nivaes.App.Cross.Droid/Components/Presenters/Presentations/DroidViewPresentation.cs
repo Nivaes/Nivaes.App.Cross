@@ -6,7 +6,7 @@
     using Nivaes.App.Cross.Presenters;
 
     public abstract class DroidViewPresentation : 
-        ViewPresentation
+        CrossViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 

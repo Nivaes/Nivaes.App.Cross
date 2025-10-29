@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class RegionPresentationAttribute : PresentationAttribute
+    public sealed class RegionPresentationAttribute : CrossPresentationAttribute
     {
         public string RegionName { get; private set; }
 

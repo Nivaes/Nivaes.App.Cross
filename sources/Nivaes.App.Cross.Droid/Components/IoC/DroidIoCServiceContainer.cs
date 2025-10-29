@@ -7,7 +7,7 @@
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<IViewDispatcher, DroidViewDispatcher>();
+            bootstrapper.AddSingleton<ICrossViewDispatcher, DroidViewDispatcher>();
 
             bootstrapper.AddSingleton<ActivityViewPresentation>();
         }

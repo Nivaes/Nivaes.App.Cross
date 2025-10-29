@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class UIKitViewPresentation : ViewPresentation
+    public abstract class UIKitViewPresentation : CrossViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 

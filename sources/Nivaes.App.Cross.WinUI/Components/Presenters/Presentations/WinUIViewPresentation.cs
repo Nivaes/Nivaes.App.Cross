@@ -2,7 +2,7 @@
 {
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class WinUIViewPresentation : ViewPresentation
+    public abstract class WinUIViewPresentation : CrossViewPresentation
     {
         protected AppDataModel WindowInformation { get; private set; }
 

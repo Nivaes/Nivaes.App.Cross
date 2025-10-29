@@ -4,13 +4,13 @@
     using Nivaes.App.Cross.Presenters;
 
     public sealed class WinUIViewDispatcher 
-        : ViewDispatcher, IViewDispatcher
+        : CrossViewDispatcher, ICrossViewDispatcher
     {
         private readonly DispatcherQueue mDispatcher;
 
-        private readonly IViewPresenter mViewPresenter;
+        private readonly ICrossViewPresenter mViewPresenter;
 
-        public WinUIViewDispatcher(IViewPresenter viewPresenter, AppDataModel appDataModel) : base()
+        public WinUIViewDispatcher(ICrossViewPresenter viewPresenter, AppDataModel appDataModel) : base()
         {
             mDispatcher = appDataModel.MainFrame.UnderlyingControl.DispatcherQueue;
 

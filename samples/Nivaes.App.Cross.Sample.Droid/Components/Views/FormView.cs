@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.Droid
     [Activity(Label = "@string/app_name")]
     public partial class FormView
         : CrossActivity<FormViewModel>,
-        IBindingView
+        ICrossBindingView
     {
         public FormView()
             : base(Resource.Layout.FormView)
@@ -25,6 +25,7 @@ namespace Nivaes.App.Cross.Sample.Droid
 
         protected override void Binding()
         {
+            // ToDo: Crear librerias anidadas.
             var nameTextView = base.FindViewById<TextView>(Resource.Id.nameTextView);
             Binding<FormViewModel>(nameTextView, vm => vm.Name);
 

@@ -10,7 +10,7 @@
     using Microsoft.UI.Xaml.Navigation;
 
     public abstract class CrossPage<TViewModel>
-        : Page, IView, IDisposable
+        : Page, ICrossView, IDisposable
         where TViewModel : class, ICrossViewModel
     {
         public CrossPage()

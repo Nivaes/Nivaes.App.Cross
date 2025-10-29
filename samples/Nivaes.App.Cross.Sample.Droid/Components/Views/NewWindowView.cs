@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.Droid
     [Activity(Label = "@string/app_name")]
     public partial class NewWindowView
         : CrossActivity<NewWindowViewModel>,
-        IBindingView
+        ICrossBindingView
     {
         public NewWindowView()
             : base(Resource.Layout.NewWindowView)

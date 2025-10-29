@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public interface IViewDispatcher
+    public interface ICrossViewDispatcher
     {
         Task<bool> ShowViewModel(ICrossViewModelRequest request);
 

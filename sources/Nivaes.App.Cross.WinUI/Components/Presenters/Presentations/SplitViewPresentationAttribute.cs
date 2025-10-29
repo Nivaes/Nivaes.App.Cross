@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class SplitViewPresentationAttribute : PresentationAttribute
+    public sealed class SplitViewPresentationAttribute : CrossPresentationAttribute
     {
         public SplitPanePosition Position { get; set; }
 

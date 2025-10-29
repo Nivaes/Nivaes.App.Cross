@@ -5,13 +5,13 @@
     using Nivaes.App.Cross.Presenters;
 
     public sealed class UIKitViewDispatcher 
-        : ViewDispatcher, IViewDispatcher
+        : CrossViewDispatcher, ICrossViewDispatcher
     {
         private readonly SynchronizationContext mSynchronizationContext;
 
-        private readonly IViewPresenter mViewPresenter;
+        private readonly ICrossViewPresenter mViewPresenter;
 
-        public UIKitViewDispatcher(IViewPresenter viewPresenter, AppDataModel appDatamodel) : base()
+        public UIKitViewDispatcher(ICrossViewPresenter viewPresenter, AppDataModel appDatamodel) : base()
         {
             if (SynchronizationContext.Current == null)
                 throw new CrossException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
