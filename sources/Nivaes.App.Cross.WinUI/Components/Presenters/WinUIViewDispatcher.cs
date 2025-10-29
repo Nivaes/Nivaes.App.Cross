@@ -4,13 +4,13 @@
     using Nivaes.App.Cross.Presenters;
 
     public sealed class WinUIViewDispatcher 
-        : ViewDispatcher, IViewDispatcher
+        : CrossViewDispatcher, ICrossViewDispatcher
     {
         private readonly DispatcherQueue mDispatcher;
 
-        private readonly IViewPresenter mViewPresenter;
+        private readonly ICrossViewPresenter mViewPresenter;
 
-        public WinUIViewDispatcher(IViewPresenter viewPresenter, AppDataModel appDataModel) : base()
+        public WinUIViewDispatcher(ICrossViewPresenter viewPresenter, AppDataModel appDataModel) : base()
         {
             mDispatcher = appDataModel.MainFrame.UnderlyingControl.DispatcherQueue;
 
@@ -19,12 +19,12 @@
 
         override public bool IsOnMainThread => mDispatcher.HasThreadAccess;
 
-        public override Task<bool> ShowViewModelOnMainThread(IViewModelRequest request)
+        public override Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request)
         {
             return mViewPresenter.Show(request);
         }
 
-        public override Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action)
+        public override Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action)
         {
             var result = mDispatcher.TryEnqueue(DispatcherQueuePriority.Normal, async () =>
             {

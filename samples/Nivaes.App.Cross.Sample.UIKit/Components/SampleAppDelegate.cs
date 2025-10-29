@@ -14,7 +14,7 @@
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddDelegate<ICrossApplicationStart>((container) =>
             {
-                var navigationService = container.Resolve<INavigationService>();
+                var navigationService = container.Resolve<ICrossNavigationService>();
                 return new SampleApplicationStart(navigationService!);
             });
 
@@ -24,11 +24,11 @@
                 return new SampleApplication(applicationStart!);
             });
 
-            var viewsManager = new ViewsManager(new[] { ViewsManager.New<RootViewModel, RootView>() });
-            Singleton<ViewsManager>.Add(viewsManager);
+            var viewsManager = new CrossViewsManager(new[] { CrossViewsManager.New<RootViewModel, RootView>() });
+            Singleton<CrossViewsManager>.Add(viewsManager);
 
-            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, RootViewPresentation>() });
-            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
+            var viewPresentationsManager = new CrossViewPresentationsManager(new[] { CrossViewPresentationsManager.New<RootView, RootViewPresentation>() });
+            Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

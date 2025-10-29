@@ -4,8 +4,8 @@
     using System.ComponentModel;
 
     public abstract class CrossUIViewController<TViewModel>
-        : NSViewController, IView
-        where TViewModel : class, IViewModel
+        : NSViewController, ICrossView
+        where TViewModel : class, ICrossViewModel
     {
         public CrossUIViewController() 
             : base()

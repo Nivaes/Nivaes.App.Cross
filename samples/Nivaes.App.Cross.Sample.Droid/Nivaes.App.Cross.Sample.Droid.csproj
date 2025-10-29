@@ -13,34 +13,48 @@
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
 		<TrimMode>full</TrimMode>
-		
+
 		<IsPackable>false</IsPackable>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		
+
 		<IsAotCompatible>true</IsAotCompatible>
 		<!--<PublishAot>true</PublishAot>-->
+
+		<!--<AndroidAotAssembly>true</AndroidAotAssembly>-->
+		<!--<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>-->
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="Nivaes.App.Shared" />
-	  <PackageReference Include="Xamarin.AndroidX.AppCompat" />
+		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" />
+	</ItemGroup>
+	<!--<ItemGroup>
+		<AdditionalFiles Include="Resources/layout/*.xml" />
+	</ItemGroup>-->
+	<ItemGroup>
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+
+			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
-	  <ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="Roslynator.Analyzers">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="SonarAnalyzer.CSharp">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-	  </PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Properties\" />
+		<Folder Include="Properties\" />
 	</ItemGroup>
 </Project>

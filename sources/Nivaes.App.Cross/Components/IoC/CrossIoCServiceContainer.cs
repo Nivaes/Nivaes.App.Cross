@@ -6,7 +6,7 @@
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<INavigationService, NavigationService>();
+            bootstrapper.AddSingleton<ICrossNavigationService, CrossNavigationService>();
         }
     }
 }

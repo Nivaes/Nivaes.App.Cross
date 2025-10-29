@@ -3,20 +3,20 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    public sealed class ViewsManager : KeyContainerManager<Type>
+    public sealed class CrossViewsManager : KeyContainerManager<Type>
     {
         public static KeyStoreItem New<TViewModel, TView>()
-            where TViewModel : IViewModel
-            where TView : IView
+            where TViewModel : ICrossViewModel
+            where TView : ICrossView
         {
             return new KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) };
         }
 
-        public ViewsManager()
+        public CrossViewsManager()
         {
         }
 
-        public ViewsManager(KeyStoreItem[] presentations)
+        public CrossViewsManager(KeyStoreItem[] presentations)
             : base(presentations)
         {
         }

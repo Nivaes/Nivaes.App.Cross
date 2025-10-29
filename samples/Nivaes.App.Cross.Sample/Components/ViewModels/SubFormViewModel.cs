@@ -5,87 +5,87 @@
     using System.Xml.Linq;
 
     public class SubFormViewModel
-        : ViewModelResult<SubFormModelResult>
+        : CrossViewModel
     {
-        private readonly INavigationService mNavigationService;
+        private readonly ICrossNavigationService mNavigationService;
 
-        public SubFormViewModel(INavigationService navigationService)
+        public SubFormViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
-            //mTitle = "Root View en RootViewModel";
-            //mName = "Name in view model";
-            //mAge = 44;
-            CommandSubSubForm = new CrossCommand(() =>
+            mTitle = "Root View en RootViewModel";
+            mName = "Name in view model";
+            mAge = 44;
+            Command = new CrossCommand(() =>
             {
-                var result = mNavigationService.Navigate<SubSubFormViewModel, SubFormModelResult>().ConfigureAwait(false);
-
+                Name = "Button click.";
+                Age++;
             });
             //Command.Execute("aa");
         }
 
-        //private string? mTitle;
+        private string? mTitle;
 
-        //public string? Title 
-        //{
-        //    [DebuggerStepThrough]
-        //    get => mTitle;
-        //    [DebuggerStepThrough]
-        //    set
-        //    {
-        //        if (mTitle != value)
-        //        {
-        //            mTitle = value;
-        //            RaisePropertyChanged();
-        //        }
-        //    }
-        //}
-
-        //private string? mName;
-
-        //public string? Name
-        //{
-        //    [DebuggerStepThrough]
-        //    get => mName;
-        //    [DebuggerStepThrough]
-        //    set
-        //    {
-        //        if (mName != value)
-        //        {
-        //            mName = value;
-        //            RaisePropertyChanged();
-        //        }
-        //    }
-        //}
-
-        //private int? mAge;
-
-        //public int? Age
-        //{
-        //    [DebuggerStepThrough]
-        //    get => mAge;
-        //    [DebuggerStepThrough]
-        //    set
-        //    {
-        //        if (mAge != value)
-        //        {
-        //            mAge = value;
-        //            RaisePropertyChanged();
-        //        }
-        //    }
-        //}
-
-        private ICommand? mCommandSubSubForm;
-
-        public ICommand? CommandSubSubForm
+        public string? Title 
         {
             [DebuggerStepThrough]
-            get => mCommandSubSubForm;
+            get => mTitle;
             [DebuggerStepThrough]
             set
             {
-                if (mCommandSubSubForm != value)
+                if (mTitle != value)
                 {
-                    mCommandSubSubForm = value;
+                    mTitle = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string? mName;
+
+        public string? Name
+        {
+            [DebuggerStepThrough]
+            get => mName;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mName != value)
+                {
+                    mName = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private int? mAge;
+
+        public int? Age
+        {
+            [DebuggerStepThrough]
+            get => mAge;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mAge != value)
+                {
+                    mAge = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private ICommand? mCommand;
+
+        public ICommand? Command
+        {
+            [DebuggerStepThrough]
+            get => mCommand;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mCommand != value)
+                {
+                    mCommand = value;
                     RaisePropertyChanged();
                 }
             }

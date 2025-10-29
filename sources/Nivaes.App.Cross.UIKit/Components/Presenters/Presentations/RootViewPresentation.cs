@@ -10,7 +10,7 @@
         {
         }
 
-        public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
+        public override Task<bool> ShowView(Type viewType, ICrossViewModelRequest request)
         {
             try
             {

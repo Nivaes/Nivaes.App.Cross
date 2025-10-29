@@ -1,13 +1,13 @@
-﻿using Nivaes.App.Cross.Presenters;
-using Nivaes.App.Cross.WinUI;
-using Nivaes.App.Cross.WinUI.Presenters;
-using Nivaes.IoC;
-
-// To learn more about WinUI, the WinUI project structure,
+﻿// To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Nivaes.App.Cross.Sample.WinUI
 {
+    using Nivaes.App.Cross.Presenters;
+    using Nivaes.App.Cross.WinUI;
+    using Nivaes.App.Cross.WinUI.Presenters;
+    using Nivaes.IoC;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.Sample.WinUI
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddDelegate<ICrossApplicationStart>((container) =>
                 {
-                    var navigationService = container.Resolve<INavigationService>();
+                    var navigationService = container.Resolve<ICrossNavigationService>();
                     return new SampleApplicationStart(navigationService!);
                 });
 
@@ -37,19 +37,19 @@ namespace Nivaes.App.Cross.Sample.WinUI
                     return new SampleApplication(applicationStart!);
                 });
 
-            var viewsManager = new ViewsManager(new[]
+            var viewsManager = new CrossViewsManager(new[]
             {
-                    ViewsManager.New<RootViewModel, RootView>(),
-                    ViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                CrossViewsManager.New<RootViewModel, RootView>(),
+                CrossViewsManager.New<NewWindowViewModel, NewWindowView>(),
             });
-            Singleton<ViewsManager>.Add(viewsManager);
+            Singleton<CrossViewsManager>.Add(viewsManager);
 
-            var viewPresentationsManager = new ViewPresentationsManager(new[] 
+            var viewPresentationsManager = new CrossViewPresentationsManager(new[] 
             { 
-                ViewPresentationsManager.New<RootView, PageViewPresentation>(),
-                ViewPresentationsManager.New<NewWindowView, NewWindowViewPresentation>(),
+                CrossViewPresentationsManager.New<RootView, PageViewPresentation>(),
+                CrossViewPresentationsManager.New<NewWindowView, NewWindowViewPresentation>(),
             });
-            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
+            Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

@@ -3,12 +3,11 @@
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.IoC;
 
-    public partial class DroidIoCServiceContainer 
-        : IoCServiceContainer
+    public partial class DroidIoCServiceContainer : IoCServiceContainer
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<IViewDispatcher, DroidViewDispatcher>();
+            bootstrapper.AddSingleton<ICrossViewDispatcher, DroidViewDispatcher>();
 
             bootstrapper.AddSingleton<ActivityViewPresentation>();
         }

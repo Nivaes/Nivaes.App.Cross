@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross
 {
     public interface IUIKitViewModelRequest 
-        : IViewModelRequest
+        : ICrossViewModelRequest
     {
         public string StoryboardName { get; }
     }

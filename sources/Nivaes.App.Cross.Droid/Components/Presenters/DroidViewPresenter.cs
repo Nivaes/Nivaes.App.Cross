@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class DroidViewPresenter : ViewPresenter, IViewPresenter
+    public sealed class DroidViewPresenter : CrossViewPresenter, ICrossViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 
@@ -19,14 +19,14 @@
         //    mFrame = new WrappedFrame(rootFrame);
         //}
 
-        public override Task<bool> Show(IViewModelRequest request)
+        public override Task<bool> Show(ICrossViewModelRequest request)
         {
             var (viewType, viewPresentation) = GetViewPresentation(request);
 
             return viewPresentation!.ShowView(viewType, request);
         }
 
-        override public Task<bool> Close(IViewModel request)
+        override public Task<bool> Close(ICrossViewModel request)
         {
             return Task.FromResult(false);
         }

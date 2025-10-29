@@ -5,7 +5,8 @@
     using Android.OS;
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class DroidViewPresentation : ViewPresentation
+    public abstract class DroidViewPresentation : 
+        CrossViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 
@@ -14,13 +15,13 @@
             this.AppDataModel = appDataModel;
         }
 
-        public override Task<bool> ShowView(Type viewType, IViewModelRequest request)
+        public override Task<bool> ShowView(Type viewType, ICrossViewModelRequest request)
         {
             var intent = new Intent(AppDataModel.ApplicationContext, viewType);
             //intent.PutExtra("request", request);
             //var activity = CurrentActivity;
 
-            var viewModelKey = Singleton<TemporaryStore<IViewModel>>.Instance.Add(request.ViewModel);
+            var viewModelKey = Singleton<TemporaryStore<ICrossViewModel>>.Instance.Add(request.ViewModel);
             Bundle bundle = new Bundle();
             bundle.PutInt("viewModelKey", viewModelKey);
             intent.PutExtras(bundle);
@@ -30,7 +31,7 @@
             return Task.FromResult(false);
         }
 
-        public override Task<bool> CloseView(IViewModel request)
+        public override Task<bool> CloseView(ICrossViewModel request)
         {
             return Task.FromResult(false);
         }

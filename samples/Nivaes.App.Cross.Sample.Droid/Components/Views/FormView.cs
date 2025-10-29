@@ -1,13 +1,17 @@
 namespace Nivaes.App.Cross.Sample.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq.Expressions;
+    using System.Windows.Input;
     using Android.Widget;
     using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Sample;
+    using static Android.Renderscripts.ScriptGroup;
 
     [Activity(Label = "@string/app_name")]
     public partial class FormView
         : CrossActivity<FormViewModel>,
-        IBindingView
+        ICrossBindingView
     {
         public FormView()
             : base(Resource.Layout.FormView)
@@ -21,6 +25,7 @@ namespace Nivaes.App.Cross.Sample.Droid
 
         protected override void Binding()
         {
+            // ToDo: Crear librerias anidadas.
             var nameTextView = base.FindViewById<TextView>(Resource.Id.nameTextView);
             Binding<FormViewModel>(nameTextView, vm => vm.Name);
 

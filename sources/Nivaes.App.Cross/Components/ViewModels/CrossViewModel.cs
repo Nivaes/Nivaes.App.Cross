@@ -3,15 +3,83 @@
     using System;
     using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    public abstract class ViewModel
-        : IViewModel, INotifyPropertyChanged
+    public abstract class CrossViewModel
+        : ICrossViewModel, INotifyPropertyChanged
     {
+        #region IViewModel
         public virtual void ViewCreated()
         {
         }
+
+        public virtual void ViewAppearing()
+        {
+        }
+
+        public virtual void ViewAppeared()
+        {
+        }
+
+        public virtual void ViewDisappearing()
+        {
+        }
+
+        public virtual void ViewDisappeared()
+        {
+        }
+
+        public virtual void ViewDestroy(bool viewFinishing = true)
+        {
+        }
+
+        public void Init(ICrossBundle parameters)
+        {
+            InitFromBundle(parameters);
+        }
+
+        public void ReloadState(ICrossBundle state)
+        {
+            ReloadFromBundle(state);
+        }
+
+        public virtual void Start()
+        {
+        }
+
+        public void SaveState(ICrossBundle state)
+        {
+            SaveStateToBundle(state);
+        }
+
+        protected virtual void InitFromBundle(ICrossBundle parameters)
+        {
+        }
+
+        protected virtual void ReloadFromBundle(ICrossBundle state)
+        {
+        }
+
+        protected virtual void SaveStateToBundle(ICrossBundle bundle)
+        {
+        }
+
+        public virtual void Prepare()
+        {
+        }
+
+        public virtual Task Initialize()
+        {
+            return Task.FromResult(true);
+        }
+
+        //private NotifyTask _initializeTask;
+        //public NotifyTask InitializeTask
+        //{
+        //    get => _initializeTask;
+        //    set => SetProperty(ref _initializeTask, value);
+        //}
+        #endregion
 
         #region INotifyPropertyChanged
         /// <summary>Occurs when a property value changes.</summary>
@@ -124,6 +192,8 @@
         {
             mPropertyChanged?.Invoke(sender, e);
         }
+
+        public CrossNotifyTask? InitializeTask { get; set; }
         #endregion
     }
 }

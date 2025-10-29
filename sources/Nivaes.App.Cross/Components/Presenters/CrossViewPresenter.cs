@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross.Presenters
 {
-    public abstract class ViewPresenter : IViewPresenter
+    public abstract class CrossViewPresenter : ICrossViewPresenter
     {
-        protected ViewPresenter()
+        protected CrossViewPresenter()
         {
         }
 
-        public abstract Task<bool> Show(IViewModelRequest request);
+        public abstract Task<bool> Show(ICrossViewModelRequest request);
 
-        public abstract Task<bool> Close(IViewModel request);
+        public abstract Task<bool> Close(ICrossViewModel request);
 
-        protected static (Type, IViewPresentation) GetViewPresentation(IViewModelRequest request)
+        protected static (Type, ICrossViewPresentation) GetViewPresentation(ICrossViewModelRequest request)
         {
-            var viewsManager = Singleton<ViewsManager>.Instance;
+            var viewsManager = Singleton<CrossViewsManager>.Instance;
             var viewModelType = request.ViewModel.GetType();
 
             if (viewsManager.TryGetValue(viewModelType, out var viewType))
             {
-                var viewPresentationsManager = Singleton<ViewPresentationsManager>.Instance;
+                var viewPresentationsManager = Singleton<CrossViewPresentationsManager>.Instance;
 
                 try
                 {
                     if (viewPresentationsManager.TryGetValue(viewType, out var viewPresentationType))
                     {
                         var container = Singleton<CrossIoCServiceContainer>.Instance;
-                        var viewPresentation = container.Resolve(viewPresentationType) as IViewPresentation;
+                        var viewPresentation = container.Resolve(viewPresentationType) as ICrossViewPresentation;
 
                         return (viewType!, viewPresentation!);
                     }

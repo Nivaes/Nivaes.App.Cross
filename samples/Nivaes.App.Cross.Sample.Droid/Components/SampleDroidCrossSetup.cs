@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross.Droid.Sample
+﻿namespace Nivaes.App.Cross.Sample.Droid
 {
-    public abstract class SampleDroidCrossSetup : DroidCrossSetup
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Nivaes.App.Cross.Droid;
+
+    public abstract class SampleDroidCrossSetup 
+        : DroidCrossSetup
     {
     }
 }

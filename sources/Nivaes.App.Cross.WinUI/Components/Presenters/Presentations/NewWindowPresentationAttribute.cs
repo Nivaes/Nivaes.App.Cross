@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class NewWindowPresentationAttribute : PresentationAttribute
+    public sealed class NewWindowPresentationAttribute : CrossPresentationAttribute
     {
         public NewWindowPresentationAttribute()
         {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
-    public abstract class SampleApplicationSetup : CrossApplicationSetup
+    public abstract class SampleApplicationSetup :
+        CrossApplicationSetup
     {
         
     }

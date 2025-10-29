@@ -1,10 +1,12 @@
-﻿namespace Nivaes.App.Cross.Droid.Sample
+﻿namespace Nivaes.App.Cross.Sample.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Android.Views;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
@@ -20,7 +22,7 @@
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddDelegate<ICrossApplicationStart>((container) =>
             {
-                var navigationService = container.Resolve<INavigationService>();
+                var navigationService = container.Resolve<ICrossNavigationService>();
                 return new SampleApplicationStart(navigationService!);
             });
 
@@ -30,11 +32,24 @@
                 return new SampleApplication(applicationStart!);
             });
 
-            var viewsManager = new ViewsManager(new[] { ViewsManager.New<RootViewModel, RootView>() });
-            Singleton<ViewsManager>.Add(viewsManager);
-
-            var viewPresentationsManager = new ViewPresentationsManager(new[] { ViewPresentationsManager.New<RootView, ActivityViewPresentation>() });
-            Singleton<ViewPresentationsManager>.Add(viewPresentationsManager);
+            // ToDo: Cargar esto con roslyn
+            var viewsManager = new CrossViewsManager(new[] { 
+                CrossViewsManager.New<RootViewModel, RootView>(),
+                CrossViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                CrossViewsManager.New<FormViewModel, FormView>(), 
+                CrossViewsManager.New<SubFormViewModel, SubFormView>(),
+                CrossViewsManager.New<SubSubFormViewModel, SubSubFormView>()
+            });
+            Singleton<CrossViewsManager>.Add(viewsManager);
+            
+            var viewPresentationsManager = new CrossViewPresentationsManager(new[] { 
+                CrossViewPresentationsManager.New<RootView, ActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<NewWindowView, ActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<FormView, ActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<SubFormView, ActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<SubSubFormView, ActivityViewPresentation>()
+            });
+            Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }
     }
 }

@@ -2,11 +2,11 @@
 {
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class DroidViewDispatcher : ViewDispatcher, IViewDispatcher
+    public sealed class DroidViewDispatcher : CrossViewDispatcher, ICrossViewDispatcher
     {
-        private readonly IViewPresenter mViewPresenter;
+        private readonly ICrossViewPresenter mViewPresenter;
 
-        public DroidViewDispatcher(IViewPresenter viewPresenter) 
+        public DroidViewDispatcher(ICrossViewPresenter viewPresenter) 
             : base()
         {
             mViewPresenter = viewPresenter;
@@ -14,12 +14,12 @@
 
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 
-        public override Task<bool> ShowViewModelOnMainThread(IViewModelRequest request)
+        public override Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request)
         {
             return mViewPresenter.Show(request);
         }
 
-        public override Task<bool> ShowViewModelOnBackgroundThread(IViewModelRequest request, Func<IViewModelRequest, Task<bool>> action)
+        public override Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action)
         {
             var result = false;
 

@@ -4,7 +4,7 @@
     using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class PagePresentationAttribute : PresentationAttribute
+    public sealed class PagePresentationAttribute : CrossPresentationAttribute
     {
     }
 }

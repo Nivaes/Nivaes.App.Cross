@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross.Sample
+﻿namespace Nivaes.App.Cross.Sample
 {
-    public class SampleApplicationStart : CrossApplicationStart
-    {
-        private readonly INavigationService mNavigationService;
+    using System.Threading.Tasks;
 
-        public SampleApplicationStart(INavigationService navigationService)
+    public class SampleApplicationStart 
+        : CrossApplicationStart
+    {
+        private readonly ICrossNavigationService mNavigationService;
+
+        public SampleApplicationStart(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
 
+            // ToDo: Cargar esto con roslyn
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.Merge(new ViewModelsSubcontainer());
         }
@@ -27,8 +24,7 @@ namespace Nivaes.App.Cross.Sample
             }
             catch (System.Exception exception)
             {
-                //throw exception.Wrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
-                throw exception.Wrap("Problem navigating to ViewModel {0}", typeof(ViewModel).Name);
+                throw exception.Wrap("Problem navigating to ViewModel {0}", typeof(RootViewModel).Name);
             }
         }
     }

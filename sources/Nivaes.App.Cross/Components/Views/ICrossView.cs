@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross
 {
-    public interface IViewModelRequest
+    public interface ICrossView
     {
-        IViewModel ViewModel { get; }
     }
 }

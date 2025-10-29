@@ -46,8 +46,7 @@
 				android:ems="10"
 				android:inputType="text"
 				android:text="Name"
-				android:layout_marginTop="15dp" 
-				android:visibility="visible"/>
+				android:layout_marginTop="15dp" android:visibility="visible"/>
 		
 		<Button
 			   android:id="@+id/button1"
@@ -55,15 +54,6 @@
 			   android:layout_height="wrap_content"
 			   android:layout_marginTop="10dp"
 			   android:text="Show Child" />
-
-		<TextView
-                android:id="@+id/returnValueTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_text"
-                android:layout_marginTop="15dp"
-                />
-
-
+		
 	</LinearLayout>
 </ScrollView>

@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
 
-    public abstract class CrossCommand
+    public class CrossCommand
         : CrossCommandBase
     {
         #region Subclass
@@ -100,7 +100,7 @@
         [DebuggerStepThrough]
         public override bool CanExecute(object? parameter)
         {
-            return mCanExecute?.Invoke(parameter) ?? false;
+            return mCanExecute?.Invoke(parameter) ?? true;
         }
 
         /// <summary>Defines the method to be called when the command is invoked.</summary>

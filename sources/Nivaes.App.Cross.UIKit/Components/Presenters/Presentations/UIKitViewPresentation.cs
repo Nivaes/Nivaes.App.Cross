@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class UIKitViewPresentation : ViewPresentation
+    public abstract class UIKitViewPresentation : CrossViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 
@@ -21,7 +21,7 @@
         //    return Task.FromResult(false);
         //}
 
-        public override Task<bool> CloseView(IViewModel request)
+        public override Task<bool> CloseView(ICrossViewModel request)
         {
             return Task.FromResult(false);
         }

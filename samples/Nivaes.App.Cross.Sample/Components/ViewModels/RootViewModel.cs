@@ -1,25 +1,84 @@
 ﻿namespace Nivaes.App.Cross.Sample
 {
-    public class RootViewModel
-        : ViewModel
-    {
-        private readonly INavigationService mNavigationService;
+    using System.Diagnostics;
+    using System.Reflection;
+    using System.Windows.Input;
+    using System.Xml.Linq;
 
-        public RootViewModel(INavigationService navigationService)
+    public class RootViewModel
+        : CrossViewModel
+    {
+        private readonly ICrossNavigationService mNavigationService;
+
+        
+        public RootViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
-            mTitle = "Root View en RootViewModel";
+
+            ShowNewWindowCommand = new CrossCommand(() =>
+            {
+                mNavigationService.Navigate<NewWindowViewModel>().ConfigureAwait(false);
+            });
+
+            FormCommand = new CrossCommand(() =>
+            {
+                mNavigationService.Navigate<FormViewModel>().ConfigureAwait(false);
+            });
+
+            SubFormCommand = new CrossCommand(() =>
+            {
+                mNavigationService.Navigate<SubFormViewModel>().ConfigureAwait(false);
+            });
         }
 
-        private string mTitle;
+        private ICommand? mShowNewWindowCommand;
 
-        public string Title 
+        public ICommand? ShowNewWindowCommand
         {
-            get => mTitle; 
+            [DebuggerStepThrough]
+            get => mShowNewWindowCommand;
+            [DebuggerStepThrough]
             set
             {
-                mTitle = value;
-                RaisePropertyChanged();
+                if (mShowNewWindowCommand != value)
+                {
+                    mShowNewWindowCommand = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private ICommand? mFormCommand;
+
+        public ICommand? FormCommand
+        {
+            [DebuggerStepThrough]
+            get => mFormCommand;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mFormCommand != value)
+                {
+                    mFormCommand = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private ICommand? mSubFormCommand;
+
+        public ICommand? SubFormCommand
+        {
+            [DebuggerStepThrough]
+            get => mSubFormCommand;
+            [DebuggerStepThrough]
+            set
+            {
+                if (mSubFormCommand != value)
+                {
+                    mSubFormCommand = value;
+                    RaisePropertyChanged();
+                }
             }
         }
     }

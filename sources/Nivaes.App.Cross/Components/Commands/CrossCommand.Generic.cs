@@ -116,7 +116,7 @@
         [DebuggerStepThrough]
         public override bool CanExecute(object? parameter)
         {
-            return mCanExecute?.Invoke(this.mTag, parameter) ?? false;
+            return mCanExecute?.Invoke(this.mTag, parameter) ?? true;
         }
 
         /// <summary>Defines the method to be called when the command is invoked.</summary>

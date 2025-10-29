@@ -6,11 +6,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class NewWindowViewModel : ViewModel
+    public class NewWindowViewModel : CrossViewModel
     {
-        private readonly INavigationService mNavigationService;
+        private readonly ICrossNavigationService mNavigationService;
 
-        public NewWindowViewModel(INavigationService navigationService)
+        public NewWindowViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
         }

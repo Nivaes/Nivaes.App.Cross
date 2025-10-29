@@ -5,11 +5,11 @@
     using System.Xml.Linq;
 
     public class FormViewModel
-        : ViewModel
+        : CrossViewModel
     {
-        private readonly INavigationService mNavigationService;
+        private readonly ICrossNavigationService mNavigationService;
 
-        public FormViewModel(INavigationService navigationService)
+        public FormViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;
             mTitle = "Root View en RootViewModel";

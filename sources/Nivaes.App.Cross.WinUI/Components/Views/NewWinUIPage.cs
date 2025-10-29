@@ -3,8 +3,8 @@
     using Microsoft.UI.Xaml.Controls;
 
     public abstract class NewWinUIPage<TViewModel>
-         : Page, IView
-        where TViewModel : class, IViewModel
+         : Page, ICrossView
+        where TViewModel : class, ICrossViewModel
     {
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public abstract class PresentationAttribute : Attribute
+    public abstract class CrossPresentationAttribute : Attribute
     {
     }
 }
