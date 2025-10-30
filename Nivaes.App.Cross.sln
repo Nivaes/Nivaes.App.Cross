@@ -28,7 +28,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E}"
 	ProjectSection(SolutionItems) = preProject
 		.github\dependabot.yml = .github\dependabot.yml
-		.github\NuGet.Config = .github\NuGet.Config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{62445E9E-8580-4B40-A98E-3FE021EC089D}"
@@ -36,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\build_release.yaml = .github\workflows\build_release.yaml
 		.github\workflows\ci.yaml = .github\workflows\ci.yaml
 		.github\workflows\ci_android_aot.yaml = .github\workflows\ci_android_aot.yaml
+		.github\NuGet.Config = .github\NuGet.Config
 		.github\workflows\publish_release.yaml = .github\workflows\publish_release.yaml
 	EndProjectSection
 EndProject
@@ -185,5 +185,8 @@ Global
 		{DDF23486-13E8-4693-B95B-5DC518A7B8F8} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{32D1DFCF-1237-4E27-95B0-11A2FE6A537D} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{A3BDA65D-683F-44DF-B397-74E136E92C8F} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {493C5B7A-FC0F-4036-B27F-7344405A75A5}
 	EndGlobalSection
 EndGlobal
