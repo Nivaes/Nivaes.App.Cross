@@ -35,8 +35,8 @@ jobs:
       with:
         global-json-file: ./global.json
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
-      # env:
-      #   NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Restore Dependencies
       run: |
