@@ -37,29 +37,42 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore Nivaes.App.Identity.Shared
-          dotnet restore Nivaes.App.Identity.Shared.UnitTest
-          dotnet restore Nivaes.Server.Identity.IdentityServer
-          dotnet restore Nivaes.Server.Identity.IdentityServer.PlatformTest
-          dotnet restore Nivaes.Server.Identity.IdentityServer.UnitTest
-          dotnet restore Nivaes.Server.Identity.Api
-          dotnet restore Nivaes.Server.Identity.Api.UnitTest
-          dotnet restore Nivaes.Server.Identity.Api.PlatformTest
+          dotnet restore Nivaes.App.Cross
+          dotnet restore Nivaes.App.Cross.SourceGenerator
+          dotnet restore Nivaes.App.Cross.AppKit
+          dotnet restore Nivaes.App.Cross.AppKit.SourceGenerator
+          dotnet restore Nivaes.App.Cross.Droid
+          dotnet restore Nivaes.App.Cross.Droid.SourceGenerator
+          dotnet restore Nivaes.App.Cross.UIKit
+          dotnet restore Nivaes.App.Cross.UIKit.SourceGenerator
+          dotnet restore Nivaes.App.Cross.WinUI
+          dotnet restore Nivaes.App.Cross.WinUI.SourceGenerator
 
     - name: Build
       run: |
-          dotnet build Nivaes.App.Identity.Shared.UnitTest --configuration Release --no-restore
-          dotnet build Nivaes.Server.Identity.IdentityServer.PlatformTest --configuration Release --no-restore
-          dotnet build Nivaes.Server.Identity.IdentityServer.UnitTest --configuration Release --no-restore
-          dotnet build Nivaes.Server.Identity.Api --configuration Release --no-restore
-          dotnet build Nivaes.Server.Identity.Api.UnitTest --configuration Release --no-restore
-          dotnet build Nivaes.Server.Identity.Api.PlatformTest --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.AppKit --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.AppKit.SourceGenerator --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.Droid --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.UIKit --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.WinUI --configuration Release --no-restore
+          dotnet build Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
 
     - name: Test
       run: |
-          dotnet test Nivaes.App.Identity.Shared.UnitTest --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test Nivaes.Server.Identity.IdentityServer.UnitTest --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test Nivaes.Server.Identity.Api.UnitTest --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.AppKit --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.AppKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
   server-platform-test:
     runs-on: ubuntu-22.04
