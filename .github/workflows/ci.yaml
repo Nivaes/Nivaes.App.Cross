@@ -40,19 +40,18 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Restore Dependencies
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          dotnet restore sources/Nivaes.App.Cross
-          dotnet restore sources/Nivaes.App.Cross.SourceGenerator
-          dotnet restore sources/Nivaes.App.Cross.AppKit
-          dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator
-          dotnet restore sources/Nivaes.App.Cross.Droid
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
-          dotnet restore sources/Nivaes.App.Cross.UIKit
-          dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator
-          dotnet restore sources/Nivaes.App.Cross.WinUI
-          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.Config
+
+          # dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.Config
+          # dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.Config
 
     - name: Build
       run: |
