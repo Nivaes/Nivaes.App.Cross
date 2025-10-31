@@ -101,7 +101,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install mobile-librarybuilder
+        dotnet workload install android
 
     # - name: Install Java SDK
     #   uses: actions/setup-java@v4
