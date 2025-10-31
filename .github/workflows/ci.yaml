@@ -123,7 +123,7 @@ jobs:
 
   build-app-cross-iOS:
     needs: build-app-cross
-    runs-on: ubuntu-latest
+    runs-on: macos-lates
 
     steps:
     - name: Dump GitHub context
