@@ -99,8 +99,8 @@ jobs:
 
   build-app-cross-ios:
     needs: build-app-cross
-    runs-on: windows-latest
-    # runs-on: [self-hosted, windows]
+    # runs-on: windows-latest
+    runs-on: [self-hosted, windows, X64]
 
 
     steps:
