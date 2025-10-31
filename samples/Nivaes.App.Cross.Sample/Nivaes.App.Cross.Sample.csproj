@@ -13,7 +13,11 @@
 	  <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
     <PackageReference Include="Nivaes.App.Shared" />
   </ItemGroup>
 

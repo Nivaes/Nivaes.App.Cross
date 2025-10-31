@@ -10,7 +10,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />
@@ -34,6 +34,12 @@
 
 	<PropertyGroup>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<DebugType>portable</DebugType>
 	</PropertyGroup>
 	
 	<ItemGroup>
