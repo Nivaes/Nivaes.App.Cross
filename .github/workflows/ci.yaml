@@ -28,6 +28,12 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
 
+    - name: Variables
+      run: |
+        echo ${{ github.repository_owner }}
+        echo ${{ github.actor }}
+        echo ${{ secrets.GITHUB_TOKEN }}
+
     - name: Checkout
       uses: actions/checkout@v5
 
@@ -41,8 +47,7 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.Config
-
+          dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.Config --verbosity diagnostic
           # dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.Config
           # dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.Config
           # dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator --configfile .github/NuGet.Config
