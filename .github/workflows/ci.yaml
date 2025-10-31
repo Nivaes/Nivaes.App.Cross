@@ -47,7 +47,7 @@ jobs:
 
     - name: Authenticate with GitHub Packages
       run: dotnet nuget add source \
-        --username <OWNER> \
+        --username ${{ github.repository_owner }} \
         --password ${{ secrets.NUGET_AUTH_TOKEN }} \
         --store-password-in-clear-text \
         --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
