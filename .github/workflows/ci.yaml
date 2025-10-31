@@ -103,12 +103,6 @@ jobs:
       run: |
         dotnet workload install android
 
-    # - name: Install Java SDK
-    #   uses: actions/setup-java@v4
-    #   with:
-    #     distribution: 'temurin'
-    #     java-version: '21'
-
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
@@ -127,130 +121,47 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-  # server-platform-test:
-  #   runs-on: ubuntu-22.04
+  build-app-cross-iOS:
+    needs: build-app-cross
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Dump GitHub context
-  #     env:
-  #       GITHUB_CONTEXT: ${{ toJson(github) }}
-  #     run: echo "$GITHUB_CONTEXT"
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
-  #   - name: Checkout
-  #     uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v5
 
-  #   - name: Setup .NET Core
-  #     uses: actions/setup-dotnet@v4
-  #     with:
-  #       global-json-file: ./global.json
-  #       source-url: https://nuget.pkg.github.com/Nivaes/index.json
-  #     env:
-  #       NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v5
+      with:
+        global-json-file: ./global.json
+        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-  #   - name: Restore Dependencies
-  #     run: |
-  #         dotnet restore Nivaes.Server.Identity.IdentityServer.PlatformTest
-  #         dotnet restore Nivaes.Server.Identity.Api.PlatformTest
+    - name: Install workload
+      run: |
+        dotnet workload install ios
 
-  #   - name: Build
-  #     run: |
-  #         dotnet build Nivaes.Server.Identity.IdentityServer.PlatformTest --configuration Release --no-restore
-  #         dotnet build Nivaes.Server.Identity.Api.PlatformTest --configuration Release --no-restore
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.UIKit
+          dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator
 
-  #   - name: Test-Nivaes.App.Identity.Shared.UnitTest
-  #     run: |
-  #         dotnet test Nivaes.Server.Identity.IdentityServer.PlatformTest --configuration Release --no-build --verbosity normal --no-restore
-  #         dotnet test Nivaes.Server.Identity.Api.PlatformTest --configuration Release --no-build --verbosity normal --no-restore
+    - name: Build
+      run: |
+          dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
 
-  # build-identity-client:
-  #   runs-on: ubuntu-22.04
+    - name: Test
+      run: |
+          dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-  #   steps:
-  #   - name: Dump GitHub context
-  #     env:
-  #       GITHUB_CONTEXT: ${{ toJson(github) }}
-  #     run: echo "$GITHUB_CONTEXT"
-
-  #   - name: Checkout
-  #     uses: actions/checkout@v4
-
-  #   - name: Setup .NET Core
-  #     uses: actions/setup-dotnet@v4
-  #     with:
-  #       global-json-file: ./global.json
-  #       source-url: https://nuget.pkg.github.com/Nivaes/index.json
-  #     env:
-  #       NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-  #   - name: Restore Dependencies
-  #     run: |
-  #         dotnet restore Nivaes.App.Identity.Shared
-  #         dotnet restore Nivaes.App.Identity.Shared.UnitTest
-  #         dotnet restore Nivaes.App.Core
-  #         dotnet restore Nivaes.App.Identity.Core
-  #         dotnet restore Nivaes.App.Identity
-  #         dotnet restore Nivaes.App.Identity.Sample
-
-  #   - name: Build
-  #     run: |
-  #         dotnet build Nivaes.App.Identity.Shared.UnitTest --configuration Release --no-restore
-  #         dotnet build Nivaes.App.Identity.Sample --configuration Release --no-restore
-          
-  #   - name: Test
-  #     run: |
-  #         dotnet test Nivaes.App.Identity.Shared.UnitTest --configuration Release --no-build --verbosity normal --no-restore
-
-  # publish-identity-client-android:
-  #   needs: build-identity-client
-  #   runs-on: ubuntu-22.04
-    
-  #   steps:
-  #   - name: Dump GitHub context
-  #     env:
-  #       GITHUB_CONTEXT: ${{ toJson(github) }}
-  #     run: echo "$GITHUB_CONTEXT"
-
-  #   - name: Checkout
-  #     uses: actions/checkout@v4
-
-  #   - name: Setup .NET Core
-  #     uses: actions/setup-dotnet@v4
-  #     with:
-  #       global-json-file: ./global.json
-  #       source-url: https://nuget.pkg.github.com/Nivaes/index.json
-  #     env:
-  #       NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-  #   - name: Install workload
-  #     run: |
-  #       dotnet workload install mobile-librarybuilder
-
-  #   - name: Install Java SDK
-  #     uses: actions/setup-java@v4
-  #     with:
-  #       distribution: 'temurin'
-  #       java-version: '21'
-
-  #   - name: Setup Android SDK
-  #     uses: android-actions/setup-android@v3
-
-  #   - name: Restore Dependencies
-  #     run: |
-  #      dotnet restore Nivaes.App.Core.Droid
-  #      dotnet restore Nivaes.App.Identity.Droid
-  #      dotnet restore Nivaes.App.Identity.Droid.Sample
-
-  #   - name: Build
-  #     run: |
-  #      dotnet build Nivaes.App.Core.Droid --configuration Release --no-restore
-  #      dotnet build Nivaes.App.Identity.Droid --configuration Release --no-restore
-  #      dotnet build Nivaes.App.Identity.Droid.Sample --configuration Release --no-restore
-
-  #   - name: Publish
-  #     run: |
-  #       dotnet publish Nivaes.App.Identity.Droid.Sample --configuration Release --no-restore --no-restore
-  #       dotnet publish --framework net9.0-android --configuration Release -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=myapp.keystore -p:AndroidSigningKeyAlias=myapp -p:AndroidSigningKeyPass=mypassword -p:AndroidSigningStorePass=mypassword
-
+ 
   # publish-identity-client-mac:
   #   needs: build-identity-client
   #   runs-on: macos-latest
