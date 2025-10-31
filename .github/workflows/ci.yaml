@@ -43,40 +43,16 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator
-          # dotnet restore sources/Nivaes.App.Cross.AppKit
-          # dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator
-          # dotnet restore sources/Nivaes.App.Cross.Droid
-          # dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
-          # dotnet restore sources/Nivaes.App.Cross.UIKit
-          # dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator
-          # dotnet restore sources/Nivaes.App.Cross.WinUI
-          # dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator
 
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross --configuration Release --no-restore
           dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.AppKit --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.AppKit.SourceGenerator --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.WinUI --configuration Release --no-restore
-          # dotnet build sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
 
     - name: Test
       run: |
           dotnet test sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.AppKit --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.AppKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
-          # dotnet test sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
   build-app-cross-android:
     needs: build-app-cross
@@ -121,9 +97,11 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-  build-app-cross-iOS:
+  build-app-cross-ios:
     needs: build-app-cross
-    runs-on: windows-lates
+    # runs-on: windows-lates
+    runs-on: [self-hosted, windows]
+
 
     steps:
     - name: Dump GitHub context
