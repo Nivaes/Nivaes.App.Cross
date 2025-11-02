@@ -81,13 +81,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
+    #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+    #   env:
+    #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ./global.json
-        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        # source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      # env:
+      #   NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Install workload
       run: |
@@ -96,19 +104,19 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    # - name: Restore Dependencies
-    #   run: |
-    #       dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
-    #       dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
-    #   env:
-    #       NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Restore Dependencies
+    #   run: |
+    #       dotnet restore sources/Nivaes.App.Cross.Droid
+    #       dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
+    #   env:
+    #       NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: |
