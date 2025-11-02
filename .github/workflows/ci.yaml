@@ -54,6 +54,8 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
       env:
+          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
@@ -109,6 +111,8 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
       env:
+          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: Restore Dependencies
@@ -164,6 +168,8 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
       env:
+          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
@@ -206,8 +212,9 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config
       env:
+          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
@@ -244,8 +251,9 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
       env:
+          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross.WinUI --configuration Release --no-restore
