@@ -54,6 +54,7 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
       env:
+          GITHUB_PACKAGE_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
