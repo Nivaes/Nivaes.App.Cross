@@ -54,7 +54,7 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
       env:
-          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
           USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -111,7 +111,7 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
       env:
-          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
           USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -168,7 +168,7 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
       env:
-          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
           USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -251,7 +251,7 @@ jobs:
           dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
       env:
-          REPOSITORY_OWNER: ${{ secrets.github.repository_owner }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
           USER_OWNER: ${{ github.actor }}
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Build
