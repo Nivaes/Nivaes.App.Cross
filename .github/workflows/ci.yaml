@@ -40,19 +40,21 @@ jobs:
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Add GitHub NuGet source
-      run: |  
-          dotnet nuget remove source github || true
-          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-          --name github \
-          --username ${{ github.actor }} \
-          --password ${{ secrets.GITHUB_TOKEN }} \
-          --store-password-in-clear-text
+    # - name: Add GitHub NuGet source
+    #   run: |  
+    #       dotnet nuget remove source github || true
+    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+    #       --name github \
+    #       --username ${{ github.actor }} \
+    #       --password ${{ secrets.GITHUB_TOKEN }} \
+    #       --store-password-in-clear-text
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross
-          dotnet restore sources/Nivaes.App.Cross.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross --configfile NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile NuGet.config
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: |
@@ -86,14 +88,14 @@ jobs:
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Add GitHub NuGet source
-      run: |  
-          dotnet nuget remove source github || true
-          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-          --name github \
-          --username ${{ github.actor }} \
-          --password ${{ secrets.GITHUB_TOKEN }} \
-          --store-password-in-clear-text
+    # - name: Add GitHub NuGet source
+    #   run: |  
+    #       dotnet nuget remove source github || true
+    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+    #       --name github \
+    #       --username ${{ github.actor }} \
+    #       --password ${{ secrets.GITHUB_TOKEN }} \
+    #       --store-password-in-clear-text
 
     # - name: Install workload
     #   run: |
@@ -104,8 +106,10 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile NuGet.config
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: |
