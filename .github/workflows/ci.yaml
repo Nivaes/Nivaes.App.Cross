@@ -57,6 +57,7 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
 
     - name: Build
       run: |
@@ -171,6 +172,7 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
 
     - name: Build
       run: |
