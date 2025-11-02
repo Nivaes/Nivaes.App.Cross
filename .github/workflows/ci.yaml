@@ -51,8 +51,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross --configfile NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile NuGet.config
+          dotnet restore sources/Nivaes.App.Cross --configfile .github\NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github\NuGet.config
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -106,8 +106,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github\NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github\NuGet.config
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
