@@ -97,52 +97,9 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
       
-          # build-app-cross-ios:
-          #   needs: build-app-cross
-          #   runs-on: windows-latest
-          #   # runs-on: [self-hosted,Windows,X64]
-
-
-          #   steps:
-          #   - name: Dump GitHub context
-          #     env:
-          #       GITHUB_CONTEXT: ${{ toJson(github) }}
-          #     run: echo "$GITHUB_CONTEXT"
-
-          #   - name: Checkout
-          #     uses: actions/checkout@v5
-
-          #   - name: Setup .NET Core
-          #     uses: actions/setup-dotnet@v5
-          #     with:
-          #       global-json-file: ./global.json
-          #       source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-          #     env:
-          #       NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-          #   - name: Install workload
-          #     run: |
-          #       dotnet workload install ios
-
-          #   - name: Restore Dependencies
-          #     run: |
-          #         dotnet restore sources/Nivaes.App.Cross.UIKit
-          #         dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator
-
-          #   - name: Build
-          #     run: |
-          #         dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
-          #         dotnet build sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
-
-          #   - name: Test
-          #     run: |
-          #         dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
-          #         dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-
   build-app-cross-ios:
     needs: build-app-cross
     runs-on: [self-hosted,Windows,X64]
-
 
     steps:
     - name: Dump GitHub context
@@ -180,6 +137,45 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
+  build-app-cross-WinUI:
+    needs: build-app-cross
+    runs-on: [self-hosted,Windows,X64]
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
+    #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+    #   env:
+    #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install ios
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.WinUI
+          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator
+
+    - name: Build
+      run: |
+          dotnet build sources/Nivaes.App.Cross.WinUI --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
+
+    - name: Test
+      run: |
+          dotnet test sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
   # publish-identity-client-mac:
   #   needs: build-identity-client
