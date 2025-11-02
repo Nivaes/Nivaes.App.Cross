@@ -66,9 +66,66 @@ jobs:
           dotnet test sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
+  build-app-cross-android-linux:
+    needs: build-app-cross
+    # runs-on: [self-hosted,Windows,X64]
+    # runs-on: [self-hosted,Linux,X64]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v5
+      with:
+        global-json-file: ./global.json
+        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    # - name: Add GitHub NuGet source
+    #   run: |  
+    #       dotnet nuget remove source github || true
+    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+    #       --name github \
+    #       --username ${{ github.actor }} \
+    #       --password ${{ secrets.GITHUB_TOKEN }} \
+    #       --store-password-in-clear-text
+
+    - name: Install workload
+      run: |
+        dotnet workload install android
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: |
+          dotnet build sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
+
+    - name: Test
+      run: |
+          dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+
   build-app-cross-android:
     needs: build-app-cross
-    runs-on: [self-hosted,Linux,X64]
+    runs-on: [self-hosted,Windows,X64]
+    # runs-on: [self-hosted,Linux,X64]
     # runs-on: ubuntu-latest
 
     steps:
@@ -146,19 +203,21 @@ jobs:
     #   run: |
     #     dotnet workload install ios
 
-    - name: Add GitHub NuGet source
-      run: |  
-          dotnet nuget remove source github
-          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-          --name github \
-          --username ${{ github.actor }} \
-          --password ${{ secrets.GITHUB_TOKEN }} \
-          --store-password-in-clear-text
+    # - name: Add GitHub NuGet source
+    #   run: |  
+    #       dotnet nuget remove source github
+    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+    #       --name github \
+    #       --username ${{ github.actor }} \
+    #       --password ${{ secrets.GITHUB_TOKEN }} \
+    #       --store-password-in-clear-text
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.UIKit
-          dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: |
@@ -192,19 +251,21 @@ jobs:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 
-    - name: Add GitHub NuGet source
-      run: |  
-          dotnet nuget remove source github
-          dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-          --name github \
-          --username ${{ github.actor }} \
-          --password ${{ secrets.GITHUB_TOKEN }} \
-          --store-password-in-clear-text
+    # - name: Add GitHub NuGet source
+    #   run: |  
+    #       dotnet nuget remove source github
+    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+    #       --name github \
+    #       --username ${{ github.actor }} \
+    #       --password ${{ secrets.GITHUB_TOKEN }} \
+    #       --store-password-in-clear-text
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.WinUI
-          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator
+          dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: |
