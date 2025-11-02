@@ -41,11 +41,11 @@ jobs:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Authenticate with GitHub Packages
-      run: dotnet nuget add source \
-            --password ${{ secrets.GITHUB_TOKEN }} \
-            --store-password-in-clear-text \
+      run: dotnet nuget add source \                       
             --name github \
             "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Restore Dependencies
       run: |
