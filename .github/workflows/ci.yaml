@@ -99,8 +99,8 @@ jobs:
     #   run: |
     #     dotnet workload install android
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+    # - name: Setup Android SDK
+    #   uses: android-actions/setup-android@v3
 
     - name: Restore Dependencies
       run: |
@@ -144,7 +144,7 @@ jobs:
 
     - name: Add GitHub NuGet source
       run: |  
-          dotnet nuget remove source github || true
+          dotnet nuget remove source github
           dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
           --name github \
           --username ${{ github.actor }} \
@@ -190,7 +190,7 @@ jobs:
 
     - name: Add GitHub NuGet source
       run: |  
-          dotnet nuget remove source github || true
+          dotnet nuget remove source github
           dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
           --name github \
           --username ${{ github.actor }} \
