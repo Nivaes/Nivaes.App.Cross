@@ -89,15 +89,6 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    # - name: Add GitHub NuGet source
-    #   run: |  
-    #       dotnet nuget remove source github || true
-    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-    #       --name github \
-    #       --username ${{ github.actor }} \
-    #       --password ${{ secrets.GITHUB_TOKEN }} \
-    #       --store-password-in-clear-text
-
     - name: Install workload
       run: |
         dotnet workload install android
@@ -105,10 +96,17 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
+    # - name: Restore Dependencies
+    #   run: |
+    #       dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+    #       dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+    #   env:
+    #       NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -145,14 +143,6 @@ jobs:
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    # - name: Add GitHub NuGet source
-    #   run: |  
-    #       dotnet nuget remove source github || true
-    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-    #       --name github \
-    #       --username ${{ github.actor }} \
-    #       --password ${{ secrets.GITHUB_TOKEN }} \
-    #       --store-password-in-clear-text
 
     # - name: Install workload
     #   run: |
@@ -203,15 +193,6 @@ jobs:
     #   run: |
     #     dotnet workload install ios
 
-    # - name: Add GitHub NuGet source
-    #   run: |  
-    #       dotnet nuget remove source github
-    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-    #       --name github \
-    #       --username ${{ github.actor }} \
-    #       --password ${{ secrets.GITHUB_TOKEN }} \
-    #       --store-password-in-clear-text
-
     - name: Restore Dependencies
       run: |
           dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
@@ -249,16 +230,6 @@ jobs:
     #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-
-    # - name: Add GitHub NuGet source
-    #   run: |  
-    #       dotnet nuget remove source github
-    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-    #       --name github \
-    #       --username ${{ github.actor }} \
-    #       --password ${{ secrets.GITHUB_TOKEN }} \
-    #       --store-password-in-clear-text
 
     - name: Restore Dependencies
       run: |
