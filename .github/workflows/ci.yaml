@@ -40,21 +40,12 @@ jobs:
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    # - name: Add GitHub NuGet source
-    #   run: |  
-    #       dotnet nuget remove source github || true
-    #       dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
-    #       --name github \
-    #       --username ${{ github.actor }} \
-    #       --password ${{ secrets.GITHUB_TOKEN }} \
-    #       --store-password-in-clear-text
-
     - name: Restore Dependencies
       run: |
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
       env:
-          GITHUB_PACKAGE_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+          # GITHUB_PACKAGE_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -116,6 +107,7 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
 
     # - name: Restore Dependencies
     #   run: |
@@ -173,7 +165,6 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      shell: bash
 
     - name: Build
       run: |
@@ -218,6 +209,7 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
@@ -257,6 +249,7 @@ jobs:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross.WinUI --configuration Release --no-restore
