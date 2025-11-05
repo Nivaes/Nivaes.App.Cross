@@ -58,17 +58,17 @@
         #endregion
 
         #region Constructors
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         [DebuggerStepThrough]
         public CrossCommand(Action execute) : this(execute, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         [DebuggerStepThrough]
         public CrossCommand(Action<object?> execute) : this(execute, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         /// <param name="canExecute">Delegate to execute when CanExecute is called on the command.</param>
         [DebuggerStepThrough]
@@ -77,7 +77,7 @@
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         /// <param name="canExecute">Delegate to execute when CanExecute is called on the command.</param>
         /// <exception cref="ArgumentNullException">The execute argument must not be null.</exception>
