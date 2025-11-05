@@ -11,17 +11,10 @@ namespace Nivaes.App.Cross.Sample.WinUI
         {
             this.InitializeComponent();
         }
-
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked view";
-
-            ViewModel!.Title = "Nuevo título";
-        }
     }
 
     public abstract class RootViewPage 
-        : CrossPage<RootViewModel>
+        : CrpssWindowsPage<RootViewModel>
     {
     }
 }

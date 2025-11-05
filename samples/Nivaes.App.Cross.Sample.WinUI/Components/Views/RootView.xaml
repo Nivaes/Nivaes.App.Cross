@@ -17,13 +17,10 @@
         <local:RootViewValueConverter x:Key="RootViewValueConverter" />
     </Page.Resources>
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Binding Title" />
-        <TextBlock Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <TextBlock Text="Binding Title" />
-        <TextBlock Text="{Binding Title, Mode=OneWay}" />        
-
-        <Button x:Name="myButton" Click="myButton_Click">Click Me view</Button>
+        <!--<Button Click="{Binding ShowNewWindowCommand}">Show new window</Button>
+        <Button Click="{Binding FormCommand}">Show Form</Button>
+        <Button Click="{Binding SubFormCommand}">Show SubForm</Button>-->
     </StackPanel>
 </app:RootViewPage>

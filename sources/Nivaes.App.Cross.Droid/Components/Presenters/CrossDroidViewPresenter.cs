@@ -3,7 +3,8 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class DroidViewPresenter : CrossViewPresenter, ICrossViewPresenter
+    public sealed class CrossDroidViewPresenter : 
+        CrossViewPresenter, ICrossViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 

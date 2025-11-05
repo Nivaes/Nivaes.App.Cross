@@ -5,12 +5,12 @@
     using Android.OS;
     using Nivaes.App.Cross.Presenters;
 
-    public abstract class DroidViewPresentation : 
+    public abstract class CrossDroidViewPresentation : 
         CrossViewPresentation
     {
         protected AppDataModel AppDataModel { get; private set; }
 
-        protected DroidViewPresentation(AppDataModel appDataModel)
+        protected CrossDroidViewPresentation(AppDataModel appDataModel)
         {
             this.AppDataModel = appDataModel;
         }

@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross.Sample.WinUI
 {
     using Nivaes.App.Cross.Sample;
-    using Nivaes.App.Cross.WinUI.Components.Views;
+    using Nivaes.App.Cross.WinUI;
 
     public sealed partial class NewWindowView 
         : NewWindowPage
@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample.WinUI
     }
 
     public abstract class NewWindowPage 
-        : NewWinUIPage<RootViewModel>
+        : CrpssWindowsPage<RootViewModel>
     {
     }
 }

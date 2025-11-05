@@ -9,7 +9,7 @@
 
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
-        : Activity, ICrossView, ICrossBindingView
+        : Activity, ICrossView<TViewModel>, ICrossBindingView
         where TViewModel : class, ICrossViewModel
     {
 

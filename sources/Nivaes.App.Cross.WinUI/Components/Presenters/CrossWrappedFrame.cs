@@ -4,11 +4,11 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
 
-    public sealed class WrappedFrame
+    public sealed class CrossWrappedFrame
     {
         private readonly Frame mFrame;
 
-        public WrappedFrame(Frame frame)
+        public CrossWrappedFrame(Frame frame)
         {
             mFrame = frame;
         }

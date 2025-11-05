@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
+    [Obsolete("Sustituir por ICrossView<TViewModel>")]
     public interface ICrossView
     {
+        ICrossViewModel? ViewModel { get; set; }
+    }
+
+    public interface ICrossView<TViewModel>
+        where TViewModel : class, ICrossViewModel
+    {
+        TViewModel? ViewModel { get; set; }
     }
 }

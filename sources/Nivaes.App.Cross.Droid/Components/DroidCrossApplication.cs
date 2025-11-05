@@ -14,7 +14,7 @@
 
             container.AddDelegate<ICrossViewPresenter>((container) =>
             {
-                return new DroidViewPresenter();
+                return new CrossDroidViewPresenter();
             });
 
             container.Merge(new DroidIoCServiceContainer());

@@ -2,10 +2,10 @@
 {
     using Nivaes.App.Cross.Presenters;
 
-    public sealed class ActivityViewPresentation : 
-        DroidViewPresentation
+    public sealed class CrossActivityViewPresentation : 
+        CrossDroidViewPresentation
     {
-        public ActivityViewPresentation(AppDataModel appDataModel)
+        public CrossActivityViewPresentation(AppDataModel appDataModel)
             : base(appDataModel)
         {
 

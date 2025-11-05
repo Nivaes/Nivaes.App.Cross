@@ -7,7 +7,7 @@
     {
         public static KeyStoreItem New<TViewModel, TView>()
             where TViewModel : ICrossViewModel
-            where TView : ICrossView
+            where TView : ICrossView<ICrossViewModel>
         {
             return new KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) };
         }

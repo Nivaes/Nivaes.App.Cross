@@ -43,11 +43,11 @@
             Singleton<CrossViewsManager>.Add(viewsManager);
             
             var viewPresentationsManager = new CrossViewPresentationsManager(new[] { 
-                CrossViewPresentationsManager.New<RootView, ActivityViewPresentation>(),
-                CrossViewPresentationsManager.New<NewWindowView, ActivityViewPresentation>(),
-                CrossViewPresentationsManager.New<FormView, ActivityViewPresentation>(),
-                CrossViewPresentationsManager.New<SubFormView, ActivityViewPresentation>(),
-                CrossViewPresentationsManager.New<SubSubFormView, ActivityViewPresentation>()
+                CrossViewPresentationsManager.New<RootView, CrossActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<NewWindowView, CrossActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<FormView, CrossActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<SubFormView, CrossActivityViewPresentation>(),
+                CrossViewPresentationsManager.New<SubSubFormView, CrossActivityViewPresentation>()
             });
             Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }

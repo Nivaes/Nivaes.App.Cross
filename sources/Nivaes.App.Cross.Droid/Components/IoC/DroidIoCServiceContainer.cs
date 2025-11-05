@@ -7,9 +7,9 @@
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<ICrossViewDispatcher, DroidViewDispatcher>();
+            bootstrapper.AddSingleton<ICrossViewDispatcher, CrossDroidViewDispatcher>();
 
-            bootstrapper.AddSingleton<ActivityViewPresentation>();
+            bootstrapper.AddSingleton<CrossActivityViewPresentation>();
         }
     }
 }

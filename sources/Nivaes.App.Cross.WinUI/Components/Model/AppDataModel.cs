@@ -5,11 +5,11 @@
 
     public sealed class AppDataModel
     {
-        public WrappedFrame MainFrame { get; }
+        public Presenters.CrossWrappedFrame MainFrame { get; }
 
         public AppDataModel(Frame mainFrame)
         {
-            this.MainFrame = new WrappedFrame(mainFrame);
+            this.MainFrame = new Presenters.CrossWrappedFrame(mainFrame);
         }
     }
 }
