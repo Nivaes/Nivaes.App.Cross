@@ -16,8 +16,8 @@
 
         public delegate void AfterCloseEventHandler(object sender, ICrossNavigateEventArgs e);
 
-        public delegate void BeforeChangePresentationEventHandler(object sender, ChangePresentationEventArgs e);
+        public delegate void BeforeChangePresentationEventHandler(object sender, CrossChangePresentationEventArgs e);
 
-        public delegate void AfterChangePresentationEventHandler(object sender, ChangePresentationEventArgs e);
+        public delegate void AfterChangePresentationEventHandler(object sender, CrossChangePresentationEventArgs e);
     }
 }
