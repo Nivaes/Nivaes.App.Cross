@@ -1,6 +1,5 @@
 ﻿namespace Nivaes.App.Cross
 {
-    [Obsolete("Sustituir por ICrossView<TViewModel>")]
     public interface ICrossView
     {
         ICrossViewModel? ViewModel { get; set; }

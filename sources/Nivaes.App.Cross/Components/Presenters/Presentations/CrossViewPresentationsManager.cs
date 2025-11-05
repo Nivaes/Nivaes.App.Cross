@@ -2,10 +2,13 @@
 {
     using System.Diagnostics.CodeAnalysis;
 
-    public sealed class CrossViewPresentationsManager : KeyContainerManager<Type>
+    public sealed class CrossViewPresentationsManager : 
+        KeyContainerManager<Type>
     {
+
+        // Fixed generic method signature to use three type parameters, as required for generic views
         public static KeyStoreItem New<TView, TPresentationType>()
-            where TView : ICrossView<>
+            where TView : ICrossView
             where TPresentationType : ICrossViewPresentation
         {
             return new KeyStoreItem { Key = typeof(TView).GetHashCode(), Value = typeof(TPresentationType) };

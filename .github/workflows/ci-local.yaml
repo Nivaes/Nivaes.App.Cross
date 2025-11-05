@@ -1,4 +1,4 @@
-name: CI
+name: CI-local
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross --configuration Release --no-restore
-          dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore}
 
     - name: Test
       run: |
