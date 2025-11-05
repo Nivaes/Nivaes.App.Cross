@@ -21,6 +21,7 @@ permissions:
 jobs:
   build-app-cross:
     runs-on: ubuntu-latest
+    # runs-on: [self-hosted,Linux,X64]
 
     steps:
     - name: Dump GitHub context
@@ -62,6 +63,8 @@ jobs:
 
   build-app-cross-android-linux:
     needs: build-app-cross
+    # runs-on: [self-hosted,Windows,X64]
+    # runs-on: [self-hosted,Linux,X64]
     runs-on: ubuntu-latest
 
     steps:
@@ -125,9 +128,9 @@ jobs:
 
   build-app-cross-android:
     needs: build-app-cross
-    # runs-on: [self-hosted,Windows,X64]
+    runs-on: [self-hosted,Windows,X64]
     # runs-on: [self-hosted,Linux,X64]
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
 
     steps:
     - name: Dump GitHub context
@@ -138,21 +141,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        global-json-file: ./global.json
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
     #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 
-    - name: Install workload
-      run: |
-        dotnet workload install android
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install android
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+    # - name: Setup Android SDK
+    #   uses: android-actions/setup-android@v3
 
     - name: Restore Dependencies
       run: |
@@ -175,8 +178,7 @@ jobs:
       
   build-app-cross-ios:
     needs: build-app-cross
-    runs-on: macos-latest
-    # runs-on: [self-hosted,Windows,X64]
+    runs-on: [self-hosted,Windows,X64]
 
     steps:
     - name: Dump GitHub context
@@ -187,17 +189,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        global-json-file: ./global.json
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
     #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Install workload
-      run: |
-        dotnet workload install ios
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install ios
 
     - name: Restore Dependencies
       run: |
@@ -220,7 +222,7 @@ jobs:
 
   build-app-cross-WinUI:
     needs: build-app-cross
-    runs-on: windows-latest
+    runs-on: [self-hosted,Windows,X64]
 
     steps:
     - name: Dump GitHub context
@@ -231,10 +233,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        global-json-file: ./global.json
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
     #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
