@@ -126,6 +126,7 @@ jobs:
     - name: Install workload
       run: |
         dotnet workload install ios
+        dotnet workload install maccatalyst
 
     - name: Restore Dependencies
       run: |
