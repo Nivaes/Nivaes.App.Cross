@@ -70,19 +70,19 @@
         #endregion
 
         #region Constructors
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         /// <param name="tag">The object that contains data about the command.</param>
         [DebuggerStepThrough]
         public CrossCommand(T tag, Action<T> execute) : this(tag, execute, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         /// <param name="tag">The object that contains data about the command.</param>
         [DebuggerStepThrough]
         public CrossCommand(T tag, Action<T, object?> execute) : this(tag, execute, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="tag">The object that contains data about the command.</param>
         /// <param name="execute">Delegate to execute when Execute is called on the command.</param>
         /// <param name="canExecute">Delegate to execute when CanExecute is called on the command.</param>
@@ -91,7 +91,7 @@
             : this(tag, execute != null ? new DelegateExecute(execute).ExcuteCommand : (Action<T, object?>?)null, canExecute != null ? new DelegateCanExecute(canExecute).ExcuteFunc : (Func<T, object?, bool>?)null)
         { }
 
-        /// <summary>Initializes a new instance of the <see cref="DelegateCommand"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CrossCommand"/> class.</summary>
         /// <param name="tag">The object that contains data about the command.</param>
         /// <param name="execute">The object that contains data about the command.</param>
         /// <param name="canExecute">Delegate to execute when CanExecute is called on the command.</param>
