@@ -5,9 +5,10 @@
         ICrossViewModel? ViewModel { get; set; }
     }
 
-    public interface ICrossView<TViewModel>
-        where TViewModel : class, ICrossViewModel
+    public interface ICrossView<TViewModel> :
+        ICrossView
+        where TViewModel : ICrossViewModel
     {
-        TViewModel? ViewModel { get; set; }
+        new TViewModel? ViewModel { get; set; }
     }
 }

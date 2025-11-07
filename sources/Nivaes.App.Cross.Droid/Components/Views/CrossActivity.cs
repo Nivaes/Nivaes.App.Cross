@@ -9,8 +9,10 @@
 
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
-        : Activity, ICrossView<TViewModel>, ICrossBindingView
-        where TViewModel : class, ICrossViewModel
+        : Activity, 
+        ICrossView<TViewModel>, 
+        ICrossBindingView
+        where TViewModel : ICrossViewModel
     {
 
         protected const int NoContent = 0;
@@ -100,11 +102,18 @@
         {
             [System.Diagnostics.DebuggerStepThrough]
             get => mViewModel;
+
             [System.Diagnostics.DebuggerStepThrough]
-            set
-            {
-                mViewModel = value;
-            }
+            set => mViewModel = value;
+        }
+
+        ICrossViewModel? ICrossView.ViewModel 
+        {
+            [System.Diagnostics.DebuggerStepThrough]
+            get => mViewModel;
+
+            [System.Diagnostics.DebuggerStepThrough]
+            set => mViewModel = (TViewModel?)value;
         }
         #endregion
 
