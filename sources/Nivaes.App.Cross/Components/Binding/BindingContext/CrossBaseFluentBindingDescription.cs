@@ -114,19 +114,20 @@ namespace Nivaes.App.Cross
 
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                var parser = Cross.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
-                var innerSteps = _useParser ?
-                    _properties.Select(p => parser.ParseSingle(p).Source) :
-                    _properties.Select(p => new CrossPathSourceStepDescription { SourcePropertyPath = p });
+                throw new NotImplementedException();
+                //var parser = Cross.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
+                //var innerSteps = _useParser ?
+                //    _properties.Select(p => parser.ParseSingle(p).Source) :
+                //    _properties.Select(p => new CrossPathSourceStepDescription { SourcePropertyPath = p });
 
-                return new CrossCombinerSourceStepDescription
-                {
-                    Combiner = _combiner,
-                    Converter = inputs.Converter,
-                    ConverterParameter = inputs.ConverterParameter,
-                    FallbackValue = inputs.FallbackValue,
-                    InnerSteps = [.. innerSteps]
-                };
+                //return new CrossCombinerSourceStepDescription
+                //{
+                //    Combiner = _combiner,
+                //    Converter = inputs.Converter,
+                //    ConverterParameter = inputs.ConverterParameter,
+                //    FallbackValue = inputs.FallbackValue,
+                //    InnerSteps = [.. innerSteps]
+                //};
             }
         }
 

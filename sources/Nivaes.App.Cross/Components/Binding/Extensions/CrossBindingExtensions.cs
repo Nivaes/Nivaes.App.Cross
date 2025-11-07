@@ -50,19 +50,20 @@ namespace Nivaes.App.Cross
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
             object? value)
         {
-            if (value == null)
-            {
-                return propertyType.CreateDefault();
-            }
+            throw new NotImplementedException();
+            //if (value == null)
+            //{
+            //    return propertyType.CreateDefault();
+            //}
 
-            var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
-                value.GetType(), propertyType);
-            if (autoConverter != null)
-            {
-                return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
-            }
+            //var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
+            //    value.GetType(), propertyType);
+            //if (autoConverter != null)
+            //{
+            //    return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
+            //}
 
-            return propertyType.MakeSafeValueCore(value);
+            //return propertyType.MakeSafeValueCore(value);
         }
     }
 }

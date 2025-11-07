@@ -13,19 +13,20 @@ namespace Nivaes.App.Cross
 
         protected virtual ICrossTextProvider? GetTextProvider()
         {
-            lock (_lockObject)
-            {
-                if (_cachedTextProvider != null)
-                    return _cachedTextProvider;
+            throw new NotImplementedException();
+            //lock (_lockObject)
+            //{
+            //    if (_cachedTextProvider != null)
+            //        return _cachedTextProvider;
 
-                if (Mvx.IoCProvider?.TryResolve(out ICrossTextProvider? cachedTextProvider) != true)
-                {
-                    throw new MvxException(
-                        "Missing text provider - please initialize IoC with a suitable IMvxTextProvider");
-                }
+            //    if (Mvx.IoCProvider?.TryResolve(out ICrossTextProvider? cachedTextProvider) != true)
+            //    {
+            //        throw new MvxException(
+            //            "Missing text provider - please initialize IoC with a suitable IMvxTextProvider");
+            //    }
 
-                return _cachedTextProvider = cachedTextProvider;
-            }
+            //    return _cachedTextProvider = cachedTextProvider;
+            //}
         }
 
         public virtual string? GetText(string entryKey)

@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Components.Converters;
 
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
     public class CrossFullBinding
@@ -134,22 +133,23 @@ namespace Nivaes.App.Cross
 
         private void CreateTargetBinding(object target)
         {
-            _targetBinding = TargetBindingFactory.CreateBinding(target, _bindingDescription.TargetName);
+            throw new NotImplementedException();
+            //_targetBinding = TargetBindingFactory.CreateBinding(target, _bindingDescription.TargetName);
 
-            if (_targetBinding == null)
-            {
-                CrossBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", _bindingDescription.ToString());
-                _targetBinding = new CrossNullTargetBinding();
-            }
+            //if (_targetBinding == null)
+            //{
+            //    CrossBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", _bindingDescription.ToString());
+            //    _targetBinding = new CrossNullTargetBinding();
+            //}
 
-            if (NeedToObserveTargetChanges)
-            {
-                _targetBinding.SubscribeToEvents();
-                _targetBindingOnValueChanged = (sender, args) => UpdateSourceFromTarget(args.Value);
-                _targetBinding.ValueChanged += _targetBindingOnValueChanged;
-            }
+            //if (NeedToObserveTargetChanges)
+            //{
+            //    _targetBinding.SubscribeToEvents();
+            //    _targetBindingOnValueChanged = (sender, args) => UpdateSourceFromTarget(args.Value);
+            //    _targetBinding.ValueChanged += _targetBindingOnValueChanged;
+            //}
 
-            _defaultTargetValue = _targetBinding.TargetValueType.CreateDefault();
+            //_defaultTargetValue = _targetBinding.TargetValueType.CreateDefault();
         }
 
         private async void UpdateTargetFromSource(object value, CancellationToken cancel)
