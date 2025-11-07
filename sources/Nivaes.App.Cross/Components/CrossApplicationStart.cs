@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross
         //    //var applicationHint = await ApplicationStartup(hint);
         //    //if (applicationHint != null)
         //    //{
-        //    //    MvxLogHost.Default?.Log(LogLevel.Trace, "Hint ignored in default MvxAppStart");
+        //    //    CrossLogHost.Default?.Log(LogLevel.Trace, "Hint ignored in default CrossAppStart");
         //    //}
 
         //    //await NavigateToFirstViewModel(applicationHint);

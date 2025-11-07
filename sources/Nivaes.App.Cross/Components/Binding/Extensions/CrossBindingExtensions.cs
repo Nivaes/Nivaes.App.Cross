@@ -1,0 +1,68 @@
+namespace Nivaes.App.Cross
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+
+    public static class CrossBindingExtensions
+    {
+        [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
+        public static bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(
+            this ICrossEditableTextView mvxEditableTextView, object target, object? value)
+        {
+            if (value == null)
+                return false;
+
+            // specifically for int, double, float and decimal we do some special comparisons
+            // to prevent the user losing trailing periods, leading minus signs, leading zeroes and trailing zeros
+            var valueType = value.GetType();
+            if (valueType == typeof(int) ||
+                valueType == typeof(double) ||
+                valueType == typeof(float) ||
+                valueType == typeof(decimal))
+            {
+                var currentValue = mvxEditableTextView.CurrentText;
+                if (currentValue == null)
+                    return false;
+
+                try
+                {
+                    var equivalentCurrentValue = valueType.MakeSafeValue(currentValue);
+                    if (equivalentCurrentValue?.Equals(value) == true)
+                        return true;
+                }
+                catch (FormatException)
+                {
+                    // format problem - so they are definitely not equivalent
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool ConvertToBoolean(this object? result)
+        {
+            return result.ConvertToBooleanCore();
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to perform type conversions which may not be preserved by trimming")]
+        public static object? MakeSafeValue(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
+            object? value)
+        {
+            if (value == null)
+            {
+                return propertyType.CreateDefault();
+            }
+
+            var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
+                value.GetType(), propertyType);
+            if (autoConverter != null)
+            {
+                return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
+            }
+
+            return propertyType.MakeSafeValueCore(value);
+        }
+    }
+}

@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using OpenTelemetry;
-using OpenTelemetry.Metrics;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
+    using System.Diagnostics;
+    using OpenTelemetry;
+    using OpenTelemetry.Metrics;
+
     public abstract class CrossApplication 
         : ICrossApplication, IDisposable
     {
@@ -23,9 +23,9 @@ namespace Nivaes.App.Cross
                 .Build();
         }
 
-        //private IMvxViewModelLocator? _defaultLocator;
+        //private ICrossViewModelLocator? _defaultLocator;
 
-        //private IMvxViewModelLocator DefaultLocator
+        //private ICrossViewModelLocator DefaultLocator
         //{
         //    get
         //    {
@@ -34,12 +34,12 @@ namespace Nivaes.App.Cross
         //    }
         //}
 
-        //protected virtual IMvxViewModelLocator CreateDefaultViewModelLocator()
+        //protected virtual ICrossViewModelLocator CreateDefaultViewModelLocator()
         //{
-        //    return new MvxDefaultViewModelLocator();
+        //    return new CrossDefaultViewModelLocator();
         //}
 
-        //public virtual void LoadPlugins(IMvxPluginManager pluginManager)
+        //public virtual void LoadPlugins(ICrossPluginManager pluginManager)
         //{
         //    // do nothing
         //}
@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross
         ///// </summary>
         //public virtual Task Startup()
         //{
-        //    MvxLogHost.Default?.Log(LogLevel.Trace, "AppStart: Application Startup - On UI thread");
+        //    CrossLogHost.Default?.Log(LogLevel.Trace, "AppStart: Application Startup - On UI thread");
         //    return Task.CompletedTask;
         //}
 
@@ -71,32 +71,32 @@ namespace Nivaes.App.Cross
         //    // do nothing
         //}
 
-        //public IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request)
+        //public ICrossViewModelLocator FindViewModelLocator(CrossViewModelRequest request)
         //{
         //    return DefaultLocator;
         //}
 
-        //protected void RegisterCustomAppStart<TMvxAppStart>()
-        //    where TMvxAppStart : class, IMvxAppStart
+        //protected void RegisterCustomAppStart<TCrossAppStart>()
+        //    where TCrossAppStart : class, ICrossAppStart
         //{
-        //    Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, TMvxAppStart>();
+        //    Cross.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, TCrossAppStart>();
         //}
 
         //protected void RegisterAppStart<TViewModel>()
-        //    where TViewModel : IMvxViewModel
+        //    where TViewModel : ICrossViewModel
         //{
-        //    Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, MvxAppStart<TViewModel>>();
+        //    Cross.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, CrossAppStart<TViewModel>>();
         //}
 
-        //protected void RegisterAppStart(IMvxAppStart appStart)
+        //protected void RegisterAppStart(ICrossAppStart appStart)
         //{
-        //    Mvx.IoCProvider?.RegisterSingleton(appStart);
+        //    Cross.IoCProvider?.RegisterSingleton(appStart);
         //}
 
         //protected virtual void RegisterAppStart<TViewModel, TParameter>()
-        //  where TViewModel : IMvxViewModel<TParameter> where TParameter : class
+        //  where TViewModel : ICrossViewModel<TParameter> where TParameter : class
         //{
-        //    Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, MvxAppStart<TViewModel, TParameter>>();
+        //    Cross.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, CrossAppStart<TViewModel, TParameter>>();
         //}
 
         //protected IEnumerable<Type> CreatableTypes()
