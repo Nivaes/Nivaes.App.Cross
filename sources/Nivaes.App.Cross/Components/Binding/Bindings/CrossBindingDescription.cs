@@ -20,9 +20,9 @@ namespace Nivaes.App.Cross
             };
         }
 
-        public string TargetName { get; set; }
+        public string? TargetName { get; set; }
         public CrossBindingMode Mode { get; set; }
-        public CrossSourceStepDescription Source { get; set; }
+        public CrossSourceStepDescription? Source { get; set; }
 
         public override string ToString()
         {

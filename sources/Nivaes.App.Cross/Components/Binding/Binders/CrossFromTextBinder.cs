@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public ICrossUpdateableBinding BindSingle(object source, object target, string targetPropertyName,
+        public ICrossUpdateableBinding? BindSingle(object source, object target, string targetPropertyName,
                                                 string partialBindingDescription)
         {
             var bindingDescription =

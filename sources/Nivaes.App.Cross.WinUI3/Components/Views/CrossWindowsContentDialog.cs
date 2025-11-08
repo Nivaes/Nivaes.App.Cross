@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using Microsoft.UI.Xaml;
@@ -12,44 +12,15 @@ namespace Nivaes.App.Cross.WinUI
     {
         public CrossWindowsContentDialog()
         {
-            Loading += MvxWindowsContentDialog_Loading;
-            Loaded += MvxWindowsContentDialog_Loaded;
-            Opened += MvxWindowsContentDialog_Opened;
-            Closed += MvxWindowsContentDialog_Closed;
-            Closing += MvxWindowsContentDialog_Closing;
-            Unloaded += MvxWindowsContentDialog_Unloaded;
+            Loading += CrossWindowsContentDialog_Loading;
+            Loaded += CrossWindowsContentDialog_Loaded;
+            Opened += CrossWindowsContentDialog_Opened;
+            Closed += CrossWindowsContentDialog_Closed;
+            Closing += CrossWindowsContentDialog_Closing;
+            Unloaded += CrossWindowsContentDialog_Unloaded;
         }
 
-        private void MvxWindowsContentDialog_Loading(FrameworkElement sender, object args)
-        {
-            ViewModel?.ViewAppearing();
-        }
-
-        private void MvxWindowsContentDialog_Loaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel?.ViewAppeared();
-        }
-
-        private void MvxWindowsContentDialog_Opened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-        {
-            ViewModel?.ViewCreated();
-        }
-
-        private void MvxWindowsContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
-        {
-            ViewModel?.ViewDisappearing();
-        }
-
-        private void MvxWindowsContentDialog_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
-        {
-            ViewModel?.ViewDisappeared();
-        }
-
-        private void MvxWindowsContentDialog_Unloaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel?.ViewDestroy();
-        }
-
+        #region ICrossView
         private TViewModel? _viewModel;
 
         public TViewModel? ViewModel
@@ -64,6 +35,44 @@ namespace Nivaes.App.Cross.WinUI
                 DataContext = ViewModel;
                 OnViewModelSet();
             }
+        }
+
+        ICrossViewModel? ICrossView.ViewModel
+        {
+            get => ViewModel;
+            set => ViewModel = (TViewModel?) value; 
+        }
+        #endregion
+
+
+        private void CrossWindowsContentDialog_Loading(FrameworkElement sender, object args)
+        {
+            ViewModel?.ViewAppearing();
+        }
+
+        private void CrossWindowsContentDialog_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel?.ViewAppeared();
+        }
+
+        private void CrossWindowsContentDialog_Opened(ContentDialog sender, ContentDialogOpenedEventArgs args)
+        {
+            ViewModel?.ViewCreated();
+        }
+
+        private void CrossWindowsContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            ViewModel?.ViewDisappearing();
+        }
+
+        private void CrossWindowsContentDialog_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
+        {
+            ViewModel?.ViewDisappeared();
+        }
+
+        private void CrossWindowsContentDialog_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel?.ViewDestroy();
         }
 
         protected virtual void OnViewModelSet()
@@ -85,12 +94,12 @@ namespace Nivaes.App.Cross.WinUI
         {
             if (disposing)
             {
-                Loading -= MvxWindowsContentDialog_Loading;
-                Loaded -= MvxWindowsContentDialog_Loaded;
-                Opened -= MvxWindowsContentDialog_Opened;
-                Closed -= MvxWindowsContentDialog_Closed;
-                Closing -= MvxWindowsContentDialog_Closing;
-                Unloaded -= MvxWindowsContentDialog_Unloaded;
+                Loading -= CrossWindowsContentDialog_Loading;
+                Loaded -= CrossWindowsContentDialog_Loaded;
+                Opened -= CrossWindowsContentDialog_Opened;
+                Closed -= CrossWindowsContentDialog_Closed;
+                Closing -= CrossWindowsContentDialog_Closing;
+                Unloaded -= CrossWindowsContentDialog_Unloaded;
             }
         }
     }

@@ -44,9 +44,9 @@ namespace Nivaes.App.Cross
                                                  , TTarget target
                                                  , Expression<Func<TTarget, object>> targetPropertyExpression
                                                  , string sourceKey
-                                                 , string sourcePropertyName = null
-                                                 , string fallbackValue = null
-                                                 , string converterName = null
+                                                 , string? sourcePropertyName = null
+                                                 , string? fallbackValue = null
+                                                 , string? converterName = null
                                                  , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
         {
             var parser = PropertyExpressionParser;

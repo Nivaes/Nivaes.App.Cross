@@ -1,11 +1,9 @@
-//using MvvmCross.Views;
-
-//namespace Nivaes.App.Cross.WinUI
-//{
-//    public interface ICrossStoreViewsContainer
-//        : ICrossViewsContainer
-//            , IMvxWindowsViewModelLoader
-//            , IMvxWindowsViewModelRequestTranslator
-//    {
-//    }
-//}
+namespace Nivaes.App.Cross.WinUI3
+{
+    public interface ICrossStoreViewsContainer
+        : ICrossViewsContainer
+            , ICrossWindowsViewModelLoader
+            , ICrossWindowsViewModelRequestTranslator
+    {
+    }
+}

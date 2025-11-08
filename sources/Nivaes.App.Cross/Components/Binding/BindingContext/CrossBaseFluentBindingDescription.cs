@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
         : CrossApplicableTo<TTarget>, ICrossBaseFluentBindingDescription
         where TTarget : class
     {
-        private readonly TTarget _target;
+        private readonly TTarget? _target;
         private readonly ICrossBindingContextOwner _bindingContextOwner;
 
         private readonly CrossBindingDescription _bindingDescription = new CrossBindingDescription();
@@ -202,7 +202,7 @@ namespace Nivaes.App.Cross
             _sourceSpec = new FullySourceSpec(bindingDescription.Source);
         }
 
-        public CrossBaseFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget target)
+        public CrossBaseFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget? target)
         {
             _bindingContextOwner = bindingContextOwner;
             _target = target;

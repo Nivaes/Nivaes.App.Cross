@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using Microsoft.UI.Dispatching;

@@ -108,21 +108,21 @@ namespace Nivaes.App.Cross
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> WithConversion(string converterName,
-                                                                            object converterParameter = null)
+                                                                            object? converterParameter = null)
         {
             var converter = ValueConverterFromName(converterName);
             return WithConversion(converter, converterParameter);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> WithConversion(ICrossValueConverter converter,
-                                                                            object converterParameter = null)
+                                                                            object? converterParameter = null)
         {
             SourceStepDescription.Converter = converter;
             SourceStepDescription.ConverterParameter = converterParameter;
             return this;
         }
 
-        public CrossFluentBindingDescription<TTarget, TSource> WithConversion<TValueConverter>(object converterParameter = null)
+        public CrossFluentBindingDescription<TTarget, TSource> WithConversion<TValueConverter>(object? converterParameter = null)
             where TValueConverter : ICrossValueConverter
         {
             throw new NotImplementedException();
@@ -182,7 +182,7 @@ namespace Nivaes.App.Cross
         : CrossBaseFluentBindingDescription<TTarget>
         where TTarget : class
     {
-        public CrossFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget target = null)
+        public CrossFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget? target = null)
             : base(bindingContextOwner, target)
         {
         }
@@ -243,8 +243,7 @@ namespace Nivaes.App.Cross
             return WithConversion(new CrossCommandParameterValueConverter(), parameter);
         }
 
-        public CrossFluentBindingDescription<TTarget> WithConversion(string converterName,
-                                                                   object converterParameter = null)
+        public CrossFluentBindingDescription<TTarget> WithConversion(string converterName, object? converterParameter = null)
         {
             var converter = ValueConverterFromName(converterName);
             return WithConversion(converter, converterParameter);
@@ -258,7 +257,7 @@ namespace Nivaes.App.Cross
             return this;
         }
 
-        public CrossFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object converterParameter = null)
+        public CrossFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object? converterParameter = null)
             where TValueConverter : ICrossValueConverter
         {
             throw new NotImplementedException();

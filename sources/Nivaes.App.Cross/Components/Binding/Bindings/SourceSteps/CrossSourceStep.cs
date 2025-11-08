@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
         : ICrossSourceStep
     {
         private readonly CrossSourceStepDescription _description;
-        private object _dataContext;
+        private object? _dataContext;
 
         protected CrossSourceStepDescription Description => _description;
 
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross
         public virtual Type SourceType => typeof(object);
 
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {

@@ -1,24 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Linq;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using MvvmCross.Platforms.WinUi.Presenters.Attributes;
-using MvvmCross.ViewModels;
-
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI3
 {
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Media;
+
     public static class CrossWindowsExtensions
     {
-        public static void OnViewCreate(this ICrossWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)
+        public static void OnViewCreate(this ICrossWindowsView storeView, string requestText, Func<ICrossBundle> bundleLoader)
         {
             storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
         }
 
-        public static void OnViewCreate(this ICrossWindowsView storeView, Func<IMvxViewModel> viewModelLoader)
+        public static void OnViewCreate(this ICrossWindowsView storeView, Func<ICrossViewModel> viewModelLoader)
         {
             if (storeView.ViewModel != null)
                 return;
@@ -31,15 +23,16 @@ namespace Nivaes.App.Cross.WinUI
         {
             if (key > 0)
             {
-                var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
-                viewModelLoader.RemoveSubViewModelWithKey(key);
+                throw new NotImplementedException();
+                //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
+                //viewModelLoader.RemoveSubViewModelWithKey(key);
             }
         }
 
         public static bool HasRegionAttribute(this Type view)
         {
             var attributes = view
-                .GetCustomAttributes(typeof(MvxRegionPresentationAttribute), true);
+                .GetCustomAttributes(typeof(CrossRegionPresentationAttribute), true);
 
             return attributes.Any();
         }
@@ -47,15 +40,15 @@ namespace Nivaes.App.Cross.WinUI
         public static string GetRegionName(this Type view)
         {
             var attributes = view
-                .GetCustomAttributes(typeof(MvxRegionPresentationAttribute), true);
+                .GetCustomAttributes(typeof(CrossRegionPresentationAttribute), true);
 
             if (!attributes.Any())
-                throw new InvalidOperationException("The IMvxWindowsView has no region attribute.");
+                throw new InvalidOperationException("The ICrossWindowsView has no region attribute.");
 
-            return ((MvxRegionPresentationAttribute)attributes.First()).Name;
+            return ((CrossRegionPresentationAttribute)attributes.First()).Name;
         }
 
-        public static T FindControl<T>(this UIElement parent, string name = null) where T : FrameworkElement
+        public static T? FindControl<T>(this UIElement? parent, string? name = null) where T : FrameworkElement
         {
             if (parent == null)
             {
@@ -68,13 +61,13 @@ namespace Nivaes.App.Cross.WinUI
                 return typedParent;
             }
 
-            T result = null;
+            T? result = null;
             var count = VisualTreeHelper.GetChildrenCount(parent);
             for (var i = 0; i < count; i++)
             {
                 var child = VisualTreeHelper.GetChild(parent, i) as UIElement;
 
-                result = FindControl<T>(child, name);
+                result = child?.FindControl<T>(name);
                 if (result != null)
                 {
                     return result;
@@ -84,19 +77,14 @@ namespace Nivaes.App.Cross.WinUI
             return result;
         }
 
-        private static IMvxViewModel LoadViewModel(this ICrossWindowsView storeView,
+        private static ICrossViewModel LoadViewModel(this ICrossWindowsView storeView,
                                                     string requestText,
-                                                    IMvxBundle bundle)
+                                                    ICrossBundle bundle)
         {
-#warning ClearingBackStack disabled for now
+            throw new NotImplementedException();
 
-            //            if (viewModelRequest.ClearTop)
-            //            {
-            //#warning TODO - BackStack not cleared for WinRT
-            //phoneView.ClearBackStack();
-            //            }
-            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-            return viewModelLoader.Load(requestText, bundle);
+            //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
+            //return viewModelLoader.Load(requestText, bundle);
         }
     }
 }

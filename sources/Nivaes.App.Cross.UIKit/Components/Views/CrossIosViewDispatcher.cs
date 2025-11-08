@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Components.Views;
 
 namespace Nivaes.App.Cross.UIKit
 {

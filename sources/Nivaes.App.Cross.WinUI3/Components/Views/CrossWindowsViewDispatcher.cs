@@ -1,18 +1,17 @@
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.UI.Dispatching;
 
     public class CrossWindowsViewDispatcher
         : CrossWindowsMainThreadDispatcher, ICrossViewDispatcher
     {
-        //private readonly ICrossWindowsViewPresenter _presenter;
+        public CrossWindowsViewDispatcher(DispatcherQueue uiDispatcher) : base(uiDispatcher)
+        {
+        }
 
-        //public CrossWindowsViewDispatcher(ICrossWindowsViewPresenter presenter, ICrossWindowsFrame rootFrame)
-        //    : base(rootFrame.UnderlyingControl.DispatcherQueue)
-        //{
-        //    _presenter = presenter;
-        //}
+        //private readonly ICrossWindowsViewPresenter _presenter;
 
         //public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         //{
@@ -20,7 +19,7 @@ namespace Nivaes.App.Cross.WinUI
         //    return true;
         //}
 
-        //public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        //public async Task<bool> ChangePresentation(CrossPresentationHint hint)
         //{
         //    await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
         //    return true;

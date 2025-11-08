@@ -1,15 +1,14 @@
-﻿namespace Nivaes.App.Cross.WinUI
+﻿namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml.Controls;
-    using Nivaes.App.Cross.WinUI.Presenters;
 
     public sealed class AppDataModel
     {
-        public Presenters.CrossWrappedFrame MainFrame { get; }
+        public CrossWrappedFrame MainFrame { get; }
 
         public AppDataModel(Frame mainFrame)
         {
-            this.MainFrame = new Presenters.CrossWrappedFrame(mainFrame);
+            this.MainFrame = new CrossWrappedFrame(mainFrame);
         }
     }
 }

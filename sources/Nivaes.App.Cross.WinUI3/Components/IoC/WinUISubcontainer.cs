@@ -1,16 +1,15 @@
-﻿namespace Nivaes.App.Cross.WinUI
+﻿namespace Nivaes.App.Cross.WinUI3
 {
-    using Nivaes.App.Cross.WinUI.Presenters;
     using Nivaes.IoC;
 
     public partial class WinUISubcontainer : IoCServiceContainer
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {
-            bootstrapper.AddSingleton<ICrossViewDispatcher, WinUIViewDispatcher>();
+            bootstrapper.AddSingleton<ICrossViewDispatcher, CrossWinUIViewDispatcher>();
 
-            bootstrapper.AddSingleton<PageViewPresentation>();
-            bootstrapper.AddSingleton<NewWindowViewPresentation>();
+            bootstrapper.AddSingleton<CrossPageViewPresentation>();
+            bootstrapper.AddSingleton<CrossNewWindowViewPresentation>();
         }
     }
 }

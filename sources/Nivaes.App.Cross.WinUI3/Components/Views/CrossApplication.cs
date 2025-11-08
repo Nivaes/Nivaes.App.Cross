@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI3
 {
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+
     using Application = Microsoft.UI.Xaml.Application;
     using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
-    public class MvxApplication<TMvxWinUiSetup, TApplication> : Application
-     where TMvxWinUiSetup : CrossWindowsSetup<TApplication>, new()
+    public class CrossApplication<TCrossWinUiSetup, TApplication> : Application
+     where TCrossWinUiSetup : CrossWindowsSetup<TApplication>, new()
      where TApplication : class, ICrossApplication, new()
     {
         protected Frame RootFrame { get; set; }
@@ -37,13 +34,13 @@ namespace Nivaes.App.Cross.WinUI
 
         protected virtual void RunAppStart(string arguments)
         {
-            var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
+            var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
 
             if (RootFrame.Content == null)
             {
                 instance.EnsureInitialized();
 
-                if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
+                if (Cross.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
                 {
                     startup.Start(GetAppStartHint(arguments));
                 }
