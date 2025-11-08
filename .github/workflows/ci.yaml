@@ -43,8 +43,8 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore samples\Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
       env:
-          # GITHUB_PACKAGE_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,7 +59,7 @@ jobs:
       run: |
           dotnet test sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-
+          
   build-app-cross-android:
     needs: build-app-cross
     runs-on: ubuntu-latest
@@ -104,6 +104,11 @@ jobs:
       run: |
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+
+          
+    - name: Build-Sample
+      run: |
+          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore
       
   build-app-cross-ios:
     needs: build-app-cross
@@ -132,6 +137,9 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.UIKit.iOS --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.UIKit.MacCatalyst --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -147,7 +155,13 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-  build-app-cross-WinUI:
+    - name: Build-Samples
+      run: |
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.iOS --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configuration Release --no-build --verbosity normal --no-restore
+
+  build-app-cross-WinUI3:
     needs: build-app-cross
     runs-on: windows-latest
 
@@ -183,6 +197,10 @@ jobs:
       run: |
           dotnet test sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+
+    - name: Build-Samples
+      run: |
+          dotnet test samples/Nivaes.App.Cross.Sample.WinUI --configuration Release --no-build --verbosity normal --no-restore
 
   # publish-identity-client-mac:
   #   needs: build-identity-client
