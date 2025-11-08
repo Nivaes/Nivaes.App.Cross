@@ -39,6 +39,10 @@ jobs:
     #   env:
     #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+    - name: Install workload
+      run: |
+        dotnet workload install android
+
     - name: Restore Dependencies
       run: |
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
@@ -80,7 +84,6 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ./global.json
-
 
     - name: Install workload
       run: |
