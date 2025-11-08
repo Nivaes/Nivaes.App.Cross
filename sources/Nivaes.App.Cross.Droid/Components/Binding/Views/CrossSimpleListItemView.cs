@@ -1,0 +1,33 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+
+namespace Nivaes.App.Cross.Droid
+{
+    [Register("mvvmcross.platforms.android.binding.views.MvxSimpleListItemView")]
+    public class CrossSimpleListItemView : CrossListItemView
+    {
+        public CrossSimpleListItemView(Context context, ICrossLayoutInflaterHolder layoutInflaterHolder,
+            object dataContext, ViewGroup parent, int templateId)
+            : base(context, layoutInflaterHolder, dataContext, parent, templateId)
+        {
+        }
+
+        public override object DataContext
+        {
+            get => base.DataContext;
+            set
+            {
+                var context = base.DataContext = value;
+                var textView = Content as TextView;
+                if (textView != null)
+                    textView.Text = context?.ToString();
+            }
+        }
+    }
+}

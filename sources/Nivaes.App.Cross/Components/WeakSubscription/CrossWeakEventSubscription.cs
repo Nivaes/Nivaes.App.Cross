@@ -3,7 +3,8 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
-    public class CrossWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> : IDisposable
+    public class CrossWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> 
+        : IDisposable
         where TSource : class
     {
         private readonly WeakReference _targetReference;
@@ -130,7 +131,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class MvxWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : IDisposable
+    public class CrossWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : IDisposable
         where TSource : class
     {
         private readonly WeakReference _targetReference;
@@ -146,7 +147,7 @@ namespace Nivaes.App.Cross
 
         private bool _subscribed;
 
-        public MvxWeakEventSubscription(
+        public CrossWeakEventSubscription(
             TSource source,
             string sourceEventName,
             EventHandler targetEventHandler)
@@ -154,7 +155,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        protected MvxWeakEventSubscription(
+        protected CrossWeakEventSubscription(
             TSource source,
             EventInfo sourceEventInfo,
             EventHandler targetEventHandler)

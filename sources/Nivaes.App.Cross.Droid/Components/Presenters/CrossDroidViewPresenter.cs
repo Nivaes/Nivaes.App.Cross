@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Droid.Presenters
+﻿namespace Nivaes.App.Cross.Droid
 {
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Presenters;

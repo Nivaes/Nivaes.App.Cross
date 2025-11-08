@@ -1,5 +1,5 @@
 ﻿
-namespace Nivaes.App.Cross.Presenters
+namespace Nivaes.App.Cross
 {
     public abstract class CrossViewPresentation : ICrossViewPresentation
     {

@@ -115,6 +115,7 @@
             [System.Diagnostics.DebuggerStepThrough]
             set => mViewModel = (TViewModel?)value;
         }
+        public object? DataContext { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion
 
         #region Binding

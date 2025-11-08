@@ -1,0 +1,98 @@
+namespace Nivaes.App.Cross.Droid
+{
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+
+    // This isn't a "pure" target binder like MvxListViewSelectedItemTargetBinding.
+    // It differs in two ways:
+    //  1. It checks the selected item.
+    //  2. SetValueImpl typically compares value with null and _currentValue, returing
+    //     if null or equal respectively.  This class foregoes this so that if the bound value of
+    //     SelectedItem is set to null we can "override" _currentValue.
+    public class CrossExpandableListViewSelectedItemTargetBinding(CrossExpandableListView target)
+        : CrossAndroidTargetBinding(target)
+    {
+        private object? _currentValue;
+        private CrossAndroidTargetEventSubscription<ExpandableListView, ExpandableListView.ChildClickEventArgs>? _subscription;
+
+
+        protected CrossExpandableListView? ListView => (CrossExpandableListView?)Target;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(object);
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            if (target is not CrossExpandableListView listView)
+                return;
+
+            if (value == null)
+            {
+                _currentValue = null;
+                listView.ClearChoices();
+                return;
+            }
+            var positions = ((CrossExpandableListAdapter?)listView.ExpandableListAdapter)?.GetPositions(value);
+            if (positions == null)
+            {
+                CrossBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
+                return;
+            }
+
+            _currentValue = value;
+            listView.SetSelectedChild(positions.Item1, positions.Item2, true);
+
+            var pos =
+                listView.GetFlatListPosition(ExpandableListView.GetPackedPositionForChild(positions.Item1,
+                    positions.Item2));
+            listView.SetItemChecked(pos, true);
+        }
+
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
+
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
+        {
+            var listView = (ExpandableListView?)ListView;
+            if (listView == null)
+                return;
+
+            _subscription = listView.WeakSubscribe<ExpandableListView, ExpandableListView.ChildClickEventArgs>(
+                nameof(listView.ChildClick),
+                OnChildClick);
+        }
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _subscription?.Dispose();
+            }
+            base.Dispose(isDisposing);
+        }
+
+        private void OnChildClick(object? sender, ExpandableListView.ChildClickEventArgs childClickEventArgs)
+        {
+            var listView = ListView;
+            if (listView == null)
+                return;
+
+            var newValue =
+                ((CrossExpandableListAdapter?)listView.ExpandableListAdapter)?.GetRawItem(
+                    childClickEventArgs.GroupPosition, childClickEventArgs.ChildPosition);
+
+            if (newValue?.Equals(_currentValue) != true)
+            {
+                var pos = listView.GetFlatListPosition(
+                    ExpandableListView.GetPackedPositionForChild(
+                        childClickEventArgs.GroupPosition,
+                        childClickEventArgs.ChildPosition));
+                listView.SetItemChecked(pos, true);
+
+                _currentValue = newValue;
+                FireValueChanged(newValue);
+            }
+        }
+    }
+}

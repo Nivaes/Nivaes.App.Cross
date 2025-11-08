@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>$(_MvxAndroidTargets)</TargetFrameworks>
-	<Platforms>x86;x64;arm64</Platforms>
+	<!--<Platforms>x86;x64;arm64</Platforms>-->
 	<!--<RuntimeIdentifiers>linux-x86;linux-x64;linux-arm64</RuntimeIdentifiers>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
@@ -18,18 +18,25 @@
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 
-	  <!--<ProjectReference Include="..\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
-		  <OutputItemType>Analyzer</OutputItemType>
-		  <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-		  
-		  <PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
-		  <IncludeAssets>analyzers</IncludeAssets>
-		  <ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
-	  </ProjectReference>-->
+	<ProjectReference Include="..\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
+		<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+		<IncludeAssets>analyzers</IncludeAssets>
+		<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+	</ProjectReference>
+	
+	 <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
   </ItemGroup>
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" />
+		<PackageReference Include="Xamarin.AndroidX.Fragment" />
+		<PackageReference Include="Xamarin.AndroidX.Preference" />
+		<PackageReference Include="Xamarin.AndroidX.ViewPager" />
+		<PackageReference Include="Xamarin.Google.Android.Material" />
 	</ItemGroup>
 
   <ItemGroup>

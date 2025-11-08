@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Presenters
+﻿namespace Nivaes.App.Cross
 {
     public interface ICrossViewPresentation
     {

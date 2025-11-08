@@ -57,11 +57,11 @@ namespace Nivaes.App.Cross
             return new CrossCanExecuteChangedEventSubscription(source, eventHandler);
         }
 
-        public static MvxWeakEventSubscription<TSource> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(
+        public static CrossWeakEventSubscription<TSource> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(
             this TSource source, string eventName, EventHandler eventHandler)
                 where TSource : class
         {
-            return new MvxWeakEventSubscription<TSource>(source, eventName, eventHandler);
+            return new CrossWeakEventSubscription<TSource>(source, eventName, eventHandler);
         }
 
         public static CrossWeakEventSubscription<TSource, TEventArgs> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>(

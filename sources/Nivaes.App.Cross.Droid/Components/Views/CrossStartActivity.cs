@@ -2,10 +2,13 @@
 {
     using System.Threading.Tasks;
     using Android.OS;
+    using Android.Runtime;
     using Android.Views;
     using Nivaes.IoC;
 
-    public abstract class CrossStartActivity : Activity
+    [Register("Nivaes.App.Cross.Droid.CrossStartActivity")]
+    public abstract class CrossStartActivity 
+        : CrossActivity<CrossNullViewModel>
     {
         protected const int NoContent = 0;
 
@@ -14,7 +17,15 @@
 
         protected CrossStartActivity(int resourceId = NoContent)
         {
+            RegisterSetup();
             _resourceId = resourceId;
+        }
+
+
+        public new CrossNullViewModel ViewModel
+        {
+            get { return base.ViewModel as CrossNullViewModel; }
+            set { base.ViewModel = value; }
         }
 
         protected override void OnCreate(Bundle? savedInstanceState)
@@ -57,6 +68,15 @@
                     base.Finish();
                 }
             }
+        }
+
+        protected virtual object GetAppStartHint(object hint = null)
+        {
+            return hint;
+        }
+
+        protected virtual void RegisterSetup()
+        {
         }
     }
 }

@@ -1,0 +1,61 @@
+namespace Nivaes.App.Cross.Droid
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+
+    [Obsolete("No compatible con AoT")]
+    public class CrossSeekBarProgressTargetBinding
+        : CrossPropertyInfoTargetBinding<SeekBar>
+    {
+        private CrossWeakEventSubscription<SeekBar, SeekBar.ProgressChangedEventArgs>? _subscription;
+
+        public CrossSeekBarProgressTargetBinding(object target, PropertyInfo targetPropertyInfo)
+            : base(target, targetPropertyInfo)
+        {
+        }
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            var seekbar = (SeekBar?)target;
+            if (seekbar == null || value == null)
+                return;
+
+            seekbar.Progress = (int)value;
+        }
+
+        private void SeekBarProgressChanged(object? sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            if (e.FromUser)
+                FireValueChanged(e.Progress);
+        }
+
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
+
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
+        {
+            var seekBar = View;
+            if (seekBar == null)
+            {
+                CrossBindingLog.Instance?.LogError("SeekBar is null in MvxSeekBarProgressTargetBinding");
+                return;
+            }
+
+            _subscription = seekBar.WeakSubscribe<SeekBar, SeekBar.ProgressChangedEventArgs>(
+                nameof(seekBar.ProgressChanged),
+                SeekBarProgressChanged);
+        }
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _subscription?.Dispose();
+                _subscription = null;
+            }
+            base.Dispose(isDisposing);
+        }
+    }
+}

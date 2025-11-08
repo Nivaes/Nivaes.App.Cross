@@ -14,9 +14,9 @@
     public class CrossContextWrapper : ContextWrapper
     {
         private LayoutInflater? _inflater;
-        //private readonly IMvxBindingContextOwner _bindingContextOwner;
+        //private readonly ICrossBindingContextOwner _bindingContextOwner;
 
-        public CrossContextWrapper(Context? context/*, IMvxBindingContextOwner bindingContextOwner*/)
+        public CrossContextWrapper(Context? context/*, ICrossBindingContextOwner bindingContextOwner*/)
             : base(context)
         {
         }
