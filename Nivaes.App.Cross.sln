@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B4017FA5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross", "sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj", "{341DF103-20E3-4770-88FB-E7356E38EE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI3", "sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI3.csproj", "{0E27DA1F-4687-4764-9B47-C9C9774EB561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI3", "sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj", "{0E27DA1F-4687-4764-9B47-C9C9774EB561}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E}"
 	ProjectSection(SolutionItems) = preProject
