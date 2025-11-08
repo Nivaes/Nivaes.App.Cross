@@ -135,9 +135,9 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.UIKit.iOS --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.UIKit.MacCatalyst --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Sample.UIKit --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Sample.UIKit.iOS --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
