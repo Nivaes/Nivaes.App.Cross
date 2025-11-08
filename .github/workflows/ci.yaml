@@ -51,8 +51,8 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross --configuration Release --property:RunAOTAnalysis=true --no-restore
           dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross --framework net9.0 --configuration Release --property:RunAOTAnalysis=true --no-restore
 
     - name: Test
       run: |
