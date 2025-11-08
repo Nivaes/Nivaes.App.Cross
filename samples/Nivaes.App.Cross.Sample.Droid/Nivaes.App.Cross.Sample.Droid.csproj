@@ -12,7 +12,7 @@
       Enables trim analyzers and full trimming during Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
-		<TrimMode>full</TrimMode>
+		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 
 		<IsPackable>false</IsPackable>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>

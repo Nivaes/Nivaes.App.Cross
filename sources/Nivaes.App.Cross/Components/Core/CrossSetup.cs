@@ -437,17 +437,18 @@ namespace Nivaes.App.Cross
         //    return null;
         //}
 
-        //[RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        //public virtual IEnumerable<Assembly> GetPluginAssemblies()
-        //{
-        //    var mvvmCrossAssemblyName = typeof(CrossPluginAttribute).Assembly.GetName().Name;
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual IEnumerable<Assembly> GetPluginAssemblies()
+        {
+            throw new NotImplementedException();    
+            //var mvvmCrossAssemblyName = typeof(CrossPluginAttribute).Assembly.GetName().Name;
 
-        //    var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            //var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-        //    return assemblies
-        //        .AsParallel()
-        //        .Where(assembly => AssemblyReferencesMvvmCross(assembly, mvvmCrossAssemblyName));
-        //}
+            //return assemblies
+            //    .AsParallel()
+            //    .Where(assembly => AssemblyReferencesMvvmCross(assembly, mvvmCrossAssemblyName));
+        }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         private static bool AssemblyReferencesMvvmCross(Assembly assembly, string? mvvmCrossAssemblyName)

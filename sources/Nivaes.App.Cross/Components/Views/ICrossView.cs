@@ -1,6 +1,7 @@
 ﻿namespace Nivaes.App.Cross
 {
     public interface ICrossView
+        : ICrossDataConsumer
     {
         ICrossViewModel? ViewModel { get; set; }
     }

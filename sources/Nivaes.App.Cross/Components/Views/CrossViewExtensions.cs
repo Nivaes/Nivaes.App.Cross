@@ -36,18 +36,20 @@ namespace Nivaes.App.Cross
         {
             ArgumentNullException.ThrowIfNull(view);
 
-            if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
-                return associatedTypeFinder?.FindTypeOrNull(typeof(TViewType));
+            throw new NotImplementedException();
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
+            //    return associatedTypeFinder?.FindTypeOrNull(typeof(TViewType));
 
-            CrossLogHost.Default?.Log(LogLevel.Trace,
-                "No view model type finder available - assuming we are looking for a splash screen - returning null");
-            return typeof(CrossNullViewModel);
+            //CrossLogHost.Default?.Log(LogLevel.Trace,
+            //    "No view model type finder available - assuming we are looking for a splash screen - returning null");
+            //return typeof(CrossNullViewModel);
         }
 
         public static ICrossBundle CreateSaveStateBundle(this ICrossView view)
         {
-            var viewModel = view.ViewModel;
-            return viewModel == null ? new CrossBundle() : viewModel.SaveStateBundle();
+            throw new NotImplementedException();
+            //var viewModel = view.ViewModel;
+            //return viewModel == null ? new CrossBundle() : viewModel.SaveStateBundle();
         }
     }
 }

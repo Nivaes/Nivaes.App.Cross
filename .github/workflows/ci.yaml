@@ -51,7 +51,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross --configuration Release --property:RunAOTAnalysis=true --no-restore
           dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
 
     - name: Test
@@ -59,6 +59,10 @@ jobs:
           dotnet test sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
           
+    - name: Check-AotCompatible
+      run: |
+          dotnet publish sources/Nivaes.App.Cross --framework net9.0 --configuration Release --no-restore
+
   build-app-cross-android:
     needs: build-app-cross
     runs-on: ubuntu-latest
@@ -97,7 +101,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.Droid --property:RunAOTAnalysis=true --configuration Release --no-restore
           dotnet build sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
 
     - name: Test
@@ -107,7 +111,11 @@ jobs:
     - name: Build-Sample
       run: |
           dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore
-      
+
+    - name: Check-AotCompatible
+      run: |
+          dotnet publish sources/Nivaes.App.Cross.Droid --runtime win-x64 --configuration Release --no-restore
+    
   build-app-cross-ios:
     needs: build-app-cross
     runs-on: macos-latest
@@ -145,7 +153,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.UIKit --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.UIKit --property:RunAOTAnalysis=true --configuration Release --no-restore
           dotnet build sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
 
     - name: Test
@@ -155,9 +163,9 @@ jobs:
 
     - name: Build-Samples
       run: |
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.iOS --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
 
   build-app-cross-WinUI3:
     needs: build-app-cross
