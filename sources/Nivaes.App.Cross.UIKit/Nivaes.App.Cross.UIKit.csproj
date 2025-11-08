@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$$(_MvxiOSTargets);</TargetFrameworks>
+		<TargetFrameworks>$(_MvxiOSTargets);</TargetFrameworks>
 		
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
