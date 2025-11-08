@@ -8,7 +8,8 @@
     using ObjCRuntime;
 
     public abstract class CrossUIViewController<TViewModel>
-        : UIViewController, ICrossView<TViewModel>
+        : UIViewController,
+        ICrossView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public CrossUIViewController()

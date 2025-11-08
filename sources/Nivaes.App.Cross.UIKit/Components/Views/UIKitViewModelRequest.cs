@@ -2,7 +2,7 @@
 {
     public record UIKitViewModelRequest<TViewModel>
         : CrossViewModelRequest<TViewModel>,
-            IUIKitViewModelRequest
+            ICrossUIKitViewModelRequest
         where TViewModel : ICrossViewModel
     {
         public UIKitViewModelRequest(TViewModel viewModel, string storyboardName)
