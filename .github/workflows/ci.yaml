@@ -179,9 +179,9 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.WinUI3 --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.WinUI3.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.WinUI3 --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -189,17 +189,17 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.WinUI --configuration Release --no-restore
-          dotnet build sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.WinUI3 --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.WinUI3.SourceGenerator --configuration Release --no-restore
 
     - name: Test
       run: |
-          dotnet test sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources/Nivaes.App.Cross.WinUI3 --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources/Nivaes.App.Cross.WinUI3.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
     - name: Build-Samples
       run: |
-          dotnet test samples/Nivaes.App.Cross.Sample.WinUI --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test samples/Nivaes.App.Cross.Sample.WinUI3 --configuration Release --no-build --verbosity normal --no-restore
 
   # publish-identity-client-mac:
   #   needs: build-identity-client

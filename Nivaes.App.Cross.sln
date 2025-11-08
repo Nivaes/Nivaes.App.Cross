@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B4017FA5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross", "sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj", "{341DF103-20E3-4770-88FB-E7356E38EE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI", "sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj", "{0E27DA1F-4687-4764-9B47-C9C9774EB561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI3", "sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI3.csproj", "{0E27DA1F-4687-4764-9B47-C9C9774EB561}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9477B4C1-AFC2-46A5-86D8-0AAA1D478E5E}"
 	ProjectSection(SolutionItems) = preProject
@@ -49,7 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.UIK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.Droid", "samples\Nivaes.App.Cross.Sample.Droid\Nivaes.App.Cross.Sample.Droid.csproj", "{2BF01060-9E90-45E5-B29B-B7E7630E2B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.WinUI", "samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj", "{B2DCBD13-1972-4F14-973B-95EACBCDBE66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.WinUI3", "samples\Nivaes.App.Cross.Sample.WinUI3\Nivaes.App.Cross.Sample.WinUI3.csproj", "{B2DCBD13-1972-4F14-973B-95EACBCDBE66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A6E7B574-3D44-464D-BFA8-6A05C3090F68}"
 EndProject
@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.UIK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.SourceGenerator", "sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj", "{9FCB9BA1-B167-46F8-9C90-78DC5D2267D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI.SourceGenerator", "sources\Nivaes.App.Cross.WinUI.SourceGenerator\Nivaes.App.Cross.WinUI.SourceGenerator.csproj", "{EB82AFFC-4959-435E-900C-2571BBC69D72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.WinUI3.SourceGenerator", "sources\Nivaes.App.Cross.WinUI3.SourceGenerator\Nivaes.App.Cross.WinUI3.SourceGenerator.csproj", "{EB82AFFC-4959-435E-900C-2571BBC69D72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Droid.SourceGenerator", "sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj", "{32CE79F5-928A-4B3F-AB6A-898F83B4A53F}"
 EndProject
