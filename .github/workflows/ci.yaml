@@ -43,7 +43,6 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples\Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
