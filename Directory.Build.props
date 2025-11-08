@@ -23,6 +23,16 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<_MvxCommonTargets>net9.0</_MvxCommonTargets>
+		<_MvxAndroidTargets>net9.0-android</_MvxAndroidTargets>
+		<_MvxiOSTargets>net9.0-ios;net9.0-maccatalyst</_MvxiOSTargets>
+		<_MvxMacOSTargets>net9.0-macos</_MvxMacOSTargets>
+		<_MvxTvOSTargets>net9.0-tvos</_MvxTvOSTargets>
+		<_MvxWindowsTargets>net9.0-windows10.0.19041.0;</_MvxWindowsTargets>
+		<_MvxWpfTargets>net9.0-windows</_MvxWpfTargets>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryUrl>https://github.com/nivaes/Professional365</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

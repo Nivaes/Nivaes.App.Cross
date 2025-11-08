@@ -114,7 +114,7 @@ jobs:
 
     - name: Check-AotCompatible
       run: |
-          dotnet publish sources/Nivaes.App.Cross.Droid --runtime win-x64 --configuration Release --no-restore
+          dotnet publish sources/Nivaes.App.Cross.Droid --runtime linux-x64 --configuration Release --no-restore
     
   build-app-cross-ios:
     needs: build-app-cross

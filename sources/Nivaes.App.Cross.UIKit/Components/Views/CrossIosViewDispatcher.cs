@@ -1,8 +1,7 @@
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Components.Views;
-
 namespace Nivaes.App.Cross.UIKit
 {
+    using Microsoft.Extensions.Logging;
+
     public class CrossIosViewDispatcher
         : CrossIosUIThreadDispatcher, 
         ICrossViewDispatcher

@@ -2,7 +2,13 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net9.0;net9.0-windows;</TargetFrameworks>
+		<TargetFrameworks>$(_MvxCommonTargets)</TargetFrameworks>
+		<!-- Windows-specific targets -->
+		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_MvxAndroidTargets);$(_MvxiOSTargets);$(_MvxMacOSTargets);$(_MvxTvOSTargets);$(_MvxWindowsTargets);$(TargetFrameworks)</TargetFrameworks>
+		<!-- Linux-specific targets -->
+		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_MvxAndroidTargets);$(TargetFrameworks)</TargetFrameworks>
+		<!-- Mac-specific targets -->
+		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_MvxAndroidTargets);$(_MvxiOSTargets);$(_MvxMacOSTargets);$(_MvxTvOSTargets);$(TargetFrameworks)</TargetFrameworks>
 
 		<!--<Platforms>x86;x64;arm64</Platforms>
 		<RuntimeIdentifiers>win-x86;win-x64;win-arm64;linux-x86;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>-->

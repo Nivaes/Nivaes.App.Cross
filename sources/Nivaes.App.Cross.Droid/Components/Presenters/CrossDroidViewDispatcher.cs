@@ -1,8 +1,5 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
-    using Nivaes.App.Cross.Components.Views;
-    using Nivaes.App.Cross.Presenters;
-
     public sealed class CrossDroidViewDispatcher : CrossViewDispatcher, ICrossViewDispatcher
     {
         private readonly ICrossViewPresenter mViewPresenter;

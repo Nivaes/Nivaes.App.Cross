@@ -1,6 +1,5 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
-    using Nivaes.App.Cross.Components.Views;
     using Nivaes.App.Cross.Droid.Presenters;
     using Nivaes.IoC;
 

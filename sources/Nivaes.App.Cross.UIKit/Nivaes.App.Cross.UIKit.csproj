@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>$$(_MvxiOSTargets);</TargetFrameworks>
+		
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 
