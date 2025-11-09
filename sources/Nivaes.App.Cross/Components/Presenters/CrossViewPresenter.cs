@@ -45,5 +45,15 @@
 
             throw new CrossException($"View not found for {viewModelType}");
         }
+
+        public Task<bool> ChangePresentation(CrossPresentationHint hint)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : CrossPresentationHint
+        {
+            throw new NotImplementedException();
+        }
     }
 }

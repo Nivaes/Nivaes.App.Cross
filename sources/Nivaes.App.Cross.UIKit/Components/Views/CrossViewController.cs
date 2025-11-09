@@ -40,13 +40,15 @@ namespace Nivaes.App.Cross.UIKit
 
         public TViewModel ViewModel
         {
-            get { return DataContext as ICrossViewModel; }
+            get { return (TViewModel)DataContext; }
             set { DataContext = value; }
         }
 
         public CrossViewModelRequest<TViewModel> Request { get; set; }
 
         public ICrossBindingContext BindingContext { get; set; }
+        ICrossViewModelRequest ICrossIosView.Request { get => Request; set => throw new NotImplementedException(); }
+        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => throw new NotImplementedException(); }
 
         public override void ViewDidLoad()
         {

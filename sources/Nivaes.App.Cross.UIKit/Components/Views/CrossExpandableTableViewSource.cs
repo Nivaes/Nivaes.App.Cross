@@ -1,18 +1,19 @@
-using System.Collections.Specialized;
-using System.Windows.Input;
-using Nivaes.App.Cross.UIKit.Expandable;
-using Nivaes.App.Cross.UIKit.Expandable.Controllers;
-
 namespace Nivaes.App.Cross.UIKit
 {
-    public abstract class CrossExpandableTableViewSource : MvxExpandableTableViewSource<IEnumerable<object>, object>
+    using System.Collections;
+    using System.Collections.Specialized;
+    using System.Windows.Input;
+    using Nivaes.App.Cross.UIKit.Expandable;
+    using System.Linq;
+
+    public abstract class CrossExpandableTableViewSource : CrossExpandableTableViewSource<IEnumerable<object>, object>
     {
         protected CrossExpandableTableViewSource(UITableView tableView) : base(tableView)
         {
         }
     }
 
-    public abstract class MvxExpandableTableViewSource<TItemSource, TItem> : CrossTableViewSource where TItemSource : IEnumerable<TItem>
+    public abstract class CrossExpandableTableViewSource<TItemSource, TItem> : CrossTableViewSource where TItemSource : IEnumerable<TItem>
     {
         private SectionExpandableController _sectionExpandableController = new DefaultAllSectionsExpandableController();
 
@@ -40,7 +41,7 @@ namespace Nivaes.App.Cross.UIKit
 
         private IEnumerable<TItemSource> CastItemSource => ItemsSource as IEnumerable<TItemSource>;
 
-        protected MvxExpandableTableViewSource(UITableView tableView) : base(tableView)
+        protected CrossExpandableTableViewSource(UITableView tableView) : base(tableView)
         {
         }
 

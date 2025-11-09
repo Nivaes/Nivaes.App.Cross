@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross.UIKit
 {
-    using Nivaes.App.Cross.Presenters;
-
     public class CrossModalPresentationAttribute : 
         CrossBasePresentationAttribute
     {

@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
             return new CrossNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
         }
 
-        [Obsolete("No compatible con AoT", true)]
+        [Obsolete("No compatible con AoT")]
         public static CrossNotifyCollectionChangedEventSubscription WeakSubscribe(this INotifyCollectionChanged source,
                                                                                 EventHandler<NotifyCollectionChangedEventArgs> eventHandler)
         {

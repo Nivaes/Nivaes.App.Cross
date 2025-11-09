@@ -1,6 +1,7 @@
 namespace MvvmCross.Presenters
 {
     using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
 
     public interface IMvxAttributeViewPresenter : IMvxViewPresenter
     {

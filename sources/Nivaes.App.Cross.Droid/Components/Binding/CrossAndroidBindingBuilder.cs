@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        public override void DoRegistration(IMvxIoCProvider iocProvider)
+        public override void DoRegistration(ICrossIoCProvider iocProvider)
         {
             InitializeAppResourceTypeFinder(iocProvider);
             InitializeBindingResources(iocProvider);
@@ -59,7 +59,7 @@ namespace Nivaes.App.Cross.Droid
             base.DoRegistration(iocProvider);
         }
 
-        protected virtual void InitializeLayoutInflation(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLayoutInflation(ICrossIoCProvider iocProvider)
         {
             var inflaterfactoryFactory = CreateLayoutInflaterFactoryFactory();
             iocProvider.RegisterSingleton(inflaterfactoryFactory);
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross.Droid
             return new CrossAndroidViewFactory();
         }
 
-        protected virtual void InitializeBindingResources(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeBindingResources(ICrossIoCProvider iocProvider)
         {
             var mvxAndroidBindingResource = CreateAndroidBindingResource();
             iocProvider.RegisterSingleton(mvxAndroidBindingResource);
@@ -97,7 +97,7 @@ namespace Nivaes.App.Cross.Droid
             return new CrossAndroidBindingResource();
         }
 
-        protected virtual void InitializeAppResourceTypeFinder(IMvxIoCProvider provider)
+        protected virtual void InitializeAppResourceTypeFinder(ICrossIoCProvider provider)
         {
             var resourceFinder = CreateAppResourceTypeFinder();
             provider.RegisterSingleton(resourceFinder);
@@ -325,7 +325,7 @@ namespace Nivaes.App.Cross.Droid
             _fillBindingNames?.Invoke(registry);
         }
 
-        protected override void RegisterPlatformSpecificComponents(IMvxIoCProvider iocProvider)
+        protected override void RegisterPlatformSpecificComponents(ICrossIoCProvider iocProvider)
         {
             base.RegisterPlatformSpecificComponents(iocProvider);
 
@@ -333,7 +333,7 @@ namespace Nivaes.App.Cross.Droid
             InitializeContextStack(iocProvider);
         }
 
-        protected virtual void InitializeContextStack(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeContextStack(ICrossIoCProvider iocProvider)
         {
             var stack = CreateContextStack();
             iocProvider.RegisterSingleton(stack);
@@ -344,7 +344,7 @@ namespace Nivaes.App.Cross.Droid
             return new CrossAndroidBindingContextStack();
         }
 
-        protected virtual void InitializeViewTypeResolver(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeViewTypeResolver(ICrossIoCProvider iocProvider)
         {
             var typeCache = CreateViewTypeCache();
             iocProvider.RegisterSingleton(typeCache);

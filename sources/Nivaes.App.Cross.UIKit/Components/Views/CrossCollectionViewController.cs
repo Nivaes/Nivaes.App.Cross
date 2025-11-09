@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.UIKit
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public ICrossViewModelRequest Request { get; set; }
 
         public ICrossBindingContext BindingContext { get; set; }
 
@@ -95,7 +95,8 @@ namespace Nivaes.App.Cross.UIKit
         }
     }
 
-    public class MvxCollectionViewController<TViewModel> : CrossCollectionViewController, ICrossIosView<TViewModel>
+    public class MvxCollectionViewController<TViewModel>
+        : CrossCollectionViewController, ICrossIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public MvxCollectionViewController()
@@ -128,9 +129,16 @@ namespace Nivaes.App.Cross.UIKit
             set { base.ViewModel = value; }
         }
 
-        public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()
+        TViewModel? ICrossView<TViewModel>.ViewModel { get => throw new NotImplementedException(); set => ViewModel = value; }
+
+        public CrossFluentBindingDescriptionSet<ICrossIosView<TViewModel>, TViewModel> CreateBindingSet()
         {
-            return this.CreateBindingSet<IMvxIosView<TViewModel>, TViewModel>();
+            return this.CreateBindingSet<ICrossIosView<TViewModel>, TViewModel>();
+        }
+
+        CrossFluentBindingDescriptionSet<ICrossIosView<TViewModel>, TViewModel> ICrossIosView<TViewModel>.CreateBindingSet()
+        {
+            throw new NotImplementedException();
         }
     }
 }

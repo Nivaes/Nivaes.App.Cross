@@ -1,8 +1,7 @@
-namespace Nivaes.App.Cross.UIKit.Base
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;
-    using MvvmCross.Base;
     using ObjCRuntime;
     using UIKit;
 

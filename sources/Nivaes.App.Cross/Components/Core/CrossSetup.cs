@@ -12,9 +12,9 @@ namespace Nivaes.App.Cross
 
         private static readonly object Lock = new();
         private CrossSetupState _state;
-        private IMvxIoCProvider? _iocProvider;
+        private ICrossIoCProvider? _iocProvider;
 
-        protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
+        protected static Action<ICrossIoCProvider>? RegisterSetupDependencies { get; set; }
 
         protected static Func<ICrossSetup>? SetupCreator { get; set; }
 
@@ -219,7 +219,7 @@ namespace Nivaes.App.Cross
 #pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
-        protected virtual void InitializeInpcInterception(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeInpcInterception(ICrossIoCProvider iocProvider)
         {
             // by default no Inpc calls are intercepted
         }
@@ -237,7 +237,7 @@ namespace Nivaes.App.Cross
         //    return iocProvider.Resolve<ICrossChildViewModelCache>();
         //}
 
-        protected virtual ICrossSettings? InitializeSettings(IMvxIoCProvider iocProvider)
+        protected virtual ICrossSettings? InitializeSettings(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -245,28 +245,28 @@ namespace Nivaes.App.Cross
             return settings;
         }
 
-        protected virtual ICrossSettings? CreateSettings(IMvxIoCProvider iocProvider)
+        protected virtual ICrossSettings? CreateSettings(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return iocProvider.Resolve<ICrossSettings>();
         }
 
-        protected virtual ICrossStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossStringToTypeParser? InitializeStringToTypeParser(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return CreateStringToTypeParser(iocProvider);
         }
 
-        protected virtual ICrossStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossStringToTypeParser? CreateStringToTypeParser(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return iocProvider.Resolve<ICrossStringToTypeParser>();
         }
 
-        protected virtual ICrossFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossFillableStringToTypeParser? InitializeFillableStringToTypeParser(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -277,7 +277,7 @@ namespace Nivaes.App.Cross
             return parser;
         }
 
-        protected virtual ICrossFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossFillableStringToTypeParser? CreateFillableStringToTypeParser(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -323,7 +323,7 @@ namespace Nivaes.App.Cross
         //    return iocProvider.Resolve<ICrossCommandCollectionBuilder>();
         //}
 
-        protected virtual IMvxIoCProvider InitializeIoC()
+        protected virtual ICrossIoCProvider InitializeIoC()
         {
             throw new NotImplementedException();
             //var iocProvider = CreateIocProvider();
@@ -332,7 +332,7 @@ namespace Nivaes.App.Cross
             //return iocProvider;
         }
 
-        protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterDefaultSetupDependencies(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -370,13 +370,13 @@ namespace Nivaes.App.Cross
         //    return CrossIoCProvider.Initialize(CreateIocOptions());
         //}
 
-        protected virtual void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeFirstChance(ICrossIoCProvider iocProvider)
         {
             // always the very first thing to get initialized - after IoC and base platform
             // base class implementation is empty by default
         }
 
-        protected virtual void InitializeLoggingServices(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLoggingServices(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -407,7 +407,7 @@ namespace Nivaes.App.Cross
         //    return iocProvider.Resolve<ICrossViewModelLoader>();
         //}
 
-        protected virtual ICrossNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationService? CreateNavigationService(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -494,14 +494,14 @@ namespace Nivaes.App.Cross
         //        type.GetCustomAttributes(pluginAttribute, false).Length > 0;
         //}
 
-        protected virtual ICrossApplication? CreateCrossApplication(IMvxIoCProvider iocProvider)
+        protected virtual ICrossApplication? CreateCrossApplication(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return iocProvider.Resolve<ICrossApplication>();
         }
 
-        protected virtual ICrossApplication? InitializeCrossApplication(IMvxIoCProvider iocProvider)
+        protected virtual ICrossApplication? InitializeCrossApplication(ICrossIoCProvider iocProvider)
         {
             throw new NotImplementedException();
             //ValidateArguments(iocProvider);
@@ -522,7 +522,7 @@ namespace Nivaes.App.Cross
             //app.Initialize();
         }
 
-        protected virtual ICrossViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
+        protected virtual ICrossViewsContainer InitializeViewsContainer(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -533,7 +533,7 @@ namespace Nivaes.App.Cross
             //return container;
         }
 
-        protected virtual void InitializeViewDispatcher(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeViewDispatcher(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
             throw new NotImplementedException();
@@ -544,7 +544,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual ICrossNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationService? InitializeNavigationService(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
             throw new NotImplementedException();
@@ -560,7 +560,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual void LoadNavigationServiceRoutes(ICrossNavigationService navigationService, IMvxIoCProvider iocProvider)
+        protected virtual void LoadNavigationServiceRoutes(ICrossNavigationService navigationService, ICrossIoCProvider iocProvider)
         {
             throw new NotImplementedException();
 
@@ -627,7 +627,7 @@ namespace Nivaes.App.Cross
         //}
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual ICrossNameMapping InitializeViewModelTypeFinder(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNameMapping InitializeViewModelTypeFinder(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
             throw new NotImplementedException();
@@ -649,7 +649,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
+        protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
             throw new NotImplementedException();
@@ -660,7 +660,7 @@ namespace Nivaes.App.Cross
         }
 
         protected virtual ICrossViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
-            IMvxIoCProvider iocProvider)
+            ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -670,12 +670,12 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeBindingBuilder(ICrossIoCProvider iocProvider)
         {
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual void InitializeLastChance(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLastChance(ICrossIoCProvider iocProvider)
         {
             // always the very last thing to get initialized
             // base class implementation is empty by default
@@ -699,7 +699,7 @@ namespace Nivaes.App.Cross
             StateChanged?.Invoke(this, new CrossSetupStateEventArgs(state));
         }
 
-        protected static void ValidateArguments(IMvxIoCProvider iocProvider)
+        protected static void ValidateArguments(ICrossIoCProvider iocProvider)
         {
             ArgumentNullException.ThrowIfNull(iocProvider);
         }

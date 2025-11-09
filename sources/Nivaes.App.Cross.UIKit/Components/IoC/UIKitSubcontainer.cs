@@ -1,7 +1,5 @@
 ﻿namespace Nivaes.App.Cross.UIKit
 {
-    using Nivaes.App.Cross.Components.Views;
-    using Nivaes.App.Cross.UIKit.Presenters;
     using Nivaes.IoC;
 
     public partial class UIKitSubcontainer : IoCServiceContainer

@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     public class CrossCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        public virtual void DoRegistration(IMvxIoCProvider iocProvider)
+        public virtual void DoRegistration(ICrossIoCProvider iocProvider)
         {
             CreateSingleton();
             RegisterCore(iocProvider);
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross
             RegisterBindingNameRegistry(iocProvider);
         }
 
-        protected virtual void RegisterAutoValueConverters(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterAutoValueConverters(ICrossIoCProvider iocProvider)
         {
             var autoValueConverters = CreateAutoValueConverters();
             iocProvider.RegisterSingleton<ICrossAutoValueConverters>(autoValueConverters);
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross
             CrossBindingSingletonCache.Initialize();
         }
 
-        protected virtual void RegisterValueConverterRegistryFiller(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterValueConverterRegistryFiller(ICrossIoCProvider iocProvider)
         {
             var filler = CreateValueConverterRegistryFiller();
             iocProvider.RegisterSingleton<ICrossNamedInstanceRegistryFiller<ICrossValueConverter>>(filler);
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
             return new CrossValueConverterRegistryFiller();
         }
 
-        protected virtual void RegisterValueCombinerRegistryFiller(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterValueCombinerRegistryFiller(ICrossIoCProvider iocProvider)
         {
             var filler = CreateValueCombinerRegistryFiller();
             iocProvider.RegisterSingleton<ICrossNamedInstanceRegistryFiller<ICrossValueCombiner>>(filler);
@@ -72,18 +72,18 @@ namespace Nivaes.App.Cross
             return new CrossValueCombinerRegistryFiller();
         }
 
-        protected virtual void RegisterExpressionParser(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterExpressionParser(ICrossIoCProvider iocProvider)
         {
             iocProvider.RegisterType<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
         }
 
-        protected virtual void RegisterCore(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterCore(ICrossIoCProvider iocProvider)
         {
             iocProvider.RegisterSingleton<ICrossBinder>(new CrossFromTextBinder());
             iocProvider.RegisterType<ICrossBindingContext, CrossTaskBasedBindingContext>();
         }
 
-        protected virtual void RegisterValueConverterProvider(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterValueConverterProvider(ICrossIoCProvider iocProvider)
         {
             var registry = CreateValueConverterRegistry();
             iocProvider.RegisterSingleton<ICrossNamedInstanceLookup<ICrossValueConverter>>(registry);
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross
             registry.AddOrOverwrite("Language", new CrossLanguageConverter());
         }
 
-        protected virtual void RegisterValueCombinerProvider(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterValueCombinerProvider(ICrossIoCProvider iocProvider)
         {
             var registry = CreateValueCombinerRegistry();
             iocProvider.RegisterSingleton<ICrossNamedInstanceLookup<ICrossValueCombiner>>(registry);
@@ -147,7 +147,7 @@ namespace Nivaes.App.Cross
             //registry.AddOrOverwrite("ValueConverter", new CrossValueConverterValueCombiner());
         }
 
-        protected virtual void RegisterBindingParser(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterBindingParser(ICrossIoCProvider iocProvider)
         {
             if (iocProvider.CanResolve<ICrossBindingParser>())
             {
@@ -163,7 +163,7 @@ namespace Nivaes.App.Cross
             return new CrossTibetBindingParser();
         }
 
-        protected virtual void RegisterLanguageBindingParser(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterLanguageBindingParser(ICrossIoCProvider iocProvider)
         {
             if (iocProvider.CanResolve<ICrossLanguageBindingParser>())
             {
@@ -179,7 +179,7 @@ namespace Nivaes.App.Cross
             return new CrossLanguageBindingParser();
         }
 
-        protected virtual void RegisterBindingDescriptionParser(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterBindingDescriptionParser(ICrossIoCProvider iocProvider)
         {
             var parser = CreateBindingDescriptionParser();
             iocProvider.RegisterSingleton(parser);
@@ -191,7 +191,7 @@ namespace Nivaes.App.Cross
             return parser;
         }
 
-        protected virtual void RegisterSourcePropertyPathParser(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterSourcePropertyPathParser(ICrossIoCProvider iocProvider)
         {
             var tokeniser = CreateSourcePropertyPathParser();
             iocProvider.RegisterSingleton<ICrossSourcePropertyPathParser>(tokeniser);
@@ -202,7 +202,7 @@ namespace Nivaes.App.Cross
             return new CrossSourcePropertyPathParser();
         }
 
-        protected virtual void RegisterBindingNameRegistry(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterBindingNameRegistry(ICrossIoCProvider iocProvider)
         {
             var registry = new CrossBindingNameRegistry();
             iocProvider.RegisterSingleton<ICrossBindingNameLookup>(registry);
@@ -215,7 +215,7 @@ namespace Nivaes.App.Cross
             // base class has nothing to register
         }
 
-        protected virtual void RegisterPlatformSpecificComponents(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPlatformSpecificComponents(ICrossIoCProvider iocProvider)
         {
             // nothing to do here
         }

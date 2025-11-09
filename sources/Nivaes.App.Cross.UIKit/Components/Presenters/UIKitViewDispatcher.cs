@@ -2,8 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Components.Views;
-    using Nivaes.App.Cross.Presenters;
 
     public sealed class UIKitViewDispatcher 
         : CrossViewDispatcher, ICrossViewDispatcher

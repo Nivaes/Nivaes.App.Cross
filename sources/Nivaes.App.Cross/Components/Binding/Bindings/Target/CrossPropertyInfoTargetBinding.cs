@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    [Obsolete("No compatible con AoT", true)]
+    [Obsolete("No compatible con AoT")]
     public abstract class CrossPropertyInfoTargetBinding<T>(
             object target, PropertyInfo targetPropertyInfo)
         : CrossPropertyInfoTargetBinding(target, targetPropertyInfo)

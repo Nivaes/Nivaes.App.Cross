@@ -109,7 +109,7 @@ namespace Nivaes.App.Cross.UIKit
             set { base.ViewModel = value; }
         }
 
-        public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<ICrossIosView<TViewModel>, TViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<ICrossIosView<TViewModel>, TViewModel>();
         }

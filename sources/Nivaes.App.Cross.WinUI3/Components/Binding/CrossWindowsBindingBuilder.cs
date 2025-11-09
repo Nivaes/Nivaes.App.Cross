@@ -32,13 +32,13 @@ namespace Nivaes.App.Cross.WinUI3
             _bindingType = bindingType;
         }
 
-        public override void DoRegistration(IMvxIoCProvider iocProvider)
+        public override void DoRegistration(ICrossIoCProvider iocProvider)
         {
             base.DoRegistration(iocProvider);
             InitializeBindingCreator();
         }
 
-        protected override void RegisterBindingFactories(IMvxIoCProvider iocProvider)
+        protected override void RegisterBindingFactories(ICrossIoCProvider iocProvider)
         {
             switch (_bindingType)
             {

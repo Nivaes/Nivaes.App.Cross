@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.ViewModels;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Presenters
 {
@@ -44,6 +45,25 @@ namespace MvvmCross.Presenters
         //public abstract Task<bool> ChangePresentation(MvxPresentationHint hint);
 
         //public abstract Task<bool> Close(IMvxViewModel viewModel);
+        public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : CrossPresentationHint
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ChangePresentation(CrossPresentationHint hint)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Close(ICrossViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Show(ICrossViewModelRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 #nullable restore
 }

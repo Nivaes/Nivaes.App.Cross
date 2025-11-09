@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Droid
 
         public Context? ApplicationContext { get; private set; }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance(ICrossIoCProvider iocProvider)
         {
             throw new NotImplementedException();
             //ValidateArguments(iocProvider);
@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross.Droid
             //base.InitializeFirstChance(iocProvider);
         }
 
-        protected virtual void InitializeAndroidCurrentTopActivity(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeAndroidCurrentTopActivity(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -70,7 +70,7 @@ namespace Nivaes.App.Cross.Droid
             return _currentTopActivity;
         }
 
-        protected virtual void InitializeLifetimeMonitor(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLifetimeMonitor(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        protected virtual void InitializeSavedStateConverter(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeSavedStateConverter(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -149,7 +149,7 @@ namespace Nivaes.App.Cross.Droid
         //}
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeLastChance(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 

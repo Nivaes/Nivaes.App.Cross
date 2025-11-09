@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.WinUI3
 
         private static void RegisterAssembly(Assembly assembly)
         {
-            if (CrossSingleton<IMvxIoCProvider>.Instance == null)
+            if (CrossSingleton<ICrossIoCProvider>.Instance == null)
             {
                 CrossWindowsAssemblyCache.EnsureInitialized();
                 CrossWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);

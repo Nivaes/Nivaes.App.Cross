@@ -67,11 +67,12 @@ namespace Nivaes.App.Cross.UIKit
 
             if (IsMovingFromParentViewController)
             {
-                if (Mvx.IoCProvider?.TryResolve(out ICrossIosViewPresenter iPresenter) == true
-                    && iPresenter is CrossIosViewPresenter mvxIosViewPresenter)
-                {
-                    mvxIosViewPresenter.CloseTabBarViewController();
-                }
+                throw new NotImplementedException();
+                //if (Mvx.IoCProvider?.TryResolve(out ICrossIosViewPresenter iPresenter) == true
+                //    && iPresenter is CrossIosViewPresenter mvxIosViewPresenter)
+                //{
+                //    mvxIosViewPresenter.CloseTabBarViewController();
+                //}
             }
         }
 

@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Base;
     using ObjCRuntime;
 
     public class CrossEventSourceTabBarController

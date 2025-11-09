@@ -2,9 +2,7 @@ namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;
-    using MvvmCross.Base;
     using ObjCRuntime;
-    using UIKit;
 
     public class CrossEventSourceViewController
         : UIViewController, ICrossEventSourceViewController

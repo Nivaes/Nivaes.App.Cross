@@ -48,14 +48,15 @@ namespace Nivaes.App.Cross.UIKit
 
         private static void ViewModelRequestForSegueImpl(this ICrossEventSourceViewController _, UIStoryboardSegue segue, ICrossBundle? parameterBundle = null)
         {
-            if (segue.DestinationViewController is ICrossIosView view && view.Request == null)
-            {
-                var type = view.GetViewModelType();
-                if (type != null)
-                {
-                    view.Request = new CrossViewModelRequest(type, parameterBundle, null);
-                }
-            }
+            throw new NotImplementedException();
+            //if (segue.DestinationViewController is ICrossIosView view && view.Request == null)
+            //{
+            //    var type = view.GetViewModelType();
+            //    if (type != null)
+            //    {
+            //        view.Request = new CrossViewModelRequest(type, parameterBundle, null);
+            //    }
+            //}
         }
     }
 }

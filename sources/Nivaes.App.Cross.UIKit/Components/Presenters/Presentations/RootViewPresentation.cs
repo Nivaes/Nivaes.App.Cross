@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.UIKit.Presenters
+﻿namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Threading.Tasks;

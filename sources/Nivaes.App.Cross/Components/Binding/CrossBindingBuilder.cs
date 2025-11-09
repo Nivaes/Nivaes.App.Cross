@@ -8,27 +8,27 @@ namespace Nivaes.App.Cross
     public class CrossBindingBuilder : CrossCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        public override void DoRegistration(IMvxIoCProvider iocProvider)
+        public override void DoRegistration(ICrossIoCProvider iocProvider)
         {
             base.DoRegistration(iocProvider);
             RegisterBindingFactories(iocProvider);
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual void RegisterBindingFactories(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterBindingFactories(ICrossIoCProvider iocProvider)
         {
             RegisterCrossBindingFactories(iocProvider);
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual void RegisterCrossBindingFactories(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterCrossBindingFactories(ICrossIoCProvider iocProvider)
         {
             RegisterSourceStepFactory(iocProvider);
             RegisterSourceFactory(iocProvider);
             RegisterTargetFactory(iocProvider);
         }
 
-        protected virtual void RegisterSourceStepFactory(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterSourceStepFactory(ICrossIoCProvider iocProvider)
         {
             var sourceStepFactory = CreateSourceStepFactoryRegistry();
             FillSourceStepFactory(sourceStepFactory);
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross
             return new CrossSourceStepFactory();
         }
 
-        protected virtual void RegisterSourceFactory(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterSourceFactory(ICrossIoCProvider iocProvider)
         {
             var sourceFactory = CreateSourceBindingFactory();
             iocProvider.RegisterSingleton<ICrossSourceBindingFactory>(sourceFactory);
@@ -73,7 +73,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
-        protected virtual void RegisterTargetFactory(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterTargetFactory(ICrossIoCProvider iocProvider)
         {
             var targetRegistry = CreateTargetBindingRegistry();
             FillTargetFactories(targetRegistry);

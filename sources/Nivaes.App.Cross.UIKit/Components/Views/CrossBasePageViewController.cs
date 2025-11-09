@@ -1,6 +1,9 @@
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKit
 {
-    public class CrossBasePageViewController : CrossEventSourcePageViewController, ICrossIosView
+    public class CrossBasePageViewController :
+        CrossEventSourcePageViewController, ICrossIosView
     {
         public CrossBasePageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
         {
@@ -60,9 +63,10 @@ namespace Nivaes.App.Cross.UIKit
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public ICrossViewModelRequest Request { get; set; }
 
         public ICrossBindingContext BindingContext { get; set; }
+        ICrossViewModelRequest ICrossIosView.Request { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void ViewDidLoad()
         {
@@ -108,7 +112,8 @@ namespace Nivaes.App.Cross.UIKit
         }
     }
 
-    public class MvxBasePageViewController<TViewModel> : CrossPageViewController, IMvxIosView<TViewModel> where TViewModel : class, IMvxViewModel
+    public class MvxBasePageViewController<TViewModel> 
+        : CrossPageViewController, ICrossIosView<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public MvxBasePageViewController()
         {
@@ -152,9 +157,14 @@ namespace Nivaes.App.Cross.UIKit
             set { base.ViewModel = value; }
         }
 
-        public MvxFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<ICrossIosView<TViewModel>, TViewModel> CreateBindingSet()
         {
-            return this.CreateBindingSet<IMvxIosView<TViewModel>, TViewModel>();
+            return this.CreateBindingSet<ICrossIosView<TViewModel>, TViewModel>();
+        }
+
+        CrossFluentBindingDescriptionSet<ICrossIosView<TViewModel>, TViewModel> ICrossIosView<TViewModel>.CreateBindingSet()
+        {
+            throw new NotImplementedException();
         }
     }
 }

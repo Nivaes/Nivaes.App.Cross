@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
             registry.RegisterFactory(new CrossCustomBindingFactory<TView>(customName, creator));
         }
 
-        [Obsolete("No compatible con AoT", true)]
+        [Obsolete("No compatible con AoT")]
         [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
         public static void RegisterPropertyInfoBindingFactory(
             this ICrossTargetBindingFactoryRegistry registry,

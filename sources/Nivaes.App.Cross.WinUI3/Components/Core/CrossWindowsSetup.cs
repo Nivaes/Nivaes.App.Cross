@@ -36,14 +36,14 @@ namespace Nivaes.App.Cross.WinUI3
             ActivationArguments = e;
         }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance(ICrossIoCProvider iocProvider)
         {
             InitializeSuspensionManager(iocProvider);
             RegisterPresenter(iocProvider);
             base.InitializeFirstChance(iocProvider);
         }
 
-        protected virtual void InitializeSuspensionManager(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeSuspensionManager(ICrossIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross.WinUI3
             //return CreateViewDispatcher(_rootFrame);
         }
 
-        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPresenter(ICrossIoCProvider iocProvider)
         {
             throw new NotImplementedException();
 
@@ -115,7 +115,7 @@ namespace Nivaes.App.Cross.WinUI3
             //iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
-        protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+        protected override void InitializeBindingBuilder(ICrossIoCProvider iocProvider)
         {
             var bindingBuilder = CreateBindingBuilder();
             bindingBuilder.DoRegistration(iocProvider);

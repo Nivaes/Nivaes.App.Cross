@@ -1,12 +1,17 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
 namespace Nivaes.App.Cross.UIKit
 {
     public class CrossIosViewsContainer
         : CrossViewsContainer
         , ICrossIosViewsContainer
     {
-        public CrossViewModelRequest? CurrentRequest { get; private set; }
+        public ICrossViewModelRequest? CurrentRequest { get; private set; }
 
-        public virtual ICrossIosView CreateView(CrossViewModelRequest request)
+        ICrossViewModelRequest ICrossCurrentRequest.CurrentRequest => throw new NotImplementedException();
+
+        public virtual ICrossIosView CreateView(ICrossViewModelRequest request)
         {
             try
             {
@@ -27,9 +32,10 @@ namespace Nivaes.App.Cross.UIKit
 
         public virtual ICrossIosView CreateView(ICrossViewModel viewModel)
         {
-            var request = new CrossViewModelInstanceRequest(viewModel);
-            var view = CreateView(request);
-            return view;
+            throw new NotImplementedException();
+            //var request = new CrossViewModelInstanceRequest(viewModel);
+            //var view = CreateView(request);
+            //return view;
         }
 
         public virtual ICrossIosView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType)

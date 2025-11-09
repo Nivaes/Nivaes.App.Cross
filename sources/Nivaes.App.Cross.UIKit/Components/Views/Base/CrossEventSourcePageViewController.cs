@@ -2,11 +2,10 @@ namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;
-    using MvvmCross.Base;
     using ObjCRuntime;
-    using UIKit;
 
-    public class CrossEventSourcePageViewController : UIPageViewController, ICrossEventSourceViewController
+    public class CrossEventSourcePageViewController :
+        UIPageViewController, ICrossEventSourceViewController
     {
         public CrossEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)
         {

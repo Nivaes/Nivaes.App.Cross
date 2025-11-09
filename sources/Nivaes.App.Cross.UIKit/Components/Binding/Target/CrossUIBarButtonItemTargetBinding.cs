@@ -1,0 +1,84 @@
+namespace Nivaes.App.Cross.UIKit
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+
+    public class CrossUIBarButtonItemTargetBinding : CrossConvertingTargetBinding
+    {
+        private readonly EventHandler<EventArgs> _canExecuteEventHandler;
+        private ICommand? _command;
+        private CrossWeakEventSubscription<UIBarButtonItem>? _clickSubscription;
+        private CrossCanExecuteChangedEventSubscription? _canExecuteSubscription;
+
+        protected UIBarButtonItem? Control => Target as UIBarButtonItem;
+
+        public CrossUIBarButtonItemTargetBinding(UIBarButtonItem control)
+            : base(control)
+        {
+            _clickSubscription = control.WeakSubscribe(nameof(control.Clicked), OnClicked);
+            _canExecuteEventHandler = OnCanExecuteChanged;
+        }
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(ICommand);
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            if (_canExecuteSubscription != null)
+            {
+                _canExecuteSubscription.Dispose();
+                _canExecuteSubscription = null;
+            }
+            _command = value as ICommand;
+            if (_command != null)
+            {
+                _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
+            }
+            RefreshEnabledState();
+        }
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _clickSubscription?.Dispose();
+                _canExecuteSubscription?.Dispose();
+                _canExecuteSubscription = null;
+                _clickSubscription = null;
+            }
+
+            base.Dispose(isDisposing);
+        }
+
+        private void OnClicked(object? sender, EventArgs e)
+        {
+            if (_command == null)
+                return;
+
+            if (!_command.CanExecute(null))
+                return;
+
+            _command.Execute(null);
+        }
+
+        private void OnCanExecuteChanged(object? sender, EventArgs e)
+        {
+            RefreshEnabledState();
+        }
+
+        private void RefreshEnabledState()
+        {
+            var view = Control;
+            if (view == null)
+                return;
+
+            var shouldBeEnabled = false;
+            if (_command != null)
+            {
+                shouldBeEnabled = _command.CanExecute(null);
+            }
+            view.Enabled = shouldBeEnabled;
+        }
+    }
+}

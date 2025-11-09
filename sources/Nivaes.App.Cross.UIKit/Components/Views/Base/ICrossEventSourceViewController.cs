@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Base;
-
     public interface ICrossEventSourceViewController : ICrossDisposeSource
     {
         event EventHandler ViewDidLoadCalled;

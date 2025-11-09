@@ -1,0 +1,56 @@
+namespace Nivaes.App.Cross.UIKit
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+
+    public class CrossUISliderValueTargetBinding(
+            UISlider target,
+            PropertyInfo targetPropertyInfo)
+        : CrossPropertyInfoTargetBinding<UISlider>(target, targetPropertyInfo)
+    {
+        private CrossWeakEventSubscription<UISlider>? _subscription;
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            if (target is not UISlider view || value == null)
+                return;
+
+            view.Value = (float)value;
+        }
+
+        private void HandleSliderValueChanged(object? sender, EventArgs e)
+        {
+            var view = View;
+            if (view == null) return;
+
+            FireValueChanged(view.Value);
+        }
+
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
+
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
+        {
+            var slider = View;
+            if (slider == null)
+            {
+                CrossBindingLog.Instance?.LogError("UISlider is null in MvxUISliderValueTargetBinding");
+                return;
+            }
+
+            _subscription = slider.WeakSubscribe(nameof(slider.ValueChanged), HandleSliderValueChanged);
+        }
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+            if (!isDisposing)
+                return;
+
+            _subscription?.Dispose();
+            _subscription = null;
+        }
+    }
+}

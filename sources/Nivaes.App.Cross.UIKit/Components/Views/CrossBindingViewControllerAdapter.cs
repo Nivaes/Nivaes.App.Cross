@@ -9,11 +9,13 @@ namespace Nivaes.App.Cross.UIKit
         public CrossBindingViewControllerAdapter(ICrossEventSourceViewController eventSource)
             : base(eventSource)
         {
-            if (!(eventSource is ICrossIosView))
-                throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(ICrossIosView)}", nameof(eventSource));
+            throw new NotImplementedException();
 
-            if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
-                IosView.BindingContext = bindingContext;
+            //if (!(eventSource is ICrossIosView))
+            //    throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(ICrossIosView)}", nameof(eventSource));
+
+            //if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
+            //    IosView.BindingContext = bindingContext;
         }
 
         public override void HandleDisposeCalled(object sender, EventArgs e)

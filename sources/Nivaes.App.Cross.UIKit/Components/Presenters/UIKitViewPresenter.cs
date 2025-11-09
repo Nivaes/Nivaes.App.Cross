@@ -1,11 +1,10 @@
-﻿namespace Nivaes.App.Cross.UIKit.Presenters
+﻿namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.IoC;
 
     public sealed class UIKitViewPresenter : CrossViewPresenter, ICrossViewPresenter

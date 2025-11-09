@@ -1,6 +1,8 @@
 namespace Nivaes.App.Cross.UIKit
 {
+    using System;
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Platforms.Ios.Presenters;
 
     public class CrossIosViewDispatcher
         : CrossIosUIThreadDispatcher, 
@@ -13,7 +15,7 @@ namespace Nivaes.App.Cross.UIKit
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
+        public async Task<bool> ShowViewModel(ICrossViewModelRequest request)
         {
             Task action()
             {
@@ -29,6 +31,16 @@ namespace Nivaes.App.Cross.UIKit
         {
             await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
             return true;
+        }
+
+        public Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action)
+        {
+            throw new NotImplementedException();
         }
     }
 }

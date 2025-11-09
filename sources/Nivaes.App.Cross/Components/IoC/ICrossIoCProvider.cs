@@ -2,8 +2,8 @@ namespace MvvmCross.IoC
 {
     using System.Diagnostics.CodeAnalysis;
 
-    [Obsolete("Quitar IoC de Cross", true)]
-    public interface IMvxIoCProvider
+    [Obsolete("Quitar IoC de Cross")]
+    public interface ICrossIoCProvider
     {
         bool CanResolve<T>()
             where T : class;
@@ -71,6 +71,6 @@ namespace MvvmCross.IoC
 
         object IoCConstruct([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type type, params object?[] arguments);
 
-        IMvxIoCProvider CreateChildContainer();
+        ICrossIoCProvider CreateChildContainer();
     }
 }

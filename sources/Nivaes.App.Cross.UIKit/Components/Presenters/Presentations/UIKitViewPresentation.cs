@@ -1,7 +1,6 @@
-﻿namespace Nivaes.App.Cross.UIKit.Presenters
+﻿namespace Nivaes.App.Cross.UIKit
 {
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Presenters;
 
     public abstract class UIKitViewPresentation : CrossViewPresentation
     {

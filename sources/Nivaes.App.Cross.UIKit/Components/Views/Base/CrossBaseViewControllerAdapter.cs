@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross.UIKit
 {
     using System;
-    using MvvmCross.Base;
-    using UIKit;
 
     public class CrossBaseViewControllerAdapter
     {
