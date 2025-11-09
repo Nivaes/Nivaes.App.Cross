@@ -3,11 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using MvvmCross.Presenters;
+using Nivaes.App.Cross;
 
 #nullable enable
 namespace MvvmCross.Platforms.Android.Presenters;
 
 public interface IMvxAndroidViewPresenter
-    : IMvxViewPresenter
+    : ICrossViewPresenter
 {
 }
