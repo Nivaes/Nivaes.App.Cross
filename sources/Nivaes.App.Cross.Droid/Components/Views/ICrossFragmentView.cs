@@ -7,9 +7,9 @@ namespace Nivaes.App.Cross.Droid
         string UniqueImmutableCacheTag { get; }
     }
 
-    public interface ICrosFragmentView<TViewModel>
+    public interface ICrossFragmentView<TViewModel>
         : ICrossFragmentView
-        , ICrossView<TViewModel> where TViewModel : class
+        , ICrossView<TViewModel> where TViewModel : class 
         , ICrossViewModel
     {
         CrossFluentBindingDescriptionSet<ICrossFragmentView<TViewModel>, TViewModel> CreateBindingSet();

@@ -45,37 +45,38 @@ namespace Nivaes.App.Cross.Droid
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Fragment types are preserved by the Android presenter infrastructure.")]
         public override Fragment GetItem(int position, Fragment.SavedState fragmentSavedState = null)
         {
-            var fragmentInfo = FragmentsInfo[position];
-            var fragmentClass = Class.FromType(fragmentInfo.FragmentType);
-            var fragment = FragmentFactory.Instantiate(
-                fragmentClass.ClassLoader,
-                fragmentClass.Name
-            );
+            throw new NotImplementedException();
+            //var fragmentInfo = FragmentsInfo[position];
+            //var fragmentClass = Class.FromType(fragmentInfo.FragmentType);
+            //var fragment = FragmentFactory.Instantiate(
+            //    fragmentClass.ClassLoader,
+            //    fragmentClass.Name
+            //);
 
-            if (fragment is not ICrossFragmentView mvxFragment)
-            {
-                return fragment;
-            }
+            //if (fragment is not ICrossFragmentView mvxFragment)
+            //{
+            //    return fragment;
+            //}
 
-            if (mvxFragment.GetType().IsFragmentCacheable(_activityType) && fragmentSavedState != null)
-            {
-                return fragment;
-            }
+            //if (mvxFragment.GetType().IsFragmentCacheable(_activityType) && fragmentSavedState != null)
+            //{
+            //    return fragment;
+            //}
 
-            mvxFragment.ViewModel = GetViewModel(fragmentInfo);
+            //mvxFragment.ViewModel = GetViewModel(fragmentInfo);
 
-            fragment.Arguments = GetArguments(fragmentInfo);
+            //fragment.Arguments = GetArguments(fragmentInfo);
 
-            // If the MvxViewPagerFragmentInfo for this position doesn't have the ViewModel, overwrite it with a new MvxViewPagerFragmentInfo that has the ViewModel we just created.
-            // Not doing this means the ViewModel gets recreated every time the Fragment gets recreated!
-            if (fragmentInfo is { Request: not CrossViewModelInstanceRequest })
-            {
-                var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
-                var newFragInfo = new CrossViewPagerFragmentInfo(fragmentInfo.Title, fragmentInfo.Tag, fragmentInfo.FragmentType, viewModelInstanceRequest);
-                FragmentsInfo[position] = newFragInfo;
-            }
+            //// If the MvxViewPagerFragmentInfo for this position doesn't have the ViewModel, overwrite it with a new MvxViewPagerFragmentInfo that has the ViewModel we just created.
+            //// Not doing this means the ViewModel gets recreated every time the Fragment gets recreated!
+            //if (fragmentInfo is { Request: not CrossViewModelInstanceRequest })
+            //{
+            //    var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
+            //    var newFragInfo = new CrossViewPagerFragmentInfo(fragmentInfo.Title, fragmentInfo.Tag, fragmentInfo.FragmentType, viewModelInstanceRequest);
+            //    FragmentsInfo[position] = newFragInfo;
+            //}
 
-            return fragment;
+            //return fragment;
         }
 
         public override int GetItemPosition(JavaObject @object)
@@ -140,65 +141,67 @@ namespace Nivaes.App.Cross.Droid
 
         private void SaveFragmentsInfoState(Bundle bundle)
         {
-            if (bundle == null || FragmentsInfo == null || FragmentsInfo.Count == 0)
-                return;
+            throw new NotImplementedException();
+            //if (bundle == null || FragmentsInfo == null || FragmentsInfo.Count == 0)
+            //    return;
 
-            var fragmentInfoParcelables = new IParcelable[FragmentsInfo.Count];
+            //var fragmentInfoParcelables = new IParcelable[FragmentsInfo.Count];
 
-            for (var i = 0; i < FragmentsInfo.Count; i++)
-            {
-                var fragInfo = FragmentsInfo[i];
-                var parcelable = new ViewPagerFragmentInfoParcelable()
-                {
-                    FragmentType = fragInfo.FragmentType,
-                    ViewModelType = fragInfo.Request.ViewModelType,
-                    Title = fragInfo.Title,
-                    Tag = fragInfo.Tag
-                };
-                fragmentInfoParcelables[i] = parcelable;
-            }
+            //for (var i = 0; i < FragmentsInfo.Count; i++)
+            //{
+            //    var fragInfo = FragmentsInfo[i];
+            //    var parcelable = new ViewPagerFragmentInfoParcelable()
+            //    {
+            //        FragmentType = fragInfo.FragmentType,
+            //        ViewModelType = fragInfo.Request.ViewModelType,
+            //        Title = fragInfo.Title,
+            //        Tag = fragInfo.Tag
+            //    };
+            //    fragmentInfoParcelables[i] = parcelable;
+            //}
 
-            bundle.PutParcelableArray(ViewPagerFragmentsInfoBundleKey, fragmentInfoParcelables);
+            //bundle.PutParcelableArray(ViewPagerFragmentsInfoBundleKey, fragmentInfoParcelables);
         }
 
         private void RestoreFragmentsInfoState(Bundle bundle)
         {
-            if (bundle == null || FragmentsInfo == null)
-                return;
+            throw new NotImplementedException();
+            //if (bundle == null || FragmentsInfo == null)
+            //    return;
 
-            var fragmentInfoParcelables = BundleCompat.GetParcelableArray(bundle, ViewPagerFragmentsInfoBundleKey, Class.FromType(typeof(ViewPagerFragmentInfoParcelable)));
+            //var fragmentInfoParcelables = BundleCompat.GetParcelableArray(bundle, ViewPagerFragmentsInfoBundleKey, Class.FromType(typeof(ViewPagerFragmentInfoParcelable)));
 
-            if (fragmentInfoParcelables == null)
-                return;
+            //if (fragmentInfoParcelables == null)
+            //    return;
 
-            var fragments = Fragments;
+            //var fragments = Fragments;
 
-            for (var i = 0; i < fragmentInfoParcelables.Length; i++)
-            {
-                var parcelable = (ViewPagerFragmentInfoParcelable)fragmentInfoParcelables[i];
+            //for (var i = 0; i < fragmentInfoParcelables.Length; i++)
+            //{
+            //    var parcelable = (ViewPagerFragmentInfoParcelable)fragmentInfoParcelables[i];
 
-                CrossViewPagerFragmentInfo fragInfo = null;
+            //    CrossViewPagerFragmentInfo fragInfo = null;
 
-                if (i < fragments.Count && fragments[i] is ICrossFragmentView mvxFragment && mvxFragment.ViewModel != null)
-                {
-                    // The fragment was already restored by Android with its old ViewModel (cached by MvvmCross).
-                    // Add the ViewModel to the FragmentInfo object so the adapter won't instantiate a new one.
-                    var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
-                    fragInfo = new CrossViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelInstanceRequest);
-                }
+            //    if (i < fragments.Count && fragments[i] is ICrossFragmentView mvxFragment && mvxFragment.ViewModel != null)
+            //    {
+            //        // The fragment was already restored by Android with its old ViewModel (cached by MvvmCross).
+            //        // Add the ViewModel to the FragmentInfo object so the adapter won't instantiate a new one.
+            //        var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
+            //        fragInfo = new CrossViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelInstanceRequest);
+            //    }
 
-                if (fragInfo == null)
-                {
-                    // Either the fragment doesn't exist or it doesn't have a ViewModel. 
-                    // Fall back to a FragmentInfo with the ViewModelType. The adapter will create a ViewModel in GetItem where we will add it to the FragmentInfo.
-                    var viewModelRequest = new CrossViewModelRequest(parcelable.ViewModelType);
-                    fragInfo = new CrossViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelRequest);
-                }
+            //    if (fragInfo == null)
+            //    {
+            //        // Either the fragment doesn't exist or it doesn't have a ViewModel. 
+            //        // Fall back to a FragmentInfo with the ViewModelType. The adapter will create a ViewModel in GetItem where we will add it to the FragmentInfo.
+            //        var viewModelRequest = new CrossViewModelRequest(parcelable.ViewModelType);
+            //        fragInfo = new CrossViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelRequest);
+            //    }
 
-                FragmentsInfo.Add(fragInfo);
-            }
+            //    FragmentsInfo.Add(fragInfo);
+            //}
 
-            NotifyDataSetChanged();
+            //NotifyDataSetChanged();
         }
 
         private sealed class ViewPagerFragmentInfoParcelable : JavaObject, IParcelable

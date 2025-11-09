@@ -1,27 +1,33 @@
-//namespace Nivaes.App.Cross
-//{
-//    using System.Diagnostics.CodeAnalysis;
-//    using System.Reflection;
-//    using Android.Content;
-//    using Android.OS;
-//    using Android.Util;
-//    using AndroidX.ViewPager.Widget;
-//    using Google.Android.Material.Tabs;
-//    using Java.Lang;
-//    using Microsoft.Extensions.Logging;
-//    using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-//    using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-//    using Fragment = AndroidX.Fragment.App.Fragment;
-//    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-//    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+#nullable enable
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Android.Content;
+using Android.OS;
+using Android.Util;
+using AndroidX.ViewPager.Widget;
+using Google.Android.Material.Tabs;
+using Java.Lang;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Presenters;
+using Activity = AndroidX.AppCompat.App.AppCompatActivity;
+using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+using Fragment = AndroidX.Fragment.App.Fragment;
+using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
-//    public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidViewPresenter
-//    {
-//        public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
-//        public const string SharedElementsBundleKey = "__sharedElementsKey";
+namespace MvvmCross.Platforms.Android.Presenters
+{
+    public class MvxAndroidViewPresenter : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
+    {
+        public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
+        public const string SharedElementsBundleKey = "__sharedElementsKey";
 
-//        private readonly Lazy<ICrossAndroidCurrentTopActivity?> _androidCurrentTopActivity =
-//            new(() => Mvx.IoCProvider?.Resolve<ICrossAndroidCurrentTopActivity>());
+//        private readonly Lazy<IMvxAndroidCurrentTopActivity?> _androidCurrentTopActivity =
+//            new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidCurrentTopActivity>());
 
 //        private readonly Lazy<IMvxAndroidActivityLifetimeListener?> _activityLifetimeListener =
 //            new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidActivityLifetimeListener>());
@@ -1168,5 +1174,5 @@
 //        {
 //            ArgumentNullException.ThrowIfNull(request);
 //        }
-//    }
-//}
+    }
+}

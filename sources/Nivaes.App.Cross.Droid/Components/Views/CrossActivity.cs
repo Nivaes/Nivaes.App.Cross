@@ -7,10 +7,16 @@
     using Android.Views;
     using Android.Widget;
 
+    public interface ICrossActivity
+    {
+
+    }
+
     [Register("nivaes.app.cross.CrossActivity")]
     public abstract class CrossActivity<TViewModel>
         : Activity, 
-        ICrossView<TViewModel>, 
+        ICrossView<TViewModel>,
+        ICrossActivity,
         ICrossBindingView
         where TViewModel : ICrossViewModel
     {

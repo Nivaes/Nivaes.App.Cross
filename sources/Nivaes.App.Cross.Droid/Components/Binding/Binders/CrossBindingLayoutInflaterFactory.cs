@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Content;
     using Android.Util;
     using Android.Views;
+    using static Android.InputMethodServices.Keyboard;
 
     [RequiresUnreferencedCode("This class creates bindings which use reflection and may not be preserved by trimming.")]
     public class CrossBindingLayoutInflaterFactory
@@ -19,9 +20,9 @@ namespace Nivaes.App.Cross.Droid
             _source = source;
         }
 
-        protected virtual ICrossAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= Mvx.IoCProvider?.Resolve<ICrossAndroidViewFactory>();
+        protected virtual ICrossAndroidViewFactory? AndroidViewFactory => throw new NotImplementedException(); // _androidViewFactory ??= Mvx.IoCProvider?.Resolve<ICrossAndroidViewFactory>();
 
-        protected virtual ICrossAndroidViewBinder? Binder => _binder ??= Mvx.IoCProvider?.Resolve<ICrossAndroidViewBinderFactory>().Create(_source);
+        protected virtual ICrossAndroidViewBinder? Binder => throw new NotImplementedException(); // _binder ??= Mvx.IoCProvider?.Resolve<ICrossAndroidViewBinderFactory>().Create(_source);
 
         public virtual IList<KeyValuePair<object, ICrossUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
 

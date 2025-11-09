@@ -1,22 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.ComponentModel;
-using Android.Runtime;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Platforms.Android.ViewModels
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.ComponentModel;
+    using Android.Runtime;
+    using MvvmCross.ViewModels;
+
     /// <summary>
-    ///     Just like <see cref="MvxPropertyChangedListener"/> but
+    ///     Just like <see cref="CrossPropertyChangedListener"/> but
     ///     won't call handlers if the target (being an activity, fragment,
     ///     view or other object that belongs to the Java VM) is in "mono
     ///     limbo" (where the object still exists in the mono VM, but not
     ///     in the Java VM).
     /// </summary>
-    public class CrossAndroidPropertyChangedListener : MvxPropertyChangedListener
+    public class CrossAndroidPropertyChangedListener : CrossPropertyChangedListener
     {
         private readonly WeakReference<IJavaObject> _target;
 

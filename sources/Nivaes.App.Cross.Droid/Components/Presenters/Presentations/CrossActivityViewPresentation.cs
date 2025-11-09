@@ -1,7 +1,5 @@
-﻿namespace Nivaes.App.Cross.Droid.Presenters
+﻿namespace Nivaes.App.Cross.Droid
 {
-    using Nivaes.App.Cross.Presenters;
-
     public sealed class CrossActivityViewPresentation : 
         CrossDroidViewPresentation
     {

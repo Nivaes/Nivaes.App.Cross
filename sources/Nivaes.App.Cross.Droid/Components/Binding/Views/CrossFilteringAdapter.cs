@@ -1,21 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Widget;
-using Java.Lang;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Object = Java.Lang.Object;
-
 namespace Nivaes.App.Cross.Droid
 {
+    using System.Collections;
+    using Android.Content;
+    using Android.Runtime;
+    using Java.Lang;
+    using Object = Java.Lang.Object;
+
     public class CrossFilteringAdapter
         : CrossAdapter, IFilterable
     {
@@ -44,7 +34,7 @@ namespace Nivaes.App.Cross.Droid
                 return new FilterResults
                 {
                     Count = count,
-                    Values = new MvxReplaceableJavaContainer { Object = items }
+                    Values = new CrossReplaceableJavaContainer { Object = items }
                 };
             }
 
@@ -52,7 +42,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 if (results != null && results.Count > 0)
                 {
-                    var items = results.Values as MvxReplaceableJavaContainer;
+                    var items = results.Values as CrossReplaceableJavaContainer;
                     if (items != null)
                     {
                         lock (_owner._syncLock)
@@ -137,7 +127,7 @@ namespace Nivaes.App.Cross.Droid
 
         public bool ReturnSingleObjectFromGetItem { get; set; }
 
-        private MvxReplaceableJavaContainer _javaContainer;
+        private CrossReplaceableJavaContainer _javaContainer;
 
         public override Object GetItem(int position)
         {
@@ -148,7 +138,7 @@ namespace Nivaes.App.Cross.Droid
             if (ReturnSingleObjectFromGetItem)
             {
                 if (_javaContainer == null)
-                    _javaContainer = new MvxReplaceableJavaContainer();
+                    _javaContainer = new CrossReplaceableJavaContainer();
                 _javaContainer.Object = GetRawItem(position);
                 return _javaContainer;
             }

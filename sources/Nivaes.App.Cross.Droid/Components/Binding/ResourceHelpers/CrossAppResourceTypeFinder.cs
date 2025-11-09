@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Droid
             var setup = Mvx.IoCProvider.Resolve<IMvxAndroidGlobals>();
             var resourceType = FindResourceType(setup.ExecutableAssembly);
             if (resourceType == null)
-                throw new MvxException("Unable to find resource type. Please check if your setup class is in your application's root namespace.");
+                throw new CrossException("Unable to find resource type. Please check if your setup class is in your application's root namespace.");
             return resourceType;
         }
 #endif

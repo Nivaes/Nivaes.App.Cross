@@ -1,18 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Windows.Input;
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using Android.Widget;
-using MvvmCross.Binding.Attributes;
-
 namespace Nivaes.App.Cross.Droid
 {
+    using System.Collections;
+    using System.Windows.Input;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxExpandableListView")]
     public class CrossExpandableListView : ExpandableListView
     {
@@ -56,7 +49,7 @@ namespace Nivaes.App.Cross.Droid
         // An expandableListView has ExpandableListAdapter as propertyname, but Adapter still exists but is always null.
         protected CrossExpandableListAdapter ThisAdapter => ExpandableListAdapter as CrossExpandableListAdapter;
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get { return ThisAdapter.ItemsSource; }

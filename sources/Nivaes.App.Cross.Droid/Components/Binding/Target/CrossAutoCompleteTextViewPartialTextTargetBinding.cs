@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid
     public class CrossAutoCompleteTextViewPartialTextTargetBinding
     : MvxAndroidPropertyInfoTargetBinding<CrossAutoCompleteTextView>
     {
-        private MvxJavaEventSubscription<CrossAutoCompleteTextView>? _subscription;
+        private CrossJavaEventSubscription<CrossAutoCompleteTextView>? _subscription;
 
         public CrossAutoCompleteTextViewPartialTextTargetBinding(
                 object target,

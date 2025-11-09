@@ -43,7 +43,7 @@ namespace Nivaes.App.Cross.Droid
                 return;
             }
 
-            (Bundle? bundle, CrossViewModelRequest? request) = GetAndroidBundleAndRequest(e);
+            (Bundle? bundle, ICrossViewModelRequest? request) = GetAndroidBundleAndRequest(e);
 
             var mvxBundle = ReadAndroidBundle(bundle);
             if (FragmentView?.ViewModel == null)
@@ -51,10 +51,10 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
+        private (Bundle? bundle, ICrossViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
         {
             Bundle? bundle = null;
-            CrossViewModelRequest? request = null;
+            ICrossViewModelRequest? request = null;
             if (bundleArgs?.Value != null)
             {
                 // saved state
@@ -74,32 +74,34 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
+        private static ICrossViewModelRequest? ReadRequest(ICrossViewModelRequest? request, string json)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? serializer) == true)
-            {
-                request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
-            }
-            else
-            {
-                CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
-                    "Navigation Serializer not available, deserializing ViewModel Request will be hard");
-            }
+            throw new NotImplementedException();
+            //if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? serializer) == true)
+            //{
+            //    request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
+            //}
+            //else
+            //{
+            //    CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            //        "Navigation Serializer not available, deserializing ViewModel Request will be hard");
+            //}
 
-            return request;
+            //return request;
         }
 
-        private static IMvxBundle ReadAndroidBundle(Bundle? bundle)
+        private static ICrossBundle ReadAndroidBundle(Bundle? bundle)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
-            {
-                return converter?.Read(bundle) ?? new MvxBundle();
-            }
+            throw new NotImplementedException();
+            //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
+            //{
+            //    return converter?.Read(bundle) ?? new MvxBundle();
+            //}
 
-            CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
-            "Saved state converter not available - saving state will be hard");
+            //CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            //"Saved state converter not available - saving state will be hard");
 
-            return new MvxBundle();
+            //return new MvxBundle();
         }
 
         protected override void HandleCreateViewCalled(
@@ -108,11 +110,12 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void HandleResumeCalled(object? sender, EventArgs e)
         {
-            if (Mvx.IoCProvider?.TryResolve(out ICrossMultipleViewModelCache? cache) == true && cache != null && FragmentView?.ViewModel != null)
-            {
-                // clear cache if still there
-                cache.GetAndClear(FragmentView.ViewModel.GetType(), FragmentView.UniqueImmutableCacheTag);
-            }
+            throw new NotImplementedException();
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossMultipleViewModelCache? cache) == true && cache != null && FragmentView?.ViewModel != null)
+            //{
+            //    // clear cache if still there
+            //    cache.GetAndClear(FragmentView.ViewModel.GetType(), FragmentView.UniqueImmutableCacheTag);
+            //}
         }
 
         protected override void HandleSaveInstanceStateCalled(object? sender, CrossValueEventArgs<Bundle> e)
@@ -120,25 +123,27 @@ namespace Nivaes.App.Cross.Droid
             // it is guaranteed that SaveInstanceState call will be executed before OnStop (thus before Fragment detach)
             // it is safe to assume that Fragment has activity attached
 
-            var mvxBundle = FragmentView?.CreateSaveStateBundle();
-            if (mvxBundle != null)
-            {
-                if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
-                {
-                    CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
-                        "Saved state converter not available - saving state will be hard");
-                }
-                else
-                {
-                    converter?.Write(e.Value, mvxBundle);
-                }
-            }
+            throw new NotImplementedException();
 
-            if (FragmentView == null)
-                return;
+            //var mvxBundle = FragmentView?.CreateSaveStateBundle();
+            //if (mvxBundle != null)
+            //{
+            //    if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
+            //    {
+            //        CrossLogHost.GetLog<CrossBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            //            "Saved state converter not available - saving state will be hard");
+            //    }
+            //    else
+            //    {
+            //        converter?.Write(e.Value, mvxBundle);
+            //    }
+            //}
 
-            if (Mvx.IoCProvider?.TryResolve(out ICrossMultipleViewModelCache? cache) == true)
-                cache?.Cache(FragmentView.ViewModel, FragmentView.UniqueImmutableCacheTag);
+            //if (FragmentView == null)
+            //    return;
+
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossMultipleViewModelCache? cache) == true)
+            //    cache?.Cache(FragmentView.ViewModel, FragmentView.UniqueImmutableCacheTag);
         }
 
         protected override void HandleDestroyViewCalled(object? sender, EventArgs e)

@@ -126,9 +126,9 @@ namespace Nivaes.App.Cross.Droid
             set { base.ViewModel = value; }
         }
 
-        public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<ICrossFragmentView<TViewModel>, TViewModel> CreateBindingSet()
         {
-            return this.CreateBindingSet<IMvxFragmentView<TViewModel>, TViewModel>();
+            return this.CreateBindingSet<ICrossFragmentView<TViewModel>, TViewModel>();
         }
     }
 }

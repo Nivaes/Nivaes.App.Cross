@@ -1,35 +1,37 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Threading.Tasks;
-using MvvmCross.Platforms.Android.Presenters;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace Nivaes.App.Cross.Droid
 {
     public class CrossAndroidViewDispatcher
         : CrossAndroidMainThreadDispatcher
-        , IMvxViewDispatcher
+        , ICrossViewDispatcher
     {
-        private readonly IMvxAndroidViewPresenter _presenter;
+        private readonly ICrossAndroidViewPresenter _presenter;
 
-        public CrossAndroidViewDispatcher(IMvxAndroidViewPresenter presenter)
+        public CrossAndroidViewDispatcher(ICrossAndroidViewPresenter presenter)
         {
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
+        public async Task<bool> ShowViewModel(ICrossViewModelRequest request)
         {
             await ExecuteOnMainThreadAsync(() => _presenter.Show(request));
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
-            await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
-            return true;
+            throw new NotImplementedException();
+            //await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+            //return true;
+        }
+
+        public Task<bool> ShowViewModelOnMainThread(ICrossViewModelRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ShowViewModelOnBackgroundThread(ICrossViewModelRequest request, Func<ICrossViewModelRequest, Task<bool>> action)
+        {
+            throw new NotImplementedException();
         }
     }
 }

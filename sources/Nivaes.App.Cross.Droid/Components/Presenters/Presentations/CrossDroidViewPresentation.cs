@@ -1,9 +1,7 @@
-﻿namespace Nivaes.App.Cross.Droid.Presenters
+﻿namespace Nivaes.App.Cross.Droid
 {
-    using System.Reflection.Metadata;
     using Android.Content;
     using Android.OS;
-    using Nivaes.App.Cross.Presenters;
 
     public abstract class CrossDroidViewPresentation : 
         CrossViewPresentation

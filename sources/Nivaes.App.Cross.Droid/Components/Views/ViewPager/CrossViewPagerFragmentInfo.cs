@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid
 
     public class CrossViewPagerFragmentInfo
     {
-        public CrossViewPagerFragmentInfo(string title, string tag, Type fragmentType, CrossViewModelRequest request)
+        public CrossViewPagerFragmentInfo(string title, string tag, Type fragmentType, ICrossViewModelRequest request)
         {
             Title = title;
             Tag = tag;
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.Droid
 
         public string Title { get; }
 
-        public CrossViewModelRequest Request { get; }
+        public ICrossViewModelRequest Request { get; }
 
         public Fragment CachedFragment { get; set; }
     }

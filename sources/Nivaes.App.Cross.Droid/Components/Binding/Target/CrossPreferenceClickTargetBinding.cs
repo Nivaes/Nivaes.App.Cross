@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using AndroidX.Preference;
-    using MvvmCross.Platforms.Android.WeakSubscription;
 
     public class CrossPreferenceClickTargetBinding
     : CrossAndroidTargetBinding

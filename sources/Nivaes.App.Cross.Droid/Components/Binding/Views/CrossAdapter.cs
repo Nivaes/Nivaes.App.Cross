@@ -1,28 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.WeakSubscription;
-using Object = Java.Lang.Object;
-
 namespace Nivaes.App.Cross.Droid
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using Microsoft.Extensions.Logging;
+    using Object = Java.Lang.Object;
+
     public class CrossAdapter
         : BaseAdapter
         , ICrossAdapter
@@ -49,7 +34,7 @@ namespace Nivaes.App.Cross.Droid
             BindingContext = bindingContext;
             if (BindingContext == null)
             {
-                throw new MvxException(
+                throw new CrossException(
                     "bindingContext is null during MvxAdapter creation - " +
                     "Adapter's should only be created when a specific binding " +
                     "context has been placed on the stack");
@@ -67,7 +52,7 @@ namespace Nivaes.App.Cross.Droid
 
         public bool ReloadOnAllItemsSourceSets { get; set; }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get => _itemsSource;
@@ -98,6 +83,7 @@ namespace Nivaes.App.Cross.Droid
 
         public override int Count => ItemsSource.Count();
 
+        [Obsolete("No compatible con AoT")]
         protected virtual void SetItemsSource(IEnumerable value)
         {
             if (ReferenceEquals(_itemsSource, value)
@@ -253,7 +239,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public new IEnumerable<TItem> ItemsSource
         {
             get => base.ItemsSource as IEnumerable<TItem>;

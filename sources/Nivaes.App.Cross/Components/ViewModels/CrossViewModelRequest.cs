@@ -1,6 +1,7 @@
 ﻿namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
 
     public record CrossViewModelRequest<TViewModel> :
         ICrossViewModelRequest
@@ -14,6 +15,12 @@
         public CrossViewModelRequest(TViewModel viewModel)
         {
             ViewModel = viewModel;
+        }
+
+        public CrossViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
+        {
+            ParameterValues = parameterBundle?.Data;
+            PresentationValues = presentationBundle?.Data;
         }
 
         public CrossViewModelRequest(TViewModel viewModel, ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)

@@ -11,7 +11,8 @@ namespace Nivaes.App.Cross.Droid
         ICrossAndroidViewBinder
     {
         private readonly List<KeyValuePair<object, ICrossUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, ICrossUpdateableBinding>>();
-        private readonly Lazy<ICrossAndroidBindingResource> mvxAndroidBindingResource = new Lazy<ICrossAndroidBindingResource>(() => Mvx.IoCProvider.GetSingleton<ICrossAndroidBindingResource>());
+        private readonly Lazy<ICrossAndroidBindingResource> mvxAndroidBindingResource = new Lazy<ICrossAndroidBindingResource>(() =>
+               throw new NotImplementedException() /*Mvx.IoCProvider.GetSingleton<ICrossAndroidBindingResource>()*/);
 
         private readonly object _source;
 

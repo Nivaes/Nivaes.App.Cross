@@ -1,27 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Java.Interop;
-using Java.Lang;
-using Java.Lang.Reflect;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.Binders;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Boolean = Java.Lang.Boolean;
-using Exception = Java.Lang.Exception;
-using Object = Java.Lang.Object;
-
 namespace Nivaes.App.Cross.Droid
 {
-#nullable enable
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Util;
+    using Android.Views;
+    using Java.Interop;
+    using Java.Lang;
+    using Java.Lang.Reflect;
+    using Microsoft.Extensions.Logging;
+    using Boolean = Java.Lang.Boolean;
+    using Exception = Java.Lang.Exception;
+    using Object = Java.Lang.Object;
+
     /// <summary>
     /// Custom LayoutInflater responsible for inflating views and hooking up bindings
     /// Typically this is attached to MvxActivity and co via our MvxContextWrapper.
@@ -51,12 +43,12 @@ namespace Nivaes.App.Cross.Droid
 
             public View? OnViewCreated(View? view, Context? context, IAttributeSet? attrs)
             {
-                if (Factory != null && view != null && view.GetTag(Resource.Id.MvvmCrossTagId) != TheTruth)
+                if (Factory != null && view != null && view.GetTag(Resource.Id.CrossTagId) != TheTruth)
                 {
                     // Bind here.
                     view = Factory.BindCreatedView(view, context, attrs);
 
-                    view.SetTag(Resource.Id.MvvmCrossTagId, TheTruth);
+                    view.SetTag(Resource.Id.CrossTagId, TheTruth);
                 }
 
                 return view;
@@ -375,19 +367,20 @@ namespace Nivaes.App.Cross.Droid
                 if (_androidViewFactory != null)
                     return _androidViewFactory;
 
-                if (Mvx.IoCProvider == null)
-                {
-                    // if IoCProvider is null, Log instance will probably be null too
-                    CrossLogHost.GetLog<CrossLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
-                    return null;
-                }
+                throw new InvalidOperationException();
+                //if (Mvx.IoCProvider == null)
+                //{
+                //    // if IoCProvider is null, Log instance will probably be null too
+                //    CrossLogHost.GetLog<CrossLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
+                //    return null;
+                //}
 
-                if (Mvx.IoCProvider?.TryResolve(out ICrossAndroidViewFactory? viewFactory) == true)
-                {
-                    _androidViewFactory = viewFactory;
-                }
+                //if (Mvx.IoCProvider?.TryResolve(out ICrossAndroidViewFactory? viewFactory) == true)
+                //{
+                //    _androidViewFactory = viewFactory;
+                //}
 
-                return _androidViewFactory;
+                //return _androidViewFactory;
             }
         }
 
@@ -398,19 +391,20 @@ namespace Nivaes.App.Cross.Droid
                 if (_layoutInflaterHolderFactoryFactory != null)
                     return _layoutInflaterHolderFactoryFactory;
 
-                if (Mvx.IoCProvider == null)
-                {
-                    // if IoCProvider is null, Log instance will probably be null too
-                    CrossLogHost.GetLog<CrossLayoutInflater>()?.Log(LogLevel.Error, "{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
-                    return null;
-                }
+                throw new NotImplementedException();
+                //if (Mvx.IoCProvider == null)
+                //{
+                //    // if IoCProvider is null, Log instance will probably be null too
+                //    CrossLogHost.GetLog<CrossLayoutInflater>()?.Log(LogLevel.Error, "{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
+                //    return null;
+                //}
 
-                if (Mvx.IoCProvider?.TryResolve(out ICrossLayoutInflaterHolderFactoryFactory? factoryFactory) == true)
-                {
-                    _layoutInflaterHolderFactoryFactory = factoryFactory;
-                }
+                //if (Mvx.IoCProvider?.TryResolve(out ICrossLayoutInflaterHolderFactoryFactory? factoryFactory) == true)
+                //{
+                //    _layoutInflaterHolderFactoryFactory = factoryFactory;
+                //}
 
-                return _layoutInflaterHolderFactoryFactory;
+                //return _layoutInflaterHolderFactoryFactory;
             }
         }
 
@@ -512,5 +506,4 @@ namespace Nivaes.App.Cross.Droid
             }
         }
     }
-#nullable restore
 }

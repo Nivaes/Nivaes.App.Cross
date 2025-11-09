@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
+    using System.Reflection.Metadata;
     using Android.Content;
     using Android.Runtime;
     using Android.Views;
@@ -78,9 +79,10 @@ namespace Nivaes.App.Cross.Droid
 
         public override void SetContentView(int layoutResId)
         {
-            var view = this.BindingInflate(layoutResId, null);
+            throw new NotImplementedException();
+            //var view = this.BindingInflate(layoutResId, null);
 
-            SetContentView(view);
+            //SetContentView(view);
         }
 
         protected override void OnSaveInstanceState(Bundle outState)
@@ -123,65 +125,67 @@ namespace Nivaes.App.Cross.Droid
                                    TabHost.TabSpec tabSpec,
                                    TabInfo tabInfo)
         {
-            // Attach a Tab view factory to the spec
-            tabSpec.SetContent(new TabFactory(activity));
-            string tag = tabSpec.Tag;
+            throw new NotImplementedException();
+            //// Attach a Tab view factory to the spec
+            //tabSpec.SetContent(new TabFactory(activity));
+            //string tag = tabSpec.Tag;
 
-            // Check to see if we already have a CachedFragment for this tab, probably
-            // from a previously saved state.  If so, deactivate it, because our
-            // initial state is that a tab isn't shown.
-            tabInfo.CachedFragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
-            if (tabInfo.CachedFragment != null && !tabInfo.CachedFragment.IsDetached)
-            {
-                var ft = activity.SupportFragmentManager.BeginTransaction();
-                ft.Detach(tabInfo.CachedFragment);
-                ft.Commit();
-                activity.SupportFragmentManager.ExecutePendingTransactions();
-            }
+            //// Check to see if we already have a CachedFragment for this tab, probably
+            //// from a previously saved state.  If so, deactivate it, because our
+            //// initial state is that a tab isn't shown.
+            //tabInfo.CachedFragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
+            //if (tabInfo.CachedFragment != null && !tabInfo.CachedFragment.IsDetached)
+            //{
+            //    var ft = activity.SupportFragmentManager.BeginTransaction();
+            //    ft.Detach(tabInfo.CachedFragment);
+            //    ft.Commit();
+            //    activity.SupportFragmentManager.ExecutePendingTransactions();
+            //}
 
-            tabHost.AddTab(tabSpec);
+            //tabHost.AddTab(tabSpec);
         }
 
         public virtual void OnTabChanged(string tag)
         {
-            var newTab = _lookup[tag];
-            if (_currentTab != newTab)
-            {
-                var ft = SupportFragmentManager.BeginTransaction();
-                OnTabFragmentChanging(tag, ft);
-                if (_currentTab?.CachedFragment != null)
-                {
-                    ft.Detach(_currentTab.CachedFragment);
-                }
-                if (newTab != null)
-                {
-                    if (newTab.CachedFragment == null)
-                    {
-                        var fragmentClass = Class.FromType(newTab.FragmentType);
-                        newTab.CachedFragment = SupportFragmentManager.FragmentFactory.Instantiate(
-                            fragmentClass.ClassLoader,
-                            fragmentClass.Name
-                        );
+            throw new NotImplementedException();
+            //var newTab = _lookup[tag];
+            //if (_currentTab != newTab)
+            //{
+            //    var ft = SupportFragmentManager.BeginTransaction();
+            //    OnTabFragmentChanging(tag, ft);
+            //    if (_currentTab?.CachedFragment != null)
+            //    {
+            //        ft.Detach(_currentTab.CachedFragment);
+            //    }
+            //    if (newTab != null)
+            //    {
+            //        if (newTab.CachedFragment == null)
+            //        {
+            //            var fragmentClass = Class.FromType(newTab.FragmentType);
+            //            newTab.CachedFragment = SupportFragmentManager.FragmentFactory.Instantiate(
+            //                fragmentClass.ClassLoader,
+            //                fragmentClass.Name
+            //            );
 
-                        FixupDataContext(newTab);
-                        ft.Add(_tabContentId, newTab.CachedFragment, newTab.Tag);
-                    }
-                    else
-                    {
-                        FixupDataContext(newTab);
-                        ft.Attach(newTab.CachedFragment);
-                    }
-                }
+            //            FixupDataContext(newTab);
+            //            ft.Add(_tabContentId, newTab.CachedFragment, newTab.Tag);
+            //        }
+            //        else
+            //        {
+            //            FixupDataContext(newTab);
+            //            ft.Attach(newTab.CachedFragment);
+            //        }
+            //    }
 
-                _currentTab = newTab;
-                ft.Commit();
-                SupportFragmentManager.ExecutePendingTransactions();
-            }
+            //    _currentTab = newTab;
+            //    ft.Commit();
+            //    SupportFragmentManager.ExecutePendingTransactions();
+            //}
         }
 
         protected virtual void FixupDataContext(TabInfo newTab)
         {
-            var consumer = newTab.CachedFragment as IMvxDataConsumer;
+            var consumer = newTab.CachedFragment as ICrossDataConsumer;
             if (consumer == null)
                 return;
 

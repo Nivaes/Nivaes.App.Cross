@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid
         : CrossSetup, ICrossAndroidGlobals, ICrossAndroidSetup
     {
         private CrossCurrentTopActivity? _currentTopActivity;
-        private IMvxAndroidViewPresenter? _presenter;
+        private ICrossAndroidViewPresenter? _presenter;
 
         public void PlatformInitialize(Application application)
         {
@@ -33,24 +33,25 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
+            throw new NotImplementedException();
+            //ValidateArguments(iocProvider);
 
-            InitializeLifetimeMonitor(iocProvider);
-            InitializeAndroidCurrentTopActivity(iocProvider);
-            RegisterPresenter(iocProvider);
+            //InitializeLifetimeMonitor(iocProvider);
+            //InitializeAndroidCurrentTopActivity(iocProvider);
+            //RegisterPresenter(iocProvider);
 
-            iocProvider.RegisterSingleton<ICrossAndroidGlobals>(this);
+            //iocProvider.RegisterSingleton<ICrossAndroidGlobals>(this);
 
-            var intentResultRouter = new CrossIntentResultSink();
-            iocProvider.RegisterSingleton<ICrossIntentResultSink>(intentResultRouter);
-            iocProvider.RegisterSingleton<ICrossIntentResultSource>(intentResultRouter);
+            //var intentResultRouter = new CrossIntentResultSink();
+            //iocProvider.RegisterSingleton<ICrossIntentResultSink>(intentResultRouter);
+            //iocProvider.RegisterSingleton<ICrossIntentResultSource>(intentResultRouter);
 
-            var viewModelTemporaryCache = new CrossSingleViewModelCache();
-            iocProvider.RegisterSingleton<ICrossSingleViewModelCache>(viewModelTemporaryCache);
+            //var viewModelTemporaryCache = new CrossSingleViewModelCache();
+            //iocProvider.RegisterSingleton<ICrossSingleViewModelCache>(viewModelTemporaryCache);
 
-            var viewModelMultiTemporaryCache = new CrossMultipleViewModelCache();
-            iocProvider.RegisterSingleton<CrossMultipleViewModelCache>(viewModelMultiTemporaryCache);
-            base.InitializeFirstChance(iocProvider);
+            //var viewModelMultiTemporaryCache = new CrossMultipleViewModelCache();
+            //iocProvider.RegisterSingleton<CrossMultipleViewModelCache>(viewModelMultiTemporaryCache);
+            //base.InitializeFirstChance(iocProvider);
         }
 
         protected virtual void InitializeAndroidCurrentTopActivity(IMvxIoCProvider iocProvider)

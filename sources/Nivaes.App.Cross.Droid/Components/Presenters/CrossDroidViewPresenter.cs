@@ -1,7 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Droid
 {
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Presenters;
 
     public sealed class CrossDroidViewPresenter : 
         CrossViewPresenter, ICrossViewPresenter

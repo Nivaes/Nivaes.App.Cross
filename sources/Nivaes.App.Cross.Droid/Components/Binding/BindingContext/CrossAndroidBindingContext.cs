@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual View? CommonInflate(int resourceId, ViewGroup viewGroup, bool attachToParent)
         {
-            using (new MvxBindingContextStackRegistration<ICrossAndroidBindingContext>(this))
+            using (new CrossBindingContextStackRegistration<ICrossAndroidBindingContext>(this))
             {
                 var layoutInflater = LayoutInflaterHolder.LayoutInflater;
                 {

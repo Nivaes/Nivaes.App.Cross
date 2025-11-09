@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.Droid
         {
             get
             {
-                return MvxJavaDateUtils.DateTimeFromJava(Year, Month, DayOfMonth);
+                return CrossJavaDateUtils.DateTimeFromJava(Year, Month, DayOfMonth);
             }
             set
             {

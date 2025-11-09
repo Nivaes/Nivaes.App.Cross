@@ -1,17 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Object = Java.Lang.Object;
-
 namespace Nivaes.App.Cross.Droid
 {
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using Object = Java.Lang.Object;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxListItemView")]
     public class CrossListItemView : Object, ICrossListItemView,
         ICrossBindingContextOwner, View.IOnAttachStateChangeListener
@@ -45,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             _isAttachedToWindow = false;
         }
 
-        public IMvxBindingContext BindingContext
+        public ICrossBindingContext BindingContext
         {
             get => _bindingContext;
             set => throw new NotImplementedException("BindingContext is readonly in the list item");

@@ -1,18 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections;
-using Android.Widget;
-using MvvmCross.Binding.Attributes;
-
 namespace Nivaes.App.Cross.Droid
 {
+    using System.Collections;
+
     public interface ICrossAdapter
         : ISpinnerAdapter
         , IListAdapter
     {
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         IEnumerable ItemsSource { get; set; }
 
         int ItemTemplateId { get; set; }

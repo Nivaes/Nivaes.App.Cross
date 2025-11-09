@@ -91,7 +91,7 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    public abstract class MvxPreferenceFragment<TViewModel> : CrossPreferenceFragment, IMvxFragmentView<TViewModel>
+    public abstract class MvxPreferenceFragment<TViewModel> : CrossPreferenceFragment, ICrossFragmentView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         [RequiresUnreferencedCode("This constructor uses reflection which may not be preserved during trimming.")]
