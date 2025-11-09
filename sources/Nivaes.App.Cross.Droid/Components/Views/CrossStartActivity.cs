@@ -78,5 +78,9 @@
         protected virtual void RegisterSetup()
         {
         }
+
+        protected override void Binding()
+        {
+        }
     }
 }

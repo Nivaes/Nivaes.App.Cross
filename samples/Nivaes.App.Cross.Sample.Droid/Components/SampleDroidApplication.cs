@@ -1,14 +1,7 @@
 ﻿namespace Nivaes.App.Cross.Sample.Droid
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Android.Views;
     using Nivaes.App.Cross.Droid;
-    using Nivaes.App.Cross.Droid.Presenters;
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
     using Nivaes.IoC;
 

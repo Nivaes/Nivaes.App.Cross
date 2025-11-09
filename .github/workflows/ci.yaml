@@ -139,6 +139,7 @@ jobs:
 
     - name: Install workload
       run: |
+        dotnet workload install android
         dotnet workload install ios
         dotnet workload install maccatalyst
 
@@ -187,6 +188,12 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ./global.json
+
+    - name: Install workload
+      run: |
+        dotnet workload install android
+        dotnet workload install ios
+        dotnet workload install maccatalyst
 
     - name: Restore Dependencies
       run: |
