@@ -155,7 +155,10 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x86 --property:PublishAoT=true --configuration Release --no-restore
+          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x64 --property:PublishAoT=true --configuration Release --no-restore
+          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm --property:PublishAoT=true --configuration Release --no-restore
+          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm64 --property:PublishAoT=true --configuration Release --no-restore
 
   build-app-cross-ios:
     needs: build-app-cross

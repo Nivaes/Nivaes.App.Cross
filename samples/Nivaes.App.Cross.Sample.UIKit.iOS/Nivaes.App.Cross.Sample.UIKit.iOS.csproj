@@ -15,7 +15,7 @@
 		<IsPackable>false</IsPackable>
 		
 		<IsAotCompatible>true</IsAotCompatible>
-		<PublishAot>true</PublishAot>
+		<!--<PublishAot>true</PublishAot>-->
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
