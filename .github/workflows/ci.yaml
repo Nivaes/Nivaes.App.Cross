@@ -119,6 +119,7 @@ jobs:
     - name: Check-AotCompatible
       run: |
           dotnet publish sources/Nivaes.App.Cross.Droid --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet publish sample/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore
     
   build-app-cross-ios:
     needs: build-app-cross
@@ -170,9 +171,16 @@ jobs:
 
     - name: Build-Samples
       run: |
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+
+    - name: Check-AotCompatible
+      run: |
+          dotnet publish sources/Nivaes.App.Cross.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish sample/Nivaes.App.Cross.Sample.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish sample/Nivaes.App.Cross.Sample.UIKit.iOS --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish sample/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
 
   build-app-cross-WinUI3:
     needs: build-app-cross
@@ -222,7 +230,12 @@ jobs:
 
     - name: Build-Samples
       run: |
-          dotnet test samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release  --no-restore --no-build --verbosity normal
+
+    - name: Check-AotCompatible
+      run: |
+          dotnet publish sources/Nivaes.App.Cross.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
 
   # publish-identity-client-mac:
   #   needs: build-identity-client
