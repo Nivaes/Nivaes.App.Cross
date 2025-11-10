@@ -212,7 +212,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.WinUI3 --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore
           dotnet build sources/Nivaes.App.Cross.WinUI3.SourceGenerator --configuration Release --no-restore
 
     - name: Test
