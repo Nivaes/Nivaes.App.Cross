@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>$(_MvxAndroidTargets)</TargetFrameworks>
+    <TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
 	<!--<Platforms>x86;x64;arm64</Platforms>-->
-	<!--<RuntimeIdentifiers>linux-x86;linux-x64;linux-arm64</RuntimeIdentifiers>-->
+	<!--<RuntimeIdentifiers>android-x86;android-x64;android-arm64</RuntimeIdentifiers>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

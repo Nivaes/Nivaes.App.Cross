@@ -8,9 +8,7 @@
       Enable trim analyzers for class libraries.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
     -->
-		<IsTrimmable>true</IsTrimmable>
 		<IsPackable>false</IsPackable>
-
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 

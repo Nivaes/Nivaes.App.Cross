@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(_MvxWindowsTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_CrossWindowsTargets)</TargetFrameworks>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		
 		<Platforms>x86;x64;arm64</Platforms>
@@ -12,8 +12,8 @@
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 
+		<SelfContained>true</SelfContained>
 		<IsAotCompatible>true</IsAotCompatible>
-		<!--<UseWinUI>true</UseWinUI>-->
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />

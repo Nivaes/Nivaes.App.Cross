@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(_MvxiOSTargets);</TargetFrameworks>
+		<TargetFrameworks>$(_CrossiOSTargets);</TargetFrameworks>
 		
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
@@ -9,8 +9,7 @@
       Enable trim analyzers for class libraries.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
     -->
-		<IsTrimmable>true</IsTrimmable>
-
+		<!--<IsTrimmable>true</IsTrimmable>-->
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 	<ItemGroup>
