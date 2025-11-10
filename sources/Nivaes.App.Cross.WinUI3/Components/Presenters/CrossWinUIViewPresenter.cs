@@ -1,13 +1,6 @@
 ﻿namespace Nivaes.App.Cross.WinUI3
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
-    using Microsoft.UI.Xaml.Controls;
-    using Nivaes.App.Cross.Presenters;
-    using Nivaes.IoC;
 
     public sealed class CrossWinUIViewPresenter : CrossViewPresenter, ICrossViewPresenter
     {

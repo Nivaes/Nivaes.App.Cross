@@ -1,8 +1,6 @@
 ﻿namespace Nivaes.App.Cross.UIKit.Sample
 {
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.Sample;
-    using Nivaes.App.Cross.UIKit.Presenters;
     using Nivaes.IoC;
 
     public class SampleAppDelegate 
@@ -29,6 +27,11 @@
 
             var viewPresentationsManager = new CrossViewPresentationsManager(new[] { CrossViewPresentationsManager.New<RootView, RootViewPresentation>() });
             Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
+        }
+
+        protected override void RegisterSetup()
+        {
+            throw new NotImplementedException();
         }
     }
 }

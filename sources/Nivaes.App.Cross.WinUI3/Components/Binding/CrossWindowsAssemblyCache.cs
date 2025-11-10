@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.WinUI3
 {
     using System.Reflection;
 
-    [Obsolete("No compatible con IoC", true)]
+    [Obsolete("No compatible con IoC")]
     public class CrossWindowsAssemblyCache
         : CrossSingleton<ICrossWindowsAssemblyCache>, ICrossWindowsAssemblyCache
     {

@@ -18,7 +18,7 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
 		<IsAotCompatible>true</IsAotCompatible>
-		<!--<PublishAot>true</PublishAot>-->
+		<PublishAot>true</PublishAot>
 
 		<!--<AndroidAotAssembly>true</AndroidAotAssembly>-->
 		<!--<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>-->

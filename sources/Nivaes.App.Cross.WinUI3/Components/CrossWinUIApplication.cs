@@ -4,7 +4,6 @@
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.IoC;
 
     public abstract class CrossWinUIApplication : Application

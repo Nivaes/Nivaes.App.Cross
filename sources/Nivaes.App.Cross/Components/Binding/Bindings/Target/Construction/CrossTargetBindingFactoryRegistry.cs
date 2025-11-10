@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
             return null;
         }
 
-        [Obsolete("No compatible con AoT", true)]
+        [Obsolete("No compatible con AoT")]
         [RequiresUnreferencedCode("This method uses reflection to access properties and events which may not be preserved by trimming")]
         protected virtual bool TryCreateReflectionBasedBinding(
             object target, string targetName, out ICrossTargetBinding binding)

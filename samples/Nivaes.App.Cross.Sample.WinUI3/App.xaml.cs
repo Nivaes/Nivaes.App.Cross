@@ -1,18 +1,13 @@
-﻿// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
-namespace Nivaes.App.Cross.Sample.WinUI
+﻿namespace Nivaes.App.Cross.Sample.WinUI3
 {
-    using Nivaes.App.Cross.Presenters;
-    using Nivaes.App.Cross.WinUI;
-    using Nivaes.App.Cross.WinUI.Presenters;
+    using Nivaes.App.Cross.WinUI3;
     using Nivaes.IoC;
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     public partial class App 
-        : WinUIApplication
+        : CrossWinUIApplication
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -46,8 +41,8 @@ namespace Nivaes.App.Cross.Sample.WinUI
 
             var viewPresentationsManager = new CrossViewPresentationsManager(new[] 
             { 
-                CrossViewPresentationsManager.New<RootView, PageViewPresentation>(),
-                CrossViewPresentationsManager.New<NewWindowView, NewWindowViewPresentation>(),
+                CrossViewPresentationsManager.New<RootView, CrossPageViewPresentation>(),
+                CrossViewPresentationsManager.New<NewWindowView, CrossNewWindowViewPresentation>(),
             });
             Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
         }

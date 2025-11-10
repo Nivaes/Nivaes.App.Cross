@@ -34,17 +34,18 @@ namespace Nivaes.App.Cross.WinUI3
 
         protected virtual void RunAppStart(string arguments)
         {
-            var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
+            throw new NotImplementedException();    
+            //var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
 
-            if (RootFrame.Content == null)
-            {
-                instance.EnsureInitialized();
+            //if (RootFrame.Content == null)
+            //{
+            //    instance.EnsureInitialized();
 
-                if (Cross.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
-                {
-                    startup.Start(GetAppStartHint(arguments));
-                }
-            }
+            //    if (Cross.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
+            //    {
+            //        startup.Start(GetAppStartHint(arguments));
+            //    }
+            //}
         }
 
         protected virtual object GetAppStartHint(object hint = null)
@@ -91,7 +92,8 @@ namespace Nivaes.App.Cross.WinUI3
 
         protected virtual void RegisterSetup()
         {
-            this.RegisterSetupType<TCrossWinUiSetup>();
+            throw new NotImplementedException ();
+            //this.RegisterSetupType<TCrossWinUiSetup>();
         }
     }
 }

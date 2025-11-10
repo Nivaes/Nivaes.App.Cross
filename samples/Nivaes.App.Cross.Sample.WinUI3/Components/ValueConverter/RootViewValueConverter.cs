@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Sample.WinUI
+﻿namespace Nivaes.App.Cross.Sample.WinUI3
 {
     using System;
     using Microsoft.UI.Xaml.Data;

@@ -2,7 +2,6 @@
 {
     using System;
     using Microsoft.UI.Xaml.Controls;
-    using Nivaes.App.Cross.Presenters;
 
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class CrossDialogPresentationAttribute : CrossPresentationAttribute

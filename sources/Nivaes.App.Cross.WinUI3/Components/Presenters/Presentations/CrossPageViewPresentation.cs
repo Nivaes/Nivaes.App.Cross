@@ -1,8 +1,5 @@
 ﻿namespace Nivaes.App.Cross.WinUI3
 {
-    using Microsoft.UI.Xaml.Controls;
-    using Nivaes.App.Cross.Presenters;
-
     public sealed class CrossPageViewPresentation 
         : CrossWinUIViewPresentation
     {

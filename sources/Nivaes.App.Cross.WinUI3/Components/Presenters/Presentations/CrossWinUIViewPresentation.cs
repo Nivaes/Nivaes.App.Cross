@@ -1,7 +1,5 @@
 ﻿namespace Nivaes.App.Cross.WinUI3
 {
-    using Nivaes.App.Cross.Presenters;
-
     public abstract class CrossWinUIViewPresentation : CrossViewPresentation
     {
         protected AppDataModel WindowInformation { get; private set; }

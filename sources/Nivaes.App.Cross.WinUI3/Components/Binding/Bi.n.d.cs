@@ -44,13 +44,14 @@ namespace Nivaes.App.Cross.WinUI3
 
         private static ICrossBindingCreator ResolveBindingCreator()
         {
-            ICrossBindingCreator toReturn;
-            if (!Cross.IoCProvider.TryResolve<ICrossBindingCreator>(out toReturn))
-            {
-                throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
-            }
+            throw new NotImplementedException();
+            //ICrossBindingCreator toReturn;
+            //if (!Cross.IoCProvider.TryResolve<ICrossBindingCreator>(out toReturn))
+            //{
+            //    throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
+            //}
 
-            return toReturn;
+            //return toReturn;
         }
 
         private static void CallBackWhenndIsChanged(
