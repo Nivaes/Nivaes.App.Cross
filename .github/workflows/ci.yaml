@@ -187,9 +187,6 @@ jobs:
       run: |
           dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.iOS --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -249,9 +246,9 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-build --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
 
     - name: publish
       run: |
@@ -348,11 +345,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore
-
-    - name: Build
-      run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release  --no-restore --no-build --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --no-build --verbosity normal
 
     - name: publish
       run: |
