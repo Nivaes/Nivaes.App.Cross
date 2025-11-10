@@ -303,10 +303,6 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.WinUI3 --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.WinUI3.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-    # - name: Check-AotCompatible
-    #   run: |
-    #       dotnet publish sources/Nivaes.App.Cross.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-
   build-app-cross-WinUI3-samples:
     needs: build-app-cross-WinUI3
     runs-on: windows-latest
