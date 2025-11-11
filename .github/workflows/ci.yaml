@@ -227,6 +227,10 @@ jobs:
       with:
         global-json-file: ./global.json
 
+    - name: Update xcode
+      run: |
+        xcodes install 16.0
+        xcodes select 16.0
     - name: Install workload
       run: |
         dotnet workload install android
