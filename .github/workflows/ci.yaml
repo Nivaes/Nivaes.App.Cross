@@ -151,7 +151,12 @@ jobs:
 
     - name: publish
       run: |
-        dotnet publish samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore
+        dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
+            --framework net10.0-android \
+            --property:AndroidPackageFormat=aab \
+            --property:PublushTrimmed?true \
+            --configuration Release \
+            --no-restore
           # dotnet publish samples/Nivaes.App.Cross.Sample.Droid --property:PublishAoT=true --configuration Release --no-restore
 
   build-app-cross-ios:
@@ -247,8 +252,14 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+
+    - name: publish2
+      run: |
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+
 
   build-app-cross-WinUI3:
     needs: build-app-cross
@@ -338,4 +349,4 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 --framework:net10.0-windows10.0.19041.0 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal

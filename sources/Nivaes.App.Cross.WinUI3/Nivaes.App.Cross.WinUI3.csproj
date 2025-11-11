@@ -12,7 +12,8 @@
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 
-		<SelfContained>true</SelfContained>
+		<!--<UseAppHost>false</UseAppHost>
+		<SelfContained>false</SelfContained>-->
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 	<ItemGroup>

@@ -14,6 +14,10 @@
 
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>false</IsPackable>
+
+		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+		<AppxBundle>Always</AppxBundle>
+		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
 		
 		<IsAotCompatible>true</IsAotCompatible>
 		<PublishAot>true</PublishAot>
