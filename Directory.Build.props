@@ -23,13 +23,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<_CrossCommonTargets>net9.0</_CrossCommonTargets>
-		<_CrossAndroidTargets>net9.0-android</_CrossAndroidTargets>
-		<_CrossiOSTargets>net9.0-ios;net9.0-maccatalyst</_CrossiOSTargets>
-		<_MvxMacOSTargets>net9.0-macos</_MvxMacOSTargets>
-		<_CrossTvOSTargets>net9.0-tvos</_CrossTvOSTargets>
-		<_CrossWindowsTargets>net9.0-windows10.0.19041.0;</_CrossWindowsTargets>
-		<_MvxWpfTargets>net9.0-windows</_MvxWpfTargets>
+		<_CrossCommonTargets>net10.0</_CrossCommonTargets>
+		<_CrossAndroidTargets>net10.0-android</_CrossAndroidTargets>
+		<_CrossiOSTargets>net10.0-ios;net10.0-maccatalyst</_CrossiOSTargets>
+		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
+		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
+		<_CrossWindowsTargets>net10.0-windows10.0.19041.0;</_CrossWindowsTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>

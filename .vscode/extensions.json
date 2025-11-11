@@ -4,6 +4,5 @@
       "ms-dotnettools.csdevkit",
       "ms-dotnettools.dotnet-maui",
       "github.vscode-github-actions",
-      "cake-build.cake-vscode"
     ]
 }

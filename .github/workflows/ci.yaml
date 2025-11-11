@@ -65,7 +65,7 @@ jobs:
           
     - name: Check-AotCompatible
       run: |
-          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net9.0 --configuration Release --no-restore
+          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore
 
   build-app-cross-android:
     needs: build-app-cross
@@ -94,8 +94,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -109,11 +109,7 @@ jobs:
     - name: Test
       run: |
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
-          
-    # - name: Check-AotCompatible
-    #   run: |
-    #       dotnet publish sources/Nivaes.App.Cross.Droid --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore
-    
+             
   build-app-cross-android-sample:
     needs: build-app-cross-android
     runs-on: ubuntu-latest
@@ -155,10 +151,7 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x86 --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x64 --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm64 --property:PublishAoT=true --configuration Release --no-restore
+          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --property:PublishAoT=true --configuration Release --no-restore
 
   build-app-cross-ios:
     needs: build-app-cross
@@ -204,10 +197,6 @@ jobs:
       run: |
           dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-
-    # - name: Check-AotCompatible
-    #   run: |
-    #       dotnet publish sources/Nivaes.App.Cross.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
 
   build-app-cross-ios-samples:
     needs: build-app-cross-ios
@@ -255,10 +244,8 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish sources/Nivaes.App.Cross.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
 
   build-app-cross-WinUI3:
     needs: build-app-cross
