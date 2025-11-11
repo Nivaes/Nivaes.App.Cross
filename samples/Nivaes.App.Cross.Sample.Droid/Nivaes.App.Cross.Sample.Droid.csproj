@@ -18,10 +18,10 @@
 		<IsPackable>false</IsPackable>
 		<!--<GeneratePackageOnBuild>false</GeneratePackageOnBuild>-->
 
-		<!--<IsAotCompatible>true</IsAotCompatible>-->
+		<IsAotCompatible>true</IsAotCompatible>
 
 		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
-		<PublishAot>true</PublishAot>
+		<!--<PublishAot>true</PublishAot>-->
 		
 		<!--<AndroidPackageFormat>aab</AndroidPackageFormat>-->
 		<!--<SelfContained>true</SelfContained>-->
