@@ -278,11 +278,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install windows
 
     - name: Restore Dependencies
       run: |
@@ -324,11 +320,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install windows
 
     - name: Restore Dependencies
       run: |
@@ -346,4 +338,12 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 --framework:net10.0-windows10.0.19041.0 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 \
+            --framework:net10.0-windows10.0.19041.0 \
+            --property:RunAOTAnalysis=true \
+            --property:GenerateAppxPackageOnBuild=true \
+            --property:AppxPackageDir=bin\Release\ \
+            --property:AppxBundle=Always \
+            --property:AppxBundlePlatforms="x86|x64|arm64" \
+            --configuration Release \
+            --no-restore --verbosity normal
