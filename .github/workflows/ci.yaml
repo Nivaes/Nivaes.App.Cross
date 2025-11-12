@@ -137,9 +137,11 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-x64
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-arm64
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-x64
+          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-arm64
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -154,7 +156,7 @@ jobs:
         dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
             --framework net10.0-android \
             --property:AndroidPackageFormat=aab \
-            --property:PublushTrimmed?true \
+            --property:PublushTrimmed=true \
             --configuration Release \
             --no-restore
           # dotnet publish samples/Nivaes.App.Cross.Sample.Droid --property:PublishAoT=true --configuration Release --no-restore
