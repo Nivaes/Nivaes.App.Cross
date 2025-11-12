@@ -181,11 +181,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -226,13 +222,12 @@ jobs:
 
     - name: Update xcode
       run: |
-        xcodes install 16.0
-        xcodes select 16.0
+        xcodes install 26.1
+        xcodes select 26.1
 
     - name: Install workload
       run: |
         dotnet workload install android ios maccatalyst macos tvos
-    
 
     - name: Restore Dependencies
       run: |
