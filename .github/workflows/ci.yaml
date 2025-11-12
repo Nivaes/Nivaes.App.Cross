@@ -181,7 +181,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install ios maccatalyst macos tvos
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -278,7 +278,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install windows
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -320,7 +320,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install windows
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
