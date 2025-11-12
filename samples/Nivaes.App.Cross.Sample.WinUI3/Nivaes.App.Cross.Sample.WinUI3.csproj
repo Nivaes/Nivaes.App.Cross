@@ -20,8 +20,8 @@
 		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
 		
 		<IsAotCompatible>true</IsAotCompatible>
-		<PublishAot>true</PublishAot>
-		<TrimMode>link</TrimMode>
+		<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
+		<TrimMode Condition="'$(Configuration)' == 'Release'">link</TrimMode>
 	</PropertyGroup>
 
 	<ItemGroup>

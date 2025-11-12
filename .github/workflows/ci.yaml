@@ -65,7 +65,7 @@ jobs:
           
     - name: Check-AotCompatible
       run: |
-          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore
+          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore --no-build
 
   build-app-cross-android:
     needs: build-app-cross
@@ -149,7 +149,8 @@ jobs:
                    
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore --runtime android-x64
+          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore --runtime android-arm64
 
     - name: publish
       run: |
@@ -158,7 +159,7 @@ jobs:
             --property:AndroidPackageFormat=aab \
             --property:PublushTrimmed=true \
             --configuration Release \
-            --no-restore
+            --no-restore --no-build
           # dotnet publish samples/Nivaes.App.Cross.Sample.Droid --property:PublishAoT=true --configuration Release --no-restore
 
   build-app-cross-ios:
@@ -249,13 +250,13 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --no-build --verbosity normal
           # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
           # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
 
     - name: publish2
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --no-build --verbosity normal
 
 
   build-app-cross-WinUI3:
@@ -346,4 +347,4 @@ jobs:
             --property:AppxBundle=Always \
             --property:AppxBundlePlatforms="x86|x64|arm64" \
             --configuration Release \
-            --no-restore --verbosity normal
+            --no-restore --no-build --verbosity normal
