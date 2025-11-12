@@ -149,8 +149,9 @@ jobs:
                    
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore --runtime android-x64
-          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore --runtime android-arm64
+          dotnet build samples/Nivaes.App.Cross.Sample.Droid --property:RunAOTAnalysis=true --configuration Release --no-restore
+          # dotnet build samples/Nivaes.App.Cross.Sample.Droid --property:RunAOTAnalysis=true --configuration Release --no-restore --runtime android-x64
+          # dotnet build samples/Nivaes.App.Cross.Sample.Droid --property:RunAOTAnalysis=true --configuration Release --no-restore --runtime android-arm64
 
     - name: publish
       run: |
@@ -160,7 +161,6 @@ jobs:
             --property:PublushTrimmed=true \
             --configuration Release \
             --no-restore --no-build
-          # dotnet publish samples/Nivaes.App.Cross.Sample.Droid --property:PublishAoT=true --configuration Release --no-restore
 
   build-app-cross-ios:
     needs: build-app-cross
