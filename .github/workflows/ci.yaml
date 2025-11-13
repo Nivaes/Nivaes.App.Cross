@@ -152,19 +152,19 @@ jobs:
           dotnet build samples/Nivaes.App.Cross.Sample.Droid \
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
-            --property:AndroidPackageFormat=aab
+            --property:AndroidPackageFormat=aab \
             --configuration Release \
             --no-restore 
 
-    # - name: publish
-    #   run: |
-    #     dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
-    #         --property:AndroidPackageFormat=aab \
-    #         --property:PublushTrimmed=true \
-    #         --property:AndroidUseLLVM=true \
-    #         --property:AndroidEnableProfiledAot=false \
-    #         --configuration Release \
-    #         --no-restore --no-build
+    - name: publish
+      run: |
+        dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
+            --property:AndroidPackageFormat=aab \
+            --property:PublushTrimmed=true \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidEnableProfiledAot=false \
+            --configuration Release \
+            --no-restore --no-build
 
   build-app-cross-ios:
     needs: build-app-cross
