@@ -4,18 +4,18 @@
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
 		<!-- Windows-specific targets -->
-		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_MvxMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</TargetFrameworks>
+		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</TargetFrameworks>
 		<!-- Linux-specific targets -->
 		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</TargetFrameworks>
 		<!-- Mac-specific targets -->
-		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_MvxMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</TargetFrameworks>
+		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</TargetFrameworks>
 
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
-		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x86;x64;arm64</Platforms>
+		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('osx')) ">x64;arm64</Platforms>-->
 
 		<!--<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('windows') ">win-x86;win-x64;win-arm64;linux-x86;linux-x64;linux-arm64;osx-x64;osx-arm64;</RuntimeIdentifiers>
-		<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('linux') ">linux-x86;linux-x64;linux-arm64</RuntimeIdentifiers>
+		<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('linux') ">linux-x64;linux-arm64</RuntimeIdentifiers>
 		<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('osx') ">osx-x64;osx-arm64;ios-x64;ios-arm64</RuntimeIdentifiers>-->
 
 		<AssemblyName>Nivaes.App.Cross</AssemblyName>
@@ -30,8 +30,6 @@
 		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="Nivaes.IoC" />
 		<PackageReference Include="OpenTelemetry" />
-		<PackageReference Include="OpenTelemetry.Exporter.Prometheus.HttpListener" />
-
 		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>

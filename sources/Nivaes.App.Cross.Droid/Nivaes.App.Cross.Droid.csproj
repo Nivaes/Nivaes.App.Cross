@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
-	<!--<Platforms>x86;x64;arm64</Platforms>-->
-	<!--<RuntimeIdentifiers>android-x86;android-x64;android-arm64</RuntimeIdentifiers>-->
+	<!--<Platforms>x64;arm64</Platforms>-->
+	<!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
 	<IsAotCompatible>true</IsAotCompatible>
+	<RunAOTAnalysis>true</RunAOTAnalysis>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,11 +19,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 
-	<ProjectReference Include="..\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
+	<!--<ProjectReference Include="..\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
 		<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 		<IncludeAssets>analyzers</IncludeAssets>
 		<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
-	</ProjectReference>
+	</ProjectReference>-->
 	
 	 <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
   </ItemGroup>

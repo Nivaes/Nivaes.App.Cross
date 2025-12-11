@@ -110,44 +110,45 @@ namespace Nivaes.App.Cross.Droid
         // Calligraphy doesn't override this one...
         public override View? Inflate(int resource, ViewGroup? root, bool attachToRoot)
         {
-            // Make sure our private factory is set since LayoutInflater > Honeycomb
-            // uses a private factory.
-            SetPrivateFactoryInternal();
+            throw new NotImplementedException();
+            //// Make sure our private factory is set since LayoutInflater > Honeycomb
+            //// uses a private factory.
+            //SetPrivateFactoryInternal();
 
-            // Save the old factory in case we are recursing because of an MvxAdapter etc.
-            ICrossLayoutInflaterHolderFactory? originalFactory = _bindingVisitor.Factory;
+            //// Save the old factory in case we are recursing because of an MvxAdapter etc.
+            //ICrossLayoutInflaterHolderFactory? originalFactory = _bindingVisitor.Factory;
 
-            try
-            {
-                ICrossLayoutInflaterHolderFactory? factory = null;
+            //try
+            //{
+            //    ICrossLayoutInflaterHolderFactory? factory = null;
 
-                // Get the current binding context
-                var currentBindingContext = CrossAndroidBindingContextHelpers.Current();
-                if (currentBindingContext != null)
-                {
-                    factory = FactoryFactory?.Create(currentBindingContext.DataContext);
+            //    // Get the current binding context
+            //    var currentBindingContext = CrossAndroidBindingContextHelpers.Current();
+            //    if (currentBindingContext != null)
+            //    {
+            //        factory = FactoryFactory?.Create(currentBindingContext.DataContext);
 
-                    // Set the current factory used to generate bindings
-                    if (factory != null)
-                        _bindingVisitor.Factory = factory;
-                }
+            //        // Set the current factory used to generate bindings
+            //        if (factory != null)
+            //            _bindingVisitor.Factory = factory;
+            //    }
 
-                // Inflate the resource
-                var view = base.Inflate(resource, root, attachToRoot);
+            //    // Inflate the resource
+            //    var view = base.Inflate(resource, root, attachToRoot);
 
-                // Register bindings with clear key
-                if (currentBindingContext != null)
-                {
-                    if (factory != null)
-                        currentBindingContext.RegisterBindingsWithClearKey(view, factory.CreatedBindings);
-                }
+            //    // Register bindings with clear key
+            //    if (currentBindingContext != null)
+            //    {
+            //        if (factory != null)
+            //            currentBindingContext.RegisterBindingsWithClearKey(view, factory.CreatedBindings);
+            //    }
 
-                return view;
-            }
-            finally
-            {
-                _bindingVisitor.Factory = originalFactory;
-            }
+            //    return view;
+            //}
+            //finally
+            //{
+            //    _bindingVisitor.Factory = originalFactory;
+            //}
         }
 
         protected override View? OnCreateView(View? parent, string? name, IAttributeSet? attrs)
@@ -388,10 +389,11 @@ namespace Nivaes.App.Cross.Droid
         {
             get
             {
-                if (_layoutInflaterHolderFactoryFactory != null)
-                    return _layoutInflaterHolderFactoryFactory;
-
                 throw new NotImplementedException();
+
+                //if (_layoutInflaterHolderFactoryFactory != null)
+                //    return _layoutInflaterHolderFactoryFactory;
+                
                 //if (Mvx.IoCProvider == null)
                 //{
                 //    // if IoCProvider is null, Log instance will probably be null too

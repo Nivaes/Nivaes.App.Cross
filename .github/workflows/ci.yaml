@@ -65,7 +65,7 @@ jobs:
           
     - name: Check-AotCompatible
       run: |
-          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net9.0 --configuration Release --no-restore
+          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore --no-build
 
   build-app-cross-android:
     needs: build-app-cross
@@ -94,8 +94,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -104,16 +104,12 @@ jobs:
     - name: Build
       run: |
           dotnet build sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
-          dotnet build sources/Nivaes.App.Cross.Droid --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
           
     - name: Test
       run: |
           dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --verbosity normal --no-restore
-          
-    # - name: Check-AotCompatible
-    #   run: |
-    #       dotnet publish sources/Nivaes.App.Cross.Droid --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore
-    
+             
   build-app-cross-android-sample:
     needs: build-app-cross-android
     runs-on: ubuntu-latest
@@ -141,9 +137,11 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-x64
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-arm64
+          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-x64
+          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-arm64
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -151,14 +149,22 @@ jobs:
                    
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Droid --configuration Release --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.Droid \
+            --property:AndroidEnableProfiledAot=false \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidPackageFormat=aab \
+            --configuration Release \
+            --no-restore 
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x86 --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-x64 --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm --property:PublishAoT=true --configuration Release --no-restore
-          dotnet publish samples/Nivaes.App.Cross.Sample.Droid --framework net9.0-android --runtime android-arm64 --property:PublishAoT=true --configuration Release --no-restore
+        dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
+            --property:AndroidPackageFormat=aab \
+            --property:PublushTrimmed=true \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidEnableProfiledAot=false \
+            --configuration Release \
+            --no-restore --no-build
 
   build-app-cross-ios:
     needs: build-app-cross
@@ -180,11 +186,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -205,10 +207,6 @@ jobs:
           dotnet test sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
           dotnet test sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
 
-    # - name: Check-AotCompatible
-    #   run: |
-    #       dotnet publish sources/Nivaes.App.Cross.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-
   build-app-cross-ios-samples:
     needs: build-app-cross-ios
     runs-on: macos-latest
@@ -219,22 +217,22 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
 
-    - name: Update xcode
-      run: |
-        xcodes install 16.0
-        xcodes select 16.0
+    - name: Checkout
+      uses: actions/checkout@v5
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ./global.json
 
+    - name: Update xcode
+      run: |
+        xcodes install 26.1
+        xcodes select 26.1
+
     - name: Install workload
       run: |
         dotnet workload install android ios maccatalyst macos tvos
-    
-    - name: Checkout
-      uses: actions/checkout@v5
 
     - name: Restore Dependencies
       run: |
@@ -256,10 +254,14 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish sources/Nivaes.App.Cross.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --framework net9.0-android --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --no-build --verbosity normal
+          # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --verbosity normal
+          # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+
+    - name: publish2
+      run: |
+          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:ArchiveOnBuild=true --property:RuntimeIdentifier=ios-arm64 --configuration Release --no-restore --no-build --verbosity normal
+
 
   build-app-cross-WinUI3:
     needs: build-app-cross
@@ -281,11 +283,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -327,11 +325,7 @@ jobs:
 
     - name: Install workload
       run: |
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install macos
-        dotnet workload install tvos
+        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |
@@ -349,4 +343,12 @@ jobs:
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI3 \
+            --framework:net10.0-windows10.0.19041.0 \
+            --property:RunAOTAnalysis=true \
+            --property:GenerateAppxPackageOnBuild=true \
+            --property:AppxPackageDir=bin\Release\ \
+            --property:AppxBundle=Always \
+            --property:AppxBundlePlatforms="x86|x64|arm64" \
+            --configuration Release \
+            --no-restore --no-build --verbosity normal

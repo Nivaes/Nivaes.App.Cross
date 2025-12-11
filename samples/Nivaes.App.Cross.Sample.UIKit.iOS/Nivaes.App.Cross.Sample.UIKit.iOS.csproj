@@ -1,6 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net10.0-ios</TargetFramework>
+		<TargetFrameworks>net10.0-ios</TargetFrameworks>
+		<RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>
+		
 		<OutputType>Exe</OutputType>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>

@@ -20,7 +20,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": 
-              "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/bin/x64/Debug/net9.0-windows10.0.19041.0/win10-x64/Nivaes.App.Cross.WinUI.exe",
+              "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI/bin/x64/Debug/net10.0-windows10.0.19041.0/win10-x64/Nivaes.App.Cross.WinUI.exe",
             "args": [],
             "cwd": "${workspaceFolder}/Nivaes.App.Cross/Nivaes.App.Cross.WinUI",
             "console": "internalConsole",
