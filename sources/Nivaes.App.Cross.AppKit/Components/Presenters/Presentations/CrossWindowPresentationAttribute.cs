@@ -1,0 +1,42 @@
+namespace Nivaes.App.Cross.AppKit
+{
+    public class CrossWindowPresentationAttribute : CrossBasePresentationAttribute
+    {
+        public static float DefaultPositionX = 200;
+        public static float DefaultPositionY = 200;
+        public static float DefaultWidth = 600;
+        public static float DefaultHeight = 400;
+        public static NSWindowStyle DefaultWindowStyle = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled;
+        public static NSBackingStore DefaultBufferingType = NSBackingStore.Buffered;
+        public static NSWindowTitleVisibility DefaultTitleVisibility = NSWindowTitleVisibility.Visible;
+        public static bool DefaultShouldCascadeWindows = true;
+
+        public CrossWindowPresentationAttribute(string windowControllerName = null, string storyboardName = null)
+        {
+            WindowControllerName = windowControllerName;
+            StoryboardName = storyboardName;
+        }
+
+        public float PositionX { get; set; } = DefaultPositionX;
+
+        public float PositionY { get; set; } = DefaultPositionY;
+
+        public float Width { get; set; } = DefaultWidth;
+
+        public float Height { get; set; } = DefaultHeight;
+
+        public NSWindowStyle WindowStyle { get; set; } = DefaultWindowStyle;
+
+        public NSBackingStore BufferingType { get; set; } = DefaultBufferingType;
+
+        public NSWindowTitleVisibility TitleVisibility { get; set; } = DefaultTitleVisibility;
+
+        public bool ShouldCascadeWindows { get; set; } = DefaultShouldCascadeWindows;
+
+        public string Identifier { get; set; }
+
+        public string WindowControllerName { get; set; }
+
+        public string StoryboardName { get; set; }
+    }
+}

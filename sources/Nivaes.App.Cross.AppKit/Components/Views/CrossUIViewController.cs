@@ -31,5 +31,8 @@
             : base(handle)
         {
         }
+
+        public ICrossViewModel? ViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public object? DataContext { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

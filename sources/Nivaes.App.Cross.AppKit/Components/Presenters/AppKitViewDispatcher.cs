@@ -1,7 +1,6 @@
 ﻿namespace Nivaes.App.Cross.AppKit
 {
     using CoreServices;
-    using Nivaes.App.Cross.Presenters;
 
     public sealed class AppKitViewDispatcher : CrossViewDispatcher, ICrossViewDispatcher
     {
