@@ -5,11 +5,10 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.IoC;
 
-
-    public sealed class AppKitViewPresenter : CrossViewPresenter, ICrossViewPresenter
+    public sealed class AppKitViewPresenter 
+        : CrossViewPresenter, ICrossViewPresenter
     {
         //private readonly WrappedFrame mFrame;
 

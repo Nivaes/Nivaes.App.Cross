@@ -6,7 +6,6 @@
     using System.Text;
     using System.Threading.Tasks;
     using Foundation;
-    using Nivaes.App.Cross.Presenters;
     using Nivaes.App.Cross.AppKit.Presenters;
     using Nivaes.IoC;
 
