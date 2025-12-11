@@ -1,19 +1,19 @@
 <Project>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
     <PackageVersion Include="AsyncFixer" Version="1.6.0" />
     <PackageVersion Include="Nivaes.App.Shared" Version="0.8.75" />
-    <PackageVersion Include="Nivaes.Extensions" Version="2.2.33" />
-    <PackageVersion Include="Nivaes.IoC" Version="0.1.9" />
-    <PackageVersion Include="OpenTelemetry" Version="1.13.1" />
+    <PackageVersion Include="Nivaes.Extensions" Version="2.2.34" />
+    <PackageVersion Include="Nivaes.IoC" Version="0.1.10" />
+    <PackageVersion Include="OpenTelemetry" Version="1.14.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.Prometheus.HttpListener" Version="1.10.0-beta.1" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.14.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.101" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.16.1.129956" />
     <PackageVersion Include="Microsoft.CodeAnalysis" Version="4.12.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.0.0" />
     <PackageVersion Include="Xamarin.AndroidX.AppCompat" Version="1.7.1.1" />
     <PackageVersion Include="Xamarin.AndroidX.Fragment" Version="1.8.9" />
     <PackageVersion Include="Xamarin.AndroidX.Preference" Version="1.2.1.15" />
