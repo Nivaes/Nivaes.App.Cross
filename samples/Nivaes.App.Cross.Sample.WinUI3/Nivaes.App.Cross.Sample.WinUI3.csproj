@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
-		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<TargetFrameworks>$(_CrossWindowsTargets)</TargetFrameworks>
+		<TargetPlatformMinVersion>$(_TargetPlatformMinVersion)</TargetPlatformMinVersion>
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI3</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>

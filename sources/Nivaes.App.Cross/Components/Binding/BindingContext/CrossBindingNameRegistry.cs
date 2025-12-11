@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross
             Justification = "The interface types returned by GetInterfaces() on a type with DynamicallyAccessedMemberTypes.Interfaces are safe to process")]
         private bool TryDefaultFor(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] Type type,
-            out string toReturn,
+            out string? toReturn,
             bool includeInterfaces = true)
         {
             if (type == typeof(object))

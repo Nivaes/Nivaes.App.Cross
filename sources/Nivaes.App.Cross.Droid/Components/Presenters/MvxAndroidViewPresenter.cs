@@ -8,7 +8,7 @@ using Android.Content;
 using Android.OS;
 using Android.Util;
 using AndroidX.ViewPager.Widget;
-using Google.Android.Material.Tabs;
+//using Google.Android.Material.Tabs;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Platforms.Android.Presenters.Attributes;

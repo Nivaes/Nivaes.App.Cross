@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
 
         private readonly List<KeyValuePair<object, IList<TargetAndBinding>>> _viewBindings = new();
 
-        private object _dataContext;
+        private object? _dataContext;
 
         public CrossBindingContext()
             : this((object)null)
@@ -169,7 +169,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {

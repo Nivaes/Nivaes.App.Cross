@@ -79,9 +79,9 @@ namespace Nivaes.App.Cross
                                             CrossInlineBindingTarget<TViewModel> target,
                                             string targetPath,
                                             string sourcePath,
-                                            ICrossValueConverter converter = null,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            ICrossValueConverter? converter = null,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             if (string.IsNullOrEmpty(targetPath))

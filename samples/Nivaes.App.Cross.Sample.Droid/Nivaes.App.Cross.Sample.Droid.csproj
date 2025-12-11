@@ -29,7 +29,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
-		<PackageReference Include="Xamarin.AndroidX.AppCompat" />
+		<!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />-->
 	</ItemGroup>
 	<!--<ItemGroup>
 		<AdditionalFiles Include="Resources/layout/*.xml" />

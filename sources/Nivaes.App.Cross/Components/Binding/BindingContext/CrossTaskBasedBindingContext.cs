@@ -10,12 +10,12 @@ namespace Nivaes.App.Cross
         private readonly List<Action> _delayedActions = new();
         private readonly List<CrossBindingContext.TargetAndBinding> _directBindings = new();
         private readonly List<KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>> _viewBindings = new();
-        private object _dataContext;
-        private ICrossBinder _binder;
+        private object? _dataContext;
+        private ICrossBinder? _binder;
 
         public bool RunSynchronously { get; set; }
 
-        public event EventHandler DataContextChanged;
+        public event EventHandler? DataContextChanged;
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public ICrossBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
