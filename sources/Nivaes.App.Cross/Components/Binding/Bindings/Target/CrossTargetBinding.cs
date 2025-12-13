@@ -1,9 +1,11 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
 
-    public abstract class CrossTargetBinding : CrossBinding, ICrossTargetBinding
+    public abstract class CrossTargetBinding 
+        : CrossBinding, ICrossTargetBinding
     {
         public event EventHandler<CrossTargetChangedEventArgs>? ValueChanged;
 

@@ -1,3 +1,5 @@
+using System;
+
 namespace Nivaes.App.Cross
 {
     public class CrossTypeAndNamePair

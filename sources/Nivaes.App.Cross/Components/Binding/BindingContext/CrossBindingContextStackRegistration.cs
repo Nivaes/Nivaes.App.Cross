@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using Microsoft.Extensions.Logging;
 
     public class CrossBindingContextStackRegistration<TBindingContext>

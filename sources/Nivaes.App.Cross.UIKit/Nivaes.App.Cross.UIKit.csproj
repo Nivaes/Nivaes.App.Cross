@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(_CrossiOSTargets);</TargetFrameworks>
-		
+		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets)</TargetFrameworks>
+
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 

@@ -1,5 +1,7 @@
 namespace Nivaes.App.Cross
 {
+    using System.Collections.Generic;
+
     public class CrossInvertedValueCombiner
             : CrossBooleanValueCombiner
     {

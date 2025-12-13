@@ -1,6 +1,8 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Linq.Expressions;
     using Microsoft.Extensions.Logging;
 

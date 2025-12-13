@@ -1,5 +1,5 @@
 ﻿<Project>
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
 		<PackageProjectUrl>https://github.com/Nivaes</PackageProjectUrl>
 		<Authors>Nivaes Systems</Authors>
@@ -7,13 +7,14 @@
 		<PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);NU1507;1591</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">13.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.8</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.5</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
@@ -25,29 +26,53 @@
 	<PropertyGroup>
 		<_CrossCommonTargets>net10.0</_CrossCommonTargets>
 		<_CrossAndroidTargets>net10.0-android</_CrossAndroidTargets>
-		<_CrossiOSTargets>net10.0-ios;net10.0-maccatalyst</_CrossiOSTargets>
-		<_MvxMacOSTargets>net10.0-macos</_MvxMacOSTargets>
+		<_CrossiOSTargets>net10.0-ios</_CrossiOSTargets>
+		<_CrossMacCatalystTargets>net10.0-maccatalyst</_CrossMacCatalystTargets>
+		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
 		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
-		<_MvxWpfTargets>net10.0-windows</_MvxWpfTargets>
+		<_CrossWinUITargets>net10.0-windows</_CrossWinUITargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<_CrossTargetFrameworks>$(_CrossCommonTargets)</_CrossTargetFrameworks>
+		<!-- Windows-specific targets -->
+		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
+		<!-- Linux-specific targets -->
+		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
+		<!-- Mac-specific targets -->
+		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IncludeSymbols>true</IncludeSymbols>
+		<Nullable>enable</Nullable>
+		<NeutralLanguage>en</NeutralLanguage>
+
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>portable</DebugType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>portable</DebugType>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+	
+	<!--<PropertyGroup>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<RepositoryUrl>https://github.com/nivaes/Professional365</RepositoryUrl>
+		<RepositoryUrl>https://github.com/nivaes/Nivaes.App.Cross</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
 
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-
-		<DebugType>full</DebugType>
-
-		<NeutralLanguage>en</NeutralLanguage>
 		<VersionPrefix>0.0.1</VersionPrefix>
 		<VersionSuffix>-dev-0.2</VersionSuffix>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<PropertyGroup>
 		<EnablePackageValidation>true</EnablePackageValidation>
@@ -63,17 +88,14 @@
 		<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
-	<PropertyGroup>
+	<!--<PropertyGroup>
 
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<IncludeSymbols>true</IncludeSymbols>
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 
 		<DesignTimeBuild>false</DesignTimeBuild>
-		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 </Project>

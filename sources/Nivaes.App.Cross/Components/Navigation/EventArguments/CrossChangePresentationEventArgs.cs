@@ -1,5 +1,7 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System.Threading;
+
     public class CrossChangePresentationEventArgs 
         : CrossCancelEventArgs
     {

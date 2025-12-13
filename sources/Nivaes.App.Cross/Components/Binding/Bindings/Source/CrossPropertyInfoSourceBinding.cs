@@ -1,12 +1,14 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-    public abstract class CrossPropertyInfoSourceBinding : CrossSourceBinding
+    public abstract class CrossPropertyInfoSourceBinding 
+        : CrossSourceBinding
     {
         private IDisposable _subscription;
 

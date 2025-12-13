@@ -1,6 +1,9 @@
 ﻿namespace Nivaes.App.Cross
 {
-    public class CrossNavigateEventArgs : CrossCancelEventArgs, ICrossNavigateEventArgs
+    using System.Threading;
+
+    public class CrossNavigateEventArgs 
+        : CrossCancelEventArgs, ICrossNavigateEventArgs
     {
         public CrossNavigateEventArgs(CrossNavigationMode mode, CancellationToken? cancellationToken = default) 
             : base(cancellationToken)

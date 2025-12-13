@@ -1,5 +1,6 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System.Collections.Generic;
     using System.ComponentModel;
 
     public sealed class CrossPropertyChangedEventArgsCache

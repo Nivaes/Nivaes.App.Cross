@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     public interface ICrossSourceBindingFactoryExtension

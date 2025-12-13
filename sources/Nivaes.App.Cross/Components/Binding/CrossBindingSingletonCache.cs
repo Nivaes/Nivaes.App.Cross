@@ -1,5 +1,7 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+
     // this class is not perfect OO and it gets in the way of testing
     // however, it is here for speed - to help avoid obscene numbers of Cross.IoCProvider.Resolve<T> calls during binding
     [Obsolete("Quitar IoC de Cross")]

@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Reflection;
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;

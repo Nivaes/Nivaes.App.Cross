@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11304.174 d18.0
+VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{84ABC328-F5B5-4D79-BFE0-B3B9298662FE}"
 EndProject
@@ -78,6 +78,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Sample.AppKit.MacOS", "samples\Nivaes.App.Cross.Sample.AppKit.MacOS\Nivaes.App.Cross.Sample.AppKit.MacOS.csproj", "{A3BDA65D-683F-44DF-B397-74E136E92C8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppKit", "AppKit", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packets", "Packets", "{86BF3AF3-89EC-46DB-8306-6FE32CBDAE4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nivaes.App.Cross.Packet", "packets\Nivaes.App.Cross.Packet\Nivaes.App.Cross.Packet.csproj", "{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +164,10 @@ Global
 		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3BDA65D-683F-44DF-B397-74E136E92C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -188,6 +196,7 @@ Global
 		{32D1DFCF-1237-4E27-95B0-11A2FE6A537D} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
 		{A3BDA65D-683F-44DF-B397-74E136E92C8F} = {A6E7B574-3D44-464D-BFA8-6A05C3090F68}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {84ABC328-F5B5-4D79-BFE0-B3B9298662FE}
+		{807A60BB-4B0F-2F4E-79A7-FB4264EF5A11} = {86BF3AF3-89EC-46DB-8306-6FE32CBDAE4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {493C5B7A-FC0F-4036-B27F-7344405A75A5}

@@ -1,5 +1,8 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+
     public class CrossViewPresenterManager
     {
         private IDictionary<Type, ICrossPresenterAction> ViewPresenters { get; } = new Dictionary<Type, ICrossPresenterAction>();

@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Reflection;
 
     [Obsolete("No es compatible con AoT", true)]

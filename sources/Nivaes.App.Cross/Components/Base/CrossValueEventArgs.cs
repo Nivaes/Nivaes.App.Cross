@@ -1,5 +1,7 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+
     public class CrossValueEventArgs<T>
         : EventArgs
     {

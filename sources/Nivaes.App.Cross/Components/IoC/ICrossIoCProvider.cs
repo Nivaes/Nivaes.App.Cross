@@ -1,5 +1,7 @@
 namespace MvvmCross.IoC
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     [Obsolete("Quitar IoC de Cross")]

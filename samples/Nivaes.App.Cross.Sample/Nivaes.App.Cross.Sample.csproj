@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>$(_CrossTargetFrameworks)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -9,10 +9,25 @@
 
 	  <IsPackable>false</IsPackable>
 	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	  
-	  <IsAotCompatible>true</IsAotCompatible>
+
   </PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacCatalystTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>

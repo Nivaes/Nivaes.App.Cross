@@ -2,14 +2,8 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
-		<!-- Windows-specific targets -->
-		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</TargetFrameworks>
-		<!-- Linux-specific targets -->
-		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</TargetFrameworks>
-		<!-- Mac-specific targets -->
-		<TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</TargetFrameworks>
-
+		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
+		
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('osx')) ">x64;arm64</Platforms>-->
@@ -18,13 +12,28 @@
 		<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('linux') ">linux-x64;linux-arm64</RuntimeIdentifiers>
 		<RuntimeIdentifiers Condition=" $([MSBuild]::IsOSPlatform('osx') ">osx-x64;osx-arm64;ios-x64;ios-arm64</RuntimeIdentifiers>-->
 
-		<AssemblyName>Nivaes.App.Cross</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross</RootNamespace>
+		<!--<AssemblyName>Nivaes.App.Cross</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross</RootNamespace>-->
 
-		<ImplicitUsings>enable</ImplicitUsings>
-		<IsAotCompatible>true</IsAotCompatible>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->		
 	</PropertyGroup>
 	
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacCatalystTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+		
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />
@@ -46,12 +55,6 @@
 
 	<PropertyGroup>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<DebugType>portable</DebugType>
 	</PropertyGroup>
 	
 	<ItemGroup>

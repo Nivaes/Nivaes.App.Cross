@@ -1,5 +1,7 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     [Obsolete("Eliminar, no compatible con AoT", true)]

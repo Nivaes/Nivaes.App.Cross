@@ -1,5 +1,8 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Microsoft.Extensions.Logging;
 
     public abstract class CrossPairwiseValueCombiner

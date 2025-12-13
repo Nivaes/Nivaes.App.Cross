@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     public sealed class CrossNullTargetBinding() : CrossTargetBinding(null)

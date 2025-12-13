@@ -1,6 +1,8 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System;
     using System.ComponentModel;
+    using System.Threading.Tasks;
 
     public class CrossNotifyTask 
         : INotifyPropertyChanged

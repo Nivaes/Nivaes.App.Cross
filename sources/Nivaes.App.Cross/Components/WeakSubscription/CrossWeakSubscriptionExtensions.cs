@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;

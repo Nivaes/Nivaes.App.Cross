@@ -1,5 +1,7 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Class)]
     public abstract class CrossBasePresentationAttribute : 
         Attribute, 

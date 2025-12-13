@@ -1,5 +1,8 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+
     public class CrossBundle : ICrossBundle
     {
         public CrossBundle()

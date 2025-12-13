@@ -1,5 +1,9 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public abstract class CrossValueCombiner
         : ICrossValueCombiner
     {

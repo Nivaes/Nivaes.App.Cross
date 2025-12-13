@@ -32,6 +32,7 @@
                     return new SampleApplication(applicationStart!);
                 });
 
+            // ToDo: Generación por Roslyn 
             var viewsManager = new CrossViewsManager(new[]
             {
                 CrossViewsManager.New<RootViewModel, RootView>(),
@@ -45,6 +46,7 @@
                 CrossViewPresentationsManager.New<NewWindowView, CrossNewWindowViewPresentation>(),
             });
             Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
+
         }
     }
 }

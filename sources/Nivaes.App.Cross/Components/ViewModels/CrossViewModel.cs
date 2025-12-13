@@ -4,6 +4,7 @@
     using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using System.Threading.Tasks;
 
     public abstract class CrossViewModel
         : ICrossViewModel, INotifyPropertyChanged

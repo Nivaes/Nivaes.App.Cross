@@ -1,6 +1,8 @@
 namespace Nivaes.App.Cross
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
     using Microsoft.Extensions.Logging;
 
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

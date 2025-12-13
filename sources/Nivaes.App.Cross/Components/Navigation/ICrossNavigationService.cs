@@ -1,5 +1,6 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     public delegate void BeforeNavigateEventHandler(object sender, ICrossNavigateEventArgs e);

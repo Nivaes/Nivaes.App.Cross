@@ -1,7 +1,8 @@
 ﻿namespace Nivaes.App.Cross
 {
+    using System;
     using System.Threading.Tasks;
-    using static System.Net.Mime.MediaTypeNames;
+    //using static System.Net.Mime.MediaTypeNames;
 
     public abstract class CrossViewDispatcher : ICrossViewDispatcher
     {

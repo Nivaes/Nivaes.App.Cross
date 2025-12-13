@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Collections.Generic;
     using System.Text;
 
     public class CrossParsedExpression : ICrossParsedExpression

@@ -1,3 +1,5 @@
+using System;
+
 namespace Nivaes.App.Cross
 {
     [Obsolete("¿Hace falta?")]

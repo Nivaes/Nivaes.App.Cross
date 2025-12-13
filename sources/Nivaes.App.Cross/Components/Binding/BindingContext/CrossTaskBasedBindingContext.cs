@@ -1,6 +1,10 @@
 namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// OnDataContextChange executes asynchronously on a worker thread
