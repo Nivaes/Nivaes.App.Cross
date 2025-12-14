@@ -7,13 +7,13 @@
         "request": "launch",
         "preLaunchTask": "maui: Build"
       },
-        // {
-        //     "name": "ios",
-        //     "type": "maui",
-        //     "request": "launch",
-        //     "preLaunchTask": "maui: Build",
-        //     "project": "Nivaes.App.Cross.iOS",
-        // },
+        {
+             "name": "ios",
+             "type": "maui",
+             "request": "launch",
+             "preLaunchTask": "maui: Build",
+             "project": "Nivaes.App.Cross.iOS",
+        },
         {
             "name": "WinUI",
             "type": "coreclr",
