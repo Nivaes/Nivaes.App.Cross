@@ -1,16 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>$(_CrossTargetFrameworks)</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-	  <TrimMode>full</TrimMode>
+		<TrimMode>full</TrimMode>
 
-	  <IsPackable>false</IsPackable>
-	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
 		<IsAotCompatible>true</IsAotCompatible>
@@ -27,29 +26,29 @@
 	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
-    <PackageReference Include="Nivaes.App.Shared" />
-  </ItemGroup>
+		<PackageReference Include="Nivaes.App.Shared" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Roslynator.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+	<ItemGroup>
+		<PackageReference Update="Roslynator.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <PackageReference Update="SonarAnalyzer.CSharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

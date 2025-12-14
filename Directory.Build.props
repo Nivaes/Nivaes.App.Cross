@@ -14,14 +14,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">13.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.8</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.5</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22000.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-	</PropertyGroup>
+		<_CrossMacOSVersion>13.0</_CrossMacOSVersion>
+		<_CrossiOSVersion>15.8</_CrossiOSVersion>
+		<_CrossMacCatalystVersion>15.5</_CrossMacCatalystVersion>
+		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
+		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
+		<_CrossWindowsPlatformMinVersion>10.0.19041</_CrossWindowsPlatformMinVersion>
+		<_CrossTizenVersion>6.5</_CrossTizenVersion>	
+    </PropertyGroup>
 
 	<PropertyGroup>
 		<_CrossCommonTargets>net10.0</_CrossCommonTargets>
@@ -32,6 +32,7 @@
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
 		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
 		<_CrossWinUITargets>net10.0-windows</_CrossWinUITargets>
+		<_CrossTizenTargets>net10.0-tizen</_CrossTizenTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -42,6 +43,16 @@
 		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
 		<!-- Mac-specific targets -->
 		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">$(_CrossiOSVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">$(_CrossMacCatalystVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">$(_CrossAndroidVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">$(_CrossTizenVersion)</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -85,7 +96,7 @@
 		<IsSampleProject>$(MSBuildProjectName.Contains('Sample'))</IsSampleProject>
 
 		<GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>
+		<!--<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>-->
 	</PropertyGroup>
 
 	<!--<PropertyGroup>

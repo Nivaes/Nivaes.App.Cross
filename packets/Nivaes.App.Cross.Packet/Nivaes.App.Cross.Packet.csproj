@@ -9,9 +9,9 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(IsPacking)' == 'true'">
+	<!--<PropertyGroup Condition="'$(IsPacking)' == 'true'">
 		<NoBuild>true</NoBuild>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<!--<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
@@ -46,10 +46,10 @@
 
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
 
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<!--<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>-->
 
-		<DebugType>full</DebugType>
+		<!--<DebugType>full</DebugType>-->
 
 		<NeutralLanguage>en</NeutralLanguage>
 		<VersionPrefix>0.0.1</VersionPrefix>
@@ -76,87 +76,109 @@
 
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" >
 			<!--<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<Private>false</Private>
-			<CopyLocal>true</CopyLocal>
-			<IncludeOutputs>true</IncludeOutputs>-->
+			<Private>false</Private>-->
+			<CopyLocal>false</CopyLocal>
+			<!--<IncludeOutputs>true</IncludeOutputs>-->
 		</ProjectReference>
 	</ItemGroup>
 
-
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
-		
-		<None Include="..\..\soruces\Nivaes.App.Cross\bin\$(Configuration)\$(TargetFramework)\Nivaes.App.Cross.dll"
-			  Pack="true"
-			  PackagePath="lib\$(TargetFramework)\" />
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'macos'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" >
+			<CopyLocal>false</CopyLocal>
+		</ProjectReference>
 	</ItemGroup>
 	
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+	<ItemGroup>
+		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.dll;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.pdb;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossMacOSTargets)$(_CrossMacOSVersion)\" />
+	
+		<None Include="..\..\sources\Nivaes.App.Cross.AppKit\bin\$(Configuration)\$(_CrossMacOSTargets)\Nivaes.App.Cross.AppKit.dll;
+					   ..\..\sources\Nivaes.App.Cross.AppKit\bin\$(Configuration)\$(_CrossMacOSTargets)\Nivaes.App.Cross.AppKit.pdb;
+					   ..\..\sources\Nivaes.App.Cross.AppKit\bin\$(Configuration)\$(_CrossMacOSTargets)\Nivaes.App.Cross.AppKit.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossMacOSTargets)$(_CrossMacOSVersion)" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'ios'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.dll;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.pdb;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossiOSTargets)$(_CrossiOSVersion)\" />
+		
+		<None Include="..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossiOSTargets)\Nivaes.App.Cross.UIKit.dll;
+					   ..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossiOSTargets)\Nivaes.App.Cross.UIKit.pdb;
+					   ..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossiOSTargets)\Nivaes.App.Cross.UIKit.xml;"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossiOSTargets)$(_CrossiOSVersion)\"/>
 	</ItemGroup>
 	
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.dll;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.pdb;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossMacCatalystTargets)$(_CrossMacCatalystVersion)\" />
+
+		<None Include="..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossMacCatalystTargets)\Nivaes.App.Cross.UIKit.dll;
+					   ..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossMacCatalystTargets)\Nivaes.App.Cross.UIKit.pdb;
+					   ..\..\sources\Nivaes.App.Cross.UIKit\bin\$(Configuration)\$(_CrossMacCatalystTargets)\Nivaes.App.Cross.UIKit.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossMacCatalystTargets)$(_CrossMacCatalystVersion)\" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 		<PackageReference Include="Xamarin.AndroidX.Preference" />
-
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Android\Nivaes.App.Cross.Android.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.dll;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.pdb;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossAndroidTargets)$(_CrossAndroidVersion)\" />
+	
+		<None Include="..\..\sources\Nivaes.App.Cross.Droid\bin\$(Configuration)\$(_CrossAndroidTargets)\Nivaes.App.Cross.Droid.dll;
+			           ..\..\sources\Nivaes.App.Cross.Droid\bin\$(Configuration)\$(_CrossAndroidTargets)\Nivaes.App.Cross.Droid.pdb;
+			           ..\..\sources\Nivaes.App.Cross.Droid\bin\$(Configuration)\$(_CrossAndroidTargets)\Nivaes.App.Cross.Droid.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossAndroidTargets)$(_CrossAndroidVersion)\" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.dll;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.pdb;
+					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossWindowsTargets)\" />
+		
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.WinUI3.dll;
+					   ..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.WinUI3.pdb;
+					   ..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\$(_CrossWindowsTargets)\Nivaes.App.Cross.WinUI3.xml"
+			  Pack="true"
+			  PackagePath="lib\$(_CrossWindowsTargets)\" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
 	</ItemGroup>
-
+	
 	<ItemGroup>
-		<!--<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<Private>false</Private>
-			<CopyLocal>true</CopyLocal>
-			<IncludeOutputs>true</IncludeOutputs>
-		</ProjectReference>-->
-		<!--<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<Private>false</Private>
-			<CopyLocal>true</CopyLocal>
-			<IncludeOutputs>true</IncludeOutputs>
-		</ProjectReference>-->
-		<!--<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<Private>false</Private>
-			<CopyLocal>true</CopyLocal>
-			<IncludeOutputs>true</IncludeOutputs>
-		</ProjectReference>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" Condition="'$(TargetFramework)'=='$(_CrossWinUITargets)'">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<Private>false</Private>
-			<CopyLocal>true</CopyLocal>
-			<IncludeOutputs>true</IncludeOutputs>
-		</ProjectReference>-->
-		<!--<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />-->
-
-		<!--<None Include="..\..\sources\Nivaes.App.Cross.Droid\bin\$(Configuration)\net10.0-android\Nivaes.App.Cross.Droid.dll" Pack="true" 
-			  PackagePath="lib\net10.0-android36.0\" Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'" />
-
-		<None Include="..\..\sources\Nivaes.App.Cross.Droid\bin\$(Configuration)\net10.0-android\Nivaes.App.Cross.dll" Pack="true"
-			  PackagePath="lib\net10.0-android36.0\" Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'" />-->
-		
-		<!--<None Include=".\bin\$(Configuration)\$(_CrossAndroidTargets)*\*.{dll,xml,pdb}" 
-			  Pack="true" PackagePath="lib\$(_CrossAndroidTargets)\" Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'" />-->
-
-		<!--<None Include=".\bin\$(Configuration)\**\*.dll" 
-			  Pack="true" PackagePath="lib\net10.0-android36.0\" Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'" />-->
-
-		<!--<None Include=".\bin\$(Configuration)\$(TargetFramework)*\*.dll" 
-			  Pack="true" PackagePath="lib\$(TargetFramework)\" Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'" />
-
-		
-		<None Include=".\bin\$(Configuration)\$(TargetFramework)*\*.dll" 
-			  Pack="true" PackagePath="lib\$(TargetFramework)\" Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'" />
-
-		<None Include=".\bin\$(Configuration)\$(TargetFramework)*\*.dll" 
-			  Pack="true" PackagePath="lib\$(TargetFramework)\" Condition="'$(TargetFramework)'=='$(_CrossWinUITargets)'" />-->
 	</ItemGroup>
-
+	  
 </Project>
