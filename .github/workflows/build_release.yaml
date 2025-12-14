@@ -42,7 +42,7 @@ jobs:
 
     - name: Pack
       if: github.event_name == 'push' || (github.event_name != 'pull_request')
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+      run: dotnet pack .\packets\Nivaes.App.Cross.Packet\ --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Create Release
       if: github.event_name == 'push' || (github.event_name != 'pull_request')
