@@ -85,9 +85,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Properties\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
 	</ItemGroup>
 	<ItemGroup>
