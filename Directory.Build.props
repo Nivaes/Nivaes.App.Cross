@@ -19,7 +19,7 @@
 		<_CrossMacCatalystVersion>15.5</_CrossMacCatalystVersion>
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
 		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
-		<_CrossWindowsPlatformMinVersion>10.0.19041</_CrossWindowsPlatformMinVersion>
+		<_CrossWindowsPlatformMinVersion>10.0.19041.0</_CrossWindowsPlatformMinVersion>
 		<_CrossTizenVersion>6.5</_CrossTizenVersion>	
     </PropertyGroup>
 
