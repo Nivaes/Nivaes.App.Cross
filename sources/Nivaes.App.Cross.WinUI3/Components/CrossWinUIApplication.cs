@@ -6,7 +6,8 @@
     using Nivaes.App.Cross;
     using Nivaes.IoC;
 
-    public abstract class CrossWinUIApplication : Application
+    public abstract class CrossWinUIApplication 
+        : Application
     {
         protected Frame? RootFrame { get; set; }
         public Window? MainWindow { get; protected set; }

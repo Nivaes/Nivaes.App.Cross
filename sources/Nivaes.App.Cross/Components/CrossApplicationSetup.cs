@@ -4,7 +4,8 @@
     using System.Diagnostics;
     using Nivaes.IoC;
 
-    public abstract class CrossApplicationSetup : ICrossApplicationSetup, IDisposable
+    public abstract class CrossApplicationSetup 
+        : ICrossApplicationSetup, IDisposable
     {
         protected CrossApplicationSetup()
         {

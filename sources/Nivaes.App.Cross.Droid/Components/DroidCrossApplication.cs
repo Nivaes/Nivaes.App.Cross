@@ -3,7 +3,8 @@
     using System;
     using Nivaes.IoC;
 
-    public abstract class DroidCrossApplication : Application
+    public abstract class DroidCrossApplication 
+        : Application
     {
         protected DroidCrossApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)
