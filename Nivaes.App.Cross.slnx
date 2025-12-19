@@ -1,0 +1,69 @@
+<Solution>
+  <Folder Name="/Doc/">
+    <File Path="Estructura.md" />
+  </Folder>
+  <Folder Name="/Packets/">
+    <Project Path="packets/Nivaes.App.Cross.Packet/Nivaes.App.Cross.Packet.csproj" />
+  </Folder>
+  <Folder Name="/Samples/">
+    <Project Path="samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj" />
+    <Project Path="samples/Nivaes.App.Cross.Sample.Droid/Nivaes.App.Cross.Sample.Droid.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
+    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit.iOS/Nivaes.App.Cross.Sample.UIKit.iOS.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst/Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
+    <Project Path="samples/Nivaes.App.Cross.Sample.WinUI3/Nivaes.App.Cross.Sample.WinUI3.csproj">
+      <Platform Project="x64" />
+      <Deploy />
+    </Project>
+    <Project Path="samples/Nivaes.App.Cross.Sample/Nivaes.App.Cross.Sample.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/">
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/NuGet.config" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/workflows/">
+    <File Path=".github/workflows/build_release.yaml" />
+    <File Path=".github/workflows/ci-local.yaml" />
+    <File Path=".github/workflows/ci.yaml" />
+    <File Path=".github/workflows/publish_release.yaml" />
+  </Folder>
+  <Folder Name="/Sources/">
+    <Project Path="sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
+    <Project Path="sources/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
+  </Folder>
+  <Folder Name="/Sources/AppKit/">
+    <Project Path="sources/Nivaes.App.Cross.AppKit.SourceGenerator/Nivaes.App.Cross.AppKit.SourceGenerator.csproj" />
+    <Project Path="sources/Nivaes.App.Cross.AppKit/Nivaes.App.Cross.AppKit.csproj" />
+  </Folder>
+  <Folder Name="/Sources/Droid/">
+    <Project Path="sources/Nivaes.App.Cross.Droid.SourceGenerator/Nivaes.App.Cross.Droid.SourceGenerator.csproj" />
+    <Project Path="sources/Nivaes.App.Cross.Droid/Nivaes.App.Cross.Droid.csproj" />
+  </Folder>
+  <Folder Name="/Sources/UIKit/">
+    <Project Path="sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
+    <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
+  </Folder>
+  <Folder Name="/Sources/WinUI3/">
+    <Project Path="sources/Nivaes.App.Cross.WinUI3.SourceGenerator/Nivaes.App.Cross.WinUI3.SourceGenerator.csproj" />
+    <Project Path="sources/Nivaes.App.Cross.WinUI3/Nivaes.App.Cross.WinUI3.csproj">
+      <Platform Solution="Debug|*" Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/Tools/" />
+</Solution>
