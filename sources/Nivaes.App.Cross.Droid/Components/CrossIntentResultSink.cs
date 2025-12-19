@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
 
+    [Obsolete()]
     public class CrossIntentResultSink : ICrossIntentResultSink, ICrossIntentResultSource
     {
         public void OnResult(CrossIntentResultEventArgs result)

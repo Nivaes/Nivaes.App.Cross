@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    [Obsolete]
     public class CrossViewModelResult<TResult>
         : CrossViewModel, ICrossViewModelResult<TResult>
     {

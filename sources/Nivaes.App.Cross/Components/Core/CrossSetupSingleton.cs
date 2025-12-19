@@ -18,6 +18,7 @@ namespace Nivaes.App.Cross
     /// are no other UI methods are being invoked. This method is typically called
     /// in applications where there is no splash screen.
     /// </summary>
+    [Obsolete("Quitar IoC de Cross")]
     public abstract class CrossSetupSingleton
        : CrossSingleton<CrossSetupSingleton>
     {

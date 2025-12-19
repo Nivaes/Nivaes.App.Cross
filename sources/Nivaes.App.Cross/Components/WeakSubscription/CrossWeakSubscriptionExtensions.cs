@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using System.Windows.Input;
 
+    [Obsolete]
     public static class CrossWeakSubscriptionExtensions
     {
         public static CrossNotifyPropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,

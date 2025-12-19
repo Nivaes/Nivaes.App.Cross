@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Threading.Tasks;
 
+    [Obsolete("Quitar IoC de Cross")]
     public interface IMvxViewPresenter
     {
         Task<bool> Show(ICrossViewModelRequest request);

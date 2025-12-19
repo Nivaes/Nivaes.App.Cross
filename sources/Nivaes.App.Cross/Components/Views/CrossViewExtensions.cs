@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
 
+    [Obsolete]
     public static class CrossViewExtensions
     {
         public static void OnViewCreate(this ICrossView view, Func<ICrossViewModel?> viewModelLoader)

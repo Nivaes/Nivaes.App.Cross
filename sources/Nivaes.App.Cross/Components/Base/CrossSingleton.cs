@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
 
+    [Obsolete()]
     public abstract class CrossSingleton
         : IDisposable
     {

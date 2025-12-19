@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
 
+    [Obsolete]
     public class CrossNotifyTask 
         : INotifyPropertyChanged
     {

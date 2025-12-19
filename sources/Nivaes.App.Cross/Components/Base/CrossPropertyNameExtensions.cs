@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Linq.Expressions;
     using System.Reflection;
 
+    [Obsolete()]
     public static class CrossPropertyNameExtensions
     {
         private const string WrongExpressionMessage =

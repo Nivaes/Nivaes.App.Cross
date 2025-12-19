@@ -4,6 +4,7 @@ using System.Windows.Input;
 
 namespace Nivaes.App.Cross
 {
+    [Obsolete]
     public class CrossCanExecuteChangedEventSubscription(
             ICommand source,
             EventHandler<EventArgs> eventHandler)

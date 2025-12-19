@@ -10,7 +10,7 @@ using Nivaes.App.Cross;
 
 namespace MvvmCross.Presenters
 {
-#nullable enable
+    [Obsolete("Quitar IoC de Cross")]
     public abstract class MvxViewPresenter : IMvxViewPresenter
     {
         //private readonly Dictionary<Type, Func<MvxPresentationHint, Task<bool>>> _presentationHintHandlers =
@@ -65,5 +65,4 @@ namespace MvvmCross.Presenters
             throw new NotImplementedException();
         }
     }
-#nullable restore
 }

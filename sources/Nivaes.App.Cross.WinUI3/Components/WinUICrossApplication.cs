@@ -6,13 +6,13 @@
     using Nivaes.App.Cross;
     using Nivaes.IoC;
 
-    public abstract class CrossWinUIApplication 
+    public abstract class WinUICrossApplication 
         : Application
     {
         protected Frame? RootFrame { get; set; }
         public Window? MainWindow { get; protected set; }
 
-        protected CrossWinUIApplication()
+        protected WinUICrossApplication()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
 

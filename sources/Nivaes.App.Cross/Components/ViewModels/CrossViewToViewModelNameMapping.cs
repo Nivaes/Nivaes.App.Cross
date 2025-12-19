@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross
 {
-#nullable enable
+
+    [Obsolete]
     public class CrossViewToViewModelNameMapping
         : ICrossNameMapping
     {
@@ -16,5 +17,4 @@ namespace Nivaes.App.Cross
             return inputName + ViewModelPostfix;
         }
     }
-#nullable restore
 }

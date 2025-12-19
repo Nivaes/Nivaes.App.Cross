@@ -10,6 +10,7 @@
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Navigation;
     using Windows.UI.Core;
+    using Nivaes.IoC;
 
     public abstract class CrossWindowsPage<TViewModel>
         : Page, ICrossView<TViewModel>, IDisposable
@@ -93,16 +94,18 @@
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            throw new NotImplementedException();
-            //ViewModel?.ViewCreated();
 
-            //if (_reqData != string.Empty)
-            //{
-            //    var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-            //    ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
-            //    ViewModel?.ViewCreated();
-            //}
-            //_reqData = (string)e.Parameter;
+            ViewModel?.ViewCreated();
+
+            if (_reqData != string.Empty)
+            {
+                var container = Singleton<CrossViewPresentationsManager>.Instance;
+
+                //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
+                //ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
+                //ViewModel?.ViewCreated();
+            }
+            _reqData = (string)e.Parameter;
 
             //this.OnViewCreate(_reqData, () => LoadStateBundle(e));
         }
@@ -113,7 +116,6 @@
 
             throw new NotImplementedException();
 
-            //base.OnNavigatedFrom(e);
             //var bundle = this.CreateSaveStateBundle();
             //SaveStateBundle(e, bundle);
 
@@ -156,12 +158,12 @@
         }
 
 
-        protected virtual ICrossBundle LoadStateBundle(NavigationEventArgs e)
+        protected virtual ICrossBundle? LoadStateBundle(NavigationEventArgs e)
         {
             // nothing loaded by default
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
             _pageKey = "Page-" + Frame.BackStackDepth;
-            ICrossBundle bundle = null;
+            ICrossBundle? bundle = null;
 
             if (e.NavigationMode == NavigationMode.New)
             {

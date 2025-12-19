@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
+    [Obsolete()]
     public static class CrossJavaDateUtils
     {
         public static DateTime DateTimeFromJava(int year, int month, int dayOfMonth)

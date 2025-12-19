@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
 
+    [Obsolete]
     public class CrossBundle : ICrossBundle
     {
         public CrossBundle()

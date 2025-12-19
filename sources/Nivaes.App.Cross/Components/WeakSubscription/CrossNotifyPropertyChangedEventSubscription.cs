@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.ComponentModel;
     using System.Reflection;
 
+    [Obsolete]
     public class CrossNotifyPropertyChangedEventSubscription(
             INotifyPropertyChanged source,
             EventHandler<PropertyChangedEventArgs> targetEventHandler)

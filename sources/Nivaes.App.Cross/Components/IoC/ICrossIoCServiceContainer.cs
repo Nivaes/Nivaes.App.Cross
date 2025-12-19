@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    [Obsolete("Quitar IoC de Cross")]
     public interface ICrossIoCServiceContainer
     {
     }

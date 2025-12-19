@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("Quitar IoC de Cross")]
     public sealed class CrossBindingConstant
     {
         public static readonly CrossBindingConstant DoNothing = new CrossBindingConstant("DoNothing");

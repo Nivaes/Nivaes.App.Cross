@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Globalization;
 
+    [Obsolete("Quitar IoC de Cross")]
     public interface ICrossValueConverter
     {
         object Convert(

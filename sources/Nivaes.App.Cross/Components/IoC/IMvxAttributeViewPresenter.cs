@@ -3,6 +3,7 @@ namespace MvvmCross.Presenters
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
+    [Obsolete("Quitar IoC de Cross")]
     public interface IMvxAttributeViewPresenter : IMvxViewPresenter
     {
         //IMvxViewModelTypeFinder? ViewModelTypeFinder { get; }

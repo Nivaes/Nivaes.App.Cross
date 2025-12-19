@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    [Obsolete]
     public interface ICrossViewPresenter
     {
         Task<bool> Show(ICrossViewModelRequest request);

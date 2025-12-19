@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Obsolete]
     public interface ICrossViewModelRequest
     {
         ICrossViewModel ViewModel { get; }

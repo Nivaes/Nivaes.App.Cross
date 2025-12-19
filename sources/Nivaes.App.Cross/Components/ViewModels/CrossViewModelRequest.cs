@@ -5,6 +5,7 @@
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete]
     public record CrossViewModelRequest<TViewModel> :
         ICrossViewModelRequest
         where TViewModel : ICrossViewModel

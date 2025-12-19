@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
 
+    [Obsolete]
     public static class CrossLogHost
     {
         private static ILogger? _defaultLogger;

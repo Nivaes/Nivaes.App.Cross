@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("Quitar IoC de Cross")]
     public interface ICrossSettings
     {
         bool AlwaysRaiseInpcOnUserInterfaceThread { get; set; }

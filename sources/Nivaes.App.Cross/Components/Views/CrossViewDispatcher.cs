@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     //using static System.Net.Mime.MediaTypeNames;
 
+    [Obsolete]
     public abstract class CrossViewDispatcher : ICrossViewDispatcher
     {
         protected CrossViewDispatcher()

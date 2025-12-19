@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
 
+    [Obsolete("Quitar IoC de Cross")]
     public abstract class CrossApplicable
         : ICrossApplicable
     {

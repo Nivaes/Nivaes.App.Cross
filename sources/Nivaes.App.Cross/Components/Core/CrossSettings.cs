@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("Quitar IoC de Cross")]
     public class CrossSettings : 
         ICrossSettings
     {

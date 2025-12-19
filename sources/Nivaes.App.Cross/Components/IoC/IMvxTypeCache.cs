@@ -5,6 +5,7 @@ namespace MvvmCross.IoC
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete("Quitar IoC de Cross")]
     public interface IMvxTypeCache
     {
         Dictionary<string, Type> LowerCaseFullNameCache { get; }

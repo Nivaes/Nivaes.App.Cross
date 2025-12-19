@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
+    [Obsolete()]
     public class CrossJavaContainer : Java.Lang.Object
     {
         protected CrossJavaContainer(object? theObject)
@@ -10,6 +11,7 @@ namespace Nivaes.App.Cross.Droid
         public object? Object { get; private set; }
     }
 
+    [Obsolete()]
     public class MvxJavaContainer<T> : CrossJavaContainer
     {
         public MvxJavaContainer(T theObject)

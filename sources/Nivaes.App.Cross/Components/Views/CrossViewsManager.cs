@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete]
     public sealed class CrossViewsManager : KeyContainerManager<Type>
     {
         public static KeyStoreItem New<TViewModel, TView>()

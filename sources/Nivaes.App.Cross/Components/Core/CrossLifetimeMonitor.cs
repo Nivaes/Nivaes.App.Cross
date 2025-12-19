@@ -1,6 +1,8 @@
 namespace Nivaes.App.Cross
 {
     using System;
+
+    [Obsolete("Quitar IoC de Cross")]
     public abstract class CrossLifetimeMonitor 
         : ICrossLifetime
     {

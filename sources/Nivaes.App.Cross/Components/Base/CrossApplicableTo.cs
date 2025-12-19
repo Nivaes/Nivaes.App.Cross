@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete()]
     public abstract class CrossApplicableTo<T>
         : CrossApplicable,
           ICrossApplicableTo<T>

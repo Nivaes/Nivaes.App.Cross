@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete("Quitar IoC de Cross")]
     public static class CrossSetupExtensions
     {
         public static void RegisterSetupType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TMvxSetup>(this object platformApplication, params Assembly[]? assemblies)

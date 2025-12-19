@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Nivaes.App.Cross
 {
+    [Obsolete]
     public interface ICrossNotifyPropertyChanged : 
         INotifyPropertyChanged, 
         INotifyPropertyChanging

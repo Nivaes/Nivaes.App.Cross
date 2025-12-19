@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.ComponentModel;
     using System.Linq.Expressions;
 
+    [Obsolete]
     public class CrossNamedNotifyPropertyChangedEventSubscription<T>
         : CrossNotifyPropertyChangedEventSubscription
     {
