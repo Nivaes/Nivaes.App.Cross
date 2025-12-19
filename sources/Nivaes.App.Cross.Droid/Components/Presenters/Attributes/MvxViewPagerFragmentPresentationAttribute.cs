@@ -64,18 +64,17 @@ public class MvxViewPagerFragmentPresentationAttribute : MvxFragmentPresentation
     {
         Title = title;
 
-        throw new NotImplementedException();
-        //if (!string.IsNullOrEmpty(viewPagerResourceName) &&
-        //    Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
-        //    globals.ApplicationContext.Resources != null)
-        //{
-        //    ViewPagerResourceId = globals.ApplicationContext.Resources.GetIdentifier(
-        //        viewPagerResourceName, "id", globals.ApplicationContext.PackageName);
-        //}
-        //else
-        //{
-        //    ViewPagerResourceId = global::Android.Resource.Id.Content;
-        //}
+        if (!string.IsNullOrEmpty(viewPagerResourceName) &&
+            Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
+            globals.ApplicationContext.Resources != null)
+        {
+            ViewPagerResourceId = globals.ApplicationContext.Resources.GetIdentifier(
+                viewPagerResourceName, "id", globals.ApplicationContext.PackageName);
+        }
+        else
+        {
+            ViewPagerResourceId = global::Android.Resource.Id.Content;
+        }
     }
 
     /// <summary>

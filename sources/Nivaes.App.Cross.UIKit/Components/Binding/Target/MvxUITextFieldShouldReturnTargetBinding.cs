@@ -1,0 +1,63 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+#nullable enable
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+using MvvmCross.Binding;
+using MvvmCross.Binding.Bindings.Target;
+
+namespace MvvmCross.Platforms.Ios.Binding.Target;
+
+public class MvxUITextFieldShouldReturnTargetBinding
+    : MvxTargetBinding
+{
+    private ICommand? _command;
+
+    protected UITextField? View => Target as UITextField;
+
+    public MvxUITextFieldShouldReturnTargetBinding(UITextField target)
+        : base(target)
+    {
+        target.ShouldReturn = HandleShouldReturn;
+    }
+
+    private bool HandleShouldReturn(UITextField textField)
+    {
+        if (_command == null)
+            return false;
+
+        var text = textField.Text;
+        if (!_command.CanExecute(text))
+            return false;
+
+        textField.ResignFirstResponder();
+        _command.Execute(text);
+        return true;
+    }
+
+    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+    [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
+    public override void SetValue(object? value)
+    {
+        var command = value as ICommand;
+        _command = command;
+    }
+
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+    public override Type TargetValueType => typeof(ICommand);
+
+    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+    protected override void Dispose(bool isDisposing)
+    {
+        base.Dispose(isDisposing);
+        if (!isDisposing) return;
+
+        var editText = View;
+        if (editText == null) return;
+
+        editText.ShouldReturn = null;
+    }
+}

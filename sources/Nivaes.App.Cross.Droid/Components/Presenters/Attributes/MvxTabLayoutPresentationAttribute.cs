@@ -49,18 +49,17 @@ public class MvxTabLayoutPresentationAttribute : MvxViewPagerFragmentPresentatio
               fragmentHostViewType,
               isCacheableFragment)
     {
-        throw new NotImplementedException();
-        //if (!string.IsNullOrEmpty(tabLayoutResourceName) &&
-        //    Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
-        //    globals.ApplicationContext.Resources != null)
-        //{
-        //    TabLayoutResourceId = globals.ApplicationContext.Resources.GetIdentifier(
-        //        tabLayoutResourceName, "id", globals.ApplicationContext.PackageName);
-        //}
-        //else
-        //{
-        //    TabLayoutResourceId = global::Android.Resource.Id.Content;
-        //}
+        if (!string.IsNullOrEmpty(tabLayoutResourceName) &&
+            Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
+            globals.ApplicationContext.Resources != null)
+        {
+            TabLayoutResourceId = globals.ApplicationContext.Resources.GetIdentifier(
+                tabLayoutResourceName, "id", globals.ApplicationContext.PackageName);
+        }
+        else
+        {
+            TabLayoutResourceId = global::Android.Resource.Id.Content;
+        }
     }
 
     /// <summary>

@@ -1,0 +1,39 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+#nullable enable
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
+namespace MvvmCross.Platforms.Ios.Binding.Target;
+
+public class MvxUIDatePickerDateTargetBinding(UIDatePicker target, PropertyInfo targetPropertyInfo)
+    : MvxBaseUIDatePickerTargetBinding(target, targetPropertyInfo)
+{
+    protected override object GetValueFrom(UIDatePicker view)
+    {
+        // Convert from universal NSDate back to a local DateTime based on system timezone.
+        var valueUtc = view.Date.ToDateTimeUtc();
+        var valueLocal = ToLocalTime(valueUtc);
+        return valueLocal;
+    }
+
+    public static DateTime DefaultDate { get; set; } = DateTime.Now;
+
+    [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
+    protected override object MakeSafeValue(object? value)
+    {
+        // Convert from local DateTime (or default value) to universal NSDate based on system timezone.
+        var valueLocal = (DateTime)(value ?? DefaultDate);
+        var valueUtc = ToUtcTime(valueLocal);
+        var valueNSDate = valueUtc.ToNSDate();
+
+        if (View?.MaximumDate != null && View.MaximumDate.Compare(valueNSDate) == NSComparisonResult.Ascending)
+            valueNSDate = View.MaximumDate;
+        else if (View?.MinimumDate != null && View.MinimumDate.Compare(valueNSDate) == NSComparisonResult.Descending)
+            valueNSDate = View.MinimumDate;
+
+        return valueNSDate;
+    }
+}

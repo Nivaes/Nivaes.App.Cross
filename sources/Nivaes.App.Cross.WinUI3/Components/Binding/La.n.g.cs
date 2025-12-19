@@ -1,14 +1,26 @@
-namespace Nivaes.App.Cross.WinUI3
-{
-    using Microsoft.UI.Xaml;
+// La.n.g.cs
 
+// MvvmCross is licensed using Microsoft Public License (Ms-PL)
+// Contributions and inspirations noted in readme.md and license.txt
+//
+// Project Lead - Stuart Lodge, @slodge, me@slodge.com
+
+using System.Collections.Generic;
+using MvvmCross.Base;
+using MvvmCross.Core;
+using MvvmCross.Binding;
+using MvvmCross.Binding.Bindings;
+using Microsoft.UI.Xaml;
+
+namespace MvvmCross.Platforms.WinUi.Binding
+{
     // ReSharper disable InconsistentNaming
     public static class La
     // ReSharper restore InconsistentNaming
     {
         static La()
         {
-            CrossDesignTimeChecker.Check();
+            MvxDesignTimeChecker.Check();
         }
 
         // ReSharper disable InconsistentNaming
@@ -31,15 +43,14 @@ namespace Nivaes.App.Cross.WinUI3
             obj.SetValue(ngProperty, value);
         }
 
-        private static ICrossBindingCreator _bindingCreator;
+        private static IMvxBindingCreator _bindingCreator;
 
-        private static ICrossBindingCreator BindingCreator
+        private static IMvxBindingCreator BindingCreator
         {
             get
             {
-                throw new NotImplementedException();
-                //_bindingCreator = _bindingCreator ?? Cross.IoCProvider.Resolve<ICrossBindingCreator>();
-                //return _bindingCreator;
+                _bindingCreator = _bindingCreator ?? Mvx.IoCProvider.Resolve<IMvxBindingCreator>();
+                return _bindingCreator;
             }
         }
 
@@ -55,12 +66,12 @@ namespace Nivaes.App.Cross.WinUI3
             bindingCreator.CreateBindings(sender, args, ParseBindingDescriptions);
         }
 
-        private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string languageText)
+        private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string languageText)
         {
-            if (CrossSingleton<ICrossBindingSingletonCache>.Instance == null)
+            if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
                 return null;
 
-            return CrossSingleton<ICrossBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(languageText);
+            return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(languageText);
         }
     }
 }

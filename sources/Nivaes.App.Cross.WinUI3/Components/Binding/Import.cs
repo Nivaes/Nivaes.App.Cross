@@ -1,45 +1,49 @@
-//namespace Nivaes.App.Cross.WinUI3
-//{
-//    using System.Reflection;
-//    using MvvmCross.IoC;
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
 
-//    [Obsolete("Quitar IoC de Cross", true)]
-//    public class Import
-//    {
-//        static Import()
-//        {
-//            CrossDesignTimeChecker.Check();
-//        }
+using System.Reflection;
+using MvvmCross.Base;
+using MvvmCross.IoC;
 
-//        private object _from;
+namespace MvvmCross.Platforms.WinUi.Binding
+{
+    public class Import
+    {
+        static Import()
+        {
+            MvxDesignTimeChecker.Check();
+        }
 
-//        public object From
-//        {
-//            get
-//            {
-//                return _from;
-//            }
-//            set
-//            {
-//                if (_from == value)
-//                    return;
+        private object _from;
 
-//                _from = value;
+        public object From
+        {
+            get
+            {
+                return _from;
+            }
+            set
+            {
+                if (_from == value)
+                    return;
 
-//                if (_from != null)
-//                {
-//                    RegisterAssembly(_from.GetType().GetTypeInfo().Assembly);
-//                }
-//            }
-//        }
+                _from = value;
 
-//        private static void RegisterAssembly(Assembly assembly)
-//        {
-//            if (CrossSingleton<ICrossIoCProvider>.Instance == null)
-//            {
-//                CrossWindowsAssemblyCache.EnsureInitialized();
-//                CrossWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);
-//            }
-//        }
-//    }
-//}
+                if (_from != null)
+                {
+                    RegisterAssembly(_from.GetType().GetTypeInfo().Assembly);
+                }
+            }
+        }
+
+        private static void RegisterAssembly(Assembly assembly)
+        {
+            if (MvxSingleton<IMvxIoCProvider>.Instance == null)
+            {
+                MvxWindowsAssemblyCache.EnsureInitialized();
+                MvxWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);
+            }
+        }
+    }
+}

@@ -88,6 +88,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	
+	<!--AppKit-->
 	<ItemGroup>
 		<None Include="..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.dll;
 					   ..\..\sources\Nivaes.App.Cross\bin\$(Configuration)\$(_CrossCommonTargets)\Nivaes.App.Cross.pdb;
@@ -102,6 +103,7 @@
 			  PackagePath="lib\$(_CrossMacOSTargets)$(_CrossMacOSVersion)" />
 	</ItemGroup>
 	
+	<!--ios-->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'ios'">
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
 	</ItemGroup>
@@ -120,6 +122,7 @@
 			  PackagePath="lib\$(_CrossiOSTargets)$(_CrossiOSVersion)\"/>
 	</ItemGroup>
 	
+	<!--maccatalyst-->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
 	</ItemGroup>
@@ -138,8 +141,10 @@
 			  PackagePath="lib\$(_CrossMacCatalystTargets)$(_CrossMacCatalystVersion)\" />
 	</ItemGroup>
 	
+	<!--android-->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 		<PackageReference Include="Xamarin.AndroidX.Preference" />
+		<PackageReference Include="Xamarin.Google.Android.Material" />
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
 	</ItemGroup>
 	
@@ -157,6 +162,7 @@
 			  PackagePath="lib\$(_CrossAndroidTargets)$(_CrossAndroidVersion)\" />
 	</ItemGroup>
 	
+	<!--windows-->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
 	</ItemGroup>
@@ -174,11 +180,5 @@
 			  Pack="true"
 			  PackagePath="lib\$(_CrossWindowsTargets)\" />
 	</ItemGroup>
-	
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
-	</ItemGroup>
-	
-	<ItemGroup>
-	</ItemGroup>
-	  
+		  
 </Project>

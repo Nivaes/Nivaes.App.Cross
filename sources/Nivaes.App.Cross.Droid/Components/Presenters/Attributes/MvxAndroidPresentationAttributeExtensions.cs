@@ -11,20 +11,19 @@ public static class MvxAndroidPresentationAttributeExtensions
 {
     public static bool IsFragmentCacheable(this Type fragmentType, Type fragmentActivityParentType)
     {
-        throw new NotImplementedException();
-        //if (!fragmentType.HasBasePresentationAttribute())
-        //    return false;
+        if (!fragmentType.HasBasePresentationAttribute())
+            return false;
 
-        //var fragmentAttributes =
-        //    fragmentType.GetBasePresentationAttributes()
-        //        .Select(baseAttribute => baseAttribute as MvxFragmentPresentationAttribute)
-        //        .Where(fragmentAttribute => fragmentAttribute != null);
+        var fragmentAttributes =
+            fragmentType.GetBasePresentationAttributes()
+                .Select(baseAttribute => baseAttribute as MvxFragmentPresentationAttribute)
+                .Where(fragmentAttribute => fragmentAttribute != null);
 
-        //var currentAttribute = fragmentAttributes.FirstOrDefault(
-        //    fragmentAttribute => fragmentAttribute != null &&
-        //    fragmentAttribute.ActivityHostViewModelType == fragmentActivityParentType);
+        var currentAttribute = fragmentAttributes.FirstOrDefault(
+            fragmentAttribute => fragmentAttribute != null &&
+            fragmentAttribute.ActivityHostViewModelType == fragmentActivityParentType);
 
-        //return currentAttribute?.IsCacheableFragment == true;
+        return currentAttribute?.IsCacheableFragment == true;
     }
 
     public static PopBackStackFlags ToNativePopBackStackFlags(this MvxPopBackStack mvxPopBackStack) => mvxPopBackStack switch

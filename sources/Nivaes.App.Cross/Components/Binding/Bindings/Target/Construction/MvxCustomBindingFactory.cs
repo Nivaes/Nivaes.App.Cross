@@ -1,0 +1,47 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+
+namespace MvvmCross.Binding.Bindings.Target.Construction
+{
+    public class MvxCustomBindingFactory<TTarget>
+        : IMvxPluginTargetBindingFactory
+        where TTarget : class
+    {
+        private readonly Func<TTarget, IMvxTargetBinding> _targetBindingCreator;
+        private readonly string _targetFakePropertyName;
+
+        public MvxCustomBindingFactory(string targetFakePropertyName,
+                                       Func<TTarget, IMvxTargetBinding> targetBindingCreator)
+        {
+            _targetFakePropertyName = targetFakePropertyName;
+            _targetBindingCreator = targetBindingCreator;
+        }
+
+        #region IMvxPluginTargetBindingFactory Members
+
+        public IEnumerable<MvxTypeAndNamePair> SupportedTypes => new[]
+        {
+            new MvxTypeAndNamePair(typeof(TTarget), _targetFakePropertyName)
+        };
+
+        [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
+        public IMvxTargetBinding CreateBinding(object target, string targetName)
+        {
+            if (target is not TTarget castTarget)
+            {
+                MvxBindingLog.Instance?.LogError("Passed an invalid target for MvxCustomBindingFactory");
+                return null;
+            }
+
+            return _targetBindingCreator(castTarget);
+        }
+
+        #endregion IMvxPluginTargetBindingFactory Members
+    }
+}

@@ -4,13 +4,13 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Nivaes.App.Cross;
+using MvvmCross.Presenters.Attributes;
 
 namespace MvvmCross.Platforms.Android.Presenters.Attributes;
 
 #nullable enable
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-public class MvxFragmentPresentationAttribute : CrossBasePresentationAttribute
+public class MvxFragmentPresentationAttribute : MvxBasePresentationAttribute
 {
     public MvxFragmentPresentationAttribute()
     {
@@ -31,7 +31,9 @@ public class MvxFragmentPresentationAttribute : CrossBasePresentationAttribute
         string? tag = null,
         string popBackStackImmediateName = "",
         MvxPopBackStack popBackStackImmediateFlag = MvxPopBackStack.Inclusive,
-        bool addFragment = false
+        bool addFragment = false,
+        bool allowReordering = false,
+        bool setAsPrimaryFragment = false
     )
     {
         ActivityHostViewModelType = activityHostViewModelType;
@@ -48,6 +50,8 @@ public class MvxFragmentPresentationAttribute : CrossBasePresentationAttribute
         PopBackStackImmediateName = popBackStackImmediateName;
         PopBackStackImmediateFlag = popBackStackImmediateFlag;
         AddFragment = addFragment;
+        AllowReordering = allowReordering;
+        SetAsPrimaryFragment = setAsPrimaryFragment;
     }
 
     public MvxFragmentPresentationAttribute(
@@ -65,48 +69,51 @@ public class MvxFragmentPresentationAttribute : CrossBasePresentationAttribute
         string? tag = null,
         string popBackStackImmediateName = "",
         MvxPopBackStack popBackStackImmediateFlag = MvxPopBackStack.Inclusive,
-        bool addFragment = false
+        bool addFragment = false,
+        bool allowReordering = false,
+        bool setAsPrimaryFragment = false
     )
     {
-        throw new NotImplementedException();
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
-        //    globals.ApplicationContext.Resources != null)
-        //{
-        //    var context = globals.ApplicationContext;
+        if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
+            globals.ApplicationContext.Resources != null)
+        {
+            var context = globals.ApplicationContext;
 
-        //    FragmentContentId = !string.IsNullOrEmpty(fragmentContentResourceName) ?
-        //        context.Resources.GetIdentifier(fragmentContentResourceName, "id", context.PackageName) :
-        //        global::Android.Resource.Id.Content;
+            FragmentContentId = !string.IsNullOrEmpty(fragmentContentResourceName) ?
+                context.Resources.GetIdentifier(fragmentContentResourceName, "id", context.PackageName) :
+                global::Android.Resource.Id.Content;
 
-        //    EnterAnimation = !string.IsNullOrEmpty(enterAnimation) ?
-        //        context.Resources.GetIdentifier(enterAnimation, "animation", context.PackageName) :
-        //        int.MinValue;
+            EnterAnimation = !string.IsNullOrEmpty(enterAnimation) ?
+                context.Resources.GetIdentifier(enterAnimation, "animation", context.PackageName) :
+                int.MinValue;
 
-        //    ExitAnimation = !string.IsNullOrEmpty(exitAnimation) ?
-        //        context.Resources.GetIdentifier(exitAnimation, "animation", context.PackageName) :
-        //        int.MinValue;
+            ExitAnimation = !string.IsNullOrEmpty(exitAnimation) ?
+                context.Resources.GetIdentifier(exitAnimation, "animation", context.PackageName) :
+                int.MinValue;
 
-        //    PopEnterAnimation = !string.IsNullOrEmpty(popEnterAnimation) ?
-        //        context.Resources.GetIdentifier(popEnterAnimation, "animation", context.PackageName) :
-        //        int.MinValue;
+            PopEnterAnimation = !string.IsNullOrEmpty(popEnterAnimation) ?
+                context.Resources.GetIdentifier(popEnterAnimation, "animation", context.PackageName) :
+                int.MinValue;
 
-        //    PopExitAnimation = !string.IsNullOrEmpty(popExitAnimation) ?
-        //        context.Resources.GetIdentifier(popExitAnimation, "animation", context.PackageName) :
-        //        int.MinValue;
+            PopExitAnimation = !string.IsNullOrEmpty(popExitAnimation) ?
+                context.Resources.GetIdentifier(popExitAnimation, "animation", context.PackageName) :
+                int.MinValue;
 
-        //    TransitionStyle = !string.IsNullOrEmpty(transitionStyle) ?
-        //        context.Resources.GetIdentifier(transitionStyle, "style", context.PackageName) :
-        //        int.MinValue;
-        //}
+            TransitionStyle = !string.IsNullOrEmpty(transitionStyle) ?
+                context.Resources.GetIdentifier(transitionStyle, "style", context.PackageName) :
+                int.MinValue;
+        }
 
-        //ActivityHostViewModelType = activityHostViewModelType;
-        //AddToBackStack = addToBackStack;
-        //FragmentHostViewType = fragmentHostViewType;
-        //IsCacheableFragment = isCacheableFragment;
-        //Tag = tag;
-        //PopBackStackImmediateName = popBackStackImmediateName;
-        //PopBackStackImmediateFlag = popBackStackImmediateFlag;
-        //AddFragment = addFragment;
+        ActivityHostViewModelType = activityHostViewModelType;
+        AddToBackStack = addToBackStack;
+        FragmentHostViewType = fragmentHostViewType;
+        IsCacheableFragment = isCacheableFragment;
+        Tag = tag;
+        PopBackStackImmediateName = popBackStackImmediateName;
+        PopBackStackImmediateFlag = popBackStackImmediateFlag;
+        AddFragment = addFragment;
+        AllowReordering = allowReordering;
+        SetAsPrimaryFragment = setAsPrimaryFragment;
     }
 
     /// <summary>
@@ -187,4 +194,14 @@ public class MvxFragmentPresentationAttribute : CrossBasePresentationAttribute
     /// Setting this to true, will use Add instead of Replace on the Fragment transaction
     /// </summary>
     public bool AddFragment { get; set; }
+
+    /// <summary>
+    /// Setting this to true, will use SetReorderingAllowed on the Fragment transaction
+    /// </summary>
+    public bool AllowReordering { get; set; }
+
+    /// <summary>
+    /// Setting this to true, will use SetPrimaryNavigationFragment on the Fragment transaction
+    /// </summary>
+    public bool SetAsPrimaryFragment { get; set; }
 }

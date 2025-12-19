@@ -1,14 +1,24 @@
-namespace Nivaes.App.Cross.WinUI3
-{
-    using Microsoft.UI.Xaml;
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
 
+using System;
+using System.Collections.Generic;
+using Microsoft.UI.Xaml;
+using MvvmCross.Base;
+using MvvmCross.Binding;
+using MvvmCross.Binding.Bindings;
+using MvvmCross.Exceptions;
+
+namespace MvvmCross.Platforms.WinUi.Binding
+{
     // ReSharper disable InconsistentNaming
     public static class Bi
     // ReSharper restore InconsistentNaming
     {
         static Bi()
         {
-            CrossDesignTimeChecker.Check();
+            MvxDesignTimeChecker.Check();
         }
 
         // ReSharper disable InconsistentNaming
@@ -31,9 +41,9 @@ namespace Nivaes.App.Cross.WinUI3
             obj.SetValue(ndProperty, value);
         }
 
-        private static ICrossBindingCreator _bindingCreator;
+        private static IMvxBindingCreator _bindingCreator;
 
-        private static ICrossBindingCreator BindingCreator
+        private static IMvxBindingCreator BindingCreator
         {
             get
             {
@@ -42,16 +52,15 @@ namespace Nivaes.App.Cross.WinUI3
             }
         }
 
-        private static ICrossBindingCreator ResolveBindingCreator()
+        private static IMvxBindingCreator ResolveBindingCreator()
         {
-            throw new NotImplementedException();
-            //ICrossBindingCreator toReturn;
-            //if (!Cross.IoCProvider.TryResolve<ICrossBindingCreator>(out toReturn))
-            //{
-            //    throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
-            //}
+            IMvxBindingCreator toReturn;
+            if (!Mvx.IoCProvider.TryResolve<IMvxBindingCreator>(out toReturn))
+            {
+                throw new MvxException("Unable to resolve the binding creator - have you initialized Windows Binding");
+            }
 
-            //return toReturn;
+            return toReturn;
         }
 
         private static void CallBackWhenndIsChanged(
@@ -64,12 +73,12 @@ namespace Nivaes.App.Cross.WinUI3
             bindingCreator?.CreateBindings(sender, args, ParseBindingDescriptions);
         }
 
-        private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string bindingText)
+        private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string bindingText)
         {
-            if (CrossSingleton<ICrossBindingSingletonCache>.Instance == null)
-                return Array.Empty<CrossBindingDescription>();
+            if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
+                return Array.Empty<MvxBindingDescription>();
 
-            return CrossSingleton<ICrossBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
+            return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
         }
     }
 }
