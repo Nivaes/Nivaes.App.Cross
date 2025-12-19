@@ -2,9 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    //using static System.Net.Mime.MediaTypeNames;
-
-    [Obsolete]
+ 
     public abstract class CrossViewDispatcher : ICrossViewDispatcher
     {
         protected CrossViewDispatcher()
@@ -51,6 +49,7 @@
             return await completion.Task;
         }
 
+        [Obsolete]
         public Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             throw new NotImplementedException();

@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
 
-    [Obsolete]
     public interface ICrossViewDispatcher
     {
         Task<bool> ShowViewModel(ICrossViewModelRequest request);

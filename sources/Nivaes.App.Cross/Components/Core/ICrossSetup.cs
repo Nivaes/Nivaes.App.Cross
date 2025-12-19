@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
-    [Obsolete("Quitar IoC de Cross")]
     public interface ICrossSetup
     {
         void InitializePrimary();

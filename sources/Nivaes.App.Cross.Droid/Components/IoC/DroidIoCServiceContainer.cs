@@ -2,8 +2,8 @@
 {
     using Nivaes.IoC;
 
-    [Obsolete()]
-    public partial class DroidIoCServiceContainer : IoCServiceContainer
+    public partial class DroidIoCServiceContainer 
+        : IoCServiceContainer
     {
         protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
         {

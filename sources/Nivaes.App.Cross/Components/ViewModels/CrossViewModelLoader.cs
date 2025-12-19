@@ -2,7 +2,6 @@
 {
     using Nivaes.IoC;
 
-    [Obsolete]
     public static class CrossViewModelLoader
     {
         public static TViewModel LoadViewModel<TViewModel>()

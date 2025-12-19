@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross.WinUI3
 {
-    [Obsolete]
     public interface ICrossWindowsView
         : ICrossView
     {

@@ -3,17 +3,18 @@
     using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Reflection.Metadata;
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Navigation;
-    using Windows.UI.Core;
     using Nivaes.IoC;
+    using Windows.UI.Core;
 
     public abstract class CrossWindowsPage<TViewModel>
-        : Page, ICrossView<TViewModel>, IDisposable
+        : Page, ICrossWindowsView<TViewModel>, IDisposable
         where TViewModel : class, ICrossViewModel
     {
         public CrossWindowsPage()
@@ -97,17 +98,19 @@
 
             ViewModel?.ViewCreated();
 
-            if (_reqData != string.Empty)
+            if (!string.IsNullOrEmpty(_reqData))
             {
-                var container = Singleton<CrossViewPresentationsManager>.Instance;
+                // ToDo: Mirar cuando es necesario cachear estos datos.
+                throw new NotImplementedException();
+            //    var container = Singleton<CrossViewPresentationsManager>.Instance;
 
-                //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-                //ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
-                //ViewModel?.ViewCreated();
+            //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
+            //ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
+            //ViewModel?.ViewCreated();
             }
-            _reqData = (string)e.Parameter;
+            _reqData = (string)e.Parameter.ToString();
 
-            //this.OnViewCreate(_reqData, () => LoadStateBundle(e));
+            this.OnViewCreate(_reqData, () => LoadStateBundle(e));
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -144,16 +147,19 @@
             //}
         }
 
-        private string _pageKey;
+        private string _pageKey = string.Empty;
 
-        private ICrossSuspensionManager _suspensionManager;
+        private ICrossSuspensionManager? _suspensionManager;
         protected ICrossSuspensionManager SuspensionManager
         {
             get
             {
-                throw new NotImplementedException();
-                //_suspensionManager = _suspensionManager ?? Cross.IoCProvider.Resolve<ICrossSuspensionManager>();
-                //return _suspensionManager;
+                if (_suspensionManager == null)
+                {
+                    var container = Nivaes.Singleton<CrossIoCServiceContainer>.Instance;
+                    _suspensionManager = container.Resolve<ICrossSuspensionManager>();
+                }
+                return _suspensionManager!;
             }
         }
 

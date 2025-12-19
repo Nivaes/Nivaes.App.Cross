@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [Obsolete]
     public abstract class CrossViewsContainer
         : ICrossViewsContainer
     {

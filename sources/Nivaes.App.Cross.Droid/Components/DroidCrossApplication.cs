@@ -3,7 +3,6 @@
     using System;
     using Nivaes.IoC;
 
-    [Obsolete()]
     public abstract class DroidCrossApplication 
         : Application
     {

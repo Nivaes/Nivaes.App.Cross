@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
 
-    [Obsolete("No compatible con AoT")]
+    [Obsolete("Usa ICrossIoCProvider")]
     public abstract class CrossSetup : ICrossSetup
     {
         public event EventHandler<CrossSetupStateEventArgs>? StateChanged;

@@ -6,7 +6,6 @@
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
-    [Obsolete]
     public abstract class CrossViewModel
         : ICrossViewModel, INotifyPropertyChanged
     {

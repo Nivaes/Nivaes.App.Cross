@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
 
-    [Obsolete("Quitar IoC de Cross")]
+    [Obsolete]
     public interface ICrossFillableStringToTypeParser
     {
         IDictionary<Type, CrossStringToTypeParser.IParser> TypeParsers { get; }

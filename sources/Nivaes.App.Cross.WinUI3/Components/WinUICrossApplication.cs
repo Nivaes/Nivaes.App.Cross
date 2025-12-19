@@ -21,6 +21,41 @@
                 return new CrossWinUIViewPresenter();
             });
 
+            container.AddDelegate<ICrossSuspensionManager>((container) =>
+            {
+                return new CrossSuspensionManager();
+            });
+
+            container.AddDelegate<ICrossWindowsViewModelLoader>((container) =>
+            {
+                return new CrossWindowsViewsContainer();
+            });
+
+            container.AddDelegate<ICrossChildViewModelCache>((container) =>
+            {
+                return new CrossChildViewModelCache();
+            });
+
+            container.AddDelegate<ICrossViewModelByNameLookup>((container) =>
+            {
+                return new CrossViewModelByNameLookup();
+            });
+
+            container.AddDelegate<ICrossChildViewModelCache>((container) =>
+            {
+                return new CrossChildViewModelCache();
+            });
+
+            //container.AddDelegate<ICrossViewModelLoader>((container) =>
+            //{
+            //    return new CrossViewModelLoader();
+            //});
+
+            //container.AddDelegate<ICrossNavigationSerializer>((container) =>
+            //{
+            //    return new CrossNavigationSerializer();
+            //});
+
             container.Merge(new WinUISubcontainer());
 
             base.UnhandledException += OnUnhandledException;

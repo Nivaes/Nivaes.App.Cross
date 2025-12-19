@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using MvvmCross.ViewModels;
 
-    [Obsolete]
     public interface ICrossViewsContainer : 
         ICrossViewFinder
     {

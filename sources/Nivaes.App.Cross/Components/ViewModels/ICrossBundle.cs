@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
 
-    [Obsolete]
     public interface ICrossBundle
     {
         IDictionary<string, string> Data { get; }

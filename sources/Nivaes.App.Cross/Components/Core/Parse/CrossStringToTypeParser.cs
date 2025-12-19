@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
 
+    [Obsolete]
     public class CrossStringToTypeParser
         : ICrossStringToTypeParser, ICrossFillableStringToTypeParser
     {

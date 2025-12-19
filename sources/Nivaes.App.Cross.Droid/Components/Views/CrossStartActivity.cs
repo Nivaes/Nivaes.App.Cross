@@ -10,7 +10,7 @@
     public abstract class CrossStartActivity 
         : CrossActivity<CrossNullViewModel>
     {
-        protected const int NoContent = 0;
+        ////protected const int NoContent = 0;
 
         private readonly int _resourceId;
         private Bundle? _bundle;
@@ -22,7 +22,7 @@
         }
 
 
-        public new CrossNullViewModel ViewModel
+        public new CrossNullViewModel? ViewModel
         {
             get { return base.ViewModel as CrossNullViewModel; }
             set { base.ViewModel = value; }
@@ -70,7 +70,7 @@
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
+        protected virtual object? GetAppStartHint(object? hint = null)
         {
             return hint;
         }
