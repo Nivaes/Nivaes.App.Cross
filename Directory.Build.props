@@ -16,7 +16,7 @@
 	<PropertyGroup>
 		<_CrossMacOSVersion>12.0</_CrossMacOSVersion>
 		<_CrossiOSVersion>15.8</_CrossiOSVersion>
-		<_CrossMacCatalystVersion>15.5</_CrossMacCatalystVersion>
+		<_CrossMacCatalystVersion>15.6</_CrossMacCatalystVersion>
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
 		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
 		<_CrossWindowsPlatformMinVersion>10.0.19041.0</_CrossWindowsPlatformMinVersion>
@@ -57,6 +57,8 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<Nullable>enable</Nullable>
 		<NeutralLanguage>en</NeutralLanguage>
+
+		<ImplicitUsings>true</ImplicitUsings> 
 
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
