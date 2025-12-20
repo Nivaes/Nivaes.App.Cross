@@ -12,7 +12,7 @@ namespace MvvmCross.ViewModels
 
         ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
 
-        ICrossViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param,
+        ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param,
             MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
     }
 }

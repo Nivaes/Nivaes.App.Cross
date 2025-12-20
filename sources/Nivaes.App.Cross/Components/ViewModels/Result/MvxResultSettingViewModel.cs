@@ -18,7 +18,7 @@ namespace MvvmCross.ViewModels.Result
         }
     }
 
-    public abstract class MvxResultSettingViewModel<TParameter, TResult> : MvxResultSettingViewModel<TResult>, IMvxViewModel<TParameter>
+    public abstract class MvxResultSettingViewModel<TParameter, TResult> : MvxResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxResultSettingViewModel(IMvxResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)

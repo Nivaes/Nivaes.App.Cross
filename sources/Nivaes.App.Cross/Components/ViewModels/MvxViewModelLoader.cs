@@ -33,7 +33,7 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public ICrossViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
         {
             var viewModelLocator = FindViewModelLocator(request);
 

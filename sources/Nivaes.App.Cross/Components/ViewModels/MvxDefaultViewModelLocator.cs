@@ -33,7 +33,7 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public virtual IMvxViewModel<TParameter> Load<TParameter>(
+        public virtual ICrossViewModel<TParameter> Load<TParameter>(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             TParameter param,
             IMvxBundle? parameterValues,
@@ -43,10 +43,10 @@ namespace MvvmCross.ViewModels
             if (viewModelType == null)
                 throw new ArgumentNullException(nameof(viewModelType));
 
-            IMvxViewModel<TParameter> viewModel;
+            ICrossViewModel<TParameter> viewModel;
             try
             {
-                viewModel = (IMvxViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
+                viewModel = (ICrossViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
             }
             catch (Exception exception)
             {
@@ -69,8 +69,8 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public virtual IMvxViewModel<TParameter> Reload<TParameter>(
-            IMvxViewModel<TParameter> viewModel,
+        public virtual ICrossViewModel<TParameter> Reload<TParameter>(
+            ICrossViewModel<TParameter> viewModel,
             TParameter param,
             IMvxBundle? parameterValues,
             IMvxBundle? savedState,
@@ -128,7 +128,7 @@ namespace MvvmCross.ViewModels
         }
 
         protected void RunViewModelLifecycle<TParameter>(
-            IMvxViewModel<TParameter> viewModel,
+            ICrossViewModel<TParameter> viewModel,
             TParameter param,
             IMvxBundle? parameterValues,
             IMvxBundle? savedState,

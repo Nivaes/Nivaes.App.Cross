@@ -11,7 +11,7 @@ namespace Playground.Core.ViewModels
     public record CollectionViewParameter(int InitialCount = 40);
 
     public class CollectionViewModel 
-        : MvxViewModel<CollectionViewParameter>
+        : CrossViewModel<CollectionViewParameter>
     {
         private readonly Random _random;
 

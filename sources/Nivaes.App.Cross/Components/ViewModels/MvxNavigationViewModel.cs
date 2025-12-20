@@ -24,7 +24,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
-        : MvxNavigationViewModel, IMvxViewModel<TParameter>
+        : MvxNavigationViewModel, ICrossViewModel<TParameter>
     {
         protected MvxNavigationViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
             : base(logFactory, navigationService)
@@ -74,7 +74,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationResultAwaitingViewModel<TParameter, TResult>
-        : MvxNavigationResultAwaitingViewModel<TResult>, IMvxViewModel<TParameter>
+        : MvxNavigationResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxNavigationResultAwaitingViewModel(
                 ILoggerFactory logFactory,
@@ -108,7 +108,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationResultSettingViewModel<TParameter, TResult>
-        : MvxNavigationResultSettingViewModel<TResult>, IMvxViewModel<TParameter>
+        : MvxNavigationResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxNavigationResultSettingViewModel(
                 ILoggerFactory logFactory,
