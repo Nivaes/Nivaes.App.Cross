@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 parameterValues = segueView.PrepareViewModelParametersForSegue(segue, sender);
             }
 
-            if (parameterValues is IMvxBundle bundleValues)
+            if (parameterValues is ICrossBundle bundleValues)
                 self.ViewModelRequestForSegueImpl(segue, bundleValues);
             else if (parameterValues is IDictionary<string, string> dictValues)
                 self.ViewModelRequestForSegueImpl(segue, dictValues);
@@ -51,10 +51,10 @@ namespace MvvmCross.Platforms.Ios.Views
 
         private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController self, UIStoryboardSegue segue, IDictionary<string, string> parameterValues)
         {
-            self.ViewModelRequestForSegueImpl(segue, new MvxBundle(parameterValues));
+            self.ViewModelRequestForSegueImpl(segue, new CrossBundle(parameterValues));
         }
 
-        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, UIStoryboardSegue segue, IMvxBundle? parameterBundle = null)
+        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, UIStoryboardSegue segue, ICrossBundle? parameterBundle = null)
         {
             if (segue.DestinationViewController is IMvxIosView view && view.Request == null)
             {

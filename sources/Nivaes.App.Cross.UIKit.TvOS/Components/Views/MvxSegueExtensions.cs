@@ -27,7 +27,7 @@ namespace MvvmCross.Platforms.Tvos.Views
                 ? null
                 : view.PrepareViewModelParametersForSegue(segue, sender);
 
-            if (parameterValues is IMvxBundle bundle)
+            if (parameterValues is ICrossBundle bundle)
                 self.ViewModelRequestForSegueImpl(segue, bundle);
             else if (parameterValues is IDictionary<string, string> values)
                 self.ViewModelRequestForSegueImpl(segue, values);
@@ -42,10 +42,10 @@ namespace MvvmCross.Platforms.Tvos.Views
 
         private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController self, UIStoryboardSegue segue, IDictionary<string, string> parameterValues)
         {
-            self.ViewModelRequestForSegueImpl(segue, new MvxBundle(parameterValues));
+            self.ViewModelRequestForSegueImpl(segue, new CrossBundle(parameterValues));
         }
 
-        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, UIStoryboardSegue segue, IMvxBundle parameterBundle = null)
+        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, UIStoryboardSegue segue, ICrossBundle parameterBundle = null)
         {
             if (segue.DestinationViewController is IMvxTvosView { Request: null } view)
             {

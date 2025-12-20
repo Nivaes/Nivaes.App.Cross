@@ -48,7 +48,7 @@ public static class MvxActivityViewExtensions
         view.OnViewCreate(() => cached ?? androidView.LoadViewModel(savedState));
     }
 
-    private static IMvxBundle? GetSavedStateFromBundle(Bundle? bundle)
+    private static ICrossBundle? GetSavedStateFromBundle(Bundle? bundle)
     {
         if (bundle == null)
             return null;
@@ -145,7 +145,7 @@ public static class MvxActivityViewExtensions
 
     [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, IMvxBundle? savedState)
+    private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, ICrossBundle? savedState)
     {
         var activity = androidView.ToActivity();
 

@@ -17,13 +17,13 @@ namespace Nivaes.App.Cross
 
         void ViewDestroy(bool viewFinishing = true);
 
-        void Init(IMvxBundle parameters);
+        void Init(ICrossBundle parameters);
 
-        void ReloadState(IMvxBundle state);
+        void ReloadState(ICrossBundle state);
 
         void Start();
 
-        void SaveState(IMvxBundle state);
+        void SaveState(ICrossBundle state);
 
         void Prepare();
 

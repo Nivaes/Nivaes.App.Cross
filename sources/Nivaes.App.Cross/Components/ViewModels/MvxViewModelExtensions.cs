@@ -11,7 +11,7 @@ namespace MvvmCross.ViewModels
     {
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime method inspection for generic type parameter with PublicMethods annotation")]
         public static void CallBundleMethods<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(
-            this TViewModel viewModel, string methodName, IMvxBundle? bundle)
+            this TViewModel viewModel, string methodName, ICrossBundle? bundle)
                 where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -29,7 +29,7 @@ namespace MvvmCross.ViewModels
         [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "The parameter type is determined at runtime and may not have the required annotations")]
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Callers should guarantee the dynamically accessed members are preserved")]
         public static void CallBundleMethod<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(
-            this TViewModel viewModel, MethodInfo methodInfo, IMvxBundle? bundle)
+            this TViewModel viewModel, MethodInfo methodInfo, ICrossBundle? bundle)
                 where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -43,7 +43,7 @@ namespace MvvmCross.ViewModels
 
             if (bundle != null && parameters.Length == 1)
             {
-                if (parameters[0].ParameterType == typeof(IMvxBundle))
+                if (parameters[0].ParameterType == typeof(ICrossBundle))
                 {
                     // this method is the 'normal' interface method
                     methodInfo.Invoke(viewModel, new object[] { bundle });
@@ -66,12 +66,12 @@ namespace MvvmCross.ViewModels
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime method inspection for generic type parameter with PublicMethods annotation")]
-        public static IMvxBundle SaveStateBundle<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(this TViewModel viewModel)
+        public static ICrossBundle SaveStateBundle<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(this TViewModel viewModel)
             where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
 
-            var toReturn = new MvxBundle();
+            var toReturn = new CrossBundle();
             var methods =
                 viewModel
                     .GetType()

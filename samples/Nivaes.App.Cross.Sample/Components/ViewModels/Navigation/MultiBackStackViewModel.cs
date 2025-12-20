@@ -25,13 +25,13 @@ namespace Playground.Core.ViewModels.Navigation
             Task.Run(ShowInitialViewModelsExecute);
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
             bundle.Data[nameof(_initialNavigationDone)] = _initialNavigationDone.ToString();
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
             if (state.Data.TryGetValue(nameof(_initialNavigationDone), out string initDone))
@@ -75,13 +75,13 @@ namespace Playground.Core.ViewModels.Navigation
             Depth = parameter;
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
             bundle.Data[nameof(Depth)] = Depth.ToString();
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
             if (state.Data.TryGetValue(nameof(Depth), out string ds))

@@ -17,8 +17,8 @@ namespace MvvmCross.ViewModels
         }
 
         public MvxViewModelRequest([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-            IMvxBundle? parameterBundle,
-            IMvxBundle? presentationBundle)
+            ICrossBundle? parameterBundle,
+            ICrossBundle? presentationBundle)
         {
             ViewModelType = viewModelType;
             ParameterValues = parameterBundle.SafeGetData();
@@ -63,7 +63,7 @@ namespace MvvmCross.ViewModels
         {
         }
 
-        public MvxViewModelRequest(IMvxBundle? parameterBundle, IMvxBundle? presentationBundle)
+        public MvxViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
             : base(typeof(TViewModel), parameterBundle, presentationBundle)
         {
         }

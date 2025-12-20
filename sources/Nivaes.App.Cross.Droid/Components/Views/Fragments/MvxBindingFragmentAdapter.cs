@@ -99,17 +99,17 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             return request;
         }
 
-        private static IMvxBundle ReadAndroidBundle(Bundle? bundle)
+        private static ICrossBundle ReadAndroidBundle(Bundle? bundle)
         {
             if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
             {
-                return converter?.Read(bundle) ?? new MvxBundle();
+                return converter?.Read(bundle) ?? new CrossBundle();
             }
 
             MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
             "Saved state converter not available - saving state will be hard");
 
-            return new MvxBundle();
+            return new CrossBundle();
         }
 
         protected override void HandleCreateViewCalled(

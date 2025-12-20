@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Android.Views
                 IDictionary<string, string> parameterValues = null)
             where TTargetViewModel : class, ICrossViewModel
         {
-            var parameterBundle = new MvxBundle(parameterValues);
+            var parameterBundle = new CrossBundle(parameterValues);
             var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateIntentFor(request);
         }

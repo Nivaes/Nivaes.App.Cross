@@ -34,12 +34,12 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public void Init(IMvxBundle parameters)
+        public void Init(ICrossBundle parameters)
         {
             InitFromBundle(parameters);
         }
 
-        public void ReloadState(IMvxBundle state)
+        public void ReloadState(ICrossBundle state)
         {
             ReloadFromBundle(state);
         }
@@ -48,20 +48,20 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public void SaveState(IMvxBundle state)
+        public void SaveState(ICrossBundle state)
         {
             SaveStateToBundle(state);
         }
 
-        protected virtual void InitFromBundle(IMvxBundle parameters)
+        protected virtual void InitFromBundle(ICrossBundle parameters)
         {
         }
 
-        protected virtual void ReloadFromBundle(IMvxBundle state)
+        protected virtual void ReloadFromBundle(ICrossBundle state)
         {
         }
 
-        protected virtual void SaveStateToBundle(IMvxBundle bundle)
+        protected virtual void SaveStateToBundle(ICrossBundle bundle)
         {
         }
 

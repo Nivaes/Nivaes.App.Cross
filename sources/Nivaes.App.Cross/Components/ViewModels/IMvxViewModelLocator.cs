@@ -19,8 +19,8 @@ namespace MvvmCross.ViewModels
         /// <returns>Returns a ViewModel</returns>
         ICrossViewModel Load(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-            IMvxBundle? parameterValues,
-            IMvxBundle? savedState,
+            ICrossBundle? parameterValues,
+            ICrossBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs = null);
 
         /// <summary>
@@ -36,8 +36,8 @@ namespace MvvmCross.ViewModels
         ICrossViewModel<TParameter> Load<TParameter>(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             TParameter param,
-            IMvxBundle? parameterValues,
-            IMvxBundle? savedState,
+            ICrossBundle? parameterValues,
+            ICrossBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs = null)
             where TParameter : notnull;
 
@@ -51,8 +51,8 @@ namespace MvvmCross.ViewModels
         /// <returns>Returns reloaded ViewModel</returns>
         ICrossViewModel Reload(
             ICrossViewModel viewModel,
-            IMvxBundle? parameterValues,
-            IMvxBundle? savedState,
+            ICrossBundle? parameterValues,
+            ICrossBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs = null);
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace MvvmCross.ViewModels
         ICrossViewModel<TParameter> Reload<TParameter>(
             ICrossViewModel<TParameter> viewModel,
             TParameter param,
-            IMvxBundle? parameterValues,
-            IMvxBundle? savedState,
+            ICrossBundle? parameterValues,
+            ICrossBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs = null);
     }
 }

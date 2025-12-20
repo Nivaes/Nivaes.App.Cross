@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Localization;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Playground.Core.ViewModels.Bindings;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Commands;
+    using MvvmCross.Localization;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Playground.Core.ViewModels.Bindings;
+
     public class MainViewModel : MvxNavigationViewModel
     {
         private string _bindableText = "I'm bound!";
@@ -77,14 +74,14 @@ namespace Playground.Core.ViewModels
             }
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
 
             bundle.Data["MyKey"] = _counter.ToString();
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
 

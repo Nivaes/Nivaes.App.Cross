@@ -12,13 +12,13 @@ namespace MvvmCross.ViewModels.Result
             ResultViewModelManager = resultViewModelManager;
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
             ReloadAndRegisterToResult(state);
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
             SaveRegisterToResult(bundle);
@@ -34,12 +34,12 @@ namespace MvvmCross.ViewModels.Result
             }
         }
 
-        public virtual void ReloadAndRegisterToResult(IMvxBundle state)
+        public virtual void ReloadAndRegisterToResult(ICrossBundle state)
         {
             this.ReloadAndRegisterToResult(state, ResultViewModelManager);
         }
 
-        public virtual void SaveRegisterToResult(IMvxBundle state)
+        public virtual void SaveRegisterToResult(ICrossBundle state)
         {
             this.SaveRegisterToResult<TResult>(state, ResultViewModelManager);
         }
@@ -93,13 +93,13 @@ namespace MvvmCross.ViewModels.Result
         {
         }
 
-        public override void ReloadAndRegisterToResult(IMvxBundle state)
+        public override void ReloadAndRegisterToResult(ICrossBundle state)
         {
             base.ReloadAndRegisterToResult(state);
             this.ReloadAndRegisterToResult<TResult2>(state, ResultViewModelManager);
         }
 
-        public override void SaveRegisterToResult(IMvxBundle state)
+        public override void SaveRegisterToResult(ICrossBundle state)
         {
             base.SaveRegisterToResult(state);
             this.SaveRegisterToResult<TResult2>(state, ResultViewModelManager);
@@ -122,13 +122,13 @@ namespace MvvmCross.ViewModels.Result
         {
         }
 
-        public override void ReloadAndRegisterToResult(IMvxBundle state)
+        public override void ReloadAndRegisterToResult(ICrossBundle state)
         {
             base.ReloadAndRegisterToResult(state);
             this.ReloadAndRegisterToResult<TResult3>(state, ResultViewModelManager);
         }
 
-        public override void SaveRegisterToResult(IMvxBundle state)
+        public override void SaveRegisterToResult(ICrossBundle state)
         {
             base.SaveRegisterToResult(state);
             this.SaveRegisterToResult<TResult3>(state, ResultViewModelManager);

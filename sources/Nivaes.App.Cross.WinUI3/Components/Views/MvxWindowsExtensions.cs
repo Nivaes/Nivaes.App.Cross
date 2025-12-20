@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public static class MvxWindowsExtensions
     {
-        public static void OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)
+        public static void OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<ICrossBundle> bundleLoader)
         {
             storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
         }
@@ -83,7 +83,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         private static ICrossViewModel LoadViewModel(this IMvxWindowsView storeView,
                                                     string requestText,
-                                                    IMvxBundle bundle)
+                                                    ICrossBundle bundle)
         {
 #warning ClearingBackStack disabled for now
 

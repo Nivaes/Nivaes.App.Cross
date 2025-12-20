@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.WinUi.Views
         private const string ExtrasKey = "MvxLaunchData";
         private const string SubViewModelKey = "MvxSubViewModelKey";
 
-        public ICrossViewModel Load(string requestText, IMvxBundle savedState)
+        public ICrossViewModel Load(string requestText, ICrossBundle savedState)
         {
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);

@@ -38,7 +38,7 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModelType;
         }
 
-        public static ICrossViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle savedState, Type fragmentParentActivityType,
+        public static ICrossViewModel LoadViewModel(this IMvxFragmentView fragmentView, ICrossBundle savedState, Type fragmentParentActivityType,
             MvxViewModelRequest request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
@@ -71,14 +71,14 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure.")]
-        public static void RunViewModelLifecycle(ICrossViewModel viewModel, IMvxBundle savedState,
+        public static void RunViewModelLifecycle(ICrossViewModel viewModel, ICrossBundle savedState,
             MvxViewModelRequest request)
         {
             try
             {
                 if (request != null)
                 {
-                    var parameterValues = new MvxBundle(request.ParameterValues);
+                    var parameterValues = new CrossBundle(request.ParameterValues);
                     viewModel.CallBundleMethods("Init", parameterValues);
                 }
                 if (savedState != null)

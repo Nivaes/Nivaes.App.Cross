@@ -48,13 +48,13 @@ namespace MvvmCross.ViewModels
             ResultViewModelManager = resultViewModelManager;
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
             this.ReloadAndRegisterToResult(state, ResultViewModelManager);
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
             this.SaveRegisterToResult(bundle, ResultViewModelManager);

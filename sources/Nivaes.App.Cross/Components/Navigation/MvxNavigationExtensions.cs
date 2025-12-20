@@ -27,13 +27,13 @@ namespace MvvmCross.Navigation
         /// <param name="cancellationToken"></param>
         /// <returns>A task to await upon</returns>
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public static Task Navigate(this IMvxNavigationService navigationService, Uri path, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public static Task Navigate(this IMvxNavigationService navigationService, Uri path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
             return navigationService.Navigate(path.ToString(), presentationBundle, cancellationToken);
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public static Task Navigate<TParameter>(this IMvxNavigationService navigationService, Uri path, TParameter param, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public static Task Navigate<TParameter>(this IMvxNavigationService navigationService, Uri path, TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
             return navigationService.Navigate(path.ToString(), param, presentationBundle, cancellationToken);
         }
@@ -53,7 +53,7 @@ namespace MvvmCross.Navigation
             this IMvxNavigationService navigationService,
             IMvxResultAwaitingViewModel<TResult> fromViewModel,
             IMvxResultViewModelManager resultViewModelManager,
-            IMvxBundle? presentationBundle = null,
+            ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
             where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel
         {
@@ -80,7 +80,7 @@ namespace MvvmCross.Navigation
             IMvxResultAwaitingViewModel<TResult> fromViewModel,
             IMvxResultViewModelManager resultViewModelManager,
             TParameter parameter,
-            IMvxBundle? presentationBundle = null,
+            ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
             where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
         {

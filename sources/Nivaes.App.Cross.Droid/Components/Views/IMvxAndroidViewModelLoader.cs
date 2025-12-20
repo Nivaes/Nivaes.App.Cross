@@ -9,12 +9,12 @@ namespace MvvmCross.Platforms.Android.Views
     public interface IMvxAndroidViewModelLoader
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        ICrossViewModel? Load(Intent? intent, IMvxBundle? savedState);
+        ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState);
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         ICrossViewModel? Load(
             Intent? intent,
-            IMvxBundle? savedState,
+            ICrossBundle? savedState,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint);
     }
 }

@@ -5,6 +5,6 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public interface IMvxWindowsViewModelLoader
     {
-        ICrossViewModel Load(string requestText, IMvxBundle savedState);
+        ICrossViewModel Load(string requestText, ICrossBundle savedState);
     }
 }

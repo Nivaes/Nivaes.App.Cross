@@ -15,11 +15,11 @@ namespace MvvmCross.ViewModels
         }
 
         // Reload should be used to re-run cached ViewModels lifecycle if required.
-        public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, MvxViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
         {
             var viewModelLocator = FindViewModelLocator(request);
 
-            var parameterValues = new MvxBundle(request.ParameterValues);
+            var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
                 viewModel = viewModelLocator.Reload(viewModel, parameterValues, savedState, navigationArgs);
@@ -33,11 +33,11 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, MvxViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
         {
             var viewModelLocator = FindViewModelLocator(request);
 
-            var parameterValues = new MvxBundle(request.ParameterValues);
+            var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
                 return viewModelLocator.Reload(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -49,7 +49,7 @@ namespace MvvmCross.ViewModels
             }
         }
 
-        public ICrossViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel LoadViewModel(MvxViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == typeof(MvxNullViewModel))
             {
@@ -58,7 +58,7 @@ namespace MvvmCross.ViewModels
 
             var viewModelLocator = FindViewModelLocator(request);
 
-            var parameterValues = new MvxBundle(request.ParameterValues);
+            var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
                 return viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
@@ -71,7 +71,7 @@ namespace MvvmCross.ViewModels
         }
 
         public ICrossViewModel LoadViewModel<TParameter>(
-            MvxViewModelRequest request, TParameter param, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+            MvxViewModelRequest request, TParameter param, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == typeof(MvxNullViewModel))
             {
@@ -80,7 +80,7 @@ namespace MvvmCross.ViewModels
 
             var viewModelLocator = FindViewModelLocator(request);
 
-            var parameterValues = new MvxBundle(request.ParameterValues);
+            var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
                 return viewModelLocator.Load(request.ViewModelType!, param, parameterValues, savedState, navigationArgs);

@@ -1,24 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using MvvmCross;
-using MvvmCross.Commands;
-using MvvmCross.Localization;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using MvvmCross.ViewModels.Result;
-using Playground.Core.Models;
-using Playground.Core.Services;
-using Playground.Core.ViewModels.Bindings;
-using Playground.Core.ViewModels.Navigation;
-using Playground.Core.ViewModels.Samples;
-
 namespace Playground.Core.ViewModels
 {
-    public class RootViewModel : MvxNavigationResultAwaitingViewModel<SampleModel>
+    using System.Diagnostics;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Commands;
+    using MvvmCross.Localization;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using MvvmCross.ViewModels.Result;
+    using Nivaes.App.Cross;
+    using Playground.Core.Models;
+    using Playground.Core.Services;
+    using Playground.Core.ViewModels.Bindings;
+    using Playground.Core.ViewModels.Navigation;
+    using Playground.Core.ViewModels.Samples;
+
+    public class RootViewModel 
+        : MvxNavigationResultAwaitingViewModel<SampleModel>
     {
         private readonly IMvxViewModelLoader _mvxViewModelLoader;
 
@@ -219,14 +217,14 @@ namespace Playground.Core.ViewModels
                 }, exception => { });
         }
 
-        protected override void SaveStateToBundle(IMvxBundle bundle)
+        protected override void SaveStateToBundle(ICrossBundle bundle)
         {
             base.SaveStateToBundle(bundle);
 
             bundle.Data["MyKey"] = _counter.ToString();
         }
 
-        protected override void ReloadFromBundle(IMvxBundle state)
+        protected override void ReloadFromBundle(ICrossBundle state)
         {
             base.ReloadFromBundle(state);
 

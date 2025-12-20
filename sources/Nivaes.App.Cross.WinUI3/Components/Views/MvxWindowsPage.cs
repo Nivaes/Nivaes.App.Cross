@@ -1,20 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
-using MvvmCross.Platforms.WinUi.Views.Suspension;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-using Windows.UI.Core;
-
 namespace MvvmCross.Platforms.WinUi.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+    using MvvmCross.Platforms.WinUi.Views.Suspension;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Windows.UI.Core;
+
     public class MvxWindowsPage
         : Page
         , IMvxWindowsView
@@ -152,12 +148,12 @@ namespace MvvmCross.Platforms.WinUi.Views
             }
         }
 
-        protected virtual IMvxBundle LoadStateBundle(NavigationEventArgs e)
+        protected virtual ICrossBundle LoadStateBundle(NavigationEventArgs e)
         {
             // nothing loaded by default
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
             _pageKey = "Page-" + Frame.BackStackDepth;
-            IMvxBundle bundle = null;
+            ICrossBundle bundle = null;
 
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -174,13 +170,13 @@ namespace MvvmCross.Platforms.WinUi.Views
             else
             {
                 var dictionary = (IDictionary<string, string>)frameState[_pageKey];
-                bundle = new MvxBundle(dictionary);
+                bundle = new CrossBundle(dictionary);
             }
 
             return bundle;
         }
 
-        protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, IMvxBundle bundle)
+        protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, ICrossBundle bundle)
         {
             var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
             frameState[_pageKey] = bundle.Data;

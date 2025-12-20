@@ -27,13 +27,13 @@ namespace MvvmCross.Platforms.Android.Views
         #region Implementation of IMvxAndroidViewModelRequestTranslator
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        public virtual ICrossViewModel? Load(Intent? intent, IMvxBundle? savedState)
+        public virtual ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState)
         {
             return Load(intent, null, null);
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        public virtual ICrossViewModel? Load(Intent? intent, IMvxBundle? savedState,
+        public virtual ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
         {
             return CreateViewModel(intent!, savedState, viewModelTypeHint);
@@ -42,7 +42,7 @@ namespace MvvmCross.Platforms.Android.Views
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         protected virtual ICrossViewModel? CreateViewModel(
             Intent intent,
-            IMvxBundle? savedState,
+            ICrossBundle? savedState,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
         {
             ArgumentNullException.ThrowIfNull(intent);
@@ -63,7 +63,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         protected virtual ICrossViewModel? DirectLoad(
-            IMvxBundle? savedState,
+            ICrossBundle? savedState,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
         {
             if (viewModelTypeHint == null)
@@ -84,7 +84,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        protected virtual ICrossViewModel? CreateViewModelFromIntent(Intent intent, IMvxBundle? savedState)
+        protected virtual ICrossViewModel? CreateViewModelFromIntent(Intent intent, ICrossBundle? savedState)
         {
             var extraData = intent.Extras?.GetString(ExtrasKey);
             if (extraData == null)
@@ -100,7 +100,7 @@ namespace MvvmCross.Platforms.Android.Views
             return ViewModelFromRequest(viewModelRequest, savedState);
         }
 
-        protected virtual ICrossViewModel? ViewModelFromRequest(MvxViewModelRequest? viewModelRequest, IMvxBundle? savedState)
+        protected virtual ICrossViewModel? ViewModelFromRequest(MvxViewModelRequest? viewModelRequest, ICrossBundle? savedState)
         {
             if (viewModelRequest == null)
                 return null;

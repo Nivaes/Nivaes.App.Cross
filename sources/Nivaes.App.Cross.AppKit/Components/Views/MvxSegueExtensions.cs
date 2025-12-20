@@ -32,7 +32,7 @@ namespace MvvmCross.Platforms.Mac.Views
                 ? null
                 : view.PrepareViewModelParametersForSegue(segue, sender);
 
-            if (parameterValues is IMvxBundle bundle)
+            if (parameterValues is ICrossBundle bundle)
                 self.ViewModelRequestForSegueImpl(segue, bundle);
             else if (parameterValues is IDictionary<string, string> values)
                 self.ViewModelRequestForSegueImpl(segue, values);
@@ -47,10 +47,10 @@ namespace MvvmCross.Platforms.Mac.Views
 
         private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController self, NSStoryboardSegue segue, IDictionary<string, string> parameterValues)
         {
-            self.ViewModelRequestForSegueImpl(segue, new MvxBundle(parameterValues));
+            self.ViewModelRequestForSegueImpl(segue, new CrossBundle(parameterValues));
         }
 
-        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, NSStoryboardSegue segue, IMvxBundle parameterBundle = null)
+        private static void ViewModelRequestForSegueImpl(this IMvxEventSourceViewController _, NSStoryboardSegue segue, ICrossBundle parameterBundle = null)
         {
             if (segue.DestinationController is IMvxMacView { Request: null } view)
             {

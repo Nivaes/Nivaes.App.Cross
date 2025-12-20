@@ -12,12 +12,12 @@ namespace MvvmCross.Presenters.Hints
             ViewModelToClose = viewModelToClose;
         }
 
-        public MvxClosePresentationHint(ICrossViewModel viewModelToClose, MvxBundle body) : base(body)
+        public MvxClosePresentationHint(ICrossViewModel viewModelToClose, CrossBundle body) : base(body)
         {
             ViewModelToClose = viewModelToClose;
         }
 
-        public MvxClosePresentationHint(ICrossViewModel viewModelToClose, IDictionary<string, string> hints) : this(viewModelToClose, new MvxBundle(hints))
+        public MvxClosePresentationHint(ICrossViewModel viewModelToClose, IDictionary<string, string> hints) : this(viewModelToClose, new CrossBundle(hints))
         {
         }
 

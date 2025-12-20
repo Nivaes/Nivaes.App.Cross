@@ -1,24 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Android.OS;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;   
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]
     public class MvxSavedStateConverter : IMvxSavedStateConverter
     {
         private const string ExtrasKey = "MvxSaved";
 
-        public IMvxBundle Read(Bundle bundle)
+        public ICrossBundle Read(Bundle bundle)
         {
             var extras = bundle?.GetString(ExtrasKey);
             if (string.IsNullOrEmpty(extras))
@@ -28,7 +26,7 @@ namespace MvvmCross.Platforms.Android.Views
             {
                 var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
                 var data = converter.Serializer.DeserializeObject<Dictionary<string, string>>(extras);
-                return new MvxBundle(data);
+                return new CrossBundle(data);
             }
             catch (Exception ex)
             {
@@ -38,7 +36,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        public void Write(Bundle bundle, IMvxBundle savedState)
+        public void Write(Bundle bundle, ICrossBundle savedState)
         {
             if (savedState == null)
                 return;

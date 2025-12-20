@@ -49,10 +49,10 @@ namespace Nivaes.App.Cross
             return typeof(MvxNullViewModel);
         }
 
-        public static IMvxBundle CreateSaveStateBundle(this ICrossView view)
+        public static ICrossBundle CreateSaveStateBundle(this ICrossView view)
         {
             var viewModel = view.ViewModel;
-            return viewModel == null ? new MvxBundle() : viewModel.SaveStateBundle();
+            return viewModel == null ? new CrossBundle() : viewModel.SaveStateBundle();
         }
     }
 }
