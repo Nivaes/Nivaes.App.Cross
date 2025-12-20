@@ -1,28 +1,24 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
-using AppKit;
-using Foundation;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Mac.Views.Base;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-
 namespace MvvmCross.Platforms.Mac.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Reflection;
+    using AppKit;
+    using Foundation;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Mac.Views.Base;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     internal static class MvxSegueExtensions
     {
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Runtime type inspection is necessary for segue-based navigation")]
         [UnconditionalSuppressMessage("Trimming", "IL2073", Justification = "PropertyInfo.PropertyType doesn't preserve annotations")]
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime property inspection is necessary for ViewModel discovery")]
-        internal static Type GetViewModelType(this IMvxView view)
+        internal static Type GetViewModelType(this ICrossView view)
         {
             var viewType = view.GetType();
             var props = viewType.GetProperties(BindingFlags.Public | BindingFlags.Instance);

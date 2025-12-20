@@ -1,21 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Foundation;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Ios.Views.Base;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
-#nullable enable
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Foundation;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Ios.Views.Base;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using UIKit;
+
     internal static class MvxSegueExtensions
     {
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
@@ -23,7 +18,7 @@ namespace MvvmCross.Platforms.Ios.Views
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime type inspection is necessary for segue-based navigation")]
         internal static Type? GetViewModelType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TViewType>(
             this TViewType? view)
-                where TViewType : class, IMvxView
+                where TViewType : class, ICrossView
         {
             if (view == null)
                 return null;
@@ -71,5 +66,4 @@ namespace MvvmCross.Platforms.Ios.Views
             }
         }
     }
-#nullable restore
 }

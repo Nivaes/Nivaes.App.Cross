@@ -22,7 +22,7 @@ using MvvmCross.Platforms.Android.Presenters;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Android.Core;
 

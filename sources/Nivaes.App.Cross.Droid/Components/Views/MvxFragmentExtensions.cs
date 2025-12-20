@@ -10,7 +10,7 @@ using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Android.Views
 {

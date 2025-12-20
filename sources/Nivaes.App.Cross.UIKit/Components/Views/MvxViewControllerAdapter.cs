@@ -4,7 +4,7 @@
 #nullable enable
 
 using MvvmCross.Platforms.Ios.Views.Base;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Ios.Views
 {

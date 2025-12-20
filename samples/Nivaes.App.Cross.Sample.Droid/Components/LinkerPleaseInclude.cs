@@ -8,7 +8,7 @@ using MvvmCross;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace Playground.Droid
 {

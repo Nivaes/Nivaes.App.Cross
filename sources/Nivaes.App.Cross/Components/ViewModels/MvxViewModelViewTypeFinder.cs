@@ -82,7 +82,7 @@ public class MvxViewModelViewTypeFinder(
         if (candidateType.GetTypeInfo().IsAbstract)
             return false;
 
-        if (!typeof(IMvxView).IsAssignableFrom(candidateType))
+        if (!typeof(ICrossView).IsAssignableFrom(candidateType))
             return false;
 
         return true;

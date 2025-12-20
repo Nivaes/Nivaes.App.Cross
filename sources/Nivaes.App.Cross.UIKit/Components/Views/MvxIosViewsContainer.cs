@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using MvvmCross.Exceptions;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Ios.Views
 {

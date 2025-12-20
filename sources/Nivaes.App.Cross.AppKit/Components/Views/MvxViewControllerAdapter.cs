@@ -4,7 +4,7 @@
 
 using System;
 using MvvmCross.Platforms.Mac.Views.Base;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Mac.Views
 {

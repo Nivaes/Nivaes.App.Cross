@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Ios.Presenters;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Ios.Views
 {

@@ -11,7 +11,7 @@ using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Core;
 using MvvmCross.Platforms.Android.Views.Base;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Android.Views;
 
@@ -43,7 +43,7 @@ public static class MvxActivityViewExtensions
         if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
             cached = cache?.GetAndClear(bundle);
 
-        var view = (IMvxView)androidView;
+        var view = (ICrossView)androidView;
         var savedState = GetSavedStateFromBundle(bundle);
         view.OnViewCreate(() => cached ?? androidView.LoadViewModel(savedState));
     }
@@ -70,7 +70,7 @@ public static class MvxActivityViewExtensions
     public static void OnViewDestroy(this IMvxAndroidView androidView)
     {
         androidView.OnLifetimeEvent((listener, activity) => listener.OnDestroy(activity));
-        var view = androidView as IMvxView;
+        var view = androidView as ICrossView;
         view.OnViewDestroy();
 
         if (Mvx.IoCProvider?.TryResolve<IMvxAppStart>(out var appStart) != true ||

@@ -1,36 +1,33 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using AndroidX.ViewPager.Widget;
-using Google.Android.Material.Tabs;
-using Java.Lang;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.Platforms.Android.Views.ViewPager;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.Presenters.Hints;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace MvvmCross.Platforms.Android.Presenters
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using AndroidX.ViewPager.Widget;
+    using Google.Android.Material.Tabs;
+    using Java.Lang;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.Platforms.Android.Views.ViewPager;
+    using MvvmCross.Presenters;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.Presenters.Hints;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Activity = AndroidX.AppCompat.App.AppCompatActivity;
+    using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+
     public class MvxAndroidViewPresenter : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
     {
         public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
@@ -849,7 +846,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         #region Close implementations
         protected virtual Task<bool> CloseActivity(IMvxViewModel viewModel, MvxActivityPresentationAttribute? attribute)
         {
-            var currentView = CurrentActivity as IMvxView;
+            var currentView = CurrentActivity as ICrossView;
 
             if (currentView == null)
             {

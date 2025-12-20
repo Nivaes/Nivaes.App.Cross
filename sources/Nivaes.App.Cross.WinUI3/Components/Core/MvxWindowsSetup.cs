@@ -21,7 +21,7 @@ using MvvmCross.Platforms.WinUi.Views;
 using MvvmCross.Platforms.WinUi.Views.Suspension;
 using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 using Windows.ApplicationModel.Activation;
 
 namespace MvvmCross.Platforms.WinUi.Core

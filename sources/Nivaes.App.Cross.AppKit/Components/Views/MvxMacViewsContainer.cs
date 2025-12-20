@@ -8,7 +8,7 @@ using System.Reflection;
 using AppKit;
 using MvvmCross.Exceptions;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Mac.Views
 {

@@ -1,23 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Content;
-using Android.Content.Res;
-using Android.OS;
-using Android.Views;
-using AndroidX.AppCompat.Widget;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.AppCompat;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Droid.Activities;
-using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
-
 namespace Playground.Droid.Fragments
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.Content.Res;
+    using Android.OS;
+    using Android.Views;
+    using AndroidX.AppCompat.Widget;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.AppCompat;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.Sample.Droid;
+    using Playground.Droid.Activities;
+    using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
     public abstract class BaseSplitDetailView<TViewModel> : MvxFragment<TViewModel> where TViewModel : class, IMvxViewModel
     {

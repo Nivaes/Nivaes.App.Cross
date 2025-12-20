@@ -9,7 +9,7 @@ using MvvmCross.Exceptions;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments;
@@ -44,7 +44,7 @@ public static class MvxFragmentExtensions
 
         // as it is called during onCreate it is safe to assume that fragment has Activity attached.
         var viewModelType = fragmentView.FindAssociatedViewModelType(fragment.Activity.GetType());
-        var view = fragmentView as IMvxView;
+        var view = fragmentView as ICrossView;
 
         var cached = cache?.GetAndClear(viewModelType, fragmentView.UniqueImmutableCacheTag);
         view.OnViewCreate(() => cached ?? fragmentView.LoadViewModel(bundle, fragment.Activity.GetType(), request));

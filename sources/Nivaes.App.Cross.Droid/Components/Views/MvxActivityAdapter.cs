@@ -9,7 +9,7 @@ using MvvmCross.Base;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Core;
 using MvvmCross.Platforms.Android.Views.Base;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Android.Views
 {

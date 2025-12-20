@@ -10,7 +10,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using MvvmCross.Platforms.WinUi.Views.Suspension;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 using Windows.UI.Core;
 
 namespace MvvmCross.Platforms.WinUi.Views

@@ -9,7 +9,7 @@ using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Core;
 using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments

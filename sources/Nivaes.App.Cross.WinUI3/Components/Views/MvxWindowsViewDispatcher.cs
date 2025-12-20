@@ -5,7 +5,7 @@
 using System.Threading.Tasks;
 using MvvmCross.Platforms.WinUi.Presenters;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.WinUi.Views
 {
