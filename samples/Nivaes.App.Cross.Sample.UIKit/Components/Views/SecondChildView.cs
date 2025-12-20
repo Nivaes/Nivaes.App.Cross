@@ -42,7 +42,7 @@ namespace Playground.iOS.Views
 
         private void BtnCloseStack_TouchUpInside(object sender, EventArgs e)
         {
-            var appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
+            var appDelegate = UIApplication.SharedApplication.Delegate as UIApplicationDelegate;
             var presenter = Mvx.IoCProvider.GetSingleton<IMvxIosViewPresenter>() as MvxIosViewPresenter;
 
             if (appDelegate.Window.RootViewController.PresentedViewController != null)

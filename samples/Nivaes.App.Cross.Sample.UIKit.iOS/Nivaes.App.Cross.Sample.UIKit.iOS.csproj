@@ -20,18 +20,14 @@
 		<IsAotCompatible>true</IsAotCompatible>
 		<!--<PublishAot>true</PublishAot>-->
 	</PropertyGroup>
-
-	
 	<ItemGroup>
-	  <AtlasTexture Remove="Components\Views\**" />
-	  <Compile Remove="Components\Views\**" />
-	  <CoreMLModel Remove="Components\Views\**" />
-	  <EmbeddedResource Remove="Components\Views\**" />
-	  <ImageAsset Remove="Components\Views\**" />
-	  <InterfaceDefinition Remove="Components\Views\**" />
-	  <Metal Remove="Components\Views\**" />
-	  <None Remove="Components\Views\**" />
-	  <SceneKitAsset Remove="Components\Views\**" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon16.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon256.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon512.png" />
+	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
