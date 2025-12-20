@@ -34,6 +34,8 @@
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Serilog.Extensions.Logging" />
+		<PackageReference Include="Serilog.Sinks.Trace" />
+		<PackageReference Include="Serilog.Sinks.Xamarin" />
 	</ItemGroup>
 
 	<ItemGroup>

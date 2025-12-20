@@ -20,7 +20,6 @@
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
 		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
 		<_CrossWindowsPlatformMinVersion>10.0.19041.0</_CrossWindowsPlatformMinVersion>
-		<_CrossTizenVersion>6.5</_CrossTizenVersion>	
     </PropertyGroup>
 
 	<PropertyGroup>
@@ -32,7 +31,6 @@
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
 		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
 		<_CrossWinUITargets>net10.0-windows</_CrossWinUITargets>
-		<_CrossTizenTargets>net10.0-tizen</_CrossTizenTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -52,7 +50,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">$(_CrossAndroidVersion)</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">$(_CrossTizenVersion)</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
