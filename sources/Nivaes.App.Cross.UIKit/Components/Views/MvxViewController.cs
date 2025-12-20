@@ -1,17 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Foundation;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views.Base;
-using MvvmCross.ViewModels;
-using ObjCRuntime;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Ios.Views.Base;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxViewController
         : MvxEventSourceViewController, IMvxIosView
     {
@@ -100,7 +94,8 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxViewController<TViewModel> : MvxViewController, IMvxIosView<TViewModel>
+    public class MvxViewController<TViewModel> 
+        : MvxViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public MvxViewController()

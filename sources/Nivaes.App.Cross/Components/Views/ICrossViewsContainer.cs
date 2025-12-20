@@ -1,9 +1,9 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
 
-    public interface ICrossViewsContainer : ICrossViewFinder
+    public interface ICrossViewsContainer
+        : ICrossViewFinder
     {
         void AddAll(IDictionary<Type, Type> viewModelViewLookup);
 
