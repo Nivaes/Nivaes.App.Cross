@@ -1,15 +1,17 @@
-using System;
-using System.Drawing;
-using System.Linq;
-using MvvmCross.Commands;
-using MvvmCross.UI;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using MvvmCross.Commands;
+    using MvvmCross.UI;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public record CollectionViewParameter(int InitialCount = 40);
 
-    public class CollectionViewModel : MvxViewModel<CollectionViewParameter>
+    public class CollectionViewModel 
+        : MvxViewModel<CollectionViewParameter>
     {
         private readonly Random _random;
 

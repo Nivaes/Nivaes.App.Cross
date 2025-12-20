@@ -10,6 +10,6 @@ namespace MvvmCross.Platforms.Ios.Views
     {
         void NavigateTo(MvxViewModelRequest request);
 
-        void Close(IMvxViewModel toClose);
+        void Close(ICrossViewModel toClose);
     }
 }

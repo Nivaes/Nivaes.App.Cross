@@ -11,6 +11,6 @@ namespace MvvmCross.Platforms.Mac.Views
     {
         void ShowTabView(NSViewController viewController, string tabTitle);
 
-        bool CloseTabView(IMvxViewModel viewModel);
+        bool CloseTabView(ICrossViewModel viewModel);
     }
 }

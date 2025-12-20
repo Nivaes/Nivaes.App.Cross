@@ -1,14 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using MvvmCross.IoC;
-
 namespace MvvmCross.ViewModels
 {
-    public class MvxViewModelByNameLookup : IMvxViewModelByNameLookup, IMvxViewModelByNameRegistry
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+
+    public class MvxViewModelByNameLookup 
+        : IMvxViewModelByNameLookup, IMvxViewModelByNameRegistry
     {
         private readonly Dictionary<string, Type> _availableViewModelsByName;
         private readonly Dictionary<string, Type> _availableViewModelsByFullName;
@@ -36,7 +34,8 @@ namespace MvvmCross.ViewModels
                 _availableViewModelsByFullName.TryAdd(viewModelType.FullName, viewModelType);
         }
 
-        public void Add<TViewModel>() where TViewModel : IMvxViewModel
+        public void Add<TViewModel>() 
+            where TViewModel : ICrossViewModel
         {
             Add(typeof(TViewModel));
         }
@@ -47,7 +46,7 @@ namespace MvvmCross.ViewModels
             var viewModelTypes = from type in assembly.ExceptionSafeGetTypes()
                                  where !type.GetTypeInfo().IsAbstract
                                  where !type.GetTypeInfo().IsInterface
-                                 where typeof(IMvxViewModel).IsAssignableFrom(type)
+                                 where typeof(ICrossViewModel).IsAssignableFrom(type)
                                  select type;
 
             foreach (var viewModelType in viewModelTypes)

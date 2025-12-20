@@ -145,7 +145,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return Task.FromResult(true);
         }
 
-        protected virtual Task<bool> CloseSplitView(IMvxViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected virtual Task<bool> CloseSplitView(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute);
         }
@@ -167,7 +167,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return Task.FromResult(true);
         }
 
-        protected virtual Task<bool> CloseRegionView(IMvxViewModel viewModel, MvxRegionPresentationAttribute attribute)
+        protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
         {
             var viewFinder = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
             var viewType = viewFinder.GetViewType(viewModel.GetType());
@@ -188,7 +188,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return ClosePage(viewModel, attribute);
         }
 
-        protected virtual Task<bool> ClosePage(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
         {
             var currentView = _rootFrame.Content as ICrossView;
             if (currentView == null)
@@ -282,7 +282,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        protected virtual Task<bool> CloseDialog(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
         {
             if (!(_rootFrame.UnderlyingControl is Frame frame))
                 return Task.FromResult(false);

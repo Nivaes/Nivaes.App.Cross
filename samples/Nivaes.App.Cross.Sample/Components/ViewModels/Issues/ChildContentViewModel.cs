@@ -1,9 +1,11 @@
-using System.Threading.Tasks;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
-    public class ChildContentViewModel : MvxViewModel
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public class ChildContentViewModel
+        : CrossViewModel
     {
         public ChildContentViewModel()
         {

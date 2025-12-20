@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Ios.Views
             }
         }
 
-        public virtual IMvxIosView CreateView(IMvxViewModel viewModel)
+        public virtual IMvxIosView CreateView(ICrossViewModel viewModel)
         {
             var request = new MvxViewModelInstanceRequest(viewModel);
             var view = CreateView(request);

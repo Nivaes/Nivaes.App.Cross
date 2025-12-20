@@ -1,20 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
-    public class MvxChildViewModelCache : IMvxChildViewModelCache
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Nivaes.App.Cross;
+
+    public class MvxChildViewModelCache
+        : IMvxChildViewModelCache
     {
-        private readonly Dictionary<int, IMvxViewModel> _viewModels = new Dictionary<int, IMvxViewModel>();
+        private readonly Dictionary<int, ICrossViewModel> _viewModels = new Dictionary<int, ICrossViewModel>();
         private int _unique = 1;
 
-        public int Cache(IMvxViewModel viewModel)
+        public int Cache(ICrossViewModel viewModel)
         {
             var index = _unique++;
             _viewModels[index] = viewModel;
@@ -26,13 +23,13 @@ namespace MvvmCross.ViewModels
             return _viewModels.Values.Any(x => x.GetType() == viewModelType);
         }
 
-        public IMvxViewModel Get(int index)
+        public ICrossViewModel Get(int index)
         {
-            _viewModels.TryGetValue(index, out IMvxViewModel viewModel);
+            _viewModels.TryGetValue(index, out ICrossViewModel viewModel);
             return viewModel;
         }
 
-        public IMvxViewModel Get(Type viewModelType)
+        public ICrossViewModel Get(Type viewModelType)
         {
             return _viewModels.Values.FirstOrDefault(x => x.GetType() == viewModelType);
         }
@@ -47,5 +44,4 @@ namespace MvvmCross.ViewModels
             _viewModels.Remove(_viewModels.FirstOrDefault(x => x.Value.GetType() == viewModelType).Key);
         }
     }
-#nullable restore
 }

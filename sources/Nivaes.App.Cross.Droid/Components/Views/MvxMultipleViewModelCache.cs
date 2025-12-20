@@ -1,28 +1,25 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Concurrent;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using System.Collections.Concurrent;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class MvxMultipleViewModelCache
         : IMvxMultipleViewModelCache
     {
-        private readonly Lazy<ConcurrentDictionary<CachedViewModelType, IMvxViewModel>> _lazyCurrentViewModels;
+        private readonly Lazy<ConcurrentDictionary<CachedViewModelType, ICrossViewModel>> _lazyCurrentViewModels;
 
         public MvxMultipleViewModelCache()
         {
             _lazyCurrentViewModels =
-                new Lazy<ConcurrentDictionary<CachedViewModelType, IMvxViewModel>>(
-                    () => new ConcurrentDictionary<CachedViewModelType, IMvxViewModel>());
+                new Lazy<ConcurrentDictionary<CachedViewModelType, ICrossViewModel>>(
+                    () => new ConcurrentDictionary<CachedViewModelType, ICrossViewModel>());
         }
 
-        private ConcurrentDictionary<CachedViewModelType, IMvxViewModel> CurrentViewModels => _lazyCurrentViewModels.Value;
+        private ConcurrentDictionary<CachedViewModelType, ICrossViewModel> CurrentViewModels => _lazyCurrentViewModels.Value;
 
-        public void Cache(IMvxViewModel toCache, string viewModelTag = "singleInstanceCache")
+        public void Cache(ICrossViewModel toCache, string viewModelTag = "singleInstanceCache")
         {
             if (toCache == null) return;
 
@@ -32,18 +29,18 @@ namespace MvvmCross.Platforms.Android.Views
             CurrentViewModels.AddOrUpdate(cachedViewModelType, toCache, (_, _) => toCache);
         }
 
-        public IMvxViewModel GetAndClear(Type viewModelType, string viewModelTag = "singleInstanceCache")
+        public ICrossViewModel GetAndClear(Type viewModelType, string viewModelTag = "singleInstanceCache")
         {
             if (viewModelType == null) return null;
 
-            IMvxViewModel vm;
+            ICrossViewModel vm;
             var cachedViewModelType = new CachedViewModelType(viewModelType, viewModelTag);
             CurrentViewModels.TryRemove(cachedViewModelType, out vm);
 
             return vm;
         }
 
-        public T GetAndClear<T>(string viewModelTag = "singleInstanceCache") where T : IMvxViewModel
+        public T GetAndClear<T>(string viewModelTag = "singleInstanceCache") where T : ICrossViewModel
         {
             return (T)GetAndClear(typeof(T), viewModelTag);
         }

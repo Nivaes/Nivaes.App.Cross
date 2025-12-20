@@ -146,7 +146,7 @@ namespace MvvmCross.Platforms.Ios.Views
             return SelectedViewController is UINavigationController;
         }
 
-        public virtual bool CloseChildViewModel(IMvxViewModel viewModel)
+        public virtual bool CloseChildViewModel(ICrossViewModel viewModel)
         {
             if (SelectedIndex > 5 && (MoreNavigationController?.ViewControllers?.Any() ?? false))
             {
@@ -184,7 +184,7 @@ namespace MvvmCross.Platforms.Ios.Views
             return false;
         }
 
-        public virtual bool CloseTabViewModel(IMvxViewModel viewModel)
+        public virtual bool CloseTabViewModel(ICrossViewModel viewModel)
         {
             if (ViewControllers == null || !ViewControllers.Any())
                 return false;
@@ -232,7 +232,7 @@ namespace MvvmCross.Platforms.Ios.Views
     }
 
     public class MvxTabBarViewController<TViewModel> : MvxTabBarViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxTabBarViewController()
         {

@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Android.Views
     public interface IMvxFragmentView<TViewModel>
         : IMvxFragmentView
         , ICrossView<TViewModel> where TViewModel : class
-        , IMvxViewModel
+        , ICrossViewModel
     {
         MvxFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet();
     }

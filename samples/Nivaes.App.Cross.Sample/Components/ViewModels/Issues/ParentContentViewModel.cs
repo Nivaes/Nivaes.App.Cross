@@ -1,10 +1,12 @@
-using MvvmCross;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
-    public class ParentContentViewModel : MvxViewModel
+    using MvvmCross;
+    using MvvmCross.Commands;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public class ParentContentViewModel 
+        : CrossViewModel
     {
         private ChildContentViewModel _childViewModel1;
         public ChildContentViewModel ChildViewModel1

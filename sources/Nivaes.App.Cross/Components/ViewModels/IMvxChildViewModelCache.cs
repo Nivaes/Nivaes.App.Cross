@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
+    using System;
+    using Nivaes.App.Cross;
+
     public interface IMvxChildViewModelCache
     {
-        int Cache(IMvxViewModel viewModel);
+        int Cache(ICrossViewModel viewModel);
 
-        IMvxViewModel? Get(int index);
+        ICrossViewModel? Get(int index);
 
-        IMvxViewModel? Get(Type viewModelType);
+        ICrossViewModel? Get(Type viewModelType);
 
         void Remove(int index);
 
@@ -21,5 +17,4 @@ namespace MvvmCross.ViewModels
 
         bool Exists(Type viewModelType);
     }
-#nullable restore
 }

@@ -68,7 +68,7 @@ namespace MvvmCross.Platforms.Ios.Views
             ViewControllers = newStack.ToArray();
         }
 
-        public virtual bool CloseChildViewModel(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+        public virtual bool CloseChildViewModel(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
         {
             if (!ViewControllers.Any())
                 return false;
@@ -91,7 +91,7 @@ namespace MvvmCross.Platforms.Ios.Views
     }
 
     public class MvxSplitViewController<TViewModel> : MvxSplitViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxSplitViewController()
         {

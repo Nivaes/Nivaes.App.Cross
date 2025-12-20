@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Android.Views
 {
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public interface IMvxSingleViewModelCache
     {
-        void Cache(IMvxViewModel toCache, Bundle bundle);
+        void Cache(ICrossViewModel toCache, Bundle bundle);
 
-        IMvxViewModel? GetAndClear(Bundle bundle);
+        ICrossViewModel? GetAndClear(Bundle bundle);
     }
 }

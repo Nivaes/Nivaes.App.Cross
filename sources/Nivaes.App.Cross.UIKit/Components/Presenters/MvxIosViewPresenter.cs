@@ -555,7 +555,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(true);
     }
 
-    protected virtual Task<bool> CloseRootViewController(IMvxViewModel viewModel, MvxRootPresentationAttribute attribute)
+    protected virtual Task<bool> CloseRootViewController(ICrossViewModel viewModel, MvxRootPresentationAttribute attribute)
     {
         if (viewModel == null)
             throw new ArgumentNullException(nameof(viewModel));
@@ -566,7 +566,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual Task<bool> CloseChildViewController(IMvxViewModel viewModel, MvxChildPresentationAttribute attribute)
+    protected virtual Task<bool> CloseChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -595,7 +595,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    private bool CloseModalChildViewController(IMvxViewModel viewModel, MvxChildPresentationAttribute attribute)
+    private bool CloseModalChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
     {
         foreach (var modalNav in ModalViewControllers.OfType<UINavigationController>())
         {
@@ -606,7 +606,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return false;
     }
 
-    protected virtual Task<bool> CloseTabViewController(IMvxViewModel viewModel, MvxTabPresentationAttribute attribute)
+    protected virtual Task<bool> CloseTabViewController(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -616,7 +616,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual Task<bool> ClosePageViewController(IMvxViewModel viewModel, MvxPagePresentationAttribute attribute)
+    protected virtual Task<bool> ClosePageViewController(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -626,7 +626,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual Task<bool> CloseMasterSplitViewController(IMvxViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+    protected virtual Task<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -636,7 +636,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(true);
     }
 
-    protected virtual Task<bool> CloseDetailSplitViewController(IMvxViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+    protected virtual Task<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -646,7 +646,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual Task<bool> CloseModalViewController(IMvxViewModel viewModel, MvxModalPresentationAttribute attribute)
+    protected virtual Task<bool> CloseModalViewController(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -681,7 +681,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual Task<bool> ClosePopoverViewController(IMvxViewModel viewModel, MvxPopoverPresentationAttribute attribute)
+    protected virtual Task<bool> ClosePopoverViewController(ICrossViewModel viewModel, MvxPopoverPresentationAttribute attribute)
     {
         ValidateArguments(viewModel, attribute);
 
@@ -713,7 +713,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         return Task.FromResult(false);
     }
 
-    protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, IMvxViewModel toClose, MvxChildPresentationAttribute attribute)
+    protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, MvxChildPresentationAttribute attribute)
     {
         ValidateArguments(navController, attribute);
 
@@ -895,7 +895,7 @@ public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresent
         ArgumentNullException.ThrowIfNull(attribute);
     }
 
-    private static void ValidateArguments(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+    private static void ValidateArguments(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
         ArgumentNullException.ThrowIfNull(attribute);

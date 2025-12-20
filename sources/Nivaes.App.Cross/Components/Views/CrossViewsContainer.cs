@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
         }
 
         public void Add<TViewModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] TView>()
-            where TViewModel : IMvxViewModel
+            where TViewModel : ICrossViewModel
             where TView : ICrossView
         {
             Add(typeof(TViewModel), typeof(TView));

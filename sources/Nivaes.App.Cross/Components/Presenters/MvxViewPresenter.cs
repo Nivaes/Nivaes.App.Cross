@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Presenters
 {
-#nullable enable
-    public abstract class MvxViewPresenter : IMvxViewPresenter
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public abstract class MvxViewPresenter 
+        : IMvxViewPresenter
     {
         private readonly Dictionary<Type, Func<MvxPresentationHint, Task<bool>>> _presentationHintHandlers =
             new Dictionary<Type, Func<MvxPresentationHint, Task<bool>>>();
@@ -43,7 +40,6 @@ namespace MvvmCross.Presenters
 
         public abstract Task<bool> ChangePresentation(MvxPresentationHint hint);
 
-        public abstract Task<bool> Close(IMvxViewModel viewModel);
+        public abstract Task<bool> Close(ICrossViewModel viewModel);
     }
-#nullable restore
 }

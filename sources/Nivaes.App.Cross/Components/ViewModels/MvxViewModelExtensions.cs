@@ -1,22 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
-using MvvmCross.Base;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public static class MvxViewModelExtensions
     {
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime method inspection for generic type parameter with PublicMethods annotation")]
         public static void CallBundleMethods<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(
             this TViewModel viewModel, string methodName, IMvxBundle? bundle)
-                where TViewModel : IMvxViewModel
+                where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -34,7 +30,7 @@ namespace MvvmCross.ViewModels
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Callers should guarantee the dynamically accessed members are preserved")]
         public static void CallBundleMethod<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(
             this TViewModel viewModel, MethodInfo methodInfo, IMvxBundle? bundle)
-                where TViewModel : IMvxViewModel
+                where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
             ArgumentNullException.ThrowIfNull(methodInfo);
@@ -71,7 +67,7 @@ namespace MvvmCross.ViewModels
 
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime method inspection for generic type parameter with PublicMethods annotation")]
         public static IMvxBundle SaveStateBundle<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(this TViewModel viewModel)
-            where TViewModel : IMvxViewModel
+            where TViewModel : ICrossViewModel
         {
             ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -98,5 +94,4 @@ namespace MvvmCross.ViewModels
             return toReturn;
         }
     }
-#nullable restore
 }

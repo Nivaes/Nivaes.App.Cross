@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Content;
-using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.DroidX.Material.EventSource;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.DroidX.Material
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.Runtime;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.DroidX.Material.EventSource;
+    using MvvmCross.Platforms.Android.Views;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [Register("mvvmcross.droidx.material.MvxBottomSheetDialogFragment")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxBottomSheetDialogFragment
@@ -45,11 +42,11 @@ namespace MvvmCross.DroidX.Material
             }
         }
 
-        public virtual IMvxViewModel ViewModel
+        public virtual ICrossViewModel ViewModel
         {
             get
             {
-                return DataContext as IMvxViewModel;
+                return DataContext as ICrossViewModel;
             }
             set
             {
@@ -121,7 +118,7 @@ namespace MvvmCross.DroidX.Material
 
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxBottomSheetDialogFragment<TViewModel> : MvxBottomSheetDialogFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         protected MvxBottomSheetDialogFragment()
         {

@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
 
     public static class CrossViewExtensions
     {
-        public static void OnViewCreate(this ICrossView view, Func<IMvxViewModel?> viewModelLoader)
+        public static void OnViewCreate(this ICrossView view, Func<ICrossViewModel?> viewModelLoader)
         {
             // note - we check the DataContent before the ViewModel to avoid casting errors
             //       in the case of 'simple' binding code

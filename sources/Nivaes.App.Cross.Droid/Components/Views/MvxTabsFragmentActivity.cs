@@ -1,23 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using Java.Lang;
-using MvvmCross.Base;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.ViewModels;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
-using Object = Java.Lang.Object;
+using Android.Views;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Diagnostics.CodeAnalysis;    
+    using Java.Lang;
+    using MvvmCross.Base;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+    using Object = Java.Lang.Object;
+
     [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxTabsFragmentActivity
@@ -41,11 +39,11 @@ namespace MvvmCross.Platforms.Android.Views
             public string Tag { get; private set; }
             public Type FragmentType { get; private set; }
             public Bundle Bundle { get; private set; }
-            public IMvxViewModel ViewModel { get; private set; }
+            public ICrossViewModel ViewModel { get; private set; }
 
             public Fragment CachedFragment { get; set; }
 
-            public TabInfo(string tag, Type fragmentType, Bundle bundle, IMvxViewModel viewModel)
+            public TabInfo(string tag, Type fragmentType, Bundle bundle, ICrossViewModel viewModel)
             {
                 Tag = tag;
                 FragmentType = fragmentType;
@@ -117,13 +115,13 @@ namespace MvvmCross.Platforms.Android.Views
         protected abstract void AddTabs(Bundle args);
 
         protected void AddTab<TFragment>(string tagAndSpecName, string tabName, Bundle args,
-                                         IMvxViewModel viewModel)
+                                         ICrossViewModel viewModel)
         {
             var tabSpec = _tabHost.NewTabSpec(tagAndSpecName).SetIndicator(tabName);
             AddTab<TFragment>(args, viewModel, tabSpec);
         }
 
-        protected void AddTab<TFragment>(Bundle args, IMvxViewModel viewModel, TabHost.TabSpec tabSpec)
+        protected void AddTab<TFragment>(Bundle args, ICrossViewModel viewModel, TabHost.TabSpec tabSpec)
         {
             var tabInfo = new TabInfo(tabSpec.Tag, typeof(TFragment), args, viewModel);
             AddTab(this, _tabHost, tabSpec, tabInfo);

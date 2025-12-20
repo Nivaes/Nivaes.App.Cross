@@ -1,9 +1,8 @@
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-
 namespace MvvmCross.ViewModels
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
+
     /// <summary>
     ///     Extension of MvxViewModelInstanceRequest with a target.
     /// </summary>
@@ -16,7 +15,7 @@ namespace MvvmCross.ViewModels
         /// <param name="source">The instance of the viewmodel which is the source of the request.</param>
         public MvxViewModelInstanceRequestWithSource(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-            IMvxViewModel source)
+            ICrossViewModel source)
                 : base(viewModelType)
         {
             this.Source = source;
@@ -25,6 +24,6 @@ namespace MvvmCross.ViewModels
         /// <summary>
         ///     The instance of the viewmodel which is the source of the request.
         /// </summary>
-        public IMvxViewModel Source { get; }
+        public ICrossViewModel Source { get; }
     }
 }

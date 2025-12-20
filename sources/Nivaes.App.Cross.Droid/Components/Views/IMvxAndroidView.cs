@@ -16,7 +16,7 @@ namespace MvvmCross.Platforms.Android.Views
 
     public interface IMvxAndroidView<TViewModel>
         : IMvxAndroidView
-        , ICrossView<TViewModel> where TViewModel : class, IMvxViewModel
+        , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
     {
         MvxFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet();
     }

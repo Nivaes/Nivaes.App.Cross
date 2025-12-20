@@ -1,11 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Android.Views
 {
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class MvxSingleViewModelCache
         : IMvxSingleViewModelCache
     {
@@ -13,17 +10,17 @@ namespace MvvmCross.Platforms.Android.Views
 
         private int _counter;
 
-        private WeakReference<IMvxViewModel>? _currentViewModel;
+        private WeakReference<ICrossViewModel>? _currentViewModel;
 
-        public void Cache(IMvxViewModel toCache, Bundle bundle)
+        public void Cache(ICrossViewModel toCache, Bundle bundle)
         {
-            _currentViewModel = new WeakReference<IMvxViewModel>(toCache);
+            _currentViewModel = new WeakReference<ICrossViewModel>(toCache);
             _counter++;
 
             bundle.PutInt(BundleCacheKey, _counter);
         }
 
-        public IMvxViewModel? GetAndClear(Bundle? bundle)
+        public ICrossViewModel? GetAndClear(Bundle? bundle)
         {
             try
             {

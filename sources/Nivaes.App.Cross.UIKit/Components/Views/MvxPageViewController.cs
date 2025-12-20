@@ -78,7 +78,7 @@ namespace MvvmCross.Platforms.Ios.Views
             }
         }
 
-        public virtual bool RemovePage(IMvxViewModel viewModel)
+        public virtual bool RemovePage(ICrossViewModel viewModel)
         {
             if (Pages == null || !Pages.Any())
                 return false;
@@ -98,7 +98,7 @@ namespace MvvmCross.Platforms.Ios.Views
     }
 
     public class MvxPageViewController<TViewModel> : MvxPageViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxPageViewController()
         {

@@ -14,14 +14,14 @@ public static class MvxCanCreateIosViewExtensions
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
             this IMvxCanCreateIosView view,
             object parameterObject)
-        where TTargetViewModel : class, IMvxViewModel =>
+        where TTargetViewModel : class, ICrossViewModel =>
         view.CreateViewControllerFor<TTargetViewModel>(parameterObject.ToSimplePropertyDictionary());
 
     // TODO - could this move down to IMvxView level?
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
         this IMvxCanCreateIosView view,
         IDictionary<string, string>? parameterValues = null)
-        where TTargetViewModel : class, IMvxViewModel
+        where TTargetViewModel : class, ICrossViewModel
     {
         var parameterBundle = new MvxBundle(parameterValues);
         var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
@@ -43,7 +43,7 @@ public static class MvxCanCreateIosViewExtensions
 
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view,
-        IMvxViewModel viewModel)
+        ICrossViewModel viewModel)
     {
         return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateView(viewModel);
     }

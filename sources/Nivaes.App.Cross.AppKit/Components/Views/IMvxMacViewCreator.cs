@@ -12,7 +12,7 @@ namespace MvvmCross.Platforms.Mac.Views
     {
         IMvxMacView CreateView(MvxViewModelRequest request);
 
-        IMvxMacView CreateView(IMvxViewModel viewModel);
+        IMvxMacView CreateView(ICrossViewModel viewModel);
 
         IMvxMacView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, MvxViewModelRequest request);
     }

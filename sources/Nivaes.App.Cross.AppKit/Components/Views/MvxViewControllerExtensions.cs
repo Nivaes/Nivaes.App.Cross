@@ -22,7 +22,7 @@ namespace MvvmCross.Platforms.Mac.Views
             macView.OnViewCreate(() => { return macView.LoadViewModel(); });
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxMacView macView)
+        private static ICrossViewModel LoadViewModel(this IMvxMacView macView)
         {
             if (macView.Request == null)
             {
@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Mac.Views
 
         public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxMacView view,
                                                                             object parameterObject)
-            where TTargetViewModel : class, IMvxViewModel
+            where TTargetViewModel : class, ICrossViewModel
         {
             return
                 view.CreateViewControllerFor<TTargetViewModel>(parameterObject == null
@@ -59,7 +59,7 @@ namespace MvvmCross.Platforms.Mac.Views
         public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
             this IMvxMacView view,
             IDictionary<string, string> parameterValues = null)
-            where TTargetViewModel : class, IMvxViewModel
+            where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new MvxBundle(parameterValues);
             var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
@@ -69,7 +69,7 @@ namespace MvvmCross.Platforms.Mac.Views
         public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
             this IMvxCanCreateMacView view,
             MvxViewModelRequest request)
-            where TTargetViewModel : class, IMvxViewModel
+            where TTargetViewModel : class, ICrossViewModel
         {
             return Mvx.IoCProvider.Resolve<IMvxMacViewCreator>().CreateView(request);
         }
@@ -90,7 +90,7 @@ namespace MvvmCross.Platforms.Mac.Views
 
         public static IMvxMacView CreateViewControllerFor(
             this IMvxCanCreateMacView view,
-            IMvxViewModel viewModel)
+            ICrossViewModel viewModel)
         {
             return Mvx.IoCProvider.Resolve<IMvxMacViewCreator>().CreateView(viewModel);
         }

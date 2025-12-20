@@ -1,20 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using MvvmCross.Navigation.EventArguments;
-
-namespace MvvmCross.ViewModels;
-
-public interface IMvxViewModelLoader
+namespace MvvmCross.ViewModels
 {
-    IMvxViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
+    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross;
 
-    IMvxViewModel LoadViewModel<TParameter>(MvxViewModelRequest request, TParameter param, IMvxBundle? savedState,
-        IMvxNavigateEventArgs? navigationArgs = null);
+    public interface IMvxViewModelLoader
+    {
+        ICrossViewModel LoadViewModel(MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
 
-    IMvxViewModel ReloadViewModel(IMvxViewModel viewModel, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
+        ICrossViewModel LoadViewModel<TParameter>(MvxViewModelRequest request, TParameter param, IMvxBundle? savedState,
+            IMvxNavigateEventArgs? navigationArgs = null);
 
-    IMvxViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param,
-        MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
+        ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
+
+        ICrossViewModel ReloadViewModel<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param,
+            MvxViewModelRequest request, IMvxBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null);
+    }
 }

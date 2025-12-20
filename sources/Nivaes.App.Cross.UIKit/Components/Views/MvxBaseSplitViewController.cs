@@ -50,9 +50,9 @@ namespace MvvmCross.Platforms.Ios.Views
             set { BindingContext.DataContext = value; }
         }
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
-            get { return DataContext as IMvxViewModel; }
+            get { return DataContext as ICrossViewModel; }
             set { DataContext = value; }
         }
 
@@ -105,7 +105,7 @@ namespace MvvmCross.Platforms.Ios.Views
     }
 
     public class MvxBaseSplitViewController<TViewModel> : MvxBaseSplitViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxBaseSplitViewController()
         {

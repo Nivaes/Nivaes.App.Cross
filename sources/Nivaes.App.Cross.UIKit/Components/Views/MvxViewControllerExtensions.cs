@@ -19,7 +19,7 @@ namespace MvvmCross.Platforms.Ios.Views
             iosView.OnViewCreate(iosView.LoadViewModel);
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxIosView iosView)
+        private static ICrossViewModel LoadViewModel(this IMvxIosView iosView)
         {
             if (iosView.Request == null)
             {

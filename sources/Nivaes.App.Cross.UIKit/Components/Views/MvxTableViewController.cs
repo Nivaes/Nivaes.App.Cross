@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Ios.Views
             set { BindingContext.DataContext = value; }
         }
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
             get
             {
@@ -72,7 +72,7 @@ namespace MvvmCross.Platforms.Ios.Views
 				if (e == null)
 					MvxLog.Instance.Trace ("e was null!");
 				*/
-                return DataContext as IMvxViewModel;
+                return DataContext as ICrossViewModel;
             }
             set { DataContext = value; }
         }
@@ -126,7 +126,7 @@ namespace MvvmCross.Platforms.Ios.Views
     }
 
     public class MvxTableViewController<TViewModel> : MvxTableViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxTableViewController(UITableViewStyle style = UITableViewStyle.Plain) : base(style)
         {

@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.WinUi.Views
         private const string ExtrasKey = "MvxLaunchData";
         private const string SubViewModelKey = "MvxSubViewModelKey";
 
-        public IMvxViewModel Load(string requestText, IMvxBundle savedState)
+        public ICrossViewModel Load(string requestText, IMvxBundle savedState)
         {
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
@@ -48,7 +48,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             return requestText;
         }
 
-        public string GetRequestTextWithKeyFor(IMvxViewModel existingViewModelToUse)
+        public string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse)
         {
             var returnData = new Dictionary<string, string>();
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();

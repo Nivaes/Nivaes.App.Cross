@@ -10,12 +10,15 @@ namespace Playground.Droid.Fragments
     using MvvmCross.Platforms.Android.Views.AppCompat;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Sample.Droid;
     using Playground.Droid.Activities;
+    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
     using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public abstract class BaseSplitDetailView<TViewModel> : MvxFragment<TViewModel> where TViewModel : class, IMvxViewModel
+    public abstract class BaseSplitDetailView<TViewModel>
+        : MvxFragment<TViewModel> where TViewModel : class, ICrossViewModel
     {
         protected SplitRootView BaseActivity => (SplitRootView)Activity;
         protected Toolbar _toolbar;

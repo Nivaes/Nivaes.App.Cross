@@ -1,19 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Android.OS;
-using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.DroidX.Leanback.Fragments.EventSource;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.DroidX.Leanback.Fragments
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Android.OS;
+    using Android.Runtime;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.DroidX.Leanback.Fragments.EventSource;
+    using MvvmCross.Platforms.Android.Views;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [Register("mvvmcross.droidx.leanback.fragments.MvxDetailsSupportFragment")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public class MvxDetailsSupportFragment
@@ -61,11 +58,11 @@ namespace MvvmCross.DroidX.Leanback.Fragments
             }
         }
 
-        public virtual IMvxViewModel ViewModel
+        public virtual ICrossViewModel ViewModel
         {
             get
             {
-                return DataContext as IMvxViewModel;
+                return DataContext as ICrossViewModel;
             }
             set
             {
@@ -82,8 +79,9 @@ namespace MvvmCross.DroidX.Leanback.Fragments
     }
 
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public abstract class MvxDetailsSupportFragment<TViewModel> : MvxDetailsSupportFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+    public abstract class MvxDetailsSupportFragment<TViewModel> 
+        : MvxDetailsSupportFragment, IMvxFragmentView<TViewModel>
+        where TViewModel : class, ICrossViewModel
     {
         protected MvxDetailsSupportFragment()
         {

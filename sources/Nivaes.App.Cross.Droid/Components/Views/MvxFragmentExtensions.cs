@@ -38,7 +38,7 @@ namespace MvvmCross.Platforms.Android.Views
             return viewModelType;
         }
 
-        public static IMvxViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle savedState, Type fragmentParentActivityType,
+        public static ICrossViewModel LoadViewModel(this IMvxFragmentView fragmentView, IMvxBundle savedState, Type fragmentParentActivityType,
             MvxViewModelRequest request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Android.Views
                 return new MvxNullViewModel();
 
             if (viewModelType == null
-                || viewModelType == typeof(IMvxViewModel))
+                || viewModelType == typeof(ICrossViewModel))
             {
                 MvxLogHost.Default?.Log(LogLevel.Trace,
                     "No ViewModel class specified for {FragmentViewType} in LoadViewModel",
@@ -71,7 +71,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure.")]
-        public static void RunViewModelLifecycle(IMvxViewModel viewModel, IMvxBundle savedState,
+        public static void RunViewModelLifecycle(ICrossViewModel viewModel, IMvxBundle savedState,
             MvxViewModelRequest request)
         {
             try

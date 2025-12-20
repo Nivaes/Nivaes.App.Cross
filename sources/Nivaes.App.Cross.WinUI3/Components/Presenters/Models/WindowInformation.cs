@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters.Models;
 /// </summary>
 public sealed class WindowInformation
 {
-    private readonly List<IMvxViewModel> _subViewModels = new();
+    private readonly List<ICrossViewModel> _subViewModels = new();
 
     /// <summary>
     /// Initializes a new instance of the WindowInformation class.
@@ -18,7 +18,7 @@ public sealed class WindowInformation
     /// <param name="window">The Window.</param>
     /// <param name="rootFrame">The root frame of the window.</param>
     /// <param name="viewModel">The viewmodel belonging to the root frame.</param>
-    public WindowInformation(Window window, IMvxWindowsFrame rootFrame, IMvxViewModel? viewModel)
+    public WindowInformation(Window window, IMvxWindowsFrame rootFrame, ICrossViewModel? viewModel)
     {
         this.Window = window;
         this.RootFrame = rootFrame;
@@ -38,13 +38,13 @@ public sealed class WindowInformation
     /// <summary>
     /// Gets or sets the ViewModel belonging to this window.
     /// </summary>
-    public IMvxViewModel? ViewModel { get; }
+    public ICrossViewModel? ViewModel { get; }
 
     /// <summary>
     /// Registers the given viewmodel to a specific key (usually region name).
     /// </summary>
     /// <param name="viewModel">the viewmodel to register.</param>
-    public void RegisterSubViewModel(IMvxViewModel viewModel)
+    public void RegisterSubViewModel(ICrossViewModel viewModel)
     {
         if (!this._subViewModels.Contains(viewModel))
         {
@@ -56,7 +56,7 @@ public sealed class WindowInformation
     /// Removes the viewmodel registration.
     /// </summary>
     /// <param name="viewModel">The viewmodel to remove the viewmodel registration for.</param>
-    public void UnregisterSubViewModel(IMvxViewModel viewModel)
+    public void UnregisterSubViewModel(ICrossViewModel viewModel)
     {
         this._subViewModels.Remove(viewModel);
     }
@@ -76,7 +76,7 @@ public sealed class WindowInformation
     /// </summary>
     /// <param name="viewModel">The viewmodel to check against.</param>
     /// <returns>True if it is a match.</returns>
-    public bool IsFor(IMvxViewModel viewModel)
+    public bool IsFor(ICrossViewModel viewModel)
     {
         return this.ViewModel == viewModel || this._subViewModels.Exists(v => v == viewModel);
     }

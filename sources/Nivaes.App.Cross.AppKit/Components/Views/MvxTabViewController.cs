@@ -49,7 +49,7 @@ namespace MvvmCross.Platforms.Mac.Views
                 TabViewItems[ChildViewControllers.Count() - 1].Label = tabTitle;
         }
 
-        public bool CloseTabView(IMvxViewModel viewModel)
+        public bool CloseTabView(ICrossViewModel viewModel)
         {
             var index = ChildViewControllers.Select(v => (MvxViewController)v).ToList().FindIndex(vc => viewModel == vc.ViewModel);
 
@@ -68,9 +68,9 @@ namespace MvvmCross.Platforms.Mac.Views
             set { this.BindingContext.DataContext = value; }
         }
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
-            get { return (IMvxViewModel)this.DataContext; }
+            get { return (ICrossViewModel)this.DataContext; }
             set { this.DataContext = value; }
         }
 
@@ -122,7 +122,7 @@ namespace MvvmCross.Platforms.Mac.Views
     }
 
     public class MvxTabViewController<TViewModel> : MvxTabViewController, IMvxMacView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxTabViewController()
         {

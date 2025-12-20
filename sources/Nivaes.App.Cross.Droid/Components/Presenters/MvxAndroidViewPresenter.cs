@@ -844,7 +844,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         #endregion
 
         #region Close implementations
-        protected virtual Task<bool> CloseActivity(IMvxViewModel viewModel, MvxActivityPresentationAttribute? attribute)
+        protected virtual Task<bool> CloseActivity(ICrossViewModel viewModel, MvxActivityPresentationAttribute? attribute)
         {
             var currentView = CurrentActivity as ICrossView;
 
@@ -868,7 +868,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         protected virtual Task<bool> CloseFragmentDialog(
-            IMvxViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
+            ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
         {
             ValidateArguments(attribute);
 
@@ -898,7 +898,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         protected virtual Task<bool> CloseFragment(
-            IMvxViewModel viewModel, MvxFragmentPresentationAttribute attribute)
+            ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
         {
             ValidateArguments(attribute);
 
@@ -1012,7 +1012,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         protected virtual Task<bool> CloseViewPagerFragment(
-            IMvxViewModel? viewModel,
+            ICrossViewModel? viewModel,
             MvxViewPagerFragmentPresentationAttribute attribute)
         {
             ValidateArguments(attribute);

@@ -39,7 +39,7 @@ public static class MvxActivityViewExtensions
     {
         androidView.OnLifetimeEvent((listener, activity) => listener.OnCreate(activity, bundle));
 
-        IMvxViewModel? cached = null;
+        ICrossViewModel? cached = null;
         if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
             cached = cache?.GetAndClear(bundle);
 
@@ -145,7 +145,7 @@ public static class MvxActivityViewExtensions
 
     [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    private static IMvxViewModel? LoadViewModel(this IMvxAndroidView androidView, IMvxBundle? savedState)
+    private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, IMvxBundle? savedState)
     {
         var activity = androidView.ToActivity();
 
@@ -154,7 +154,7 @@ public static class MvxActivityViewExtensions
             return new MvxNullViewModel();
 
         if (viewModelType == null
-            || viewModelType == typeof(IMvxViewModel))
+            || viewModelType == typeof(ICrossViewModel))
         {
             MvxLogHost.Default?.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
                 androidView.GetType().Name);

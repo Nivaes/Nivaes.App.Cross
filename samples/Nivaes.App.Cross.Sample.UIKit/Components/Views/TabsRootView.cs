@@ -48,7 +48,7 @@ namespace Playground.iOS.Views
 ) && base.ShowChildView(viewController);
         }
 
-        public override bool CloseChildViewModel(IMvxViewModel viewModel)
+        public override bool CloseChildViewModel(ICrossViewModel viewModel)
         {
             var type = viewModel.GetType();
 

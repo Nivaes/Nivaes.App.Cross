@@ -263,7 +263,7 @@ public class MvxNavigationService : IMvxNavigationService
     }
 
     public virtual Task<bool> CanNavigate<TViewModel>()
-        where TViewModel : IMvxViewModel
+        where TViewModel : ICrossViewModel
     {
         return Task.FromResult(ViewsContainer.Value?.GetViewType(typeof(TViewModel)) != null);
     }
@@ -273,7 +273,7 @@ public class MvxNavigationService : IMvxNavigationService
         return Task.FromResult(ViewsContainer.Value?.GetViewType(viewModelType) != null);
     }
 
-    protected virtual async Task<bool> Navigate(MvxViewModelRequest request, IMvxViewModel viewModel,
+    protected virtual async Task<bool> Navigate(MvxViewModelRequest request, ICrossViewModel viewModel,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -355,7 +355,7 @@ public class MvxNavigationService : IMvxNavigationService
 
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-        where TViewModel : IMvxViewModel
+        where TViewModel : ICrossViewModel
     {
         return Navigate(typeof(TViewModel), presentationBundle, cancellationToken);
     }
@@ -368,7 +368,7 @@ public class MvxNavigationService : IMvxNavigationService
     }
 
     public virtual Task<bool> Navigate(
-        IMvxViewModel viewModel, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        ICrossViewModel viewModel, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var request = new MvxViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
         ViewModelLoader.ReloadViewModel(viewModel, request, null);
@@ -403,7 +403,7 @@ public class MvxNavigationService : IMvxNavigationService
         return result;
     }
 
-    public virtual async Task<bool> Close(IMvxViewModel viewModel, CancellationToken cancellationToken = default)
+    public virtual async Task<bool> Close(ICrossViewModel viewModel, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -463,7 +463,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if navigation was successful.</returns>
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
-        TParameter param, IMvxViewModel source, IMvxBundle? presentationBundle = null,
+        TParameter param, ICrossViewModel source, IMvxBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
             where TViewModel : IMvxViewModel<TParameter>
             where TParameter : notnull
@@ -487,7 +487,7 @@ public class MvxNavigationService : IMvxNavigationService
     public virtual Task<bool> Navigate<TParameter>(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         TParameter param,
-        IMvxViewModel source,
+        ICrossViewModel source,
         IMvxBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
             where TParameter : notnull
@@ -513,7 +513,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <returns></returns>
     public virtual Task<bool> Navigate(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-        IMvxViewModel source,
+        ICrossViewModel source,
         IMvxBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
     {
@@ -536,9 +536,9 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
-    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(IMvxViewModel source,
+    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(ICrossViewModel source,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-        where TViewModel : IMvxViewModel
+        where TViewModel : ICrossViewModel
     {
         return Navigate(typeof(TViewModel), source, presentationBundle, cancellationToken);
     }
@@ -556,7 +556,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <returns>True if successful, false otherwise.</returns>
     [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure and GetType() is safe here.")]
     public virtual Task<bool> Navigate(
-        IMvxViewModel viewModel, IMvxViewModel source, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        ICrossViewModel viewModel, ICrossViewModel source, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var request = new MvxViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
         ViewModelLoader.ReloadViewModel(viewModel, request, null);
@@ -577,7 +577,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure and GetType() is safe here.")]
-    public virtual Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, IMvxViewModel source,
+    public virtual Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TParameter : notnull
     {
@@ -594,7 +594,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>True is successful. False otherwise.</returns>
-    protected virtual async Task<bool> NavigateAsync(MvxViewModelRequest request, IMvxViewModel viewModel,
+    protected virtual async Task<bool> NavigateAsync(MvxViewModelRequest request, ICrossViewModel viewModel,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);

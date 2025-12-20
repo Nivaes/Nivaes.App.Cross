@@ -1,19 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.Platforms.Android.Views.Base;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxActivity
         : MvxEventSourceActivity
@@ -40,9 +38,9 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        public IMvxViewModel? ViewModel
+        public ICrossViewModel? ViewModel
         {
-            get => DataContext as IMvxViewModel;
+            get => DataContext as ICrossViewModel;
             set
             {
                 DataContext = value;
@@ -127,7 +125,7 @@ namespace MvvmCross.Platforms.Android.Views
 
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxActivity<TViewModel> : MvxActivity, IMvxAndroidView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public new TViewModel? ViewModel
         {

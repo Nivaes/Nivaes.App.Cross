@@ -12,7 +12,7 @@ namespace MvvmCross.Platforms.Ios.Views
     {
         IMvxIosView CreateView(MvxViewModelRequest request);
 
-        IMvxIosView CreateView(IMvxViewModel viewModel);
+        IMvxIosView CreateView(ICrossViewModel viewModel);
 
         IMvxIosView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType);
     }

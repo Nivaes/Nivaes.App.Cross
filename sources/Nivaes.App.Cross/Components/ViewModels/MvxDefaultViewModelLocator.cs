@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Exceptions;
-using MvvmCross.Navigation.EventArguments;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Navigation.EventArguments;
+    using Nivaes.App.Cross;
+
     /// <inheritdoc cref="IMvxViewModelLocator"/>
     public class MvxDefaultViewModelLocator
         : IMvxViewModelLocator
     {
-        public virtual IMvxViewModel Load(
+        public virtual ICrossViewModel Load(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             IMvxBundle? parameterValues,
             IMvxBundle? savedState,
@@ -22,10 +18,10 @@ namespace MvvmCross.ViewModels
             if (viewModelType == null)
                 throw new ArgumentNullException(nameof(viewModelType));
 
-            IMvxViewModel viewModel;
+            ICrossViewModel viewModel;
             try
             {
-                viewModel = (IMvxViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
+                viewModel = (ICrossViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
             }
             catch (Exception exception)
             {
@@ -62,8 +58,8 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        public virtual IMvxViewModel Reload(
-            IMvxViewModel viewModel,
+        public virtual ICrossViewModel Reload(
+            ICrossViewModel viewModel,
             IMvxBundle? parameterValues,
             IMvxBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs = null)
@@ -85,18 +81,18 @@ namespace MvvmCross.ViewModels
             return viewModel;
         }
 
-        protected virtual void CallCustomInitMethods(IMvxViewModel viewModel, IMvxBundle? parameterValues)
+        protected virtual void CallCustomInitMethods(ICrossViewModel viewModel, IMvxBundle? parameterValues)
         {
             viewModel.CallBundleMethods("Init", parameterValues);
         }
 
-        protected virtual void CallReloadStateMethods(IMvxViewModel viewModel, IMvxBundle? savedState)
+        protected virtual void CallReloadStateMethods(ICrossViewModel viewModel, IMvxBundle? savedState)
         {
             viewModel.CallBundleMethods("ReloadState", savedState);
         }
 
         protected void RunViewModelLifecycle(
-            IMvxViewModel viewModel,
+            ICrossViewModel viewModel,
             IMvxBundle? parameterValues,
             IMvxBundle? savedState,
             IMvxNavigateEventArgs? navigationArgs)
@@ -172,5 +168,4 @@ namespace MvvmCross.ViewModels
             }
         }
     }
-#nullable restore
 }

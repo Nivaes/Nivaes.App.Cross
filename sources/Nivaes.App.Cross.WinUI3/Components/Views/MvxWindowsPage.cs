@@ -48,11 +48,11 @@ namespace MvvmCross.Platforms.WinUi.Views
             base.OnNavigatingFrom(e);
         }
 
-        private IMvxViewModel _viewModel;
+        private ICrossViewModel _viewModel;
 
         public IMvxWindowsFrame WrappedFrame => new MvxWrappedFrame(Frame);
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
             get
             {
@@ -210,7 +210,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public class MvxWindowsPage<TViewModel>
         : MvxWindowsPage
-        , IMvxWindowsView<TViewModel> where TViewModel : class, IMvxViewModel
+        , IMvxWindowsView<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public new TViewModel ViewModel
         {

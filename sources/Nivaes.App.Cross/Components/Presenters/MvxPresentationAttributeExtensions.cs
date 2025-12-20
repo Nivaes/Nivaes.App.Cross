@@ -1,13 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Presenters
 {
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public static class MvxPresentationAttributeExtensions
     {
         public static bool HasBasePresentationAttribute(this Type candidateType)
@@ -44,7 +40,7 @@ namespace MvvmCross.Presenters
         public static void Register<TMvxPresentationAttribute>(
             this IDictionary<Type, MvxPresentationAttributeAction> attributeTypesToActionsDictionary,
             Func<Type, TMvxPresentationAttribute, MvxViewModelRequest, Task<bool>> showAction,
-            Func<IMvxViewModel, TMvxPresentationAttribute, Task<bool>> closeAction)
+            Func<ICrossViewModel, TMvxPresentationAttribute, Task<bool>> closeAction)
                 where TMvxPresentationAttribute : class, IMvxPresentationAttribute
         {
             attributeTypesToActionsDictionary.Add(

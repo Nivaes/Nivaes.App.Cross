@@ -13,5 +13,5 @@ public interface IMvxMultiWindowsService
     /// </summary>
     /// <param name="viewModel">The viewmodel instance to find the window it belongs to for</param>
     /// <returns>The window found, or the application main window if not found.</returns>
-    public Window GetWindow(IMvxViewModel viewModel);
+    public Window GetWindow(ICrossViewModel viewModel);
 }

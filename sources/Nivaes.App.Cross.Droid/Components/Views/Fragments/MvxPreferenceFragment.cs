@@ -1,17 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Android.OS;
 using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-using MvvmCross.ViewModels;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [Register("mvvmcross.platforms.android.views.fragments.MvxPreferenceFragment")]
     public abstract class MvxPreferenceFragment : MvxEventSourcePreferenceFragment, IMvxFragmentView
     {
@@ -44,11 +42,11 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        public virtual IMvxViewModel ViewModel
+        public virtual ICrossViewModel ViewModel
         {
             get
             {
-                return DataContext as IMvxViewModel;
+                return DataContext as ICrossViewModel;
             }
             set
             {
@@ -100,8 +98,9 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
     }
 
-    public abstract class MvxPreferenceFragment<TViewModel> : MvxPreferenceFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+    public abstract class MvxPreferenceFragment<TViewModel> 
+        : MvxPreferenceFragment, IMvxFragmentView<TViewModel>
+            where TViewModel : class, ICrossViewModel
     {
         [RequiresUnreferencedCode("This constructor uses reflection which may not be preserved during trimming.")]
         protected MvxPreferenceFragment()

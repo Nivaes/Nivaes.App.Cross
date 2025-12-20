@@ -312,7 +312,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             return window;
         }
 
-        public override Task<bool> Close(IMvxViewModel viewModel)
+        public override Task<bool> Close(ICrossViewModel viewModel)
         {
             for (int i = Windows.Count - 1; i >= 0; i--)
             {

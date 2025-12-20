@@ -1,29 +1,27 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using AndroidX.Core.OS;
-using AndroidX.Fragment.App;
-using Java.Interop;
-using Java.Lang;
-using MvvmCross.Platforms.Android.Presenters;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using JavaObject = Java.Lang.Object;
-using JavaString = Java.Lang.String;
 
 namespace MvvmCross.Platforms.Android.Views.ViewPager
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using AndroidX.Core.OS;
+    using AndroidX.Fragment.App;
+    using Java.Interop;
+    using Java.Lang;
+    using MvvmCross.Platforms.Android.Presenters;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+    using JavaObject = Java.Lang.Object;
+    using JavaString = Java.Lang.String;
+
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
     public class MvxCachingFragmentStatePagerAdapter : MvxCachingFragmentPagerAdapter
     {
@@ -101,7 +99,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
             return FragmentsInfo[position].Tag;
         }
 
-        private static IMvxViewModel GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
+        private static ICrossViewModel GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
         {
             if (fragmentInfo.Request is MvxViewModelInstanceRequest instanceRequest)
             {

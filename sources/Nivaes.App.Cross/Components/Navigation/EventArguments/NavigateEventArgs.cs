@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.ComponentModel;
-using System.Threading;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Navigation.EventArguments
 {
-#nullable enable
+    using System.ComponentModel;
+    using System.Threading;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public enum NavigationMode
     {
         None,
@@ -16,7 +12,8 @@ namespace MvvmCross.Navigation.EventArguments
         Close
     }
 
-    public class MvxNavigateEventArgs : MvxCancelEventArgs, IMvxNavigateEventArgs
+    public class MvxNavigateEventArgs 
+        : MvxCancelEventArgs, IMvxNavigateEventArgs
     {
         public MvxNavigateEventArgs(NavigationMode mode, CancellationToken cancellationToken = default)
             : base(cancellationToken)
@@ -24,14 +21,13 @@ namespace MvvmCross.Navigation.EventArguments
             Mode = mode;
         }
 
-        public MvxNavigateEventArgs(IMvxViewModel viewModel, NavigationMode mode, CancellationToken cancellationToken = default)
+        public MvxNavigateEventArgs(ICrossViewModel viewModel, NavigationMode mode, CancellationToken cancellationToken = default)
             : this(mode, cancellationToken)
         {
             ViewModel = viewModel;
         }
 
         public NavigationMode Mode { get; set; }
-        public IMvxViewModel? ViewModel { get; set; }
+        public ICrossViewModel? ViewModel { get; set; }
     }
-#nullable restore
 }

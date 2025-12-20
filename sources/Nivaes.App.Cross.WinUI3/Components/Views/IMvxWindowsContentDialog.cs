@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public interface IMvxWindowsContentDialog<TViewModel>
         : IMvxWindowsContentDialog
-        , ICrossView<TViewModel> where TViewModel : class, IMvxViewModel
+        , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
     {
     }
 }

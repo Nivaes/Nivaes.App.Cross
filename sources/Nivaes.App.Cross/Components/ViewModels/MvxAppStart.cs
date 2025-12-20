@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-
 namespace MvvmCross.ViewModels
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using MvvmCross.Navigation;
+    using Nivaes.App.Cross;
+
     public abstract class MvxAppStart : IMvxAppStart
     {
         protected readonly IMvxNavigationService NavigationService;
@@ -68,7 +64,7 @@ namespace MvvmCross.ViewModels
 
     public class MvxAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>
         : MvxAppStart
-            where TViewModel : IMvxViewModel
+            where TViewModel : ICrossViewModel
     {
         public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)

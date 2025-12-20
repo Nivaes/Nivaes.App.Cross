@@ -1,198 +1,195 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.Presenters.Hints;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
-namespace MvvmCross.Presenters;
-
-public abstract class MvxAttributeViewPresenter : MvxViewPresenter, IMvxAttributeViewPresenter
+namespace MvvmCross.Presenters
 {
-    private readonly Lazy<IMvxViewModelTypeFinder?> _viewModelTypeFinder =
-        new(() => Mvx.IoCProvider?.Resolve<IMvxViewModelTypeFinder>());
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using MvvmCross.Presenters.Attributes;
+    using MvvmCross.Presenters.Hints;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
-    private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
-        new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
-
-    private IDictionary<Type, MvxPresentationAttributeAction>? _attributeTypesActionsDictionary;
-
-    public virtual IMvxViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
-
-    public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
-
-    public virtual IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary
+    public abstract class MvxAttributeViewPresenter
+        : MvxViewPresenter, IMvxAttributeViewPresenter
     {
-        get
+        private readonly Lazy<IMvxViewModelTypeFinder?> _viewModelTypeFinder =
+            new(() => Mvx.IoCProvider?.Resolve<IMvxViewModelTypeFinder>());
+
+        private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
+            new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
+
+        private IDictionary<Type, MvxPresentationAttributeAction>? _attributeTypesActionsDictionary;
+
+        public virtual IMvxViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
+
+        public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
+
+        public virtual IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary
         {
-            if (_attributeTypesActionsDictionary == null)
+            get
             {
-                _attributeTypesActionsDictionary = new Dictionary<Type, MvxPresentationAttributeAction>();
-                RegisterAttributeTypes();
+                if (_attributeTypesActionsDictionary == null)
+                {
+                    _attributeTypesActionsDictionary = new Dictionary<Type, MvxPresentationAttributeAction>();
+                    RegisterAttributeTypes();
+                }
+                return _attributeTypesActionsDictionary;
             }
-            return _attributeTypesActionsDictionary;
         }
-    }
 
-    public abstract void RegisterAttributeTypes();
+        public abstract void RegisterAttributeTypes();
 
-    public abstract MvxBasePresentationAttribute CreatePresentationAttribute(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
+        public abstract MvxBasePresentationAttribute CreatePresentationAttribute(
+                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
+                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
-    public virtual object? CreateOverridePresentationAttributeViewInstance(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
-    {
-        if (viewType == null)
-            throw new ArgumentNullException(nameof(viewType));
-
-        return Activator.CreateInstance(viewType);
-    }
-
-    public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(
-        MvxViewModelRequest request,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
-    {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        if (viewType == null)
-            throw new ArgumentNullException(nameof(viewType));
-
-        var hasInterface = viewType.GetInterfaces().Contains(typeof(IMvxOverridePresentationAttribute));
-        if (!hasInterface)
-            return null;
-
-        var viewInstance =
-            CreateOverridePresentationAttributeViewInstance(viewType) as IMvxOverridePresentationAttribute;
-        try
+        public virtual object? CreateOverridePresentationAttributeViewInstance(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
         {
-            var presentationAttribute = viewInstance?.PresentationAttribute(request);
-            if (presentationAttribute == null)
+            if (viewType == null)
+                throw new ArgumentNullException(nameof(viewType));
+
+            return Activator.CreateInstance(viewType);
+        }
+
+        public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(
+            MvxViewModelRequest request,
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            if (viewType == null)
+                throw new ArgumentNullException(nameof(viewType));
+
+            var hasInterface = viewType.GetInterfaces().Contains(typeof(IMvxOverridePresentationAttribute));
+            if (!hasInterface)
                 return null;
 
-            if (presentationAttribute.ViewType == null)
+            var viewInstance =
+                CreateOverridePresentationAttributeViewInstance(viewType) as IMvxOverridePresentationAttribute;
+            try
             {
-                presentationAttribute.ViewType = viewType;
+                var presentationAttribute = viewInstance?.PresentationAttribute(request);
+                if (presentationAttribute == null)
+                    return null;
+
+                if (presentationAttribute.ViewType == null)
+                {
+                    presentationAttribute.ViewType = viewType;
+                }
+
+                if (presentationAttribute.ViewModelType == null)
+                {
+                    presentationAttribute.ViewModelType = request.ViewModelType;
+                }
+
+                return presentationAttribute;
+            }
+            finally
+            {
+                (viewInstance as IDisposable)?.Dispose();
+            }
+        }
+
+        public virtual MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            if (request.ViewModelType == null)
+                throw new InvalidOperationException("Cannot get view types for null ViewModelType");
+
+            if (ViewsContainer == null)
+                throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
+
+            var viewType = ViewsContainer.GetViewType(request.ViewModelType);
+            if (viewType == null)
+                throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
+
+            var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
+            if (overrideAttribute != null)
+                return overrideAttribute;
+
+            var attribute = viewType
+                .GetCustomAttributes(typeof(MvxBasePresentationAttribute), true)
+                .FirstOrDefault();
+
+            if (attribute is MvxBasePresentationAttribute basePresentationAttribute)
+            {
+                if (basePresentationAttribute.ViewType == null)
+                    basePresentationAttribute.ViewType = viewType;
+
+                if (basePresentationAttribute.ViewModelType == null)
+                    basePresentationAttribute.ViewModelType = request.ViewModelType;
+
+                return basePresentationAttribute;
             }
 
-            if (presentationAttribute.ViewModelType == null)
+            return CreatePresentationAttribute(request.ViewModelType, viewType);
+        }
+
+        protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(
+            MvxViewModelRequest request, out MvxBasePresentationAttribute attribute)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            var presentationAttribute = GetPresentationAttribute(request);
+            presentationAttribute.ViewModelType = request.ViewModelType;
+            var attributeType = presentationAttribute.GetType();
+
+            attribute = presentationAttribute;
+
+            if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
             {
-                presentationAttribute.ViewModelType = request.ViewModelType;
+                if (attributeAction.ShowAction == null)
+                {
+                    throw new InvalidOperationException(
+                        $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
+                }
+
+                if (attributeAction.CloseAction == null)
+                {
+                    throw new InvalidOperationException(
+                        $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
+                }
+
+                return attributeAction;
             }
 
-            return presentationAttribute;
-        }
-        finally
-        {
-            (viewInstance as IDisposable)?.Dispose();
-        }
-    }
-
-    public virtual MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
-    {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        if (request.ViewModelType == null)
-            throw new InvalidOperationException("Cannot get view types for null ViewModelType");
-
-        if (ViewsContainer == null)
-            throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
-
-        var viewType = ViewsContainer.GetViewType(request.ViewModelType);
-        if (viewType == null)
-            throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
-
-        var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-        if (overrideAttribute != null)
-            return overrideAttribute;
-
-        var attribute = viewType
-            .GetCustomAttributes(typeof(MvxBasePresentationAttribute), true)
-            .FirstOrDefault();
-
-        if (attribute is MvxBasePresentationAttribute basePresentationAttribute)
-        {
-            if (basePresentationAttribute.ViewType == null)
-                basePresentationAttribute.ViewType = viewType;
-
-            if (basePresentationAttribute.ViewModelType == null)
-                basePresentationAttribute.ViewModelType = request.ViewModelType;
-
-            return basePresentationAttribute;
+            throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
         }
 
-        return CreatePresentationAttribute(request.ViewModelType, viewType);
-    }
-
-    protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(
-        MvxViewModelRequest request, out MvxBasePresentationAttribute attribute)
-    {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        var presentationAttribute = GetPresentationAttribute(request);
-        presentationAttribute.ViewModelType = request.ViewModelType;
-        var attributeType = presentationAttribute.GetType();
-
-        attribute = presentationAttribute;
-
-        if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
+        public override async Task<bool> ChangePresentation(MvxPresentationHint hint)
         {
-            if (attributeAction.ShowAction == null)
+            if (await HandlePresentationChange(hint).ConfigureAwait(true))
+                return true;
+
+            if (hint is MvxClosePresentationHint presentationHint)
             {
-                throw new InvalidOperationException(
-                    $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
+                return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
             }
 
-            if (attributeAction.CloseAction == null)
-            {
-                throw new InvalidOperationException(
-                    $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
-            }
-
-            return attributeAction;
+            MvxLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+            return false;
         }
 
-        throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
-    }
-
-    public override async Task<bool> ChangePresentation(MvxPresentationHint hint)
-    {
-        if (await HandlePresentationChange(hint).ConfigureAwait(true))
-            return true;
-
-        if (hint is MvxClosePresentationHint presentationHint)
+        public override Task<bool> Close(ICrossViewModel viewModel)
         {
-            return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
+            return GetPresentationAttributeAction(
+                    new MvxViewModelInstanceRequest(viewModel), out var attribute)
+                .CloseAction?
+                .Invoke(viewModel, attribute) ?? Task.FromResult(false);
         }
 
-        MvxLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
-        return false;
-    }
+        public override Task<bool> Show(MvxViewModelRequest request)
+        {
+            var attributeAction = GetPresentationAttributeAction(request, out var attribute);
 
-    public override Task<bool> Close(IMvxViewModel viewModel)
-    {
-        return GetPresentationAttributeAction(
-                new MvxViewModelInstanceRequest(viewModel), out var attribute)
-            .CloseAction?
-            .Invoke(viewModel, attribute) ?? Task.FromResult(false);
-    }
+            if (attributeAction.ShowAction != null && attribute.ViewType != null)
+                return attributeAction.ShowAction.Invoke(attribute.ViewType, attribute, request);
 
-    public override Task<bool> Show(MvxViewModelRequest request)
-    {
-        var attributeAction = GetPresentationAttributeAction(request, out var attribute);
-
-        if (attributeAction.ShowAction != null && attribute.ViewType != null)
-            return attributeAction.ShowAction.Invoke(attribute.ViewType, attribute, request);
-
-        return Task.FromResult(false);
+            return Task.FromResult(false);
+        }
     }
 }

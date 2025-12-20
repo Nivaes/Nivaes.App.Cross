@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Mac.Views
 
     public interface IMvxMacView<TViewModel>
         : IMvxMacView
-        , ICrossView<TViewModel> where TViewModel : class, IMvxViewModel
+        , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
     {
         MvxFluentBindingDescriptionSet<IMvxMacView<TViewModel>, TViewModel> CreateBindingSet();
     }

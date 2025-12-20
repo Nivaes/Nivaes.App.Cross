@@ -66,9 +66,9 @@ namespace MvvmCross.Platforms.Ios.Views
             }
         }
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
-            get { return DataContext as IMvxViewModel; }
+            get { return DataContext as ICrossViewModel; }
             set { DataContext = value; }
         }
 
@@ -120,7 +120,7 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxBasePageViewController<TViewModel> : MvxPageViewController, IMvxIosView<TViewModel> where TViewModel : class, IMvxViewModel
+    public class MvxBasePageViewController<TViewModel> : MvxPageViewController, IMvxIosView<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public MvxBasePageViewController()
         {

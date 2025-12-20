@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
         }
 
-        public static void OnViewCreate(this IMvxWindowsView storeView, Func<IMvxViewModel> viewModelLoader)
+        public static void OnViewCreate(this IMvxWindowsView storeView, Func<ICrossViewModel> viewModelLoader)
         {
             if (storeView.ViewModel != null)
                 return;
@@ -84,7 +84,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             return result;
         }
 
-        private static IMvxViewModel LoadViewModel(this IMvxWindowsView storeView,
+        private static ICrossViewModel LoadViewModel(this IMvxWindowsView storeView,
                                                     string requestText,
                                                     IMvxBundle bundle)
         {

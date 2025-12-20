@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-using MvvmCross.Plugin;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
-    public abstract class MvxApplication : IMvxApplication
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.IoC;
+    using MvvmCross.Logging;
+    using MvvmCross.Plugin;
+    using Nivaes.App.Cross;
+
+    public abstract class MvxApplication 
+        : IMvxApplication
     {
         private IMvxViewModelLocator? _defaultLocator;
 
@@ -75,7 +72,7 @@ namespace MvvmCross.ViewModels
         }
 
         protected void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>()
-            where TViewModel : IMvxViewModel
+            where TViewModel : ICrossViewModel
         {
             Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, MvxAppStart<TViewModel>>();
         }
@@ -111,5 +108,4 @@ namespace MvvmCross.ViewModels
             return Task.FromResult(hint);
         }
     }
-#nullable restore
 }

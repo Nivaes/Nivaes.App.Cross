@@ -6,11 +6,11 @@ namespace Nivaes.App.Cross
     public interface ICrossView
         : IMvxDataConsumer
     {
-        IMvxViewModel? ViewModel { get; set; }
+        ICrossViewModel? ViewModel { get; set; }
     }
 
     public interface ICrossView<TViewModel>
-        : ICrossView where TViewModel : class, IMvxViewModel
+        : ICrossView where TViewModel : class, ICrossViewModel
     {
         new TViewModel? ViewModel { get; set; }
     }

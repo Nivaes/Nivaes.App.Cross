@@ -217,7 +217,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the dialog for.</param>
         /// <param name="attribute">The presentation attributes.</param>
         /// <returns>True upon success, false otherwise.</returns>
-        protected virtual Task<bool> CloseDialog(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
@@ -247,7 +247,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the page for.</param>
         /// <param name="attribute">The presentation attributes</param>
         /// <returns>True if closed, false otherwise.</returns>
-        protected virtual Task<bool> ClosePage(IMvxViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             var currentView = windowInformation.RootFrame.Content as ICrossView;
@@ -285,7 +285,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="attribute">Any presentation attribute.</param>
         /// <returns>True if successful. False otherwise.</returns>
         /// <exception cref="MvxException">If no region is found for the given viewmodel.</exception>
-        protected virtual Task<bool> CloseRegionView(IMvxViewModel viewModel, MvxRegionPresentationAttribute attribute)
+        protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             var viewFinder = Mvx.IoCProvider?.Resolve<ICrossViewsContainer>();
@@ -336,7 +336,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the splitview for.</param>
         /// <param name="attribute">Any presentation attribute.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        protected virtual Task<bool> CloseSplitView(IMvxViewModel viewModel,
+        protected virtual Task<bool> CloseSplitView(ICrossViewModel viewModel,
             MvxSplitViewPresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute);
@@ -391,7 +391,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// </summary>
         /// <param name="viewModel">The viewmodel to get the root frame for.</param>
         /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
-        protected WindowInformation GetWindowInformation(IMvxViewModel viewModel)
+        protected WindowInformation GetWindowInformation(ICrossViewModel viewModel)
         {
             lock (_windowInformationLock)
             {
@@ -683,7 +683,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             // NOTE: This line comes from the community toolkit which is not installed. So we Copied it in.
             await EnqueueAsync(newWindow.DispatcherQueue, newWindow.Activate);
 
-            var model = (IMvxViewModel)page.DataContext;
+            var model = (ICrossViewModel)page.DataContext;
 
             lock (_windowInformationLock)
             {
@@ -766,7 +766,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         }
 
         /// <inheritdoc />
-        public Window GetWindow(IMvxViewModel viewModel)
+        public Window GetWindow(ICrossViewModel viewModel)
         {
             return GetWindowInformation(viewModel).Window;
         }

@@ -55,9 +55,9 @@ namespace MvvmCross.Platforms.WinUi.Views
             ViewModel?.ViewDestroy();
         }
 
-        private IMvxViewModel _viewModel;
+        private ICrossViewModel _viewModel;
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
             get => _viewModel;
             set
@@ -102,7 +102,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public class MvxWindowsContentDialog<TViewModel>
         : MvxWindowsContentDialog
-        , IMvxWindowsContentDialog<TViewModel> where TViewModel : class, IMvxViewModel
+        , IMvxWindowsContentDialog<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public new TViewModel ViewModel
         {

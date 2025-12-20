@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Threading.Tasks;
-
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
-    public abstract class MvxViewModel
-        : MvxNotifyPropertyChanged, IMvxViewModel
+    using System.Threading.Tasks;
+    using MvvmCross.ViewModels;
+
+    public abstract class CrossViewModel
+        : MvxNotifyPropertyChanged, ICrossViewModel
     {
-        protected MvxViewModel()
+        protected CrossViewModel()
         {
         }
 
@@ -86,7 +82,7 @@ namespace MvvmCross.ViewModels
         }
     }
 
-    public abstract class MvxViewModel<TParameter> : MvxViewModel, IMvxViewModel<TParameter>
+    public abstract class MvxViewModel<TParameter> : CrossViewModel, IMvxViewModel<TParameter>
     {
         public abstract void Prepare(TParameter parameter);
     }

@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Threading.Tasks;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
-    public class ListViewModel : MvxViewModel
+    using System.Threading.Tasks;
+    using MvvmCross.Commands;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public class ListViewModel : CrossViewModel
     {
         public MvxObservableCollection<TestItem> TestItems { get; } = new MvxObservableCollection<TestItem>();
         public IMvxAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);

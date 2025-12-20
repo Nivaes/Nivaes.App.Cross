@@ -54,9 +54,9 @@ namespace MvvmCross.Platforms.Mac.Views
             set { BindingContext.DataContext = value; }
         }
 
-        public IMvxViewModel ViewModel
+        public ICrossViewModel ViewModel
         {
-            get { return (IMvxViewModel)DataContext; }
+            get { return (ICrossViewModel)DataContext; }
             set { DataContext = value; }
         }
 
@@ -108,7 +108,7 @@ namespace MvvmCross.Platforms.Mac.Views
     }
 
     public class MvxViewController<TViewModel> : MvxViewController, IMvxMacView<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : class, ICrossViewModel
     {
         public MvxViewController()
         {

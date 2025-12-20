@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public interface IMvxWindowsView<TViewModel>
         : IMvxWindowsView
-        , ICrossView<TViewModel> where TViewModel : class, IMvxViewModel
+        , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
     {
     }
 }
