@@ -86,7 +86,7 @@ namespace MvvmCross.ViewModels
 
     public class MvxAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>
         : MvxAppStart<TViewModel>
-            where TViewModel : IMvxViewModel<TParameter>
+            where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
         public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)

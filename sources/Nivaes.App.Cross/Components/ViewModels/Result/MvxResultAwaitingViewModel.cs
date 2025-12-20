@@ -53,7 +53,7 @@ namespace MvvmCross.ViewModels.Result
     }
 
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult>
-        : MvxResultAwaitingViewModel<TResult>, IMvxViewModel<TParameter>
+        : MvxResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
@@ -64,7 +64,7 @@ namespace MvvmCross.ViewModels.Result
     }
 
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2>
-        : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, IMvxViewModel<TParameter>
+        : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, ICrossViewModel<TParameter>
     {
         protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
@@ -75,7 +75,7 @@ namespace MvvmCross.ViewModels.Result
     }
 
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2, TResult3>
-        : MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>, IMvxViewModel<TParameter>
+        : MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>, ICrossViewModel<TParameter>
     {
         protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)

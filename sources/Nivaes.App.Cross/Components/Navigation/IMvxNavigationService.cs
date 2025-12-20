@@ -102,7 +102,7 @@ namespace MvvmCross.Navigation
         /// <param name="presentationBundle">(optional) presentation bundle</param>
         /// <param name="cancellationToken">CancellationToken to cancel the navigation</param>
         /// <returns>Boolean indicating successful navigation</returns>
-        Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param,
+        Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param,
             IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -166,12 +166,12 @@ namespace MvvmCross.Navigation
         /// <param name="param">ViewModel parameter</param>
         /// <param name="presentationBundle">(optional) presentation bundle</param>
         /// <param name="cancellationToken">CancellationToken to cancel the navigation</param>
-        /// <typeparam name="TViewModel">Type of <see cref="IMvxViewModel{Parameter}"/></typeparam>
+        /// <typeparam name="TViewModel">Type of <see cref="ICrossViewModel{Parameter}"/></typeparam>
         /// <typeparam name="TParameter">Parameter passed to ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
             TParameter param, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-                where TViewModel : IMvxViewModel<TParameter>;
+                where TViewModel : ICrossViewModel<TParameter>;
 
         /// <summary>
         ///     Loads a view model targeting the window for the given source.
@@ -187,7 +187,7 @@ namespace MvvmCross.Navigation
         /// <param name="cancellationToken">Any cancellation token.</param>
         /// <returns>True if navigation was successful.</returns>
         Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(TParameter param, ICrossViewModel source, IMvxBundle? presentationBundle = null,
-            CancellationToken cancellationToken = default) where TViewModel : IMvxViewModel<TParameter>
+            CancellationToken cancellationToken = default) where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull;
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace MvvmCross.Navigation
         /// <param name="presentationBundle">The presentation bundle.</param>
         /// <param name="cancellationToken">Any cancellation token.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
+        Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
             IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TParameter : notnull;
     }

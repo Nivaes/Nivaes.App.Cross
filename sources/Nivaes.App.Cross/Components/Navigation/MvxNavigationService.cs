@@ -362,7 +362,7 @@ public class MvxNavigationService : IMvxNavigationService
 
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
         TParameter param, IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-        where TViewModel : IMvxViewModel<TParameter>
+        where TViewModel : ICrossViewModel<TParameter>
     {
         return Navigate(typeof(TViewModel), param, presentationBundle, cancellationToken);
     }
@@ -375,7 +375,7 @@ public class MvxNavigationService : IMvxNavigationService
         return Navigate(request, viewModel, presentationBundle, cancellationToken);
     }
 
-    public virtual Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param,
+    public virtual Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var request = new MvxViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
@@ -465,7 +465,7 @@ public class MvxNavigationService : IMvxNavigationService
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
         TParameter param, ICrossViewModel source, IMvxBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
-            where TViewModel : IMvxViewModel<TParameter>
+            where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
         return Navigate(typeof(TViewModel), param, source, presentationBundle, cancellationToken);
@@ -577,7 +577,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure and GetType() is safe here.")]
-    public virtual Task<bool> Navigate<TParameter>(IMvxViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
+    public virtual Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
         IMvxBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TParameter : notnull
     {

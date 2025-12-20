@@ -72,7 +72,7 @@ namespace MvvmCross.Navigation
         /// <param name="parameter">ViewModel parameter</param>
         /// <param name="presentationBundle">(optional) presentation bundle</param>
         /// <param name="cancellationToken">(optional) CancellationToken to cancel the navigation</param>
-        /// <typeparam name="TViewModel">Type of <see cref="IMvxResultSettingViewModel{TResult}"/> and <see cref="IMvxViewModel{TParameter}"/></typeparam>
+        /// <typeparam name="TViewModel">Type of <see cref="IMvxResultSettingViewModel{TResult}"/> and <see cref="ICrossViewModel{TParameter}"/></typeparam>
         /// <typeparam name="TResult">Result awaited by Result Awaiting ViewModel and set by Result Setting ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         public static async Task<bool> NavigateRegisteringToResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter, TResult>(
@@ -82,7 +82,7 @@ namespace MvvmCross.Navigation
             TParameter parameter,
             IMvxBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
-            where TViewModel : IMvxResultSettingViewModel<TResult>, IMvxViewModel<TParameter>
+            where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
         {
             bool navigated = await navigationService.Navigate<TViewModel, TParameter>(parameter, presentationBundle, cancellationToken);
             if (navigated)

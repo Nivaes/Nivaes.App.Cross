@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
         MvxNotifyTask? InitializeTask { get; set; }
     }
 
-    public interface IMvxViewModel<in TParameter>
+    public interface ICrossViewModel<in TParameter>
         : ICrossViewModel
     {
         void Prepare(TParameter parameter);
