@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Linq;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using MvvmCross.Platforms.WinUi.Presenters.Attributes;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.WinUi.Views
 {
+    using System;
+    using System.Linq;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Media;
+    using MvvmCross.Platforms.WinUi.Presenters.Attributes;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public static class MvxWindowsExtensions
     {
         public static void OnViewCreate(this IMvxWindowsView storeView, string requestText, Func<IMvxBundle> bundleLoader)
