@@ -1,0 +1,70 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+using System.Diagnostics.CodeAnalysis;
+using Android.Content;
+using Android.Content.Res;
+using Android.OS;
+using Android.Views;
+using AndroidX.AppCompat.Widget;
+using MvvmCross.Platforms.Android.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Views.AppCompat;
+using MvvmCross.Platforms.Android.Views.Fragments;
+using MvvmCross.ViewModels;
+using Nivaes.App.Cross.Sample.Droid;
+using Playground.Droid.Activities;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+
+namespace Playground.Droid.Fragments
+{
+    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+    public abstract class BaseSplitDetailView<TViewModel> : MvxFragment<TViewModel> where TViewModel : class, IMvxViewModel
+    {
+        protected SplitRootView BaseActivity => (SplitRootView)Activity;
+        protected Toolbar _toolbar;
+        protected MvxActionBarDrawerToggle _drawerToggle;
+
+        protected abstract int FragmentLayoutId { get; }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            var view = this.BindingInflate(FragmentLayoutId, container, false);
+
+            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (_toolbar != null)
+            {
+                BaseActivity.SetSupportActionBar(_toolbar);
+                BaseActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+                _drawerToggle = new MvxActionBarDrawerToggle(
+                    Activity,                               // host Activity
+                    BaseActivity.DrawerLayout,              // DrawerLayout object
+                    _toolbar,                               // nav drawer icon to replace 'Up' caret
+                    Resource.String.drawer_open,            // "open drawer" description
+                    Resource.String.drawer_close            // "close drawer" description
+                );
+                BaseActivity.DrawerLayout.AddDrawerListener(_drawerToggle);
+                _drawerToggle.DrawerIndicatorEnabled = true;
+            }
+
+            return view;
+        }
+
+        public override void OnConfigurationChanged(Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+            if (_toolbar != null)
+                _drawerToggle.OnConfigurationChanged(newConfig);
+        }
+
+        public override void OnAttach(Context context)
+        {
+            base.OnAttach(context);
+            if (_toolbar != null)
+                _drawerToggle.SyncState();
+        }
+    }
+}

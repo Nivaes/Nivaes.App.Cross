@@ -1,0 +1,48 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MS-PL license.
+// See the LICENSE file in the project root for more information.
+
+using System.Diagnostics.CodeAnalysis;
+using Android.Runtime;
+using Android.Views;
+using MvvmCross;
+using MvvmCross.Platforms.Android;
+using MvvmCross.Platforms.Android.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views.Fragments;
+using Nivaes.App.Cross.Sample.Droid;
+using Playground.Core.ViewModels;
+
+namespace Playground.Droid.Fragments
+{
+    [MvxDialogFragmentPresentation]
+    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+    public class ModalView : MvxDialogFragment<ModalViewModel>
+    {
+        public ModalView()
+        {
+        }
+
+        protected ModalView(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+
+            var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
+
+            return view;
+        }
+
+        public override void OnPause()
+        {
+            var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+            var activity = top.Activity;
+
+            base.OnPause();
+        }
+    }
+}

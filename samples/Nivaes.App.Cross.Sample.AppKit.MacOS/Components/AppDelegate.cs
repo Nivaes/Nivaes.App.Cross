@@ -1,11 +1,20 @@
-namespace Nivaes.App.Cross.AppKit.MacOS.Sample
+using System.Diagnostics.CodeAnalysis;
+using MvvmCross.Platforms.Mac.Core;
+using MvvmCross.Platforms.Mac.Presenters.Attributes;
+using Playground.Core;
+
+namespace Playground.Mac
 {
     [Register("AppDelegate")]
-    public class AppDelegate : NSApplicationDelegate
+    [RequiresUnreferencedCode("MvxApplicationDelegate requires unreferenced code")]
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+    public class AppDelegate : MvxApplicationDelegate<Setup, App>
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     {
-        public override void DidFinishLaunching(NSNotification notification)
+        public AppDelegate()
         {
-            // Insert code here to initialize your application
+            MvxWindowPresentationAttribute.DefaultWidth = 250;
+            MvxWindowPresentationAttribute.DefaultHeight = 250;
         }
 
         public override void WillTerminate(NSNotification notification)

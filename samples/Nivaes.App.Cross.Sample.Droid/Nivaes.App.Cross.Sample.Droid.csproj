@@ -36,12 +36,28 @@
 		<!--<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>-->
 	</PropertyGroup>
 	<ItemGroup>
+	  <AndroidJavaSource Remove="Properties\**" />
+	  <AndroidLibrary Remove="Properties\**" />
+	  <AndroidNativeLibrary Remove="Properties\**" />
+	  <Compile Remove="Properties\**" />
+	  <EmbeddedResource Remove="Properties\**" />
+	  <JavaSourceJar Remove="Properties\**" />
+	  <None Remove="Properties\**" />
+	  <ProguardConfiguration Remove="Properties\**" />
+	  <TransformFile Remove="Properties\**" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Serilog.Sinks.Trace" />
+		<PackageReference Include="Serilog.Sinks.Xamarin" />
+		<PackageReference Include="Xamarin.Android.Glide" />
 		<!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />-->
 	</ItemGroup>
-	<!--<ItemGroup>
-		<AdditionalFiles Include="Resources/layout/*.xml" />
-	</ItemGroup>-->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<AndroidManifestPlaceholders>
+			debuggable=true
+		</AndroidManifestPlaceholders>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
@@ -65,8 +81,5 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Properties\" />
 	</ItemGroup>
 </Project>

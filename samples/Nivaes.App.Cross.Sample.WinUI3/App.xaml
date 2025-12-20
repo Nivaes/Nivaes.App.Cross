@@ -1,17 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<cross:WinUICrossApplication
-    x:Class="Nivaes.App.Cross.Sample.WinUI3.App"
-    xmlns:cross="using:Nivaes.App.Cross.WinUI3"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Nivaes.App.Cross.Sample.WinUI3">
+<mvx:MvxApplication x:Class="Playground.WinUi.App"
+                        xmlns:mvx="using:MvvmCross.Platforms.WinUi.Views"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:local="using:Playground.WinUi"
+                        RequestedTheme="Light">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
-            </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
-        </ResourceDictionary>
+        <x:String x:Key="WelcomeText">Hello World!</x:String>
     </Application.Resources>
-</cross:WinUICrossApplication>
+</mvx:MvxApplication>

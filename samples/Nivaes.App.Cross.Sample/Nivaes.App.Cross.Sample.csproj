@@ -33,6 +33,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Serilog.Extensions.Logging" />
 	</ItemGroup>
 
 	<ItemGroup>

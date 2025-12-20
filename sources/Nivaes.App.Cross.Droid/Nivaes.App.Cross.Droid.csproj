@@ -14,6 +14,9 @@
 
   <ItemGroup>
     <PackageReference Include="Nivaes.App.Shared" />
+    <PackageReference Include="Serilog.Sinks.Async" />
+    <PackageReference Include="Xamarin.AndroidX.Leanback" />
+    <PackageReference Include="Xamarin.AndroidX.SwipeRefreshLayout" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,52 +1,28 @@
-﻿namespace Nivaes.App.Cross.Sample.WinUI3
-{
-    using Nivaes.App.Cross.WinUI3;
-    using Nivaes.IoC;
+﻿using Microsoft.UI.Xaml;
+using MvvmCross.Core;
+using MvvmCross.Platforms.WinUi.Views;
+using Playground.WinUi3;
 
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    public partial class App 
-        : WinUICrossApplication
+namespace Playground.WinUi
+{
+    public sealed partial class App : MvxApplication
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
 
-            // ToDo: Buscar una forma de hacer esto más elegante.
-
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.AddDelegate<ICrossApplicationStart>((container) =>
-                {
-                    var navigationService = container.Resolve<ICrossNavigationService>();
-                    return new SampleApplicationStart(navigationService!);
-                });
-
-            container.AddDelegate<ICrossApplication>((container) =>
-                {
-                    var applicationStart = container.Resolve<ICrossApplicationStart>();
-                    return new SampleApplication(applicationStart!);
-                });
-
-            // ToDo: Generación por Roslyn 
-            var viewsManager = new CrossViewsManager(new[]
+        protected override Window CreateWindow()
+        {
+            return new Window()
             {
-                CrossViewsManager.New<RootViewModel, RootView>(),
-                CrossViewsManager.New<NewWindowViewModel, NewWindowView>(),
-            });
-            Singleton<CrossViewsManager>.Add(viewsManager);
+                Title = "MvvmCross WinUI 3 Playground"
+            };
+        }
 
-            var viewPresentationsManager = new CrossViewPresentationsManager(new[] 
-            { 
-                CrossViewPresentationsManager.New<RootView, CrossPageViewPresentation>(),
-                CrossViewPresentationsManager.New<NewWindowView, CrossNewWindowViewPresentation>(),
-            });
-            Singleton<CrossViewPresentationsManager>.Add(viewPresentationsManager);
-
+        protected override void RegisterSetup()
+        {
+            this.RegisterSetupType<WinUiPlaygroundSetup>();
         }
     }
 }

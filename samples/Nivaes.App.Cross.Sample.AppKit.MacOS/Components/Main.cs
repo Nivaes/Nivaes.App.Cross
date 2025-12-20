@@ -1,5 +1,13 @@
-using Nivaes.App.Cross.AppKit.MacOS.Sample;
+using AppKit;
 
-// This is the main entry point of the application.
-NSApplication.Init();
-NSApplication.Main(args);
+namespace Playground.Mac
+{
+    static class MainClass
+    {
+        static void Main(string[] args)
+        {
+            NSApplication.Init();
+            NSApplication.Main(args);
+        }
+    }
+}

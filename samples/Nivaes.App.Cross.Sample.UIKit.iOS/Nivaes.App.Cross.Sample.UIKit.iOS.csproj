@@ -20,6 +20,17 @@
 		<!--<PublishAot>true</PublishAot>-->
 	</PropertyGroup>
 	<ItemGroup>
+	  <AtlasTexture Remove="Components\Views\**" />
+	  <Compile Remove="Components\Views\**" />
+	  <CoreMLModel Remove="Components\Views\**" />
+	  <EmbeddedResource Remove="Components\Views\**" />
+	  <ImageAsset Remove="Components\Views\**" />
+	  <InterfaceDefinition Remove="Components\Views\**" />
+	  <Metal Remove="Components\Views\**" />
+	  <None Remove="Components\Views\**" />
+	  <SceneKitAsset Remove="Components\Views\**" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
 	<ItemGroup>
@@ -39,7 +50,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Components\Views\" />
+	  <Folder Include="Components\" />
 	</ItemGroup>
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadMonoInterpreterErrorInfoBarNivaesAppCrossUIKitiOSSampleHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>
