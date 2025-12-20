@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Mac.Views.Base;
-using MvvmCross.ViewModels;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Mac.Views
 {
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Mac.Views.Base;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxTabViewController : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView
     {
         protected MvxTabViewController()
