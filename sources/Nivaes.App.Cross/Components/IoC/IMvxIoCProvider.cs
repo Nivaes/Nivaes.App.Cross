@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC;
 
+[Obsolete("Quitar MvxIoC")]
 public interface IMvxIoCProvider
 {
     bool CanResolve<T>()

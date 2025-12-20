@@ -6,6 +6,7 @@ using System;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class MvxUnconventionalAttribute : Attribute
     {

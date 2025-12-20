@@ -7,6 +7,7 @@ using System.Reflection;
 
 namespace MvvmCross.IoC;
 
+[Obsolete("Quitar MvxIoC")]
 public interface IMvxTypeCache
 {
     Dictionary<string, Type> LowerCaseFullNameCache { get; }

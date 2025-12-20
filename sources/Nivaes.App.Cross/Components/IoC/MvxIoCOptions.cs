@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     public class MvxIocOptions : IMvxIocOptions
     {
         public MvxIocOptions()

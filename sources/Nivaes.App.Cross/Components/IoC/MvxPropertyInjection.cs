@@ -4,6 +4,7 @@
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     public enum MvxPropertyInjection
     {
         None,

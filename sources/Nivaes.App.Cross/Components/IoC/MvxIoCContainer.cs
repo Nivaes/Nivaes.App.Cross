@@ -12,6 +12,7 @@ using MvvmCross.Logging;
 
 namespace MvvmCross.IoC;
 
+[Obsolete("Quitar MvxIoC")]
 public sealed class MvxIoCContainer
     : IMvxIoCProvider
 {

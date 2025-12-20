@@ -6,6 +6,7 @@ using System;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public abstract class MvxConditionalConventionalAttribute : Attribute
     {

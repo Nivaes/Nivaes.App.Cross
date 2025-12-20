@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     public static class MvxIoCContainerExtensions
     {
         private static Func<TInterface> CreateResolver<

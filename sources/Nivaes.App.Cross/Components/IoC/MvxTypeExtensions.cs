@@ -11,6 +11,7 @@ using MvvmCross.Logging;
 
 namespace MvvmCross.IoC;
 
+[Obsolete("Quitar MvxIoC")]
 public static class MvxTypeExtensions
 {
     [RequiresUnreferencedCode("This method uses reflection to get types, which may not be preserved in trimmed applications")]

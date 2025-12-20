@@ -10,6 +10,7 @@ using MvvmCross.Logging;
 
 namespace MvvmCross.IoC;
 
+[Obsolete("Quitar MvxIoC")]
 public class MvxTypeCache<TType> : IMvxTypeCache
 {
     public Dictionary<string, Type> LowerCaseFullNameCache { get; } = new();

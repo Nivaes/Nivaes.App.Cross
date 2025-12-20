@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     public class MvxLazySingletonCreator
     {
         private readonly object _lockObject = new object();

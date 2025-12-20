@@ -10,6 +10,7 @@ using MvvmCross.Logging;
 
 namespace MvvmCross.IoC
 {
+    [Obsolete("Quitar MvxIoC")]
     public class MvxPropertyInjector : IMvxPropertyInjector
     {
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Runtime property inspection for generic type parameter with PublicProperties annotation")]
