@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
+    [Obsolete()]
     public interface ICrossSavedStateConverter
     {
         ICrossBundle Read(Bundle bundle);

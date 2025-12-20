@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
 
+    [Obsolete]
     public class CrossPropertyChangingEventArgs<T> : 
         PropertyChangingEventArgs
     {

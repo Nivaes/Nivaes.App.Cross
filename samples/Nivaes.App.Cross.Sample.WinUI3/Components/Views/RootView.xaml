@@ -18,9 +18,8 @@
     </Page.Resources>
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-
-        <!--<Button Click="{Binding ShowNewWindowCommand}">Show new window</Button>
-        <Button Click="{Binding FormCommand}">Show Form</Button>
-        <Button Click="{Binding SubFormCommand}">Show SubForm</Button>-->
+        <Button Content="Show new window" Command="{Binding ShowNewWindowCommand}" />
+        <Button Content="Show Form" Command="{Binding FormCommand}" />
+        <Button Content="Show SubForm" Command="{Binding SubFormCommand}" />
     </StackPanel>
 </app:RootViewPage>

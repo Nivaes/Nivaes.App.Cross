@@ -44,7 +44,6 @@ namespace Nivaes.App.Cross.WinUI3
         }
         #endregion
 
-
         private void CrossWindowsContentDialog_Loading(FrameworkElement sender, object args)
         {
             ViewModel?.ViewAppearing();

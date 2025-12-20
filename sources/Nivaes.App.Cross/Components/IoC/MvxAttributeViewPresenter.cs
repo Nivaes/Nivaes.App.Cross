@@ -5,6 +5,7 @@
 
 namespace MvvmCross.Presenters;
 
+[Obsolete("Quitar IoC de Cross")]
 public abstract class MvxAttributeViewPresenter : MvxViewPresenter, IMvxAttributeViewPresenter
 {
     //private readonly Lazy<IMvxViewModelTypeFinder?> _viewModelTypeFinder =

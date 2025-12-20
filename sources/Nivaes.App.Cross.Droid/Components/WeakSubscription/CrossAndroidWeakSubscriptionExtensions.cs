@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using System;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete()]
     public static class CrossAndroidWeakSubscriptionExtensions
     {
         public static CrossJavaEventSubscription<TSource> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(this TSource source, string eventName, EventHandler eventHandler)

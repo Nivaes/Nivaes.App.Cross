@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Globalization;
 
+    [Obsolete("Quitar IoC de Cross")]
     public class CrossDictionaryValueConverter<TKey, TValue> : 
         CrossValueConverter<TKey, TValue>
         where TKey : notnull

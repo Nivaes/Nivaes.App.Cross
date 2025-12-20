@@ -6,12 +6,13 @@
     using Nivaes.App.Cross;
     using Nivaes.IoC;
 
-    public abstract class CrossWinUIApplication : Application
+    public abstract class WinUICrossApplication 
+        : Application
     {
         protected Frame? RootFrame { get; set; }
         public Window? MainWindow { get; protected set; }
 
-        protected CrossWinUIApplication()
+        protected WinUICrossApplication()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
 
@@ -19,6 +20,41 @@
             {
                 return new CrossWinUIViewPresenter();
             });
+
+            container.AddDelegate<ICrossSuspensionManager>((container) =>
+            {
+                return new CrossSuspensionManager();
+            });
+
+            container.AddDelegate<ICrossWindowsViewModelLoader>((container) =>
+            {
+                return new CrossWindowsViewsContainer();
+            });
+
+            container.AddDelegate<ICrossChildViewModelCache>((container) =>
+            {
+                return new CrossChildViewModelCache();
+            });
+
+            container.AddDelegate<ICrossViewModelByNameLookup>((container) =>
+            {
+                return new CrossViewModelByNameLookup();
+            });
+
+            container.AddDelegate<ICrossChildViewModelCache>((container) =>
+            {
+                return new CrossChildViewModelCache();
+            });
+
+            //container.AddDelegate<ICrossViewModelLoader>((container) =>
+            //{
+            //    return new CrossViewModelLoader();
+            //});
+
+            //container.AddDelegate<ICrossNavigationSerializer>((container) =>
+            //{
+            //    return new CrossNavigationSerializer();
+            //});
 
             container.Merge(new WinUISubcontainer());
 

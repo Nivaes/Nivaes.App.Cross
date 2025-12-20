@@ -4,7 +4,7 @@ namespace MvvmCross.IoC
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [Obsolete("Quitar IoC de Cross")]
+    [Obsolete("Quitar IoC de Cross", true)]
     public interface ICrossIoCProvider
     {
         bool CanResolve<T>()

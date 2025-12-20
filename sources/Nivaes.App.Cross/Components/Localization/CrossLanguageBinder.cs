@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
+    [Obsolete]
     public class CrossLanguageBinder(string? namespaceName = null, string? typeName = null)
         : ICrossLanguageBinder
     {

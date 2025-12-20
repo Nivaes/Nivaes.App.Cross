@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using System.Text;
 
+    [Obsolete()]
     public abstract class CrossParser
     {
         protected string? FullText { get; private set; }

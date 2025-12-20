@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using Nivaes.App.Cross.Droid;
 
-    public abstract class SampleDroidCrossSetup 
-        : DroidCrossSetup
+    public abstract class SampleDroidCrossApplicationSetup 
+        : DroidCrossApplicationSetup
     {
     }
 }

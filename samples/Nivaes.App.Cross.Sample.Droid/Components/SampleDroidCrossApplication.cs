@@ -6,9 +6,10 @@
     using Nivaes.IoC;
 
     [Application]
-    public  class SampleDroidApplication : DroidCrossApplication
+    public  class SampleDroidCrossApplication 
+        : DroidCrossApplication
     {
-        public SampleDroidApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+        public SampleDroidCrossApplication(IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer)
         {
             // ToDo: Buscar una forma de hacer esto más elegante.

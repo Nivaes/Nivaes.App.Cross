@@ -11,6 +11,7 @@ namespace Nivaes.App.Cross.Droid
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TEventArgs"></typeparam>
+    [Obsolete()]
     public class CrossAndroidTargetEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> : 
         CrossWeakEventSubscription<TSource, TEventArgs>
         where TSource : class

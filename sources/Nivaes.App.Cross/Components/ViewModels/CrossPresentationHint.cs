@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
 
-    // ToDo: Comprobar que se usa para algo.
     public class CrossPresentationHint
     {
         protected CrossPresentationHint(CrossBundle? body = default)

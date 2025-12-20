@@ -9,7 +9,8 @@
 
         Task<bool> ChangePresentation(CrossPresentationHint hint);
 
-        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : CrossPresentationHint;
+        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) 
+            where THint : CrossPresentationHint;
 
         Task<bool> Close(ICrossViewModel request);
     }

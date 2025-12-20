@@ -1,21 +1,21 @@
 namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
+    using Nivaes.IoC;
 
     public static class CrossLogHost
     {
-        private static ILogger? _defaultLogger;
+        static CrossLogHost()
+        {
+            var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
+        }
 
-        public static ILogger? Default => _defaultLogger ??= GetLog("Default");
+        private static ILoggerFactory? _defaultLogger;
 
-        public static ILogger<T>? GetLog<T>() => throw new NotImplementedException();
-        //Cross.IoCProvider?.TryResolve<ILoggerFactory>(out var loggerFactory) == true
-        //    ? loggerFactory?.CreateLogger<T>()
-        //    : null;
+        public static ILogger? Default => GetLog("Default");
 
-        public static ILogger? GetLog(string categoryName) => throw new NotImplementedException();
-        //Cross.IoCProvider?.TryResolve<ILoggerFactory>(out var loggerFactory) == true
-        //    ? loggerFactory?.CreateLogger(categoryName)
-        //    : null;
+        public static ILogger<T>? GetLog<T>() => _defaultLogger?.CreateLogger<T>();
+
+        public static ILogger? GetLog(string categoryName) => _defaultLogger?.CreateLogger(categoryName);
     }
 }

@@ -5,6 +5,8 @@ namespace Nivaes.App.Cross.WinUI3
     using Microsoft.UI.Xaml.Controls;
     using Windows.Storage;
 
+    //ToDo: Revisar como funciona esto.
+
     /// <summary>
     /// CrossSuspensionManager captures global session state to simplify process lifetime management
     /// for an application.  Note that session state will be automatically cleared under a variety
@@ -12,7 +14,8 @@ namespace Nivaes.App.Cross.WinUI3
     /// carry across sessions, but that should be discarded when an application crashes or is
     /// upgraded.
     /// </summary>
-    public class CrossSuspensionManager : ICrossSuspensionManager
+    public class CrossSuspensionManager 
+        : ICrossSuspensionManager
     {
         protected const string SessionStateFilename = "_CrossSessionState.xml";
 
@@ -46,7 +49,7 @@ namespace Nivaes.App.Cross.WinUI3
                 // Save the navigation state for all registered frames
                 foreach (var weakFrameReference in _registeredFrames)
                 {
-                    ICrossWindowsFrame frame;
+                    ICrossWindowsFrame? frame;
                     if (weakFrameReference.TryGetTarget(out frame))
                     {
                         SaveFrameNavigationState(frame);
@@ -103,7 +106,7 @@ namespace Nivaes.App.Cross.WinUI3
                 // Restore any registered frames to their saved state
                 foreach (var weakFrameReference in _registeredFrames)
                 {
-                    ICrossWindowsFrame frame;
+                    ICrossWindowsFrame? frame;
                     if (weakFrameReference.TryGetTarget(out frame))
                     {
                         frame.ClearValue(CrossFrameSessionStateProperty);
@@ -119,9 +122,11 @@ namespace Nivaes.App.Cross.WinUI3
 
         protected readonly DependencyProperty CrossFrameSessionStateKeyProperty =
             DependencyProperty.RegisterAttached("_CrossFrameSessionStateKey", typeof(string), typeof(CrossSuspensionManager), null);
+
         protected readonly DependencyProperty CrossFrameSessionStateProperty =
             DependencyProperty.RegisterAttached("_CrossFrameSessionState",
                 typeof(Dictionary<string, object>), typeof(CrossSuspensionManager), null);
+
         protected readonly List<WeakReference<ICrossWindowsFrame>> _registeredFrames = new List<WeakReference<ICrossWindowsFrame>>();
 
         public virtual void RegisterFrame(ICrossWindowsFrame frame, string sessionStateKey)
@@ -152,7 +157,7 @@ namespace Nivaes.App.Cross.WinUI3
             SessionState.Remove((string)frame.GetValue(CrossFrameSessionStateKeyProperty));
             _registeredFrames.RemoveAll((weakFrameReference) =>
             {
-                ICrossWindowsFrame testFrame;
+                ICrossWindowsFrame? testFrame;
                 return !weakFrameReference.TryGetTarget(out testFrame) || testFrame == frame;
             });
         }

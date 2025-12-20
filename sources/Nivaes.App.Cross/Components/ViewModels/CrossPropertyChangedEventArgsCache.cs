@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
 
+    [Obsolete]
     public sealed class CrossPropertyChangedEventArgsCache
     {
         /// <summary>

@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete()]
     public static class CrossApplicableExtensions
     {
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]

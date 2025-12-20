@@ -23,6 +23,7 @@
         {
             ParameterValues = parameterBundle?.Data;
             PresentationValues = presentationBundle?.Data;
+            ViewModel = default!;
         }
 
         public CrossViewModelRequest(TViewModel viewModel, ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
@@ -33,6 +34,8 @@
         }
 
         public TViewModel ViewModel { get;}
+
+        [Obsolete]
         public CrossNotifyTask InitializeTask { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         ICrossViewModel ICrossViewModelRequest.ViewModel => ViewModel;

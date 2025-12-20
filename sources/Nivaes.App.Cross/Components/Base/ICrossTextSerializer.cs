@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete()]
     public interface ICrossTextSerializer
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]

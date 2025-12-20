@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Globalization;
 
+    [Obsolete]
     public class CrossLanguageConverter
         : CrossValueConverter
     {

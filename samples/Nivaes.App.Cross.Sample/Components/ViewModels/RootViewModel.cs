@@ -10,7 +10,6 @@
     {
         private readonly ICrossNavigationService mNavigationService;
 
-        
         public RootViewModel(ICrossNavigationService navigationService)
         {
             mNavigationService = navigationService;

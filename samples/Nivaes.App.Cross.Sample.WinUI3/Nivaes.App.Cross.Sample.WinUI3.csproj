@@ -2,12 +2,13 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>$(_CrossWindowsTargets)</TargetFrameworks>
-		<TargetPlatformMinVersion>$(_TargetPlatformMinVersion)</TargetPlatformMinVersion>
+		<TargetPlatformMinVersion>$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
+		
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI3</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>
 		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-		<!--<PublishProfile>win-$(Platform).pubxml</PublishProfile>-->
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<Nullable>enable</Nullable>
@@ -85,9 +86,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Properties\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
 	</ItemGroup>
 	<ItemGroup>
@@ -101,5 +99,17 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
 	</ItemGroup>
 </Project>

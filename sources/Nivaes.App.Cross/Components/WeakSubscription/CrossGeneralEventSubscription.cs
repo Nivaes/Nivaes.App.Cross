@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete]
     public class CrossGeneralEventSubscription(
             object source,
             EventInfo eventInfo,

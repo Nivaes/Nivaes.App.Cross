@@ -1,0 +1,56 @@
+namespace Nivaes.App.Cross
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+
+    public class CrossViewModelByNameLookup 
+        : ICrossViewModelByNameLookup, ICrossViewModelByNameRegistry
+    {
+        private readonly Dictionary<string, Type> _availableViewModelsByName;
+        private readonly Dictionary<string, Type> _availableViewModelsByFullName;
+
+        public CrossViewModelByNameLookup()
+        {
+            _availableViewModelsByName = new Dictionary<string, Type>();
+            _availableViewModelsByFullName = new Dictionary<string, Type>();
+        }
+
+        public bool TryLookupByName(string name, out Type? viewModelType)
+        {
+            return _availableViewModelsByName.TryGetValue(name, out viewModelType);
+        }
+
+        public bool TryLookupByFullName(string name, out Type? viewModelType)
+        {
+            return _availableViewModelsByFullName.TryGetValue(name, out viewModelType);
+        }
+
+        public void Add(Type viewModelType)
+        {
+            _availableViewModelsByName.TryAdd(viewModelType.Name, viewModelType);
+            if (viewModelType.FullName != null)
+                _availableViewModelsByFullName.TryAdd(viewModelType.FullName, viewModelType);
+        }
+
+        public void Add<TViewModel>() where TViewModel : ICrossViewModel
+        {
+            Add(typeof(TViewModel));
+        }
+
+        [RequiresUnreferencedCode("This method registers view models that may not be preserved by trimming")]
+        public void AddAll(Assembly assembly)
+        {
+            throw new NotImplementedException();    
+            //var viewModelTypes = from type in assembly.ExceptionSafeGetTypes()
+            //                     where !type.GetTypeInfo().IsAbstract
+            //                     where !type.GetTypeInfo().IsInterface
+            //                     where typeof(ICrossViewModel).IsAssignableFrom(type)
+            //                     select type;
+
+            //foreach (var viewModelType in viewModelTypes)
+            //{
+            //    Add(viewModelType);
+            //}
+        }
+    }
+}

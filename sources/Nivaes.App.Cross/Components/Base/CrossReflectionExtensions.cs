@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using System.Reflection;
 
+    [Obsolete()]
     public static class CrossReflectionExtensions
     {
         public static Attribute[] GetCustomAttributes(this Type type, Type attributeType, bool inherit)

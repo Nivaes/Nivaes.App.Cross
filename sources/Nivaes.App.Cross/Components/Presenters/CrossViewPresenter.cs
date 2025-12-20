@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    [Obsolete]
     public abstract class CrossViewPresenter : ICrossViewPresenter
     {
         protected CrossViewPresenter()

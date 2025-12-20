@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
-    public abstract class CrossApplicationStart : ICrossApplicationStart, IDisposable
+    using System;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+
+    public abstract class CrossApplicationStart 
+        : ICrossApplicationStart, IDisposable
     {
         //protected readonly INavigationService NavigationService;
         //protected readonly ICrossApplication Application;

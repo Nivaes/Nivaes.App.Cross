@@ -1,7 +1,8 @@
 ﻿// ToDo: ¿Es necesario?
 
 namespace Nivaes.App.Cross
-{
+{ 
+    [Obsolete]
     public record class CrossViewModelInstanceRequest<TViewModel> :
         CrossViewModelRequest<TViewModel>
         where TViewModel : ICrossViewModel

@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
+    [Obsolete("Quitar IoC de Cross")]
     public abstract class CrossValueConverter
         : ICrossValueConverter
     {

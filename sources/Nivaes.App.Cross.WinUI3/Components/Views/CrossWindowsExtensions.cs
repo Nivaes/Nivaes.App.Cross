@@ -1,11 +1,13 @@
 namespace Nivaes.App.Cross.WinUI3
 {
+    using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
+    using Nivaes.IoC;
 
     public static class CrossWindowsExtensions
     {
-        public static void OnViewCreate(this ICrossWindowsView storeView, string requestText, Func<ICrossBundle> bundleLoader)
+        public static void OnViewCreate(this ICrossWindowsView storeView, string requestText, Func<ICrossBundle?> bundleLoader)
         {
             storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
         }
@@ -79,12 +81,11 @@ namespace Nivaes.App.Cross.WinUI3
 
         private static ICrossViewModel LoadViewModel(this ICrossWindowsView storeView,
                                                     string requestText,
-                                                    ICrossBundle bundle)
+                                                    ICrossBundle? bundle)
         {
-            throw new NotImplementedException();
-
-            //var viewModelLoader = Cross.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-            //return viewModelLoader.Load(requestText, bundle);
+            var container = Nivaes.Singleton<CrossIoCServiceContainer>.Instance;
+            var viewModelLoader = container.Resolve<ICrossWindowsViewModelLoader>();
+            return viewModelLoader!.Load(requestText, bundle);
         }
     }
 }

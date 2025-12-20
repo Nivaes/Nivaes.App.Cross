@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross.WinUI3
 {
     using System.Collections.Generic;
+    using Nivaes.IoC;
 
     public class CrossWindowsViewsContainer
         : CrossViewsContainer
@@ -11,24 +12,25 @@ namespace Nivaes.App.Cross.WinUI3
 
         public ICrossViewModel Load(string requestText, ICrossBundle savedState)
         {
-            throw new NotImplementedException();
-            //var converter = Cross.IoCProvider.Resolve<CrossNavigationSerializer>();
-            //var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
+            var container = Nivaes.Singleton<CrossIoCServiceContainer>.Instance;
+            var converter = container.Resolve<ICrossNavigationSerializer>();
 
-            //dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
-            //var request = converter.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest);
+            var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
-            //if (dictionary.TryGetValue(SubViewModelKey, out string viewModelKey))
-            //{
-            //    var key = int.Parse(viewModelKey);
-            //    var viewModel = Cross.IoCProvider.Resolve<ICrossChildViewModelCache>().Get(key);
-            //    if (savedState != null)
-            //        viewModel.ReloadState(savedState);
-            //    return viewModel;
-            //}
+            dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
+            var request = converter.Serializer.DeserializeObject<ICrossViewModelRequest>(serializedRequest);
 
-            //var loaderService = Cross.IoCProvider.Resolve<ICrossViewModelLoader>();
-            //return loaderService.LoadViewModel(request, savedState);
+            if (dictionary.TryGetValue(SubViewModelKey, out string viewModelKey))
+            {
+                var key = int.Parse(viewModelKey);
+                var viewModel = container.Resolve<ICrossChildViewModelCache>().Get(key);
+                if (savedState != null)
+                    viewModel.ReloadState(savedState);
+                return viewModel;
+            }
+
+            var loaderService = container.Resolve<ICrossViewModelLoader>();
+            return loaderService.LoadViewModel(request, savedState);
         }
 
         #region Implementation of ICrossWindowsViewModelRequestTranslator

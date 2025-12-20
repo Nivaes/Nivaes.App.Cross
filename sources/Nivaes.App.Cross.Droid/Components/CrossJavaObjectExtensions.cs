@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.OS;
     using Object = Java.Lang.Object;
 
+    [Obsolete()]
     public static class CrossJavaObjectExtensions
     {
         public static bool IsNull(this Object @object)
