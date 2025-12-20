@@ -49,7 +49,7 @@
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Xamarin.Android.Glide" />
-		<!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />-->
+		<PackageReference Include="Serilog.Sinks.Xamarin" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">

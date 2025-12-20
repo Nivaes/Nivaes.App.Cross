@@ -16,6 +16,7 @@
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Serilog.Sinks.Async" />
 		<PackageReference Include="Serilog.Sinks.Trace" />
+		<PackageReference Include="Serilog.Sinks.Xamarin" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
