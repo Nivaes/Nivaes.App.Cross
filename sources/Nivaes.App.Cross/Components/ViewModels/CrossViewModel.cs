@@ -82,7 +82,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public abstract class MvxViewModel<TParameter> : CrossViewModel, ICrossViewModel<TParameter>
+    public abstract class CrossViewModel<TParameter> : CrossViewModel, ICrossViewModel<TParameter>
     {
         public abstract void Prepare(TParameter parameter);
     }
