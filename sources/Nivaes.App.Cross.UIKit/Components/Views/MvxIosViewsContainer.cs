@@ -12,7 +12,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Ios.Views
 {
     public class MvxIosViewsContainer
-        : MvxViewsContainer
+        : CrossViewsContainer
         , IMvxIosViewsContainer
     {
         public MvxViewModelRequest? CurrentRequest { get; private set; }

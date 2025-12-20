@@ -117,7 +117,7 @@ public abstract class MvxAndroidSetup
         return new MvxSavedStateConverter();
     }
 
-    protected override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+    protected override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
     {
         ValidateArguments(iocProvider);
 
@@ -127,7 +127,7 @@ public abstract class MvxAndroidSetup
         var container = CreateViewsContainer(ApplicationContext);
         iocProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
         iocProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
-        if (container is not MvxViewsContainer viewsContainer)
+        if (container is not CrossViewsContainer viewsContainer)
             throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
         return viewsContainer;
     }
@@ -151,7 +151,7 @@ public abstract class MvxAndroidSetup
         return new MvxAndroidViewPresenter(AndroidViewAssemblies);
     }
 
-    protected override IMvxViewDispatcher CreateViewDispatcher()
+    protected override ICrossViewDispatcher CreateViewDispatcher()
     {
         return new MvxAndroidViewDispatcher(Presenter);
     }

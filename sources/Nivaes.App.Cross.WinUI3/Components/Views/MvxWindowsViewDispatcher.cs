@@ -10,7 +10,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.WinUi.Views
 {
     public class MvxWindowsViewDispatcher
-        : MvxWindowsMainThreadDispatcher, IMvxViewDispatcher
+        : MvxWindowsMainThreadDispatcher, ICrossViewDispatcher
     {
         private readonly IMvxWindowsViewPresenter _presenter;
 

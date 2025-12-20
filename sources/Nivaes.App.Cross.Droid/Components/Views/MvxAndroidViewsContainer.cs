@@ -14,7 +14,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Android.Views;
 
 public class MvxAndroidViewsContainer
-    : MvxViewsContainer, IMvxAndroidViewsContainer
+    : CrossViewsContainer, IMvxAndroidViewsContainer
 {
     private const string ExtrasKey = "MvxLaunchData";
     private const string SubViewModelKey = "MvxSubViewModelKey";

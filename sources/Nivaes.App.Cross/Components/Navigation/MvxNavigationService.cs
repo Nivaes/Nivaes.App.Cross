@@ -14,7 +14,7 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Presenters.Hints;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Navigation;
 
@@ -26,9 +26,9 @@ public class MvxNavigationService : IMvxNavigationService
     private readonly Lazy<ILogger?> _log = new(() =>
         MvxLogHost.GetLog<MvxNavigationService>());
 
-    public IMvxViewDispatcher ViewDispatcher { get; }
+    public ICrossViewDispatcher ViewDispatcher { get; }
 
-    protected Lazy<IMvxViewsContainer?> ViewsContainer { get; }
+    protected Lazy<ICrossViewsContainer?> ViewsContainer { get; }
 
     protected Dictionary<Regex, Type> Routes { get; } = new();
 
@@ -48,14 +48,14 @@ public class MvxNavigationService : IMvxNavigationService
 
     public MvxNavigationService(
         IMvxViewModelLoader viewModelLoader,
-        IMvxViewDispatcher viewDispatcher,
+        ICrossViewDispatcher viewDispatcher,
         IMvxIoCProvider iocProvider)
     {
         _iocProvider = iocProvider;
 
         ViewModelLoader = viewModelLoader;
         ViewDispatcher = viewDispatcher;
-        ViewsContainer = new Lazy<IMvxViewsContainer?>(() => _iocProvider.Resolve<IMvxViewsContainer>());
+        ViewsContainer = new Lazy<ICrossViewsContainer?>(() => _iocProvider.Resolve<ICrossViewsContainer>());
     }
 
     public void LoadRoutes(IEnumerable<Assembly> assemblies)

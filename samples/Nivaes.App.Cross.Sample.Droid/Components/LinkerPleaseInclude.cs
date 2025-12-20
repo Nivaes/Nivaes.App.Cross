@@ -110,7 +110,7 @@ namespace Playground.Droid
             context2.Dispose();
         }
 
-        public void Include(MvxNavigationService service, IMvxViewModelLoader loader, IMvxViewDispatcher viewDispatcher)
+        public void Include(MvxNavigationService service, IMvxViewModelLoader loader, ICrossViewDispatcher viewDispatcher)
         {
             service = new MvxNavigationService(null, viewDispatcher, Mvx.IoCProvider);
         }

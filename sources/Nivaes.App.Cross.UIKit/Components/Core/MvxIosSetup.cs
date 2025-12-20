@@ -43,7 +43,7 @@ public abstract class MvxIosSetup
         _presenter = presenter;
     }
 
-    protected sealed override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+    protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
     {
         var container = CreateIosViewsContainer();
         RegisterIosViewCreator(iocProvider, container);
@@ -63,7 +63,7 @@ public abstract class MvxIosSetup
         iocProvider.RegisterSingleton<IMvxCurrentRequest>(container);
     }
 
-    protected override IMvxViewDispatcher CreateViewDispatcher()
+    protected override ICrossViewDispatcher CreateViewDispatcher()
     {
         return new MvxIosViewDispatcher(Presenter);
     }

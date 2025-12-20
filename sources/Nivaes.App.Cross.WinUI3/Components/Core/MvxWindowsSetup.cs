@@ -80,12 +80,12 @@ namespace MvvmCross.Platforms.WinUi.Core
             return new MvxSuspensionManager();
         }
 
-        protected sealed override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
         {
             var container = CreateStoreViewsContainer();
             iocProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
             iocProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
-            var viewsContainer = container as MvxViewsContainer;
+            var viewsContainer = container as CrossViewsContainer;
             if (viewsContainer == null)
                 throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
             return container;
@@ -117,7 +117,7 @@ namespace MvvmCross.Platforms.WinUi.Core
             return new MvxWindowsViewDispatcher(Presenter, rootFrame);
         }
 
-        protected override IMvxViewDispatcher CreateViewDispatcher()
+        protected override ICrossViewDispatcher CreateViewDispatcher()
         {
             if (_rootFrame == null)
                 throw new InvalidOperationException("Cannot create View Dispatcher with null root frame");

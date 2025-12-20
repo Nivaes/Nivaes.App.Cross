@@ -9,7 +9,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.WinUi.Views
 {
     public class MvxWindowsViewsContainer
-        : MvxViewsContainer
+        : CrossViewsContainer
         , IMvxStoreViewsContainer
     {
         private const string ExtrasKey = "MvxLaunchData";

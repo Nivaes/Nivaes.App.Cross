@@ -290,7 +290,7 @@ public class MvxMultiWindowViewPresenter
     protected virtual Task<bool> CloseRegionView(IMvxViewModel viewModel, MvxRegionPresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
-        var viewFinder = Mvx.IoCProvider?.Resolve<IMvxViewsContainer>();
+        var viewFinder = Mvx.IoCProvider?.Resolve<ICrossViewsContainer>();
         if (viewFinder == null)
         {
             return Task.FromResult(false);
@@ -651,7 +651,7 @@ public class MvxMultiWindowViewPresenter
     protected virtual async Task<bool> ShowNewWindowAsync(MvxViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
     {
         var newWindow = new Window();
-        var viewsContainer = Mvx.IoCProvider!.Resolve<IMvxViewsContainer>();
+        var viewsContainer = Mvx.IoCProvider!.Resolve<ICrossViewsContainer>();
         var viewType = viewsContainer?.GetViewType(request.ViewModelType);
         if (viewType == null)
         {

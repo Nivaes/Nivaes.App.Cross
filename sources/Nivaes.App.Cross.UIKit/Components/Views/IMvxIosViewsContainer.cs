@@ -7,7 +7,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Ios.Views
 {
     public interface IMvxIosViewsContainer
-        : IMvxViewsContainer, IMvxIosViewCreator
+        : ICrossViewsContainer, IMvxIosViewCreator
     {
     }
 }

@@ -7,7 +7,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Mac.Views
 {
     public interface IMvxMacViewsContainer
-         : IMvxViewsContainer
+         : ICrossViewsContainer
          , IMvxMacViewCreator
          , IMvxCurrentRequest
     {

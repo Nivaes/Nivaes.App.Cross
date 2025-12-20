@@ -113,7 +113,7 @@ public class MvxWindowsViewPresenter
 
     protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute, MvxViewModelRequest request)
     {
-        var viewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
+        var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
 
         if (_rootFrame.Content is MvxWindowsPage currentPage)
         {
@@ -173,7 +173,7 @@ public class MvxWindowsViewPresenter
 
     protected virtual Task<bool> CloseRegionView(IMvxViewModel viewModel, MvxRegionPresentationAttribute attribute)
     {
-        var viewFinder = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
+        var viewFinder = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
         var viewType = viewFinder.GetViewType(viewModel.GetType());
         if (viewType.HasRegionAttribute())
         {
@@ -225,7 +225,7 @@ public class MvxWindowsViewPresenter
         try
         {
             var requestText = GetRequestText(request);
-            var viewsContainer = Mvx.IoCProvider.Resolve<IMvxViewsContainer>();
+            var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
 
             _rootFrame.Navigate(viewType, requestText); //Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
 

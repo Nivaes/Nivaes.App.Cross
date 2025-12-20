@@ -9,7 +9,7 @@ using MvvmCross.Logging;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.Presenters.Hints;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Presenters;
 
@@ -18,14 +18,14 @@ public abstract class MvxAttributeViewPresenter : MvxViewPresenter, IMvxAttribut
     private readonly Lazy<IMvxViewModelTypeFinder?> _viewModelTypeFinder =
         new(() => Mvx.IoCProvider?.Resolve<IMvxViewModelTypeFinder>());
 
-    private readonly Lazy<IMvxViewsContainer?> _viewsContainer =
-        new(() => Mvx.IoCProvider?.Resolve<IMvxViewsContainer>());
+    private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
+        new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
 
     private IDictionary<Type, MvxPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
     public virtual IMvxViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
 
-    public virtual IMvxViewsContainer? ViewsContainer => _viewsContainer.Value;
+    public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
 
     public virtual IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary
     {

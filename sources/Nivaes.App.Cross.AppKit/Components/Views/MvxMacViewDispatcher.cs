@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Mac.Views
 {
     public class MvxMacViewDispatcher
         : MvxMacUIThreadDispatcher
-        , IMvxViewDispatcher
+        , ICrossViewDispatcher
     {
         private readonly IMvxMacViewPresenter _presenter;
 

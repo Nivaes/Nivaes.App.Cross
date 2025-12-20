@@ -12,7 +12,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Ios.Views
 {
     public class MvxIosViewDispatcher
-        : MvxIosUIThreadDispatcher, IMvxViewDispatcher
+        : MvxIosUIThreadDispatcher, ICrossViewDispatcher
     {
         private readonly IMvxIosViewPresenter _presenter;
 

@@ -51,7 +51,7 @@ namespace MvvmCross.Platforms.Mac.Core
             return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
 
-        protected sealed override IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
         {
             var container = CreateMacViewsContainer();
             RegisterMacViewCreator(iocProvider, container);
@@ -71,7 +71,7 @@ namespace MvvmCross.Platforms.Mac.Core
             iocProvider.RegisterSingleton<IMvxCurrentRequest>(container);
         }
 
-        protected override IMvxViewDispatcher CreateViewDispatcher()
+        protected override ICrossViewDispatcher CreateViewDispatcher()
         {
             return new MvxMacViewDispatcher(_presenter);
         }

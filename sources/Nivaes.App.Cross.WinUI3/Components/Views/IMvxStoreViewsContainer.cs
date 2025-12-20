@@ -7,7 +7,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.WinUi.Views
 {
     public interface IMvxStoreViewsContainer
-        : IMvxViewsContainer
+        : ICrossViewsContainer
             , IMvxWindowsViewModelLoader
             , IMvxWindowsViewModelRequestTranslator
     {

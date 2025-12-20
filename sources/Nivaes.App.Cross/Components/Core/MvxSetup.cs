@@ -14,7 +14,7 @@ using MvvmCross.Navigation;
 using MvvmCross.Plugin;
 using MvvmCross.ViewModels;
 using MvvmCross.ViewModels.Result;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Core;
 
@@ -84,9 +84,9 @@ public abstract class MvxSetup : IMvxSetup
 
     protected abstract IMvxApplication CreateApp(IMvxIoCProvider iocProvider);
 
-    protected abstract IMvxViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider);
+    protected abstract ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider);
 
-    protected abstract IMvxViewDispatcher CreateViewDispatcher();
+    protected abstract ICrossViewDispatcher CreateViewDispatcher();
 
     public virtual void InitializePrimary()
     {
@@ -350,7 +350,7 @@ public abstract class MvxSetup : IMvxSetup
         iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
         iocProvider.RegisterSingleton(CreateApp(iocProvider));
         iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelLoader, MvxViewModelLoader>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader, IMvxViewDispatcher, IMvxIoCProvider>(
+        iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
             (loader, dispatcher, p) => new MvxNavigationService(loader, dispatcher, p));
         iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
         iocProvider.RegisterSingleton(() => new MvxViewModelByNameLookup());
@@ -525,7 +525,7 @@ public abstract class MvxSetup : IMvxSetup
         app.Initialize();
     }
 
-    protected virtual IMvxViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
+    protected virtual ICrossViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
     {
         ValidateArguments(iocProvider);
 
@@ -655,12 +655,12 @@ public abstract class MvxSetup : IMvxSetup
         return builder?.Build(viewAssemblies);
     }
 
-    protected virtual IMvxViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
+    protected virtual ICrossViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
         IMvxIoCProvider iocProvider)
     {
         ValidateArguments(iocProvider);
 
-        var container = iocProvider.Resolve<IMvxViewsContainer>();
+        var container = iocProvider.Resolve<ICrossViewsContainer>();
         container?.AddAll(viewModelViewLookup);
         return container;
     }

@@ -13,7 +13,7 @@ using MvvmCross.Views;
 namespace MvvmCross.Platforms.Mac.Views
 {
     public class MvxMacViewsContainer
-        : MvxViewsContainer, IMvxMacViewsContainer
+        : CrossViewsContainer, IMvxMacViewsContainer
     {
         public MvxViewModelRequest CurrentRequest { get; private set; }
 

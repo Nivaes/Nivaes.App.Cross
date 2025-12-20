@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Android.Views
 {
     public class MvxAndroidViewDispatcher
         : MvxAndroidMainThreadDispatcher
-        , IMvxViewDispatcher
+        , ICrossViewDispatcher
     {
         private readonly IMvxAndroidViewPresenter _presenter;
 

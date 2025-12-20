@@ -6,14 +6,14 @@
 using System.Diagnostics.CodeAnalysis;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.Presenters
 {
     public interface IMvxAttributeViewPresenter : IMvxViewPresenter
     {
         IMvxViewModelTypeFinder? ViewModelTypeFinder { get; }
-        IMvxViewsContainer? ViewsContainer { get; }
+        ICrossViewsContainer? ViewsContainer { get; }
         IDictionary<Type, MvxPresentationAttributeAction>? AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 

@@ -8,7 +8,7 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
-using MvvmCross.Views;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.ViewModels;
 
