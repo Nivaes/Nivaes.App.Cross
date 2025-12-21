@@ -23,7 +23,7 @@ namespace MvvmCross.Platforms.Mac.Views
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             Func<Task> action = () =>
             {

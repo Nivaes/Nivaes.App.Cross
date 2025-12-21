@@ -32,7 +32,7 @@ public class MvxNavigationService : IMvxNavigationService
 
     protected Dictionary<Regex, Type> Routes { get; } = new();
 
-    protected IMvxViewModelLoader ViewModelLoader { get; set; }
+    protected ICrossViewModelLoader ViewModelLoader { get; set; }
 
     public event EventHandler<IMvxNavigateEventArgs>? WillNavigate;
 
@@ -47,7 +47,7 @@ public class MvxNavigationService : IMvxNavigationService
     public event EventHandler<ChangePresentationEventArgs>? DidChangePresentation;
 
     public MvxNavigationService(
-        IMvxViewModelLoader viewModelLoader,
+        ICrossViewModelLoader viewModelLoader,
         ICrossViewDispatcher viewDispatcher,
         IMvxIoCProvider iocProvider)
     {
@@ -157,16 +157,16 @@ public class MvxNavigationService : IMvxNavigationService
             ParameterValues = parameterValues.SafeGetData()
         };
 
-        if (viewModelType.GetInterfaces().Contains(typeof(IMvxNavigationFacade)))
+        if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
         {
-            var facade = (IMvxNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
+            var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
 
             try
             {
                 var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
                 if (facadeRequest == null)
                 {
-                    throw new MvxException($"{nameof(MvxNavigationService)}: Facade did not return a valid {nameof(MvxViewModelRequest)}.");
+                    throw new MvxException($"{nameof(MvxNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
                 }
 
                 request.ViewModelType = facadeRequest.ViewModelType;
@@ -223,16 +223,16 @@ public class MvxNavigationService : IMvxNavigationService
             ParameterValues = parameterValues.SafeGetData()
         };
 
-        if (viewModelType.GetInterfaces().Contains(typeof(IMvxNavigationFacade)))
+        if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
         {
-            var facade = (IMvxNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
+            var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
 
             try
             {
                 var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
                 if (facadeRequest == null)
                 {
-                    throw new MvxException($"{nameof(MvxNavigationService)}: Facade did not return a valid {nameof(MvxViewModelRequest)}.");
+                    throw new MvxException($"{nameof(MvxNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
                 }
 
                 request.ViewModelType = facadeRequest.ViewModelType;
@@ -273,7 +273,7 @@ public class MvxNavigationService : IMvxNavigationService
         return Task.FromResult(ViewsContainer.Value?.GetViewType(viewModelType) != null);
     }
 
-    protected virtual async Task<bool> Navigate(MvxViewModelRequest request, ICrossViewModel viewModel,
+    protected virtual async Task<bool> Navigate(CrossViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -594,7 +594,7 @@ public class MvxNavigationService : IMvxNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>True is successful. False otherwise.</returns>
-    protected virtual async Task<bool> NavigateAsync(MvxViewModelRequest request, ICrossViewModel viewModel,
+    protected virtual async Task<bool> NavigateAsync(CrossViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);

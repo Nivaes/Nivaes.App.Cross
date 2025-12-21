@@ -1,13 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Tvos.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("RegisterSetup may register types that are not preserved by default in the application")]
     public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
     {
@@ -34,7 +31,7 @@ namespace MvvmCross.Platforms.Tvos.Core
 
         protected virtual void RunAppStart(object hint = null)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxAppStart startup) == true && !startup.IsStarted)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
             {
                 startup.Start(GetAppStartHint(hint));
             }
@@ -77,7 +74,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     [RequiresUnreferencedCode("RegisterSetup may register types that are not preserved by default in the application")]
     public abstract class MvxApplicationDelegate<TMvxTvosSetup, TApplication> : MvxApplicationDelegate
        where TMvxTvosSetup : MvxTvosSetup<TApplication>, new()
-       where TApplication : class, IMvxApplication, new()
+       where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

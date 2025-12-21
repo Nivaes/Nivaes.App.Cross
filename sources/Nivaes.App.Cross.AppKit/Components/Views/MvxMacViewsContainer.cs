@@ -1,23 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using AppKit;
-using MvvmCross.Exceptions;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace MvvmCross.Platforms.Mac.Views
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using AppKit;
+    using MvvmCross.Exceptions;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class MvxMacViewsContainer
         : CrossViewsContainer, IMvxMacViewsContainer
     {
-        public MvxViewModelRequest CurrentRequest { get; private set; }
+        public CrossViewModelRequest CurrentRequest { get; private set; }
 
-        public virtual IMvxMacView CreateView(MvxViewModelRequest request)
+        public virtual IMvxMacView CreateView(CrossViewModelRequest request)
         {
             try
             {
@@ -36,7 +32,7 @@ namespace MvvmCross.Platforms.Mac.Views
             }
         }
 
-        public virtual IMvxMacView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, MvxViewModelRequest request)
+        public virtual IMvxMacView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, CrossViewModelRequest request)
         {
             var storyboardAttribute = viewType.GetCustomAttribute<MvxFromStoryboardAttribute>();
             if (storyboardAttribute != null)

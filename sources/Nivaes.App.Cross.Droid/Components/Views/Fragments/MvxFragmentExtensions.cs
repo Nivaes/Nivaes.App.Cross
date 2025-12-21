@@ -25,7 +25,7 @@ public static class MvxFragmentExtensions
         }
     }
 
-    public static void OnCreate(this IMvxFragmentView fragmentView, ICrossBundle bundle, MvxViewModelRequest? request = null)
+    public static void OnCreate(this IMvxFragmentView fragmentView, ICrossBundle bundle, CrossViewModelRequest? request = null)
     {
         IMvxMultipleViewModelCache? cache = null;
         if (Mvx.IoCProvider?.TryResolve(out cache) == true && fragmentView.ViewModel != null)
@@ -131,9 +131,9 @@ public static class MvxFragmentExtensions
         return default;
     }
 
-    public static void LoadViewModelFrom(this IMvxFragmentView view, MvxViewModelRequest request, ICrossBundle? savedState = null)
+    public static void LoadViewModelFrom(this IMvxFragmentView view, CrossViewModelRequest request, ICrossBundle? savedState = null)
     {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxViewModelLoader? loader) != true)
+        if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
             return;
 
         var viewModel = loader?.LoadViewModel(request, savedState);

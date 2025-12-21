@@ -69,16 +69,16 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         }
 
         public override MvxBasePresentationAttribute GetOverridePresentationAttribute(
-            MvxViewModelRequest request,
+            CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
-            if (viewType?.GetInterface(nameof(IMvxOverridePresentationAttribute)) != null)
+            if (viewType?.GetInterface(nameof(ICrossOverridePresentationAttribute)) != null)
             {
                 var viewInstance = this.CreateViewControllerFor(viewType, null) as UIViewController;
 
                 using (viewInstance)
                 {
-                    var presentationAttribute = (viewInstance as IMvxOverridePresentationAttribute)?.PresentationAttribute(request);
+                    var presentationAttribute = (viewInstance as ICrossOverridePresentationAttribute)?.PresentationAttribute(request);
 
                     if (presentationAttribute == null)
                     {
@@ -336,7 +336,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
         protected virtual async Task<bool> ShowRootViewController(UIViewController viewController,
                                            MvxRootPresentationAttribute attribute,
-                                           MvxViewModelRequest request)
+                                           CrossViewModelRequest request)
         {
             if (viewController is IMvxTabBarViewController controller)
             {
@@ -370,7 +370,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
         protected virtual Task<bool> ShowChildViewController(UIViewController viewController,
                                                         MvxChildPresentationAttribute attribute,
-                                                        MvxViewModelRequest request)
+                                                        CrossViewModelRequest request)
         {
             if (viewController is MvxSplitViewController)
                 throw new MvxException("A SplitViewController can't be present in a child.  Consider using a Root instead.");
@@ -404,7 +404,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
         protected virtual Task<bool> ShowModalViewController(UIViewController viewController,
                                                        MvxModalPresentationAttribute attribute,
-                                                       MvxViewModelRequest request)
+                                                       CrossViewModelRequest request)
         {
             // setup modal based on attribute
             if (attribute.WrapInNavigationController)
@@ -431,7 +431,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
         protected virtual Task<bool> ShowTabViewController(UIViewController viewController,
                                            MvxTabPresentationAttribute attribute,
-                                           MvxViewModelRequest request)
+                                           CrossViewModelRequest request)
         {
             if (TabBarViewController == null)
                 throw new MvxException("Trying to show a tab without a TabBarViewController, this is not possible!");
@@ -455,7 +455,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         protected virtual Task<bool> ShowPageViewController(
             UIViewController viewController,
             MvxPagePresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             if (PageViewController == null)
                 throw new MvxException("Trying to show a page without a PageViewController, this is not possible!");
@@ -479,7 +479,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         protected virtual async Task<bool> ShowMasterDetailSplitViewController(
           UIViewController viewController,
             MvxMasterDetailPresentationAttribute attribute,
-          MvxViewModelRequest request)
+          CrossViewModelRequest request)
         {
             if (SplitViewController != null && attribute.Position == MasterDetailPosition.Master)
             {

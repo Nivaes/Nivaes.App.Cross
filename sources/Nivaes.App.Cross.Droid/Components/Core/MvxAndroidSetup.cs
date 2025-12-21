@@ -280,16 +280,16 @@ public abstract class MvxAndroidSetup
         // nothing to do in this base class
     }
 
-    protected override IMvxNameMapping CreateViewToViewModelNaming()
+    protected override ICrossNameMapping CreateViewToViewModelNaming()
     {
-        return new MvxPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
+        return new CrossPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
     }
 }
 
 public abstract class MvxAndroidSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxAndroidSetup
-    where TApplication : class, IMvxApplication, new()
+    where TApplication : class, ICrossApplication, new()
 {
-    protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+    protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
         iocProvider.IoCConstruct<TApplication>();
 
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

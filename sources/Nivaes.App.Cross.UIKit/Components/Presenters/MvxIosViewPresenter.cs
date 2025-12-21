@@ -199,7 +199,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowRootViewController(
             UIViewController viewController,
             MvxRootPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -336,7 +336,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowChildViewController(
             UIViewController viewController,
             MvxChildPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -396,7 +396,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowTabViewController(
             UIViewController viewController,
             MvxTabPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -422,7 +422,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowPageViewController(
             UIViewController viewController,
             MvxPagePresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -447,7 +447,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowModalViewController(
             UIViewController viewController,
             MvxModalPresentationAttribute attribute,
-            MvxViewModelRequest? request)
+            CrossViewModelRequest? request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -479,7 +479,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual async Task<bool> ShowPopoverViewController(
             UIViewController viewController,
             MvxPopoverPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -526,7 +526,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowMasterSplitViewController(
             UIViewController viewController,
             MvxSplitViewPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 
@@ -540,7 +540,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         protected virtual Task<bool> ShowDetailSplitViewController(
             UIViewController viewController,
             MvxSplitViewPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(viewController, attribute);
 

@@ -11,15 +11,15 @@ namespace MvvmCross.Presenters
     public abstract class MvxAttributeViewPresenter
         : MvxViewPresenter, IMvxAttributeViewPresenter
     {
-        private readonly Lazy<IMvxViewModelTypeFinder?> _viewModelTypeFinder =
-            new(() => Mvx.IoCProvider?.Resolve<IMvxViewModelTypeFinder>());
+        private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
+            new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
 
         private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
             new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
 
         private IDictionary<Type, MvxPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
-        public virtual IMvxViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
+        public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
 
         public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
 
@@ -52,7 +52,7 @@ namespace MvvmCross.Presenters
         }
 
         public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(
-            MvxViewModelRequest request,
+            CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
             if (request == null)
@@ -61,12 +61,12 @@ namespace MvvmCross.Presenters
             if (viewType == null)
                 throw new ArgumentNullException(nameof(viewType));
 
-            var hasInterface = viewType.GetInterfaces().Contains(typeof(IMvxOverridePresentationAttribute));
+            var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
             if (!hasInterface)
                 return null;
 
             var viewInstance =
-                CreateOverridePresentationAttributeViewInstance(viewType) as IMvxOverridePresentationAttribute;
+                CreateOverridePresentationAttributeViewInstance(viewType) as ICrossOverridePresentationAttribute;
             try
             {
                 var presentationAttribute = viewInstance?.PresentationAttribute(request);
@@ -91,7 +91,7 @@ namespace MvvmCross.Presenters
             }
         }
 
-        public virtual MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        public virtual MvxBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
@@ -129,7 +129,7 @@ namespace MvvmCross.Presenters
         }
 
         protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(
-            MvxViewModelRequest request, out MvxBasePresentationAttribute attribute)
+            CrossViewModelRequest request, out MvxBasePresentationAttribute attribute)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
@@ -182,7 +182,7 @@ namespace MvvmCross.Presenters
                 .Invoke(viewModel, attribute) ?? Task.FromResult(false);
         }
 
-        public override Task<bool> Show(MvxViewModelRequest request)
+        public override Task<bool> Show(CrossViewModelRequest request)
         {
             var attributeAction = GetPresentationAttributeAction(request, out var attribute);
 

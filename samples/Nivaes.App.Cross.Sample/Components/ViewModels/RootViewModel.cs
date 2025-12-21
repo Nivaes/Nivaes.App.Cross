@@ -3,7 +3,6 @@ namespace Playground.Core.ViewModels
     using System.Diagnostics;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Commands;
     using MvvmCross.Localization;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
@@ -18,7 +17,7 @@ namespace Playground.Core.ViewModels
     public class RootViewModel 
         : MvxNavigationResultAwaitingViewModel<SampleModel>
     {
-        private readonly IMvxViewModelLoader _mvxViewModelLoader;
+        private readonly ICrossViewModelLoader _mvxViewModelLoader;
 
         private int _counter = 2;
 
@@ -32,65 +31,65 @@ namespace Playground.Core.ViewModels
         public RootViewModel(
                 ILoggerFactory logProvider,
                 IMvxNavigationService navigationService,
-                IMvxViewModelLoader mvxViewModelLoader,
+                ICrossViewModelLoader mvxViewModelLoader,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logProvider, navigationService, resultViewModelManager)
         {
             _mvxViewModelLoader = mvxViewModelLoader;
 
-            ShowChildCommand = new MvxAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
+            ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 
-            ShowModalCommand = new MvxAsyncCommand(Navigate);
+            ShowModalCommand = new CrossAsyncCommand(Navigate);
 
             ShowModalNavCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
-            ShowTabsCommand = new MvxAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
+            ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 
-            ShowPagesCommand = new MvxAsyncCommand(() => NavigationService.Navigate<PagesRootViewModel>());
+            ShowPagesCommand = new CrossAsyncCommand(() => NavigationService.Navigate<PagesRootViewModel>());
 
-            ShowSplitCommand = new MvxAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
+            ShowSplitCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
 
-            ShowNativeCommand = new MvxAsyncCommand(() => NavigationService.Navigate<NativeViewModel>());
+            ShowNativeCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NativeViewModel>());
 
-            ShowOverrideAttributeCommand = new MvxAsyncCommand(async () =>
+            ShowOverrideAttributeCommand = new CrossAsyncCommand(async () =>
                 await NavigationService.Navigate<OverrideAttributeViewModel>());
 
-            ShowSheetCommand = new MvxAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
+            ShowSheetCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
 
-            ShowWindowCommand = new MvxAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
+            ShowWindowCommand = new CrossAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
 
             ShowMixedNavigationCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
 
-            ShowDictionaryBindingCommand = new MvxAsyncCommand(async () =>
+            ShowDictionaryBindingCommand = new CrossAsyncCommand(async () =>
                 await NavigationService.Navigate<DictionaryBindingViewModel>());
 
             ShowCollectionViewCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<CollectionViewModel, CollectionViewParameter>(new CollectionViewParameter(50)));
+                new CrossAsyncCommand(() => NavigationService.Navigate<CollectionViewModel, CollectionViewParameter>(new CollectionViewParameter(50)));
 
-            ShowSharedElementsCommand = new MvxAsyncCommand(async () =>
+            ShowSharedElementsCommand = new CrossAsyncCommand(async () =>
                 await NavigationService.Navigate<SharedElementRootChildViewModel>());
 
             ShowCustomBindingCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
 
             ShowFluentBindingCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<FluentBindingViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<FluentBindingViewModel>());
 
-            RegisterAndResolveWithReflectionCommand = new MvxAsyncCommand(RegisterAndResolveWithReflection);
-            RegisterAndResolveWithNoReflectionCommand = new MvxAsyncCommand(RegisterAndResolveWithNoReflection);
+            RegisterAndResolveWithReflectionCommand = new CrossAsyncCommand(RegisterAndResolveWithReflection);
+            RegisterAndResolveWithNoReflectionCommand = new CrossAsyncCommand(RegisterAndResolveWithNoReflection);
 
-            ShowViewModelWithResult = new MvxAsyncCommand(DoShowChildWithResult);
+            ShowViewModelWithResult = new CrossAsyncCommand(DoShowChildWithResult);
 
             _counter = 3;
 
             TriggerVisibilityCommand =
-                new MvxCommand(() => IsVisible = !IsVisible);
+                new CrossCommand(() => IsVisible = !IsVisible);
 
-            FragmentCloseCommand = new MvxAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
+            FragmentCloseCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
 
-            ShowBottomNavigationCommand = new MvxAsyncCommand(async () =>
+            ShowBottomNavigationCommand = new CrossAsyncCommand(async () =>
                 await NavigationService.Navigate<MultiBackStackViewModel>());
         }
 
@@ -102,73 +101,73 @@ namespace Playground.Core.ViewModels
 
         public MvxNotifyTask MyTask { get; set; }
 
-        public IMvxAsyncCommand ShowChildCommand { get; }
+        public ICrossAsyncCommand ShowChildCommand { get; }
 
-        public IMvxAsyncCommand ShowModalCommand { get; }
+        public ICrossAsyncCommand ShowModalCommand { get; }
 
-        public IMvxAsyncCommand ShowModalNavCommand { get; }
+        public ICrossAsyncCommand ShowModalNavCommand { get; }
 
-        public IMvxAsyncCommand ShowCustomBindingCommand { get; }
+        public ICrossAsyncCommand ShowCustomBindingCommand { get; }
 
-        public IMvxAsyncCommand ShowTabsCommand { get; }
+        public ICrossAsyncCommand ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand ShowPagesCommand { get; }
+        public ICrossAsyncCommand ShowPagesCommand { get; }
 
-        public IMvxAsyncCommand ShowSplitCommand { get; }
+        public ICrossAsyncCommand ShowSplitCommand { get; }
 
-        public IMvxAsyncCommand ShowOverrideAttributeCommand { get; }
+        public ICrossAsyncCommand ShowOverrideAttributeCommand { get; }
 
-        public IMvxAsyncCommand ShowNativeCommand { get; }
+        public ICrossAsyncCommand ShowNativeCommand { get; }
 
-        public IMvxAsyncCommand ShowSheetCommand { get; }
+        public ICrossAsyncCommand ShowSheetCommand { get; }
 
-        public IMvxAsyncCommand ShowWindowCommand { get; }
+        public ICrossAsyncCommand ShowWindowCommand { get; }
 
-        public IMvxAsyncCommand ShowMixedNavigationCommand { get; }
+        public ICrossAsyncCommand ShowMixedNavigationCommand { get; }
 
-        public IMvxAsyncCommand ShowDictionaryBindingCommand { get; }
+        public ICrossAsyncCommand ShowDictionaryBindingCommand { get; }
 
-        public IMvxAsyncCommand ShowCollectionViewCommand { get; }
+        public ICrossAsyncCommand ShowCollectionViewCommand { get; }
 
-        public IMvxAsyncCommand ShowListViewCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<ListViewModel>());
+        public ICrossAsyncCommand ShowListViewCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<ListViewModel>());
 
-        public IMvxAsyncCommand ShowBindingsViewCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<BindingsViewModel>());
+        public ICrossAsyncCommand ShowBindingsViewCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<BindingsViewModel>());
 
-        public IMvxAsyncCommand ShowCodeBehindViewCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<CodeBehindViewModel>());
+        public ICrossAsyncCommand ShowCodeBehindViewCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<CodeBehindViewModel>());
 
-        public IMvxAsyncCommand ShowNavigationCloseCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<NavigationCloseViewModel>());
+        public ICrossAsyncCommand ShowNavigationCloseCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<NavigationCloseViewModel>());
 
-        public IMvxAsyncCommand ShowContentViewCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<ParentContentViewModel>());
+        public ICrossAsyncCommand ShowContentViewCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<ParentContentViewModel>());
 
-        public IMvxAsyncCommand ShowConvertersCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<ConvertersViewModel>());
+        public ICrossAsyncCommand ShowConvertersCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<ConvertersViewModel>());
 
-        public IMvxAsyncCommand ShowNewWindowCommand =>
-            new MvxAsyncCommand(() => NavigationService.Navigate<NewWindowViewModel>());
-        public IMvxAsyncCommand ShowRegionCommand =>
-            new MvxAsyncCommand(() => this.NavigationService.Navigate<RegionViewModel>(this));
+        public ICrossAsyncCommand ShowNewWindowCommand =>
+            new CrossAsyncCommand(() => NavigationService.Navigate<NewWindowViewModel>());
+        public ICrossAsyncCommand ShowRegionCommand =>
+            new CrossAsyncCommand(() => this.NavigationService.Navigate<RegionViewModel>(this));
 
-        public IMvxAsyncCommand ShowSharedElementsCommand { get; }
+        public ICrossAsyncCommand ShowSharedElementsCommand { get; }
 
-        public IMvxAsyncCommand ShowFluentBindingCommand { get; }
+        public ICrossAsyncCommand ShowFluentBindingCommand { get; }
 
-        public IMvxAsyncCommand RegisterAndResolveWithReflectionCommand { get; }
+        public ICrossAsyncCommand RegisterAndResolveWithReflectionCommand { get; }
 
-        public IMvxAsyncCommand RegisterAndResolveWithNoReflectionCommand { get; }
+        public ICrossAsyncCommand RegisterAndResolveWithNoReflectionCommand { get; }
 
-        public IMvxCommand TriggerVisibilityCommand { get; }
+        public ICrossCommand TriggerVisibilityCommand { get; }
 
-        public IMvxCommand FragmentCloseCommand { get; }
-        public IMvxAsyncCommand ShowLocationCommand { get; }
+        public ICrossCommand FragmentCloseCommand { get; }
+        public ICrossAsyncCommand ShowLocationCommand { get; }
 
-        public MvxAsyncCommand ShowViewModelWithResult { get; set; }
+        public CrossAsyncCommand ShowViewModelWithResult { get; set; }
 
-        public IMvxCommand ShowBottomNavigationCommand { get; }
+        public ICrossCommand ShowBottomNavigationCommand { get; }
 
         private bool _isVisible;
 

@@ -5,7 +5,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public interface IMvxWindowsViewModelRequestTranslator
     {
-        string GetRequestTextFor(MvxViewModelRequest request);
+        string GetRequestTextFor(CrossViewModelRequest request);
 
         // Important: if calling GetRequestTextWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
         string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse);

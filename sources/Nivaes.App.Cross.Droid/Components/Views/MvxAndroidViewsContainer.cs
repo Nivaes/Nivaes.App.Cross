@@ -72,13 +72,13 @@ namespace MvvmCross.Platforms.Android.Views
                 return null;
             }
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxViewModelLoader? viewModelLoader) != true ||
+            if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) != true ||
                 viewModelLoader == null)
             {
                 return null;
             }
 
-            var viewModelRequest = MvxViewModelRequest.GetDefaultRequest(viewModelTypeHint);
+            var viewModelRequest = CrossViewModelRequest.GetDefaultRequest(viewModelTypeHint);
             var viewModel = viewModelLoader.LoadViewModel(viewModelRequest, savedState);
             return viewModel;
         }
@@ -96,16 +96,16 @@ namespace MvvmCross.Platforms.Android.Views
                 return null;
             }
 
-            var viewModelRequest = navigationSerializer.Serializer.DeserializeObject<MvxViewModelRequest>(extraData);
+            var viewModelRequest = navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(extraData);
             return ViewModelFromRequest(viewModelRequest, savedState);
         }
 
-        protected virtual ICrossViewModel? ViewModelFromRequest(MvxViewModelRequest? viewModelRequest, ICrossBundle? savedState)
+        protected virtual ICrossViewModel? ViewModelFromRequest(CrossViewModelRequest? viewModelRequest, ICrossBundle? savedState)
         {
             if (viewModelRequest == null)
                 return null;
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
             {
                 return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
             }
@@ -118,7 +118,7 @@ namespace MvvmCross.Platforms.Android.Views
             var embeddedViewModelKey = intent.Extras?.GetInt(SubViewModelKey);
             if (embeddedViewModelKey != null && embeddedViewModelKey.Value != 0)
             {
-                if (Mvx.IoCProvider?.TryResolve(out IMvxChildViewModelCache? childViewModelCache) != true ||
+                if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? childViewModelCache) != true ||
                     childViewModelCache == null)
                 {
                     mvxViewModel = null;
@@ -137,7 +137,7 @@ namespace MvvmCross.Platforms.Android.Views
             return false;
         }
 
-        public virtual Intent GetIntentFor(MvxViewModelRequest request)
+        public virtual Intent GetIntentFor(CrossViewModelRequest request)
         {
             var viewType = GetViewType(request.ViewModelType);
             if (viewType == null)
@@ -160,7 +160,7 @@ namespace MvvmCross.Platforms.Android.Views
             return intent;
         }
 
-        protected virtual void AdjustIntentForPresentation(Intent intent, MvxViewModelRequest request)
+        protected virtual void AdjustIntentForPresentation(Intent intent, CrossViewModelRequest request)
         {
             //todo we want to do things here... clear top, remove history item, etc
             //#warning ClearTop is not enough :/ Need to work on an Intent based scheme like http://stackoverflow.com/questions/3007998/on-logout-clear-activity-history-stack-preventing-back-button-from-opening-l
@@ -171,13 +171,13 @@ namespace MvvmCross.Platforms.Android.Views
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "The generic constraint ensures TViewModel has the required members")]
         public virtual (Intent intent, int key) GetIntentWithKeyFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
                 TViewModel existingViewModelToUse,
-                MvxViewModelRequest? request)
+                CrossViewModelRequest? request)
             where TViewModel : ICrossViewModel
         {
-            request ??= MvxViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
+            request ??= CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
             var intent = GetIntentFor(request);
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxChildViewModelCache? viewModelCache) != true || viewModelCache == null)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) != true || viewModelCache == null)
             {
                 return (intent, -1);
             }
@@ -189,7 +189,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         public void RemoveSubViewModelWithKey(int key)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxChildViewModelCache? viewModelCache) == true && viewModelCache != null)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) == true && viewModelCache != null)
             {
                 viewModelCache.Remove(key);
             }

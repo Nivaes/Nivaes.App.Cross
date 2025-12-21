@@ -22,11 +22,11 @@ namespace MvvmCross.Platforms.Android.Views
             where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new CrossBundle(parameterValues);
-            var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
+            var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateIntentFor(request);
         }
 
-        public static Intent CreateIntentFor(this IMvxAndroidView view, MvxViewModelRequest request)
+        public static Intent CreateIntentFor(this IMvxAndroidView view, CrossViewModelRequest request)
         {
             return Mvx.IoCProvider.Resolve<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
         }

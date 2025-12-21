@@ -41,7 +41,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
 
         private readonly object _windowInformationLock = new();
 
-        private IMvxViewModelLoader? _viewModelLoader;
+        private ICrossViewModelLoader? _viewModelLoader;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
@@ -67,9 +67,9 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <summary>
         ///     Get or sets the viewmodel loader instance.
         /// </summary>
-        public IMvxViewModelLoader? ViewModelLoader
+        public ICrossViewModelLoader? ViewModelLoader
         {
-            get => _viewModelLoader ??= Mvx.IoCProvider?.Resolve<IMvxViewModelLoader>();
+            get => _viewModelLoader ??= Mvx.IoCProvider?.Resolve<ICrossViewModelLoader>();
             set => _viewModelLoader = value;
         }
 
@@ -157,7 +157,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
         /// <exception cref="MvxException"></exception>
-        public virtual Control? CreateControl(Type viewType, MvxViewModelRequest request,
+        public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
             MvxBasePresentationAttribute attribute)
         {
             try
@@ -348,7 +348,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// </summary>
         /// <param name="request">The request to convert.</param>
         /// <returns>A text representation of the request.</returns>
-        protected virtual string GetRequestText(MvxViewModelRequest request)
+        protected virtual string GetRequestText(CrossViewModelRequest request)
         {
             var requestTranslator = Mvx.IoCProvider?.Resolve<IMvxWindowsViewModelRequestTranslator>();
             if (requestTranslator == null)
@@ -370,7 +370,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
-        protected WindowInformation GetWindowInformation(MvxViewModelRequest request)
+        protected WindowInformation GetWindowInformation(CrossViewModelRequest request)
         {
             lock (_windowInformationLock)
             {
@@ -437,7 +437,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request to show the dialog for.</param>
         /// <returns>True if successful, false otherwise.</returns>
         protected virtual async Task<bool> ShowDialogAsync(Type viewType, MvxDialogViewPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             try
             {
@@ -478,7 +478,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
         protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
         }
@@ -491,7 +491,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request.</param>
         /// <returns>True if successful, false otherwise.</returns>
         protected virtual Task<bool> ShowRegionView(Type viewType, MvxRegionPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {
@@ -525,7 +525,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request.</param>
         /// <returns>True if successful, false otherwise.</returns>
         protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is MvxWindowsPage currentPage)
@@ -646,7 +646,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        protected virtual async Task<bool> ShowNewWindowAsync(MvxViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
+        protected virtual async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
         {
             var newWindow = new Window();
             var viewsContainer = Mvx.IoCProvider!.Resolve<ICrossViewsContainer>();
@@ -745,7 +745,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
         // ReSharper disable once UnusedParameter.Local
-        private Task<bool> ShowPage(IMvxWindowsFrame rootFrame, Type viewType, MvxViewModelRequest request)
+        private Task<bool> ShowPage(IMvxWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
         {
             try
             {

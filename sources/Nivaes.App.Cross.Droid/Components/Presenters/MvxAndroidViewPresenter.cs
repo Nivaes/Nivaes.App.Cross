@@ -46,7 +46,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
 
-        protected MvxViewModelRequest? PendingRequest { get; set; }
+        protected CrossViewModelRequest? PendingRequest { get; set; }
 
         protected virtual FragmentManager? CurrentFragmentManager
         {
@@ -112,7 +112,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
         }
 
-        public override MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request)
+        public override MvxBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
             ValidateArguments(request);
 
@@ -252,7 +252,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         private bool ChangePagePresentation(MvxPagePresentationHint pagePresentationHint)
         {
-            var request = new MvxViewModelRequest(pagePresentationHint.ViewModel);
+            var request = new CrossViewModelRequest(pagePresentationHint.ViewModel);
             var attribute = GetPresentationAttribute(request);
 
             if (attribute is MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
@@ -318,7 +318,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual Task<bool> ShowActivity(
             Type view,
             MvxActivityPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -334,7 +334,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         protected virtual Bundle CreateActivityTransitionOptions(
-            Intent intent, MvxActivityPresentationAttribute attribute, MvxViewModelRequest request)
+            Intent intent, MvxActivityPresentationAttribute attribute, CrossViewModelRequest request)
         {
             ValidateArguments(attribute, request);
 
@@ -387,7 +387,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         private (List<string> elements, List<Pair> transitionElementPairs) GetTransitionElements(
-            MvxBasePresentationAttribute attribute, MvxViewModelRequest request,
+            MvxBasePresentationAttribute attribute, CrossViewModelRequest request,
             IMvxAndroidSharedElements sharedElementsActivity)
         {
             var elements = new List<string>();
@@ -414,7 +414,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             return (elements, transitionElementPairs);
         }
 
-        protected virtual Intent? CreateIntentForRequest(MvxViewModelRequest? request)
+        protected virtual Intent? CreateIntentForRequest(CrossViewModelRequest? request)
         {
             if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelRequestTranslator? requestTranslator) != true || requestTranslator == null)
                 return null;
@@ -472,7 +472,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
                 throw new MvxException("The host activity doesn't inherit Activity");
 
-            var hostViewModelRequest = MvxViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
+            var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
             if (PendingRequest != null)
                 hostViewModelRequest.PresentationValues = PendingRequest.PresentationValues;
 
@@ -482,7 +482,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual Task<bool> ShowFragment(
             Type view,
             MvxFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -519,7 +519,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual void ShowNestedFragment(
             Type view,
             MvxFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -538,7 +538,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual void PerformShowFragmentTransaction(
             FragmentManager fragmentManager,
             MvxFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(attribute, request);
 
@@ -620,7 +620,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             FragmentTransaction fragmentTransaction,
             Fragment fragment,
             MvxFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             if (fragmentTransaction == null)
                 throw new ArgumentNullException(nameof(fragmentTransaction));
@@ -664,11 +664,11 @@ namespace MvvmCross.Platforms.Android.Presenters
                 fragmentTransaction.SetTransitionStyle(attribute.TransitionStyle);
         }
 
-        protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, MvxViewModelRequest? request)
+        protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
         {
         }
 
-        protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, MvxViewModelRequest? request)
+        protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
         {
         }
 
@@ -679,7 +679,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual Task<bool> ShowDialogFragment(
             Type view,
             MvxDialogFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -732,7 +732,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual Task<bool> ShowViewPagerFragment(
             Type view,
             MvxViewPagerFragmentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -807,7 +807,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected virtual async Task<bool> ShowTabLayout(
             Type view,
             MvxTabLayoutPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             ValidateArguments(view, attribute, request);
 
@@ -1170,13 +1170,13 @@ namespace MvvmCross.Platforms.Android.Presenters
             return null;
         }
 
-        private static void ValidateArguments(Type? view, MvxBasePresentationAttribute? attribute, MvxViewModelRequest? request)
+        private static void ValidateArguments(Type? view, MvxBasePresentationAttribute? attribute, CrossViewModelRequest? request)
         {
             ArgumentNullException.ThrowIfNull(view);
             ValidateArguments(attribute, request);
         }
 
-        private static void ValidateArguments(MvxBasePresentationAttribute? attribute, MvxViewModelRequest? request)
+        private static void ValidateArguments(MvxBasePresentationAttribute? attribute, CrossViewModelRequest? request)
         {
             ValidateArguments(attribute);
 
@@ -1188,7 +1188,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             ArgumentNullException.ThrowIfNull(attribute);
         }
 
-        private static void ValidateArguments(MvxViewModelRequest? request)
+        private static void ValidateArguments(CrossViewModelRequest? request)
         {
             ArgumentNullException.ThrowIfNull(request);
         }

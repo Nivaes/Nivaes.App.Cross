@@ -1,14 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using Nivaes.App.Cross;
+
     public class DictionaryBindingViewModel : BaseViewModel
     {
         int _value = 0;
@@ -18,20 +13,20 @@ namespace Playground.Core.ViewModels
             set => SetProperty(ref _value, value);
         }
 
-        IMvxAsyncCommand _closeCommand;
-        public IMvxAsyncCommand CloseCommand =>
-            _closeCommand ?? (_closeCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this)));
+        ICrossAsyncCommand _closeCommand;
+        public ICrossAsyncCommand CloseCommand =>
+            _closeCommand ?? (_closeCommand = new CrossAsyncCommand(async () => await NavigationService.Close(this)));
 
 
-        IMvxCommand _incrementCommand;
+        ICrossCommand _incrementCommand;
 
         public DictionaryBindingViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
         }
 
-        public IMvxCommand IncrementCommand =>
-            _incrementCommand ?? (_incrementCommand = new MvxCommand(Increment));
+        public ICrossCommand IncrementCommand =>
+            _incrementCommand ?? (_incrementCommand = new CrossCommand(Increment));
 
         private void Increment()
         {

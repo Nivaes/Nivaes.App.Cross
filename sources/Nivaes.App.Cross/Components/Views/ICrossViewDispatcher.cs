@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
 
     public interface ICrossViewDispatcher : IMvxMainThreadAsyncDispatcher, IMvxMainThreadDispatcher
     {
-        Task<bool> ShowViewModel(MvxViewModelRequest request);
+        Task<bool> ShowViewModel(CrossViewModelRequest request);
 
         Task<bool> ChangePresentation(MvxPresentationHint hint);
     }

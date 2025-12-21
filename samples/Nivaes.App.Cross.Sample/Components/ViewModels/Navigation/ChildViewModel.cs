@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Playground.Core.Models;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Playground.Core.Models;
+
     public class ChildViewModel : MvxNavigationViewModel<SampleModel>
     {
         public string BrokenTextValue { get => _brokenTextValue; set => SetProperty(ref _brokenTextValue, value); }
@@ -22,11 +18,11 @@ namespace Playground.Core.ViewModels
             ILoggerFactory logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(DoCloseCommand);
+            CloseCommand = new CrossAsyncCommand(DoCloseCommand);
 
-            ShowSecondChildCommand = new MvxAsyncCommand(() => NavigationService.Navigate<SecondChildViewModel>());
+            ShowSecondChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SecondChildViewModel>());
 
-            ShowRootCommand = new MvxAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
+            ShowRootCommand = new CrossAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
 
             PropertyChanged += ChildViewModel_PropertyChanged;
         }
@@ -56,11 +52,11 @@ namespace Playground.Core.ViewModels
             // Method intentionally left empty.
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public ICrossAsyncCommand CloseCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowSecondChildCommand { get; private set; }
+        public ICrossAsyncCommand ShowSecondChildCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowRootCommand { get; private set; }
+        public ICrossAsyncCommand ShowRootCommand { get; private set; }
 
         public override void Prepare(SampleModel parameter)
         {

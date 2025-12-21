@@ -180,16 +180,16 @@ namespace MvvmCross.Platforms.WinUi.Core
             return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
         }
 
-        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        protected override ICrossNameMapping CreateViewToViewModelNaming()
         {
-            return new MvxPostfixAwareViewToViewModelNameMapping("View", "Page");
+            return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
         }
     }
 
     public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
-         where TApplication : class, IMvxApplication, new()
+         where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
             iocProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()

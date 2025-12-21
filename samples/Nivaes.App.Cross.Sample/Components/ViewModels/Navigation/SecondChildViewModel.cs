@@ -1,26 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class SecondChildViewModel : MvxNavigationViewModel
     {
         public SecondChildViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
             : base(logFactory, navigationService)
         {
-            ShowNestedChildCommand = new MvxAsyncCommand(() => NavigationService.Navigate<NestedChildViewModel>());
+            ShowNestedChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedChildViewModel>());
 
-            CloseCommand = new MvxAsyncCommand(() => NavigationService.Close(this));
+            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
         }
 
-        public IMvxAsyncCommand ShowNestedChildCommand { get; }
+        public ICrossAsyncCommand ShowNestedChildCommand { get; }
 
-        public IMvxAsyncCommand CloseCommand { get; }
+        public ICrossAsyncCommand CloseCommand { get; }
     }
 }

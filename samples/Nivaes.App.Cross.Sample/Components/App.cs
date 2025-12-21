@@ -6,14 +6,14 @@ using System.Diagnostics.CodeAnalysis;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Localization;
-using MvvmCross.ViewModels;
+using Nivaes.App.Cross;
 using Playground.Core.Services;
 using Playground.Core.ViewModels;
 
 namespace Playground.Core
 {
     [RequiresUnreferencedCode("MvxApplication requires unreferenced code")]
-    public class App : MvxApplication
+    public class App : CrossApplication
     {
         /// <summary>
         /// Breaking change in v6: This method is called on a background thread. Use

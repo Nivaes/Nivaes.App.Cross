@@ -1,8 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using MvvmCross;
-    using MvvmCross.Commands;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class ParentContentViewModel 
@@ -35,18 +33,18 @@ namespace Playground.Core.ViewModels
                 SetProperty(ref _childViewModelEnabled, value);
             }
         }
-        public IMvxCommand ChangeButtonCmd1 => new MvxCommand(() => ChildViewModel1.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
-        public IMvxCommand ToggleChild1EnabledCmd => new MvxCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
+        public ICrossCommand ChangeButtonCmd1 => new CrossCommand(() => ChildViewModel1.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+        public ICrossCommand ToggleChild1EnabledCmd => new CrossCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
 
-        public IMvxCommand ChangeButtonCmd2 => new MvxCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+        public ICrossCommand ChangeButtonCmd2 => new CrossCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
 
         public override void Prepare()
         {
-            var vm = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+            var vm = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
             vm.Test = "Child 1";
             ChildViewModel1 = vm;
-            var bc = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>()
-                    .LoadViewModel(MvxViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
+            var bc = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>()
+                    .LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
                 ChildContentViewModel;
             bc.Test = "Child 2";
             ChildBindingContext2 = bc;

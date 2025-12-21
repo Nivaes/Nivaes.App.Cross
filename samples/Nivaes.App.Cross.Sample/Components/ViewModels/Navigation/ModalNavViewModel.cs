@@ -1,29 +1,25 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class ModalNavViewModel : MvxNavigationViewModel
     {
         public ModalNavViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
         {
-            CloseCommand = new MvxAsyncCommand(() => NavigationService.Close(this));
+            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-            ShowChildCommand = new MvxAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
+            ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 
-            ShowNestedModalCommand = new MvxAsyncCommand(() => NavigationService.Navigate<NestedModalViewModel>());
+            ShowNestedModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedModalViewModel>());
         }
 
-        public IMvxAsyncCommand CloseCommand { get; private set; }
+        public ICrossAsyncCommand CloseCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowChildCommand { get; private set; }
+        public ICrossAsyncCommand ShowChildCommand { get; private set; }
 
-        public IMvxAsyncCommand ShowNestedModalCommand { get; private set; }
+        public ICrossAsyncCommand ShowNestedModalCommand { get; private set; }
     }
 }

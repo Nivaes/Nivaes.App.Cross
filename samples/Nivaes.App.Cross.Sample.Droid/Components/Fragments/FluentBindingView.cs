@@ -1,30 +1,28 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Views;
-using MvvmCross.Base;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Playground.Core.ViewModels.Bindings;
-
 namespace Playground.Droid.Fragments
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Views;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Sample.Droid;
+    using Playground.Core.ViewModels;
+    using Playground.Core.ViewModels.Bindings;
+    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
     public class FluentBindingView : MvxFragment<FluentBindingViewModel>
     {
         EditText _inputText;
         TextView _outputText;
-        private IMvxInteraction<bool> _clearBindingInteraction;
-        public IMvxInteraction<bool> ClearBindingInteraction
+        private ICrossInteraction<bool> _clearBindingInteraction;
+        public ICrossInteraction<bool> ClearBindingInteraction
         {
             get => _clearBindingInteraction;
             set

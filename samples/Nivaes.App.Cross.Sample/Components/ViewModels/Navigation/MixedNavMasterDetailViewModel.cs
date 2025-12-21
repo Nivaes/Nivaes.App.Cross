@@ -1,20 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class MixedNavMasterDetailViewModel : MvxNavigationViewModel
     {
         private MenuItem _menuItem;
-        private IMvxAsyncCommand<MenuItem> _onSelectedChangedCommand;
+        private ICrossAsyncCommand<MenuItem> _onSelectedChangedCommand;
 
         public class MenuItem
         {
@@ -46,7 +40,7 @@ namespace Playground.Core.ViewModels
             }
         }
 
-        private IMvxAsyncCommand<MenuItem> OnSelectedChangedCommand
+        private ICrossAsyncCommand<MenuItem> OnSelectedChangedCommand
         {
             get
             {

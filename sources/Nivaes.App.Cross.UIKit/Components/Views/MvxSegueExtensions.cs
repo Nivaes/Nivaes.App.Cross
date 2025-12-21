@@ -61,7 +61,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 var type = view.GetViewModelType();
                 if (type != null)
                 {
-                    view.Request = new MvxViewModelRequest(type, parameterBundle, null);
+                    view.Request = new CrossViewModelRequest(type, parameterBundle, null);
                 }
             }
         }

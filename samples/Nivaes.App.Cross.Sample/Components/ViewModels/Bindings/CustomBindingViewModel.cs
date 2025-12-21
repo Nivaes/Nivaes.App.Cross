@@ -1,15 +1,14 @@
-using System;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels.Bindings
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     public class CustomBindingViewModel
         : MvxNavigationViewModel
     {
-        private IMvxAsyncCommand _closeCommand;
+        private ICrossAsyncCommand _closeCommand;
 
         private int _counter = 2;
 
@@ -28,8 +27,8 @@ namespace Playground.Core.ViewModels.Bindings
             set => SetProperty(ref _hello, value);
         }
 
-        public IMvxAsyncCommand CloseCommand =>
-            _closeCommand ??= new MvxAsyncCommand(() => NavigationService.Close(this));
+        public ICrossAsyncCommand CloseCommand =>
+            _closeCommand ??= new CrossAsyncCommand(() => NavigationService.Close(this));
 
         public int Counter
         {

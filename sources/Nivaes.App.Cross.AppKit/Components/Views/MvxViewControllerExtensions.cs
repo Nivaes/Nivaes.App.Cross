@@ -37,7 +37,7 @@ namespace MvvmCross.Platforms.Mac.Views
                 return instanceRequest.ViewModelInstance;
             }
 
-            var loader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+            var loader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
             var viewModel = loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
             if (viewModel == null)
                 throw new MvxException("ViewModel not loaded for " + macView.Request.ViewModelType);
@@ -62,13 +62,13 @@ namespace MvvmCross.Platforms.Mac.Views
             where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new CrossBundle(parameterValues);
-            var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
+            var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateViewControllerFor(request);
         }
 
         public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
             this IMvxCanCreateMacView view,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
             where TTargetViewModel : class, ICrossViewModel
         {
             return Mvx.IoCProvider.Resolve<IMvxMacViewCreator>().CreateView(request);
@@ -76,14 +76,14 @@ namespace MvvmCross.Platforms.Mac.Views
 
         public static IMvxMacView CreateViewControllerFor(
             this IMvxCanCreateMacView view,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return Mvx.IoCProvider.Resolve<IMvxMacViewCreator>().CreateView(request);
         }
 
         public static IMvxMacView CreateViewControllerFor(
             this IMvxCanCreateMacView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return Mvx.IoCProvider.Resolve<IMvxMacViewCreator>().CreateViewOfType(viewType, request);
         }

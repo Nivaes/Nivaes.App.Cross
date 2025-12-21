@@ -106,7 +106,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
                 return instanceRequest.ViewModelInstance;
             }
 
-            var viewModelLoader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
 
             return viewModelLoader.LoadViewModel(fragmentInfo.Request, null);
         }
@@ -193,7 +193,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
                 {
                     // Either the fragment doesn't exist or it doesn't have a ViewModel. 
                     // Fall back to a FragmentInfo with the ViewModelType. The adapter will create a ViewModel in GetItem where we will add it to the FragmentInfo.
-                    var viewModelRequest = new MvxViewModelRequest(parcelable.ViewModelType);
+                    var viewModelRequest = new CrossViewModelRequest(parcelable.ViewModelType);
                     fragInfo = new MvxViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelRequest);
                 }
 

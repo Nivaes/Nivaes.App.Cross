@@ -74,7 +74,7 @@ namespace MvvmCross.Platforms.Ios.Views
             set { DataContext = value; }
         }
 
-        public MvxViewModelRequest Request { get; set; }
+        public CrossViewModelRequest Request { get; set; }
 
         public IMvxBindingContext BindingContext { get; set; }
 

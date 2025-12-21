@@ -44,15 +44,15 @@ namespace MvvmCross.Platforms.Mac.Presenters
         }
 
         public override MvxBasePresentationAttribute GetOverridePresentationAttribute(
-            MvxViewModelRequest request,
+            CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
-            if (viewType?.GetInterface(nameof(IMvxOverridePresentationAttribute)) != null)
+            if (viewType?.GetInterface(nameof(ICrossOverridePresentationAttribute)) != null)
             {
                 var viewInstance = this.CreateViewControllerFor(viewType, null) as NSViewController;
                 using (viewInstance)
                 {
-                    var presentationAttribute = (viewInstance as IMvxOverridePresentationAttribute)?.PresentationAttribute(request);
+                    var presentationAttribute = (viewInstance as ICrossOverridePresentationAttribute)?.PresentationAttribute(request);
 
                     if (presentationAttribute == null)
                     {
@@ -133,7 +133,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         protected virtual Task<bool> ShowWindowViewController(
             NSViewController viewController,
             MvxWindowPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             NSWindow window = null;
             MvxWindowController windowController = null;
@@ -249,7 +249,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         protected virtual Task<bool> ShowContentViewController(
             NSViewController viewController,
             MvxContentPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
@@ -264,7 +264,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         protected virtual Task<bool> ShowModalViewController(
             NSViewController viewController,
             MvxModalPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
@@ -275,7 +275,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         protected virtual Task<bool> ShowSheetViewController(
             NSViewController viewController,
             MvxSheetPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
@@ -286,7 +286,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         protected virtual Task<bool> ShowTabViewController(
             NSViewController viewController,
             MvxTabPresentationAttribute attribute,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 

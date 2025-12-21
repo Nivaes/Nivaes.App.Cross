@@ -36,13 +36,13 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        private IMvxViewModelLoader _viewModelLoader;
-        public IMvxViewModelLoader ViewModelLoader
+        private ICrossViewModelLoader _viewModelLoader;
+        public ICrossViewModelLoader ViewModelLoader
         {
             get
             {
                 if (_viewModelLoader == null)
-                    _viewModelLoader = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+                    _viewModelLoader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
                 return _viewModelLoader;
             }
             set
@@ -82,7 +82,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             backRequestedEventArgs.Handled = await navigationService.Close(currentView.ViewModel);
         }
 
-        protected virtual string GetRequestText(MvxViewModelRequest request)
+        protected virtual string GetRequestText(CrossViewModelRequest request)
         {
             var requestTranslator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
             string requestText = string.Empty;
@@ -107,7 +107,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 _rootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
-        protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute, MvxViewModelRequest request)
+        protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
 
@@ -150,7 +150,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return ClosePage(viewModel, attribute);
         }
 
-        protected virtual Task<bool> ShowRegionView(Type viewType, MvxRegionPresentationAttribute attribute, MvxViewModelRequest request)
+        protected virtual Task<bool> ShowRegionView(Type viewType, MvxRegionPresentationAttribute attribute, CrossViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {
@@ -216,7 +216,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return Task.FromResult(true);
         }
 
-        protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute, MvxViewModelRequest request)
+        protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
@@ -235,7 +235,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        protected virtual async Task<bool> ShowDialog(Type viewType, MvxDialogViewPresentationAttribute attribute, MvxViewModelRequest request)
+        protected virtual async Task<bool> ShowDialog(Type viewType, MvxDialogViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
@@ -261,7 +261,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        public virtual Control CreateControl(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
+        public virtual Control CreateControl(Type viewType, CrossViewModelRequest request, MvxBasePresentationAttribute attribute)
         {
             try
             {

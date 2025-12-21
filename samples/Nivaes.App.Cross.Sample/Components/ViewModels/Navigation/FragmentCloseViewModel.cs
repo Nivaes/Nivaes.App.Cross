@@ -1,9 +1,9 @@
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-
 namespace Playground.Core.ViewModels.Navigation
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using Nivaes.App.Cross;
+
     public class FragmentCloseViewModel : BaseViewModel
     {
         private static int _counter = 0;
@@ -11,8 +11,8 @@ namespace Playground.Core.ViewModels.Navigation
         public FragmentCloseViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
-            ForwardCommand = new MvxAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
-            CloseCommand = new MvxAsyncCommand(() => NavigationService.Close(this));
+            ForwardCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
+            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
             Description = $"View number {_counter++}";
         }
@@ -24,7 +24,7 @@ namespace Playground.Core.ViewModels.Navigation
             set => SetProperty(ref _description, value);
         }
 
-        public IMvxAsyncCommand ForwardCommand { get; }
-        public IMvxAsyncCommand CloseCommand { get; }
+        public ICrossAsyncCommand ForwardCommand { get; }
+        public ICrossAsyncCommand CloseCommand { get; }
     }
 }

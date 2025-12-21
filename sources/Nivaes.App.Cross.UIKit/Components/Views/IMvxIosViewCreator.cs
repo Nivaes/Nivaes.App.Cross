@@ -5,9 +5,9 @@ namespace MvvmCross.Platforms.Ios.Views
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public interface IMvxIosViewCreator : IMvxCurrentRequest
+    public interface IMvxIosViewCreator : ICrossCurrentRequest
     {
-        IMvxIosView CreateView(MvxViewModelRequest request);
+        IMvxIosView CreateView(CrossViewModelRequest request);
 
         IMvxIosView CreateView(ICrossViewModel viewModel);
 

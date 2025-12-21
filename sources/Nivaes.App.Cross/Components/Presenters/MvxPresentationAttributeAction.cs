@@ -8,7 +8,7 @@ namespace MvvmCross.Presenters
 
     public class MvxPresentationAttributeAction
     {
-        public Func<Type, IMvxPresentationAttribute, MvxViewModelRequest, Task<bool>>? ShowAction { get; set; }
+        public Func<Type, IMvxPresentationAttribute, CrossViewModelRequest, Task<bool>>? ShowAction { get; set; }
 
         public Func<ICrossViewModel, IMvxPresentationAttribute, Task<bool>>? CloseAction { get; set; }
     }

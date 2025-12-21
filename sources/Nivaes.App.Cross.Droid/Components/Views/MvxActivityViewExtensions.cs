@@ -73,7 +73,7 @@ public static class MvxActivityViewExtensions
         var view = androidView as ICrossView;
         view.OnViewDestroy();
 
-        if (Mvx.IoCProvider?.TryResolve<IMvxAppStart>(out var appStart) != true ||
+        if (Mvx.IoCProvider?.TryResolve<ICrossAppStart>(out var appStart) != true ||
             Mvx.IoCProvider?.TryResolve<IMvxAndroidCurrentTopActivity>(out var topActivity) != true ||
             appStart == null || topActivity == null)
         {
@@ -150,8 +150,8 @@ public static class MvxActivityViewExtensions
         var activity = androidView.ToActivity();
 
         var viewModelType = androidView.FindAssociatedViewModelTypeOrNull();
-        if (viewModelType == typeof(MvxNullViewModel))
-            return new MvxNullViewModel();
+        if (viewModelType == typeof(CrossNullViewModel))
+            return new CrossNullViewModel();
 
         if (viewModelType == null
             || viewModelType == typeof(ICrossViewModel))

@@ -20,13 +20,13 @@ namespace MvvmCross.Platforms.Ios.Views
             where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new CrossBundle(parameterValues);
-            var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
+            var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateViewControllerFor(request);
         }
 
         public static IMvxIosView? CreateViewControllerFor(
             this IMvxCanCreateIosView view,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateView(request);
         }

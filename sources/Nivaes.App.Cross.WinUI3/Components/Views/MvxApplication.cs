@@ -1,21 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.Platforms.WinUi.Core;
-using MvvmCross.ViewModels;
-using Application = Microsoft.UI.Xaml.Application;
-using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
-
 namespace MvvmCross.Platforms.WinUi.Views
 {
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+    using MvvmCross.Core;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Platforms.WinUi.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Application = Microsoft.UI.Xaml.Application;
+    using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
-    public abstract class MvxApplication : Application
+    public abstract class MvxApplication 
+        : Application
     {
         protected Frame RootFrame { get; set; }
         public Window MainWindow { get; protected set; }
@@ -46,7 +43,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             {
                 instance.EnsureInitialized();
 
-                if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
+                if (Mvx.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
                 {
                     startup.Start(GetAppStartHint(arguments));
                 }
@@ -103,7 +100,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
     public class MvxApplication<TMvxWinUiSetup, TApplication> : MvxApplication
        where TMvxWinUiSetup : MvxWindowsSetup<TApplication>, new()
-       where TApplication : class, IMvxApplication, new()
+       where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

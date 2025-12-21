@@ -9,7 +9,7 @@ namespace MvvmCross.Platforms.Mac.Views
             , IMvxCanCreateMacView
             , IMvxBindingContextOwner
     {
-        MvxViewModelRequest Request { get; set; }
+        CrossViewModelRequest Request { get; set; }
     }
 
     public interface IMvxMacView<TViewModel>

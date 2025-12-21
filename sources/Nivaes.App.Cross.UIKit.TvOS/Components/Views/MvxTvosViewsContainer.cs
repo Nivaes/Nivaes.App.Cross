@@ -12,9 +12,9 @@ namespace MvvmCross.Platforms.Tvos.Views
         : CrossViewsContainer
         , IMvxTvosViewsContainer
     {
-        public MvxViewModelRequest CurrentRequest { get; private set; }
+        public CrossViewModelRequest CurrentRequest { get; private set; }
 
-        public virtual IMvxTvosView CreateView(MvxViewModelRequest request)
+        public virtual IMvxTvosView CreateView(CrossViewModelRequest request)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             }
         }
 
-        public virtual IMvxTvosView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, MvxViewModelRequest request)
+        public virtual IMvxTvosView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, CrossViewModelRequest request)
         {
             var storyboardAttribute = viewType.GetCustomAttribute<MvxFromStoryboardAttribute>();
             if (storyboardAttribute != null)

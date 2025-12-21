@@ -12,20 +12,20 @@ namespace MvvmCross.Presenters
 {
     public interface IMvxAttributeViewPresenter : IMvxViewPresenter
     {
-        IMvxViewModelTypeFinder? ViewModelTypeFinder { get; }
+        ICrossViewModelTypeFinder? ViewModelTypeFinder { get; }
         ICrossViewsContainer? ViewsContainer { get; }
         IDictionary<Type, MvxPresentationAttributeAction>? AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 
         //TODO: Maybe move those to helper class
-        MvxBasePresentationAttribute GetPresentationAttribute(MvxViewModelRequest request);
+        MvxBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request);
 
         MvxBasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
         MvxBasePresentationAttribute? GetOverridePresentationAttribute(
-            MvxViewModelRequest request,
+            CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType);
     }
 }

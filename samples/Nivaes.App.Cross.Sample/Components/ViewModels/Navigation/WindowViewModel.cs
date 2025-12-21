@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Playground.Core.Models;
-
 namespace Playground.Core.ViewModels
 {
+    using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
+    using Playground.Core.Models;
+    using Nivaes.App.Cross;
+
     public class WindowChildParam
     {
         public int ParentNo { get; set; }
@@ -100,9 +96,9 @@ namespace Playground.Core.ViewModels
                 });
             });
 
-            CloseCommand = new MvxAsyncCommand(() => NavigationService.Close(this));
+            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-            ToggleSettingCommand = new MvxAsyncCommand(async () =>
+            ToggleSettingCommand = new CrossAsyncCommand(async () =>
             {
                 await Task.Run(() =>
                 {
@@ -111,8 +107,8 @@ namespace Playground.Core.ViewModels
             });
         }
 
-        public IMvxAsyncCommand CloseCommand { get; }
-        public IMvxAsyncCommand<int> ShowWindowChildCommand { get; }
-        public IMvxAsyncCommand ToggleSettingCommand { get; }
+        public ICrossAsyncCommand CloseCommand { get; }
+        public ICrossAsyncCommand<int> ShowWindowChildCommand { get; }
+        public ICrossAsyncCommand ToggleSettingCommand { get; }
     }
 }

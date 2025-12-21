@@ -3,8 +3,6 @@ namespace Playground.Core.ViewModels
     using System;
     using System.Drawing;
     using System.Linq;
-    using MvvmCross.Commands;
-    using MvvmCross.UI;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 

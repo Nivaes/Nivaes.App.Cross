@@ -14,8 +14,8 @@ namespace MvvmCross.Platforms.Tvos.Core
     using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.Platforms.Tvos.Views;
     using MvvmCross.Presenters;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Tvos;
 
     public abstract class MvxTvosSetup
         : MvxSetup, IMvxTvosSetup
@@ -169,16 +169,16 @@ namespace MvvmCross.Platforms.Tvos.Core
             // this base class does nothing
         }
 
-        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        protected override ICrossNameMapping CreateViewToViewModelNaming()
         {
-            return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
+            return new CrossPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
     }
 
     public abstract class MvxTvosSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxTvosSetup
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
             iocProvider.IoCConstruct<TApplication>();
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

@@ -1,701 +1,696 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Commands;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin;
-using MvvmCross.ViewModels;
-using MvvmCross.ViewModels.Result;
-using Nivaes.App.Cross;
-
-namespace MvvmCross.Core;
-
-public abstract class MvxSetup : IMvxSetup
+namespace MvvmCross.Core
 {
-    public event EventHandler<MvxSetupStateEventArgs>? StateChanged;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.IoC;
+    using MvvmCross.Logging;
+    using MvvmCross.Navigation;
+    using MvvmCross.Plugin;
+    using MvvmCross.ViewModels;
+    using MvvmCross.ViewModels.Result;
+    using Nivaes.App.Cross;
 
-    private static readonly object Lock = new();
-    private MvxSetupState _state;
-    private IMvxIoCProvider? _iocProvider;
-
-    protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
-
-    protected static Func<IMvxSetup>? SetupCreator { get; set; }
-
-    protected static List<Assembly> ViewAssemblies { get; } = [];
-
-    protected ILogger? SetupLog { get; private set; }
-
-    public MvxSetupState State
+    public abstract class MvxSetup : IMvxSetup
     {
-        get => _state;
-        private set
-        {
-            _state = value;
-            FireStateChange(value);
-        }
-    }
+        public event EventHandler<MvxSetupStateEventArgs>? StateChanged;
 
-    public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
-    {
-        // We are using double-checked locking here to avoid overhead of locking if the
-        // SetupCreator is already created
-        if (SetupCreator is null)
+        private static readonly object Lock = new();
+        private MvxSetupState _state;
+        private IMvxIoCProvider? _iocProvider;
+
+        protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
+
+        protected static Func<IMvxSetup>? SetupCreator { get; set; }
+
+        protected static List<Assembly> ViewAssemblies { get; } = [];
+
+        protected ILogger? SetupLog { get; private set; }
+
+        public MvxSetupState State
         {
-            lock (Lock)
+            get => _state;
+            private set
             {
-                if (SetupCreator is null)
+                _state = value;
+                FireStateChange(value);
+            }
+        }
+
+        public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
+        {
+            // We are using double-checked locking here to avoid overhead of locking if the
+            // SetupCreator is already created
+            if (SetupCreator is null)
+            {
+                lock (Lock)
                 {
-                    ViewAssemblies.AddRange(assemblies);
-                    if (ViewAssemblies.Count == 0)
+                    if (SetupCreator is null)
                     {
-                        // fall back to all assemblies. Assembly.GetEntryAssembly() always returns
-                        // null on Xamarin platforms do not use it!
-                        ViewAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies());
+                        ViewAssemblies.AddRange(assemblies);
+                        if (ViewAssemblies.Count == 0)
+                        {
+                            // fall back to all assemblies. Assembly.GetEntryAssembly() always returns
+                            // null on Xamarin platforms do not use it!
+                            ViewAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies());
+                        }
+
+                        // Avoid creating the instance of Setup right now, instead
+                        // take a reference to the type in a way that we can avoid
+                        // using reflection to create the instance.
+                        SetupCreator = () => new TMvxSetup();
+
+                        return;
                     }
-
-                    // Avoid creating the instance of Setup right now, instead
-                    // take a reference to the type in a way that we can avoid
-                    // using reflection to create the instance.
-                    SetupCreator = () => new TMvxSetup();
-
-                    return;
                 }
             }
+
+            MvxLogHost.Default?.LogInformation("Setup: RegisterSetupType already called");
         }
 
-        MvxLogHost.Default?.LogInformation("Setup: RegisterSetupType already called");
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    public static IMvxSetup? Instance()
-    {
-        var instance = SetupCreator?.Invoke() ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
-        return instance;
-    }
-
-    protected abstract IMvxApplication CreateApp(IMvxIoCProvider iocProvider);
-
-    protected abstract ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider);
-
-    protected abstract ICrossViewDispatcher CreateViewDispatcher();
-
-    public virtual void InitializePrimary()
-    {
-        if (State != MvxSetupState.Uninitialized)
+        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+        public static IMvxSetup? Instance()
         {
-            SetupLog?.Log(LogLevel.Trace,
-                "InitializePrimary() called when State is not Uninitialized. State: {State}", State);
-            return;
+            var instance = SetupCreator?.Invoke() ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
+            return instance;
         }
 
-        try
-        {
-            State = MvxSetupState.InitializingPrimary;
-            _iocProvider = InitializeIoC();
+        protected abstract ICrossApplication CreateApp(IMvxIoCProvider iocProvider);
 
-            InitializeLoggingServices(_iocProvider);
+        protected abstract ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider);
 
-            // Register the default setup dependencies before
-            // invoking the static call back.
-            // Developers can either extend the MvxSetup and override
-            // the RegisterDefaultSetupDependencies method, or can provide a
-            // callback method by setting the RegisterSetupDependencies method
-            RegisterDefaultSetupDependencies(_iocProvider);
-            RegisterSetupDependencies?.Invoke(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: Primary start");
-            SetupLog?.Log(LogLevel.Trace, "Setup: FirstChance start");
-            InitializeFirstChance(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: MvvmCross settings start");
-            InitializeSettings(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: Singleton Cache start");
-            InitializeSingletonCache();
-            SetupLog?.Log(LogLevel.Trace, "Setup: ViewDispatcher start");
-            InitializeViewDispatcher(_iocProvider);
-            State = MvxSetupState.InitializedPrimary;
-        }
-        catch (Exception e)
-        {
-            SetupLog?.Log(LogLevel.Error, e, "InitializePrimary() Failed initializing primary dependencies");
-            throw;
-        }
-    }
+        protected abstract ICrossViewDispatcher CreateViewDispatcher();
 
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public virtual void InitializeSecondary()
-    {
-        if (State != MvxSetupState.InitializedPrimary)
+        public virtual void InitializePrimary()
         {
-            SetupLog?.Log(LogLevel.Trace,
-                "InitializeSecondary() called when State is not InitializedPrimary. State: {State}", State);
-            return;
-        }
-
-        if (_iocProvider == null)
-        {
-            SetupLog?.Log(LogLevel.Error, "InitializeSecondary() IoC Provider is null");
-            throw new InvalidOperationException("Cannot continue setup with null IoCProvider");
-        }
-
-        try
-        {
-            State = MvxSetupState.InitializingSecondary;
-            SetupLog?.Log(LogLevel.Trace, "Setup: Bootstrap actions");
-            PerformBootstrapActions();
-            SetupLog?.Log(LogLevel.Trace, "Setup: StringToTypeParser start");
-            InitializeStringToTypeParser(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: FillableStringToTypeParser start");
-            InitializeFillableStringToTypeParser(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: Create App");
-            var app = InitializeMvxApplication(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: NavigationService");
-            InitializeNavigationService(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: ResultViewModelManager");
-            InitializeResultViewModelManager(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: ViewModelTypeFinder start");
-            InitializeViewModelTypeFinder(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: ViewsContainer start");
-            InitializeViewsContainer(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
-            var lookup = InitializeLookupDictionary(_iocProvider);
-            if (lookup != null)
+            if (State != MvxSetupState.Uninitialized)
             {
-                SetupLog?.Log(LogLevel.Trace, "Setup: Views start");
-                InitializeViewLookup(lookup, _iocProvider);
-            }
-            else
-            {
-                SetupLog?.LogWarning("Lookup dictionary is null returning from {MethodName}",
-                    nameof(InitializeLookupDictionary));
+                SetupLog?.Log(LogLevel.Trace,
+                    "InitializePrimary() called when State is not Uninitialized. State: {State}", State);
+                return;
             }
 
-            SetupLog?.Log(LogLevel.Trace, "Setup: CommandCollectionBuilder start");
-            InitializeCommandCollectionBuilder(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: NavigationSerializer start");
-            InitializeNavigationSerializer(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: InpcInterception start");
-            InitializeInpcInterception(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: InpcInterception start");
-            InitializeViewModelCache(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: BindingBuilder start");
-            InitializeBindingBuilder(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: PluginManagerFramework start");
-            var pluginManager = InitializePluginFramework(_iocProvider);
-            if (pluginManager != null)
+            try
             {
-                app?.LoadPlugins(pluginManager);
-                SetupLog?.Log(LogLevel.Trace, "Setup: App start");
-            }
-            else
-            {
-                SetupLog?.LogWarning("PluginManager was null returning from {MethodName}",
-                    nameof(InitializePluginFramework));
-            }
+                State = MvxSetupState.InitializingPrimary;
+                _iocProvider = InitializeIoC();
 
-            if (app != null)
-            {
-                InitializeApp(app);
-            }
-            else
-            {
-                SetupLog?.LogWarning("App instance is null returning from {MethodName}",
-                    nameof(InitializeMvxApplication));
-            }
+                InitializeLoggingServices(_iocProvider);
 
-            SetupLog?.Log(LogLevel.Trace, "Setup: LastChance start");
-            InitializeLastChance(_iocProvider);
-            SetupLog?.Log(LogLevel.Trace, "Setup: Secondary end");
-            State = MvxSetupState.Initialized;
+                // Register the default setup dependencies before
+                // invoking the static call back.
+                // Developers can either extend the MvxSetup and override
+                // the RegisterDefaultSetupDependencies method, or can provide a
+                // callback method by setting the RegisterSetupDependencies method
+                RegisterDefaultSetupDependencies(_iocProvider);
+                RegisterSetupDependencies?.Invoke(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: Primary start");
+                SetupLog?.Log(LogLevel.Trace, "Setup: FirstChance start");
+                InitializeFirstChance(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: MvvmCross settings start");
+                InitializeSettings(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: Singleton Cache start");
+                InitializeSingletonCache();
+                SetupLog?.Log(LogLevel.Trace, "Setup: ViewDispatcher start");
+                InitializeViewDispatcher(_iocProvider);
+                State = MvxSetupState.InitializedPrimary;
+            }
+            catch (Exception e)
+            {
+                SetupLog?.Log(LogLevel.Error, e, "InitializePrimary() Failed initializing primary dependencies");
+                throw;
+            }
         }
-        catch (Exception e)
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual void InitializeSecondary()
         {
-            SetupLog?.Log(LogLevel.Error, e, "InitializeSecondary() failed initializing secondary dependencies");
-            throw;
-        }
-    }
+            if (State != MvxSetupState.InitializedPrimary)
+            {
+                SetupLog?.Log(LogLevel.Trace,
+                    "InitializeSecondary() called when State is not InitializedPrimary. State: {State}", State);
+                return;
+            }
 
-    protected virtual void InitializeSingletonCache()
-    {
+            if (_iocProvider == null)
+            {
+                SetupLog?.Log(LogLevel.Error, "InitializeSecondary() IoC Provider is null");
+                throw new InvalidOperationException("Cannot continue setup with null IoCProvider");
+            }
+
+            try
+            {
+                State = MvxSetupState.InitializingSecondary;
+                SetupLog?.Log(LogLevel.Trace, "Setup: Bootstrap actions");
+                PerformBootstrapActions();
+                SetupLog?.Log(LogLevel.Trace, "Setup: StringToTypeParser start");
+                InitializeStringToTypeParser(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: FillableStringToTypeParser start");
+                InitializeFillableStringToTypeParser(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: Create App");
+                var app = InitializeMvxApplication(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: NavigationService");
+                InitializeNavigationService(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: ResultViewModelManager");
+                InitializeResultViewModelManager(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: ViewModelTypeFinder start");
+                InitializeViewModelTypeFinder(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: ViewsContainer start");
+                InitializeViewsContainer(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
+                var lookup = InitializeLookupDictionary(_iocProvider);
+                if (lookup != null)
+                {
+                    SetupLog?.Log(LogLevel.Trace, "Setup: Views start");
+                    InitializeViewLookup(lookup, _iocProvider);
+                }
+                else
+                {
+                    SetupLog?.LogWarning("Lookup dictionary is null returning from {MethodName}",
+                        nameof(InitializeLookupDictionary));
+                }
+
+                SetupLog?.Log(LogLevel.Trace, "Setup: CommandCollectionBuilder start");
+                InitializeCommandCollectionBuilder(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: NavigationSerializer start");
+                InitializeNavigationSerializer(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: InpcInterception start");
+                InitializeInpcInterception(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: InpcInterception start");
+                InitializeViewModelCache(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: BindingBuilder start");
+                InitializeBindingBuilder(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: PluginManagerFramework start");
+                var pluginManager = InitializePluginFramework(_iocProvider);
+                if (pluginManager != null)
+                {
+                    app?.LoadPlugins(pluginManager);
+                    SetupLog?.Log(LogLevel.Trace, "Setup: App start");
+                }
+                else
+                {
+                    SetupLog?.LogWarning("PluginManager was null returning from {MethodName}",
+                        nameof(InitializePluginFramework));
+                }
+
+                if (app != null)
+                {
+                    InitializeApp(app);
+                }
+                else
+                {
+                    SetupLog?.LogWarning("App instance is null returning from {MethodName}",
+                        nameof(InitializeMvxApplication));
+                }
+
+                SetupLog?.Log(LogLevel.Trace, "Setup: LastChance start");
+                InitializeLastChance(_iocProvider);
+                SetupLog?.Log(LogLevel.Trace, "Setup: Secondary end");
+                State = MvxSetupState.Initialized;
+            }
+            catch (Exception e)
+            {
+                SetupLog?.Log(LogLevel.Error, e, "InitializeSecondary() failed initializing secondary dependencies");
+                throw;
+            }
+        }
+
+        protected virtual void InitializeSingletonCache()
+        {
 #pragma warning disable CA2000 // Dispose objects before losing scope
-        MvxSingletonCache.Initialize();
+            CrossSingletonCache.Initialize();
 #pragma warning restore CA2000 // Dispose objects before losing scope
-    }
-
-    protected virtual void InitializeInpcInterception(IMvxIoCProvider iocProvider)
-    {
-        // by default no Inpc calls are intercepted
-    }
-
-    protected virtual IMvxChildViewModelCache? InitializeViewModelCache(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var cache = CreateViewModelCache(iocProvider);
-        return cache;
-    }
-
-    protected virtual IMvxChildViewModelCache? CreateViewModelCache(IMvxIoCProvider iocProvider)
-    {
-        return iocProvider.Resolve<IMvxChildViewModelCache>();
-    }
-
-    protected virtual IMvxSettings? InitializeSettings(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var settings = CreateSettings(iocProvider);
-        return settings;
-    }
-
-    protected virtual IMvxSettings? CreateSettings(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxSettings>();
-    }
-
-    protected virtual IMvxStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return CreateStringToTypeParser(iocProvider);
-    }
-
-    protected virtual IMvxStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxStringToTypeParser>();
-    }
-
-    protected virtual IMvxFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var parser = CreateFillableStringToTypeParser(iocProvider);
-        if (parser != null)
-            iocProvider.RegisterSingleton(parser);
-
-        return parser;
-    }
-
-    protected virtual IMvxFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxStringToTypeParser>() as IMvxFillableStringToTypeParser;
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual void PerformBootstrapActions()
-    {
-        var bootstrapRunner = new MvxBootstrapRunner();
-        foreach (var assembly in GetBootstrapOwningAssemblies())
-        {
-            bootstrapRunner.Run(assembly);
-        }
-    }
-
-    protected virtual IMvxNavigationSerializer? InitializeNavigationSerializer(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return CreateNavigationSerializer(iocProvider);
-    }
-
-    protected virtual IMvxNavigationSerializer? CreateNavigationSerializer(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxNavigationSerializer>();
-    }
-
-    protected virtual IMvxCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return CreateCommandCollectionBuilder(iocProvider);
-    }
-
-    protected virtual IMvxCommandCollectionBuilder? CreateCommandCollectionBuilder(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxCommandCollectionBuilder>();
-    }
-
-    protected virtual IMvxIoCProvider InitializeIoC()
-    {
-        // initialize the IoC registry, then add it to itself
-        var iocProvider = CreateIocProvider();
-        iocProvider.RegisterSingleton(iocProvider);
-        iocProvider.RegisterSingleton<IMvxSetup>(this);
-        return iocProvider;
-    }
-
-    protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
-        iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
-        iocProvider.RegisterSingleton(CreateApp(iocProvider));
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelLoader, MvxViewModelLoader>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
-            (loader, dispatcher, p) => new MvxNavigationService(loader, dispatcher, p));
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
-        iocProvider.RegisterSingleton(() => new MvxViewModelByNameLookup());
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameLookup, MvxViewModelByNameLookup>(
-            nameLookup => nameLookup);
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameRegistry, MvxViewModelByNameLookup>(
-            nameLookup => nameLookup);
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelTypeFinder, MvxViewModelViewTypeFinder>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxTypeToTypeLookupBuilder, MvxViewModelViewLookupBuilder>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxCommandCollectionBuilder, MvxCommandCollectionBuilder>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
-        iocProvider.LazyConstructAndRegisterSingleton<IMvxChildViewModelCache, MvxChildViewModelCache>();
-
-        iocProvider.RegisterType<IMvxCommandHelper, MvxWeakCommandHelper>();
-    }
-
-    protected virtual IMvxIocOptions CreateIocOptions()
-    {
-        return new MvxIocOptions();
-    }
-
-    protected virtual IMvxIoCProvider CreateIocProvider()
-    {
-        return MvxIoCProvider.Initialize(CreateIocOptions());
-    }
-
-    protected virtual void InitializeFirstChance(IMvxIoCProvider iocProvider)
-    {
-        // always the very first thing to get initialized - after IoC and base platform
-        // base class implementation is empty by default
-    }
-
-    protected virtual void InitializeLoggingServices(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var logProvider = CreateLogProvider();
-        var loggerFactory = CreateLogFactory();
-
-        if (logProvider != null)
-        {
-            iocProvider.RegisterSingleton(logProvider);
-            loggerFactory?.AddProvider(logProvider);
         }
 
-        if (loggerFactory != null)
+        protected virtual void InitializeInpcInterception(IMvxIoCProvider iocProvider)
         {
-            iocProvider.RegisterSingleton(loggerFactory);
-            iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
-            SetupLog = loggerFactory.CreateLogger<MvxSetup>();
+            // by default no Inpc calls are intercepted
         }
-    }
 
-    protected abstract ILoggerProvider? CreateLogProvider();
-    protected abstract ILoggerFactory? CreateLogFactory();
-
-    protected virtual IMvxViewModelLoader? CreateViewModelLoader(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxViewModelLoader>();
-    }
-
-    protected virtual IMvxNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxNavigationService>();
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual IMvxPluginManager? InitializePluginFramework(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var pluginManager = CreatePluginManager(iocProvider);
-        if (pluginManager != null)
-            LoadPlugins(pluginManager);
-        return pluginManager;
-    }
-
-    protected virtual IMvxPluginManager? CreatePluginManager(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxPluginManager>();
-    }
-
-    protected virtual IMvxPluginConfiguration? GetPluginConfiguration(Type plugin)
-    {
-        return null;
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public virtual IEnumerable<Assembly> GetPluginAssemblies()
-    {
-        var mvvmCrossAssemblyName = typeof(MvxPluginAttribute).Assembly.GetName().Name;
-
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-        return assemblies
-            .AsParallel()
-            .Where(assembly => AssemblyReferencesMvvmCross(assembly, mvvmCrossAssemblyName));
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    private static bool AssemblyReferencesMvvmCross(Assembly assembly, string? mvvmCrossAssemblyName)
-    {
-        if (string.IsNullOrEmpty(mvvmCrossAssemblyName))
-            return false;
-
-        try
+        protected virtual ICrossChildViewModelCache? InitializeViewModelCache(IMvxIoCProvider iocProvider)
         {
-            return Array.Exists(assembly.GetReferencedAssemblies(), a => a.Name == mvvmCrossAssemblyName);
+            ValidateArguments(iocProvider);
+
+            var cache = CreateViewModelCache(iocProvider);
+            return cache;
         }
+
+        protected virtual ICrossChildViewModelCache? CreateViewModelCache(IMvxIoCProvider iocProvider)
+        {
+            return iocProvider.Resolve<ICrossChildViewModelCache>();
+        }
+
+        protected virtual IMvxSettings? InitializeSettings(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var settings = CreateSettings(iocProvider);
+            return settings;
+        }
+
+        protected virtual IMvxSettings? CreateSettings(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxSettings>();
+        }
+
+        protected virtual IMvxStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return CreateStringToTypeParser(iocProvider);
+        }
+
+        protected virtual IMvxStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxStringToTypeParser>();
+        }
+
+        protected virtual IMvxFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var parser = CreateFillableStringToTypeParser(iocProvider);
+            if (parser != null)
+                iocProvider.RegisterSingleton(parser);
+
+            return parser;
+        }
+
+        protected virtual IMvxFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxStringToTypeParser>() as IMvxFillableStringToTypeParser;
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual void PerformBootstrapActions()
+        {
+            var bootstrapRunner = new MvxBootstrapRunner();
+            foreach (var assembly in GetBootstrapOwningAssemblies())
+            {
+                bootstrapRunner.Run(assembly);
+            }
+        }
+
+        protected virtual IMvxNavigationSerializer? InitializeNavigationSerializer(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return CreateNavigationSerializer(iocProvider);
+        }
+
+        protected virtual IMvxNavigationSerializer? CreateNavigationSerializer(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxNavigationSerializer>();
+        }
+
+        protected virtual ICrossCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return CreateCommandCollectionBuilder(iocProvider);
+        }
+
+        protected virtual ICrossCommandCollectionBuilder? CreateCommandCollectionBuilder(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<ICrossCommandCollectionBuilder>();
+        }
+
+        protected virtual IMvxIoCProvider InitializeIoC()
+        {
+            // initialize the IoC registry, then add it to itself
+            var iocProvider = CreateIocProvider();
+            iocProvider.RegisterSingleton(iocProvider);
+            iocProvider.RegisterSingleton<IMvxSetup>(this);
+            return iocProvider;
+        }
+
+        protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
+            iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
+            iocProvider.RegisterSingleton(CreateApp(iocProvider));
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
+                (loader, dispatcher, p) => new MvxNavigationService(loader, dispatcher, p));
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
+            iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
+                nameLookup => nameLookup);
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>(
+                nameLookup => nameLookup);
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
+
+            iocProvider.RegisterType<ICrossCommandHelper, CrossWeakCommandHelper>();
+        }
+
+        protected virtual IMvxIocOptions CreateIocOptions()
+        {
+            return new MvxIocOptions();
+        }
+
+        protected virtual IMvxIoCProvider CreateIocProvider()
+        {
+            return MvxIoCProvider.Initialize(CreateIocOptions());
+        }
+
+        protected virtual void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        {
+            // always the very first thing to get initialized - after IoC and base platform
+            // base class implementation is empty by default
+        }
+
+        protected virtual void InitializeLoggingServices(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var logProvider = CreateLogProvider();
+            var loggerFactory = CreateLogFactory();
+
+            if (logProvider != null)
+            {
+                iocProvider.RegisterSingleton(logProvider);
+                loggerFactory?.AddProvider(logProvider);
+            }
+
+            if (loggerFactory != null)
+            {
+                iocProvider.RegisterSingleton(loggerFactory);
+                iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
+                SetupLog = loggerFactory.CreateLogger<MvxSetup>();
+            }
+        }
+
+        protected abstract ILoggerProvider? CreateLogProvider();
+        protected abstract ILoggerFactory? CreateLogFactory();
+
+        protected virtual ICrossViewModelLoader? CreateViewModelLoader(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<ICrossViewModelLoader>();
+        }
+
+        protected virtual IMvxNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxNavigationService>();
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual IMvxPluginManager? InitializePluginFramework(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var pluginManager = CreatePluginManager(iocProvider);
+            if (pluginManager != null)
+                LoadPlugins(pluginManager);
+            return pluginManager;
+        }
+
+        protected virtual IMvxPluginManager? CreatePluginManager(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxPluginManager>();
+        }
+
+        protected virtual IMvxPluginConfiguration? GetPluginConfiguration(Type plugin)
+        {
+            return null;
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual IEnumerable<Assembly> GetPluginAssemblies()
+        {
+            var mvvmCrossAssemblyName = typeof(MvxPluginAttribute).Assembly.GetName().Name;
+
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            return assemblies
+                .AsParallel()
+                .Where(assembly => AssemblyReferencesMvvmCross(assembly, mvvmCrossAssemblyName));
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        private static bool AssemblyReferencesMvvmCross(Assembly assembly, string? mvvmCrossAssemblyName)
+        {
+            if (string.IsNullOrEmpty(mvvmCrossAssemblyName))
+                return false;
+
+            try
+            {
+                return Array.Exists(assembly.GetReferencedAssemblies(), a => a.Name == mvvmCrossAssemblyName);
+            }
 #pragma warning disable CA1031 // Do not catch general exception types
-        catch (Exception)
+            catch (Exception)
 #pragma warning restore CA1031 // Do not catch general exception types
-        {
-            return false;
-        }
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public virtual void LoadPlugins(IMvxPluginManager pluginManager)
-    {
-        if (pluginManager == null)
-            throw new ArgumentNullException(nameof(pluginManager));
-
-        var pluginAttribute = typeof(MvxPluginAttribute);
-        var pluginAssemblies = GetPluginAssemblies();
-
-        // Search Assemblies for Plugins
-        foreach (var pluginAssembly in pluginAssemblies)
-        {
-            var assemblyTypes = pluginAssembly.ExceptionSafeGetTypes();
-
-            // Search Types for Valid Plugin
-            foreach (var type in assemblyTypes.Where(TypeContainsPluginAttribute))
             {
-                // Ensure Plugin has been loaded
-                pluginManager.EnsurePluginLoaded(type);
+                return false;
             }
         }
 
-        bool TypeContainsPluginAttribute(Type type) =>
-            type.GetCustomAttributes(pluginAttribute, false).Length > 0;
-    }
-
-    protected virtual IMvxApplication? CreateMvxApplication(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxApplication>();
-    }
-
-    protected virtual IMvxApplication? InitializeMvxApplication(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var app = CreateMvxApplication(iocProvider);
-        if (app != null)
-            iocProvider.RegisterSingleton<IMvxViewModelLocatorCollection>(app);
-        return app;
-    }
-
-    protected virtual void InitializeApp(IMvxApplication app)
-    {
-        ArgumentNullException.ThrowIfNull(app);
-
-        SetupLog?.Log(LogLevel.Trace, "Setup: Application Initialize - On background thread");
-        app.Initialize();
-    }
-
-    protected virtual ICrossViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var container = CreateViewsContainer(iocProvider);
-        iocProvider.RegisterSingleton(container);
-        return container;
-    }
-
-    protected virtual void InitializeViewDispatcher(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        var dispatcher = CreateViewDispatcher();
-        iocProvider.RegisterSingleton(dispatcher);
-        iocProvider.RegisterSingleton<IMvxMainThreadAsyncDispatcher>(dispatcher);
-        iocProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual IMvxNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        CreateViewModelLoader(iocProvider);
-        var navigationService = CreateNavigationService(iocProvider);
-        if (navigationService != null)
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            SetupLog?.Log(LogLevel.Trace, "Setup: Load navigation routes");
-            LoadNavigationServiceRoutes(navigationService, iocProvider);
-        }
-        return navigationService;
-    }
+            if (pluginManager == null)
+                throw new ArgumentNullException(nameof(pluginManager));
 
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual void LoadNavigationServiceRoutes(IMvxNavigationService navigationService, IMvxIoCProvider iocProvider)
-    {
-        if (navigationService == null)
-            throw new ArgumentNullException(nameof(navigationService));
+            var pluginAttribute = typeof(MvxPluginAttribute);
+            var pluginAssemblies = GetPluginAssemblies();
 
-        ValidateArguments(iocProvider);
-
-        navigationService.LoadRoutes(GetViewModelAssemblies());
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public virtual IEnumerable<Assembly> GetViewAssemblies()
-    {
-        if (ViewAssemblies.Count == 0)
-            ViewAssemblies.Add(GetType().GetTypeInfo().Assembly);
-
-        return ViewAssemblies;
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public virtual IEnumerable<Assembly> GetViewModelAssemblies()
-    {
-        var app = _iocProvider?.Resolve<IMvxApplication>();
-        if (app == null) return [];
-        var assembly = app.GetType().GetTypeInfo().Assembly;
-        return [assembly];
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual IEnumerable<Assembly> GetBootstrapOwningAssemblies()
-    {
-        return GetViewAssemblies().Distinct();
-    }
-
-    protected virtual IMvxResultViewModelManager? InitializeResultViewModelManager(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return CreateResultViewModelManager(iocProvider);
-    }
-
-    protected virtual IMvxResultViewModelManager? CreateResultViewModelManager(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxResultViewModelManager>();
-    }
-
-    protected abstract IMvxNameMapping CreateViewToViewModelNaming();
-
-    protected virtual IMvxViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxViewModelByNameLookup>();
-    }
-
-    protected virtual IMvxViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        return iocProvider.Resolve<IMvxViewModelByNameRegistry>();
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual IMvxNameMapping InitializeViewModelTypeFinder(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
-
-        CreateViewModelByNameLookup(iocProvider);
-        var viewModelByNameRegistry = CreateViewModelByNameRegistry(iocProvider);
-        if (viewModelByNameRegistry != null)
-        {
-            var viewModelAssemblies = GetViewModelAssemblies();
-            foreach (var assembly in viewModelAssemblies)
+            // Search Assemblies for Plugins
+            foreach (var pluginAssembly in pluginAssemblies)
             {
-                viewModelByNameRegistry.AddAll(assembly);
+                var assemblyTypes = pluginAssembly.ExceptionSafeGetTypes();
+
+                // Search Types for Valid Plugin
+                foreach (var type in assemblyTypes.Where(TypeContainsPluginAttribute))
+                {
+                    // Ensure Plugin has been loaded
+                    pluginManager.EnsurePluginLoaded(type);
+                }
             }
+
+            bool TypeContainsPluginAttribute(Type type) =>
+                type.GetCustomAttributes(pluginAttribute, false).Length > 0;
         }
 
-        var nameMappingStrategy = CreateViewToViewModelNaming();
-        iocProvider.RegisterSingleton(nameMappingStrategy);
-        return nameMappingStrategy;
-    }
+        protected virtual ICrossApplication? CreateMvxApplication(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
 
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
+            return iocProvider.Resolve<ICrossApplication>();
+        }
 
-        var viewAssemblies = GetViewAssemblies();
-        var builder = iocProvider.Resolve<IMvxTypeToTypeLookupBuilder>();
-        return builder?.Build(viewAssemblies);
-    }
+        protected virtual ICrossApplication? InitializeMvxApplication(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
 
-    protected virtual ICrossViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
-        IMvxIoCProvider iocProvider)
-    {
-        ValidateArguments(iocProvider);
+            var app = CreateMvxApplication(iocProvider);
+            if (app != null)
+                iocProvider.RegisterSingleton<ICrossViewModelLocatorCollection>(app);
+            return app;
+        }
 
-        var container = iocProvider.Resolve<ICrossViewsContainer>();
-        container?.AddAll(viewModelViewLookup);
-        return container;
-    }
+        protected virtual void InitializeApp(ICrossApplication app)
+        {
+            ArgumentNullException.ThrowIfNull(app);
 
-    [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-    protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
-    {
-    }
+            SetupLog?.Log(LogLevel.Trace, "Setup: Application Initialize - On background thread");
+            app.Initialize();
+        }
 
-    [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-    protected virtual void InitializeLastChance(IMvxIoCProvider iocProvider)
-    {
-        // always the very last thing to get initialized
-        // base class implementation is empty by default
-    }
+        protected virtual ICrossViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
 
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public IEnumerable<Type> CreatableTypes()
-    {
-        return CreatableTypes(GetType().GetTypeInfo().Assembly);
-    }
+            var container = CreateViewsContainer(iocProvider);
+            iocProvider.RegisterSingleton(container);
+            return container;
+        }
 
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public IEnumerable<Type> CreatableTypes(Assembly assembly)
-    {
-        return assembly.CreatableTypes();
-    }
+        protected virtual void InitializeViewDispatcher(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
 
-    private void FireStateChange(MvxSetupState state)
-    {
-        StateChanged?.Invoke(this, new MvxSetupStateEventArgs(state));
-    }
+            var dispatcher = CreateViewDispatcher();
+            iocProvider.RegisterSingleton(dispatcher);
+            iocProvider.RegisterSingleton<IMvxMainThreadAsyncDispatcher>(dispatcher);
+            iocProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
+        }
 
-    protected static void ValidateArguments(IMvxIoCProvider iocProvider)
-    {
-        ArgumentNullException.ThrowIfNull(iocProvider);
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual IMvxNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            CreateViewModelLoader(iocProvider);
+            var navigationService = CreateNavigationService(iocProvider);
+            if (navigationService != null)
+            {
+                SetupLog?.Log(LogLevel.Trace, "Setup: Load navigation routes");
+                LoadNavigationServiceRoutes(navigationService, iocProvider);
+            }
+            return navigationService;
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual void LoadNavigationServiceRoutes(IMvxNavigationService navigationService, IMvxIoCProvider iocProvider)
+        {
+            if (navigationService == null)
+                throw new ArgumentNullException(nameof(navigationService));
+
+            ValidateArguments(iocProvider);
+
+            navigationService.LoadRoutes(GetViewModelAssemblies());
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual IEnumerable<Assembly> GetViewAssemblies()
+        {
+            if (ViewAssemblies.Count == 0)
+                ViewAssemblies.Add(GetType().GetTypeInfo().Assembly);
+
+            return ViewAssemblies;
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public virtual IEnumerable<Assembly> GetViewModelAssemblies()
+        {
+            var app = _iocProvider?.Resolve<ICrossApplication>();
+            if (app == null) return [];
+            var assembly = app.GetType().GetTypeInfo().Assembly;
+            return [assembly];
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual IEnumerable<Assembly> GetBootstrapOwningAssemblies()
+        {
+            return GetViewAssemblies().Distinct();
+        }
+
+        protected virtual IMvxResultViewModelManager? InitializeResultViewModelManager(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return CreateResultViewModelManager(iocProvider);
+        }
+
+        protected virtual IMvxResultViewModelManager? CreateResultViewModelManager(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<IMvxResultViewModelManager>();
+        }
+
+        protected abstract ICrossNameMapping CreateViewToViewModelNaming();
+
+        protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<ICrossViewModelByNameLookup>();
+        }
+
+        protected virtual ICrossViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual ICrossNameMapping InitializeViewModelTypeFinder(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            CreateViewModelByNameLookup(iocProvider);
+            var viewModelByNameRegistry = CreateViewModelByNameRegistry(iocProvider);
+            if (viewModelByNameRegistry != null)
+            {
+                var viewModelAssemblies = GetViewModelAssemblies();
+                foreach (var assembly in viewModelAssemblies)
+                {
+                    viewModelByNameRegistry.AddAll(assembly);
+                }
+            }
+
+            var nameMappingStrategy = CreateViewToViewModelNaming();
+            iocProvider.RegisterSingleton(nameMappingStrategy);
+            return nameMappingStrategy;
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var viewAssemblies = GetViewAssemblies();
+            var builder = iocProvider.Resolve<ICrossTypeToTypeLookupBuilder>();
+            return builder?.Build(viewAssemblies);
+        }
+
+        protected virtual ICrossViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
+            IMvxIoCProvider iocProvider)
+        {
+            ValidateArguments(iocProvider);
+
+            var container = iocProvider.Resolve<ICrossViewsContainer>();
+            container?.AddAll(viewModelViewLookup);
+            return container;
+        }
+
+        [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
+        protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+        {
+        }
+
+        [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
+        protected virtual void InitializeLastChance(IMvxIoCProvider iocProvider)
+        {
+            // always the very last thing to get initialized
+            // base class implementation is empty by default
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public IEnumerable<Type> CreatableTypes()
+        {
+            return CreatableTypes(GetType().GetTypeInfo().Assembly);
+        }
+
+        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        public IEnumerable<Type> CreatableTypes(Assembly assembly)
+        {
+            return assembly.CreatableTypes();
+        }
+
+        private void FireStateChange(MvxSetupState state)
+        {
+            StateChanged?.Invoke(this, new MvxSetupStateEventArgs(state));
+        }
+
+        protected static void ValidateArguments(IMvxIoCProvider iocProvider)
+        {
+            ArgumentNullException.ThrowIfNull(iocProvider);
+        }
     }
 }
