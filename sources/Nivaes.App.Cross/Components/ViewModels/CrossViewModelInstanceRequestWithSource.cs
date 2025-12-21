@@ -1,19 +1,18 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
 
     /// <summary>
     ///     Extension of MvxViewModelInstanceRequest with a target.
     /// </summary>
-    public class MvxViewModelInstanceRequestWithSource : MvxViewModelInstanceRequest
+    public class CrossViewModelInstanceRequestWithSource : CrossViewModelInstanceRequest
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="MvxViewModelInstanceRequestWithSource"/>
+        /// Initializes a new instance of <see cref="CrossViewModelInstanceRequestWithSource"/>
         /// </summary>
         /// <param name="viewModelType">The viewmodel type.</param>
         /// <param name="source">The instance of the viewmodel which is the source of the request.</param>
-        public MvxViewModelInstanceRequestWithSource(
+        public CrossViewModelInstanceRequestWithSource(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             ICrossViewModel source)
                 : base(viewModelType)

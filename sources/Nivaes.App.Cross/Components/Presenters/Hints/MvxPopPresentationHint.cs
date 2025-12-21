@@ -6,7 +6,7 @@ namespace MvvmCross.Presenters.Hints
     using Nivaes.App.Cross;
 
     public class MvxPopPresentationHint
-        : MvxPresentationHint
+        : CrossPresentationHint
     {
         public MvxPopPresentationHint(Type viewModelToPopTo, bool animated = false)
         {

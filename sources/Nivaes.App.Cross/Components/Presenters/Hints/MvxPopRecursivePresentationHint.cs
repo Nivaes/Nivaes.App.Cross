@@ -6,7 +6,7 @@ namespace MvvmCross.Presenters.Hints
     using Nivaes.App.Cross;
 
     public class MvxPopRecursivePresentationHint
-        : MvxPresentationHint
+        : CrossPresentationHint
     {
         public MvxPopRecursivePresentationHint(int levelsDeep, bool animated = false)
         {

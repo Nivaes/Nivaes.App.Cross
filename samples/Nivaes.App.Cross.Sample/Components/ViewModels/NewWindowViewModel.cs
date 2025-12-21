@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     using Playground.Core.ViewModels.Navigation;
 
     public class NewWindowViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         private string _welcomeText = "Default welcome";
 

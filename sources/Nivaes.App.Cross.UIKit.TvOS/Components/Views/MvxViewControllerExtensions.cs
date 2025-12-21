@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Tvos.Views
                 tvOSView.Request = Mvx.IoCProvider.Resolve<IMvxCurrentRequest>().CurrentRequest;
             }
 
-            var instanceRequest = tvOSView.Request as MvxViewModelInstanceRequest;
+            var instanceRequest = tvOSView.Request as CrossViewModelInstanceRequest;
             if (instanceRequest != null)
             {
                 return instanceRequest.ViewModelInstance;

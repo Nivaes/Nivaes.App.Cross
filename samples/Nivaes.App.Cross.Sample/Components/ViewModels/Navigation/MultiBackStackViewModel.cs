@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels.Navigation
     using Nivaes.App.Cross;
 
     public class MultiBackStackViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) 
-        : MvxNavigationViewModel(logFactory, navigationService)
+        : CrossNavigationViewModel(logFactory, navigationService)
     {
         private bool _initialNavigationDone = false;
 
@@ -38,7 +38,7 @@ namespace Playground.Core.ViewModels.Navigation
         }
     }
 
-    public class MultiBackStackTab1ViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : MvxNavigationViewModel(logFactory, navigationService)
+    public class MultiBackStackTab1ViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : CrossNavigationViewModel(logFactory, navigationService)
     {
         public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
     }

@@ -59,7 +59,7 @@ namespace MvvmCross.Platforms.Tvos.Views
 
         public virtual IMvxTvosView CreateView(ICrossViewModel viewModel)
         {
-            var request = new MvxViewModelInstanceRequest(viewModel);
+            var request = new CrossViewModelInstanceRequest(viewModel);
             var view = CreateView(request);
             return view;
         }

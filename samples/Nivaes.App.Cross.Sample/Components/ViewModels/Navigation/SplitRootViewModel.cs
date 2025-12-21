@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class SplitRootViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public SplitRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
@@ -21,7 +21,7 @@ namespace Playground.Core.ViewModels
 
         public override void ViewAppeared()
         {
-            MvxNotifyTask.Create(async () =>
+            CrossNotifyTask.Create(async () =>
             {
                 await ShowInitialViewModel();
                 await ShowDetailViewModel();

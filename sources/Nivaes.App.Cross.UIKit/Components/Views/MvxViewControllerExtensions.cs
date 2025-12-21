@@ -33,7 +33,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 }
             }
 
-            if (iosView.Request is MvxViewModelInstanceRequest instanceRequest &&
+            if (iosView.Request is CrossViewModelInstanceRequest instanceRequest &&
                 instanceRequest.ViewModelInstance != null)
             {
                 MvxLogHost.Default?.LogTrace(

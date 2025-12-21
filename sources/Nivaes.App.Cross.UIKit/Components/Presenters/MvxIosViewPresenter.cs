@@ -272,7 +272,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             return true;
         }
 
-        public override Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public override Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             return hint switch
             {

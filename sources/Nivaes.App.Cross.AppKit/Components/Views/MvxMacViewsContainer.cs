@@ -58,7 +58,7 @@ namespace MvvmCross.Platforms.Mac.Views
 
         public virtual IMvxMacView CreateView(ICrossViewModel viewModel)
         {
-            var request = new MvxViewModelInstanceRequest(viewModel);
+            var request = new CrossViewModelInstanceRequest(viewModel);
             var view = CreateView(request);
             return view;
         }

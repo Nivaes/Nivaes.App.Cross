@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels.Navigation
     using Nivaes.App.Cross;
 
     public class RegionViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public RegionViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
         {

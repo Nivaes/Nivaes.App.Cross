@@ -1,4 +1,4 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
@@ -7,17 +7,16 @@ namespace MvvmCross.ViewModels
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
-    public class MvxObservableCollection<T>
+    public class CrossObservableCollection<T>
         : ObservableCollection<T>
     {
         protected struct SuppressEventsDisposable : IDisposable
         {
-            private readonly MvxObservableCollection<T> _collection;
+            private readonly CrossObservableCollection<T> _collection;
 
-            public SuppressEventsDisposable(MvxObservableCollection<T> collection)
+            public SuppressEventsDisposable(CrossObservableCollection<T> collection)
             {
                 _collection = collection;
                 ++collection._suppressEvents;
@@ -32,17 +31,17 @@ namespace MvvmCross.ViewModels
         private int _suppressEvents;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MvxObservableCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
         /// </summary>
-        public MvxObservableCollection()
+        public CrossObservableCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MvxObservableCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
         /// </summary>
         /// <param name="items">The collection from which the items are copied.</param>
-        public MvxObservableCollection(IEnumerable<T> items)
+        public CrossObservableCollection(IEnumerable<T> items)
             : base(items)
         {
         }
@@ -70,7 +69,7 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Adds the specified items collection to the current <see cref="MvxObservableCollection{T}"/> instance.
+        /// Adds the specified items collection to the current <see cref="CrossObservableCollection{T}"/> instance.
         /// </summary>
         /// <param name="items">The collection of items to be added.</param>
         /// <exception cref="ArgumentNullException">The items list is null.</exception>
@@ -95,7 +94,7 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Inserts the specified items collection in the current <see cref="MvxObservableCollection{T}"/> instance at the specified index.
+        /// Inserts the specified items collection in the current <see cref="CrossObservableCollection{T}"/> instance at the specified index.
         /// </summary>
         /// <param name="index">The position where the collection of items should be inserted at.</param>
         /// <param name="items">The collection of items to be inserted.</param>
@@ -128,9 +127,9 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Replaces the current <see cref="MvxObservableCollection{T}"/> instance items with the ones specified in the items collection, raising a single <see cref="NotifyCollectionChangedAction.Reset"/> event.
+        /// Replaces the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising a single <see cref="NotifyCollectionChangedAction.Reset"/> event.
         /// </summary>
-        /// <param name="items">The collection of items that will replace the current <see cref="MvxObservableCollection{T}"/> instance items.</param>
+        /// <param name="items">The collection of items that will replace the current <see cref="CrossObservableCollection{T}"/> instance items.</param>
         /// <exception cref="ArgumentNullException">The items list is null.</exception>
         public virtual void ReplaceWith(IEnumerable<T> items)
         {
@@ -181,7 +180,7 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Switches the current <see cref="MvxObservableCollection{T}"/> instance items with the ones specified in the items collection, raising the minimum required change events.
+        /// Switches the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising the minimum required change events.
         /// </summary>
         /// <param name="items">The collection from which the items are copied.</param>
         /// <exception cref="ArgumentNullException">The items list is null.</exception>
@@ -216,7 +215,7 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Removes the current <see cref="MvxObservableCollection{T}"/> instance items of the ones specified in the items collection, raising the minimum required change events.
+        /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the items collection, raising the minimum required change events.
         /// </summary>
         /// <param name="items">The collection which items will be removed.</param>
         /// <exception cref="ArgumentNullException">The items list is null.</exception>
@@ -238,7 +237,7 @@ namespace MvvmCross.ViewModels
         }
 
         /// <summary>
-        /// Removes the current <see cref="MvxObservableCollection{T}"/> instance items of the ones specified in the range, raising the minimum required change events.
+        /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the range, raising the minimum required change events.
         /// </summary>
         /// <param name="start">The start index.</param>
         /// <param name="count">The count of items to remove.</param>

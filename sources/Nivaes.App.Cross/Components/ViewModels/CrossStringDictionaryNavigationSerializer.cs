@@ -1,8 +1,6 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
-    public class MvxStringDictionaryNavigationSerializer
+    public class CrossStringDictionaryNavigationSerializer
         : ICrossNavigationSerializer
     {
         public ICrossTextSerializer Serializer { get; } = new CrossViewModelRequestCustomTextSerializer();

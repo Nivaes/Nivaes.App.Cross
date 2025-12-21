@@ -163,7 +163,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 var control = Activator.CreateInstance(viewType) as Control;
                 if (control is ICrossView mvxControl)
                 {
-                    if (request is MvxViewModelInstanceRequest instanceRequest)
+                    if (request is CrossViewModelInstanceRequest instanceRequest)
                     {
                         mvxControl.ViewModel = instanceRequest.ViewModelInstance;
                     }
@@ -355,8 +355,8 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
 
             string requestText;
-            requestText = request is MvxViewModelInstanceRequest
-                ? requestTranslator.GetRequestTextWithKeyFor(((MvxViewModelInstanceRequest)request).ViewModelInstance)
+            requestText = request is CrossViewModelInstanceRequest
+                ? requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance)
                 : requestTranslator.GetRequestTextFor(request);
 
             return requestText;
@@ -373,7 +373,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             lock (_windowInformationLock)
             {
                 var frame = _mainFrame;
-                if (request is MvxViewModelInstanceRequestWithSource targetRequest)
+                if (request is CrossViewModelInstanceRequestWithSource targetRequest)
                 {
                     frame = _windowInformation.Find(wi => wi.IsFor(targetRequest.Source)) ??
                             _mainFrame;
@@ -497,7 +497,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 var requestText = GetRequestText(request);
                 var containerView =
                     windowInformation.RootFrame.UnderlyingControl.FindControl<Frame>(viewType.GetRegionName());
-                if (request is MvxViewModelInstanceRequestWithSource targetRequest &&
+                if (request is CrossViewModelInstanceRequestWithSource targetRequest &&
                     targetRequest.ViewModelInstance != null)
                 {
                     windowInformation.RegisterSubViewModel(targetRequest.ViewModelInstance);
@@ -546,7 +546,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                     var requestText = GetRequestText(request);
                     nestedFrame.Navigate(viewType, requestText);
 
-                    if (request is MvxViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
+                    if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
                     {
                         windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
                     }
@@ -563,7 +563,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                     var requestText = GetRequestText(request);
                     nestedFrame.Navigate(viewType, requestText);
 
-                    if (request is MvxViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
+                    if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
                     {
                         windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
                     }

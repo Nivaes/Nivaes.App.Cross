@@ -122,7 +122,7 @@ namespace Playground.Droid.Fragments
 
         public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
         {
-            if (request is MvxViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
+            if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
             {
                 return new MvxFragmentPresentationAttribute()
                 {

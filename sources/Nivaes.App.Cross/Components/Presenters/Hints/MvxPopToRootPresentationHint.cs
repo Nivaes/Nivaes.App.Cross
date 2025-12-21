@@ -5,7 +5,7 @@ namespace MvvmCross.Presenters.Hints
     using Nivaes.App.Cross;
 
     public class MvxPopToRootPresentationHint
-        : MvxPresentationHint
+        : CrossPresentationHint
     {
         public MvxPopToRootPresentationHint(bool animated = true)
         {

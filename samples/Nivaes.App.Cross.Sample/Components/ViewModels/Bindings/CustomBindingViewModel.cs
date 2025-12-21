@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels.Bindings
     using Nivaes.App.Cross;
 
     public class CustomBindingViewModel
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         private ICrossAsyncCommand _closeCommand;
 

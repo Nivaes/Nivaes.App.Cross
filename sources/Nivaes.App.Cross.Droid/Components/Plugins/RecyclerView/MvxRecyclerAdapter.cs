@@ -104,7 +104,7 @@ public class MvxRecyclerAdapter
     /// <para>
     /// It is recommended to use a type inheriting from <see cref="IList"/>, such as
     /// <see cref="System.Collections.ObjectModel.ObservableCollection{T}"/>,
-    /// <see cref="MvvmCross.ViewModels.MvxObservableCollection{T}"/> or
+    /// <see cref="MvvmCross.ViewModels.CrossObservableCollection{T}"/> or
     /// <see cref="System.Collections.Generic.List{T}"/>.
     /// </para>
     /// </summary>

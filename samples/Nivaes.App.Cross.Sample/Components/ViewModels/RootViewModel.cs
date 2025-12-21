@@ -98,7 +98,7 @@ namespace Playground.Core.ViewModels
                 ResultViewModelManager, new SampleModel("Hello from Root!", 1.337m));
         }
 
-        public MvxNotifyTask MyTask { get; set; }
+        public CrossNotifyTask MyTask { get; set; }
 
         public ICrossAsyncCommand ShowChildCommand { get; }
 
@@ -204,7 +204,7 @@ namespace Playground.Core.ViewModels
         {
             base.ViewAppearing();
 
-            MyTask = MvxNotifyTask.Create(
+            MyTask = CrossNotifyTask.Create(
                 async () =>
                 {
                     await Task.Delay(300);

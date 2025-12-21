@@ -74,9 +74,9 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 
             // If the MvxViewPagerFragmentInfo for this position doesn't have the ViewModel, overwrite it with a new MvxViewPagerFragmentInfo that has the ViewModel we just created.
             // Not doing this means the ViewModel gets recreated every time the Fragment gets recreated!
-            if (fragmentInfo is { Request: not MvxViewModelInstanceRequest })
+            if (fragmentInfo is { Request: not CrossViewModelInstanceRequest })
             {
-                var viewModelInstanceRequest = new MvxViewModelInstanceRequest(mvxFragment.ViewModel);
+                var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
                 var newFragInfo = new MvxViewPagerFragmentInfo(fragmentInfo.Title, fragmentInfo.Tag, fragmentInfo.FragmentType, viewModelInstanceRequest);
                 FragmentsInfo[position] = newFragInfo;
             }
@@ -101,7 +101,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 
         private static ICrossViewModel GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            if (fragmentInfo.Request is MvxViewModelInstanceRequest instanceRequest)
+            if (fragmentInfo.Request is CrossViewModelInstanceRequest instanceRequest)
             {
                 return instanceRequest.ViewModelInstance;
             }
@@ -185,7 +185,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
                 {
                     // The fragment was already restored by Android with its old ViewModel (cached by MvvmCross).
                     // Add the ViewModel to the FragmentInfo object so the adapter won't instantiate a new one.
-                    var viewModelInstanceRequest = new MvxViewModelInstanceRequest(mvxFragment.ViewModel);
+                    var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
                     fragInfo = new MvxViewPagerFragmentInfo(parcelable.Title, parcelable.Tag, parcelable.FragmentType, viewModelInstanceRequest);
                 }
 

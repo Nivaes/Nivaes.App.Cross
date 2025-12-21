@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class Tab2ViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public Tab2ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)

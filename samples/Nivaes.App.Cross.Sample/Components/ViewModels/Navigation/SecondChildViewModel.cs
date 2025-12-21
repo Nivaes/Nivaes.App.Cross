@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class SecondChildViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public SecondChildViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)

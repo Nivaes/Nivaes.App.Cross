@@ -5,7 +5,7 @@ namespace MvvmCross.Presenters.Hints
     using Nivaes.App.Cross;
 
     public class MvxPagePresentationHint
-        : MvxPresentationHint
+        : CrossPresentationHint
     {
         public MvxPagePresentationHint(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModel)

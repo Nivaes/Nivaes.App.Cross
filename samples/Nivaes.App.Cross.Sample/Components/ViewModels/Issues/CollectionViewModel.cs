@@ -13,7 +13,7 @@ namespace Playground.Core.ViewModels
     {
         private readonly Random _random;
 
-        public MvxObservableCollection<AnimalViewModel> Animals { get; } = new();
+        public CrossObservableCollection<AnimalViewModel> Animals { get; } = new();
 
         public MvxCommand<AnimalViewModel> DeleteAnimalCommand { get; }
         public MvxCommand<int> AddAnimalCommand { get; }
@@ -138,7 +138,7 @@ namespace Playground.Core.ViewModels
             animal.Favorite = !animal.Favorite;
         }
 
-        public abstract class AnimalViewModel : MvxNotifyPropertyChanged
+        public abstract class AnimalViewModel : CrossNotifyPropertyChanged
         {
             private string _name;
             private string _imageUrl;

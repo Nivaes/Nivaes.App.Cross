@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class Page1ViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public MvxCommand<int> HeaderTappedCommand { get; }
 
@@ -45,7 +45,7 @@ namespace Playground.Core.ViewModels
             System.Diagnostics.Debug.WriteLine($"Header {index} tapped");
         }
 
-        public class SectionViewModel : MvxNotifyPropertyChanged, IEnumerable<SectionItemViewModel>
+        public class SectionViewModel : CrossNotifyPropertyChanged, IEnumerable<SectionItemViewModel>
         {
             private List<SectionItemViewModel> _items;
             private string _title;
@@ -82,7 +82,7 @@ namespace Playground.Core.ViewModels
             }
         }
 
-        public class SectionItemViewModel : MvxNotifyPropertyChanged
+        public class SectionItemViewModel : CrossNotifyPropertyChanged
         {
             private string _title;
 

@@ -9,7 +9,7 @@ namespace Playground.Core.ViewModels
     {
         public override Task Initialize()
         {
-            Items = new MvxObservableCollection<ListItemViewModel>
+            Items = new CrossObservableCollection<ListItemViewModel>
             {
                 new ListItemViewModel { Id = 1, Title = "title one Fragment" },
                 new ListItemViewModel { Id = 2, Title = "title two Activity" },
@@ -21,8 +21,8 @@ namespace Playground.Core.ViewModels
             return base.Initialize();
         }
 
-        private MvxObservableCollection<ListItemViewModel> _items;
-        public MvxObservableCollection<ListItemViewModel> Items
+        private CrossObservableCollection<ListItemViewModel> _items;
+        public CrossObservableCollection<ListItemViewModel> Items
         {
             get => _items;
             set => SetProperty(ref _items, value);

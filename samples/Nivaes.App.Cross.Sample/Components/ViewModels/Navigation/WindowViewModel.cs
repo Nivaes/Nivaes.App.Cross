@@ -13,7 +13,7 @@ namespace Playground.Core.ViewModels
     }
 
     public class WindowViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         private static int _count;
 

@@ -1,30 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Windowing;
-using MvvmCross.Platforms.WinUi.Presenters.Attributes;
-using MvvmCross.Platforms.WinUi.Presenters.Models;
-using MvvmCross.Platforms.WinUi.Presenters.Utils;
-using MvvmCross.Platforms.WinUi.Views;
-using MvvmCross.ViewModels;
-using Playground.Core.ViewModels;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace Playground.WinUi3.Views
 {
+    using Microsoft.UI.Windowing;
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Platforms.WinUi.Presenters.Attributes;
+    using MvvmCross.Platforms.WinUi.Presenters.Models;
+    using MvvmCross.Platforms.WinUi.Presenters.Utils;
+    using MvvmCross.Platforms.WinUi.Views;
+    using Nivaes.App.Cross;
+    using Playground.Core.ViewModels;
+
     [MvxViewFor(typeof(NewWindowViewModel))]
     [MvxNewWindowPresentation]
     public sealed partial class NewWindow : NewWindowPage, IMvxNeedWindow

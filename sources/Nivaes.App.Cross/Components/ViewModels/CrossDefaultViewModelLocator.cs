@@ -119,7 +119,7 @@ namespace Nivaes.App.Cross
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.InitializeTask = MvxNotifyTask.Create(() => viewModel.Initialize());
+                viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
             }
             catch (Exception exception)
             {
@@ -160,7 +160,7 @@ namespace Nivaes.App.Cross
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.InitializeTask = MvxNotifyTask.Create(() => viewModel.Initialize());
+                viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
             }
             catch (Exception exception)
             {

@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels.Bindings;
 
-    public class MainViewModel : MvxNavigationViewModel
+    public class MainViewModel : CrossNavigationViewModel
     {
         private string _bindableText = "I'm bound!";
 

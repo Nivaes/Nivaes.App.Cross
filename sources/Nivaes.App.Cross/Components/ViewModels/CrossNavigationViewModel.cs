@@ -1,15 +1,14 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
     using MvvmCross.ViewModels.Result;
-    using Nivaes.App.Cross;
 
-    public abstract class MvxNavigationViewModel
+    public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
         private ILogger? _log;
 
-        protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
+        protected CrossNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
         {
             LoggerFactory = logFactory;
             NavigationService = navigationService;
@@ -23,7 +22,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
-        : MvxNavigationViewModel, ICrossViewModel<TParameter>
+        : CrossNavigationViewModel, ICrossViewModel<TParameter>
     {
         protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)
@@ -34,7 +33,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationResultAwaitingViewModel<TResult>
-        : MvxNavigationViewModel, IMvxResultAwaitingViewModel<TResult>
+        : CrossNavigationViewModel, IMvxResultAwaitingViewModel<TResult>
     {
         protected IMvxResultViewModelManager ResultViewModelManager { get; }
 
@@ -87,7 +86,7 @@ namespace MvvmCross.ViewModels
     }
 
     public abstract class MvxNavigationResultSettingViewModel<TResult>
-        : MvxNavigationViewModel, IMvxResultSettingViewModel<TResult>
+        : CrossNavigationViewModel, IMvxResultSettingViewModel<TResult>
     {
         protected IMvxResultViewModelManager ResultViewModelManager { get; }
 

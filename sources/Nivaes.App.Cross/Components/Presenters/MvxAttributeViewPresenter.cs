@@ -160,7 +160,7 @@ namespace MvvmCross.Presenters
             throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
         }
 
-        public override async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public override async Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             if (await HandlePresentationChange(hint).ConfigureAwait(true))
                 return true;
@@ -177,7 +177,7 @@ namespace MvvmCross.Presenters
         public override Task<bool> Close(ICrossViewModel viewModel)
         {
             return GetPresentationAttributeAction(
-                    new MvxViewModelInstanceRequest(viewModel), out var attribute)
+                    new CrossViewModelInstanceRequest(viewModel), out var attribute)
                 .CloseAction?
                 .Invoke(viewModel, attribute) ?? Task.FromResult(false);
         }

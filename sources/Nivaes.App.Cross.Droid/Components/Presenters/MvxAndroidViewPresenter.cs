@@ -236,7 +236,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             throw new InvalidOperationException($"Don't know how to create a presentation attribute for type {viewType}");
         }
 
-        public override Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public override Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             if (hint == null)
                 throw new ArgumentNullException(nameof(hint));
@@ -419,7 +419,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelRequestTranslator? requestTranslator) != true || requestTranslator == null)
                 return null;
 
-            if (request is MvxViewModelInstanceRequest viewModelInstanceRequest)
+            if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
             {
                 var intentWithKey = requestTranslator.GetIntentWithKeyFor(
                     viewModelInstanceRequest.ViewModelInstance,
@@ -561,7 +561,7 @@ namespace MvvmCross.Platforms.Android.Presenters
                 throw new CrossException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
 
             // MvxNavigationService provides an already instantiated ViewModel here
-            if (request is MvxViewModelInstanceRequest instanceRequest)
+            if (request is CrossViewModelInstanceRequest instanceRequest)
             {
                 fragmentView!.ViewModel = instanceRequest.ViewModelInstance;
             }
@@ -698,7 +698,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
             // MvxNavigationService provides an already instantiated ViewModel here,
             // therefore just assign it
-            if (request is MvxViewModelInstanceRequest instanceRequest)
+            if (request is CrossViewModelInstanceRequest instanceRequest)
             {
                 mvxFragmentView.ViewModel = instanceRequest.ViewModelInstance;
             }

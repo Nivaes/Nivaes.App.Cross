@@ -128,7 +128,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        protected virtual async Task<MvxViewModelInstanceRequest> NavigationRouteRequest(
+        protected virtual async Task<CrossViewModelInstanceRequest> NavigationRouteRequest(
             string path, ICrossBundle? presentationBundle = null)
         {
             ArgumentNullException.ThrowIfNull(path);
@@ -145,7 +145,7 @@ namespace Nivaes.App.Cross
 
             var viewModelType = entry.Value;
 
-            var request = new MvxViewModelInstanceRequest(viewModelType)
+            var request = new CrossViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData(),
                 ParameterValues = parameterValues.SafeGetData()
@@ -170,7 +170,7 @@ namespace Nivaes.App.Cross
                         request.ParameterValues = facadeRequest.ParameterValues;
                     }
 
-                    if (facadeRequest is MvxViewModelInstanceRequest instanceRequest)
+                    if (facadeRequest is CrossViewModelInstanceRequest instanceRequest)
                     {
                         request.ViewModelInstance = instanceRequest.ViewModelInstance ?? ViewModelLoader.LoadViewModel(request, null);
                     }
@@ -193,7 +193,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        protected async Task<MvxViewModelInstanceRequest> NavigationRouteRequest<TParameter>(
+        protected async Task<CrossViewModelInstanceRequest> NavigationRouteRequest<TParameter>(
             string path, TParameter param, ICrossBundle? presentationBundle = null)
         {
             ArgumentNullException.ThrowIfNull(path);
@@ -211,7 +211,7 @@ namespace Nivaes.App.Cross
 
             var viewModelType = entry.Value;
 
-            var request = new MvxViewModelInstanceRequest(viewModelType)
+            var request = new CrossViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData(),
                 ParameterValues = parameterValues.SafeGetData()
@@ -325,7 +325,7 @@ namespace Nivaes.App.Cross
             ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequest(viewModelType)
+            var request = new CrossViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
@@ -339,7 +339,7 @@ namespace Nivaes.App.Cross
             ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequest(viewModelType)
+            var request = new CrossViewModelInstanceRequest(viewModelType)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
@@ -364,7 +364,7 @@ namespace Nivaes.App.Cross
         public virtual Task<bool> Navigate(
             ICrossViewModel viewModel, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
+            var request = new CrossViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
             ViewModelLoader.ReloadViewModel(viewModel, request, null);
             return Navigate(request, viewModel, presentationBundle, cancellationToken);
         }
@@ -372,13 +372,13 @@ namespace Nivaes.App.Cross
         public virtual Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param,
             ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
+            var request = new CrossViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
             ViewModelLoader.ReloadViewModel(viewModel, param, request, null);
             return Navigate(request, viewModel, presentationBundle, cancellationToken);
         }
 
         public virtual async Task<bool> ChangePresentation(
-            MvxPresentationHint hint, CancellationToken cancellationToken = default)
+            CrossPresentationHint hint, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(hint);
 
@@ -486,7 +486,7 @@ namespace Nivaes.App.Cross
             CancellationToken cancellationToken = default)
                 where TParameter : notnull
         {
-            var mvxViewModelInstanceRequest = new MvxViewModelInstanceRequestWithSource(viewModelType, source)
+            var mvxViewModelInstanceRequest = new CrossViewModelInstanceRequestWithSource(viewModelType, source)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
@@ -511,7 +511,7 @@ namespace Nivaes.App.Cross
             ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequestWithSource(viewModelType, source)
+            var request = new CrossViewModelInstanceRequestWithSource(viewModelType, source)
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
@@ -552,7 +552,7 @@ namespace Nivaes.App.Cross
         public virtual Task<bool> Navigate(
             ICrossViewModel viewModel, ICrossViewModel source, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
-            var request = new MvxViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
+            var request = new CrossViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
             ViewModelLoader.ReloadViewModel(viewModel, request, null);
             return NavigateAsync(request, viewModel, presentationBundle, cancellationToken);
         }
@@ -575,7 +575,7 @@ namespace Nivaes.App.Cross
             ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TParameter : notnull
         {
-            var request = new MvxViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
+            var request = new CrossViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
             ViewModelLoader.ReloadViewModel(viewModel, param, request, null);
             return NavigateAsync(request, viewModel, presentationBundle, cancellationToken);
         }

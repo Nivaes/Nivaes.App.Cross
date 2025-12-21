@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class NestedChildViewModel
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public NestedChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)

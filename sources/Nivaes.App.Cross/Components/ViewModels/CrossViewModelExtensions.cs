@@ -1,13 +1,11 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
 
-    public static class MvxViewModelExtensions
+    public static class CrossViewModelExtensions
     {
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime method inspection for generic type parameter with PublicMethods annotation")]
         public static void CallBundleMethods<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] TViewModel>(

@@ -11,13 +11,13 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public ChangePresentationEventArgs(MvxPresentationHint? hint, CancellationToken cancellationToken = default)
+        public ChangePresentationEventArgs(CrossPresentationHint? hint, CancellationToken cancellationToken = default)
             : this(cancellationToken)
         {
             Hint = hint;
         }
 
-        public MvxPresentationHint? Hint { get; set; }
+        public CrossPresentationHint? Hint { get; set; }
 
         public bool? Result { get; set; }
     }

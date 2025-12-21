@@ -4,7 +4,7 @@ namespace Playground.Core.ViewModels
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class MixedNavMasterDetailViewModel : MvxNavigationViewModel
+    public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
     {
         private MenuItem _menuItem;
         private ICrossAsyncCommand<MenuItem> _onSelectedChangedCommand;

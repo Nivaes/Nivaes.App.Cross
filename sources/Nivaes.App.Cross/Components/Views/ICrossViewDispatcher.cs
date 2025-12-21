@@ -8,6 +8,6 @@ namespace Nivaes.App.Cross
     {
         Task<bool> ShowViewModel(CrossViewModelRequest request);
 
-        Task<bool> ChangePresentation(MvxPresentationHint hint);
+        Task<bool> ChangePresentation(CrossPresentationHint hint);
     }
 }

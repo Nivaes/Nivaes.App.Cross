@@ -9,11 +9,11 @@ namespace MvvmCross.Presenters
     public abstract class MvxViewPresenter 
         : IMvxViewPresenter
     {
-        private readonly Dictionary<Type, Func<MvxPresentationHint, Task<bool>>> _presentationHintHandlers =
-            new Dictionary<Type, Func<MvxPresentationHint, Task<bool>>>();
+        private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =
+            new Dictionary<Type, Func<CrossPresentationHint, Task<bool>>>();
 
         public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
-            where THint : MvxPresentationHint
+            where THint : CrossPresentationHint
         {
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
@@ -21,14 +21,14 @@ namespace MvvmCross.Presenters
             _presentationHintHandlers[typeof(THint)] = hint => action((THint)hint);
         }
 
-        protected Task<bool> HandlePresentationChange(MvxPresentationHint hint)
+        protected Task<bool> HandlePresentationChange(CrossPresentationHint hint)
         {
             if (hint == null)
                 throw new ArgumentNullException(nameof(hint));
 
             if (_presentationHintHandlers.TryGetValue(
                 hint.GetType(),
-                out Func<MvxPresentationHint, Task<bool>> handler))
+                out Func<CrossPresentationHint, Task<bool>> handler))
             {
                 return handler(hint);
             }
@@ -38,7 +38,7 @@ namespace MvvmCross.Presenters
 
         public abstract Task<bool> Show(CrossViewModelRequest request);
 
-        public abstract Task<bool> ChangePresentation(MvxPresentationHint hint);
+        public abstract Task<bool> ChangePresentation(CrossPresentationHint hint);
 
         public abstract Task<bool> Close(ICrossViewModel viewModel);
     }

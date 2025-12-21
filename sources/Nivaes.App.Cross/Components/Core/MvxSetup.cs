@@ -353,7 +353,7 @@ namespace MvvmCross.Core
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
-            iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
 
             iocProvider.RegisterType<ICrossCommandHelper, CrossWeakCommandHelper>();

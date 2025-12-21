@@ -9,9 +9,9 @@ namespace MvvmCross.Presenters
     {
         Task<bool> Show(CrossViewModelRequest request);
 
-        Task<bool> ChangePresentation(MvxPresentationHint hint);
+        Task<bool> ChangePresentation(CrossPresentationHint hint);
 
-        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : MvxPresentationHint;
+        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) where THint : CrossPresentationHint;
 
         Task<bool> Close(ICrossViewModel viewModel);
     }

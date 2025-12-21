@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class PagesRootViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public PagesRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)

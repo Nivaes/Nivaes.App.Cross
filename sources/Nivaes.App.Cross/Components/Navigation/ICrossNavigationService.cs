@@ -80,7 +80,7 @@ namespace Nivaes.App.Cross
         /// <param name="hint"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<bool> ChangePresentation(MvxPresentationHint hint, CancellationToken cancellationToken = default);
+        Task<bool> ChangePresentation(CrossPresentationHint hint, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Navigates to an instance of a ViewModel

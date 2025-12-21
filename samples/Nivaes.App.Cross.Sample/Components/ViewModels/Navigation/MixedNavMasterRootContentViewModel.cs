@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
     using Playground.Core.Models;
 
-    public class MixedNavMasterRootContentViewModel : MvxNavigationViewModel
+    public class MixedNavMasterRootContentViewModel : CrossNavigationViewModel
     {
         public MixedNavMasterRootContentViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)

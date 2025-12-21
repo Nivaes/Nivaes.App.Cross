@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class SplitMasterViewModel 
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public SplitMasterViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)

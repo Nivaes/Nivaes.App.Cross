@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
-#nullable enable
-    public interface IMvxNotifyPropertyChanged : INotifyPropertyChanged, INotifyPropertyChanging
+    using System;
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
+
+    public interface ICrossNotifyPropertyChanged 
+        : INotifyPropertyChanged, INotifyPropertyChanging
     {
         // this ShouldAlwaysRaiseInpcOnUserInterfaceThread is not a Property so as to avoid Inpc pollution
         bool ShouldAlwaysRaiseInpcOnUserInterfaceThread();
@@ -26,7 +22,7 @@ namespace MvvmCross.ViewModels
 
         bool RaisePropertyChanging<T>(T newValue, string whichProperty = "");
 
-        bool RaisePropertyChanging<T>(MvxPropertyChangingEventArgs<T> changingArgs);
+        bool RaisePropertyChanging<T>(CrossPropertyChangingEventArgs<T> changingArgs);
 
         Task RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression);
 
@@ -35,5 +31,4 @@ namespace MvvmCross.ViewModels
         Task RaisePropertyChanged(PropertyChangedEventArgs changedArgs);
 #pragma warning restore CA1030 // Use events where appropriate
     }
-#nullable restore
 }

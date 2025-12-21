@@ -30,7 +30,7 @@ namespace MvvmCross.Platforms.Mac.Views
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             Func<Task> action = () =>
             {

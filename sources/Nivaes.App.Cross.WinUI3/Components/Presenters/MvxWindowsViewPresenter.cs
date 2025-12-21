@@ -85,9 +85,9 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         {
             var requestTranslator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
             string requestText = string.Empty;
-            if (request is MvxViewModelInstanceRequest)
+            if (request is CrossViewModelInstanceRequest)
             {
-                requestText = requestTranslator.GetRequestTextWithKeyFor(((MvxViewModelInstanceRequest)request).ViewModelInstance);
+                requestText = requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance);
             }
             else
             {
@@ -267,7 +267,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 var control = Activator.CreateInstance(viewType) as Control;
                 if (control is ICrossView mvxControl)
                 {
-                    if (request is MvxViewModelInstanceRequest instanceRequest)
+                    if (request is CrossViewModelInstanceRequest instanceRequest)
                         mvxControl.ViewModel = instanceRequest.ViewModelInstance;
                     else
                         mvxControl.ViewModel = ViewModelLoader.LoadViewModel(request, null);

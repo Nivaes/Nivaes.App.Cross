@@ -6,7 +6,7 @@ namespace MvvmCross.Presenters.Hints
     using Nivaes.App.Cross;
 
     public class MvxRemovePresentationHint
-        : MvxPresentationHint
+        : CrossPresentationHint
     {
         public MvxRemovePresentationHint(Type viewModelToRemove)
         {

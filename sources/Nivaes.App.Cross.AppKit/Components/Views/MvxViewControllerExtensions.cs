@@ -31,7 +31,7 @@ namespace MvvmCross.Platforms.Mac.Views
                 macView.Request = Mvx.IoCProvider.Resolve<IMvxCurrentRequest>().CurrentRequest;
             }
 
-            var instanceRequest = macView.Request as MvxViewModelInstanceRequest;
+            var instanceRequest = macView.Request as CrossViewModelInstanceRequest;
             if (instanceRequest != null)
             {
                 return instanceRequest.ViewModelInstance;

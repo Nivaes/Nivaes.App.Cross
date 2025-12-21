@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
     using Nivaes.App.Cross;
 
     public class ModalNavViewModel
-        : MvxNavigationViewModel
+        : CrossNavigationViewModel
     {
         public ModalNavViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
         {

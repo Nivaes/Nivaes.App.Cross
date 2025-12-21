@@ -1,14 +1,13 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
 
-    public class MvxViewModelInstanceRequest(
+    public class CrossViewModelInstanceRequest(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType)
             : CrossViewModelRequest(viewModelType)
     {
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Runtime type of ViewModel instance is expected to have public constructors")]
-        public MvxViewModelInstanceRequest(ICrossViewModel viewModelInstance)
+        public CrossViewModelInstanceRequest(ICrossViewModel viewModelInstance)
             : this(viewModelInstance.GetType())
         {
             ViewModelInstance = viewModelInstance;

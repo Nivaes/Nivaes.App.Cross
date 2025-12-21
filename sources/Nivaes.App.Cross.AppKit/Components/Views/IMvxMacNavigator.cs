@@ -7,6 +7,6 @@ namespace MvvmCross.Platforms.Mac.Views
     {
         void NavigateTo(CrossViewModelRequest request);
 
-        void ChangePresentation(MvxPresentationHint hint);
+        void ChangePresentation(CrossPresentationHint hint);
     }
 }
