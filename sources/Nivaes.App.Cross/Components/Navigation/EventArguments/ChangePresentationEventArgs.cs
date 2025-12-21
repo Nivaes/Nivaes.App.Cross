@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Threading;
-using MvvmCross.ViewModels;
-
-namespace MvvmCross.Navigation.EventArguments
+namespace Nivaes.App.Cross
 {
-#nullable enable
-    public class ChangePresentationEventArgs : MvxCancelEventArgs
+    using System.Threading;
+    using MvvmCross.ViewModels;
+
+    public class ChangePresentationEventArgs 
+        : CrossCancelEventArgs
     {
         public ChangePresentationEventArgs(CancellationToken cancellationToken = default)
             : base(cancellationToken)
@@ -25,5 +21,4 @@ namespace MvvmCross.Navigation.EventArguments
 
         public bool? Result { get; set; }
     }
-#nullable restore
 }

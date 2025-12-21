@@ -1,8 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using MvvmCross.Localization;
-    using MvvmCross.Navigation;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class BindingsViewModel 

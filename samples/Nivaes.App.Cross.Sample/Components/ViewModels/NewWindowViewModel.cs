@@ -1,16 +1,16 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
-    using Playground.Core.ViewModels.Navigation;
     using Nivaes.App.Cross;
+    using Playground.Core.ViewModels.Navigation;
 
-    public class NewWindowViewModel : MvxNavigationViewModel
+    public class NewWindowViewModel 
+        : MvxNavigationViewModel
     {
         private string _welcomeText = "Default welcome";
 
-        public NewWindowViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
+        public NewWindowViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
         {
         }
 

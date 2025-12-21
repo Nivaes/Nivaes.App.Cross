@@ -9,7 +9,6 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     using Microsoft.UI.Xaml.Media;
     using MvvmCross.Exceptions;
     using MvvmCross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
     using MvvmCross.Presenters;
@@ -77,7 +76,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 return;
             }
 
-            var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            var navigationService = Mvx.IoCProvider.Resolve<ICrossNavigationService>();
 
             backRequestedEventArgs.Handled = await navigationService.Close(currentView.ViewModel);
         }

@@ -2,15 +2,14 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using MvvmCross;
-    using MvvmCross.Navigation;
     using Nivaes.App.Cross;
 
     public class NavigationCloseViewModel 
         : CrossViewModel
     {
-        private readonly IMvxNavigationService _mvxNavigationService;
+        private readonly ICrossNavigationService _mvxNavigationService;
 
-        public NavigationCloseViewModel(IMvxNavigationService mvxNavigationService)
+        public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService)
         {
             _mvxNavigationService = mvxNavigationService;
         }

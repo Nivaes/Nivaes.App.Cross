@@ -1,13 +1,12 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MixedNavFirstViewModel : MvxNavigationViewModel
     {
-        public MixedNavFirstViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public MixedNavFirstViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
         }

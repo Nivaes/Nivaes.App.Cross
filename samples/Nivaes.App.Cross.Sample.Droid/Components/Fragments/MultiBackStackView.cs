@@ -4,16 +4,13 @@ namespace Playground.Droid.Fragments
     using Android.Views;
     using Google.Android.Material.Navigation;
     using MvvmCross;
-    using MvvmCross.Navigation;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.Presenters;
     using MvvmCross.Presenters.Attributes;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Sample.Droid;
     using Playground.Core.ViewModels;
     using Playground.Core.ViewModels.Navigation;
     using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
@@ -23,7 +20,8 @@ namespace Playground.Droid.Fragments
     ViewModelType = typeof(MultiBackStackViewModel),
     SetAsPrimaryFragment = true)]
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class MultiBackStackView : MvxFragment<MultiBackStackViewModel>
+    public sealed class MultiBackStackView 
+        : MvxFragment<MultiBackStackViewModel>
     {
         private NavigationBarView _navigationView;
         private bool _navigatedToTab2;
@@ -63,7 +61,7 @@ namespace Playground.Droid.Fragments
                     if (!_navigatedToTab2)
                     {
                         _navigatedToTab2 = true;
-                        Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate(typeof(MultiBackStackTab2ViewModel));
+                        Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate(typeof(MultiBackStackTab2ViewModel));
                     }
                     else
                     {

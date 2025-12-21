@@ -2,14 +2,14 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class Tab1ViewModel : MvxNavigationViewModel<string>
+    public class Tab1ViewModel 
+        : MvxNavigationViewModel<string>
     {
-        public Tab1ViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public Tab1ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             OpenChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());

@@ -1,13 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class SheetViewModel : MvxNavigationViewModel
+    public class SheetViewModel 
+        : MvxNavigationViewModel
     {
-        public SheetViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public SheetViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             CloseCommand = new CrossAsyncCommand(CloseSheet);

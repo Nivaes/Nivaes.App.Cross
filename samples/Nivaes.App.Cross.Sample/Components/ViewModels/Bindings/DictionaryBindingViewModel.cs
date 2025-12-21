@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using Nivaes.App.Cross;
 
     public class DictionaryBindingViewModel : BaseViewModel
@@ -20,7 +19,7 @@ namespace Playground.Core.ViewModels
 
         ICrossCommand _incrementCommand;
 
-        public DictionaryBindingViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
+        public DictionaryBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
         }

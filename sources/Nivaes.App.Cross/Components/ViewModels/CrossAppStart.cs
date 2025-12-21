@@ -4,16 +4,15 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.Exceptions;
     using MvvmCross.Logging;
-    using MvvmCross.Navigation;
 
     public abstract class CrossAppStart : ICrossAppStart
     {
-        protected readonly IMvxNavigationService NavigationService;
+        protected readonly ICrossNavigationService NavigationService;
         protected readonly ICrossApplication Application;
 
         private int startHasCommenced;
 
-        protected CrossAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+        protected CrossAppStart(ICrossApplication application, ICrossNavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;
@@ -65,7 +64,7 @@ namespace Nivaes.App.Cross
         : CrossAppStart
             where TViewModel : ICrossViewModel
     {
-        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, ICrossNavigationService navigationService)
             : base(application, navigationService)
         {
         }
@@ -88,7 +87,7 @@ namespace Nivaes.App.Cross
             where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
-        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, ICrossNavigationService navigationService)
             : base(application, navigationService)
         {
         }

@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels.Bindings
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
@@ -16,7 +15,7 @@ namespace Playground.Core.ViewModels.Bindings
 
         private string _hello = "Hello MvvmCross";
 
-        public CustomBindingViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+        public CustomBindingViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)
         {
         }

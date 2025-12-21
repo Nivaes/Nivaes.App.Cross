@@ -1,7 +1,6 @@
 namespace MvvmCross.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
 
@@ -10,13 +9,13 @@ namespace MvvmCross.ViewModels
     {
         private ILogger? _log;
 
-        protected MvxNavigationViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+        protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
         {
             LoggerFactory = logFactory;
             NavigationService = navigationService;
         }
 
-        protected virtual IMvxNavigationService NavigationService { get; }
+        protected virtual ICrossNavigationService NavigationService { get; }
 
         protected virtual ILoggerFactory LoggerFactory { get; }
 
@@ -26,7 +25,7 @@ namespace MvvmCross.ViewModels
     public abstract class MvxNavigationViewModel<TParameter>
         : MvxNavigationViewModel, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+        protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)
         {
         }
@@ -41,7 +40,7 @@ namespace MvvmCross.ViewModels
 
         protected MvxNavigationResultAwaitingViewModel(
                 ILoggerFactory logFactory,
-                IMvxNavigationService navigationService,
+                ICrossNavigationService navigationService,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService)
         {
@@ -78,7 +77,7 @@ namespace MvvmCross.ViewModels
     {
         protected MvxNavigationResultAwaitingViewModel(
                 ILoggerFactory logFactory,
-                IMvxNavigationService navigationService,
+                ICrossNavigationService navigationService,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService, resultViewModelManager)
         {
@@ -94,7 +93,7 @@ namespace MvvmCross.ViewModels
 
         protected MvxNavigationResultSettingViewModel(
                 ILoggerFactory logFactory,
-                IMvxNavigationService navigationService,
+                ICrossNavigationService navigationService,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService)
         {
@@ -112,7 +111,7 @@ namespace MvvmCross.ViewModels
     {
         protected MvxNavigationResultSettingViewModel(
                 ILoggerFactory logFactory,
-                IMvxNavigationService navigationService,
+                ICrossNavigationService navigationService,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService, resultViewModelManager)
         {

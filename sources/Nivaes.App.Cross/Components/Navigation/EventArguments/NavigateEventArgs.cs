@@ -1,9 +1,6 @@
-namespace MvvmCross.Navigation.EventArguments
+namespace Nivaes.App.Cross
 {
-    using System.ComponentModel;
     using System.Threading;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     public enum NavigationMode
     {
@@ -12,16 +9,16 @@ namespace MvvmCross.Navigation.EventArguments
         Close
     }
 
-    public class MvxNavigateEventArgs 
-        : MvxCancelEventArgs, IMvxNavigateEventArgs
+    public class CrossNavigateEventArgs 
+        : CrossCancelEventArgs, ICrossNavigateEventArgs
     {
-        public MvxNavigateEventArgs(NavigationMode mode, CancellationToken cancellationToken = default)
+        public CrossNavigateEventArgs(NavigationMode mode, CancellationToken cancellationToken = default)
             : base(cancellationToken)
         {
             Mode = mode;
         }
 
-        public MvxNavigateEventArgs(ICrossViewModel viewModel, NavigationMode mode, CancellationToken cancellationToken = default)
+        public CrossNavigateEventArgs(ICrossViewModel viewModel, NavigationMode mode, CancellationToken cancellationToken = default)
             : this(mode, cancellationToken)
         {
             ViewModel = viewModel;

@@ -3,10 +3,8 @@ namespace MvvmCross.Core
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.Plugin;
     using MvvmCross.ViewModels;
     using MvvmCross.ViewModels.Result;
@@ -344,8 +342,8 @@ namespace MvvmCross.Core
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp(iocProvider));
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
-                (loader, dispatcher, p) => new MvxNavigationService(loader, dispatcher, p));
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
+                (loader, dispatcher, p) => new CrossNavigationService(loader, dispatcher, p));
             iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
             iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
@@ -408,11 +406,11 @@ namespace MvvmCross.Core
             return iocProvider.Resolve<ICrossViewModelLoader>();
         }
 
-        protected virtual IMvxNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxNavigationService>();
+            return iocProvider.Resolve<ICrossNavigationService>();
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
@@ -539,7 +537,7 @@ namespace MvvmCross.Core
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual IMvxNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -554,7 +552,7 @@ namespace MvvmCross.Core
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual void LoadNavigationServiceRoutes(IMvxNavigationService navigationService, IMvxIoCProvider iocProvider)
+        protected virtual void LoadNavigationServiceRoutes(ICrossNavigationService navigationService, IMvxIoCProvider iocProvider)
         {
             if (navigationService == null)
                 throw new ArgumentNullException(nameof(navigationService));

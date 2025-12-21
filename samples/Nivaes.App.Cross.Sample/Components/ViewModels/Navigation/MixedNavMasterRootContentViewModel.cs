@@ -1,14 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.Models;
 
     public class MixedNavMasterRootContentViewModel : MvxNavigationViewModel
     {
-        public MixedNavMasterRootContentViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public MixedNavMasterRootContentViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());

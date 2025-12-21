@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels.Navigation
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
@@ -9,7 +8,7 @@ namespace Playground.Core.ViewModels.Navigation
 
     public sealed class ChildWithResultViewModel(
             ILoggerFactory logFactory,
-            IMvxNavigationService navigationService,
+            ICrossNavigationService navigationService,
             IMvxResultViewModelManager resultViewModelManager)
         : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
             logFactory,

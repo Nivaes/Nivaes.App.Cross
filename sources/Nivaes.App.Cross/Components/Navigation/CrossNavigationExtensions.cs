@@ -1,11 +1,10 @@
-namespace MvvmCross.Navigation
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.ViewModels;
     using MvvmCross.ViewModels.Result;
-    using Nivaes.App.Cross;
 
-    public static class MvxNavigationExtensions
+    public static class CrossNavigationExtensions
     {
         /// <summary>
         /// Verifies if the provided Uri can be routed to a ViewModel request.
@@ -13,7 +12,7 @@ namespace MvvmCross.Navigation
         /// <param name="navigationService"></param>
         /// <param name="path">URI to route</param>
         /// <returns>True if the uri can be routed or false if it cannot.</returns>
-        public static Task<bool> CanNavigate(this IMvxNavigationService navigationService, Uri path)
+        public static Task<bool> CanNavigate(this ICrossNavigationService navigationService, Uri path)
         {
             return navigationService.CanNavigate(path.ToString());
         }
@@ -27,13 +26,13 @@ namespace MvvmCross.Navigation
         /// <param name="cancellationToken"></param>
         /// <returns>A task to await upon</returns>
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public static Task Navigate(this IMvxNavigationService navigationService, Uri path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public static Task Navigate(this ICrossNavigationService navigationService, Uri path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
             return navigationService.Navigate(path.ToString(), presentationBundle, cancellationToken);
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public static Task Navigate<TParameter>(this IMvxNavigationService navigationService, Uri path, TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        public static Task Navigate<TParameter>(this ICrossNavigationService navigationService, Uri path, TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         {
             return navigationService.Navigate(path.ToString(), param, presentationBundle, cancellationToken);
         }
@@ -50,7 +49,7 @@ namespace MvvmCross.Navigation
         /// <typeparam name="TResult">Result awaited by Result Awaiting ViewModel and set by Result Setting ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         public static async Task<bool> NavigateRegisteringToResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TResult>(
-            this IMvxNavigationService navigationService,
+            this ICrossNavigationService navigationService,
             IMvxResultAwaitingViewModel<TResult> fromViewModel,
             IMvxResultViewModelManager resultViewModelManager,
             ICrossBundle? presentationBundle = null,
@@ -76,7 +75,7 @@ namespace MvvmCross.Navigation
         /// <typeparam name="TResult">Result awaited by Result Awaiting ViewModel and set by Result Setting ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         public static async Task<bool> NavigateRegisteringToResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter, TResult>(
-            this IMvxNavigationService navigationService,
+            this ICrossNavigationService navigationService,
             IMvxResultAwaitingViewModel<TResult> fromViewModel,
             IMvxResultViewModelManager resultViewModelManager,
             TParameter parameter,
@@ -101,7 +100,7 @@ namespace MvvmCross.Navigation
         /// <typeparam name="TResult">Result set by Result Setting ViewModel</typeparam>
         /// <returns></returns>
         public static async Task<bool> CloseSettingResult<TViewModel, TResult>(
-            this IMvxNavigationService navigationService,
+            this ICrossNavigationService navigationService,
             TViewModel viewModel,
             TResult result,
             CancellationToken cancellationToken = default)

@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.Models;
@@ -15,7 +14,7 @@ namespace Playground.Core.ViewModels
         private string _anotherBrokenTextValue;
 
         public ChildViewModel(
-            ILoggerFactory logProvider, IMvxNavigationService navigationService)
+            ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             CloseCommand = new CrossAsyncCommand(DoCloseCommand);

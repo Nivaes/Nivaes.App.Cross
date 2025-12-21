@@ -1,11 +1,11 @@
 namespace Playground.Core.ViewModels.Navigation
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class MultiBackStackViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : MvxNavigationViewModel(logFactory, navigationService)
+    public class MultiBackStackViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) 
+        : MvxNavigationViewModel(logFactory, navigationService)
     {
         private bool _initialNavigationDone = false;
 
@@ -38,7 +38,7 @@ namespace Playground.Core.ViewModels.Navigation
         }
     }
 
-    public class MultiBackStackTab1ViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : MvxNavigationViewModel(logFactory, navigationService)
+    public class MultiBackStackTab1ViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : MvxNavigationViewModel(logFactory, navigationService)
     {
         public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
     }
@@ -57,7 +57,7 @@ namespace Playground.Core.ViewModels.Navigation
             set => SetProperty(ref _depth, value);
         }
 
-        public MultiBackStackInnerViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
+        public MultiBackStackInnerViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
         {
             GoDeeperCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackInnerViewModel, int>(Depth + 1));
             CloseCommand = new CrossAsyncCommand(async () => await NavigationService.Close(this));

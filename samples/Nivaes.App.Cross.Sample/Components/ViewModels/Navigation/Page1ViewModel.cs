@@ -2,15 +2,15 @@ namespace Playground.Core.ViewModels
 {
     using System.Collections;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class Page1ViewModel : MvxNavigationViewModel
+    public class Page1ViewModel 
+        : MvxNavigationViewModel
     {
         public MvxCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public Page1ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             HeaderTappedCommand = new MvxCommand<int>(DoHeaderTappedCommand);

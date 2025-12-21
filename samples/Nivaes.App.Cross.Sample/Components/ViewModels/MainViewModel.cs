@@ -2,7 +2,6 @@ namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
     using MvvmCross.Localization;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels.Bindings;
@@ -13,7 +12,7 @@ namespace Playground.Core.ViewModels
 
         private int _counter = 2;
 
-        public MainViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public MainViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());

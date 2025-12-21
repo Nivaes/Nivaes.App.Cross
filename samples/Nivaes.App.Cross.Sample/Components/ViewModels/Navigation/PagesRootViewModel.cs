@@ -1,13 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class PagesRootViewModel : MvxNavigationViewModel
+    public class PagesRootViewModel 
+        : MvxNavigationViewModel
     {
-        public PagesRootViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public PagesRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);

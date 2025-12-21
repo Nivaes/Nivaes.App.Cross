@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using MvvmCross.Exceptions;
-    using MvvmCross.Navigation.EventArguments;
-    using Nivaes.App.Cross;
 
     public class CrossViewModelLoader
         : ICrossViewModelLoader
@@ -15,7 +13,7 @@ namespace Nivaes.App.Cross
         }
 
         // Reload should be used to re-run cached ViewModels lifecycle if required.
-        public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, CrossViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             var viewModelLocator = FindViewModelLocator(request);
 
@@ -33,7 +31,7 @@ namespace Nivaes.App.Cross
             return viewModel;
         }
 
-        public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, CrossViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             var viewModelLocator = FindViewModelLocator(request);
 
@@ -49,7 +47,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == typeof(CrossNullViewModel))
             {
@@ -71,7 +69,7 @@ namespace Nivaes.App.Cross
         }
 
         public ICrossViewModel LoadViewModel<TParameter>(
-            CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, IMvxNavigateEventArgs? navigationArgs = null)
+            CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == typeof(CrossNullViewModel))
             {

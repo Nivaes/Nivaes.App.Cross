@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Navigation.EventArguments;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// ViewModelLocator helps locating and running start lifecycle of a ViewModel
@@ -21,7 +19,7 @@ namespace Nivaes.App.Cross
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null);
+            ICrossNavigateEventArgs? navigationArgs = null);
 
         /// <summary>
         /// Load ViewModel with parameters
@@ -38,7 +36,7 @@ namespace Nivaes.App.Cross
             TParameter param,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null)
+            ICrossNavigateEventArgs? navigationArgs = null)
             where TParameter : notnull;
 
         /// <summary>
@@ -53,7 +51,7 @@ namespace Nivaes.App.Cross
             ICrossViewModel viewModel,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null);
+            ICrossNavigateEventArgs? navigationArgs = null);
 
         /// <summary>
         /// Reload ViewModel, runs start lifecycle in ViewModel.
@@ -70,6 +68,6 @@ namespace Nivaes.App.Cross
             TParameter param,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null);
+            ICrossNavigateEventArgs? navigationArgs = null);
     }
 }

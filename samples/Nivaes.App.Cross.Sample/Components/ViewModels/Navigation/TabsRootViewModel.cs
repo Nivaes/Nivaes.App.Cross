@@ -3,13 +3,13 @@ namespace Playground.Core.ViewModels
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class TabsRootViewModel : MvxNavigationViewModel
+    public class TabsRootViewModel 
+        : MvxNavigationViewModel
     {
-        public TabsRootViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public TabsRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService) : base(logProvider, navigationService)
         {
             ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
             ShowTabsRootBCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());

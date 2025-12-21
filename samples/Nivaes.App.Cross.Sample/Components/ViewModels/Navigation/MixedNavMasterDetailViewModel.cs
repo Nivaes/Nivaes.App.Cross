@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
@@ -18,7 +17,7 @@ namespace Playground.Core.ViewModels
             public Type ViewModelType { get; set; }
         }
 
-        public MixedNavMasterDetailViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public MixedNavMasterDetailViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             Menu = new[] {

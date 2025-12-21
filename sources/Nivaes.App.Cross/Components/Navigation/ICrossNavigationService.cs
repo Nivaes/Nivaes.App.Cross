@@ -1,35 +1,33 @@
-namespace MvvmCross.Navigation
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Navigation.EventArguments;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// Allows for Task and URI based navigation in MvvmCross
     /// </summary>
-    public interface IMvxNavigationService
+    public interface ICrossNavigationService
     {
         /// <summary>
         /// Event that triggers right before navigation happens
         /// </summary>
-        event EventHandler<IMvxNavigateEventArgs>? WillNavigate;
+        event EventHandler<ICrossNavigateEventArgs>? WillNavigate;
 
         /// <summary>
         /// Event that triggers right after navigation did occur
         /// </summary>
-        event EventHandler<IMvxNavigateEventArgs>? DidNavigate;
+        event EventHandler<ICrossNavigateEventArgs>? DidNavigate;
 
         /// <summary>
         /// Event that triggers right before Closing
         /// </summary>
-        event EventHandler<IMvxNavigateEventArgs>? WillClose;
+        event EventHandler<ICrossNavigateEventArgs>? WillClose;
 
         /// <summary>
         /// Event that triggers right after did happen
         /// </summary>
-        event EventHandler<IMvxNavigateEventArgs>? DidClose;
+        event EventHandler<ICrossNavigateEventArgs>? DidClose;
 
         /// <summary>
         /// Event that triggers when presentation will change
