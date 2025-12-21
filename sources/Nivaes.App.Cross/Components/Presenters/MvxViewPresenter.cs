@@ -36,7 +36,7 @@ namespace MvvmCross.Presenters
             return Task.FromResult(false);
         }
 
-        public abstract Task<bool> Show(MvxViewModelRequest request);
+        public abstract Task<bool> Show(CrossViewModelRequest request);
 
         public abstract Task<bool> ChangePresentation(MvxPresentationHint hint);
 

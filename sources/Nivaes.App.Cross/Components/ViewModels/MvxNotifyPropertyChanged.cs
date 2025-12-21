@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Base;
 using MvvmCross.Logging;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.ViewModels;
 
@@ -54,11 +55,11 @@ public abstract class MvxNotifyPropertyChanged
 
     protected MvxNotifyPropertyChanged()
     {
-        var alwaysOnUIThread = MvxSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread != false;
+        var alwaysOnUIThread = CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread != false;
         ShouldAlwaysRaiseInpcOnUserInterfaceThread(alwaysOnUIThread);
-        var raisePropertyChanging = MvxSingletonCache.Instance?.Settings?.ShouldRaisePropertyChanging != false;
+        var raisePropertyChanging = CrossSingletonCache.Instance?.Settings?.ShouldRaisePropertyChanging != false;
         ShouldRaisePropertyChanging(raisePropertyChanging);
-        var shouldLogInpc = MvxSingletonCache.Instance?.Settings?.ShouldLogInpc == true;
+        var shouldLogInpc = CrossSingletonCache.Instance?.Settings?.ShouldLogInpc == true;
         ShouldLogInpc(shouldLogInpc);
     }
 
@@ -190,9 +191,9 @@ public abstract class MvxNotifyPropertyChanged
 
     protected virtual MvxInpcInterceptionResult InterceptRaisePropertyChanged(PropertyChangedEventArgs changedArgs)
     {
-        if (MvxSingletonCache.Instance != null)
+        if (CrossSingletonCache.Instance != null)
         {
-            var interceptor = MvxSingletonCache.Instance.InpcInterceptor;
+            var interceptor = CrossSingletonCache.Instance.InpcInterceptor;
             if (interceptor != null)
             {
                 return interceptor.Intercept(this, changedArgs);
@@ -204,9 +205,9 @@ public abstract class MvxNotifyPropertyChanged
 
     protected virtual MvxInpcInterceptionResult InterceptRaisePropertyChanging(PropertyChangingEventArgs changingArgs)
     {
-        if (MvxSingletonCache.Instance != null)
+        if (CrossSingletonCache.Instance != null)
         {
-            var interceptor = MvxSingletonCache.Instance.InpcInterceptor;
+            var interceptor = CrossSingletonCache.Instance.InpcInterceptor;
             if (interceptor != null)
             {
                 return interceptor.Intercept(this, changingArgs);

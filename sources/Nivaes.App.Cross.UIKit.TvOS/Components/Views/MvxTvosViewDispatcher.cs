@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             Task action()
             {

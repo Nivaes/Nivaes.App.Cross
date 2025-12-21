@@ -4,7 +4,6 @@ namespace MvvmCross.Core
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Base;
-    using MvvmCross.Commands;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
@@ -220,7 +219,7 @@ namespace MvvmCross.Core
         protected virtual void InitializeSingletonCache()
         {
 #pragma warning disable CA2000 // Dispose objects before losing scope
-            MvxSingletonCache.Initialize();
+            CrossSingletonCache.Initialize();
 #pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
@@ -229,7 +228,7 @@ namespace MvvmCross.Core
             // by default no Inpc calls are intercepted
         }
 
-        protected virtual IMvxChildViewModelCache? InitializeViewModelCache(IMvxIoCProvider iocProvider)
+        protected virtual ICrossChildViewModelCache? InitializeViewModelCache(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -237,9 +236,9 @@ namespace MvvmCross.Core
             return cache;
         }
 
-        protected virtual IMvxChildViewModelCache? CreateViewModelCache(IMvxIoCProvider iocProvider)
+        protected virtual ICrossChildViewModelCache? CreateViewModelCache(IMvxIoCProvider iocProvider)
         {
-            return iocProvider.Resolve<IMvxChildViewModelCache>();
+            return iocProvider.Resolve<ICrossChildViewModelCache>();
         }
 
         protected virtual IMvxSettings? InitializeSettings(IMvxIoCProvider iocProvider)
@@ -313,18 +312,18 @@ namespace MvvmCross.Core
             return iocProvider.Resolve<IMvxNavigationSerializer>();
         }
 
-        protected virtual IMvxCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
+        protected virtual ICrossCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return CreateCommandCollectionBuilder(iocProvider);
         }
 
-        protected virtual IMvxCommandCollectionBuilder? CreateCommandCollectionBuilder(IMvxIoCProvider iocProvider)
+        protected virtual ICrossCommandCollectionBuilder? CreateCommandCollectionBuilder(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxCommandCollectionBuilder>();
+            return iocProvider.Resolve<ICrossCommandCollectionBuilder>();
         }
 
         protected virtual IMvxIoCProvider InitializeIoC()
@@ -344,22 +343,22 @@ namespace MvvmCross.Core
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp(iocProvider));
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelLoader, MvxViewModelLoader>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, IMvxViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
+            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
                 (loader, dispatcher, p) => new MvxNavigationService(loader, dispatcher, p));
             iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
-            iocProvider.RegisterSingleton(() => new MvxViewModelByNameLookup());
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameLookup, MvxViewModelByNameLookup>(
+            iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
                 nameLookup => nameLookup);
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelByNameRegistry, MvxViewModelByNameLookup>(
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>(
                 nameLookup => nameLookup);
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxViewModelTypeFinder, MvxViewModelViewTypeFinder>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxTypeToTypeLookupBuilder, MvxViewModelViewLookupBuilder>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxCommandCollectionBuilder, MvxCommandCollectionBuilder>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
             iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxChildViewModelCache, MvxChildViewModelCache>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
 
-            iocProvider.RegisterType<IMvxCommandHelper, MvxWeakCommandHelper>();
+            iocProvider.RegisterType<ICrossCommandHelper, CrossWeakCommandHelper>();
         }
 
         protected virtual IMvxIocOptions CreateIocOptions()
@@ -402,11 +401,11 @@ namespace MvvmCross.Core
         protected abstract ILoggerProvider? CreateLogProvider();
         protected abstract ILoggerFactory? CreateLogFactory();
 
-        protected virtual IMvxViewModelLoader? CreateViewModelLoader(IMvxIoCProvider iocProvider)
+        protected virtual ICrossViewModelLoader? CreateViewModelLoader(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxViewModelLoader>();
+            return iocProvider.Resolve<ICrossViewModelLoader>();
         }
 
         protected virtual IMvxNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
@@ -508,7 +507,7 @@ namespace MvvmCross.Core
 
             var app = CreateMvxApplication(iocProvider);
             if (app != null)
-                iocProvider.RegisterSingleton<IMvxViewModelLocatorCollection>(app);
+                iocProvider.RegisterSingleton<ICrossViewModelLocatorCollection>(app);
             return app;
         }
 
@@ -603,24 +602,24 @@ namespace MvvmCross.Core
             return iocProvider.Resolve<IMvxResultViewModelManager>();
         }
 
-        protected abstract IMvxNameMapping CreateViewToViewModelNaming();
+        protected abstract ICrossNameMapping CreateViewToViewModelNaming();
 
-        protected virtual IMvxViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
+        protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxViewModelByNameLookup>();
+            return iocProvider.Resolve<ICrossViewModelByNameLookup>();
         }
 
-        protected virtual IMvxViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
+        protected virtual ICrossViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxViewModelByNameRegistry>();
+            return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual IMvxNameMapping InitializeViewModelTypeFinder(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNameMapping InitializeViewModelTypeFinder(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -646,7 +645,7 @@ namespace MvvmCross.Core
             ValidateArguments(iocProvider);
 
             var viewAssemblies = GetViewAssemblies();
-            var builder = iocProvider.Resolve<IMvxTypeToTypeLookupBuilder>();
+            var builder = iocProvider.Resolve<ICrossTypeToTypeLookupBuilder>();
             return builder?.Build(viewAssemblies);
         }
 

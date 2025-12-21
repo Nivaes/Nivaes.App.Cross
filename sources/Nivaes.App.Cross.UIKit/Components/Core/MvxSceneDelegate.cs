@@ -59,7 +59,7 @@ namespace MvvmCross.Platforms.Ios.Core
 
         protected virtual void RunAppStart()
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxAppStart? startup) == true &&
+            if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart? startup) == true &&
                 startup is { IsStarted: false })
             {
                 startup.Start();

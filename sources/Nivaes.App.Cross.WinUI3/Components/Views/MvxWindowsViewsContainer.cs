@@ -17,23 +17,23 @@ namespace MvvmCross.Platforms.WinUi.Views
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
             dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
-            var request = converter.Serializer.DeserializeObject<MvxViewModelRequest>(serializedRequest);
+            var request = converter.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest);
 
             if (dictionary.TryGetValue(SubViewModelKey, out string viewModelKey))
             {
                 var key = int.Parse(viewModelKey);
-                var viewModel = Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>().Get(key);
+                var viewModel = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>().Get(key);
                 if (savedState != null)
                     viewModel.ReloadState(savedState);
                 return viewModel;
             }
 
-            var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+            var loaderService = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
             return loaderService.LoadViewModel(request, savedState);
         }
 
         #region Implementation of IMvxWindowsViewModelRequestTranslator
-        public string GetRequestTextFor(MvxViewModelRequest request)
+        public string GetRequestTextFor(CrossViewModelRequest request)
         {
             var returnData = new Dictionary<string, string>();
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
@@ -48,9 +48,9 @@ namespace MvvmCross.Platforms.WinUi.Views
         {
             var returnData = new Dictionary<string, string>();
             var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
-            var request = MvxViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
+            var request = CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
 
-            var key = Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>().Cache(existingViewModelToUse);
+            var key = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>().Cache(existingViewModelToUse);
             returnData.Add(ExtrasKey, converter.Serializer.SerializeObject(request));
             returnData.Add(SubViewModelKey, key.ToString());
 
@@ -61,7 +61,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         public void RemoveSubViewModelWithKey(int key)
         {
-            Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>().Remove(key);
+            Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>().Remove(key);
         }
 
         public int RequestTextGetKey(string requestText)
@@ -71,7 +71,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
             dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
-            var request = converter.Serializer.DeserializeObject<MvxViewModelRequest>(serializedRequest);
+            var request = converter.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest);
 
             if (dictionary.TryGetValue(SubViewModelKey, out string viewModelKey))
             {

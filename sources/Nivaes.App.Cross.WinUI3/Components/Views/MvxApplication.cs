@@ -43,7 +43,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             {
                 instance.EnsureInitialized();
 
-                if (Mvx.IoCProvider.TryResolve(out IMvxAppStart startup) && !startup.IsStarted)
+                if (Mvx.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
                 {
                     startup.Start(GetAppStartHint(arguments));
                 }

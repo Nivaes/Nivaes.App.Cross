@@ -46,9 +46,9 @@ namespace MvvmCross.Platforms.Mac.Core
             get { return _applicationDelegate; }
         }
 
-        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        protected override ICrossNameMapping CreateViewToViewModelNaming()
         {
-            return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
+            return new CrossPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
 
         protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)

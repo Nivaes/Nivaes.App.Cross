@@ -28,13 +28,13 @@ namespace MvvmCross.Platforms.Tvos.Views
                 where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new CrossBundle(parameterValues);
-            var request = new MvxViewModelRequest<TTargetViewModel>(parameterBundle, null);
+            var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateViewControllerFor(request);
         }
 
         public static IMvxTvosView CreateViewControllerFor<TTargetViewModel>(
             this IMvxCanCreateTvosView view,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
                 where TTargetViewModel : class, ICrossViewModel
         {
             return Mvx.IoCProvider.Resolve<IMvxTvosViewCreator>().CreateView(request);
@@ -42,7 +42,7 @@ namespace MvvmCross.Platforms.Tvos.Views
 
         public static IMvxTvosView CreateViewControllerFor(
             this IMvxCanCreateTvosView view,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return Mvx.IoCProvider.Resolve<IMvxTvosViewCreator>().CreateView(request);
         }
@@ -50,7 +50,7 @@ namespace MvvmCross.Platforms.Tvos.Views
         public static IMvxTvosView CreateViewControllerFor(
             this IMvxCanCreateTvosView view,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewtype,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             return Mvx.IoCProvider.Resolve<IMvxTvosViewCreator>().CreateViewOfType(viewtype, request);
         }

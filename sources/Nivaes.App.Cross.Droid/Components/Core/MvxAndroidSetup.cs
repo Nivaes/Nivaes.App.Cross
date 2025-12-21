@@ -280,9 +280,9 @@ public abstract class MvxAndroidSetup
         // nothing to do in this base class
     }
 
-    protected override IMvxNameMapping CreateViewToViewModelNaming()
+    protected override ICrossNameMapping CreateViewToViewModelNaming()
     {
-        return new MvxPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
+        return new CrossPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
     }
 }
 

@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(MvxViewModelRequest request)
+        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             await ExecuteOnMainThreadAsync(() => _presenter.Show(request));
             return true;

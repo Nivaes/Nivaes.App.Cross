@@ -15,9 +15,9 @@ namespace MvvmCross.Platforms.Ios.Views
         : CrossViewsContainer
         , IMvxIosViewsContainer
     {
-        public MvxViewModelRequest? CurrentRequest { get; private set; }
+        public CrossViewModelRequest? CurrentRequest { get; private set; }
 
-        public virtual IMvxIosView CreateView(MvxViewModelRequest request)
+        public virtual IMvxIosView CreateView(CrossViewModelRequest request)
         {
             try
             {

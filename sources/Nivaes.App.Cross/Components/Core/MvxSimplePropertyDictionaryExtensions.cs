@@ -55,7 +55,7 @@ namespace MvvmCross.Core
                 if (!data.TryGetValue(propertyInfo.Name, out var textValue))
                     continue;
 
-                var typedValue = MvxSingletonCache.Instance?.Parser?.ReadValue(
+                var typedValue = CrossSingletonCache.Instance?.Parser?.ReadValue(
                     textValue, propertyInfo.PropertyType, propertyInfo.Name);
                 if (typedValue != null)
                     propertyInfo.SetValue(t, typedValue, []);
@@ -100,7 +100,7 @@ namespace MvvmCross.Core
                 parameterValue = string.Empty;
             }
 
-            return MvxSingletonCache.Instance?.Parser?.ReadValue(
+            return CrossSingletonCache.Instance?.Parser?.ReadValue(
                 parameterValue, requiredParameter.ParameterType, requiredParameter.Name);
         }
 
@@ -121,7 +121,7 @@ namespace MvvmCross.Core
                 select new
                 {
                     CanSerialize =
-                        MvxSingletonCache.Instance?.Parser?.TypeSupported(property.PropertyType) ?? false,
+                        CrossSingletonCache.Instance?.Parser?.TypeSupported(property.PropertyType) ?? false,
                     Property = property
                 };
 

@@ -60,7 +60,7 @@ public abstract class MvxIosSetup
         ValidateArguments(iocProvider);
 
         iocProvider.RegisterSingleton<IMvxIosViewCreator>(container);
-        iocProvider.RegisterSingleton<IMvxCurrentRequest>(container);
+        iocProvider.RegisterSingleton<ICrossCurrentRequest>(container);
     }
 
     protected override ICrossViewDispatcher CreateViewDispatcher()
@@ -205,9 +205,9 @@ public abstract class MvxIosSetup
         // this base class does nothing
     }
 
-    protected override IMvxNameMapping CreateViewToViewModelNaming()
+    protected override ICrossNameMapping CreateViewToViewModelNaming()
     {
-        return new MvxPostfixAwareViewToViewModelNameMapping("View", "ViewController");
+        return new CrossPostfixAwareViewToViewModelNameMapping("View", "ViewController");
     }
 }
 

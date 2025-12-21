@@ -1,14 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class ListViewModel : CrossViewModel
     {
         public MvxObservableCollection<TestItem> TestItems { get; } = new MvxObservableCollection<TestItem>();
-        public IMvxAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);
+        public ICrossAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);
 
         public ListViewModel()
         {

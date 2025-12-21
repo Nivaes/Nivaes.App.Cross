@@ -1,9 +1,6 @@
 namespace Playground.Core.ViewModels
 {
-    using System.Threading.Tasks;
-    using MvvmCross.Commands;
     using MvvmCross.Navigation;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class NativeViewModel 
@@ -13,8 +10,8 @@ namespace Playground.Core.ViewModels
 
         public NativeViewModel(IMvxNavigationService navigationService)
         {
-            ForwardCommand = new MvxAsyncCommand(() => navigationService.Navigate<NativeViewModel>());
-            CloseCommand = new MvxAsyncCommand(() => navigationService.Close(this));
+            ForwardCommand = new CrossAsyncCommand(() => navigationService.Navigate<NativeViewModel>());
+            CloseCommand = new CrossAsyncCommand(() => navigationService.Close(this));
 
             Description = $"View number {_counter++}";
         }
@@ -26,8 +23,8 @@ namespace Playground.Core.ViewModels
             set => SetProperty(ref _description, value);
         }
 
-        public IMvxAsyncCommand ForwardCommand { get; }
-        public IMvxAsyncCommand CloseCommand { get; }
+        public ICrossAsyncCommand ForwardCommand { get; }
+        public ICrossAsyncCommand CloseCommand { get; }
 
     }
 }

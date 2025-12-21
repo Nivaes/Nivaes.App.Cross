@@ -7,7 +7,7 @@ namespace MvvmCross.Presenters
 
     public interface IMvxViewPresenter
     {
-        Task<bool> Show(MvxViewModelRequest request);
+        Task<bool> Show(CrossViewModelRequest request);
 
         Task<bool> ChangePresentation(MvxPresentationHint hint);
 

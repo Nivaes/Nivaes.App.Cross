@@ -39,11 +39,11 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         public static ICrossViewModel LoadViewModel(this IMvxFragmentView fragmentView, ICrossBundle savedState, Type fragmentParentActivityType,
-            MvxViewModelRequest request = null)
+            CrossViewModelRequest request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
-            if (viewModelType == typeof(MvxNullViewModel))
-                return new MvxNullViewModel();
+            if (viewModelType == typeof(CrossNullViewModel))
+                return new CrossNullViewModel();
 
             if (viewModelType == null
                 || viewModelType == typeof(ICrossViewModel))
@@ -54,9 +54,9 @@ namespace MvvmCross.Platforms.Android.Views
             }
 
             if (request == null)
-                request = MvxViewModelRequest.GetDefaultRequest(viewModelType);
+                request = CrossViewModelRequest.GetDefaultRequest(viewModelType);
 
-            var viewModelCache = Mvx.IoCProvider.Resolve<IMvxChildViewModelCache>();
+            var viewModelCache = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>();
             if (viewModelCache.Exists(viewModelType))
             {
                 var viewModelCached = viewModelCache.Get(viewModelType);
@@ -64,7 +64,7 @@ namespace MvvmCross.Platforms.Android.Views
                 return viewModelCached;
             }
 
-            var loaderService = Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+            var loaderService = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
             var viewModel = loaderService.LoadViewModel(request, savedState);
 
             return viewModel;
@@ -72,7 +72,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure.")]
         public static void RunViewModelLifecycle(ICrossViewModel viewModel, ICrossBundle savedState,
-            MvxViewModelRequest request)
+            CrossViewModelRequest request)
         {
             try
             {

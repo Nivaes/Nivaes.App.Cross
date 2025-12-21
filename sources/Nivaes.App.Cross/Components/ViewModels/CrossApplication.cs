@@ -13,9 +13,9 @@ namespace Nivaes.App.Cross
     public abstract class CrossApplication 
         : ICrossApplication
     {
-        private IMvxViewModelLocator? _defaultLocator;
+        private ICrossViewModelLocator? _defaultLocator;
 
-        private IMvxViewModelLocator DefaultLocator
+        private ICrossViewModelLocator DefaultLocator
         {
             get
             {
@@ -24,9 +24,9 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected virtual IMvxViewModelLocator CreateDefaultViewModelLocator()
+        protected virtual ICrossViewModelLocator CreateDefaultViewModelLocator()
         {
-            return new MvxDefaultViewModelLocator();
+            return new CrossDefaultViewModelLocator();
         }
 
         public virtual void LoadPlugins(IMvxPluginManager pluginManager)
@@ -61,25 +61,25 @@ namespace Nivaes.App.Cross
             // do nothing
         }
 
-        public IMvxViewModelLocator FindViewModelLocator(MvxViewModelRequest request)
+        public ICrossViewModelLocator FindViewModelLocator(CrossViewModelRequest request)
         {
             return DefaultLocator;
         }
 
         protected void RegisterCustomAppStart<
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TMvxAppStart>()
-                where TMvxAppStart : class, IMvxAppStart
+                where TMvxAppStart : class, ICrossAppStart
         {
-            Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, TMvxAppStart>();
+            Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, TMvxAppStart>();
         }
 
         protected void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>()
             where TViewModel : ICrossViewModel
         {
-            Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, MvxAppStart<TViewModel>>();
+            Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, MvxAppStart<TViewModel>>();
         }
 
-        protected void RegisterAppStart(IMvxAppStart appStart)
+        protected void RegisterAppStart(ICrossAppStart appStart)
         {
             Mvx.IoCProvider?.RegisterSingleton(appStart);
         }
@@ -87,7 +87,7 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>()
           where TViewModel : ICrossViewModel<TParameter> where TParameter : class
         {
-            Mvx.IoCProvider?.ConstructAndRegisterSingleton<IMvxAppStart, MvxAppStart<TViewModel, TParameter>>();
+            Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, MvxAppStart<TViewModel, TParameter>>();
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
@@ -103,7 +103,8 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class MvxApplication<TParameter> : CrossApplication, IMvxApplication<TParameter>
+    public class MvxApplication<TParameter> 
+        : CrossApplication, ICrossApplication<TParameter>
     {
         public virtual Task<TParameter> Startup(TParameter hint)
         {

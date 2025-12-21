@@ -39,7 +39,7 @@ namespace MvvmCross.Presenters
 
         public static void Register<TMvxPresentationAttribute>(
             this IDictionary<Type, MvxPresentationAttributeAction> attributeTypesToActionsDictionary,
-            Func<Type, TMvxPresentationAttribute, MvxViewModelRequest, Task<bool>> showAction,
+            Func<Type, TMvxPresentationAttribute, CrossViewModelRequest, Task<bool>> showAction,
             Func<ICrossViewModel, TMvxPresentationAttribute, Task<bool>> closeAction)
                 where TMvxPresentationAttribute : class, IMvxPresentationAttribute
         {

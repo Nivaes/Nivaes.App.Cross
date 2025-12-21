@@ -39,7 +39,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected virtual void RunAppStart()
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxAppStart startup) == true && !startup.IsStarted)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
             {
                 startup.Start();
             }

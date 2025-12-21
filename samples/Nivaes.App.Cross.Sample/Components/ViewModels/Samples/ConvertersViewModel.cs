@@ -2,7 +2,6 @@ namespace Playground.Core.ViewModels.Samples
 {
     using System.Drawing;
     using System.Windows.Input;
-    using MvvmCross.Commands;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
@@ -41,8 +40,8 @@ namespace Playground.Core.ViewModels.Samples
 
         public ConvertersViewModel()
         {
-            ToggleVisibilityCommand = new MvxCommand(DoToggleVisibility);
-            ToggleColorCommand = new MvxCommand(DoToggleColor);
+            ToggleVisibilityCommand = new CrossCommand(DoToggleVisibility);
+            ToggleColorCommand = new CrossCommand(DoToggleColor);
 
             _colorText = "I am green!";
             _textColor = Color.Green;

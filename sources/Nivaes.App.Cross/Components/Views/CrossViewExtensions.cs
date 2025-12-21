@@ -41,12 +41,12 @@ namespace Nivaes.App.Cross
         {
             ArgumentNullException.ThrowIfNull(view);
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxViewModelTypeFinder? associatedTypeFinder) == true)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
                 return associatedTypeFinder?.FindTypeOrNull(view.GetType());
 
             MvxLogHost.Default?.Log(LogLevel.Trace,
                 "No view model type finder available - assuming we are looking for a splash screen - returning null");
-            return typeof(MvxNullViewModel);
+            return typeof(CrossNullViewModel);
         }
 
         public static ICrossBundle CreateSaveStateBundle(this ICrossView view)

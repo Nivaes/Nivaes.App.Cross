@@ -1,24 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Views;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-
 namespace Playground.Droid.Fragments
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Views;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using MvvmCross.Platforms.Android.Views.Fragments;
+    using MvvmCross.Presenters.Attributes;
+    using Nivaes.App.Cross;
+    using Playground.Core.ViewModels;
+    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
     [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel>, IMvxOverridePresentationAttribute
+    public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -29,7 +24,7 @@ namespace Playground.Droid.Fragments
             return view;
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
         {
             return new MvxFragmentPresentationAttribute(
                 typeof(RootViewModel),

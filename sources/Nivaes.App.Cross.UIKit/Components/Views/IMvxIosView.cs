@@ -9,7 +9,7 @@ namespace MvvmCross.Platforms.Ios.Views
         , IMvxCanCreateIosView
         , IMvxBindingContextOwner
     {
-        MvxViewModelRequest Request { get; set; }
+        CrossViewModelRequest Request { get; set; }
     }
 
     public interface IMvxIosView<TViewModel>

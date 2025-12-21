@@ -180,9 +180,9 @@ namespace MvvmCross.Platforms.WinUi.Core
             return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
         }
 
-        protected override IMvxNameMapping CreateViewToViewModelNaming()
+        protected override ICrossNameMapping CreateViewToViewModelNaming()
         {
-            return new MvxPostfixAwareViewToViewModelNameMapping("View", "Page");
+            return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
         }
     }
 

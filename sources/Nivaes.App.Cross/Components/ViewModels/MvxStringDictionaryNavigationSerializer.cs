@@ -1,17 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Base;
-using MvvmCross.Core.Parse.StringDictionary;
-
 namespace MvvmCross.ViewModels
 {
-#nullable enable
+    using MvvmCross.Base;
+    using MvvmCross.Core.Parse.StringDictionary;
+    using Nivaes.App.Cross;
+
     public class MvxStringDictionaryNavigationSerializer
         : IMvxNavigationSerializer
     {
-        public IMvxTextSerializer Serializer { get; } = new MvxViewModelRequestCustomTextSerializer();
+        public IMvxTextSerializer Serializer { get; } = new CrossViewModelRequestCustomTextSerializer();
     }
-#nullable restore
 }

@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.ViewModels;
 
     public interface ICrossApplication 
-        : IMvxViewModelLocatorCollection
+        : ICrossViewModelLocatorCollection
     {
         void LoadPlugins(IMvxPluginManager pluginManager);
 
@@ -16,7 +16,8 @@ namespace Nivaes.App.Cross
         void Reset();
     }
 
-    public interface IMvxApplication<THint> : ICrossApplication
+    public interface ICrossApplication<THint>
+        : ICrossApplication
     {
         Task<THint> Startup(THint hint);
     }

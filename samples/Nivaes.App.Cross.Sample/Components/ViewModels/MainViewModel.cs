@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Commands;
     using MvvmCross.Localization;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
@@ -17,51 +16,51 @@ namespace Playground.Core.ViewModels
         public MainViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {
-            ShowChildCommand = new MvxAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
+            ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 
-            ShowModalCommand = new MvxAsyncCommand(() => NavigationService.Navigate<ModalViewModel>());
+            ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalViewModel>());
 
             ShowModalNavCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
-            ShowTabsCommand = new MvxAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
+            ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 
-            ShowSplitCommand = new MvxAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
+            ShowSplitCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
 
-            ShowOverrideAttributeCommand = new MvxAsyncCommand(() => NavigationService.Navigate<OverrideAttributeViewModel>());
+            ShowOverrideAttributeCommand = new CrossAsyncCommand(() => NavigationService.Navigate<OverrideAttributeViewModel>());
 
-            ShowSheetCommand = new MvxAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
+            ShowSheetCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
 
-            ShowWindowCommand = new MvxAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
+            ShowWindowCommand = new CrossAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
 
             ShowMixedNavigationCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
 
             ShowCustomBindingCommand =
-                new MvxAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
+                new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
 
             _counter = 3;
         }
 
-        public IMvxAsyncCommand ShowChildCommand { get; }
+        public ICrossAsyncCommand ShowChildCommand { get; }
 
-        public IMvxAsyncCommand ShowModalCommand { get; }
+        public ICrossAsyncCommand ShowModalCommand { get; }
 
-        public IMvxAsyncCommand ShowModalNavCommand { get; }
+        public ICrossAsyncCommand ShowModalNavCommand { get; }
 
-        public IMvxAsyncCommand ShowTabsCommand { get; }
+        public ICrossAsyncCommand ShowTabsCommand { get; }
 
-        public IMvxAsyncCommand ShowCustomBindingCommand { get; }
+        public ICrossAsyncCommand ShowCustomBindingCommand { get; }
 
-        public IMvxAsyncCommand ShowSplitCommand { get; }
+        public ICrossAsyncCommand ShowSplitCommand { get; }
 
-        public IMvxAsyncCommand ShowOverrideAttributeCommand { get; }
+        public ICrossAsyncCommand ShowOverrideAttributeCommand { get; }
 
-        public IMvxAsyncCommand ShowSheetCommand { get; }
+        public ICrossAsyncCommand ShowSheetCommand { get; }
 
-        public IMvxAsyncCommand ShowWindowCommand { get; }
+        public ICrossAsyncCommand ShowWindowCommand { get; }
 
-        public IMvxAsyncCommand ShowMixedNavigationCommand { get; }
+        public ICrossAsyncCommand ShowMixedNavigationCommand { get; }
 
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("MvxBindingsExample", "Text");
 

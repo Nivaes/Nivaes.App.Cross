@@ -1,93 +1,92 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
-using MvvmCross.ViewModels;
 
-namespace MvvmCross.Platforms.Android.Views;
-
-[Register("mvvmcross.platforms.android.views.MvxStartActivity")]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-public abstract class MvxStartActivity
-    : MvxActivity
+namespace MvvmCross.Platforms.Android.Views
 {
-    protected const int NoContent = 0;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
-    private readonly int _resourceId;
-
-    private Bundle _bundle;
-
-    public new MvxNullViewModel ViewModel
+    [Register("mvvmcross.platforms.android.views.MvxStartActivity")]
+    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    public abstract class MvxStartActivity
+        : MvxActivity
     {
-        get { return base.ViewModel as MvxNullViewModel; }
-        set { base.ViewModel = value; }
-    }
+        protected const int NoContent = 0;
 
-    protected MvxStartActivity(int resourceId = NoContent)
-    {
-        RegisterSetup();
-        _resourceId = resourceId;
-    }
+        private readonly int _resourceId;
 
-    protected MvxStartActivity(IntPtr javaReference, JniHandleOwnership transfer)
-        : base(javaReference, transfer)
-    {
-    }
+        private Bundle _bundle;
 
-    protected virtual void RequestWindowFeatures()
-    {
-        RequestWindowFeature(WindowFeatures.NoTitle);
-    }
-
-    protected override void OnCreate(Bundle savedInstanceState)
-    {
-        RequestWindowFeatures();
-
-        _bundle = savedInstanceState;
-
-        base.OnCreate(savedInstanceState);
-
-        if (_resourceId != NoContent)
+        public new CrossNullViewModel ViewModel
         {
-            // Set our view from the "splash" layout resource
-            // Be careful to use non-binding inflation
-            var content = LayoutInflater.Inflate(_resourceId, null);
-            SetContentView(content);
+            get { return base.ViewModel as CrossNullViewModel; }
+            set { base.ViewModel = value; }
         }
-    }
+
+        protected MvxStartActivity(int resourceId = NoContent)
+        {
+            RegisterSetup();
+            _resourceId = resourceId;
+        }
+
+        protected MvxStartActivity(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+        }
+
+        protected virtual void RequestWindowFeatures()
+        {
+            RequestWindowFeature(WindowFeatures.NoTitle);
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            RequestWindowFeatures();
+
+            _bundle = savedInstanceState;
+
+            base.OnCreate(savedInstanceState);
+
+            if (_resourceId != NoContent)
+            {
+                // Set our view from the "splash" layout resource
+                // Be careful to use non-binding inflation
+                var content = LayoutInflater.Inflate(_resourceId, null);
+                SetContentView(content);
+            }
+        }
 
 #pragma warning disable AsyncFixer01, AsyncFixer03
-    protected override async void OnResume()
-    {
-        base.OnResume();
-        await RunAppStartAsync(_bundle);
-    }
+        protected override async void OnResume()
+        {
+            base.OnResume();
+            await RunAppStartAsync(_bundle);
+        }
 #pragma warning restore AsyncFixer01, AsyncFixer03
 
-    protected virtual async Task RunAppStartAsync(Bundle bundle)
-    {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxAppStart startup) == true)
+        protected virtual async Task RunAppStartAsync(Bundle bundle)
         {
-            if (!startup.IsStarted)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true)
             {
-                await startup.StartAsync(GetAppStartHint(bundle));
-            }
-            else
-            {
-                Finish();
+                if (!startup.IsStarted)
+                {
+                    await startup.StartAsync(GetAppStartHint(bundle));
+                }
+                else
+                {
+                    Finish();
+                }
             }
         }
-    }
 
-    protected virtual object GetAppStartHint(object hint = null)
-    {
-        return hint;
-    }
+        protected virtual object GetAppStartHint(object hint = null)
+        {
+            return hint;
+        }
 
-    protected virtual void RegisterSetup()
-    {
+        protected virtual void RegisterSetup()
+        {
+        }
     }
 }

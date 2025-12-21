@@ -53,7 +53,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
                 return;
             }
 
-            (Bundle? bundle, MvxViewModelRequest? request) = GetAndroidBundleAndRequest(e);
+            (Bundle? bundle, CrossViewModelRequest? request) = GetAndroidBundleAndRequest(e);
 
             var mvxBundle = ReadAndroidBundle(bundle);
             if (FragmentView?.ViewModel == null)
@@ -61,10 +61,10 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        private (Bundle? bundle, MvxViewModelRequest? request) GetAndroidBundleAndRequest(MvxValueEventArgs<Bundle>? bundleArgs)
+        private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(MvxValueEventArgs<Bundle>? bundleArgs)
         {
             Bundle? bundle = null;
-            MvxViewModelRequest? request = null;
+            CrossViewModelRequest? request = null;
             if (bundleArgs?.Value != null)
             {
                 // saved state
@@ -84,11 +84,11 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        private static MvxViewModelRequest? ReadRequest(MvxViewModelRequest? request, string json)
+        private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
         {
             if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? serializer) == true)
             {
-                request = serializer?.Serializer.DeserializeObject<MvxViewModelRequest>(json);
+                request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
             }
             else
             {

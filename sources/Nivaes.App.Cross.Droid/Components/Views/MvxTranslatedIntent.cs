@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         #endregion TranslationResult enum
 
-        public MvxTranslatedIntent(MvxViewModelRequest viewModelRequest)
+        public MvxTranslatedIntent(CrossViewModelRequest viewModelRequest)
         {
             ViewModelRequest = viewModelRequest;
             Result = TranslationResult.Request;
@@ -29,6 +29,6 @@ namespace MvvmCross.Platforms.Android.Views
 
         public TranslationResult Result { get; private set; }
         public ICrossViewModel ExistingViewModel { get; private set; }
-        public MvxViewModelRequest ViewModelRequest { get; private set; }
+        public CrossViewModelRequest ViewModelRequest { get; private set; }
     }
 }

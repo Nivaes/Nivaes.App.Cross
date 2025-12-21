@@ -9,7 +9,7 @@ namespace MvvmCross.Platforms.Tvos.Views
         , IMvxCanCreateTvosView
         , IMvxBindingContextOwner
     {
-        MvxViewModelRequest Request { get; set; }
+        CrossViewModelRequest Request { get; set; }
     }
 
     public interface IMvxTvosView<TViewModel>

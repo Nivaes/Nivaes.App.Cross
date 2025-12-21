@@ -5,7 +5,7 @@ namespace MvvmCross.Platforms.Ios.Views
 
     public interface IMvxIosNavigator
     {
-        void NavigateTo(MvxViewModelRequest request);
+        void NavigateTo(CrossViewModelRequest request);
 
         void Close(ICrossViewModel toClose);
     }

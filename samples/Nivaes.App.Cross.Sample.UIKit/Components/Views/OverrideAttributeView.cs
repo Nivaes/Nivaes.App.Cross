@@ -1,25 +1,22 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-using UIKit;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using MvvmCross.Presenters.Attributes;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class OverrideAttributeView : MvxViewController<OverrideAttributeViewModel>, IMvxOverridePresentationAttribute
+    public partial class OverrideAttributeView : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
     {
         public OverrideAttributeView(NativeHandle handle) : base(handle)
         {
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
         {
             return new MvxModalPresentationAttribute
             {

@@ -8,11 +8,11 @@ namespace MvvmCross.Platforms.Android.Views
 
     public interface IMvxAndroidViewModelRequestTranslator
     {
-        Intent GetIntentFor(MvxViewModelRequest request);
+        Intent GetIntentFor(CrossViewModelRequest request);
 
         // Important: if calling GetIntentWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
         (Intent intent, int key) GetIntentWithKeyFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
-            TViewModel existingViewModelToUse, MvxViewModelRequest? request)
+            TViewModel existingViewModelToUse, CrossViewModelRequest? request)
                 where TViewModel : ICrossViewModel;
 
         void RemoveSubViewModelWithKey(int key);

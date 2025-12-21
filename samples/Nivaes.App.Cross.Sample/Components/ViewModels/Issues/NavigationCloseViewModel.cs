@@ -2,9 +2,7 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using MvvmCross;
-    using MvvmCross.Commands;
     using MvvmCross.Navigation;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class NavigationCloseViewModel 
@@ -17,9 +15,9 @@ namespace Playground.Core.ViewModels
             _mvxNavigationService = mvxNavigationService;
         }
 
-        public IMvxAsyncCommand OpenChildThenCloseThisCommand => new MvxAsyncCommand(CloseThisAndOpenChildAsync);
+        public ICrossAsyncCommand OpenChildThenCloseThisCommand => new CrossAsyncCommand(CloseThisAndOpenChildAsync);
 
-        public IMvxAsyncCommand TryToCloseNewViewModelCommand => new MvxAsyncCommand(TryToCloseNewViewModelAsync);
+        public ICrossAsyncCommand TryToCloseNewViewModelCommand => new CrossAsyncCommand(TryToCloseNewViewModelAsync);
 
         private async Task CloseThisAndOpenChildAsync()
         {
