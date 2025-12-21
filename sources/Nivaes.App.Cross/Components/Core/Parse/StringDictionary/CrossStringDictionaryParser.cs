@@ -1,10 +1,8 @@
-namespace MvvmCross.Core.Parse.StringDictionary
+namespace Nivaes.App.Cross
 {
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
 
-    public class MvxStringDictionaryParser
-        : CrossParser, IMvxStringDictionaryParser
+    public class CrossStringDictionaryParser
+        : CrossParser, ICrossStringDictionaryParser
     {
         protected Dictionary<string, string?>? CurrentEntries { get; private set; }
 

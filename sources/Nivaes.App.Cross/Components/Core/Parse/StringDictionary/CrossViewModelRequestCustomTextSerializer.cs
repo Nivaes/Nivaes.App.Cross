@@ -2,10 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross;
-    using MvvmCross.Base;
-    using MvvmCross.Core.Parse.StringDictionary;
-    using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
 
     public class CrossViewModelRequestCustomTextSerializer
     : ICrossTextSerializer
@@ -13,11 +9,11 @@ namespace Nivaes.App.Cross
         protected Lazy<ICrossViewModelByNameLookup?> ByNameLookup { get; } =
             new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelByNameLookup>());
 
-        private readonly Lazy<MvxStringDictionaryWriter> _stringDictionaryWriter =
-            new(() => new MvxStringDictionaryWriter());
+        private readonly Lazy<CrpssStringDictionaryWriter> _stringDictionaryWriter =
+            new(() => new CrpssStringDictionaryWriter());
 
-        private readonly Lazy<MvxStringDictionaryParser> _stringDictionaryParser =
-            new(() => new MvxStringDictionaryParser());
+        private readonly Lazy<CrossStringDictionaryParser> _stringDictionaryParser =
+            new(() => new CrossStringDictionaryParser());
 
         public string SerializeObject(object toSerialise)
         {

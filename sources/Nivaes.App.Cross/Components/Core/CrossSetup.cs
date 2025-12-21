@@ -254,18 +254,18 @@ namespace Nivaes.App.Cross
             return iocProvider.Resolve<ICrossSettings>();
         }
 
-        protected virtual IMvxStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return CreateStringToTypeParser(iocProvider);
         }
 
-        protected virtual IMvxStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxStringToTypeParser>();
+            return iocProvider.Resolve<ICrossStringToTypeParser>();
         }
 
         protected virtual ICrossFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
@@ -283,7 +283,7 @@ namespace Nivaes.App.Cross
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxStringToTypeParser>() as ICrossFillableStringToTypeParser;
+            return iocProvider.Resolve<ICrossStringToTypeParser>() as ICrossFillableStringToTypeParser;
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
@@ -338,7 +338,7 @@ namespace Nivaes.App.Cross
             ValidateArguments(iocProvider);
 
             iocProvider.LazyConstructAndRegisterSingleton<ICrossSettings, CrossSettings>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossStringToTypeParser, CrossStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp(iocProvider));
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();

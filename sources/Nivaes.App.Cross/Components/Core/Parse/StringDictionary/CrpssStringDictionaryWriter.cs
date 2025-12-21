@@ -1,14 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using System.Text;
-
-namespace MvvmCross.Core.Parse.StringDictionary
+namespace Nivaes.App.Cross
 {
-#nullable enable
-    public class MvxStringDictionaryWriter : IMvxStringDictionaryWriter
+    using System.Collections.Generic;
+    using System.Text;
+
+    public class CrpssStringDictionaryWriter : ICrossStringDictionaryWriter
     {
         public string Write(IDictionary<string, string>? dictionary)
         {
@@ -57,5 +52,4 @@ namespace MvvmCross.Core.Parse.StringDictionary
             return output.ToString();
         }
     }
-#nullable restore
 }

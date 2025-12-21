@@ -1,13 +1,12 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
-    using Nivaes.App.Cross;
 
-    public class MvxStringToTypeParser
-        : IMvxStringToTypeParser, ICrossFillableStringToTypeParser
+    public class CrossStringToTypeParser
+        : ICrossStringToTypeParser, ICrossFillableStringToTypeParser
     {
         public interface IParser
         {
@@ -148,7 +147,7 @@ namespace MvvmCross.Core
 
         public IList<IExtraParser> ExtraParsers { get; }
 
-        public MvxStringToTypeParser()
+        public CrossStringToTypeParser()
         {
             TypeParsers = new Dictionary<Type, IParser>
             {

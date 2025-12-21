@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
 
     public interface ICrossFillableStringToTypeParser
     {
-        IDictionary<Type, MvxStringToTypeParser.IParser> TypeParsers { get; }
-        IList<MvxStringToTypeParser.IExtraParser> ExtraParsers { get; }
+        IDictionary<Type, CrossStringToTypeParser.IParser> TypeParsers { get; }
+        IList<CrossStringToTypeParser.IExtraParser> ExtraParsers { get; }
     }
 }

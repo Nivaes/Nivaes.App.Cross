@@ -7,6 +7,6 @@ namespace Nivaes.App.Cross
     {
         ICrossSettings? Settings { get; }
         ICrossInpcInterceptor? InpcInterceptor { get; }
-        IMvxStringToTypeParser? Parser { get; }
+        ICrossStringToTypeParser? Parser { get; }
     }
 }
