@@ -14,6 +14,12 @@
             "projectPath": "${workspaceFolder}/samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst/Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj"
         },
         {
+            "name": "MacOs",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj"
+        },
+        {
             "name": "Android",
             "type": "dotnet",
             "request": "launch",

@@ -2,9 +2,9 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
-		<RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>true</ImplicitUsings>
+		<!-- <RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers> -->
+		<!-- <Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings> -->
 		<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
 
 		<!--
@@ -17,7 +17,7 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
 		<IsAotCompatible>true</IsAotCompatible>
-		<PublishAot>true</PublishAot>
+		<!-- <PublishAot>true</PublishAot> -->
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
