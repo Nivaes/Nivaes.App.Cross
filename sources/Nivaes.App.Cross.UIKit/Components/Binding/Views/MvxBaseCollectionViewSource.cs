@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Windows.Input;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Binding.Views
 {
+    using System;
+    using System.Windows.Input;
+    using Foundation;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+    using UIKit;
+
     public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
     {
         public event EventHandler SelectedItemChanged;
@@ -91,7 +88,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             var item = GetItemAt(indexPath);
             var cell = GetOrCreateCellFor(collectionView, indexPath, item);
 
-            if (cell is IMvxDataConsumer bindable)
+            if (cell is ICrossDataConsumer bindable)
                 bindable.DataContext = item;
 
             return cell;

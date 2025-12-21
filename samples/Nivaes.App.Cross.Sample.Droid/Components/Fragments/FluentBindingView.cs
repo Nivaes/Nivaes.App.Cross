@@ -64,7 +64,7 @@ namespace Playground.Droid.Fragments
             bindingSet.ApplyWithClearBindingKey(nameof(FluentBindingView));
         }
 
-        private void OnInteractionRequested(object sender, MvxValueEventArgs<bool> eventArgs)
+        private void OnInteractionRequested(object sender, CrossValueEventArgs<bool> eventArgs)
         {
             if (eventArgs.Value)
                 BindTextInput();

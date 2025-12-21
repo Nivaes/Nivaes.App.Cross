@@ -1,13 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using System.IO;
-using MvvmCross.Base;
-
 namespace MvvmCross.Plugin.ResourceLoader
 {
+    using Nivaes.App.Cross;
+
     public abstract class MvxResourceObjectLoader<TResource>
         : MvxResourceProvider, IMvxResourceObjectLoaderConfiguration<TResource>, IMvxResourceObjectLoader<TResource>
 
@@ -35,7 +29,7 @@ namespace MvvmCross.Plugin.ResourceLoader
         public TResource Load(string namespaceKey, string typeKey, string entryKey)
         {
             var streamLocation = GetStreamLocation(namespaceKey, typeKey, entryKey);
-            var resourceLoader = Mvx.IoCProvider.Resolve<IMvxResourceLoader>();
+            var resourceLoader = Mvx.IoCProvider.Resolve<ICrossResourceLoader>();
             TResource resource = default(TResource);
             resourceLoader.GetResourceStream(streamLocation, (stream) =>
                 {

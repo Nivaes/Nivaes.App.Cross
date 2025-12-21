@@ -1,73 +1,71 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-
-namespace MvvmCross.Binding.Extensions;
-
-public static class MvxBindingExtensions
+namespace MvvmCross.Binding.Extensions
 {
-    [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
-    public static bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(
-        this IMvxEditableTextView mvxEditableTextView, object target, object? value)
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using MvvmCross.Base;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+
+    public static class MvxBindingExtensions
     {
-        if (value == null)
+        [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
+        public static bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(
+            this IMvxEditableTextView mvxEditableTextView, object target, object? value)
+        {
+            if (value == null)
+                return false;
+
+            // specifically for int, double, float and decimal we do some special comparisons
+            // to prevent the user losing trailing periods, leading minus signs, leading zeroes and trailing zeros
+            var valueType = value.GetType();
+            if (valueType == typeof(int) ||
+                valueType == typeof(double) ||
+                valueType == typeof(float) ||
+                valueType == typeof(decimal))
+            {
+                var currentValue = mvxEditableTextView.CurrentText;
+                if (currentValue == null)
+                    return false;
+
+                try
+                {
+                    var equivalentCurrentValue = valueType.MakeSafeValue(currentValue);
+                    if (equivalentCurrentValue?.Equals(value) == true)
+                        return true;
+                }
+                catch (FormatException)
+                {
+                    // format problem - so they are definitely not equivalent
+                    return false;
+                }
+            }
+
             return false;
+        }
 
-        // specifically for int, double, float and decimal we do some special comparisons
-        // to prevent the user losing trailing periods, leading minus signs, leading zeroes and trailing zeros
-        var valueType = value.GetType();
-        if (valueType == typeof(int) ||
-            valueType == typeof(double) ||
-            valueType == typeof(float) ||
-            valueType == typeof(decimal))
+        public static bool ConvertToBoolean(this object? result)
         {
-            var currentValue = mvxEditableTextView.CurrentText;
-            if (currentValue == null)
-                return false;
+            return result.ConvertToBooleanCore();
+        }
 
-            try
+        [RequiresUnreferencedCode("This method uses reflection to perform type conversions which may not be preserved by trimming")]
+        public static object? MakeSafeValue(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
+            object? value)
+        {
+            if (value == null)
             {
-                var equivalentCurrentValue = valueType.MakeSafeValue(currentValue);
-                if (equivalentCurrentValue?.Equals(value) == true)
-                    return true;
+                return propertyType.CreateDefault();
             }
-            catch (FormatException)
+
+            var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
+                value.GetType(), propertyType);
+            if (autoConverter != null)
             {
-                // format problem - so they are definitely not equivalent
-                return false;
+                return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
             }
+
+            return propertyType.MakeSafeValueCore(value);
         }
-
-        return false;
-    }
-
-    public static bool ConvertToBoolean(this object? result)
-    {
-        return result.ConvertToBooleanCore();
-    }
-
-    [RequiresUnreferencedCode("This method uses reflection to perform type conversions which may not be preserved by trimming")]
-    public static object? MakeSafeValue(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
-        object? value)
-    {
-        if (value == null)
-        {
-            return propertyType.CreateDefault();
-        }
-
-        var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
-            value.GetType(), propertyType);
-        if (autoConverter != null)
-        {
-            return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
-        }
-
-        return propertyType.MakeSafeValueCore(value);
     }
 }

@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments;
 public static class MvxFragmentExtensions
 {
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    public static void AddEventListeners(this IMvxEventSourceFragment fragment)
+    public static void AddEventListeners(this ICrossEventSourceFragment fragment)
     {
         if (fragment is IMvxFragmentView)
         {

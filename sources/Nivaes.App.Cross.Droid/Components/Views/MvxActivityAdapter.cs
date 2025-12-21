@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Platforms.Android.Views.Base;
-using Nivaes.App.Cross;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("Loading ViewModels requires unreferenced code")]
     public class MvxActivityAdapter : MvxBaseActivityAdapter
     {
@@ -34,7 +31,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         protected override void EventSourceOnStartActivityForResultCalled(
-            object sender, MvxValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+            object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
         {
             var requestCode = eventArgs.Value.RequestCode;
             switch (requestCode)
@@ -62,7 +59,7 @@ namespace MvvmCross.Platforms.Android.Views
             AndroidView.OnViewPause();
         }
 
-        protected override void EventSourceOnNewIntentCalled(object sender, MvxValueEventArgs<Intent> eventArgs)
+        protected override void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
         {
             AndroidView.OnViewNewIntent();
         }
@@ -72,12 +69,12 @@ namespace MvvmCross.Platforms.Android.Views
             AndroidView.OnViewDestroy();
         }
 
-        protected override void EventSourceOnCreateCalled(object sender, MvxValueEventArgs<Bundle> eventArgs)
+        protected override void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
         {
             AndroidView.OnViewCreate(eventArgs.Value);
         }
 
-        protected override void EventSourceOnSaveInstanceStateCalled(object sender, MvxValueEventArgs<Bundle> eventArgs)
+        protected override void EventSourceOnSaveInstanceStateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
         {
             var mvxBundle = AndroidView.CreateSaveStateBundle();
             if (mvxBundle != null)
@@ -100,7 +97,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         protected override void EventSourceOnActivityResultCalled(
-            object sender, MvxValueEventArgs<MvxActivityResultParameters> eventArgs)
+            object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
         {
             if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
             {

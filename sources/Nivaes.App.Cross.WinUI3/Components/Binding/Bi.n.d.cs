@@ -1,17 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using Microsoft.UI.Xaml;
-using MvvmCross.Base;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Platforms.WinUi.Binding
 {
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     // ReSharper disable InconsistentNaming
     public static class Bi
     // ReSharper restore InconsistentNaming
@@ -75,10 +69,10 @@ namespace MvvmCross.Platforms.WinUi.Binding
 
         private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string bindingText)
         {
-            if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
+            if (CrossSingleton<IMvxBindingSingletonCache>.Instance == null)
                 return Array.Empty<MvxBindingDescription>();
 
-            return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
+            return CrossSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
         }
     }
 }

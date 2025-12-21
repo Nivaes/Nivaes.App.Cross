@@ -20,6 +20,6 @@ namespace Nivaes.App.Cross
             Requested?.Raise(this, request);
         }
 
-        public event EventHandler<MvxValueEventArgs<T>>? Requested;
+        public event EventHandler<CrossValueEventArgs<T>>? Requested;
     }
 }

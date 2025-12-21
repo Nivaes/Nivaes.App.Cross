@@ -1,19 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Windows.Input;
-using MvvmCross.Base;
-
 namespace MvvmCross.WeakSubscription
 {
-#nullable enable
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using System.Windows.Input;
+    using Nivaes.App.Cross;
+
     public static class MvxWeakSubscriptionExtensions
     {
         public static MvxNotifyPropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,
@@ -51,7 +45,7 @@ namespace MvvmCross.WeakSubscription
 
         public static MvxValueEventSubscription<T> WeakSubscribe<T>(this EventInfo eventInfo,
                                                                     object source,
-                                                                    EventHandler<MvxValueEventArgs<T>> eventHandler)
+                                                                    EventHandler<CrossValueEventArgs<T>> eventHandler)
         {
             return new MvxValueEventSubscription<T>(source, eventInfo, eventHandler);
         }
@@ -76,5 +70,4 @@ namespace MvvmCross.WeakSubscription
             return new MvxWeakEventSubscription<TSource, TEventArgs>(source, eventName, eventHandler);
         }
     }
-#nullable restore
 }

@@ -90,7 +90,7 @@ namespace MvvmCross.Platforms.Android.Views
             if (extraData == null)
                 return null;
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? navigationSerializer) != true ||
+            if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
                 navigationSerializer == null)
             {
                 return null;
@@ -147,7 +147,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             var intent = new Intent(_applicationContext, viewType);
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? navigationSerializer) != true ||
+            if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
                 navigationSerializer == null)
             {
                 return intent;

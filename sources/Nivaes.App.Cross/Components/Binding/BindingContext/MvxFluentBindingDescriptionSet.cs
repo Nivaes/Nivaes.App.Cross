@@ -1,20 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public class MvxFluentBindingDescriptionSet<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TOwningTarget, TSource>
-            : MvxApplicable, IDisposable
+            : CrossApplicable, IDisposable
                 where TOwningTarget : class, IMvxBindingContextOwner
     {
-        private readonly List<IMvxApplicable> _applicables = [];
+        private readonly List<ICrossApplicable> _applicables = [];
         private readonly TOwningTarget _bindingContextOwner;
         private readonly string _clearBindingKey;
 

@@ -1,15 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Threading;
 using Android.App;
-using MvvmCross.Base;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    public class MvxAndroidMainThreadDispatcher : MvxMainThreadAsyncDispatcher
+    using System;
+    using System.Threading;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
+    public class MvxAndroidMainThreadDispatcher 
+        : CrossMainThreadAsyncDispatcher
     {
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 

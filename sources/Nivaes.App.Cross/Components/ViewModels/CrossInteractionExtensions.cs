@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime event inspection for generic type parameter with PublicEvents annotation")]
         public static MvxValueEventSubscription<TValue>? WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(
             this TInteraction interaction,
-            EventHandler<MvxValueEventArgs<TValue>> action)
+            EventHandler<CrossValueEventArgs<TValue>> action)
                 where TInteraction : ICrossInteraction<TValue>
         {
             var eventInfo = interaction.GetType().GetEvent("Requested");
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
             this TInteraction interaction, Action<TValue> action)
                 where TInteraction : ICrossInteraction<TValue>
         {
-            EventHandler<MvxValueEventArgs<TValue>> wrappedAction = (sender, args) => action(args.Value);
+            EventHandler<CrossValueEventArgs<TValue>> wrappedAction = (sender, args) => action(args.Value);
             return interaction.WeakSubscribe(wrappedAction);
         }
     }

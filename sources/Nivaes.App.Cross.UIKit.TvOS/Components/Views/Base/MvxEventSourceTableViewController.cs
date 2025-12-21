@@ -1,12 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Base;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Tvos.Views.Base
 {
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxEventSourceTableViewController
         : UITableViewController, IMvxEventSourceViewController
     {
@@ -79,13 +76,13 @@ namespace MvvmCross.Platforms.Tvos.Views.Base
 
         public event EventHandler ViewDidLayoutSubviewsCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillAppearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewWillAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidAppearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewDidAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidDisappearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewDidDisappearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillDisappearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewWillDisappearCalled;
 
         public event EventHandler DisposeCalled;
     }

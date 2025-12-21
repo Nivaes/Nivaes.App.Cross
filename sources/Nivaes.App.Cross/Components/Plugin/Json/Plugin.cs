@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Plugin.Json
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+
     [MvxPlugin]
     [Preserve(AllMembers = true)]
     [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
@@ -18,12 +15,12 @@ namespace MvvmCross.Plugin.Json
 
         public void Load(IMvxIoCProvider provider)
         {
-            provider.RegisterType<IMvxJsonConverter, MvxJsonConverter>();
+            provider.RegisterType<ICrossJsonConverter, MvxJsonConverter>();
             var configuration = _configuration ?? MvxJsonConfiguration.Default;
 
             if (configuration.RegisterAsTextSerializer)
             {
-                provider.RegisterType<IMvxTextSerializer, MvxJsonConverter>();
+                provider.RegisterType<ICrossTextSerializer, MvxJsonConverter>();
             }
         }
 

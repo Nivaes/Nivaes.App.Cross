@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.ViewModels;
 
     public class CrossViewModelRequestCustomTextSerializer
-    : IMvxTextSerializer
+    : ICrossTextSerializer
     {
         protected Lazy<ICrossViewModelByNameLookup?> ByNameLookup { get; } =
             new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelByNameLookup>());

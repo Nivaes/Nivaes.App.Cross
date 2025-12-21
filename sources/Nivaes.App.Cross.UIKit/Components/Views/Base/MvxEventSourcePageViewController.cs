@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Foundation;
-using MvvmCross.Base;
-using ObjCRuntime;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views.Base
 {
+    using System;
+    using Foundation;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+    using UIKit;
+
     public class MvxEventSourcePageViewController : UIPageViewController, IMvxEventSourceViewController
     {
         public MvxEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)
@@ -95,13 +92,13 @@ namespace MvvmCross.Platforms.Ios.Views.Base
 
         public event EventHandler ViewDidLayoutSubviewsCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillAppearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewWillAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidAppearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewDidAppearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewDidDisappearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewDidDisappearCalled;
 
-        public event EventHandler<MvxValueEventArgs<bool>> ViewWillDisappearCalled;
+        public event EventHandler<CrossValueEventArgs<bool>> ViewWillDisappearCalled;
 
         public event EventHandler DisposeCalled;
     }

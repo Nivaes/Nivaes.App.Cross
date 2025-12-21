@@ -1,22 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Microsoft.UI.Xaml;
-using MvvmCross.Base;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.WinUi.Binding.MvxBinding;
-using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
-
 namespace MvvmCross.Platforms.WinUi.Binding
 {
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.WinUi.Binding.MvxBinding;
+    using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
+    using Nivaes.App.Cross;
+
     public class MvxWindowsBindingBuilder : MvxBindingBuilder
     {
         public enum BindingType
@@ -114,9 +109,9 @@ namespace MvvmCross.Platforms.WinUi.Binding
         {
             base.FillValueConverters(registry);
 
-            if (MvxSingleton<IMvxWindowsAssemblyCache>.Instance != null)
+            if (CrossSingleton<IMvxWindowsAssemblyCache>.Instance != null)
             {
-                foreach (var assembly in MvxSingleton<IMvxWindowsAssemblyCache>.Instance.Assemblies)
+                foreach (var assembly in CrossSingleton<IMvxWindowsAssemblyCache>.Instance.Assemblies)
                 {
                     registry.Fill(assembly);
                 }
@@ -129,9 +124,9 @@ namespace MvvmCross.Platforms.WinUi.Binding
         {
             base.FillValueCombiners(registry);
 
-            if (MvxSingleton<IMvxWindowsAssemblyCache>.Instance != null)
+            if (CrossSingleton<IMvxWindowsAssemblyCache>.Instance != null)
             {
-                foreach (var assembly in MvxSingleton<IMvxWindowsAssemblyCache>.Instance.Assemblies)
+                foreach (var assembly in CrossSingleton<IMvxWindowsAssemblyCache>.Instance.Assemblies)
                 {
                     registry.Fill(assembly);
                 }

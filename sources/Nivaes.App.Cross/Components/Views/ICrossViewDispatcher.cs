@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.Base;
     using MvvmCross.ViewModels;
 
-    public interface ICrossViewDispatcher : IMvxMainThreadAsyncDispatcher, IMvxMainThreadDispatcher
+    public interface ICrossViewDispatcher : ICrossMainThreadAsyncDispatcher, ICrossMainThreadDispatcher
     {
         Task<bool> ShowViewModel(CrossViewModelRequest request);
 

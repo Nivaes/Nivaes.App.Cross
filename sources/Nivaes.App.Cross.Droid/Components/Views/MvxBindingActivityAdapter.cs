@@ -1,16 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.OS;
-using MvvmCross.Base;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Views.Base;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using Nivaes.App.Cross;
+
     public class MvxBindingActivityAdapter
         : MvxBaseActivityAdapter
     {
@@ -29,7 +27,7 @@ namespace MvvmCross.Platforms.Android.Views
         }
 
         protected override void EventSourceOnCreateWillBeCalled(object sender,
-                                                                MvxValueEventArgs<Bundle> MvxValueEventArgs)
+                                                                CrossValueEventArgs<Bundle> MvxValueEventArgs)
         {
             BindingContext.ClearAllBindings();
             base.EventSourceOnCreateWillBeCalled(sender, MvxValueEventArgs);

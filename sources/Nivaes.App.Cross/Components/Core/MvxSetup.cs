@@ -291,25 +291,25 @@ namespace MvvmCross.Core
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         protected virtual void PerformBootstrapActions()
         {
-            var bootstrapRunner = new MvxBootstrapRunner();
+            var bootstrapRunner = new CrossBootstrapRunner();
             foreach (var assembly in GetBootstrapOwningAssemblies())
             {
                 bootstrapRunner.Run(assembly);
             }
         }
 
-        protected virtual IMvxNavigationSerializer? InitializeNavigationSerializer(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationSerializer? InitializeNavigationSerializer(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return CreateNavigationSerializer(iocProvider);
         }
 
-        protected virtual IMvxNavigationSerializer? CreateNavigationSerializer(IMvxIoCProvider iocProvider)
+        protected virtual ICrossNavigationSerializer? CreateNavigationSerializer(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxNavigationSerializer>();
+            return iocProvider.Resolve<ICrossNavigationSerializer>();
         }
 
         protected virtual ICrossCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
@@ -355,7 +355,7 @@ namespace MvvmCross.Core
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationSerializer, MvxStringDictionaryNavigationSerializer>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
 
             iocProvider.RegisterType<ICrossCommandHelper, CrossWeakCommandHelper>();
@@ -534,8 +534,8 @@ namespace MvvmCross.Core
 
             var dispatcher = CreateViewDispatcher();
             iocProvider.RegisterSingleton(dispatcher);
-            iocProvider.RegisterSingleton<IMvxMainThreadAsyncDispatcher>(dispatcher);
-            iocProvider.RegisterSingleton<IMvxMainThreadDispatcher>(dispatcher);
+            iocProvider.RegisterSingleton<ICrossMainThreadAsyncDispatcher>(dispatcher);
+            iocProvider.RegisterSingleton<ICrossMainThreadDispatcher>(dispatcher);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

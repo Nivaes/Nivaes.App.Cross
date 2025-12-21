@@ -24,7 +24,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             try
             {
-                var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+                var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
                 var data = converter.Serializer.DeserializeObject<Dictionary<string, string>>(extras);
                 return new CrossBundle(data);
             }
@@ -44,7 +44,7 @@ namespace MvvmCross.Platforms.Android.Views
             if (savedState.Data.Count == 0)
                 return;
 
-            var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
             var data = converter.Serializer.SerializeObject(savedState.Data);
             bundle.PutString(ExtrasKey, data);
         }

@@ -10,6 +10,6 @@ namespace Nivaes.App.Cross
 
     public interface ICrossInteraction<T>
     {
-        event EventHandler<MvxValueEventArgs<T>>? Requested;
+        event EventHandler<CrossValueEventArgs<T>>? Requested;
     }
 }

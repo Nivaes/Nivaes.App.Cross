@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
     {
         public IMvxFragmentView? FragmentView => Fragment as IMvxFragmentView;
 
-        public MvxBindingFragmentAdapter(IMvxEventSourceFragment eventSource)
+        public MvxBindingFragmentAdapter(ICrossEventSourceFragment eventSource)
             : base(eventSource)
         {
             if (eventSource is not IMvxFragmentView)
@@ -28,7 +28,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        protected override void HandleCreateCalled(object? sender, MvxValueEventArgs<Bundle>? e)
+        protected override void HandleCreateCalled(object? sender, CrossValueEventArgs<Bundle>? e)
         {
             // Create is called after Fragment is attached to Activity
             // it's safe to assume that Fragment has activity
@@ -61,7 +61,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(MvxValueEventArgs<Bundle>? bundleArgs)
+        private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
         {
             Bundle? bundle = null;
             CrossViewModelRequest? request = null;
@@ -86,7 +86,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxNavigationSerializer? serializer) == true)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? serializer) == true)
             {
                 request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
             }
@@ -113,7 +113,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
         }
 
         protected override void HandleCreateViewCalled(
-            object? sender, MvxValueEventArgs<MvxCreateViewParameters> e) =>
+            object? sender, CrossValueEventArgs<MvxCreateViewParameters> e) =>
             FragmentView?.EnsureBindingContextIsSet(e.Value.Inflater);
 
         protected override void HandleResumeCalled(object? sender, EventArgs e)
@@ -125,7 +125,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments
             }
         }
 
-        protected override void HandleSaveInstanceStateCalled(object? sender, MvxValueEventArgs<Bundle> e)
+        protected override void HandleSaveInstanceStateCalled(object? sender, CrossValueEventArgs<Bundle> e)
         {
             // it is guaranteed that SaveInstanceState call will be executed before OnStop (thus before Fragment detach)
             // it is safe to assume that Fragment has activity attached

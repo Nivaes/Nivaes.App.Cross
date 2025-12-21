@@ -1,13 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Reflection;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Platforms.WinUi.Binding
 {
+    using System.Reflection;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+
     public class Import
     {
         static Import()
@@ -39,7 +35,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
 
         private static void RegisterAssembly(Assembly assembly)
         {
-            if (MvxSingleton<IMvxIoCProvider>.Instance == null)
+            if (CrossSingleton<IMvxIoCProvider>.Instance == null)
             {
                 MvxWindowsAssemblyCache.EnsureInitialized();
                 MvxWindowsAssemblyCache.Instance?.Assemblies.Add(assembly);

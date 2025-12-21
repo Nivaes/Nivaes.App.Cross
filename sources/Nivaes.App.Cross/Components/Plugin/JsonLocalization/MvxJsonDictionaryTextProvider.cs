@@ -1,12 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Base;
-
 namespace MvvmCross.Plugin.JsonLocalization
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public abstract class MvxJsonDictionaryTextProvider
         : MvxDictionaryTextProvider
          , IMvxJsonDictionaryTextLoader
@@ -16,12 +13,12 @@ namespace MvvmCross.Plugin.JsonLocalization
         {
         }
 
-        private IMvxJsonConverter _jsonConvert;
-        protected IMvxJsonConverter JsonConvert
+        private ICrossJsonConverter _jsonConvert;
+        protected ICrossJsonConverter JsonConvert
         {
             get
             {
-                _jsonConvert = _jsonConvert ?? Mvx.IoCProvider.Resolve<IMvxJsonConverter>();
+                _jsonConvert = _jsonConvert ?? Mvx.IoCProvider.Resolve<ICrossJsonConverter>();
                 return _jsonConvert;
             }
         }

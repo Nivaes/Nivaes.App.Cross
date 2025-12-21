@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Base;
-using MvvmCross.Binding.BindingContext;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Mac.Binding.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.BindingContext;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     [Register("MvxTableCellView")]
-    public class MvxTableCellView : NSTableCellView, IMvxBindingContextOwner, IMvxDataConsumer
+    public class MvxTableCellView : NSTableCellView, IMvxBindingContextOwner, ICrossDataConsumer
     {
         // Called when created from unmanaged code
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]

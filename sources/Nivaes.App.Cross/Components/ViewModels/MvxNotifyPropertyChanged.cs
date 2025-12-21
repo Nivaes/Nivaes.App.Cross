@@ -14,7 +14,7 @@ using Nivaes.App.Cross;
 namespace MvvmCross.ViewModels;
 
 public abstract class MvxNotifyPropertyChanged
-    : MvxMainThreadDispatchingObject, IMvxNotifyPropertyChanged
+    : CrossMainThreadDispatchingObject, IMvxNotifyPropertyChanged
 {
     private static readonly PropertyChangedEventArgs AllPropertiesChanged = new(string.Empty);
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -133,7 +133,7 @@ public abstract class MvxNotifyPropertyChanged
             PropertyChanged?.Invoke(this, changedArgs);
         }
 
-        void ExceptionMasked() => MvxMainThreadDispatcher.ExceptionMaskedAction(RaiseChange, true);
+        void ExceptionMasked() => CrossMainThreadDispatcher.ExceptionMaskedAction(RaiseChange, true);
 
         if (ShouldAlwaysRaiseInpcOnUserInterfaceThread())
         {

@@ -39,8 +39,8 @@ namespace MvvmCross.Platforms.Android.Presenters
         private readonly Lazy<IMvxAndroidActivityLifetimeListener?> _activityLifetimeListener =
             new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidActivityLifetimeListener>());
 
-        private readonly Lazy<IMvxNavigationSerializer?> _navigationSerializer =
-            new(() => Mvx.IoCProvider?.Resolve<IMvxNavigationSerializer>());
+        private readonly Lazy<ICrossNavigationSerializer?> _navigationSerializer =
+            new(() => Mvx.IoCProvider?.Resolve<ICrossNavigationSerializer>());
 
         private readonly Lazy<ILogger?> _logger = new(() => MvxLogHost.GetLog<MvxAndroidViewPresenter>());
 
@@ -65,7 +65,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         protected IMvxAndroidActivityLifetimeListener? ActivityLifetimeListener =>
             _activityLifetimeListener.Value;
 
-        protected IMvxNavigationSerializer? NavigationSerializer =>
+        protected ICrossNavigationSerializer? NavigationSerializer =>
             _navigationSerializer.Value;
 
         public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies)

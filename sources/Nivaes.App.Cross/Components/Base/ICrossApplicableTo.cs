@@ -1,0 +1,17 @@
+namespace Nivaes.App.Cross
+{
+    using System.Diagnostics.CodeAnalysis;
+
+    public interface ICrossApplicableTo
+    {
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        void ApplyTo(object what);
+    }
+
+    public interface IMvxApplicableTo<in T>
+        where T : notnull
+    {
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        void ApplyTo(T what);
+    }
+}

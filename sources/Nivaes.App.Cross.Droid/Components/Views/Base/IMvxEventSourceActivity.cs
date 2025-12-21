@@ -1,23 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.Content;
-using Android.OS;
-using MvvmCross.Base;
 
 namespace MvvmCross.Platforms.Android.Views.Base
 {
-    public interface IMvxEventSourceActivity : IMvxDisposeSource
-    {
-        event EventHandler<MvxValueEventArgs<Bundle>> CreateWillBeCalled;
+    using System;
+    using Nivaes.App.Cross;
 
-        event EventHandler<MvxValueEventArgs<Bundle>> CreateCalled;
+    public interface IMvxEventSourceActivity : ICrossDisposeSource
+    {
+        event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
+
+        event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
 
         event EventHandler DestroyCalled;
 
-        event EventHandler<MvxValueEventArgs<Intent>> NewIntentCalled;
+        event EventHandler<CrossValueEventArgs<Intent>> NewIntentCalled;
 
         event EventHandler ResumeCalled;
 
@@ -29,10 +25,10 @@ namespace MvvmCross.Platforms.Android.Views.Base
 
         event EventHandler StopCalled;
 
-        event EventHandler<MvxValueEventArgs<Bundle>> SaveInstanceStateCalled;
+        event EventHandler<CrossValueEventArgs<Bundle>> SaveInstanceStateCalled;
 
-        event EventHandler<MvxValueEventArgs<MvxStartActivityForResultParameters>> StartActivityForResultCalled;
+        event EventHandler<CrossValueEventArgs<MvxStartActivityForResultParameters>> StartActivityForResultCalled;
 
-        event EventHandler<MvxValueEventArgs<MvxActivityResultParameters>> ActivityResultCalled;
+        event EventHandler<CrossValueEventArgs<MvxActivityResultParameters>> ActivityResultCalled;
     }
 }

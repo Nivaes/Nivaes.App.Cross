@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.ViewModels;
 
     public sealed class CrossSingletonCache
-    : MvxSingleton<ICrossSingletonCache>, ICrossSingletonCache
+    : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache
     {
         private bool _inpcInterceptorResolveAttempted;
         private ICrossInpcInterceptor? _inpcInterceptor;

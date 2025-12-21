@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using MvvmCross.Base;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public class MvxNamedInstanceRegistry<T>
-        : IMvxNamedInstanceLookup<T>, IMvxNamedInstanceRegistry<T>
+        : IMvxNamedInstanceLookup<T>, ICrossNamedInstanceRegistry<T>
         where T : class
     {
         private readonly Dictionary<string, T> _converters =

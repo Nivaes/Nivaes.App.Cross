@@ -1,27 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Input;
-using AppKit;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.WeakSubscription;
-
 namespace MvvmCross.Platforms.Mac.Binding.Views
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Windows.Input;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Attributes;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Extensions;
+    using MvvmCross.WeakSubscription;
+    using Nivaes.App.Cross;
+
     public class MvxTableViewSource : NSTableViewSource
     {
         private IEnumerable _itemsSource;
@@ -100,7 +92,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
             var item = ItemsSource.ElementAt((int)row);
             var view = GetOrCreateViewFor(tableView, tableColumn);
 
-            if (view is IMvxDataConsumer bindable)
+            if (view is ICrossDataConsumer bindable)
                 bindable.DataContext = item;
 
             return view;

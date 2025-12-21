@@ -1,17 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Windows.Input;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using UIKit;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {
+    using System.Windows.Input;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
     {
         public static readonly NSString UnknownCellIdentifier = null;
@@ -94,7 +87,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
             var item = GetItemAt(indexPath);
             var cell = GetOrCreateCellFor(collectionView, indexPath, item);
 
-            var bindable = cell as IMvxDataConsumer;
+            var bindable = cell as ICrossDataConsumer;
             if (bindable != null)
                 bindable.DataContext = item;
 

@@ -1,25 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.ExpressionParse;
-using MvvmCross.Binding.Parse.Binding;
-using MvvmCross.Binding.Parse.Binding.Lang;
-using MvvmCross.Binding.Parse.Binding.Tibet;
-using MvvmCross.Binding.Parse.PropertyPath;
-using MvvmCross.Binding.ValueConverters;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-using MvvmCross.Localization;
-
 namespace MvvmCross.Binding
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.ExpressionParse;
+    using MvvmCross.Binding.Parse.Binding;
+    using MvvmCross.Binding.Parse.Binding.Lang;
+    using MvvmCross.Binding.Parse.Binding.Tibet;
+    using MvvmCross.Binding.Parse.PropertyPath;
+    using MvvmCross.Binding.ValueConverters;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Localization;
+    using Nivaes.App.Cross;
+
     public class MvxCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
@@ -102,7 +98,7 @@ namespace MvvmCross.Binding
         {
             var registry = CreateValueConverterRegistry();
             iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<IMvxValueConverter>>(registry);
-            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistry<IMvxValueConverter>>(registry);
+            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<IMvxValueConverter>>(registry);
             iocProvider.RegisterSingleton<IMvxValueConverterLookup>(registry);
             iocProvider.RegisterSingleton<IMvxValueConverterRegistry>(registry);
             FillValueConverters(registry);
@@ -123,7 +119,7 @@ namespace MvvmCross.Binding
         {
             var registry = CreateValueCombinerRegistry();
             iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<IMvxValueCombiner>>(registry);
-            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistry<IMvxValueCombiner>>(registry);
+            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<IMvxValueCombiner>>(registry);
             iocProvider.RegisterSingleton<IMvxValueCombinerLookup>(registry);
             iocProvider.RegisterSingleton<IMvxValueCombinerRegistry>(registry);
             FillValueCombiners(registry);

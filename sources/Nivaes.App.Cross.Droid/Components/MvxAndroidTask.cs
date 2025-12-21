@@ -1,19 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.App;
 using Android.Content;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Views.Base;
 
 namespace MvvmCross.Platforms.Android
 {
+    using System;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Views.Base;
+    using Nivaes.App.Cross;
+
     public class MvxAndroidTask
-        : MvxMainThreadDispatchingObject
+        : CrossMainThreadDispatchingObject
     {
         protected void StartActivity(Intent intent)
         {

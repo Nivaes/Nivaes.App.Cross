@@ -1,20 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-
 namespace MvvmCross.Binding.Binders
 {
-    public class MvxNamedInstanceRegistryFiller<T> : IMvxNamedInstanceRegistryFiller<T>
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.IoC;
+    using Nivaes.App.Cross;
+
+    public class MvxNamedInstanceRegistryFiller<T> 
+        : IMvxNamedInstanceRegistryFiller<T>
         where T : class
     {
         protected virtual void FillFromInstance(
-            IMvxNamedInstanceRegistry<T> registry,
+            ICrossNamedInstanceRegistry<T> registry,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] Type type)
         {
             var instance = Activator.CreateInstance(type);
@@ -38,7 +36,7 @@ namespace MvvmCross.Binding.Binders
         }
 
         protected virtual void FillFromStatic(
-            IMvxNamedInstanceRegistry<T> registry,
+            ICrossNamedInstanceRegistry<T> registry,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)] Type type)
         {
             var pairs = from field in type.GetFields()
@@ -60,7 +58,7 @@ namespace MvvmCross.Binding.Binders
         }
 
         public virtual void FillFrom(
-            IMvxNamedInstanceRegistry<T> registry,
+            ICrossNamedInstanceRegistry<T> registry,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] Type type)
         {
             if (type.GetTypeInfo().IsAbstract)
@@ -74,7 +72,7 @@ namespace MvvmCross.Binding.Binders
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
-        public virtual void FillFrom(IMvxNamedInstanceRegistry<T> registry, Assembly assembly)
+        public virtual void FillFrom(ICrossNamedInstanceRegistry<T> registry, Assembly assembly)
         {
             var pairs = from type in assembly.ExceptionSafeGetTypes()
                         where type.GetTypeInfo().IsPublic

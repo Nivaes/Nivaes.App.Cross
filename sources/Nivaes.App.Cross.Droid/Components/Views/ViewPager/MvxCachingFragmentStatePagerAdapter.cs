@@ -113,7 +113,7 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            var navigationSerializer = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var navigationSerializer = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
 
             var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
 

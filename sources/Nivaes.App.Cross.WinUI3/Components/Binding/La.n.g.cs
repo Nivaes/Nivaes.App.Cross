@@ -5,15 +5,14 @@
 //
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
-using System.Collections.Generic;
-using MvvmCross.Base;
-using MvvmCross.Core;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-using Microsoft.UI.Xaml;
 
 namespace MvvmCross.Platforms.WinUi.Binding
 {
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     // ReSharper disable InconsistentNaming
     public static class La
     // ReSharper restore InconsistentNaming
@@ -68,10 +67,10 @@ namespace MvvmCross.Platforms.WinUi.Binding
 
         private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string languageText)
         {
-            if (MvxSingleton<IMvxBindingSingletonCache>.Instance == null)
+            if (CrossSingleton<IMvxBindingSingletonCache>.Instance == null)
                 return null;
 
-            return MvxSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(languageText);
+            return CrossSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(languageText);
         }
     }
 }

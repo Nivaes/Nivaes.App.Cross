@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using MvvmCross.Base;
-
 namespace MvvmCross.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public class MvxObservableCollection<T>
         : ObservableCollection<T>
     {
@@ -283,14 +280,14 @@ namespace MvvmCross.ViewModels
                 new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
         }
 
-        private IMvxMainThreadAsyncDispatcher _dispatcher;
+        private ICrossMainThreadAsyncDispatcher _dispatcher;
 
         protected virtual Task InvokeOnMainThread(Action action)
         {
             if (_dispatcher != null)
                 return _dispatcher.ExecuteOnMainThreadAsync(action);
 
-            if (Mvx.IoCProvider?.TryResolve(out IMvxMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
+            if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
                 return Task.CompletedTask;
 
             _dispatcher = dispatcher;

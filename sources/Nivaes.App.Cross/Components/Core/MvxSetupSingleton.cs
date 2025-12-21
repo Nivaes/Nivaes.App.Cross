@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Base;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     /// <summary>
     /// The setup singleton is designed to ensure only a single instance
     /// of MvxSetup is created and invoked. There are three important methods
@@ -26,7 +23,7 @@ namespace MvvmCross.Core
     /// in applications where there is no splash screen.
     /// </summary>
     public abstract class MvxSetupSingleton
-       : MvxSingleton<MvxSetupSingleton>
+       : CrossSingleton<MvxSetupSingleton>
     {
         private static readonly object LockObject = new();
         private IMvxSetup _setup;

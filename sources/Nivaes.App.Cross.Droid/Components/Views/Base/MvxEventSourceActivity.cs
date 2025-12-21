@@ -1,14 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
 using Android.Content;
 using Android.Runtime;
-using MvvmCross.Base;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
 namespace MvvmCross.Platforms.Android.Views.Base
 {
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+    using Activity = AndroidX.AppCompat.App.AppCompatActivity;
+
     [Register("mvvmcross.platforms.android.views.base.MvxEventSourceActivity")]
     public abstract class MvxEventSourceActivity
         : Activity, IMvxEventSourceActivity
@@ -100,13 +98,13 @@ namespace MvvmCross.Platforms.Android.Views.Base
 
         public event EventHandler? DisposeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle?>>? CreateWillBeCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle?>>? CreateWillBeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle?>>? CreateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle?>>? CreateCalled;
 
         public event EventHandler? DestroyCalled;
 
-        public event EventHandler<MvxValueEventArgs<Intent?>>? NewIntentCalled;
+        public event EventHandler<CrossValueEventArgs<Intent?>>? NewIntentCalled;
 
         public event EventHandler? ResumeCalled;
 
@@ -118,10 +116,10 @@ namespace MvvmCross.Platforms.Android.Views.Base
 
         public event EventHandler? StopCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>>? SaveInstanceStateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>>? SaveInstanceStateCalled;
 
-        public event EventHandler<MvxValueEventArgs<MvxStartActivityForResultParameters>>? StartActivityForResultCalled;
+        public event EventHandler<CrossValueEventArgs<MvxStartActivityForResultParameters>>? StartActivityForResultCalled;
 
-        public event EventHandler<MvxValueEventArgs<MvxActivityResultParameters>>? ActivityResultCalled;
+        public event EventHandler<CrossValueEventArgs<MvxActivityResultParameters>>? ActivityResultCalled;
     }
 }

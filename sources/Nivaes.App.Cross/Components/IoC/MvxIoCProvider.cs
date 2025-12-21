@@ -5,6 +5,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using MvvmCross.Base;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;
 
@@ -14,7 +15,7 @@ namespace MvvmCross.IoC;
 /// </summary>
 [Obsolete("Quitar MvxIoC")]
 public sealed class MvxIoCProvider
-    : MvxSingleton<IMvxIoCProvider>, IMvxIoCProvider
+    : CrossSingleton<IMvxIoCProvider>, IMvxIoCProvider
 {
     public static IMvxIoCProvider Initialize(IMvxIocOptions? options = null)
     {

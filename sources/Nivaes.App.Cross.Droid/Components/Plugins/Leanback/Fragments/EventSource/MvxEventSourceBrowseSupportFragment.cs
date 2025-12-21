@@ -1,28 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using AndroidX.Leanback.App;
-using MvvmCross.Base;
-using MvvmCross.Platforms.Android.Views;
-
 namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
 {
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using AndroidX.Leanback.App;
+    using MvvmCross.Platforms.Android.Views;
+    using Nivaes.App.Cross;
+
     public class MvxEventSourceBrowseSupportFragment
-        : BrowseSupportFragment, IMvxEventSourceFragment
+        : BrowseSupportFragment, ICrossEventSourceFragment
     {
-        public event EventHandler<MvxValueEventArgs<Context>> AttachCalled;
+        public event EventHandler<CrossValueEventArgs<Context>> AttachCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> CreateWillBeCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> CreateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
 
-        public event EventHandler<MvxValueEventArgs<MvxCreateViewParameters>> CreateViewCalled;
+        public event EventHandler<CrossValueEventArgs<MvxCreateViewParameters>> CreateViewCalled;
 
         public event EventHandler StartCalled;
 
@@ -40,7 +34,7 @@ namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
 
         public event EventHandler DisposeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> SaveInstanceStateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> SaveInstanceStateCalled;
 
         public MvxEventSourceBrowseSupportFragment()
         {

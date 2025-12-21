@@ -1,30 +1,28 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using MvvmCross.Base;
-using ListFragment = AndroidX.Fragment.App.ListFragment;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
+    using System;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+    using ListFragment = AndroidX.Fragment.App.ListFragment;
+
     [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceListFragment")]
     public class MvxEventSourceListFragment
         : ListFragment
-        , IMvxEventSourceFragment
+        , ICrossEventSourceFragment
     {
-        public event EventHandler<MvxValueEventArgs<Context>> AttachCalled;
+        public event EventHandler<CrossValueEventArgs<Context>> AttachCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> CreateWillBeCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> CreateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
 
-        public event EventHandler<MvxValueEventArgs<MvxCreateViewParameters>> CreateViewCalled;
+        public event EventHandler<CrossValueEventArgs<MvxCreateViewParameters>> CreateViewCalled;
 
         public event EventHandler StartCalled;
 
@@ -42,7 +40,7 @@ namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 
         public event EventHandler DisposeCalled;
 
-        public event EventHandler<MvxValueEventArgs<Bundle>> SaveInstanceStateCalled;
+        public event EventHandler<CrossValueEventArgs<Bundle>> SaveInstanceStateCalled;
 
         protected MvxEventSourceListFragment()
         {

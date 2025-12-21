@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Base;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Base;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public interface IMvxBindingContext
-        : IMvxDataConsumer
+        : ICrossDataConsumer
     {
         event EventHandler DataContextChanged;
 

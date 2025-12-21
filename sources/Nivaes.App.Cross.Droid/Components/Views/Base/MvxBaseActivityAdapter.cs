@@ -1,15 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using MvvmCross.Base;
 
 namespace MvvmCross.Platforms.Android.Views.Base
 {
+    using System;
+    using MvvmCross.Base;
+    using Nivaes.App.Cross;
+
     public abstract class MvxBaseActivityAdapter
     {
         private readonly IMvxEventSourceActivity _eventSource;
@@ -37,12 +35,12 @@ namespace MvvmCross.Platforms.Android.Views.Base
         }
 
         protected virtual void EventSourceOnSaveInstanceStateCalled(
-            object sender, MvxValueEventArgs<Bundle> eventArgs)
+            object sender, CrossValueEventArgs<Bundle> eventArgs)
         {
         }
 
         protected virtual void EventSourceOnCreateWillBeCalled(
-            object sender, MvxValueEventArgs<Bundle> eventArgs)
+            object sender, CrossValueEventArgs<Bundle> eventArgs)
         {
         }
 
@@ -55,7 +53,7 @@ namespace MvvmCross.Platforms.Android.Views.Base
         }
 
         protected virtual void EventSourceOnStartActivityForResultCalled(
-            object sender, MvxValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+            object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
         {
         }
 
@@ -71,7 +69,7 @@ namespace MvvmCross.Platforms.Android.Views.Base
         {
         }
 
-        protected virtual void EventSourceOnNewIntentCalled(object sender, MvxValueEventArgs<Intent> eventArgs)
+        protected virtual void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
         {
         }
 
@@ -83,12 +81,12 @@ namespace MvvmCross.Platforms.Android.Views.Base
         {
         }
 
-        protected virtual void EventSourceOnCreateCalled(object sender, MvxValueEventArgs<Bundle> eventArgs)
+        protected virtual void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
         {
         }
 
         protected virtual void EventSourceOnActivityResultCalled(
-            object sender, MvxValueEventArgs<MvxActivityResultParameters> eventArgs)
+            object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
         {
         }
     }

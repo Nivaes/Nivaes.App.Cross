@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.Base;
 
     public interface ICrossView
-        : IMvxDataConsumer
+        : ICrossDataConsumer
     {
         ICrossViewModel? ViewModel { get; set; }
     }

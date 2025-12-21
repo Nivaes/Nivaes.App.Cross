@@ -191,7 +191,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected virtual void FixupDataContext(TabInfo newTab)
         {
-            var consumer = newTab.CachedFragment as IMvxDataConsumer;
+            var consumer = newTab.CachedFragment as ICrossDataConsumer;
             if (consumer == null)
                 return;
 

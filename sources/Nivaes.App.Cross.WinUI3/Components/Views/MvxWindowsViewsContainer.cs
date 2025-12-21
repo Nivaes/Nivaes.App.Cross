@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         public ICrossViewModel Load(string requestText, ICrossBundle savedState)
         {
-            var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
             dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.WinUi.Views
         public string GetRequestTextFor(CrossViewModelRequest request)
         {
             var returnData = new Dictionary<string, string>();
-            var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
 
             returnData.Add(ExtrasKey, converter.Serializer.SerializeObject(request));
 
@@ -47,7 +47,7 @@ namespace MvvmCross.Platforms.WinUi.Views
         public string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse)
         {
             var returnData = new Dictionary<string, string>();
-            var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
             var request = CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
 
             var key = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>().Cache(existingViewModelToUse);
@@ -67,7 +67,7 @@ namespace MvvmCross.Platforms.WinUi.Views
         public int RequestTextGetKey(string requestText)
         {
             var returnValue = 0;
-            var converter = Mvx.IoCProvider.Resolve<IMvxNavigationSerializer>();
+            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
             var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
             dictionary.TryGetValue(ExtrasKey, out string serializedRequest);

@@ -95,7 +95,7 @@ namespace Nivaes.App.Cross
     }
 
     public class CrossCommandBase
-        : MvxMainThreadDispatchingObject
+        : CrossMainThreadDispatchingObject
     {
         private readonly ICrossCommandHelper _commandHelper;
 

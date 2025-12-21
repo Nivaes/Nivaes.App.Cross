@@ -1,22 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Input;
-using Foundation;
-using MvvmCross.Base;
-using MvvmCross.Platforms.Ios.Binding.Views;
-using MvvmCross.Platforms.Ios.Views.Expandable;
-using MvvmCross.Platforms.Ios.Views.Expandable.Controllers;
-using ObjCRuntime;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Views
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using System.Windows.Input;
+    using MvvmCross.Platforms.Ios.Binding.Views;
+    using MvvmCross.Platforms.Ios.Views.Expandable;
+    using MvvmCross.Platforms.Ios.Views.Expandable.Controllers;
+    using Nivaes.App.Cross;
+
     public abstract class MvxExpandableTableViewSource : MvxExpandableTableViewSource<IEnumerable<object>, object>
     {
         protected MvxExpandableTableViewSource(UITableView tableView) : base(tableView)
@@ -186,7 +177,7 @@ namespace MvvmCross.Platforms.Ios.Views
             }
 
             // Set the header data context
-            var bindable = header as IMvxDataConsumer;
+            var bindable = header as ICrossDataConsumer;
             if (bindable != null)
                 bindable.DataContext = GetHeaderItemAt(section);
             return header.ContentView;
@@ -205,7 +196,7 @@ namespace MvvmCross.Platforms.Ios.Views
 
         public override void HeaderViewDisplayingEnded(UITableView tableView, UIView headerView, nint section)
         {
-            var bindable = headerView as IMvxDataConsumer;
+            var bindable = headerView as ICrossDataConsumer;
             if (bindable != null)
                 bindable.DataContext = null;
         }
