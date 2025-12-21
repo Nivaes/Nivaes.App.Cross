@@ -228,7 +228,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
                 var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
                 if (controllerType is null)
                 {
-                    throw new MvxException(
+                    throw new CrossException(
                         $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
                         $"Please specify either the {nameof(MvxWindowPresentationAttribute.WindowControllerType)} or " +
                         $"{nameof(MvxWindowPresentationAttribute.WindowControllerName)} property of the {nameof(MvxWindowPresentationAttribute)} " +
@@ -291,7 +291,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
             if (window.ContentViewController is not IMvxTabViewController tabViewController)
-                throw new MvxException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
+                throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
 
             tabViewController.ShowTabView(viewController, attribute.TabTitle);
             return Task.FromResult(true);
@@ -308,7 +308,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
                 window = MainWindow ?? Windows.LastOrDefault();
 
             if (window == null)
-                throw new MvxException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
+                throw new CrossException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
 
             return window;
         }
@@ -345,7 +345,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
                 }
             }
 
-            throw new MvxException($"Could not find and close a view for '{viewModel.GetType()}'");
+            throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
         }
 
         protected void OnWindowWillCloseNotification(object sender, NSNotificationEventArgs e)

@@ -48,7 +48,7 @@ namespace MvvmCross.Platforms.Ios.Views
             {
                 var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);
                 if (viewModel == null)
-                    throw new MvxException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
+                    throw new CrossException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
 
                 MvxLogHost.Default?.LogTrace(
                     "MvxViewControllerExtensions: LoadViewModel loaded ({ViewModelType})",
@@ -56,7 +56,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 return viewModel;
             }
 
-            throw new MvxException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
+            throw new CrossException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
         }
     }
 }

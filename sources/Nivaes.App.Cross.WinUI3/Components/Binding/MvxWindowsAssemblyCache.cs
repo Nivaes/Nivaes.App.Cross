@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             var instance = new MvxWindowsAssemblyCache();
 
             if (Instance != instance)
-                throw new MvxException("Error initialising MvxWindowsAssemblyCache");
+                throw new CrossException("Error initialising MvxWindowsAssemblyCache");
         }
 
         public MvxWindowsAssemblyCache()

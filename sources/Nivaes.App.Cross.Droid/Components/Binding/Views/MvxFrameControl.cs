@@ -1,22 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Attributes;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
     public class MvxFrameControl
         : FrameLayout, IMvxBindingContextOwner
@@ -36,7 +31,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
 
             if (!(context is IMvxLayoutInflaterHolder))
             {
-                throw new MvxException("The owning Context for a MvxFrameControl must implement LayoutInflater");
+                throw new CrossException("The owning Context for a MvxFrameControl must implement LayoutInflater");
             }
 
             _bindingContext = new MvxAndroidBindingContext(context, (IMvxLayoutInflaterHolder)context);

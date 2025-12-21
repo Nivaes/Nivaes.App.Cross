@@ -98,7 +98,7 @@ namespace MvvmCross.Core
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Failed to create setup instance");
+                throw exception.Wrap("Failed to create setup instance");
             }
         }
     }

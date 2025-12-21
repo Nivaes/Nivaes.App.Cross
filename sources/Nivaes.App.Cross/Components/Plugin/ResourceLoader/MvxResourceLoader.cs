@@ -33,7 +33,7 @@ namespace MvvmCross.Plugin.ResourceLoader
             //#endif
             catch (Exception ex)
             {
-                throw ex.MvxWrap("Cannot load resource {0}", resourcePath);
+                throw ex.Wrap("Cannot load resource {0}", resourcePath);
             }
         }
 

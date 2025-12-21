@@ -1,26 +1,23 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Windows.Storage;
-
-namespace MvvmCross.Platforms.WinUi.Views.Suspension
+namespace Nivaes.App.Cross.WinUI3
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Threading.Tasks;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using MvvmCross.Platforms.WinUi.Views;
+    using Windows.Storage;
+
     /// <summary>
-    /// MvxSuspensionManager captures global session state to simplify process lifetime management
+    /// <see cref="MvxSuspensionManager"/> captures global session state to simplify process lifetime management
     /// for an application.  Note that session state will be automatically cleared under a variety
     /// of conditions and should only be used to store information that would be convenient to
     /// carry across sessions, but that should be discarded when an application crashes or is
     /// upgraded.
     /// </summary>
-    public class MvxSuspensionManager : IMvxSuspensionManager
+    public class CrossSuspensionManager : ICrossSuspensionManager
     {
         protected const string SessionStateFilename = "_mvxSessionState.xml";
 
@@ -80,7 +77,7 @@ namespace MvvmCross.Platforms.WinUi.Views.Suspension
             }
             catch (Exception e)
             {
-                throw new MvxSuspensionManagerException(e);
+                throw new CrossSuspensionManagerException(e);
             }
         }
 
@@ -121,15 +118,15 @@ namespace MvvmCross.Platforms.WinUi.Views.Suspension
             }
             catch (Exception e)
             {
-                throw new MvxSuspensionManagerException(e);
+                throw new CrossSuspensionManagerException(e);
             }
         }
 
         protected readonly DependencyProperty MvxFrameSessionStateKeyProperty =
-            DependencyProperty.RegisterAttached("_MvxFrameSessionStateKey", typeof(string), typeof(MvxSuspensionManager), null);
+            DependencyProperty.RegisterAttached("_MvxFrameSessionStateKey", typeof(string), typeof(CrossSuspensionManager), null);
         protected readonly DependencyProperty MvxFrameSessionStateProperty =
             DependencyProperty.RegisterAttached("_MvxFrameSessionState",
-                typeof(Dictionary<string, object>), typeof(MvxSuspensionManager), null);
+                typeof(Dictionary<string, object>), typeof(CrossSuspensionManager), null);
         protected readonly List<WeakReference<IMvxWindowsFrame>> _registeredFrames = new List<WeakReference<IMvxWindowsFrame>>();
 
         public virtual void RegisterFrame(IMvxWindowsFrame frame, string sessionStateKey)

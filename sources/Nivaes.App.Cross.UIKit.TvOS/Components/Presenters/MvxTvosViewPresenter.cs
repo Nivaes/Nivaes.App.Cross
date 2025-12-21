@@ -373,7 +373,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                                                         CrossViewModelRequest request)
         {
             if (viewController is MvxSplitViewController)
-                throw new MvxException("A SplitViewController can't be present in a child.  Consider using a Root instead.");
+                throw new CrossException("A SplitViewController can't be present in a child.  Consider using a Root instead.");
 
             if (ModalViewControllers.Any())
             {
@@ -384,7 +384,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                 }
                 else
                 {
-                    throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
+                    throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
                 }
             }
 
@@ -399,7 +399,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
+            throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
         protected virtual Task<bool> ShowModalViewController(UIViewController viewController,
@@ -434,7 +434,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                                            CrossViewModelRequest request)
         {
             if (TabBarViewController == null)
-                throw new MvxException("Trying to show a tab without a TabBarViewController, this is not possible!");
+                throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
             {
@@ -458,7 +458,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
             CrossViewModelRequest request)
         {
             if (PageViewController == null)
-                throw new MvxException("Trying to show a page without a PageViewController, this is not possible!");
+                throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
 
             /*if (viewController is IMvxTabBarItemViewController tabBarItem)
             {
@@ -501,7 +501,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
             }
             else
             {
-                throw new MvxException("Trying to show a master page without a SplitViewController, this is not possible!");
+                throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
             }
             return true;
         }

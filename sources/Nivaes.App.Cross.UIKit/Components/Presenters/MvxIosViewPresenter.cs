@@ -341,7 +341,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (viewController is IMvxSplitViewController)
-                throw new MvxException("A SplitViewController cannot be presented as a child. Consider using Root instead");
+                throw new CrossException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
             if (PopoverViewController != null)
             {
@@ -364,7 +364,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
+            throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
         private Task<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
@@ -376,7 +376,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException(
+            throw new CrossException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
         }
 
@@ -389,7 +389,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException(
+            throw new CrossException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain popover view presented!");
         }
 
@@ -401,7 +401,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (TabBarViewController == null)
-                throw new MvxException("Trying to show a tab without a TabBarViewController, this is not possible!");
+                throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
             {
@@ -427,7 +427,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (PageViewController == null)
-                throw new MvxException("Trying to show a page without a PageViewController, this is not possible!");
+                throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
 
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
@@ -484,7 +484,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (PopoverViewController != null)
-                throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
+                throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
 
             // Content size should be set to a target view controller, not the navigation one
             if (attribute.PreferredContentSize != default)
@@ -520,7 +520,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
             return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
-                ?? throw new MvxException($"No parent ViewController found.");
+                ?? throw new CrossException($"No parent ViewController found.");
         }
 
         protected virtual Task<bool> ShowMasterSplitViewController(
@@ -531,7 +531,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (SplitViewController == null)
-                throw new MvxException("Trying to show a master page without a SplitViewController, this is not possible!");
+                throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowMasterView(viewController, attribute);
             return Task.FromResult(true);
@@ -545,7 +545,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (SplitViewController == null)
-                throw new MvxException("Trying to show a detail page without a SplitViewController, this is not possible!");
+                throw new CrossException("Trying to show a detail page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowDetailView(viewController, attribute);
             return Task.FromResult(true);

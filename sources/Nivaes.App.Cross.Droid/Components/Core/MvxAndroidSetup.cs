@@ -128,7 +128,7 @@ public abstract class MvxAndroidSetup
         iocProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
         iocProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
         if (container is not CrossViewsContainer viewsContainer)
-            throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
+            throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
         return viewsContainer;
     }
 

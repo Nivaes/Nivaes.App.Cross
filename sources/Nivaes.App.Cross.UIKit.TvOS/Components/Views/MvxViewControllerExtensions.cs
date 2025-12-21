@@ -29,7 +29,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             var loader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
             var viewModel = loader.LoadViewModel(tvOSView.Request, null /* no saved state on tvOS currently */);
             if (viewModel == null)
-                throw new MvxException("ViewModel not loaded for " + tvOSView.Request.ViewModelType);
+                throw new CrossException("ViewModel not loaded for " + tvOSView.Request.ViewModelType);
             return viewModel;
         }
     }

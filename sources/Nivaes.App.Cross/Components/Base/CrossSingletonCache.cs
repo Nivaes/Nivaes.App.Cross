@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
         public static CrossSingletonCache Initialize()
         {
             if (Instance != null)
-                throw new MvxException("You should only initialize MvxBindingSingletonCache once");
+                throw new CrossException("You should only initialize MvxBindingSingletonCache once");
 
             return new CrossSingletonCache();
         }

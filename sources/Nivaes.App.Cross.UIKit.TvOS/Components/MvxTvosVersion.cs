@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Platforms.Tvos
 {
+    using MvvmCross.Exceptions;
+    using Nivaes.App.Cross;
+
     public class MvxTvosVersion
     {
         public MvxTvosVersion(int[] parts)
         {
             if (parts == null || parts.Length == 0)
-                throw new MvxException("Invalid parts in constructor for MvxTvosVersion");
+                throw new CrossException("Invalid parts in constructor for MvxTvosVersion");
 
             Parts = parts;
             Major = parts[0];

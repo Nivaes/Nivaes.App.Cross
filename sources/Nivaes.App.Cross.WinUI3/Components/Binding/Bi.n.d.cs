@@ -51,7 +51,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             IMvxBindingCreator toReturn;
             if (!Mvx.IoCProvider.TryResolve<IMvxBindingCreator>(out toReturn))
             {
-                throw new MvxException("Unable to resolve the binding creator - have you initialized Windows Binding");
+                throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
             }
 
             return toReturn;

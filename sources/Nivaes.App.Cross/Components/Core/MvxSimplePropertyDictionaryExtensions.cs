@@ -152,7 +152,7 @@ namespace MvvmCross.Core
             }
             catch (Exception suspectedMethodAccessException)
             {
-                throw suspectedMethodAccessException.MvxWrap(
+                throw suspectedMethodAccessException.Wrap(
                     "Problem accessing object - most likely this is caused by an anonymous object being generated as Internal - please see http://stackoverflow.com/questions/8273399/anonymous-types-and-get-accessors-on-wp7-1");
             }
         }

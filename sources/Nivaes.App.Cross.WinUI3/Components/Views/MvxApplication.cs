@@ -89,7 +89,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            throw new MvxException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+            throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
         }
 
         protected virtual void RegisterSetup()

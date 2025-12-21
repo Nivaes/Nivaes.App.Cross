@@ -1,12 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Bindings
 {
+    using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross;
+
     public static class MvxBindingModeExtensions
     {
         public static MvxBindingMode IfDefault(this MvxBindingMode bindingMode, MvxBindingMode modeIfDefault)
@@ -33,7 +29,7 @@ namespace MvvmCross.Binding.Bindings
                     return false;
 
                 default:
-                    throw new MvxException("Unexpected ActualBindingMode");
+                    throw new CrossException("Unexpected ActualBindingMode");
             }
         }
 
@@ -54,7 +50,7 @@ namespace MvvmCross.Binding.Bindings
                     return true;
 
                 default:
-                    throw new MvxException("Unexpected ActualBindingMode");
+                    throw new CrossException("Unexpected ActualBindingMode");
             }
         }
 
@@ -75,7 +71,7 @@ namespace MvvmCross.Binding.Bindings
                     return false;
 
                 default:
-                    throw new MvxException("Unexpected ActualBindingMode");
+                    throw new CrossException("Unexpected ActualBindingMode");
             }
         }
     }

@@ -470,7 +470,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
             var viewType = ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
-                throw new MvxException("The host activity doesn't inherit Activity");
+                throw new CrossException("The host activity doesn't inherit Activity");
 
             var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
             if (PendingRequest != null)
@@ -558,7 +558,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
             var fragment = fragmentView?.ToFragment();
             if (fragment == null)
-                throw new MvxException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
+                throw new CrossException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
 
             // MvxNavigationService provides an already instantiated ViewModel here
             if (request is MvxViewModelInstanceRequest instanceRequest)
@@ -748,11 +748,11 @@ namespace MvvmCross.Platforms.Android.Presenters
             {
                 var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
-                    throw new MvxException("Fragment not found", attribute.FragmentHostViewType.Name);
+                    throw new CrossException("Fragment not found", attribute.FragmentHostViewType.Name);
 
                 if (fragment.View == null)
                 {
-                    throw new MvxException("Fragment.View is null. Please consider calling Navigate later in your code",
+                    throw new CrossException("Fragment.View is null. Please consider calling Navigate later in your code",
                         attribute.FragmentHostViewType.Name);
                 }
 
@@ -780,7 +780,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
             // no more cases to check. Just throw if ViewPager wasn't found
             if (viewPager == null)
-                throw new MvxException("ViewPager not found");
+                throw new CrossException("ViewPager not found");
 
             var tag = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
             var fragmentInfo = new MvxViewPagerFragmentInfo(attribute.Title, tag, attribute.ViewType, request);
@@ -835,7 +835,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             }
 
             if (viewPager == null || tabLayout == null)
-                throw new MvxException("ViewPager or TabLayout not found");
+                throw new CrossException("ViewPager or TabLayout not found");
 
             tabLayout.SetupWithViewPager(viewPager);
             return true;
@@ -1024,7 +1024,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             {
                 var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
-                    throw new MvxException("Fragment not found", attribute.FragmentHostViewType.Name);
+                    throw new CrossException("Fragment not found", attribute.FragmentHostViewType.Name);
 
                 viewPager = fragment.View?.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
                 fragmentManager = fragment.ChildFragmentManager;
@@ -1114,7 +1114,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             catch (System.Exception ex)
             {
                 _logger.Value?.Log(LogLevel.Error, ex, "Cannot create Fragment {FragmentName}", fragmentType.Name);
-                throw new MvxException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
+                throw new CrossException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
             }
         }
 

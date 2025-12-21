@@ -1,136 +1,132 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using MvvmCross.Binding.Bindings.Source.Chained;
-using MvvmCross.Binding.Bindings.Source.Leaf;
-using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-using MvvmCross.Exceptions;
-
-namespace MvvmCross.Binding.Bindings.Source.Construction;
-
-/// <summary>
-/// Uses a global cache of calls in Reflection namespace
-/// </summary>
-public class MvxPropertySourceBindingFactoryExtension
-    : IMvxSourceBindingFactoryExtension
+namespace MvvmCross.Binding.Bindings.Source.Construction
 {
-    private readonly ConcurrentDictionary<int, PropertyInfo> _propertyInfoCache = new();
+    using System.Collections.Concurrent;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using MvvmCross.Binding.Bindings.Source.Chained;
+    using MvvmCross.Binding.Bindings.Source.Leaf;
+    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
+    using Nivaes.App.Cross;
 
-    [RequiresUnreferencedCode("This method creates source bindings which use reflection and may not be preserved by trimming")]
-    public bool TryCreateBinding(
-        object? source,
-        IMvxPropertyToken propertyToken,
-        List<IMvxPropertyToken> remainingTokens,
-        out IMvxSourceBinding? result)
+    /// <summary>
+    /// Uses a global cache of calls in Reflection namespace
+    /// </summary>
+    public class MvxPropertySourceBindingFactoryExtension
+        : IMvxSourceBindingFactoryExtension
     {
-        if (source == null)
+        private readonly ConcurrentDictionary<int, PropertyInfo> _propertyInfoCache = new();
+
+        [RequiresUnreferencedCode("This method creates source bindings which use reflection and may not be preserved by trimming")]
+        public bool TryCreateBinding(
+            object? source,
+            IMvxPropertyToken propertyToken,
+            List<IMvxPropertyToken> remainingTokens,
+            out IMvxSourceBinding? result)
         {
-            result = null;
-            return false;
+            if (source == null)
+            {
+                result = null;
+                return false;
+            }
+
+            result = remainingTokens.Count == 0
+                ? CreateLeafBinding(source, propertyToken)
+                : CreateChainedBinding(source, propertyToken, remainingTokens);
+
+            return result != null;
         }
 
-        result = remainingTokens.Count == 0
-            ? CreateLeafBinding(source, propertyToken)
-            : CreateChainedBinding(source, propertyToken, remainingTokens);
-
-        return result != null;
-    }
-
-    [RequiresUnreferencedCode("This method creates chained source bindings which use reflection and may not be preserved by trimming")]
-    protected virtual MvxChainedSourceBinding? CreateChainedBinding(
-        object source,
-        IMvxPropertyToken propertyToken,
-        List<IMvxPropertyToken> remainingTokens)
-    {
-        switch (propertyToken)
+        [RequiresUnreferencedCode("This method creates chained source bindings which use reflection and may not be preserved by trimming")]
+        protected virtual MvxChainedSourceBinding? CreateChainedBinding(
+            object source,
+            IMvxPropertyToken propertyToken,
+            List<IMvxPropertyToken> remainingTokens)
         {
-            case MvxIndexerPropertyToken indexPropertyToken:
-                {
-                    var itemPropertyInfo = FindPropertyInfo(source);
-                    if (itemPropertyInfo == null)
-                        return null;
+            switch (propertyToken)
+            {
+                case MvxIndexerPropertyToken indexPropertyToken:
+                    {
+                        var itemPropertyInfo = FindPropertyInfo(source);
+                        if (itemPropertyInfo == null)
+                            return null;
 
-                    return new MvxIndexerChainedSourceBinding(source, itemPropertyInfo, indexPropertyToken,
-                        remainingTokens);
-                }
-            case MvxPropertyNamePropertyToken propertyNameToken:
-                {
-                    var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
+                        return new MvxIndexerChainedSourceBinding(source, itemPropertyInfo, indexPropertyToken,
+                            remainingTokens);
+                    }
+                case MvxPropertyNamePropertyToken propertyNameToken:
+                    {
+                        var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
 
-                    if (propertyInfo == null)
-                        return null;
+                        if (propertyInfo == null)
+                            return null;
 
-                    return new MvxSimpleChainedSourceBinding(source, propertyInfo,
-                        remainingTokens);
-                }
-            default:
-                throw new MvxException("Unexpected property chaining - seen token type {0}",
-                    propertyToken.GetType().FullName);
+                        return new MvxSimpleChainedSourceBinding(source, propertyInfo,
+                            remainingTokens);
+                    }
+                default:
+                    throw new CrossException("Unexpected property chaining - seen token type {0}",
+                        propertyToken.GetType().FullName);
+            }
         }
-    }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    protected virtual IMvxSourceBinding? CreateLeafBinding(object source, IMvxPropertyToken propertyToken)
-    {
-        if (propertyToken is MvxIndexerPropertyToken indexPropertyToken)
+        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+        protected virtual IMvxSourceBinding? CreateLeafBinding(object source, IMvxPropertyToken propertyToken)
         {
-            var itemPropertyInfo = FindPropertyInfo(source);
-            if (itemPropertyInfo == null)
+            if (propertyToken is MvxIndexerPropertyToken indexPropertyToken)
+            {
+                var itemPropertyInfo = FindPropertyInfo(source);
+                if (itemPropertyInfo == null)
+                    return null;
+                return new MvxIndexerLeafPropertyInfoSourceBinding(source, itemPropertyInfo, indexPropertyToken);
+            }
+
+            if (propertyToken is MvxPropertyNamePropertyToken propertyNameToken)
+            {
+                var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
+                if (propertyInfo == null)
+                    return null;
+                return new MvxSimpleLeafPropertyInfoSourceBinding(source, propertyInfo);
+            }
+
+            if (propertyToken is MvxEmptyPropertyToken)
+            {
+                return new MvxDirectToSourceBinding(source);
+            }
+
+            throw new CrossException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);
+        }
+
+        [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Property reflection is core to binding functionality. Properties accessed through bindings are preserved by [DynamicallyAccessedMembers] on binding-related types.")]
+        protected PropertyInfo? FindPropertyInfo<
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(T? source, string propertyName = "Item")
+        {
+            var sourceType = source?.GetType();
+            if (sourceType == null)
                 return null;
-            return new MvxIndexerLeafPropertyInfoSourceBinding(source, itemPropertyInfo, indexPropertyToken);
-        }
 
-        if (propertyToken is MvxPropertyNamePropertyToken propertyNameToken)
-        {
-            var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
-            if (propertyInfo == null)
-                return null;
-            return new MvxSimpleLeafPropertyInfoSourceBinding(source, propertyInfo);
-        }
+            var key = (sourceType.FullName + "." + propertyName).GetHashCode();
 
-        if (propertyToken is MvxEmptyPropertyToken)
-        {
-            return new MvxDirectToSourceBinding(source);
-        }
+            if (_propertyInfoCache.TryGetValue(key, out PropertyInfo? pi))
+                return pi;
 
-        throw new MvxException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);
-    }
+            // Get lowest property
+            while (sourceType != null)
+            {
+                // Use BindingFlags.DeclaredOnly to avoid AmbiguousMatchException
+                pi = sourceType.GetProperty(propertyName,
+                    BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
-    [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Property reflection is core to binding functionality. Properties accessed through bindings are preserved by [DynamicallyAccessedMembers] on binding-related types.")]
-    protected PropertyInfo? FindPropertyInfo<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(T? source, string propertyName = "Item")
-    {
-        var sourceType = source?.GetType();
-        if (sourceType == null)
-            return null;
-
-        var key = (sourceType.FullName + "." + propertyName).GetHashCode();
-
-        if (_propertyInfoCache.TryGetValue(key, out PropertyInfo? pi))
-            return pi;
-
-        // Get lowest property
-        while (sourceType != null)
-        {
-            // Use BindingFlags.DeclaredOnly to avoid AmbiguousMatchException
-            pi = sourceType.GetProperty(propertyName,
-                BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+                if (pi != null)
+                {
+                    break;
+                }
+                sourceType = sourceType.BaseType;
+            }
 
             if (pi != null)
-            {
-                break;
-            }
-            sourceType = sourceType.BaseType;
+                _propertyInfoCache.TryAdd(key, pi);
+
+            return pi;
         }
-
-        if (pi != null)
-            _propertyInfoCache.TryAdd(key, pi);
-
-        return pi;
     }
 }

@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap(
+                throw exception.Wrap(
                     $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information");
             }
 
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap(
+                throw exception.Wrap(
                     $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap(
+                throw exception.Wrap(
                     $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap(
+                throw exception.Wrap(
                     $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
@@ -96,7 +96,7 @@ namespace Nivaes.App.Cross
 
             if (viewModelLocator == null)
             {
-                throw new MvxException($"Sorry - somehow there's no viewmodel locator registered for {request.ViewModelType}");
+                throw new CrossException($"Sorry - somehow there's no viewmodel locator registered for {request.ViewModelType}");
             }
 
             return viewModelLocator;

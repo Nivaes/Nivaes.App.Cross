@@ -2,6 +2,7 @@ namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
 
     public class SharedElementRootChildViewModel 
         : BaseViewModel

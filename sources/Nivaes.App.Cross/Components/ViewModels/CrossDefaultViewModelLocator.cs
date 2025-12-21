@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
             }
 
             RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
             }
 
             RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -123,7 +123,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
             }
         }
 
@@ -164,7 +164,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
             }
         }
     }

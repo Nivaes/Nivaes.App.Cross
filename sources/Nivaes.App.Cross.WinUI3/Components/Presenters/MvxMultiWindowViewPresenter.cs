@@ -154,7 +154,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="request">The request.</param>
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
-        /// <exception cref="MvxException"></exception>
+        /// <exception cref="CrossException"></exception>
         public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
             MvxBasePresentationAttribute attribute)
         {
@@ -177,7 +177,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
             catch (Exception ex)
             {
-                throw new MvxException(ex,
+                throw new CrossException(ex,
                     $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
             }
         }
@@ -282,7 +282,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the region for.</param>
         /// <param name="attribute">Any presentation attribute.</param>
         /// <returns>True if successful. False otherwise.</returns>
-        /// <exception cref="MvxException">If no region is found for the given viewmodel.</exception>
+        /// <exception cref="CrossException">If no region is found for the given viewmodel.</exception>
         protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);

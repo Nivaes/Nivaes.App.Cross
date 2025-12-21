@@ -556,11 +556,11 @@ public sealed class MvxIoCContainer
             var raw = resolver.Resolve();
             if (raw == null)
             {
-                throw new MvxException("Resolver returned null");
+                throw new CrossException("Resolver returned null");
             }
             if (!type.IsInstanceOfType(raw))
             {
-                throw new MvxException("Resolver returned object type {0} which does not support interface {1}",
+                throw new CrossException("Resolver returned object type {0} which does not support interface {1}",
                     raw.GetType().FullName, type.FullName);
             }
 
@@ -602,7 +602,7 @@ public sealed class MvxIoCContainer
                 return Options.TryToDetectSingletonCircularReferences;
 
             case ResolverType.Unknown:
-                throw new MvxException("A resolver must have a known type - error in {0}", resolver.GetType().Name);
+                throw new CrossException("A resolver must have a known type - error in {0}", resolver.GetType().Name);
             default:
                 throw new ArgumentOutOfRangeException(nameof(resolver), "unknown resolveType of " + resolver.ResolveType);
         }

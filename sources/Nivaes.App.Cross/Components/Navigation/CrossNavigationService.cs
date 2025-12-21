@@ -135,7 +135,7 @@ namespace Nivaes.App.Cross
 
             if (!TryGetRoute(path, out var entry))
             {
-                throw new MvxException($"Navigation route request could not be obtained for path: {path}");
+                throw new CrossException($"Navigation route request could not be obtained for path: {path}");
             }
 
             var regex = entry.Key;
@@ -160,7 +160,7 @@ namespace Nivaes.App.Cross
                     var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
                     if (facadeRequest == null)
                     {
-                        throw new MvxException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
+                        throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
                     }
 
                     request.ViewModelType = facadeRequest.ViewModelType;
@@ -181,7 +181,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception ex)
                 {
-                    throw ex.MvxWrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+                    throw ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
                 }
             }
             else
@@ -201,7 +201,7 @@ namespace Nivaes.App.Cross
 
             if (!TryGetRoute(path, out var entry))
             {
-                throw new MvxException($"Navigation route request could not be obtained for path: {path}");
+                throw new CrossException($"Navigation route request could not be obtained for path: {path}");
             }
 
             var regex = entry.Key;
@@ -226,7 +226,7 @@ namespace Nivaes.App.Cross
                     var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
                     if (facadeRequest == null)
                     {
-                        throw new MvxException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
+                        throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
                     }
 
                     request.ViewModelType = facadeRequest.ViewModelType;
@@ -240,7 +240,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception ex)
                 {
-                    ex.MvxWrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+                    ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
                 }
             }
             else

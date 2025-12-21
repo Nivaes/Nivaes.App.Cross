@@ -16,7 +16,7 @@ namespace MvvmCross.Platforms.Tvos.Views
         {
             _uiSynchronizationContext = SynchronizationContext.Current;
             if (_uiSynchronizationContext == null)
-                throw new MvxException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
+                throw new CrossException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }
 
         public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)

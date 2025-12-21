@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Mac.Views
             var loader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
             var viewModel = loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
             if (viewModel == null)
-                throw new MvxException("ViewModel not loaded for " + macView.Request.ViewModelType);
+                throw new CrossException("ViewModel not loaded for " + macView.Request.ViewModelType);
             return viewModel;
         }
 

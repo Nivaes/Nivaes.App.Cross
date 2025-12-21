@@ -175,7 +175,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 var containerView = _rootFrame.UnderlyingControl?.FindControl<Frame>(viewType.GetRegionName());
 
                 if (containerView == null)
-                    throw new MvxException($"Region '{viewType.GetRegionName()}' not found in view '{viewType}'");
+                    throw new CrossException($"Region '{viewType.GetRegionName()}' not found in view '{viewType}'");
 
                 if (containerView.CanGoBack)
                 {
@@ -277,7 +277,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
             catch (Exception ex)
             {
-                throw new MvxException(ex, $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
+                throw new CrossException(ex, $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
             }
         }
 

@@ -1,28 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.WeakSubscription;
-using Object = Java.Lang.Object;
 
 namespace MvvmCross.Platforms.Android.Binding.Views
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Attributes;
+    using MvvmCross.Binding.Extensions;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.WeakSubscription;
+    using Nivaes.App.Cross;
+    using Object = Java.Lang.Object;
+
     public class MvxAdapter
         : BaseAdapter
         , IMvxAdapter
@@ -49,7 +42,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             BindingContext = bindingContext;
             if (BindingContext == null)
             {
-                throw new MvxException(
+                throw new CrossException(
                     "bindingContext is null during MvxAdapter creation - " +
                     "Adapter's should only be created when a specific binding " +
                     "context has been placed on the stack");

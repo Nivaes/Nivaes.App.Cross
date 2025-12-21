@@ -37,7 +37,7 @@ public static class MvxFragmentExtensions
 
         var fragment = fragmentView.ToFragment();
         if (fragment == null)
-            throw new MvxException($"{nameof(OnCreate)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+            throw new CrossException($"{nameof(OnCreate)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
 
         if (fragment.Activity == null)
             return;
@@ -59,7 +59,7 @@ public static class MvxFragmentExtensions
     {
         var actualFragment = fragment.ToFragment();
         if (actualFragment == null)
-            throw new MvxException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
+            throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
 
         if (fragment.BindingContext == null)
         {
@@ -77,7 +77,7 @@ public static class MvxFragmentExtensions
     {
         var actualFragment = fragment.ToFragment();
         if (actualFragment == null)
-            throw new MvxException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
+            throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
 
         if (fragment.BindingContext == null)
         {

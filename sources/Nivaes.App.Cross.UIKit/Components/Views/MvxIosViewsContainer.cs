@@ -24,7 +24,7 @@ namespace MvvmCross.Platforms.Ios.Views
                 CurrentRequest = request;
                 var viewType = GetViewType(request.ViewModelType);
                 if (viewType == null)
-                    throw new MvxException("View Type not found for " + request.ViewModelType);
+                    throw new CrossException("View Type not found for " + request.ViewModelType);
 
                 var view = CreateViewOfType(viewType);
                 view.Request = request;
@@ -57,12 +57,12 @@ namespace MvvmCross.Platforms.Ios.Views
                 }
                 catch (Exception ex)
                 {
-                    throw new MvxException("Loading view of type {0} from storyboard {1} failed: {2}", viewType.Name, storyboardName, ex.Message);
+                    throw new CrossException("Loading view of type {0} from storyboard {1} failed: {2}", viewType.Name, storyboardName, ex.Message);
                 }
             }
 
             if (Activator.CreateInstance(viewType) is not IMvxIosView view)
-                throw new MvxException("View not loaded for " + viewType);
+                throw new CrossException("View not loaded for " + viewType);
 
             return view;
         }

@@ -77,7 +77,7 @@ namespace Nivaes.App.Cross
             }
             catch (System.Exception exception)
             {
-                throw exception.MvxWrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
+                throw exception.Wrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
             }
         }
     }
@@ -118,7 +118,7 @@ namespace Nivaes.App.Cross
             }
             catch (System.Exception exception)
             {
-                throw exception.MvxWrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
+                throw exception.Wrap("Problem navigating to ViewModel {0}", typeof(TViewModel).Name);
             }
         }
     }

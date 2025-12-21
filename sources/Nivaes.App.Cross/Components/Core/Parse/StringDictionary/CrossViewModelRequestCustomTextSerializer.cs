@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
             if (toSerialise is IDictionary<string, string> stringDictionary)
                 return Serialize(stringDictionary);
 
-            throw new MvxException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
+            throw new CrossException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross
             if (typeof(IDictionary<string, string>).IsAssignableFrom(type))
                 return DeserializeStringDictionary(inputText);
 
-            throw new MvxException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
+            throw new CrossException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
         }
 
         protected virtual IDictionary<string, string> DeserializeStringDictionary(string inputText)
@@ -97,7 +97,7 @@ namespace Nivaes.App.Cross
         {
             if (ByNameLookup.Value?.TryLookupByFullName(viewModelTypeName, out var toReturn) != true)
             {
-                throw new MvxException(
+                throw new CrossException(
                     "Failed to find viewmodel for {0} - is the ViewModel in the same Assembly as App.cs? If not, you can add it by overriding GetViewModelAssemblies() in setup",
                     viewModelTypeName);
             }
@@ -108,7 +108,7 @@ namespace Nivaes.App.Cross
         private static string SafeGetValue(IDictionary<string, string> dictionary, string key)
         {
             if (!dictionary.TryGetValue(key, out var value))
-                throw new MvxException("Dictionary missing required key/value pair for key {0}", key);
+                throw new CrossException("Dictionary missing required key/value pair for key {0}", key);
             return value;
         }
     }
