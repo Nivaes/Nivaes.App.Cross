@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Tvos.Core
     using Nivaes.App.Cross.Tvos;
 
     public abstract class MvxTvosSetup
-        : MvxSetup, IMvxTvosSetup
+        : CrossSetup, IMvxTvosSetup
     {
         private IMvxApplicationDelegate? _applicationDelegate;
         private UIWindow? _window;

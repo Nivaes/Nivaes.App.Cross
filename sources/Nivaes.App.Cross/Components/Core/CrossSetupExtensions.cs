@@ -1,24 +1,23 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using MvvmCross.IoC;
-    using Nivaes.App.Cross;
 
-    public static class MvxSetupExtensions
+    public static class CrossSetupExtensions
     {
         public static void RegisterSetupType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TMvxSetup>(this object platformApplication, params Assembly[]? assemblies)
-            where TMvxSetup : MvxSetup, new()
+            where TMvxSetup : CrossSetup, new()
         {
             if (platformApplication == null)
                 throw new ArgumentNullException(nameof(platformApplication));
 
-            MvxSetup.RegisterSetupType<TMvxSetup>(
+            CrossSetup.RegisterSetupType<TMvxSetup>(
                 new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? []).ToArray());
         }
 
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
-        public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>(Assembly assembly, params object[] parameters) where TSetup : MvxSetup
+        public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>(Assembly assembly, params object[] parameters) where TSetup : CrossSetup
         {
             var setupType = FindSetupType<TSetup>(assembly);
             if (setupType == null)
@@ -37,7 +36,7 @@ namespace MvvmCross.Core
         }
 
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
-        public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>() where TSetup : MvxSetup
+        public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>() where TSetup : CrossSetup
         {
             var setupType = FindSetupType<TSetup>();
             if (setupType == null)

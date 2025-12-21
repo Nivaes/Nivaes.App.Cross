@@ -10,7 +10,7 @@ using MvvmCross.Platforms.Mac.Presenters;
 namespace MvvmCross.Platforms.Mac.Core
 {
     public class MvxMacSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         public static MvxMacSetupSingleton EnsureSingletonAvailable(IMvxApplicationDelegate applicationDelegate)

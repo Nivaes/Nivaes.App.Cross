@@ -27,7 +27,7 @@ using Nivaes.App.Cross;
 namespace MvvmCross.Platforms.Android.Core;
 
 public abstract class MvxAndroidSetup
-    : MvxSetup, IMvxAndroidGlobals, IMvxAndroidSetup
+    : CrossSetup, IMvxAndroidGlobals, IMvxAndroidSetup
 {
     private MvxCurrentTopActivity? _currentTopActivity;
     private IMvxAndroidViewPresenter? _presenter;

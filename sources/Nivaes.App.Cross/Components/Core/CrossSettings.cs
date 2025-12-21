@@ -1,8 +1,6 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
-    public class MvxSettings 
+    public class CrossSettings 
         : ICrossSettings
     {
         public bool AlwaysRaiseInpcOnUserInterfaceThread { get; set; }
@@ -11,7 +9,7 @@ namespace MvvmCross.Core
 
         public bool ShouldLogInpc { get; set; }
 
-        public MvxSettings()
+        public CrossSettings()
         {
             AlwaysRaiseInpcOnUserInterfaceThread = true;
             ShouldRaisePropertyChanging = true;

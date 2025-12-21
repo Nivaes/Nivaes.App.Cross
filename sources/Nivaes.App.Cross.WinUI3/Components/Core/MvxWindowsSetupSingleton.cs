@@ -10,7 +10,7 @@ using Windows.ApplicationModel.Activation;
 namespace MvvmCross.Platforms.WinUi.Core
 {
     public class MvxWindowsSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string activatedEventArgs,
           string suspensionManagerSessionStateKey = null)

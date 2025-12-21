@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Mac.Core
 {
 #nullable enable
     public abstract class MvxMacSetup
-        : MvxSetup, IMvxMacSetup
+        : CrossSetup, IMvxMacSetup
     {
         private IMvxApplicationDelegate? _applicationDelegate;
         private IMvxMacViewPresenter? _presenter;

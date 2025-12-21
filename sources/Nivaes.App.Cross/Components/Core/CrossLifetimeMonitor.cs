@@ -1,9 +1,8 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using Nivaes.App.Cross;
 
-    public abstract class MvxLifetimeMonitor : ICrossLifetime
+    public abstract class CrossLifetimeMonitor : ICrossLifetime
     {
 #pragma warning disable CA1030 // Use events where appropriate
         protected void FireLifetimeChange(CrossLifetimeEvent which)

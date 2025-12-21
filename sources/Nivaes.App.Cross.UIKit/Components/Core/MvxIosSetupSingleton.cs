@@ -5,7 +5,7 @@ namespace MvvmCross.Platforms.Ios.Core
     using Nivaes.App.Cross;
 
     public class MvxIosSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public static MvxIosSetupSingleton EnsureSingletonAvailable(ICrossLifetime lifetimeInstance, UIWindow window)

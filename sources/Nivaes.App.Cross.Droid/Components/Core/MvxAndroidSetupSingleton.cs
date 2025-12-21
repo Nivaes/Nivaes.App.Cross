@@ -10,7 +10,7 @@ using MvvmCross.Core;
 namespace MvvmCross.Platforms.Android.Core
 {
     public class MvxAndroidSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         public static MvxAndroidSetupSingleton EnsureSingletonAvailable(Application applicationContext)

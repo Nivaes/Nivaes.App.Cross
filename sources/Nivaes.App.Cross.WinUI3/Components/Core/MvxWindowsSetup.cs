@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.WinUi.Core
     using Nivaes.App.Cross.WinUI3;
 
     public abstract class MvxWindowsSetup
-        : MvxSetup, IMvxWindowsSetup
+        : CrossSetup, IMvxWindowsSetup
     {
         private IMvxWindowsFrame? _rootFrame;
         private string? _suspensionManagerSessionStateKey;

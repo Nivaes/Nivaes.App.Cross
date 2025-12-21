@@ -1,10 +1,11 @@
-﻿using Microsoft.UI.Xaml;
-using MvvmCross.Core;
-using MvvmCross.Platforms.WinUi.Views;
-using Playground.WinUi3;
-
-namespace Playground.WinUi
+﻿namespace Playground.WinUi
 {
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.WinUi.Views;
+    using Nivaes.App.Cross;
+    using Playground.WinUi3;
+
     public sealed partial class App : MvxApplication
     {
         public App()

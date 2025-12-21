@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Tvos.Core
 {
     [RequiresUnreferencedCode("This class may use reflection which may not be preserved by trimming.")]
     public class MvxTvosSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         public static MvxTvosSetupSingleton EnsureSingletonAvailable(IMvxApplicationDelegate applicationDelegate, UIWindow window)
         {

@@ -1,4 +1,4 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -10,7 +10,7 @@ namespace MvvmCross.Core
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public static class MvxSimplePropertyDictionaryExtensions
+    public static class CrossSimplePropertyDictionaryExtensions
     {
         public static IDictionary<string, string> ToSimpleStringPropertyDictionary(
             this IDictionary<string, object>? input)

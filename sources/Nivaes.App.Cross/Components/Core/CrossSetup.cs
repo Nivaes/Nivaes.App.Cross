@@ -1,21 +1,21 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
     using MvvmCross.Plugin;
-    using MvvmCross.ViewModels;
     using MvvmCross.ViewModels.Result;
-    using Nivaes.App.Cross;
 
-    public abstract class MvxSetup : ICrossSetup
+    public abstract class CrossSetup 
+        : ICrossSetup
     {
-        public event EventHandler<MvxSetupStateEventArgs>? StateChanged;
+        public event EventHandler<CrossSetupStateEventArgs>? StateChanged;
 
         private static readonly object Lock = new();
-        private MvxSetupState _state;
+        private CrossSetupState _state;
         private IMvxIoCProvider? _iocProvider;
 
         protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
@@ -26,7 +26,7 @@ namespace MvvmCross.Core
 
         protected ILogger? SetupLog { get; private set; }
 
-        public MvxSetupState State
+        public CrossSetupState State
         {
             get => _state;
             private set
@@ -36,7 +36,7 @@ namespace MvvmCross.Core
             }
         }
 
-        public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies) where TMvxSetup : MvxSetup, new()
+        public static void RegisterSetupType<TMvxSetup>(params Assembly[] assemblies) where TMvxSetup : CrossSetup, new()
         {
             // We are using double-checked locking here to avoid overhead of locking if the
             // SetupCreator is already created
@@ -70,7 +70,7 @@ namespace MvvmCross.Core
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
         public static ICrossSetup? Instance()
         {
-            var instance = SetupCreator?.Invoke() ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
+            var instance = SetupCreator?.Invoke() ?? CrossSetupExtensions.CreateSetup<CrossSetup>();
             return instance;
         }
 
@@ -82,7 +82,7 @@ namespace MvvmCross.Core
 
         public virtual void InitializePrimary()
         {
-            if (State != MvxSetupState.Uninitialized)
+            if (State != CrossSetupState.Uninitialized)
             {
                 SetupLog?.Log(LogLevel.Trace,
                     "InitializePrimary() called when State is not Uninitialized. State: {State}", State);
@@ -91,7 +91,7 @@ namespace MvvmCross.Core
 
             try
             {
-                State = MvxSetupState.InitializingPrimary;
+                State = CrossSetupState.InitializingPrimary;
                 _iocProvider = InitializeIoC();
 
                 InitializeLoggingServices(_iocProvider);
@@ -112,7 +112,7 @@ namespace MvvmCross.Core
                 InitializeSingletonCache();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewDispatcher start");
                 InitializeViewDispatcher(_iocProvider);
-                State = MvxSetupState.InitializedPrimary;
+                State = CrossSetupState.InitializedPrimary;
             }
             catch (Exception e)
             {
@@ -124,7 +124,7 @@ namespace MvvmCross.Core
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public virtual void InitializeSecondary()
         {
-            if (State != MvxSetupState.InitializedPrimary)
+            if (State != CrossSetupState.InitializedPrimary)
             {
                 SetupLog?.Log(LogLevel.Trace,
                     "InitializeSecondary() called when State is not InitializedPrimary. State: {State}", State);
@@ -139,7 +139,7 @@ namespace MvvmCross.Core
 
             try
             {
-                State = MvxSetupState.InitializingSecondary;
+                State = CrossSetupState.InitializingSecondary;
                 SetupLog?.Log(LogLevel.Trace, "Setup: Bootstrap actions");
                 PerformBootstrapActions();
                 SetupLog?.Log(LogLevel.Trace, "Setup: StringToTypeParser start");
@@ -205,7 +205,7 @@ namespace MvvmCross.Core
                 SetupLog?.Log(LogLevel.Trace, "Setup: LastChance start");
                 InitializeLastChance(_iocProvider);
                 SetupLog?.Log(LogLevel.Trace, "Setup: Secondary end");
-                State = MvxSetupState.Initialized;
+                State = CrossSetupState.Initialized;
             }
             catch (Exception e)
             {
@@ -337,7 +337,7 @@ namespace MvvmCross.Core
         {
             ValidateArguments(iocProvider);
 
-            iocProvider.LazyConstructAndRegisterSingleton<ICrossSettings, MvxSettings>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossSettings, CrossSettings>();
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp(iocProvider));
@@ -392,7 +392,7 @@ namespace MvvmCross.Core
             {
                 iocProvider.RegisterSingleton(loggerFactory);
                 iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
-                SetupLog = loggerFactory.CreateLogger<MvxSetup>();
+                SetupLog = loggerFactory.CreateLogger<CrossSetup>();
             }
         }
 
@@ -681,9 +681,9 @@ namespace MvvmCross.Core
             return assembly.CreatableTypes();
         }
 
-        private void FireStateChange(MvxSetupState state)
+        private void FireStateChange(CrossSetupState state)
         {
-            StateChanged?.Invoke(this, new MvxSetupStateEventArgs(state));
+            StateChanged?.Invoke(this, new CrossSetupStateEventArgs(state));
         }
 
         protected static void ValidateArguments(IMvxIoCProvider iocProvider)

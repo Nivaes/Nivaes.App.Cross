@@ -1,4 +1,4 @@
-namespace MvvmCross.Core
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
@@ -10,9 +10,9 @@ namespace MvvmCross.Core
     /// <summary>
     /// The setup singleton is designed to ensure only a single instance
     /// of MvxSetup is created and invoked. There are three important methods
-    /// to the MvxSetupSingleton class:
+    /// to the <see cref="CrossSetupSingleton"/>  class:
     /// EnsureSingletonAvailable - this is a static method that will return 
-    /// the one and only instance of MvxSetupSingleton. This method is protected
+    /// the one and only instance of <see cref="CrossSetupSingleton"/>. This method is protected
     /// as it's assumed that each platform will provide a platform specific
     /// public overload for this method which will include any platform parameters
     /// required
@@ -22,8 +22,8 @@ namespace MvvmCross.Core
     /// are no other UI methods are being invoked. This method is typically called
     /// in applications where there is no splash screen.
     /// </summary>
-    public abstract class MvxSetupSingleton
-       : CrossSingleton<MvxSetupSingleton>
+    public abstract class CrossSetupSingleton
+       : CrossSingleton<CrossSetupSingleton>
     {
         private static readonly object LockObject = new();
         private ICrossSetup _setup;
@@ -59,7 +59,7 @@ namespace MvvmCross.Core
         /// <returns>A platform specific setup singleton</returns>
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
         protected static TMvxSetupSingleton EnsureSingletonAvailable<TMvxSetupSingleton>()
-           where TMvxSetupSingleton : MvxSetupSingleton, new()
+           where TMvxSetupSingleton : CrossSetupSingleton, new()
         {
             // Double null - check before creating the setup singleton object
             if (Instance != null)
@@ -94,7 +94,7 @@ namespace MvvmCross.Core
         {
             try
             {
-                _setup = MvxSetup.Instance();
+                _setup = CrossSetup.Instance();
             }
             catch (Exception exception)
             {

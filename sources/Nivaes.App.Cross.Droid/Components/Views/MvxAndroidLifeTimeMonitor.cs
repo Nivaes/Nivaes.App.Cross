@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Android.Views
 
     // For lifetime explained, see http://developer.android.com/guide/topics/fundamentals/activities.html
     public class MvxAndroidLifetimeMonitor
-        : MvxLifetimeMonitor, IMvxAndroidActivityLifetimeListener
+        : CrossLifetimeMonitor, IMvxAndroidActivityLifetimeListener
     {
         private int _createdActivityCount;
 

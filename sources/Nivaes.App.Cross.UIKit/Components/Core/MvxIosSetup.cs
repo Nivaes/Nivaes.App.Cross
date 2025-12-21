@@ -18,7 +18,7 @@ namespace MvvmCross.Platforms.Ios.Core
     using Nivaes.App.Cross;
 
     public abstract class MvxIosSetup
-    : MvxSetup, IMvxIosSetup
+    : CrossSetup, IMvxIosSetup
     {
         protected ICrossLifetime? LifetimeInstance { get; private set; }
         protected UIWindow? Window { get; private set; }
