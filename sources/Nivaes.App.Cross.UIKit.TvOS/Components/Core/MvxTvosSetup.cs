@@ -93,7 +93,7 @@ namespace MvvmCross.Platforms.Tvos.Core
             if (_applicationDelegate == null)
                 throw new InvalidOperationException("Cannot register lifetime with null ApplicationDelegate");
 
-            iocProvider.RegisterSingleton<IMvxLifetime>(_applicationDelegate);
+            iocProvider.RegisterSingleton<ICrossLifetime>(_applicationDelegate);
         }
 
         protected IMvxTvosViewPresenter Presenter

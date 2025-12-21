@@ -26,9 +26,9 @@ namespace MvvmCross.Core
        : CrossSingleton<MvxSetupSingleton>
     {
         private static readonly object LockObject = new();
-        private IMvxSetup _setup;
+        private ICrossSetup _setup;
 
-        protected virtual IMvxSetup Setup => _setup;
+        protected virtual ICrossSetup Setup => _setup;
 
         /// <summary>
         /// Returns a platform specific instance of Setup
@@ -38,7 +38,7 @@ namespace MvvmCross.Core
         /// <typeparam name="TMvxSetup">The platform specific setup type</typeparam>
         /// <returns>A platform specific instance of Setup</returns>
         public virtual TMvxSetup PlatformSetup<TMvxSetup>()
-            where TMvxSetup : IMvxSetup
+            where TMvxSetup : ICrossSetup
         {
             try
             {

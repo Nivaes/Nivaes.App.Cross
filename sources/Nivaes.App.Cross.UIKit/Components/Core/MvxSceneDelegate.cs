@@ -6,9 +6,9 @@ namespace MvvmCross.Platforms.Ios.Core
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public abstract class MvxSceneDelegate : UIResponder, IUIWindowSceneDelegate, IMvxLifetime
+    public abstract class MvxSceneDelegate : UIResponder, IUIWindowSceneDelegate, ICrossLifetime
     {
-        public event EventHandler<MvxLifetimeEventArgs>? LifetimeChanged;
+        public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 
         [Export("window")] public UIWindow? Window { get; set; }
 
@@ -26,7 +26,7 @@ namespace MvvmCross.Platforms.Ios.Core
                     .EnsureSingletonAvailable(this, Window)
                     .EnsureInitialized();
                 RunAppStart();
-                FireLifetimeChanged(MvxLifetimeEvent.Launching);
+                FireLifetimeChanged(CrossLifetimeEvent.Launching);
             }
         }
 
@@ -38,13 +38,13 @@ namespace MvvmCross.Platforms.Ios.Core
         [Export("sceneDidBecomeActive:")]
         public virtual void DidBecomeActive(UIScene scene)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.ActivatedFromMemory);
+            FireLifetimeChanged(CrossLifetimeEvent.ActivatedFromMemory);
         }
 
         [Export("sceneWillResignActive:")]
         public virtual void WillResignActive(UIScene scene)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Deactivated);
+            FireLifetimeChanged(CrossLifetimeEvent.Deactivated);
         }
 
         [Export("sceneWillEnterForeground:")]
@@ -70,10 +70,10 @@ namespace MvvmCross.Platforms.Ios.Core
 
         protected abstract void RegisterSetup();
 
-        private void FireLifetimeChanged(MvxLifetimeEvent which)
+        private void FireLifetimeChanged(CrossLifetimeEvent which)
         {
             var handler = LifetimeChanged;
-            handler?.Invoke(this, new MvxLifetimeEventArgs(which));
+            handler?.Invoke(this, new CrossLifetimeEventArgs(which));
         }
     }
 

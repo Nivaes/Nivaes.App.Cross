@@ -87,7 +87,7 @@ namespace MvvmCross.Platforms.Mac.Core
         {
             ValidateArguments(iocProvider);
 
-            iocProvider.RegisterSingleton<IMvxLifetime>(_applicationDelegate);
+            iocProvider.RegisterSingleton<ICrossLifetime>(_applicationDelegate);
         }
 
         protected IMvxMacViewPresenter Presenter

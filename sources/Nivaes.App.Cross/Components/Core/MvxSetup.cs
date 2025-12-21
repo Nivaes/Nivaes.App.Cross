@@ -10,7 +10,7 @@ namespace MvvmCross.Core
     using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
 
-    public abstract class MvxSetup : IMvxSetup
+    public abstract class MvxSetup : ICrossSetup
     {
         public event EventHandler<MvxSetupStateEventArgs>? StateChanged;
 
@@ -20,7 +20,7 @@ namespace MvvmCross.Core
 
         protected static Action<IMvxIoCProvider>? RegisterSetupDependencies { get; set; }
 
-        protected static Func<IMvxSetup>? SetupCreator { get; set; }
+        protected static Func<ICrossSetup>? SetupCreator { get; set; }
 
         protected static List<Assembly> ViewAssemblies { get; } = [];
 
@@ -68,7 +68,7 @@ namespace MvvmCross.Core
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public static IMvxSetup? Instance()
+        public static ICrossSetup? Instance()
         {
             var instance = SetupCreator?.Invoke() ?? MvxSetupExtensions.CreateSetup<MvxSetup>();
             return instance;
@@ -239,7 +239,7 @@ namespace MvvmCross.Core
             return iocProvider.Resolve<ICrossChildViewModelCache>();
         }
 
-        protected virtual IMvxSettings? InitializeSettings(IMvxIoCProvider iocProvider)
+        protected virtual ICrossSettings? InitializeSettings(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -247,11 +247,11 @@ namespace MvvmCross.Core
             return settings;
         }
 
-        protected virtual IMvxSettings? CreateSettings(IMvxIoCProvider iocProvider)
+        protected virtual ICrossSettings? CreateSettings(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxSettings>();
+            return iocProvider.Resolve<ICrossSettings>();
         }
 
         protected virtual IMvxStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
@@ -268,7 +268,7 @@ namespace MvvmCross.Core
             return iocProvider.Resolve<IMvxStringToTypeParser>();
         }
 
-        protected virtual IMvxFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
@@ -279,11 +279,11 @@ namespace MvvmCross.Core
             return parser;
         }
 
-        protected virtual IMvxFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
+        protected virtual ICrossFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxStringToTypeParser>() as IMvxFillableStringToTypeParser;
+            return iocProvider.Resolve<IMvxStringToTypeParser>() as ICrossFillableStringToTypeParser;
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
@@ -329,7 +329,7 @@ namespace MvvmCross.Core
             // initialize the IoC registry, then add it to itself
             var iocProvider = CreateIocProvider();
             iocProvider.RegisterSingleton(iocProvider);
-            iocProvider.RegisterSingleton<IMvxSetup>(this);
+            iocProvider.RegisterSingleton<ICrossSetup>(this);
             return iocProvider;
         }
 
@@ -337,7 +337,7 @@ namespace MvvmCross.Core
         {
             ValidateArguments(iocProvider);
 
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxSettings, MvxSettings>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossSettings, MvxSettings>();
             iocProvider.LazyConstructAndRegisterSingleton<IMvxStringToTypeParser, MvxStringToTypeParser>();
             iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
             iocProvider.RegisterSingleton(CreateApp(iocProvider));

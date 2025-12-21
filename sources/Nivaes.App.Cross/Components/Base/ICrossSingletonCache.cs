@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
 
     public interface ICrossSingletonCache
     {
-        IMvxSettings? Settings { get; }
+        ICrossSettings? Settings { get; }
         ICrossInpcInterceptor? InpcInterceptor { get; }
         IMvxStringToTypeParser? Parser { get; }
     }

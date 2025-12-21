@@ -94,7 +94,7 @@ public abstract class MvxAndroidSetup
         var lifetimeMonitor = CreateLifetimeMonitor();
 
         iocProvider.RegisterSingleton<IMvxAndroidActivityLifetimeListener>(lifetimeMonitor);
-        iocProvider.RegisterSingleton<IMvxLifetime>(lifetimeMonitor);
+        iocProvider.RegisterSingleton<ICrossLifetime>(lifetimeMonitor);
     }
 
     protected virtual MvxAndroidLifetimeMonitor CreateLifetimeMonitor()

@@ -1,16 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Threading;
 using Android.App;
 using Android.OS;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Android.Core;
 
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System;
+    using System.Threading;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Android.Core;
+    using Nivaes.App.Cross;
+
     // For lifetime explained, see http://developer.android.com/guide/topics/fundamentals/activities.html
     public class MvxAndroidLifetimeMonitor
         : MvxLifetimeMonitor, IMvxAndroidActivityLifetimeListener
@@ -23,7 +21,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             if (_createdActivityCount == 1)
             {
-                FireLifetimeChange(MvxLifetimeEvent.ActivatedFromDisk);
+                FireLifetimeChange(CrossLifetimeEvent.ActivatedFromDisk);
             }
             FireActivityChange(activity, MvxActivityState.OnCreate, eventArgs);
         }
@@ -59,7 +57,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             if (_createdActivityCount == 0)
             {
-                FireLifetimeChange(MvxLifetimeEvent.Closing);
+                FireLifetimeChange(CrossLifetimeEvent.Closing);
             }
             FireActivityChange(activity, MvxActivityState.OnDestroy);
         }

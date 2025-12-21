@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         private bool _inpcInterceptorResolveAttempted;
         private ICrossInpcInterceptor? _inpcInterceptor;
         private IMvxStringToTypeParser? _parser;
-        private IMvxSettings? _settings;
+        private ICrossSettings? _settings;
 
         public static CrossSingletonCache Initialize()
         {
@@ -48,11 +48,11 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxSettings? Settings
+        public ICrossSettings? Settings
         {
             get
             {
-                _settings ??= Mvx.IoCProvider?.Resolve<IMvxSettings>();
+                _settings ??= Mvx.IoCProvider?.Resolve<ICrossSettings>();
                 return _settings;
             }
         }

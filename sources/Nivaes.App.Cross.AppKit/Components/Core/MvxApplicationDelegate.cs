@@ -4,13 +4,13 @@ namespace MvvmCross.Platforms.Mac.Core
     using System.Diagnostics.CodeAnalysis;
     using AppKit;
     using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate
     {
-        protected MvxApplicationDelegate() : base()
+        protected MvxApplicationDelegate() 
+            : base()
         {
             RegisterSetup();
         }
@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Mac.Core
             MvxMacSetupSingleton.EnsureSingletonAvailable(this).EnsureInitialized();
             RunAppStart(notification);
 
-            FireLifetimeChanged(MvxLifetimeEvent.Launching);
+            FireLifetimeChanged(CrossLifetimeEvent.Launching);
         }
 
         protected virtual void RunAppStart(object hint = null)
@@ -38,29 +38,29 @@ namespace MvvmCross.Platforms.Mac.Core
 
         public override void WillBecomeActive(Foundation.NSNotification notification)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.ActivatedFromMemory);
+            FireLifetimeChanged(CrossLifetimeEvent.ActivatedFromMemory);
         }
 
         public override void DidResignActive(Foundation.NSNotification notification)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Deactivated);
+            FireLifetimeChanged(CrossLifetimeEvent.Deactivated);
         }
 
         public override void WillTerminate(Foundation.NSNotification notification)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Closing);
+            FireLifetimeChanged(CrossLifetimeEvent.Closing);
         }
 
-        private void FireLifetimeChanged(MvxLifetimeEvent which)
+        private void FireLifetimeChanged(CrossLifetimeEvent which)
         {
-            LifetimeChanged?.Invoke(this, new MvxLifetimeEventArgs(which));
+            LifetimeChanged?.Invoke(this, new CrossLifetimeEventArgs(which));
         }
 
         protected virtual void RegisterSetup()
         {
         }
 
-        public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
+        public event EventHandler<CrossLifetimeEventArgs> LifetimeChanged;
     }
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
