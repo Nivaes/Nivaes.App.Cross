@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Android.Views
             RequestWindowFeature(WindowFeatures.NoTitle);
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             RequestWindowFeatures();
 
@@ -80,7 +80,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
+        protected virtual object? GetAppStartHint(object? hint = null)
         {
             return hint;
         }

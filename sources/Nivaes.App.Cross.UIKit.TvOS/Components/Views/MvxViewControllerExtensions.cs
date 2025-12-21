@@ -3,7 +3,7 @@ namespace MvvmCross.Platforms.Tvos.Views
     using MvvmCross.Exceptions;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Tvos;
+    using Nivaes.App.Cross.UIKit.TvOS;
 
     public static class MvxViewControllerExtensions
     {

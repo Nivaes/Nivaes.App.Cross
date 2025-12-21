@@ -1,30 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using AppKit;
-using CoreGraphics;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using MvvmCross.Platforms.Mac.Views;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace MvvmCross.Platforms.Mac.Presenters
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Mac.Presenters.Attributes;
+    using MvvmCross.Platforms.Mac.Views;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.AppKit;
+
     public class MvxMacViewPresenter
-        : MvxAttributeViewPresenter, IMvxMacViewPresenter, IMvxAttributeViewPresenter
+        : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
     {
         private readonly INSApplicationDelegate _applicationDelegate;
 
@@ -35,7 +21,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
         /// </summary>
         protected readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
         {
@@ -43,7 +29,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
         }
 
-        public override MvxBasePresentationAttribute GetOverridePresentationAttribute(
+        public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
             CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
@@ -96,19 +82,19 @@ namespace MvvmCross.Platforms.Mac.Presenters
                     },
                     (viewModel, attribute) => Close(viewModel));
 
-            AttributeTypesToActionsDictionary.Register<MvxContentPresentationAttribute>(
+            AttributeTypesToActionsDictionary.Register<CrossContentPresentationAttribute>(
                     (viewType, attribute, request) =>
                     {
                         var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowContentViewController(viewController, (MvxContentPresentationAttribute)attribute, request);
+                        return ShowContentViewController(viewController, (CrossContentPresentationAttribute)attribute, request);
                     },
                     (viewModel, attribute) => Close(viewModel));
 
-            AttributeTypesToActionsDictionary.Register<MvxModalPresentationAttribute>(
+            AttributeTypesToActionsDictionary.Register<CrossModalPresentationAttribute>(
                     (viewType, attribute, request) =>
                     {
                         var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowModalViewController(viewController, (MvxModalPresentationAttribute)attribute, request);
+                        return ShowModalViewController(viewController, (CrossModalPresentationAttribute)attribute, request);
                     },
                     (viewModel, attribute) => Close(viewModel));
 
@@ -248,7 +234,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
 
         protected virtual Task<bool> ShowContentViewController(
             NSViewController viewController,
-            MvxContentPresentationAttribute attribute,
+            CrossContentPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
@@ -263,7 +249,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
 
         protected virtual Task<bool> ShowModalViewController(
             NSViewController viewController,
-            MvxModalPresentationAttribute attribute,
+            CrossModalPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);

@@ -1,8 +1,6 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using UIKit;
 
@@ -12,6 +10,6 @@ namespace MvvmCross.Platforms.Ios.Views
 
         void ShowDetailView(UIViewController viewController, MvxSplitViewPresentationAttribute attribute);
 
-        bool CloseChildViewModel(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute);
+        bool CloseChildViewModel(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute);
     }
 }

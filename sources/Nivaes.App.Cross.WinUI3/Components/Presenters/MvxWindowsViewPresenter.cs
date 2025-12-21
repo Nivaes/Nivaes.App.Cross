@@ -7,19 +7,15 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Exceptions;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Windows.UI.Core;
     using Control = Microsoft.UI.Xaml.Controls.Control;
 
     public class MvxWindowsViewPresenter
-        : MvxAttributeViewPresenter, IMvxWindowsViewPresenter
+        : CrossAttributeViewPresenter, IMvxWindowsViewPresenter
     {
         protected readonly IMvxWindowsFrame _rootFrame;
         private readonly ILogger<MvxWindowsViewPresenter> _logger;
@@ -58,7 +54,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialog, CloseDialog);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             _logger?.LogTrace("PresentationAttribute not found for {viewTypeName}. Assuming new page presentation", viewType.Name);
             return new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
@@ -187,7 +183,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return ClosePage(viewModel, attribute);
         }
 
-        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             var currentView = _rootFrame.Content as ICrossView;
             if (currentView == null)
@@ -215,7 +211,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return Task.FromResult(true);
         }
 
-        protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute, CrossViewModelRequest request)
+        protected virtual Task<bool> ShowPage(Type viewType, CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
@@ -260,7 +256,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        public virtual Control CreateControl(Type viewType, CrossViewModelRequest request, MvxBasePresentationAttribute attribute)
+        public virtual Control CreateControl(Type viewType, CrossViewModelRequest request, CrossBasePresentationAttribute attribute)
         {
             try
             {
@@ -281,7 +277,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             if (!(_rootFrame.UnderlyingControl is Frame frame))
                 return Task.FromResult(false);

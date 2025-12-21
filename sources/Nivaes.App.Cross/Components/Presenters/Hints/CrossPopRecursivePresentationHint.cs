@@ -1,26 +1,25 @@
-namespace MvvmCross.Presenters.Hints
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public class MvxPopRecursivePresentationHint
+    public class CrossPopRecursivePresentationHint
         : CrossPresentationHint
     {
-        public MvxPopRecursivePresentationHint(int levelsDeep, bool animated = false)
+        public CrossPopRecursivePresentationHint(int levelsDeep, bool animated = false)
         {
             LevelsDeep = levelsDeep;
             Animated = animated;
         }
 
-        public MvxPopRecursivePresentationHint(CrossBundle body, int levelsDeep, bool animated = true) : base(body)
+        public CrossPopRecursivePresentationHint(CrossBundle body, int levelsDeep, bool animated = true) : base(body)
         {
             LevelsDeep = levelsDeep;
             Animated = animated;
         }
 
-        public MvxPopRecursivePresentationHint(IDictionary<string, string> hints, int levelsDeep, bool animated = true)
+        public CrossPopRecursivePresentationHint(IDictionary<string, string> hints, int levelsDeep, bool animated = true)
             : this(new CrossBundle(hints), levelsDeep, animated)
         {
         }

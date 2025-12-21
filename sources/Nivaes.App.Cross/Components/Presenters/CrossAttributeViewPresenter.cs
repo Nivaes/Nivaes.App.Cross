@@ -1,15 +1,12 @@
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Logging;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public abstract class MvxAttributeViewPresenter
-        : MvxViewPresenter, IMvxAttributeViewPresenter
+    public abstract class CrossAttributeViewPresenter
+        : CrossViewPresenter, ICrossAttributeViewPresenter
     {
         private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
             new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
@@ -17,19 +14,19 @@ namespace MvvmCross.Presenters
         private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
             new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
 
-        private IDictionary<Type, MvxPresentationAttributeAction>? _attributeTypesActionsDictionary;
+        private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
         public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
 
         public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
 
-        public virtual IDictionary<Type, MvxPresentationAttributeAction> AttributeTypesToActionsDictionary
+        public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
         {
             get
             {
                 if (_attributeTypesActionsDictionary == null)
                 {
-                    _attributeTypesActionsDictionary = new Dictionary<Type, MvxPresentationAttributeAction>();
+                    _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
                     RegisterAttributeTypes();
                 }
                 return _attributeTypesActionsDictionary;
@@ -38,7 +35,7 @@ namespace MvvmCross.Presenters
 
         public abstract void RegisterAttributeTypes();
 
-        public abstract MvxBasePresentationAttribute CreatePresentationAttribute(
+        public abstract CrossBasePresentationAttribute CreatePresentationAttribute(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
@@ -51,7 +48,7 @@ namespace MvvmCross.Presenters
             return Activator.CreateInstance(viewType);
         }
 
-        public virtual MvxBasePresentationAttribute? GetOverridePresentationAttribute(
+        public virtual CrossBasePresentationAttribute? GetOverridePresentationAttribute(
             CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
@@ -91,7 +88,7 @@ namespace MvvmCross.Presenters
             }
         }
 
-        public virtual MvxBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+        public virtual CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
@@ -111,10 +108,10 @@ namespace MvvmCross.Presenters
                 return overrideAttribute;
 
             var attribute = viewType
-                .GetCustomAttributes(typeof(MvxBasePresentationAttribute), true)
+                .GetCustomAttributes(typeof(CrossBasePresentationAttribute), true)
                 .FirstOrDefault();
 
-            if (attribute is MvxBasePresentationAttribute basePresentationAttribute)
+            if (attribute is CrossBasePresentationAttribute basePresentationAttribute)
             {
                 if (basePresentationAttribute.ViewType == null)
                     basePresentationAttribute.ViewType = viewType;
@@ -128,8 +125,8 @@ namespace MvvmCross.Presenters
             return CreatePresentationAttribute(request.ViewModelType, viewType);
         }
 
-        protected virtual MvxPresentationAttributeAction GetPresentationAttributeAction(
-            CrossViewModelRequest request, out MvxBasePresentationAttribute attribute)
+        protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
+            CrossViewModelRequest request, out CrossBasePresentationAttribute attribute)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
@@ -165,7 +162,7 @@ namespace MvvmCross.Presenters
             if (await HandlePresentationChange(hint).ConfigureAwait(true))
                 return true;
 
-            if (hint is MvxClosePresentationHint presentationHint)
+            if (hint is CrossClosePresentationHint presentationHint)
             {
                 return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
             }

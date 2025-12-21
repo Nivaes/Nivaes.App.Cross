@@ -5,19 +5,18 @@ namespace Playground.Droid.Activities
     using MvvmCross.DroidX.RecyclerView;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels;
 
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme")]
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class SharedElementRootView : MvxActivity<SharedElementRootViewModel>, IMvxAndroidSharedElements
+    public sealed class SharedElementRootView 
+        : MvxActivity<SharedElementRootViewModel>, IMvxAndroidSharedElements
     {
         public int SelectedListItem { get; set; }
 
-        public IDictionary<string, View> FetchSharedElementsToAnimate(MvxBasePresentationAttribute attribute, CrossViewModelRequest request)
+        public IDictionary<string, View> FetchSharedElementsToAnimate(CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
         {
             IDictionary<string, View> sharedElements = new Dictionary<string, View>();
 
@@ -33,7 +32,7 @@ namespace Playground.Droid.Activities
             return sharedElements;
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 

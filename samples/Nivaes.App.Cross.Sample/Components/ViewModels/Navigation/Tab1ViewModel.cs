@@ -2,8 +2,6 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Presenters.Hints;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class Tab1ViewModel 
@@ -20,7 +18,7 @@ namespace Playground.Core.ViewModels
 
             CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-            OpenTab2Command = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new MvxPagePresentationHint(typeof(Tab2ViewModel))));
+            OpenTab2Command = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPagePresentationHint(typeof(Tab2ViewModel))));
         }
 
         public override Task Initialize()

@@ -1,8 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    using Nivaes.App.Cross;
-
-    public class MvxTabPresentationAttribute : CrossBasePresentationAttribute
+    public class CrossTabPresentationAttribute 
+        : CrossBasePresentationAttribute
     {
         public string? TabName { get; set; }
 
@@ -11,7 +10,8 @@ namespace MvvmCross.Platforms.Ios.Presenters.Attributes
         public string? TabSelectedIconName { get; set; }
 
         public static bool DefaultWrapInNavigationController = true;
-        public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
+
+        public bool? WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
 
         public string? TabAccessibilityIdentifier { get; set; }
     }

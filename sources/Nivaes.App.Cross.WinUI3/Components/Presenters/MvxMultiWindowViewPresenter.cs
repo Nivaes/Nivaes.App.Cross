@@ -5,16 +5,12 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
     using Microsoft.UI.Xaml.Media.Animation;
-    using MvvmCross.Exceptions;
     using MvvmCross.Localization;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Presenters.Models;
     using MvvmCross.Platforms.WinUi.Presenters.Utils;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Windows.Graphics;
     using Windows.UI.Core;
@@ -27,7 +23,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     ///     Defines a view presenter with multi-windows support.
     /// </summary>
     public class MvxMultiWindowViewPresenter
-        : MvxAttributeViewPresenter, IMvxWindowsViewPresenter, IMvxMultiWindowsService
+        : CrossAttributeViewPresenter, IMvxWindowsViewPresenter, IMvxMultiWindowsService
     {
         private const int DefaultWindowHeight = 456;
         private const int DefaultWindowWidth = 786;
@@ -77,7 +73,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModelType"></param>
         /// <param name="viewType"></param>
         /// <returns></returns>
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             _logger?.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
                 viewType.Name);
@@ -99,7 +95,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 CloseDialog);
             AttributeTypesToActionsDictionary.Add(
                 typeof(MvxNewWindowPresentationAttribute),
-                new MvxPresentationAttributeAction
+                new CrossPresentationAttributeAction
                 {
                     ShowAction = async (_, attribute, request) =>
                     {
@@ -156,7 +152,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <returns></returns>
         /// <exception cref="CrossException"></exception>
         public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
-            MvxBasePresentationAttribute attribute)
+            CrossBasePresentationAttribute attribute)
         {
             try
             {
@@ -215,7 +211,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the dialog for.</param>
         /// <param name="attribute">The presentation attributes.</param>
         /// <returns>True upon success, false otherwise.</returns>
-        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
@@ -245,7 +241,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="viewModel">The viewmodel to close the page for.</param>
         /// <param name="attribute">The presentation attributes</param>
         /// <returns>True if closed, false otherwise.</returns>
-        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             var currentView = windowInformation.RootFrame.Content as ICrossView;
@@ -475,7 +471,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         /// <param name="attribute">Any presentation attribute.</param>
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute,
+        protected virtual Task<bool> ShowPage(Type viewType, CrossBasePresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);

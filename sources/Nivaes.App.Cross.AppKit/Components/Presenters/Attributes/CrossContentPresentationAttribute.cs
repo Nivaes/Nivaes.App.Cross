@@ -1,8 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Presenters.Attributes
+namespace Nivaes.App.Cross.AppKit
 {
     using Nivaes.App.Cross;
 
-    public class MvxSheetPresentationAttribute 
+    public class CrossContentPresentationAttribute 
         : CrossBasePresentationAttribute
     {
         public string? WindowIdentifier { get; set; }

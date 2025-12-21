@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.Tvos
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using MvvmCross.ViewModels;
 

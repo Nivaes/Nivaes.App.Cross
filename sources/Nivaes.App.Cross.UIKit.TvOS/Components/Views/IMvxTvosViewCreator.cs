@@ -4,7 +4,7 @@ namespace MvvmCross.Platforms.Tvos.Views
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Tvos;
+    using Nivaes.App.Cross.UIKit.TvOS;
 
     public interface IMvxTvosViewCreator : IMvxCurrentRequest
     {

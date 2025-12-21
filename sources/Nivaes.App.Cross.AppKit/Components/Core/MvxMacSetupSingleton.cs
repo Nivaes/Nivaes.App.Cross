@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using AppKit;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Mac.Presenters;
-
 namespace MvvmCross.Platforms.Mac.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+    using AppKit;
+    using MvvmCross.Core;
+    using MvvmCross.Platforms.Mac.Presenters;
+    using Nivaes.App.Cross;
+
     public class MvxMacSetupSingleton
         : CrossSetupSingleton
     {

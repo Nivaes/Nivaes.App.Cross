@@ -1,13 +1,11 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-using UIKit;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [MvxChildPresentation]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

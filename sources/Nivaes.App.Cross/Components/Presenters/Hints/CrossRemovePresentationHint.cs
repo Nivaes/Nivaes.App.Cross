@@ -1,24 +1,23 @@
-namespace MvvmCross.Presenters.Hints
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public class MvxRemovePresentationHint
+    public class CrossRemovePresentationHint
         : CrossPresentationHint
     {
-        public MvxRemovePresentationHint(Type viewModelToRemove)
+        public CrossRemovePresentationHint(Type viewModelToRemove)
         {
             ViewModelToRemove = viewModelToRemove;
         }
 
-        public MvxRemovePresentationHint(Type viewModelToRemove, CrossBundle body) : base(body)
+        public CrossRemovePresentationHint(Type viewModelToRemove, CrossBundle body) : base(body)
         {
             ViewModelToRemove = viewModelToRemove;
         }
 
-        public MvxRemovePresentationHint(Type viewModelToRemove, IDictionary<string, string> hints)
+        public CrossRemovePresentationHint(Type viewModelToRemove, IDictionary<string, string> hints)
             : this(viewModelToRemove, new CrossBundle(hints))
         {
         }

@@ -1,11 +1,10 @@
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Threading.Tasks;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public interface IMvxViewPresenter
+    public interface ICrossViewPresenter
     {
         Task<bool> Show(CrossViewModelRequest request);
 

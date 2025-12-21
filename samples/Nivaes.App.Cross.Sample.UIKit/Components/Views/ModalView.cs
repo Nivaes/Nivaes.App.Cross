@@ -1,18 +1,19 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using CoreGraphics;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-using UIKit;
-
 namespace Playground.iOS.Views
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using CoreGraphics;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+    using UIKit;
+
     [MvxFromStoryboard("Main")]
     [MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class ModalView : MvxViewController<ModalViewModel>
+    public partial class ModalView 
+        : MvxViewController<ModalViewModel>
     {
         public ModalView(NativeHandle handle) : base(handle)
         {

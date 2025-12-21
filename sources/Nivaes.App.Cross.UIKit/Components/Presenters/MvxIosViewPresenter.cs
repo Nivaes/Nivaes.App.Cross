@@ -2,17 +2,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Exceptions;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresenter
+    public class MvxIosViewPresenter 
+        : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
         private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
 
@@ -35,7 +31,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             Window = window;
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
         {
@@ -277,13 +273,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
             return hint switch
             {
                 null => throw new ArgumentNullException(nameof(hint)),
-                MvxPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
+                CrossPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
                     Task.FromResult(true),
                 _ => base.ChangePresentation(hint)
             };
         }
 
-        private bool ChangePagePresentation(MvxPagePresentationHint pagePresentationHint)
+        private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
         {
             if (!(TabBarViewController is UITabBarController tabsController) ||
                 tabsController.ViewControllers == null)
@@ -885,13 +881,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ArgumentNullException.ThrowIfNull(viewType);
         }
 
-        private static void ValidateArguments(UIViewController viewController, MvxBasePresentationAttribute attribute)
+        private static void ValidateArguments(UIViewController viewController, CrossBasePresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
         }
 
-        private static void ValidateArguments(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        private static void ValidateArguments(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
             ArgumentNullException.ThrowIfNull(attribute);

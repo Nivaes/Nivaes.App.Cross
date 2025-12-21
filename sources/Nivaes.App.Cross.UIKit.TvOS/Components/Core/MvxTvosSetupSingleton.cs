@@ -1,14 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Core;
-using MvvmCross.Platforms.Tvos.Presenters;
-using UIKit;
-
 namespace MvvmCross.Platforms.Tvos.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit.TvOS;
+
     [RequiresUnreferencedCode("This class may use reflection which may not be preserved by trimming.")]
     public class MvxTvosSetupSingleton
         : CrossSetupSingleton
@@ -20,7 +15,7 @@ namespace MvvmCross.Platforms.Tvos.Core
             return instance;
         }
 
-        public static MvxTvosSetupSingleton EnsureSingletonAvailable(IMvxApplicationDelegate applicationDelegate, IMvxTvosViewPresenter presenter)
+        public static MvxTvosSetupSingleton EnsureSingletonAvailable(IMvxApplicationDelegate applicationDelegate, ICrossTvosViewPresenter presenter)
         {
             var instance = EnsureSingletonAvailable<MvxTvosSetupSingleton>();
             instance.PlatformSetup<MvxTvosSetup>()?.PlatformInitialize(applicationDelegate, presenter);

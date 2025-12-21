@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Presenters
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
@@ -6,19 +6,16 @@ namespace MvvmCross.Platforms.Tvos.Presenters
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Tvos.Presenters.Attributes;
     using MvvmCross.Platforms.Tvos.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public class MvxTvosViewPresenter
-        : MvxAttributeViewPresenter, IMvxTvosViewPresenter
+    public class CrossTvosViewPresenter
+        : CrossAttributeViewPresenter, ICrossTvosViewPresenter
     {
         private readonly IUIApplicationDelegate _applicationDelegate;
         protected IUIApplicationDelegate ApplicationDelegate => _applicationDelegate;
 
         private readonly UIWindow _window;
-        private readonly ILogger<MvxTvosViewPresenter> _logger;
+        private readonly ILogger<CrossTvosViewPresenter> _logger;
 
         protected UIWindow Window => _window;
 
@@ -26,21 +23,21 @@ namespace MvvmCross.Platforms.Tvos.Presenters
 
         public List<UIViewController> ModalViewControllers { get; protected set; } = new List<UIViewController>();
 
-        public IMvxTabBarViewController TabBarViewController { get; protected set; }
+        public ICrossTabBarViewController TabBarViewController { get; protected set; }
 
         public IMvxPageViewController PageViewController { get; protected set; }
 
         public MvxSplitViewController SplitViewController { get; protected set; }
 
-        public MvxTvosViewPresenter(IUIApplicationDelegate applicationDelegate, UIWindow window)
+        public CrossTvosViewPresenter(IUIApplicationDelegate applicationDelegate, UIWindow window)
         {
             _applicationDelegate = applicationDelegate;
             _window = window;
 
-            _logger = MvxLogHost.GetLog<MvxTvosViewPresenter>();
+            _logger = MvxLogHost.GetLog<CrossTvosViewPresenter>();
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
         {
@@ -68,7 +65,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
             };
         }
 
-        public override MvxBasePresentationAttribute GetOverridePresentationAttribute(
+        public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
             CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
         {
@@ -117,7 +114,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                       },
                     CloseChildViewController);
 
-            AttributeTypesToActionsDictionary.Register<MvxTabPresentationAttribute>(
+            AttributeTypesToActionsDictionary.Register<CrossTabPresentationAttribute>(
                     (viewType, attribute, request) =>
                     {
                         var viewController = (UIViewController)this.CreateViewControllerFor(request);
@@ -195,7 +192,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         }
 
         protected virtual Task<bool> CloseTabViewController(ICrossViewModel viewModel,
-                                    MvxTabPresentationAttribute attribute)
+                                    CrossTabPresentationAttribute attribute)
         {
             if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
                 return Task.FromResult(true);
@@ -338,7 +335,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                                            MvxRootPresentationAttribute attribute,
                                            CrossViewModelRequest request)
         {
-            if (viewController is IMvxTabBarViewController controller)
+            if (viewController is ICrossTabBarViewController controller)
             {
                 //NOTE clean up must be done first incase we are enbedding into a navigation controller
                 //before setting the tab view controller, otherwise this will reset the view stack and your tab
@@ -430,7 +427,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         }
 
         protected virtual Task<bool> ShowTabViewController(UIViewController viewController,
-                                           MvxTabPresentationAttribute attribute,
+                                           CrossTabPresentationAttribute attribute,
                                            CrossViewModelRequest request)
         {
             if (TabBarViewController == null)
@@ -443,7 +440,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
                 attribute.TabSelectedIconName = tabBarItem.TabSelectedIconName;
             }
 
-            if (attribute.WrapInNavigationController)
+            if (attribute.WrapInNavigationController == true)
                 viewController = CreateNavigationController(viewController);
 
             TabBarViewController.ShowTabView(
@@ -544,7 +541,7 @@ namespace MvvmCross.Platforms.Tvos.Presenters
         {
             navigationController.PushViewController(viewController, animated);
 
-            if (viewController is IMvxTabBarViewController tabBarController)
+            if (viewController is ICrossTabBarViewController tabBarController)
                 TabBarViewController = tabBarController;
         }
 

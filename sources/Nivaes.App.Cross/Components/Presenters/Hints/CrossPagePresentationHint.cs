@@ -1,25 +1,24 @@
-namespace MvvmCross.Presenters.Hints
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
-    public class MvxPagePresentationHint
+    public class CrossPagePresentationHint
         : CrossPresentationHint
     {
-        public MvxPagePresentationHint(
+        public CrossPagePresentationHint(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModel)
         {
             ViewModel = viewModel;
         }
 
-        public MvxPagePresentationHint(
+        public CrossPagePresentationHint(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModel, CrossBundle body) : base(body)
         {
             ViewModel = viewModel;
         }
 
-        public MvxPagePresentationHint(
+        public CrossPagePresentationHint(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModel, IDictionary<string, string> hints) : this(viewModel, new CrossBundle(hints))
         {
         }

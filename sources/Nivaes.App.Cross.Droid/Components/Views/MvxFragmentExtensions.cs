@@ -1,19 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace MvvmCross.Platforms.Android.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using Nivaes.App.Cross;
+
     public static class MvxFragmentExtensions
     {
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]

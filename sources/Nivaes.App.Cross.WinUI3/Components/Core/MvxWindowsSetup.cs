@@ -8,12 +8,10 @@ namespace MvvmCross.Platforms.WinUi.Core
     using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
-    using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.WinUi.Binding;
     using MvvmCross.Platforms.WinUi.Presenters;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.Presenters;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.WinUI3;
 
@@ -120,7 +118,7 @@ namespace MvvmCross.Platforms.WinUi.Core
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
         protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)

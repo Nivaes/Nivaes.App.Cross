@@ -1,4 +1,4 @@
-namespace MvvmCross.Presenters
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@ namespace MvvmCross.Presenters
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public abstract class MvxViewPresenter 
-        : IMvxViewPresenter
+    public abstract class CrossViewPresenter 
+        : ICrossViewPresenter
     {
         private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =
             new Dictionary<Type, Func<CrossPresentationHint, Task<bool>>>();

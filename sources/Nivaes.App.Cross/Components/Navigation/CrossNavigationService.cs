@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross
     using MvvmCross.Exceptions;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
-    using MvvmCross.Presenters.Hints;
     using MvvmCross.ViewModels;
 
     /// <inheritdoc cref="ICrossNavigationService"/>
@@ -407,7 +406,7 @@ namespace Nivaes.App.Cross
             if (args.Cancel)
                 return false;
 
-            var close = await ViewDispatcher.ChangePresentation(new MvxClosePresentationHint(viewModel)).ConfigureAwait(false);
+            var close = await ViewDispatcher.ChangePresentation(new CrossClosePresentationHint(viewModel)).ConfigureAwait(false);
             OnDidClose(this, args);
 
             return close;

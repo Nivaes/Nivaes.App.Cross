@@ -9,12 +9,10 @@ namespace MvvmCross.Platforms.Ios.Core
     using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
-    using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters;
     using Nivaes.App.Cross;
 
     public abstract class MvxIosSetup
@@ -134,7 +132,7 @@ namespace MvvmCross.Platforms.Ios.Core
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
         protected virtual void RegisterPopoverPresentationSourceProvider(IMvxIoCProvider iocProvider)

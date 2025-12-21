@@ -10,17 +10,12 @@ namespace MvvmCross.Platforms.Android.Presenters
     using Google.Android.Material.Tabs;
     using Java.Lang;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Exceptions;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Fragments;
     using MvvmCross.Platforms.Android.Views.ViewPager;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
     using DialogFragment = AndroidX.Fragment.App.DialogFragment;
@@ -28,7 +23,7 @@ namespace MvvmCross.Platforms.Android.Presenters
     using FragmentManager = AndroidX.Fragment.App.FragmentManager;
     using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
-    public class MvxAndroidViewPresenter : MvxAttributeViewPresenter, IMvxAndroidViewPresenter
+    public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidViewPresenter
     {
         public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
         public const string SharedElementsBundleKey = "__sharedElementsKey";
@@ -112,7 +107,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
         }
 
-        public override MvxBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+        public override CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
             ValidateArguments(request);
 
@@ -124,11 +119,11 @@ namespace MvvmCross.Platforms.Android.Presenters
             if (overrideAttribute != null)
                 return overrideAttribute;
 
-            IList<MvxBasePresentationAttribute> attributes =
-                viewType.GetCustomAttributes<MvxBasePresentationAttribute>(true).ToList();
+            IList<CrossBasePresentationAttribute> attributes =
+                viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
             if (attributes.Count > 0)
             {
-                MvxBasePresentationAttribute? attribute = null;
+                CrossBasePresentationAttribute? attribute = null;
 
                 if (attributes.Count > 1)
                 {
@@ -151,10 +146,10 @@ namespace MvvmCross.Platforms.Android.Presenters
             return CreatePresentationAttribute(request.ViewModelType, viewType);
         }
 
-        private MvxBasePresentationAttribute? GetAttributeForFragmentPresentation(
+        private CrossBasePresentationAttribute? GetAttributeForFragmentPresentation(
             IEnumerable<MvxFragmentPresentationAttribute> fragmentAttributes)
         {
-            MvxBasePresentationAttribute? attribute = null;
+            CrossBasePresentationAttribute? attribute = null;
 
             var currentActivityHostViewModelType = GetCurrentActivityViewModelType();
 
@@ -175,10 +170,10 @@ namespace MvvmCross.Platforms.Android.Presenters
             return attribute;
         }
 
-        private MvxBasePresentationAttribute? GetAttributeForFragmentChildPresentation(
+        private CrossBasePresentationAttribute? GetAttributeForFragmentChildPresentation(
             IEnumerable<MvxFragmentPresentationAttribute> fragmentAttributes)
         {
-            MvxBasePresentationAttribute? attribute = null;
+            CrossBasePresentationAttribute? attribute = null;
 
             foreach (var item in fragmentAttributes.Where(
                 att => att.FragmentHostViewType != null))
@@ -196,7 +191,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             return attribute;
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
         {
@@ -241,7 +236,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             if (hint == null)
                 throw new ArgumentNullException(nameof(hint));
 
-            if (hint is MvxPagePresentationHint pagePresentationHint)
+            if (hint is CrossPagePresentationHint pagePresentationHint)
             {
                 var result = ChangePagePresentation(pagePresentationHint);
                 return Task.FromResult(result);
@@ -250,7 +245,7 @@ namespace MvvmCross.Platforms.Android.Presenters
             return base.ChangePresentation(hint);
         }
 
-        private bool ChangePagePresentation(MvxPagePresentationHint pagePresentationHint)
+        private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
         {
             var request = new CrossViewModelRequest(pagePresentationHint.ViewModel);
             var attribute = GetPresentationAttribute(request);
@@ -387,7 +382,7 @@ namespace MvvmCross.Platforms.Android.Presenters
         }
 
         private (List<string> elements, List<Pair> transitionElementPairs) GetTransitionElements(
-            MvxBasePresentationAttribute attribute, CrossViewModelRequest request,
+            CrossBasePresentationAttribute attribute, CrossViewModelRequest request,
             IMvxAndroidSharedElements sharedElementsActivity)
         {
             var elements = new List<string>();
@@ -1096,7 +1091,7 @@ namespace MvvmCross.Platforms.Android.Presenters
 
         protected virtual IMvxFragmentView CreateFragment(
             FragmentManager fragmentManager,
-            MvxBasePresentationAttribute attribute,
+            CrossBasePresentationAttribute attribute,
             Type fragmentType)
         {
             ValidateArguments(attribute);
@@ -1170,20 +1165,20 @@ namespace MvvmCross.Platforms.Android.Presenters
             return null;
         }
 
-        private static void ValidateArguments(Type? view, MvxBasePresentationAttribute? attribute, CrossViewModelRequest? request)
+        private static void ValidateArguments(Type? view, CrossBasePresentationAttribute? attribute, CrossViewModelRequest? request)
         {
             ArgumentNullException.ThrowIfNull(view);
             ValidateArguments(attribute, request);
         }
 
-        private static void ValidateArguments(MvxBasePresentationAttribute? attribute, CrossViewModelRequest? request)
+        private static void ValidateArguments(CrossBasePresentationAttribute? attribute, CrossViewModelRequest? request)
         {
             ValidateArguments(attribute);
 
             ValidateArguments(request);
         }
 
-        private static void ValidateArguments(MvxBasePresentationAttribute? attribute)
+        private static void ValidateArguments(CrossBasePresentationAttribute? attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
         }

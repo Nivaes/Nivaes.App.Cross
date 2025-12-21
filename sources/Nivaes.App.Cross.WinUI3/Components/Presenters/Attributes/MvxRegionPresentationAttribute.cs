@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Presenters.Attributes;
-
 namespace MvvmCross.Platforms.WinUi.Presenters.Attributes
 {
-    public sealed class MvxRegionPresentationAttribute : MvxBasePresentationAttribute
+    using Nivaes.App.Cross;
+
+    public sealed class MvxRegionPresentationAttribute 
+        : CrossBasePresentationAttribute
     {
-        public MvxRegionPresentationAttribute(string regionName = null)
+        public MvxRegionPresentationAttribute(string? regionName = null)
         {
             Name = regionName;
         }
 
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
     }
 }

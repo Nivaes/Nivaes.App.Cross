@@ -1,9 +1,7 @@
 namespace Playground.iOS.Views
 {
-    using System;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
@@ -45,16 +43,14 @@ namespace Playground.iOS.Views
         {
             var type = viewController.GetType();
 
-            return (type != typeof(ChildView)
-) && base.ShowChildView(viewController);
+            return (type != typeof(ChildView)) && base.ShowChildView(viewController);
         }
 
         public override bool CloseChildViewModel(ICrossViewModel viewModel)
         {
             var type = viewModel.GetType();
 
-            return (type != typeof(ChildViewModel)
-) && base.CloseChildViewModel(viewModel);
+            return (type != typeof(ChildViewModel)) && base.CloseChildViewModel(viewModel);
         }
     }
 }

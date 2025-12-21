@@ -1,29 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Mac.Binding;
-using MvvmCross.Platforms.Mac.Presenters;
-using MvvmCross.Platforms.Mac.Views;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace MvvmCross.Platforms.Mac.Core
 {
-#nullable enable
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Mac.Binding;
+    using MvvmCross.Platforms.Mac.Presenters;
+    using MvvmCross.Platforms.Mac.Views;
+    using Nivaes.App.Cross;
+
     public abstract class MvxMacSetup
         : CrossSetup, IMvxMacSetup
     {
@@ -110,7 +100,7 @@ namespace MvvmCross.Platforms.Mac.Core
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
