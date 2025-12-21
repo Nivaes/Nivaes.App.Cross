@@ -212,9 +212,9 @@ public abstract class MvxIosSetup
 }
 
 public abstract class MvxIosSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxIosSetup
-    where TApplication : class, IMvxApplication, new()
+    where TApplication : class, ICrossApplication, new()
 {
-    protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+    protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
         iocProvider.IoCConstruct<TApplication>();
 
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

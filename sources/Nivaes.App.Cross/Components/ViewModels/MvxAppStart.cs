@@ -10,11 +10,11 @@ namespace MvvmCross.ViewModels
     public abstract class MvxAppStart : IMvxAppStart
     {
         protected readonly IMvxNavigationService NavigationService;
-        protected readonly IMvxApplication Application;
+        protected readonly ICrossApplication Application;
 
         private int startHasCommenced;
 
-        protected MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        protected MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
         {
             Application = application;
             NavigationService = navigationService;
@@ -66,7 +66,7 @@ namespace MvvmCross.ViewModels
         : MvxAppStart
             where TViewModel : ICrossViewModel
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }
@@ -89,7 +89,7 @@ namespace MvvmCross.ViewModels
             where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
-        public MvxAppStart(IMvxApplication application, IMvxNavigationService navigationService)
+        public MvxAppStart(ICrossApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
         }

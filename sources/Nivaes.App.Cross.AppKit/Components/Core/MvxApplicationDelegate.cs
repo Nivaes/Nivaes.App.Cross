@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using AppKit;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
-
 namespace MvvmCross.Platforms.Mac.Core
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using AppKit;
+    using MvvmCross.Core;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate
     {
@@ -69,7 +66,7 @@ namespace MvvmCross.Platforms.Mac.Core
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public class MvxApplicationDelegate<TMvxMacSetup, TApplication> : MvxApplicationDelegate
         where TMvxMacSetup : MvxMacSetup<TApplication>, new()
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

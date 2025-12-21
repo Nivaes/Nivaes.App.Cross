@@ -1,15 +1,17 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
     using MvvmCross.Plugin;
+    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public abstract class MvxApplication 
-        : IMvxApplication
+    public abstract class CrossApplication 
+        : ICrossApplication
     {
         private IMvxViewModelLocator? _defaultLocator;
 
@@ -101,7 +103,7 @@ namespace MvvmCross.ViewModels
         }
     }
 
-    public class MvxApplication<TParameter> : MvxApplication, IMvxApplication<TParameter>
+    public class MvxApplication<TParameter> : CrossApplication, IMvxApplication<TParameter>
     {
         public virtual Task<TParameter> Startup(TParameter hint)
         {

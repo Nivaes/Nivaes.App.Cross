@@ -187,9 +187,9 @@ namespace MvvmCross.Platforms.WinUi.Core
     }
 
     public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
-         where TApplication : class, IMvxApplication, new()
+         where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
             iocProvider.IoCConstruct<TApplication>();
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()

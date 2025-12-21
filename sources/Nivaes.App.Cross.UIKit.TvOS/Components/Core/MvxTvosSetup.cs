@@ -176,9 +176,9 @@ namespace MvvmCross.Platforms.Tvos.Core
     }
 
     public abstract class MvxTvosSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxTvosSetup
-        where TApplication : class, IMvxApplication, new()
+        where TApplication : class, ICrossApplication, new()
     {
-        protected override IMvxApplication CreateApp(IMvxIoCProvider iocProvider) =>
+        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
             iocProvider.IoCConstruct<TApplication>();
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
