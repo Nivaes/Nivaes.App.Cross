@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(_CrossiOSTargets)</TargetFrameworks>
+		<TargetFramework>$(_CrossiOSTargets)</TargetFramework>
 		<!--<RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>-->
-		<RuntimeIdentifier>maccatalyst</RuntimeIdentifier>
 
 		<OutputType>Exe</OutputType>
 		<Nullable>enable</Nullable>
