@@ -1,10 +1,11 @@
-namespace MvvmCross.Binding.Bindings.Target
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
+    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxEventNameTargetBinding<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TTarget> : MvxTargetBinding
+    public class CrossEventNameTargetBinding<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TTarget> : CrossTargetBinding
         where TTarget : class
     {
         private readonly bool _useEventArgsAsCommandParameter;
@@ -12,7 +13,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         private ICommand? _currentCommand;
 
-        public MvxEventNameTargetBinding(
+        public CrossEventNameTargetBinding(
             TTarget target, string targetEventName, bool useEventArgsAsCommandParameter = true)
             : base(target)
         {

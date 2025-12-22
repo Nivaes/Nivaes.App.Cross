@@ -4,11 +4,10 @@ namespace MvvmCross.Platforms.Tvos.Binding.Target
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
     public class MvxUIControlValueChangedTargetBinding
-        : MvxConvertingTargetBinding
+        : CrossConvertingTargetBinding
     {
         private ICommand _command;
         private readonly EventHandler<EventArgs> _canExecuteEventHandler;

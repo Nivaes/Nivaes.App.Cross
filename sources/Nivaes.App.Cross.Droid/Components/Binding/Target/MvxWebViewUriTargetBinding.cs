@@ -1,21 +1,23 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
 using Android.Webkit;
-using MvvmCross.Binding;
 
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxWebViewUriTargetBinding(WebView webView) : MvxAndroidTargetBinding(webView)
+namespace Nivaes.App.Cross.Droid
 {
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(string);
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
 
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxWebViewUriTargetBinding(WebView webView)
+    : MvxAndroidTargetBinding(webView)
     {
-        if (target is WebView view && value is string uri)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(string);
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+        protected override void SetValueImpl(object target, object? value)
         {
-            view.LoadUrl(uri);
+            if (target is WebView view && value is string uri)
+            {
+                view.LoadUrl(uri);
+            }
         }
     }
 }

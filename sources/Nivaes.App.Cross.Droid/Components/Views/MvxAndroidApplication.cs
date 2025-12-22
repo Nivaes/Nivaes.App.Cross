@@ -5,7 +5,7 @@ namespace MvvmCross.Platforms.Android.Views
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Platforms.Android.Core;
     using Nivaes.App.Cross;
-
+    using Nivaes.App.Cross.Droid;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class MvxAndroidApplication 

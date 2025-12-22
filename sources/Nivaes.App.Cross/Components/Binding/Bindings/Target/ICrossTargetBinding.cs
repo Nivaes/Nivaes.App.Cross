@@ -1,12 +1,12 @@
-namespace MvvmCross.Binding.Bindings.Target
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
+    using MvvmCross.Binding;
 
-    public interface IMvxTargetBinding
+    public interface ICrossTargetBinding
         : ICrossBinding
     {
-        event EventHandler<MvxTargetChangedEventArgs>? ValueChanged;
+        event EventHandler<CrossTargetChangedEventArgs>? ValueChanged;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         Type TargetValueType { get; }

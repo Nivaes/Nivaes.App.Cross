@@ -2,10 +2,8 @@ namespace MvvmCross.Platforms.Mac.Core
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
     using MvvmCross.IoC;
@@ -148,7 +146,7 @@ namespace MvvmCross.Platforms.Mac.Core
 
         protected virtual IEnumerable<Type> ValueConverterHolders => Array.Empty<Type>();
 
-        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             // this base class does nothing
         }

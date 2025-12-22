@@ -1,31 +1,27 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.Platforms.Tvos.Binding.Target;
-using MvvmCross.Platforms.Tvos.Binding.ValueConverters;
-using MvvmCross.Platforms.Tvos.Binding.Views;
-
-namespace MvvmCross.Platforms.Tvos.Binding
+namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.Platforms.Tvos.Binding;
+    using MvvmCross.Platforms.Tvos.Binding.Target;
+    using MvvmCross.Platforms.Tvos.Binding.ValueConverters;
+    using MvvmCross.Platforms.Tvos.Binding.Views;
+
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public class MvxTvosBindingBuilder
         : MvxBindingBuilder
     {
-        private readonly Action<IMvxTargetBindingFactoryRegistry> _fillRegistryAction;
+        private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;
         private readonly Action<IMvxBindingNameRegistry> _fillBindingNamesAction;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombinersAction;
         private readonly MvxUnifiedTypesValueConverter _unifiedValueTypesConverter;
 
-        public MvxTvosBindingBuilder(Action<IMvxTargetBindingFactoryRegistry> fillRegistryAction = null,
+        public MvxTvosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry> fillRegistryAction = null,
                                     Action<IMvxValueConverterRegistry> fillValueConvertersAction = null,
                                     Action<IMvxBindingNameRegistry> fillBindingNamesAction = null,
                                     Action<IMvxValueCombinerRegistry> fillValueCombinersAction = null)
@@ -46,7 +42,7 @@ namespace MvvmCross.Platforms.Tvos.Binding
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
-        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);
 

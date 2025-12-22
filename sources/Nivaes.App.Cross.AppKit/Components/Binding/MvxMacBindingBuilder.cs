@@ -1,29 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using AppKit;
-using MvvmCross.Binding;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Mac.Binding.Target;
-
 namespace MvvmCross.Platforms.Mac.Binding
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.Platforms.Mac.Binding.Target;
+    using Nivaes.App.Cross;
+
     public class MvxMacBindingBuilder
         : MvxBindingBuilder
     {
-        private readonly Action<IMvxTargetBindingFactoryRegistry> _fillRegistryAction;
+        private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;
         private readonly Action<IMvxBindingNameRegistry> _fillBindingNamesAction;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombinersAction;
 
-        public MvxMacBindingBuilder(Action<IMvxTargetBindingFactoryRegistry> fillRegistryAction = null,
+        public MvxMacBindingBuilder(Action<ICrossTargetBindingFactoryRegistry> fillRegistryAction = null,
                                     Action<IMvxValueConverterRegistry> fillValueConvertersAction = null,
                                     Action<IMvxBindingNameRegistry> fillBindingNamesAction = null,
                                     Action<IMvxValueCombinerRegistry> fillValueCombinersAction = null)
@@ -42,7 +34,7 @@ namespace MvvmCross.Platforms.Mac.Binding
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
-        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);
 
@@ -120,12 +112,12 @@ namespace MvvmCross.Platforms.Mac.Binding
         }
 
         [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming.")]
-        protected virtual void RegisterPropertyInfoBindingFactory(IMvxTargetBindingFactoryRegistry registry,
+        protected virtual void RegisterPropertyInfoBindingFactory(ICrossTargetBindingFactoryRegistry registry,
                                                                   [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type bindingType,
                                                                   [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType,
                                                                   string targetName)
         {
-            registry.RegisterFactory(new MvxSimplePropertyInfoTargetBindingFactory(bindingType, targetType, targetName));
+            registry.RegisterFactory(new CrossSimplePropertyInfoTargetBindingFactory(bindingType, targetType, targetName));
         }
 
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)

@@ -1,19 +1,20 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using AndroidUri = Android.Net.Uri;
-
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxVideoViewUriTargetBinding(VideoView videoView) : MvxAndroidTargetBinding(videoView)
+namespace Nivaes.App.Cross.Droid
 {
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(string);
+    using System.Diagnostics.CodeAnalysis;
+    using AndroidUri = Android.Net.Uri;
 
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxVideoViewUriTargetBinding(VideoView videoView)
+    : MvxAndroidTargetBinding(videoView)
     {
-        if (target is VideoView view && value is string uri && !string.IsNullOrWhiteSpace(uri))
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(string);
+
+        protected override void SetValueImpl(object target, object? value)
         {
-            view.SetVideoURI(AndroidUri.Parse(uri));
+            if (target is VideoView view && value is string uri && !string.IsNullOrWhiteSpace(uri))
+            {
+                view.SetVideoURI(AndroidUri.Parse(uri));
+            }
         }
     }
 }

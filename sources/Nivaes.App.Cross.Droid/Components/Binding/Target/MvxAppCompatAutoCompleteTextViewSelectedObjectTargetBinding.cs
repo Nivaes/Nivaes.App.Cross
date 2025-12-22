@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.Platforms.Android.WeakSubscription;
-
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Platforms.Android.Binding.Target;
+    using MvvmCross.Platforms.Android.Binding.Views;
+
     public class MvxAppCompatAutoCompleteTextViewSelectedObjectTargetBinding
         : MvxAndroidPropertyInfoTargetBinding<MvxAppCompatAutoCompleteTextView>
     {

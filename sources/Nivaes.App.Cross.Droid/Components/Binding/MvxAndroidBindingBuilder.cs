@@ -1,34 +1,32 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Android.Webkit;
 using AndroidX.Preference;
-using MvvmCross.Binding;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.Android.Binding.Binders;
-using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
-using MvvmCross.Platforms.Android.Binding.Target;
-using MvvmCross.Platforms.Android.Binding.Views;
-using AppCompatSearchView = AndroidX.AppCompat.Widget.SearchView;
-using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
-namespace MvvmCross.Platforms.Android.Binding
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.Android.Binding;
+    using MvvmCross.Platforms.Android.Binding.Binders;
+    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
+    using MvvmCross.Platforms.Android.Binding.Target;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using Nivaes.App.Cross;
+    using AppCompatSearchView = AndroidX.AppCompat.Widget.SearchView;
+    using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+
     public class MvxAndroidBindingBuilder
         : MvxBindingBuilder
     {
         private readonly Action<IMvxValueConverterRegistry> _fillValueConverters;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombiners;
-        private readonly Action<IMvxTargetBindingFactoryRegistry> _fillTargetFactories;
+        private readonly Action<ICrossTargetBindingFactoryRegistry> _fillTargetFactories;
         private readonly Action<IMvxBindingNameRegistry> _fillBindingNames;
         private readonly Action<IMvxTypeCache> _fillViewTypes;
         private readonly Action<IMvxAxmlNameViewTypeResolver> _fillAxmlViewTypeResolver;
@@ -37,7 +35,7 @@ namespace MvvmCross.Platforms.Android.Binding
         public MvxAndroidBindingBuilder(
             Action<IMvxValueConverterRegistry> fillValueConverters,
             Action<IMvxValueCombinerRegistry> fillValueCombiners,
-            Action<IMvxTargetBindingFactoryRegistry> fillTargetFactories,
+            Action<ICrossTargetBindingFactoryRegistry> fillTargetFactories,
             Action<IMvxBindingNameRegistry> fillBindingNames,
             Action<IMvxTypeCache> fillViewTypes,
             Action<IMvxAxmlNameViewTypeResolver> fillAxmlViewTypeResolver,
@@ -123,7 +121,7 @@ namespace MvvmCross.Platforms.Android.Binding
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
-        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);
 
@@ -160,7 +158,7 @@ namespace MvvmCross.Platforms.Android.Binding
                 MvxAndroidPropertyBinding.SeekBar_Progress);
 
             registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxNumberPickerValueTargetBinding),
+                typeof(CrossNumberPickerValueTargetBinding),
                 typeof(NumberPicker),
                 MvxAndroidPropertyBinding.NumberPicker_Value);
 

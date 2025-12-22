@@ -5,7 +5,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
     using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxNSViewVisibilityTargetBinding : MvxMacTargetBinding
+    public class MvxNSViewVisibilityTargetBinding
+        : MvxMacTargetBinding
     {
         protected NSView View
         {

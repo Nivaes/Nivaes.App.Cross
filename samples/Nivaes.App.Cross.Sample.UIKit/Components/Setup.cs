@@ -2,9 +2,9 @@ namespace Playground.iOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Platforms.Ios.Core;
     using MvvmCross.Plugin;
+    using Nivaes.App.Cross;
     using Playground.Core;
     using Playground.iOS.Bindings;
     using Playground.iOS.Controls;
@@ -32,7 +32,7 @@ namespace Playground.iOS
             return new SerilogLoggerFactory();
         }
 
-        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             registry.RegisterCustomBindingFactory<BinaryEdit>(
                 "MyCount",

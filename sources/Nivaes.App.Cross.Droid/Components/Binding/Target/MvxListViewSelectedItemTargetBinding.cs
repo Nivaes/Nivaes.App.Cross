@@ -1,80 +1,75 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.Platforms.Android.WeakSubscription;
-
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxListViewSelectedItemTargetBinding(MvxListView view)
-    : MvxAndroidTargetBinding(view)
+namespace Nivaes.App.Cross.Droid
 {
-    private object? _currentValue;
-    private MvxAndroidTargetEventSubscription<ListView, AdapterView.ItemClickEventArgs>? _subscription;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Platforms.Android.Binding.Views;
 
-    protected MvxListView? ListView => (MvxListView?)Target;
-
-    private void OnItemClick(object? sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
+    public class MvxListViewSelectedItemTargetBinding(MvxListView view)
+    : MvxAndroidTargetBinding(view)
     {
-        var listView = ListView;
-        if (listView == null)
-            return;
+        private object? _currentValue;
+        private CrossAndroidTargetEventSubscription<ListView, AdapterView.ItemClickEventArgs>? _subscription;
 
-        var newValue = listView.Adapter.GetRawItem(itemClickEventArgs.Position);
+        protected MvxListView? ListView => (MvxListView?)Target;
 
-        if (!newValue.Equals(_currentValue))
+        private void OnItemClick(object? sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
         {
-            _currentValue = newValue;
-            FireValueChanged(newValue);
+            var listView = ListView;
+            if (listView == null)
+                return;
+
+            var newValue = listView.Adapter.GetRawItem(itemClickEventArgs.Position);
+
+            if (!newValue.Equals(_currentValue))
+            {
+                _currentValue = newValue;
+                FireValueChanged(newValue);
+            }
         }
-    }
 
-    protected override void SetValueImpl(object target, object? value)
-    {
-        if (value == null || value == _currentValue)
-            return;
-
-        var listView = (MvxListView)target;
-
-        var index = listView.Adapter.GetPosition(value);
-        if (index < 0)
+        protected override void SetValueImpl(object target, object? value)
         {
-            MvxBindingLog.Instance?.LogWarning("Value not found for spinner {Value}", value);
-            return;
+            if (value == null || value == _currentValue)
+                return;
+
+            var listView = (MvxListView)target;
+
+            var index = listView.Adapter.GetPosition(value);
+            if (index < 0)
+            {
+                MvxBindingLog.Instance?.LogWarning("Value not found for spinner {Value}", value);
+                return;
+            }
+            _currentValue = value;
+            listView.SetSelection(index);
         }
-        _currentValue = value;
-        listView.SetSelection(index);
-    }
 
-    public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
 
-    [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
-    public override void SubscribeToEvents()
-    {
-        var listView = (ListView?)ListView;
-        if (listView == null)
-            return;
-
-        _subscription =
-            listView.WeakSubscribe<ListView, AdapterView.ItemClickEventArgs>(nameof(listView.ItemClick), OnItemClick);
-    }
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(object);
-
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        if (isDisposing)
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
         {
-            _subscription?.Dispose();
-            _subscription = null;
+            var listView = (ListView?)ListView;
+            if (listView == null)
+                return;
+
+            _subscription =
+                listView.WeakSubscribe<ListView, AdapterView.ItemClickEventArgs>(nameof(listView.ItemClick), OnItemClick);
         }
-        base.Dispose(isDisposing);
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(object);
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _subscription?.Dispose();
+                _subscription = null;
+            }
+            base.Dispose(isDisposing);
+        }
     }
 }

@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
-
-namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
+namespace Nivaes.App.Cross.WinUI3
 {
-    public class MvxWindowsTargetBindingFactoryRegistry : MvxTargetBindingFactoryRegistry
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Platforms.WinUi.Binding;
+    using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
+
+    public class MvxWindowsTargetBindingFactoryRegistry 
+        : CrossTargetBindingFactoryRegistry
     {
         protected override bool TryCreateReflectionBasedBinding(object target, string targetName,
-                                                                out IMvxTargetBinding binding)
+                                                                out ICrossTargetBinding binding)
         {
             if (TryCreatePropertyDependencyBasedBinding(target, targetName, out binding))
             {
@@ -24,7 +20,7 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
         }
 
         private static bool TryCreatePropertyDependencyBasedBinding(object target, string targetName,
-                                                             out IMvxTargetBinding binding)
+                                                             out ICrossTargetBinding binding)
         {
             if (target == null)
             {

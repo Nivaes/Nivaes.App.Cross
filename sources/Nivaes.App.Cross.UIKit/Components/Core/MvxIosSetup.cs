@@ -3,17 +3,15 @@ namespace MvvmCross.Platforms.Ios.Core
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit;
 
     public abstract class MvxIosSetup
     : CrossSetup, IMvxIosSetup
@@ -192,7 +190,7 @@ namespace MvvmCross.Platforms.Ios.Core
             }
         }
 
-        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             // this base class does nothing
         }

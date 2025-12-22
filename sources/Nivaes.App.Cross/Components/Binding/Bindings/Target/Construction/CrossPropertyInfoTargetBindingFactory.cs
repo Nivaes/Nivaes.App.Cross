@@ -1,26 +1,23 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-
-namespace MvvmCross.Binding.Bindings.Target.Construction
+namespace Nivaes.App.Cross
 {
-    public class MvxPropertyInfoTargetBindingFactory
-        : IMvxPluginTargetBindingFactory
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+
+    public class CrossPropertyInfoTargetBindingFactory
+        : ICrossPluginTargetBindingFactory
     {
-        private readonly Func<object, PropertyInfo, IMvxTargetBinding> _bindingCreator;
+        private readonly Func<object, PropertyInfo, ICrossTargetBinding> _bindingCreator;
         private readonly string _targetName;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)]
         private readonly Type _targetType;
 
-        public MvxPropertyInfoTargetBindingFactory(
+        public CrossPropertyInfoTargetBindingFactory(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType,
             string targetName,
-            Func<object, PropertyInfo, IMvxTargetBinding> bindingCreator)
+            Func<object, PropertyInfo, ICrossTargetBinding> bindingCreator)
         {
             _targetType = targetType;
             _targetName = targetName;
@@ -31,13 +28,13 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
 
         #region IMvxPluginTargetBindingFactory Members
 
-        public IEnumerable<MvxTypeAndNamePair> SupportedTypes => new[]
+        public IEnumerable<CrossTypeAndNamePair> SupportedTypes => new[]
         {
-            new MvxTypeAndNamePair { Name = _targetName, Type = _targetType }
+            new CrossTypeAndNamePair(_targetType, _targetName)
         };
 
         [RequiresUnreferencedCode("This method uses reflection to get properties which may not be preserved by trimming")]
-        public IMvxTargetBinding CreateBinding(object target, string targetName)
+        public ICrossTargetBinding? CreateBinding(object target, string targetName)
         {
             var targetPropertyInfo = target.GetType().GetProperty(targetName);
             if (targetPropertyInfo != null)

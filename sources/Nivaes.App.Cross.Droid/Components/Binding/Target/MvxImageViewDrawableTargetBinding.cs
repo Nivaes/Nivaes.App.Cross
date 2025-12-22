@@ -1,46 +1,44 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
 using Android.Graphics.Drawables;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
 
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxImageViewDrawableTargetBinding(ImageView imageView)
-    : MvxAndroidTargetBinding(imageView)
+namespace Nivaes.App.Cross.Droid
 {
-    protected ImageView? ImageView => (ImageView?)Target;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
 
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(int);
-
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxImageViewDrawableTargetBinding(ImageView imageView)
+    : MvxAndroidTargetBinding(imageView)
     {
-        var view = (ImageView)target;
+        protected ImageView? ImageView => (ImageView?)Target;
 
-        if (value is not int resourceIdentifier)
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(int);
+
+        protected override void SetValueImpl(object target, object? value)
         {
-            MvxBindingLog.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
-            view.SetImageDrawable(null);
-            return;
+            var view = (ImageView)target;
+
+            if (value is not int resourceIdentifier)
+            {
+                MvxBindingLog.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
+                view.SetImageDrawable(null);
+                return;
+            }
+
+            if (resourceIdentifier == 0)
+                view.SetImageDrawable(null);
+            else
+                SetImage(view, resourceIdentifier);
         }
 
-        if (resourceIdentifier == 0)
-            view.SetImageDrawable(null);
-        else
-            SetImage(view, resourceIdentifier);
-    }
-
-    protected virtual void SetImage(ImageView view, int id)
-    {
-        var context = view.Context;
-        Drawable? drawable = context?.Resources?.GetDrawable(id, context.Theme);
-        if (drawable != null)
-            view.SetImageDrawable(drawable);
+        protected virtual void SetImage(ImageView view, int id)
+        {
+            var context = view.Context;
+            Drawable? drawable = context?.Resources?.GetDrawable(id, context.Theme);
+            if (drawable != null)
+                view.SetImageDrawable(drawable);
+        }
     }
 }

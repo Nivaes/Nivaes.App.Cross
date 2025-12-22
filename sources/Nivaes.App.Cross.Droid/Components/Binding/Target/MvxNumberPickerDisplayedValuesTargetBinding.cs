@@ -1,29 +1,25 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxNumberPickerDisplayedValuesTargetBinding(NumberPicker target)
-    : MvxTargetBinding<NumberPicker, IEnumerable<string>?>(target)
+namespace MvvmCross.Platforms.Android.Binding.Target
 {
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+    using MvvmCross.Binding;
+    using Nivaes.App.Cross;
 
-    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-    protected override void SetValue(IEnumerable<string>? value)
+    public class MvxNumberPickerDisplayedValuesTargetBinding(NumberPicker target)
+        : MvxTargetBinding<NumberPicker, IEnumerable<string>?>(target)
     {
-        if (Target == null)
-            return;
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
 
-        var arrayVal = value?.ToArray() ?? [];
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
+        protected override void SetValue(IEnumerable<string>? value)
+        {
+            if (Target == null)
+                return;
 
-        if (Target.MaxValue == 0)
-            Target.MaxValue = arrayVal.Length - 1;
-        Target.SetDisplayedValues(arrayVal);
-        Target.Invalidate();
+            var arrayVal = value?.ToArray() ?? [];
+
+            if (Target.MaxValue == 0)
+                Target.MaxValue = arrayVal.Length - 1;
+            Target.SetDisplayedValues(arrayVal);
+            Target.Invalidate();
+        }
     }
 }

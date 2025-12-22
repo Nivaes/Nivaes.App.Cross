@@ -2,11 +2,10 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
     public class MvxUITextFieldTextFocusTargetBinding(UITextField target)
-        : MvxTargetBinding(target)
+        : CrossTargetBinding(target)
     {
         private CrossWeakEventSubscription<UITextField>? _subscription;
 

@@ -1,7 +1,7 @@
 using Android.Views;
 using AndroidX.AppCompat.Widget;
 
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding;

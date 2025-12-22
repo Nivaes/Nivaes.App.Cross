@@ -1,12 +1,11 @@
 using AndroidX.Preference;
 
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.WeakSubscription;
     using Nivaes.App.Cross;
 
     public class MvxPreferenceClickTargetBinding
@@ -14,7 +13,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     {
         private readonly EventHandler<EventArgs> _canExecuteEventHandler;
         private ICommand? _command;
-        private MvxAndroidTargetEventSubscription<Preference, Preference.PreferenceClickEventArgs>? _clickSubscription;
+        private CrossAndroidTargetEventSubscription<Preference, Preference.PreferenceClickEventArgs>? _clickSubscription;
         private CrossCanExecuteChangedEventSubscription? _canExecuteSubscription;
 
         protected Preference? Preference => (Preference?)Target;
@@ -24,7 +23,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
         {
             _canExecuteEventHandler = OnCanExecuteChanged;
 
-            _clickSubscription = MvxAndroidWeakSubscriptionExtensions.WeakSubscribe<Preference, Preference.PreferenceClickEventArgs>(view, nameof(Preference.PreferenceClick),
+            _clickSubscription = CrossAndroidWeakSubscriptionExtensions.WeakSubscribe<Preference, Preference.PreferenceClickEventArgs>(view, nameof(Preference.PreferenceClick),
                 ViewOnPreferenceClick);
         }
 

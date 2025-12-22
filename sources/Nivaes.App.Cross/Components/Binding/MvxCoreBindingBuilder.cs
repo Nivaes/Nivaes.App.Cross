@@ -1,7 +1,8 @@
-namespace MvvmCross.Binding
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Combiners;
@@ -14,7 +15,6 @@ namespace MvvmCross.Binding
     using MvvmCross.Converters;
     using MvvmCross.IoC;
     using MvvmCross.Localization;
-    using Nivaes.App.Cross;
 
     public class MvxCoreBindingBuilder
     {

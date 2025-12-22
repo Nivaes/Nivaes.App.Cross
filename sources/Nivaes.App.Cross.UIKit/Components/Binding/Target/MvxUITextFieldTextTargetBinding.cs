@@ -3,12 +3,11 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
 
     public class MvxUITextFieldTextTargetBinding(UITextField target)
-    : MvxConvertingTargetBinding(target), IMvxEditableTextView
+    : CrossConvertingTargetBinding(target), IMvxEditableTextView
     {
         private CrossWeakEventSubscription<UITextField>? _subscriptionChanged;
         private CrossWeakEventSubscription<UITextField>? _subscriptionEndEditing;

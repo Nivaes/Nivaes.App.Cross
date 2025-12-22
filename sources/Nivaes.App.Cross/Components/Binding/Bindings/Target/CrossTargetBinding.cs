@@ -1,16 +1,17 @@
-namespace MvvmCross.Binding.Bindings.Target
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    using MvvmCross.Binding;
 
-    public abstract class MvxTargetBinding : CrossBinding, IMvxTargetBinding
+    public abstract class CrossTargetBinding 
+        : CrossBinding, ICrossTargetBinding
     {
-        public event EventHandler<MvxTargetChangedEventArgs>? ValueChanged;
+        public event EventHandler<CrossTargetChangedEventArgs>? ValueChanged;
 
         private readonly WeakReference _target;
 
-        protected MvxTargetBinding(object? target)
+        protected CrossTargetBinding(object? target)
         {
             _target = new WeakReference(target);
         }
@@ -25,7 +26,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         protected virtual void FireValueChanged(object? newValue)
         {
-            ValueChanged?.Invoke(this, new MvxTargetChangedEventArgs(newValue));
+            ValueChanged?.Invoke(this, new CrossTargetChangedEventArgs(newValue));
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
@@ -40,10 +41,10 @@ namespace MvvmCross.Binding.Bindings.Target
     public abstract class MvxTargetBinding<
             TTarget,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TValue
-        > : CrossBinding, IMvxTargetBinding
+        > : CrossBinding, ICrossTargetBinding
         where TTarget : class
     {
-        public event EventHandler<MvxTargetChangedEventArgs>? ValueChanged;
+        public event EventHandler<CrossTargetChangedEventArgs>? ValueChanged;
 
         private readonly WeakReference<TTarget> _target;
 
@@ -69,7 +70,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
         protected virtual void FireValueChanged(TValue? newValue)
         {
-            ValueChanged?.Invoke(this, new MvxTargetChangedEventArgs(newValue));
+            ValueChanged?.Invoke(this, new CrossTargetChangedEventArgs(newValue));
         }
 
         public abstract MvxBindingMode DefaultMode { get; }

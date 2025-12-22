@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Android.Core
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;

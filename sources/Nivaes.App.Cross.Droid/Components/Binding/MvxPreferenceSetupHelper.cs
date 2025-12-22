@@ -1,14 +1,15 @@
-using System.Diagnostics.CodeAnalysis;
-using AndroidX.Preference;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Platforms.Android.Binding.Target;
-
-namespace MvvmCross.Platforms.Android.Binding
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using AndroidX.Preference;
+    using MvvmCross.Platforms.Android.Binding;
+    using MvvmCross.Platforms.Android.Binding.Target;
+    using Nivaes.App.Cross;
+
     public static class MvxPreferenceSetupHelper
     {
         [RequiresUnreferencedCode("This method may use types that are not preserved by trimming")]
-        public static void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        public static void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             registry.RegisterCustomBindingFactory<Preference>(
                 MvxPreferencePropertyBinding.Preference_Value,

@@ -1,61 +1,56 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
-using Android.Views;
-using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.WeakSubscription;
-
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxViewLongClickBinding
-    : MvxAndroidTargetBinding
+namespace Nivaes.App.Cross.Droid
 {
-    private ICommand? _command;
-    private MvxAndroidTargetEventSubscription<View, View.LongClickEventArgs>? _subscription;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using Android.Views;
+    using MvvmCross.Binding;
 
-    protected View? View => (View?)Target;
-
-    public MvxViewLongClickBinding(View view)
-        : base(view)
+    public class MvxViewLongClickBinding
+    : MvxAndroidTargetBinding
     {
-        _subscription = view.WeakSubscribe<View, View.LongClickEventArgs>(nameof(view.LongClick), ViewOnLongClick);
-    }
+        private ICommand? _command;
+        private CrossAndroidTargetEventSubscription<View, View.LongClickEventArgs>? _subscription;
 
-    private void ViewOnLongClick(object? sender, View.LongClickEventArgs longClickEventArgs)
-    {
-        if (_command == null)
-            return;
+        protected View? View => (View?)Target;
 
-        if (!_command.CanExecute(null))
-            return;
-
-        _command.Execute(null);
-    }
-
-    protected override void SetValueImpl(object target, object? value)
-    {
-        _command = value as ICommand;
-    }
-
-    public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(ICommand);
-
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        if (isDisposing)
+        public MvxViewLongClickBinding(View view)
+            : base(view)
         {
-            _subscription?.Dispose();
-            _subscription = null;
-
-            _command = null;
+            _subscription = view.WeakSubscribe<View, View.LongClickEventArgs>(nameof(view.LongClick), ViewOnLongClick);
         }
-        base.Dispose(isDisposing);
+
+        private void ViewOnLongClick(object? sender, View.LongClickEventArgs longClickEventArgs)
+        {
+            if (_command == null)
+                return;
+
+            if (!_command.CanExecute(null))
+                return;
+
+            _command.Execute(null);
+        }
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            _command = value as ICommand;
+        }
+
+        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(ICommand);
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _subscription?.Dispose();
+                _subscription = null;
+
+                _command = null;
+            }
+            base.Dispose(isDisposing);
+        }
     }
 }

@@ -1,22 +1,23 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
 using Android.Webkit;
-using MvvmCross.Binding;
 
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxWebViewHtmlTargetBinding(object target)
-    : MvxAndroidTargetBinding(target)
+namespace Nivaes.App.Cross.Droid
 {
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(string);
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
 
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxWebViewHtmlTargetBinding(object target)
+    : MvxAndroidTargetBinding(target)
     {
-        if (target is WebView webView && value is string html)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(string);
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+        protected override void SetValueImpl(object target, object? value)
         {
-            webView.LoadData(html, "text/html; charset=utf-8", "UTF-8");
+            if (target is WebView webView && value is string html)
+            {
+                webView.LoadData(html, "text/html; charset=utf-8", "UTF-8");
+            }
         }
     }
 }

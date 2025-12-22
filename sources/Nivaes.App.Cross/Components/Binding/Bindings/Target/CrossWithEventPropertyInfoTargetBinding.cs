@@ -1,17 +1,17 @@
-namespace MvvmCross.Binding.Bindings.Target
+namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    using MvvmCross.Binding;
 
-    public class MvxWithEventPropertyInfoTargetBinding
-        : MvxPropertyInfoTargetBinding
+    public class CrossWithEventPropertyInfoTargetBinding
+        : CrossPropertyInfoTargetBinding
     {
         private IDisposable? _subscription;
 
-        public MvxWithEventPropertyInfoTargetBinding(
+        public CrossWithEventPropertyInfoTargetBinding(
                 object target,
                 PropertyInfo targetPropertyInfo)
             : base(target, targetPropertyInfo)

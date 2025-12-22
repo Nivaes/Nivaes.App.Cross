@@ -1,24 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-
-namespace MvvmCross.Binding.Bindings.Target.Construction
+namespace Nivaes.App.Cross
 {
-    public class MvxTargetBindingFactoryRegistry : IMvxTargetBindingFactoryRegistry
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+
+    public class CrossTargetBindingFactoryRegistry 
+        : ICrossTargetBindingFactoryRegistry
     {
-        private readonly Dictionary<int, IMvxPluginTargetBindingFactory> _lookups = [];
+        private readonly Dictionary<int, ICrossPluginTargetBindingFactory> _lookups = [];
 
         [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
-        public virtual IMvxTargetBinding CreateBinding(object target, string targetName)
+        public virtual ICrossTargetBinding? CreateBinding(object target, string targetName)
         {
-            if (TryCreateSpecificFactoryBinding(target, targetName, out IMvxTargetBinding first))
+            if (TryCreateSpecificFactoryBinding(target, targetName, out ICrossTargetBinding first))
                 return first;
 
-            if (TryCreateReflectionBasedBinding(target, targetName, out IMvxTargetBinding second))
+            if (TryCreateReflectionBasedBinding(target, targetName, out ICrossTargetBinding second))
                 return second;
 
             return null;
@@ -26,7 +24,7 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
 
         [RequiresUnreferencedCode("This method uses reflection to access properties and events which may not be preserved by trimming")]
         protected virtual bool TryCreateReflectionBasedBinding(
-            object target, string targetName, out IMvxTargetBinding binding)
+            object target, string targetName, out ICrossTargetBinding binding)
         {
             if (string.IsNullOrEmpty(targetName))
             {
@@ -46,7 +44,7 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
             if (targetPropertyInfo != null
                 && targetPropertyInfo.CanWrite)
             {
-                binding = new MvxWithEventPropertyInfoTargetBinding(target, targetPropertyInfo);
+                binding = new CrossWithEventPropertyInfoTargetBinding(target, targetPropertyInfo);
                 return true;
             }
 
@@ -55,7 +53,7 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
             {
                 // we only handle EventHandler's here
                 // other event types will need to be handled by custom bindings
-                binding = new MvxEventHandlerEventInfoTargetBinding(target, targetEventInfo);
+                binding = new CrossEventHandlerEventInfoTargetBinding(target, targetEventInfo);
                 return true;
             }
 
@@ -65,7 +63,7 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected virtual bool TryCreateSpecificFactoryBinding(object target, string targetName,
-                                                               out IMvxTargetBinding binding)
+                                                               out ICrossTargetBinding binding)
         {
             if (target == null)
             {
@@ -85,7 +83,7 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
             return false;
         }
 
-        public void RegisterFactory(IMvxPluginTargetBindingFactory factory)
+        public void RegisterFactory(ICrossPluginTargetBindingFactory factory)
         {
             foreach (var supported in factory.SupportedTypes)
             {
@@ -101,12 +99,11 @@ namespace MvvmCross.Binding.Bindings.Target.Construction
 
         [UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' requirements",
             Justification = "The interface types returned by ImplementedInterfaces on a type with DynamicallyAccessedMemberTypes.Interfaces are safe to process")]
-        private IMvxPluginTargetBindingFactory FindSpecificFactory(
+        private ICrossPluginTargetBindingFactory? FindSpecificFactory(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] Type type, string name)
         {
-            IMvxPluginTargetBindingFactory factory;
             var key = GenerateKey(type, name);
-            if (_lookups.TryGetValue(key, out factory))
+            if (_lookups.TryGetValue(key, out ICrossPluginTargetBindingFactory? factory))
             {
                 return factory;
             }

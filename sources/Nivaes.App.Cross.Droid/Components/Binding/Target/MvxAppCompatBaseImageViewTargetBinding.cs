@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
 using Android.Graphics;
 using AndroidX.AppCompat.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Exceptions;
 
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Exceptions;
+
     public abstract class MvxAppCompatBaseImageViewTargetBinding
         : MvxAndroidTargetBinding
     {

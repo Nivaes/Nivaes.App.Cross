@@ -1,14 +1,12 @@
-
 namespace MvvmCross.Platforms.Ios.Binding.Target
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
-    public class MvxUIControlTargetBinding : MvxConvertingTargetBinding
+    public class MvxUIControlTargetBinding : CrossConvertingTargetBinding
     {
         private readonly string _controlEvent;
         private readonly EventHandler<EventArgs> _canExecuteEventHandler;

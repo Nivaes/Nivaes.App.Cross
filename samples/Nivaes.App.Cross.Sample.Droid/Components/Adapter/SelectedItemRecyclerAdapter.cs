@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Android.Runtime;
-using Android.Widget;
-using AndroidX.Core.View;
-using AndroidX.RecyclerView.Widget;
-using MvvmCross.DroidX.RecyclerView;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Nivaes.App.Cross.Sample.Droid;
-
 namespace Playground.Droid.Adapter
 {
+    using System;
+    using Android.Runtime;
+    using Android.Widget;
+    using AndroidX.Core.View;
+    using AndroidX.RecyclerView.Widget;
+    using MvvmCross.DroidX.RecyclerView;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross.Droid.RecyclerView;
+    using Nivaes.App.Cross.Sample.Droid;
+
     public partial class SelectedItemRecyclerAdapter : MvxRecyclerAdapter
     {
         public event EventHandler<SelectedItemEventArgs> OnItemClick;

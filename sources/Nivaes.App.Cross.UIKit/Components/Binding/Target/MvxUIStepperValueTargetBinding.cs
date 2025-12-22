@@ -4,7 +4,6 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
     public class MvxUIStepperValueTargetBinding(

@@ -3,7 +3,6 @@ namespace MvvmCross.Binding
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
     using MvvmCross.Binding.Parse.Binding.Lang;
@@ -26,7 +25,7 @@ namespace MvvmCross.Binding
         private IMvxAutoValueConverters _autoValueConverters;
         private IMvxBindingDescriptionParser _bindingDescriptionParser;
         private ICrossSourceBindingFactory _sourceBindingFactory;
-        private IMvxTargetBindingFactory _targetBindingFactory;
+        private ICrossTargetBindingFactory _targetBindingFactory;
         private IMvxLanguageBindingParser _languageParser;
         private IMvxPropertyExpressionParser _propertyExpressionParser;
         private IMvxValueConverterLookup _valueConverterLookup;
@@ -117,11 +116,11 @@ namespace MvvmCross.Binding
             }
         }
 
-        public IMvxTargetBindingFactory TargetBindingFactory
+        public ICrossTargetBindingFactory TargetBindingFactory
         {
             get
             {
-                _targetBindingFactory = _targetBindingFactory ?? Mvx.IoCProvider.Resolve<IMvxTargetBindingFactory>();
+                _targetBindingFactory = _targetBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossTargetBindingFactory>();
                 return _targetBindingFactory;
             }
         }

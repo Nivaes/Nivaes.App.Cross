@@ -1,6 +1,6 @@
 using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;

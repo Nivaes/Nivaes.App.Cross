@@ -3,7 +3,6 @@ namespace MvvmCross.Binding
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
     using MvvmCross.Binding.Parse.Binding.Lang;
@@ -19,7 +18,7 @@ namespace MvvmCross.Binding
         IMvxBindingNameLookup DefaultBindingNameLookup { get; }
         IMvxBinder Binder { get; }
         ICrossSourceBindingFactory SourceBindingFactory { get; }
-        IMvxTargetBindingFactory TargetBindingFactory { get; }
+        ICrossTargetBindingFactory TargetBindingFactory { get; }
         IMvxSourceStepFactory SourceStepFactory { get; }
         IMvxValueCombinerLookup ValueCombinerLookup { get; }
         ICrossMainThreadAsyncDispatcher MainThreadDispatcher { get; }

@@ -1,30 +1,26 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-
-namespace MvvmCross.Platforms.Ios.Binding.Target;
-
-public class MvxUILabelTextTargetBinding(UILabel target)
-    : MvxConvertingTargetBinding(target)
+namespace MvvmCross.Platforms.Ios.Binding.Target
 {
-    protected UILabel? View => Target as UILabel;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
+    using Nivaes.App.Cross;
 
-    public override MvxBindingMode DefaultMode => MvvmCross.Binding.MvxBindingMode.OneWay;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(string);
-
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxUILabelTextTargetBinding(UILabel target)
+        : CrossConvertingTargetBinding(target)
     {
-        var view = (UILabel?)target;
-        if (view == null)
-            return;
+        protected UILabel? View => Target as UILabel;
 
-        view.Text = (string?)value;
+        public override MvxBindingMode DefaultMode => MvvmCross.Binding.MvxBindingMode.OneWay;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(string);
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            var view = (UILabel?)target;
+            if (view == null)
+                return;
+
+            view.Text = (string?)value;
+        }
     }
 }

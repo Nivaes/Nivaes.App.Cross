@@ -1,14 +1,14 @@
-namespace MvvmCross.Binding
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
-    using Nivaes.App.Cross;
 
-    public class MvxBindingBuilder : MvxCoreBindingBuilder
+    public class MvxBindingBuilder 
+        : MvxCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
         public override void DoRegistration(IMvxIoCProvider iocProvider)
@@ -80,17 +80,17 @@ namespace MvvmCross.Binding
         {
             var targetRegistry = CreateTargetBindingRegistry();
             FillTargetFactories(targetRegistry);
-            iocProvider.RegisterSingleton<IMvxTargetBindingFactoryRegistry>(targetRegistry);
-            iocProvider.RegisterSingleton<IMvxTargetBindingFactory>(targetRegistry);
+            iocProvider.RegisterSingleton<ICrossTargetBindingFactoryRegistry>(targetRegistry);
+            iocProvider.RegisterSingleton<ICrossTargetBindingFactory>(targetRegistry);
         }
 
-        protected virtual IMvxTargetBindingFactoryRegistry CreateTargetBindingRegistry()
+        protected virtual ICrossTargetBindingFactoryRegistry CreateTargetBindingRegistry()
         {
-            return new MvxTargetBindingFactoryRegistry();
+            return new CrossTargetBindingFactoryRegistry();
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
-        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             // base class has nothing to register
         }

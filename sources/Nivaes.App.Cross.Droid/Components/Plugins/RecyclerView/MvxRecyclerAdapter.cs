@@ -15,6 +15,7 @@ namespace MvvmCross.DroidX.RecyclerView
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Droid.RecyclerView;
     using Object = Java.Lang.Object;
     using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;
     using ViewHolder = AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder;

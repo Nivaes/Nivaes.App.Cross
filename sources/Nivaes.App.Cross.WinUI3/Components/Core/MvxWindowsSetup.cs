@@ -2,10 +2,8 @@ namespace MvvmCross.Platforms.WinUi.Core
 {
     using System.Reflection;
     using Microsoft.UI.Xaml.Controls;
-    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
     using MvvmCross.IoC;
@@ -143,7 +141,7 @@ namespace MvvmCross.Platforms.WinUi.Core
             // this base class does nothing
         }
 
-        protected virtual void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             // this base class does nothing
         }

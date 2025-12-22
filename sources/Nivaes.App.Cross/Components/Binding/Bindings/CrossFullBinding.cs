@@ -1,11 +1,9 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Bindings.Target;
     using MvvmCross.Converters;
     using MvvmCross.IoC;
 
@@ -22,7 +20,7 @@ namespace Nivaes.App.Cross
         private readonly object _defaultTargetValue;
 
         private IMvxSourceStep _sourceStep;
-        private IMvxTargetBinding _targetBinding;
+        private ICrossTargetBinding _targetBinding;
         private object _dataContext;
         private CancellationTokenSource _cancelSource = new();
 
@@ -134,14 +132,14 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private static IMvxTargetBinding CreateTargetBinding(MvxBindingRequest request)
+        private static ICrossTargetBinding CreateTargetBinding(MvxBindingRequest request)
         {
             var binding = MvxBindingSingletonCache.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
 
             if (binding == null)
             {
                 MvxBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
-                binding = new MvxNullTargetBinding();
+                binding = new CrossNullTargetBinding();
             }
 
             return binding;
@@ -191,7 +189,7 @@ namespace Nivaes.App.Cross
             });
         }
 
-        private void UpdateSourceFromTarget(object sender, MvxTargetChangedEventArgs args)
+        private void UpdateSourceFromTarget(object sender, CrossTargetChangedEventArgs args)
         {
             if (args.Value == MvxBindingConstant.DoNothing)
                 return;

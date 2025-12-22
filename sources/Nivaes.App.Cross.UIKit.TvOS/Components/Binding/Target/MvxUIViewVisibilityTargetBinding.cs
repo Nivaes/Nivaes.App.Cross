@@ -3,10 +3,9 @@ namespace MvvmCross.Platforms.Tvos.Binding.Target
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
-    public class MvxUIViewVisibilityTargetBinding : MvxConvertingTargetBinding
+    public class MvxUIViewVisibilityTargetBinding : CrossConvertingTargetBinding
     {
         protected UIView View => (UIView)Target;
 

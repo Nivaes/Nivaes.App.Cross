@@ -1,11 +1,11 @@
-namespace MvvmCross.Binding.Bindings.Target
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using MvvmCross.Binding.Attributes;
 
-    public abstract class MvxPropertyInfoTargetBinding(object target, PropertyInfo targetPropertyInfo)
-        : MvxConvertingTargetBinding(target)
+    public abstract class CrossPropertyInfoTargetBinding(object target, PropertyInfo targetPropertyInfo)
+        : CrossConvertingTargetBinding(target)
     {
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected override void Dispose(bool isDisposing)
@@ -39,7 +39,7 @@ namespace MvvmCross.Binding.Bindings.Target
 
     public abstract class MvxPropertyInfoTargetBinding<T>(
             object target, PropertyInfo targetPropertyInfo)
-        : MvxPropertyInfoTargetBinding(target, targetPropertyInfo)
+        : CrossPropertyInfoTargetBinding(target, targetPropertyInfo)
         where T : class
     {
         protected T? View => Target as T;

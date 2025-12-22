@@ -3,11 +3,10 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.Target;
     using Nivaes.App.Cross;
 
     public class MvxUITextViewTextTargetBinding(UITextView target)
-    : MvxConvertingTargetBinding(target)
+    : CrossConvertingTargetBinding(target)
     {
         private CrossWeakEventSubscription<NSTextStorage, NSTextStorageEventArgs>? _subscription;
 

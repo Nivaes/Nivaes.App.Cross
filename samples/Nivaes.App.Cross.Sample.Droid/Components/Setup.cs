@@ -3,10 +3,10 @@ namespace Playground.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Platforms.Android.Core;
     using MvvmCross.Plugin;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Playground.Core;
     using Playground.Droid.Bindings;
     using Playground.Droid.Controls;
@@ -24,7 +24,7 @@ namespace Playground.Droid
                 typeof(MvxRecyclerView).Assembly
             };
 
-        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
             registry.RegisterCustomBindingFactory<BinaryEdit>(
                 "MyCount",

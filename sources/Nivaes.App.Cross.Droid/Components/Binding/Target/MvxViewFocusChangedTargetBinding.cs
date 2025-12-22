@@ -1,7 +1,7 @@
 using Android.Views;
 using static Android.Views.View;
 
-namespace MvvmCross.Platforms.Android.Binding.Target
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
@@ -9,7 +9,8 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxViewFocusChangedTargetBinding : MvxAndroidTargetBinding
+    public class MvxViewFocusChangedTargetBinding 
+        : MvxAndroidTargetBinding
     {
         private ICommand? _command;
         private CrossWeakEventSubscription<View, FocusChangeEventArgs>? _focusChangeSubscription;

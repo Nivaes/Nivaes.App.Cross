@@ -1,15 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Android.Views;
-using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Target;
 
-namespace MvvmCross.Plugin.Color.Platforms.Android.BindingTargets
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross;
+    using MvvmCross.Binding;
+    using MvvmCross.Platforms.Android.Binding.Target;
+
     [Preserve(AllMembers = true)]
     public abstract class MvxViewColorBinding
         : MvxAndroidTargetBinding

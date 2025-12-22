@@ -1,6 +1,6 @@
 using Android.Runtime;
 
-namespace MvvmCross.Platforms.Android.WeakSubscription
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
@@ -12,16 +12,16 @@ namespace MvvmCross.Platforms.Android.WeakSubscription
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TEventArgs"></typeparam>
-    public class MvxAndroidTargetEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>
+    public class CrossAndroidTargetEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>
         : CrossWeakEventSubscription<TSource, TEventArgs>
         where TSource : class
     {
-        public MvxAndroidTargetEventSubscription(TSource source, string sourceEventName, EventHandler<TEventArgs> targetEventHandler)
+        public CrossAndroidTargetEventSubscription(TSource source, string sourceEventName, EventHandler<TEventArgs> targetEventHandler)
             : base(source, sourceEventName, targetEventHandler)
         {
         }
 
-        public MvxAndroidTargetEventSubscription(TSource source, EventInfo sourceEventInfo, EventHandler<TEventArgs> targetEventHandler)
+        public CrossAndroidTargetEventSubscription(TSource source, EventInfo sourceEventInfo, EventHandler<TEventArgs> targetEventHandler)
             : base(source, sourceEventInfo, targetEventHandler)
         {
         }
@@ -45,19 +45,20 @@ namespace MvvmCross.Platforms.Android.WeakSubscription
         }
     }
 
-    public class MvxJavaEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : CrossWeakEventSubscription<TSource> where TSource : class
+    public class CrossJavaEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>
+        : CrossWeakEventSubscription<TSource> where TSource : class
     {
-        public MvxJavaEventSubscription(TSource source, string sourceEventName, EventHandler targetEventHandler)
+        public CrossJavaEventSubscription(TSource source, string sourceEventName, EventHandler targetEventHandler)
             : base(source, sourceEventName, targetEventHandler)
         {
         }
 
-        public MvxJavaEventSubscription(TSource source, EventInfo sourceEventInfo, EventHandler targetEventHandler)
+        public CrossJavaEventSubscription(TSource source, EventInfo sourceEventInfo, EventHandler targetEventHandler)
             : base(source, sourceEventInfo, targetEventHandler)
         {
         }
 
-        protected override object GetTargetObject()
+        protected override object? GetTargetObject()
         {
             // If the object has been GCed by java but NOT mono
             // then it is invalid and should not be manipulated.
