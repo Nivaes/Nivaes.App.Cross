@@ -11,7 +11,6 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
     using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Extensions;
-    using MvvmCross.WeakSubscription;
     using Nivaes.App.Cross;
 
     public class MvxTableViewSource : NSTableViewSource

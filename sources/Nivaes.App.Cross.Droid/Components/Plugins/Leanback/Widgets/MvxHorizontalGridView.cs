@@ -1,25 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Windows.Input;
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using AndroidX.Leanback.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.DroidX.Leanback.Listeners;
-using MvvmCross.DroidX.RecyclerView;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.Views;
-using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Droid.Components.Plugins;
-
 namespace MvvmCross.DroidX.Leanback.Widgets
 {
+    using System.Collections;
+    using System.Windows.Input;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+    using AndroidX.Leanback.Widget;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Attributes;
+    using MvvmCross.DroidX.Leanback.Listeners;
+    using MvvmCross.DroidX.RecyclerView;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using Nivaes.App.Cross.Droid;
+
     /// <summary>
     /// 
     /// </summary>

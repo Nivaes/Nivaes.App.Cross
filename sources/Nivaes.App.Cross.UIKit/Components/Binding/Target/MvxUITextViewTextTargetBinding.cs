@@ -1,75 +1,71 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.WeakSubscription;
-
-namespace MvvmCross.Platforms.Ios.Binding.Target;
-
-public class MvxUITextViewTextTargetBinding(UITextView target)
-    : MvxConvertingTargetBinding(target)
+namespace MvvmCross.Platforms.Ios.Binding.Target
 {
-    private MvxWeakEventSubscription<NSTextStorage, NSTextStorageEventArgs>? _subscription;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.Target;
+    using Nivaes.App.Cross;
 
-    protected UITextView? View => Target as UITextView;
-
-    private void EditTextOnChanged(object? sender, NSTextStorageEventArgs eventArgs)
+    public class MvxUITextViewTextTargetBinding(UITextView target)
+    : MvxConvertingTargetBinding(target)
     {
-        var view = View;
-        if (view == null) return;
+        private CrossWeakEventSubscription<NSTextStorage, NSTextStorageEventArgs>? _subscription;
 
-        FireValueChanged(view.Text);
-    }
+        protected UITextView? View => Target as UITextView;
 
-    public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
-
-    [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
-    public override void SubscribeToEvents()
-    {
-        var view = View;
-        if (view == null)
+        private void EditTextOnChanged(object? sender, NSTextStorageEventArgs eventArgs)
         {
-            MvxBindingLog.Instance?.LogError(
-                "UITextView is null in MvxUITextViewTextTargetBinding");
-            return;
+            var view = View;
+            if (view == null) return;
+
+            FireValueChanged(view.Text);
         }
 
-        var textStorage = view.LayoutManager.TextStorage;
-        if (textStorage == null)
+        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
         {
-            MvxBindingLog.Instance?.LogError(
-                "NSTextStorage of UITextView is null in MvxUITextViewTextTargetBinding");
-            return;
+            var view = View;
+            if (view == null)
+            {
+                MvxBindingLog.Instance?.LogError(
+                    "UITextView is null in MvxUITextViewTextTargetBinding");
+                return;
+            }
+
+            var textStorage = view.LayoutManager.TextStorage;
+            if (textStorage == null)
+            {
+                MvxBindingLog.Instance?.LogError(
+                    "NSTextStorage of UITextView is null in MvxUITextViewTextTargetBinding");
+                return;
+            }
+
+            _subscription =
+                textStorage.WeakSubscribe<NSTextStorage, NSTextStorageEventArgs>(nameof(textStorage.DidProcessEditing),
+                    EditTextOnChanged);
         }
 
-        _subscription =
-            textStorage.WeakSubscribe<NSTextStorage, NSTextStorageEventArgs>(nameof(textStorage.DidProcessEditing),
-                EditTextOnChanged);
-    }
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(string);
 
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(string);
+        protected override void SetValueImpl(object target, object? value)
+        {
+            var view = (UITextView?)target;
+            if (view == null) return;
 
-    protected override void SetValueImpl(object target, object? value)
-    {
-        var view = (UITextView?)target;
-        if (view == null) return;
+            view.Text = (string?)value;
+        }
 
-        view.Text = (string?)value;
-    }
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+            if (!isDisposing) return;
 
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        base.Dispose(isDisposing);
-        if (!isDisposing) return;
-
-        _subscription?.Dispose();
-        _subscription = null;
+            _subscription?.Dispose();
+            _subscription = null;
+        }
     }
 }

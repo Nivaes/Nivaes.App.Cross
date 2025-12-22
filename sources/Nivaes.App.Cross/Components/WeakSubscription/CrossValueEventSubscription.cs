@@ -1,12 +1,12 @@
-namespace MvvmCross.WeakSubscription
+namespace Nivaes.App.Cross
 {
     using System.Reflection;
     using Nivaes.App.Cross;
 
-    public class MvxValueEventSubscription<TEventArgs>
-        : MvxWeakEventSubscription<object, CrossValueEventArgs<TEventArgs>>
+    public class CrossValueEventSubscription<TEventArgs>
+        : CrossWeakEventSubscription<object, CrossValueEventArgs<TEventArgs>>
     {
-        public MvxValueEventSubscription(object source,
+        public CrossValueEventSubscription(object source,
                                          EventInfo eventInfo,
                                          EventHandler<CrossValueEventArgs<TEventArgs>> eventHandler)
             : base(source, eventInfo, eventHandler)

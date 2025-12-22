@@ -1,19 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using Android.Runtime;
-using AndroidX.Leanback.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.WeakSubscription;
-using Nivaes.App.Cross.Droid.Components.Plugins;
-
 namespace MvvmCross.DroidX.Leanback.Adapters
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using Android.Runtime;
+    using AndroidX.Leanback.Widget;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
+
     public abstract class MvxBaseObjectAdapter
         : ObjectAdapter, IMvxObjectAdapter
     {

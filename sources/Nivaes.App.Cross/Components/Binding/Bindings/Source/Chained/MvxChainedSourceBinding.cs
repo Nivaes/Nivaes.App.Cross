@@ -1,24 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.Source.Construction;
-using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Bindings.Source.Chained
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Bindings.Source.Construction;
+    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class MvxChainedSourceBinding
-        : MvxPropertyInfoSourceBinding
+        : CrossPropertyInfoSourceBinding
     {
         private readonly IList<IMvxPropertyToken> _childTokens;
-        private IMvxSourceBinding _currentChildBinding;
+        private ICrossSourceBinding _currentChildBinding;
 
         protected MvxChainedSourceBinding(
             object source,

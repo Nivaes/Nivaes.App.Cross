@@ -1,90 +1,87 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.WeakSubscription;
-
-namespace MvvmCross.Platforms.Ios.Binding.Target;
-
-public class MvxUIBarButtonItemTargetBinding : MvxConvertingTargetBinding
+namespace MvvmCross.Platforms.Ios.Binding.Target
 {
-    private readonly EventHandler<EventArgs> _canExecuteEventHandler;
-    private ICommand? _command;
-    private MvxWeakEventSubscription<UIBarButtonItem>? _clickSubscription;
-    private MvxCanExecuteChangedEventSubscription? _canExecuteSubscription;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using MvvmCross.Binding.Bindings.Target;
+    using Nivaes.App.Cross;
 
-    protected UIBarButtonItem? Control => Target as UIBarButtonItem;
-
-    public MvxUIBarButtonItemTargetBinding(UIBarButtonItem control)
-        : base(control)
+    public class MvxUIBarButtonItemTargetBinding 
+        : MvxConvertingTargetBinding
     {
-        _clickSubscription = control.WeakSubscribe(nameof(control.Clicked), OnClicked);
-        _canExecuteEventHandler = OnCanExecuteChanged;
-    }
+        private readonly EventHandler<EventArgs> _canExecuteEventHandler;
+        private ICommand? _command;
+        private CrossWeakEventSubscription<UIBarButtonItem>? _clickSubscription;
+        private CrossCanExecuteChangedEventSubscription? _canExecuteSubscription;
 
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(ICommand);
+        protected UIBarButtonItem? Control => Target as UIBarButtonItem;
 
-    protected override void SetValueImpl(object target, object? value)
-    {
-        if (_canExecuteSubscription != null)
+        public MvxUIBarButtonItemTargetBinding(UIBarButtonItem control)
+            : base(control)
         {
-            _canExecuteSubscription.Dispose();
-            _canExecuteSubscription = null;
-        }
-        _command = value as ICommand;
-        if (_command != null)
-        {
-            _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
-        }
-        RefreshEnabledState();
-    }
-
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        if (isDisposing)
-        {
-            _clickSubscription?.Dispose();
-            _canExecuteSubscription?.Dispose();
-            _canExecuteSubscription = null;
-            _clickSubscription = null;
+            _clickSubscription = control.WeakSubscribe(nameof(control.Clicked), OnClicked);
+            _canExecuteEventHandler = OnCanExecuteChanged;
         }
 
-        base.Dispose(isDisposing);
-    }
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(ICommand);
 
-    private void OnClicked(object? sender, EventArgs e)
-    {
-        if (_command == null)
-            return;
-
-        if (!_command.CanExecute(null))
-            return;
-
-        _command.Execute(null);
-    }
-
-    private void OnCanExecuteChanged(object? sender, EventArgs e)
-    {
-        RefreshEnabledState();
-    }
-
-    private void RefreshEnabledState()
-    {
-        var view = Control;
-        if (view == null)
-            return;
-
-        var shouldBeEnabled = false;
-        if (_command != null)
+        protected override void SetValueImpl(object target, object? value)
         {
-            shouldBeEnabled = _command.CanExecute(null);
+            if (_canExecuteSubscription != null)
+            {
+                _canExecuteSubscription.Dispose();
+                _canExecuteSubscription = null;
+            }
+            _command = value as ICommand;
+            if (_command != null)
+            {
+                _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
+            }
+            RefreshEnabledState();
         }
-        view.Enabled = shouldBeEnabled;
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _clickSubscription?.Dispose();
+                _canExecuteSubscription?.Dispose();
+                _canExecuteSubscription = null;
+                _clickSubscription = null;
+            }
+
+            base.Dispose(isDisposing);
+        }
+
+        private void OnClicked(object? sender, EventArgs e)
+        {
+            if (_command == null)
+                return;
+
+            if (!_command.CanExecute(null))
+                return;
+
+            _command.Execute(null);
+        }
+
+        private void OnCanExecuteChanged(object? sender, EventArgs e)
+        {
+            RefreshEnabledState();
+        }
+
+        private void RefreshEnabledState()
+        {
+            var view = Control;
+            if (view == null)
+                return;
+
+            var shouldBeEnabled = false;
+            if (_command != null)
+            {
+                shouldBeEnabled = _command.CanExecute(null);
+            }
+            view.Enabled = shouldBeEnabled;
+        }
     }
 }

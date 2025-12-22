@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Windows.Input;
-using AndroidX.Leanback.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.DroidX.RecyclerView;
-using Nivaes.App.Cross.Droid.Components.Plugins;
-
 namespace MvvmCross.DroidX.Leanback.Listeners
 {
+    using System.Windows.Input;
+    using AndroidX.Leanback.Widget;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.DroidX.RecyclerView;
+    using Nivaes.App.Cross.Droid;
+
     /// <summary>
     /// Forwards "OnChildViewHolderSelected"-Events to a command.
     /// </summary>

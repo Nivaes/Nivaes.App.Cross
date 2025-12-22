@@ -1,16 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Specialized;
-using System.Reflection;
-
-namespace MvvmCross.WeakSubscription
+namespace Nivaes.App.Cross
 {
-#nullable enable
-    public class MvxNotifyCollectionChangedEventSubscription
-        : MvxWeakEventSubscription<INotifyCollectionChanged, NotifyCollectionChangedEventArgs>
+    using System;
+    using System.Collections.Specialized;
+    using System.Reflection;
+
+    public class CrossNotifyCollectionChangedEventSubscription
+        : CrossWeakEventSubscription<INotifyCollectionChanged, NotifyCollectionChangedEventArgs>
     {
         private static readonly EventInfo EventInfo = typeof(INotifyCollectionChanged).GetEvent("CollectionChanged");
 
@@ -21,7 +16,7 @@ namespace MvvmCross.WeakSubscription
             iNotifyCollectionChanged.CollectionChanged += (sender, e) => { };
         }
 
-        public MvxNotifyCollectionChangedEventSubscription(INotifyCollectionChanged source,
+        public CrossNotifyCollectionChangedEventSubscription(INotifyCollectionChanged source,
                                                            EventHandler<NotifyCollectionChangedEventArgs> targetEventHandler)
             : base(source, EventInfo, targetEventHandler)
         {
@@ -32,5 +27,4 @@ namespace MvvmCross.WeakSubscription
             return new NotifyCollectionChangedEventHandler(OnSourceEvent);
         }
     }
-#nullable restore
 }

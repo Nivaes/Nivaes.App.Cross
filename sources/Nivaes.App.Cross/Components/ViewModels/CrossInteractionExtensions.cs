@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
-    using MvvmCross.WeakSubscription;
 
     public static class CrossInteractionExtensions
     {
@@ -16,7 +14,7 @@ namespace Nivaes.App.Cross
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime event inspection for generic type parameter with PublicEvents annotation")]
-        public static MvxValueEventSubscription<TValue>? WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(
+        public static CrossValueEventSubscription<TValue>? WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(
             this TInteraction interaction,
             EventHandler<CrossValueEventArgs<TValue>> action)
                 where TInteraction : ICrossInteraction<TValue>
@@ -25,7 +23,7 @@ namespace Nivaes.App.Cross
             return eventInfo?.WeakSubscribe(interaction, action);
         }
 
-        public static MvxValueEventSubscription<TValue>? WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(
+        public static CrossValueEventSubscription<TValue>? WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(
             this TInteraction interaction, Action<TValue> action)
                 where TInteraction : ICrossInteraction<TValue>
         {

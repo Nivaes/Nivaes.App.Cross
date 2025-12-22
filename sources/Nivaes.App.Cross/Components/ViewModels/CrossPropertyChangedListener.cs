@@ -1,9 +1,8 @@
-namespace MvvmCross.ViewModels
+namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
     using System.Linq.Expressions;
     using MvvmCross.Base;
-    using MvvmCross.WeakSubscription;
 
     public class CrossPropertyChangedListener
         : IDisposable
@@ -11,7 +10,7 @@ namespace MvvmCross.ViewModels
         private readonly Dictionary<string, List<PropertyChangedEventHandler>> _handlersLookup = new();
 
         private readonly INotifyPropertyChanged _notificationObject;
-        private readonly MvxNotifyPropertyChangedEventSubscription _token;
+        private readonly CrossNotifyPropertyChangedEventSubscription _token;
 
         public CrossPropertyChangedListener(INotifyPropertyChanged notificationObject)
         {

@@ -1,10 +1,10 @@
-namespace MvvmCross.WeakSubscription
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Nivaes.App.Cross;
 
-    public class MvxWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> : IDisposable
+    public class CrossWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> : IDisposable
         where TSource : class
     {
         private readonly WeakReference _targetReference;
@@ -20,7 +20,7 @@ namespace MvvmCross.WeakSubscription
 
         private bool _subscribed;
 
-        public MvxWeakEventSubscription(
+        public CrossWeakEventSubscription(
             TSource source,
             string sourceEventName,
             EventHandler<TEventArgs> targetEventHandler)
@@ -28,7 +28,7 @@ namespace MvvmCross.WeakSubscription
         {
         }
 
-        protected MvxWeakEventSubscription(
+        protected CrossWeakEventSubscription(
             TSource source,
             EventInfo sourceEventInfo,
             EventHandler<TEventArgs> targetEventHandler)
@@ -131,7 +131,7 @@ namespace MvvmCross.WeakSubscription
         }
     }
 
-    public class MvxWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : IDisposable
+    public class CrossWeakEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : IDisposable
         where TSource : class
     {
         private readonly WeakReference _targetReference;
@@ -147,7 +147,7 @@ namespace MvvmCross.WeakSubscription
 
         private bool _subscribed;
 
-        public MvxWeakEventSubscription(
+        public CrossWeakEventSubscription(
             TSource source,
             string sourceEventName,
             EventHandler targetEventHandler)
@@ -155,7 +155,7 @@ namespace MvvmCross.WeakSubscription
         {
         }
 
-        protected MvxWeakEventSubscription(
+        protected CrossWeakEventSubscription(
             TSource source,
             EventInfo sourceEventInfo,
             EventHandler targetEventHandler)

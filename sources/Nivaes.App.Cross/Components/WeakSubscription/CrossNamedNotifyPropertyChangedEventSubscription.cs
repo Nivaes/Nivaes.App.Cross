@@ -1,28 +1,23 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using MvvmCross.Base;
-
-namespace MvvmCross.WeakSubscription
+namespace Nivaes.App.Cross
 {
-#nullable enable
-    public class MvxNamedNotifyPropertyChangedEventSubscription<T>
-        : MvxNotifyPropertyChangedEventSubscription
+    using System;
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using MvvmCross.Base;
+
+    public class CrossNamedNotifyPropertyChangedEventSubscription<T>
+        : CrossNotifyPropertyChangedEventSubscription
     {
         private readonly string _propertyName;
 
-        public MvxNamedNotifyPropertyChangedEventSubscription(INotifyPropertyChanged source,
+        public CrossNamedNotifyPropertyChangedEventSubscription(INotifyPropertyChanged source,
                                                               Expression<Func<T>> property,
                                                               EventHandler<PropertyChangedEventArgs> targetEventHandler)
             : this(source, source.GetPropertyNameFromExpression(property), targetEventHandler)
         {
         }
 
-        public MvxNamedNotifyPropertyChangedEventSubscription(INotifyPropertyChanged source,
+        public CrossNamedNotifyPropertyChangedEventSubscription(INotifyPropertyChanged source,
                                                               string propertyName,
                                                               EventHandler<PropertyChangedEventArgs> targetEventHandler)
             : base(source, targetEventHandler)
@@ -42,5 +37,4 @@ namespace MvvmCross.WeakSubscription
                 });
         }
     }
-#nullable restore
 }

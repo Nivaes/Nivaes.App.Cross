@@ -21,7 +21,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
             object? source,
             IMvxPropertyToken propertyToken,
             List<IMvxPropertyToken> remainingTokens,
-            out IMvxSourceBinding? result)
+            out ICrossSourceBinding? result)
         {
             if (source == null)
             {
@@ -70,7 +70,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        protected virtual IMvxSourceBinding? CreateLeafBinding(object source, IMvxPropertyToken propertyToken)
+        protected virtual ICrossSourceBinding? CreateLeafBinding(object source, IMvxPropertyToken propertyToken)
         {
             if (propertyToken is MvxIndexerPropertyToken indexPropertyToken)
             {

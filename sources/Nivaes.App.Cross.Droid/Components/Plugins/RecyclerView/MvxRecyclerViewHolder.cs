@@ -4,8 +4,10 @@ namespace MvvmCross.DroidX.RecyclerView
     using Android.Views;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.WeakSubscription;
     using Nivaes.App.Cross;
+
+    //using MvvmCross.Platforms.Android.WeakSubscription;
+    //using Nivaes.App.Cross;
 
     [Register("mvvmcross.droidx.recyclerview.MvxRecyclerViewHolder")]
     public class MvxRecyclerViewHolder
@@ -59,9 +61,10 @@ namespace MvvmCross.DroidX.RecyclerView
 
             _cachedDataContext = null;
 
-            _itemViewClickSubscription ??= ItemView.WeakSubscribe(nameof(View.Click), OnItemViewClick);
-            _itemViewLongClickSubscription ??=
-                ItemView.WeakSubscribe<View, View.LongClickEventArgs>(nameof(View.LongClick), OnItemViewLongClick);
+            //throw new NotImplementedException("Problemas con los namespaces.");
+            //_itemViewClickSubscription ??= ItemView.WeakSubscribe(nameof(View.Click), OnItemViewClick);
+            //_itemViewLongClickSubscription ??=
+            //    ItemView.WeakSubscribe<View, View.LongClickEventArgs>(nameof(View.LongClick), OnItemViewLongClick);
         }
 
         public virtual void OnDetachedFromWindow()

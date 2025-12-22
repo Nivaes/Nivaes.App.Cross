@@ -1,23 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.DroidX.RecyclerView;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Plugin;
-using Nivaes.App.Cross.Droid.Components.Plugins;
-using Playground.Core;
-using Playground.Droid.Bindings;
-using Playground.Droid.Controls;
-using Serilog;
-using Serilog.Extensions.Logging;
-
 namespace Playground.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.DroidX.RecyclerView;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Plugin;
+    using Playground.Core;
+    using Playground.Droid.Bindings;
+    using Playground.Droid.Controls;
+    using Serilog;
+    using Serilog.Extensions.Logging;
+
     [RequiresUnreferencedCode("Uses MvvmCross reflection based plugin loading")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     public class Setup : MvxAndroidSetup<App>
@@ -42,8 +37,8 @@ namespace Playground.Droid
         {
             base.LoadPlugins(pluginManager);
 
-            pluginManager.EnsurePluginLoaded<Nivaes.App.Cross.Droid.Components.Plugins.Plugin>();
-            pluginManager.EnsurePluginLoaded<Plugin>();
+            pluginManager.EnsurePluginLoaded<Nivaes.App.Cross.Droid.Plugin>();
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Color.Platforms.Android.Plugin>();
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Json.Plugin>();
         }
 

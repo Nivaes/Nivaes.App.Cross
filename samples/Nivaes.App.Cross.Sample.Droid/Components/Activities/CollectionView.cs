@@ -9,7 +9,8 @@ namespace Playground.Droid.Activities
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme")]
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class CollectionView : MvxActivity<CollectionViewModel>
+    public sealed class CollectionView 
+        : MvxActivity<CollectionViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

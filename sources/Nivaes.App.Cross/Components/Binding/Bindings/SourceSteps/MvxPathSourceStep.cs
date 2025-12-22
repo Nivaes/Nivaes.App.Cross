@@ -1,18 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Binding.Bindings.Source;
-using MvvmCross.Binding.Bindings.Source.Construction;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Bindings.SourceSteps
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.Bindings.Source;
+    using MvvmCross.Binding.Bindings.Source.Construction;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxPathSourceStep : MvxSourceStep<MvxPathSourceStepDescription>
     {
-        private IMvxSourceBinding _sourceBinding;
+        private ICrossSourceBinding _sourceBinding;
 
         private readonly object _sourceLocker = new object();
 

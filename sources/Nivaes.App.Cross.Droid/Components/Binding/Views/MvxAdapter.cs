@@ -12,7 +12,6 @@ namespace MvvmCross.Platforms.Android.Binding.Views
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.WeakSubscription;
     using Nivaes.App.Cross;
     using Object = Java.Lang.Object;
 

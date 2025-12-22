@@ -19,7 +19,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
         protected bool TryCreateBindingFromExtensions(
             object source, IMvxPropertyToken propertyToken,
-            List<IMvxPropertyToken> remainingTokens, out IMvxSourceBinding result)
+            List<IMvxPropertyToken> remainingTokens, out ICrossSourceBinding result)
         {
             foreach (var extension in _extensions)
             {
@@ -34,14 +34,14 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
         }
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
-        public IMvxSourceBinding CreateBinding(object source, string combinedPropertyName)
+        public ICrossSourceBinding CreateBinding(object source, string combinedPropertyName)
         {
             var tokens = SourcePropertyPathParser.Parse(combinedPropertyName);
             return CreateBinding(source, tokens);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
-        public IMvxSourceBinding CreateBinding(object source, IList<IMvxPropertyToken> tokens)
+        public ICrossSourceBinding CreateBinding(object source, IList<IMvxPropertyToken> tokens)
         {
             if (tokens == null || tokens.Count == 0)
             {
@@ -50,7 +50,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
 
             var currentToken = tokens[0];
             var remainingTokens = tokens.Skip(1).ToList();
-            IMvxSourceBinding extensionResult;
+            ICrossSourceBinding extensionResult;
             if (TryCreateBindingFromExtensions(source, currentToken, remainingTokens, out extensionResult))
             {
                 return extensionResult;
@@ -64,7 +64,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
                     source.GetType().Name);
             }
 
-            return new MvxMissingSourceBinding(source);
+            return new CrossMissingSourceBinding(source);
         }
 
         public IList<IMvxSourceBindingFactoryExtension> Extensions => _extensions;

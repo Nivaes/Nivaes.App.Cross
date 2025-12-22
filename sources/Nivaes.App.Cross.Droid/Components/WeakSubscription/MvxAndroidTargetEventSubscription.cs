@@ -1,22 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Android.Runtime;
-using MvvmCross.WeakSubscription;
 
 namespace MvvmCross.Platforms.Android.WeakSubscription
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Nivaes.App.Cross;
+
     /// <summary>
     /// Weak subscription to an event where the target may be an IJavaObject
     /// and could be collected by the Android runtime before being collected by the Mono GC.
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TEventArgs"></typeparam>
-    public class MvxAndroidTargetEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs> : MvxWeakEventSubscription<TSource, TEventArgs>
+    public class MvxAndroidTargetEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>
+        : CrossWeakEventSubscription<TSource, TEventArgs>
         where TSource : class
     {
         public MvxAndroidTargetEventSubscription(TSource source, string sourceEventName, EventHandler<TEventArgs> targetEventHandler)
@@ -48,7 +45,7 @@ namespace MvvmCross.Platforms.Android.WeakSubscription
         }
     }
 
-    public class MvxJavaEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : MvxWeakEventSubscription<TSource> where TSource : class
+    public class MvxJavaEventSubscription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource> : CrossWeakEventSubscription<TSource> where TSource : class
     {
         public MvxJavaEventSubscription(TSource source, string sourceEventName, EventHandler targetEventHandler)
             : base(source, sourceEventName, targetEventHandler)

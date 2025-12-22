@@ -1,54 +1,50 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.WeakSubscription;
-
-namespace MvvmCross.Platforms.Ios.Binding.Target;
-
-public class MvxUISwitchOnTargetBinding(UISwitch target)
-    : MvxTargetBinding<UISwitch, bool>(target)
+namespace MvvmCross.Platforms.Ios.Binding.Target
 {
-    private MvxWeakEventSubscription<UISwitch>? _subscription;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.Target;
+    using Nivaes.App.Cross;
 
-    [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-    protected override void SetValue(bool value)
+    public class MvxUISwitchOnTargetBinding(UISwitch target)
+        : MvxTargetBinding<UISwitch, bool>(target)
     {
-        Target?.SetState(value, true);
-    }
+        private CrossWeakEventSubscription<UISwitch>? _subscription;
 
-    [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
-    public override void SubscribeToEvents()
-    {
-        var uiSwitch = Target;
-        if (uiSwitch == null)
+        [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
+        protected override void SetValue(bool value)
         {
-            MvxBindingLog.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
-            return;
+            Target?.SetState(value, true);
         }
 
-        _subscription = uiSwitch.WeakSubscribe(nameof(uiSwitch.ValueChanged), HandleValueChanged);
-    }
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        public override void SubscribeToEvents()
+        {
+            var uiSwitch = Target;
+            if (uiSwitch == null)
+            {
+                MvxBindingLog.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
+                return;
+            }
 
-    public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+            _subscription = uiSwitch.WeakSubscribe(nameof(uiSwitch.ValueChanged), HandleValueChanged);
+        }
 
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        base.Dispose(isDisposing);
-        if (!isDisposing) return;
+        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
 
-        _subscription?.Dispose();
-        _subscription = null;
-    }
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+            if (!isDisposing) return;
 
-    private void HandleValueChanged(object? sender, EventArgs e)
-    {
-        FireValueChanged(Target?.On ?? false);
+            _subscription?.Dispose();
+            _subscription = null;
+        }
+
+        private void HandleValueChanged(object? sender, EventArgs e)
+        {
+            FireValueChanged(Target?.On ?? false);
+        }
     }
 }

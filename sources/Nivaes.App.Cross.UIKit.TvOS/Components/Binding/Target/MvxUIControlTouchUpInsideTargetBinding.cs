@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.WeakSubscription;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Target
 {
-    public class MvxUIControlTouchUpInsideTargetBinding : MvxConvertingTargetBinding
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.Target;
+    using Nivaes.App.Cross;
+
+    public class MvxUIControlTouchUpInsideTargetBinding 
+        : MvxConvertingTargetBinding
     {
         private ICommand _command;
         private IDisposable _canExecuteSubscription;

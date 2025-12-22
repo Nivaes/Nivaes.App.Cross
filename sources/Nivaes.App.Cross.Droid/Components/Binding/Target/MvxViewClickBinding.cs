@@ -1,93 +1,90 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
 using Android.Views;
-using MvvmCross.Binding;
-using MvvmCross.WeakSubscription;
 
-namespace MvvmCross.Platforms.Android.Binding.Target;
-
-public class MvxViewClickBinding
-    : MvxAndroidTargetBinding
+namespace MvvmCross.Platforms.Android.Binding.Target
 {
-    private ICommand? _command;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using MvvmCross.Binding;
+    using Nivaes.App.Cross;
 
-    private readonly EventHandler<EventArgs> _canExecuteEventHandler;
-    private MvxWeakEventSubscription<View>? _clickSubscription;
-    private MvxCanExecuteChangedEventSubscription? _canExecuteSubscription;
-
-    protected View? View => (View?)Target;
-
-    public MvxViewClickBinding(View view)
-        : base(view)
+    public class MvxViewClickBinding
+        : MvxAndroidTargetBinding
     {
-        _canExecuteEventHandler = OnCanExecuteChanged;
-        _clickSubscription = view.WeakSubscribe(nameof(view.Click), ViewOnClick);
-    }
+        private ICommand? _command;
 
-    private void ViewOnClick(object? sender, EventArgs args)
-    {
-        if (_command == null)
-            return;
+        private readonly EventHandler<EventArgs> _canExecuteEventHandler;
+        private CrossWeakEventSubscription<View>? _clickSubscription;
+        private CrossCanExecuteChangedEventSubscription? _canExecuteSubscription;
 
-        if (!_command.CanExecute(null))
-            return;
+        protected View? View => (View?)Target;
 
-        _command.Execute(null);
-    }
-
-    protected override void SetValueImpl(object target, object? value)
-    {
-        _canExecuteSubscription?.Dispose();
-        _canExecuteSubscription = null;
-
-        _command = value as ICommand;
-        if (_command != null)
+        public MvxViewClickBinding(View view)
+            : base(view)
         {
-            _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
+            _canExecuteEventHandler = OnCanExecuteChanged;
+            _clickSubscription = view.WeakSubscribe(nameof(view.Click), ViewOnClick);
         }
-        RefreshEnabledState();
-    }
 
-    private void RefreshEnabledState()
-    {
-        var view = View;
-        if (view == null)
-            return;
-
-        var shouldBeEnabled = false;
-        if (_command != null)
+        private void ViewOnClick(object? sender, EventArgs args)
         {
-            shouldBeEnabled = _command.CanExecute(null);
+            if (_command == null)
+                return;
+
+            if (!_command.CanExecute(null))
+                return;
+
+            _command.Execute(null);
         }
-        view.Enabled = shouldBeEnabled;
-    }
 
-    private void OnCanExecuteChanged(object? sender, EventArgs e)
-    {
-        RefreshEnabledState();
-    }
-
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(ICommand);
-
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
-    {
-        if (isDisposing)
+        protected override void SetValueImpl(object target, object? value)
         {
-            _clickSubscription?.Dispose();
-            _clickSubscription = null;
-
             _canExecuteSubscription?.Dispose();
             _canExecuteSubscription = null;
+
+            _command = value as ICommand;
+            if (_command != null)
+            {
+                _canExecuteSubscription = _command.WeakSubscribe(_canExecuteEventHandler);
+            }
+            RefreshEnabledState();
         }
-        base.Dispose(isDisposing);
+
+        private void RefreshEnabledState()
+        {
+            var view = View;
+            if (view == null)
+                return;
+
+            var shouldBeEnabled = false;
+            if (_command != null)
+            {
+                shouldBeEnabled = _command.CanExecute(null);
+            }
+            view.Enabled = shouldBeEnabled;
+        }
+
+        private void OnCanExecuteChanged(object? sender, EventArgs e)
+        {
+            RefreshEnabledState();
+        }
+
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(ICommand);
+
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _clickSubscription?.Dispose();
+                _clickSubscription = null;
+
+                _canExecuteSubscription?.Dispose();
+                _canExecuteSubscription = null;
+            }
+            base.Dispose(isDisposing);
+        }
     }
 }
