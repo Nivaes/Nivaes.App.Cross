@@ -1,9 +1,10 @@
-namespace MvvmCross.Binding.Bindings
+namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public static class MvxBindingModeExtensions
+    public static class CrossBindingModeExtensions
     {
         public static MvxBindingMode IfDefault(this MvxBindingMode bindingMode, MvxBindingMode modeIfDefault)
         {

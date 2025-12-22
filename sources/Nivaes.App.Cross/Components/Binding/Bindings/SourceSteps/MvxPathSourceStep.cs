@@ -2,8 +2,6 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.Bindings.Source;
-    using MvvmCross.Binding.Bindings.Source.Construction;
     using MvvmCross.Converters;
     using Nivaes.App.Cross;
 
@@ -18,7 +16,7 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
         {
         }
 
-        private IMvxSourceBindingFactory SourceBindingFactory => MvxBindingSingletonCache.Instance.SourceBindingFactory;
+        private ICrossSourceBindingFactory SourceBindingFactory => MvxBindingSingletonCache.Instance.SourceBindingFactory;
 
         protected override void Dispose(bool isDisposing)
         {

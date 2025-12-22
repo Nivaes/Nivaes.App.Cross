@@ -9,7 +9,8 @@ namespace Playground.iOS.Views
     [MvxFromStoryboard("Main")]
     [MvxChildPresentation]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class ChildView : MvxViewController<ChildViewModel>
+    public partial class ChildView 
+        : MvxViewController<ChildViewModel>
     {
         public ChildView(NativeHandle handle) : base(handle)
         {

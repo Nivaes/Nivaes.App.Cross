@@ -1,11 +1,11 @@
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [MvxSplitViewPresentation(MasterDetailPosition.Master)]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

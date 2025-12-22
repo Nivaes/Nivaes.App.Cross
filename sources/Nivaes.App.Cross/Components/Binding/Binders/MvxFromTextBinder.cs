@@ -1,38 +1,35 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public class MvxFromTextBinder
         : IMvxBinder
     {
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<IMvxUpdateableBinding> Bind(object source, object target, string bindingText)
+        public IEnumerable<ICrossUpdateableBinding> Bind(object source, object target, string bindingText)
         {
             var bindingDescriptions = MvxBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<IMvxUpdateableBinding> Bind(object source, object target,
-                                                       IEnumerable<MvxBindingDescription> bindingDescriptions)
+        public IEnumerable<ICrossUpdateableBinding> Bind(object source, object target,
+                                                       IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
             if (bindingDescriptions == null)
-                return Array.Empty<IMvxUpdateableBinding>();
+                return Array.Empty<ICrossUpdateableBinding>();
 
             return
                 bindingDescriptions.Select(description => BindSingle(new MvxBindingRequest(source, target, description)));
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<IMvxUpdateableBinding> LanguageBind(object source, object target, string bindingText)
+        public IEnumerable<ICrossUpdateableBinding> LanguageBind(object source, object target, string bindingText)
         {
             var bindingDescriptions =
                 MvxBindingSingletonCache.Instance.BindingDescriptionParser.LanguageParse(bindingText);
@@ -40,7 +37,7 @@ namespace MvvmCross.Binding.Binders
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IMvxUpdateableBinding BindSingle(object source, object target, string targetPropertyName,
+        public ICrossUpdateableBinding BindSingle(object source, object target, string targetPropertyName,
                                                 string partialBindingDescription)
         {
             var bindingDescription =
@@ -54,9 +51,9 @@ namespace MvvmCross.Binding.Binders
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IMvxUpdateableBinding BindSingle(MvxBindingRequest bindingRequest)
+        public ICrossUpdateableBinding BindSingle(MvxBindingRequest bindingRequest)
         {
-            return new MvxFullBinding(bindingRequest);
+            return new CrossFullBinding(bindingRequest);
         }
     }
 }

@@ -1,16 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.BindingContext
 {
-    public class MvxBindingContext : IMvxBindingContext, IDisposable
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
+    public class MvxBindingContext 
+        : IMvxBindingContext, IDisposable
     {
-        public record TargetAndBinding(object Target, IMvxUpdateableBinding Binding);
+        public record TargetAndBinding(object Target, ICrossUpdateableBinding Binding);
 
         private readonly List<Action> _delayedActions = new();
 
@@ -43,19 +41,19 @@ namespace MvvmCross.Binding.BindingContext
         }
 
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
-        public MvxBindingContext(IDictionary<object, IEnumerable<MvxBindingDescription>> firstBindings)
+        public MvxBindingContext(IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
         {
             Init(null, firstBindings);
         }
 
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
-        public MvxBindingContext(object dataContext, IDictionary<object, IEnumerable<MvxBindingDescription>> firstBindings)
+        public MvxBindingContext(object dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
         {
             Init(dataContext, firstBindings);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public MvxBindingContext Init(object dataContext, IDictionary<object, IEnumerable<MvxBindingDescription>> firstBindings)
+        public MvxBindingContext Init(object dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
         {
             foreach (var kvp in firstBindings)
             {
@@ -81,7 +79,7 @@ namespace MvvmCross.Binding.BindingContext
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<MvxBindingDescription> firstBindingValue)
+        public IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
         {
             AddDelayedAction(firstBindingKey, firstBindingValue);
             if (dataContext != null)
@@ -112,7 +110,7 @@ namespace MvvmCross.Binding.BindingContext
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        private void AddDelayedAction(object key, IEnumerable<MvxBindingDescription> value)
+        private void AddDelayedAction(object key, IEnumerable<CrossBindingDescription> value)
         {
             _delayedActions.Add(() =>
             {
@@ -134,7 +132,7 @@ namespace MvvmCross.Binding.BindingContext
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        private void AddDelayedAction(KeyValuePair<object, IEnumerable<MvxBindingDescription>> kvp)
+        private void AddDelayedAction(KeyValuePair<object, IEnumerable<CrossBindingDescription>> kvp)
         {
             _delayedActions.Add(() =>
             {
@@ -227,17 +225,17 @@ namespace MvvmCross.Binding.BindingContext
             _delayedActions.Add(action);
         }
 
-        public virtual void RegisterBinding(object target, IMvxUpdateableBinding binding)
+        public virtual void RegisterBinding(object target, ICrossUpdateableBinding binding)
         {
             _directBindings.Add(new TargetAndBinding(target, binding));
         }
 
-        public virtual void RegisterBindingsWithClearKey(object clearKey, IEnumerable<KeyValuePair<object, IMvxUpdateableBinding>> bindings)
+        public virtual void RegisterBindingsWithClearKey(object clearKey, IEnumerable<KeyValuePair<object, ICrossUpdateableBinding>> bindings)
         {
             _viewBindings.Add(new KeyValuePair<object, IList<TargetAndBinding>>(clearKey, bindings.Select(b => new TargetAndBinding(b.Key, b.Value)).ToList()));
         }
 
-        public virtual void RegisterBindingWithClearKey(object clearKey, object target, IMvxUpdateableBinding binding)
+        public virtual void RegisterBindingWithClearKey(object clearKey, object target, ICrossUpdateableBinding binding)
         {
             var list = new List<TargetAndBinding>() { new TargetAndBinding(target, binding) };
             _viewBindings.Add(new KeyValuePair<object, IList<TargetAndBinding>>(clearKey, list));

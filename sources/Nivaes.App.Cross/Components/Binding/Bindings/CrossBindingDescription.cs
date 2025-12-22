@@ -1,19 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Converters;
-
-namespace MvvmCross.Binding.Bindings
+namespace Nivaes.App.Cross
 {
-    public class MvxBindingDescription
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Converters;
+
+    public class CrossBindingDescription
     {
-        public MvxBindingDescription()
+        public CrossBindingDescription()
         {
         }
 
-        public MvxBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter converter,
+        public CrossBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter converter,
                                      object converterParameter, object fallbackValue, MvxBindingMode mode)
         {
             TargetName = targetName;

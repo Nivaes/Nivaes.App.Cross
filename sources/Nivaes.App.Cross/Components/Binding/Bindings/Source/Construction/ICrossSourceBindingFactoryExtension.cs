@@ -1,10 +1,9 @@
-namespace MvvmCross.Binding.Bindings.Source.Construction
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-    using Nivaes.App.Cross;
 
-    public interface IMvxSourceBindingFactoryExtension
+    public interface ICrossSourceBindingFactoryExtension
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
         bool TryCreateBinding(

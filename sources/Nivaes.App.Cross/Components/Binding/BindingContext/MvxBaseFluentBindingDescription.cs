@@ -18,7 +18,7 @@ namespace MvvmCross.Binding.BindingContext
         private readonly TTarget _target;
         private readonly IMvxBindingContextOwner _bindingContextOwner;
 
-        private readonly MvxBindingDescription _bindingDescription = new MvxBindingDescription();
+        private readonly CrossBindingDescription _bindingDescription = new CrossBindingDescription();
         private readonly MvxSourceStepDescription _sourceStepDescription = new MvxSourceStepDescription();
         private ISourceSpec _sourceSpec;
 
@@ -161,7 +161,7 @@ namespace MvvmCross.Binding.BindingContext
             set => ClearBindingKey = value;
         }
 
-        protected MvxBindingDescription BindingDescription => _bindingDescription;
+        protected CrossBindingDescription BindingDescription => _bindingDescription;
 
         protected MvxSourceStepDescription SourceStepDescription => _sourceStepDescription;
 
@@ -189,7 +189,7 @@ namespace MvvmCross.Binding.BindingContext
             _sourceSpec = new CombinerSourceSpec(combiner, properties, useParser);
         }
 
-        protected void SourceOverwrite(MvxBindingDescription bindingDescription)
+        protected void SourceOverwrite(CrossBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
                 throw new CrossException("You cannot set the source path of a Fluent binding more than once");
@@ -200,7 +200,7 @@ namespace MvvmCross.Binding.BindingContext
             _sourceSpec = new FullySourceSpec(bindingDescription.Source);
         }
 
-        protected void FullOverwrite(MvxBindingDescription bindingDescription)
+        protected void FullOverwrite(CrossBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
                 throw new CrossException("You cannot set the source path of a Fluent binding more than once");
@@ -234,7 +234,7 @@ namespace MvvmCross.Binding.BindingContext
             return converter;
         }
 
-        protected MvxBindingDescription CreateBindingDescription()
+        protected CrossBindingDescription CreateBindingDescription()
         {
             EnsureTargetNameSet();
 
@@ -253,7 +253,7 @@ namespace MvvmCross.Binding.BindingContext
                 source = _sourceSpec.CreateSourceStep(_sourceStepDescription);
             }
 
-            var toReturn = new MvxBindingDescription()
+            var toReturn = new CrossBindingDescription()
             {
                 Mode = BindingDescription.Mode,
                 TargetName = BindingDescription.TargetName,

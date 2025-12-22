@@ -1,21 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public class MvxMvvmCrossBindingCreator : MvxBindingCreator
     {
         protected override void ApplyBindings(FrameworkElement attachedObject,
-                                              IEnumerable<MvxBindingDescription> bindingDescriptions)
+                                              IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
             var binder = MvxBindingSingletonCache.Instance.Binder;
             var bindingDescriptionList = bindingDescriptions.ToList();
@@ -24,7 +21,7 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
         }
 
         private void RegisterBindingsForUpdates(FrameworkElement attachedObject,
-                                                IEnumerable<IMvxUpdateableBinding> bindings)
+                                                IEnumerable<ICrossUpdateableBinding> bindings)
         {
             if (bindings == null)
                 return;
@@ -36,14 +33,14 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
             }
         }
 
-        private IList<IMvxUpdateableBinding> GetOrCreateBindingsList(FrameworkElement attachedObject)
+        private IList<ICrossUpdateableBinding> GetOrCreateBindingsList(FrameworkElement attachedObject)
         {
-            var existing = attachedObject.GetValue(BindingsListProperty) as IList<IMvxUpdateableBinding>;
+            var existing = attachedObject.GetValue(BindingsListProperty) as IList<ICrossUpdateableBinding>;
             if (existing != null)
                 return existing;
 
             // attach the list
-            var newList = new List<IMvxUpdateableBinding>();
+            var newList = new List<ICrossUpdateableBinding>();
             attachedObject.SetValue(BindingsListProperty, newList);
 
             // create a binding watcher for the list
@@ -97,13 +94,13 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
 
         public static readonly DependencyProperty BindingsListProperty = DependencyProperty.Register(
             "BindingsList",
-            typeof(IList<IMvxUpdateableBinding>),
+            typeof(IList<ICrossUpdateableBinding>),
             typeof(FrameworkElement),
             new PropertyMetadata(null));
 
-        public static IList<IMvxUpdateableBinding> GetBindingsList(DependencyObject d)
+        public static IList<ICrossUpdateableBinding> GetBindingsList(DependencyObject d)
         {
-            return d.GetValue(BindingsListProperty) as IList<IMvxUpdateableBinding>;
+            return d.GetValue(BindingsListProperty) as IList<ICrossUpdateableBinding>;
         }
 
         public static void SetBindingsList(DependencyObject d, string value)
@@ -115,7 +112,7 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
         {
             var frameworkElement = d as FrameworkElement;
 
-            var bindings = frameworkElement?.GetValue(BindingsListProperty) as IList<IMvxUpdateableBinding>;
+            var bindings = frameworkElement?.GetValue(BindingsListProperty) as IList<ICrossUpdateableBinding>;
             if (bindings == null)
                 return;
 

@@ -1,29 +1,24 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Converters;
-using MvvmCross.IoC;
-
-[assembly: InternalsVisibleTo("MvvmCross.UnitTest")]
-
-namespace MvvmCross.Binding.Bindings
+namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Bindings.Target;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public class MvxFullBinding
-        : MvxBinding, IMvxUpdateableBinding
+    public class CrossFullBinding
+        : CrossBinding, ICrossUpdateableBinding
     {
 #if NET9_0_OR_GREATER
         private readonly Lock _lock = new();
 #else
         private readonly object _lock = new();
 #endif
-        private readonly MvxBindingDescription _bindingDescription;
+        private readonly CrossBindingDescription _bindingDescription;
         private readonly object _defaultTargetValue;
 
         private IMvxSourceStep _sourceStep;
@@ -50,7 +45,7 @@ namespace MvvmCross.Binding.Bindings
             }
         }
 
-        public MvxFullBinding(MvxBindingRequest bindingRequest)
+        public CrossFullBinding(MvxBindingRequest bindingRequest)
         {
             _dataContext = bindingRequest.Source;
             _bindingDescription = bindingRequest.Description;

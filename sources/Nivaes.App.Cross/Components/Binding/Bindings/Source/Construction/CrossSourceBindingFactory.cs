@@ -1,20 +1,21 @@
-namespace MvvmCross.Binding.Bindings.Source.Construction
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Parse.PropertyPath;
     using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-    using Nivaes.App.Cross;
 
-    public class MvxSourceBindingFactory
-        : IMvxSourceBindingFactory
-        , IMvxSourceBindingFactoryExtensionHost
+    public class CrossSourceBindingFactory
+        : ICrossSourceBindingFactory
+        , ICrossSourceBindingFactoryExtensionHost
     {
         private IMvxSourcePropertyPathParser _propertyPathParser;
 
         protected IMvxSourcePropertyPathParser SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<IMvxSourcePropertyPathParser>();
 
-        private readonly List<IMvxSourceBindingFactoryExtension> _extensions = [];
+        private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
         protected bool TryCreateBindingFromExtensions(
@@ -67,6 +68,6 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
             return new CrossMissingSourceBinding(source);
         }
 
-        public IList<IMvxSourceBindingFactoryExtension> Extensions => _extensions;
+        public IList<ICrossSourceBindingFactoryExtension> Extensions => _extensions;
     }
 }

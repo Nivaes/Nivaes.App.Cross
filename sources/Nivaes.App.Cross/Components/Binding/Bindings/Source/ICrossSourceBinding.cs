@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.Binding.Bindings;
 
     public interface ICrossSourceBinding 
-        : IMvxBinding
+        : ICrossBinding
     {
         Type SourceType { get; }
 

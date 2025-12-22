@@ -1,11 +1,9 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.Source;
 
     public abstract class CrossSourceBinding
-        : MvxBinding, ICrossSourceBinding
+        : CrossBinding, ICrossSourceBinding
     {
         private readonly object _source;
 

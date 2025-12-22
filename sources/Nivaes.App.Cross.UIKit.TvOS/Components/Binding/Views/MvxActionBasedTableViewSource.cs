@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Logging;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxActionBasedTableViewSource : MvxStandardTableViewSource
     {
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
@@ -43,7 +39,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         public MvxActionBasedTableViewSource(UITableView tableView,
                                              UITableViewCellStyle style,
                                              NSString cellIdentifier,
-                                             IEnumerable<MvxBindingDescription> descriptions,
+                                             IEnumerable<CrossBindingDescription> descriptions,
                                              UITableViewCellAccessory tableViewCellAccessory)
             : base(tableView, style, cellIdentifier, descriptions, tableViewCellAccessory)
         {

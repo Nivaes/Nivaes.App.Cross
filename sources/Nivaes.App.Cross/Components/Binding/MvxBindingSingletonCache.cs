@@ -1,16 +1,13 @@
 namespace MvvmCross.Binding
 {
-    using MvvmCross.Base;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.Source.Construction;
     using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
     using MvvmCross.Binding.Parse.Binding.Lang;
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross; 
+    using Nivaes.App.Cross;
 
     // this class is not perfect OO and it gets in the way of testing
     // however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding
@@ -28,7 +25,7 @@ namespace MvvmCross.Binding
 
         private IMvxAutoValueConverters _autoValueConverters;
         private IMvxBindingDescriptionParser _bindingDescriptionParser;
-        private IMvxSourceBindingFactory _sourceBindingFactory;
+        private ICrossSourceBindingFactory _sourceBindingFactory;
         private IMvxTargetBindingFactory _targetBindingFactory;
         private IMvxLanguageBindingParser _languageParser;
         private IMvxPropertyExpressionParser _propertyExpressionParser;
@@ -111,11 +108,11 @@ namespace MvvmCross.Binding
             }
         }
 
-        public IMvxSourceBindingFactory SourceBindingFactory
+        public ICrossSourceBindingFactory SourceBindingFactory
         {
             get
             {
-                _sourceBindingFactory = _sourceBindingFactory ?? Mvx.IoCProvider.Resolve<IMvxSourceBindingFactory>();
+                _sourceBindingFactory = _sourceBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceBindingFactory>();
                 return _sourceBindingFactory;
             }
         }

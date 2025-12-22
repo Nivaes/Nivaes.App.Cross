@@ -1,22 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Parse.Binding;
-
 namespace MvvmCross.Binding.Binders
 {
+    using System.Collections.Generic;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Parse.Binding;
+    using Nivaes.App.Cross;
+
     public interface IMvxBindingDescriptionParser
     {
-        IEnumerable<MvxBindingDescription> Parse(string text);
+        IEnumerable<CrossBindingDescription> Parse(string text);
 
-        IEnumerable<MvxBindingDescription> LanguageParse(string text);
+        IEnumerable<CrossBindingDescription> LanguageParse(string text);
 
-        MvxBindingDescription ParseSingle(string text);
+        CrossBindingDescription ParseSingle(string text);
 
-        MvxBindingDescription SerializableBindingToBinding(string targetName,
+        CrossBindingDescription SerializableBindingToBinding(string targetName,
                                                            MvxSerializableBindingDescription description);
     }
 }

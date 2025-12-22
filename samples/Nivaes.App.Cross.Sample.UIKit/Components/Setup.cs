@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Platforms.Ios.Core;
-using MvvmCross.Plugin;
-using Playground.Core;
-using Playground.iOS.Bindings;
-using Playground.iOS.Controls;
-using Serilog;
-using Serilog.Extensions.Logging;
-
 namespace Playground.iOS
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Platforms.Ios.Core;
+    using MvvmCross.Plugin;
+    using Playground.Core;
+    using Playground.iOS.Bindings;
+    using Playground.iOS.Controls;
+    using Serilog;
+    using Serilog.Extensions.Logging;
+
     [RequiresUnreferencedCode("Uses MvvmCross reflection based plugin loading")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     public class Setup : MvxIosSetup<App>

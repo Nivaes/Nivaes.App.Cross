@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Binding.Bindings;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
+
     public static partial class MvxBindingContextOwnerExtensions
     {
         public static void CreateBindingContext(this IMvxBindingContextOwner view)
@@ -24,7 +21,7 @@ namespace MvvmCross.Binding.BindingContext
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public static void CreateBindingContext(this IMvxBindingContextOwner view,
-                                                IEnumerable<MvxBindingDescription> bindings)
+                                                IEnumerable<CrossBindingDescription> bindings)
         {
             view.BindingContext = Mvx.IoCProvider.Resolve<IMvxBindingContext>().Init(null, view, bindings);
         }
@@ -44,7 +41,7 @@ namespace MvvmCross.Binding.BindingContext
             view.BindingContext.DelayBind(bindingAction);
         }
 
-        public static void AddBinding(this IMvxBindingContextOwner view, object target, IMvxUpdateableBinding binding, object clearKey = null)
+        public static void AddBinding(this IMvxBindingContextOwner view, object target, ICrossUpdateableBinding binding, object clearKey = null)
         {
             if (clearKey == null)
             {
@@ -58,13 +55,13 @@ namespace MvvmCross.Binding.BindingContext
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public static void AddBinding(this IMvxBindingContextOwner view, object target,
-                                      MvxBindingDescription bindingDescription, object clearKey = null)
+                                      CrossBindingDescription bindingDescription, object clearKey = null)
         {
             var descriptions = new[] { bindingDescription };
             view.AddBindings(target, descriptions, clearKey);
         }
 
-        public static void AddBindings(this IMvxBindingContextOwner view, object target, IEnumerable<IMvxUpdateableBinding> bindings, object clearKey = null)
+        public static void AddBindings(this IMvxBindingContextOwner view, object target, IEnumerable<ICrossUpdateableBinding> bindings, object clearKey = null)
         {
             if (bindings == null)
                 return;
@@ -82,7 +79,7 @@ namespace MvvmCross.Binding.BindingContext
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public static void AddBindings(this IMvxBindingContextOwner view, object target,
-                                       IEnumerable<MvxBindingDescription> bindingDescriptions, object clearKey = null)
+                                       IEnumerable<CrossBindingDescription> bindingDescriptions, object clearKey = null)
         {
             var bindings = Binder.Bind(view.BindingContext.DataContext, target, bindingDescriptions);
             view.AddBindings(target, bindings, clearKey);
@@ -104,7 +101,7 @@ namespace MvvmCross.Binding.BindingContext
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public static void AddBindings(this IMvxBindingContextOwner view,
-                                       IDictionary<object, IEnumerable<MvxBindingDescription>> bindingMap,
+                                       IDictionary<object, IEnumerable<CrossBindingDescription>> bindingMap,
                                        object clearKey = null)
         {
             if (bindingMap == null)

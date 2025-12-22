@@ -1,18 +1,18 @@
-namespace MvvmCross.Binding.Bindings.Source.Leaf
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Converters;
     using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This method accesses the PropertyInfo which may not be preserved by trimming")]
-    public abstract class MvxLeafPropertyInfoSourceBinding : CrossPropertyInfoSourceBinding
+    public abstract class CrossLeafPropertyInfoSourceBinding : CrossPropertyInfoSourceBinding
     {
-        protected MvxLeafPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
+        protected CrossLeafPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
             : base(source, propertyInfo)
         {
         }

@@ -1,13 +1,13 @@
-using System;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using MvvmCross.ViewModels;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-using UIKit;
-
 namespace Playground.iOS.Views
 {
+    using System;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using MvvmCross.ViewModels;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+    using UIKit;
+
     [MvxFromStoryboard("Main")]
     [MvxRootPresentation(WrapInNavigationController = true)]
     public partial class PagesRootView : MvxPageViewController<PagesRootViewModel>

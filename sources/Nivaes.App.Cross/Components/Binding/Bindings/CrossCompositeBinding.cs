@@ -1,22 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MvvmCross.Binding.Bindings
+namespace Nivaes.App.Cross
 {
-    public class MvxCompositeBinding : MvxBinding
-    {
-        private readonly List<IMvxBinding> _bindings;
+    using System.Collections.Generic;
+    using System.Linq;
 
-        public MvxCompositeBinding(params IMvxBinding[] args)
+    public class CrossCompositeBinding : CrossBinding
+    {
+        private readonly List<ICrossBinding> _bindings;
+
+        public CrossCompositeBinding(params ICrossBinding[] args)
         {
             _bindings = args.ToList();
         }
 
-        public void Add(params IMvxBinding[] args)
+        public void Add(params ICrossBinding[] args)
         {
             _bindings.AddRange(args);
         }

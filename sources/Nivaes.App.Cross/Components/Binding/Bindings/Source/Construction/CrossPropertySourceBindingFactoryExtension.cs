@@ -1,18 +1,15 @@
-namespace MvvmCross.Binding.Bindings.Source.Construction
+namespace Nivaes.App.Cross
 {
     using System.Collections.Concurrent;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Bindings.Source.Chained;
-    using MvvmCross.Binding.Bindings.Source.Leaf;
     using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// Uses a global cache of calls in Reflection namespace
     /// </summary>
-    public class MvxPropertySourceBindingFactoryExtension
-        : IMvxSourceBindingFactoryExtension
+    public class CrossPropertySourceBindingFactoryExtension
+        : ICrossSourceBindingFactoryExtension
     {
         private readonly ConcurrentDictionary<int, PropertyInfo> _propertyInfoCache = new();
 
@@ -37,7 +34,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
         }
 
         [RequiresUnreferencedCode("This method creates chained source bindings which use reflection and may not be preserved by trimming")]
-        protected virtual MvxChainedSourceBinding? CreateChainedBinding(
+        protected virtual CrossChainedSourceBinding? CreateChainedBinding(
             object source,
             IMvxPropertyToken propertyToken,
             List<IMvxPropertyToken> remainingTokens)
@@ -50,7 +47,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
                         if (itemPropertyInfo == null)
                             return null;
 
-                        return new MvxIndexerChainedSourceBinding(source, itemPropertyInfo, indexPropertyToken,
+                        return new CrossIndexerChainedSourceBinding(source, itemPropertyInfo, indexPropertyToken,
                             remainingTokens);
                     }
                 case MvxPropertyNamePropertyToken propertyNameToken:
@@ -60,7 +57,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
                         if (propertyInfo == null)
                             return null;
 
-                        return new MvxSimpleChainedSourceBinding(source, propertyInfo,
+                        return new CrossSimpleChainedSourceBinding(source, propertyInfo,
                             remainingTokens);
                     }
                 default:
@@ -77,7 +74,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
                 var itemPropertyInfo = FindPropertyInfo(source);
                 if (itemPropertyInfo == null)
                     return null;
-                return new MvxIndexerLeafPropertyInfoSourceBinding(source, itemPropertyInfo, indexPropertyToken);
+                return new CrossIndexerLeafPropertyInfoSourceBinding(source, itemPropertyInfo, indexPropertyToken);
             }
 
             if (propertyToken is MvxPropertyNamePropertyToken propertyNameToken)
@@ -85,12 +82,12 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
                 var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
                 if (propertyInfo == null)
                     return null;
-                return new MvxSimpleLeafPropertyInfoSourceBinding(source, propertyInfo);
+                return new CrossSimpleLeafPropertyInfoSourceBinding(source, propertyInfo);
             }
 
             if (propertyToken is MvxEmptyPropertyToken)
             {
-                return new MvxDirectToSourceBinding(source);
+                return new CrossDirectToSourceBinding(source);
             }
 
             throw new CrossException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);

@@ -1,21 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.Parse.Binding.Lang;
-using MvvmCross.Binding.Parse.Binding.Tibet;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Parse.Binding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.Parse.Binding.Lang;
+    using MvvmCross.Binding.Parse.Binding.Tibet;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxBindingDescriptionParser
         : IMvxBindingDescriptionParser
     {
@@ -68,36 +65,36 @@ namespace MvvmCross.Binding.Parse.Binding
             return MvxBindingSingletonCache.Instance?.ValueCombinerLookup.Find(combiner);
         }
 
-        public IEnumerable<MvxBindingDescription> Parse(string text)
+        public IEnumerable<CrossBindingDescription> Parse(string text)
         {
             var parser = BindingParser;
             return Parse(text, parser);
         }
 
-        public IEnumerable<MvxBindingDescription> Parse(string text, IMvxBindingParser parser)
+        public IEnumerable<CrossBindingDescription> Parse(string text, IMvxBindingParser parser)
         {
             MvxSerializableBindingSpecification specification;
             if (!parser.TryParseBindingSpecification(text, out specification))
             {
                 MvxBindingLog.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
                     GetErrorTextParameter(text));
-                return Array.Empty<MvxBindingDescription>();
+                return Array.Empty<CrossBindingDescription>();
             }
 
             if (specification == null)
-                return Array.Empty<MvxBindingDescription>();
+                return Array.Empty<CrossBindingDescription>();
 
             return from item in specification
                    select SerializableBindingToBinding(item.Key, item.Value);
         }
 
-        public IEnumerable<MvxBindingDescription> LanguageParse(string text)
+        public IEnumerable<CrossBindingDescription> LanguageParse(string text)
         {
             var parser = LanguageBindingParser;
             return Parse(text, parser);
         }
 
-        public MvxBindingDescription ParseSingle(string text)
+        public CrossBindingDescription ParseSingle(string text)
         {
             MvxSerializableBindingDescription description;
             var parser = BindingParser;
@@ -125,10 +122,10 @@ namespace MvvmCross.Binding.Parse.Binding
             return text;
         }
 
-        public MvxBindingDescription SerializableBindingToBinding(
+        public CrossBindingDescription SerializableBindingToBinding(
             string targetName, MvxSerializableBindingDescription description)
         {
-            return new MvxBindingDescription
+            return new CrossBindingDescription
             {
                 TargetName = targetName,
                 Source = SourceStepDescriptionFrom(description),

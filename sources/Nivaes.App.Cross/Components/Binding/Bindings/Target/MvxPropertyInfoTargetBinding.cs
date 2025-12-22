@@ -1,50 +1,47 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using MvvmCross.Binding.Attributes;
-
-namespace MvvmCross.Binding.Bindings.Target;
-
-public abstract class MvxPropertyInfoTargetBinding(object target, PropertyInfo targetPropertyInfo)
-    : MvxConvertingTargetBinding(target)
+namespace MvvmCross.Binding.Bindings.Target
 {
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
-    protected override void Dispose(bool isDisposing)
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using MvvmCross.Binding.Attributes;
+
+    public abstract class MvxPropertyInfoTargetBinding(object target, PropertyInfo targetPropertyInfo)
+        : MvxConvertingTargetBinding(target)
     {
-        if (isDisposing)
+        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
+        protected override void Dispose(bool isDisposing)
         {
-            // if the target property should be set to NULL on dispose then we clear it here
-            // this is a fix for the possible memory leaks discussion started https://github.com/slodge/MvvmCross/issues/17#issuecomment-8527392
-            var setToNullAttribute = TargetPropertyInfo.GetCustomAttribute<MvxSetToNullAfterBindingAttribute>(true);
-            if (setToNullAttribute != null)
+            if (isDisposing)
             {
-                SetValue(null);
+                // if the target property should be set to NULL on dispose then we clear it here
+                // this is a fix for the possible memory leaks discussion started https://github.com/slodge/MvvmCross/issues/17#issuecomment-8527392
+                var setToNullAttribute = TargetPropertyInfo.GetCustomAttribute<MvxSetToNullAfterBindingAttribute>(true);
+                if (setToNullAttribute != null)
+                {
+                    SetValue(null);
+                }
             }
+
+            base.Dispose(isDisposing);
         }
 
-        base.Dispose(isDisposing);
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        [UnconditionalSuppressMessage("Trimming", "IL2073", Justification = "PropertyInfo.PropertyType doesn't preserve DynamicallyAccessedMembers annotations, but the property was obtained from a properly annotated source")]
+        public override Type TargetValueType => TargetPropertyInfo.PropertyType;
+
+        protected PropertyInfo TargetPropertyInfo { get; } = targetPropertyInfo;
+
+        protected override void SetValueImpl(object target, object? value)
+        {
+            var setMethod = TargetPropertyInfo.GetSetMethod();
+            setMethod?.Invoke(target, [value]);
+        }
     }
 
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    [UnconditionalSuppressMessage("Trimming", "IL2073", Justification = "PropertyInfo.PropertyType doesn't preserve DynamicallyAccessedMembers annotations, but the property was obtained from a properly annotated source")]
-    public override Type TargetValueType => TargetPropertyInfo.PropertyType;
-
-    protected PropertyInfo TargetPropertyInfo { get; } = targetPropertyInfo;
-
-    protected override void SetValueImpl(object target, object? value)
+    public abstract class MvxPropertyInfoTargetBinding<T>(
+            object target, PropertyInfo targetPropertyInfo)
+        : MvxPropertyInfoTargetBinding(target, targetPropertyInfo)
+        where T : class
     {
-        var setMethod = TargetPropertyInfo.GetSetMethod();
-        setMethod?.Invoke(target, [value]);
+        protected T? View => Target as T;
     }
-}
-
-public abstract class MvxPropertyInfoTargetBinding<T>(
-        object target, PropertyInfo targetPropertyInfo)
-    : MvxPropertyInfoTargetBinding(target, targetPropertyInfo)
-    where T : class
-{
-    protected T? View => Target as T;
 }

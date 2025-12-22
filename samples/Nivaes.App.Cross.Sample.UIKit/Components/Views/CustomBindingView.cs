@@ -1,15 +1,15 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels.Bindings;
-using Playground.iOS.Controls;
-using UIKit;
-
 namespace Playground.iOS.Views
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels.Bindings;
+    using Playground.iOS.Controls;
+    using UIKit;
+
 
     [MvxFromStoryboard("Main")]
     [MvxChildPresentation]

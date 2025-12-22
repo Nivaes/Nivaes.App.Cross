@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
-using MvvmCross.Binding.Bindings;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxStandardTableViewCell
         : MvxTableViewCell
     {
@@ -25,7 +21,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         }
 
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]
-        public MvxStandardTableViewCell(IEnumerable<MvxBindingDescription> bindingDescriptions, NativeHandle handle)
+        public MvxStandardTableViewCell(IEnumerable<CrossBindingDescription> bindingDescriptions, NativeHandle handle)
             : base(bindingDescriptions, handle)
         {
         }
@@ -38,7 +34,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         }
 
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]
-        public MvxStandardTableViewCell(IEnumerable<MvxBindingDescription> bindingDescriptions,
+        public MvxStandardTableViewCell(IEnumerable<CrossBindingDescription> bindingDescriptions,
                                         UITableViewCellStyle cellStyle, NSString cellIdentifier,
                                         UITableViewCellAccessory tableViewCellAccessory = UITableViewCellAccessory.None)
             : base(bindingDescriptions, cellStyle, cellIdentifier, tableViewCellAccessory)

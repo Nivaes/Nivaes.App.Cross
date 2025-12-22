@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.Bindings;
+    using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class creates bindings which use reflection and may not be preserved by trimming.")]
     public class MvxBindingLayoutInflaterFactory
@@ -26,7 +26,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
 
         protected virtual IMvxAndroidViewBinder? Binder => _binder ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewBinderFactory>().Create(_source);
 
-        public virtual IList<KeyValuePair<object, IMvxUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
+        public virtual IList<KeyValuePair<object, ICrossUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
 
         public virtual View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
         {

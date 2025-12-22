@@ -13,16 +13,16 @@ namespace MvvmCross.Binding.BindingContext
         event EventHandler DataContextChanged;
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<MvxBindingDescription> firstBindingValue);
+        IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue);
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         IMvxBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue);
 
-        void RegisterBinding(object target, IMvxUpdateableBinding binding);
+        void RegisterBinding(object target, ICrossUpdateableBinding binding);
 
-        void RegisterBindingsWithClearKey(object clearKey, IEnumerable<KeyValuePair<object, IMvxUpdateableBinding>> bindings);
+        void RegisterBindingsWithClearKey(object clearKey, IEnumerable<KeyValuePair<object, ICrossUpdateableBinding>> bindings);
 
-        void RegisterBindingWithClearKey(object clearKey, object target, IMvxUpdateableBinding binding);
+        void RegisterBindingWithClearKey(object clearKey, object target, ICrossUpdateableBinding binding);
 
         void ClearBindings(object clearKey);
 

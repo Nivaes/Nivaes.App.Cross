@@ -65,7 +65,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             bindingCreator.CreateBindings(sender, args, ParseBindingDescriptions);
         }
 
-        private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string languageText)
+        private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string languageText)
         {
             if (CrossSingleton<IMvxBindingSingletonCache>.Instance == null)
                 return null;

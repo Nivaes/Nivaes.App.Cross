@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq.Expressions;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public static class MvxBindExtensions
     {
         public static MvxInlineBindingTarget<TViewModel> CreateInlineBindingTarget<TViewModel>(
@@ -93,7 +90,7 @@ namespace MvvmCross.Binding.BindingContext
             if (string.IsNullOrEmpty(targetPath))
                 targetPath = MvxBindingSingletonCache.Instance.DefaultBindingNameLookup.DefaultFor(typeof(T));
 
-            var bindingDescription = new MvxBindingDescription(
+            var bindingDescription = new CrossBindingDescription(
                 targetPath,
                 sourcePath,
                 converter,
@@ -115,7 +112,7 @@ namespace MvvmCross.Binding.BindingContext
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public static T Bind<T>(this T element, IMvxBindingContextOwner bindingContextOwner,
-                                IEnumerable<MvxBindingDescription> descriptions)
+                                IEnumerable<CrossBindingDescription> descriptions)
         {
             bindingContextOwner.AddBindings(element, descriptions);
             return element;

@@ -1,16 +1,16 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [MvxTabPresentation(WrapInNavigationController = true, TabIconName = "home", TabName = "Tab 1")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class Tab1View : MvxViewController<Tab1ViewModel>
+    public partial class Tab1View 
+        : MvxViewController<Tab1ViewModel>
     {
         public Tab1View(NativeHandle handle) : base(handle)
         {

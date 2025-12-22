@@ -1,6 +1,5 @@
 namespace Playground.iOS.Views
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using CoreGraphics;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
@@ -15,7 +14,8 @@ namespace Playground.iOS.Views
     public partial class ModalView 
         : MvxViewController<ModalViewModel>
     {
-        public ModalView(NativeHandle handle) : base(handle)
+        public ModalView(NativeHandle handle) 
+            : base(handle)
         {
         }
 

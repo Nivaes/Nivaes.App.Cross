@@ -15,10 +15,12 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
     using MvvmCross.Binding.Bindings;
     using MvvmCross.Exceptions;
     using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
+    using Nivaes.App.Cross;
 
-    public class MvxAndroidViewBinder : IMvxAndroidViewBinder
+    public class MvxAndroidViewBinder
+        : IMvxAndroidViewBinder
     {
-        private readonly List<KeyValuePair<object, IMvxUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, IMvxUpdateableBinding>>();
+        private readonly List<KeyValuePair<object, ICrossUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, ICrossUpdateableBinding>>();
         private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>());
 
         private readonly object _source;
@@ -32,7 +34,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
 
         protected IMvxBinder Binder => _binder ?? (_binder = Mvx.IoCProvider.Resolve<IMvxBinder>());
 
-        public IList<KeyValuePair<object, IMvxUpdateableBinding>> CreatedBindings => _viewBindings;
+        public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _viewBindings;
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
         public virtual void BindView(View view, Context context, IAttributeSet attrs)
@@ -74,11 +76,11 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             }
         }
 
-        private void StoreBindings(View view, IEnumerable<IMvxUpdateableBinding> newBindings)
+        private void StoreBindings(View view, IEnumerable<ICrossUpdateableBinding> newBindings)
         {
             if (newBindings != null)
             {
-                _viewBindings.AddRange(newBindings.Select(b => new KeyValuePair<object, IMvxUpdateableBinding>(view, b)));
+                _viewBindings.AddRange(newBindings.Select(b => new KeyValuePair<object, ICrossUpdateableBinding>(view, b)));
             }
         }
 

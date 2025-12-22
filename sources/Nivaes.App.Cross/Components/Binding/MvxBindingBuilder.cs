@@ -1,17 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.Source.Construction;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Binding
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.IoC;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxBindingBuilder : MvxCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
@@ -58,25 +54,25 @@ namespace MvvmCross.Binding
         protected virtual void RegisterSourceFactory(IMvxIoCProvider iocProvider)
         {
             var sourceFactory = CreateSourceBindingFactory();
-            iocProvider.RegisterSingleton<IMvxSourceBindingFactory>(sourceFactory);
-            var extensionHost = sourceFactory as IMvxSourceBindingFactoryExtensionHost;
+            iocProvider.RegisterSingleton<ICrossSourceBindingFactory>(sourceFactory);
+            var extensionHost = sourceFactory as ICrossSourceBindingFactoryExtensionHost;
             if (extensionHost != null)
             {
                 RegisterSourceBindingFactoryExtensions(extensionHost);
-                iocProvider.RegisterSingleton<IMvxSourceBindingFactoryExtensionHost>(extensionHost);
+                iocProvider.RegisterSingleton<ICrossSourceBindingFactoryExtensionHost>(extensionHost);
             }
             else
                 MvxLogHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
         }
 
-        protected virtual void RegisterSourceBindingFactoryExtensions(IMvxSourceBindingFactoryExtensionHost extensionHost)
+        protected virtual void RegisterSourceBindingFactoryExtensions(ICrossSourceBindingFactoryExtensionHost extensionHost)
         {
-            extensionHost.Extensions.Add(new MvxPropertySourceBindingFactoryExtension());
+            extensionHost.Extensions.Add(new CrossPropertySourceBindingFactoryExtension());
         }
 
-        protected virtual IMvxSourceBindingFactory CreateSourceBindingFactory()
+        protected virtual ICrossSourceBindingFactory CreateSourceBindingFactory()
         {
-            return new MvxSourceBindingFactory();
+            return new CrossSourceBindingFactory();
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]

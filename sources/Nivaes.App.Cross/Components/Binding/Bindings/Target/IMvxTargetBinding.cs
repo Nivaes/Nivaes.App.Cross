@@ -1,22 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-
-namespace MvvmCross.Binding.Bindings.Target;
-
-public interface IMvxTargetBinding : IMvxBinding
+namespace MvvmCross.Binding.Bindings.Target
 {
-    event EventHandler<MvxTargetChangedEventArgs>? ValueChanged;
+    using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
 
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    Type TargetValueType { get; }
-    MvxBindingMode DefaultMode { get; }
+    public interface IMvxTargetBinding
+        : ICrossBinding
+    {
+        event EventHandler<MvxTargetChangedEventArgs>? ValueChanged;
 
-    [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-    void SetValue(object? value);
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        Type TargetValueType { get; }
+        MvxBindingMode DefaultMode { get; }
 
-    [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
-    void SubscribeToEvents();
+        [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
+        void SetValue(object? value);
+
+        [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
+        void SubscribeToEvents();
+    }
 }

@@ -1,21 +1,20 @@
-namespace MvvmCross.Binding.Bindings.Source.Chained
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Bindings.Source.Construction;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
     using MvvmCross.Converters;
-    using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-    public abstract class MvxChainedSourceBinding
+    public abstract class CrossChainedSourceBinding
         : CrossPropertyInfoSourceBinding
     {
         private readonly IList<IMvxPropertyToken> _childTokens;
         private ICrossSourceBinding _currentChildBinding;
 
-        protected MvxChainedSourceBinding(
+        protected CrossChainedSourceBinding(
             object source,
             PropertyInfo propertyInfo,
             IList<IMvxPropertyToken> childTokens)
@@ -36,7 +35,7 @@ namespace MvvmCross.Binding.Bindings.Source.Chained
             base.Dispose(isDisposing);
         }
 
-        private IMvxSourceBindingFactory SourceBindingFactory => MvxBindingSingletonCache.Instance.SourceBindingFactory;
+        private ICrossSourceBindingFactory SourceBindingFactory => MvxBindingSingletonCache.Instance.SourceBindingFactory;
 
         public override Type SourceType
         {

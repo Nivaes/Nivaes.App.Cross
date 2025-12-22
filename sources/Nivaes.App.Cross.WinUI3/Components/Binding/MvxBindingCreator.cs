@@ -1,21 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using Microsoft.UI.Xaml;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Platforms.WinUi.Binding
 {
-    public abstract class MvxBindingCreator : IMvxBindingCreator
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.UI.Xaml;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
+    public abstract class MvxBindingCreator 
+        : IMvxBindingCreator
     {
         public void CreateBindings(
             object sender, DependencyPropertyChangedEventArgs args,
-            Func<string, IEnumerable<MvxBindingDescription>> parseBindingDescriptions)
+            Func<string, IEnumerable<CrossBindingDescription>> parseBindingDescriptions)
         {
             var attachedObject = sender as FrameworkElement;
             if (attachedObject == null)
@@ -36,6 +34,6 @@ namespace MvvmCross.Platforms.WinUi.Binding
         }
 
         protected abstract void ApplyBindings(
-            FrameworkElement attachedObject, IEnumerable<MvxBindingDescription> bindingDescriptions);
+            FrameworkElement attachedObject, IEnumerable<CrossBindingDescription> bindingDescriptions);
     }
 }

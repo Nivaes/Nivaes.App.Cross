@@ -53,7 +53,7 @@ namespace MvvmCross.Binding.BindingContext
 
         public MvxFluentBindingDescription<TChildTarget, TSource> Bind<
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TChildTarget>(
-                TChildTarget childTarget, MvxBindingDescription bindingDescription)
+                TChildTarget childTarget, CrossBindingDescription bindingDescription)
                     where TChildTarget : class
         {
             var toReturn = Bind(childTarget);

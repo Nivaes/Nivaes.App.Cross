@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
-using Nivaes.App.Cross.Sample.Droid;
-using static Playground.Core.ViewModels.CollectionViewModel;
-
 namespace Playground.Droid.TemplateSelectors
 {
+    using System;
+    using System.Collections.Generic;
+    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+    using Nivaes.App.Cross.Sample.Droid;
+    using static Playground.Core.ViewModels.CollectionViewModel;
+
     public class AnimalTemplateSelector : IMvxTemplateSelector
     {
         private readonly Dictionary<Type, int> _itemsTypeDictionary = new Dictionary<Type, int>

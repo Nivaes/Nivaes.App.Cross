@@ -13,7 +13,6 @@ namespace Playground.iOS.Views
     using ObjCRuntime;
     using Playground.Core.ViewModels;
     using UIKit;
-    using Nivaes.App.Cross;
 
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]

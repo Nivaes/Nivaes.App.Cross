@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Localization;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq.Expressions;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Localization;
+    using Nivaes.App.Cross;
+
     public static partial class MvxBindingContextOwnerExtensions
     {
         // note that we don't add more default parameters here
@@ -111,7 +108,7 @@ namespace MvvmCross.Binding.BindingContext
 
             var converter = ValueConverterLookup.Find(converterName);
 
-            var bindingDescription = new MvxBindingDescription
+            var bindingDescription = new CrossBindingDescription
             {
                 TargetName = targetPropertyName,
                 Source = new MvxPathSourceStepDescription

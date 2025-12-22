@@ -1,22 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Logging;
-using ObjCRuntime;
-
 namespace MvvmCross.Platforms.Tvos.Binding.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxStandardTableViewSource : MvxTableViewSource
     {
         private static readonly NSString DefaultCellIdentifier = new("SimpleBindableTableViewCell");
 
-        private static readonly MvxBindingDescription[] DefaultBindingDescription = {
+        private static readonly CrossBindingDescription[] DefaultBindingDescription = {
                 new()
                 {
                         TargetName = "TitleText",
@@ -27,7 +24,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
                     },
             };
 
-        private readonly IEnumerable<MvxBindingDescription> _bindingDescriptions;
+        private readonly IEnumerable<CrossBindingDescription> _bindingDescriptions;
         private readonly NSString _cellIdentifier;
         private readonly UITableViewCellStyle _cellStyle;
         private readonly UITableViewCellAccessory _tableViewCellAccessory = UITableViewCellAccessory.None;
@@ -70,7 +67,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
             UITableView tableView,
             UITableViewCellStyle style,
             NSString cellIdentifier,
-            IEnumerable<MvxBindingDescription> descriptions,
+            IEnumerable<CrossBindingDescription> descriptions,
             UITableViewCellAccessory tableViewCellAccessory = UITableViewCellAccessory.None)
             : base(tableView)
         {
@@ -80,9 +77,9 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
             _tableViewCellAccessory = tableViewCellAccessory;
         }
 
-        protected IEnumerable<MvxBindingDescription> BindingDescriptions => _bindingDescriptions;
+        protected IEnumerable<CrossBindingDescription> BindingDescriptions => _bindingDescriptions;
 
-        private static IEnumerable<MvxBindingDescription> ParseBindingText(string bindingText)
+        private static IEnumerable<CrossBindingDescription> ParseBindingText(string bindingText)
         {
             if (string.IsNullOrEmpty(bindingText))
                 return DefaultBindingDescription;

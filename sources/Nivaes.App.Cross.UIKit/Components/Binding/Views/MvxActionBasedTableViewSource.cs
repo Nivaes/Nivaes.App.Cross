@@ -1,19 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Logging;
-using ObjCRuntime;
-using UIKit;
-
 namespace MvvmCross.Platforms.Ios.Binding.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Foundation;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+    using UIKit;
+
     public class MvxActionBasedTableViewSource : MvxStandardTableViewSource
     {
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
@@ -49,7 +46,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             UITableView tableView,
             UITableViewCellStyle style,
             NSString cellIdentifier,
-            IEnumerable<MvxBindingDescription> descriptions,
+            IEnumerable<CrossBindingDescription> descriptions,
             UITableViewCellAccessory tableViewCellAccessory)
             : base(tableView, style, cellIdentifier, descriptions, tableViewCellAccessory)
         {

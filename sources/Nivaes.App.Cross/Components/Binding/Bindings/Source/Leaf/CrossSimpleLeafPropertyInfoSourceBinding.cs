@@ -2,14 +2,15 @@
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 
-namespace MvvmCross.Binding.Bindings.Source.Leaf
+namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming")]
-    public class MvxSimpleLeafPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
-        : MvxLeafPropertyInfoSourceBinding(source, propertyInfo)
+    public class CrossSimpleLeafPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
+        : CrossLeafPropertyInfoSourceBinding(source, propertyInfo)
     {
         protected override object[] PropertyIndexParameters() => [];
     }

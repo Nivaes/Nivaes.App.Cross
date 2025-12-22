@@ -67,10 +67,10 @@ namespace MvvmCross.Platforms.WinUi.Binding
             bindingCreator?.CreateBindings(sender, args, ParseBindingDescriptions);
         }
 
-        private static IEnumerable<MvxBindingDescription> ParseBindingDescriptions(string bindingText)
+        private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string bindingText)
         {
             if (CrossSingleton<IMvxBindingSingletonCache>.Instance == null)
-                return Array.Empty<MvxBindingDescription>();
+                return Array.Empty<CrossBindingDescription>();
 
             return CrossSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
         }

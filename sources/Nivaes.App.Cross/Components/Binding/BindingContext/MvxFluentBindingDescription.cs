@@ -1,20 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Binding.ValueConverters;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.BindingContext
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Binding.ValueConverters;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource>
         : MvxBaseFluentBindingDescription<TTarget>
         where TTarget : class
@@ -153,9 +150,9 @@ namespace MvvmCross.Binding.BindingContext
             return SourceDescribed(newBindingDescription);
         }
 
-        public MvxFluentBindingDescription<TTarget, TSource> SourceDescribed(MvxBindingDescription description)
+        public MvxFluentBindingDescription<TTarget, TSource> SourceDescribed(CrossBindingDescription description)
         {
-            SourceOverwrite(description ?? new MvxBindingDescription());
+            SourceOverwrite(description ?? new CrossBindingDescription());
             return this;
         }
 
@@ -173,9 +170,9 @@ namespace MvvmCross.Binding.BindingContext
             return FullyDescribed(newBindingDescription.FirstOrDefault());
         }
 
-        public MvxFluentBindingDescription<TTarget, TSource> FullyDescribed(MvxBindingDescription description)
+        public MvxFluentBindingDescription<TTarget, TSource> FullyDescribed(CrossBindingDescription description)
         {
-            FullOverwrite(description ?? new MvxBindingDescription());
+            FullOverwrite(description ?? new CrossBindingDescription());
             return this;
         }
 
@@ -288,9 +285,9 @@ namespace MvvmCross.Binding.BindingContext
             return SourceDescribed(newBindingDescription);
         }
 
-        public MvxFluentBindingDescription<TTarget> SourceDescribed(MvxBindingDescription description)
+        public MvxFluentBindingDescription<TTarget> SourceDescribed(CrossBindingDescription description)
         {
-            SourceOverwrite(description ?? new MvxBindingDescription());
+            SourceOverwrite(description ?? new CrossBindingDescription());
             return this;
         }
 
@@ -310,9 +307,9 @@ namespace MvvmCross.Binding.BindingContext
             return FullyDescribed(newBindingDescription.FirstOrDefault());
         }
 
-        public MvxFluentBindingDescription<TTarget> FullyDescribed(MvxBindingDescription description)
+        public MvxFluentBindingDescription<TTarget> FullyDescribed(CrossBindingDescription description)
         {
-            FullOverwrite(description ?? new MvxBindingDescription());
+            FullOverwrite(description ?? new CrossBindingDescription());
             return this;
         }
 

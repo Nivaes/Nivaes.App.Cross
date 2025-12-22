@@ -1,25 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Media;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Converters;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.WinUi.Converters;
-
 namespace MvvmCross.Platforms.WinUi.Binding
 {
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+    using Microsoft.UI.Xaml.Media;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Binding.Bindings.SourceSteps;
+    using MvvmCross.Converters;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.WinUi.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxWindowsBindingCreator : MvxBindingCreator
     {
-        protected virtual void ApplyBinding(MvxBindingDescription bindingDescription, Type actualType,
+        protected virtual void ApplyBinding(CrossBindingDescription bindingDescription, Type actualType,
                                             FrameworkElement attachedObject)
         {
             DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
@@ -58,7 +55,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
         }
 
         protected override void ApplyBindings(FrameworkElement attachedObject,
-                                              IEnumerable<MvxBindingDescription> bindingDescriptions)
+                                              IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
             var actualType = attachedObject.GetType();
             foreach (var bindingDescription in bindingDescriptions)
