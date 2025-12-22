@@ -1,10 +1,6 @@
-using Android.App;
-using Android.OS;
-
 namespace MvvmCross.Platforms.Android.Core
 {
     using System;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 

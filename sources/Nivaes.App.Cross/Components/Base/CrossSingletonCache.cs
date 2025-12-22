@@ -1,10 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using MvvmCross;
-    using MvvmCross.Base;
-    using MvvmCross.Core;
-    using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
 
     public sealed class CrossSingletonCache
     : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache

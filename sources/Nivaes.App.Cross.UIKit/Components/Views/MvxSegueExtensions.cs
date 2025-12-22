@@ -5,9 +5,7 @@ namespace MvvmCross.Platforms.Ios.Views
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Foundation;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Ios.Views.Base;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using UIKit;
 

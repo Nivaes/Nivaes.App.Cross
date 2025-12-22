@@ -1,8 +1,6 @@
 namespace MvvmCross.Platforms.Mac.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using AppKit;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Mac.Presenters;
     using Nivaes.App.Cross;
 

@@ -1,12 +1,12 @@
 ﻿namespace Playground.WinUi
 {
     using Microsoft.UI.Xaml;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.WinUi.Views;
     using Nivaes.App.Cross;
     using Playground.WinUi3;
 
-    public sealed partial class App : MvxApplication
+    public sealed partial class App 
+        : MvxApplication
     {
         public App()
         {

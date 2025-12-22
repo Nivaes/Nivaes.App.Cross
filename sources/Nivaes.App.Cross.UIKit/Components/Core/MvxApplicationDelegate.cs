@@ -1,12 +1,11 @@
 namespace MvvmCross.Platforms.Ios.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
+    public abstract class MvxApplicationDelegate 
+        : UIApplicationDelegate, IMvxApplicationDelegate
     {
         public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 

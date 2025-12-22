@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Core;
     using MvvmCross.Plugin;
 
     public interface ICrossSetup

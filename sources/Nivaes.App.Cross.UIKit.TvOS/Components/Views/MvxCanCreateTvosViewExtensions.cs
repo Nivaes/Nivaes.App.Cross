@@ -1,14 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Core;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace MvvmCross.Platforms.Tvos.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
+
     public static class MvxCanCreateTvosViewExtensions
     {
         public static IMvxTvosView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(

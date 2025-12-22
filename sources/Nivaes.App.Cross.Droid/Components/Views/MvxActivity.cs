@@ -5,11 +5,9 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.Views;
     using MvvmCross.Platforms.Android.Views.Base;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

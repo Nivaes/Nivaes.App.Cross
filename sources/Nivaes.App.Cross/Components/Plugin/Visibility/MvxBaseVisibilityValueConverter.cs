@@ -1,33 +1,28 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using MvvmCross.Converters;
-using MvvmCross.UI;
-
 namespace MvvmCross.Plugin.Visibility
 {
+    using System.Globalization;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public abstract class MvxBaseVisibilityValueConverter<T>
         : MvxBaseVisibilityValueConverter
     {
-        protected sealed override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
+        protected sealed override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
         {
             return Convert((T)value, parameter, culture);
         }
 
-        protected abstract MvxVisibility Convert(T value, object parameter, CultureInfo culture);
+        protected abstract CrossVisibility Convert(T value, object parameter, CultureInfo culture);
     }
 
     public abstract class MvxBaseVisibilityValueConverter
         : MvxValueConverter
     {
-        private IMvxNativeVisibility _nativeVisibility;
+        private ICrossNativeVisibility _nativeVisibility;
 
-        private IMvxNativeVisibility NativeVisibility => _nativeVisibility ??= Mvx.IoCProvider.Resolve<IMvxNativeVisibility>();
+        private ICrossNativeVisibility NativeVisibility => _nativeVisibility ??= Mvx.IoCProvider.Resolve<ICrossNativeVisibility>();
 
-        protected abstract MvxVisibility Convert(object value, object parameter, CultureInfo culture);
+        protected abstract CrossVisibility Convert(object value, object parameter, CultureInfo culture);
 
         public sealed override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

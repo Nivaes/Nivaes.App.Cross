@@ -1,8 +1,5 @@
-using Android.App;
-
 namespace MvvmCross.Platforms.Android.Core
-{    
-    using MvvmCross.Core;
+{
     using Nivaes.App.Cross;
 
     public interface IMvxAndroidSetup 

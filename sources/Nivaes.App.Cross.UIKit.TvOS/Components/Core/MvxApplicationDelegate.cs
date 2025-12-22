@@ -1,8 +1,6 @@
 namespace MvvmCross.Platforms.Tvos.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("RegisterSetup may register types that are not preserved by default in the application")]

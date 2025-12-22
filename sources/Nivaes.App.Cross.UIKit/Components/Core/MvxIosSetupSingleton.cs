@@ -1,7 +1,6 @@
 namespace MvvmCross.Platforms.Ios.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
     using Nivaes.App.Cross;
 
     public class MvxIosSetupSingleton

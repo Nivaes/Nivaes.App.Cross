@@ -3,13 +3,10 @@ namespace MvvmCross.Platforms.Mac.Views
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Reflection;
     using AppKit;
     using Foundation;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Mac.Views.Base;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     internal static class MvxSegueExtensions

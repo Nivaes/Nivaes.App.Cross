@@ -3,7 +3,6 @@ namespace MvvmCross.Platforms.Mac.Core
     using System;
     using System.Diagnostics.CodeAnalysis;
     using AppKit;
-    using MvvmCross.Core;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]

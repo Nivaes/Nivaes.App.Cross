@@ -3,9 +3,7 @@ using Android.Content;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;    
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
+    using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
     public static class MvxChildViewModelOwnerExtensions

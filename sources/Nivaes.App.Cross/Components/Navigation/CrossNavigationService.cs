@@ -4,11 +4,8 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using System.Text.RegularExpressions;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Core;
-    using MvvmCross.Exceptions;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
-    using MvvmCross.ViewModels;
 
     /// <inheritdoc cref="ICrossNavigationService"/>
     public class CrossNavigationService 

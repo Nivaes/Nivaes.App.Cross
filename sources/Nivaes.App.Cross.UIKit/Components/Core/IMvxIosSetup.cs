@@ -1,6 +1,5 @@
 namespace MvvmCross.Platforms.Ios.Core
 {
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Ios.Presenters;
     using Nivaes.App.Cross;
 

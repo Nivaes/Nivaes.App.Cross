@@ -2,9 +2,7 @@ namespace MvvmCross.Platforms.Tvos.Views
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Tvos.Views.Base;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     internal static class MvxSegueExtensions

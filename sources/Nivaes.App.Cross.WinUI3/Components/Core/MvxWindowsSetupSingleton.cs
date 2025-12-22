@@ -1,10 +1,8 @@
 namespace MvvmCross.Platforms.WinUi.Core
 {
     using Microsoft.UI.Xaml.Controls;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.WinUi.Views;
     using Nivaes.App.Cross;
-    using Windows.ApplicationModel.Activation;
 
     public class MvxWindowsSetupSingleton
         : CrossSetupSingleton
