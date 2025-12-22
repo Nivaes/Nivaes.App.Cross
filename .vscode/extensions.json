@@ -4,6 +4,7 @@
       "ms-dotnettools.csdevkit",
       "ms-dotnettools.dotnet-maui",
       "github.vscode-github-actions",
-      "github.copilot-chat"
+      "github.copilot-chat",
+      "mariano-g.xib-storyboard-editor"
     ]
 }

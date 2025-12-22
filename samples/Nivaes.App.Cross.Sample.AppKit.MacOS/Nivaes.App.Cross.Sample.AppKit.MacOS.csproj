@@ -2,11 +2,12 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
+		
 		<!-- <RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers> -->
 		<!-- <Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings> -->
 		<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
-
+		<!--export PATH="$PATH:/Users/andres/.dotnet/tools"-->
 		<!--
       Enable full trimming in Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
@@ -16,11 +17,63 @@
 		<IsPackable>false</IsPackable>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
-		<IsAotCompatible>true</IsAotCompatible>
+		<!-- <IsAotCompatible>true</IsAotCompatible> -->
 		<!-- <PublishAot>true</PublishAot> -->
 	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<CreatePackage>false</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<CreatePackage>false</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+	</PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="$(CommitHash) != ''">
+		<_Parameter1>RepositoryUrl</_Parameter1>
+		<_Parameter2>https://github.com/MvvmCross/MvvmCross</_Parameter2>
+		</AssemblyAttribute>
+	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
+	</ItemGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<CreatePackage>false</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<CreatePackage>false</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+	</PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="$(CommitHash) != ''">
+		<_Parameter1>RepositoryUrl</_Parameter1>
+		<_Parameter2>https://github.com/nivaes/Nivaes.App.Cross</_Parameter2>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
+		<ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png">
+		<Link>Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png</Link>
+		</ImageAsset>
+		<ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png">
+		<Link>Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png</Link>
+		</ImageAsset>
+		<ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png">
+		<Link>Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png</Link>
+		</ImageAsset>
+		<ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png">
+		<Link>Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png</Link>
+		</ImageAsset>
+		<ImageAsset Update="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png">
+		<Link>Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png</Link>
+		</ImageAsset>
 	</ItemGroup>
 </Project>

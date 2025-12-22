@@ -1,10 +1,10 @@
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Mac.Core;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using Playground.Core;
-
 namespace Playground.Mac
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Mac.Core;
+    using MvvmCross.Platforms.Mac.Presenters.Attributes;
+    using Playground.Core;
+
     [Register("AppDelegate")]
     [RequiresUnreferencedCode("MvxApplicationDelegate requires unreferenced code")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
