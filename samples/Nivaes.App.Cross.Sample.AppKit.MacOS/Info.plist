@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Nivaes.App.Cross.AppKit.MacOS.Sample</string>
+	<string>Cross sample</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.nivaes.cross.Sample</string>
 	<key>CFBundleShortVersionString</key>
