@@ -1,40 +1,36 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.UI;
-
-namespace MvvmCross.Platforms.Ios.Binding.Target;
-
-public class MvxUIViewVisibilityTargetBinding(UIView target)
-    : MvxConvertingTargetBinding(target)
+namespace MvvmCross.Platforms.Ios.Binding.Target
 {
-    protected UIView? View => (UIView?)Target;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Bindings.Target;
+    using Nivaes.App.Cross;
 
-    public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-    public override Type TargetValueType => typeof(MvxVisibility);
-
-    protected override void SetValueImpl(object target, object? value)
+    public class MvxUIViewVisibilityTargetBinding(UIView target)
+        : MvxConvertingTargetBinding(target)
     {
-        var view = (UIView)target;
-        if (value is not MvxVisibility visibility)
-        {
-            MvxBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
-            return;
-        }
+        protected UIView? View => (UIView?)Target;
 
-        view.Hidden = visibility switch
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+        public override Type TargetValueType => typeof(CrossVisibility);
+
+        protected override void SetValueImpl(object target, object? value)
         {
-            MvxVisibility.Visible => false,
-            MvxVisibility.Collapsed => true,
-            _ => view.Hidden
-        };
+            var view = (UIView)target;
+            if (value is not CrossVisibility visibility)
+            {
+                MvxBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
+                return;
+            }
+
+            view.Hidden = visibility switch
+            {
+                CrossVisibility.Visible => false,
+                CrossVisibility.Collapsed => true,
+                _ => view.Hidden
+            };
+        }
     }
 }

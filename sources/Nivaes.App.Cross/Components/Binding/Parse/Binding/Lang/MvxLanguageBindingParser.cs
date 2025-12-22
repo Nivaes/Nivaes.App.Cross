@@ -1,11 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Parse.Binding.Lang
 {
+    using Nivaes.App.Cross;
+
     public class MvxLanguageBindingParser
         : MvxBindingParser, IMvxLanguageBindingParser
     {
@@ -60,7 +56,7 @@ namespace MvvmCross.Binding.Parse.Binding.Lang
                 default:
                     if (description.ConverterParameter != null)
                     {
-                        throw new MvxException(
+                        throw new CrossException(
                             "Problem parsing Language Binding near '{0}', Key set to '{1}', position {2} in {3}",
                             block, description.ConverterParameter, CurrentIndex, FullText);
                     }
@@ -116,7 +112,7 @@ namespace MvvmCross.Binding.Parse.Binding.Lang
                         return description;
 
                     default:
-                        throw new MvxException(
+                        throw new CrossException(
                             "Unexpected character {0} at position {1} in {2} - expected string-end, ',' or ';'",
                             CurrentChar,
                             CurrentIndex,

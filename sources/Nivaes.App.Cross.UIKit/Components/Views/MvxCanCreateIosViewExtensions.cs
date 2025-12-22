@@ -1,8 +1,6 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public static class MvxCanCreateIosViewExtensions

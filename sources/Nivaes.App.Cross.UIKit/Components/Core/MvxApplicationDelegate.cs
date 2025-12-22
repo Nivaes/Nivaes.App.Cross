@@ -1,14 +1,13 @@
 namespace MvvmCross.Platforms.Ios.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-    public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
+    public abstract class MvxApplicationDelegate 
+        : UIApplicationDelegate, IMvxApplicationDelegate
     {
-        public event EventHandler<MvxLifetimeEventArgs>? LifetimeChanged;
+        public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 
         public virtual UIWindow? MainWindow { get; set; }
 
@@ -19,17 +18,17 @@ namespace MvvmCross.Platforms.Ios.Core
 
         public override void WillEnterForeground(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.ActivatedFromMemory);
+            FireLifetimeChanged(CrossLifetimeEvent.ActivatedFromMemory);
         }
 
         public override void DidEnterBackground(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Deactivated);
+            FireLifetimeChanged(CrossLifetimeEvent.Deactivated);
         }
 
         public override void WillTerminate(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Closing);
+            FireLifetimeChanged(CrossLifetimeEvent.Closing);
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary? launchOptions)
@@ -40,7 +39,7 @@ namespace MvvmCross.Platforms.Ios.Core
 
             RunAppStart(launchOptions);
 
-            FireLifetimeChanged(MvxLifetimeEvent.Launching);
+            FireLifetimeChanged(CrossLifetimeEvent.Launching);
             return true;
         }
 
@@ -61,10 +60,10 @@ namespace MvvmCross.Platforms.Ios.Core
 
         protected abstract void RegisterSetup();
 
-        private void FireLifetimeChanged(MvxLifetimeEvent which)
+        private void FireLifetimeChanged(CrossLifetimeEvent which)
         {
             var handler = LifetimeChanged;
-            handler?.Invoke(this, new MvxLifetimeEventArgs(which));
+            handler?.Invoke(this, new CrossLifetimeEventArgs(which));
         }
     }
 

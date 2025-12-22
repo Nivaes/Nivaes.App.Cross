@@ -4,7 +4,6 @@ namespace Playground.Core.ViewModels
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using MvvmCross.Localization;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
@@ -30,7 +29,7 @@ namespace Playground.Core.ViewModels
 
         public RootViewModel(
                 ILoggerFactory logProvider,
-                IMvxNavigationService navigationService,
+                ICrossNavigationService navigationService,
                 ICrossViewModelLoader mvxViewModelLoader,
                 IMvxResultViewModelManager resultViewModelManager)
             : base(logProvider, navigationService, resultViewModelManager)
@@ -99,7 +98,7 @@ namespace Playground.Core.ViewModels
                 ResultViewModelManager, new SampleModel("Hello from Root!", 1.337m));
         }
 
-        public MvxNotifyTask MyTask { get; set; }
+        public CrossNotifyTask MyTask { get; set; }
 
         public ICrossAsyncCommand ShowChildCommand { get; }
 
@@ -205,7 +204,7 @@ namespace Playground.Core.ViewModels
         {
             base.ViewAppearing();
 
-            MyTask = MvxNotifyTask.Create(
+            MyTask = CrossNotifyTask.Create(
                 async () =>
                 {
                     await Task.Delay(300);

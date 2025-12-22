@@ -2,17 +2,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Exceptions;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.Presenters.Hints;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class MvxIosViewPresenter : MvxAttributeViewPresenter, IMvxIosViewPresenter
+    public class MvxIosViewPresenter 
+        : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
         private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
 
@@ -35,7 +31,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             Window = window;
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
         {
@@ -272,18 +268,18 @@ namespace MvvmCross.Platforms.Ios.Presenters
             return true;
         }
 
-        public override Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public override Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             return hint switch
             {
                 null => throw new ArgumentNullException(nameof(hint)),
-                MvxPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
+                CrossPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
                     Task.FromResult(true),
                 _ => base.ChangePresentation(hint)
             };
         }
 
-        private bool ChangePagePresentation(MvxPagePresentationHint pagePresentationHint)
+        private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
         {
             if (!(TabBarViewController is UITabBarController tabsController) ||
                 tabsController.ViewControllers == null)
@@ -341,7 +337,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (viewController is IMvxSplitViewController)
-                throw new MvxException("A SplitViewController cannot be presented as a child. Consider using Root instead");
+                throw new CrossException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
             if (PopoverViewController != null)
             {
@@ -364,7 +360,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
+            throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
         private Task<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
@@ -376,7 +372,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException(
+            throw new CrossException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
         }
 
@@ -389,7 +385,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
                 return Task.FromResult(true);
             }
 
-            throw new MvxException(
+            throw new CrossException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain popover view presented!");
         }
 
@@ -401,7 +397,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (TabBarViewController == null)
-                throw new MvxException("Trying to show a tab without a TabBarViewController, this is not possible!");
+                throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
             {
@@ -427,7 +423,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (PageViewController == null)
-                throw new MvxException("Trying to show a page without a PageViewController, this is not possible!");
+                throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
 
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
@@ -484,7 +480,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (PopoverViewController != null)
-                throw new MvxException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
+                throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
 
             // Content size should be set to a target view controller, not the navigation one
             if (attribute.PreferredContentSize != default)
@@ -520,7 +516,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
             return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
-                ?? throw new MvxException($"No parent ViewController found.");
+                ?? throw new CrossException($"No parent ViewController found.");
         }
 
         protected virtual Task<bool> ShowMasterSplitViewController(
@@ -531,7 +527,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (SplitViewController == null)
-                throw new MvxException("Trying to show a master page without a SplitViewController, this is not possible!");
+                throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowMasterView(viewController, attribute);
             return Task.FromResult(true);
@@ -545,7 +541,7 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ValidateArguments(viewController, attribute);
 
             if (SplitViewController == null)
-                throw new MvxException("Trying to show a detail page without a SplitViewController, this is not possible!");
+                throw new CrossException("Trying to show a detail page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowDetailView(viewController, attribute);
             return Task.FromResult(true);
@@ -885,13 +881,13 @@ namespace MvvmCross.Platforms.Ios.Presenters
             ArgumentNullException.ThrowIfNull(viewType);
         }
 
-        private static void ValidateArguments(UIViewController viewController, MvxBasePresentationAttribute attribute)
+        private static void ValidateArguments(UIViewController viewController, CrossBasePresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
         }
 
-        private static void ValidateArguments(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        private static void ValidateArguments(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
             ArgumentNullException.ThrowIfNull(attribute);

@@ -5,7 +5,6 @@ namespace Playground.Droid.Fragments
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.Presenters.Attributes;
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels;
     using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
@@ -24,7 +23,7 @@ namespace Playground.Droid.Fragments
             return view;
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+        public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
         {
             return new MvxFragmentPresentationAttribute(
                 typeof(RootViewModel),

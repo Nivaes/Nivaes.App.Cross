@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-using MvvmCross.Logging;
-
 namespace MvvmCross.Plugin
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.IoC;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxPluginManager : IMvxPluginManager
     {
         private readonly IMvxIoCProvider _provider;
@@ -39,7 +35,7 @@ namespace MvvmCross.Plugin
 
             var plugin = Activator.CreateInstance(type) as IMvxPlugin;
             if (plugin == null)
-                throw new MvxException($"Type {type} is not an IMvxPlugin");
+                throw new CrossException($"Type {type} is not an IMvxPlugin");
 
             if (plugin is IMvxConfigurablePlugin configurablePlugin)
             {

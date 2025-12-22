@@ -1,23 +1,22 @@
 namespace MvvmCross.Plugin.Visibility
 {
     using System.Globalization;
-    using MvvmCross.UI;
     using Nivaes.App.Cross;
 
     [Preserve(AllMembers = true)]
     public class MvxInvertedVisibilityValueConverter : MvxVisibilityValueConverter
     {
-        protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
+        protected override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
         {
             bool hide = parameter.ConvertToBooleanCore();
             switch (base.Convert(value, parameter, culture))
             {
-                case MvxVisibility.Visible when hide:
-                    return MvxVisibility.Hidden;
-                case MvxVisibility.Visible when !hide:
-                    return MvxVisibility.Collapsed;
+                case CrossVisibility.Visible when hide:
+                    return CrossVisibility.Hidden;
+                case CrossVisibility.Visible when !hide:
+                    return CrossVisibility.Collapsed;
                 default:
-                    return MvxVisibility.Visible;
+                    return CrossVisibility.Visible;
             }
         }
     }

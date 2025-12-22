@@ -6,9 +6,8 @@ namespace MvvmCross.Platforms.WinUi.Views
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
-    using MvvmCross.Platforms.WinUi.Views.Suspension;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.WinUI3;
     using Windows.UI.Core;
 
     public class MvxWindowsPage
@@ -113,7 +112,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
             var translator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
 
-            if (e.NavigationMode == NavigationMode.Back)
+            if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
             {
                 var key = translator.RequestTextGetKey(_reqData);
                 this.OnViewDestroy(key);
@@ -138,12 +137,12 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         private string _pageKey;
 
-        private IMvxSuspensionManager _suspensionManager;
-        protected IMvxSuspensionManager SuspensionManager
+        private ICrossSuspensionManager _suspensionManager;
+        protected ICrossSuspensionManager SuspensionManager
         {
             get
             {
-                _suspensionManager = _suspensionManager ?? Mvx.IoCProvider.Resolve<IMvxSuspensionManager>();
+                _suspensionManager = _suspensionManager ?? Mvx.IoCProvider.Resolve<ICrossSuspensionManager>();
                 return _suspensionManager;
             }
         }
@@ -155,7 +154,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             _pageKey = "Page-" + Frame.BackStackDepth;
             ICrossBundle bundle = null;
 
-            if (e.NavigationMode == NavigationMode.New)
+            if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.New)
             {
                 // Clear existing state for forward navigation when adding a new page to the
                 // navigation stack

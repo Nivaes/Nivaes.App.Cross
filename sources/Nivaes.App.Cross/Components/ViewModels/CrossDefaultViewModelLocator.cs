@@ -3,9 +3,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross;
     using MvvmCross.Exceptions;
-    using MvvmCross.Navigation.EventArguments;
     using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     /// <inheritdoc cref="ICrossViewModelLocator"/>
     public class CrossDefaultViewModelLocator
@@ -15,7 +13,7 @@ namespace Nivaes.App.Cross
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null)
+            ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (viewModelType == null)
                 throw new ArgumentNullException(nameof(viewModelType));
@@ -27,7 +25,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
             }
 
             RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -40,7 +38,7 @@ namespace Nivaes.App.Cross
             TParameter param,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null)
+            ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (viewModelType == null)
                 throw new ArgumentNullException(nameof(viewModelType));
@@ -52,7 +50,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem creating viewModel of type {0}", viewModelType.Name);
+                throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
             }
 
             RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -64,7 +62,7 @@ namespace Nivaes.App.Cross
             ICrossViewModel viewModel,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null)
+            ICrossNavigateEventArgs? navigationArgs = null)
         {
             RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
 
@@ -76,7 +74,7 @@ namespace Nivaes.App.Cross
             TParameter param,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs = null)
+            ICrossNavigateEventArgs? navigationArgs = null)
         {
             RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
 
@@ -97,7 +95,7 @@ namespace Nivaes.App.Cross
             ICrossViewModel viewModel,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs)
+            ICrossNavigateEventArgs? navigationArgs)
         {
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
@@ -121,11 +119,11 @@ namespace Nivaes.App.Cross
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.InitializeTask = MvxNotifyTask.Create(() => viewModel.Initialize());
+                viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
             }
         }
 
@@ -134,7 +132,7 @@ namespace Nivaes.App.Cross
             TParameter param,
             ICrossBundle? parameterValues,
             ICrossBundle? savedState,
-            IMvxNavigateEventArgs? navigationArgs)
+            ICrossNavigateEventArgs? navigationArgs)
         {
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
@@ -162,11 +160,11 @@ namespace Nivaes.App.Cross
                 if (navigationArgs?.Cancel == true)
                     return;
 
-                viewModel.InitializeTask = MvxNotifyTask.Create(() => viewModel.Initialize());
+                viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
             }
             catch (Exception exception)
             {
-                throw exception.MvxWrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
             }
         }
     }

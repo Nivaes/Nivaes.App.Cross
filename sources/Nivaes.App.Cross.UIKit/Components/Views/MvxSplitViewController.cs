@@ -1,12 +1,9 @@
 namespace MvvmCross.Platforms.Ios.Views
 {
-    using System;
     using System.Linq;
     using Foundation;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;
@@ -66,7 +63,7 @@ namespace MvvmCross.Platforms.Ios.Views
             ViewControllers = newStack.ToArray();
         }
 
-        public virtual bool CloseChildViewModel(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        public virtual bool CloseChildViewModel(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             if (!ViewControllers.Any())
                 return false;

@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Parse.PropertyPath;
-using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Bindings.Source.Construction
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.Parse.PropertyPath;
+    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
+    using Nivaes.App.Cross;
+
     public class MvxSourceBindingFactory
         : IMvxSourceBindingFactory
         , IMvxSourceBindingFactoryExtensionHost
@@ -49,7 +45,7 @@ namespace MvvmCross.Binding.Bindings.Source.Construction
         {
             if (tokens == null || tokens.Count == 0)
             {
-                throw new MvxException("empty token list passed to CreateBinding");
+                throw new CrossException("empty token list passed to CreateBinding");
             }
 
             var currentToken = tokens[0];

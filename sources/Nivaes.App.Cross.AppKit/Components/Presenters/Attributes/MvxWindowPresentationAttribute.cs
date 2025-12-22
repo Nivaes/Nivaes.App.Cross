@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using AppKit;
-using MvvmCross.Presenters.Attributes;
-
 namespace MvvmCross.Platforms.Mac.Presenters.Attributes
 {
-    public class MvxWindowPresentationAttribute : MvxBasePresentationAttribute
+    using System.Diagnostics.CodeAnalysis;
+    using Nivaes.App.Cross;
+
+    public class MvxWindowPresentationAttribute 
+        : CrossBasePresentationAttribute
     {
         public static float DefaultPositionX = 200;
         public static float DefaultPositionY = 200;

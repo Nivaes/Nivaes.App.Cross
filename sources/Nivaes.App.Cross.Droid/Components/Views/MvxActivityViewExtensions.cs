@@ -139,7 +139,7 @@ public static class MvxActivityViewExtensions
     {
         var activity = androidView as Activity;
         if (activity == null)
-            throw new MvxException("OnViewCreate called from an IMvxView which is not an Android Activity");
+            throw new CrossException("OnViewCreate called from an IMvxView which is not an Android Activity");
         return activity;
     }
 

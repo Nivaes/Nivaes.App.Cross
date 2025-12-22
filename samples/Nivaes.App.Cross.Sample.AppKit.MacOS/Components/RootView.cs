@@ -1,22 +1,18 @@
 namespace Playground.Mac
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using AppKit;
     using MvvmCross.Platforms.Mac.Presenters.Attributes;
     using MvvmCross.Platforms.Mac.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.AppKit;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
 
     [MvxFromStoryboard("Main")]
     [MvxWindowPresentation(PositionX = 300)]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class RootView : MvxViewController<RootViewModel>, ICrossOverridePresentationAttribute
+    public partial class RootView 
+        : MvxViewController<RootViewModel>, ICrossOverridePresentationAttribute
     {
         // prevents presentation in a new window when navigating back to root from a child
         private static bool WasPresentedInWindow = false;
@@ -51,7 +47,7 @@ namespace Playground.Mac
             base.ViewDidDisappear();
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+        public CrossBasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
         {
             if (!WasPresentedInWindow)
             {
@@ -59,7 +55,7 @@ namespace Playground.Mac
                 return null;
             }
 
-            return new MvxContentPresentationAttribute
+            return new CrossContentPresentationAttribute
             {
                 WindowIdentifier = typeof(RootView).Name
             };

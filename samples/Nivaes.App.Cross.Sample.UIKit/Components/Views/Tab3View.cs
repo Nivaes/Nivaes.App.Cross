@@ -1,12 +1,11 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Presenters.Attributes;
+    using MvvmCross.Platforms.Ios.Views;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [MvxTabPresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

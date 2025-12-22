@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Specialized;
-using System.Windows.Input;
-using Android.App;
-using Android.Views;
-using Android.Widget;
-using MvvmCross;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
 namespace Playground.Droid
 {
+    using System.Collections.Specialized;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using Android.Views;
+    using MvvmCross;
+    using MvvmCross.Binding.BindingContext;
+    using Nivaes.App.Cross;
+
     // This class is never actually executed, but when Xamarin linking is enabled it does how to ensure types and properties
     // are preserved in the deployed app
     [Android.Runtime.Preserve(AllMembers = true)]
@@ -110,9 +106,9 @@ namespace Playground.Droid
             context2.Dispose();
         }
 
-        public void Include(MvxNavigationService service, ICrossViewModelLoader loader, ICrossViewDispatcher viewDispatcher)
+        public void Include(CrossNavigationService service, ICrossViewModelLoader loader, ICrossViewDispatcher viewDispatcher)
         {
-            service = new MvxNavigationService(null, viewDispatcher, Mvx.IoCProvider);
+            service = new CrossNavigationService(null, viewDispatcher, Mvx.IoCProvider);
         }
 
         public void Include(ConsoleColor color)

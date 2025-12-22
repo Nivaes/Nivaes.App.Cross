@@ -10,13 +10,13 @@ using MvvmCross.ViewModels;
 namespace MvvmCross.Platforms.Android.ViewModels
 {
     /// <summary>
-    ///     Just like <see cref="MvxPropertyChangedListener"/> but
+    ///     Just like <see cref="CrossPropertyChangedListener"/> but
     ///     won't call handlers if the target (being an activity, fragment,
     ///     view or other object that belongs to the Java VM) is in "mono
     ///     limbo" (where the object still exists in the mono VM, but not
     ///     in the Java VM).
     /// </summary>
-    public class MvxAndroidPropertyChangedListener : MvxPropertyChangedListener
+    public class MvxAndroidPropertyChangedListener : CrossPropertyChangedListener
     {
         private readonly WeakReference<IJavaObject> _target;
 

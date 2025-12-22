@@ -1,13 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class SplitMasterViewModel : MvxNavigationViewModel
+    public class SplitMasterViewModel 
+        : CrossNavigationViewModel
     {
-        public SplitMasterViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public SplitMasterViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             OpenDetailCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailViewModel>());

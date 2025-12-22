@@ -3,15 +3,13 @@ using Android.Runtime;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-    public abstract class MvxAndroidApplication : Application, IMvxAndroidApplication
+    public abstract class MvxAndroidApplication 
+        : Application, IMvxAndroidApplication
     {
         public static MvxAndroidApplication Instance { get; private set; }
 

@@ -43,14 +43,14 @@ namespace Nivaes.App.Cross
 
             if (quoteDelimiterChar != '\'' && quoteDelimiterChar != '\"')
             {
-                throw new MvxException(
+                throw new CrossException(
                     $"Error parsing string indexer - unexpected quote character {quoteDelimiterChar} in text {FullText}");
             }
 
             MoveNext();
             if (IsComplete)
             {
-                throw new MvxException($"Error parsing string indexer - unterminated in text {FullText}");
+                throw new CrossException($"Error parsing string indexer - unterminated in text {FullText}");
             }
 
             var textBuilder = new StringBuilder();
@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross
             {
                 if (IsComplete)
                 {
-                    throw new MvxException($"Error parsing string indexer - unterminated in text {FullText}");
+                    throw new CrossException($"Error parsing string indexer - unterminated in text {FullText}");
                 }
 
                 if (nextCharEscaped)
@@ -100,7 +100,7 @@ namespace Nivaes.App.Cross
             var integerText = integerStringBuilder.ToString();
             if (!uint.TryParse(integerText, out index))
             {
-                throw new MvxException($"Unable to parse integer text from {integerText} in {FullText}");
+                throw new CrossException($"Unable to parse integer text from {integerText} in {FullText}");
             }
             return index;
         }
@@ -151,7 +151,7 @@ namespace Nivaes.App.Cross
                     // Hexa escape (1-4 digits)
                     // SL - decided not to support these as they are too ambiguous in length
                     //    - force users to use \u instead
-                    throw new MvxException(
+                    throw new CrossException(
                         "We don't support string literals containing \\x - suggest using \\u escaped characters instead");
                 case 'u':
                     // Unicode hexa escape (exactly 4 digits)
@@ -161,11 +161,11 @@ namespace Nivaes.App.Cross
                     // Unicode hexa escape (exactly 8 digits, first four must be 0000)
                     var firstFourDigits = ReadNDigits(4);
                     if (firstFourDigits != "0000")
-                        throw new MvxException($"\\U unicode character does not start with 0000 in {FullText}");
+                        throw new CrossException($"\\U unicode character does not start with 0000 in {FullText}");
                     return ReadFourDigitUnicodeCharacter();
 
                 default:
-                    throw new MvxException("Sorry we don't currently support escaped characters like \\{0}",
+                    throw new CrossException("Sorry we don't currently support escaped characters like \\{0}",
                                            currentChar);
             }
         }
@@ -175,7 +175,7 @@ namespace Nivaes.App.Cross
             var digits = ReadNDigits(4);
             var number = uint.Parse(digits, NumberStyles.HexNumber, NumberFormatInfo.InvariantInfo);
             if (number > ushort.MaxValue)
-                throw new MvxException($"\\u unicode character {number} out of range in {FullText}");
+                throw new CrossException($"\\u unicode character {number} out of range in {FullText}");
             return (char)number;
         }
 
@@ -185,11 +185,11 @@ namespace Nivaes.App.Cross
             for (int i = 0; i < count; i++)
             {
                 if (IsComplete)
-                    throw new MvxException($"Error while reading {i + 1} of {count} digits in {FullText}");
+                    throw new CrossException($"Error while reading {i + 1} of {count} digits in {FullText}");
 
                 var currentChar = CurrentChar;
                 if (!char.IsDigit(currentChar))
-                    throw new MvxException($"Error while reading {i + 1} of {count} digits in {FullText} - not a char {currentChar}");
+                    throw new CrossException($"Error while reading {i + 1} of {count} digits in {FullText} - not a char {currentChar}");
 
                 toReturn.Append(currentChar);
                 MoveNext();
@@ -255,7 +255,7 @@ namespace Nivaes.App.Cross
         protected object? ReadValue()
         {
             if (!TryReadValue(AllowNonQuotedText.Allow, out var toReturn))
-                throw new MvxException("Unable to read value");
+                throw new CrossException("Unable to read value");
             return toReturn;
         }
 
@@ -271,7 +271,7 @@ namespace Nivaes.App.Cross
 
             if (IsComplete)
             {
-                throw new MvxException($"Unexpected termination while reading value in {FullText}");
+                throw new CrossException($"Unexpected termination while reading value in {FullText}");
             }
 
             var currentChar = CurrentChar;
@@ -393,7 +393,7 @@ namespace Nivaes.App.Cross
                 if (currentChar == '.')
                 {
                     if (decimalPeriodSeen)
-                        throw new MvxException($"Multiple decimal places seen in number in {FullText} at position {CurrentIndex}");
+                        throw new CrossException($"Multiple decimal places seen in number in {FullText} at position {CurrentIndex}");
                     decimalPeriodSeen = true;
                 }
                 else if (!char.IsDigit(currentChar))
@@ -428,7 +428,7 @@ namespace Nivaes.App.Cross
                                     out doubleResult))
                     return doubleResult;
 
-                throw new MvxException($"Failed to parse double from {numberText} in {FullText}");
+                throw new CrossException($"Failed to parse double from {numberText} in {FullText}");
             }
             else
             {
@@ -440,7 +440,7 @@ namespace Nivaes.App.Cross
                                    out intResult))
                     return intResult;
 
-                throw new MvxException($"Failed to parse Int64 from {numberText} in {FullText}");
+                throw new CrossException($"Failed to parse Int64 from {numberText} in {FullText}");
             }
         }
 
@@ -456,7 +456,7 @@ namespace Nivaes.App.Cross
             }
             catch (ArgumentException exception)
             {
-                throw exception.MvxWrap($"Problem parsing {enumerationType.Name} from {name} in {FullText}");
+                throw exception.Wrap($"Problem parsing {enumerationType.Name} from {name} in {FullText}");
             }
         }
 
@@ -503,7 +503,7 @@ namespace Nivaes.App.Cross
             var firstChar = CurrentChar;
             if (!IsValidFirstCharacterOfCSharpName(firstChar))
             {
-                throw new MvxException($"PropertyName must start with letter - position {CurrentIndex} in {FullText} - char {firstChar}");
+                throw new CrossException($"PropertyName must start with letter - position {CurrentIndex} in {FullText} - char {firstChar}");
             }
             var toReturn = new StringBuilder();
             toReturn.Append(firstChar);

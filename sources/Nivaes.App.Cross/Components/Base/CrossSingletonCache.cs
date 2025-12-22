@@ -1,23 +1,19 @@
 namespace Nivaes.App.Cross
 {
     using MvvmCross;
-    using MvvmCross.Base;
-    using MvvmCross.Core;
-    using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
 
     public sealed class CrossSingletonCache
     : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache
     {
         private bool _inpcInterceptorResolveAttempted;
         private ICrossInpcInterceptor? _inpcInterceptor;
-        private IMvxStringToTypeParser? _parser;
-        private IMvxSettings? _settings;
+        private ICrossStringToTypeParser? _parser;
+        private ICrossSettings? _settings;
 
         public static CrossSingletonCache Initialize()
         {
             if (Instance != null)
-                throw new MvxException("You should only initialize MvxBindingSingletonCache once");
+                throw new CrossException("You should only initialize MvxBindingSingletonCache once");
 
             return new CrossSingletonCache();
         }
@@ -39,20 +35,20 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxStringToTypeParser? Parser
+        public ICrossStringToTypeParser? Parser
         {
             get
             {
-                _parser ??= Mvx.IoCProvider?.Resolve<IMvxStringToTypeParser>();
+                _parser ??= Mvx.IoCProvider?.Resolve<ICrossStringToTypeParser>();
                 return _parser;
             }
         }
 
-        public IMvxSettings? Settings
+        public ICrossSettings? Settings
         {
             get
             {
-                _settings ??= Mvx.IoCProvider?.Resolve<IMvxSettings>();
+                _settings ??= Mvx.IoCProvider?.Resolve<ICrossSettings>();
                 return _settings;
             }
         }

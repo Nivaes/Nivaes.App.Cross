@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.ViewModels;
 
     public abstract class CrossViewModel
-        : MvxNotifyPropertyChanged, ICrossViewModel
+        : CrossNotifyPropertyChanged, ICrossViewModel
     {
         protected CrossViewModel()
         {
@@ -74,8 +74,8 @@ namespace Nivaes.App.Cross
             return Task.FromResult(true);
         }
 
-        private MvxNotifyTask? _initializeTask;
-        public MvxNotifyTask? InitializeTask
+        private CrossNotifyTask? _initializeTask;
+        public CrossNotifyTask? InitializeTask
         {
             get => _initializeTask;
             set => SetProperty(ref _initializeTask, value);

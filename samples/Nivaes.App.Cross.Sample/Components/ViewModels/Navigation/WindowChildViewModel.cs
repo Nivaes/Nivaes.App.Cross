@@ -1,15 +1,15 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class WindowChildViewModel : MvxNavigationViewModel<WindowChildParam>
+    public class WindowChildViewModel
+        : MvxNavigationViewModel<WindowChildParam>
     {
         private WindowChildParam _param;
 
-        public WindowChildViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public WindowChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
         }

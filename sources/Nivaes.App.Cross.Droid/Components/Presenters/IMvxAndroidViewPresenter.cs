@@ -1,13 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Presenters;
-
-#nullable enable
-namespace MvvmCross.Platforms.Android.Presenters;
-
-public interface IMvxAndroidViewPresenter
-    : IMvxViewPresenter
+namespace MvvmCross.Platforms.Android.Presenters
 {
+    using Nivaes.App.Cross;
+
+    public interface IMvxAndroidViewPresenter
+        : ICrossViewPresenter
+    {
+    }
 }

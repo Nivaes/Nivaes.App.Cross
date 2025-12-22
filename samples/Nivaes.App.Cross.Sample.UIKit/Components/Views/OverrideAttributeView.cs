@@ -3,7 +3,6 @@ namespace Playground.iOS.Views
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.Presenters.Attributes;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
@@ -16,7 +15,7 @@ namespace Playground.iOS.Views
         {
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+        public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
         {
             return new MvxModalPresentationAttribute
             {

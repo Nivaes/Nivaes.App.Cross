@@ -168,7 +168,7 @@ namespace MvvmCross.Binding.BindingContext
         protected void SetFreeTextPropertyPath(string sourcePropertyPath)
         {
             if (_sourceSpec != null)
-                throw new MvxException("You cannot set the source path of a Fluent binding more than once");
+                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new FreeTextSourceSpec(sourcePropertyPath);
         }
@@ -176,7 +176,7 @@ namespace MvvmCross.Binding.BindingContext
         protected void SetKnownTextPropertyPath(string sourcePropertyPath)
         {
             if (_sourceSpec != null)
-                throw new MvxException("You cannot set the source path of a Fluent binding more than once");
+                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new KnownPathSourceSpec(sourcePropertyPath);
         }
@@ -184,7 +184,7 @@ namespace MvvmCross.Binding.BindingContext
         protected void SetCombiner(IMvxValueCombiner combiner, string[] properties, bool useParser)
         {
             if (_sourceSpec != null)
-                throw new MvxException("You cannot set the source path of a Fluent binding more than once");
+                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new CombinerSourceSpec(combiner, properties, useParser);
         }
@@ -192,7 +192,7 @@ namespace MvvmCross.Binding.BindingContext
         protected void SourceOverwrite(MvxBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
-                throw new MvxException("You cannot set the source path of a Fluent binding more than once");
+                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
 
             _bindingDescription.Mode = bindingDescription.Mode;
             _bindingDescription.TargetName = bindingDescription.TargetName;
@@ -203,7 +203,7 @@ namespace MvvmCross.Binding.BindingContext
         protected void FullOverwrite(MvxBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
-                throw new MvxException("You cannot set the source path of a Fluent binding more than once");
+                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new FullySourceSpec(bindingDescription.Source);
         }
@@ -289,7 +289,7 @@ namespace MvvmCross.Binding.BindingContext
 
             if (string.IsNullOrEmpty(defaultTargetName))
             {
-                throw new MvxException(
+                throw new CrossException(
                     "Default Target Name, could not be found for Target: {0}. Did you register a default?",
                     typeof(TTarget));
             }

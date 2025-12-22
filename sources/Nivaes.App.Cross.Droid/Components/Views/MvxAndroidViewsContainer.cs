@@ -142,7 +142,7 @@ namespace MvvmCross.Platforms.Android.Views
             var viewType = GetViewType(request.ViewModelType);
             if (viewType == null)
             {
-                throw new MvxException("View Type not found for " + request.ViewModelType);
+                throw new CrossException("View Type not found for " + request.ViewModelType);
             }
 
             var intent = new Intent(_applicationContext, viewType);

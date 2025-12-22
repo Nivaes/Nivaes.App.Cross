@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
-    public class SharedElementRootChildViewModel : BaseViewModel
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public class SharedElementRootChildViewModel 
+        : BaseViewModel
     {
         public override Task Initialize()
         {
-            Items = new MvxObservableCollection<ListItemViewModel>
+            Items = new CrossObservableCollection<ListItemViewModel>
             {
                 new ListItemViewModel { Id = 1, Title = "title one Fragment" },
                 new ListItemViewModel { Id = 2, Title = "title two Activity" },
@@ -25,8 +21,8 @@ namespace Playground.Core.ViewModels
             return base.Initialize();
         }
 
-        private MvxObservableCollection<ListItemViewModel> _items;
-        public MvxObservableCollection<ListItemViewModel> Items
+        private CrossObservableCollection<ListItemViewModel> _items;
+        public CrossObservableCollection<ListItemViewModel> Items
         {
             get => _items;
             set => SetProperty(ref _items, value);
@@ -34,7 +30,7 @@ namespace Playground.Core.ViewModels
 
         private ListItemViewModel _selectedItem;
 
-        public SharedElementRootChildViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public SharedElementRootChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
         }

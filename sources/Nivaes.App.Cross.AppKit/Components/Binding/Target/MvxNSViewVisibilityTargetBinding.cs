@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.UI;
-
 namespace MvvmCross.Platforms.Mac.Binding.Target
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using Nivaes.App.Cross;
+
     public class MvxNSViewVisibilityTargetBinding : MvxMacTargetBinding
     {
         protected NSView View
@@ -29,7 +25,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType
         {
-            get { return typeof(MvxVisibility); }
+            get { return typeof(CrossVisibility); }
         }
 
         protected override void SetValueImpl(object target, object value)
@@ -38,14 +34,14 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             if (view == null)
                 return;
 
-            var visibility = (MvxVisibility)value;
+            var visibility = (CrossVisibility)value;
             switch (visibility)
             {
-                case MvxVisibility.Visible:
+                case CrossVisibility.Visible:
                     view.Hidden = false;
                     break;
 
-                case MvxVisibility.Collapsed:
+                case CrossVisibility.Collapsed:
                     view.Hidden = true;
                     break;
 

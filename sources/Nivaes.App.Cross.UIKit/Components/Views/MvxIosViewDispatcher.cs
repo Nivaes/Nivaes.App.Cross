@@ -29,7 +29,7 @@ namespace MvvmCross.Platforms.Ios.Views
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
             return true;

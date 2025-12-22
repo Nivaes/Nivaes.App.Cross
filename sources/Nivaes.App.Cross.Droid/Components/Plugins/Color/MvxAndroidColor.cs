@@ -1,13 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.UI;
-
 namespace MvvmCross.Plugin.Color.Platforms.Android
 {
+    using Nivaes.App.Cross;
+
     [Preserve(AllMembers = true)]
-    public class MvxAndroidColor : IMvxNativeColor
+    public class MvxAndroidColor 
+        : ICrossNativeColor
     {
         public object ToNative(System.Drawing.Color color)
         {

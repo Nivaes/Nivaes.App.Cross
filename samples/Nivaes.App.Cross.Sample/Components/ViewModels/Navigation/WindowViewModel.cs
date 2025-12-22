@@ -2,10 +2,9 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
-    using Playground.Core.Models;
     using Nivaes.App.Cross;
+    using Playground.Core.Models;
 
     public class WindowChildParam
     {
@@ -13,7 +12,8 @@ namespace Playground.Core.ViewModels
         public int ChildNo { get; set; }
     }
 
-    public class WindowViewModel : MvxNavigationViewModel
+    public class WindowViewModel 
+        : CrossNavigationViewModel
     {
         private static int _count;
 
@@ -81,7 +81,7 @@ namespace Playground.Core.ViewModels
 
         public int Count { get; set; }
 
-        public WindowViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public WindowViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             _count++;

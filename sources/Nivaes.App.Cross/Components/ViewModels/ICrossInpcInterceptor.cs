@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
 
     public interface ICrossInpcInterceptor
     {
-        MvxInpcInterceptionResult Intercept(IMvxNotifyPropertyChanged sender, PropertyChangedEventArgs args);
-        MvxInpcInterceptionResult Intercept(IMvxNotifyPropertyChanged sender, PropertyChangingEventArgs args);
+        CrossInpcInterceptionResult Intercept(ICrossNotifyPropertyChanged sender, PropertyChangedEventArgs args);
+        CrossInpcInterceptionResult Intercept(ICrossNotifyPropertyChanged sender, PropertyChangingEventArgs args);
     }
 }

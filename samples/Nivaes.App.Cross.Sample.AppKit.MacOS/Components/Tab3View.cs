@@ -1,14 +1,16 @@
-using CoreGraphics;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using MvvmCross.Platforms.Mac.Views;
-using Playground.Core.ViewModels;
-
 namespace Playground.Mac
 {
+    using CoreGraphics;
+    using MvvmCross.Platforms.Mac.Presenters.Attributes;
+    using MvvmCross.Platforms.Mac.Views;
+    using Playground.Core.ViewModels;
+
     [MvxTabPresentation(TabTitle = "Tab3")]
-    public class Tab3View : MvxViewController<Tab3ViewModel>
+    public class Tab3View 
+        : MvxViewController<Tab3ViewModel>
     {
-        public Tab3View() : base()
+        public Tab3View() 
+            : base()
         {
         }
 

@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.Extensions.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-
 namespace Playground.Core.ViewModels
 {
-    public class BaseViewModel : MvxNavigationViewModel
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+
+    public class BaseViewModel : CrossNavigationViewModel
     {
-        public BaseViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
+        public BaseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
         }

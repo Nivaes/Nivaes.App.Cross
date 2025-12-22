@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-using MvvmCross.Logging;
-
 namespace MvvmCross.IoC
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Exceptions;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     [Obsolete("Quitar MvxIoC")]
     public class MvxPropertyInjector : IMvxPropertyInjector
     {
@@ -88,7 +85,7 @@ namespace MvvmCross.IoC
                     break;
 
                 default:
-                    throw new MvxException("unknown option for InjectIntoProperties {0}", options.InjectIntoProperties);
+                    throw new CrossException("unknown option for InjectIntoProperties {0}", options.InjectIntoProperties);
             }
             return injectableProperties;
         }

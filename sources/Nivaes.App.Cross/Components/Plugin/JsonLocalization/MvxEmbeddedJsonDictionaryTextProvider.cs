@@ -1,15 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Reflection;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Plugin.JsonLocalization
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Nivaes.App.Cross;
+
     [Preserve(AllMembers = true)]
     public class MvxEmbeddedJsonDictionaryTextProvider
         : MvxJsonDictionaryTextProvider
@@ -45,7 +39,7 @@ namespace MvvmCross.Plugin.JsonLocalization
             }
             catch (Exception ex)
             {
-                throw ex.MvxWrap("Cannot load resource {0}", path);
+                throw ex.Wrap("Cannot load resource {0}", path);
             }
         }
     }

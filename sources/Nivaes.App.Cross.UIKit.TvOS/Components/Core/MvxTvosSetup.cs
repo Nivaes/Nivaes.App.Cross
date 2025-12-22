@@ -8,22 +8,19 @@ namespace MvvmCross.Platforms.Tvos.Core
     using MvvmCross.Binding.Bindings.Target.Construction;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Converters;
-    using MvvmCross.Core;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Tvos.Binding;
-    using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.Platforms.Tvos.Views;
-    using MvvmCross.Presenters;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Tvos;
+    using Nivaes.App.Cross.UIKit.TvOS;
 
     public abstract class MvxTvosSetup
-        : MvxSetup, IMvxTvosSetup
+        : CrossSetup, IMvxTvosSetup
     {
         private IMvxApplicationDelegate? _applicationDelegate;
         private UIWindow? _window;
 
-        private IMvxTvosViewPresenter? _presenter;
+        private ICrossTvosViewPresenter? _presenter;
 
         public virtual void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, UIWindow window)
         {
@@ -31,7 +28,7 @@ namespace MvvmCross.Platforms.Tvos.Core
             _applicationDelegate = applicationDelegate;
         }
 
-        public virtual void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, IMvxTvosViewPresenter presenter)
+        public virtual void PlatformInitialize(IMvxApplicationDelegate applicationDelegate, ICrossTvosViewPresenter presenter)
         {
             _presenter = presenter;
             _applicationDelegate = applicationDelegate;
@@ -93,10 +90,10 @@ namespace MvvmCross.Platforms.Tvos.Core
             if (_applicationDelegate == null)
                 throw new InvalidOperationException("Cannot register lifetime with null ApplicationDelegate");
 
-            iocProvider.RegisterSingleton<IMvxLifetime>(_applicationDelegate);
+            iocProvider.RegisterSingleton<ICrossLifetime>(_applicationDelegate);
         }
 
-        protected IMvxTvosViewPresenter Presenter
+        protected ICrossTvosViewPresenter Presenter
         {
             get
             {
@@ -105,9 +102,9 @@ namespace MvvmCross.Platforms.Tvos.Core
             }
         }
 
-        protected virtual IMvxTvosViewPresenter CreateViewPresenter()
+        protected virtual ICrossTvosViewPresenter CreateViewPresenter()
         {
-            return new MvxTvosViewPresenter(_applicationDelegate, _window);
+            return new CrossTvosViewPresenter(_applicationDelegate, _window);
         }
 
         protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
@@ -116,7 +113,7 @@ namespace MvvmCross.Platforms.Tvos.Core
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]

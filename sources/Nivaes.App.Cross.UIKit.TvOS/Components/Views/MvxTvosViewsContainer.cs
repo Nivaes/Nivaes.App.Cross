@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Tvos.Views
                 CurrentRequest = request;
                 var viewType = GetViewType(request.ViewModelType);
                 if (viewType == null)
-                    throw new MvxException("View Type not found for " + request.ViewModelType);
+                    throw new CrossException("View Type not found for " + request.ViewModelType);
 
                 var view = CreateViewOfType(viewType, request);
                 view.Request = request;
@@ -47,19 +47,19 @@ namespace MvvmCross.Platforms.Tvos.Views
                 }
                 catch (Exception ex)
                 {
-                    throw new MvxException("Loading view of type {0} from storyboard {1} failed: {2}", viewType.Name, storyboardName, ex.Message);
+                    throw new CrossException("Loading view of type {0} from storyboard {1} failed: {2}", viewType.Name, storyboardName, ex.Message);
                 }
             }
 
             var view = Activator.CreateInstance(viewType) as IMvxTvosView;
             if (view == null)
-                throw new MvxException("View not loaded for " + viewType);
+                throw new CrossException("View not loaded for " + viewType);
             return view;
         }
 
         public virtual IMvxTvosView CreateView(ICrossViewModel viewModel)
         {
-            var request = new MvxViewModelInstanceRequest(viewModel);
+            var request = new CrossViewModelInstanceRequest(viewModel);
             var view = CreateView(request);
             return view;
         }

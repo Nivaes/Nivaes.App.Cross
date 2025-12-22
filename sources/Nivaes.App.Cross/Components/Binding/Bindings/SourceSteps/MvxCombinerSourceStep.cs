@@ -1,13 +1,9 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Converters;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Bindings.SourceSteps
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Converters;
+    using Nivaes.App.Cross;
+
     public class MvxCombinerSourceStep : MvxSourceStep<MvxCombinerSourceStepDescription>
     {
         private readonly List<IMvxSourceStep> _subSteps;
@@ -58,7 +54,7 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
             var targetTypes = Description.Combiner.SubStepTargetTypes(_subSteps, TargetType);
             var targetTypeList = targetTypes.ToList();
             if (targetTypeList.Count != _subSteps.Count)
-                throw new MvxException("Description.Combiner provided incorrect length TargetType list");
+                throw new CrossException("Description.Combiner provided incorrect length TargetType list");
 
             for (var i = 0; i < targetTypeList.Count; i++)
             {

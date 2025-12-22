@@ -1,12 +1,11 @@
 namespace MvvmCross.Platforms.Tvos.Core
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("RegisterSetup may register types that are not preserved by default in the application")]
-    public abstract class MvxApplicationDelegate : UIApplicationDelegate, IMvxApplicationDelegate
+    public abstract class MvxApplicationDelegate 
+        : UIApplicationDelegate, IMvxApplicationDelegate
     {
         /// <summary>
         /// UIApplicationDelegate.Window doesn't really exist / work. It was added by Xamarin.iOS templates 
@@ -25,7 +24,7 @@ namespace MvvmCross.Platforms.Tvos.Core
             MvxTvosSetupSingleton.EnsureSingletonAvailable(this, MainWindow).EnsureInitialized();
             RunAppStart(launchOptions);
 
-            FireLifetimeChanged(MvxLifetimeEvent.Launching);
+            FireLifetimeChanged(CrossLifetimeEvent.Launching);
             return true;
         }
 
@@ -45,36 +44,37 @@ namespace MvvmCross.Platforms.Tvos.Core
 
         public override void WillEnterForeground(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.ActivatedFromMemory);
+            FireLifetimeChanged(CrossLifetimeEvent.ActivatedFromMemory);
         }
 
         public override void DidEnterBackground(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Deactivated);
+            FireLifetimeChanged(CrossLifetimeEvent.Deactivated);
         }
 
         public override void WillTerminate(UIApplication application)
         {
-            FireLifetimeChanged(MvxLifetimeEvent.Closing);
+            FireLifetimeChanged(CrossLifetimeEvent.Closing);
         }
 
-        private void FireLifetimeChanged(MvxLifetimeEvent which)
+        private void FireLifetimeChanged(CrossLifetimeEvent which)
         {
             var handler = LifetimeChanged;
-            handler?.Invoke(this, new MvxLifetimeEventArgs(which));
+            handler?.Invoke(this, new CrossLifetimeEventArgs(which));
         }
 
         protected virtual void RegisterSetup()
         {
         }
 
-        public event EventHandler<MvxLifetimeEventArgs> LifetimeChanged;
+        public event EventHandler<CrossLifetimeEventArgs> LifetimeChanged;
     }
 
     [RequiresUnreferencedCode("RegisterSetup may register types that are not preserved by default in the application")]
-    public abstract class MvxApplicationDelegate<TMvxTvosSetup, TApplication> : MvxApplicationDelegate
-       where TMvxTvosSetup : MvxTvosSetup<TApplication>, new()
-       where TApplication : class, ICrossApplication, new()
+    public abstract class MvxApplicationDelegate<TMvxTvosSetup, TApplication> 
+        : MvxApplicationDelegate
+           where TMvxTvosSetup : MvxTvosSetup<TApplication>, new()
+           where TApplication : class, ICrossApplication, new()
     {
         protected override void RegisterSetup()
         {

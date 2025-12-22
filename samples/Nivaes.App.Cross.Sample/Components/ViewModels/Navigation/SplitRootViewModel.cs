@@ -2,13 +2,13 @@ namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class SplitRootViewModel : MvxNavigationViewModel
+    public class SplitRootViewModel 
+        : CrossNavigationViewModel
     {
-        public SplitRootViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public SplitRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             ShowInitialMenuCommand = new CrossAsyncCommand(ShowInitialViewModel);
@@ -21,7 +21,7 @@ namespace Playground.Core.ViewModels
 
         public override void ViewAppeared()
         {
-            MvxNotifyTask.Create(async () =>
+            CrossNotifyTask.Create(async () =>
             {
                 await ShowInitialViewModel();
                 await ShowDetailViewModel();

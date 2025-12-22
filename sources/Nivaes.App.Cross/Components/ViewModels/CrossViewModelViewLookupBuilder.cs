@@ -51,11 +51,11 @@ namespace Nivaes.App.Cross
             if (overSizedCounts.Length == 0)
             {
                 // no idea what the error is - so throw the original
-                return exception.MvxWrap("Unknown problem in ViewModelViewLookup construction");
+                return exception.Wrap("Unknown problem in ViewModelViewLookup construction");
             }
 
             var overSizedText = string.Join(";", overSizedCounts);
-            return exception.MvxWrap(
+            return exception.Wrap(
                 "Problem seen creating View-ViewModel lookup table - you have more than one View registered for the ViewModels: {0}",
                 overSizedText);
         }

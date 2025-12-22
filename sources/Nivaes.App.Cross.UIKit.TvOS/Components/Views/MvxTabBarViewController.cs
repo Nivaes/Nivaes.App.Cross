@@ -4,10 +4,11 @@ namespace MvvmCross.Platforms.Tvos.Views
     using MvvmCross.Platforms.Tvos.Presenters.Attributes;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit.TvOS;
     using ObjCRuntime;
 
     public class MvxTabBarViewController
-        : MvxBaseTabBarViewController, IMvxTabBarViewController
+        : MvxBaseTabBarViewController, ICrossTabBarViewController
     {
         private int _tabsCount = 0;
 
@@ -37,15 +38,15 @@ namespace MvvmCross.Platforms.Tvos.Views
 
             if (IsMovingFromParentViewController)
             {
-                if (Mvx.IoCProvider?.TryResolve(out IMvxTvosViewPresenter iPresenter) == true
-                    && iPresenter is MvxTvosViewPresenter mvxTvosViewPresenter)
+                if (Mvx.IoCProvider?.TryResolve(out ICrossTvosViewPresenter iPresenter) == true
+                    && iPresenter is CrossTvosViewPresenter mvxTvosViewPresenter)
                 {
                     mvxTvosViewPresenter.CloseTabBarViewController();
                 }
             }
         }
 
-        public virtual void ShowTabView(UIViewController viewController, MvxTabPresentationAttribute attribute)
+        public virtual void ShowTabView(UIViewController viewController, CrossTabPresentationAttribute attribute)
         {
             if (!string.IsNullOrEmpty(attribute.TabAccessibilityIdentifier))
                 viewController.View.AccessibilityIdentifier = attribute.TabAccessibilityIdentifier;
@@ -66,7 +67,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             ViewControllers = currentTabs.ToArray();
         }
 
-        protected virtual void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
+        protected virtual void SetTitleAndTabBarItem(UIViewController viewController, CrossTabPresentationAttribute attribute)
         {
             _tabsCount++;
 

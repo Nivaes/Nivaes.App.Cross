@@ -3,13 +3,14 @@ namespace MvvmCross.Platforms.Tvos.Views
     using MvvmCross.Platforms.Tvos.Presenters;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit.TvOS;
 
     public class MvxTvosViewDispatcher
         : MvxTvosUIThreadDispatcher, ICrossViewDispatcher
     {
-        private readonly IMvxTvosViewPresenter _presenter;
+        private readonly ICrossTvosViewPresenter _presenter;
 
-        public MvxTvosViewDispatcher(IMvxTvosViewPresenter presenter)
+        public MvxTvosViewDispatcher(ICrossTvosViewPresenter presenter)
         {
             _presenter = presenter;
         }
@@ -24,7 +25,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             return true;
         }
 
-        public async Task<bool> ChangePresentation(MvxPresentationHint hint)
+        public async Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
             await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
             return true;

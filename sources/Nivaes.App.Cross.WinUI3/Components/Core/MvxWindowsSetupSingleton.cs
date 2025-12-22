@@ -1,26 +1,21 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Microsoft.UI.Xaml.Controls;
-using MvvmCross.Core;
-using MvvmCross.Platforms.WinUi.Views;
-using Windows.ApplicationModel.Activation;
-
 namespace MvvmCross.Platforms.WinUi.Core
 {
+    using Microsoft.UI.Xaml.Controls;
+    using MvvmCross.Platforms.WinUi.Views;
+    using Nivaes.App.Cross;
+
     public class MvxWindowsSetupSingleton
-        : MvxSetupSingleton
+        : CrossSetupSingleton
     {
         public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string activatedEventArgs,
-          string suspensionManagerSessionStateKey = null)
+          string? suspensionManagerSessionStateKey = null)
         {
             var instance = EnsureSingletonAvailable<MvxWindowsSetupSingleton>();
             instance.PlatformSetup<MvxWindowsSetup>()?.PlatformInitialize(rootFrame, activatedEventArgs, suspensionManagerSessionStateKey);
             return instance;
         }
 
-        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string suspensionManagerSessionStateKey = null)
+        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
         {
             var instance = EnsureSingletonAvailable<MvxWindowsSetupSingleton>();
             instance.PlatformSetup<MvxWindowsSetup>()?.PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);

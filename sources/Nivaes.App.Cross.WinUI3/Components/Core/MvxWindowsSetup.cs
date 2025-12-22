@@ -1,34 +1,22 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Microsoft.UI.Xaml.Controls;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Bindings.Target.Construction;
-using MvvmCross.Binding.Combiners;
-using MvvmCross.Converters;
-using MvvmCross.Core;
-using MvvmCross.Exceptions;
-using MvvmCross.IoC;
-using MvvmCross.Platforms.WinUi.Binding;
-using MvvmCross.Platforms.WinUi.Presenters;
-using MvvmCross.Platforms.WinUi.Views;
-using MvvmCross.Platforms.WinUi.Views.Suspension;
-using MvvmCross.Presenters;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-using Windows.ApplicationModel.Activation;
-
 namespace MvvmCross.Platforms.WinUi.Core
 {
-#nullable enable
+    using System.Reflection;
+    using Microsoft.UI.Xaml.Controls;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Binders;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Binding.Bindings.Target.Construction;
+    using MvvmCross.Binding.Combiners;
+    using MvvmCross.Converters;
+    using MvvmCross.IoC;
+    using MvvmCross.Platforms.WinUi.Binding;
+    using MvvmCross.Platforms.WinUi.Presenters;
+    using MvvmCross.Platforms.WinUi.Views;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.WinUI3;
+
     public abstract class MvxWindowsSetup
-        : MvxSetup, IMvxWindowsSetup
+        : CrossSetup, IMvxWindowsSetup
     {
         private IMvxWindowsFrame? _rootFrame;
         private string? _suspensionManagerSessionStateKey;
@@ -75,9 +63,9 @@ namespace MvvmCross.Platforms.WinUi.Core
                 suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
         }
 
-        protected virtual IMvxSuspensionManager CreateSuspensionManager()
+        protected virtual ICrossSuspensionManager CreateSuspensionManager()
         {
-            return new MvxSuspensionManager();
+            return new CrossSuspensionManager();
         }
 
         protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
@@ -87,7 +75,7 @@ namespace MvvmCross.Platforms.WinUi.Core
             iocProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
             var viewsContainer = container as CrossViewsContainer;
             if (viewsContainer == null)
-                throw new MvxException("CreateViewsContainer must return an MvxViewsContainer");
+                throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
             return container;
         }
 
@@ -130,7 +118,7 @@ namespace MvvmCross.Platforms.WinUi.Core
 
             var presenter = Presenter;
             iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<IMvxViewPresenter>(presenter);
+            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
         protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)

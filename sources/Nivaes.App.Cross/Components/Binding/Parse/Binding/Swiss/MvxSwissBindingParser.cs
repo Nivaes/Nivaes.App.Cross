@@ -1,14 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Parse.Binding.Swiss
 {
+    using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxSwissBindingParser
         : MvxBindingParser
     {
@@ -136,7 +130,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
             description.Converter = block;
             MoveNext();
             if (IsComplete)
-                throw new MvxException("Unterminated () pair for converter {0}", block);
+                throw new CrossException("Unterminated () pair for converter {0}", block);
 
             ParseChildBindingDescriptionInto(description);
             SkipWhitespace();
@@ -152,7 +146,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
                     break;
 
                 default:
-                    throw new MvxException("Unexpected character {0} while parsing () contents", CurrentChar);
+                    throw new CrossException("Unexpected character {0} while parsing () contents", CurrentChar);
             }
         }
 
@@ -162,7 +156,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
             description.ConverterParameter = ReadValue();
             SkipWhitespace();
             if (CurrentChar != ')')
-                throw new MvxException("Unterminated () pair for converter {0}");
+                throw new CrossException("Unterminated () pair for converter {0}");
             MoveNext();
         }
 
@@ -183,7 +177,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
                 description.Literal != null &&
                 description.Function != null)
             {
-                throw new MvxException(
+                throw new CrossException(
                     "Make sure you are using ';' to separate multiple bindings. You cannot specify Path/Literal/Combiner more than once - position {0} in {1}",
                     CurrentIndex, FullText);
             }
@@ -229,7 +223,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
                         if (DetectOperator())
                             ParseOperatorWithLeftHand(description);
                         else
-                            throw new MvxException(
+                            throw new CrossException(
                                 "Unexpected character {0} at position {1} in {2} - expected string-end, ',' or ';'",
                                 CurrentChar,
                                 CurrentIndex,
@@ -242,7 +236,7 @@ namespace MvvmCross.Binding.Parse.Binding.Swiss
         protected virtual MvxSerializableBindingDescription ParseOperatorWithLeftHand(
             MvxSerializableBindingDescription description)
         {
-            throw new MvxException("Operators not expected in base SwissBinding");
+            throw new CrossException("Operators not expected in base SwissBinding");
         }
 
         protected virtual bool DetectOperator() => false;

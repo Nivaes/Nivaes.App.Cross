@@ -7,20 +7,15 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Exceptions;
     using MvvmCross.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.Presenters;
-    using MvvmCross.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Windows.UI.Core;
     using Control = Microsoft.UI.Xaml.Controls.Control;
 
     public class MvxWindowsViewPresenter
-        : MvxAttributeViewPresenter, IMvxWindowsViewPresenter
+        : CrossAttributeViewPresenter, IMvxWindowsViewPresenter
     {
         protected readonly IMvxWindowsFrame _rootFrame;
         private readonly ILogger<MvxWindowsViewPresenter> _logger;
@@ -59,7 +54,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialog, CloseDialog);
         }
 
-        public override MvxBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        public override CrossBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             _logger?.LogTrace("PresentationAttribute not found for {viewTypeName}. Assuming new page presentation", viewType.Name);
             return new MvxPagePresentationAttribute() { ViewType = viewType, ViewModelType = viewModelType };
@@ -77,7 +72,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 return;
             }
 
-            var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            var navigationService = Mvx.IoCProvider.Resolve<ICrossNavigationService>();
 
             backRequestedEventArgs.Handled = await navigationService.Close(currentView.ViewModel);
         }
@@ -86,9 +81,9 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         {
             var requestTranslator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
             string requestText = string.Empty;
-            if (request is MvxViewModelInstanceRequest)
+            if (request is CrossViewModelInstanceRequest)
             {
-                requestText = requestTranslator.GetRequestTextWithKeyFor(((MvxViewModelInstanceRequest)request).ViewModelInstance);
+                requestText = requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance);
             }
             else
             {
@@ -176,7 +171,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
                 var containerView = _rootFrame.UnderlyingControl?.FindControl<Frame>(viewType.GetRegionName());
 
                 if (containerView == null)
-                    throw new MvxException($"Region '{viewType.GetRegionName()}' not found in view '{viewType}'");
+                    throw new CrossException($"Region '{viewType.GetRegionName()}' not found in view '{viewType}'");
 
                 if (containerView.CanGoBack)
                 {
@@ -188,7 +183,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return ClosePage(viewModel, attribute);
         }
 
-        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             var currentView = _rootFrame.Content as ICrossView;
             if (currentView == null)
@@ -216,7 +211,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             return Task.FromResult(true);
         }
 
-        protected virtual Task<bool> ShowPage(Type viewType, MvxBasePresentationAttribute attribute, CrossViewModelRequest request)
+        protected virtual Task<bool> ShowPage(Type viewType, CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
@@ -261,14 +256,14 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
         }
 
-        public virtual Control CreateControl(Type viewType, CrossViewModelRequest request, MvxBasePresentationAttribute attribute)
+        public virtual Control CreateControl(Type viewType, CrossViewModelRequest request, CrossBasePresentationAttribute attribute)
         {
             try
             {
                 var control = Activator.CreateInstance(viewType) as Control;
                 if (control is ICrossView mvxControl)
                 {
-                    if (request is MvxViewModelInstanceRequest instanceRequest)
+                    if (request is CrossViewModelInstanceRequest instanceRequest)
                         mvxControl.ViewModel = instanceRequest.ViewModelInstance;
                     else
                         mvxControl.ViewModel = ViewModelLoader.LoadViewModel(request, null);
@@ -278,11 +273,11 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
             catch (Exception ex)
             {
-                throw new MvxException(ex, $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
+                throw new CrossException(ex, $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
             }
         }
 
-        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, MvxBasePresentationAttribute attribute)
+        protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             if (!(_rootFrame.UnderlyingControl is Frame frame))
                 return Task.FromResult(false);

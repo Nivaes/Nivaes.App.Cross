@@ -3,10 +3,7 @@ namespace MvvmCross.Platforms.WinUi.Views
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
-    using MvvmCross.Core;
-    using MvvmCross.Exceptions;
     using MvvmCross.Platforms.WinUi.Core;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Application = Microsoft.UI.Xaml.Application;
     using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
@@ -50,7 +47,7 @@ namespace MvvmCross.Platforms.WinUi.Views
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
+        protected virtual object? GetAppStartHint(object? hint = null)
         {
             return hint;
         }
@@ -89,7 +86,7 @@ namespace MvvmCross.Platforms.WinUi.Views
 
         protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            throw new MvxException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+            throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
         }
 
         protected virtual void RegisterSetup()

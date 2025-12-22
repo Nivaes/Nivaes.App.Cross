@@ -5,11 +5,9 @@ namespace MvvmCross.Platforms.Android.Views
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Core;
     using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.Views;
     using MvvmCross.Platforms.Android.Views.Base;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
@@ -77,7 +75,7 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected override void AttachBaseContext(Context? @base)
         {
-            if (this is IMvxSetupMonitor)
+            if (this is ICrossSetupMonitor)
             {
                 // Do not attach our inflater to splash screens.
                 base.AttachBaseContext(@base);

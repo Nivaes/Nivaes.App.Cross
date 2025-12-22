@@ -1,13 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class SplitDetailNavViewModel : MvxNavigationViewModel
+    public class SplitDetailNavViewModel 
+        : CrossNavigationViewModel
     {
-        public SplitDetailNavViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService)
+        public SplitDetailNavViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
             : base(logProvider, navigationService)
         {
             MainMenuCommand = new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());

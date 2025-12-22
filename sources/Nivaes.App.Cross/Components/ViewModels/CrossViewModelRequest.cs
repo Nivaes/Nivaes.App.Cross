@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Text;
-    using MvvmCross.Core;
 
     public class CrossViewModelRequest
     {

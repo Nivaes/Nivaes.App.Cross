@@ -1,14 +1,13 @@
 namespace Playground.Core.ViewModels.Navigation
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using Nivaes.App.Cross;
 
     public class FragmentCloseViewModel : BaseViewModel
     {
         private static int _counter = 0;
 
-        public FragmentCloseViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
+        public FragmentCloseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
             ForwardCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());

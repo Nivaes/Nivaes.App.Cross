@@ -1,6 +1,5 @@
 namespace Playground.Core.ViewModels
 {
-    using MvvmCross.Navigation;
     using Nivaes.App.Cross;
 
     public class NativeViewModel 
@@ -8,7 +7,7 @@ namespace Playground.Core.ViewModels
     {
         private static int _counter = 0;
 
-        public NativeViewModel(IMvxNavigationService navigationService)
+        public NativeViewModel(ICrossNavigationService navigationService)
         {
             ForwardCommand = new CrossAsyncCommand(() => navigationService.Navigate<NativeViewModel>());
             CloseCommand = new CrossAsyncCommand(() => navigationService.Close(this));

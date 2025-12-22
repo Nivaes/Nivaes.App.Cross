@@ -1,14 +1,13 @@
 namespace Playground.Core.ViewModels.Bindings
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using Nivaes.App.Cross;
 
     public class FluentBindingViewModel : BaseViewModel
     {
         bool _bindingsEnabled = true;
 
-        public FluentBindingViewModel(ILoggerFactory loggerFactory, IMvxNavigationService navigationService)
+        public FluentBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
             : base(loggerFactory, navigationService)
         {
             ClearBindingsCommand = new CrossCommand(ClearBindings);

@@ -1,15 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Binding.Parse.Binding.Swiss;
-using MvvmCross.Exceptions;
-
 namespace MvvmCross.Binding.Parse.Binding.Tibet
 {
+    using MvvmCross.Binding.Parse.Binding.Swiss;
+    using Nivaes.App.Cross;
+
     public class MvxTibetBindingParser
         : MvxSwissBindingParser
     {
@@ -68,7 +61,7 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
             description.Function = block;
             MoveNext();
             if (IsComplete)
-                throw new MvxException("Unterminated () pair for combiner {0}", block);
+                throw new CrossException("Unterminated () pair for combiner {0}", block);
 
             var terminationFound = false;
             var sources = new List<MvxSerializableBindingDescription>();
@@ -78,7 +71,7 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
                 sources.Add(ParseBindingDescription(ParentIsLookingForComma.ParentIsLookingForComma));
                 SkipWhitespace();
                 if (IsComplete)
-                    throw new MvxException("Unterminated () while parsing combiner {0}", block);
+                    throw new CrossException("Unterminated () while parsing combiner {0}", block);
 
                 switch (CurrentChar)
                 {
@@ -92,7 +85,7 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
                         break;
 
                     default:
-                        throw new MvxException("Unexpected character {0} while parsing () combiner contents for {1}", CurrentChar, block);
+                        throw new CrossException("Unexpected character {0} while parsing () combiner contents for {1}", CurrentChar, block);
                 }
             }
 
@@ -125,7 +118,7 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
             }
 
             if (combinerName == null)
-                throw new MvxException("Unexpected operator starting with {0}", CurrentChar);
+                throw new CrossException("Unexpected operator starting with {0}", CurrentChar);
 
             MoveNext(moveForwards);
 
@@ -172,7 +165,7 @@ namespace MvvmCross.Binding.Parse.Binding.Tibet
 
                 SkipWhitespace();
                 if (IsComplete || CurrentChar != ')')
-                    throw new MvxException("Unterminated () pair");
+                    throw new CrossException("Unterminated () pair");
                 MoveNext();
                 SkipWhitespace();
             }

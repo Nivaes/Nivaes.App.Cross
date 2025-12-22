@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
 
         Task Initialize();
 
-        MvxNotifyTask? InitializeTask { get; set; }
+        CrossNotifyTask? InitializeTask { get; set; }
     }
 
     public interface ICrossViewModel<in TParameter>

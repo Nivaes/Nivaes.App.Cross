@@ -1,13 +1,13 @@
 namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public class ModalNavViewModel : MvxNavigationViewModel
+    public class ModalNavViewModel
+        : CrossNavigationViewModel
     {
-        public ModalNavViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
+        public ModalNavViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
         {
             CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
