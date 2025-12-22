@@ -1,13 +1,11 @@
-namespace MvvmCross.ViewModels.Result
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
-    public abstract class MvxResultAwaitingViewModel<TResult>
-        : CrossViewModel, IMvxResultAwaitingViewModel<TResult>
+    public abstract class CrossResultAwaitingViewModel<TResult>
+        : CrossViewModel, ICrossResultAwaitingViewModel<TResult>
     {
-        protected IMvxResultViewModelManager ResultViewModelManager { get; }
+        protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected CrossResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -49,13 +47,13 @@ namespace MvvmCross.ViewModels.Result
             this.UnregisterToResult<TResult>(ResultViewModelManager);
         }
 
-        public abstract bool ResultSet(IMvxResultSettingViewModel<TResult> viewModel, TResult result);
+        public abstract bool ResultSet(ICrossResultSettingViewModel<TResult> viewModel, TResult result);
     }
 
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult>
-        : MvxResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
+        : CrossResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }
@@ -66,7 +64,7 @@ namespace MvvmCross.ViewModels.Result
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2>
         : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }
@@ -77,7 +75,7 @@ namespace MvvmCross.ViewModels.Result
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2, TResult3>
         : MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }
@@ -86,9 +84,9 @@ namespace MvvmCross.ViewModels.Result
     }
 
     public abstract class MvxMultiResultAwaitingViewModel<TResult1, TResult2>
-        : MvxResultAwaitingViewModel<TResult1>, IMvxResultAwaitingViewModel<TResult2>
+        : CrossResultAwaitingViewModel<TResult1>, ICrossResultAwaitingViewModel<TResult2>
     {
-        protected MvxMultiResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }
@@ -111,13 +109,13 @@ namespace MvvmCross.ViewModels.Result
             this.UnregisterToResult<TResult2>(ResultViewModelManager);
         }
 
-        public abstract bool ResultSet(IMvxResultSettingViewModel<TResult2> viewModel, TResult2 result);
+        public abstract bool ResultSet(ICrossResultSettingViewModel<TResult2> viewModel, TResult2 result);
     }
 
     public abstract class MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>
-        : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, IMvxResultAwaitingViewModel<TResult3>
+        : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, ICrossResultAwaitingViewModel<TResult3>
     {
-        protected MvxMultiResultAwaitingViewModel(IMvxResultViewModelManager resultViewModelManager)
+        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }
@@ -140,6 +138,6 @@ namespace MvvmCross.ViewModels.Result
             this.UnregisterToResult<TResult3>(ResultViewModelManager);
         }
 
-        public abstract bool ResultSet(IMvxResultSettingViewModel<TResult3> viewModel, TResult3 result);
+        public abstract bool ResultSet(ICrossResultSettingViewModel<TResult3> viewModel, TResult3 result);
     }
 }

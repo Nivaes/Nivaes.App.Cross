@@ -9,7 +9,7 @@ namespace Playground.Core.ViewModels.Navigation
     public sealed class ChildWithResultViewModel(
             ILoggerFactory logFactory,
             ICrossNavigationService navigationService,
-            IMvxResultViewModelManager resultViewModelManager)
+            ICrossResultViewModelManager resultViewModelManager)
         : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
             logFactory,
             navigationService,

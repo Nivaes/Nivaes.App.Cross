@@ -45,16 +45,16 @@ namespace Nivaes.App.Cross
         /// <param name="resultViewModelManager">Result ViewModel Manager</param>
         /// <param name="presentationBundle">(optional) presentation bundle</param>
         /// <param name="cancellationToken">(optional) CancellationToken to cancel the navigation</param>
-        /// <typeparam name="TViewModel">Type of <see cref="IMvxResultSettingViewModel{TResult}"/></typeparam>
+        /// <typeparam name="TViewModel">Type of <see cref="ICrossResultSettingViewModel{TResult}"/></typeparam>
         /// <typeparam name="TResult">Result awaited by Result Awaiting ViewModel and set by Result Setting ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         public static async Task<bool> NavigateRegisteringToResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TResult>(
             this ICrossNavigationService navigationService,
-            IMvxResultAwaitingViewModel<TResult> fromViewModel,
-            IMvxResultViewModelManager resultViewModelManager,
+            ICrossResultAwaitingViewModel<TResult> fromViewModel,
+            ICrossResultViewModelManager resultViewModelManager,
             ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
-            where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel
+            where TViewModel : ICrossResultSettingViewModel<TResult>, ICrossViewModel
         {
             bool navigated = await navigationService.Navigate<TViewModel>(presentationBundle, cancellationToken);
             if (navigated)
@@ -71,17 +71,17 @@ namespace Nivaes.App.Cross
         /// <param name="parameter">ViewModel parameter</param>
         /// <param name="presentationBundle">(optional) presentation bundle</param>
         /// <param name="cancellationToken">(optional) CancellationToken to cancel the navigation</param>
-        /// <typeparam name="TViewModel">Type of <see cref="IMvxResultSettingViewModel{TResult}"/> and <see cref="ICrossViewModel{TParameter}"/></typeparam>
+        /// <typeparam name="TViewModel">Type of <see cref="ICrossResultSettingViewModel{TResult}"/> and <see cref="ICrossViewModel{TParameter}"/></typeparam>
         /// <typeparam name="TResult">Result awaited by Result Awaiting ViewModel and set by Result Setting ViewModel</typeparam>
         /// <returns>Boolean indicating successful navigation</returns>
         public static async Task<bool> NavigateRegisteringToResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter, TResult>(
             this ICrossNavigationService navigationService,
-            IMvxResultAwaitingViewModel<TResult> fromViewModel,
-            IMvxResultViewModelManager resultViewModelManager,
+            ICrossResultAwaitingViewModel<TResult> fromViewModel,
+            ICrossResultViewModelManager resultViewModelManager,
             TParameter parameter,
             ICrossBundle? presentationBundle = null,
             CancellationToken cancellationToken = default)
-            where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
+            where TViewModel : ICrossResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
         {
             bool navigated = await navigationService.Navigate<TViewModel, TParameter>(parameter, presentationBundle, cancellationToken);
             if (navigated)
@@ -96,7 +96,7 @@ namespace Nivaes.App.Cross
         /// <param name="viewModel">Result Setting ViewModel to close</param>
         /// <param name="result">Result set by Result Setting ViewModel</param>
         /// <param name="cancellationToken">(optional) CancellationToken to cancel the closing</param>
-        /// <typeparam name="TViewModel">Type of <see cref="IMvxResultSettingViewModel{TResult}"/></typeparam>
+        /// <typeparam name="TViewModel">Type of <see cref="ICrossResultSettingViewModel{TResult}"/></typeparam>
         /// <typeparam name="TResult">Result set by Result Setting ViewModel</typeparam>
         /// <returns></returns>
         public static async Task<bool> CloseSettingResult<TViewModel, TResult>(
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross
             TViewModel viewModel,
             TResult result,
             CancellationToken cancellationToken = default)
-            where TViewModel : IMvxResultSettingViewModel<TResult>, ICrossViewModel
+            where TViewModel : ICrossResultSettingViewModel<TResult>, ICrossViewModel
         {
             bool closed = await navigationService.Close(viewModel, cancellationToken);
             if (closed)

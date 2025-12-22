@@ -31,7 +31,7 @@ namespace Playground.Core.ViewModels
                 ILoggerFactory logProvider,
                 ICrossNavigationService navigationService,
                 ICrossViewModelLoader mvxViewModelLoader,
-                IMvxResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager)
             : base(logProvider, navigationService, resultViewModelManager)
         {
             _mvxViewModelLoader = mvxViewModelLoader;
@@ -274,7 +274,7 @@ namespace Playground.Core.ViewModels
             await RaiseAllPropertiesChanged();
         }
 
-        public override bool ResultSet(IMvxResultSettingViewModel<SampleModel> viewModel, SampleModel result)
+        public override bool ResultSet(ICrossResultSettingViewModel<SampleModel> viewModel, SampleModel result)
         {
             Log.LogInformation("Got Result {@Result} from {ViewModel}", result, viewModel.GetType().Name);
             return true;

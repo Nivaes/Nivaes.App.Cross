@@ -343,7 +343,7 @@ namespace Nivaes.App.Cross
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
             iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
                 (loader, dispatcher, p) => new CrossNavigationService(loader, dispatcher, p));
-            iocProvider.LazyConstructAndRegisterSingleton<IMvxResultViewModelManager, MvxResultViewModelManager>();
+            iocProvider.LazyConstructAndRegisterSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
             iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
             iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
                 nameLookup => nameLookup);
@@ -585,18 +585,18 @@ namespace Nivaes.App.Cross
             return GetViewAssemblies().Distinct();
         }
 
-        protected virtual IMvxResultViewModelManager? InitializeResultViewModelManager(IMvxIoCProvider iocProvider)
+        protected virtual ICrossResultViewModelManager? InitializeResultViewModelManager(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
             return CreateResultViewModelManager(iocProvider);
         }
 
-        protected virtual IMvxResultViewModelManager? CreateResultViewModelManager(IMvxIoCProvider iocProvider)
+        protected virtual ICrossResultViewModelManager? CreateResultViewModelManager(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<IMvxResultViewModelManager>();
+            return iocProvider.Resolve<ICrossResultViewModelManager>();
         }
 
         protected abstract ICrossNameMapping CreateViewToViewModelNaming();

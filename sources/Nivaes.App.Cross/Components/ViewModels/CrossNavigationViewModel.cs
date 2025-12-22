@@ -33,14 +33,14 @@ namespace Nivaes.App.Cross
     }
 
     public abstract class MvxNavigationResultAwaitingViewModel<TResult>
-        : CrossNavigationViewModel, IMvxResultAwaitingViewModel<TResult>
+        : CrossNavigationViewModel, ICrossResultAwaitingViewModel<TResult>
     {
-        protected IMvxResultViewModelManager ResultViewModelManager { get; }
+        protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected MvxNavigationResultAwaitingViewModel(
                 ILoggerFactory logFactory,
                 ICrossNavigationService navigationService,
-                IMvxResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService)
         {
             ResultViewModelManager = resultViewModelManager;
@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public abstract bool ResultSet(IMvxResultSettingViewModel<TResult> viewModel, TResult result);
+        public abstract bool ResultSet(ICrossResultSettingViewModel<TResult> viewModel, TResult result);
     }
 
     public abstract class MvxNavigationResultAwaitingViewModel<TParameter, TResult>
@@ -77,7 +77,7 @@ namespace Nivaes.App.Cross
         protected MvxNavigationResultAwaitingViewModel(
                 ILoggerFactory logFactory,
                 ICrossNavigationService navigationService,
-                IMvxResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService, resultViewModelManager)
         {
         }
@@ -86,14 +86,14 @@ namespace Nivaes.App.Cross
     }
 
     public abstract class MvxNavigationResultSettingViewModel<TResult>
-        : CrossNavigationViewModel, IMvxResultSettingViewModel<TResult>
+        : CrossNavigationViewModel, ICrossResultSettingViewModel<TResult>
     {
-        protected IMvxResultViewModelManager ResultViewModelManager { get; }
+        protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected MvxNavigationResultSettingViewModel(
                 ILoggerFactory logFactory,
                 ICrossNavigationService navigationService,
-                IMvxResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService)
         {
             ResultViewModelManager = resultViewModelManager;
@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross
         protected MvxNavigationResultSettingViewModel(
                 ILoggerFactory logFactory,
                 ICrossNavigationService navigationService,
-                IMvxResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager)
             : base(logFactory, navigationService, resultViewModelManager)
         {
         }

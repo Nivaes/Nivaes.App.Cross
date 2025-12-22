@@ -1,17 +1,16 @@
-namespace MvvmCross.ViewModels.Result
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
 
-    public static class MvxResultViewModelExtensions
+    public static class CrossResultViewModelExtensions
     {
         public const string BundleRegisterKey = "__mvxResultVMRegisterKey";
 
         public static void ReloadAndRegisterToResult<TResult>(
-            this IMvxResultAwaitingViewModel<TResult> viewModel,
+            this ICrossResultAwaitingViewModel<TResult> viewModel,
             ICrossBundle savedStateBundle,
-            IMvxResultViewModelManager resultViewModelManager)
+            ICrossResultViewModelManager resultViewModelManager)
         {
-            if (savedStateBundle?.Data.TryGetValue(BundleRegisterKey, out string restoreRegisterStr) == true &&
+            if (savedStateBundle?.Data.TryGetValue(BundleRegisterKey, out string? restoreRegisterStr) == true &&
                 bool.TryParse(restoreRegisterStr, out bool restoreRegister) && restoreRegister)
             {
                 resultViewModelManager.RegisterToResult(viewModel);
@@ -19,9 +18,9 @@ namespace MvvmCross.ViewModels.Result
         }
 
         public static void SaveRegisterToResult<TResult>(
-            this IMvxResultAwaitingViewModel<TResult> viewModel,
+            this ICrossResultAwaitingViewModel<TResult> viewModel,
             ICrossBundle savedStateBundle,
-            IMvxResultViewModelManager resultViewModelManager)
+            ICrossResultViewModelManager resultViewModelManager)
         {
             if (resultViewModelManager.IsRegistered(viewModel) &&
                 savedStateBundle?.Data is { } data)
@@ -31,23 +30,23 @@ namespace MvvmCross.ViewModels.Result
         }
 
         public static void RegisterToResult<TResult>(
-            this IMvxResultAwaitingViewModel<TResult> viewModel,
-            IMvxResultViewModelManager resultViewModelManager)
+            this ICrossResultAwaitingViewModel<TResult> viewModel,
+            ICrossResultViewModelManager resultViewModelManager)
         {
             resultViewModelManager.RegisterToResult(viewModel);
         }
 
         public static void UnregisterToResult<TResult>(
-            this IMvxResultAwaitingViewModel<TResult> viewModel,
-            IMvxResultViewModelManager resultViewModelManager)
+            this ICrossResultAwaitingViewModel<TResult> viewModel,
+            ICrossResultViewModelManager resultViewModelManager)
         {
             resultViewModelManager.UnregisterToResult(viewModel);
         }
 
         public static void SetResult<TResult>(
-            this IMvxResultSettingViewModel<TResult> viewModel,
+            this ICrossResultSettingViewModel<TResult> viewModel,
             TResult result,
-            IMvxResultViewModelManager resultViewModelManager)
+            ICrossResultViewModelManager resultViewModelManager)
         {
             resultViewModelManager.SetResult(viewModel, result);
         }
