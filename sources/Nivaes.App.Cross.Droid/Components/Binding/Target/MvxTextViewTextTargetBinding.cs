@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
 
     public class MvxTextViewTextTargetBinding
     : MvxAndroidTargetBinding
-        , IMvxEditableTextView
+        , ICrossEditableTextView
     {
         private readonly bool _isEditTextBinding;
         private CrossAndroidTargetEventSubscription<TextView, AfterTextChangedEventArgs>? _subscription;

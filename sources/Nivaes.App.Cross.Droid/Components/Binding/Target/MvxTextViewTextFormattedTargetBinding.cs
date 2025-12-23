@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.Binding.Extensions;
 
     public class MvxTextViewTextFormattedTargetBinding(TextView target)
-    : MvxAndroidTargetBinding(target), IMvxEditableTextView
+    : MvxAndroidTargetBinding(target), ICrossEditableTextView
     {
         private readonly bool _isEditTextBinding = target is EditText;
         private CrossAndroidTargetEventSubscription<TextView, AfterTextChangedEventArgs>? _subscription;

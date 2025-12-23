@@ -11,18 +11,18 @@ namespace MvvmCross.Binding.Parse.PropertyPath
     /// <summary>
     /// Stateless parser with global caching of tokens
     /// </summary>
-    public class MvxSourcePropertyPathParser : IMvxSourcePropertyPathParser
+    public class CrossSourcePropertyPathParser : ICrossSourcePropertyPathParser
     {
-        private static readonly ConcurrentDictionary<string, IList<IMvxPropertyToken>> ParseCache =
-            new ConcurrentDictionary<string, IList<IMvxPropertyToken>>();
+        private static readonly ConcurrentDictionary<string, IList<ICrossPropertyToken>> ParseCache =
+            new ConcurrentDictionary<string, IList<ICrossPropertyToken>>();
 
-        public IList<IMvxPropertyToken> Parse(string textToParse)
+        public IList<ICrossPropertyToken> Parse(string textToParse)
         {
-            textToParse = MvxPropertyPathParser.MakeSafe(textToParse);
+            textToParse = CrossPropertyPathParser.MakeSafe(textToParse);
             if (ParseCache.TryGetValue(textToParse, out var cachedItem))
                 return cachedItem;
 
-            var parser = new MvxPropertyPathParser();
+            var parser = new CrossPropertyPathParser();
             var currentTokens = parser.Parse(textToParse);
 
             ParseCache.TryAdd(textToParse, currentTokens);

@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         public CrossIndexerLeafPropertyInfoSourceBinding(
             object source,
             PropertyInfo itemPropertyInfo,
-            MvxIndexerPropertyToken indexToken)
+            CrossIndexerPropertyToken indexToken)
                 : base(source, itemPropertyInfo)
         {
             _key = indexToken.Key;

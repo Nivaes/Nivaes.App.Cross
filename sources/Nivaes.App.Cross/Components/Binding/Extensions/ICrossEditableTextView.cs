@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    public interface IMvxEditableTextView
+    public interface ICrossEditableTextView
     {
         string CurrentText { get; }
     }

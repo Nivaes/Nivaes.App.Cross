@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
         public CrossSimpleChainedSourceBinding(
             object source,
             PropertyInfo propertyInfo,
-            IList<IMvxPropertyToken> childTokens)
+            IList<ICrossPropertyToken> childTokens)
             : base(source, propertyInfo, childTokens)
         {
             UpdateChildBinding();

@@ -16,8 +16,8 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method creates source bindings which use reflection and may not be preserved by trimming")]
         public bool TryCreateBinding(
             object? source,
-            IMvxPropertyToken propertyToken,
-            List<IMvxPropertyToken> remainingTokens,
+            ICrossPropertyToken propertyToken,
+            List<ICrossPropertyToken> remainingTokens,
             out ICrossSourceBinding? result)
         {
             if (source == null)
@@ -36,12 +36,12 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method creates chained source bindings which use reflection and may not be preserved by trimming")]
         protected virtual CrossChainedSourceBinding? CreateChainedBinding(
             object source,
-            IMvxPropertyToken propertyToken,
-            List<IMvxPropertyToken> remainingTokens)
+            ICrossPropertyToken propertyToken,
+            List<ICrossPropertyToken> remainingTokens)
         {
             switch (propertyToken)
             {
-                case MvxIndexerPropertyToken indexPropertyToken:
+                case CrossIndexerPropertyToken indexPropertyToken:
                     {
                         var itemPropertyInfo = FindPropertyInfo(source);
                         if (itemPropertyInfo == null)
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross
                         return new CrossIndexerChainedSourceBinding(source, itemPropertyInfo, indexPropertyToken,
                             remainingTokens);
                     }
-                case MvxPropertyNamePropertyToken propertyNameToken:
+                case CrossPropertyNamePropertyToken propertyNameToken:
                     {
                         var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
 
@@ -67,9 +67,9 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        protected virtual ICrossSourceBinding? CreateLeafBinding(object source, IMvxPropertyToken propertyToken)
+        protected virtual ICrossSourceBinding? CreateLeafBinding(object source, ICrossPropertyToken propertyToken)
         {
-            if (propertyToken is MvxIndexerPropertyToken indexPropertyToken)
+            if (propertyToken is CrossIndexerPropertyToken indexPropertyToken)
             {
                 var itemPropertyInfo = FindPropertyInfo(source);
                 if (itemPropertyInfo == null)
@@ -77,7 +77,7 @@ namespace Nivaes.App.Cross
                 return new CrossIndexerLeafPropertyInfoSourceBinding(source, itemPropertyInfo, indexPropertyToken);
             }
 
-            if (propertyToken is MvxPropertyNamePropertyToken propertyNameToken)
+            if (propertyToken is CrossPropertyNamePropertyToken propertyNameToken)
             {
                 var propertyInfo = FindPropertyInfo(source, propertyNameToken.PropertyName);
                 if (propertyInfo == null)
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross
                 return new CrossSimpleLeafPropertyInfoSourceBinding(source, propertyInfo);
             }
 
-            if (propertyToken is MvxEmptyPropertyToken)
+            if (propertyToken is CrossEmptyPropertyToken)
             {
                 return new CrossDirectToSourceBinding(source);
             }

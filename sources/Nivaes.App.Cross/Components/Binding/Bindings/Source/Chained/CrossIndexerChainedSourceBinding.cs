@@ -9,10 +9,10 @@ namespace Nivaes.App.Cross
     public class CrossIndexerChainedSourceBinding
         : CrossChainedSourceBinding
     {
-        private readonly MvxIndexerPropertyToken _indexerPropertyToken;
+        private readonly CrossIndexerPropertyToken _indexerPropertyToken;
 
-        public CrossIndexerChainedSourceBinding(object source, PropertyInfo itemPropertyInfo, MvxIndexerPropertyToken indexerPropertyToken,
-                                                  IList<IMvxPropertyToken> childTokens)
+        public CrossIndexerChainedSourceBinding(object source, PropertyInfo itemPropertyInfo, CrossIndexerPropertyToken indexerPropertyToken,
+                                                  IList<ICrossPropertyToken> childTokens)
             : base(source, itemPropertyInfo, childTokens)
         {
             _indexerPropertyToken = indexerPropertyToken;

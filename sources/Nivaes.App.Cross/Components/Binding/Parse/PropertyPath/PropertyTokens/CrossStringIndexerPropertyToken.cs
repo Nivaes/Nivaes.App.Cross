@@ -5,4 +5,4 @@
 
 namespace MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
-public record MvxIntegerIndexerPropertyToken(int Key) : MvxIndexerPropertyToken<int>(Key);
+public record CrossStringIndexerPropertyToken(string Key) : MvxIndexerPropertyToken<string>(Key);

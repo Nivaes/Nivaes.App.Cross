@@ -11,16 +11,16 @@ namespace Nivaes.App.Cross
         : ICrossSourceBindingFactory
         , ICrossSourceBindingFactoryExtensionHost
     {
-        private IMvxSourcePropertyPathParser _propertyPathParser;
+        private ICrossSourcePropertyPathParser _propertyPathParser;
 
-        protected IMvxSourcePropertyPathParser SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<IMvxSourcePropertyPathParser>();
+        protected ICrossSourcePropertyPathParser SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<ICrossSourcePropertyPathParser>();
 
         private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
         protected bool TryCreateBindingFromExtensions(
-            object source, IMvxPropertyToken propertyToken,
-            List<IMvxPropertyToken> remainingTokens, out ICrossSourceBinding result)
+            object source, ICrossPropertyToken propertyToken,
+            List<ICrossPropertyToken> remainingTokens, out ICrossSourceBinding result)
         {
             foreach (var extension in _extensions)
             {
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
-        public ICrossSourceBinding CreateBinding(object source, IList<IMvxPropertyToken> tokens)
+        public ICrossSourceBinding CreateBinding(object source, IList<ICrossPropertyToken> tokens)
         {
             if (tokens == null || tokens.Count == 0)
             {

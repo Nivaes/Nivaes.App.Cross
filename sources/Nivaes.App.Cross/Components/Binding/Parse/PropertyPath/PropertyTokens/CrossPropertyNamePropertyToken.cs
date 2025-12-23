@@ -3,11 +3,9 @@
 // See the LICENSE file in the project root for more information.
 #nullable enable
 
-using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
+namespace MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
-namespace MvvmCross.Binding.Parse.PropertyPath;
-
-public interface IMvxSourcePropertyPathParser
+public record CrossPropertyNamePropertyToken(string PropertyName) : ICrossPropertyToken
 {
-    IList<IMvxPropertyToken> Parse(string textToParse);
+    public override string ToString() => "Property:" + PropertyName;
 }

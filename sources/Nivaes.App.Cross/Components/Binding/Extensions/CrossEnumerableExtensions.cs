@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace MvvmCross.Binding.Extensions
 {
-    public static class MvxEnumerableExtensions
+    public static class CrossEnumerableExtensions
     {
         public static int Count(this IEnumerable enumerable)
         {

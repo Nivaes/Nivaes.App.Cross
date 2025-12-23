@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     using Nivaes.App.Cross;
 
     public class MvxUITextFieldTextTargetBinding(UITextField target)
-    : CrossConvertingTargetBinding(target), IMvxEditableTextView
+    : CrossConvertingTargetBinding(target), ICrossEditableTextView
     {
         private CrossWeakEventSubscription<UITextField>? _subscriptionChanged;
         private CrossWeakEventSubscription<UITextField>? _subscriptionEndEditing;

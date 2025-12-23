@@ -201,12 +201,12 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterSourcePropertyPathParser(IMvxIoCProvider iocProvider)
         {
             var tokeniser = CreateSourcePropertyPathParser();
-            iocProvider.RegisterSingleton<IMvxSourcePropertyPathParser>(tokeniser);
+            iocProvider.RegisterSingleton<ICrossSourcePropertyPathParser>(tokeniser);
         }
 
-        protected virtual IMvxSourcePropertyPathParser CreateSourcePropertyPathParser()
+        protected virtual ICrossSourcePropertyPathParser CreateSourcePropertyPathParser()
         {
-            return new MvxSourcePropertyPathParser();
+            return new CrossSourcePropertyPathParser();
         }
 
         protected virtual void RegisterBindingNameRegistry(IMvxIoCProvider iocProvider)

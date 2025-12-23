@@ -10,13 +10,13 @@ namespace Nivaes.App.Cross
     public abstract class CrossChainedSourceBinding
         : CrossPropertyInfoSourceBinding
     {
-        private readonly IList<IMvxPropertyToken> _childTokens;
+        private readonly IList<ICrossPropertyToken> _childTokens;
         private ICrossSourceBinding _currentChildBinding;
 
         protected CrossChainedSourceBinding(
             object source,
             PropertyInfo propertyInfo,
-            IList<IMvxPropertyToken> childTokens)
+            IList<ICrossPropertyToken> childTokens)
             : base(source, propertyInfo)
         {
             _childTokens = childTokens;

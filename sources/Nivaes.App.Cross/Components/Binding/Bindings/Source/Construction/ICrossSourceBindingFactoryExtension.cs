@@ -8,8 +8,8 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
         bool TryCreateBinding(
             object source,
-            IMvxPropertyToken propertyToken,
-            List<IMvxPropertyToken> remainingTokens,
+            ICrossPropertyToken propertyToken,
+            List<ICrossPropertyToken> remainingTokens,
             out ICrossSourceBinding result);
     }
 }

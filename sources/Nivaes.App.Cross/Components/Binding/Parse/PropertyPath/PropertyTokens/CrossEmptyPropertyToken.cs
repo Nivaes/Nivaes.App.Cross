@@ -5,7 +5,10 @@
 
 namespace MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
-public record MvxPropertyNamePropertyToken(string PropertyName) : IMvxPropertyToken
+public record CrossEmptyPropertyToken : ICrossPropertyToken
 {
-    public override string ToString() => "Property:" + PropertyName;
+    public override string ToString()
+    {
+        return "Property:WholeObject";
+    }
 }

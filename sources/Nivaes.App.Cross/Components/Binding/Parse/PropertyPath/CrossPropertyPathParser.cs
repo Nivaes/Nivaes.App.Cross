@@ -7,9 +7,9 @@ namespace MvvmCross.Binding.Parse.PropertyPath
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
-    public class MvxPropertyPathParser : CrossParser
+    public class CrossPropertyPathParser : CrossParser
     {
-        protected List<IMvxPropertyToken> CurrentTokens { get; } = [];
+        protected List<ICrossPropertyToken> CurrentTokens { get; } = [];
 
         protected override void Reset(string textToParse)
         {
@@ -27,7 +27,7 @@ namespace MvvmCross.Binding.Parse.PropertyPath
             return textToParse;
         }
 
-        public IList<IMvxPropertyToken> Parse(string textToParse)
+        public IList<ICrossPropertyToken> Parse(string textToParse)
         {
             Reset(textToParse);
 
@@ -38,7 +38,7 @@ namespace MvvmCross.Binding.Parse.PropertyPath
 
             if (CurrentTokens.Count == 0)
             {
-                CurrentTokens.Add(new MvxEmptyPropertyToken());
+                CurrentTokens.Add(new CrossEmptyPropertyToken());
             }
 
             return CurrentTokens;
@@ -83,7 +83,7 @@ namespace MvvmCross.Binding.Parse.PropertyPath
             }
 
             var text = propertyText.ToString();
-            CurrentTokens.Add(new MvxPropertyNamePropertyToken(text));
+            CurrentTokens.Add(new CrossPropertyNamePropertyToken(text));
         }
 
         private void ParseIndexer()
@@ -140,19 +140,19 @@ namespace MvvmCross.Binding.Parse.PropertyPath
         private void ParseIntegerIndexer()
         {
             var index = (int)ReadUnsignedInteger();
-            CurrentTokens.Add(new MvxIntegerIndexerPropertyToken(index));
+            CurrentTokens.Add(new CrossIntegerIndexerPropertyToken(index));
         }
 
         private void ParseQuotedStringIndexer()
         {
             var text = ReadQuotedString();
-            CurrentTokens.Add(new MvxStringIndexerPropertyToken(text));
+            CurrentTokens.Add(new CrossStringIndexerPropertyToken(text));
         }
 
         private void ParseUnquotedStringIndexer()
         {
             var text = ReadTextUntil(']');
-            CurrentTokens.Add(new MvxStringIndexerPropertyToken(text));
+            CurrentTokens.Add(new CrossStringIndexerPropertyToken(text));
         }
 
         private void SkipWhitespaceAndPeriods()

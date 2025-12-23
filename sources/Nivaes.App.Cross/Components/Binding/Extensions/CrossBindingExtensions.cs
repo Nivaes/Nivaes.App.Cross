@@ -6,9 +6,9 @@ namespace Nivaes.App.Cross
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 
-    public static class MvxBindingExtensions
+    public static class CrossBindingExtensions
     {
-        extension(IMvxEditableTextView mvxEditableTextView)
+        extension(ICrossEditableTextView mvxEditableTextView)
         {
             [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
             public bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(object target, object? value)
