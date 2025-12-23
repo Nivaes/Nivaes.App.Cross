@@ -1,17 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Converters;
-using MvvmCross.Logging;
-
-namespace MvvmCross.Binding.Combiners
+namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+
     public abstract class MvxPairwiseValueCombiner
         : MvxValueCombiner
     {
@@ -25,7 +19,7 @@ namespace MvvmCross.Binding.Combiners
             return steps.First().SourceType;
         }
 
-        private static Type GetLookupTypeFor(object value)
+        private static Type? GetLookupTypeFor(object value)
         {
             if (value == null)
                 return null;

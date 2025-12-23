@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Threading;
-    using MvvmCross.Platforms.Android.Core;
-    using Nivaes.App.Cross;
 
     // For lifetime explained, see http://developer.android.com/guide/topics/fundamentals/activities.html
     public class MvxAndroidLifetimeMonitor

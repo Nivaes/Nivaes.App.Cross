@@ -1,13 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using MvvmCross.Platforms.Mac.Views.Base;
-using Nivaes.App.Cross;
-
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
+    using System;
+
     public class MvxViewControllerAdapter : MvxBaseViewControllerAdapter
     {
         protected IMvxMacView MacView

@@ -1,12 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross;
-using MvvmCross.Platforms.Ios.Presenters;
-using MvvmCross.Platforms.Ios.Views;
-using ObjCRuntime;
-using Playground.Core.ViewModels;
-
 namespace Playground.iOS.Views
 {
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross;
+    using MvvmCross.Platforms.Ios.Presenters;
+    using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.UIKit;
+    using ObjCRuntime;
+    using Playground.Core.ViewModels;
+
     [MvxFromStoryboard("Main")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public partial class SecondChildView : MvxViewController<SecondChildViewModel>

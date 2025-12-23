@@ -8,9 +8,11 @@ using AndroidX.Core.View;
 using AndroidX.DrawerLayout.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views;
+using Nivaes.App.Cross.Droid;
 using Nivaes.App.Cross.Sample.Droid;
 using Playground.Core.ViewModels;
 using Playground.Droid.Extensions;
+using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
 namespace Playground.Droid.Activities
 {

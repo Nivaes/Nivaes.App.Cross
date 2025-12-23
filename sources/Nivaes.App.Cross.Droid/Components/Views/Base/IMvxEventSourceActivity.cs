@@ -1,11 +1,12 @@
-using Android.Content;
-
-namespace MvvmCross.Platforms.Android.Views.Base
+namespace Nivaes.App.Cross.Droid
 {
     using System;
+    using Android.Content;
+    using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross;
 
-    public interface IMvxEventSourceActivity : ICrossDisposeSource
+    public interface IMvxEventSourceActivity 
+        : ICrossDisposeSource
     {
         event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
 

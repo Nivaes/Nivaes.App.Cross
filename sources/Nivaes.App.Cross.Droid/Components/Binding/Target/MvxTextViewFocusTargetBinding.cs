@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (TextField == null) return;
 
-            _subscription = TextField.WeakSubscribe<View, View.FocusChangeEventArgs>(
+            _subscription = TextField.DroidWeakSubscribe<View, View.FocusChangeEventArgs>(
                 nameof(TextField.FocusChange),
                 HandleLostFocus);
         }

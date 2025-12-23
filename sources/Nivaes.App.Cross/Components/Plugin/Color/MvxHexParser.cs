@@ -1,7 +1,7 @@
-using System.Globalization;
-
-namespace MvvmCross.Plugin.Color
+namespace Nivaes.App.Cross.Color
 {
+    using System.Globalization;
+
     public static class MvxHexParser
     {
         public static System.Drawing.Color ColorFromHexString(string value) => ColorFromHexString(value, assumeArgb: false);

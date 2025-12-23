@@ -1,6 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Binding.Extensions;
     using UIKit;
 
     public class MvxUIViewVisibleTargetBinding(UIView target)

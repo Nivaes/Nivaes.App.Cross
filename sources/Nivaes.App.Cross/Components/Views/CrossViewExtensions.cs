@@ -4,33 +4,41 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using MvvmCross.Logging;
-    using MvvmCross.ViewModels;
 
     public static class CrossViewExtensions
     {
-        public static void OnViewCreate(this ICrossView view, Func<ICrossViewModel?> viewModelLoader)
+        extension(ICrossView view)
         {
-            // note - we check the DataContent before the ViewModel to avoid casting errors
-            //       in the case of 'simple' binding code
-            if (view.DataContext != null)
-                return;
-
-            if (view.ViewModel != null)
-                return;
-
-            var viewModel = viewModelLoader();
-            if (viewModel == null)
+            public void OnViewCreate(Func<ICrossViewModel?> viewModelLoader)
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
-                return;
+                // note - we check the DataContent before the ViewModel to avoid casting errors
+                //       in the case of 'simple' binding code
+                if (view.DataContext != null)
+                    return;
+
+                if (view.ViewModel != null)
+                    return;
+
+                var viewModel = viewModelLoader();
+                if (viewModel == null)
+                {
+                    MvxLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
+                    return;
+                }
+
+                view.ViewModel = viewModel;
             }
 
-            view.ViewModel = viewModel;
-        }
+            public void OnViewDestroy()
+            {
+                // nothing needed currently
+            }
 
-        public static void OnViewDestroy(this ICrossView view)
-        {
-            // nothing needed currently
+            public ICrossBundle CreateSaveStateBundle()
+            {
+                var viewModel = view.ViewModel;
+                return viewModel == null ? new CrossBundle() : viewModel.SaveStateBundle();
+            }
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "The generic constraint ensures TViewType has the required members")]
@@ -47,12 +55,6 @@ namespace Nivaes.App.Cross
             MvxLogHost.Default?.Log(LogLevel.Trace,
                 "No view model type finder available - assuming we are looking for a splash screen - returning null");
             return typeof(CrossNullViewModel);
-        }
-
-        public static ICrossBundle CreateSaveStateBundle(this ICrossView view)
-        {
-            var viewModel = view.ViewModel;
-            return viewModel == null ? new CrossBundle() : viewModel.SaveStateBundle();
         }
     }
 }

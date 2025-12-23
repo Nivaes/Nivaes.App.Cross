@@ -1,14 +1,11 @@
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-
-namespace MvvmCross.DroidX.Material.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System;
+    using Android.Content;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
     using Google.Android.Material.BottomSheet;
-    using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 
     public class MvxEventSourceBottomSheetDialogFragment
@@ -55,14 +52,14 @@ namespace MvvmCross.DroidX.Material.EventSource
             base.OnAttach(context);
         }
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             CreateWillBeCalled.Raise(this, savedInstanceState);
             base.OnCreate(savedInstanceState);
             CreateCalled.Raise(this, savedInstanceState);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
         {
             CreateViewCalled.Raise(this, new MvxCreateViewParameters(inflater, container, savedInstanceState));
             return base.OnCreateView(inflater, container, savedInstanceState);

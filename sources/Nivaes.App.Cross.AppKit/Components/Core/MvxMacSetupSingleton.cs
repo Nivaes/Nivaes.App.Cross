@@ -1,8 +1,6 @@
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Mac.Presenters;
-    using Nivaes.App.Cross;
 
     public class MvxMacSetupSingleton
         : CrossSetupSingleton

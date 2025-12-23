@@ -1,19 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Core;
-using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-using Fragment = AndroidX.Fragment.App.Fragment;
-
-namespace MvvmCross.Platforms.Android.Views.Fragments
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Base;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Views;
+    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
+    using MvvmCross.ViewModels;
+    using Nivaes.App.Cross;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]
     public class MvxBindingFragmentAdapter
         : MvxBaseFragmentAdapter

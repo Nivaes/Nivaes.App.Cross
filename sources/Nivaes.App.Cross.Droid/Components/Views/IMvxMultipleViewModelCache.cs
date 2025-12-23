@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using MvvmCross.ViewModels;

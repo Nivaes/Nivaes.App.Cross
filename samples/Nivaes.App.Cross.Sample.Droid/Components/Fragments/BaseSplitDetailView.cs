@@ -5,13 +5,9 @@ namespace Playground.Droid.Fragments
     using Android.Content.Res;
     using Android.OS;
     using Android.Views;
-    using AndroidX.AppCompat.Widget;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.AppCompat;
-    using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Sample.Droid;
+    using Nivaes.App.Cross.Droid;
     using Playground.Droid.Activities;
     using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
     using Toolbar = AndroidX.AppCompat.Widget.Toolbar;

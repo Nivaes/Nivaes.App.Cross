@@ -1,11 +1,8 @@
-namespace MvvmCross.Binding.Binders
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Base;
-    using MvvmCross.Converters;
-    using Nivaes.App.Cross;
 
     public interface IMvxNamedInstanceRegistryFiller<out T>
     {

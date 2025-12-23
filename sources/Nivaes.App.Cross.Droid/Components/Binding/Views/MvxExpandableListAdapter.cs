@@ -1,20 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Object = Java.Lang.Object;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
-    public class MvxExpandableListAdapter : MvxAdapter, IExpandableListAdapter
+    using System;
+    using System.Collections;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using Android.Widget;
+    using MvvmCross.Binding.Extensions;
+    using Object = Java.Lang.Object;
+
+    public class MvxExpandableListAdapter 
+        : MvxAdapter, IExpandableListAdapter
     {
         public MvxExpandableListAdapter(Context context)
             : base(context)

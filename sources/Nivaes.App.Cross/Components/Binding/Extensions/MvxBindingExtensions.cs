@@ -1,46 +1,48 @@
-namespace MvvmCross.Binding.Extensions
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using MvvmCross.Base;
+    using MvvmCross.Binding;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 
     public static class MvxBindingExtensions
     {
-        [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
-        public static bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(
-            this IMvxEditableTextView mvxEditableTextView, object target, object? value)
+        extension(IMvxEditableTextView mvxEditableTextView)
         {
-            if (value == null)
-                return false;
-
-            // specifically for int, double, float and decimal we do some special comparisons
-            // to prevent the user losing trailing periods, leading minus signs, leading zeroes and trailing zeros
-            var valueType = value.GetType();
-            if (valueType == typeof(int) ||
-                valueType == typeof(double) ||
-                valueType == typeof(float) ||
-                valueType == typeof(decimal))
+            [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
+            public bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(object target, object? value)
             {
-                var currentValue = mvxEditableTextView.CurrentText;
-                if (currentValue == null)
+                if (value == null)
                     return false;
 
-                try
+                // specifically for int, double, float and decimal we do some special comparisons
+                // to prevent the user losing trailing periods, leading minus signs, leading zeroes and trailing zeros
+                var valueType = value.GetType();
+                if (valueType == typeof(int) ||
+                    valueType == typeof(double) ||
+                    valueType == typeof(float) ||
+                    valueType == typeof(decimal))
                 {
-                    var equivalentCurrentValue = valueType.MakeSafeValue(currentValue);
-                    if (equivalentCurrentValue?.Equals(value) == true)
-                        return true;
+                    var currentValue = mvxEditableTextView.CurrentText;
+                    if (currentValue == null)
+                        return false;
+
+                    try
+                    {
+                        var equivalentCurrentValue = valueType.MakeSafeValue(currentValue);
+                        if (equivalentCurrentValue?.Equals(value) == true)
+                            return true;
+                    }
+                    catch (FormatException)
+                    {
+                        // format problem - so they are definitely not equivalent
+                        return false;
+                    }
                 }
-                catch (FormatException)
-                {
-                    // format problem - so they are definitely not equivalent
-                    return false;
-                }
+
+                return false;
             }
-
-            return false;
         }
 
         public static bool ConvertToBoolean(this object? result)

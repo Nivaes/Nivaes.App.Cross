@@ -1,109 +1,104 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-
-namespace MvvmCross.Converters;
-
-public abstract class MvxValueConverter
-    : IMvxValueConverter
+namespace Nivaes.App.Cross
 {
-    public virtual object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        return MvxBindingConstant.UnsetValue;
-    }
+    using System.Globalization;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
 
-    public virtual object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+    public abstract class MvxValueConverter
+        : IMvxValueConverter
     {
-        return MvxBindingConstant.UnsetValue;
-    }
-}
-
-public abstract class MvxValueConverter<TFrom, TTo>
-    : IMvxValueConverter
-{
-    public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        try
+        public virtual object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return Convert((TFrom)value, targetType, parameter, culture)!;
+            return MvxBindingConstant.UnsetValue;
         }
-        catch (Exception e)
+
+        public virtual object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
             return MvxBindingConstant.UnsetValue;
         }
     }
 
-    protected virtual TTo Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
+    public abstract class MvxValueConverter<TFrom, TTo>
+        : IMvxValueConverter
     {
-        throw new NotImplementedException();
-    }
-
-    public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        try
+        public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return ConvertBack((TTo)value, targetType, parameter, culture)!;
+            try
+            {
+                return Convert((TFrom)value, targetType, parameter, culture)!;
+            }
+            catch (Exception e)
+            {
+                GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
+                return MvxBindingConstant.UnsetValue;
+            }
         }
-        catch (Exception e)
+
+        protected virtual TTo Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
-            return MvxBindingConstant.UnsetValue;
+            throw new NotImplementedException();
         }
-    }
 
-    protected virtual TFrom ConvertBack(TTo value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        throw new NotImplementedException();
-    }
-
-    private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
-}
-
-public abstract class MvxValueConverter<TFrom>
-    : IMvxValueConverter
-{
-    public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        try
+        public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return Convert((TFrom)value, targetType, parameter, culture);
+            try
+            {
+                return ConvertBack((TTo)value, targetType, parameter, culture)!;
+            }
+            catch (Exception e)
+            {
+                GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
+                return MvxBindingConstant.UnsetValue;
+            }
         }
-        catch (Exception e)
+
+        protected virtual TFrom ConvertBack(TTo value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            GetLog()?.LogError(e, "Failed to Convert from {FromType}", typeof(TFrom));
-            return MvxBindingConstant.UnsetValue;
+            throw new NotImplementedException();
         }
+
+        private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
     }
 
-    protected virtual object Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
+    public abstract class MvxValueConverter<TFrom>
+        : IMvxValueConverter
     {
-        throw new NotImplementedException();
-    }
-
-    public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        try
+        public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return TypedConvertBack(value, targetType, parameter, culture)!;
+            try
+            {
+                return Convert((TFrom)value, targetType, parameter, culture);
+            }
+            catch (Exception e)
+            {
+                GetLog()?.LogError(e, "Failed to Convert from {FromType}", typeof(TFrom));
+                return MvxBindingConstant.UnsetValue;
+            }
         }
-        catch (Exception e)
+
+        protected virtual object Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            GetLog()?.LogError(e, "Failed to ConvertBack to {FromType}", typeof(TFrom));
-            return MvxBindingConstant.UnsetValue;
+            throw new NotImplementedException();
         }
-    }
 
-    protected virtual TFrom TypedConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
-    {
-        throw new NotImplementedException();
-    }
+        public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        {
+            try
+            {
+                return TypedConvertBack(value, targetType, parameter, culture)!;
+            }
+            catch (Exception e)
+            {
+                GetLog()?.LogError(e, "Failed to ConvertBack to {FromType}", typeof(TFrom));
+                return MvxBindingConstant.UnsetValue;
+            }
+        }
 
-    private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
+        protected virtual TFrom TypedConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
+    }
 }

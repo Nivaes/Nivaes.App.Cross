@@ -1,4 +1,4 @@
-namespace MvvmCross.DroidX.Leanback.Widgets
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections;
     using System.Windows.Input;
@@ -7,10 +7,8 @@ namespace MvvmCross.DroidX.Leanback.Widgets
     using Android.Util;
     using AndroidX.Leanback.Widget;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.DroidX.Leanback.Listeners;
     using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Platforms.Android.Binding.Views;
     using Nivaes.App.Cross.Droid;
 
     /// <summary>
@@ -123,7 +121,7 @@ namespace MvvmCross.DroidX.Leanback.Widgets
             base.SetOnChildLaidOutListener(listener);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public IEnumerable ItemsSource
         {
             get { return Adapter.ItemsSource; }

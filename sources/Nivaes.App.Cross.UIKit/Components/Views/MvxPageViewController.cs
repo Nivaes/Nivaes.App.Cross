@@ -1,17 +1,12 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
-    using UIKit;
 
-    public class MvxPageViewController : MvxBasePageViewController, IMvxPageViewController
+    public class MvxPageViewController
+        : MvxBasePageViewController, IMvxPageViewController
     {
         public MvxPageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
         {
@@ -59,9 +54,9 @@ namespace MvvmCross.Platforms.Ios.Views
 
         public virtual bool IsLastPage(UIViewController viewController) => Pages.IndexOf(viewController) == Pages.Count - 1;
 
-        protected virtual UIViewController GetNextViewControllerPage(UIViewController rc) => IsLastPage(rc) ? null : Pages[Pages.IndexOf(rc) + 1];
+        protected virtual UIViewController? GetNextViewControllerPage(UIViewController rc) => IsLastPage(rc) ? null : Pages[Pages.IndexOf(rc) + 1];
 
-        protected virtual UIViewController GetPreviousViewControllerPage(UIViewController rc) => IsFirstPage(rc) ? null : Pages[Pages.IndexOf(rc) - 1];
+        protected virtual UIViewController? GetPreviousViewControllerPage(UIViewController rc) => IsFirstPage(rc) ? null : Pages[Pages.IndexOf(rc) - 1];
 
         public virtual void AddPage(UIViewController viewController, MvxPagePresentationAttribute attribute)
         {
@@ -82,7 +77,7 @@ namespace MvvmCross.Platforms.Ios.Views
 
             var pageToClose = Pages.Where(v => !(v is UINavigationController))
                                               .Select(v => v.GetIMvxIosView())
-                                              .FirstOrDefault(mvxView => mvxView.ViewModel == viewModel);
+                                              .FirstOrDefault(mvxView => mvxView?.ViewModel == viewModel);
 
             if (pageToClose != null)
             {

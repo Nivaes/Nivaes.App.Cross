@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.AppKit
 {
-    using AppKit;
-    using Nivaes.App.Cross;
-
     public interface IMvxApplicationDelegate 
         : INSApplicationDelegate, ICrossLifetime
     {

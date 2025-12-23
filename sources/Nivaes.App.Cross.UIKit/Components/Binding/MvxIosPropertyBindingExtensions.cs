@@ -59,27 +59,30 @@ namespace MvvmCross.Platforms.Ios.Binding
         public static string BindHidden(this UIView uiView)
             => MvxIosPropertyBinding.UIView_Hidden;
 
+#if IOS || MACCATALYST
         public static string BindValue(this UISlider uiSlider)
             => MvxIosPropertyBinding.UISlider_Value;
 
         public static string BindValue(this UIStepper uiStepper)
             => MvxIosPropertyBinding.UIStepper_Value;
-
+#endif
         public static string BindSelectedSegment(this UISegmentedControl uiSegmentedControl)
             => MvxIosPropertyBinding.UISegmentedControl_SelectedSegment;
 
+#if IOS || MACCATALYST
         public static string BindDate(this UIDatePicker uiDatePicker)
             => MvxIosPropertyBinding.UIDatePicker_Date;
 
         public static string BindCountDownDuration(this UIDatePicker uiDatePicker)
             => MvxIosPropertyBinding.UIDatePicker_CountDownDuration;
-
+#endif
         public static string BindShouldReturn(this UITextField uiTextField)
             => MvxIosPropertyBinding.UITextField_ShouldReturn;
 
+#if IOS || MACCATALYST
         public static string BindTime(this UIDatePicker uiDatePicker)
             => MvxIosPropertyBinding.UIDatePicker_Time;
-
+#endif
         public static string BindText(this UILabel uiLabel)
             => MvxIosPropertyBinding.UILabel_Text;
 
@@ -92,9 +95,10 @@ namespace MvvmCross.Platforms.Ios.Binding
         public static string BindLayerBorderWidth(this UIView uiView)
             => MvxIosPropertyBinding.UIView_LayerBorderWidth;
 
+#if IOS || MACCATALYST
         public static string BindOn(this UISwitch uiSwitch)
             => MvxIosPropertyBinding.UISwitch_On;
-
+#endif
         public static string BindText(this UISearchBar uiSearchBar)
             => MvxIosPropertyBinding.UISearchBar_Text;
 

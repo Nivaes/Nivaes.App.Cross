@@ -1,11 +1,11 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Collections;
     using System.Collections.Specialized;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Logging;
+    using MvvmCross.Platforms.Ios.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 
@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             MvxLogHost.Default?.LogWarning("TableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get => _itemsSource;

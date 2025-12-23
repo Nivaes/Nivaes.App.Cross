@@ -1,8 +1,7 @@
-namespace MvvmCross.Converters
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
-    public interface IMvxValueConverterRegistry : ICrossNamedInstanceRegistry<IMvxValueConverter>
+    public interface IMvxValueConverterRegistry 
+        : ICrossNamedInstanceRegistry<IMvxValueConverter>
     {
     }
 }

@@ -1,13 +1,7 @@
-using Android.OS;
-
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
 
     public class MvxBindingActivityAdapter
         : MvxBaseActivityAdapter

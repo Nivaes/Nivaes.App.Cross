@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxSingleViewModelCache
     {
         void Cache(ICrossViewModel toCache, Bundle bundle);

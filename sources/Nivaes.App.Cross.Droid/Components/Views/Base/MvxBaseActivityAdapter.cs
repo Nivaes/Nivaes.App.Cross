@@ -1,11 +1,9 @@
-using Android.App;
 using Android.Content;
-using Android.OS;
 
-namespace MvvmCross.Platforms.Android.Views.Base
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
+    using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross;
 
     public abstract class MvxBaseActivityAdapter

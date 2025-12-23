@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace MvvmCross.Binding.Bindings.SourceSteps
+namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [RequiresUnreferencedCode("This class uses GetType() for type inspection which may not be preserved by trimming")]
-    public class MvxLiteralSourceStep : MvxSourceStep<MvxLiteralSourceStepDescription>
+    public class MvxLiteralSourceStep 
+        : MvxSourceStep<MvxLiteralSourceStepDescription>
     {
         public MvxLiteralSourceStep(MvxLiteralSourceStepDescription description)
             : base(description)

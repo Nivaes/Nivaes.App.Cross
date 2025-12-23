@@ -1,13 +1,12 @@
-namespace MvvmCross.Platforms.Ios.Views.Base
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;
 
-    public class MvxEventSourcePageViewController : UIPageViewController, IMvxEventSourceViewController
+    public class MvxEventSourcePageViewController 
+        : UIPageViewController, IMvxEventSourceViewController
     {
         public MvxEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)
         {
@@ -84,7 +83,8 @@ namespace MvvmCross.Platforms.Ios.Views.Base
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-                DisposeCalled.Raise(this);
+                DisposeCalled?.Raise(this);
+
             base.Dispose(disposing);
         }
 
@@ -100,6 +100,6 @@ namespace MvvmCross.Platforms.Ios.Views.Base
 
         public event EventHandler<CrossValueEventArgs<bool>> ViewWillDisappearCalled;
 
-        public event EventHandler DisposeCalled;
+        public event EventHandler? DisposeCalled;
     }
 }

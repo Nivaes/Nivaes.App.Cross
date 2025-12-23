@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.BindingContext;

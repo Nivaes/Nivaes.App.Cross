@@ -1,20 +1,16 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Threading.Tasks;
-using Foundation;
-using MvvmCross.Binding.Extensions;
-using UIKit;
-
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    public class MvxCollectionViewSourceAnimated : MvxCollectionViewSource
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Foundation;
+    using MvvmCross.Binding.Extensions;
+
+    public class MvxCollectionViewSourceAnimated 
+        : MvxCollectionViewSource
     {
         private readonly object collectionChangedLock = new object();
         private Task runningChangeTask = Task.FromResult(true);

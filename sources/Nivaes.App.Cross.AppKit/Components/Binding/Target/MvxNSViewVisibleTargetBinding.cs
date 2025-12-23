@@ -1,15 +1,14 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using AppKit;
-    using MvvmCross.Binding;
 
-    public class MvxNSViewVisibleTargetBinding : MvxMacTargetBinding
+    public class MvxNSViewVisibleTargetBinding
+        : MvxMacTargetBinding
     {
-        protected NSView View
+        protected NSView? View
         {
-            get { return (NSView)Target; }
+            get { return (NSView?)Target; }
         }
 
         public MvxNSViewVisibleTargetBinding(NSView target)
@@ -28,14 +27,14 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             get { return typeof(bool); }
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var view = this.View;
             if (view == null)
                 return;
 
-            var visible = (bool)value;
-            view.Hidden = !visible;
+            var visible = (bool?)value;
+            view.Hidden = !visible ?? false;
         }
     }
 }

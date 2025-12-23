@@ -1,10 +1,8 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Linq;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using Nivaes.App.Cross;
+    using MvvmCross.Platforms.Ios.Views;
     using ObjCRuntime;
     using UIKit;
 

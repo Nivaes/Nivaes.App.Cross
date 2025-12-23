@@ -1,9 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Mac.Views.Base;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
 
     public class MvxViewController
@@ -45,21 +41,21 @@ namespace MvvmCross.Platforms.Mac.Views
             this.AdaptForBinding();
         }
 
-        public object DataContext
+        public object? DataContext
         {
-            get { return BindingContext.DataContext; }
-            set { BindingContext.DataContext = value; }
+            get { return BindingContext?.DataContext; }
+            set { BindingContext?.DataContext = value; }
         }
 
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
-            get { return (ICrossViewModel)DataContext; }
+            get { return (ICrossViewModel?)DataContext; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {

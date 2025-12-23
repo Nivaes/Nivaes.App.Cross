@@ -10,64 +10,66 @@ namespace Nivaes.App.Cross
 
     public static class CrossWeakSubscriptionExtensions
     {
-        public static CrossNotifyPropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,
-                                                                              EventHandler<PropertyChangedEventArgs> eventHandler)
+        extension(INotifyPropertyChanged source)
         {
-            return new CrossNotifyPropertyChangedEventSubscription(source, eventHandler);
+            public CrossNotifyPropertyChangedEventSubscription WeakSubscribe(EventHandler<PropertyChangedEventArgs> eventHandler)
+            {
+                return new CrossNotifyPropertyChangedEventSubscription(source, eventHandler);
+            }
+
+            public CrossNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(Expression<Func<T>> property,
+                                                                                   EventHandler<PropertyChangedEventArgs> eventHandler)
+            {
+                return new CrossNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
+            }
+
+            public CrossNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(string property,
+                                                                                   EventHandler<PropertyChangedEventArgs> eventHandler)
+            {
+                return new CrossNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
+            }
         }
 
-        public static CrossNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(this INotifyPropertyChanged source,
-                                                                               Expression<Func<T>> property,
-                                                                               EventHandler<PropertyChangedEventArgs> eventHandler)
+        extension(INotifyCollectionChanged source)
         {
-            return new CrossNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
+            public CrossNotifyCollectionChangedEventSubscription WeakSubscribe(EventHandler<NotifyCollectionChangedEventArgs> eventHandler) => new CrossNotifyCollectionChangedEventSubscription(source, eventHandler);
         }
 
-        public static CrossNamedNotifyPropertyChangedEventSubscription<T> WeakSubscribe<T>(this INotifyPropertyChanged source,
-                                                                               string property,
-                                                                               EventHandler<PropertyChangedEventArgs> eventHandler)
+        extension(EventInfo eventInfo)
         {
-            return new CrossNamedNotifyPropertyChangedEventSubscription<T>(source, property, eventHandler);
-        }
-
-        public static CrossNotifyCollectionChangedEventSubscription WeakSubscribe(this INotifyCollectionChanged source,
-                                                                                EventHandler<NotifyCollectionChangedEventArgs> eventHandler)
-        {
-            return new CrossNotifyCollectionChangedEventSubscription(source, eventHandler);
-        }
-
-        public static CrossGeneralEventSubscription WeakSubscribe(this EventInfo eventInfo,
-                                                                object source,
+            public CrossGeneralEventSubscription WeakSubscribe(object source,
                                                                 EventHandler<EventArgs> eventHandler)
-        {
-            return new CrossGeneralEventSubscription(source, eventInfo, eventHandler);
+            {
+                return new CrossGeneralEventSubscription(source, eventInfo, eventHandler);
+            }
+
+            public CrossValueEventSubscription<T> WeakSubscribe<T>(object source,
+                                                                        EventHandler<CrossValueEventArgs<T>> eventHandler)
+            {
+                return new CrossValueEventSubscription<T>(source, eventInfo, eventHandler);
+            }
         }
 
-        public static CrossValueEventSubscription<T> WeakSubscribe<T>(this EventInfo eventInfo,
-                                                                    object source,
-                                                                    EventHandler<CrossValueEventArgs<T>> eventHandler)
+        extension(ICommand source)
         {
-            return new CrossValueEventSubscription<T>(source, eventInfo, eventHandler);
+            public CrossCanExecuteChangedEventSubscription WeakSubscribe(EventHandler<EventArgs> eventHandler)
+            {
+                return new CrossCanExecuteChangedEventSubscription(source, eventHandler);
+            }
         }
 
-        public static CrossCanExecuteChangedEventSubscription WeakSubscribe(this ICommand source,
-                                                                          EventHandler<EventArgs> eventHandler)
+        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(TSource source)
+            where TSource : class
         {
-            return new CrossCanExecuteChangedEventSubscription(source, eventHandler);
-        }
+            public CrossWeakEventSubscription<TSource> WeakSubscribe(string eventName, EventHandler eventHandler)
+            {
+                return new CrossWeakEventSubscription<TSource>(source, eventName, eventHandler);
+            }
 
-        public static CrossWeakEventSubscription<TSource> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(
-            this TSource source, string eventName, EventHandler eventHandler)
-                where TSource : class
-        {
-            return new CrossWeakEventSubscription<TSource>(source, eventName, eventHandler);
-        }
-
-        public static CrossWeakEventSubscription<TSource, TEventArgs> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>(
-            this TSource source, string eventName, EventHandler<TEventArgs> eventHandler)
-                where TSource : class
-        {
-            return new CrossWeakEventSubscription<TSource, TEventArgs>(source, eventName, eventHandler);
+            public CrossWeakEventSubscription<TSource, TEventArgs> WeakSubscribe<TEventArgs>(string eventName, EventHandler<TEventArgs> eventHandler)
+            {
+                return new CrossWeakEventSubscription<TSource, TEventArgs>(source, eventName, eventHandler);
+            }
         }
     }
 }

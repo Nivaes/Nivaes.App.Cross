@@ -1,14 +1,11 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using Foundation;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
     using ObjCRuntime;
-    using UIKit;
 
     public class MvxStandardTableViewCell
         : MvxTableViewCell

@@ -1,7 +1,6 @@
-using Android.App;
-
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using Android.App;
     using System;
     using System.Threading;
     using MvvmCross.Base;

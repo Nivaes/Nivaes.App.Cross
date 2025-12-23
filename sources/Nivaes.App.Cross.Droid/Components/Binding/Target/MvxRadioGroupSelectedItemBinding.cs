@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
         public MvxRadioGroupSelectedItemBinding(MvxRadioGroup radioGroup)
             : base(radioGroup)
         {
-            _subscription = radioGroup.WeakSubscribe<RadioGroup, RadioGroup.CheckedChangeEventArgs>(
+            _subscription = radioGroup.DroidWeakSubscribe<RadioGroup, RadioGroup.CheckedChangeEventArgs>(
                 nameof(RadioGroup.CheckedChange),
                 RadioGroupCheckedChanged);
         }

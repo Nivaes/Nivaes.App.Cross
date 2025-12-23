@@ -5,13 +5,8 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Android;
-    using MvvmCross.Platforms.Android.Binding;
     using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
     using MvvmCross.Platforms.Android.Binding.Views;
     using MvvmCross.Platforms.Android.Core;

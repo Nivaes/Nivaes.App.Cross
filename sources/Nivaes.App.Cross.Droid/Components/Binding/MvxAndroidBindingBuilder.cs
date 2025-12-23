@@ -5,15 +5,9 @@ using AndroidX.Preference;
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.Android.Binding;
     using MvvmCross.Platforms.Android.Binding.Binders;
     using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
     using MvvmCross.Platforms.Android.Binding.Target;
     using MvvmCross.Platforms.Android.Binding.Views;

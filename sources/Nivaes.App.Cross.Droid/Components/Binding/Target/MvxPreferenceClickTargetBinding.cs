@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
         {
             _canExecuteEventHandler = OnCanExecuteChanged;
 
-            _clickSubscription = CrossAndroidWeakSubscriptionExtensions.WeakSubscribe<Preference, Preference.PreferenceClickEventArgs>(view, nameof(Preference.PreferenceClick),
+            _clickSubscription = CrossAndroidWeakSubscriptionExtensions.DroidWeakSubscribe<Preference, Preference.PreferenceClickEventArgs>(view, nameof(Preference.PreferenceClick),
                 ViewOnPreferenceClick);
         }
 

@@ -1,9 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Converters;
-
     public class CrossBindingDescription
     {
         public CrossBindingDescription()

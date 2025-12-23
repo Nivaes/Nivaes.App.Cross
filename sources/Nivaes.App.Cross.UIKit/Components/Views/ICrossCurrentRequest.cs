@@ -1,7 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using Nivaes.App.Cross;
-
     public interface ICrossCurrentRequest
     {
         CrossViewModelRequest CurrentRequest { get; }

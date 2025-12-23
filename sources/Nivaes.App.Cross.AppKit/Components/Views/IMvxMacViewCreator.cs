@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     public interface IMvxMacViewCreator
     {

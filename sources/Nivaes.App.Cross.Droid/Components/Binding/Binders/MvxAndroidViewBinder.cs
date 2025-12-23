@@ -1,20 +1,17 @@
-using Android.Content;
-using Android.Content.Res;
-using Android.Util;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;   
+    using System.Linq;
+    using Android.Content;
+    using Android.Content.Res;
+    using Android.Util;
+    using Android.Views;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
     using Nivaes.App.Cross;
 
     public class MvxAndroidViewBinder

@@ -1,22 +1,19 @@
-using Android.OS;
-
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;   
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]
     public class MvxSavedStateConverter : IMvxSavedStateConverter
     {
         private const string ExtrasKey = "MvxSaved";
 
-        public ICrossBundle Read(Bundle bundle)
+        public ICrossBundle? Read(Bundle bundle)
         {
             var extras = bundle?.GetString(ExtrasKey);
             if (string.IsNullOrEmpty(extras))

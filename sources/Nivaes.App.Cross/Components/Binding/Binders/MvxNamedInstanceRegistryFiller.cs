@@ -1,9 +1,9 @@
-namespace MvvmCross.Binding.Binders
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
+    using MvvmCross.Binding;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 

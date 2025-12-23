@@ -1,15 +1,11 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
-    using MvvmCross.Base;
+    using MvvmCross;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
+    using MvvmCross.Binding.BindingContext;
 
     public class MvxBaseFluentBindingDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>
         : CrossApplicableTo<TTarget>, IMvxBaseFluentBindingDescription

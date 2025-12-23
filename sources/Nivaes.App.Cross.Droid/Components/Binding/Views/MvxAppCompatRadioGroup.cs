@@ -1,23 +1,18 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Threading;
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
-using Android.Widget;
-using AndroidX.AppCompat.Widget;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.BindingContext;
 
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Collections;
+    using System.Collections.Specialized;
+    using AndroidX.AppCompat.Widget;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using Nivaes.App.Cross;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxAppCompatRadioGroup")]
     public class MvxAppCompatRadioGroup : RadioGroup, IMvxWithChangeAdapter
     {
@@ -111,7 +106,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             }
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public IEnumerable ItemsSource
         {
             get => Adapter.ItemsSource;

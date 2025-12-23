@@ -4,12 +4,10 @@ namespace Playground.iOS.Views
     using System.Diagnostics.CodeAnalysis;
     using CoreGraphics;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Ios.Binding;
-    using MvvmCross.Platforms.Ios.Binding.Views;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.Platforms.Ios.Views.Expandable;
+    using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
     using UIKit;
@@ -171,7 +169,8 @@ namespace Playground.iOS.Views
         }
 
         [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-        private sealed class TableSource : MvxExpandableTableViewSource<Page1ViewModel.SectionViewModel, Page1ViewModel.SectionItemViewModel>
+        private sealed class TableSource 
+            : MvxExpandableTableViewSource<Page1ViewModel.SectionViewModel, Page1ViewModel.SectionItemViewModel>
         {
             public TableSource(UITableView tableView) : base(tableView)
             {

@@ -77,7 +77,7 @@ namespace Nivaes.App.Cross.Droid
             if (spinner == null)
                 return;
 
-            _subscription = spinner.WeakSubscribe<AdapterView, AdapterView.ItemSelectedEventArgs>(
+            _subscription = spinner.DroidWeakSubscribe<AdapterView, AdapterView.ItemSelectedEventArgs>(
                 nameof(spinner.ItemSelected),
                 SpinnerItemSelected);
         }

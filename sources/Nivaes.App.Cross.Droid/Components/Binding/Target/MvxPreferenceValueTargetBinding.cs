@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
         {
-            _subscription = Preference?.WeakSubscribe<Preference, Preference.PreferenceChangeEventArgs>(
+            _subscription = Preference?.DroidWeakSubscribe<Preference, Preference.PreferenceChangeEventArgs>(
                 nameof(Preference.PreferenceChange),
                 HandlePreferenceChange);
         }

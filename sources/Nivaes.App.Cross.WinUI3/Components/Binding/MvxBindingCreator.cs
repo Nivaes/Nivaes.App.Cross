@@ -4,7 +4,6 @@ namespace MvvmCross.Platforms.WinUi.Binding
     using System.Collections.Generic;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
-    using MvvmCross.Binding.Bindings;
     using MvvmCross.Logging;
     using Nivaes.App.Cross;
 

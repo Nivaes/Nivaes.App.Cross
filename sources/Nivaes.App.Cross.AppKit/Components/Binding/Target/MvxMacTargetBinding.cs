@@ -1,7 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
-    using Nivaes.App.Cross;
-
     public abstract class MvxMacTargetBinding 
         : CrossConvertingTargetBinding
     {

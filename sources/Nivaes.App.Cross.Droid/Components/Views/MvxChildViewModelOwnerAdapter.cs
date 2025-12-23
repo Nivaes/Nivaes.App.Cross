@@ -1,10 +1,9 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
 
-    public class MvxChildViewModelOwnerAdapter : MvxBaseActivityAdapter
+    public class MvxChildViewModelOwnerAdapter 
+        : MvxBaseActivityAdapter
     {
         protected IMvxChildViewModelOwner ChildOwner => (IMvxChildViewModelOwner)Activity;
 

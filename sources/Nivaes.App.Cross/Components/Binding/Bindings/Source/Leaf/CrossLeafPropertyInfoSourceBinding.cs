@@ -5,9 +5,6 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Extensions;
-    using MvvmCross.Converters;
-    using MvvmCross.Exceptions;
 
     [RequiresUnreferencedCode("This method accesses the PropertyInfo which may not be preserved by trimming")]
     public abstract class CrossLeafPropertyInfoSourceBinding : CrossPropertyInfoSourceBinding

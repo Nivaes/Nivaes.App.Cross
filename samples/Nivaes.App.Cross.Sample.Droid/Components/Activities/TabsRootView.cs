@@ -3,15 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using Android.App;
-using Android.OS;
-using Android.Views;
 using AndroidX.ViewPager.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Platforms.Android.Views.ViewPager;
-using Nivaes.App.Cross.Sample.Droid;
+using Nivaes.App.Cross.Droid;
 using Playground.Core.ViewModels;
+using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
 namespace Playground.Droid.Activities
 {

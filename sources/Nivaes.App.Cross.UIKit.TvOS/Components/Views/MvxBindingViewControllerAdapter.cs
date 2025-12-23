@@ -1,16 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Tvos.Views.Base;
-
-namespace MvvmCross.Platforms.Tvos.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    public class MvxBindingViewControllerAdapter : MvxBaseViewControllerAdapter
+    using System;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Tvos.Views.Base;
+
+    public class MvxBindingViewControllerAdapter
+        : MvxBaseViewControllerAdapter
     {
         protected IMvxTvosView TvosView => ViewController as IMvxTvosView;
 

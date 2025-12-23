@@ -1,10 +1,9 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.Bindings;
-    using Nivaes.App.Cross;
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.BindingContext;
 
     public class MvxFluentBindingDescriptionSet<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TOwningTarget, TSource>

@@ -5,7 +5,7 @@
 using Android.OS;
 using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     public class MvxCreateViewParameters
     {

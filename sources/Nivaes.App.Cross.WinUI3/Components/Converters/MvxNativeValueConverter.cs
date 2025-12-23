@@ -1,17 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Globalization;
-using Microsoft.Extensions.Logging;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using MvvmCross.Converters;
-using MvvmCross.Logging;
-
-namespace MvvmCross.Platforms.WinUi.Converters
+namespace Nivaes.App.Cross.WinUI3
 {
+    using System.Globalization;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+    using MvvmCross.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxNativeValueConverter
         : IValueConverter
     {

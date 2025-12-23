@@ -2,16 +2,15 @@ using Android.Content;
 using Android.Runtime;
 using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections;
     using System.Collections.Specialized;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Logging;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using MvvmCross.Platforms.Android.Binding.Views;
     using Nivaes.App.Cross;
     using Object = Java.Lang.Object;
 
@@ -59,7 +58,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
 
         public bool ReloadOnAllItemsSourceSets { get; set; }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get => _itemsSource;
@@ -245,7 +244,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
         {
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public new IEnumerable<TItem> ItemsSource
         {
             get => base.ItemsSource as IEnumerable<TItem>;

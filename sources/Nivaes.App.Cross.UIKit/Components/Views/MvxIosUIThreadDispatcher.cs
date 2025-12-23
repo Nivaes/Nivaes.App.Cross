@@ -1,11 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Threading;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
-    using UIKit;
 
     public abstract class MvxIosUIThreadDispatcher
         : CrossMainThreadAsyncDispatcher

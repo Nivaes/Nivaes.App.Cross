@@ -1,9 +1,6 @@
 namespace MvvmCross.Platforms.WinUi.Binding
 {
     using Microsoft.UI.Xaml;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
     // ReSharper disable InconsistentNaming

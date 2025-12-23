@@ -2,6 +2,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
     public class MvxAdapterViewSelectedItemPositionTargetBinding(AdapterView adapterView)
@@ -32,7 +33,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             if (view == null)
                 return;
 
-            _subscription = view.WeakSubscribe<AdapterView, AdapterView.ItemSelectedEventArgs>(
+            _subscription = view.DroidWeakSubscribe<AdapterView, AdapterView.ItemSelectedEventArgs>(
                 nameof(adapterView.ItemSelected), AdapterViewOnItemSelected);
         }
 

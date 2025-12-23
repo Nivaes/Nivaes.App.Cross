@@ -1,18 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using AppKit;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
-    public class MvxNSButtonTitleTargetBinding : MvxMacTargetBinding
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+
+    public class MvxNSButtonTitleTargetBinding 
+        : MvxMacTargetBinding
     {
-        protected NSButton Button
+        protected NSButton? Button
         {
             get { return base.Target as NSButton; }
         }
@@ -37,7 +33,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             get { return typeof(string); }
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var button = this.Button;
             if (button == null)

@@ -1,21 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using AppKit;
-using Foundation;
-
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
-    public class MvxNSDatePickerDateTargetBinding : MvxBaseNSDatePickerTargetBinding
+    public class MvxNSDatePickerDateTargetBinding
+        : MvxBaseNSDatePickerTargetBinding
     {
         public MvxNSDatePickerDateTargetBinding(NSDatePicker datePicker)
             : base(datePicker)
         {
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var datePicker = this.DatePicker;
             if (datePicker == null)
@@ -38,7 +31,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-        protected override object MakeSafeValue(object value)
+        protected override object MakeSafeValue(object? value)
         {
             if (value == null)
                 value = DateTime.Now;

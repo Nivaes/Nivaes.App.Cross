@@ -1,7 +1,6 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public abstract class MvxBaseUIViewVisibleTargetBinding(UIView target)

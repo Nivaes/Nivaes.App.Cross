@@ -1,12 +1,13 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
-    using Nivaes.App.Cross;
+    using MvvmCross.Platforms.Tvos.Binding.Views;
     using ObjCRuntime;
 
-    public class MvxActionBasedTableViewSource : MvxStandardTableViewSource
+    public class MvxActionBasedTableViewSource
+        : MvxStandardTableViewSource
     {
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected MvxActionBasedTableViewSource(UITableView tableView)

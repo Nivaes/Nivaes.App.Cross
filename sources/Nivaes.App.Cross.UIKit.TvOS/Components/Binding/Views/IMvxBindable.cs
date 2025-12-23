@@ -1,6 +1,5 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    using MvvmCross.Binding.BindingContext;
     using Nivaes.App.Cross;
 
     public interface IMvxBindable

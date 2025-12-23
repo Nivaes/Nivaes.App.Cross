@@ -1,6 +1,6 @@
 using Android.Content;
 
-namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Base;

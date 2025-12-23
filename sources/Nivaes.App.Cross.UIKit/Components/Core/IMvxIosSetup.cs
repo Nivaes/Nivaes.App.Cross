@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Platforms.Ios.Presenters;
-    using Nivaes.App.Cross;
-
     public interface IMvxIosSetup 
         : ICrossSetup
     {

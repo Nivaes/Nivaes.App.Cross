@@ -1,11 +1,9 @@
-namespace MvvmCross.Binding
+namespace Nivaes.App.Cross
 {
+    using MvvmCross;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
-    using MvvmCross.Binding.Parse.Binding.Lang;
     using Nivaes.App.Cross;
 
     // this class is not perfect OO and it gets in the way of testing

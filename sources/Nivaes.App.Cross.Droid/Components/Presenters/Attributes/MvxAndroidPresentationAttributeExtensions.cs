@@ -1,7 +1,5 @@
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Droid
 {
-    using Nivaes.App.Cross;
-
     public static class MvxAndroidPresentationAttributeExtensions
     {
         public static bool IsFragmentCacheable(this Type fragmentType, Type fragmentActivityParentType)

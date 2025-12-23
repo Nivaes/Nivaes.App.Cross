@@ -1,9 +1,6 @@
-namespace MvvmCross.Platforms.Ios.Views.Base
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
-    using UIKit;
 
     public class MvxBaseViewControllerAdapter
     {

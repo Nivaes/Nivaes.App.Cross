@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Platforms.Mac.Views.Base;
     using Nivaes.App.Cross;
 
     public class MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding

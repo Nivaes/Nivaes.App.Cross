@@ -1,10 +1,11 @@
 using Android.Content;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
+    using MvvmCross;
+    using MvvmCross.Platforms.Android.Views;
 
     public static class MvxChildViewModelOwnerExtensions
     {

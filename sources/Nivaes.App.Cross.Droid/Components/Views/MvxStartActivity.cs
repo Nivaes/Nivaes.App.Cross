@@ -4,8 +4,8 @@ using Android.Views;
 namespace MvvmCross.Platforms.Android.Views
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
 
     [Register("mvvmcross.platforms.android.views.MvxStartActivity")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

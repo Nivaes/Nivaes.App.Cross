@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.Mac.Core;
 using MvvmCross.Platforms.Mac.Presenters.Attributes;
+using Nivaes.App.Cross.AppKit;
 using Playground.Core;
 using Serilog;
 using Serilog.Extensions.Logging;

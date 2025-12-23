@@ -1,10 +1,9 @@
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using AndroidX.Leanback.App;
-
-namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using AndroidX.Leanback.App;
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 

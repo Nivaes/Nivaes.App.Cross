@@ -1,29 +1,31 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Foundation;
-
-namespace MvvmCross.Platforms.Ios
+namespace Nivaes.App.Cross.UIKit
 {
+    using System;
+    using Foundation;
+
     public static class MvxIosDateTimeExtensions
     {
         private static readonly DateTime ReferenceNSDateTime = new DateTime(2001, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public static DateTime ToDateTimeUtc(this NSDate date)
+        extension(NSDate date)
         {
-            return ReferenceNSDateTime.AddSeconds(date.SecondsSinceReferenceDate);
+            public DateTime ToDateTimeUtc()
+            {
+                return ReferenceNSDateTime.AddSeconds(date.SecondsSinceReferenceDate);
+            }
         }
 
-        public static NSDate ToNSDate(this DateTime date)
+        extension(DateTime date)
         {
-            return NSDate.FromTimeIntervalSinceReferenceDate((date - ReferenceNSDateTime).TotalSeconds);
-        }
+            public NSDate ToNSDate()
+            {
+                return NSDate.FromTimeIntervalSinceReferenceDate((date - ReferenceNSDateTime).TotalSeconds);
+            }
 
-        public static DateTime WithKind(this DateTime date, DateTimeKind kind)
-        {
-            return new DateTime(date.Ticks, kind);
+            public DateTime WithKind(DateTimeKind kind)
+            {
+                return new DateTime(date.Ticks, kind);
+            }
         }
     }
 }

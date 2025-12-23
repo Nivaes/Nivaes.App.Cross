@@ -1,24 +1,20 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-
-namespace MvvmCross.Converters;
-
-public interface IMvxValueConverter
+namespace Nivaes.App.Cross
 {
-    object Convert(
-        object value,
-        Type? targetType,
-        object? parameter,
-        CultureInfo? culture);
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
 
-    object ConvertBack(
-        object value,
-        Type? targetType,
-        object? parameter,
-        CultureInfo? culture);
+    public interface IMvxValueConverter
+    {
+        object Convert(
+            object value,
+            Type? targetType,
+            object? parameter,
+            CultureInfo? culture);
+
+        object ConvertBack(
+            object value,
+            Type? targetType,
+            object? parameter,
+            CultureInfo? culture);
+    }
 }

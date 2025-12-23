@@ -1,17 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Android.Views;
-using AndroidX.Core.View;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-
 namespace Playground.Droid.Activities
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Views;
+    using AndroidX.Core.View;
+    using MvvmCross.Platforms.Android.Presenters.Attributes;
+    using Nivaes.App.Cross.Droid;
+    using Playground.Core.ViewModels;
+    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme",
         WindowSoftInputMode = SoftInput.AdjustPan)]

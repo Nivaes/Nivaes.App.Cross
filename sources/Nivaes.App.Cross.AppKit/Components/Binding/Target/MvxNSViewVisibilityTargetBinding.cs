@@ -1,16 +1,15 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using Nivaes.App.Cross;
 
     public class MvxNSViewVisibilityTargetBinding
         : MvxMacTargetBinding
     {
-        protected NSView View
+        protected NSView? View
         {
-            get { return (NSView)Target; }
+            get { return (NSView?)Target; }
         }
 
         public MvxNSViewVisibilityTargetBinding(NSView target)
@@ -29,13 +28,13 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             get { return typeof(CrossVisibility); }
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var view = this.View;
             if (view == null)
                 return;
 
-            var visibility = (CrossVisibility)value;
+            var visibility = (CrossVisibility?)value;
             switch (visibility)
             {
                 case CrossVisibility.Visible:

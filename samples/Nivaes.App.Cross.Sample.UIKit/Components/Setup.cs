@@ -5,6 +5,7 @@ namespace Playground.iOS
     using MvvmCross.Platforms.Ios.Core;
     using MvvmCross.Plugin;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit;
     using Playground.Core;
     using Playground.iOS.Bindings;
     using Playground.iOS.Controls;

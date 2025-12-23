@@ -55,10 +55,6 @@
     <Project Path="sources/Nivaes.App.Cross.Droid.SourceGenerator/Nivaes.App.Cross.Droid.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.Droid/Nivaes.App.Cross.Droid.csproj" />
   </Folder>
-  <Folder Name="/Sources/Tvos/">
-    <Project Path="sources/Nivaes.App.Cross.UIKit.TvOS.SourceGenerator/Nivaes.App.Cross.UIKit.TvOS.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.UIKit.TvOS/Nivaes.App.Cross.UIKit.TvOS.csproj" />
-  </Folder>
   <Folder Name="/Sources/UIKit/">
     <Project Path="sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />

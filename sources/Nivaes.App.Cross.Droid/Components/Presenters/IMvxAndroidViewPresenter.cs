@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Android.Presenters
+namespace Nivaes.App.Cross.Droid
 {
     using Nivaes.App.Cross;
 

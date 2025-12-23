@@ -1,9 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Binding.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Base;
-    using MvvmCross.Binding.BindingContext;
-    using Nivaes.App.Cross;
-
     public interface IMvxBindable
         : IMvxBindingContextOwner, ICrossDataConsumer
     {

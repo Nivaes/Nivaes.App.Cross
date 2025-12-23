@@ -1,7 +1,7 @@
-namespace MvvmCross.Binding.Bindings.SourceSteps
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Converters;
+    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxCombinerSourceStep : MvxSourceStep<MvxCombinerSourceStepDescription>

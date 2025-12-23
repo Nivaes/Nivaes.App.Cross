@@ -1,6 +1,7 @@
-namespace MvvmCross.Plugin.Visibility
+namespace Nivaes.App.Cross.Visibility
 {
     using System.Globalization;
+    using MvvmCross;
     using Nivaes.App.Cross;
 
     [Preserve(AllMembers = true)]

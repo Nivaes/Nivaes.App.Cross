@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using AppKit;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
-    public abstract class MvxBaseNSDatePickerTargetBinding : MvxMacTargetBinding
+    using System;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+
+    public abstract class MvxBaseNSDatePickerTargetBinding 
+        : MvxMacTargetBinding
     {
         private bool _subscribed;
 
-        protected NSDatePicker DatePicker
+        protected NSDatePicker? DatePicker
         {
             get { return base.Target as NSDatePicker; }
         }
@@ -38,7 +34,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             this._subscribed = true;
         }
 
-        private void HandleActivated(object sender, EventArgs e)
+        private void HandleActivated(object? sender, EventArgs e)
         {
             var view = this.DatePicker;
             if (view == null)

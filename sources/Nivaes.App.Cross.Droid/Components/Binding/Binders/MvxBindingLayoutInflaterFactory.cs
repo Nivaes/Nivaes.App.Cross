@@ -1,11 +1,12 @@
-using Android.Content;
-using Android.Util;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.Util;
+    using Android.Views;
+    using MvvmCross;
+    using MvvmCross.Platforms.Android.Binding.Binders;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class creates bindings which use reflection and may not be preserved by trimming.")]

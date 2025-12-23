@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Collections;
     using System.Collections.Specialized;

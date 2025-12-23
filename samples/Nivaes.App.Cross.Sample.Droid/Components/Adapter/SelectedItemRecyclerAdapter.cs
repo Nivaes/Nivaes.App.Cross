@@ -3,12 +3,11 @@ namespace Playground.Droid.Adapter
     using System;
     using Android.Runtime;
     using Android.Widget;
-    using AndroidX.Core.View;
     using AndroidX.RecyclerView.Widget;
-    using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
+    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.RecyclerView;
     using Nivaes.App.Cross.Sample.Droid;
+    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
     public partial class SelectedItemRecyclerAdapter : MvxRecyclerAdapter
     {

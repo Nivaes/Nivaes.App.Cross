@@ -1,17 +1,14 @@
-namespace MvvmCross.Binding.Parse.Binding
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.Parse.Binding.Lang;
     using MvvmCross.Binding.Parse.Binding.Tibet;
-    using MvvmCross.Converters;
-    using Nivaes.App.Cross;
 
     public class MvxBindingDescriptionParser
         : IMvxBindingDescriptionParser

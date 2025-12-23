@@ -2,6 +2,7 @@ namespace Playground.iOS.Views
 {
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.UIKit;
     using Playground.Core.ViewModels;
 
     [MvxRootPresentation(WrapInNavigationController = true)]

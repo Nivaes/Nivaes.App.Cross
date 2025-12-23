@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+namespace Nivaes.App.Cross.UIKit
 {
     using Nivaes.App.Cross;
 

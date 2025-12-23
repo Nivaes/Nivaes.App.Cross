@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using MvvmCross.Binding.Bindings;
 
     public interface ICrossSourceBinding 
         : ICrossBinding

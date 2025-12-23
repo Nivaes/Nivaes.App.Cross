@@ -1,17 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Object = Java.Lang.Object;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders
+namespace Nivaes.App.Cross.Droid
 {
-#nullable enable
+    using System;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+    using Android.Views;
+    using Object = Java.Lang.Object;
+
     public static class MvxLayoutInflaterCompat
     {
         internal class FactoryWrapper : Object, LayoutInflater.IFactory
@@ -61,5 +56,4 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             layoutInflater.Factory2 = factory != null ? new FactoryWrapper2(factory) : null;
         }
     }
-#nullable restore
 }

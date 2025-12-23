@@ -1,11 +1,8 @@
-namespace MvvmCross.Platforms.Ios.Views.Base
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
-    using UIKit;
 
     public class MvxEventSourceCollectionViewController
         : UICollectionViewController, IMvxEventSourceViewController

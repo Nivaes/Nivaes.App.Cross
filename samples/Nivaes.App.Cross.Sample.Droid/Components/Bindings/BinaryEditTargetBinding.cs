@@ -2,8 +2,7 @@ namespace Playground.Droid.Bindings
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Target;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
     using Playground.Droid.Controls;
 

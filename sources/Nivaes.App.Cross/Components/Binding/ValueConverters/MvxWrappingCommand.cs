@@ -1,21 +1,20 @@
-namespace MvvmCross.Binding.ValueConverters
+namespace Nivaes.App.Cross
 {
     using System.Reflection;
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
-    using Nivaes.App.Cross;
 
     public class MvxWrappingCommand
         : ICommand
     {
         private static readonly EventInfo CanExecuteChangedEventInfo = typeof(ICommand).GetEvent("CanExecuteChanged");
 
-        private readonly ICommand _wrapped;
-        private readonly object _commandParameterOverride;
-        private readonly IDisposable _canChangedEventSubscription;
+        private readonly ICommand? _wrapped;
+        private readonly object? _commandParameterOverride;
+        private readonly IDisposable? _canChangedEventSubscription;
 
-        public MvxWrappingCommand(ICommand wrapped, object commandParameterOverride)
+        public MvxWrappingCommand(ICommand wrapped, object? commandParameterOverride)
         {
             _wrapped = wrapped;
             _commandParameterOverride = commandParameterOverride;
@@ -53,6 +52,6 @@ namespace MvvmCross.Binding.ValueConverters
             _wrapped.Execute(_commandParameterOverride);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
     }
 }

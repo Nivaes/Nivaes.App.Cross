@@ -1,14 +1,10 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Ios.Presenters;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
+    using MvvmCross;
     using ObjCRuntime;
     using UIKit;
 
@@ -122,7 +118,9 @@ namespace MvvmCross.Platforms.Ios.Views
         {
             if (SelectedIndex > 5) // when more menu item is currently visible, selected index has value higher than 5
             {
+#if IOS || MACCATALYST
                 MoreNavigationController.PushViewController(viewController, true);
+#endif
                 return true;
             }
 
@@ -146,6 +144,12 @@ namespace MvvmCross.Platforms.Ios.Views
 
         public virtual bool CloseChildViewModel(ICrossViewModel viewModel)
         {
+#if TVOS
+            if (SelectedIndex > 5)
+            {
+                return true;
+            }
+#else
             if (SelectedIndex > 5 && (MoreNavigationController?.ViewControllers?.Any() ?? false))
             {
                 var lastViewController = MoreNavigationController.ViewControllers[0].GetIMvxIosView();
@@ -156,6 +160,7 @@ namespace MvvmCross.Platforms.Ios.Views
                     return true;
                 }
             }
+#endif
 
             if (SelectedViewController is UINavigationController { ViewControllers: not null } navController &&
                 navController.ViewControllers.Any())

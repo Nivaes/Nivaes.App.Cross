@@ -1,14 +1,16 @@
 using Android.Content;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Base;
     using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android.Views;
     using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("Loading ViewModels requires unreferenced code")]
     public class MvxActivityAdapter : MvxBaseActivityAdapter

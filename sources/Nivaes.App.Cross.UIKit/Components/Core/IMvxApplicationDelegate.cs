@@ -1,7 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.UIKit
 {
-    using Nivaes.App.Cross;
-
     public interface IMvxApplicationDelegate 
         : IUIApplicationDelegate, ICrossLifetime;
 }

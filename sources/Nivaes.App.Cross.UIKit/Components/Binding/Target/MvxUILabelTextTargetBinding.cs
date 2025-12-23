@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding;
@@ -9,7 +9,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     {
         protected UILabel? View => Target as UILabel;
 
-        public override MvxBindingMode DefaultMode => MvvmCross.Binding.MvxBindingMode.OneWay;
+        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(string);

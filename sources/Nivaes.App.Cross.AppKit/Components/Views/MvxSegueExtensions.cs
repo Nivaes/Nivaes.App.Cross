@@ -1,13 +1,10 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using AppKit;
     using Foundation;
-    using MvvmCross.Platforms.Mac.Views.Base;
-    using Nivaes.App.Cross;
 
     internal static class MvxSegueExtensions
     {

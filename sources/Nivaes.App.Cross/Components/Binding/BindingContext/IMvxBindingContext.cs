@@ -1,11 +1,8 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.Bindings;
-    using Nivaes.App.Cross;
 
     public interface IMvxBindingContext
         : ICrossDataConsumer

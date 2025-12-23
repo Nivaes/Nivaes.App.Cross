@@ -1,15 +1,12 @@
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+    using Android.Views;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Logging;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using Nivaes.App.Cross;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
@@ -58,7 +55,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             set { throw new NotImplementedException("BindingContext is readonly in the list item"); }
         }
 
-        private object _cachedDataContext;
+        private object? _cachedDataContext;
         private bool _isAttachedToWindow;
 
         protected override void Dispose(bool disposing)
@@ -110,8 +107,8 @@ namespace MvvmCross.Platforms.Android.Binding.Views
         {
         }
 
-        [MvxSetToNullAfterBinding]
-        public object DataContext
+        [CrossSetToNullAfterBinding]
+        public object? DataContext
         {
             get
             {

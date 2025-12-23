@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
-using Foundation;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Logging;
-using ObjCRuntime;
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Input;
+    using Foundation;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Logging;
+    using ObjCRuntime;
+    using UIKit;
+
     public abstract class MvxBaseTableViewSource : UITableViewSource
     {
         public event EventHandler SelectedItemChanged;
@@ -32,7 +28,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
                 "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
-        protected UITableView TableView
+        protected UITableView? TableView
         {
             get
             {

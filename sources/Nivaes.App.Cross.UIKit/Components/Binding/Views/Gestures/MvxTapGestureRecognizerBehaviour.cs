@@ -1,11 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Binding.Views.Gestures
+namespace Nivaes.App.Cross.UIKit
 {
+    using UIKit;
+
     public class MvxTapGestureRecognizerBehaviour
         : MvxGestureRecognizerBehavior<UITapGestureRecognizer>
     {
@@ -21,7 +17,9 @@ namespace MvvmCross.Platforms.Ios.Binding.Views.Gestures
             var tap = new UITapGestureRecognizer(HandleGesture)
             {
                 NumberOfTapsRequired = numberOfTapsRequired,
+#if IOS || MACCATALYST
                 NumberOfTouchesRequired = numberOfTouchesRequired,
+#endif
                 CancelsTouchesInView = cancelsTouchesInView
             };
 

@@ -1,8 +1,7 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
 
     public class MvxStandardTableViewCell

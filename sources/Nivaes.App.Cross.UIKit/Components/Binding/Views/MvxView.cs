@@ -1,13 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using MvvmCross.Binding.Attributes;
-using MvvmCross.Binding.BindingContext;
-using ObjCRuntime;
-
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
+    using MvvmCross.Binding.BindingContext;
+    using MvvmCross.Platforms.Ios.Binding.Views;
+    using Nivaes.App.Cross;
+    using ObjCRuntime;
+
     public class MvxView
         : UIView
         , IMvxBindable
@@ -57,7 +54,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             base.Dispose(disposing);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public object DataContext
         {
             get { return BindingContext.DataContext; }

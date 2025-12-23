@@ -1,21 +1,17 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using AndroidX.Fragment.App;
-using AndroidX.ViewPager.Widget;
-using Java.Lang;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
-
-namespace MvvmCross.Platforms.Android.Views.ViewPager
+namespace Nivaes.App.Cross.Droid
 {
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
+    using AndroidX.Fragment.App;
+    using AndroidX.ViewPager.Widget;
+    using Java.Lang;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using Fragment = AndroidX.Fragment.App.Fragment;
+    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+
     //http://speakman.net.nz/blog/2014/02/20/a-bug-in-and-a-fix-for-the-way-fragmentstatepageradapter-handles-fragment-restoration/
     //https://github.com/adamsp/FragmentStatePagerIssueExample/blob/master/app/src/main/java/com/example/fragmentstatepagerissueexample/app/FixedFragmentStatePagerAdapter.java
     //https://android.googlesource.com/platform/frameworks/support/+/320113721c2e14bbc2403809046fa2959a665c11/fragment/src/main/java/androidx/fragment/app/FragmentStatePagerAdapter.java

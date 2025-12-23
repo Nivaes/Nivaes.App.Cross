@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Views.Base
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using Foundation;

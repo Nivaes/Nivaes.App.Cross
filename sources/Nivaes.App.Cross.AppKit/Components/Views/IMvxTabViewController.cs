@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using AppKit;
-    using Nivaes.App.Cross;
-
     public interface IMvxTabViewController
     {
         void ShowTabView(NSViewController viewController, string tabTitle);

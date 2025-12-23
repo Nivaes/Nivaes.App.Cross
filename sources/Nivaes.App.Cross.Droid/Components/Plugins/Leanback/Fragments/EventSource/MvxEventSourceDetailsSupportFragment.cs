@@ -8,7 +8,7 @@ using Android.Runtime;
 using Android.Views;
 using AndroidX.Leanback.App;
 
-namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using MvvmCross.Base;

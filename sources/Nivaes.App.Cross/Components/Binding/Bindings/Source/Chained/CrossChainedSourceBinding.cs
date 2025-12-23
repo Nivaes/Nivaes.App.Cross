@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
     using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-    using MvvmCross.Converters;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class CrossChainedSourceBinding

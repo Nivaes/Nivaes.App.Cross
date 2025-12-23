@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.Droid
             if (listView == null)
                 return;
 
-            _subscription = listView.WeakSubscribe<ExpandableListView, ExpandableListView.ChildClickEventArgs>(
+            _subscription = listView.DroidWeakSubscribe<ExpandableListView, ExpandableListView.ChildClickEventArgs>(
                 nameof(listView.ChildClick),
                 OnChildClick);
         }

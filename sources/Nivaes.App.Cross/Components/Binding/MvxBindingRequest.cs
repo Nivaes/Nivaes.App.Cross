@@ -1,6 +1,5 @@
 namespace MvvmCross.Binding
 {
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
 
     public class MvxBindingRequest

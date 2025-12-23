@@ -1,11 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.Platforms.Mac.Binding.Target;
-    using Nivaes.App.Cross;
 
     public class MvxMacBindingBuilder
         : MvxBindingBuilder

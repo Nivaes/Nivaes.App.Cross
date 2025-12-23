@@ -8,7 +8,6 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
@@ -29,7 +28,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
             return ItemsSource.Count();
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get

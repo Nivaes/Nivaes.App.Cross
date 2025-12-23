@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using MvvmCross.Converters;
 
     public class CrossMissingSourceBinding 
         : CrossSourceBinding

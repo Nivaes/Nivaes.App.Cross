@@ -1,22 +1,20 @@
-using Android.Content;
-using Android.OS;
-using Android.Util;
-
-namespace MvvmCross.Platforms.Android.Presenters
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using Android.Content;
+    using Android.OS;
+    using Android.Util;
     using AndroidX.ViewPager.Widget;
     using Google.Android.Material.Tabs;
     using Java.Lang;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Logging;
-    using MvvmCross.Platforms.Android.Core;
+    using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.Platforms.Android.Views.ViewPager;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
     using DialogFragment = AndroidX.Fragment.App.DialogFragment;
     using Fragment = AndroidX.Fragment.App.Fragment;

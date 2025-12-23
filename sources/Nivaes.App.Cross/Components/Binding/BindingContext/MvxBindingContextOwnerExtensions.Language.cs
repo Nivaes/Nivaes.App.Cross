@@ -1,11 +1,9 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.Localization;
     using Nivaes.App.Cross;
 

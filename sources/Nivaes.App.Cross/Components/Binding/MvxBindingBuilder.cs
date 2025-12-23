@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.IoC;
     using MvvmCross.Logging;
 

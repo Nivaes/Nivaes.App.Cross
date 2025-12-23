@@ -2,7 +2,6 @@ namespace MvvmCross.Binding.BindingContext
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
 
     /// <summary>

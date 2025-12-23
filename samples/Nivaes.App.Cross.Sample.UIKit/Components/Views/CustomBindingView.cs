@@ -1,10 +1,10 @@
 namespace Playground.iOS.Views
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.UIKit;
     using ObjCRuntime;
     using Playground.Core.ViewModels.Bindings;
     using Playground.iOS.Controls;

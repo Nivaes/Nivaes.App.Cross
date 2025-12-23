@@ -1,15 +1,9 @@
-namespace MvvmCross.DroidX.Leanback.Fragments
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Android.OS;
     using Android.Runtime;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.DroidX.Leanback.Fragments.EventSource;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     [Register("mvvmcross.droidx.leanback.fragments.MvxSearchSupportFragment")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]

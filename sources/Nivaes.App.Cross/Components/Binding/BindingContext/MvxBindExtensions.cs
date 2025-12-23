@@ -2,8 +2,6 @@ namespace MvvmCross.Binding.BindingContext
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Converters;
     using Nivaes.App.Cross;
 
     public static class MvxBindExtensions

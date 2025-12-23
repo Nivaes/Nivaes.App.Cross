@@ -3,18 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using Android.OS;
 using Android.Views;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
-using MvvmCross.DroidX.RecyclerView;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
+using Nivaes.App.Cross.Droid;
 using Nivaes.App.Cross.Sample.Droid;
 using Playground.Core.ViewModels;
 using Playground.Droid.Activities;
 using Playground.Droid.Adapter;
+using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
 namespace Playground.Droid.Fragments
 {

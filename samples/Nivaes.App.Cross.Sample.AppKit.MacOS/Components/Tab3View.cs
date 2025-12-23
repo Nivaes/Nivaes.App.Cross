@@ -3,6 +3,7 @@ namespace Playground.Mac
     using CoreGraphics;
     using MvvmCross.Platforms.Mac.Presenters.Attributes;
     using MvvmCross.Platforms.Mac.Views;
+    using Nivaes.App.Cross.AppKit;
     using Playground.Core.ViewModels;
 
     [MvxTabPresentation(TabTitle = "Tab3")]

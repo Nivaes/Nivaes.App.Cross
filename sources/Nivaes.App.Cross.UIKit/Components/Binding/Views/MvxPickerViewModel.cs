@@ -1,10 +1,10 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+#if IOS || MACCATALYST
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Collections;
     using System.Collections.Specialized;
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Logging;
     using Nivaes.App.Cross;
@@ -35,7 +35,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             base.Dispose(disposing);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get
@@ -143,3 +143,4 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
         }
     }
 }
+#endif

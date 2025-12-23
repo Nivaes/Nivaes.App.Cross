@@ -54,8 +54,7 @@ namespace Nivaes.App.Cross.Droid
             if (listView == null)
                 return;
 
-            _subscription =
-                listView.WeakSubscribe<ListView, AdapterView.ItemClickEventArgs>(nameof(listView.ItemClick), OnItemClick);
+            _subscription = listView.DroidWeakSubscribe<ListView, AdapterView.ItemClickEventArgs>(nameof(listView.ItemClick), OnItemClick);
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]

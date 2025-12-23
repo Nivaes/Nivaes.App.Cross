@@ -1,4 +1,4 @@
-namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using Android.Content;
     using Android.Runtime;

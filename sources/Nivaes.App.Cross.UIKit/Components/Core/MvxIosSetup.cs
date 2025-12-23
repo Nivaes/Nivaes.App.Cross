@@ -1,17 +1,9 @@
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.Ios.Presenters;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.UIKit;
 
     public abstract class MvxIosSetup
     : CrossSetup, IMvxIosSetup
@@ -62,7 +54,9 @@ namespace MvvmCross.Platforms.Ios.Core
         {
             RegisterPlatformProperties(iocProvider);
             RegisterPresenter(iocProvider);
+#if IOS || MACCATALYST
             RegisterPopoverPresentationSourceProvider(iocProvider);
+#endif
             RegisterLifetime(iocProvider);
             base.InitializeFirstChance(iocProvider);
         }
@@ -133,6 +127,7 @@ namespace MvvmCross.Platforms.Ios.Core
             iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
         }
 
+#if IOS || MACCATALYST
         protected virtual void RegisterPopoverPresentationSourceProvider(IMvxIoCProvider iocProvider)
         {
             ValidateArguments(iocProvider);
@@ -144,6 +139,7 @@ namespace MvvmCross.Platforms.Ios.Core
         {
             return new MvxPopoverPresentationSourceProvider();
         }
+#endif
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)

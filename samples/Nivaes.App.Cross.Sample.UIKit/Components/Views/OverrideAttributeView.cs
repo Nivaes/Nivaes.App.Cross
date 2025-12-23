@@ -4,12 +4,14 @@ namespace Playground.iOS.Views
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
 
     [MvxFromStoryboard("Main")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class OverrideAttributeView : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
+    public partial class OverrideAttributeView 
+        : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
     {
         public OverrideAttributeView(NativeHandle handle) : base(handle)
         {

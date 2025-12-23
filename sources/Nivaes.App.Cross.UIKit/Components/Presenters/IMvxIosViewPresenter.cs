@@ -1,11 +1,10 @@
-namespace MvvmCross.Platforms.Ios.Presenters
+namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross;
-
     public interface IMvxIosViewPresenter 
         : ICrossViewPresenter, IMvxCanCreateIosView
     {
+#if IOS || MACCATALYST
         public void ClosedPopoverViewController();
+#endif
     }
 }

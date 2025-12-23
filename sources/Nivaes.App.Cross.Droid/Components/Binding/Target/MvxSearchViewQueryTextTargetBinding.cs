@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
         {
-            _subscription = SearchView?.WeakSubscribe<SearchView, SearchView.QueryTextChangeEventArgs>(
+            _subscription = SearchView?.DroidWeakSubscribe<SearchView, SearchView.QueryTextChangeEventArgs>(
                 nameof(SearchView.QueryTextChange),
                 HandleQueryTextChanged);
         }

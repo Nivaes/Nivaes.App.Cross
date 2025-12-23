@@ -1,10 +1,9 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.Bindings;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
     public static partial class MvxBindingContextOwnerExtensions
     {

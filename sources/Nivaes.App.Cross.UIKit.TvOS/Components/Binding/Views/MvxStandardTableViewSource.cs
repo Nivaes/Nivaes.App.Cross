@@ -1,15 +1,17 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
     using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.Logging;
+    using MvvmCross.Platforms.Tvos.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 
-    public class MvxStandardTableViewSource : MvxTableViewSource
+    public class MvxStandardTableViewSource 
+        : MvxTableViewSource
     {
         private static readonly NSString DefaultCellIdentifier = new("SimpleBindableTableViewCell");
 

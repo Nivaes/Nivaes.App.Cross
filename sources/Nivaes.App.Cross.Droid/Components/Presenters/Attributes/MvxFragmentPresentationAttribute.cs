@@ -1,6 +1,8 @@
-namespace MvvmCross.Platforms.Android.Presenters.Attributes
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
+    using MvvmCross;
+    using MvvmCross.Platforms.Android;
     using Nivaes.App.Cross;
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]

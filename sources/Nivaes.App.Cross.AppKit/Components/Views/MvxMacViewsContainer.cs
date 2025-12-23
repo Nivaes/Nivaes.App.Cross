@@ -1,12 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using AppKit;
-    using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
+    using MvvmCross.Platforms.Mac.Views;
 
     public class MvxMacViewsContainer
         : CrossViewsContainer, IMvxMacViewsContainer

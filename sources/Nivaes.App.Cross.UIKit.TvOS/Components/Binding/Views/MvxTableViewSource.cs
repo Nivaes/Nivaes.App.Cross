@@ -1,15 +1,15 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Collections;
     using System.Collections.Specialized;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.Logging;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 
-    public abstract class MvxTableViewSource : MvxBaseTableViewSource
+    public abstract class MvxTableViewSource 
+        : MvxBaseTableViewSource
     {
         private IEnumerable _itemsSource;
         private IDisposable _subscription;
@@ -40,7 +40,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
             base.Dispose(disposing);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get

@@ -7,14 +7,10 @@ namespace Nivaes.App.Cross
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
-    using MvvmCross.Binding.Parse.Binding;
     using MvvmCross.Binding.Parse.Binding.Lang;
     using MvvmCross.Binding.Parse.Binding.Tibet;
     using MvvmCross.Binding.Parse.PropertyPath;
-    using MvvmCross.Binding.ValueConverters;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
-    using MvvmCross.Localization;
 
     public class MvxCoreBindingBuilder
     {

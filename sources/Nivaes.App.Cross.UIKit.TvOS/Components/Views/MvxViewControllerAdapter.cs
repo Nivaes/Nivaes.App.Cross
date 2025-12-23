@@ -1,9 +1,11 @@
-namespace MvvmCross.Platforms.Tvos.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using MvvmCross.Platforms.Tvos.Views.Base;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit.TvOS;
 
-    public class MvxViewControllerAdapter : MvxBaseViewControllerAdapter
+    public class MvxViewControllerAdapter 
+        : MvxBaseViewControllerAdapter
     {
         protected IMvxTvosView TvosView => ViewController as IMvxTvosView;
 

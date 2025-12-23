@@ -1,8 +1,7 @@
 namespace Playground.Mac
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Mac.Core;
-    using MvvmCross.Platforms.Mac.Presenters.Attributes;
+    using Nivaes.App.Cross.AppKit;
     using Playground.Core;
 
     [Register("AppDelegate")]

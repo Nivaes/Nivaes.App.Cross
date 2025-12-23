@@ -1,15 +1,11 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxMacView
         : ICrossView
             , IMvxCanCreateMacView
             , IMvxBindingContextOwner
     {
-        CrossViewModelRequest Request { get; set; }
+        CrossViewModelRequest? Request { get; set; }
     }
 
     public interface IMvxMacView<TViewModel>

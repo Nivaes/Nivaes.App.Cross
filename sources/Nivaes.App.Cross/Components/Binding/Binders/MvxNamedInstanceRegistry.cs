@@ -1,9 +1,7 @@
-namespace MvvmCross.Binding.Binders
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
 
     public class MvxNamedInstanceRegistry<T>
         : IMvxNamedInstanceLookup<T>, ICrossNamedInstanceRegistry<T>
@@ -12,7 +10,7 @@ namespace MvvmCross.Binding.Binders
         private readonly Dictionary<string, T> _converters =
             new Dictionary<string, T>();
 
-        public T Find(string name)
+        public T? Find(string name)
         {
             if (string.IsNullOrEmpty(name))
                 return null;

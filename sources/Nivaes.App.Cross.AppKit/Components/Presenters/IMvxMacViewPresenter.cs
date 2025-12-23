@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Presenters
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross;
-
     public interface IMvxMacViewPresenter
         : ICrossViewPresenter, IMvxCanCreateMacView
     {

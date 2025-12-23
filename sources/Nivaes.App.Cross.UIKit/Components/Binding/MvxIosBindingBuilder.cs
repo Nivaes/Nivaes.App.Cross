@@ -1,14 +1,8 @@
 namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Binding.Target;
-    using MvvmCross.Platforms.Ios.Binding.ValueConverters;
     using MvvmCross.Platforms.Ios.Binding.Views;
 
     public class MvxIosBindingBuilder
@@ -106,6 +100,7 @@ namespace Nivaes.App.Cross.UIKit
                 MvxIosPropertyBinding.UIView_Hidden,
                 view => new MvxUIViewHiddenTargetBinding(view));
 
+#if IOS || MACCATALYST
             registry.RegisterPropertyInfoBindingFactory(
                 typeof(MvxUISliderValueTargetBinding),
                 typeof(UISlider),
@@ -115,6 +110,7 @@ namespace Nivaes.App.Cross.UIKit
                 typeof(MvxUIStepperValueTargetBinding),
                 typeof(UIStepper),
                 MvxIosPropertyBinding.UIStepper_Value);
+#endif
 
             registry.RegisterPropertyInfoBindingFactory(
                 typeof(MvxUIPageControlCurrentPageTargetBinding),
@@ -126,6 +122,7 @@ namespace Nivaes.App.Cross.UIKit
                 typeof(UISegmentedControl),
                 MvxIosPropertyBinding.UISegmentedControl_SelectedSegment);
 
+#if IOS || MACCATALYST
             registry.RegisterPropertyInfoBindingFactory(
                 typeof(MvxUIDatePickerDateTargetBinding),
                 typeof(UIDatePicker),
@@ -149,7 +146,7 @@ namespace Nivaes.App.Cross.UIKit
                 typeof(MvxUIDatePickerCountDownDurationTargetBinding),
                 typeof(UIDatePicker),
                 MvxIosPropertyBinding.UIDatePicker_CountDownDuration);
-
+#endif
             registry.RegisterCustomBindingFactory<UITextField>(
                 MvxIosPropertyBinding.UITextField_ShouldReturn,
                 textField => new MvxUITextFieldShouldReturnTargetBinding(textField));
@@ -169,11 +166,11 @@ namespace Nivaes.App.Cross.UIKit
             registry.RegisterCustomBindingFactory<UIView>(
                 MvxIosPropertyBinding.UIView_LayerBorderWidth,
                 view => new MvxUIViewLayerBorderWidthTargetBinding(view));
-
+#if IOS || MACCATALYST            
             registry.RegisterCustomBindingFactory<UISwitch>(
                 MvxIosPropertyBinding.UISwitch_On,
                 uiSwitch => new MvxUISwitchOnTargetBinding(uiSwitch));
-
+#endif
             registry.RegisterPropertyInfoBindingFactory(
                 typeof(MvxUISearchBarTextTargetBinding),
                 typeof(UISearchBar),
@@ -262,9 +259,11 @@ namespace Nivaes.App.Cross.UIKit
             registry.AddOrOverwrite(typeof(MvxCollectionViewSource), nameof(MvxCollectionViewSource.ItemsSource));
             registry.AddOrOverwrite(typeof(MvxTableViewSource), nameof(MvxTableViewSource.ItemsSource));
             registry.AddOrOverwrite(typeof(UIImageView), nameof(UIImageView.Image));
+#if IOS || MACCATALYST
             registry.AddOrOverwrite(typeof(UIDatePicker), MvxIosPropertyBinding.UIDatePicker_Date);
             registry.AddOrOverwrite(typeof(UISlider), MvxIosPropertyBinding.UISlider_Value);
             registry.AddOrOverwrite(typeof(UISwitch), MvxIosPropertyBinding.UISwitch_On);
+#endif
             registry.AddOrOverwrite(typeof(UIProgressView), nameof(UIProgressView.Progress));
             registry.AddOrOverwrite(typeof(UISegmentedControl), MvxIosPropertyBinding.UISegmentedControl_SelectedSegment);
             registry.AddOrOverwrite(typeof(UIActivityIndicatorView), MvxIosPropertyBinding.UIActivityIndicatorView_Hidden);

@@ -1,7 +1,10 @@
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
+    using MvvmCross;
+    using MvvmCross.Platforms.Ios.Core;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.UIKit;
 
     [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
     public abstract class MvxApplicationDelegate 

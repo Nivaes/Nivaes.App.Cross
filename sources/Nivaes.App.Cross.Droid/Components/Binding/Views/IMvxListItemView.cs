@@ -1,10 +1,7 @@
 using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Binding.Views
-{   
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
-
+namespace Nivaes.App.Cross.Droid
+{
     public interface IMvxListItemView
         : ICrossDataConsumer
     {

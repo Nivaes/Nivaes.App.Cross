@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Platforms.Tvos.Views.Base;
@@ -34,21 +34,21 @@ namespace MvvmCross.Platforms.Tvos.Views
             this.AdaptForBinding();
         }
 
-        public object DataContext
+        public object? DataContext
         {
-            get { return BindingContext.DataContext; }
-            set { BindingContext.DataContext = value; }
+            get { return BindingContext?.DataContext; }
+            set { BindingContext?.DataContext = value; }
         }
 
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
             get { return DataContext as ICrossViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {

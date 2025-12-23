@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using MvvmCross.Base;
     using MvvmCross.Binding.BindingContext;

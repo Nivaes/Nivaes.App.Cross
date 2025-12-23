@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using MvvmCross.Binding.BindingContext;
-using Object = Java.Lang.Object;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
+    using MvvmCross.Platforms.Android.Binding.Views;
+    using Nivaes.App.Cross;
+    using Object = Java.Lang.Object;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxContextWrapper")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public class MvxContextWrapper : ContextWrapper

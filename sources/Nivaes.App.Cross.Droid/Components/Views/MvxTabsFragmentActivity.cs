@@ -1,17 +1,13 @@
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Widget;
 using Android.Views;
 
 namespace MvvmCross.Platforms.Android.Views
 {
-    using System.Diagnostics.CodeAnalysis;    
+    using System.Diagnostics.CodeAnalysis;
     using Java.Lang;
-    using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Fragment = AndroidX.Fragment.App.Fragment;
     using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
     using Object = Java.Lang.Object;
@@ -24,8 +20,8 @@ namespace MvvmCross.Platforms.Android.Views
         private const string SavedTabIndexStateKey = "__savedTabIndex";
         private readonly Dictionary<string, TabInfo> _lookup = new Dictionary<string, TabInfo>();
         private readonly int _layoutId;
-        private TabHost _tabHost;
-        private TabInfo _currentTab;
+        private TabHost? _tabHost;
+        private TabInfo? _currentTab;
         private readonly int _tabContentId;
 
         protected MvxTabsFragmentActivity(int layoutId, int tabContentId)
@@ -41,7 +37,7 @@ namespace MvvmCross.Platforms.Android.Views
             public Bundle Bundle { get; private set; }
             public ICrossViewModel ViewModel { get; private set; }
 
-            public Fragment CachedFragment { get; set; }
+            public Fragment? CachedFragment { get; set; }
 
             public TabInfo(string tag, Type fragmentType, Bundle bundle, ICrossViewModel viewModel)
             {
@@ -63,7 +59,7 @@ namespace MvvmCross.Platforms.Android.Views
                 _context = context;
             }
 
-            public View CreateTabContent(string tag)
+            public View CreateTabContent(string? tag)
             {
                 var v = new View(_context);
                 v.SetMinimumWidth(0);
@@ -72,7 +68,7 @@ namespace MvvmCross.Platforms.Android.Views
             }
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -82,7 +78,7 @@ namespace MvvmCross.Platforms.Android.Views
 
             if (savedInstanceState != null)
             {
-                _tabHost.SetCurrentTabByTag(savedInstanceState.GetString(SavedTabIndexStateKey));
+                _tabHost?.SetCurrentTabByTag(savedInstanceState.GetString(SavedTabIndexStateKey));
             }
         }
 
@@ -95,41 +91,41 @@ namespace MvvmCross.Platforms.Android.Views
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
-            outState.PutString(SavedTabIndexStateKey, _tabHost.CurrentTabTag);
+            outState.PutString(SavedTabIndexStateKey, _tabHost?.CurrentTabTag);
             base.OnSaveInstanceState(outState);
         }
 
-        private void InitializeTabHost(Bundle args)
+        private void InitializeTabHost(Bundle? args)
         {
-            _tabHost = (TabHost)FindViewById(global::Android.Resource.Id.TabHost);
-            _tabHost.Setup();
+            _tabHost = (TabHost?)FindViewById(global::Android.Resource.Id.TabHost);
+            _tabHost?.Setup();
 
             AddTabs(args);
 
             if (_lookup.Any())
                 OnTabChanged(_lookup.First().Key);
 
-            _tabHost.SetOnTabChangedListener(this);
+            _tabHost?.SetOnTabChangedListener(this);
         }
 
-        protected abstract void AddTabs(Bundle args);
+        protected abstract void AddTabs(Bundle? args);
 
         protected void AddTab<TFragment>(string tagAndSpecName, string tabName, Bundle args,
                                          ICrossViewModel viewModel)
         {
-            var tabSpec = _tabHost.NewTabSpec(tagAndSpecName).SetIndicator(tabName);
+            var tabSpec = _tabHost?.NewTabSpec(tagAndSpecName).SetIndicator(tabName);
             AddTab<TFragment>(args, viewModel, tabSpec);
         }
 
-        protected void AddTab<TFragment>(Bundle args, ICrossViewModel viewModel, TabHost.TabSpec tabSpec)
+        protected void AddTab<TFragment>(Bundle args, ICrossViewModel viewModel, TabHost.TabSpec? tabSpec)
         {
-            var tabInfo = new TabInfo(tabSpec.Tag, typeof(TFragment), args, viewModel);
+            var tabInfo = new TabInfo(tabSpec?.Tag, typeof(TFragment), args, viewModel);
             AddTab(this, _tabHost, tabSpec, tabInfo);
             _lookup.Add(tabInfo.Tag, tabInfo);
         }
 
         private static void AddTab(MvxTabsFragmentActivity activity,
-                                   TabHost tabHost,
+                                   TabHost? tabHost,
                                    TabHost.TabSpec tabSpec,
                                    TabInfo tabInfo)
         {

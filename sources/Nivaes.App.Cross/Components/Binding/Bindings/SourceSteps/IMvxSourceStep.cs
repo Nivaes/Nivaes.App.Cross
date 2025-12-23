@@ -1,8 +1,7 @@
-namespace MvvmCross.Binding.Bindings.SourceSteps
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
 
     public interface IMvxSourceStep 
         : ICrossBinding

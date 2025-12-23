@@ -1,7 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Core
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
     [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
     public abstract class MvxSceneDelegate : UIResponder, IUIWindowSceneDelegate, ICrossLifetime

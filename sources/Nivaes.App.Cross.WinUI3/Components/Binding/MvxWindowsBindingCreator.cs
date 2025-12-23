@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Collections.Generic;
@@ -6,12 +6,8 @@ namespace MvvmCross.Platforms.WinUi.Binding
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.SourceSteps;
-    using MvvmCross.Converters;
     using MvvmCross.Logging;
-    using MvvmCross.Platforms.WinUi.Converters;
+    using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
 
     public class MvxWindowsBindingCreator : MvxBindingCreator

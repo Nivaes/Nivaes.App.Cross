@@ -1,14 +1,11 @@
-using Android.OS;
-using Android.Runtime;
-
-namespace MvvmCross.Platforms.Android.Views.Fragments
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-    using MvvmCross.ViewModels;
+    using Android.OS;
+    using Android.Runtime;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
 
     [Register("mvvmcross.platforms.android.views.fragments.MvxDialogFragment")]
     public abstract class MvxDialogFragment

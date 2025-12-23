@@ -1,27 +1,23 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Java.Interop;
-using Java.Lang;
-using Java.Lang.Reflect;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Android.Binding.Binders;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
-using Nivaes.App.Cross.Droid;
-using Boolean = Java.Lang.Boolean;
-using Exception = Java.Lang.Exception;
-using Object = Java.Lang.Object;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Util;
+    using Android.Views;
+    using Java.Interop;
+    using Java.Lang;
+    using Java.Lang.Reflect;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Android.Binding.Binders;
+    using Nivaes.App.Cross.Droid;
+    using Boolean = Java.Lang.Boolean;
+    using Exception = Java.Lang.Exception;
+    using Object = Java.Lang.Object;
+
     /// <summary>
     /// <para>
     /// Custom LayoutInflater responsible for inflating views and hooking up bindings
@@ -101,7 +97,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             SetupLayoutFactories(cloned);
         }
 
-        [Preserve(Conditional = true)]
+        [DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(MvxLayoutInflater))]
         public MvxLayoutInflater(IntPtr handle, JniHandleOwnership transfer)
             : base(handle, transfer)
         {
@@ -487,7 +483,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
                 _bindingVisitor = bindingVisitor;
             }
 
-            [Preserve(Conditional = true)]
+            [DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(PrivateFactoryWrapper2))]
 #pragma warning disable 8618
             public PrivateFactoryWrapper2(IntPtr handle, JniHandleOwnership transfer)
 #pragma warning restore 8618

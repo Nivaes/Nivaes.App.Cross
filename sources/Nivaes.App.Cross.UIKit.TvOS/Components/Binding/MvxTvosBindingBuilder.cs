@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding;

@@ -1,16 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Logging;
-using MvvmCross.Platforms.Ios.Views.Base;
-
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    public class MvxBindingViewControllerAdapter : MvxBaseViewControllerAdapter
+    using System;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using MvvmCross.Logging;
+
+    public class MvxBindingViewControllerAdapter 
+        : MvxBaseViewControllerAdapter
     {
         protected IMvxIosView IosView => ViewController as IMvxIosView;
 

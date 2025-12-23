@@ -1,8 +1,6 @@
 namespace MvvmCross.Binding.Binders
 {
     using System.Collections.Generic;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Parse.Binding;
     using Nivaes.App.Cross;
 
     public interface IMvxBindingDescriptionParser

@@ -1,8 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using AppKit;
+    using MvvmCross;
     using Nivaes.App.Cross;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
@@ -30,7 +30,7 @@ namespace MvvmCross.Platforms.Mac.Core
             }
         }
 
-        protected virtual object GetAppStartHint(object hint = null)
+        protected virtual object? GetAppStartHint(object? hint = null)
         {
             return hint;
         }
@@ -59,7 +59,7 @@ namespace MvvmCross.Platforms.Mac.Core
         {
         }
 
-        public event EventHandler<CrossLifetimeEventArgs> LifetimeChanged;
+        public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
     }
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]

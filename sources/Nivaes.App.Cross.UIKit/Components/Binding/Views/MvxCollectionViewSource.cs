@@ -2,7 +2,6 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
 {
     using System.Collections;
     using System.Collections.Specialized;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
 
@@ -24,7 +23,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
         {
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get

@@ -1,14 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Windows.Input;
-using Foundation;
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Views
+#if IOS || MACCATALYST
+namespace Nivaes.App.Cross.UIKit
 {
+
+    using System;
+    using System.Windows.Input;
+    using Foundation;
+    using UIKit;
+
     /// <summary>
     /// Mvx user interface refresh control.
     /// http://motzcod.es/post/59125989518/mvxuirefreshcontrol-for-mvvmcross
@@ -97,3 +95,4 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 }
+#endif

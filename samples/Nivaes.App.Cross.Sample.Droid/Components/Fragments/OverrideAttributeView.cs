@@ -2,10 +2,8 @@ namespace Playground.Droid.Fragments
 {
     using System.Diagnostics.CodeAnalysis;
     using Android.Views;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
-    using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Playground.Core.ViewModels;
     using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 

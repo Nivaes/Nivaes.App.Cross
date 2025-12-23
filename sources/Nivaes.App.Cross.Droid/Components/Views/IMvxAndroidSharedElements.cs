@@ -1,9 +1,8 @@
 using Android.Views;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections.Generic;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// Used by Android presenters to check if they need to include shared element animations on navigation

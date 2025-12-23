@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
         {
-            _subscription = RatingBar?.WeakSubscribe<RatingBar, RatingBar.RatingBarChangeEventArgs>(
+            _subscription = RatingBar?.DroidWeakSubscribe<RatingBar, RatingBar.RatingBarChangeEventArgs>(
                 nameof(RatingBar.RatingBarChange),
                 RatingBar_RatingBarChange);
         }

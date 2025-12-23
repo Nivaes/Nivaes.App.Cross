@@ -1,9 +1,6 @@
-using Fragment = AndroidX.Fragment.App.Fragment;
-
-namespace MvvmCross.Platforms.Android.Views.ViewPager
+namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;   
+    using Fragment = AndroidX.Fragment.App.Fragment;
 
     public class MvxViewPagerFragmentInfo
     {
@@ -23,6 +20,6 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
 
         public CrossViewModelRequest Request { get; }
 
-        public Fragment CachedFragment { get; set; }
+        public Fragment? CachedFragment { get; set; }
     }
 }

@@ -1,18 +1,14 @@
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-
-namespace MvvmCross.DroidX.RecyclerView
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections;
     using System.Collections.Specialized;
     using System.Windows.Input;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
-    using MvvmCross.DroidX.RecyclerView.Model;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.RecyclerView;
@@ -57,7 +53,7 @@ namespace MvvmCross.DroidX.RecyclerView
         /// <summary>
         /// Get or set the <see cref="ICommand"/> to trigger when an item was clicked.
         /// </summary>
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public ICommand? ItemClick
         {
             get => _itemClick;
@@ -79,7 +75,7 @@ namespace MvvmCross.DroidX.RecyclerView
         /// <summary>
         /// Get or set the <see cref="ICommand"/> to trigger when an item was long clicked.
         /// </summary>
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public ICommand? ItemLongClick
         {
             get => _itemLongClick;
@@ -107,7 +103,7 @@ namespace MvvmCross.DroidX.RecyclerView
         /// <see cref="System.Collections.Generic.List{T}"/>.
         /// </para>
         /// </summary>
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable? ItemsSource
         {
             get => _itemsSource;
@@ -117,7 +113,7 @@ namespace MvvmCross.DroidX.RecyclerView
         /// <summary>
         /// <para>Get or set the ItemTemplateSelector.</para>
         /// </summary>
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IMvxTemplateSelector? ItemTemplateSelector
         {
             get => _itemTemplateSelector;

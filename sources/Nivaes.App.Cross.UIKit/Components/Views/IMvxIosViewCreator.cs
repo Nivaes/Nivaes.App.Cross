@@ -1,11 +1,11 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
-    public interface IMvxIosViewCreator : ICrossCurrentRequest
+    public interface IMvxIosViewCreator 
+        : ICrossCurrentRequest
     {
         IMvxIosView CreateView(CrossViewModelRequest request);
 

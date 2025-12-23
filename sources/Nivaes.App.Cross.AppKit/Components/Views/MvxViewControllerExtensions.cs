@@ -1,9 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Logging;
-    using Nivaes.App.Cross;
 
     public static class MvxViewControllerExtensions
     {

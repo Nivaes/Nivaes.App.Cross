@@ -1,7 +1,5 @@
-namespace MvvmCross.Binding.Combiners
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
     public interface IMvxValueCombinerRegistry
         : ICrossNamedInstanceRegistry<IMvxValueCombiner>, IMvxValueCombinerLookup
     {

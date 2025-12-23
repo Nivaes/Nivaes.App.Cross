@@ -1,16 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Converters;
-
 namespace MvvmCross.Binding.Combiners
 {
+    using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross;
+
     public class MvxIfValueCombiner
         : MvxValueCombiner
     {
@@ -31,7 +23,7 @@ namespace MvvmCross.Binding.Combiners
             }
         }
 
-        private bool TryEvaluateif(IMvxSourceStep testStep, IMvxSourceStep ifStep, IMvxSourceStep elseStep, out object value)
+        private bool TryEvaluateif(IMvxSourceStep testStep, IMvxSourceStep ifStep, IMvxSourceStep? elseStep, out object value)
         {
             var result = testStep.GetValue();
             if (result == MvxBindingConstant.DoNothing)
@@ -61,7 +53,7 @@ namespace MvvmCross.Binding.Combiners
             return result.ConvertToBoolean();
         }
 
-        protected virtual object ReturnSubStepResult(IMvxSourceStep subStep)
+        protected virtual object ReturnSubStepResult(IMvxSourceStep? subStep)
         {
             if (subStep == null)
             {

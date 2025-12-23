@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
-
     public abstract class MvxMacUIThreadDispatcher
         : CrossMainThreadAsyncDispatcher
     {

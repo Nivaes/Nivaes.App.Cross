@@ -1,7 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
     public static class MvxCanCreateIosViewExtensions
     {

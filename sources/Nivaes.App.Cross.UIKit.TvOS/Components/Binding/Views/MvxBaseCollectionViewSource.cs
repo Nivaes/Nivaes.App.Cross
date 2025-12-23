@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
 
     public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
     {
-        public static readonly NSString UnknownCellIdentifier = null;
+        public static readonly NSString? UnknownCellIdentifier = null;
 
         private readonly NSString _cellIdentifier;
         private readonly UICollectionView _collectionView;

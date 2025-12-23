@@ -1,14 +1,11 @@
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using AndroidX.Leanback.App;
-
-namespace MvvmCross.DroidX.Leanback.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Views;
+    using Android.Content;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
+    using AndroidX.Leanback.App;
     using Nivaes.App.Cross;
 
     public class MvxEventSourceSearchSupportFragment

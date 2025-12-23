@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Specialized;
-using Android.Views;
-using Android.Widget;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.Collections.Specialized;
+    using Android.Views;
+    using Android.Widget;
+
     public static class MvxViewGroupExtensions
     {
         public static void UpdateDataSetFromChange<T>(this T viewGroup, object sender,

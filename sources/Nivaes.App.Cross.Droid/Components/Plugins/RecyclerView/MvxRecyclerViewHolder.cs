@@ -2,9 +2,6 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
 {
     using Android.Runtime;
     using Android.Views;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
     using Nivaes.App.Cross;
 
     //using MvvmCross.Platforms.Android.WeakSubscription;

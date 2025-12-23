@@ -4,11 +4,8 @@ namespace Playground.Droid.Fragments
     using Android.Views;
     using Google.Android.Material.Navigation;
     using MvvmCross;
-    using MvvmCross.Platforms.Android.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Playground.Core.ViewModels;
     using Playground.Core.ViewModels.Navigation;
     using Resource = Nivaes.App.Cross.Sample.Droid.Resource;

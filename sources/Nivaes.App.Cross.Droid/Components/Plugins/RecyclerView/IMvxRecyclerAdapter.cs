@@ -1,24 +1,20 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections;
-using System.Windows.Input;
-using MvvmCross.Binding.Attributes;
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
-
-namespace MvvmCross.DroidX.RecyclerView;
-
-public interface IMvxRecyclerAdapter
+namespace Nivaes.App.Cross.Droid
 {
-    [MvxSetToNullAfterBinding]
-    IEnumerable? ItemsSource { get; set; }
+    using System.Collections;
+    using System.Windows.Input;
+    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 
-    IMvxTemplateSelector? ItemTemplateSelector { get; set; }
-    ICommand? ItemClick { get; set; }
-    ICommand? ItemLongClick { get; set; }
+    public interface IMvxRecyclerAdapter
+    {
+        [CrossSetToNullAfterBinding]
+        IEnumerable? ItemsSource { get; set; }
 
-    object? GetItem(int viewPosition);
+        IMvxTemplateSelector? ItemTemplateSelector { get; set; }
+        ICommand? ItemClick { get; set; }
+        ICommand? ItemLongClick { get; set; }
 
-    int ItemTemplateId { get; set; }
+        object? GetItem(int viewPosition);
+
+        int ItemTemplateId { get; set; }
+    }
 }

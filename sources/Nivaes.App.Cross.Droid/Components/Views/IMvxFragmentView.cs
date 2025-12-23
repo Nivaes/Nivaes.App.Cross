@@ -1,9 +1,5 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxFragmentView
         : IMvxBindingContextOwner
         , ICrossView

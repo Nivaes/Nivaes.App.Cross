@@ -1,10 +1,12 @@
 using Android.Content;
 using Android.Runtime;
 
-namespace MvvmCross.Platforms.Android.Views.Base
+namespace Nivaes.App.Cross.Droid
 {
     using MvvmCross.Base;
+    using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
     [Register("mvvmcross.platforms.android.views.base.MvxEventSourceActivity")]
@@ -75,7 +77,7 @@ namespace MvvmCross.Platforms.Android.Views.Base
             base.StartActivityForResult(intent, requestCode);
         }
 
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent? data)
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Android.App.Result resultCode, Intent? data)
         {
             ActivityResultCalled?.Raise(this, new MvxActivityResultParameters(requestCode, resultCode, data));
             base.OnActivityResult(requestCode, resultCode, data);

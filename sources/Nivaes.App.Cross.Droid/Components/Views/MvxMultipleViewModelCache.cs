@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Concurrent;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     public class MvxMultipleViewModelCache
         : IMvxMultipleViewModelCache

@@ -1,13 +1,10 @@
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
+    using Android.Content;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
     using Nivaes.App.Cross;
     using DialogFragment = AndroidX.Fragment.App.DialogFragment;
 

@@ -1,12 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-
-namespace MvvmCross.Plugin
+namespace Nivaes.App.Cross
 {
-#nullable enable
+    using System.Diagnostics.CodeAnalysis;
+
     public interface IMvxPluginManager
     {
         Func<Type, IMvxPluginConfiguration?> ConfigurationSource { get; }
@@ -27,5 +22,4 @@ namespace MvvmCross.Plugin
         bool TryEnsurePluginLoaded<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TPlugin>(bool forceLoad = false)
             where TPlugin : IMvxPlugin;
     }
-#nullable restore
 }

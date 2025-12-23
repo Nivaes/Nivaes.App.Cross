@@ -2,7 +2,6 @@ namespace MvvmCross.Binding.Binders
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
 
     public interface IMvxBinder

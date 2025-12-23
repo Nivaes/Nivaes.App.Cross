@@ -1,12 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
-    using MvvmCross.Platforms.Mac.Presenters;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     public class MvxMacViewDispatcher
         : MvxMacUIThreadDispatcher

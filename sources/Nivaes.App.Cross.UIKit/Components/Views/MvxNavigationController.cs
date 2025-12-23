@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Foundation;
-using ObjCRuntime;
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    public class MvxNavigationController : UINavigationController
+    using System;
+    using Foundation;
+    using ObjCRuntime;
+
+    public class MvxNavigationController 
+        : UINavigationController
     {
         public MvxNavigationController()
         {
@@ -44,6 +40,7 @@ namespace MvvmCross.Platforms.Ios.Views
             base.PushViewController(viewController, animated);
         }
 
+#if IOS || MACCATALYST
         public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
         {
             return TopViewController?.GetSupportedInterfaceOrientations() ?? base.GetSupportedInterfaceOrientations();
@@ -58,5 +55,6 @@ namespace MvvmCross.Platforms.Ios.Views
         {
             return TopViewController?.ShouldAutorotate() ?? base.ShouldAutorotate();
         }
+#endif
     }
 }

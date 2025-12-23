@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Ios
+namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
-
     public class MvxIosVersion
     {
         public MvxIosVersion(int[] parts)

@@ -1,12 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.AppKit
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Mac.Views.Base;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
 
-    public class MvxTabViewController : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView
+    public class MvxTabViewController 
+        : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView
     {
         protected MvxTabViewController()
             : base()
@@ -59,21 +56,21 @@ namespace MvvmCross.Platforms.Mac.Views
             return false;
         }
 
-        public object DataContext
+        public object? DataContext
         {
-            get { return this.BindingContext.DataContext; }
-            set { this.BindingContext.DataContext = value; }
+            get { return this.BindingContext?.DataContext; }
+            set { this.BindingContext?.DataContext = value; }
         }
 
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
-            get { return (ICrossViewModel)this.DataContext; }
+            get { return (ICrossViewModel?)this.DataContext; }
             set { this.DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {

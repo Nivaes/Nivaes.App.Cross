@@ -1,10 +1,8 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Collections;
     using System.Collections.Specialized;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
 
     public class MvxCollectionViewSource : MvxBaseCollectionViewSource
     {
@@ -38,7 +36,7 @@ namespace MvvmCross.Platforms.Tvos.Binding.Views
         {
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public virtual IEnumerable ItemsSource
         {
             get

@@ -5,8 +5,6 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
     using System.Linq;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
 
     public class MvxMvvmCrossBindingCreator : MvxBindingCreator

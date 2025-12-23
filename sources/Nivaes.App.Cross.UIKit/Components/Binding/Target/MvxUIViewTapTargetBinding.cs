@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Ios.Binding.Views.Gestures;
     using Nivaes.App.Cross;
 
     public class MvxUIViewTapTargetBinding(

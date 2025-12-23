@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Views.Base
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System;
     using MvvmCross.Base;

@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Attributes;
 
     public abstract class CrossPropertyInfoTargetBinding(object target, PropertyInfo targetPropertyInfo)
         : CrossConvertingTargetBinding(target)
@@ -14,7 +13,7 @@ namespace Nivaes.App.Cross
             {
                 // if the target property should be set to NULL on dispose then we clear it here
                 // this is a fix for the possible memory leaks discussion started https://github.com/slodge/MvvmCross/issues/17#issuecomment-8527392
-                var setToNullAttribute = TargetPropertyInfo.GetCustomAttribute<MvxSetToNullAfterBindingAttribute>(true);
+                var setToNullAttribute = TargetPropertyInfo.GetCustomAttribute<CrossSetToNullAfterBindingAttribute>(true);
                 if (setToNullAttribute != null)
                 {
                     SetValue(null);

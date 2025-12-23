@@ -1,8 +1,7 @@
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 

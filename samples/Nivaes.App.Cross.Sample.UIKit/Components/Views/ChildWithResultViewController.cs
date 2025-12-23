@@ -1,47 +1,48 @@
-using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Views;
-using Playground.Core.ViewModels.Navigation;
-
-namespace Playground.iOS.Views;
-
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
+namespace Playground.iOS.Views
 {
-    private UITextField _message;
-    private UITextField _value;
-    private UIButton _close;
+    using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.App.Cross.UIKit;
+    using Playground.Core.ViewModels.Navigation;
 
-    public override void LoadView()
+    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
     {
-        base.LoadView();
+        private UITextField _message;
+        private UITextField _value;
+        private UIButton _close;
 
-        _message = new UITextField
+        public override void LoadView()
         {
-            TranslatesAutoresizingMaskIntoConstraints = false,
-            KeyboardType = UIKeyboardType.Default,
-            ReturnKeyType = UIReturnKeyType.Next,
-            ShouldReturn = ShouldReturn,
-            TextColor = UIColor.White
-        };
+            base.LoadView();
 
-        _value = new UITextField
-        {
-            TranslatesAutoresizingMaskIntoConstraints = false,
-            KeyboardType = UIKeyboardType.NumberPad,
-            ReturnKeyType = UIReturnKeyType.Done,
-            ShouldReturn = ShouldReturn,
-            TextColor = UIColor.White
-        };
+            _message = new UITextField
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false,
+                KeyboardType = UIKeyboardType.Default,
+                ReturnKeyType = UIReturnKeyType.Next,
+                ShouldReturn = ShouldReturn,
+                TextColor = UIColor.White
+            };
 
-        _close = new UIButton { TranslatesAutoresizingMaskIntoConstraints = false };
-        _close.SetTitle("Close", UIControlState.Normal);
+            _value = new UITextField
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false,
+                KeyboardType = UIKeyboardType.NumberPad,
+                ReturnKeyType = UIReturnKeyType.Done,
+                ShouldReturn = ShouldReturn,
+                TextColor = UIColor.White
+            };
 
-        Add(_message);
-        Add(_value);
-        Add(_close);
+            _close = new UIButton { TranslatesAutoresizingMaskIntoConstraints = false };
+            _close.SetTitle("Close", UIControlState.Normal);
 
-        NSLayoutConstraint.ActivateConstraints([
-            _message.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor, 16),
+            Add(_message);
+            Add(_value);
+            Add(_close);
+
+            NSLayoutConstraint.ActivateConstraints([
+                _message.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor, 16),
             _message.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
             _message.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -16),
             _message.HeightAnchor.ConstraintEqualTo(40),
@@ -54,43 +55,44 @@ public sealed class ChildWithResultViewController : MvxViewController<ChildWithR
             _close.TopAnchor.ConstraintEqualTo(_value.BottomAnchor, 16),
             _close.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
             _close.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16)
-        ]);
-    }
-
-    private bool ShouldReturn(UITextField textfield)
-    {
-        if (textfield.Equals(_message))
-        {
-            _message.ResignFirstResponder();
-            _value.BecomeFirstResponder();
-            return true;
+            ]);
         }
 
-        if (textfield.Equals(_value))
+        private bool ShouldReturn(UITextField textfield)
         {
-            _message.ResignFirstResponder();
-            _value.ResignFirstResponder();
-            return true;
+            if (textfield.Equals(_message))
+            {
+                _message.ResignFirstResponder();
+                _value.BecomeFirstResponder();
+                return true;
+            }
+
+            if (textfield.Equals(_value))
+            {
+                _message.ResignFirstResponder();
+                _value.ResignFirstResponder();
+                return true;
+            }
+
+            return false;
         }
 
-        return false;
-    }
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-    public override void ViewDidLoad()
-    {
-        base.ViewDidLoad();
+            var set = CreateBindingSet();
+            set.Bind(_message).To(vm => vm.Message).TwoWay();
+            set.Bind(_value).To(vm => vm.Value).TwoWay();
+            set.Bind(_close).To(vm => vm.CloseCommand);
+            set.Apply();
+        }
 
-        var set = CreateBindingSet();
-        set.Bind(_message).To(vm => vm.Message).TwoWay();
-        set.Bind(_value).To(vm => vm.Value).TwoWay();
-        set.Bind(_close).To(vm => vm.CloseCommand);
-        set.Apply();
-    }
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
 
-    public override void ViewDidAppear(bool animated)
-    {
-        base.ViewDidAppear(animated);
-
-        _message.BecomeFirstResponder();
+            _message.BecomeFirstResponder();
+        }
     }
 }

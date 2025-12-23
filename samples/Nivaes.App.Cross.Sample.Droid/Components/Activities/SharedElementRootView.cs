@@ -6,6 +6,7 @@ namespace Playground.Droid.Activities
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Droid;
     using Playground.Core.ViewModels;
 
     [MvxActivityPresentation]

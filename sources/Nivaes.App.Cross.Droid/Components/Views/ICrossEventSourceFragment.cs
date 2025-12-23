@@ -1,10 +1,8 @@
 using Android.Content;
-using Android.OS;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
     using Nivaes.App.Cross;
 
     public interface ICrossEventSourceFragment 

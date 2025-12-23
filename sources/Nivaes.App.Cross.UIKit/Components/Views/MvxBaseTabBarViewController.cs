@@ -1,11 +1,6 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Ios.Views.Base;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;
 
@@ -37,7 +32,7 @@ namespace MvvmCross.Platforms.Ios.Views
             this.AdaptForBinding();
         }
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {
@@ -46,19 +41,19 @@ namespace MvvmCross.Platforms.Ios.Views
             }
             set
             {
-                BindingContext.DataContext = value;
+                BindingContext?.DataContext = value;
             }
         }
 
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
             get { return DataContext as ICrossViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -104,7 +99,8 @@ namespace MvvmCross.Platforms.Ios.Views
         }
     }
 
-    public class MvxBaseTabBarViewController<TViewModel> : MvxBaseTabBarViewController, IMvxIosView<TViewModel>
+    public class MvxBaseTabBarViewController<TViewModel>
+        : MvxBaseTabBarViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public MvxBaseTabBarViewController()

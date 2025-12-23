@@ -4,6 +4,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
     public class MvxCompoundButtonCheckedTargetBinding(
@@ -26,7 +27,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
                 return;
             }
 
-            _subscription = compoundButton.WeakSubscribe<CompoundButton, CompoundButton.CheckedChangeEventArgs>(
+            _subscription = compoundButton.DroidWeakSubscribe<CompoundButton, CompoundButton.CheckedChangeEventArgs>(
                 nameof(compoundButton.CheckedChange),
                 CompoundButtonOnCheckedChange);
         }

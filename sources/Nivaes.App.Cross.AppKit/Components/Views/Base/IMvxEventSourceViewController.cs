@@ -1,8 +1,6 @@
-namespace MvvmCross.Platforms.Mac.Views.Base
+namespace Nivaes.App.Cross.AppKit
 {
     using System;
-    using MvvmCross.Base;
-    using Nivaes.App.Cross;
 
     public interface IMvxEventSourceViewController 
         : ICrossDisposeSource

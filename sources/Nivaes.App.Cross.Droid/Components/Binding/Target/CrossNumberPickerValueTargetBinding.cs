@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.Droid
                 return;
             }
 
-            _subscription = numberPicker.WeakSubscribe<NumberPicker, NumberPicker.ValueChangeEventArgs>(
+            _subscription = numberPicker.DroidWeakSubscribe<NumberPicker, NumberPicker.ValueChangeEventArgs>(
                 nameof(numberPicker.ValueChanged),
                 NumberPickerValueChanged);
         }

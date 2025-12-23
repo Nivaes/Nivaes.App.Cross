@@ -1,16 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Core
+namespace Nivaes.App.Cross.AppKit
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.Mac.Binding;
     using MvvmCross.Platforms.Mac.Presenters;
-    using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross;
 
     public abstract class MvxMacSetup
         : CrossSetup, IMvxMacSetup

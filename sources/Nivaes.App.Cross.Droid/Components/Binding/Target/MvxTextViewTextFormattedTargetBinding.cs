@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
             if (view == null)
                 return;
 
-            _subscription = view.WeakSubscribe<TextView, AfterTextChangedEventArgs>(
+            _subscription = view.DroidWeakSubscribe<TextView, AfterTextChangedEventArgs>(
                 nameof(view.AfterTextChanged),
                 EditTextOnAfterTextChanged);
         }

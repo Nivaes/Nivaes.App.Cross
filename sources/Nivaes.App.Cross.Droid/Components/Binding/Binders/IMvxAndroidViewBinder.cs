@@ -1,11 +1,10 @@
-using Android.Content;
-using Android.Util;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders
+namespace Nivaes.App.Cross.Droid
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Android.Content;
+    using Android.Util;
+    using Android.Views;
     using Nivaes.App.Cross;
 
     public interface IMvxAndroidViewBinder

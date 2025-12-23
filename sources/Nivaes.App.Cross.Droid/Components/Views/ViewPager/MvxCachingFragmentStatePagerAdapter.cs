@@ -1,21 +1,16 @@
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 
-namespace MvvmCross.Platforms.Android.Views.ViewPager
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using AndroidX.Core.OS;
     using AndroidX.Fragment.App;
     using Java.Interop;
     using Java.Lang;
-    using MvvmCross.Platforms.Android.Presenters;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
-    using MvvmCross.ViewModels;
+    using MvvmCross;
     using Nivaes.App.Cross;
     using Fragment = AndroidX.Fragment.App.Fragment;
     using FragmentManager = AndroidX.Fragment.App.FragmentManager;
@@ -23,7 +18,8 @@ namespace MvvmCross.Platforms.Android.Views.ViewPager
     using JavaString = Java.Lang.String;
 
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
-    public class MvxCachingFragmentStatePagerAdapter : MvxCachingFragmentPagerAdapter
+    public class MvxCachingFragmentStatePagerAdapter 
+        : MvxCachingFragmentPagerAdapter
     {
         public const string ViewPagerFragmentsInfoBundleKey = "__mvxViewPagerFragmentsInfo";
 

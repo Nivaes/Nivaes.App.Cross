@@ -1,15 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
-using ObjCRuntime;
-
-namespace MvvmCross.Platforms.Tvos.Binding.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    public class MvxSimpleTableViewSource : MvxTableViewSource
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Logging;
+    using MvvmCross.Platforms.Tvos;
+    using ObjCRuntime;
+
+    public class MvxSimpleTableViewSource 
+        : MvxTableViewSource
     {
         private readonly NSString _cellIdentifier;
         private readonly MvxTvosMajorVersionChecker _iosVersion6Checker = new(6);

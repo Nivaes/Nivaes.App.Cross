@@ -1,9 +1,8 @@
 using Android.Content;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;    
-    using MvvmCross.ViewModels;
+    using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
     public interface IMvxAndroidViewModelRequestTranslator

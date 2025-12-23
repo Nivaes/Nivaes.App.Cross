@@ -1,12 +1,9 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using CoreGraphics;
-    using MvvmCross.Binding.Attributes;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;
@@ -77,7 +74,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             base.Dispose(disposing);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public object DataContext
         {
             get { return BindingContext.DataContext; }

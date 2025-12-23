@@ -5,6 +5,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
     using MvvmCross.Platforms.Android.Binding.Views;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
     public class MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding
@@ -38,7 +39,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             if (autoComplete == null)
                 return;
 
-            _subscription = autoComplete.WeakSubscribe(
+            _subscription = autoComplete.DroidWeakSubscribe(
                 nameof(autoComplete.PartialTextChanged),
                 AutoCompleteOnPartialTextChanged);
         }

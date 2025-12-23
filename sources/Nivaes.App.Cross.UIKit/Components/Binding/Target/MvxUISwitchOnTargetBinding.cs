@@ -1,4 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+#if IOS || MACCATALYST
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
@@ -47,3 +48,4 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
         }
     }
 }
+#endif

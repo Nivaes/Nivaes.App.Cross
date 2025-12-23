@@ -1,13 +1,8 @@
-namespace MvvmCross.DroidX.Material
+namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Android.Content;
     using Android.Runtime;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.DroidX.Material.EventSource;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     [Register("mvvmcross.droidx.material.MvxBottomSheetDialogFragment")]
@@ -27,8 +22,8 @@ namespace MvvmCross.DroidX.Material
 
         public IMvxBindingContext BindingContext { get; set; }
 
-        private object _dataContext;
-        public object DataContext
+        private object? _dataContext;
+        public object? DataContext
         {
             get
             {
@@ -42,7 +37,7 @@ namespace MvvmCross.DroidX.Material
             }
         }
 
-        public virtual ICrossViewModel ViewModel
+        public virtual ICrossViewModel? ViewModel
         {
             get
             {
@@ -129,9 +124,9 @@ namespace MvvmCross.DroidX.Material
         {
         }
 
-        public new TViewModel ViewModel
+        public new TViewModel? ViewModel
         {
-            get { return (TViewModel)base.ViewModel; }
+            get { return (TViewModel?)base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

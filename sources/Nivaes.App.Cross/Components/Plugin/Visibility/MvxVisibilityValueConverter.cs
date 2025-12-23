@@ -1,10 +1,11 @@
-namespace MvvmCross.Plugin.Visibility
+namespace Nivaes.App.Cross.Visibility
 {
     using System.Globalization;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
     [Preserve(AllMembers = true)]
-    public class MvxVisibilityValueConverter : MvxBaseVisibilityValueConverter
+    public class MvxVisibilityValueConverter 
+        : MvxBaseVisibilityValueConverter
     {
         protected override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
         {

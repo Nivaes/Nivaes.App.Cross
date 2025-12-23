@@ -5,16 +5,19 @@ namespace Nivaes.App.Cross.Droid
 
     public static class CrossAndroidWeakSubscriptionExtensions
     {
-        public static CrossJavaEventSubscription<TSource> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(this TSource source, string eventName, EventHandler eventHandler)
+        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource>(TSource source) 
             where TSource : class
         {
-            return new CrossJavaEventSubscription<TSource>(source, eventName, eventHandler);
-        }
+            public CrossJavaEventSubscription<TSource> DroidWeakSubscribe(string eventName, EventHandler eventHandler)
+            {
+                return new CrossJavaEventSubscription<TSource>(source, eventName, eventHandler);
+            }
 
-        public static CrossAndroidTargetEventSubscription<TSource, TEventArgs> WeakSubscribe<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TSource, TEventArgs>(this TSource source, string eventName, EventHandler<TEventArgs> eventHandler)
-            where TSource : class
-        {
-            return new CrossAndroidTargetEventSubscription<TSource, TEventArgs>(source, eventName, eventHandler);
+            public CrossAndroidTargetEventSubscription<TSource, TEventArgs> DroidWeakSubscribe<TEventArgs>
+                            (string eventName, EventHandler<TEventArgs> eventHandler)
+            {
+                return new CrossAndroidTargetEventSubscription<TSource, TEventArgs>(source, eventName, eventHandler);
+            }
         }
     }
 }

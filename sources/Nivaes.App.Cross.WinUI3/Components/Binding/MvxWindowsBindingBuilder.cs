@@ -1,10 +1,6 @@
 namespace MvvmCross.Platforms.WinUi.Binding
 {
     using Microsoft.UI.Xaml;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Combiners;
-    using MvvmCross.Converters;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.WinUi.Binding.MvxBinding;
     using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;

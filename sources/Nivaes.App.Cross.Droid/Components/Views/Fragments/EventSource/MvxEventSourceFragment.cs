@@ -1,10 +1,9 @@
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-
-namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
     using System;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
     using Nivaes.App.Cross;
     using Fragment = AndroidX.Fragment.App.Fragment;
 

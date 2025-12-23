@@ -1,12 +1,10 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using CoreGraphics;
     using Foundation;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.Bindings;
+    using MvvmCross.Platforms.Ios.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;

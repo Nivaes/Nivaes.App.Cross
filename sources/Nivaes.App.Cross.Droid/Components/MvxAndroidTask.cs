@@ -1,11 +1,10 @@
-using Android.App;
-using Android.Content;
-
-namespace MvvmCross.Platforms.Android
+namespace Nivaes.App.Cross.Droid
 {
     using System;
+    using Android.App;
+    using Android.Content;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
+    using MvvmCross;
     using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Views.Base;
     using Nivaes.App.Cross;

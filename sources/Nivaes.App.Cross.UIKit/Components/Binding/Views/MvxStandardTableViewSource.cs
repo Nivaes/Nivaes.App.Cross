@@ -1,13 +1,11 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Foundation;
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
     using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Bindings;
-    using MvvmCross.Binding.Bindings.SourceSteps;
     using MvvmCross.Logging;
     using Nivaes.App.Cross;
     using ObjCRuntime;

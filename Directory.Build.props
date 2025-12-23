@@ -17,6 +17,7 @@
 		<_CrossMacOSVersion>13.0</_CrossMacOSVersion>
 		<_CrossiOSVersion>15.8</_CrossiOSVersion>
 		<_CrossMacCatalystVersion>15.6</_CrossMacCatalystVersion>
+		<!--<_CrossWatchOSVersion>15.8</_CrossWatchOSVersion>-->
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
 		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
 		<_CrossWindowsPlatformMinVersion>10.0.19041.0</_CrossWindowsPlatformMinVersion>
@@ -28,25 +29,17 @@
 		<_CrossiOSTargets>net10.0-ios</_CrossiOSTargets>
 		<_CrossMacCatalystTargets>net10.0-maccatalyst</_CrossMacCatalystTargets>
 		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
+		<!--<_CrossWatchOSTargets>net10.0-watchos</_CrossWatchOSTargets>-->
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
 		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
 		<_CrossWinUITargets>net10.0-windows</_CrossWinUITargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<_CrossTargetFrameworks>$(_CrossCommonTargets)</_CrossTargetFrameworks>
-		<!-- Windows-specific targets -->
-		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
-		<!-- Linux-specific targets -->
-		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
-		<!-- Mac-specific targets -->
-		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
-	</PropertyGroup>
-
-	<PropertyGroup>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">$(_CrossiOSVersion)</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">$(_CrossMacCatalystVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'watchos'">$(_CrossWatchOSTargets)</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">$(_CrossAndroidVersion)</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>

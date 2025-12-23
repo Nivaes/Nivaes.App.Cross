@@ -1,17 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Windows.Input;
-using UIKit;
-
-namespace MvvmCross.Platforms.Ios.Binding.Views.Gestures
+namespace Nivaes.App.Cross.UIKit
 {
-    public abstract class MvxGestureRecognizerBehavior : UIGestureRecognizerDelegate
-    {
-        public ICommand Command { get; set; }
+    using System.Windows.Input;
+    using UIKit;
 
-        protected void FireCommand(object argument = null)
+    public abstract class MvxGestureRecognizerBehavior 
+        : UIGestureRecognizerDelegate
+    {
+        public ICommand? Command { get; set; }
+
+        protected void FireCommand(object? argument = null)
         {
             var command = Command;
             command?.Execute(argument);

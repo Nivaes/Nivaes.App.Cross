@@ -1,9 +1,5 @@
-namespace MvvmCross.Platforms.Tvos.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxTvosView
         : ICrossView
         , IMvxCanCreateTvosView

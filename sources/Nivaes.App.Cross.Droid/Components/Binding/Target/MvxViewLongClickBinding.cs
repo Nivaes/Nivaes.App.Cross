@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         public MvxViewLongClickBinding(View view)
             : base(view)
         {
-            _subscription = view.WeakSubscribe<View, View.LongClickEventArgs>(nameof(view.LongClick), ViewOnLongClick);
+            _subscription = view.DroidWeakSubscribe<View, View.LongClickEventArgs>(nameof(view.LongClick), ViewOnLongClick);
         }
 
         private void ViewOnLongClick(object? sender, View.LongClickEventArgs longClickEventArgs)

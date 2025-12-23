@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Tvos.Views
+namespace Nivaes.App.Cross.UIKit.TvOS
 {
 
     using MvvmCross.Binding.BindingContext;
@@ -35,7 +35,7 @@ namespace MvvmCross.Platforms.Tvos.Views
             this.AdaptForBinding();
         }
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {
@@ -44,19 +44,19 @@ namespace MvvmCross.Platforms.Tvos.Views
             }
             set
             {
-                BindingContext.DataContext = value;
+                BindingContext?.DataContext = value;
             }
         }
 
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
             get { return DataContext as ICrossViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest Request { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public IMvxBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -95,7 +95,7 @@ namespace MvvmCross.Platforms.Tvos.Views
                 ViewModel?.ViewDestroy();
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject? sender)
         {
             base.PrepareForSegue(segue, sender);
             this.ViewModelRequestForSegue(segue, sender);
@@ -125,9 +125,9 @@ namespace MvvmCross.Platforms.Tvos.Views
         {
         }
 
-        public new TViewModel ViewModel
+        public new TViewModel? ViewModel
         {
-            get { return (TViewModel)base.ViewModel; }
+            get { return (TViewModel?)base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

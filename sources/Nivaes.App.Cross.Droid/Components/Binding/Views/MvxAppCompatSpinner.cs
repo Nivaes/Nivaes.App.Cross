@@ -1,18 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using System.Windows.Input;
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using AndroidX.AppCompat.Widget;
-using MvvmCross.Binding.Attributes;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.Collections;
+    using System.Windows.Input;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+    using AndroidX.AppCompat.Widget;
+
     /// <summary>
     /// Tint-aware version of MvxSpinner styled properly with AppCompat V22.2+.
     /// TODO: We may want to figure out a way to delegate to a common class for both.
@@ -70,7 +65,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             }
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public IEnumerable ItemsSource
         {
             get => Adapter.ItemsSource;

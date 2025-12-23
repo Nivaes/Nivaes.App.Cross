@@ -1,17 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections;
-using Android.Content;
-using Android.Runtime;
-using Android.Util;
-using Android.Widget;
-using MvvmCross.Binding.Attributes;
-
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
+    using System;
+    using System.Collections;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Util;
+    using Android.Widget;
+
     [Register("mvvmcross.platforms.android.binding.views.MvxAutoCompleteTextView")]
     public class MvxAutoCompleteTextView
         : AutoCompleteTextView
@@ -99,7 +94,7 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             FireChanged(PartialTextChanged);
         }
 
-        [MvxSetToNullAfterBinding]
+        [CrossSetToNullAfterBinding]
         public IEnumerable ItemsSource
         {
             get { return Adapter.ItemsSource; }

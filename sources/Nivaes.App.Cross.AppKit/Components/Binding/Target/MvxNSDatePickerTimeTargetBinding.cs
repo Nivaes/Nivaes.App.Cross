@@ -1,32 +1,39 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using AppKit;
-using Foundation;
-
-namespace MvvmCross.Platforms.Mac.Binding.Target
+namespace Nivaes.App.Cross.AppKit
 {
-    public class MvxNSDatePickerTimeTargetBinding : MvxBaseNSDatePickerTargetBinding
+    using System;
+    using AppKit;
+    using Foundation;
+    using MvvmCross.Platforms.Mac.Binding.Target;
+
+    public class MvxNSDatePickerTimeTargetBinding 
+        : MvxBaseNSDatePickerTargetBinding
     {
         public MvxNSDatePickerTimeTargetBinding(NSDatePicker datePicker)
             : base(datePicker)
         {
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var picker = this.DatePicker;
             if (picker == null)
                 return;
 
-            var time = (DateTime)value;
+            var time = value as DateTime?;
 
-            // Do this in a way that does not mess up the date, grab current date, then modify the time
-            var pickerDate = this.GetLocalTime(this.DatePicker);
-            var date = new DateTime(pickerDate.Year, pickerDate.Month, pickerDate.Day,
-                time.Hour, time.Minute, time.Second, DateTimeKind.Local);
+            var pickerDate = this.DatePicker != null ? this.GetLocalTime(this.DatePicker) : DateTime.Now;
+
+            DateTime date;
+            if (time == null)
+            {
+                date = new DateTime(pickerDate.Year, pickerDate.Month, pickerDate.Day,
+                    0, 0, 0, DateTimeKind.Local);
+            }
+            else
+            {
+                date = new DateTime(pickerDate.Year, pickerDate.Month, pickerDate.Day,
+                    time.Value.Hour, time.Value.Minute, time.Value.Second, DateTimeKind.Local);
+            }
 
             //var date = new DateTime (2000, 1, 1).Add (timespan);
             picker.DateValue = (NSDate)(date);
@@ -50,7 +57,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-        protected override object MakeSafeValue(object value)
+        protected override object MakeSafeValue(object? value)
         {
             if (value == null)
                 value = TimeSpan.FromSeconds(0);

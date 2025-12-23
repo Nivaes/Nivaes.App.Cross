@@ -1,19 +1,15 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Converters;
-
-namespace MvvmCross.Binding.Bindings.SourceSteps
+namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross.Binding;
+
     public abstract class MvxSourceStep
         : IMvxSourceStep
     {
         private readonly MvxSourceStepDescription _description;
-        private object _dataContext;
+        private object? _dataContext;
 
         protected MvxSourceStepDescription Description => _description;
 
@@ -38,7 +34,7 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
         public virtual Type SourceType => typeof(object);
 
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {
@@ -85,12 +81,11 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
                                                       CultureInfo.CurrentUICulture);
         }
 
-        private object ApplyValueConverterSourceToTarget(object value)
+        private object? ApplyValueConverterSourceToTarget(object? value)
         {
-            if (_description.Converter == null)
-            {
-                return value;
-            }
+            if(value == null) return null;
+
+            if (_description.Converter == null) return value;
 
             try
             {
@@ -120,7 +115,7 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
             _changed?.Invoke(this, EventArgs.Empty);
         }
 
-        private object ConvertSourceToTarget(object value)
+        private object? ConvertSourceToTarget(object? value)
         {
             if (value == MvxBindingConstant.DoNothing)
                 return value;
@@ -177,7 +172,7 @@ namespace MvvmCross.Binding.Bindings.SourceSteps
             return value;
         }
 
-        protected abstract object GetSourceValue();
+        protected abstract object? GetSourceValue();
     }
 
     public abstract class MvxSourceStep<T> : MvxSourceStep

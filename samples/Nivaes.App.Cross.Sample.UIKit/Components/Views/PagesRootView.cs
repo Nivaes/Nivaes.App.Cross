@@ -4,6 +4,7 @@ namespace Playground.iOS.Views
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
     using MvvmCross.ViewModels;
+    using Nivaes.App.Cross.UIKit;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
     using UIKit;
