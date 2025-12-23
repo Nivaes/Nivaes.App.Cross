@@ -12,6 +12,6 @@ namespace MvvmCross.Binding.Binders
         CrossBindingDescription ParseSingle(string text);
 
         CrossBindingDescription SerializableBindingToBinding(string targetName,
-                                                           MvxSerializableBindingDescription description);
+                                                           CrossSerializableBindingDescription description);
     }
 }

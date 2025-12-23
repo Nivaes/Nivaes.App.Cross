@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
             _command = value as ICommand;
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(ICommand);

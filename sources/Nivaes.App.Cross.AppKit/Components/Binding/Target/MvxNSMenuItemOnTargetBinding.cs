@@ -16,7 +16,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var checkBox = View;
             if (checkBox == null)
             {
-                MvxBindingLog.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
             }
             else
             {
@@ -50,9 +50,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             return base.MakeSafeValue(value);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]

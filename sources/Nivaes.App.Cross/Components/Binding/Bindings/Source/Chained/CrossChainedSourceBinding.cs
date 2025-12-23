@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross
             base.Dispose(isDisposing);
         }
 
-        private ICrossSourceBindingFactory SourceBindingFactory => MvxBindingSingletonCache.Instance.SourceBindingFactory;
+        private ICrossSourceBindingFactory SourceBindingFactory => CrossBindingSingletonCache.Instance.SourceBindingFactory;
 
         public override Type SourceType
         {
@@ -102,7 +102,7 @@ namespace Nivaes.App.Cross
         {
             if (_currentChildBinding == null)
             {
-                MvxBindingLog.Instance?.LogWarning("SetValue ignored in binding - target property path missing");
+                CrossBindingLog.Instance?.LogWarning("SetValue ignored in binding - target property path missing");
                 return;
             }
 

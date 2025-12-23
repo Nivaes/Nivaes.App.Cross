@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
     {
         protected ImageView? ImageView => (ImageView?)Target;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         protected override void SetValueImpl(object target, object? value)
         {

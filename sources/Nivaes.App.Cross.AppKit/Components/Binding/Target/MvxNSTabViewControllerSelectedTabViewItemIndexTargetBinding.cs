@@ -23,9 +23,9 @@ namespace Nivaes.App.Cross.AppKit
             FireValueChanged((int)view.SelectedTabViewItemIndex);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.AppKit
             var view = View;
             if (view == null)
             {
-                MvxBindingLog.Instance?.LogError("NSTabViewController is null in MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSTabViewController is null in MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.AppKit
                 }
                 catch (Exception ex)
                 {
-                    MvxBindingLog.Instance?.LogError(ex, "Failed to subscribe to events");
+                    CrossBindingLog.Instance?.LogError(ex, "Failed to subscribe to events");
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross.AppKit
                         }
                         catch (Exception ex)
                         {
-                            MvxBindingLog.Instance?.LogError(ex, "Failed to unsubscribe from event");
+                            CrossBindingLog.Instance?.LogError(ex, "Failed to unsubscribe from event");
                         }
                     }
                     _subscribed = false;

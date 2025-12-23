@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
             ((TextView)target).SetText((string?)value, TextView.BufferType.Normal);
         }
 
-        public override MvxBindingMode DefaultMode => _isEditTextBinding ? MvxBindingMode.TwoWay : MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => _isEditTextBinding ? CrossBindingMode.TwoWay : CrossBindingMode.OneWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

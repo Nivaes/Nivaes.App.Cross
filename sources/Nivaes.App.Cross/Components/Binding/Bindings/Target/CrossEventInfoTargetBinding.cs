@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(ICommand);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected override void Dispose(bool isDisposing)

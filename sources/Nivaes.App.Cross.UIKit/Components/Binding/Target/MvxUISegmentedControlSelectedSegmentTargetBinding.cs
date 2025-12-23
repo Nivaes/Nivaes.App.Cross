@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     {
         private CrossWeakEventSubscription<UISegmentedControl>? _subscription;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var segmentedControl = View;
             if (segmentedControl == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "UISegmentedControl is null in MvxUISegmentedControlSelectedSegmentTargetBinding");
                 return;
             }

@@ -38,14 +38,14 @@ namespace Nivaes.App.Cross.Droid
             var index = listView.Adapter.GetPosition(value);
             if (index < 0)
             {
-                MvxBindingLog.Instance?.LogWarning("Value not found for spinner {Value}", value);
+                CrossBindingLog.Instance?.LogWarning("Value not found for spinner {Value}", value);
                 return;
             }
             _currentValue = value;
             listView.SetSelection(index);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

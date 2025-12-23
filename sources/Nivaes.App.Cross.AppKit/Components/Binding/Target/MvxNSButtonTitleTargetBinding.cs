@@ -18,13 +18,13 @@ namespace Nivaes.App.Cross.AppKit
         {
             if (button == null)
             {
-                MvxBindingLog.Instance?.LogError("NSButton is null in MvxNSButtonTitleTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSButton is null in MvxNSButtonTitleTargetBinding");
             }
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.OneWay; }
+            get { return CrossBindingMode.OneWay; }
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]

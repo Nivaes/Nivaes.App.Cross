@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
         private readonly CrossBindingDescription _bindingDescription;
         private readonly object _defaultTargetValue;
 
-        private IMvxSourceStep _sourceStep;
+        private ICrossSourceStep _sourceStep;
         private ICrossTargetBinding _targetBinding;
         private object _dataContext;
         private CancellationTokenSource _cancelSource = new();
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public CrossFullBinding(MvxBindingRequest bindingRequest)
+        public CrossFullBinding(CrossBindingRequest bindingRequest)
         {
             _dataContext = bindingRequest.Source;
             _bindingDescription = bindingRequest.Description;
@@ -67,9 +67,9 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private IMvxSourceStep CreateSourceBinding(MvxBindingRequest bindingRequest)
+        private ICrossSourceStep CreateSourceBinding(CrossBindingRequest bindingRequest)
         {
-            var sourceStep = MvxBindingSingletonCache.Instance.SourceStepFactory.Create(bindingRequest.Description.Source);
+            var sourceStep = CrossBindingSingletonCache.Instance.SourceStepFactory.Create(bindingRequest.Description.Source);
             sourceStep.TargetType = _targetBinding.TargetValueType;
             sourceStep.DataContext = bindingRequest.Source;
 
@@ -112,7 +112,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    MvxBindingLog.Instance?.LogTrace(exception, "Exception masked in UpdateTargetOnBind");
+                    CrossBindingLog.Instance?.LogTrace(exception, "Exception masked in UpdateTargetOnBind");
                 }
             }
         }
@@ -130,13 +130,13 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private static ICrossTargetBinding CreateTargetBinding(MvxBindingRequest request)
+        private static ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
         {
-            var binding = MvxBindingSingletonCache.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
+            var binding = CrossBindingSingletonCache.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
 
             if (binding == null)
             {
-                MvxBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
+                CrossBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
                 binding = new CrossNullTargetBinding();
             }
 
@@ -165,7 +165,7 @@ namespace Nivaes.App.Cross
                 }
             }
 
-            await MvxBindingSingletonCache.Instance.MainThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+            await CrossBindingSingletonCache.Instance.MainThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
                 if (cancel.IsCancellationRequested)
                     return;
@@ -179,7 +179,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    MvxBindingLog.Instance?.LogError(
+                    CrossBindingLog.Instance?.LogError(
                         exception,
                         "Problem seen during binding execution for {BindingDescription}",
                         _bindingDescription.ToString());
@@ -204,7 +204,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
                     _bindingDescription.ToString());
@@ -238,14 +238,14 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected internal MvxBindingMode ActualBindingMode
+        protected internal CrossBindingMode ActualBindingMode
         {
             get
             {
                 lock (_lock)
                 {
                     var mode = _bindingDescription.Mode;
-                    if (mode == MvxBindingMode.Default && _targetBinding != null)
+                    if (mode == CrossBindingMode.Default && _targetBinding != null)
                         mode = _targetBinding.DefaultMode;
                     return mode;
                 }

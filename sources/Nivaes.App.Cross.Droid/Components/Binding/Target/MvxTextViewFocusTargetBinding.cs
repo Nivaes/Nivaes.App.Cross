@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(string);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         public MvxTextViewFocusTargetBinding(object target)
             : base(target)

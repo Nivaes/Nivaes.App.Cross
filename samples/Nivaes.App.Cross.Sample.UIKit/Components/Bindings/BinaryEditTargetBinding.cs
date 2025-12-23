@@ -17,7 +17,7 @@ namespace Playground.iOS.Bindings
             _target = target;
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         public override void SubscribeToEvents()
         {

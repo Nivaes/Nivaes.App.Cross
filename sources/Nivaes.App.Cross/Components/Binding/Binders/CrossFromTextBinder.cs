@@ -12,7 +12,7 @@ namespace MvvmCross.Binding.Binders
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public IEnumerable<ICrossUpdateableBinding> Bind(object source, object target, string bindingText)
         {
-            var bindingDescriptions = MvxBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingText);
+            var bindingDescriptions = CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
@@ -24,14 +24,14 @@ namespace MvvmCross.Binding.Binders
                 return Array.Empty<ICrossUpdateableBinding>();
 
             return
-                bindingDescriptions.Select(description => BindSingle(new MvxBindingRequest(source, target, description)));
+                bindingDescriptions.Select(description => BindSingle(new CrossBindingRequest(source, target, description)));
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public IEnumerable<ICrossUpdateableBinding> LanguageBind(object source, object target, string bindingText)
         {
             var bindingDescriptions =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.LanguageParse(bindingText);
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.LanguageParse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
@@ -40,17 +40,17 @@ namespace MvvmCross.Binding.Binders
                                                 string partialBindingDescription)
         {
             var bindingDescription =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(partialBindingDescription);
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(partialBindingDescription);
             if (bindingDescription == null)
                 return null;
 
             bindingDescription.TargetName = targetPropertyName;
-            var request = new MvxBindingRequest(source, target, bindingDescription);
+            var request = new CrossBindingRequest(source, target, bindingDescription);
             return BindSingle(request);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public ICrossUpdateableBinding BindSingle(MvxBindingRequest bindingRequest)
+        public ICrossUpdateableBinding BindSingle(CrossBindingRequest bindingRequest)
         {
             return new CrossFullBinding(bindingRequest);
         }

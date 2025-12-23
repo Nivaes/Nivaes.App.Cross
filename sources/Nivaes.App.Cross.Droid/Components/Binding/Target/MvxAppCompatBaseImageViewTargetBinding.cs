@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         protected override void SetValueImpl(object target, object value)
         {
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                MvxBindingLog.Instance?.LogError(ex, "Failed to set value");
+                CrossBindingLog.Instance?.LogError(ex, "Failed to set value");
                 throw;
             }
         }

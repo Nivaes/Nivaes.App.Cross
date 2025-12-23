@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.Droid
             var autoComplete = View;
             if (autoComplete == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "autoComplete is null in {TypeName}", nameof(MvxAutoCompleteTextViewPartialTextTargetBinding));
             }
         }
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.Droid
         private void AutoCompleteOnPartialTextChanged(object? sender, EventArgs eventArgs) =>
             FireValueChanged(View?.PartialText);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

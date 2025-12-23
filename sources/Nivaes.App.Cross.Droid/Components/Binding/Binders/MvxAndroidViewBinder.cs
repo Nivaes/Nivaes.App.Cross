@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception exception)
             {
-                MvxBindingLog.Instance?.LogError(exception, "Exception thrown during the view binding");
+                CrossBindingLog.Instance?.LogError(exception, "Exception thrown during the view binding");
             }
         }
 
@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception exception)
             {
-                MvxBindingLog.Instance?.LogError(exception, "Exception thrown during the view language binding");
+                CrossBindingLog.Instance?.LogError(exception, "Exception thrown during the view language binding");
                 throw;
             }
         }

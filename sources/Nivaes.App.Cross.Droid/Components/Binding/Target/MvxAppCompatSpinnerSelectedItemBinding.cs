@@ -53,7 +53,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value == null)
             {
-                MvxBindingLog.Instance?.LogWarning(
+                CrossBindingLog.Instance?.LogWarning(
                     "Null values not permitted in spinner SelectedItem binding currently");
                 return;
             }
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross.Droid
                 var index = spinner.Adapter.GetPosition(value);
                 if (index < 0)
                 {
-                    MvxBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
+                    CrossBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
                     return;
                 }
                 _currentValue = value;
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

@@ -5,12 +5,12 @@ namespace Nivaes.App.Cross
 
     public interface IMvxValueCombiner
     {
-        Type SourceType(IEnumerable<IMvxSourceStep> steps);
+        Type SourceType(IEnumerable<ICrossSourceStep> steps);
 
-        void SetValue(IEnumerable<IMvxSourceStep> steps, object value);
+        void SetValue(IEnumerable<ICrossSourceStep> steps, object value);
 
-        bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value);
+        bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value);
 
-        IEnumerable<Type> SubStepTargetTypes(IEnumerable<IMvxSourceStep> subSteps, Type overallTargetType);
+        IEnumerable<Type> SubStepTargetTypes(IEnumerable<ICrossSourceStep> subSteps, Type overallTargetType);
     }
 }

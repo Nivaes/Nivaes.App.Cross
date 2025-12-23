@@ -27,7 +27,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             FireValueChanged(view.CurrentPage);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -35,7 +35,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var pageControl = View;
             if (pageControl == null)
             {
-                MvxBindingLog.Instance?.LogError("UIPageControl is null in MvxUIPageControlCurrentPageTargetBinding");
+                CrossBindingLog.Instance?.LogError("UIPageControl is null in MvxUIPageControlCurrentPageTargetBinding");
                 return;
             }
 

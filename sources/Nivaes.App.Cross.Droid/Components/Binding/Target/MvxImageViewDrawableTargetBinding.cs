@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
     {
         protected ImageView? ImageView => (ImageView?)Target;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(int);
@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value is not int resourceIdentifier)
             {
-                MvxBindingLog.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
+                CrossBindingLog.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
                 view.SetImageDrawable(null);
                 return;
             }

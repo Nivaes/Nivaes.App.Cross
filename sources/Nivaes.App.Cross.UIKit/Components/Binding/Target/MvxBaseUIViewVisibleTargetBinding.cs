@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.UIKit
     {
         protected UIView? View => (UIView?)Target;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(bool);

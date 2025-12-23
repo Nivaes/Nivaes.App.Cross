@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
     public sealed class CrossNullTargetBinding() 
         : CrossTargetBinding(null)
     {
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneTime;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneTime;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(object);

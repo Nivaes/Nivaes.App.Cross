@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross.UIKit
 
         protected abstract object GetValueFrom(UIDatePicker view);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.UIKit
             var datePicker = View;
             if (datePicker == null)
             {
-                MvxBindingLog.Instance?.LogError("UIDatePicker is null in {TargetBindingType}",
+                CrossBindingLog.Instance?.LogError("UIDatePicker is null in {TargetBindingType}",
                     nameof(MvxBaseUIDatePickerTargetBinding));
             }
             // Only listen for value changes if we are binding against one of the value-derived properties.

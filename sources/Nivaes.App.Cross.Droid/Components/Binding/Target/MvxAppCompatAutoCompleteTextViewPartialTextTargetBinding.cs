@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var autoComplete = View;
             if (autoComplete == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "autoComplete is null in MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding");
             }
         }
@@ -30,7 +30,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             FireValueChanged(View?.PartialText);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWayToSource;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWayToSource;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

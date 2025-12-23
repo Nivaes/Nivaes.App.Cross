@@ -6,7 +6,7 @@ namespace MvvmCross.Binding.Combiners
     public class MvxIfValueCombiner
         : MvxValueCombiner
     {
-        public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var list = steps.ToList();
             switch (list.Count)
@@ -18,12 +18,12 @@ namespace MvvmCross.Binding.Combiners
                     return TryEvaluateif(list[0], list[1], list[2], out value);
 
                 default:
-                    MvxBindingLog.Instance?.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
+                    CrossBindingLog.Instance?.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
                     return base.TryGetValue(list, out value);
             }
         }
 
-        private bool TryEvaluateif(IMvxSourceStep testStep, IMvxSourceStep ifStep, IMvxSourceStep? elseStep, out object value)
+        private bool TryEvaluateif(ICrossSourceStep testStep, ICrossSourceStep ifStep, ICrossSourceStep? elseStep, out object value)
         {
             var result = testStep.GetValue();
             if (result == MvxBindingConstant.DoNothing)
@@ -53,7 +53,7 @@ namespace MvvmCross.Binding.Combiners
             return result.ConvertToBoolean();
         }
 
-        protected virtual object ReturnSubStepResult(IMvxSourceStep? subStep)
+        protected virtual object ReturnSubStepResult(ICrossSourceStep? subStep)
         {
             if (subStep == null)
             {

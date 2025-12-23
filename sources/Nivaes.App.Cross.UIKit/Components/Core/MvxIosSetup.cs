@@ -149,7 +149,7 @@ namespace Nivaes.App.Cross.UIKit
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual MvxBindingBuilder CreateBindingBuilder()
+        protected virtual CrossBindingBuilder CreateBindingBuilder()
         {
             return new MvxIosBindingBuilder(FillTargetFactories, FillValueConverters, FillValueCombiners,
                 FillBindingNames);

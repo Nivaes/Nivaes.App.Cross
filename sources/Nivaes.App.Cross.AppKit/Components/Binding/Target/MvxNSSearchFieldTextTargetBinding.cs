@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var searchField = View;
             if (searchField == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                                       "NSSearchField is null in MvxNSSearchFieldTextTargetBinding");
             }
             else
@@ -32,9 +32,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             FireValueChanged(View.StringValue);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]

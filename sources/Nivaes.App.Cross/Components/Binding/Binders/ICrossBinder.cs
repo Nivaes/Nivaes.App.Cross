@@ -21,6 +21,6 @@ namespace MvvmCross.Binding.Binders
                                          string partialBindingDescription);
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        ICrossUpdateableBinding BindSingle(MvxBindingRequest bindingRequest);
+        ICrossUpdateableBinding BindSingle(CrossBindingRequest bindingRequest);
     }
 }

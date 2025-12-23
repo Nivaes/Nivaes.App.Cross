@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             _command.Execute(null);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(ICommand);
@@ -125,7 +125,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
                     _controlEventSubscription = control.WeakSubscribe(nameof(control.AllEvents), ControlEvent);
                     break;
                 default:
-                    MvxBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
+                    CrossBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
                     break;
             }
         }
@@ -150,7 +150,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
                     _controlEventSubscription?.Dispose();
                     break;
                 default:
-                    MvxBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
+                    CrossBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
                     break;
             }
         }

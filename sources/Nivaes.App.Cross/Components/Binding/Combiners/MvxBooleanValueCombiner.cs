@@ -55,7 +55,7 @@ namespace Nivaes.App.Cross
         : MvxValueCombiner
     {
         public override bool TryGetValue(
-            IEnumerable<IMvxSourceStep> steps, out object value)
+            IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var stepValues = new List<bool>();
             foreach (var step in steps)

@@ -32,7 +32,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             return true;
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
         public override void SetValue(object? value)

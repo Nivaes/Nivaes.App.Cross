@@ -15,12 +15,12 @@ namespace Nivaes.App.Cross
         private readonly ICrossBindingContextOwner _bindingContextOwner;
 
         private readonly CrossBindingDescription _bindingDescription = new CrossBindingDescription();
-        private readonly MvxSourceStepDescription _sourceStepDescription = new MvxSourceStepDescription();
+        private readonly CrossSourceStepDescription _sourceStepDescription = new CrossSourceStepDescription();
         private ISourceSpec _sourceSpec;
 
         public interface ISourceSpec
         {
-            MvxSourceStepDescription CreateSourceStep(MvxSourceStepDescription inputs);
+            CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs);
         }
 
         public class KnownPathSourceSpec
@@ -33,9 +33,9 @@ namespace Nivaes.App.Cross
                 _knownSourcePath = knownSourcePath;
             }
 
-            public MvxSourceStepDescription CreateSourceStep(MvxSourceStepDescription inputs)
+            public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                return new MvxPathSourceStepDescription()
+                return new CrossPathSourceStepDescription()
                 {
                     Converter = inputs.Converter,
                     ConverterParameter = inputs.ConverterParameter,
@@ -55,7 +55,7 @@ namespace Nivaes.App.Cross
                 _freeText = freeText;
             }
 
-            public MvxSourceStepDescription CreateSourceStep(MvxSourceStepDescription inputs)
+            public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
                 var parser = Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
                 var parsedDescription = parser.ParseSingle(_freeText);
@@ -83,14 +83,14 @@ namespace Nivaes.App.Cross
         public class FullySourceSpec
             : ISourceSpec
         {
-            private readonly MvxSourceStepDescription _sourceStepDescription;
+            private readonly CrossSourceStepDescription _sourceStepDescription;
 
-            public FullySourceSpec(MvxSourceStepDescription sourceStepDescription)
+            public FullySourceSpec(CrossSourceStepDescription sourceStepDescription)
             {
                 _sourceStepDescription = sourceStepDescription;
             }
 
-            public MvxSourceStepDescription CreateSourceStep(MvxSourceStepDescription inputs)
+            public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
                 if (inputs.Converter == null || inputs.FallbackValue == null)
                 {
@@ -115,14 +115,14 @@ namespace Nivaes.App.Cross
                 _properties = properties;
             }
 
-            public MvxSourceStepDescription CreateSourceStep(MvxSourceStepDescription inputs)
+            public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
                 var parser = Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
                 var innerSteps = _useParser ?
                     _properties.Select(p => parser.ParseSingle(p).Source) :
-                    _properties.Select(p => new MvxPathSourceStepDescription { SourcePropertyPath = p });
+                    _properties.Select(p => new CrossPathSourceStepDescription { SourcePropertyPath = p });
 
-                return new MvxCombinerSourceStepDescription
+                return new CrossCombinerSourceStepDescription
                 {
                     Combiner = _combiner,
                     Converter = inputs.Converter,
@@ -135,10 +135,10 @@ namespace Nivaes.App.Cross
 
         public static class SourceSpecHelpers
         {
-            public static MvxSourceStepDescription WrapInsideSingleCombiner(MvxSourceStepDescription inputs,
-                                                                        MvxSourceStepDescription sourceStepDescription)
+            public static CrossSourceStepDescription WrapInsideSingleCombiner(CrossSourceStepDescription inputs,
+                                                                        CrossSourceStepDescription sourceStepDescription)
             {
-                return new MvxCombinerSourceStepDescription()
+                return new CrossCombinerSourceStepDescription()
                 {
                     Combiner = new MvxSingleValueCombiner(),
                     Converter = inputs.Converter,
@@ -159,7 +159,7 @@ namespace Nivaes.App.Cross
 
         protected CrossBindingDescription BindingDescription => _bindingDescription;
 
-        protected MvxSourceStepDescription SourceStepDescription => _sourceStepDescription;
+        protected CrossSourceStepDescription SourceStepDescription => _sourceStepDescription;
 
         protected void SetFreeTextPropertyPath(string sourcePropertyPath)
         {
@@ -212,21 +212,21 @@ namespace Nivaes.App.Cross
 
         protected static string TargetPropertyName(Expression<Func<TTarget, object>> targetPropertyPath)
         {
-            var parser = MvxBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
             var targetPropertyName = parser.Parse(targetPropertyPath).Print();
             return targetPropertyName;
         }
 
         protected static string SourcePropertyPath<TSource>(Expression<Func<TSource, object>> sourceProperty)
         {
-            var parser = MvxBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
             var sourcePropertyPath = parser.Parse(sourceProperty).Print();
             return sourcePropertyPath;
         }
 
         protected static IMvxValueConverter ValueConverterFromName(string converterName)
         {
-            var converter = MvxBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
+            var converter = CrossBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
             return converter;
         }
 
@@ -234,10 +234,10 @@ namespace Nivaes.App.Cross
         {
             EnsureTargetNameSet();
 
-            MvxSourceStepDescription source;
+            CrossSourceStepDescription source;
             if (_sourceSpec == null)
             {
-                source = new MvxPathSourceStepDescription()
+                source = new CrossPathSourceStepDescription()
                 {
                     Converter = _sourceStepDescription.Converter,
                     ConverterParameter = _sourceStepDescription.ConverterParameter,
@@ -281,7 +281,7 @@ namespace Nivaes.App.Cross
                 return;
 
             var defaultTargetName =
-                MvxBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
 
             if (string.IsNullOrEmpty(defaultTargetName))
             {

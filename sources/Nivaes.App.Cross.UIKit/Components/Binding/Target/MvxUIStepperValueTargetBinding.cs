@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.UIKit
             FireValueChanged(view.Value);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.UIKit
             var stepper = View;
             if (stepper == null)
             {
-                MvxBindingLog.Instance?.LogError("UIStepper is null in MvxUIStepperValueTargetBinding");
+                CrossBindingLog.Instance?.LogError("UIStepper is null in MvxUIStepperValueTargetBinding");
                 return;
             }
 

@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
     using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
     public class MvxAndroidBindingBuilder
-        : MvxBindingBuilder
+        : CrossBindingBuilder
     {
         private readonly Action<IMvxValueConverterRegistry> _fillValueConverters;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombiners;

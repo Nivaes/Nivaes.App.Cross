@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKit
     public class MvxUIActivityIndicatorViewHiddenTargetBinding(UIActivityIndicatorView target)
     : CrossConvertingTargetBinding(target)
     {
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(bool);

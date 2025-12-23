@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     {
         private CrossAndroidTargetEventSubscription<CompoundButton, CompoundButton.CheckedChangeEventArgs>? _subscription;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -22,7 +22,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var compoundButton = View;
             if (compoundButton == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "compoundButton is null in MvxCompoundButtonCheckedTargetBinding");
                 return;
             }

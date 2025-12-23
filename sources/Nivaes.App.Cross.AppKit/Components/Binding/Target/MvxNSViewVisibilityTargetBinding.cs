@@ -17,9 +17,9 @@ namespace Nivaes.App.Cross.AppKit
         {
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.OneWay; }
+            get { return CrossBindingMode.OneWay; }
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.AppKit
                     break;
 
                 default:
-                    MvxBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
+                    CrossBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
                     break;
             }
         }

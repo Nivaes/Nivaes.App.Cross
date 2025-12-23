@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Droid
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(ImageView);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         protected override void SetValueImpl(object target, object? value)
         {

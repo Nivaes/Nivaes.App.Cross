@@ -90,12 +90,12 @@ namespace Nivaes.App.Cross
                     if (pair.Type.ContainsGenericParameters) continue;
 
                     var converter = Activator.CreateInstance(pair.Type) as T;
-                    MvxBindingLog.Instance?.LogTrace("Registering value converter {Name}:{Type}", pair.Name, pair.Type.Name);
+                    CrossBindingLog.Instance?.LogTrace("Registering value converter {Name}:{Type}", pair.Name, pair.Type.Name);
                     registry.AddOrOverwrite(pair.Name, converter);
                 }
                 catch (Exception ex)
                 {
-                    MvxBindingLog.Instance?.LogError(ex, "Failed to register {Name} from {Type}", pair.Name,
+                    CrossBindingLog.Instance?.LogError(ex, "Failed to register {Name} from {Type}", pair.Name,
                         pair.Type.Name);
                 }
             }

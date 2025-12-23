@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.UIKit
         private readonly MvxTapGestureRecognizerBehaviour _behaviour = new(target, numberOfTapsRequired,
             numberOfTouchesRequired, cancelsTouchesInView);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(ICommand);

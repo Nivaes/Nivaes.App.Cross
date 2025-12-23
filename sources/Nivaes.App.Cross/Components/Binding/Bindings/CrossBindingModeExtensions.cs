@@ -6,27 +6,27 @@ namespace Nivaes.App.Cross
 
     public static class CrossBindingModeExtensions
     {
-        public static MvxBindingMode IfDefault(this MvxBindingMode bindingMode, MvxBindingMode modeIfDefault)
+        public static CrossBindingMode IfDefault(this CrossBindingMode bindingMode, CrossBindingMode modeIfDefault)
         {
-            if (bindingMode == MvxBindingMode.Default)
+            if (bindingMode == CrossBindingMode.Default)
                 return modeIfDefault;
             return bindingMode;
         }
 
-        public static bool RequireSourceObservation(this MvxBindingMode bindingMode)
+        public static bool RequireSourceObservation(this CrossBindingMode bindingMode)
         {
             switch (bindingMode)
             {
-                case MvxBindingMode.Default:
-                    MvxBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                case CrossBindingMode.Default:
+                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
-                case MvxBindingMode.OneWay:
-                case MvxBindingMode.TwoWay:
+                case CrossBindingMode.OneWay:
+                case CrossBindingMode.TwoWay:
                     return true;
 
-                case MvxBindingMode.OneTime:
-                case MvxBindingMode.OneWayToSource:
+                case CrossBindingMode.OneTime:
+                case CrossBindingMode.OneWayToSource:
                     return false;
 
                 default:
@@ -34,20 +34,20 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public static bool RequiresTargetObservation(this MvxBindingMode bindingMode)
+        public static bool RequiresTargetObservation(this CrossBindingMode bindingMode)
         {
             switch (bindingMode)
             {
-                case MvxBindingMode.Default:
-                    MvxBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                case CrossBindingMode.Default:
+                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
-                case MvxBindingMode.OneWay:
-                case MvxBindingMode.OneTime:
+                case CrossBindingMode.OneWay:
+                case CrossBindingMode.OneTime:
                     return false;
 
-                case MvxBindingMode.TwoWay:
-                case MvxBindingMode.OneWayToSource:
+                case CrossBindingMode.TwoWay:
+                case CrossBindingMode.OneWayToSource:
                     return true;
 
                 default:
@@ -55,20 +55,20 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public static bool RequireTargetUpdateOnFirstBind(this MvxBindingMode bindingMode)
+        public static bool RequireTargetUpdateOnFirstBind(this CrossBindingMode bindingMode)
         {
             switch (bindingMode)
             {
-                case MvxBindingMode.Default:
-                    MvxBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                case CrossBindingMode.Default:
+                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
-                case MvxBindingMode.OneWay:
-                case MvxBindingMode.OneTime:
-                case MvxBindingMode.TwoWay:
+                case CrossBindingMode.OneWay:
+                case CrossBindingMode.OneTime:
+                case CrossBindingMode.TwoWay:
                     return true;
 
-                case MvxBindingMode.OneWayToSource:
+                case CrossBindingMode.OneWayToSource:
                     return false;
 
                 default:

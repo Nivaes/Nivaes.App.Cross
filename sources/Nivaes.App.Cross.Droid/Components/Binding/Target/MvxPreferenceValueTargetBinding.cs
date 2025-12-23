@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Droid
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(Preference);
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void SetValueImpl(object target, object? value)
         {
-            MvxBindingLog.Instance?.LogWarning("SetValueImpl called on generic Preference target");
+            CrossBindingLog.Instance?.LogWarning("SetValueImpl called on generic Preference target");
         }
     }
 }

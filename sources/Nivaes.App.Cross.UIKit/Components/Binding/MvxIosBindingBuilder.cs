@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.UIKit
     using MvvmCross.Platforms.Ios.Binding.Views;
 
     public class MvxIosBindingBuilder
-        : MvxBindingBuilder
+        : CrossBindingBuilder
     {
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;

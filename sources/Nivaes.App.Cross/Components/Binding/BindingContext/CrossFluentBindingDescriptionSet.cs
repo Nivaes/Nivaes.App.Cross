@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross
                 }
                 else
                 {
-                    MvxBindingLog.Instance?.LogWarning(
+                    CrossBindingLog.Instance?.LogWarning(
                         "Fluent binding description must implement {InterfaceName} in order to add {Description}",
                         nameof(ICrossBaseFluentBindingDescription),
                         nameof(ICrossBaseFluentBindingDescription.ClearBindingKey));

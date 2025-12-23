@@ -14,7 +14,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var editText = View;
             if (editText == null)
             {
-                MvxBindingLog.Instance?.LogError("NSTextField is null in MvxNSTextFieldTextTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSTextField is null in MvxNSTextFieldTextTargetBinding");
             }
             else
             {
@@ -30,9 +30,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             FireValueChanged(view.StringValue);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         protected override void SetValueImpl(object target, object value)

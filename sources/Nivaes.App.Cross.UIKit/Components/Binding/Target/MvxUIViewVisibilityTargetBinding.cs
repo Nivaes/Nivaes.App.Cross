@@ -10,7 +10,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     {
         protected UIView? View => (UIView?)Target;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(CrossVisibility);
@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var view = (UIView)target;
             if (value is not CrossVisibility visibility)
             {
-                MvxBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
+                CrossBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
                 return;
             }
 

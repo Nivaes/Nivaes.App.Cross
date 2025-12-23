@@ -11,7 +11,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     {
         private CrossWeakEventSubscription<UISearchBar, UISearchBarTextChangedEventArgs>? _subscription;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -19,7 +19,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var searchBar = View;
             if (searchBar == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "UISearchBar is null in {TargetBindingName}", nameof(MvxUISearchBarTextTargetBinding));
                 return;
             }

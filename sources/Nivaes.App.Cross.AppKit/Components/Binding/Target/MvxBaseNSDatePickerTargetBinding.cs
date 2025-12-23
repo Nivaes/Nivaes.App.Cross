@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.AppKit
 
             if (datePicker == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                                       "NSDatePicker is null in MvxBaseNSDatePickerTargetBinding");
                 return;
             }
@@ -50,9 +50,9 @@ namespace Nivaes.App.Cross.AppKit
             return TimeZoneInfo.ConvertTimeFromUtc((DateTime)view.DateValue, tzInfo);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]

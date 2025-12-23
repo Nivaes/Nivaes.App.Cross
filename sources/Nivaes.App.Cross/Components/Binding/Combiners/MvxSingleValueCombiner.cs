@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     public class MvxSingleValueCombiner 
         : MvxValueCombiner
     {
-        public override Type SourceType(IEnumerable<IMvxSourceStep> steps)
+        public override Type SourceType(IEnumerable<ICrossSourceStep> steps)
         {
             var firstStep = steps.FirstOrDefault();
             if (firstStep == null)
@@ -16,14 +16,14 @@ namespace Nivaes.App.Cross
             return firstStep.SourceType;
         }
 
-        public override void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
+        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
             var firstStep = steps.FirstOrDefault();
 
             firstStep?.SetValue(value);
         }
 
-        public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var firstStep = steps.FirstOrDefault();
             if (firstStep == null)

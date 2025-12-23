@@ -7,11 +7,11 @@ namespace Nivaes.App.Cross
         }
 
         public CrossBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter converter,
-                                     object converterParameter, object fallbackValue, MvxBindingMode mode)
+                                     object converterParameter, object fallbackValue, CrossBindingMode mode)
         {
             TargetName = targetName;
             Mode = mode;
-            Source = new MvxPathSourceStepDescription
+            Source = new CrossPathSourceStepDescription
             {
                 SourcePropertyPath = sourcePropertyPath,
                 Converter = converter,
@@ -21,8 +21,8 @@ namespace Nivaes.App.Cross
         }
 
         public string? TargetName { get; set; }
-        public MvxBindingMode Mode { get; set; }
-        public MvxSourceStepDescription Source { get; set; }
+        public CrossBindingMode Mode { get; set; }
+        public CrossSourceStepDescription Source { get; set; }
 
         public override string ToString()
         {

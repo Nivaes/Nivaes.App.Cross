@@ -35,7 +35,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
                 var view = Activator.CreateInstance(viewType, context, attrs) as View;
                 if (view == null)
                 {
-                    MvxBindingLog.Instance?.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
+                    CrossBindingLog.Instance?.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
                         name,
                         viewType.FullName);
                 }
@@ -47,7 +47,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             }
             catch (Exception exception)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     exception,
                     "Exception during creation of {ViewName} from type {ViewTypeName}", name, viewType.FullName);
                 return null;

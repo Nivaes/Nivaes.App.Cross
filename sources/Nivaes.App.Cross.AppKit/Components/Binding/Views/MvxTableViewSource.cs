@@ -192,7 +192,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
                     var isNullableType = Nullable.GetUnderlyingType(parameterType) != null;
                     if (parameterType.IsValueType && !isNullableType)
                     {
-                        MvxBindingLog.Instance?.LogError(
+                        CrossBindingLog.Instance?.LogError(
                             "Warning: The command, assigned/binded to the {ClassName}.{CmdName} is implemented to receive " +
                             "non-nullable value type argument ({TypeName}), but null may be passed when no item is selected " +
                             "(and this will be treated as default({TypeName1}))",

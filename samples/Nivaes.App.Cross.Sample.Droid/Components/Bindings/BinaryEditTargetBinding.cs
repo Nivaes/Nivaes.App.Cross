@@ -36,7 +36,7 @@ namespace Playground.Droid.Bindings
             binaryEdit.SetThat(value);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         protected override void Dispose(bool isDisposing)
         {

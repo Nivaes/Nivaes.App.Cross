@@ -59,7 +59,7 @@ namespace Nivaes.App.Cross
 
             if (source != null)
             {
-                MvxBindingLog.Instance?.LogWarning(
+                CrossBindingLog.Instance?.LogWarning(
                     "Unable to bind: source property source not found @{CurrentToken} on {SourceTypeName}",
                     currentToken,
                     source.GetType().Name);

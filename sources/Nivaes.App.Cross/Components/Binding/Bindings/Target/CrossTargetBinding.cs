@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
         public abstract void SetValue(object? value);
 
-        public abstract MvxBindingMode DefaultMode { get; }
+        public abstract CrossBindingMode DefaultMode { get; }
     }
 
     public abstract class MvxTargetBinding<
@@ -73,7 +73,7 @@ namespace Nivaes.App.Cross
             ValueChanged?.Invoke(this, new CrossTargetChangedEventArgs(newValue));
         }
 
-        public abstract MvxBindingMode DefaultMode { get; }
+        public abstract CrossBindingMode DefaultMode { get; }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public Type TargetValueType => typeof(TValue);
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross
         {
             if (value != null && value is not TValue)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "Invalid value type for target binding {TypeName}: received {ValueTypeName} but expects {ExpectedTypeName}, and cast failed",
                     GetType().Name, value.GetType().Name, typeof(TValue).Name);
                 return;

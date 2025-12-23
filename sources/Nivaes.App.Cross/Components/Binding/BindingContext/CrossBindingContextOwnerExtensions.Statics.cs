@@ -8,14 +8,14 @@ namespace Nivaes.App.Cross
 
     public static partial class CrossBindingContextOwnerExtensions
     {
-        public static IMvxLanguageBindingParser LanguageParser => MvxBindingSingletonCache.Instance.LanguageParser;
+        public static ICrossLanguageBindingParser LanguageParser => CrossBindingSingletonCache.Instance.LanguageParser;
 
-        public static IMvxPropertyExpressionParser PropertyExpressionParser => MvxBindingSingletonCache.Instance.PropertyExpressionParser;
+        public static IMvxPropertyExpressionParser PropertyExpressionParser => CrossBindingSingletonCache.Instance.PropertyExpressionParser;
 
-        public static ICrossValueConverterLookup ValueConverterLookup => MvxBindingSingletonCache.Instance.ValueConverterLookup;
+        public static ICrossValueConverterLookup ValueConverterLookup => CrossBindingSingletonCache.Instance.ValueConverterLookup;
 
-        public static ICrossBindingNameLookup DefaultBindingNameLookup => MvxBindingSingletonCache.Instance.DefaultBindingNameLookup;
+        public static ICrossBindingNameLookup DefaultBindingNameLookup => CrossBindingSingletonCache.Instance.DefaultBindingNameLookup;
 
-        public static ICrossBinder Binder => MvxBindingSingletonCache.Instance.Binder;
+        public static ICrossBinder Binder => CrossBindingSingletonCache.Instance.Binder;
     }
 }

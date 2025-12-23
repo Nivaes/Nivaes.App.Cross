@@ -6,7 +6,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     public class MvxNumberPickerDisplayedValuesTargetBinding(NumberPicker target)
         : MvxTargetBinding<NumberPicker, IEnumerable<string>?>(target)
     {
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
         protected override void SetValue(IEnumerable<string>? value)

@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
             _valueConverter = valueConverter;
         }
 
-        public override void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
+        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
             var sourceStep = steps.First();
             var parameter = GetParameterValue(steps);
@@ -35,13 +35,13 @@ namespace Nivaes.App.Cross
 
         private Type _targetType = typeof(object);
 
-        public override IEnumerable<Type> SubStepTargetTypes(IEnumerable<IMvxSourceStep> subSteps, Type overallTargetType)
+        public override IEnumerable<Type> SubStepTargetTypes(IEnumerable<ICrossSourceStep> subSteps, Type overallTargetType)
         {
             _targetType = overallTargetType;
             return base.SubStepTargetTypes(subSteps, overallTargetType);
         }
 
-        private static object GetParameterValue(IEnumerable<IMvxSourceStep> steps)
+        private static object GetParameterValue(IEnumerable<ICrossSourceStep> steps)
         {
             var parameterStep = steps.Skip(1).FirstOrDefault();
             object parameter = null;
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross
             return parameter;
         }
 
-        public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var sourceStep = steps.First();
             var parameter = GetParameterValue(steps);

@@ -27,7 +27,7 @@ namespace MvvmCross.Binding.BindingContext
                                             string converterName = null,
                                             object converterParameter = null,
                                             object fallbackValue = null,
-                                            MvxBindingMode mode = MvxBindingMode.Default)
+                                            CrossBindingMode mode = CrossBindingMode.Default)
         {
             return element.Bind(target, null, sourcePropertyPath, converterName, converterParameter, fallbackValue, mode);
         }
@@ -39,7 +39,7 @@ namespace MvvmCross.Binding.BindingContext
                                             IMvxValueConverter converter,
                                             object converterParameter = null,
                                             object fallbackValue = null,
-                                            MvxBindingMode mode = MvxBindingMode.Default)
+                                            CrossBindingMode mode = CrossBindingMode.Default)
         {
             return element.Bind(target, null, sourcePropertyPath, converter, converterParameter, fallbackValue, mode);
         }
@@ -52,9 +52,9 @@ namespace MvvmCross.Binding.BindingContext
                                             string converterName = null,
                                             object converterParameter = null,
                                             object fallbackValue = null,
-                                            MvxBindingMode mode = MvxBindingMode.Default)
+                                            CrossBindingMode mode = CrossBindingMode.Default)
         {
-            var converter = MvxBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
+            var converter = CrossBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
             return element.Bind(target, targetPropertyPath, sourcePropertyPath, converter, converterParameter,
                                 fallbackValue, mode);
         }
@@ -67,9 +67,9 @@ namespace MvvmCross.Binding.BindingContext
                                             IMvxValueConverter converter,
                                             object converterParameter = null,
                                             object fallbackValue = null,
-                                            MvxBindingMode mode = MvxBindingMode.Default)
+                                            CrossBindingMode mode = CrossBindingMode.Default)
         {
-            var parser = MvxBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
             var sourcePath = parser.Parse(sourcePropertyPath).Print();
             var targetPath = targetPropertyPath == null ? null : parser.Parse(targetPropertyPath).Print();
             return element.Bind(target, targetPath, sourcePath, converter, converterParameter, fallbackValue, mode);
@@ -83,10 +83,10 @@ namespace MvvmCross.Binding.BindingContext
                                             IMvxValueConverter converter = null,
                                             object converterParameter = null,
                                             object fallbackValue = null,
-                                            MvxBindingMode mode = MvxBindingMode.Default)
+                                            CrossBindingMode mode = CrossBindingMode.Default)
         {
             if (string.IsNullOrEmpty(targetPath))
-                targetPath = MvxBindingSingletonCache.Instance.DefaultBindingNameLookup.DefaultFor(typeof(T));
+                targetPath = CrossBindingSingletonCache.Instance.DefaultBindingNameLookup.DefaultFor(typeof(T));
 
             var bindingDescription = new CrossBindingDescription(
                 targetPath,

@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.UIKit
                 new CrossBindingDescription
                     {
                         TargetName = "TitleText",
-                        Source = new MvxPathSourceStepDescription()
+                        Source = new CrossPathSourceStepDescription()
                             {
                                 SourcePropertyPath = string.Empty
                             }

@@ -12,18 +12,18 @@ namespace Nivaes.App.Cross
         private bool _isUpdatingTarget;
         private object? _updatingSourceWith;
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         protected abstract void SetValueImpl(object target, object? value);
 
         [RequiresUnreferencedCode("This method performs type conversions which may not be preserved by trimming")]
         public override void SetValue(object? value)
         {
-            MvxBindingLog.Instance?.LogTrace("Receiving SetValue to {Value}", value);
+            CrossBindingLog.Instance?.LogTrace("Receiving SetValue to {Value}", value);
             var t = Target;
             if (t == null)
             {
-                MvxBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            MvxBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;
@@ -116,7 +116,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         protected abstract void SetValueImpl(TTarget target, TValue? value);
 
@@ -126,7 +126,7 @@ namespace Nivaes.App.Cross
             var target = Target;
             if (target == null)
             {
-                MvxBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
@@ -178,7 +178,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            MvxBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;

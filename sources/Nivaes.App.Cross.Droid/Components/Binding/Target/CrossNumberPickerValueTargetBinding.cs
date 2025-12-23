@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
         private CrossAndroidTargetEventSubscription<NumberPicker, NumberPicker.ValueChangeEventArgs>? _subscription;
 
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         protected override void SetValueImpl(object target, object? value)
         {
@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             var numberPicker = View;
             if (numberPicker == null)
             {
-                MvxBindingLog.Instance?.LogError("NumberPicker is null in MvxNumberPickerValueTargetBinding");
+                CrossBindingLog.Instance?.LogError("NumberPicker is null in MvxNumberPickerValueTargetBinding");
                 return;
             }
 

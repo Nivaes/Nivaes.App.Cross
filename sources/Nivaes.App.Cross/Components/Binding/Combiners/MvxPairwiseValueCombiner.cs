@@ -9,12 +9,12 @@ namespace Nivaes.App.Cross
     public abstract class MvxPairwiseValueCombiner
         : MvxValueCombiner
     {
-        public override void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
+        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
             MvxLogHost.Default?.Log(LogLevel.Trace, "The Add Combiner does not support SetValue");
         }
 
-        public override Type SourceType(IEnumerable<IMvxSourceStep> steps)
+        public override Type SourceType(IEnumerable<ICrossSourceStep> steps)
         {
             return steps.First().SourceType;
         }
@@ -131,7 +131,7 @@ namespace Nivaes.App.Cross
             return input;
         }
 
-        public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var resultPairs = steps.Select(step => step.GetValue()).ToList();
 

@@ -42,7 +42,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
                     }
                     else
                     {
-                        MvxBindingLog.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
+                        CrossBindingLog.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
                     }
                 }
             }

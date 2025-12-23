@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.AppKit
     using MvvmCross.Platforms.Mac.Binding.Target;
 
     public class MvxMacBindingBuilder
-        : MvxBindingBuilder
+        : CrossBindingBuilder
     {
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;

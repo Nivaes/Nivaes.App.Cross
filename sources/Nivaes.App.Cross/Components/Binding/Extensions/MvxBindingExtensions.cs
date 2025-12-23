@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
                 return propertyType.CreateDefault();
             }
 
-            var autoConverter = MvxBindingSingletonCache.Instance?.AutoValueConverters.Find(
+            var autoConverter = CrossBindingSingletonCache.Instance?.AutoValueConverters.Find(
                 value.GetType(), propertyType);
             if (autoConverter != null)
             {

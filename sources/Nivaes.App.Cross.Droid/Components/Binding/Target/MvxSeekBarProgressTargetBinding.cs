@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Droid
                 FireValueChanged(e.Progress);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
             var seekBar = View;
             if (seekBar == null)
             {
-                MvxBindingLog.Instance?.LogError("SeekBar is null in MvxSeekBarProgressTargetBinding");
+                CrossBindingLog.Instance?.LogError("SeekBar is null in MvxSeekBarProgressTargetBinding");
                 return;
             }
 

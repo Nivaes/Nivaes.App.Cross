@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross
             var target = Target;
             if (target == null)
             {
-                MvxBindingLog.Instance?.LogTrace(
+                CrossBindingLog.Instance?.LogTrace(
                     "Null weak reference target seen during OnValueChanged - unusual as usually Target is the sender of the value changed. Ignoring the value changed");
                 return;
             }
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross
             var target = Target;
             if (target == null)
             {
-                MvxBindingLog.Instance?.LogTrace(
+                CrossBindingLog.Instance?.LogTrace(
                     "Null weak reference target seen during OnPropertyChanged - unusual as usually Target is the sender of the value changed. Ignoring the value changed");
                 return;
             }
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method uses reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -88,7 +88,7 @@ namespace Nivaes.App.Cross
 
             if (eventInfo.EventHandlerType != typeof(EventHandler))
             {
-                MvxBindingLog.Instance?.LogTrace(
+                CrossBindingLog.Instance?.LogTrace(
                     "Diagnostic - cannot two-way bind to {ViewType}/{EventName} on type {ViewTypeName} because eventHandler is type {EventHandlerTypeName}",
                     viewType,
                     eventName,
@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross
 
             if (eventInfo.EventHandlerType != typeof(PropertyChangedEventHandler))
             {
-                MvxBindingLog.Instance?.LogTrace(
+                CrossBindingLog.Instance?.LogTrace(
                     "Diagnostic - cannot two-way bind to {ViewType}/{EventName} on type {ViewTypeName} because eventHandler is type {EventHandlerTypeName}",
                     viewType,
                     eventName,

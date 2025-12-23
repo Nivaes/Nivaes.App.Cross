@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
 
         public override void SetValue(object value)
         {
-            MvxBindingLog.Instance?.LogWarning("ToSource binding is not available for direct pathed source bindings");
+            CrossBindingLog.Instance?.LogWarning("ToSource binding is not available for direct pathed source bindings");
         }
 
         public override object GetValue()

@@ -22,7 +22,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             FireValueChanged(view.Text);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()
@@ -30,7 +30,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var view = View;
             if (view == null)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "UITextField is null in MvxUITextFieldTextTargetBinding");
                 return;
             }

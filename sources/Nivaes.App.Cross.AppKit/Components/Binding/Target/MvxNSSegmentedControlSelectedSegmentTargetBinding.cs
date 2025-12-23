@@ -25,9 +25,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             FireValueChanged((int)view.SelectedSegment);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var segmentedControl = View;
             if (segmentedControl == null)
             {
-                MvxBindingLog.Instance?.LogError("NSSegmentedControl is null in MvxNSSegmentedControlSelectedSegmentTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSSegmentedControl is null in MvxNSSegmentedControlSelectedSegmentTargetBinding");
                 return;
             }
 

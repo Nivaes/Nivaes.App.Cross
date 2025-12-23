@@ -16,16 +16,16 @@ namespace Nivaes.App.Cross
             public void BindLanguage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(TTarget target
                                                      , string sourceKey)
             {
-                var targetPath = MvxBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 owner.BindLanguage(target, targetPath, sourceKey);
             }
 
             [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
             public void BindLanguage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(TTarget target
                                                      , string sourceKey
-                                                     , MvxBindingMode bindingMode)
+                                                     , CrossBindingMode bindingMode)
             {
-                var targetPath = MvxBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 owner.BindLanguage(target, targetPath, sourceKey, bindingMode: bindingMode);
             }
 
@@ -33,10 +33,10 @@ namespace Nivaes.App.Cross
             public void BindLanguage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TViewModel>(TTarget target
                                                                  , string sourceKey
                                                                  , Expression<Func<TViewModel, IMvxTextProvider>> textProvider
-                                                                 , MvxBindingMode bindingMode = MvxBindingMode.OneTime)
+                                                                 , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 var parser = PropertyExpressionParser;
-                var targetPath = MvxBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 var sourcePath = parser.Parse(textProvider).Print();
                 owner.BindLanguage(target, targetPath, sourceKey, sourcePath, bindingMode: bindingMode);
             }
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross
                                                      , string? sourcePropertyName = null
                                                      , string? fallbackValue = null
                                                      , string? converterName = null
-                                                     , MvxBindingMode bindingMode = MvxBindingMode.OneTime)
+                                                     , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 var parser = PropertyExpressionParser;
                 var parsedTargetPath = parser.Parse(targetPropertyExpression);
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross
                                                           , Expression<Func<TViewModel, IMvxLanguageBinder>> sourcePropertyExpression
                                                           , string? fallbackValue = null
                                                           , string? converterName = null
-                                                          , MvxBindingMode bindingMode = MvxBindingMode.OneTime)
+                                                          , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 var parser = PropertyExpressionParser;
                 var parsedTargetPath = parser.Parse(targetPropertyExpression);
@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross
                                             , string? sourcePropertyName = null
                                             , string? fallbackValue = null
                                             , string? converterName = null
-                                            , MvxBindingMode bindingMode = MvxBindingMode.OneTime)
+                                            , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 owner.BindLanguage(owner, targetPropertyName, sourceKey, sourcePropertyName, fallbackValue, converterName, bindingMode);
             }
@@ -91,7 +91,7 @@ namespace Nivaes.App.Cross
                                     , string? sourcePropertyName = null
                                     , string? fallbackValue = null
                                     , string? converterName = null
-                                    , MvxBindingMode bindingMode = MvxBindingMode.OneTime)
+                                    , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 converterName ??= LanguageParser.DefaultConverterName;
                 sourcePropertyName ??= LanguageParser.DefaultTextSourceName;
@@ -101,7 +101,7 @@ namespace Nivaes.App.Cross
                 var bindingDescription = new CrossBindingDescription
                 {
                     TargetName = targetPropertyName,
-                    Source = new MvxPathSourceStepDescription
+                    Source = new CrossPathSourceStepDescription
                     {
                         SourcePropertyPath = sourcePropertyName,
                         Converter = converter,

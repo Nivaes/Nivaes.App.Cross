@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross
 
             if (!PropertyInfo.CanRead)
             {
-                MvxBindingLog.Instance?.LogError(
+                CrossBindingLog.Instance?.LogError(
                     "GetValue ignored in binding - target property {PropertyTypeName}.{PropertyName} is writeonly",
                     PropertyInfo.DeclaringType?.Name, PropertyName);
                 return MvxBindingConstant.UnsetValue;
@@ -54,13 +54,13 @@ namespace Nivaes.App.Cross
         {
             if (PropertyInfo == null)
             {
-                MvxBindingLog.Instance?.LogWarning("SetValue ignored in binding - source property {PropertyName} is missing", PropertyName);
+                CrossBindingLog.Instance?.LogWarning("SetValue ignored in binding - source property {PropertyName} is missing", PropertyName);
                 return;
             }
 
             if (!PropertyInfo.CanWrite)
             {
-                MvxBindingLog.Instance?.LogWarning(
+                CrossBindingLog.Instance?.LogWarning(
                     "SetValue ignored in binding - target property {PropertyTypeName}.{PropertyName} is readonly",
                     PropertyInfo.DeclaringType?.Name, PropertyName);
                 return;
@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                MvxBindingLog.Instance?.LogError(exception, "SetValue failed with exception. Property Name: {PropertyName}, Value: {Value}", PropertyName, value);
+                CrossBindingLog.Instance?.LogError(exception, "SetValue failed with exception. Property Name: {PropertyName}, Value: {Value}", PropertyName, value);
             }
         }
     }

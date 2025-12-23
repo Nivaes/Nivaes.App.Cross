@@ -172,7 +172,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual MvxBindingBuilder CreateBindingBuilder()
+        protected virtual CrossBindingBuilder CreateBindingBuilder()
         {
             return new MvxAndroidBindingBuilder(FillValueConverters, FillValueCombiners, FillTargetFactories,
                 FillBindingNames, FillViewTypes, FillAxmlViewTypeResolver, FillNamespaceListViewTypeResolver);

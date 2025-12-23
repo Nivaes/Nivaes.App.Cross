@@ -7,23 +7,23 @@ namespace Nivaes.App.Cross
     public abstract class MvxValueCombiner
         : IMvxValueCombiner
     {
-        public virtual Type SourceType(IEnumerable<IMvxSourceStep> steps)
+        public virtual Type SourceType(IEnumerable<ICrossSourceStep> steps)
         {
             return typeof(object);
         }
 
-        public virtual void SetValue(IEnumerable<IMvxSourceStep> steps, object value)
+        public virtual void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
             // do nothing
         }
 
-        public virtual bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public virtual bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             value = null;
             return false;
         }
 
-        public virtual IEnumerable<Type> SubStepTargetTypes(IEnumerable<IMvxSourceStep> subSteps,
+        public virtual IEnumerable<Type> SubStepTargetTypes(IEnumerable<ICrossSourceStep> subSteps,
                                                             Type overallTargetType)
         {
             // by default a combiner just demand objects from its sources

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]
-    public sealed class Plugin : BasePlugin
+    public sealed class Plugin : CrossBasePlugin
     {
         public override void Load(IMvxIoCProvider provider)
         {

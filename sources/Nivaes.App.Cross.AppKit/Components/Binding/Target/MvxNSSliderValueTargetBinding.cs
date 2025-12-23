@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var slider = View;
             if (slider == null)
             {
-                MvxBindingLog.Instance?.LogError("NSSlider is null in MvxNSSliderValueTargetBinding");
+                CrossBindingLog.Instance?.LogError("NSSlider is null in MvxNSSliderValueTargetBinding");
             }
             else
             {
@@ -31,9 +31,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             FireValueChanged(view.IntValue);
         }
 
-        public override MvxBindingMode DefaultMode
+        public override CrossBindingMode DefaultMode
         {
-            get { return MvxBindingMode.TwoWay; }
+            get { return CrossBindingMode.TwoWay; }
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]

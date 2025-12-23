@@ -23,14 +23,14 @@ namespace Nivaes.App.Cross.UIKit
             var uiSwitch = Target;
             if (uiSwitch == null)
             {
-                MvxBindingLog.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
+                CrossBindingLog.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
                 return;
             }
 
             _subscription = uiSwitch.WeakSubscribe(nameof(uiSwitch.ValueChanged), HandleValueChanged);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected override void Dispose(bool isDisposing)

@@ -31,25 +31,25 @@ namespace Nivaes.App.Cross
 
         public CrossFluentBindingDescription<TTarget, TSource> TwoWay()
         {
-            return Mode(MvxBindingMode.TwoWay);
+            return Mode(CrossBindingMode.TwoWay);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> OneWay()
         {
-            return Mode(MvxBindingMode.OneWay);
+            return Mode(CrossBindingMode.OneWay);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> OneWayToSource()
         {
-            return Mode(MvxBindingMode.OneWayToSource);
+            return Mode(CrossBindingMode.OneWayToSource);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> OneTime()
         {
-            return Mode(MvxBindingMode.OneTime);
+            return Mode(CrossBindingMode.OneTime);
         }
 
-        public CrossFluentBindingDescription<TTarget, TSource> Mode(MvxBindingMode mode)
+        public CrossFluentBindingDescription<TTarget, TSource> Mode(CrossBindingMode mode)
         {
             BindingDescription.Mode = mode;
             return this;
@@ -142,7 +142,7 @@ namespace Nivaes.App.Cross
         public CrossFluentBindingDescription<TTarget, TSource> SourceDescribed(string bindingDescription)
         {
             var newBindingDescription =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
             return SourceDescribed(newBindingDescription);
         }
 
@@ -155,12 +155,12 @@ namespace Nivaes.App.Cross
         public CrossFluentBindingDescription<TTarget, TSource> FullyDescribed(string bindingDescription)
         {
             var newBindingDescription =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
                 .ToList();
 
             if (newBindingDescription.Count > 1)
             {
-                MvxBindingLog.Instance?.LogWarning("More than one description found - only first will be used in: {BindingDescription}", bindingDescription);
+                CrossBindingLog.Instance?.LogWarning("More than one description found - only first will be used in: {BindingDescription}", bindingDescription);
             }
 
             return FullyDescribed(newBindingDescription.FirstOrDefault());
@@ -202,25 +202,25 @@ namespace Nivaes.App.Cross
 
         public MvxFluentBindingDescription<TTarget> TwoWay()
         {
-            return Mode(MvxBindingMode.TwoWay);
+            return Mode(CrossBindingMode.TwoWay);
         }
 
         public MvxFluentBindingDescription<TTarget> OneWay()
         {
-            return Mode(MvxBindingMode.OneWay);
+            return Mode(CrossBindingMode.OneWay);
         }
 
         public MvxFluentBindingDescription<TTarget> OneWayToSource()
         {
-            return Mode(MvxBindingMode.OneWayToSource);
+            return Mode(CrossBindingMode.OneWayToSource);
         }
 
         public MvxFluentBindingDescription<TTarget> OneTime()
         {
-            return Mode(MvxBindingMode.OneTime);
+            return Mode(CrossBindingMode.OneTime);
         }
 
-        public MvxFluentBindingDescription<TTarget> Mode(MvxBindingMode mode)
+        public MvxFluentBindingDescription<TTarget> Mode(CrossBindingMode mode)
         {
             BindingDescription.Mode = mode;
             return this;
@@ -277,7 +277,7 @@ namespace Nivaes.App.Cross
         public MvxFluentBindingDescription<TTarget> SourceDescribed(string bindingDescription)
         {
             var newBindingDescription =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
             return SourceDescribed(newBindingDescription);
         }
 
@@ -290,12 +290,12 @@ namespace Nivaes.App.Cross
         public MvxFluentBindingDescription<TTarget> FullyDescribed(string bindingDescription)
         {
             var newBindingDescription =
-                MvxBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
+                CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
                 .ToList();
 
             if (newBindingDescription.Count > 1)
             {
-                MvxBindingLog.Instance?.LogWarning(
+                CrossBindingLog.Instance?.LogWarning(
                     "More than one description found - only first will be used in: {BindingDescription}",
                     bindingDescription);
             }

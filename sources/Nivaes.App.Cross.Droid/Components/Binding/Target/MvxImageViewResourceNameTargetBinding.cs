@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     public class MvxImageViewResourceNameTargetBinding(ImageView imageView)
         : MvxImageViewDrawableTargetBinding(imageView)
     {
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         public override Type TargetValueType => typeof(string);

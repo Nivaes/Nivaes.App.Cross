@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             var positions = ((MvxExpandableListAdapter?)listView.ExpandableListAdapter)?.GetPositions(value);
             if (positions == null)
             {
-                MvxBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
+                CrossBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.Droid
             listView.SetItemChecked(pos, true);
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.TwoWay;
 
         [RequiresUnreferencedCode("This method may use reflection to subscribe to events which may not be preserved by trimming")]
         public override void SubscribeToEvents()

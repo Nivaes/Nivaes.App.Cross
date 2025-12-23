@@ -5,13 +5,13 @@ namespace Nivaes.App.Cross
 
     public class MvxFormatValueCombiner : MvxValueCombiner
     {
-        public override bool TryGetValue(IEnumerable<IMvxSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var list = steps.ToList();
 
             if (list.Count < 1)
             {
-                MvxBindingLog.Instance?.LogWarning("Format called with no parameters - will fail");
+                CrossBindingLog.Instance?.LogWarning("Format called with no parameters - will fail");
                 value = MvxBindingConstant.DoNothing;
                 return true;
             }
