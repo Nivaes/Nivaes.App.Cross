@@ -106,9 +106,9 @@ namespace Nivaes.App.Cross
         {
             private readonly bool _useParser;
             private readonly string[] _properties;
-            private readonly IMvxValueCombiner _combiner;
+            private readonly ICrossValueCombiner _combiner;
 
-            public CombinerSourceSpec(IMvxValueCombiner combiner, string[] properties, bool useParser)
+            public CombinerSourceSpec(ICrossValueCombiner combiner, string[] properties, bool useParser)
             {
                 _combiner = combiner;
                 _useParser = useParser;
@@ -140,7 +140,7 @@ namespace Nivaes.App.Cross
             {
                 return new CrossCombinerSourceStepDescription()
                 {
-                    Combiner = new MvxSingleValueCombiner(),
+                    Combiner = new CrossSingleValueCombiner(),
                     Converter = inputs.Converter,
                     ConverterParameter = inputs.ConverterParameter,
                     FallbackValue = inputs.FallbackValue,
@@ -177,7 +177,7 @@ namespace Nivaes.App.Cross
             _sourceSpec = new KnownPathSourceSpec(sourcePropertyPath);
         }
 
-        protected void SetCombiner(IMvxValueCombiner combiner, string[] properties, bool useParser)
+        protected void SetCombiner(ICrossValueCombiner combiner, string[] properties, bool useParser)
         {
             if (_sourceSpec != null)
                 throw new CrossException("You cannot set the source path of a Fluent binding more than once");

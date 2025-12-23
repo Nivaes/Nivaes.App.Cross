@@ -4,7 +4,7 @@
 
 namespace MvvmCross.Binding.ExpressionParse
 {
-    public interface IMvxParsedExpression
+    public interface ICrossParsedExpression
     {
         string Print();
     }

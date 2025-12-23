@@ -25,12 +25,12 @@ namespace Nivaes.App.Cross
         private ICrossSourceBindingFactory _sourceBindingFactory;
         private ICrossTargetBindingFactory _targetBindingFactory;
         private ICrossLanguageBindingParser _languageParser;
-        private IMvxPropertyExpressionParser _propertyExpressionParser;
+        private ICrossPropertyExpressionParser _propertyExpressionParser;
         private ICrossValueConverterLookup _valueConverterLookup;
         private ICrossBindingNameLookup _defaultBindingName;
         private ICrossBinder _binder;
         private ICrossSourceStepFactory _sourceStepFactory;
-        private IMvxValueCombinerLookup _valueCombinerLookup;
+        private ICrossValueCombinerLookup _valueCombinerLookup;
         private ICrossMainThreadAsyncDispatcher _mainThreadDispatcher;
 
         public ICrossAutoValueConverters AutoValueConverters
@@ -60,11 +60,11 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxPropertyExpressionParser PropertyExpressionParser
+        public ICrossPropertyExpressionParser PropertyExpressionParser
         {
             get
             {
-                _propertyExpressionParser = _propertyExpressionParser ?? Mvx.IoCProvider.Resolve<IMvxPropertyExpressionParser>();
+                _propertyExpressionParser = _propertyExpressionParser ?? Mvx.IoCProvider.Resolve<ICrossPropertyExpressionParser>();
                 return _propertyExpressionParser;
             }
         }
@@ -78,11 +78,11 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxValueCombinerLookup ValueCombinerLookup
+        public ICrossValueCombinerLookup ValueCombinerLookup
         {
             get
             {
-                _valueCombinerLookup = _valueCombinerLookup ?? Mvx.IoCProvider.Resolve<IMvxValueCombinerLookup>();
+                _valueCombinerLookup = _valueCombinerLookup ?? Mvx.IoCProvider.Resolve<ICrossValueCombinerLookup>();
                 return _valueCombinerLookup;
             }
         }

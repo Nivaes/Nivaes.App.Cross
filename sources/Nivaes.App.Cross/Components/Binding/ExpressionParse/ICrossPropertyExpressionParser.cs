@@ -7,10 +7,10 @@ using System.Linq.Expressions;
 
 namespace MvvmCross.Binding.ExpressionParse
 {
-    public interface IMvxPropertyExpressionParser
+    public interface ICrossPropertyExpressionParser
     {
-        IMvxParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath);
+        ICrossParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath);
 
-        IMvxParsedExpression Parse(LambdaExpression propertyPath);
+        ICrossParsedExpression Parse(LambdaExpression propertyPath);
     }
 }

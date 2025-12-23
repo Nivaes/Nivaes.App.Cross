@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.Droid
         : CrossBindingBuilder
     {
         private readonly Action<IMvxValueConverterRegistry> _fillValueConverters;
-        private readonly Action<IMvxValueCombinerRegistry> _fillValueCombiners;
+        private readonly Action<ICrossValueCombinerRegistry> _fillValueCombiners;
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillTargetFactories;
         private readonly Action<ICrossBindingNameRegistry> _fillBindingNames;
         private readonly Action<IMvxTypeCache> _fillViewTypes;
@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.Droid
 
         public MvxAndroidBindingBuilder(
             Action<IMvxValueConverterRegistry> fillValueConverters,
-            Action<IMvxValueCombinerRegistry> fillValueCombiners,
+            Action<ICrossValueCombinerRegistry> fillValueCombiners,
             Action<ICrossTargetBindingFactoryRegistry> fillTargetFactories,
             Action<ICrossBindingNameRegistry> fillBindingNames,
             Action<IMvxTypeCache> fillViewTypes,
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross.Droid
             _fillValueConverters?.Invoke(registry);
         }
 
-        protected override void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected override void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             base.FillValueCombiners(registry);
             _fillValueCombiners?.Invoke(registry);

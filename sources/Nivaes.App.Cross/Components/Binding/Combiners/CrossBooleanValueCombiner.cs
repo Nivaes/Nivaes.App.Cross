@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
     public class MvxInvertedValueCombiner
-            : MvxBooleanValueCombiner
+            : CrossBooleanValueCombiner
     {
         protected override bool TryCombine(List<bool> stepValues, out object value)
         {
@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
     }
 
     public class MvxAndValueCombiner
-        : MvxBooleanValueCombiner
+        : CrossBooleanValueCombiner
     {
         protected override bool TryCombine(List<bool> stepValues, out object value)
         {
@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
     }
 
     public class MvxOrValueCombiner
-        : MvxBooleanValueCombiner
+        : CrossBooleanValueCombiner
     {
         protected override bool TryCombine(List<bool> stepValues, out object value)
         {
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
     }
 
     public class MvxNotValueCombiner
-        : MvxBooleanValueCombiner
+        : CrossBooleanValueCombiner
     {
         protected override bool TryCombine(List<bool> stepValues, out object value)
         {
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross
     }
 
     public class MvxXorValueCombiner
-        : MvxBooleanValueCombiner
+        : CrossBooleanValueCombiner
     {
         protected override bool TryCombine(List<bool> stepValues, out object value)
         {
@@ -51,8 +51,8 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public abstract class MvxBooleanValueCombiner
-        : MvxValueCombiner
+    public abstract class CrossBooleanValueCombiner
+        : CrossValueCombiner
     {
         public override bool TryGetValue(
             IEnumerable<ICrossSourceStep> steps, out object value)

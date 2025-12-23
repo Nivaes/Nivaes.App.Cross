@@ -4,8 +4,8 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class MvxValueCombiner
-        : IMvxValueCombiner
+    public abstract class CrossValueCombiner
+        : ICrossValueCombiner
     {
         public virtual Type SourceType(IEnumerable<ICrossSourceStep> steps)
         {

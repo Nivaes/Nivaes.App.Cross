@@ -12,16 +12,16 @@ namespace MvvmCross.Binding.ExpressionParse
     // This class was inspired and influenced by the excellent binding work
     // by https://github.com/reactiveui/ReactiveUI/
     // Inspiration used under Microsoft Public License Ms-PL
-    public class MvxPropertyExpressionParser : IMvxPropertyExpressionParser
+    public class CrossPropertyExpressionParser : ICrossPropertyExpressionParser
     {
-        private readonly ILogger<MvxPropertyExpressionParser> _log;
+        private readonly ILogger<CrossPropertyExpressionParser> _log;
 
-        public MvxPropertyExpressionParser(ILoggerFactory loggerFactory)
+        public CrossPropertyExpressionParser(ILoggerFactory loggerFactory)
         {
-            _log = loggerFactory.CreateLogger<MvxPropertyExpressionParser>();
+            _log = loggerFactory.CreateLogger<CrossPropertyExpressionParser>();
         }
 
-        public IMvxParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath)
+        public ICrossParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath)
         {
             if (propertyPath.Body is MethodCallExpression
                 && (propertyPath.Body as MethodCallExpression).Method.Name.Contains("Bind"))
@@ -32,9 +32,9 @@ namespace MvvmCross.Binding.ExpressionParse
             return Parse((LambdaExpression)propertyPath);
         }
 
-        public IMvxParsedExpression Parse(LambdaExpression propertyPath)
+        public ICrossParsedExpression Parse(LambdaExpression propertyPath)
         {
-            var toReturn = new MvxParsedExpression();
+            var toReturn = new CrossParsedExpression();
 
             var current = propertyPath.Body;
             while (current != null
@@ -46,7 +46,7 @@ namespace MvvmCross.Binding.ExpressionParse
             return toReturn;
         }
 
-        private static Expression ParseTo(Expression current, MvxParsedExpression toReturn, ILogger log)
+        private static Expression ParseTo(Expression current, CrossParsedExpression toReturn, ILogger log)
         {
             // This happens when a value type gets boxed
             if (current.NodeType == ExpressionType.Convert || current.NodeType == ExpressionType.ConvertChecked)
@@ -68,7 +68,7 @@ namespace MvvmCross.Binding.ExpressionParse
                 "Property expression must be of the form 'x => x.SomeProperty.SomeOtherProperty'");
         }
 
-        private static Expression ParseMethodCall(Expression current, MvxParsedExpression toReturn, ILogger log)
+        private static Expression ParseMethodCall(Expression current, CrossParsedExpression toReturn, ILogger log)
         {
             var me = (MethodCallExpression)current;
             if (me.Method.Name != "get_Item"
@@ -84,12 +84,12 @@ namespace MvvmCross.Binding.ExpressionParse
             return current;
         }
 
-        private static IMvxParsedExpression ParseBindExtensionMethod(LambdaExpression propertyPath, object controlType)
+        private static ICrossParsedExpression ParseBindExtensionMethod(LambdaExpression propertyPath, object controlType)
         {
             var compiled = propertyPath.Compile();
             var virtualPropertyName = compiled.DynamicInvoke(controlType) as string;
 
-            var toReturn = new MvxParsedExpression();
+            var toReturn = new CrossParsedExpression();
             toReturn.PrependProperty(virtualPropertyName);
             return toReturn;
         }
@@ -127,7 +127,7 @@ namespace MvvmCross.Binding.ExpressionParse
             return argument;
         }
 
-        private static Expression ParseProperty(Expression current, MvxParsedExpression toReturn)
+        private static Expression ParseProperty(Expression current, CrossParsedExpression toReturn)
         {
             var me = (MemberExpression)current;
             toReturn.PrependProperty(me.Member.Name);

@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross
             return toReturn;
         }
 
-        protected IMvxValueCombiner FindCombiner(string combiner)
+        protected ICrossValueCombiner FindCombiner(string combiner)
         {
             return CrossBindingSingletonCache.Instance?.ValueCombinerLookup.Find(combiner);
         }
@@ -208,7 +208,7 @@ namespace Nivaes.App.Cross
                     {
                         return new CrossCombinerSourceStepDescription()
                         {
-                            Combiner = new MvxValueConverterValueCombiner(converter),
+                            Combiner = new CrossValueConverterValueCombiner(converter),
                             InnerSteps = description.Sources.Select(source => SourceStepDescriptionFrom(source)).ToList(),
                             Converter = FindConverter(description.Converter),
                             ConverterParameter = description.ConverterParameter,

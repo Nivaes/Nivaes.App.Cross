@@ -74,31 +74,31 @@ namespace Nivaes.App.Cross
         public CrossFluentBindingDescription<TTarget, TSource> ByCombining(string combinerName, params string[] properties)
             => To($"{combinerName}({string.Join(", ", properties)})");
 
-        public CrossFluentBindingDescription<TTarget, TSource> ByCombining(IMvxValueCombiner combiner, params Expression<Func<TSource, object>>[] properties)
+        public CrossFluentBindingDescription<TTarget, TSource> ByCombining(ICrossValueCombiner combiner, params Expression<Func<TSource, object>>[] properties)
         {
             SetCombiner(combiner, properties.Select(SourcePropertyPath).ToArray(), useParser: false);
             return this;
         }
 
-        public CrossFluentBindingDescription<TTarget, TSource> ByCombining(IMvxValueCombiner combiner, params string[] properties)
+        public CrossFluentBindingDescription<TTarget, TSource> ByCombining(ICrossValueCombiner combiner, params string[] properties)
         {
             SetCombiner(combiner, properties, useParser: true);
             return this;
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params Expression<Func<TSource, object>>[] properties)
-            where TValueCombiner : IMvxValueCombiner
+            where TValueCombiner : ICrossValueCombiner
         {
-            var filler = Mvx.IoCProvider.Resolve<IMvxValueCombinerRegistryFiller>();
+            var filler = Mvx.IoCProvider.Resolve<ICrossValueCombinerRegistryFiller>();
             var combinerName = filler.FindName(typeof(TValueCombiner));
 
             return ByCombining(combinerName, properties);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params string[] properties)
-            where TValueCombiner : IMvxValueCombiner
+            where TValueCombiner : ICrossValueCombiner
         {
-            var filler = Mvx.IoCProvider.Resolve<IMvxValueCombinerRegistryFiller>();
+            var filler = Mvx.IoCProvider.Resolve<ICrossValueCombinerRegistryFiller>();
             var combinerName = filler.FindName(typeof(TValueCombiner));
 
             return ByCombining(combinerName, properties);

@@ -70,18 +70,18 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterValueCombinerRegistryFiller(IMvxIoCProvider iocProvider)
         {
             var filler = CreateValueCombinerRegistryFiller();
-            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<IMvxValueCombiner>>(filler);
-            iocProvider.RegisterSingleton<IMvxValueCombinerRegistryFiller>(filler);
+            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<ICrossValueCombiner>>(filler);
+            iocProvider.RegisterSingleton<ICrossValueCombinerRegistryFiller>(filler);
         }
 
-        protected virtual IMvxValueCombinerRegistryFiller CreateValueCombinerRegistryFiller()
+        protected virtual ICrossValueCombinerRegistryFiller CreateValueCombinerRegistryFiller()
         {
-            return new MvxValueCombinerRegistryFiller();
+            return new CrossValueCombinerRegistryFiller();
         }
 
         protected virtual void RegisterExpressionParser(IMvxIoCProvider iocProvider)
         {
-            iocProvider.RegisterType<IMvxPropertyExpressionParser, MvxPropertyExpressionParser>();
+            iocProvider.RegisterType<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
         }
 
         protected virtual void RegisterCore(IMvxIoCProvider iocProvider)
@@ -114,36 +114,36 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterValueCombinerProvider(IMvxIoCProvider iocProvider)
         {
             var registry = CreateValueCombinerRegistry();
-            iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<IMvxValueCombiner>>(registry);
-            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<IMvxValueCombiner>>(registry);
-            iocProvider.RegisterSingleton<IMvxValueCombinerLookup>(registry);
-            iocProvider.RegisterSingleton<IMvxValueCombinerRegistry>(registry);
+            iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<ICrossValueCombiner>>(registry);
+            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<ICrossValueCombiner>>(registry);
+            iocProvider.RegisterSingleton<ICrossValueCombinerLookup>(registry);
+            iocProvider.RegisterSingleton<ICrossValueCombinerRegistry>(registry);
             FillValueCombiners(registry);
         }
 
-        protected virtual IMvxValueCombinerRegistry CreateValueCombinerRegistry()
+        protected virtual ICrossValueCombinerRegistry CreateValueCombinerRegistry()
         {
-            return new MvxValueCombinerRegistry();
+            return new CrossValueCombinerRegistry();
         }
 
-        protected virtual void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             // note that assembly based registration is not used here for efficiency reasons
             // - see #327 - https://github.com/slodge/MvvmCross/issues/327
-            registry.AddOrOverwrite("Add", new MvxAddValueCombiner());
-            registry.AddOrOverwrite("Divide", new MvxDivideValueCombiner());
-            registry.AddOrOverwrite("Format", new MvxFormatValueCombiner());
-            registry.AddOrOverwrite("If", new MvxIfValueCombiner());
-            registry.AddOrOverwrite("Modulus", new MvxModulusValueCombiner());
-            registry.AddOrOverwrite("Multiply", new MvxMultiplyValueCombiner());
-            registry.AddOrOverwrite("Single", new MvxSingleValueCombiner());
-            registry.AddOrOverwrite("Subtract", new MvxSubtractValueCombiner());
-            registry.AddOrOverwrite("EqualTo", new MvxEqualToValueCombiner());
+            registry.AddOrOverwrite("Add", new CrossAddValueCombiner());
+            registry.AddOrOverwrite("Divide", new CrossDivideValueCombiner());
+            registry.AddOrOverwrite("Format", new CrossFormatValueCombiner());
+            registry.AddOrOverwrite("If", new CrossIfValueCombiner());
+            registry.AddOrOverwrite("Modulus", new CrossModulusValueCombiner());
+            registry.AddOrOverwrite("Multiply", new CrossMultiplyValueCombiner());
+            registry.AddOrOverwrite("Single", new CrossSingleValueCombiner());
+            registry.AddOrOverwrite("Subtract", new CrossSubtractValueCombiner());
+            registry.AddOrOverwrite("EqualTo", new CrossEqualToValueCombiner());
             registry.AddOrOverwrite("NotEqualTo", new MvxNotEqualToValueCombiner());
-            registry.AddOrOverwrite("GreaterThanOrEqualTo", new MvxGreaterThanOrEqualToValueCombiner());
-            registry.AddOrOverwrite("GreaterThan", new MvxGreaterThanValueCombiner());
-            registry.AddOrOverwrite("LessThanOrEqualTo", new MvxLessThanOrEqualToValueCombiner());
-            registry.AddOrOverwrite("LessThan", new MvxLessThanValueCombiner());
+            registry.AddOrOverwrite("GreaterThanOrEqualTo", new CrossGreaterThanOrEqualToValueCombiner());
+            registry.AddOrOverwrite("GreaterThan", new CrossGreaterThanValueCombiner());
+            registry.AddOrOverwrite("LessThanOrEqualTo", new CrossLessThanOrEqualToValueCombiner());
+            registry.AddOrOverwrite("LessThan", new CrossLessThanValueCombiner());
             registry.AddOrOverwrite("Not", new MvxNotValueCombiner());
             registry.AddOrOverwrite("And", new MvxAndValueCombiner());
             registry.AddOrOverwrite("Or", new MvxOrValueCombiner());

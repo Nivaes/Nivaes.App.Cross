@@ -11,11 +11,11 @@ namespace Nivaes.App.Cross.UIKit
         private readonly Action<IMvxValueConverterRegistry>? _fillValueConvertersAction;
         private readonly Action<ICrossBindingNameRegistry>? _fillBindingNamesAction;
         private readonly MvxUnifiedTypesValueConverter? _unifiedValueTypesConverter;
-        private readonly Action<IMvxValueCombinerRegistry>? _fillValueCombinersAction;
+        private readonly Action<ICrossValueCombinerRegistry>? _fillValueCombinersAction;
 
         public MvxIosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry>? fillRegistryAction = null,
                                     Action<IMvxValueConverterRegistry>? fillValueConvertersAction = null,
-                                    Action<IMvxValueCombinerRegistry>? fillValueCombinersAction = null,
+                                    Action<ICrossValueCombinerRegistry>? fillValueCombinersAction = null,
                                     Action<ICrossBindingNameRegistry>? fillBindingNamesAction = null)
         {
             _fillRegistryAction = fillRegistryAction;
@@ -230,7 +230,7 @@ namespace Nivaes.App.Cross.UIKit
             _fillValueConvertersAction?.Invoke(registry);
         }
 
-        protected override void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected override void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             base.FillValueCombiners(registry);
             _fillValueCombinersAction?.Invoke(registry);

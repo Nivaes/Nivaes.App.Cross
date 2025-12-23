@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
-    public abstract class MvxObjectAsStringPairwiseValueCombiner
-        : MvxPairwiseValueCombiner
+    public abstract class CrossObjectAsStringPairwiseValueCombiner
+        : CrossPairwiseValueCombiner
     {
         protected abstract bool CombineStringAndString(string input1, string input2, out object value);
 

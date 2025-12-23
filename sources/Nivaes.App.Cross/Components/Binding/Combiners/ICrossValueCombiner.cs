@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
 
-    public interface IMvxValueCombiner
+    public interface ICrossValueCombiner
     {
         Type SourceType(IEnumerable<ICrossSourceStep> steps);
 

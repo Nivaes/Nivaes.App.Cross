@@ -7,12 +7,12 @@ namespace Nivaes.App.Cross
     using MvvmCross.IoC;
 
     [MvxUnconventional]
-    public class MvxValueConverterValueCombiner 
-        : MvxValueCombiner
+    public class CrossValueConverterValueCombiner 
+        : CrossValueCombiner
     {
         private readonly IMvxValueConverter _valueConverter;
 
-        public MvxValueConverterValueCombiner(IMvxValueConverter valueConverter)
+        public CrossValueConverterValueCombiner(IMvxValueConverter valueConverter)
         {
             _valueConverter = valueConverter;
         }

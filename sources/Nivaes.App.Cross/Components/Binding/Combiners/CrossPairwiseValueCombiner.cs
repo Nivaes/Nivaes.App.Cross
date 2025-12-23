@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using Microsoft.Extensions.Logging;
 
-    public abstract class MvxPairwiseValueCombiner
-        : MvxValueCombiner
+    public abstract class CrossPairwiseValueCombiner
+        : CrossValueCombiner
     {
         public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
@@ -67,7 +67,7 @@ namespace Nivaes.App.Cross
 
         private readonly Dictionary<TypeTuple, CombinerFunc<object, object>> _combinerActions;
 
-        protected MvxPairwiseValueCombiner()
+        protected CrossPairwiseValueCombiner()
         {
             _combinerActions = new Dictionary<TypeTuple, CombinerFunc<object, object>>();
             AddSingle<object, object>(CombineObjectAndObject);

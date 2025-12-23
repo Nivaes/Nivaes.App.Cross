@@ -3,8 +3,8 @@ namespace MvvmCross.Binding.Combiners
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
-    public class MvxIfValueCombiner
-        : MvxValueCombiner
+    public class CrossIfValueCombiner
+        : CrossValueCombiner
     {
         public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {

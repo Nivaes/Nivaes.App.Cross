@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
-    public class MvxEqualToValueCombiner
-        : MvxPairwiseValueCombiner
+    public class CrossEqualToValueCombiner
+        : CrossPairwiseValueCombiner
     {
         protected override bool CombineDecimalAndDecimal(decimal input1, decimal input2, out object value)
         {

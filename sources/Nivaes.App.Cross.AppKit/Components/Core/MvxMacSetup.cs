@@ -120,7 +120,7 @@ namespace Nivaes.App.Cross.AppKit
             registry.Fill(ValueConverterHolders);
         }
 
-        protected virtual void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             // this base class does nothing
         }

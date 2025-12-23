@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross
     {
         public static ICrossLanguageBindingParser LanguageParser => CrossBindingSingletonCache.Instance.LanguageParser;
 
-        public static IMvxPropertyExpressionParser PropertyExpressionParser => CrossBindingSingletonCache.Instance.PropertyExpressionParser;
+        public static ICrossPropertyExpressionParser PropertyExpressionParser => CrossBindingSingletonCache.Instance.PropertyExpressionParser;
 
         public static ICrossValueConverterLookup ValueConverterLookup => CrossBindingSingletonCache.Instance.ValueConverterLookup;
 

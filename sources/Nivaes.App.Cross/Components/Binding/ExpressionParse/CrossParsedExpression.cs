@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MvvmCross.Binding.ExpressionParse
 {
-    public class MvxParsedExpression : IMvxParsedExpression
+    public class CrossParsedExpression : ICrossParsedExpression
     {
         public interface INode
         {

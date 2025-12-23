@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
 
-    public class MvxFormatValueCombiner : MvxValueCombiner
+    public class CrossFormatValueCombiner : CrossValueCombiner
     {
         public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {

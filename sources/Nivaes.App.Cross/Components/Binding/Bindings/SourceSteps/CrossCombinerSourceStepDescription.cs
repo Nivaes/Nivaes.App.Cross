@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
     public class CrossCombinerSourceStepDescription 
         : CrossSourceStepDescription
     {
-        public IMvxValueCombiner? Combiner { get; set; }
+        public ICrossValueCombiner? Combiner { get; set; }
         public List<CrossSourceStepDescription>? InnerSteps { get; set; }
 
         [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "This is a diagnostic ToString method and the type name is not critical for functionality")]

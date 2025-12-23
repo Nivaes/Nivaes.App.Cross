@@ -10,12 +10,12 @@ namespace Nivaes.App.Cross.AppKit
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;
         private readonly Action<ICrossBindingNameRegistry> _fillBindingNamesAction;
-        private readonly Action<IMvxValueCombinerRegistry> _fillValueCombinersAction;
+        private readonly Action<ICrossValueCombinerRegistry> _fillValueCombinersAction;
 
         public MvxMacBindingBuilder(Action<ICrossTargetBindingFactoryRegistry> fillRegistryAction = null,
                                     Action<IMvxValueConverterRegistry> fillValueConvertersAction = null,
                                     Action<ICrossBindingNameRegistry> fillBindingNamesAction = null,
-                                    Action<IMvxValueCombinerRegistry> fillValueCombinersAction = null)
+                                    Action<ICrossValueCombinerRegistry> fillValueCombinersAction = null)
         {
             _fillRegistryAction = fillRegistryAction;
             _fillValueConvertersAction = fillValueConvertersAction;
@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.AppKit
             _fillValueCombinersAction = fillValueCombinersAction;
         }
 
-        protected override IMvxValueCombinerRegistry CreateValueCombinerRegistry()
+        protected override ICrossValueCombinerRegistry CreateValueCombinerRegistry()
         {
             var registry = base.CreateValueCombinerRegistry();
             _fillValueCombinersAction?.Invoke(registry);
