@@ -1,7 +1,6 @@
 namespace MvvmCross.Plugin.JsonLocalization
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
     using Nivaes.App.Cross;
 
     public abstract class MvxJsonDictionaryTextProvider

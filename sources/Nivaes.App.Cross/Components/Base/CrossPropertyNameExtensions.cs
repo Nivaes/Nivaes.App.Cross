@@ -1,4 +1,4 @@
-namespace MvvmCross.Base
+namespace Nivaes.App.Cross
 {
     using System.Linq.Expressions;
     using System.Reflection;

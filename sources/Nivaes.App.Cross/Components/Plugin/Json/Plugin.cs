@@ -1,8 +1,6 @@
 namespace MvvmCross.Plugin.Json
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 

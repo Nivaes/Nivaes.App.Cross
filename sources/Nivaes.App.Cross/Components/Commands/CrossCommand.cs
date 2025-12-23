@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross;
-    using MvvmCross.Base;
 
     public interface ICrossCommandHelper
     {

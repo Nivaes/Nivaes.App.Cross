@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
     using System.Linq.Expressions;
-    using MvvmCross.Base;
 
     public class CrossPropertyChangedListener
         : IDisposable

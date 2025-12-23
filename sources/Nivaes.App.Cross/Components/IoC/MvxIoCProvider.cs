@@ -4,7 +4,6 @@
 #nullable enable
 
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Base;
 using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;

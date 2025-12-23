@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System;
     using System.ComponentModel;
     using System.Linq.Expressions;
-    using MvvmCross.Base;
 
     public class CrossNamedNotifyPropertyChangedEventSubscription<T>
         : CrossNotifyPropertyChangedEventSubscription

@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using MvvmCross.Base;
 
     public interface ICrossInteraction
     {
