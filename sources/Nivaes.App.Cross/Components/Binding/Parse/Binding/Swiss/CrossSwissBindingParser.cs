@@ -1,7 +1,6 @@
-namespace MvvmCross.Binding.Parse.Binding.Swiss
+namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
 
     public class CrossSwissBindingParser
         : CrossBindingParser

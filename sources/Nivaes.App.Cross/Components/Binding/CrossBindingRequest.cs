@@ -1,4 +1,4 @@
-namespace MvvmCross.Binding
+namespace Nivaes.App.Cross
 {
     using Nivaes.App.Cross;
 
@@ -15,8 +15,8 @@ namespace MvvmCross.Binding
             Description = description;
         }
 
-        public object Target { get; set; }
-        public object Source { get; set; }
-        public CrossBindingDescription Description { get; set; }
+        public object? Target { get; set; }
+        public object? Source { get; set; }
+        public CrossBindingDescription? Description { get; set; }
     }
 }

@@ -10,8 +10,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Binders;
     using Nivaes.App.Cross;
 
     public class MvxAndroidViewBinder

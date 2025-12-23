@@ -1,4 +1,4 @@
-namespace MvvmCross.Binding.Binders
+namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
     using Nivaes.App.Cross;

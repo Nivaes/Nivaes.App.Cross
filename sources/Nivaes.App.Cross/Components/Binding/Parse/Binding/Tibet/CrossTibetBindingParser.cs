@@ -1,8 +1,5 @@
-namespace MvvmCross.Binding.Parse.Binding.Tibet
+namespace Nivaes.App.Cross
 {
-    using MvvmCross.Binding.Parse.Binding.Swiss;
-    using Nivaes.App.Cross;
-
     public class CrossTibetBindingParser
         : CrossSwissBindingParser
     {

@@ -1,8 +1,7 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding.Binders;
-    using Nivaes.App.Cross;
+    using MvvmCross;
 
     public class CrossBindingContext 
         : ICrossBindingContext, IDisposable

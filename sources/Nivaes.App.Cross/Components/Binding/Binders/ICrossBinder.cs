@@ -1,7 +1,8 @@
-namespace MvvmCross.Binding.Binders
+namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public interface ICrossBinder

@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.UIKit
     using Foundation;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Binding.Binders;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;

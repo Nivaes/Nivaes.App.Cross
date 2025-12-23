@@ -1,13 +1,10 @@
-namespace MvvmCross.Binding.Parse.Binding
+namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
 
     public abstract class CrossBindingParser
         : CrossParser, ICrossBindingParser

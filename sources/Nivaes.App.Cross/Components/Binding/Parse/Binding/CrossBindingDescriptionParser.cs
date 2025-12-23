@@ -5,10 +5,6 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.Parse.Binding.Lang;
-    using MvvmCross.Binding.Parse.Binding.Tibet;
 
     public class CrossBindingDescriptionParser
         : ICrossBindingDescriptionParser

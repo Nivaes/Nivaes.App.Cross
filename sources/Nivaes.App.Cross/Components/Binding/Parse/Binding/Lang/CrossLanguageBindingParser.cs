@@ -1,7 +1,5 @@
-namespace MvvmCross.Binding.Parse.Binding.Lang
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
     public class CrossLanguageBindingParser
         : CrossBindingParser, ICrossLanguageBindingParser
     {

@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-
-namespace MvvmCross.Binding.ExpressionParse
+namespace Nivaes.App.Cross
 {
+    using System;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+
     // This class was inspired and influenced by the excellent binding work
     // by https://github.com/reactiveui/ReactiveUI/
     // Inspiration used under Microsoft Public License Ms-PL

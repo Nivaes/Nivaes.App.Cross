@@ -5,9 +5,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using MvvmCross;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.Binders;
-    using Nivaes.App.Cross;
 
     public static class CrossRegistryFillerExtensions
     {

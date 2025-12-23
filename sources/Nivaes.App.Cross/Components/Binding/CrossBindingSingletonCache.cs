@@ -1,10 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using MvvmCross;
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.ExpressionParse;
-    using Nivaes.App.Cross;
 
     // this class is not perfect OO and it gets in the way of testing
     // however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding

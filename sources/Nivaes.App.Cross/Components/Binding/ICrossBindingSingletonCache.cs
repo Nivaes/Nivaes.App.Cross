@@ -1,9 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using MvvmCross.Binding.Binders;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Binding.ExpressionParse;
-
     public interface ICrossBindingSingletonCache
     {
         ICrossAutoValueConverters AutoValueConverters { get; }

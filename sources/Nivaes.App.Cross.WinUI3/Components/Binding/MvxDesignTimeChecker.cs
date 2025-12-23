@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.WinUI3
 {
     using MvvmCross;
-    using MvvmCross.Binding.Parse.Binding;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
     using Windows.ApplicationModel;
