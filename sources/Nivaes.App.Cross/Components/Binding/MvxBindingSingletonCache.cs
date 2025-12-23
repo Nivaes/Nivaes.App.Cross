@@ -20,33 +20,33 @@ namespace Nivaes.App.Cross
             return instance;
         }
 
-        private IMvxAutoValueConverters _autoValueConverters;
-        private IMvxBindingDescriptionParser _bindingDescriptionParser;
+        private ICrossAutoValueConverters _autoValueConverters;
+        private ICrossBindingDescriptionParser _bindingDescriptionParser;
         private ICrossSourceBindingFactory _sourceBindingFactory;
         private ICrossTargetBindingFactory _targetBindingFactory;
         private IMvxLanguageBindingParser _languageParser;
         private IMvxPropertyExpressionParser _propertyExpressionParser;
-        private IMvxValueConverterLookup _valueConverterLookup;
-        private IMvxBindingNameLookup _defaultBindingName;
-        private IMvxBinder _binder;
+        private ICrossValueConverterLookup _valueConverterLookup;
+        private ICrossBindingNameLookup _defaultBindingName;
+        private ICrossBinder _binder;
         private IMvxSourceStepFactory _sourceStepFactory;
         private IMvxValueCombinerLookup _valueCombinerLookup;
         private ICrossMainThreadAsyncDispatcher _mainThreadDispatcher;
 
-        public IMvxAutoValueConverters AutoValueConverters
+        public ICrossAutoValueConverters AutoValueConverters
         {
             get
             {
-                _autoValueConverters = _autoValueConverters ?? Mvx.IoCProvider.Resolve<IMvxAutoValueConverters>();
+                _autoValueConverters = _autoValueConverters ?? Mvx.IoCProvider.Resolve<ICrossAutoValueConverters>();
                 return _autoValueConverters;
             }
         }
 
-        public IMvxBindingDescriptionParser BindingDescriptionParser
+        public ICrossBindingDescriptionParser BindingDescriptionParser
         {
             get
             {
-                _bindingDescriptionParser = _bindingDescriptionParser ?? Mvx.IoCProvider.Resolve<IMvxBindingDescriptionParser>();
+                _bindingDescriptionParser = _bindingDescriptionParser ?? Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
                 return _bindingDescriptionParser;
             }
         }
@@ -69,11 +69,11 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxValueConverterLookup ValueConverterLookup
+        public ICrossValueConverterLookup ValueConverterLookup
         {
             get
             {
-                _valueConverterLookup = _valueConverterLookup ?? Mvx.IoCProvider.Resolve<IMvxValueConverterLookup>();
+                _valueConverterLookup = _valueConverterLookup ?? Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
                 return _valueConverterLookup;
             }
         }
@@ -87,20 +87,20 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public IMvxBindingNameLookup DefaultBindingNameLookup
+        public ICrossBindingNameLookup DefaultBindingNameLookup
         {
             get
             {
-                _defaultBindingName = _defaultBindingName ?? Mvx.IoCProvider.Resolve<IMvxBindingNameLookup>();
+                _defaultBindingName = _defaultBindingName ?? Mvx.IoCProvider.Resolve<ICrossBindingNameLookup>();
                 return _defaultBindingName;
             }
         }
 
-        public IMvxBinder Binder
+        public ICrossBinder Binder
         {
             get
             {
-                _binder = _binder ?? Mvx.IoCProvider.Resolve<IMvxBinder>();
+                _binder = _binder ?? Mvx.IoCProvider.Resolve<ICrossBinder>();
                 return _binder;
             }
         }

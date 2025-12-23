@@ -155,7 +155,7 @@ namespace Nivaes.App.Cross.UIKit
                 FillBindingNames);
         }
 
-        protected virtual void FillBindingNames(IMvxBindingNameRegistry obj)
+        protected virtual void FillBindingNames(ICrossBindingNameRegistry obj)
         {
             // this base class does nothing
         }

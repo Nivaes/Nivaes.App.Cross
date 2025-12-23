@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        public IMvxBindingContext BindingContext { get; set; }
+        public ICrossBindingContext BindingContext { get; set; }
 
         private object _dataContext;
 
@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross.Droid
             set { base.ViewModel = value; }
         }
 
-        public MvxFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<IMvxFragmentView<TViewModel>, TViewModel>();
         }

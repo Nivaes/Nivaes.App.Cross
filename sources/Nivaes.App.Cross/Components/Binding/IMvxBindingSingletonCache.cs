@@ -6,13 +6,13 @@ namespace Nivaes.App.Cross
 
     public interface IMvxBindingSingletonCache
     {
-        IMvxAutoValueConverters AutoValueConverters { get; }
-        IMvxBindingDescriptionParser BindingDescriptionParser { get; }
+        ICrossAutoValueConverters AutoValueConverters { get; }
+        ICrossBindingDescriptionParser BindingDescriptionParser { get; }
         IMvxLanguageBindingParser LanguageParser { get; }
         IMvxPropertyExpressionParser PropertyExpressionParser { get; }
-        IMvxValueConverterLookup ValueConverterLookup { get; }
-        IMvxBindingNameLookup DefaultBindingNameLookup { get; }
-        IMvxBinder Binder { get; }
+        ICrossValueConverterLookup ValueConverterLookup { get; }
+        ICrossBindingNameLookup DefaultBindingNameLookup { get; }
+        ICrossBinder Binder { get; }
         ICrossSourceBindingFactory SourceBindingFactory { get; }
         ICrossTargetBindingFactory TargetBindingFactory { get; }
         IMvxSourceStepFactory SourceStepFactory { get; }

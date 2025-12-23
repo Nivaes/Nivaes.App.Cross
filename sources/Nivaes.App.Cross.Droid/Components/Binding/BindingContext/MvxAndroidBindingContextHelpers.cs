@@ -11,9 +11,9 @@ namespace Nivaes.App.Cross.Droid
         }
 
         public static T Current<T>()
-            where T : class, IMvxBindingContext
+            where T : class, ICrossBindingContext
         {
-            if (Mvx.IoCProvider?.TryResolve<IMvxBindingContextStack<T>>(out var stack) == true)
+            if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
                 return stack?.Current;
 
             return null;

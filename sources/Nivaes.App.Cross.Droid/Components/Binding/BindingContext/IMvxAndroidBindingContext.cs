@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
 
     public interface IMvxAndroidBindingContext
-        : IMvxBindingContext
+        : ICrossBindingContext
     {
         IMvxLayoutInflaterHolder LayoutInflaterHolder { get; set; }
 

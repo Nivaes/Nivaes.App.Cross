@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross
             };
         }
 
-        public string TargetName { get; set; }
+        public string? TargetName { get; set; }
         public MvxBindingMode Mode { get; set; }
         public MvxSourceStepDescription Source { get; set; }
 

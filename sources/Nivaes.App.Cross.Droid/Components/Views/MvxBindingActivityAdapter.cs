@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Droid
         {
             get
             {
-                var contextOwner = (IMvxBindingContextOwner)Activity;
+                var contextOwner = (ICrossBindingContextOwner)Activity;
                 return (IMvxAndroidBindingContext)contextOwner.BindingContext;
             }
         }

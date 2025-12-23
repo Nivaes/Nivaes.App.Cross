@@ -36,18 +36,18 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterAutoValueConverters(IMvxIoCProvider iocProvider)
         {
             var autoValueConverters = CreateAutoValueConverters();
-            iocProvider.RegisterSingleton<IMvxAutoValueConverters>(autoValueConverters);
+            iocProvider.RegisterSingleton<ICrossAutoValueConverters>(autoValueConverters);
             FillAutoValueConverters(autoValueConverters);
         }
 
-        protected virtual void FillAutoValueConverters(IMvxAutoValueConverters autoValueConverters)
+        protected virtual void FillAutoValueConverters(ICrossAutoValueConverters autoValueConverters)
         {
             // nothing to do in base class
         }
 
-        protected virtual IMvxAutoValueConverters CreateAutoValueConverters()
+        protected virtual ICrossAutoValueConverters CreateAutoValueConverters()
         {
-            return new MvxAutoValueConverters();
+            return new CrossAutoValueConverters();
         }
 
         protected virtual void CreateSingleton()
@@ -59,12 +59,12 @@ namespace Nivaes.App.Cross
         {
             var filler = CreateValueConverterRegistryFiller();
             iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<IMvxValueConverter>>(filler);
-            iocProvider.RegisterSingleton<IMvxValueConverterRegistryFiller>(filler);
+            iocProvider.RegisterSingleton<ICrossValueConverterRegistryFiller>(filler);
         }
 
-        protected virtual IMvxValueConverterRegistryFiller CreateValueConverterRegistryFiller()
+        protected virtual ICrossValueConverterRegistryFiller CreateValueConverterRegistryFiller()
         {
-            return new MvxValueConverterRegistryFiller();
+            return new CrossValueConverterRegistryFiller();
         }
 
         protected virtual void RegisterValueCombinerRegistryFiller(IMvxIoCProvider iocProvider)
@@ -86,8 +86,8 @@ namespace Nivaes.App.Cross
 
         protected virtual void RegisterCore(IMvxIoCProvider iocProvider)
         {
-            iocProvider.RegisterSingleton<IMvxBinder>(new MvxFromTextBinder());
-            iocProvider.RegisterType<IMvxBindingContext, MvxTaskBasedBindingContext>();
+            iocProvider.RegisterSingleton<ICrossBinder>(new CrossFromTextBinder());
+            iocProvider.RegisterType<ICrossBindingContext, MvxTaskBasedBindingContext>();
         }
 
         protected virtual void RegisterValueConverterProvider(IMvxIoCProvider iocProvider)
@@ -95,14 +95,14 @@ namespace Nivaes.App.Cross
             var registry = CreateValueConverterRegistry();
             iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<IMvxValueConverter>>(registry);
             iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<IMvxValueConverter>>(registry);
-            iocProvider.RegisterSingleton<IMvxValueConverterLookup>(registry);
+            iocProvider.RegisterSingleton<ICrossValueConverterLookup>(registry);
             iocProvider.RegisterSingleton<IMvxValueConverterRegistry>(registry);
             FillValueConverters(registry);
         }
 
-        protected virtual MvxValueConverterRegistry CreateValueConverterRegistry()
+        protected virtual CrossValueConverterRegistry CreateValueConverterRegistry()
         {
-            return new MvxValueConverterRegistry();
+            return new CrossValueConverterRegistry();
         }
 
         protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
@@ -192,7 +192,7 @@ namespace Nivaes.App.Cross
             iocProvider.RegisterSingleton(parser);
         }
 
-        private static IMvxBindingDescriptionParser CreateBindingDescriptionParser()
+        private static ICrossBindingDescriptionParser CreateBindingDescriptionParser()
         {
             var parser = new MvxBindingDescriptionParser();
             return parser;
@@ -211,13 +211,13 @@ namespace Nivaes.App.Cross
 
         protected virtual void RegisterBindingNameRegistry(IMvxIoCProvider iocProvider)
         {
-            var registry = new MvxBindingNameRegistry();
-            iocProvider.RegisterSingleton<IMvxBindingNameLookup>(registry);
-            iocProvider.RegisterSingleton<IMvxBindingNameRegistry>(registry);
+            var registry = new CrossBindingNameRegistry();
+            iocProvider.RegisterSingleton<ICrossBindingNameLookup>(registry);
+            iocProvider.RegisterSingleton<ICrossBindingNameRegistry>(registry);
             FillDefaultBindingNames(registry);
         }
 
-        protected virtual void FillDefaultBindingNames(IMvxBindingNameRegistry registry)
+        protected virtual void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
         {
             // base class has nothing to register
         }

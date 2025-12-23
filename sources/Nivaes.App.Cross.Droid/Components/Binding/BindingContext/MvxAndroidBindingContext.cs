@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.Platforms.Android.Binding.Views;
 
     public class MvxAndroidBindingContext
-        : MvxBindingContext, IMvxAndroidBindingContext
+        : CrossBindingContext, IMvxAndroidBindingContext
     {
         // Don't remove this or stuff breaks for some reason 🤷‍
         // ReSharper disable once NotAccessedField.Local
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual View? CommonInflate(int resourceId, ViewGroup viewGroup, bool attachToParent)
         {
-            using (new MvxBindingContextStackRegistration<IMvxAndroidBindingContext>(this))
+            using (new CrossBindingContextStackRegistration<IMvxAndroidBindingContext>(this))
             {
                 var layoutInflater = LayoutInflaterHolder.LayoutInflater;
                 {

@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
     public class MvxValueCombinerRegistryFiller
-        : MvxNamedInstanceRegistryFiller<IMvxValueCombiner>, IMvxValueCombinerRegistryFiller
+        : CrossNamedInstanceRegistryFiller<IMvxValueCombiner>, IMvxValueCombinerRegistryFiller
     {
         public override string FindName(Type type)
         {

@@ -10,14 +10,14 @@ namespace Nivaes.App.Cross.UIKit
     {
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
         private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;
-        private readonly Action<IMvxBindingNameRegistry> _fillBindingNamesAction;
+        private readonly Action<ICrossBindingNameRegistry> _fillBindingNamesAction;
         private readonly MvxUnifiedTypesValueConverter _unifiedValueTypesConverter;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombinersAction;
 
         public MvxIosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry> fillRegistryAction = null,
                                     Action<IMvxValueConverterRegistry> fillValueConvertersAction = null,
                                     Action<IMvxValueCombinerRegistry> fillValueCombinersAction = null,
-                                    Action<IMvxBindingNameRegistry> fillBindingNamesAction = null)
+                                    Action<ICrossBindingNameRegistry> fillBindingNamesAction = null)
         {
             _fillRegistryAction = fillRegistryAction;
             _fillValueConvertersAction = fillValueConvertersAction;
@@ -237,7 +237,7 @@ namespace Nivaes.App.Cross.UIKit
             _fillValueCombinersAction?.Invoke(registry);
         }
 
-        protected override void FillAutoValueConverters(IMvxAutoValueConverters autoValueConverters)
+        protected override void FillAutoValueConverters(ICrossAutoValueConverters autoValueConverters)
         {
             base.FillAutoValueConverters(autoValueConverters);
 
@@ -246,7 +246,7 @@ namespace Nivaes.App.Cross.UIKit
                 autoValueConverters.Register(kvp.Key, kvp.Value, _unifiedValueTypesConverter);
         }
 
-        protected override void FillDefaultBindingNames(IMvxBindingNameRegistry registry)
+        protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
         {
             base.FillDefaultBindingNames(registry);
 

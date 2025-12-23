@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKit
             if (!(eventSource is IMvxMacView))
                 throw new ArgumentException(nameof(eventSource), $"{nameof(eventSource)} should be a {nameof(IMvxMacView)}");
 
-            MacView.BindingContext = new MvxBindingContext();
+            MacView.BindingContext = new CrossBindingContext();
         }
 
         public override void HandleDisposeCalled(object sender, EventArgs e)

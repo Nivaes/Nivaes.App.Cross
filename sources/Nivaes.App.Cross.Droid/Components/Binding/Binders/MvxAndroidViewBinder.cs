@@ -27,9 +27,9 @@ namespace Nivaes.App.Cross.Droid
             _source = source;
         }
 
-        private IMvxBinder _binder;
+        private ICrossBinder _binder;
 
-        protected IMvxBinder Binder => _binder ?? (_binder = Mvx.IoCProvider.Resolve<IMvxBinder>());
+        protected ICrossBinder Binder => _binder ?? (_binder = Mvx.IoCProvider.Resolve<ICrossBinder>());
 
         public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _viewBindings;
 

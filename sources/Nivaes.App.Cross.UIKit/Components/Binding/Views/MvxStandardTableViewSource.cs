@@ -87,7 +87,7 @@ namespace Nivaes.App.Cross.UIKit
             if (string.IsNullOrEmpty(bindingText))
                 return DefaultBindingDescription;
 
-            return Mvx.IoCProvider.Resolve<IMvxBindingDescriptionParser>().Parse(bindingText);
+            return Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>().Parse(bindingText);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]

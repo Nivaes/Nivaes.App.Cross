@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKit
     public class MvxTableViewHeaderFooterView
         : UITableViewHeaderFooterView, IMvxBindable
     {
-        public IMvxBindingContext BindingContext { get; set; }
+        public ICrossBindingContext BindingContext { get; set; }
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public MvxTableViewHeaderFooterView()

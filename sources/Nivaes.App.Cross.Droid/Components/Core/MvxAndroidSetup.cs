@@ -189,7 +189,7 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
+        protected virtual void FillBindingNames(ICrossBindingNameRegistry registry)
         {
             // this base class does nothing
         }

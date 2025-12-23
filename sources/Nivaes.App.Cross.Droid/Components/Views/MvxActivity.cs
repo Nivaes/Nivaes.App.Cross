@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.Droid
             StartActivityForResult(intent, requestCode);
         }
 
-        public IMvxBindingContext? BindingContext { get; set; }
+        public ICrossBindingContext? BindingContext { get; set; }
 
         // ReSharper disable once InconsistentNaming
         public override void SetContentView(int layoutResID)
@@ -137,7 +137,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        public MvxFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet()
             => this.CreateBindingSet<IMvxAndroidView<TViewModel>, TViewModel>();
     }
 }

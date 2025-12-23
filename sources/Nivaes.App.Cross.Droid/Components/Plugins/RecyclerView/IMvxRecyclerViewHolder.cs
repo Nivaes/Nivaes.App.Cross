@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
-    public interface IMvxRecyclerViewHolder : IMvxBindingContextOwner
+    public interface IMvxRecyclerViewHolder : ICrossBindingContextOwner
     {
         event EventHandler<EventArgs>? Click;
         event EventHandler<EventArgs>? LongClick;

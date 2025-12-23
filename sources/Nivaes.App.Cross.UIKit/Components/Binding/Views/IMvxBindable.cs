@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.UIKit
     using Nivaes.App.Cross;
 
     public interface IMvxBindable
-        : IMvxBindingContextOwner
+        : ICrossBindingContextOwner
         , ICrossDataConsumer
     {
     }

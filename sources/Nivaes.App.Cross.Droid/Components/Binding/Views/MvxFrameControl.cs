@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
 
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
     public class MvxFrameControl
-        : FrameLayout, IMvxBindingContextOwner
+        : FrameLayout, ICrossBindingContextOwner
     {
         private readonly int _templateId;
         private readonly IMvxAndroidBindingContext _bindingContext;
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected IMvxAndroidBindingContext AndroidBindingContext => _bindingContext;
 
-        public IMvxBindingContext BindingContext
+        public ICrossBindingContext BindingContext
         {
             get { return _bindingContext; }
             set { throw new NotImplementedException("BindingContext is readonly in the list item"); }

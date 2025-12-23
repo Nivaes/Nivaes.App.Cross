@@ -7,20 +7,20 @@ namespace MvvmCross.Binding.BindingContext
     /// <summary>
     /// OnDataContextChange executes asynchronously on a worker thread
     /// </summary>
-    public class MvxTaskBasedBindingContext : IMvxBindingContext, IDisposable
+    public class MvxTaskBasedBindingContext : ICrossBindingContext, IDisposable
     {
         private readonly List<Action> _delayedActions = new();
-        private readonly List<MvxBindingContext.TargetAndBinding> _directBindings = new();
-        private readonly List<KeyValuePair<object, IList<MvxBindingContext.TargetAndBinding>>> _viewBindings = new();
+        private readonly List<CrossBindingContext.TargetAndBinding> _directBindings = new();
+        private readonly List<KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>> _viewBindings = new();
         private object _dataContext;
-        private IMvxBinder _binder;
+        private ICrossBinder _binder;
 
         public bool RunSynchronously { get; set; }
 
         public event EventHandler DataContextChanged;
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IMvxBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
+        public ICrossBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
         {
             AddDelayedAction(firstBindingKey, firstBindingValue);
             if (dataContext != null)
@@ -30,7 +30,7 @@ namespace MvvmCross.Binding.BindingContext
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IMvxBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue)
+        public ICrossBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue)
         {
             AddDelayedAction(firstBindingKey, firstBindingValue);
             if (dataContext != null)
@@ -75,11 +75,11 @@ namespace MvvmCross.Binding.BindingContext
             }
         }
 
-        protected IMvxBinder Binder
+        protected ICrossBinder Binder
         {
             get
             {
-                _binder ??= Mvx.IoCProvider.Resolve<IMvxBinder>();
+                _binder ??= Mvx.IoCProvider.Resolve<ICrossBinder>();
                 return _binder;
             }
         }
@@ -122,7 +122,7 @@ namespace MvvmCross.Binding.BindingContext
             // Issue: #1398
             // View bindings need to be deep copied
             var viewBindingsCopy = _viewBindings.ConvertAll(vb =>
-                new KeyValuePair<object, IList<MvxBindingContext.TargetAndBinding>>(vb.Key, vb.Value.ToList()));
+                new KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>(vb.Key, vb.Value.ToList()));
 
 
             var directBindingsCopy = _directBindings.ToList();
@@ -133,8 +133,8 @@ namespace MvvmCross.Binding.BindingContext
                 Task.Run(() => SetBindings(viewBindingsCopy, directBindingsCopy));
         }
 
-        private void SetBindings(List<KeyValuePair<object, IList<MvxBindingContext.TargetAndBinding>>> viewBindings,
-            List<MvxBindingContext.TargetAndBinding> bindings)
+        private void SetBindings(List<KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>> viewBindings,
+            List<CrossBindingContext.TargetAndBinding> bindings)
         {
             foreach (var binding in viewBindings)
             {
@@ -157,18 +157,18 @@ namespace MvvmCross.Binding.BindingContext
 
         public virtual void RegisterBinding(object target, ICrossUpdateableBinding binding)
         {
-            _directBindings.Add(new MvxBindingContext.TargetAndBinding(target, binding));
+            _directBindings.Add(new CrossBindingContext.TargetAndBinding(target, binding));
         }
 
         public virtual void RegisterBindingsWithClearKey(object clearKey, IEnumerable<KeyValuePair<object, ICrossUpdateableBinding>> bindings)
         {
-            _viewBindings.Add(new KeyValuePair<object, IList<MvxBindingContext.TargetAndBinding>>(clearKey, bindings.Select(b => new MvxBindingContext.TargetAndBinding(b.Key, b.Value)).ToList()));
+            _viewBindings.Add(new KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>(clearKey, bindings.Select(b => new CrossBindingContext.TargetAndBinding(b.Key, b.Value)).ToList()));
         }
 
         public virtual void RegisterBindingWithClearKey(object clearKey, object target, ICrossUpdateableBinding binding)
         {
-            var list = new List<MvxBindingContext.TargetAndBinding> { new MvxBindingContext.TargetAndBinding(target, binding) };
-            _viewBindings.Add(new KeyValuePair<object, IList<MvxBindingContext.TargetAndBinding>>(clearKey, list));
+            var list = new List<CrossBindingContext.TargetAndBinding> { new CrossBindingContext.TargetAndBinding(target, binding) };
+            _viewBindings.Add(new KeyValuePair<object, IList<CrossBindingContext.TargetAndBinding>>(clearKey, list));
         }
 
         public virtual void ClearBindings(object clearKey)

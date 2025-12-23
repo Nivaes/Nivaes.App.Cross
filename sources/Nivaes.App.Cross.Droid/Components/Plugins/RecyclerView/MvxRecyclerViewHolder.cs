@@ -14,11 +14,11 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
         public event EventHandler<EventArgs>? Click;
         public event EventHandler<EventArgs>? LongClick;
 
-        private IMvxBindingContext? _bindingContext;
+        private ICrossBindingContext? _bindingContext;
         private object? _cachedDataContext;
         private IDisposable? _itemViewClickSubscription, _itemViewLongClickSubscription;
 
-        public IMvxBindingContext? BindingContext
+        public ICrossBindingContext? BindingContext
         {
             get => _bindingContext;
             set => throw new NotImplementedException("BindingContext is readonly in the list item");

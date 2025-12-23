@@ -74,7 +74,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
                     view = new MvxTableCellView(bindableColumn.BindingText);
                 else
                 {
-                    IMvxBindingContextOwner bindableView = view as IMvxBindingContextOwner;
+                    ICrossBindingContextOwner bindableView = view as ICrossBindingContextOwner;
                     bindableView.CreateBindingContext(bindableColumn.BindingText);
                 }
             }

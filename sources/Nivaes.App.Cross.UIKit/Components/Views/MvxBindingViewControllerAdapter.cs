@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKit
             if (!(eventSource is IMvxIosView))
                 throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
 
-            if (Mvx.IoCProvider?.TryResolve<IMvxBindingContext>(out var bindingContext) == true)
+            if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
                 IosView.BindingContext = bindingContext;
         }
 

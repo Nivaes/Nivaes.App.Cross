@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
 
     [Register("mvvmcross.platforms.android.binding.views.MvxListItemView")]
     public class MvxListItemView : Object, IMvxListItemView,
-        IMvxBindingContextOwner, View.IOnAttachStateChangeListener
+        ICrossBindingContextOwner, View.IOnAttachStateChangeListener
     {
         private readonly IMvxAndroidBindingContext _bindingContext;
         private View _content;
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross.Droid
             _isAttachedToWindow = false;
         }
 
-        public IMvxBindingContext BindingContext
+        public ICrossBindingContext BindingContext
         {
             get => _bindingContext;
             set => throw new NotImplementedException("BindingContext is readonly in the list item");

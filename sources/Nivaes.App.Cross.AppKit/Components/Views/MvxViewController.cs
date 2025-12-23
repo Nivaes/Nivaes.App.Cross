@@ -55,7 +55,7 @@ namespace Nivaes.App.Cross.AppKit
 
         public CrossViewModelRequest? Request { get; set; }
 
-        public IMvxBindingContext? BindingContext { get; set; }
+        public ICrossBindingContext? BindingContext { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -127,7 +127,7 @@ namespace Nivaes.App.Cross.AppKit
             set { base.ViewModel = value; }
         }
 
-        public MvxFluentBindingDescriptionSet<IMvxMacView<TViewModel>, TViewModel> CreateBindingSet()
+        public CrossFluentBindingDescriptionSet<IMvxMacView<TViewModel>, TViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<IMvxMacView<TViewModel>, TViewModel>();
         }

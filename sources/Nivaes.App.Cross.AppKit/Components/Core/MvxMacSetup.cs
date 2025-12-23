@@ -108,7 +108,7 @@ namespace Nivaes.App.Cross.AppKit
                 FillValueCombiners);
         }
 
-        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
+        protected virtual void FillBindingNames(ICrossBindingNameRegistry registry)
         {
             // this base class does nothing
         }

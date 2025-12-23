@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.Droid
         private readonly Action<IMvxValueConverterRegistry> _fillValueConverters;
         private readonly Action<IMvxValueCombinerRegistry> _fillValueCombiners;
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillTargetFactories;
-        private readonly Action<IMvxBindingNameRegistry> _fillBindingNames;
+        private readonly Action<ICrossBindingNameRegistry> _fillBindingNames;
         private readonly Action<IMvxTypeCache> _fillViewTypes;
         private readonly Action<IMvxAxmlNameViewTypeResolver> _fillAxmlViewTypeResolver;
         private readonly Action<IMvxNamespaceListViewTypeResolver> _fillNamespaceListViewTypeResolver;
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.Droid
             Action<IMvxValueConverterRegistry> fillValueConverters,
             Action<IMvxValueCombinerRegistry> fillValueCombiners,
             Action<ICrossTargetBindingFactoryRegistry> fillTargetFactories,
-            Action<IMvxBindingNameRegistry> fillBindingNames,
+            Action<ICrossBindingNameRegistry> fillBindingNames,
             Action<IMvxTypeCache> fillViewTypes,
             Action<IMvxAxmlNameViewTypeResolver> fillAxmlViewTypeResolver,
             Action<IMvxNamespaceListViewTypeResolver> fillNamespaceListViewTypeResolver)
@@ -306,7 +306,7 @@ namespace Nivaes.App.Cross.Droid
             _fillTargetFactories?.Invoke(registry);
         }
 
-        protected override void FillDefaultBindingNames(IMvxBindingNameRegistry registry)
+        protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
         {
             base.FillDefaultBindingNames(registry);
 
@@ -345,7 +345,7 @@ namespace Nivaes.App.Cross.Droid
             iocProvider.RegisterSingleton(stack);
         }
 
-        protected virtual IMvxBindingContextStack<IMvxAndroidBindingContext> CreateContextStack()
+        protected virtual ICrossBindingContextStack<IMvxAndroidBindingContext> CreateContextStack()
         {
             return new MvxAndroidBindingContextStack();
         }

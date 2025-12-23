@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
 
         private void OnChildViewRemoved(object sender, ViewGroup.ChildViewRemovedEventArgs childViewRemovedEventArgs)
         {
-            var boundChild = childViewRemovedEventArgs.Child as IMvxBindingContextOwner;
+            var boundChild = childViewRemovedEventArgs.Child as ICrossBindingContextOwner;
             boundChild?.ClearAllBindings();
         }
 

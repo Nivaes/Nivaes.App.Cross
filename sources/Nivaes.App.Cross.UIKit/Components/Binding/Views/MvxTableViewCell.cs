@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.UIKit
     public class MvxTableViewCell
         : UITableViewCell, IMvxBindable
     {
-        public IMvxBindingContext BindingContext { get; set; }
+        public ICrossBindingContext BindingContext { get; set; }
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public MvxTableViewCell()

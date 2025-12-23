@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross.Droid
 {
     public interface IMvxFragmentView
-        : IMvxBindingContextOwner
+        : ICrossBindingContextOwner
         , ICrossView
     {
         string UniqueImmutableCacheTag { get; }
@@ -12,6 +12,6 @@ namespace Nivaes.App.Cross.Droid
         , ICrossView<TViewModel> where TViewModel : class
         , ICrossViewModel
     {
-        MvxFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet();
+        CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet();
     }
 }

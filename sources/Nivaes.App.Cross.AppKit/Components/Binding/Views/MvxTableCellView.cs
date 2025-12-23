@@ -7,7 +7,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
     using ObjCRuntime;
 
     [Register("MvxTableCellView")]
-    public class MvxTableCellView : NSTableCellView, IMvxBindingContextOwner, ICrossDataConsumer
+    public class MvxTableCellView : NSTableCellView, ICrossBindingContextOwner, ICrossDataConsumer
     {
         // Called when created from unmanaged code
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]
@@ -72,7 +72,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
             this.CreateBindingContext(bindingText);
         }
 
-        public IMvxBindingContext BindingContext
+        public ICrossBindingContext BindingContext
         {
             get;
             set;

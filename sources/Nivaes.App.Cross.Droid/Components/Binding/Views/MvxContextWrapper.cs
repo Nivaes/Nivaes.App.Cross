@@ -14,14 +14,14 @@ namespace Nivaes.App.Cross.Droid
     public class MvxContextWrapper : ContextWrapper
     {
         private LayoutInflater _inflater;
-        private readonly IMvxBindingContextOwner _bindingContextOwner;
+        private readonly ICrossBindingContextOwner _bindingContextOwner;
 
-        public static ContextWrapper Wrap(Context @base, IMvxBindingContextOwner bindingContextOwner)
+        public static ContextWrapper Wrap(Context @base, ICrossBindingContextOwner bindingContextOwner)
         {
             return new MvxContextWrapper(@base, bindingContextOwner);
         }
 
-        protected MvxContextWrapper(Context context, IMvxBindingContextOwner bindingContextOwner)
+        protected MvxContextWrapper(Context context, ICrossBindingContextOwner bindingContextOwner)
             : base(context)
         {
             if (bindingContextOwner == null)

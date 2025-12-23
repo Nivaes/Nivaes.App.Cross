@@ -11,10 +11,10 @@ namespace Nivaes.App.Cross
     using MvvmCross.Binding.Parse.Binding.Tibet;
 
     public class MvxBindingDescriptionParser
-        : IMvxBindingDescriptionParser
+        : ICrossBindingDescriptionParser
     {
         private IMvxBindingParser _bindingParser;
-        private IMvxValueConverterLookup _valueConverterLookup;
+        private ICrossValueConverterLookup _valueConverterLookup;
 
         protected IMvxBindingParser BindingParser
         {
@@ -36,11 +36,11 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected IMvxValueConverterLookup ValueConverterLookup
+        protected ICrossValueConverterLookup ValueConverterLookup
         {
             get
             {
-                _valueConverterLookup ??= Mvx.IoCProvider.Resolve<IMvxValueConverterLookup>();
+                _valueConverterLookup ??= Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
                 return _valueConverterLookup;
             }
         }

@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 var adapter = new MvxActivityAdapter(activity);
             }
-            if (activity is IMvxBindingContextOwner)
+            if (activity is ICrossBindingContextOwner)
             {
                 var bindingAdapter = new MvxBindingActivityAdapter(activity);
             }

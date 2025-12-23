@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.UIKit
     public interface IMvxIosView
         : ICrossView
         , IMvxCanCreateIosView
-        , IMvxBindingContextOwner
+        , ICrossBindingContextOwner
     {
         CrossViewModelRequest? Request { get; set; }
     }
@@ -12,6 +12,6 @@ namespace Nivaes.App.Cross.UIKit
         : IMvxIosView, ICrossView<TViewModel> 
         where TViewModel : class, ICrossViewModel
     {
-        MvxFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet();
+        CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet();
     }
 }

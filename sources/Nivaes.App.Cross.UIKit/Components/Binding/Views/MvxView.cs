@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.UIKit
         : UIView
         , IMvxBindable
     {
-        public IMvxBindingContext BindingContext { get; set; }
+        public ICrossBindingContext BindingContext { get; set; }
 
         // Constructor that will bind managed object to its unmanaged counterpart. This constructor 
         // should not have any implementation and is only used for types that can be created by the

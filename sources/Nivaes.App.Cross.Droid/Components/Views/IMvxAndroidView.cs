@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
         : ICrossView
         , IMvxLayoutInflaterHolder
         , IMvxStartActivityForResult
-        , IMvxBindingContextOwner
+        , ICrossBindingContextOwner
     {
     }
 
@@ -17,6 +17,6 @@ namespace Nivaes.App.Cross.Droid
         : IMvxAndroidView
         , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
     {
-        MvxFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet();
+        CrossFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet();
     }
 }

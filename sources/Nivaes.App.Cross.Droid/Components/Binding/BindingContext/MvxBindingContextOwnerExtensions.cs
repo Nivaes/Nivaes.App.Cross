@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Droid
 
     public static class MvxBindingContextOwnerExtensions
     {
-        extension(IMvxBindingContextOwner owner)
+        extension(ICrossBindingContextOwner owner)
         {
             public View? BindingInflate(int resourceId, ViewGroup? viewGroup)
             {
