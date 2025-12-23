@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                MvxLogHost.Default?.Log(LogLevel.Error, ex,
+                CrossLogHost.Default?.Log(LogLevel.Error, ex,
                     "Problem getting the saved state - will return null - from {Extras}", extras);
                 return null;
             }

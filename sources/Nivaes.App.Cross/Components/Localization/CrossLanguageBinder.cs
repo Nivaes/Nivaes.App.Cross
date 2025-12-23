@@ -3,25 +3,25 @@ namespace MvvmCross.Localization
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
-    public class MvxLanguageBinder(string? namespaceName = null, string? typeName = null)
-        : IMvxLanguageBinder
+    public class CrossLanguageBinder(string? namespaceName = null, string? typeName = null)
+        : ICrossLanguageBinder
     {
         private readonly object _lockObject = new();
-        private IMvxTextProvider? _cachedTextProvider;
+        private ICrossTextProvider? _cachedTextProvider;
 
-        public MvxLanguageBinder(Type owningObject)
+        public CrossLanguageBinder(Type owningObject)
             : this(owningObject.Namespace, owningObject.Name)
         {
         }
 
-        protected virtual IMvxTextProvider? GetTextProvider()
+        protected virtual ICrossTextProvider? GetTextProvider()
         {
             lock (_lockObject)
             {
                 if (_cachedTextProvider != null)
                     return _cachedTextProvider;
 
-                if (Mvx.IoCProvider?.TryResolve(out IMvxTextProvider? cachedTextProvider) != true)
+                if (Mvx.IoCProvider?.TryResolve(out ICrossTextProvider? cachedTextProvider) != true)
                 {
                     throw new CrossException(
                         "Missing text provider - please initialize IoC with a suitable IMvxTextProvider");

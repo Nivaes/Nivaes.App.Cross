@@ -43,7 +43,7 @@ namespace Nivaes.App.Cross.UIKit
             if (MasterNavigationController == null &&
                 TabBarViewController?.CanShowChildView() != true)
             {
-                MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogTrace(
+                CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogTrace(
                     "PresentationAttribute nor MasterNavigationController found for {ViewTypeName}. Assuming Root presentation",
                     viewType?.Name);
                 return new MvxRootPresentationAttribute
@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross.UIKit
                 };
             }
 
-            MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogTrace(
+            CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogTrace(
                 "PresentationAttribute not found for {ViewTypeName}. Assuming animated Child presentation", viewType?.Name);
 
             return new MvxChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -121,7 +121,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -135,7 +135,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -149,7 +149,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -189,7 +189,7 @@ namespace Nivaes.App.Cross.UIKit
                     var viewController = (UIViewController?)this.CreateViewControllerFor(request);
                     if (viewController == null)
                     {
-                        MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+                        CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                             "Got null ViewController for request {Request}", request);
                         return Task.FromResult(false);
                     }
@@ -565,7 +565,7 @@ namespace Nivaes.App.Cross.UIKit
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
 
-            MvxLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
+            CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                 "Ignored attempt to close the window root (ViewModel type: {ViewModelType}", viewModel.GetType().Name);
 
             return Task.FromResult(false);

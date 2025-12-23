@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Droid
                     var androidView = activity as IMvxStartActivityForResult;
                     if (androidView == null)
                     {
-                        MvxLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
+                        CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
                         return;
                     }
 
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross.Droid
 
         private void OnMvxIntentResultReceived(object sender, MvxIntentResultEventArgs e)
         {
-            MvxLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
+            CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
             // TODO - is this correct - should we always remove the result registration even if this isn't necessarily our result?
             Mvx.IoCProvider.Resolve<IMvxIntentResultSource>().Result -= OnMvxIntentResultReceived;
             ProcessMvxIntentResult(e);

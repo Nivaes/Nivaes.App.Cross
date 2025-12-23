@@ -8,7 +8,7 @@ namespace MvvmCross.Plugin.JsonLocalization
 {
     public interface IMvxTextProviderBuilder
     {
-        IMvxTextProvider TextProvider { get; }
+        ICrossTextProvider TextProvider { get; }
 
         void LoadResources(string whichLocalizationFolder);
     }

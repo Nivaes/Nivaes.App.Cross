@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
             var applicationHint = await ApplicationStartup(hint);
             if (applicationHint != null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Trace, "Hint ignored in default MvxAppStart");
+                CrossLogHost.Default?.Log(LogLevel.Trace, "Hint ignored in default MvxAppStart");
             }
 
             await NavigateToFirstViewModel(applicationHint);
@@ -109,7 +109,7 @@ namespace Nivaes.App.Cross
                     NavigationService.Navigate<TViewModel, TParameter>(parameter).GetAwaiter().GetResult();
                 else
                 {
-                    MvxLogHost.Default?.Log(
+                    CrossLogHost.Default?.Log(
                         LogLevel.Information,
                         "Hint is not matching type of {ParameterName}. Doing navigation without typed parameter instead",
                         nameof(TParameter));

@@ -100,7 +100,7 @@ namespace Nivaes.App.Cross.Droid
             var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
             if (fragment == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning,
+                CrossLogHost.Default?.Log(LogLevel.Warning,
                     "Failed to find fragment id {ResourceId} in {ActivityTypeName}", resourceId, activity.GetType().Name);
                 return default(TFragment);
             }
@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross.Droid
             var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
             if (fragment == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning,
+                CrossLogHost.Default?.Log(LogLevel.Warning,
                     "Failed to find fragment tag {Tag} in {ActivityTypeName}", tag, activity.GetType().Name);
                 return default(TFragment);
             }
@@ -127,7 +127,7 @@ namespace Nivaes.App.Cross.Droid
             if (fragment is TFragment castFragment)
                 return castFragment;
 
-            MvxLogHost.Default?.Log(LogLevel.Warning,
+            CrossLogHost.Default?.Log(LogLevel.Warning,
                 "Fragment type mismatch got {FragmentType} but expected {ExpectedType}",
                 fragment.GetType().FullName, typeof(TFragment).FullName);
             return default;
@@ -141,7 +141,7 @@ namespace Nivaes.App.Cross.Droid
             var viewModel = loader?.LoadViewModel(request, savedState);
             if (viewModel == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for {ViewModelType}",
+                CrossLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for {ViewModelType}",
                     request.ViewModelType?.FullName);
                 return;
             }

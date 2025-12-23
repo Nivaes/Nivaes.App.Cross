@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.UIKit
                     return iosView;
                 }
 
-                MvxLogHost.Default?.Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
+                CrossLogHost.Default?.Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
                     viewController?.GetType().Name);
                 return null;
             }

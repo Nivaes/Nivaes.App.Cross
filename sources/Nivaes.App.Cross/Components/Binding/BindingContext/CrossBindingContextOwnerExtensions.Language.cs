@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
             [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
             public void BindLanguage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TViewModel>(TTarget target
                                                                  , string sourceKey
-                                                                 , Expression<Func<TViewModel, IMvxTextProvider>> textProvider
+                                                                 , Expression<Func<TViewModel, ICrossTextProvider>> textProvider
                                                                  , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 var parser = PropertyExpressionParser;
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
             public void BindLanguage<TTarget, TViewModel>(TTarget target
                                                           , Expression<Func<TTarget, object>> targetPropertyExpression
                                                           , string sourceKey
-                                                          , Expression<Func<TViewModel, IMvxLanguageBinder>> sourcePropertyExpression
+                                                          , Expression<Func<TViewModel, ICrossLanguageBinder>> sourcePropertyExpression
                                                           , string? fallbackValue = null
                                                           , string? converterName = null
                                                           , CrossBindingMode bindingMode = CrossBindingMode.OneTime)

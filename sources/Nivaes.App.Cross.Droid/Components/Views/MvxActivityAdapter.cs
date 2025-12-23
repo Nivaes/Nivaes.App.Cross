@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
             switch (requestCode)
             {
                 case (int)MvxIntentRequestCode.PickFromFile:
-                    MvxLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                    CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
                         "Warning - activity request code may clash with Mvx code for {requestCode}",
                         (MvxIntentRequestCode)requestCode);
                     break;
@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
                 {
-                    MvxLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                    CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
                         "Saved state converter not available - saving state will be hard");
                 }
                 else

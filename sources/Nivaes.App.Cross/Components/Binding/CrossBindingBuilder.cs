@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
                 iocProvider.RegisterSingleton<ICrossSourceBindingFactoryExtensionHost>(extensionHost);
             }
             else
-                MvxLogHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
+                CrossLogHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
         }
 
         protected virtual void RegisterSourceBindingFactoryExtensions(ICrossSourceBindingFactoryExtensionHost extensionHost)

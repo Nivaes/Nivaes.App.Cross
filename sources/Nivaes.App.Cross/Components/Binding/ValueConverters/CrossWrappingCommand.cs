@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
 
-    public class MvxWrappingCommand
+    public class CrossWrappingCommand
         : ICommand
     {
         private static readonly EventInfo CanExecuteChangedEventInfo = typeof(ICommand).GetEvent("CanExecuteChanged");
@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
         private readonly object? _commandParameterOverride;
         private readonly IDisposable? _canChangedEventSubscription;
 
-        public MvxWrappingCommand(ICommand wrapped, object? commandParameterOverride)
+        public CrossWrappingCommand(ICommand wrapped, object? commandParameterOverride)
         {
             _wrapped = wrapped;
             _commandParameterOverride = commandParameterOverride;
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
                 return false;
 
             if (parameter != null)
-                MvxLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
+                CrossLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
 
             return _wrapped.CanExecute(_commandParameterOverride);
         }
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross
                 return;
 
             if (parameter != null)
-                MvxLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
+                CrossLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
             _wrapped.Execute(_commandParameterOverride);
         }
 

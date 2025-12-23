@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.UIKit
         {
             if (IosView == null)
             {
-                MvxLogHost.GetLog<MvxBindingViewControllerAdapter>()?.LogWarning(
+                CrossLogHost.GetLog<MvxBindingViewControllerAdapter>()?.LogWarning(
                     "{IosView} is null for clear-up of bindings", nameof(IosView));
                 return;
             }

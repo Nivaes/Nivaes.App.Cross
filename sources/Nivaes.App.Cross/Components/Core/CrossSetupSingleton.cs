@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                MvxLogHost.Default?.Log(LogLevel.Error, ex, "Unable to cast setup to {SetupType}", typeof(TMvxSetup));
+                CrossLogHost.Default?.Log(LogLevel.Error, ex, "Unable to cast setup to {SetupType}", typeof(TMvxSetup));
                 throw;
             }
         }

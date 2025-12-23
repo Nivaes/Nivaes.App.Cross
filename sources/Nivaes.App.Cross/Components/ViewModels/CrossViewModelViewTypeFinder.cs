@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross
             if (typeByName != null)
                 return typeByName;
 
-            MvxLogHost.Default?.Log(LogLevel.Warning, "No view model association found for candidate view {Name}", candidateType.Name);
+            CrossLogHost.Default?.Log(LogLevel.Warning, "No view model association found for candidate view {Name}", candidateType.Name);
             return null;
         }
 

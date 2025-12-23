@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
+        private static ILogger? GetLog() => CrossLogHost.GetLog<MvxValueConverter>();
     }
 
     public abstract class MvxValueConverter<TFrom>
@@ -99,6 +99,6 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => MvxLogHost.GetLog<MvxValueConverter>();
+        private static ILogger? GetLog() => CrossLogHost.GetLog<MvxValueConverter>();
     }
 }

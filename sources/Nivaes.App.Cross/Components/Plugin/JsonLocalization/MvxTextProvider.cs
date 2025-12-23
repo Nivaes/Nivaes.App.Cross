@@ -4,7 +4,7 @@ namespace MvvmCross.Plugin.JsonLocalization
     using MvvmCross.Plugin.ResourceLoader;
 
     public abstract class MvxTextProvider :
-        MvxResourceProvider, IMvxTextProvider
+        MvxResourceProvider, ICrossTextProvider
     {
         public abstract string GetText(string namespaceKey, string typeKey, string name);
 

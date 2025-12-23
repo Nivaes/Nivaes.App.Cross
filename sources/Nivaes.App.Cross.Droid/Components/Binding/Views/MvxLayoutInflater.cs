@@ -163,7 +163,7 @@ namespace Nivaes.App.Cross.Droid
         protected override View? OnCreateView(View? parent, string? name, IAttributeSet? attrs)
         {
             if (Debug)
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", Tag, name);
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", Tag, name);
 
             return _bindingVisitor.OnViewCreated(
                 base.OnCreateView(parent, name, attrs),
@@ -174,7 +174,7 @@ namespace Nivaes.App.Cross.Droid
         protected override View? OnCreateView(string? name, IAttributeSet? attrs)
         {
             if (Debug)
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", Tag, name);
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", Tag, name);
 
             View? view = null;
             if (name != null && Context != null && attrs != null)
@@ -188,7 +188,7 @@ namespace Nivaes.App.Cross.Droid
         public override View? OnCreateView(Context viewContext, View? parent, string name, IAttributeSet? attrs)
         {
             if (Debug)
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 4 ... {Name}", Tag, name);
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 4 ... {Name}", Tag, name);
 
             return _bindingVisitor.OnViewCreated(
                 base.OnCreateView(viewContext, parent, name, attrs),
@@ -200,7 +200,7 @@ namespace Nivaes.App.Cross.Droid
         private View? PhoneLayoutInflaterOnCreateView(string? name, IAttributeSet? attrs)
         {
             if (Debug)
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... PhoneLayoutInflaterOnCreateView ... {Name}", Tag, name);
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... PhoneLayoutInflaterOnCreateView ... {Name}", Tag, name);
 
             foreach (var prefix in ClassPrefixList)
             {
@@ -282,7 +282,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
             }
 
             _setPrivateFactory = true;
@@ -292,7 +292,7 @@ namespace Nivaes.App.Cross.Droid
             IAttributeSet attrs)
         {
             if (Debug)
-                MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... CreateCustomViewInternal ... {Name}", Tag, name);
+                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... CreateCustomViewInternal ... {Name}", Tag, name);
 
             if (view == null &&
                 !string.IsNullOrWhiteSpace(name) &&
@@ -380,7 +380,7 @@ namespace Nivaes.App.Cross.Droid
                 if (Mvx.IoCProvider == null)
                 {
                     // if IoCProvider is null, Log instance will probably be null too
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
                     return null;
                 }
 
@@ -403,7 +403,7 @@ namespace Nivaes.App.Cross.Droid
                 if (Mvx.IoCProvider == null)
                 {
                     // if IoCProvider is null, Log instance will probably be null too
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Error, "{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Error, "{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
                     return null;
                 }
 
@@ -433,7 +433,7 @@ namespace Nivaes.App.Cross.Droid
             public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
             {
                 if (Debug)
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
 
                 return _factoryPlaceholder.OnViewCreated(
                     _factory.OnCreateView(parent, name, context, attrs),
@@ -458,7 +458,7 @@ namespace Nivaes.App.Cross.Droid
             public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
             {
                 if (Debug)
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
 
                 return _factoryPlaceholder.OnViewCreated(
                     _factory.OnCreateView(name, context, attrs),
@@ -494,7 +494,7 @@ namespace Nivaes.App.Cross.Droid
             public View? OnCreateView(string name, Context context, IAttributeSet attrs)
             {
                 if (Debug)
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
 
                 return _bindingVisitor.OnViewCreated(
                     // The activity's OnCreateView
@@ -505,7 +505,7 @@ namespace Nivaes.App.Cross.Droid
             public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
             {
                 if (Debug)
-                    MvxLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
+                    CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
 
                 return _bindingVisitor.OnViewCreated(
                     _inflater.CreateCustomViewInternal(

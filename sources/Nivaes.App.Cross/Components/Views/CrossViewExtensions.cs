@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
                 var viewModel = viewModelLoader();
                 if (viewModel == null)
                 {
-                    MvxLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
+                    CrossLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
                     return;
                 }
 
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross
             if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
                 return associatedTypeFinder?.FindTypeOrNull(view.GetType());
 
-            MvxLogHost.Default?.Log(LogLevel.Trace,
+            CrossLogHost.Default?.Log(LogLevel.Trace,
                 "No view model type finder available - assuming we are looking for a splash screen - returning null");
             return typeof(CrossNullViewModel);
         }

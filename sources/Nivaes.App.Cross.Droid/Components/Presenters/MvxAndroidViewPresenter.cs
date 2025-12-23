@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
         private readonly Lazy<ICrossNavigationSerializer?> _navigationSerializer =
             new(() => Mvx.IoCProvider?.Resolve<ICrossNavigationSerializer>());
 
-        private readonly Lazy<ILogger?> _logger = new(() => MvxLogHost.GetLog<MvxAndroidViewPresenter>());
+        private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<MvxAndroidViewPresenter>());
 
         protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
 

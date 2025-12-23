@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
 
-    public interface IMvxLanguageBinder
+    public interface ICrossLanguageBinder
     {
         string? GetText(string entryKey);
 

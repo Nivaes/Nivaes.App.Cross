@@ -61,7 +61,7 @@ namespace Playground.Core.ViewModels
 
         public ICrossAsyncCommand ShowMixedNavigationCommand { get; }
 
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("MvxBindingsExample", "Text");
+        public ICrossLanguageBinder TextSource => new CrossLanguageBinder("MvxBindingsExample", "Text");
 
         public string BindableText
         {

@@ -15,7 +15,7 @@ namespace MvvmCross.Plugin.JsonLocalization
         protected readonly string _generalNamespaceKey;
         protected readonly string _rootFolderForResources;
         protected readonly IMvxJsonDictionaryTextLoader _textLoader;
-        protected readonly IMvxTextProvider _textProvider;
+        protected readonly ICrossTextProvider _textProvider;
 
         protected MvxTextProviderBuilder(string generalNamespaceKey, string rootFolderForResources)
             : this(generalNamespaceKey, rootFolderForResources, new MvxContentJsonDictionaryTextProvider())
@@ -27,7 +27,7 @@ namespace MvvmCross.Plugin.JsonLocalization
         {
         }
 
-        protected MvxTextProviderBuilder(string generalNamespaceKey, string rootFolderForResources, IMvxJsonDictionaryTextLoader textLoader, IMvxTextProvider textProvider)
+        protected MvxTextProviderBuilder(string generalNamespaceKey, string rootFolderForResources, IMvxJsonDictionaryTextLoader textLoader, ICrossTextProvider textProvider)
         {
             _generalNamespaceKey = generalNamespaceKey;
             _rootFolderForResources = rootFolderForResources;
@@ -38,7 +38,7 @@ namespace MvvmCross.Plugin.JsonLocalization
 
         protected abstract IDictionary<string, string> ResourceFiles { get; }
 
-        public IMvxTextProvider TextProvider => _textProvider;
+        public ICrossTextProvider TextProvider => _textProvider;
 
         public virtual void LoadResources(string whichLocalizationFolder)
         {

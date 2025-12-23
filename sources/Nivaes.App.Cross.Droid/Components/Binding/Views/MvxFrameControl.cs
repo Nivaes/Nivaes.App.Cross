@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.Droid
                 {
                     if (Content == null && _templateId != 0)
                     {
-                        MvxLogHost.GetLog<MvxFrameControl>()?.Log(LogLevel.Trace, "DataContext is {dataContext}", DataContext?.ToString() ?? "Null");
+                        CrossLogHost.GetLog<MvxFrameControl>()?.Log(LogLevel.Trace, "DataContext is {dataContext}", DataContext?.ToString() ?? "Null");
                         Content = _bindingContext.BindingInflate(_templateId, this);
                     }
                 });

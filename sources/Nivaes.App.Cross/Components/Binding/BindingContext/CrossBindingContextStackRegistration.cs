@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
 
         ~CrossBindingContextStackRegistration()
         {
-            MvxLogHost.Default?.Log(LogLevel.Error,
+            CrossLogHost.Default?.Log(LogLevel.Error,
                 "You should always Dispose of MvxBindingContextStackRegistration");
             Dispose(false);
         }

@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.AppKit
         {
             if (MacView == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
+                CrossLogHost.Default?.Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
                 return;
             }
             MacView.ClearAllBindings();

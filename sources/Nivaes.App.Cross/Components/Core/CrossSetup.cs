@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross
                 }
             }
 
-            MvxLogHost.Default?.LogInformation("Setup: RegisterSetupType already called");
+            CrossLogHost.Default?.LogInformation("Setup: RegisterSetupType already called");
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]

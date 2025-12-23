@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource>(
                 this CrossFluentBindingDescription<TTarget, TSource> bindingDescription,
                 string localizationId)
-                    where TSource : IMvxLocalizedTextSourceOwner
+                    where TSource : ICrossLocalizedTextSourceOwner
                     where TTarget : class
         {
             var valueConverter = Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>().Find("Language");

@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.Droid
         public MvxAndroidViewsContainer(Context applicationContext)
         {
             _applicationContext = applicationContext;
-            _logger = MvxLogHost.GetLog<MvxAndroidViewsContainer>();
+            _logger = CrossLogHost.GetLog<MvxAndroidViewsContainer>();
         }
 
         #region Implementation of IMvxAndroidViewModelRequestTranslator

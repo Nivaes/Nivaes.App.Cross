@@ -107,8 +107,8 @@ namespace Nivaes.App.Cross
 
         protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
         {
-            registry.AddOrOverwrite("CommandParameter", new MvxCommandParameterValueConverter());
-            registry.AddOrOverwrite("Language", new MvxLanguageConverter());
+            registry.AddOrOverwrite("CommandParameter", new CrossCommandParameterValueConverter());
+            registry.AddOrOverwrite("Language", new CrossLanguageConverter());
         }
 
         protected virtual void RegisterValueCombinerProvider(IMvxIoCProvider iocProvider)

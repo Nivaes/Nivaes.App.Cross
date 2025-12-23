@@ -40,13 +40,13 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView)
             : base(collectionView)
         {
-            _logger = MvxLogHost.GetLog<MvxCollectionViewSourceAnimated>();
+            _logger = CrossLogHost.GetLog<MvxCollectionViewSourceAnimated>();
         }
 
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView, NSString defaultCellIdentifier)
             : base(collectionView, defaultCellIdentifier)
         {
-            _logger = MvxLogHost.GetLog<MvxCollectionViewSourceAnimated>();
+            _logger = CrossLogHost.GetLog<MvxCollectionViewSourceAnimated>();
         }
 
         protected override void CollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)

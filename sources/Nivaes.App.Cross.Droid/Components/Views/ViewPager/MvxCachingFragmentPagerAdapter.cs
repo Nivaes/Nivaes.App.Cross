@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross.Droid
                 _curTransaction = _fragmentManager.BeginTransaction();
 
 #if DEBUG
-            MvxLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
+            CrossLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
                 $"Removing item #{position}: f={objectValue} v={((Fragment)objectValue).View} t={fragment.Tag}");
 #endif
 
@@ -117,7 +117,7 @@ namespace Nivaes.App.Cross.Droid
             }
 
 #if DEBUG
-            MvxLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
+            CrossLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
                 "Adding item #{position}: f={fragment} t={tag}", position, fragment, fragmentTag);
 #endif
 

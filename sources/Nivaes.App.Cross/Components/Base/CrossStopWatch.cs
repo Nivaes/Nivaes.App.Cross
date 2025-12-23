@@ -13,14 +13,14 @@ namespace Nivaes.App.Cross
 
         private CrossStopWatch(string text, params object[] args)
         {
-            _log = MvxLogHost.GetLog<CrossStopWatch>();
+            _log = CrossLogHost.GetLog<CrossStopWatch>();
             _startTickCount = Environment.TickCount;
             _message = string.Format(text, args);
         }
 
         private CrossStopWatch(string tag, string text, params object[] args)
         {
-            _log = MvxLogHost.GetLog(tag);
+            _log = CrossLogHost.GetLog(tag);
             _startTickCount = Environment.TickCount;
             _message = string.Format(text, args);
         }

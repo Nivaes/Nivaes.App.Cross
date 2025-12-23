@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (Fragment?.Activity is not IMvxAndroidView hostMvxView)
             {
-                MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
                     "Fragment host for fragment type {FragmentType} is not of type IMvxAndroidView", Fragment?.GetType());
                 return;
             }
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (viewModelType == null)
             {
-                MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
                     "ViewModel type for Activity {FragmentActivityType} not found when trying to show fragment: {FragmentType}",
                     Fragment.Activity.GetType(), Fragment.GetType());
                 return;
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross.Droid
             }
             else
             {
-                MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
                     "Navigation Serializer not available, deserializing ViewModel Request will be hard");
             }
 
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross.Droid
                 return converter?.Read(bundle) ?? new CrossBundle();
             }
 
-            MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
             "Saved state converter not available - saving state will be hard");
 
             return new CrossBundle();
@@ -133,7 +133,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
                 {
-                    MvxLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+                    CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
                         "Saved state converter not available - saving state will be hard");
                 }
                 else

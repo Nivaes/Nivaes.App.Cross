@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true || converter == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Trace, "No saved state converter available - this is OK if seen during start");
+                CrossLogHost.Default?.Log(LogLevel.Trace, "No saved state converter available - this is OK if seen during start");
                 return null;
             }
             var savedState = converter.Read(bundle);
@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross.Droid
 
         public static void OnViewNewIntent(this IMvxAndroidView androidView)
         {
-            MvxLogHost.Default?.Log(LogLevel.Trace, "OnViewNewIntent called - MvvmCross lifecycle won't run automatically in this case");
+            CrossLogHost.Default?.Log(LogLevel.Trace, "OnViewNewIntent called - MvvmCross lifecycle won't run automatically in this case");
         }
 
         public static void OnViewDestroy(this IMvxAndroidView androidView)
@@ -149,7 +149,7 @@ namespace Nivaes.App.Cross.Droid
             if (viewModelType == null
                 || viewModelType == typeof(ICrossViewModel))
             {
-                MvxLogHost.Default?.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
+                CrossLogHost.Default?.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
                     androidView.GetType().Name);
             }
 

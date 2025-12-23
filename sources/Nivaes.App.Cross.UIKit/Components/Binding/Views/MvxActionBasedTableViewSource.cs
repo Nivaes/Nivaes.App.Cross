@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.UIKit
         public MvxActionBasedTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            MvxLogHost.GetLog<MvxActionBasedTableViewSource>()?.Log(
+            CrossLogHost.GetLog<MvxActionBasedTableViewSource>()?.Log(
                 LogLevel.Warning, "MvxActionBasedTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
             Initialize();
         }

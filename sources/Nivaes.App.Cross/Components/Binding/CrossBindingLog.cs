@@ -5,6 +5,6 @@ namespace MvvmCross.Binding
 
     public static class CrossBindingLog
     {
-        public static ILogger? Instance { get; } = MvxLogHost.GetLog("MvxBind");
+        public static ILogger? Instance { get; } = CrossLogHost.GetLog("MvxBind");
     }
 }

@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.UIKit
         {
             Task action()
             {
-                MvxLogHost.GetLog<MvxIosViewDispatcher>()?.LogTrace(
+                CrossLogHost.GetLog<MvxIosViewDispatcher>()?.LogTrace(
                     "Navigate requested to {ViewModelType}", request?.ViewModelType);
                 return _presenter.Show(request);
             }

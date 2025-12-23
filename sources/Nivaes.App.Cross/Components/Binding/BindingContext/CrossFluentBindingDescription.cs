@@ -106,7 +106,7 @@ namespace Nivaes.App.Cross
 
         public CrossFluentBindingDescription<TTarget, TSource> CommandParameter(object parameter)
         {
-            return WithConversion(new MvxCommandParameterValueConverter(), parameter);
+            return WithConversion(new CrossCommandParameterValueConverter(), parameter);
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> WithConversion(string converterName,
@@ -241,7 +241,7 @@ namespace Nivaes.App.Cross
 
         public MvxFluentBindingDescription<TTarget> CommandParameter(object parameter)
         {
-            return WithConversion(new MvxCommandParameterValueConverter(), parameter);
+            return WithConversion(new CrossCommandParameterValueConverter(), parameter);
         }
 
         public MvxFluentBindingDescription<TTarget> WithConversion(string converterName,

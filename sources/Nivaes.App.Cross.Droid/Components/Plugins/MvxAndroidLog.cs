@@ -5,6 +5,6 @@ namespace Nivaes.App.Cross.Droid
 
     internal static class MvxAndroidLog
     {
-        internal static ILogger Instance { get; } = MvxLogHost.GetLog("Leanback");
+        internal static ILogger Instance { get; } = CrossLogHost.GetLog("Leanback");
     }
 }

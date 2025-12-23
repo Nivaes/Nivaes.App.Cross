@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
         private readonly IMvxIoCProvider _iocProvider;
 
         private readonly Lazy<ILogger?> _log = new(() =>
-            MvxLogHost.GetLog<CrossNavigationService>());
+            CrossLogHost.GetLog<CrossNavigationService>());
 
         public ICrossViewDispatcher ViewDispatcher { get; }
 

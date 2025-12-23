@@ -56,7 +56,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             }
             catch (Exception exception)
             {
-                MvxLogHost.GetLog<MvxBaseCollectionViewSource>()?.Log(LogLevel.Warning, exception,
+                CrossLogHost.GetLog<MvxBaseCollectionViewSource>()?.Log(LogLevel.Warning, exception,
                     "Exception masked during CollectionView ReloadData");
             }
         }

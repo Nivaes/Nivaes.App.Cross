@@ -27,9 +27,9 @@ namespace Playground.Core.ViewModels
             _counter = int.Parse(state.Data["MyKey"]);
         }
 
-        public IMvxLanguageBinder TextSource
+        public ICrossLanguageBinder TextSource
         {
-            get { return new MvxLanguageBinder("Playground.Core", "Text"); }
+            get { return new CrossLanguageBinder("Playground.Core", "Text"); }
         }
 
         private string _bindableText = "I'm bound!";

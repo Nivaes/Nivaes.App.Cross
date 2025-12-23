@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.AppKit
         {
             if (macView.Request == null)
             {
-                MvxLogHost.Default?.Log(LogLevel.Trace,
+                CrossLogHost.Default?.Log(LogLevel.Trace,
                     "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
                 macView.Request = Mvx.IoCProvider.Resolve<IMvxCurrentRequest>().CurrentRequest;
             }

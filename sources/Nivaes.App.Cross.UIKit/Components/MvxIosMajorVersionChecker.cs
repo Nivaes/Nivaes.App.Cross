@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.UIKit
         {
             if (Mvx.IoCProvider?.TryResolve(out IMvxIosSystem iosSystem) != true)
             {
-                MvxLogHost.Default?.LogWarning(
+                CrossLogHost.Default?.LogWarning(
                     "IMvxIosSystem not found - so assuming we {Target} on iOS {Default} or later", target, defaultValue ? "are" : "are not");
                 return defaultValue;
             }

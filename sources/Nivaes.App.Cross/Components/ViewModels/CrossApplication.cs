@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross
         /// </summary>
         public virtual Task Startup()
         {
-            MvxLogHost.Default?.Log(LogLevel.Trace, "AppStart: Application Startup - On UI thread");
+            CrossLogHost.Default?.Log(LogLevel.Trace, "AppStart: Application Startup - On UI thread");
             return Task.CompletedTask;
         }
 

@@ -84,7 +84,7 @@ namespace Nivaes.App.Cross
 
             if (ShouldLogInpc())
             {
-                MvxLogHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' changing value to {NewValue}",
+                CrossLogHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' changing value to {NewValue}",
                     changingArgs.PropertyName, changingArgs.NewValue);
             }
 
@@ -124,7 +124,7 @@ namespace Nivaes.App.Cross
             void RaiseChange()
             {
                 if (ShouldLogInpc())
-                    MvxLogHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' value changed", changedArgs.PropertyName);
+                    CrossLogHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' value changed", changedArgs.PropertyName);
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 

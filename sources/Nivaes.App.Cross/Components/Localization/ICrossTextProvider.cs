@@ -5,7 +5,7 @@
 namespace MvvmCross.Localization
 {
 #nullable enable
-    public interface IMvxTextProvider
+    public interface ICrossTextProvider
     {
         string? GetText(string? namespaceKey, string? typeKey, string name);
 

@@ -25,7 +25,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
         {
-            MvxLogHost.Default?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewTypeName}. Assuming new window presentation", viewType.Name);
+            CrossLogHost.Default?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewTypeName}. Assuming new window presentation", viewType.Name);
             return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
         }
 
@@ -42,7 +42,7 @@ namespace MvvmCross.Platforms.Mac.Presenters
 
                     if (presentationAttribute == null)
                     {
-                        MvxLogHost.Default?.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
+                        CrossLogHost.Default?.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
                     }
                     else
                     {

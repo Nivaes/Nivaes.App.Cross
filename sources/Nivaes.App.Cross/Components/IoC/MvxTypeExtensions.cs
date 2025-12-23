@@ -23,13 +23,13 @@ public static class MvxTypeExtensions
         }
         catch (ReflectionTypeLoadException e)
         {
-            MvxLogHost.Default?.LogWarning(e,
+            CrossLogHost.Default?.LogWarning(e,
                 "ReflectionTypeLoadException masked during loading of {AssemblyName}",
                 assembly.FullName);
 
             foreach (var exception in e.LoaderExceptions)
             {
-                MvxLogHost.Default?.LogWarning(exception, "Failed to load type");
+                CrossLogHost.Default?.LogWarning(exception, "Failed to load type");
             }
 
             if (Debugger.IsAttached)

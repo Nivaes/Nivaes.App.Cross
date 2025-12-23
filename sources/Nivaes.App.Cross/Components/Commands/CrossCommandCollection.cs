@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross
             {
                 if (_commandLookup.Count == 0)
                 {
-                    MvxLogHost.Default?.Log(LogLevel.Trace, "MvxCommandCollection is empty - did you forget to add your commands?");
+                    CrossLogHost.Default?.Log(LogLevel.Trace, "MvxCommandCollection is empty - did you forget to add your commands?");
                     return null;
                 }
 
@@ -80,7 +80,7 @@ namespace Nivaes.App.Cross
 
             if (lookup.ContainsKey(name))
             {
-                MvxLogHost.Default?.Log(LogLevel.Warning,
+                CrossLogHost.Default?.Log(LogLevel.Warning,
                     "Ignoring Commmand - it would overwrite the existing Command, name {Name}", name);
                 return;
             }

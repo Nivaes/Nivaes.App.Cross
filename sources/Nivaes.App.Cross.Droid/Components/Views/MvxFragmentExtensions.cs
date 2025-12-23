@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross.Droid
                 if (viewModelType == null
                     || viewModelType == typeof(ICrossViewModel))
                 {
-                    MvxLogHost.Default?.Log(LogLevel.Trace,
+                    CrossLogHost.Default?.Log(LogLevel.Trace,
                         "No ViewModel class specified for {FragmentViewType} in LoadViewModel",
                         fragmentView.GetType().Name);
                 }

@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                MvxLogHost.GetLog<MvxBaseImageViewTargetBinding>()?
+                CrossLogHost.GetLog<MvxBaseImageViewTargetBinding>()?
                     .Log(LogLevel.Error, ex, "Failed to set bitmap on ImageView");
                 throw;
             }

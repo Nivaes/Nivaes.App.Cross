@@ -167,7 +167,7 @@ namespace Nivaes.App.Cross
                 return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
             }
 
-            MvxLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+            CrossLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
             return false;
         }
 

@@ -53,7 +53,7 @@ namespace MvvmCross.IoC
                 }
                 else
                 {
-                    MvxLogHost.Default?.Log(LogLevel.Warning,
+                    CrossLogHost.Default?.Log(LogLevel.Warning,
                         "IoC property injection skipped for {PropertyName} on {TypeName}",
                         injectableProperty.Name, toReturn.GetType().Name);
                 }
@@ -80,7 +80,7 @@ namespace MvvmCross.IoC
                     break;
 
                 case MvxPropertyInjection.None:
-                    MvxLogHost.Default?.Log(LogLevel.Error, "Internal error - should not call FindInjectableProperties with MvxPropertyInjection.None");
+                    CrossLogHost.Default?.Log(LogLevel.Error, "Internal error - should not call FindInjectableProperties with MvxPropertyInjection.None");
                     injectableProperties = [];
                     break;
 

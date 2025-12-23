@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.UIKit
         protected MvxBaseTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            MvxLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning,
+            CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning,
                 "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.UIKit
             }
             catch (Exception exception)
             {
-                MvxLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning, exception,
+                CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning, exception,
                     "Exception masked during TableView ReloadData");
             }
         }

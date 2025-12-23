@@ -22,9 +22,9 @@ namespace Playground.Core.ViewModels
 
         private string _welcomeText = "Default welcome";
 
-        public IMvxLanguageBinder TextSource
+        public ICrossLanguageBinder TextSource
         {
-            get { return new MvxLanguageBinder("Playground.Core", "Text"); }
+            get { return new CrossLanguageBinder("Playground.Core", "Text"); }
         }
 
         public RootViewModel(

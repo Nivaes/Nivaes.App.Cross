@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.UIKit
         protected MvxTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            MvxLogHost.Default?.LogWarning("TableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            CrossLogHost.Default?.LogWarning("TableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
         [CrossSetToNullAfterBinding]
