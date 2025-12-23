@@ -1,7 +1,5 @@
-namespace MvvmCross.ViewModels.Result
+namespace Nivaes.App.Cross
 {
-    using Nivaes.App.Cross;
-
     public abstract class CrossResultSettingViewModel<TResult>
         : CrossViewModel, ICrossResultSettingViewModel<TResult>
     {
@@ -18,9 +16,9 @@ namespace MvvmCross.ViewModels.Result
         }
     }
 
-    public abstract class MvxResultSettingViewModel<TParameter, TResult> : CrossResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
+    public abstract class CrossResultSettingViewModel<TParameter, TResult> : CrossResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected MvxResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager)
+        protected CrossResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager)
             : base(resultViewModelManager)
         {
         }

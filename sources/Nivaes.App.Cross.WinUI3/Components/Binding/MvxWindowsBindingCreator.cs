@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross.WinUI3
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
 
@@ -18,7 +17,7 @@ namespace Nivaes.App.Cross.WinUI3
             DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
             if (dependencyProperty == null)
             {
-                MvxLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
                     "Dependency property not found for {targetName}", bindingDescription.TargetName);
                 return;
             }
@@ -26,14 +25,14 @@ namespace Nivaes.App.Cross.WinUI3
             var property = actualType.FindActualProperty(bindingDescription.TargetName);
             if (property == null)
             {
-                MvxLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
                     "Property not returned for target {targetName} - may cause issues", bindingDescription.TargetName);
             }
 
-            var sourceStep = bindingDescription.Source as MvxPathSourceStepDescription;
+            var sourceStep = bindingDescription.Source as CrossPathSourceStepDescription;
             if (sourceStep == null)
             {
-                MvxLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
+                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
                     "Binding description for {targetName} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
             }
@@ -60,7 +59,7 @@ namespace Nivaes.App.Cross.WinUI3
             }
         }
 
-        protected static IValueConverter GetConverter(IMvxValueConverter converter)
+        protected static IValueConverter? GetConverter(ICrossValueConverter converter)
         {
             if (converter == null)
                 return null;
@@ -69,11 +68,11 @@ namespace Nivaes.App.Cross.WinUI3
             return new MvxNativeValueConverter(converter);
         }
 
-        protected static BindingMode ConvertMode(MvxBindingMode mode, Type propertyType)
+        protected static BindingMode ConvertMode(CrossBindingMode mode, Type propertyType)
         {
             switch (mode)
             {
-                case MvxBindingMode.Default:
+                case CrossBindingMode.Default:
                     // if we return TwoWay for ImageSource then we end up in
                     // problems with WP7 not doing the auto-conversion
                     // see some of my angst in http://stackoverflow.com/questions/16752242/how-does-xaml-create-the-string-to-bitmapimage-value-conversion-when-binding-to/16753488#16753488
@@ -83,17 +82,17 @@ namespace Nivaes.App.Cross.WinUI3
 
                     return BindingMode.TwoWay;
 
-                case MvxBindingMode.TwoWay:
+                case CrossBindingMode.TwoWay:
                     return BindingMode.TwoWay;
 
-                case MvxBindingMode.OneWay:
+                case CrossBindingMode.OneWay:
                     return BindingMode.OneWay;
 
-                case MvxBindingMode.OneTime:
+                case CrossBindingMode.OneTime:
                     return BindingMode.OneTime;
 
-                case MvxBindingMode.OneWayToSource:
-                    MvxLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
+                case CrossBindingMode.OneWayToSource:
+                    CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
                         "WinPhone doesn't support OneWayToSource");
                     return BindingMode.TwoWay;
 

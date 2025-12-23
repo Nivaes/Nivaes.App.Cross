@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming")]
     public class CrossIndexerLeafPropertyInfoSourceBinding : CrossLeafPropertyInfoSourceBinding

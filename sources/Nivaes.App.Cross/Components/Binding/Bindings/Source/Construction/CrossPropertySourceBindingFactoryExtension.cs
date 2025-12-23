@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Concurrent;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
     /// <summary>
     /// Uses a global cache of calls in Reflection namespace

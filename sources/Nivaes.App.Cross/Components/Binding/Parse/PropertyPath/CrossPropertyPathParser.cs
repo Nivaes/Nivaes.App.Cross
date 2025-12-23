@@ -1,10 +1,7 @@
-namespace MvvmCross.Binding.Parse.PropertyPath
+namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
     using System.Text;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
-    using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
     public class CrossPropertyPathParser : CrossParser

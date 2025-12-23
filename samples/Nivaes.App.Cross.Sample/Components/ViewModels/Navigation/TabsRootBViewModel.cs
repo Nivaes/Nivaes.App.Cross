@@ -3,7 +3,6 @@ namespace Playground.Core.ViewModels
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class TabsRootBViewModel 

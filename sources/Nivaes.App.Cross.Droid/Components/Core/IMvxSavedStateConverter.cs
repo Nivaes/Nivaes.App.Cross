@@ -1,10 +1,5 @@
-using Android.OS;
-
-namespace MvvmCross.Platforms.Android.Core
+namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxSavedStateConverter
     {
         ICrossBundle Read(Bundle bundle);

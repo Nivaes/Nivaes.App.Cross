@@ -1,7 +1,5 @@
-namespace MvvmCross.Platforms.WinUi.Presenters
+namespace Nivaes.App.Cross.WinUI3
 {
-    using Nivaes.App.Cross;
-
     public interface IMvxWindowsViewPresenter
         : ICrossViewPresenter
     {

@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using Microsoft.UI.Xaml;
@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target
         {
         }
 
-        public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
+        public override CrossBindingMode DefaultMode => CrossBindingMode.OneWay;
 
         public override void SetValue(object value)
         {

@@ -2,7 +2,6 @@ namespace Playground.Core.ViewModels
 {
     using Microsoft.Extensions.Logging;
     using MvvmCross.Localization;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels.Bindings;
 

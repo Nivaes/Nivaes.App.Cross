@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.WinUi.Core;
+using Nivaes.App.Cross.WinUI3;
 using Playground.Core;
 using Serilog;
 using Serilog.Extensions.Logging;

@@ -2,7 +2,6 @@ namespace Playground.Core.ViewModels
 {
     using System.Collections;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class Page1ViewModel 

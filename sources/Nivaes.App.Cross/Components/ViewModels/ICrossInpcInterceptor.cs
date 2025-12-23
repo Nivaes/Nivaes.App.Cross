@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
-    using MvvmCross.ViewModels;
 
     public interface ICrossInpcInterceptor
     {

@@ -1,7 +1,7 @@
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3
 {
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
+    using MvvmCross;
     using Nivaes.App.Cross;
 
     public class MvxWindowsViewsContainer

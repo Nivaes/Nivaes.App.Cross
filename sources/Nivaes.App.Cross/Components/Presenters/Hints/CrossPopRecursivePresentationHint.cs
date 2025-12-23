@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    using System;
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
 
     public class CrossPopRecursivePresentationHint
         : CrossPresentationHint

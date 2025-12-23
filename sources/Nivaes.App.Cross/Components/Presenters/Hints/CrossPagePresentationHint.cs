@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
 
     public class CrossPagePresentationHint
         : CrossPresentationHint

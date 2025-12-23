@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Threading.Tasks;
-    using MvvmCross.Plugin;
-    using MvvmCross.ViewModels;
 
     public interface ICrossApplication 
         : ICrossViewModelLocatorCollection

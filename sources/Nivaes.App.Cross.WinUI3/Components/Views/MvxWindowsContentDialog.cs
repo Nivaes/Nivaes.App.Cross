@@ -1,15 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using MvvmCross.ViewModels;
-using Nivaes.App.Cross;
-
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3
 {
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+
     public class MvxWindowsContentDialog
         : ContentDialog
         , IMvxWindowsContentDialog
@@ -55,17 +48,15 @@ namespace MvvmCross.Platforms.WinUi.Views
             ViewModel?.ViewDestroy();
         }
 
-        private ICrossViewModel _viewModel;
-
-        public ICrossViewModel ViewModel
+        public ICrossViewModel? ViewModel
         {
-            get => _viewModel;
+            get => field;
             set
             {
-                if (_viewModel == value)
+                if (field == value)
                     return;
 
-                _viewModel = value;
+                field = value;
                 DataContext = ViewModel;
                 OnViewModelSet();
             }

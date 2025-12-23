@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Presenters
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Linq;
@@ -7,10 +7,9 @@ namespace MvvmCross.Platforms.WinUi.Presenters
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Logging;
+    using MvvmCross;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
-    using Nivaes.App.Cross;
     using Windows.UI.Core;
     using Control = Microsoft.UI.Xaml.Controls.Control;
 
@@ -23,7 +22,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
         public MvxWindowsViewPresenter(IMvxWindowsFrame rootFrame)
         {
             _rootFrame = rootFrame;
-            _logger = MvxLogHost.GetLog<MvxWindowsViewPresenter>();
+            _logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
 
             if (Window.Current != null)
             {

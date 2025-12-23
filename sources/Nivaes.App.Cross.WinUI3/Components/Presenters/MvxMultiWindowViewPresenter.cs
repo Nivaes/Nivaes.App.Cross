@@ -1,17 +1,16 @@
-namespace MvvmCross.Platforms.WinUi.Presenters
+namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Dispatching;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
     using Microsoft.UI.Xaml.Media.Animation;
-    using MvvmCross.Localization;
-    using MvvmCross.Logging;
+    using MvvmCross;
+    using MvvmCross.Platforms.WinUi.Presenters;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Presenters.Models;
     using MvvmCross.Platforms.WinUi.Presenters.Utils;
     using MvvmCross.Platforms.WinUi.Views;
-    using Nivaes.App.Cross;
     using Windows.Graphics;
     using Windows.UI.Core;
     using Control = Microsoft.UI.Xaml.Controls.Control;
@@ -50,7 +49,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             }
 
             _mainFrame = new WindowInformation(window!, rootFrame, null);
-            _logger = MvxLogHost.GetLog<MvxWindowsViewPresenter>();
+            _logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
 
             if (Window.Current != null)
             {
@@ -659,7 +658,7 @@ namespace MvvmCross.Platforms.WinUi.Presenters
             var page = (Page)frame.Content;
             Microsoft.UI.Windowing.AppWindow appWindow = AppWindowUtils.GetAppWindowForCurrentWindow(newWindow);
 
-            if (page.DataContext is IMvxLocalizedTextSourceOwner viewModel)
+            if (page.DataContext is ICrossLocalizedTextSourceOwner viewModel)
             {
                 appWindow.Title = viewModel.LocalizedTextSource.GetText(WindowTitle);
             }

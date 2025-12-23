@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MvxSingleViewModelCache

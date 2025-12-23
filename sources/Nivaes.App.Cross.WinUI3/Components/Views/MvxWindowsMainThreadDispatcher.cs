@@ -1,10 +1,8 @@
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using Microsoft.UI.Dispatching;
-    using MvvmCross.Base;
     using Nivaes.App.Cross;
-    using Windows.UI.Core;
 
     public class MvxWindowsMainThreadDispatcher 
         : CrossMainThreadAsyncDispatcher

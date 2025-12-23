@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
             // Note: if we discover other issues here, then we should make a more flexible solution
             if (_actualPropertyType == typeof(ImageSource))
             {
-                DefaultMode = MvxBindingMode.OneWay;
+                DefaultMode = CrossBindingMode.OneWay;
             }
         }
 
@@ -54,14 +54,14 @@ namespace Nivaes.App.Cross
 
         public override Type TargetValueType => _actualPropertyType;
 
-        public override MvxBindingMode DefaultMode { get; } = MvxBindingMode.TwoWay;
+        public override CrossBindingMode DefaultMode { get; } = CrossBindingMode.TwoWay;
 
-        protected virtual object GetValueByReflection()
+        protected virtual object? GetValueByReflection()
         {
             var target = Target as FrameworkElement;
             if (target == null)
             {
-                MvxBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
+                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
                 return null;
             }
 
@@ -70,11 +70,11 @@ namespace Nivaes.App.Cross
 
         protected override void SetValueImpl(object target, object value)
         {
-            MvxBindingLog.Instance?.LogTrace("Receiving setValue to {Value}", value);
+            CrossBindingLog.Instance?.LogTrace("Receiving setValue to {Value}", value);
             var frameworkElement = target as FrameworkElement;
             if (frameworkElement == null)
             {
-                MvxBindingLog.Instance?.LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLog.Instance?.LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 

@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System.Reflection;
     using MvvmCross.IoC;

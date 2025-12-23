@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Core
+namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml.Controls;
     using MvvmCross.Platforms.WinUi.Views;

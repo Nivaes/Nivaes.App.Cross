@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.ViewModels;
-
     public class MvxTranslatedIntent
     {
         #region TranslationResult enum

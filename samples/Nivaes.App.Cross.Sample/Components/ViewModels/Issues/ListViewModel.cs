@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class ListViewModel : CrossViewModel

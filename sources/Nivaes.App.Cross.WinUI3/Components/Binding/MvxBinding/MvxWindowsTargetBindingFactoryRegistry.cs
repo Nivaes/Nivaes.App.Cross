@@ -1,9 +1,7 @@
 namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using MvvmCross.Platforms.WinUi.Binding;
-    using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
 
     public class MvxWindowsTargetBindingFactoryRegistry 
         : CrossTargetBindingFactoryRegistry
@@ -30,7 +28,7 @@ namespace Nivaes.App.Cross.WinUI3
 
             if (string.IsNullOrEmpty(targetName))
             {
-                MvxBindingLog.Instance?.LogError("Empty binding target passed to MvxWindowsTargetBindingFactoryRegistry");
+                CrossBindingLog.Instance?.LogError("Empty binding target passed to MvxWindowsTargetBindingFactoryRegistry");
                 binding = null;
                 return false;
             }

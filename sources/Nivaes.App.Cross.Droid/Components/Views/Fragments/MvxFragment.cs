@@ -2,10 +2,7 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;    
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-    using MvvmCross.ViewModels;
+    using System.Diagnostics.CodeAnalysis;
 
     [Register("mvvmcross.platforms.android.views.fragments.MvxFragment")]
     public class MvxFragment

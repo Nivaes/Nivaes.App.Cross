@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Collections.Generic;
     using Microsoft.UI.Xaml;
-    using Nivaes.App.Cross;
 
     public interface IMvxBindingCreator
     {

@@ -2,7 +2,6 @@ namespace Playground.Core.ViewModels.Samples
 {
     using System.Drawing;
     using System.Windows.Input;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public sealed class ConvertersViewModel : CrossViewModel

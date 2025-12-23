@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Ios.Views
+namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxIosNavigator
     {
         void NavigateTo(CrossViewModelRequest request);

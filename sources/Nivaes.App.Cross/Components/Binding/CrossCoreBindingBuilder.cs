@@ -2,14 +2,12 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using MvvmCross.Binding.Binders;
     using MvvmCross.Binding.BindingContext;
     using MvvmCross.Binding.Combiners;
     using MvvmCross.Binding.ExpressionParse;
     using MvvmCross.Binding.Parse.Binding.Lang;
     using MvvmCross.Binding.Parse.Binding.Tibet;
-    using MvvmCross.Binding.Parse.PropertyPath;
     using MvvmCross.IoC;
 
     public class CrossCoreBindingBuilder

@@ -3,15 +3,13 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class CrossChainedSourceBinding
         : CrossPropertyInfoSourceBinding
     {
         private readonly IList<ICrossPropertyToken> _childTokens;
-        private ICrossSourceBinding _currentChildBinding;
+        private ICrossSourceBinding? _currentChildBinding;
 
         protected CrossChainedSourceBinding(
             object source,
@@ -76,7 +74,7 @@ namespace Nivaes.App.Cross
 
         protected abstract object[] PropertyIndexParameters();
 
-        private void ChildSourceBindingChanged(object sender, EventArgs e)
+        private void ChildSourceBindingChanged(object? sender, EventArgs e)
         {
             FireChanged();
         }

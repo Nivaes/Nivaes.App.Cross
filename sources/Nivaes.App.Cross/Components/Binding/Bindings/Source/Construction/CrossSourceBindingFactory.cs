@@ -3,24 +3,21 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Parse.PropertyPath;
-    using MvvmCross.Binding.Parse.PropertyPath.PropertyTokens;
 
     public class CrossSourceBindingFactory
         : ICrossSourceBindingFactory
         , ICrossSourceBindingFactoryExtensionHost
     {
-        private ICrossSourcePropertyPathParser _propertyPathParser;
+        private ICrossSourcePropertyPathParser? _propertyPathParser;
 
-        protected ICrossSourcePropertyPathParser SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<ICrossSourcePropertyPathParser>();
+        protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<ICrossSourcePropertyPathParser>();
 
         private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
         protected bool TryCreateBindingFromExtensions(
             object source, ICrossPropertyToken propertyToken,
-            List<ICrossPropertyToken> remainingTokens, out ICrossSourceBinding result)
+            List<ICrossPropertyToken> remainingTokens, out ICrossSourceBinding? result)
         {
             foreach (var extension in _extensions)
             {
@@ -35,14 +32,14 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
-        public ICrossSourceBinding CreateBinding(object source, string combinedPropertyName)
+        public ICrossSourceBinding? CreateBinding(object source, string combinedPropertyName)
         {
-            var tokens = SourcePropertyPathParser.Parse(combinedPropertyName);
+            var tokens = SourcePropertyPathParser?.Parse(combinedPropertyName);
             return CreateBinding(source, tokens);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
-        public ICrossSourceBinding CreateBinding(object source, IList<ICrossPropertyToken> tokens)
+        public ICrossSourceBinding? CreateBinding(object source, IList<ICrossPropertyToken>? tokens)
         {
             if (tokens == null || tokens.Count == 0)
             {
@@ -51,8 +48,7 @@ namespace Nivaes.App.Cross
 
             var currentToken = tokens[0];
             var remainingTokens = tokens.Skip(1).ToList();
-            ICrossSourceBinding extensionResult;
-            if (TryCreateBindingFromExtensions(source, currentToken, remainingTokens, out extensionResult))
+            if (TryCreateBindingFromExtensions(source, currentToken, remainingTokens, out ICrossSourceBinding? extensionResult))
             {
                 return extensionResult;
             }

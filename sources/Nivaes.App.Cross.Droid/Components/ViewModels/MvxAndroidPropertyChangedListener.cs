@@ -3,8 +3,7 @@ using Android.Runtime;
 namespace MvvmCross.Platforms.Android.ViewModels
 {
     using System;
-    using System.ComponentModel;   
-    using MvvmCross.ViewModels;
+    using System.ComponentModel;
     using Nivaes.App.Cross;
 
     /// <summary>

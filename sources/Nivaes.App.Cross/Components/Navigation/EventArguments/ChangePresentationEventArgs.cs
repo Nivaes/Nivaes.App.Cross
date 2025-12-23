@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Threading;
-    using MvvmCross.ViewModels;
 
     public class ChangePresentationEventArgs 
         : CrossCancelEventArgs

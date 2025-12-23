@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxWindowsView
         : ICrossView
     {

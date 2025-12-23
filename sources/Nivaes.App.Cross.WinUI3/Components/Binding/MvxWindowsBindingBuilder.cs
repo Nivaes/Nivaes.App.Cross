@@ -1,14 +1,12 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml;
+    using MvvmCross;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.WinUi.Binding.MvxBinding;
-    using MvvmCross.Platforms.WinUi.Binding.MvxBinding.Target;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.WinUI3;
+    using MvvmCross.Platforms.WinUi.Binding;
 
     public class MvxWindowsBindingBuilder 
-        : MvxBindingBuilder
+        : CrossBindingBuilder
     {
         public enum BindingType
         {
@@ -18,15 +16,15 @@ namespace MvvmCross.Platforms.WinUi.Binding
 
         private readonly BindingType _bindingType;
         private readonly Action<ICrossTargetBindingFactoryRegistry> _fillTargetFactories;
-        private readonly Action<IMvxBindingNameRegistry> _fillBindingNames;
-        private readonly Action<IMvxValueConverterRegistry> _fillValueConverters;
-        private readonly Action<IMvxValueCombinerRegistry> _fillValueCombiners;
+        private readonly Action<ICrossBindingNameRegistry> _fillBindingNames;
+        private readonly Action<ICrossValueConverterRegistry> _fillValueConverters;
+        private readonly Action<ICrossValueCombinerRegistry> _fillValueCombiners;
 
         public MvxWindowsBindingBuilder(
             Action<ICrossTargetBindingFactoryRegistry> fillTargetFactories = null,
-            Action<IMvxBindingNameRegistry> fillBindingNames = null,
-            Action<IMvxValueConverterRegistry> fillValueConverters = null,
-            Action<IMvxValueCombinerRegistry> fillValueCombiners = null,
+            Action<ICrossBindingNameRegistry> fillBindingNames = null,
+            Action<ICrossValueConverterRegistry> fillValueConverters = null,
+            Action<ICrossValueCombinerRegistry> fillValueCombiners = null,
             BindingType bindingType = BindingType.MvvmCross)
         {
             _fillTargetFactories = fillTargetFactories;
@@ -95,13 +93,13 @@ namespace MvvmCross.Platforms.WinUi.Binding
             }
         }
 
-        protected override void FillDefaultBindingNames(IMvxBindingNameRegistry registry)
+        protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
         {
             base.FillDefaultBindingNames(registry);
             _fillBindingNames?.Invoke(registry);
         }
 
-        protected override void FillValueConverters(IMvxValueConverterRegistry registry)
+        protected override void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             base.FillValueConverters(registry);
 
@@ -116,7 +114,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             _fillValueConverters?.Invoke(registry);
         }
 
-        protected override void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected override void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             base.FillValueCombiners(registry);
 

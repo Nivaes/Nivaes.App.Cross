@@ -1,11 +1,11 @@
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Linq;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
+    using MvvmCross;
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public static class MvxWindowsExtensions

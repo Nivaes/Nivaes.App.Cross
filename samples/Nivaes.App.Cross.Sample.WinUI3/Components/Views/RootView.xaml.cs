@@ -2,7 +2,6 @@ namespace Playground.WinUi.Views
 {
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Playground.Core.ViewModels;
     using Playground.WinUi3.Views;

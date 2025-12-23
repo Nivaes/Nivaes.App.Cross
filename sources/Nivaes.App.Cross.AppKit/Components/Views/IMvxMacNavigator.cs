@@ -1,8 +1,5 @@
-namespace MvvmCross.Platforms.Mac.Views
+namespace Nivaes.App.Cross.Color
 {
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
-
     public interface IMvxMacNavigator
     {
         void NavigateTo(CrossViewModelRequest request);

@@ -1,8 +1,6 @@
 namespace Playground.Core.ViewModels.Navigation
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels;
-    using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
     using Playground.Core.Models;
 

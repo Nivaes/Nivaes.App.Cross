@@ -4,17 +4,16 @@ namespace Nivaes.App.Cross.WinUI3
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
 
     public class MvxNativeValueConverter
         : IValueConverter
     {
-        private readonly IMvxValueConverter _wrapped;
+        private readonly ICrossValueConverter _wrapped;
 
-        protected IMvxValueConverter Wrapped => _wrapped;
+        protected ICrossValueConverter Wrapped => _wrapped;
 
-        public MvxNativeValueConverter(IMvxValueConverter wrapped)
+        public MvxNativeValueConverter(ICrossValueConverter wrapped)
         {
             _wrapped = wrapped;
         }
@@ -35,14 +34,14 @@ namespace Nivaes.App.Cross.WinUI3
 
         private static object MapIfSpecialValue(object toReturn)
         {
-            if (toReturn == MvxBindingConstant.DoNothing)
+            if (toReturn == CrossBindingConstant.DoNothing)
             {
-                MvxLogHost.GetLog<MvxNativeValueConverter>()?.Log(
+                CrossLogHost.GetLog<MvxNativeValueConverter>()?.Log(
                     LogLevel.Trace, "DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
                 return DependencyProperty.UnsetValue;
             }
 
-            if (toReturn == MvxBindingConstant.UnsetValue)
+            if (toReturn == CrossBindingConstant.UnsetValue)
             {
                 return DependencyProperty.UnsetValue;
             }
@@ -53,7 +52,7 @@ namespace Nivaes.App.Cross.WinUI3
 
     public class MvxNativeValueConverter<T>
         : MvxNativeValueConverter
-        where T : IMvxValueConverter, new()
+        where T : ICrossValueConverter, new()
     {
         protected new T Wrapped => (T)base.Wrapped;
 

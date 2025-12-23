@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels.Bindings
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class CustomBindingViewModel

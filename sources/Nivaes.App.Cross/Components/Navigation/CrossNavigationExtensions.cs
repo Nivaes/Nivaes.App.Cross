@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.ViewModels;
-    using MvvmCross.ViewModels.Result;
 
     public static class CrossNavigationExtensions
     {

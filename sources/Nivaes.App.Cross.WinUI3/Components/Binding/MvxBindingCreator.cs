@@ -1,10 +1,10 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Collections.Generic;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
-    using MvvmCross.Logging;
+    using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
 
     public abstract class MvxBindingCreator 
@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             var attachedObject = sender as FrameworkElement;
             if (attachedObject == null)
             {
-                MvxLogHost.Default?.LogWarning("Null attached FrameworkElement seen in Bi.nd binding");
+                CrossLogHost.Default?.LogWarning("Null attached FrameworkElement seen in Bi.nd binding");
                 return;
             }
 

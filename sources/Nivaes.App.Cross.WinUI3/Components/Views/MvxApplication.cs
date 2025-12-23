@@ -3,8 +3,8 @@ namespace MvvmCross.Platforms.WinUi.Views
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
-    using MvvmCross.Platforms.WinUi.Core;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.WinUI3;
     using Application = Microsoft.UI.Xaml.Application;
     using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 

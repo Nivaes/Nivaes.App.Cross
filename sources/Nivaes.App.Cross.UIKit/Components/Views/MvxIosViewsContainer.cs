@@ -2,9 +2,6 @@ namespace Nivaes.App.Cross.UIKit
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.ViewModels;
 
     public class MvxIosViewsContainer
         : CrossViewsContainer

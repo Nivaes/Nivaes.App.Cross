@@ -1,7 +1,6 @@
 namespace Playground.Core.ViewModels.Navigation
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class RegionViewModel 

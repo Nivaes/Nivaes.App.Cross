@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.ViewModels.Result;
 
     public abstract class CrossNavigationViewModel
         : CrossViewModel

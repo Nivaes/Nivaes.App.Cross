@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace MvvmCross.Platforms.WinUi.Binding.MvxBinding
         protected override void ApplyBindings(FrameworkElement attachedObject,
                                               IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
-            var binder = MvxBindingSingletonCache.Instance.Binder;
+            var binder = CrossBindingSingletonCache.Instance.Binder;
             var bindingDescriptionList = bindingDescriptions.ToList();
             var bindings = binder.Bind(attachedObject.DataContext, attachedObject, bindingDescriptionList);
             RegisterBindingsForUpdates(attachedObject, bindings);

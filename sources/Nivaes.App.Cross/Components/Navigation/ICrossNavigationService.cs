@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using MvvmCross.ViewModels;
 
     /// <summary>
     /// Allows for Task and URI based navigation in MvvmCross

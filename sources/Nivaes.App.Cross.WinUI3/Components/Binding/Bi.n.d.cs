@@ -1,6 +1,8 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml;
+    using MvvmCross;
+    using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
 
     // ReSharper disable InconsistentNaming
@@ -66,10 +68,10 @@ namespace MvvmCross.Platforms.WinUi.Binding
 
         private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string bindingText)
         {
-            if (CrossSingleton<IMvxBindingSingletonCache>.Instance == null)
+            if (CrossSingleton<ICrossBindingSingletonCache>.Instance == null)
                 return Array.Empty<CrossBindingDescription>();
 
-            return CrossSingleton<IMvxBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
+            return CrossSingleton<ICrossBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingText);
         }
     }
 }

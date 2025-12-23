@@ -1,9 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System.Threading.Tasks;
-    using MvvmCross.Platforms.Android.Presenters;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MvxAndroidViewDispatcher

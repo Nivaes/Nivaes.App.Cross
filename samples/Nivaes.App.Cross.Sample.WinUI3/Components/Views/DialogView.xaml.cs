@@ -3,6 +3,7 @@ namespace Playground.WinUi.Views
     using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using MvvmCross.Platforms.WinUi.Views;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.WinUI3;
     using Playground.Core.ViewModels;
 
     [MvxViewFor(typeof(ModalViewModel))]

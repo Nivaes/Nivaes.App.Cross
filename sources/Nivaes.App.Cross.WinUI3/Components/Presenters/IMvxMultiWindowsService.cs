@@ -1,8 +1,6 @@
-namespace MvvmCross.Platforms.WinUi.Presenters
+namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// Defines public services for the MultiWindow support.

@@ -2,7 +2,6 @@ namespace MvvmCross.Platforms.WinUi.Presenters.Models
 {
     using Microsoft.UI.Xaml;
     using MvvmCross.Platforms.WinUi.Views;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     /// <summary>

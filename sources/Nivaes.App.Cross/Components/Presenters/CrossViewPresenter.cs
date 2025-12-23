@@ -3,8 +3,6 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
-    using Nivaes.App.Cross;
 
     public abstract class CrossViewPresenter 
         : ICrossViewPresenter

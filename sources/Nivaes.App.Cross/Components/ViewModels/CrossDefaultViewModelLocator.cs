@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross;
-    using MvvmCross.Exceptions;
-    using MvvmCross.ViewModels;
 
     /// <inheritdoc cref="ICrossViewModelLocator"/>
     public class CrossDefaultViewModelLocator

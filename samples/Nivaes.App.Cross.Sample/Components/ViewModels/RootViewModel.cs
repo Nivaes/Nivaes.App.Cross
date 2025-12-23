@@ -4,8 +4,6 @@ namespace Playground.Core.ViewModels
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using MvvmCross.Localization;
-    using MvvmCross.ViewModels;
-    using MvvmCross.ViewModels.Result;
     using Nivaes.App.Cross;
     using Playground.Core.Models;
     using Playground.Core.Services;

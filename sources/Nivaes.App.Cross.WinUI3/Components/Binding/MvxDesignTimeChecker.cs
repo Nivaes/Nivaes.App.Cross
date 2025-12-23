@@ -1,5 +1,6 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
+    using MvvmCross;
     using MvvmCross.Binding.Parse.Binding;
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
@@ -25,7 +26,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
                 Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
 
-            if (!Mvx.IoCProvider.CanResolve<IMvxBindingParser>())
+            if (!Mvx.IoCProvider.CanResolve<ICrossBindingParser>())
             {
                 var builder = new MvxWindowsBindingBuilder(bindingType: MvxWindowsBindingBuilder.BindingType.MvvmCross);
                 builder.DoRegistration(Mvx.IoCProvider);

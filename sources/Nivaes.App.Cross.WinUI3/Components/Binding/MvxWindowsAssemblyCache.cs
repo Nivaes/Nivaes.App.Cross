@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI3
 {
     using System.Collections.Generic;
     using System.Reflection;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
     public class MvxWindowsAssemblyCache

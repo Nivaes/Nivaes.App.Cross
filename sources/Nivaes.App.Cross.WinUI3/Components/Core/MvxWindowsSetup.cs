@@ -1,13 +1,9 @@
-namespace MvvmCross.Platforms.WinUi.Core
+namespace Nivaes.App.Cross.WinUI3
 {
     using System.Reflection;
     using Microsoft.UI.Xaml.Controls;
     using MvvmCross.IoC;
-    using MvvmCross.Platforms.WinUi.Binding;
-    using MvvmCross.Platforms.WinUi.Presenters;
     using MvvmCross.Platforms.WinUi.Views;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.WinUI3;
 
     public abstract class MvxWindowsSetup
         : CrossSetup, IMvxWindowsSetup
@@ -121,18 +117,18 @@ namespace MvvmCross.Platforms.WinUi.Core
             bindingBuilder.DoRegistration(iocProvider);
         }
 
-        protected virtual void FillBindingNames(IMvxBindingNameRegistry registry)
+        protected virtual void FillBindingNames(ICrossBindingNameRegistry registry)
         {
             // this base class does nothing
         }
 
-        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             registry.Fill(ValueConverterAssemblies);
             registry.Fill(ValueConverterHolders);
         }
 
-        protected virtual void FillValueCombiners(IMvxValueCombinerRegistry registry)
+        protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             // this base class does nothing
         }
@@ -157,7 +153,7 @@ namespace MvvmCross.Platforms.WinUi.Core
             }
         }
 
-        protected virtual MvxBindingBuilder CreateBindingBuilder()
+        protected virtual CrossBindingBuilder CreateBindingBuilder()
         {
             return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
         }

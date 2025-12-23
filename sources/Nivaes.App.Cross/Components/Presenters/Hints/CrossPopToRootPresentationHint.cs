@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
-    using MvvmCross.ViewModels;
 
     public class CrossPopToRootPresentationHint
         : CrossPresentationHint

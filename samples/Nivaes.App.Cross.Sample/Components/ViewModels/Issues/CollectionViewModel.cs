@@ -3,7 +3,6 @@ namespace Playground.Core.ViewModels
     using System;
     using System.Drawing;
     using System.Linq;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public record CollectionViewParameter(int InitialCount = 40);

@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Threading.Tasks;
-    using MvvmCross.ViewModels;
 
     public abstract class CrossViewModel
         : CrossNotifyPropertyChanged, ICrossViewModel

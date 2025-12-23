@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
-    using MvvmCross.ViewModels;
 
     /// <summary>
     /// Watches a task and raises property-changed notifications when the task completes.
