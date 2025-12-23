@@ -8,14 +8,14 @@ namespace Nivaes.App.Cross
     {
         public virtual void Load(IMvxIoCProvider provider)
         {
-            if (provider.TryResolve(out IMvxValueConverterRegistry? registry))
+            if (provider.TryResolve(out ICrossValueConverterRegistry? registry))
                 RegisterValueConverters(registry);
         }
 
-        private static void RegisterValueConverters(IMvxValueConverterRegistry registry)
+        private static void RegisterValueConverters(ICrossValueConverterRegistry registry)
         {
-            registry.AddOrOverwrite("Visibility", new MvxVisibilityValueConverter());
-            registry.AddOrOverwrite("InvertedVisibility", new MvxInvertedVisibilityValueConverter());
+            registry.AddOrOverwrite("Visibility", new CrossVisibilityValueConverter());
+            registry.AddOrOverwrite("InvertedVisibility", new CrossInvertedVisibilityValueConverter());
         }
     }
 }

@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Color;
 namespace Playground.Core.Converters;
 
 // Sample converter to show issue found in GH issue #4803
-public sealed class TextToColorValueConverter : MvxColorValueConverter
+public sealed class TextToColorValueConverter : CrossColorValueConverter
 {
     protected override Color Convert(object value, object parameter, CultureInfo culture)
     {

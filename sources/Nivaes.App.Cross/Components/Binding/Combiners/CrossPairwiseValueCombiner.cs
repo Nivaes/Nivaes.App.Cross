@@ -139,17 +139,17 @@ namespace Nivaes.App.Cross
                 var first = resultPairs[0];
                 var second = resultPairs[1];
 
-                if (first == MvxBindingConstant.DoNothing
-                    || second == MvxBindingConstant.DoNothing)
+                if (first == CrossBindingConstant.DoNothing
+                    || second == CrossBindingConstant.DoNothing)
                 {
-                    value = MvxBindingConstant.DoNothing;
+                    value = CrossBindingConstant.DoNothing;
                     return true;
                 }
 
-                if (first == MvxBindingConstant.UnsetValue
-                    || second == MvxBindingConstant.UnsetValue)
+                if (first == CrossBindingConstant.UnsetValue
+                    || second == CrossBindingConstant.UnsetValue)
                 {
-                    value = MvxBindingConstant.UnsetValue;
+                    value = CrossBindingConstant.UnsetValue;
                     return true;
                 }
 
@@ -164,7 +164,7 @@ namespace Nivaes.App.Cross
                 {
                     CrossLogHost.Default?.Log(LogLevel.Error, "Unknown type pair in Pairwise combiner {firstType}, {secondType}",
                         firstType, secondType);
-                    value = MvxBindingConstant.UnsetValue;
+                    value = CrossBindingConstant.UnsetValue;
                     return true;
                 }
 
@@ -172,7 +172,7 @@ namespace Nivaes.App.Cross
                 var newIsAvailable = combinerFunc(first, second, out newValue);
                 if (!newIsAvailable)
                 {
-                    value = MvxBindingConstant.UnsetValue;
+                    value = CrossBindingConstant.UnsetValue;
                     return true;
                 }
 

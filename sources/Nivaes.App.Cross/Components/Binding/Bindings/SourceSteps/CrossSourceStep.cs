@@ -61,10 +61,10 @@ namespace Nivaes.App.Cross
         {
             var sourceValue = ApplyValueConverterTargetToSource(value);
 
-            if (sourceValue == MvxBindingConstant.DoNothing)
+            if (sourceValue == CrossBindingConstant.DoNothing)
                 return;
 
-            if (sourceValue == MvxBindingConstant.UnsetValue)
+            if (sourceValue == CrossBindingConstant.UnsetValue)
                 return;
 
             SetSourceValue(sourceValue);
@@ -105,7 +105,7 @@ namespace Nivaes.App.Cross
                     _description.ToString());
             }
 
-            return MvxBindingConstant.UnsetValue;
+            return CrossBindingConstant.UnsetValue;
         }
 
         protected abstract void SetSourceValue(object sourceValue);
@@ -117,15 +117,15 @@ namespace Nivaes.App.Cross
 
         private object? ConvertSourceToTarget(object? value)
         {
-            if (value == MvxBindingConstant.DoNothing)
+            if (value == CrossBindingConstant.DoNothing)
                 return value;
 
-            if (value != MvxBindingConstant.UnsetValue)
+            if (value != CrossBindingConstant.UnsetValue)
             {
                 value = ApplyValueConverterSourceToTarget(value);
             }
 
-            if (value != MvxBindingConstant.UnsetValue)
+            if (value != CrossBindingConstant.UnsetValue)
             {
                 return value;
             }
@@ -133,7 +133,7 @@ namespace Nivaes.App.Cross
             if (_description.FallbackValue != null)
                 return _description.FallbackValue;
 
-            return MvxBindingConstant.UnsetValue;
+            return CrossBindingConstant.UnsetValue;
         }
 
         private event EventHandler _changed;

@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public CrossBindingDescription(string targetName, string sourcePropertyPath, IMvxValueConverter converter,
+        public CrossBindingDescription(string targetName, string sourcePropertyPath, ICrossValueConverter converter,
                                      object converterParameter, object fallbackValue, CrossBindingMode mode)
         {
             TargetName = targetName;

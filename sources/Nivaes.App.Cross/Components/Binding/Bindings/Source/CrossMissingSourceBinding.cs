@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross
         public override object GetValue()
         {
             // binding is missing so return 'unset value'
-            return MvxBindingConstant.UnsetValue;
+            return CrossBindingConstant.UnsetValue;
         }
     }
 }

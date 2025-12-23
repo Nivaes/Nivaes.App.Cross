@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
 
     public class CrossValueConverterRegistryFiller
-        : CrossNamedInstanceRegistryFiller<IMvxValueConverter>, ICrossValueConverterRegistryFiller
+        : CrossNamedInstanceRegistryFiller<ICrossValueConverter>, ICrossValueConverterRegistryFiller
     {
         public override string FindName(Type type)
         {

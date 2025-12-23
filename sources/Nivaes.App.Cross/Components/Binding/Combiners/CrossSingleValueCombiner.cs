@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross
             var firstStep = steps.FirstOrDefault();
             if (firstStep == null)
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 

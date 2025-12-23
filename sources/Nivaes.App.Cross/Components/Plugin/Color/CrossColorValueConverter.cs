@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.Color
     using System.Globalization;
     using MvvmCross;
 
-    public abstract class MvxColorValueConverter : MvxValueConverter
+    public abstract class CrossColorValueConverter : CroosValueConverter
     {
         private readonly Lazy<ICrossNativeColor?> _nativeColor = new(() => Mvx.IoCProvider?.Resolve<ICrossNativeColor>());
 
@@ -12,11 +12,11 @@ namespace Nivaes.App.Cross.Color
         public sealed override object Convert(object value, Type? targetType, object? parameter,
             CultureInfo? culture)
         {
-            return _nativeColor.Value?.ToNative(Convert(value, parameter, culture)) ?? MvxBindingConstant.UnsetValue;
+            return _nativeColor.Value?.ToNative(Convert(value, parameter, culture)) ?? CrossBindingConstant.UnsetValue;
         }
     }
 
-    public abstract class MvxColorValueConverter<T> : MvxColorValueConverter
+    public abstract class MvxColorValueConverter<T> : CrossColorValueConverter
     {
         protected sealed override System.Drawing.Color Convert(object value, object? parameter, CultureInfo? culture)
         {

@@ -10,9 +10,9 @@ namespace Nivaes.App.Cross
     public class CrossValueConverterValueCombiner 
         : CrossValueCombiner
     {
-        private readonly IMvxValueConverter _valueConverter;
+        private readonly ICrossValueConverter _valueConverter;
 
-        public CrossValueConverterValueCombiner(IMvxValueConverter valueConverter)
+        public CrossValueConverterValueCombiner(ICrossValueConverter valueConverter)
         {
             _valueConverter = valueConverter;
         }
@@ -58,21 +58,21 @@ namespace Nivaes.App.Cross
             var parameter = GetParameterValue(steps);
 
             object sourceValue = sourceStep.GetValue();
-            if (sourceValue == MvxBindingConstant.DoNothing)
+            if (sourceValue == CrossBindingConstant.DoNothing)
             {
-                value = MvxBindingConstant.DoNothing;
+                value = CrossBindingConstant.DoNothing;
                 return true;
             }
 
-            if (sourceValue == MvxBindingConstant.UnsetValue)
+            if (sourceValue == CrossBindingConstant.UnsetValue)
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 
             if (_valueConverter == null)
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 

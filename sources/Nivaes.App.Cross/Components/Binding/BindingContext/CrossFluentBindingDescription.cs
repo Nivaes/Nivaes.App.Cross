@@ -116,7 +116,7 @@ namespace Nivaes.App.Cross
             return WithConversion(converter, converterParameter);
         }
 
-        public CrossFluentBindingDescription<TTarget, TSource> WithConversion(IMvxValueConverter converter,
+        public CrossFluentBindingDescription<TTarget, TSource> WithConversion(ICrossValueConverter converter,
                                                                             object converterParameter = null)
         {
             SourceStepDescription.Converter = converter;
@@ -125,7 +125,7 @@ namespace Nivaes.App.Cross
         }
 
         public CrossFluentBindingDescription<TTarget, TSource> WithConversion<TValueConverter>(object converterParameter = null)
-            where TValueConverter : IMvxValueConverter
+            where TValueConverter : ICrossValueConverter
         {
             var filler = Mvx.IoCProvider.Resolve<ICrossValueConverterRegistryFiller>();
             var converterName = filler.FindName(typeof(TValueConverter));
@@ -251,7 +251,7 @@ namespace Nivaes.App.Cross
             return WithConversion(converter, converterParameter);
         }
 
-        public MvxFluentBindingDescription<TTarget> WithConversion(IMvxValueConverter converter,
+        public MvxFluentBindingDescription<TTarget> WithConversion(ICrossValueConverter converter,
                                                                    object converterParameter)
         {
             SourceStepDescription.Converter = converter;
@@ -260,7 +260,7 @@ namespace Nivaes.App.Cross
         }
 
         public MvxFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object converterParameter = null)
-            where TValueConverter : IMvxValueConverter
+            where TValueConverter : ICrossValueConverter
         {
             var filler = Mvx.IoCProvider.Resolve<ICrossValueConverterRegistryFiller>();
             var converterName = filler.FindName(typeof(TValueConverter));

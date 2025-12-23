@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Globalization;
 
-    public class MvxDictionaryValueConverter<TKey, TValue> : MvxValueConverter<TKey, TValue>
+    public class CrossDictionaryValueConverter<TKey, TValue> : MvxValueConverter<TKey, TValue>
         where TKey : notnull
     {
         protected override TValue Convert(TKey value, Type? targetType, object? parameter, CultureInfo? culture)
@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross
                     return typedParameters.Item2;
                 }
 
-                throw new KeyNotFoundException($"Could not find key {value?.ToString()} for {typeof(MvxDictionaryValueConverter<TKey, TValue>)}.");
+                throw new KeyNotFoundException($"Could not find key {value?.ToString()} for {typeof(CrossDictionaryValueConverter<TKey, TValue>)}.");
             }
             catch (InvalidCastException ex)
             {

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Visibility
     using MvvmCross;
     using Nivaes.App.Cross;
 
-    public abstract class MvxBaseVisibilityValueConverter<T>
+    public abstract class CrossBaseVisibilityValueConverter<T>
         : MvxBaseVisibilityValueConverter
     {
         protected sealed override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Visibility
     }
 
     public abstract class MvxBaseVisibilityValueConverter
-        : MvxValueConverter
+        : CroosValueConverter
     {
         private ICrossNativeVisibility _nativeVisibility;
 

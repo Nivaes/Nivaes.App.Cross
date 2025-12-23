@@ -154,10 +154,10 @@ namespace Nivaes.App.Cross
 
         private async void UpdateTargetFromSource(object value, CancellationToken cancel)
         {
-            if (value == MvxBindingConstant.DoNothing || cancel.IsCancellationRequested)
+            if (value == CrossBindingConstant.DoNothing || cancel.IsCancellationRequested)
                 return;
 
-            if (value == MvxBindingConstant.UnsetValue)
+            if (value == CrossBindingConstant.UnsetValue)
             {
                 lock (_lock)
                 {
@@ -189,10 +189,10 @@ namespace Nivaes.App.Cross
 
         private void UpdateSourceFromTarget(object sender, CrossTargetChangedEventArgs args)
         {
-            if (args.Value == MvxBindingConstant.DoNothing)
+            if (args.Value == CrossBindingConstant.DoNothing)
                 return;
 
-            if (args.Value == MvxBindingConstant.UnsetValue)
+            if (args.Value == CrossBindingConstant.UnsetValue)
                 return;
 
             try

@@ -224,7 +224,7 @@ namespace Nivaes.App.Cross
             return sourcePropertyPath;
         }
 
-        protected static IMvxValueConverter ValueConverterFromName(string converterName)
+        protected static ICrossValueConverter ValueConverterFromName(string converterName)
         {
             var converter = CrossBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
             return converter;

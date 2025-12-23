@@ -215,7 +215,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
-        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             ArgumentNullException.ThrowIfNull(registry);
 

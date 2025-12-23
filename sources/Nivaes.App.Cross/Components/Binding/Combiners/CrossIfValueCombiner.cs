@@ -26,15 +26,15 @@ namespace MvvmCross.Binding.Combiners
         private bool TryEvaluateif(ICrossSourceStep testStep, ICrossSourceStep ifStep, ICrossSourceStep? elseStep, out object value)
         {
             var result = testStep.GetValue();
-            if (result == MvxBindingConstant.DoNothing)
+            if (result == CrossBindingConstant.DoNothing)
             {
-                value = MvxBindingConstant.DoNothing;
+                value = CrossBindingConstant.DoNothing;
                 return true;
             }
 
-            if (result == MvxBindingConstant.UnsetValue)
+            if (result == CrossBindingConstant.UnsetValue)
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 
@@ -57,7 +57,7 @@ namespace MvvmCross.Binding.Combiners
         {
             if (subStep == null)
             {
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
             return subStep.GetValue();
         }

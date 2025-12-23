@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross
         {
             if (PropertyInfo == null)
             {
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
 
             if (!PropertyInfo.CanRead)
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross
                 CrossBindingLog.Instance?.LogError(
                     "GetValue ignored in binding - target property {PropertyTypeName}.{PropertyName} is writeonly",
                     PropertyInfo.DeclaringType?.Name, PropertyName);
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
 
             try
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross
             {
                 // for dictionary lookups we quite often expect this during binding
                 // for list-based lookups we quite often expect this during binding
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
         }
 

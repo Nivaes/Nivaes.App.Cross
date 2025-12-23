@@ -62,19 +62,19 @@ namespace Nivaes.App.Cross
             {
                 var objectValue = step.GetValue();
 
-                if (objectValue == MvxBindingConstant.DoNothing)
+                if (objectValue == CrossBindingConstant.DoNothing)
                 {
-                    value = MvxBindingConstant.DoNothing;
+                    value = CrossBindingConstant.DoNothing;
                     return true;
                 }
-                if (objectValue == MvxBindingConstant.UnsetValue)
+                if (objectValue == CrossBindingConstant.UnsetValue)
                 {
-                    value = MvxBindingConstant.UnsetValue;
+                    value = CrossBindingConstant.UnsetValue;
                     return true;
                 }
                 if (!TryConvertToBool(objectValue, out var booleanValue))
                 {
-                    value = MvxBindingConstant.UnsetValue;
+                    value = CrossBindingConstant.UnsetValue;
                     return true;
                 }
                 stepValues.Add(booleanValue);

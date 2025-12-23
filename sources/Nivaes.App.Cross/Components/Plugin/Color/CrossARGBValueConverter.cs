@@ -4,9 +4,9 @@ namespace Nivaes.App.Cross.Color
     using MvvmCross;
 
     [Preserve(AllMembers = true)]
-    public class MvxRGBValueConverter : MvxColorValueConverter<string>
+    public class CrossARGBValueConverter : MvxColorValueConverter<string>
     {
         protected override System.Drawing.Color Convert(string value, object parameter, CultureInfo culture)
-            => MvxHexParser.ColorFromHexString(value);
+            => CrossHexParser.ColorFromHexString(value, assumeArgb: true);
     }
 }

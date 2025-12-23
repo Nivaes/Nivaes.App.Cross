@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Color
 {
     using System.Globalization;
 
-    public static class MvxHexParser
+    public static class CrossHexParser
     {
         public static System.Drawing.Color ColorFromHexString(string value) => ColorFromHexString(value, assumeArgb: false);
 

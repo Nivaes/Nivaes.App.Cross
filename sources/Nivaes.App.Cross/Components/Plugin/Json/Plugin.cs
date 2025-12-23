@@ -11,27 +11,27 @@ namespace MvvmCross.Plugin.Json
     [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
     public class Plugin : IMvxConfigurablePlugin
     {
-        private MvxJsonConfiguration _configuration;
+        private CrossJsonConfiguration _configuration;
 
         public void Load(IMvxIoCProvider provider)
         {
-            provider.RegisterType<ICrossJsonConverter, MvxJsonConverter>();
-            var configuration = _configuration ?? MvxJsonConfiguration.Default;
+            provider.RegisterType<ICrossJsonConverter, CrossJsonConverter>();
+            var configuration = _configuration ?? CrossJsonConfiguration.Default;
 
             if (configuration.RegisterAsTextSerializer)
             {
-                provider.RegisterType<ICrossTextSerializer, MvxJsonConverter>();
+                provider.RegisterType<ICrossTextSerializer, CrossJsonConverter>();
             }
         }
 
         public void Configure(IMvxPluginConfiguration configuration)
         {
-            if (configuration != null && configuration is not MvxJsonConfiguration)
+            if (configuration != null && configuration is not CrossJsonConfiguration)
             {
                 throw new CrossException("You must configure the Json plugin with MvxJsonConfiguration - but supplied {0}", configuration.GetType().Name);
             }
 
-            _configuration = (MvxJsonConfiguration)configuration;
+            _configuration = (CrossJsonConfiguration)configuration;
         }
     }
 }

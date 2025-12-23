@@ -4,11 +4,11 @@ namespace Nivaes.App.Cross.Color
     using MvvmCross;
 
     [Preserve(AllMembers = true)]
-    public class MvxRGBIntColorValueConverter : MvxColorValueConverter<int>
+    public class CrossRGBIntColorValueConverter : MvxColorValueConverter<int>
     {
         protected override System.Drawing.Color Convert(int value, object parameter, CultureInfo culture)
         {
-            MvxHexParser.ParseRGBInteger(value, out int red, out int green, out int blue);
+            CrossHexParser.ParseRGBInteger(value, out int red, out int green, out int blue);
 
             var color = System.Drawing.Color.FromArgb(red, green, blue);
 

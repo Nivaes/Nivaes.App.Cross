@@ -36,7 +36,7 @@ namespace MvvmCross.Binding.BindingContext
         public static T Bind<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] T, TViewModel>(this T element,
                                             CrossInlineBindingTarget<TViewModel> target,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
-                                            IMvxValueConverter converter,
+                                            ICrossValueConverter converter,
                                             object converterParameter = null,
                                             object fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
@@ -64,7 +64,7 @@ namespace MvvmCross.Binding.BindingContext
                                             CrossInlineBindingTarget<TViewModel> target,
                                             Expression<Func<T, object>> targetPropertyPath,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
-                                            IMvxValueConverter converter,
+                                            ICrossValueConverter converter,
                                             object converterParameter = null,
                                             object fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
@@ -80,7 +80,7 @@ namespace MvvmCross.Binding.BindingContext
                                             CrossInlineBindingTarget<TViewModel> target,
                                             string targetPath,
                                             string sourcePath,
-                                            IMvxValueConverter converter = null,
+                                            ICrossValueConverter converter = null,
                                             object converterParameter = null,
                                             object fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)

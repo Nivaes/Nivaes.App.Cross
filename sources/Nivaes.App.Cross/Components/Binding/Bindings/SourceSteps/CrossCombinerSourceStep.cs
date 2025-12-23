@@ -113,10 +113,10 @@ namespace Nivaes.App.Cross
 
         protected override void SetSourceValue(object sourceValue)
         {
-            if (sourceValue == MvxBindingConstant.UnsetValue)
+            if (sourceValue == CrossBindingConstant.UnsetValue)
                 return;
 
-            if (sourceValue == MvxBindingConstant.DoNothing)
+            if (sourceValue == CrossBindingConstant.DoNothing)
                 return;
 
             Description.Combiner.SetValue(_subSteps, sourceValue);
@@ -126,7 +126,7 @@ namespace Nivaes.App.Cross
         {
             object value;
             if (!Description.Combiner.TryGetValue(_subSteps, out value))
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
 
             return value;
         }

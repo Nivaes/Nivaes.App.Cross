@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
     }
 
     public interface ICrossValueConverterLookup
-        : IMvxNamedInstanceLookup<IMvxValueConverter>
+        : IMvxNamedInstanceLookup<ICrossValueConverter>
     {
     }
 }

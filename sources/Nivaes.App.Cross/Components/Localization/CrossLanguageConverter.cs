@@ -3,18 +3,18 @@ namespace Nivaes.App.Cross
     using System.Globalization;
 
     public class CrossLanguageConverter
-        : MvxValueConverter
+        : CroosValueConverter
     {
         public override object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             if (value is not ICrossLanguageBinder binder)
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
 
             if (parameter == null)
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
 
             var translatedText = binder.GetText(parameter.ToString() ?? string.Empty);
-            return translatedText ?? (object)MvxBindingConstant.UnsetValue;
+            return translatedText ?? (object)CrossBindingConstant.UnsetValue;
         }
     }
 }

@@ -3,12 +3,12 @@ namespace Nivaes.App.Cross
     using MvvmCross;
 
     [Preserve(AllMembers = true)]
-    public class MvxJsonConfiguration
+    public class CrossJsonConfiguration
         : IMvxPluginConfiguration
     {
-        public static readonly MvxJsonConfiguration Default = new();
+        public static readonly CrossJsonConfiguration Default = new();
 
-        public MvxJsonConfiguration()
+        public CrossJsonConfiguration()
         {
             RegisterAsTextSerializer = true;
         }

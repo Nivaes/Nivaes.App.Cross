@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKit
     using System.Globalization;
 
     internal sealed class MvxUnifiedTypesValueConverter
-    : MvxValueConverter
+    : CroosValueConverter
     {
         // dictionary of supported unified type conversions
         internal static readonly IReadOnlyDictionary<Type, Type> UnifiedTypeConversions =
@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.UIKit
                 return value;
 
             var nativeValue = Activator.CreateInstance(nativeType, value);
-            return nativeValue ?? MvxBindingConstant.UnsetValue;
+            return nativeValue ?? CrossBindingConstant.UnsetValue;
         }
 
         public override object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKit
             // unified types already implement proper conversion with IConvertible interface support
             return targetType != null
                 ? System.Convert.ChangeType(value, targetType, culture)
-                : MvxBindingConstant.UnsetValue;
+                : CrossBindingConstant.UnsetValue;
         }
     }
 }

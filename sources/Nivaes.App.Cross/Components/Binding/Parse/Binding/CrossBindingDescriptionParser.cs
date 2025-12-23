@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected IMvxValueConverter FindConverter(string converterName)
+        protected ICrossValueConverter FindConverter(string converterName)
         {
             if (converterName == null)
                 return null;

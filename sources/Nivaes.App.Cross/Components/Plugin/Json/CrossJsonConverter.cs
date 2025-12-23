@@ -6,12 +6,12 @@ namespace MvvmCross.Plugin.Json
 
     [Preserve(AllMembers = true)]
     [RequiresUnreferencedCode("Uses JsonSerializer which may not be fully preserved in trimming scenarios")]
-    public class MvxJsonConverter
+    public class CrossJsonConverter
         : ICrossJsonConverter
     {
         public JsonSerializerOptions Settings { get; set; }
 
-        public MvxJsonConverter()
+        public CrossJsonConverter()
         {
             Settings = new JsonSerializerOptions
             {

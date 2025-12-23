@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross
         {
             if (_currentChildBinding == null)
             {
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
 
             return _currentChildBinding.GetValue();

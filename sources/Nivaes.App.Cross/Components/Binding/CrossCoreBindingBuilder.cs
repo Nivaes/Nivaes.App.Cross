@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterValueConverterRegistryFiller(IMvxIoCProvider iocProvider)
         {
             var filler = CreateValueConverterRegistryFiller();
-            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<IMvxValueConverter>>(filler);
+            iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<ICrossValueConverter>>(filler);
             iocProvider.RegisterSingleton<ICrossValueConverterRegistryFiller>(filler);
         }
 
@@ -93,10 +93,10 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterValueConverterProvider(IMvxIoCProvider iocProvider)
         {
             var registry = CreateValueConverterRegistry();
-            iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<IMvxValueConverter>>(registry);
-            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<IMvxValueConverter>>(registry);
+            iocProvider.RegisterSingleton<IMvxNamedInstanceLookup<ICrossValueConverter>>(registry);
+            iocProvider.RegisterSingleton<ICrossNamedInstanceRegistry<ICrossValueConverter>>(registry);
             iocProvider.RegisterSingleton<ICrossValueConverterLookup>(registry);
-            iocProvider.RegisterSingleton<IMvxValueConverterRegistry>(registry);
+            iocProvider.RegisterSingleton<ICrossValueConverterRegistry>(registry);
             FillValueConverters(registry);
         }
 
@@ -105,7 +105,7 @@ namespace Nivaes.App.Cross
             return new CrossValueConverterRegistry();
         }
 
-        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             registry.AddOrOverwrite("CommandParameter", new CrossCommandParameterValueConverter());
             registry.AddOrOverwrite("Language", new CrossLanguageConverter());

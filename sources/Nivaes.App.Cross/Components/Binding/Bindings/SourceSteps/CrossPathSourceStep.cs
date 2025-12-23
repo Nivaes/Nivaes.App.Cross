@@ -76,10 +76,10 @@ namespace Nivaes.App.Cross
             if (_sourceBinding == null)
                 return;
 
-            if (sourceValue == MvxBindingConstant.UnsetValue)
+            if (sourceValue == CrossBindingConstant.UnsetValue)
                 return;
 
-            if (sourceValue == MvxBindingConstant.DoNothing)
+            if (sourceValue == CrossBindingConstant.DoNothing)
                 return;
 
             _sourceBinding.SetValue(sourceValue);
@@ -89,7 +89,7 @@ namespace Nivaes.App.Cross
         {
             if (_sourceBinding == null)
             {
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
 
             return _sourceBinding.GetValue();

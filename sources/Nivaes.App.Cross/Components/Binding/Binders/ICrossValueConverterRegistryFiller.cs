@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross
         void FillFrom(ICrossNamedInstanceRegistry<T> registry, Assembly assembly);
     }
 
-    public interface ICrossValueConverterRegistryFiller : IMvxNamedInstanceRegistryFiller<IMvxValueConverter>
+    public interface ICrossValueConverterRegistryFiller : IMvxNamedInstanceRegistryFiller<ICrossValueConverter>
     {
     }
 }

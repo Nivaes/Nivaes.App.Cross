@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross.AppKit
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        protected virtual void FillValueConverters(IMvxValueConverterRegistry registry)
+        protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             registry.Fill(ValueConverterAssemblies);
             registry.Fill(ValueConverterHolders);

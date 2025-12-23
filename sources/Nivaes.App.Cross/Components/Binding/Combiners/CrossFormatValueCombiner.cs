@@ -12,20 +12,20 @@ namespace Nivaes.App.Cross
             if (list.Count < 1)
             {
                 CrossBindingLog.Instance?.LogWarning("Format called with no parameters - will fail");
-                value = MvxBindingConstant.DoNothing;
+                value = CrossBindingConstant.DoNothing;
                 return true;
             }
 
             var formatObject = list[0].GetValue();
-            if (formatObject == MvxBindingConstant.DoNothing)
+            if (formatObject == CrossBindingConstant.DoNothing)
             {
-                value = MvxBindingConstant.DoNothing;
+                value = CrossBindingConstant.DoNothing;
                 return true;
             }
 
-            if (formatObject == MvxBindingConstant.UnsetValue)
+            if (formatObject == CrossBindingConstant.UnsetValue)
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 
@@ -33,15 +33,15 @@ namespace Nivaes.App.Cross
 
             var values = list.Skip(1).Select(s => s.GetValue()).ToArray();
 
-            if (Array.Exists(values, v => v == MvxBindingConstant.DoNothing))
+            if (Array.Exists(values, v => v == CrossBindingConstant.DoNothing))
             {
-                value = MvxBindingConstant.DoNothing;
+                value = CrossBindingConstant.DoNothing;
                 return true;
             }
 
-            if (Array.Exists(values, v => v == MvxBindingConstant.UnsetValue))
+            if (Array.Exists(values, v => v == CrossBindingConstant.UnsetValue))
             {
-                value = MvxBindingConstant.UnsetValue;
+                value = CrossBindingConstant.UnsetValue;
                 return true;
             }
 

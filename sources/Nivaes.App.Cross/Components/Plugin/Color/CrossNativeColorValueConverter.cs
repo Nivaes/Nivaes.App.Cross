@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Color
     using MvvmCross;
 
     [Preserve(AllMembers = true)]
-    public class MvxNativeColorValueConverter : MvxColorValueConverter<System.Drawing.Color>
+    public class CrossNativeColorValueConverter : MvxColorValueConverter<System.Drawing.Color>
     {
         protected override System.Drawing.Color Convert(System.Drawing.Color value, object parameter, CultureInfo culture)
         {

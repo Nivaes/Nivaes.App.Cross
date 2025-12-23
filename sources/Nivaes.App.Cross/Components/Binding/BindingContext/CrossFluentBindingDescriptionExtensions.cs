@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross
                 IDictionary<TFrom, TTo> converterParameter)
                     where TTarget : class
                 => bindingDescription.WithConversion(
-                    new MvxDictionaryValueConverter<TFrom, TTo>(), new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(
+                    new CrossDictionaryValueConverter<TFrom, TTo>(), new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(
                         converterParameter, default, false))
                         .OneWay();
 
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
                 TTo fallback)
                     where TTarget : class
                 => bindingDescription.WithConversion(
-                    new MvxDictionaryValueConverter<TFrom, TTo>(),
+                    new CrossDictionaryValueConverter<TFrom, TTo>(),
                     new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(converterParameter, fallback, true))
                     .OneWay();
     }

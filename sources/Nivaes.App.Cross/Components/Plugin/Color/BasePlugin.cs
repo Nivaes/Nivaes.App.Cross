@@ -6,13 +6,13 @@ namespace Nivaes.App.Cross.Color
     {
         public virtual void Load(IMvxIoCProvider provider)
         {
-            if (provider.TryResolve<IMvxValueConverterRegistry>(out var registry) && registry != null)
+            if (provider.TryResolve<ICrossValueConverterRegistry>(out var registry) && registry != null)
             {
-                registry.AddOrOverwrite("ARGB", new MvxARGBValueConverter());
-                registry.AddOrOverwrite("NativeColor", new MvxNativeColorValueConverter());
-                registry.AddOrOverwrite("RGBA", new MvxRGBAValueConverter());
-                registry.AddOrOverwrite("RGB", new MvxRGBValueConverter());
-                registry.AddOrOverwrite("RGBIntColor", new MvxRGBIntColorValueConverter());
+                registry.AddOrOverwrite("ARGB", new CrossARGBValueConverter());
+                registry.AddOrOverwrite("NativeColor", new CrossNativeColorValueConverter());
+                registry.AddOrOverwrite("RGBA", new CrossRGBAValueConverter());
+                registry.AddOrOverwrite("RGB", new CrossRGBValueConverter());
+                registry.AddOrOverwrite("RGBIntColor", new CrossRGBIntColorValueConverter());
             }
         }
     }

@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Visibility
     using Nivaes.App.Cross;
 
     [Preserve(AllMembers = true)]
-    public class MvxInvertedVisibilityValueConverter : MvxVisibilityValueConverter
+    public class CrossInvertedVisibilityValueConverter : CrossVisibilityValueConverter
     {
         protected override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
         {

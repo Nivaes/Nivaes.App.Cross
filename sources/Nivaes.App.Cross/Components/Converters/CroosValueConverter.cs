@@ -3,22 +3,22 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using Microsoft.Extensions.Logging;
 
-    public abstract class MvxValueConverter
-        : IMvxValueConverter
+    public abstract class CroosValueConverter
+        : ICrossValueConverter
     {
         public virtual object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return MvxBindingConstant.UnsetValue;
+            return CrossBindingConstant.UnsetValue;
         }
 
         public virtual object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            return MvxBindingConstant.UnsetValue;
+            return CrossBindingConstant.UnsetValue;
         }
     }
 
     public abstract class MvxValueConverter<TFrom, TTo>
-        : IMvxValueConverter
+        : ICrossValueConverter
     {
         public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
             catch (Exception e)
             {
                 GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
         }
 
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
             catch (Exception e)
             {
                 GetLog()?.LogError(e, "Failed to Convert from {FromType} to {ToType}", typeof(TFrom), typeof(TTo));
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
         }
 
@@ -56,11 +56,11 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => CrossLogHost.GetLog<MvxValueConverter>();
+        private static ILogger? GetLog() => CrossLogHost.GetLog<CroosValueConverter>();
     }
 
     public abstract class MvxValueConverter<TFrom>
-        : IMvxValueConverter
+        : ICrossValueConverter
     {
         public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross
             catch (Exception e)
             {
                 GetLog()?.LogError(e, "Failed to Convert from {FromType}", typeof(TFrom));
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
         }
 
@@ -89,7 +89,7 @@ namespace Nivaes.App.Cross
             catch (Exception e)
             {
                 GetLog()?.LogError(e, "Failed to ConvertBack to {FromType}", typeof(TFrom));
-                return MvxBindingConstant.UnsetValue;
+                return CrossBindingConstant.UnsetValue;
             }
         }
 
@@ -98,6 +98,6 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => CrossLogHost.GetLog<MvxValueConverter>();
+        private static ILogger? GetLog() => CrossLogHost.GetLog<CroosValueConverter>();
     }
 }
