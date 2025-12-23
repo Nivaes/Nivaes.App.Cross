@@ -3,9 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 
     public static class MvxActivityViewExtensions

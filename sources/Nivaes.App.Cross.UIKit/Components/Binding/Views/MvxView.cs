@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross.UIKit
 {
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Platforms.Ios.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 

@@ -3,8 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
-    using MvvmCross.Plugin;
     using Nivaes.App.Cross;
 
     public class MvxPluginManager : IMvxPluginManager

@@ -3,8 +3,6 @@ using Android.Graphics;
 namespace Nivaes.App.Cross.Droid
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Logging;
 
     public abstract class MvxBaseImageViewTargetBinding(ImageView imageView)
     : MvxAndroidTargetBinding(imageView)

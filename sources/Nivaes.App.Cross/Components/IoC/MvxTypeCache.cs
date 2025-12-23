@@ -6,7 +6,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Logging;
+using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;
 

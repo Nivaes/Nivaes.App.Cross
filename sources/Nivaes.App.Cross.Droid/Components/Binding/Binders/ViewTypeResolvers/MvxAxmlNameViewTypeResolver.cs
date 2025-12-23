@@ -1,12 +1,12 @@
-namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
+namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Android.Views;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using MvvmCross.IoC;
+    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
+    using Nivaes.App.Cross;
 
     public class MvxAxmlNameViewTypeResolver : MvxLongLowerCaseViewTypeResolver, IMvxAxmlNameViewTypeResolver
     {

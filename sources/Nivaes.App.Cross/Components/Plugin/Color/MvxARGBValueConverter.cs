@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.Color
 {
     using System.Globalization;
     using MvvmCross;
-    using MvvmCross.Plugin.Color;
 
     [Preserve(AllMembers = true)]
     public class MvxARGBValueConverter : MvxColorValueConverter<string>

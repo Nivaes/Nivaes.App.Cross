@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross.UIKit
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
 
     public class MvxPickerViewModel

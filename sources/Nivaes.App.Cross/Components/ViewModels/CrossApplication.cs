@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
 
     public abstract class CrossApplication 
         : ICrossApplication

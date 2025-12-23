@@ -1,16 +1,12 @@
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-
 namespace Nivaes.App.Cross.Droid
 {
     using System.Collections;
     using System.Collections.Specialized;
+    using Android.Content;
+    using Android.Runtime;
+    using Android.Views;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using MvvmCross.Binding.Extensions;
-    using MvvmCross.Logging;
-    using MvvmCross.Platforms.Android.Binding.Views;
     using Nivaes.App.Cross;
     using Object = Java.Lang.Object;
 

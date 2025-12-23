@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.AppKit
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
 
     public static class MvxViewControllerExtensions
     {

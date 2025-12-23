@@ -2,10 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
-    using Nivaes.App.Cross;
 
     /// <summary>
     /// The setup singleton is designed to ensure only a single instance

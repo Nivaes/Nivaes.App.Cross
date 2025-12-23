@@ -1,15 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Android.Views;
-using MvvmCross.IoC;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
+namespace Nivaes.App.Cross.Droid
 {
-    public abstract class MvxLongLowerCaseViewTypeResolver : MvxReflectionViewTypeResolver
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Views;
+    using MvvmCross.IoC;
+
+    public abstract class MvxLongLowerCaseViewTypeResolver 
+        : MvxReflectionViewTypeResolver
     {
         protected MvxLongLowerCaseViewTypeResolver(IMvxTypeCache typeCache)
             : base(typeCache)
@@ -17,10 +14,9 @@ namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
         }
 
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        protected Type ResolveLowerCaseTypeName(string longLowerCaseName)
+        protected Type? ResolveLowerCaseTypeName(string longLowerCaseName)
         {
-            Type toReturn;
-            TypeCache.LowerCaseFullNameCache.TryGetValue(longLowerCaseName, out toReturn);
+            TypeCache.LowerCaseFullNameCache.TryGetValue(longLowerCaseName, out Type? toReturn);
             return toReturn;
         }
     }

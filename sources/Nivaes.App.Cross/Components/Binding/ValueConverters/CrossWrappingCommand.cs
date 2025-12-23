@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using System.Windows.Input;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
 
     public class CrossWrappingCommand
         : ICommand

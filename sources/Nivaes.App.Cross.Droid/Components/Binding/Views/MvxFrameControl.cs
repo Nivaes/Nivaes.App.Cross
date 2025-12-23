@@ -5,8 +5,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Util;
     using Android.Views;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]

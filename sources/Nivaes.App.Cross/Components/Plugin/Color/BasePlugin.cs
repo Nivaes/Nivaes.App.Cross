@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.Color
 {
     using MvvmCross.IoC;
-    using MvvmCross.Plugin.Color;
 
     public abstract class BasePlugin : IMvxPlugin
     {

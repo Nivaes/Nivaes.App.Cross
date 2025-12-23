@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.UIKit
     using System.Diagnostics.CodeAnalysis;
     using CoreGraphics;
     using Foundation;
-    using MvvmCross.Platforms.Ios.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
     using UIKit;

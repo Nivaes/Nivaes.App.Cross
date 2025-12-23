@@ -3,12 +3,11 @@ namespace Nivaes.App.Cross.AppKit
     using System;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.BindingContext;
-    using MvvmCross.Logging;
 
     public class MvxBindingViewControllerAdapter
         : MvxBaseViewControllerAdapter
     {
-        protected IMvxMacView MacView
+        protected IMvxMacView? MacView
         {
             get { return ViewController as IMvxMacView; }
         }

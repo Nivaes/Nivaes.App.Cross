@@ -4,8 +4,6 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
-    using MvvmCross.ViewModels;
 
     public class CrossViewModelViewTypeFinder(
             ICrossViewModelByNameLookup viewModelByNameLookup,

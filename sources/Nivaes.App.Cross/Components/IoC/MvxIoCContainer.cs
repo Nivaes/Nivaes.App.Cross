@@ -8,7 +8,6 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Base;
 using MvvmCross.Exceptions;
-using MvvmCross.Logging;
 using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;

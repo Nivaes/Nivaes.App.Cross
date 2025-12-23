@@ -4,10 +4,6 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public static class CrossSimplePropertyDictionaryExtensions

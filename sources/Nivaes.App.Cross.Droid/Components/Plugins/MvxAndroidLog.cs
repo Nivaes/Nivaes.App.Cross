@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
 
     internal static class MvxAndroidLog
     {

@@ -3,9 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross;
     using MvvmCross.IoC;
     using MvvmCross.Plugin;
-    using MvvmCross.Plugin.Color;
-    using MvvmCross.Plugin.Color.Platforms.Android;
-    using MvvmCross.Plugin.Color.Platforms.Android.BindingTargets;
 
     [MvxPlugin]
     [Preserve(AllMembers = true)]

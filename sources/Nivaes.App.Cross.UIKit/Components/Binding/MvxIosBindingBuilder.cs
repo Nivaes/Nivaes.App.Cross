@@ -3,21 +3,20 @@ namespace Nivaes.App.Cross.UIKit
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Binding.Target;
-    using MvvmCross.Platforms.Ios.Binding.Views;
 
     public class MvxIosBindingBuilder
         : CrossBindingBuilder
     {
-        private readonly Action<ICrossTargetBindingFactoryRegistry> _fillRegistryAction;
-        private readonly Action<IMvxValueConverterRegistry> _fillValueConvertersAction;
-        private readonly Action<ICrossBindingNameRegistry> _fillBindingNamesAction;
-        private readonly MvxUnifiedTypesValueConverter _unifiedValueTypesConverter;
-        private readonly Action<IMvxValueCombinerRegistry> _fillValueCombinersAction;
+        private readonly Action<ICrossTargetBindingFactoryRegistry>? _fillRegistryAction;
+        private readonly Action<IMvxValueConverterRegistry>? _fillValueConvertersAction;
+        private readonly Action<ICrossBindingNameRegistry>? _fillBindingNamesAction;
+        private readonly MvxUnifiedTypesValueConverter? _unifiedValueTypesConverter;
+        private readonly Action<IMvxValueCombinerRegistry>? _fillValueCombinersAction;
 
-        public MvxIosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry> fillRegistryAction = null,
-                                    Action<IMvxValueConverterRegistry> fillValueConvertersAction = null,
-                                    Action<IMvxValueCombinerRegistry> fillValueCombinersAction = null,
-                                    Action<ICrossBindingNameRegistry> fillBindingNamesAction = null)
+        public MvxIosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry>? fillRegistryAction = null,
+                                    Action<IMvxValueConverterRegistry>? fillValueConvertersAction = null,
+                                    Action<IMvxValueCombinerRegistry>? fillValueCombinersAction = null,
+                                    Action<ICrossBindingNameRegistry>? fillBindingNamesAction = null)
         {
             _fillRegistryAction = fillRegistryAction;
             _fillValueConvertersAction = fillValueConvertersAction;

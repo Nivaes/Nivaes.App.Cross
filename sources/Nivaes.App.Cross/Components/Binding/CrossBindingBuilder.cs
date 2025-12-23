@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
 
     public class CrossBindingBuilder 
         : CrossCoreBindingBuilder

@@ -2,10 +2,6 @@ namespace Nivaes.App.Cross.UIKit
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
-    using MvvmCross.Platforms.Ios.Presenters;
-    using MvvmCross.Platforms.Ios.Views;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
 
     public class MvxIosViewDispatcher

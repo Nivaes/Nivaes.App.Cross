@@ -11,7 +11,6 @@ namespace Nivaes.App.Cross.Droid
     using Java.Lang.Reflect;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Binding.Binders;
     using Nivaes.App.Cross.Droid;
     using Boolean = Java.Lang.Boolean;

@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.UIKit
     using System.Diagnostics.CodeAnalysis;
     using Foundation;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
     using ObjCRuntime;
     using UIKit;
 

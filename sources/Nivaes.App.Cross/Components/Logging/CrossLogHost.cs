@@ -1,6 +1,7 @@
-namespace MvvmCross.Logging
+namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
+    using MvvmCross;
 
     public static class CrossLogHost
     {

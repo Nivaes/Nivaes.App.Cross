@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
 
     public abstract class CrossAppStart : ICrossAppStart
     {

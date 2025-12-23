@@ -1,21 +1,22 @@
 using Android.Views;
 
-namespace MvvmCross.Plugin.Color.Platforms.Android.BindingTargets
+namespace Nivaes.App.Cross.Droid
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Android.Runtime;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
     using MvvmCross.Plugin.Color.Platforms.Android.Binding;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
-    [Preserve(AllMembers = true)]
     public class MvxDefaultColorBindingSet
     {
         public void RegisterBindings(IMvxIoCProvider provider)
         {
             if (!provider.TryResolve(out ICrossTargetBindingFactoryRegistry registry) || registry == null)
             {
-                MvxPluginLog.Instance.Log(LogLevel.Warning,
+                MvxAndroidLog.Instance.Log(LogLevel.Warning,
                     "No binding registry available - so color bindings will not be used");
                 return;
             }

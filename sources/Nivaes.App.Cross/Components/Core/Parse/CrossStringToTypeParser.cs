@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
 
     public class CrossStringToTypeParser
         : ICrossStringToTypeParser, ICrossFillableStringToTypeParser

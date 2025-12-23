@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross
     using System.Text.RegularExpressions;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
 
     /// <inheritdoc cref="ICrossNavigationService"/>
     public class CrossNavigationService 

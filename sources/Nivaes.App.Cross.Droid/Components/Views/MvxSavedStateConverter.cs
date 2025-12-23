@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
 
     [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]

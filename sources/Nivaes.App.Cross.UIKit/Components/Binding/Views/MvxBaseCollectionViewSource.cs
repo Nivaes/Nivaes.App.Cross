@@ -1,20 +1,18 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System;
     using System.Windows.Input;
     using Foundation;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Base;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
     using UIKit;
 
     public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
     {
-        public event EventHandler SelectedItemChanged;
+        public event EventHandler? SelectedItemChanged;
 
         private readonly WeakReference<UICollectionView> _collectionView;
-        private object _selectedItem;
+        private object? _selectedItem;
 
         public static readonly NSString UnknownCellIdentifier = NSString.Empty;
 
@@ -32,7 +30,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             DefaultCellIdentifier = cellIdentifier;
         }
 
-        protected UICollectionView CollectionView
+        protected UICollectionView? CollectionView
         {
             get
             {
@@ -40,19 +38,17 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
                     return collectionView;
 
                 // This is not a array Sonar. You are drunk...
-#pragma warning disable S1168 // Empty arrays and collections should be returned instead of null
                 return null;
-#pragma warning restore S1168 // Empty arrays and collections should be returned instead of null
             }
         }
 
-        public ICommand SelectionChangedCommand { get; set; }
+        public ICommand? SelectionChangedCommand { get; set; }
 
         public virtual void ReloadData()
         {
             try
             {
-                CollectionView.ReloadData();
+                CollectionView?.ReloadData();
             }
             catch (Exception exception)
             {
@@ -71,7 +67,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             SelectedItem = item;
         }
 
-        public object SelectedItem
+        public object? SelectedItem
         {
             get => _selectedItem;
             set
@@ -115,12 +111,11 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             return 0;
         }
 
-        protected virtual UICollectionViewCell GetOrCreateCellFor(UICollectionView collectionView, NSIndexPath indexPath,
-            object item)
+        protected virtual UICollectionViewCell GetOrCreateCellFor(UICollectionView collectionView, NSIndexPath indexPath, object? item)
         {
             return (UICollectionViewCell)collectionView.DequeueReusableCell(DefaultCellIdentifier, indexPath);
         }
 
-        protected abstract object GetItemAt(NSIndexPath indexPath);
+        protected abstract object? GetItemAt(NSIndexPath indexPath);
     }
 }

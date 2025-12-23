@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.UIKit
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;

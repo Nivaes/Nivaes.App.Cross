@@ -10,7 +10,6 @@ namespace Nivaes.App.Cross.Droid
     using Java.Lang;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android;
     using MvvmCross.Platforms.Android.Presenters.Attributes;
     using Nivaes.App.Cross;

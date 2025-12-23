@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.UIKit
     using System.Collections;
     using System.Collections.Specialized;
     using System.Windows.Input;
-    using MvvmCross.Platforms.Ios.Binding.Views;
     using MvvmCross.Platforms.Ios.Views.Expandable;
     using MvvmCross.Platforms.Ios.Views.Expandable.Controllers;
     using Nivaes.App.Cross;

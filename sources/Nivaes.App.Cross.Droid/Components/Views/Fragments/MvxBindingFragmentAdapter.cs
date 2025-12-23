@@ -3,12 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Base;
-    using MvvmCross.Logging;
     using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments.EventSource;
-    using MvvmCross.ViewModels;
     using Nivaes.App.Cross;
     using Fragment = AndroidX.Fragment.App.Fragment;
 

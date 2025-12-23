@@ -4,9 +4,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
-    using MvvmCross.Platforms.Android.Views;
-    using MvvmCross.Platforms.Android.Views.Fragments;
     using Nivaes.App.Cross;
     using Fragment = AndroidX.Fragment.App.Fragment;
 

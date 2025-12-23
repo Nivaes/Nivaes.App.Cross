@@ -4,7 +4,6 @@ namespace MvvmCross.IoC
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
 
     [Obsolete("Quitar MvxIoC")]

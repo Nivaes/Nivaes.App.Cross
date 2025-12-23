@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
 
     public static class MvxFragmentExtensions
     {
@@ -31,8 +30,7 @@ namespace Nivaes.App.Cross.Droid
                 return viewModelType;
             }
 
-            public ICrossViewModel LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType,
-                CrossViewModelRequest request = null)
+            public ICrossViewModel LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
             {
                 var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
                 if (viewModelType == typeof(CrossNullViewModel))

@@ -4,15 +4,13 @@ namespace Nivaes.App.Cross.UIKit
     using System.Collections.Specialized;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
-    using MvvmCross.Logging;
-    using MvvmCross.Platforms.Ios.Binding.Views;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 
     public abstract class MvxTableViewSource : MvxBaseTableViewSource
     {
-        private IEnumerable _itemsSource;
-        private IDisposable _subscription;
+        private IEnumerable? _itemsSource;
+        private IDisposable? _subscription;
 
         protected MvxTableViewSource(UITableView tableView)
             : base(tableView)
@@ -26,7 +24,7 @@ namespace Nivaes.App.Cross.UIKit
         }
 
         [CrossSetToNullAfterBinding]
-        public virtual IEnumerable ItemsSource
+        public virtual IEnumerable? ItemsSource
         {
             get => _itemsSource;
             set

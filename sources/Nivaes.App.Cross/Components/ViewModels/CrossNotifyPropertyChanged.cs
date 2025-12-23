@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross
     using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Base;
-    using MvvmCross.Logging;
     using Nivaes.App.Cross;
 
     public abstract class CrossNotifyPropertyChanged

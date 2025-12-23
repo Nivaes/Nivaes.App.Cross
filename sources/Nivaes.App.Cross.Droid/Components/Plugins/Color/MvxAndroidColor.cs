@@ -1,8 +1,7 @@
-namespace MvvmCross.Plugin.Color.Platforms.Android
+namespace Nivaes.App.Cross.Droid
 {
     using Nivaes.App.Cross;
 
-    [Preserve(AllMembers = true)]
     public class MvxAndroidColor 
         : ICrossNativeColor
     {

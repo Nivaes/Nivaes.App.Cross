@@ -38,7 +38,6 @@ namespace Playground.Droid
             base.LoadPlugins(pluginManager);
 
             pluginManager.EnsurePluginLoaded<Nivaes.App.Cross.Droid.Plugin>();
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Color.Platforms.Android.Plugin>();
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Json.Plugin>();
         }
 

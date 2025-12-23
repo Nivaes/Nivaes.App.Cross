@@ -1,14 +1,15 @@
-namespace MvvmCross.Platforms.Ios.Binding.Views
+namespace Nivaes.App.Cross.UIKit
 {
     using System.Collections;
     using System.Collections.Specialized;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
 
-    public class MvxCollectionViewSource : MvxBaseCollectionViewSource
+    public class MvxCollectionViewSource 
+        : MvxBaseCollectionViewSource
     {
-        private IEnumerable _itemsSource;
-        private IDisposable _subscription;
+        private IEnumerable? _itemsSource;
+        private IDisposable? _subscription;
 
         public bool ReloadOnAllItemsSourceSets { get; set; }
 
@@ -24,7 +25,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
         }
 
         [CrossSetToNullAfterBinding]
-        public virtual IEnumerable ItemsSource
+        public virtual IEnumerable? ItemsSource
         {
             get
             {
@@ -55,7 +56,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Views
             }
         }
 
-        protected override object GetItemAt(NSIndexPath indexPath)
+        protected override object? GetItemAt(NSIndexPath indexPath)
         {
             if (indexPath == null)
                 return null;

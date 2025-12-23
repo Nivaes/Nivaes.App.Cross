@@ -4,18 +4,16 @@ namespace Nivaes.App.Cross.UIKit
     using System.Diagnostics.CodeAnalysis;
     using Foundation;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
-    using MvvmCross.Platforms.Ios.Binding.Views;
     using ObjCRuntime;
     using UIKit;
 
     public class MvxSimpleTableViewSource 
         : MvxTableViewSource
     {
-        private readonly NSString _cellIdentifier;
+        private readonly NSString? _cellIdentifier;
         private readonly MvxIosMajorVersionChecker _iosVersion6Checker = new MvxIosMajorVersionChecker(6);
 
-        protected virtual NSString CellIdentifier => _cellIdentifier;
+        protected virtual NSString? CellIdentifier => _cellIdentifier;
 
         public MvxSimpleTableViewSource(NativeHandle handle)
             : base(handle)

@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.UIKit
 {
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
 
     public class MvxIosMajorVersionChecker
     {
@@ -15,14 +14,14 @@ namespace Nivaes.App.Cross.UIKit
 
         private static bool ReadIsIosVersionOrHigher(int target, bool defaultValue)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxIosSystem iosSystem) != true)
+            if (Mvx.IoCProvider?.TryResolve(out IMvxIosSystem? iosSystem) != true)
             {
                 CrossLogHost.Default?.LogWarning(
                     "IMvxIosSystem not found - so assuming we {Target} on iOS {Default} or later", target, defaultValue ? "are" : "are not");
                 return defaultValue;
             }
 
-            return iosSystem.Version.Major >= target;
+            return iosSystem?.Version.Major >= target;
         }
     }
 }

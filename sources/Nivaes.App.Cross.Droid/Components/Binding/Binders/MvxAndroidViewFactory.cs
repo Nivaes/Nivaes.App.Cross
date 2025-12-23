@@ -1,17 +1,12 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using Android.Content;
-using Android.Util;
-using Android.Views;
-using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
-using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders
+namespace Nivaes.App.Cross.Droid
 {
-#nullable enable
+    using Android.Content;
+    using Android.Util;
+    using Android.Views;
+    using Microsoft.Extensions.Logging;
+    using MvvmCross;
+    using Nivaes.App.Cross;
+
     public class MvxAndroidViewFactory
         : IMvxAndroidViewFactory
     {
@@ -54,5 +49,4 @@ namespace MvvmCross.Platforms.Android.Binding.Binders
             }
         }
     }
-#nullable restore
 }

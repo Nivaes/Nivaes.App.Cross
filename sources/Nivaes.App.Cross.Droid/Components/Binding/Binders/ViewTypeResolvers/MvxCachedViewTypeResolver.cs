@@ -1,14 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
+namespace Nivaes.App.Cross.Droid
 {
-    public class MvxCachedViewTypeResolver : IMvxViewTypeResolver
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    public class MvxCachedViewTypeResolver 
+        : IMvxViewTypeResolver
     {
         private readonly Dictionary<string, Type> _cache = new Dictionary<string, Type>();
         private readonly IMvxViewTypeResolver _resolver;
@@ -21,8 +18,7 @@ namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
         public Type Resolve(string tagName)
         {
-            Type toReturn;
-            if (_cache.TryGetValue(tagName, out toReturn))
+            if (_cache.TryGetValue(tagName, out Type? toReturn))
                 return toReturn;
 
             toReturn = _resolver.Resolve(tagName);

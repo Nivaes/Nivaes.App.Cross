@@ -4,9 +4,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Logging;
     using MvvmCross.Plugin;
-    using MvvmCross.ViewModels.Result;
 
     public abstract class CrossSetup 
         : ICrossSetup

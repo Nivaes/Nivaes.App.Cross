@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Logging;
 
     public abstract class CrossAttributeViewPresenter
         : CrossViewPresenter, ICrossAttributeViewPresenter

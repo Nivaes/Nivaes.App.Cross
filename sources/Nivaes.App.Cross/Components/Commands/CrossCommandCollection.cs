@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
 
     public class CrossCommandCollection
         : ICrossCommandCollection

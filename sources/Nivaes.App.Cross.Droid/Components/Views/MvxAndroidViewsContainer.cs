@@ -2,12 +2,9 @@ using Android.Content;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;    
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
-    using MvvmCross.Exceptions;
-    using MvvmCross.Logging;
-    using MvvmCross.ViewModels;
 
     public class MvxAndroidViewsContainer
         : CrossViewsContainer, IMvxAndroidViewsContainer

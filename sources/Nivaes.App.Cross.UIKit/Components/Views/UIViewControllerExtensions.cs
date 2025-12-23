@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.UIKit
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Logging;
 
     public static class UIViewControllerExtensions
     {
