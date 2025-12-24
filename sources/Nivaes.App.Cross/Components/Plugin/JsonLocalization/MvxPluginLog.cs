@@ -1,4 +1,4 @@
-namespace MvvmCross.Plugin.JsonLocalization
+namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;

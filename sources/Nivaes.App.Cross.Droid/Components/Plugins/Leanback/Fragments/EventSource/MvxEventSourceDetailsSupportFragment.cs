@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using AndroidX.Leanback.App;
@@ -11,9 +10,6 @@ using AndroidX.Leanback.App;
 namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Views;
-    using Nivaes.App.Cross;
 
     public class MvxEventSourceDetailsSupportFragment
         : DetailsSupportFragment, ICrossEventSourceFragment

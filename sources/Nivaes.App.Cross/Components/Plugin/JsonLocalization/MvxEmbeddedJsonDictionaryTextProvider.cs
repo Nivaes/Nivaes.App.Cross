@@ -1,7 +1,8 @@
-namespace MvvmCross.Plugin.JsonLocalization
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using MvvmCross;
     using Nivaes.App.Cross;
 
     [Preserve(AllMembers = true)]

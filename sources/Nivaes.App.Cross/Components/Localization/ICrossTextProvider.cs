@@ -1,10 +1,5 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
-namespace MvvmCross.Localization
+namespace Nivaes.App.Cross
 {
-#nullable enable
     public interface ICrossTextProvider
     {
         string? GetText(string? namespaceKey, string? typeKey, string name);
@@ -15,5 +10,4 @@ namespace MvvmCross.Localization
 
         bool TryGetText(out string textValue, string namespaceKey, string typeKey, string name, params object[] formatArgs);
     }
-#nullable restore
 }

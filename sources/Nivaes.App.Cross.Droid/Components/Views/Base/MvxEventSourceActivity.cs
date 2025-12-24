@@ -3,10 +3,6 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.Base;
-    using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
     using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
     [Register("mvvmcross.platforms.android.views.base.MvxEventSourceActivity")]

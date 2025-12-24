@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Plugin.JsonLocalization;
+using Nivaes.App.Cross;
 
 namespace Playground.Core.Services
 {

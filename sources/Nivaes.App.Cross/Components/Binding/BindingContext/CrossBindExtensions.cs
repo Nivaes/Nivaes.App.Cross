@@ -1,4 +1,4 @@
-namespace MvvmCross.Binding.BindingContext
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;

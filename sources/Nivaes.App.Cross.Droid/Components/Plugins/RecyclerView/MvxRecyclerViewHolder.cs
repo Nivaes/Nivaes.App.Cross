@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
             _bindingContext = context;
         }
 
-        [Preserve(Conditional = true)]
+        [Android.Runtime.Preserve(Conditional = true)]
         protected MvxRecyclerViewHolder(IntPtr handle, JniHandleOwnership ownership)
             : base(handle, ownership)
         {

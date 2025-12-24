@@ -1,8 +1,6 @@
 namespace MvvmCross.Platforms.Mac.Binding.Views
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
-    using MvvmCross.Binding.BindingContext;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 

@@ -1,6 +1,5 @@
-namespace MvvmCross.Plugin.JsonLocalization
+namespace Nivaes.App.Cross
 {
-    using MvvmCross.Localization;
     using MvvmCross.Plugin.ResourceLoader;
 
     public abstract class MvxTextProvider :

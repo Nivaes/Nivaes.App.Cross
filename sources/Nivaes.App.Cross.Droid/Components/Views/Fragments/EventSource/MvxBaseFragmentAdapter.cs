@@ -3,7 +3,6 @@ using Android.Content;
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Base;
     using Nivaes.App.Cross;
     using Fragment = AndroidX.Fragment.App.Fragment;
 
