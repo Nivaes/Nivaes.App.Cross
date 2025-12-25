@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
 		
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>

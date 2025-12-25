@@ -1,14 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
+using Android.Views;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Droid;
+using Resource = Nivaes.App.Cross.Droid.Resource;
+using Playground.Core.ViewModels;
+
 namespace Playground.Droid.Activities
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Views;
-    using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Platforms.Android.Presenters.Attributes;
-    using MvvmCross.Platforms.Android.Views;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using Playground.Core.ViewModels;
-
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme")]
     [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
