@@ -5,30 +5,26 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxTabLayoutPresentation(TabLayoutResourceId = Resource.Id.tabs, ViewPagerResourceId = Resource.Id.viewpager, Title = "Tab 3")]
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+public class Tab3View : MvxFragment<Tab3ViewModel>
 {
-    [MvxTabLayoutPresentation(TabLayoutResourceId = Resource.Id.tabs, ViewPagerResourceId = Resource.Id.viewpager, Title = "Tab 3")]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class Tab3View : MvxFragment<Tab3ViewModel>
+    public override void OnCreate(Bundle savedInstanceState)
     {
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        base.OnCreate(savedInstanceState);
 
-            // Create your fragment here
-        }
+        // Create your fragment here
+    }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.Tab3View, container, false);
+        var view = this.BindingInflate(Resource.Layout.Tab3View, container, false);
 
-            return view;
-        }
+        return view;
     }
 }

@@ -5,11 +5,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+using Playground.Droid.Fragments;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxFragmentPresentation(fragmentHostViewType: typeof(SecondChildView), fragmentContentId: Resource.Id.nested_frame)]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]

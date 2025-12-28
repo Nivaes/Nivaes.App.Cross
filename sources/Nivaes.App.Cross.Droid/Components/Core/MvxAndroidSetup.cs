@@ -1,19 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Android.Content;
 using Android.Views;
+using MvvmCross.IoC;
+using MvvmCross.Platforms.Android.Core;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using MvvmCross.IoC;
-    using MvvmCross.Platforms.Android;
-    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-    using MvvmCross.Platforms.Android.Binding.Views;
-    using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Presenters;
-    using MvvmCross.Platforms.Android.Views;
-    using Nivaes.App.Cross;
-
     public abstract class MvxAndroidSetup
         : CrossSetup, IMvxAndroidGlobals, IMvxAndroidSetup
     {

@@ -1,9 +1,6 @@
-namespace MvvmCross.Platforms.WinUi.Presenters.Attributes
-{
-    using Nivaes.App.Cross;
+namespace Nivaes.App.Cross.WinUI3;
 
-    public class MvxPagePresentationAttribute 
-        : CrossBasePresentationAttribute
-    {
-    }
+public class MvxPagePresentationAttribute 
+    : CrossBasePresentationAttribute
+{
 }

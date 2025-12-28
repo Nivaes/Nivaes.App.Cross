@@ -6,11 +6,8 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxDialogFragmentPresentation]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]

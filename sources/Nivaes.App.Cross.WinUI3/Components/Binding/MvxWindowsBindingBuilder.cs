@@ -75,7 +75,8 @@ namespace Nivaes.App.Cross.WinUI3
         private void InitializeBindingCreator()
         {
             var creator = CreateBindingCreator();
-            Mvx.IoCProvider.RegisterSingleton(creator);
+            throw new InvalidOperationException();
+            //Mvx.IoCProvider.RegisterSingleton(creator);
         }
 
         protected virtual IMvxBindingCreator CreateBindingCreator()

@@ -1,24 +1,23 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+using Playground.Core.ViewModels;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class ModalViewModel 
+    : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class ModalViewModel 
-        : CrossNavigationViewModel
+    public ModalViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService) : base(logProvider, navigationService)
     {
-        public ModalViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService) : base(logProvider, navigationService)
-        {
-            ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
+        ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 
-            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
+        CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-            ShowNestedModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedModalViewModel>());
-        }
-
-        public ICrossAsyncCommand ShowTabsCommand { get; }
-
-        public ICrossAsyncCommand CloseCommand { get; }
-
-        public ICrossAsyncCommand ShowNestedModalCommand { get; }
+        ShowNestedModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedModalViewModel>());
     }
+
+    public ICrossAsyncCommand ShowTabsCommand { get; }
+
+    public ICrossAsyncCommand CloseCommand { get; }
+
+    public ICrossAsyncCommand ShowNestedModalCommand { get; }
 }

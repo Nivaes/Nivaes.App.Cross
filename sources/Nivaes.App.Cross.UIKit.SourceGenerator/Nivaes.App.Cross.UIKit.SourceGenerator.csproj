@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-	  <AssemblyName>Nivaes.App.Cross.UIKit.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.UIKit.SourceGenerator</RootNamespace>
+	  <AssemblyName>Nivaes.App.Cross.UIKitOS.SourceGenerator</AssemblyName>
+	  <RootNamespace>Nivaes.App.Cross.UIKitOS.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -14,7 +14,7 @@
   </PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.App.Cross.UIKit.SourceGenerator</PackageId>
+		<PackageId>Nivaes.App.Cross.UIKitOS.SourceGenerator</PackageId>
 		<Title>Nivaes UIKit SourceGenerator</Title>
 		<Product>Nivaes App Cross iOS SourceGenerator</Product>
 		<Description>Nivaes App Cross iOS maccatalyst UIKit source generator.</Description>

@@ -1,11 +1,7 @@
-using System;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
-using Nivaes.App.Cross.UIKit;
+using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
-using Playground.Core.ViewModels;
 
-namespace Playground.iOS.Views
+namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     [MvxFromStoryboard("Main")]
     [MvxRootPresentation]

@@ -1,139 +1,135 @@
-namespace Playground.Droid.Fragments
+using System.Diagnostics.CodeAnalysis;
+using Android.Views;
+using Google.Android.Material.Navigation;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Droid;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+AllowReordering = true,
+ViewModelType = typeof(MultiBackStackViewModel),
+SetAsPrimaryFragment = true)]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class MultiBackStackView 
+    : MvxFragment<MultiBackStackViewModel>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Views;
-    using Google.Android.Material.Navigation;
-    using MvvmCross;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using Playground.Core.ViewModels;
-    using Playground.Core.ViewModels.Navigation;
-    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+    private NavigationBarView _navigationView;
+    private bool _navigatedToTab2;
 
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
-    AllowReordering = true,
-    ViewModelType = typeof(MultiBackStackViewModel),
-    SetAsPrimaryFragment = true)]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class MultiBackStackView 
-        : MvxFragment<MultiBackStackViewModel>
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        private NavigationBarView _navigationView;
-        private bool _navigatedToTab2;
+        base.OnCreateView(inflater, container, savedInstanceState);
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        var view = this.BindingInflate(Resource.Layout.MultiBackStackView, container, false);
+
+        _navigationView = view.FindViewById<NavigationBarView>(Resource.Id.navigationview);
+        _navigationView.ItemSelected += NavigationViewOnItemSelected;
+
+        return view;
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (_navigationView != null)
         {
-            base.OnCreateView(inflater, container, savedInstanceState);
-
-            var view = this.BindingInflate(Resource.Layout.MultiBackStackView, container, false);
-
-            _navigationView = view.FindViewById<NavigationBarView>(Resource.Id.navigationview);
-            _navigationView.ItemSelected += NavigationViewOnItemSelected;
-
-            return view;
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            if (_navigationView != null)
-            {
-                _navigationView.ItemSelected -= NavigationViewOnItemSelected;
-            }
-        }
-
-        private void NavigationViewOnItemSelected(object sender, NavigationBarView.ItemSelectedEventArgs ev)
-        {
-            switch (ev.Item.ItemId)
-            {
-                case Resource.Id.tab1:
-                    ChildFragmentManager.SaveBackStack(typeof(MultiBackStackTab2View).FragmentJavaName());
-                    ChildFragmentManager.RestoreBackStack(typeof(MultiBackStackTab1View).FragmentJavaName());
-                    break;
-                case Resource.Id.tab2:
-                    ChildFragmentManager.SaveBackStack(typeof(MultiBackStackTab1View).FragmentJavaName());
-                    if (!_navigatedToTab2)
-                    {
-                        _navigatedToTab2 = true;
-                        Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate(typeof(MultiBackStackTab2ViewModel));
-                    }
-                    else
-                    {
-                        ChildFragmentManager.RestoreBackStack(typeof(MultiBackStackTab2View).FragmentJavaName());
-                    }
-                    break;
-            }
+            _navigationView.ItemSelected -= NavigationViewOnItemSelected;
         }
     }
 
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
-        FragmentHostViewType = typeof(MultiBackStackView),
-        AllowReordering = true,
-        ViewModelType = typeof(MultiBackStackTab1ViewModel))]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewModel>
+    private void NavigationViewOnItemSelected(object sender, NavigationBarView.ItemSelectedEventArgs ev)
     {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        switch (ev.Item.ItemId)
         {
-            base.OnCreateView(inflater, container, savedInstanceState);
-
-            var view = this.BindingInflate(Resource.Layout.MultiBackStackTab1View, container, false);
-
-            return view;
-        }
-
-    }
-
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
-        FragmentHostViewType = typeof(MultiBackStackView),
-        AllowReordering = true,
-        ViewModelType = typeof(MultiBackStackTab2ViewModel))]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewModel>
-    {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-
-            var view = this.BindingInflate(Resource.Layout.MultiBackStackTab2View, container, false);
-
-            return view;
-        }
-    }
-
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel>, ICrossOverridePresentationAttribute
-    {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-
-            var view = this.BindingInflate(Resource.Layout.MultiBackStackInnerView, container, false);
-
-            var f = ParentFragmentManager.PrimaryNavigationFragment;
-            return view;
-        }
-
-        public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
-        {
-            if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
-            {
-                return new MvxFragmentPresentationAttribute()
+            case Resource.Id.tab1:
+                ChildFragmentManager.SaveBackStack(typeof(MultiBackStackTab2View).FragmentJavaName());
+                ChildFragmentManager.RestoreBackStack(typeof(MultiBackStackTab1View).FragmentJavaName());
+                break;
+            case Resource.Id.tab2:
+                ChildFragmentManager.SaveBackStack(typeof(MultiBackStackTab1View).FragmentJavaName());
+                if (!_navigatedToTab2)
                 {
-                    ViewModelType = typeof(MultiBackStackInnerViewModel),
-                    ActivityHostViewModelType = typeof(RootViewModel),
-                    FragmentHostViewType = typeof(MultiBackStackView),
-                    FragmentContentId = Resource.Id.content_frame,
-                    AddToBackStack = true,
-                    AllowReordering = true,
-                    Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
-                };
-            }
-            else
+                    _navigatedToTab2 = true;
+                    Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate(typeof(MultiBackStackTab2ViewModel));
+                }
+                else
+                {
+                    ChildFragmentManager.RestoreBackStack(typeof(MultiBackStackTab2View).FragmentJavaName());
+                }
+                break;
+        }
+    }
+}
+
+[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+    FragmentHostViewType = typeof(MultiBackStackView),
+    AllowReordering = true,
+    ViewModelType = typeof(MultiBackStackTab1ViewModel))]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewModel>
+{
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        base.OnCreateView(inflater, container, savedInstanceState);
+
+        var view = this.BindingInflate(Resource.Layout.MultiBackStackTab1View, container, false);
+
+        return view;
+    }
+
+}
+
+[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+    FragmentHostViewType = typeof(MultiBackStackView),
+    AllowReordering = true,
+    ViewModelType = typeof(MultiBackStackTab2ViewModel))]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewModel>
+{
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        base.OnCreateView(inflater, container, savedInstanceState);
+
+        var view = this.BindingInflate(Resource.Layout.MultiBackStackTab2View, container, false);
+
+        return view;
+    }
+}
+
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel>, ICrossOverridePresentationAttribute
+{
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        base.OnCreateView(inflater, container, savedInstanceState);
+
+        var view = this.BindingInflate(Resource.Layout.MultiBackStackInnerView, container, false);
+
+        var f = ParentFragmentManager.PrimaryNavigationFragment;
+        return view;
+    }
+
+    public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+    {
+        if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
+        {
+            return new MvxFragmentPresentationAttribute()
             {
-                return null;
-            }
+                ViewModelType = typeof(MultiBackStackInnerViewModel),
+                ActivityHostViewModelType = typeof(RootViewModel),
+                FragmentHostViewType = typeof(MultiBackStackView),
+                FragmentContentId = Resource.Id.content_frame,
+                AddToBackStack = true,
+                AllowReordering = true,
+                Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
+            };
+        }
+        else
+        {
+            return null;
         }
     }
 }

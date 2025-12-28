@@ -1,14 +1,12 @@
-namespace Nivaes.App.Cross.Color
-{
-    using System.Globalization;
-    using MvvmCross;
+using System.Globalization;
 
-    [Preserve(AllMembers = true)]
-    public class CrossNativeColorValueConverter : MvxColorValueConverter<System.Drawing.Color>
+namespace Nivaes.App.Cross;
+
+[Preserve(AllMembers = true)]
+public class CrossNativeColorValueConverter : MvxColorValueConverter<System.Drawing.Color>
+{
+    protected override System.Drawing.Color Convert(System.Drawing.Color value, object parameter, CultureInfo culture)
     {
-        protected override System.Drawing.Color Convert(System.Drawing.Color value, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+        return value;
     }
 }

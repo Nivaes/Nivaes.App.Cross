@@ -1,14 +1,12 @@
-namespace Playground.Core.ViewModels
-{
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using Microsoft.Extensions.Logging;
 
-    public class SharedElementRootViewModel 
-        : BaseViewModel
+namespace Nivaes.App.Cross.Sample;
+
+public class SharedElementRootViewModel 
+    : BaseViewModel
+{
+    public SharedElementRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
     {
-        public SharedElementRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
-        {
-        }
     }
 }

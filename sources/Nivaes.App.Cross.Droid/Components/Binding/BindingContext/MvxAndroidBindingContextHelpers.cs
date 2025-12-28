@@ -1,22 +1,20 @@
-namespace Nivaes.App.Cross.Droid
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Droid;
+
+public static class MvxAndroidBindingContextHelpers
 {
-    using MvvmCross;
-    using MvvmCross.Binding.BindingContext;
-
-    public static class MvxAndroidBindingContextHelpers
+    public static IMvxAndroidBindingContext Current()
     {
-        public static IMvxAndroidBindingContext Current()
-        {
-            return Current<IMvxAndroidBindingContext>();
-        }
+        return Current<IMvxAndroidBindingContext>();
+    }
 
-        public static T Current<T>()
-            where T : class, ICrossBindingContext
-        {
-            if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
-                return stack?.Current;
+    public static T Current<T>()
+        where T : class, ICrossBindingContext
+    {
+        if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
+            return stack?.Current;
 
-            return null;
-        }
+        return null;
     }
 }

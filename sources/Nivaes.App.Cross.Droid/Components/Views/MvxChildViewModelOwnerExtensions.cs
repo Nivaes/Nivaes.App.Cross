@@ -1,12 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross;
-    using MvvmCross.Platforms.Android.Views;
-
     public static class MvxChildViewModelOwnerExtensions
     {
         public static Intent CreateIntentFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxAndroidView view, object parameterObject)

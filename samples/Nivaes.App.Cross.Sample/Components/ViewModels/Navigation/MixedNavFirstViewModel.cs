@@ -1,26 +1,25 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+using Playground.Core.ViewModels;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class MixedNavFirstViewModel : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class MixedNavFirstViewModel : CrossNavigationViewModel
+    public MixedNavFirstViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
     {
-        public MixedNavFirstViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
-        {
-        }
+    }
 
-        public ICrossAsyncCommand LoginCommand => new CrossAsyncCommand(GotoMasterDetailPage, CanLogin);
+    public ICrossAsyncCommand LoginCommand => new CrossAsyncCommand(GotoMasterDetailPage, CanLogin);
 
-        private bool CanLogin()
-        {
-            return true;
-        }
+    private bool CanLogin()
+    {
+        return true;
+    }
 
-        private async Task GotoMasterDetailPage()
-        {
-            await NavigationService.Navigate<MixedNavMasterDetailViewModel>();
-            await NavigationService.Navigate<MixedNavMasterRootContentViewModel>();
-        }
+    private async Task GotoMasterDetailPage()
+    {
+        await NavigationService.Navigate<MixedNavMasterDetailViewModel>();
+        await NavigationService.Navigate<MixedNavMasterRootContentViewModel>();
     }
 }

@@ -14,7 +14,8 @@ namespace MvvmCross.Platforms.WinUi
             if (CrossSingleton<IMvxIoCProvider>.Instance == null)
             {
                 var iocProvider = MvxIoCProvider.Initialize();
-                Mvx.IoCProvider.RegisterSingleton(iocProvider);
+                throw new InvalidOperationException();
+                //Mvx.IoCProvider.RegisterSingleton(iocProvider);
             }
         }
 

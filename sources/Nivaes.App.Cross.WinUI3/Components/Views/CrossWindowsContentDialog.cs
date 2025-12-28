@@ -3,12 +3,12 @@ namespace Nivaes.App.Cross.WinUI3
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
 
-    public class MvxWindowsContentDialog
+    public class CrossWindowsContentDialog
         : ContentDialog
         , IMvxWindowsContentDialog
         , IDisposable
     {
-        public MvxWindowsContentDialog()
+        public CrossWindowsContentDialog()
         {
             Loading += MvxWindowsContentDialog_Loading;
             Loaded += MvxWindowsContentDialog_Loaded;
@@ -72,7 +72,7 @@ namespace Nivaes.App.Cross.WinUI3
             GC.SuppressFinalize(this);
         }
 
-        ~MvxWindowsContentDialog()
+        ~CrossWindowsContentDialog()
         {
             Dispose(false);
         }
@@ -91,8 +91,8 @@ namespace Nivaes.App.Cross.WinUI3
         }
     }
 
-    public class MvxWindowsContentDialog<TViewModel>
-        : MvxWindowsContentDialog
+    public class CrossWindowsContentDialog<TViewModel>
+        : CrossWindowsContentDialog
         , IMvxWindowsContentDialog<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public new TViewModel ViewModel

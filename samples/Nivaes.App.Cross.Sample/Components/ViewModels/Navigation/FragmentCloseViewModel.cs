@@ -1,29 +1,27 @@
-namespace Playground.Core.ViewModels.Navigation
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class FragmentCloseViewModel : BaseViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    private static int _counter = 0;
 
-    public class FragmentCloseViewModel : BaseViewModel
+    public FragmentCloseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
+        : base(loggerFactory, navigationService)
     {
-        private static int _counter = 0;
+        ForwardCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
+        CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-        public FragmentCloseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
-            : base(loggerFactory, navigationService)
-        {
-            ForwardCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
-            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
-
-            Description = $"View number {_counter++}";
-        }
-
-        private string _description;
-        public string Description
-        {
-            get => _description;
-            set => SetProperty(ref _description, value);
-        }
-
-        public ICrossAsyncCommand ForwardCommand { get; }
-        public ICrossAsyncCommand CloseCommand { get; }
+        Description = $"View number {_counter++}";
     }
+
+    private string _description;
+    public string Description
+    {
+        get => _description;
+        set => SetProperty(ref _description, value);
+    }
+
+    public ICrossAsyncCommand ForwardCommand { get; }
+    public ICrossAsyncCommand CloseCommand { get; }
 }

@@ -1,21 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Activities
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxActivityPresentation]
+[Activity(Label = "View for CustomBindingViewModel", Theme = "@style/AppTheme")]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class CustomBindingView : MvxActivity
 {
-    [MvxActivityPresentation]
-    [Activity(Label = "View for CustomBindingViewModel", Theme = "@style/AppTheme")]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class CustomBindingView : MvxActivity
+    protected override void OnCreate(Bundle? savedInstanceState)
     {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.CustomBindingView);
-        }
+        base.OnCreate(savedInstanceState);
+        SetContentView(Resource.Layout.CustomBindingView);
     }
 }

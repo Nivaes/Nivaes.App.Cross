@@ -1,52 +1,50 @@
-namespace Nivaes.App.Cross.Droid
+using Android.Content;
+using Android.Util;
+using Android.Views;
+using Microsoft.Extensions.Logging;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Droid;
+
+public class MvxAndroidViewFactory
+    : IMvxAndroidViewFactory
 {
-    using Android.Content;
-    using Android.Util;
-    using Android.Views;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
-    using Nivaes.App.Cross;
+    private IMvxViewTypeResolver? _viewTypeResolver;
 
-    public class MvxAndroidViewFactory
-        : IMvxAndroidViewFactory
+    protected IMvxViewTypeResolver? ViewTypeResolver => _viewTypeResolver ??= Mvx.IoCProvider?.Resolve<IMvxViewTypeResolver>();
+
+    public virtual View? CreateView(View? parent, string name, Context context, IAttributeSet attrs)
     {
-        private IMvxViewTypeResolver? _viewTypeResolver;
+        // resolve the tag name to a type
+        var viewType = ViewTypeResolver?.Resolve(name);
 
-        protected IMvxViewTypeResolver? ViewTypeResolver => _viewTypeResolver ??= Mvx.IoCProvider?.Resolve<IMvxViewTypeResolver>();
-
-        public virtual View? CreateView(View? parent, string name, Context context, IAttributeSet attrs)
+        if (viewType == null)
         {
-            // resolve the tag name to a type
-            var viewType = ViewTypeResolver?.Resolve(name);
+            //MvxBindingLog.Error( "View type not found - {0}", name);
+            return null;
+        }
 
-            if (viewType == null)
+        try
+        {
+            var view = Activator.CreateInstance(viewType, context, attrs) as View;
+            if (view == null)
             {
-                //MvxBindingLog.Error( "View type not found - {0}", name);
-                return null;
+                CrossBindingLog.Instance?.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
+                    name,
+                    viewType.FullName);
             }
-
-            try
-            {
-                var view = Activator.CreateInstance(viewType, context, attrs) as View;
-                if (view == null)
-                {
-                    CrossBindingLog.Instance?.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
-                        name,
-                        viewType.FullName);
-                }
-                return view;
-            }
-            catch (ThreadAbortException)
-            {
-                throw;
-            }
-            catch (Exception exception)
-            {
-                CrossBindingLog.Instance?.LogError(
-                    exception,
-                    "Exception during creation of {ViewName} from type {ViewTypeName}", name, viewType.FullName);
-                return null;
-            }
+            return view;
+        }
+        catch (ThreadAbortException)
+        {
+            throw;
+        }
+        catch (Exception exception)
+        {
+            CrossBindingLog.Instance?.LogError(
+                exception,
+                "Exception during creation of {ViewName} from type {ViewTypeName}", name, viewType.FullName);
+            return null;
         }
     }
 }

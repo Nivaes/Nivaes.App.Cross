@@ -1,13 +1,12 @@
-namespace Nivaes.App.Cross
+using System.Diagnostics.CodeAnalysis;
+
+namespace Nivaes.App.Cross;
+
+public interface IMvxJsonDictionaryTextLoader
 {
-    using System.Diagnostics.CodeAnalysis;
+    [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
+    void LoadJsonFromResource(string namespaceKey, string typeKey, string resourcePath);
 
-    public interface IMvxJsonDictionaryTextLoader
-    {
-        [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
-        void LoadJsonFromResource(string namespaceKey, string typeKey, string resourcePath);
-
-        [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
-        void LoadJsonFromText(string namespaceKey, string typeKey, string rawJson);
-    }
+    [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
+    void LoadJsonFromText(string namespaceKey, string typeKey, string rawJson);
 }

@@ -1,27 +1,25 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class SplitMasterViewModel 
+    : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class SplitMasterViewModel 
-        : CrossNavigationViewModel
+    public SplitMasterViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
     {
-        public SplitMasterViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
-        {
-            OpenDetailCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailViewModel>());
+        OpenDetailCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailViewModel>());
 
-            OpenDetailNavCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailNavViewModel>());
+        OpenDetailNavCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailNavViewModel>());
 
-            ShowRootViewModel = new CrossAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
-        }
-
-        public string PaneText => "Text for the Master Pane";
-
-        public ICrossAsyncCommand OpenDetailCommand { get; }
-
-        public ICrossAsyncCommand OpenDetailNavCommand { get; }
-
-        public ICrossAsyncCommand ShowRootViewModel { get; }
+        ShowRootViewModel = new CrossAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
     }
+
+    public string PaneText => "Text for the Master Pane";
+
+    public ICrossAsyncCommand OpenDetailCommand { get; }
+
+    public ICrossAsyncCommand OpenDetailNavCommand { get; }
+
+    public ICrossAsyncCommand ShowRootViewModel { get; }
 }

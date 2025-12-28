@@ -1,75 +1,73 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using CoreGraphics;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Nivaes.App.Cross.Sample;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+using UIKit;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public partial class ModalView 
+    : MvxViewController<ModalViewModel>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using CoreGraphics;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-    using UIKit;
-
-    [MvxFromStoryboard("Main")]
-    [MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class ModalView 
-        : MvxViewController<ModalViewModel>
+    public ModalView(NativeHandle handle) 
+        : base(handle)
     {
-        public ModalView(NativeHandle handle) 
-            : base(handle)
-        {
-        }
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-            TransitioningDelegate = new TransitioningDelegate();
-
-            View.BackgroundColor = UIColor.Orange;
-
-            var set = CreateBindingSet();
-            set.Bind(btnTabs).To(vm => vm.ShowTabsCommand);
-            set.Bind(btnClose).To(vm => vm.CloseCommand);
-            set.Bind(btnNestedModal).To(vm => vm.ShowNestedModalCommand);
-
-            set.Apply();
-        }
     }
 
-    public class TransitioningDelegate : UIViewControllerTransitioningDelegate
+    public override void ViewDidLoad()
     {
-        public override IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
-        {
-            return new CustomTransitionAnimator();
-        }
+        base.ViewDidLoad();
+
+        TransitioningDelegate = new TransitioningDelegate();
+
+        View?.BackgroundColor = UIColor.Orange;
+
+        var set = CreateBindingSet();
+        set.Bind(btnTabs).To(vm => vm.ShowTabsCommand);
+        set.Bind(btnClose).To(vm => vm.CloseCommand);
+        set.Bind(btnNestedModal).To(vm => vm.ShowNestedModalCommand);
+
+        set.Apply();
+    }
+}
+
+public class TransitioningDelegate : UIViewControllerTransitioningDelegate
+{
+    public override IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
+    {
+        return new CustomTransitionAnimator();
+    }
+}
+
+public class CustomTransitionAnimator : UIViewControllerAnimatedTransitioning
+{
+    public override double TransitionDuration(IUIViewControllerContextTransitioning transitionContext)
+    {
+        return 1.0f;
     }
 
-    public class CustomTransitionAnimator : UIViewControllerAnimatedTransitioning
+    public override void AnimateTransition(IUIViewControllerContextTransitioning transitionContext)
     {
-        public override double TransitionDuration(IUIViewControllerContextTransitioning transitionContext)
+        var inView = transitionContext.ContainerView;
+        var toVC = transitionContext.GetViewControllerForKey(UITransitionContext.ToViewControllerKey);
+        var toView = toVC.View;
+
+        inView.AddSubview(toView);
+
+        var frame = toView.Frame;
+        toView.Frame = CGRect.Empty;
+
+        UIView.Animate(TransitionDuration(transitionContext), () =>
         {
-            return 1.0f;
-        }
-
-        public override void AnimateTransition(IUIViewControllerContextTransitioning transitionContext)
+            toView.Frame = new CGRect(10, 10, frame.Width - 20, frame.Height - 20);
+        }, () =>
         {
-            var inView = transitionContext.ContainerView;
-            var toVC = transitionContext.GetViewControllerForKey(UITransitionContext.ToViewControllerKey);
-            var toView = toVC.View;
-
-            inView.AddSubview(toView);
-
-            var frame = toView.Frame;
-            toView.Frame = CGRect.Empty;
-
-            UIView.Animate(TransitionDuration(transitionContext), () =>
-            {
-                toView.Frame = new CGRect(10, 10, frame.Width - 20, frame.Height - 20);
-            }, () =>
-            {
-                transitionContext.CompleteTransition(true);
-            });
-        }
+            transitionContext.CompleteTransition(true);
+        });
     }
 }

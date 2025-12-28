@@ -1,36 +1,33 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using Nivaes.App.Cross.AppKit;
-using Playground.Core;
+using Nivaes.App.Cross.AppKitOS;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace Playground.Mac
-{
-    [RequiresUnreferencedCode("MvxSetup requires unreferenced code")]
+namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
+
+[RequiresUnreferencedCode("MvxSetup requires unreferenced code")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-    public class Setup : MvxMacSetup<App>
+public class Setup : MvxMacSetup<App>
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+{
+    public Setup()
     {
-        public Setup()
-        {
-            MvxWindowPresentationAttribute.DefaultWidth = 250;
-            MvxWindowPresentationAttribute.DefaultHeight = 250;
-        }
+        MvxWindowPresentationAttribute.DefaultWidth = 250;
+        MvxWindowPresentationAttribute.DefaultHeight = 250;
+    }
 
-        protected override ILoggerProvider CreateLogProvider()
-        {
-            return new SerilogLoggerProvider();
-        }
+    protected override ILoggerProvider CreateLogProvider()
+    {
+        return new SerilogLoggerProvider();
+    }
 
-        protected override ILoggerFactory CreateLogFactory()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .CreateLogger();
+    protected override ILoggerFactory CreateLogFactory()
+    {
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .CreateLogger();
 
-            return new SerilogLoggerFactory();
-        }
+        return new SerilogLoggerFactory();
     }
 }

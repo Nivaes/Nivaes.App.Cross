@@ -1,36 +1,35 @@
-namespace Nivaes.App.Cross
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross;
+
+public class MvxContentJsonDictionaryTextProvider
+    : MvxJsonDictionaryTextProvider
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using MvvmCross;
+    private ICrossResourceLoader _resourceLoader;
 
-    public class MvxContentJsonDictionaryTextProvider
-        : MvxJsonDictionaryTextProvider
+    protected ICrossResourceLoader ResourceLoader
     {
-        private ICrossResourceLoader _resourceLoader;
-
-        protected ICrossResourceLoader ResourceLoader
+        get
         {
-            get
-            {
-                _resourceLoader = _resourceLoader ?? Mvx.IoCProvider.Resolve<ICrossResourceLoader>();
-                return _resourceLoader;
-            }
+            _resourceLoader = _resourceLoader ?? Mvx.IoCProvider.Resolve<ICrossResourceLoader>();
+            return _resourceLoader;
         }
+    }
 
-        public MvxContentJsonDictionaryTextProvider(bool maskErrors = true)
-            : base(maskErrors)
-        {
-        }
+    public MvxContentJsonDictionaryTextProvider(bool maskErrors = true)
+        : base(maskErrors)
+    {
+    }
 
-        [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
-        public override void LoadJsonFromResource(string namespaceKey, string typeKey, string resourcePath)
-        {
-            var service = ResourceLoader;
-            var json = service.GetTextResource(resourcePath);
-            if (string.IsNullOrEmpty(json))
-                throw new FileNotFoundException("Unable to find resource file " + resourcePath);
-            LoadJsonFromText(namespaceKey, typeKey, json);
-        }
+    [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
+    public override void LoadJsonFromResource(string namespaceKey, string typeKey, string resourcePath)
+    {
+        var service = ResourceLoader;
+        var json = service.GetTextResource(resourcePath);
+        if (string.IsNullOrEmpty(json))
+            throw new FileNotFoundException("Unable to find resource file " + resourcePath);
+        LoadJsonFromText(namespaceKey, typeKey, json);
     }
 }

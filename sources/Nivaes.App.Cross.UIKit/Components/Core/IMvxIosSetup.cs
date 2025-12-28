@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.UIKit
+namespace Nivaes.App.Cross.UIKitOS
 {
     public interface IMvxIosSetup 
         : ICrossSetup

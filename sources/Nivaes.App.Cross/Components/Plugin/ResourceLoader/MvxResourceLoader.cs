@@ -1,58 +1,56 @@
-namespace MvvmCross.Plugin.ResourceLoader
+using Nivaes.App.Cross;
+
+namespace MvvmCross.Plugin.ResourceLoader;
+
+public abstract class MvxResourceLoader 
+    : ICrossResourceLoader
 {
-    using MvvmCross.Exceptions;
-    using Nivaes.App.Cross;
+    #region Implementation of IMvxResourceLoader
 
-    public abstract class MvxResourceLoader 
-        : ICrossResourceLoader
+    public string? GetTextResource(string resourcePath)
     {
-        #region Implementation of IMvxResourceLoader
-
-        public string GetTextResource(string resourcePath)
+        try
         {
-            try
-            {
-                string text = null;
-                GetResourceStream(resourcePath, (stream) =>
+            string? text = null;
+            GetResourceStream(resourcePath, (stream) =>
+                {
+                    if (stream == null)
+                        return;
+
+                    using (var textReader = new StreamReader(stream))
                     {
-                        if (stream == null)
-                            return;
-
-                        using (var textReader = new StreamReader(stream))
-                        {
-                            text = textReader.ReadToEnd();
-                        }
-                    });
-                return text;
-            }
-            //#if !NETFX_CORE
-            //            catch (ThreadAbortException)
-            //            {
-            //                throw;
-            //            }
-            //#endif
-            catch (Exception ex)
-            {
-                throw ex.Wrap("Cannot load resource {0}", resourcePath);
-            }
+                        text = textReader.ReadToEnd();
+                    }
+                });
+            return text;
         }
-
-        public abstract void GetResourceStream(string resourcePath, Action<Stream> streamAction);
-
-        public virtual bool ResourceExists(string resourcePath)
+        //#if !NETFX_CORE
+        //            catch (ThreadAbortException)
+        //            {
+        //                throw;
+        //            }
+        //#endif
+        catch (Exception ex)
         {
-            try
-            {
-                var found = false;
-                GetResourceStream(resourcePath, stream => { found = stream != null; });
-                return found;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            throw ex.Wrap("Cannot load resource {0}", resourcePath);
         }
-
-        #endregion Implementation of IMvxResourceLoader
     }
+
+    public abstract void GetResourceStream(string resourcePath, Action<Stream> streamAction);
+
+    public virtual bool ResourceExists(string resourcePath)
+    {
+        try
+        {
+            var found = false;
+            GetResourceStream(resourcePath, stream => { found = stream != null; });
+            return found;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    #endregion Implementation of IMvxResourceLoader
 }

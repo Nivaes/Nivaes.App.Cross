@@ -1,30 +1,25 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxTabPresentation]
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public partial class Tab2View : MvxViewController<Tab2ViewModel>
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-
-    [MvxFromStoryboard("Main")]
-    [MvxTabPresentation]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class Tab2View : MvxViewController<Tab2ViewModel>
+    public Tab2View(NativeHandle handle) : base(handle)
     {
-        public Tab2View(NativeHandle handle) : base(handle)
-        {
-        }
+    }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+    public override void ViewDidLoad()
+    {
+        base.ViewDidLoad();
 
-            var set = CreateBindingSet();
-            set.Bind(btnShowStack).To(vm => vm.ShowRootViewModelCommand);
-            set.Bind(btnClose).To(vm => vm.CloseViewModelCommand);
-            set.Apply();
-        }
+        var set = CreateBindingSet();
+        set.Bind(btnShowStack).To(vm => vm.ShowRootViewModelCommand);
+        set.Bind(btnClose).To(vm => vm.CloseViewModelCommand);
+        set.Apply();
     }
 }

@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.WinUI3
 {
     using Microsoft.UI.Xaml.Controls;
-    using MvvmCross.Platforms.WinUi.Views;
     using Nivaes.App.Cross;
 
     public class MvxWindowsSetupSingleton

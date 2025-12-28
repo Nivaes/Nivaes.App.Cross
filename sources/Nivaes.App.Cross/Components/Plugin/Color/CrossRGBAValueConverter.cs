@@ -1,10 +1,7 @@
-namespace Nivaes.App.Cross.Color
-{
-    using MvvmCross;
+namespace Nivaes.App.Cross;
 
-    [Preserve(AllMembers = true)]
-    public class CrossRGBAValueConverter 
-        : CrossRGBValueConverter
-    {
-    }
+[Preserve(AllMembers = true)]
+public class CrossRGBAValueConverter 
+    : CrossRGBValueConverter
+{
 }

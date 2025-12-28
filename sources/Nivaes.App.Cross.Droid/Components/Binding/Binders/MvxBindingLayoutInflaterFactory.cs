@@ -1,52 +1,49 @@
-namespace Nivaes.App.Cross.Droid
+using System.Diagnostics.CodeAnalysis;
+using Android.Content;
+using Android.Util;
+using Android.Views;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Droid;
+
+[RequiresUnreferencedCode("This class creates bindings which use reflection and may not be preserved by trimming.")]
+public class MvxBindingLayoutInflaterFactory
+    : IMvxLayoutInflaterHolderFactory
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Content;
-    using Android.Util;
-    using Android.Views;
-    using MvvmCross;
-    using MvvmCross.Platforms.Android.Binding.Binders;
-    using Nivaes.App.Cross;
+    private readonly object _source;
 
-    [RequiresUnreferencedCode("This class creates bindings which use reflection and may not be preserved by trimming.")]
-    public class MvxBindingLayoutInflaterFactory
-        : IMvxLayoutInflaterHolderFactory
+    private IMvxAndroidViewFactory? _androidViewFactory;
+    private IMvxAndroidViewBinder? _binder;
+
+    public MvxBindingLayoutInflaterFactory(object source)
     {
-        private readonly object _source;
-
-        private IMvxAndroidViewFactory? _androidViewFactory;
-        private IMvxAndroidViewBinder? _binder;
-
-        public MvxBindingLayoutInflaterFactory(object source)
-        {
-            _source = source;
-        }
-
-        protected virtual IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewFactory>();
-
-        protected virtual IMvxAndroidViewBinder? Binder => _binder ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewBinderFactory>().Create(_source);
-
-        public virtual IList<KeyValuePair<object, ICrossUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
-
-        public virtual View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
-        {
-            if (name == "fragment")
-            {
-                // MvvmCross does not inflate Fragments - instead it returns null and lets Android inflate them.
-                return null;
-            }
-
-            View? view = AndroidViewFactory?.CreateView(parent, name, context, attrs);
-            return BindCreatedView(view, context, attrs);
-        }
-
-        public virtual View? BindCreatedView(View? view, Context context, IAttributeSet attrs)
-        {
-            if (view != null)
-                Binder?.BindView(view, context, attrs);
-            return view;
-        }
+        _source = source;
     }
-#nullable restore
+
+    protected virtual IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewFactory>();
+
+    protected virtual IMvxAndroidViewBinder? Binder => _binder ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewBinderFactory>().Create(_source);
+
+    public virtual IList<KeyValuePair<object, ICrossUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
+
+    public virtual View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
+    {
+        if (name == "fragment")
+        {
+            // MvvmCross does not inflate Fragments - instead it returns null and lets Android inflate them.
+            return null;
+        }
+
+        View? view = AndroidViewFactory?.CreateView(parent, name, context, attrs);
+        return BindCreatedView(view, context, attrs);
+    }
+
+    public virtual View? BindCreatedView(View? view, Context context, IAttributeSet attrs)
+    {
+        if (view != null)
+            Binder?.BindView(view, context, attrs);
+        return view;
+    }
 }
+#nullable restore
+

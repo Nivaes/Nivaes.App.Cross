@@ -1,46 +1,39 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
-using MvvmCross;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
+using Nivaes.IoC;
 using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxDialogFragmentPresentation]
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+public class ModalView : MvxDialogFragment<ModalViewModel>
 {
-    [MvxDialogFragmentPresentation]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class ModalView : MvxDialogFragment<ModalViewModel>
+    public ModalView()
     {
-        public ModalView()
-        {
-        }
+    }
 
-        protected ModalView(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-        }
+    protected ModalView(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+    }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
+        var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
 
-            return view;
-        }
+        return view;
+    }
 
-        public override void OnPause()
-        {
-            var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
-            var activity = top.Activity;
+    public override void OnPause()
+    {
+        var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+        var activity = top.Activity;
 
-            base.OnPause();
-        }
+        base.OnPause();
     }
 }

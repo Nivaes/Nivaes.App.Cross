@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Playground.Mac
+namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 {
 	[Register ("ChildView")]
 	partial class ChildView

@@ -1,191 +1,190 @@
-namespace Nivaes.App.Cross
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross;
+
+public abstract class CrossAttributeViewPresenter
+    : CrossViewPresenter, ICrossAttributeViewPresenter
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
+    private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
+        new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
 
-    public abstract class CrossAttributeViewPresenter
-        : CrossViewPresenter, ICrossAttributeViewPresenter
+    private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
+        new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
+
+    private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
+
+    public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
+
+    public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
+
+    public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
     {
-        private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
-            new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
-
-        private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
-            new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
-
-        private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
-
-        public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
-
-        public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
-
-        public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
+        get
         {
-            get
+            if (_attributeTypesActionsDictionary == null)
             {
-                if (_attributeTypesActionsDictionary == null)
-                {
-                    _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
-                    RegisterAttributeTypes();
-                }
-                return _attributeTypesActionsDictionary;
+                _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
+                RegisterAttributeTypes();
             }
+            return _attributeTypesActionsDictionary;
         }
+    }
 
-        public abstract void RegisterAttributeTypes();
+    public abstract void RegisterAttributeTypes();
 
-        public abstract CrossBasePresentationAttribute CreatePresentationAttribute(
-                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
-                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
+    public abstract CrossBasePresentationAttribute CreatePresentationAttribute(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
-        public virtual object? CreateOverridePresentationAttributeViewInstance(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
+    public virtual object? CreateOverridePresentationAttributeViewInstance(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
+    {
+        if (viewType == null)
+            throw new ArgumentNullException(nameof(viewType));
+
+        return Activator.CreateInstance(viewType);
+    }
+
+    public virtual CrossBasePresentationAttribute? GetOverridePresentationAttribute(
+        CrossViewModelRequest request,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
+    {
+        if (request == null)
+            throw new ArgumentNullException(nameof(request));
+
+        if (viewType == null)
+            throw new ArgumentNullException(nameof(viewType));
+
+        var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
+        if (!hasInterface)
+            return null;
+
+        var viewInstance =
+            CreateOverridePresentationAttributeViewInstance(viewType) as ICrossOverridePresentationAttribute;
+        try
         {
-            if (viewType == null)
-                throw new ArgumentNullException(nameof(viewType));
-
-            return Activator.CreateInstance(viewType);
-        }
-
-        public virtual CrossBasePresentationAttribute? GetOverridePresentationAttribute(
-            CrossViewModelRequest request,
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
-        {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
-
-            if (viewType == null)
-                throw new ArgumentNullException(nameof(viewType));
-
-            var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
-            if (!hasInterface)
+            var presentationAttribute = viewInstance?.PresentationAttribute(request);
+            if (presentationAttribute == null)
                 return null;
 
-            var viewInstance =
-                CreateOverridePresentationAttributeViewInstance(viewType) as ICrossOverridePresentationAttribute;
-            try
+            if (presentationAttribute.ViewType == null)
             {
-                var presentationAttribute = viewInstance?.PresentationAttribute(request);
-                if (presentationAttribute == null)
-                    return null;
-
-                if (presentationAttribute.ViewType == null)
-                {
-                    presentationAttribute.ViewType = viewType;
-                }
-
-                if (presentationAttribute.ViewModelType == null)
-                {
-                    presentationAttribute.ViewModelType = request.ViewModelType;
-                }
-
-                return presentationAttribute;
-            }
-            finally
-            {
-                (viewInstance as IDisposable)?.Dispose();
-            }
-        }
-
-        public virtual CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
-        {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
-
-            if (request.ViewModelType == null)
-                throw new InvalidOperationException("Cannot get view types for null ViewModelType");
-
-            if (ViewsContainer == null)
-                throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
-
-            var viewType = ViewsContainer.GetViewType(request.ViewModelType);
-            if (viewType == null)
-                throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
-
-            var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-            if (overrideAttribute != null)
-                return overrideAttribute;
-
-            var attribute = viewType
-                .GetCustomAttributes(typeof(CrossBasePresentationAttribute), true)
-                .FirstOrDefault();
-
-            if (attribute is CrossBasePresentationAttribute basePresentationAttribute)
-            {
-                if (basePresentationAttribute.ViewType == null)
-                    basePresentationAttribute.ViewType = viewType;
-
-                if (basePresentationAttribute.ViewModelType == null)
-                    basePresentationAttribute.ViewModelType = request.ViewModelType;
-
-                return basePresentationAttribute;
+                presentationAttribute.ViewType = viewType;
             }
 
-            return CreatePresentationAttribute(request.ViewModelType, viewType);
-        }
-
-        protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
-            CrossViewModelRequest request, out CrossBasePresentationAttribute attribute)
-        {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
-
-            var presentationAttribute = GetPresentationAttribute(request);
-            presentationAttribute.ViewModelType = request.ViewModelType;
-            var attributeType = presentationAttribute.GetType();
-
-            attribute = presentationAttribute;
-
-            if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
+            if (presentationAttribute.ViewModelType == null)
             {
-                if (attributeAction.ShowAction == null)
-                {
-                    throw new InvalidOperationException(
-                        $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
-                }
-
-                if (attributeAction.CloseAction == null)
-                {
-                    throw new InvalidOperationException(
-                        $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
-                }
-
-                return attributeAction;
+                presentationAttribute.ViewModelType = request.ViewModelType;
             }
 
-            throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
+            return presentationAttribute;
+        }
+        finally
+        {
+            (viewInstance as IDisposable)?.Dispose();
+        }
+    }
+
+    public virtual CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+    {
+        if (request == null)
+            throw new ArgumentNullException(nameof(request));
+
+        if (request.ViewModelType == null)
+            throw new InvalidOperationException("Cannot get view types for null ViewModelType");
+
+        if (ViewsContainer == null)
+            throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
+
+        var viewType = ViewsContainer.GetViewType(request.ViewModelType);
+        if (viewType == null)
+            throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
+
+        var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
+        if (overrideAttribute != null)
+            return overrideAttribute;
+
+        var attribute = viewType
+            .GetCustomAttributes(typeof(CrossBasePresentationAttribute), true)
+            .FirstOrDefault();
+
+        if (attribute is CrossBasePresentationAttribute basePresentationAttribute)
+        {
+            if (basePresentationAttribute.ViewType == null)
+                basePresentationAttribute.ViewType = viewType;
+
+            if (basePresentationAttribute.ViewModelType == null)
+                basePresentationAttribute.ViewModelType = request.ViewModelType;
+
+            return basePresentationAttribute;
         }
 
-        public override async Task<bool> ChangePresentation(CrossPresentationHint hint)
-        {
-            if (await HandlePresentationChange(hint).ConfigureAwait(true))
-                return true;
+        return CreatePresentationAttribute(request.ViewModelType, viewType);
+    }
 
-            if (hint is CrossClosePresentationHint presentationHint)
+    protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
+        CrossViewModelRequest request, out CrossBasePresentationAttribute attribute)
+    {
+        if (request == null)
+            throw new ArgumentNullException(nameof(request));
+
+        var presentationAttribute = GetPresentationAttribute(request);
+        presentationAttribute.ViewModelType = request.ViewModelType;
+        var attributeType = presentationAttribute.GetType();
+
+        attribute = presentationAttribute;
+
+        if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
+        {
+            if (attributeAction.ShowAction == null)
             {
-                return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
+                throw new InvalidOperationException(
+                    $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
             }
 
-            CrossLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
-            return false;
+            if (attributeAction.CloseAction == null)
+            {
+                throw new InvalidOperationException(
+                    $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
+            }
+
+            return attributeAction;
         }
 
-        public override Task<bool> Close(ICrossViewModel viewModel)
+        throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
+    }
+
+    public override async Task<bool> ChangePresentation(CrossPresentationHint hint)
+    {
+        if (await HandlePresentationChange(hint).ConfigureAwait(true))
+            return true;
+
+        if (hint is CrossClosePresentationHint presentationHint)
         {
-            return GetPresentationAttributeAction(
-                    new CrossViewModelInstanceRequest(viewModel), out var attribute)
-                .CloseAction?
-                .Invoke(viewModel, attribute) ?? Task.FromResult(false);
+            return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
         }
 
-        public override Task<bool> Show(CrossViewModelRequest request)
-        {
-            var attributeAction = GetPresentationAttributeAction(request, out var attribute);
+        CrossLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+        return false;
+    }
 
-            if (attributeAction.ShowAction != null && attribute.ViewType != null)
-                return attributeAction.ShowAction.Invoke(attribute.ViewType, attribute, request);
+    public override Task<bool> Close(ICrossViewModel viewModel)
+    {
+        return GetPresentationAttributeAction(
+                new CrossViewModelInstanceRequest(viewModel), out var attribute)
+            .CloseAction?
+            .Invoke(viewModel, attribute) ?? Task.FromResult(false);
+    }
 
-            return Task.FromResult(false);
-        }
+    public override Task<bool> Show(CrossViewModelRequest request)
+    {
+        var attributeAction = GetPresentationAttributeAction(request, out var attribute);
+
+        if (attributeAction.ShowAction != null && attribute.ViewType != null)
+            return attributeAction.ShowAction.Invoke(attribute.ViewType, attribute, request);
+
+        return Task.FromResult(false);
     }
 }

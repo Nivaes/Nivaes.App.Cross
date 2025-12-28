@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.UIKit
+namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.UIKit
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
+    using Nivaes.IoC;
 
     public class MvxIosViewPresenter 
         : CrossAttributeViewPresenter, IMvxIosViewPresenter

@@ -1,83 +1,81 @@
-namespace MvvmCross.Platforms.WinUi.Presenters.Models
+using Microsoft.UI.Xaml;
+using Nivaes.App.Cross;
+
+namespace Nivaes.App.Cross.WinUI3;
+
+/// <summary>
+/// Holds information regarding the different windows.
+/// </summary>
+public sealed class WindowInformation
 {
-    using Microsoft.UI.Xaml;
-    using MvvmCross.Platforms.WinUi.Views;
-    using Nivaes.App.Cross;
+    private readonly List<ICrossViewModel> _subViewModels = new();
 
     /// <summary>
-    /// Holds information regarding the different windows.
+    /// Initializes a new instance of the WindowInformation class.
     /// </summary>
-    public sealed class WindowInformation
+    /// <param name="window">The Window.</param>
+    /// <param name="rootFrame">The root frame of the window.</param>
+    /// <param name="viewModel">The viewmodel belonging to the root frame.</param>
+    public WindowInformation(Window window, IMvxWindowsFrame rootFrame, ICrossViewModel? viewModel)
     {
-        private readonly List<ICrossViewModel> _subViewModels = new();
+        this.Window = window;
+        this.RootFrame = rootFrame;
+        this.ViewModel = viewModel;
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the WindowInformation class.
-        /// </summary>
-        /// <param name="window">The Window.</param>
-        /// <param name="rootFrame">The root frame of the window.</param>
-        /// <param name="viewModel">The viewmodel belonging to the root frame.</param>
-        public WindowInformation(Window window, IMvxWindowsFrame rootFrame, ICrossViewModel? viewModel)
+    /// <summary>
+    /// Gets or sets the Window.
+    /// </summary>
+    public Window Window { get; }
+
+    /// <summary>
+    /// Gets or sets the root frame belonging to this window.
+    /// </summary>
+    public IMvxWindowsFrame RootFrame { get; }
+
+    /// <summary>
+    /// Gets or sets the ViewModel belonging to this window.
+    /// </summary>
+    public ICrossViewModel? ViewModel { get; }
+
+    /// <summary>
+    /// Registers the given viewmodel to a specific key (usually region name).
+    /// </summary>
+    /// <param name="viewModel">the viewmodel to register.</param>
+    public void RegisterSubViewModel(ICrossViewModel viewModel)
+    {
+        if (!this._subViewModels.Contains(viewModel))
         {
-            this.Window = window;
-            this.RootFrame = rootFrame;
-            this.ViewModel = viewModel;
+            this._subViewModels.Add(viewModel);
         }
+    }
 
-        /// <summary>
-        /// Gets or sets the Window.
-        /// </summary>
-        public Window Window { get; }
+    /// <summary>
+    /// Removes the viewmodel registration.
+    /// </summary>
+    /// <param name="viewModel">The viewmodel to remove the viewmodel registration for.</param>
+    public void UnregisterSubViewModel(ICrossViewModel viewModel)
+    {
+        this._subViewModels.Remove(viewModel);
+    }
 
-        /// <summary>
-        /// Gets or sets the root frame belonging to this window.
-        /// </summary>
-        public IMvxWindowsFrame RootFrame { get; }
+    /// <summary>
+    /// Checks if this instance belongs to the given Window.
+    /// </summary>
+    /// <param name="w">The window to check against.</param>
+    /// <returns>True if it is a match.</returns>
+    public bool IsFor(Window w)
+    {
+        return this.Window == w;
+    }
 
-        /// <summary>
-        /// Gets or sets the ViewModel belonging to this window.
-        /// </summary>
-        public ICrossViewModel? ViewModel { get; }
-
-        /// <summary>
-        /// Registers the given viewmodel to a specific key (usually region name).
-        /// </summary>
-        /// <param name="viewModel">the viewmodel to register.</param>
-        public void RegisterSubViewModel(ICrossViewModel viewModel)
-        {
-            if (!this._subViewModels.Contains(viewModel))
-            {
-                this._subViewModels.Add(viewModel);
-            }
-        }
-
-        /// <summary>
-        /// Removes the viewmodel registration.
-        /// </summary>
-        /// <param name="viewModel">The viewmodel to remove the viewmodel registration for.</param>
-        public void UnregisterSubViewModel(ICrossViewModel viewModel)
-        {
-            this._subViewModels.Remove(viewModel);
-        }
-
-        /// <summary>
-        /// Checks if this instance belongs to the given Window.
-        /// </summary>
-        /// <param name="w">The window to check against.</param>
-        /// <returns>True if it is a match.</returns>
-        public bool IsFor(Window w)
-        {
-            return this.Window == w;
-        }
-
-        /// <summary>
-        /// Checks if this instance or any of the registered subViewModels belongs to the given viewmodel.
-        /// </summary>
-        /// <param name="viewModel">The viewmodel to check against.</param>
-        /// <returns>True if it is a match.</returns>
-        public bool IsFor(ICrossViewModel viewModel)
-        {
-            return this.ViewModel == viewModel || this._subViewModels.Exists(v => v == viewModel);
-        }
+    /// <summary>
+    /// Checks if this instance or any of the registered subViewModels belongs to the given viewmodel.
+    /// </summary>
+    /// <param name="viewModel">The viewmodel to check against.</param>
+    /// <returns>True if it is a match.</returns>
+    public bool IsFor(ICrossViewModel viewModel)
+    {
+        return this.ViewModel == viewModel || this._subViewModels.Exists(v => v == viewModel);
     }
 }

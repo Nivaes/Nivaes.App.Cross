@@ -1,26 +1,22 @@
-namespace MvvmCross.Platforms.WinUi.Presenters.Attributes
+namespace Nivaes.App.Cross.WinUI3;
+
+public class MvxSplitViewPresentationAttribute 
+    : CrossBasePresentationAttribute
 {
-    using Nivaes.App.Cross;
-
-    public class MvxSplitViewPresentationAttribute 
-        : CrossBasePresentationAttribute
+    public MvxSplitViewPresentationAttribute() : this(SplitPanePosition.Content)
     {
-        public MvxSplitViewPresentationAttribute() : this(SplitPanePosition.Content)
-        {
-        }
-
-        public MvxSplitViewPresentationAttribute(SplitPanePosition position)
-        {
-            Position = position;
-        }
-
-        public SplitPanePosition Position { get; set; }
     }
 
-    public enum SplitPanePosition
+    public MvxSplitViewPresentationAttribute(SplitPanePosition position)
     {
-        Pane,
-        Content
+        Position = position;
     }
 
+    public SplitPanePosition Position { get; set; }
+}
+
+public enum SplitPanePosition
+{
+    Pane,
+    Content
 }

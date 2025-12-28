@@ -1,29 +1,27 @@
-namespace Nivaes.App.Cross.WinUI3
+using System.Threading.Tasks;
+
+namespace Nivaes.App.Cross.WinUI3;
+
+public class MvxWindowsViewDispatcher
+    : MvxWindowsMainThreadDispatcher, ICrossViewDispatcher
 {
-    using System.Threading.Tasks;
-    using MvvmCross.Platforms.WinUi.Views;
+    private readonly IMvxWindowsViewPresenter _presenter;
 
-    public class MvxWindowsViewDispatcher
-        : MvxWindowsMainThreadDispatcher, ICrossViewDispatcher
+    public MvxWindowsViewDispatcher(IMvxWindowsViewPresenter presenter, IMvxWindowsFrame rootFrame)
+        : base(rootFrame.UnderlyingControl.DispatcherQueue)
     {
-        private readonly IMvxWindowsViewPresenter _presenter;
+        _presenter = presenter;
+    }
 
-        public MvxWindowsViewDispatcher(IMvxWindowsViewPresenter presenter, IMvxWindowsFrame rootFrame)
-            : base(rootFrame.UnderlyingControl.DispatcherQueue)
-        {
-            _presenter = presenter;
-        }
+    public async Task<bool> ShowViewModel(CrossViewModelRequest request)
+    {
+        await ExecuteOnMainThreadAsync(() => _presenter.Show(request));
+        return true;
+    }
 
-        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
-        {
-            await ExecuteOnMainThreadAsync(() => _presenter.Show(request));
-            return true;
-        }
-
-        public async Task<bool> ChangePresentation(CrossPresentationHint hint)
-        {
-            await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
-            return true;
-        }
+    public async Task<bool> ChangePresentation(CrossPresentationHint hint)
+    {
+        await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+        return true;
     }
 }

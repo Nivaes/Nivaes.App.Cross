@@ -1,56 +1,55 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+using Playground.Core.ViewModels;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    private MenuItem _menuItem;
+    private ICrossAsyncCommand<MenuItem> _onSelectedChangedCommand;
 
-    public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
+    public class MenuItem
     {
-        private MenuItem _menuItem;
-        private ICrossAsyncCommand<MenuItem> _onSelectedChangedCommand;
+        public string Title { get; set; }
 
-        public class MenuItem
+        public string Description { get; set; }
+        public Type ViewModelType { get; set; }
+    }
+
+    public MixedNavMasterDetailViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
+    {
+        Menu = new[] {
+            new MenuItem { Title = "Root", Description = "The root page", ViewModelType = typeof(MixedNavMasterRootContentViewModel) },
+            new MenuItem { Title = "Tabs", Description = "Tabbed detail page", ViewModelType = typeof(MixedNavTabsViewModel)},
+            new MenuItem { Title = "Result", Description = "Open detail page with result", ViewModelType = typeof(MixedNavResultDetailViewModel)},
+        };
+    }
+
+    public IEnumerable<MenuItem> Menu { get; set; }
+
+    public MenuItem SelectedMenu
+    {
+        get => _menuItem;
+        set
         {
-            public string Title { get; set; }
-
-            public string Description { get; set; }
-            public Type ViewModelType { get; set; }
+            if (SetProperty(ref _menuItem, value))
+                OnSelectedChangedCommand.Execute(value);
         }
+    }
 
-        public MixedNavMasterDetailViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
+    private ICrossAsyncCommand<MenuItem> OnSelectedChangedCommand
+    {
+        get
         {
-            Menu = new[] {
-                new MenuItem { Title = "Root", Description = "The root page", ViewModelType = typeof(MixedNavMasterRootContentViewModel) },
-                new MenuItem { Title = "Tabs", Description = "Tabbed detail page", ViewModelType = typeof(MixedNavTabsViewModel)},
-                new MenuItem { Title = "Result", Description = "Open detail page with result", ViewModelType = typeof(MixedNavResultDetailViewModel)},
-            };
-        }
-
-        public IEnumerable<MenuItem> Menu { get; set; }
-
-        public MenuItem SelectedMenu
-        {
-            get => _menuItem;
-            set
+            return _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
             {
-                if (SetProperty(ref _menuItem, value))
-                    OnSelectedChangedCommand.Execute(value);
-            }
-        }
+                if (item == null)
+                    return;
 
-        private ICrossAsyncCommand<MenuItem> OnSelectedChangedCommand
-        {
-            get
-            {
-                return _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
-                {
-                    if (item == null)
-                        return;
-
-                    var vmType = item.ViewModelType;
-                    await NavigationService.Navigate(vmType);
-                });
-            }
+                var vmType = item.ViewModelType;
+                await NavigationService.Navigate(vmType);
+            });
         }
     }
 }

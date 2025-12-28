@@ -1,51 +1,47 @@
-namespace Playground.Droid.Fragments
+using System.Diagnostics.CodeAnalysis;
+using Android.Views;
+using Google.Android.Material.Navigation;
+using Nivaes.App.Cross.Droid;
+
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_navigation_frame)]
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+public class SplitMasterView 
+    : MvxFragment<SplitMasterViewModel>, NavigationView.IOnNavigationItemSelectedListener
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Views;
-    using Google.Android.Material.Navigation;
-    using Nivaes.App.Cross.Droid;
-    using Playground.Core.ViewModels;
-    using Playground.Droid.Activities;
-    using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+    private IMenuItem? previousMenuItem;
 
-    [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_navigation_frame)]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class SplitMasterView 
-        : MvxFragment<SplitMasterViewModel>, NavigationView.IOnNavigationItemSelectedListener
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        private IMenuItem previousMenuItem;
+        var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+        var view = this.BindingInflate(Resource.Layout.SplitMasterView, container, false);
 
-            var view = this.BindingInflate(Resource.Layout.SplitMasterView, container, false);
+        return view;
+    }
 
-            return view;
-        }
+    public bool OnNavigationItemSelected(IMenuItem menuItem)
+    {
+        menuItem.SetCheckable(true);
+        menuItem.SetChecked(true);
+        previousMenuItem?.SetChecked(false);
+        previousMenuItem = menuItem;
 
-        public bool OnNavigationItemSelected(IMenuItem menuItem)
-        {
-            menuItem.SetCheckable(true);
-            menuItem.SetChecked(true);
-            previousMenuItem?.SetChecked(false);
-            previousMenuItem = menuItem;
+        Navigate(menuItem.ItemId);
 
-            Navigate(menuItem.ItemId);
+        return true;
+    }
 
-            return true;
-        }
+    private Task Navigate(int itemId)
+    {
+        ((SplitRootView)Activity).DrawerLayout.CloseDrawers();
+        return Task.Delay(TimeSpan.FromMilliseconds(250));
 
-        private Task Navigate(int itemId)
-        {
-            ((SplitRootView)Activity).DrawerLayout.CloseDrawers();
-            return Task.Delay(TimeSpan.FromMilliseconds(250));
-
-            //switch (itemId)
-            //{
-            //    case Resource.Id.nav_home:
-            //        break;
-            //}
-        }
+        //switch (itemId)
+        //{
+        //    case Resource.Id.nav_home:
+        //        break;
+        //}
     }
 }

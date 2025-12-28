@@ -1,343 +1,341 @@
-namespace MvvmCross.Platforms.Mac.Presenters
+namespace Nivaes.App.Cross.AppKitOS;
+
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Platforms.Mac.Presenters.Attributes;
+using MvvmCross.Platforms.Mac.Views;
+using Nivaes.App.Cross;
+
+public class MvxMacViewPresenter
+    : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Platforms.Mac.Presenters.Attributes;
-    using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.AppKit;
+    private readonly INSApplicationDelegate _applicationDelegate;
 
-    public class MvxMacViewPresenter
-        : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
+    /// <summary>
+    /// NSWindow keeps only the *weak* reference to its NSWindowController. So, the controller will be
+    /// prematurely disposed if no other references exist. This table keeps a strong reference to the
+    /// controller keeping it alive while the associated NSWindow is alive. Ref. issue #2198
+    /// </summary>
+    protected readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
+
+    public override CrossBasePresentationAttribute CreatePresentationAttribute(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
     {
-        private readonly INSApplicationDelegate _applicationDelegate;
+        CrossLogHost.Default?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewTypeName}. Assuming new window presentation", viewType.Name);
+        return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
+    }
 
-        /// <summary>
-        /// NSWindow keeps only the *weak* reference to its NSWindowController. So, the controller will be
-        /// prematurely disposed if no other references exist. This table keeps a strong reference to the
-        /// controller keeping it alive while the associated NSWindow is alive. Ref. issue #2198
-        /// </summary>
-        protected readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
-
-        public override CrossBasePresentationAttribute CreatePresentationAttribute(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
+    public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
+        CrossViewModelRequest request,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
+    {
+        if (viewType?.GetInterface(nameof(ICrossOverridePresentationAttribute)) != null)
         {
-            CrossLogHost.Default?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewTypeName}. Assuming new window presentation", viewType.Name);
-            return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
-        }
-
-        public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
-            CrossViewModelRequest request,
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
-        {
-            if (viewType?.GetInterface(nameof(ICrossOverridePresentationAttribute)) != null)
+            var viewInstance = this.CreateViewControllerFor(viewType, null) as NSViewController;
+            using (viewInstance)
             {
-                var viewInstance = this.CreateViewControllerFor(viewType, null) as NSViewController;
-                using (viewInstance)
+                var presentationAttribute = (viewInstance as ICrossOverridePresentationAttribute)?.PresentationAttribute(request);
+
+                if (presentationAttribute == null)
                 {
-                    var presentationAttribute = (viewInstance as ICrossOverridePresentationAttribute)?.PresentationAttribute(request);
+                    CrossLogHost.Default?.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
+                }
+                else
+                {
+                    if (presentationAttribute.ViewType == null)
+                        presentationAttribute.ViewType = viewType;
 
-                    if (presentationAttribute == null)
-                    {
-                        CrossLogHost.Default?.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
-                    }
-                    else
-                    {
-                        if (presentationAttribute.ViewType == null)
-                            presentationAttribute.ViewType = viewType;
+                    if (presentationAttribute.ViewModelType == null)
+                        presentationAttribute.ViewModelType = request.ViewModelType;
 
-                        if (presentationAttribute.ViewModelType == null)
-                            presentationAttribute.ViewModelType = request.ViewModelType;
-
-                        return presentationAttribute;
-                    }
+                    return presentationAttribute;
                 }
             }
-
-            return null;
         }
 
-        protected virtual INSApplicationDelegate ApplicationDelegate => _applicationDelegate;
+        return null;
+    }
 
-        protected virtual List<NSWindow> Windows { get; } = new List<NSWindow>();
+    protected virtual INSApplicationDelegate ApplicationDelegate => _applicationDelegate;
 
-        protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
+    protected virtual List<NSWindow> Windows { get; } = new List<NSWindow>();
 
-        public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate)
-        {
-            _applicationDelegate = applicationDelegate;
-            NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);
-        }
+    protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-        public override void RegisterAttributeTypes()
-        {
-            AttributeTypesToActionsDictionary.Register<MvxWindowPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowWindowViewController(viewController, (MvxWindowPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => Close(viewModel));
+    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate)
+    {
+        _applicationDelegate = applicationDelegate;
+        NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);
+    }
 
-            AttributeTypesToActionsDictionary.Register<CrossContentPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowContentViewController(viewController, (CrossContentPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => Close(viewModel));
-
-            AttributeTypesToActionsDictionary.Register<CrossModalPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowModalViewController(viewController, (CrossModalPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => Close(viewModel));
-
-            AttributeTypesToActionsDictionary.Register<MvxSheetPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowSheetViewController(viewController, (MvxSheetPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => Close(viewModel));
-
-            AttributeTypesToActionsDictionary.Register<MvxTabPresentationAttribute>(
-                    (viewType, attribute, request) =>
-                    {
-                        var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                        return ShowTabViewController(viewController, (MvxTabPresentationAttribute)attribute, request);
-                    },
-                    (viewModel, attribute) => Close(viewModel));
-        }
-
-        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        protected virtual Task<bool> ShowWindowViewController(
-            NSViewController viewController,
-            MvxWindowPresentationAttribute attribute,
-            CrossViewModelRequest request)
-        {
-            NSWindow window = null;
-            MvxWindowController windowController = null;
-
-            if (!string.IsNullOrEmpty(attribute.WindowControllerName))
-            {
-                windowController = CreateWindowController(attribute);
-                window = windowController.Window;
-            }
-
-            if (window == null)
-            {
-                window = CreateWindow(attribute);
-
-                if (windowController == null)
+    public override void RegisterAttributeTypes()
+    {
+        AttributeTypesToActionsDictionary.Register<MvxWindowPresentationAttribute>(
+                (viewType, attribute, request) =>
                 {
-                    windowController = CreateWindowController(window);
-                    windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
-                }
-                windowController.Window = window;
-            }
-            else
-            {
-                UpdateWindow(attribute, window);
-            }
+                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
+                    return ShowWindowViewController(viewController, (MvxWindowPresentationAttribute)attribute, request);
+                },
+                (viewModel, attribute) => Close(viewModel));
 
-            if (!Windows.Contains(window))
-                Windows.Add(window);
-
-            // ConditionalWeakTable automatically removes entries when the key (window) is garbage collected,
-            // so we don't need to manually remove items when windows are closed
-            _windowsToWindowControllers.AddOrUpdate(window, windowController);
-
-            window.Identifier = attribute.Identifier ?? viewController.GetType().Name;
-
-            if (!string.IsNullOrEmpty(viewController.Title))
-                window.Title = viewController.Title;
-
-            window.ContentView = viewController.View;
-            window.ContentViewController = viewController;
-            windowController.ShowWindow(null);
-            return Task.FromResult(true);
-        }
-
-        protected virtual void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
-        {
-            var positionX = (float)window.Frame.X;
-            var positionY = (float)window.Frame.Y;
-            var width = (float)window.Frame.Width;
-            var height = (float)window.Frame.Height;
-
-            var newFrame = new CGRect(positionX, positionY, width, height);
-            window.SetFrame(newFrame, false);
-
-            window.StyleMask = attribute.WindowStyle;
-            window.BackingType = attribute.BufferingType;
-            window.TitleVisibility = attribute.TitleVisibility;
-        }
-
-        protected virtual NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)
-        {
-            NSWindow window;
-            var positionX = attribute.PositionX;
-            var positionY = attribute.PositionY;
-            var width = attribute.Width;
-            var height = attribute.Height;
-
-            window = new NSWindow(
-                new CGRect(positionX, positionY, width, height),
-                attribute.WindowStyle,
-                attribute.BufferingType,
-                false,
-                NSScreen.MainScreen)
-            {
-                TitleVisibility = attribute.TitleVisibility,
-            };
-            return window;
-        }
-
-        [RequiresUnreferencedCode("This method creates instances which use reflection and may not be preserved by trimming")]
-        protected virtual MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
-        {
-            MvxWindowController windowController;
-            if (!string.IsNullOrEmpty(attribute.StoryboardName))
-            {
-                // Instantiate from storyboard
-                var storyboard = NSStoryboard.FromName(attribute.StoryboardName, null);
-                windowController = (MvxWindowController)storyboard.InstantiateControllerWithIdentifier(attribute.WindowControllerName);
-            }
-            else
-            {
-                var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
-                if (controllerType is null)
+        AttributeTypesToActionsDictionary.Register<CrossContentPresentationAttribute>(
+                (viewType, attribute, request) =>
                 {
-                    throw new CrossException(
-                        $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
-                        $"Please specify either the {nameof(MvxWindowPresentationAttribute.WindowControllerType)} or " +
-                        $"{nameof(MvxWindowPresentationAttribute.WindowControllerName)} property of the {nameof(MvxWindowPresentationAttribute)} " +
-                        $"for the corresponding view model.");
-                }
-                // Instantiate using Reflection - failure is possible if blank constructor is missing
-                windowController = (MvxWindowController)Activator.CreateInstance(controllerType);
-            }
-            windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
-            return windowController;
+                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
+                    return ShowContentViewController(viewController, (CrossContentPresentationAttribute)attribute, request);
+                },
+                (viewModel, attribute) => Close(viewModel));
+
+        AttributeTypesToActionsDictionary.Register<CrossModalPresentationAttribute>(
+                (viewType, attribute, request) =>
+                {
+                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
+                    return ShowModalViewController(viewController, (CrossModalPresentationAttribute)attribute, request);
+                },
+                (viewModel, attribute) => Close(viewModel));
+
+        AttributeTypesToActionsDictionary.Register<MvxSheetPresentationAttribute>(
+                (viewType, attribute, request) =>
+                {
+                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
+                    return ShowSheetViewController(viewController, (MvxSheetPresentationAttribute)attribute, request);
+                },
+                (viewModel, attribute) => Close(viewModel));
+
+        AttributeTypesToActionsDictionary.Register<MvxTabPresentationAttribute>(
+                (viewType, attribute, request) =>
+                {
+                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
+                    return ShowTabViewController(viewController, (MvxTabPresentationAttribute)attribute, request);
+                },
+                (viewModel, attribute) => Close(viewModel));
+    }
+
+    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
+    protected virtual Task<bool> ShowWindowViewController(
+        NSViewController viewController,
+        MvxWindowPresentationAttribute attribute,
+        CrossViewModelRequest request)
+    {
+        NSWindow window = null;
+        MvxWindowController windowController = null;
+
+        if (!string.IsNullOrEmpty(attribute.WindowControllerName))
+        {
+            windowController = CreateWindowController(attribute);
+            window = windowController.Window;
         }
 
-        protected virtual MvxWindowController CreateWindowController(NSWindow window)
+        if (window == null)
         {
-            return new MvxWindowController(window);
-        }
+            window = CreateWindow(attribute);
 
-        protected virtual Task<bool> ShowContentViewController(
-            NSViewController viewController,
-            CrossContentPresentationAttribute attribute,
-            CrossViewModelRequest request)
-        {
-            var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
-
-            if (!string.IsNullOrEmpty(viewController.Title))
-                window.Title = viewController.Title;
-
-            window.ContentView = viewController.View;
-            window.ContentViewController = viewController;
-            return Task.FromResult(true);
-        }
-
-        protected virtual Task<bool> ShowModalViewController(
-            NSViewController viewController,
-            CrossModalPresentationAttribute attribute,
-            CrossViewModelRequest request)
-        {
-            var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
-
-            window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
-            return Task.FromResult(true);
-        }
-
-        protected virtual Task<bool> ShowSheetViewController(
-            NSViewController viewController,
-            MvxSheetPresentationAttribute attribute,
-            CrossViewModelRequest request)
-        {
-            var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
-
-            window.ContentViewController.PresentViewControllerAsSheet(viewController);
-            return Task.FromResult(true);
-        }
-
-        protected virtual Task<bool> ShowTabViewController(
-            NSViewController viewController,
-            MvxTabPresentationAttribute attribute,
-            CrossViewModelRequest request)
-        {
-            var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
-
-            if (window.ContentViewController is not IMvxTabViewController tabViewController)
-                throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
-
-            tabViewController.ShowTabView(viewController, attribute.TabTitle);
-            return Task.FromResult(true);
-        }
-
-        protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
-        {
-            NSWindow window = null;
-
-            if (!string.IsNullOrEmpty(identifier))
-                window = Windows.Find(w => w.Identifier == identifier);
-
-            if (window == null)
-                window = MainWindow ?? Windows.LastOrDefault();
-
-            if (window == null)
-                throw new CrossException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
-
-            return window;
-        }
-
-        public override Task<bool> Close(ICrossViewModel viewModel)
-        {
-            for (int i = Windows.Count - 1; i >= 0; i--)
+            if (windowController == null)
             {
-                var window = Windows[i];
-
-                // closing controller is a tab
-                var tabViewController = window.ContentViewController as IMvxTabViewController;
-                if (tabViewController != null && tabViewController.CloseTabView(viewModel))
-                {
-                    return Task.FromResult(true);
-                }
-
-                var controller = window.ContentViewController as MvxViewController;
-
-                // if closing controller is a sheet or modal, it must have a presenting parent
-                var presentedController = controller.PresentedViewControllers?.FirstOrDefault(c => ((MvxViewController)c).ViewModel == viewModel);
-                if (presentedController != null)
-                {
-                    controller.DismissViewController(presentedController);
-                    return Task.FromResult(true);
-                }
-
-                // closing controller is content in a regular window
-                if (controller != null && controller.ViewModel == viewModel)
-                {
-                    Windows.Remove(window);
-                    window.Close();
-                    return Task.FromResult(true);
-                }
+                windowController = CreateWindowController(window);
+                windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
             }
-
-            throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
+            windowController.Window = window;
+        }
+        else
+        {
+            UpdateWindow(attribute, window);
         }
 
-        protected void OnWindowWillCloseNotification(object sender, NSNotificationEventArgs e)
+        if (!Windows.Contains(window))
+            Windows.Add(window);
+
+        // ConditionalWeakTable automatically removes entries when the key (window) is garbage collected,
+        // so we don't need to manually remove items when windows are closed
+        _windowsToWindowControllers.AddOrUpdate(window, windowController);
+
+        window.Identifier = attribute.Identifier ?? viewController.GetType().Name;
+
+        if (!string.IsNullOrEmpty(viewController.Title))
+            window.Title = viewController.Title;
+
+        window.ContentView = viewController.View;
+        window.ContentViewController = viewController;
+        windowController.ShowWindow(null);
+        return Task.FromResult(true);
+    }
+
+    protected virtual void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
+    {
+        var positionX = (float)window.Frame.X;
+        var positionY = (float)window.Frame.Y;
+        var width = (float)window.Frame.Width;
+        var height = (float)window.Frame.Height;
+
+        var newFrame = new CGRect(positionX, positionY, width, height);
+        window.SetFrame(newFrame, false);
+
+        window.StyleMask = attribute.WindowStyle;
+        window.BackingType = attribute.BufferingType;
+        window.TitleVisibility = attribute.TitleVisibility;
+    }
+
+    protected virtual NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)
+    {
+        NSWindow window;
+        var positionX = attribute.PositionX;
+        var positionY = attribute.PositionY;
+        var width = attribute.Width;
+        var height = attribute.Height;
+
+        window = new NSWindow(
+            new CGRect(positionX, positionY, width, height),
+            attribute.WindowStyle,
+            attribute.BufferingType,
+            false,
+            NSScreen.MainScreen)
         {
-            var window = e.Notification.Object as NSWindow;
-            if (Windows.Contains(window))
+            TitleVisibility = attribute.TitleVisibility,
+        };
+        return window;
+    }
+
+    [RequiresUnreferencedCode("This method creates instances which use reflection and may not be preserved by trimming")]
+    protected virtual MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
+    {
+        MvxWindowController windowController;
+        if (!string.IsNullOrEmpty(attribute.StoryboardName))
+        {
+            // Instantiate from storyboard
+            var storyboard = NSStoryboard.FromName(attribute.StoryboardName, null);
+            windowController = (MvxWindowController)storyboard.InstantiateControllerWithIdentifier(attribute.WindowControllerName);
+        }
+        else
+        {
+            var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
+            if (controllerType is null)
+            {
+                throw new CrossException(
+                    $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
+                    $"Please specify either the {nameof(MvxWindowPresentationAttribute.WindowControllerType)} or " +
+                    $"{nameof(MvxWindowPresentationAttribute.WindowControllerName)} property of the {nameof(MvxWindowPresentationAttribute)} " +
+                    $"for the corresponding view model.");
+            }
+            // Instantiate using Reflection - failure is possible if blank constructor is missing
+            windowController = (MvxWindowController)Activator.CreateInstance(controllerType);
+        }
+        windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
+        return windowController;
+    }
+
+    protected virtual MvxWindowController CreateWindowController(NSWindow window)
+    {
+        return new MvxWindowController(window);
+    }
+
+    protected virtual Task<bool> ShowContentViewController(
+        NSViewController viewController,
+        CrossContentPresentationAttribute attribute,
+        CrossViewModelRequest request)
+    {
+        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+
+        if (!string.IsNullOrEmpty(viewController.Title))
+            window.Title = viewController.Title;
+
+        window.ContentView = viewController.View;
+        window.ContentViewController = viewController;
+        return Task.FromResult(true);
+    }
+
+    protected virtual Task<bool> ShowModalViewController(
+        NSViewController viewController,
+        CrossModalPresentationAttribute attribute,
+        CrossViewModelRequest request)
+    {
+        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+
+        window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
+        return Task.FromResult(true);
+    }
+
+    protected virtual Task<bool> ShowSheetViewController(
+        NSViewController viewController,
+        MvxSheetPresentationAttribute attribute,
+        CrossViewModelRequest request)
+    {
+        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+
+        window.ContentViewController.PresentViewControllerAsSheet(viewController);
+        return Task.FromResult(true);
+    }
+
+    protected virtual Task<bool> ShowTabViewController(
+        NSViewController viewController,
+        MvxTabPresentationAttribute attribute,
+        CrossViewModelRequest request)
+    {
+        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+
+        if (window.ContentViewController is not IMvxTabViewController tabViewController)
+            throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
+
+        tabViewController.ShowTabView(viewController, attribute.TabTitle);
+        return Task.FromResult(true);
+    }
+
+    protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
+    {
+        NSWindow window = null;
+
+        if (!string.IsNullOrEmpty(identifier))
+            window = Windows.Find(w => w.Identifier == identifier);
+
+        if (window == null)
+            window = MainWindow ?? Windows.LastOrDefault();
+
+        if (window == null)
+            throw new CrossException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
+
+        return window;
+    }
+
+    public override Task<bool> Close(ICrossViewModel viewModel)
+    {
+        for (int i = Windows.Count - 1; i >= 0; i--)
+        {
+            var window = Windows[i];
+
+            // closing controller is a tab
+            var tabViewController = window.ContentViewController as IMvxTabViewController;
+            if (tabViewController != null && tabViewController.CloseTabView(viewModel))
+            {
+                return Task.FromResult(true);
+            }
+
+            var controller = window.ContentViewController as CrossViewController;
+
+            // if closing controller is a sheet or modal, it must have a presenting parent
+            var presentedController = controller.PresentedViewControllers?.FirstOrDefault(c => ((CrossViewController)c).ViewModel == viewModel);
+            if (presentedController != null)
+            {
+                controller.DismissViewController(presentedController);
+                return Task.FromResult(true);
+            }
+
+            // closing controller is content in a regular window
+            if (controller != null && controller.ViewModel == viewModel)
+            {
                 Windows.Remove(window);
+                window.Close();
+                return Task.FromResult(true);
+            }
         }
+
+        throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
+    }
+
+    protected void OnWindowWillCloseNotification(object sender, NSNotificationEventArgs e)
+    {
+        var window = e.Notification.Object as NSWindow;
+        if (Windows.Contains(window))
+            Windows.Remove(window);
     }
 }

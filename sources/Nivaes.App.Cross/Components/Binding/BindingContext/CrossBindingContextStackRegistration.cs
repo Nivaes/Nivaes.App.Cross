@@ -1,38 +1,38 @@
-namespace Nivaes.App.Cross
+using System;
+using Microsoft.Extensions.Logging;
+using MvvmCross;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross;
+
+public class CrossBindingContextStackRegistration<TBindingContext>
+    : IDisposable
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
+    protected ICrossBindingContextStack<TBindingContext> Stack => Mvx.IoCProvider.Resolve<ICrossBindingContextStack<TBindingContext>>();
 
-    public class CrossBindingContextStackRegistration<TBindingContext>
-        : IDisposable
+    public CrossBindingContextStackRegistration(TBindingContext toRegister)
     {
-        protected ICrossBindingContextStack<TBindingContext> Stack => Mvx.IoCProvider.Resolve<ICrossBindingContextStack<TBindingContext>>();
+        Stack.Push(toRegister);
+    }
 
-        public CrossBindingContextStackRegistration(TBindingContext toRegister)
-        {
-            Stack.Push(toRegister);
-        }
+    ~CrossBindingContextStackRegistration()
+    {
+        CrossLogHost.Default?.Log(LogLevel.Error,
+            "You should always Dispose of MvxBindingContextStackRegistration");
+        Dispose(false);
+    }
 
-        ~CrossBindingContextStackRegistration()
-        {
-            CrossLogHost.Default?.Log(LogLevel.Error,
-                "You should always Dispose of MvxBindingContextStackRegistration");
-            Dispose(false);
-        }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Stack.Pop();
-            }
+            Stack.Pop();
         }
     }
 }

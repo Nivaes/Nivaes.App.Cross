@@ -7,7 +7,7 @@ namespace Playground.iOS.Views
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Views.Expandable;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.UIKit;
+    using Nivaes.App.Cross.UIKitOS;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
     using UIKit;

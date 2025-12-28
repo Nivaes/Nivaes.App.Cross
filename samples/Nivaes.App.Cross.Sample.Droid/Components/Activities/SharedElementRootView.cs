@@ -1,42 +1,37 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
-using Resource = Nivaes.App.Cross.Droid.Resource;
-using Playground.Core.ViewModels;
 
-namespace Playground.Droid.Activities
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxActivityPresentation]
+[Activity(Theme = "@style/AppTheme")]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class SharedElementRootView 
+    : MvxActivity<SharedElementRootViewModel>, IMvxAndroidSharedElements
 {
-    [MvxActivityPresentation]
-    [Activity(Theme = "@style/AppTheme")]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class SharedElementRootView 
-        : MvxActivity<SharedElementRootViewModel>, IMvxAndroidSharedElements
+    public int SelectedListItem { get; set; }
+
+    public IDictionary<string, View> FetchSharedElementsToAnimate(CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
     {
-        public int SelectedListItem { get; set; }
+        IDictionary<string, View> sharedElements = new Dictionary<string, View>();
 
-        public IDictionary<string, View> FetchSharedElementsToAnimate(CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
+        var recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
+        if (recyclerView != null)
         {
-            IDictionary<string, View> sharedElements = new Dictionary<string, View>();
+            var selectedViewHolder = recyclerView.FindViewHolderForAdapterPosition(SelectedListItem);
 
-            var recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
-            if (recyclerView != null)
-            {
-                var selectedViewHolder = recyclerView.FindViewHolderForAdapterPosition(SelectedListItem);
-
-                var selectedMvxLogo = selectedViewHolder.ItemView.FindViewById<ImageView>(Resource.Id.img_logo);
-                sharedElements.Add(nameof(Resource.Id.img_logo), selectedMvxLogo);
-            }
-
-            return sharedElements;
+            var selectedMvxLogo = selectedViewHolder.ItemView.FindViewById<ImageView>(Resource.Id.img_logo);
+            sharedElements.Add(nameof(Resource.Id.img_logo), selectedMvxLogo);
         }
 
-        protected override void OnCreate(Bundle? savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        return sharedElements;
+    }
 
-            SetContentView(Resource.Layout.SharedElementRootView);
-        }
+    protected override void OnCreate(Bundle? savedInstanceState)
+    {
+        base.OnCreate(savedInstanceState);
+
+        SetContentView(Resource.Layout.SharedElementRootView);
     }
 }

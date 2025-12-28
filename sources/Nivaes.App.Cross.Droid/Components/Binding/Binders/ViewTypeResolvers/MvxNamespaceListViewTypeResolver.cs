@@ -1,46 +1,43 @@
 using Android.Views;
+using MvvmCross.IoC;
 
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid;
+
+public class MvxNamespaceListViewTypeResolver 
+    : MvxLongLowerCaseViewTypeResolver, IMvxNamespaceListViewTypeResolver
 {
-    using MvvmCross.IoC;
-    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
+    public IList<string> Namespaces { get; }
 
-    public class MvxNamespaceListViewTypeResolver 
-        : MvxLongLowerCaseViewTypeResolver, IMvxNamespaceListViewTypeResolver
+    public MvxNamespaceListViewTypeResolver(IMvxTypeCache typeCache)
+        : base(typeCache)
     {
-        public IList<string> Namespaces { get; }
+        Namespaces = new List<string>();
+    }
 
-        public MvxNamespaceListViewTypeResolver(IMvxTypeCache typeCache)
-            : base(typeCache)
-        {
-            Namespaces = new List<string>();
-        }
+    public void Add(string namespaceName)
+    {
+        namespaceName = namespaceName.ToLower();
+        if (!namespaceName.EndsWith('.'))
+            namespaceName += '.';
 
-        public void Add(string namespaceName)
-        {
-            namespaceName = namespaceName.ToLower();
-            if (!namespaceName.EndsWith('.'))
-                namespaceName += '.';
+        Namespaces.Add(namespaceName);
+    }
 
-            Namespaces.Add(namespaceName);
-        }
-
-        [return: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public override Type? Resolve(string tagName)
-        {
-            // this resolver only handles simple namespaceless tagNames
-            if (tagName.Contains('.'))
-                return null;
-
-            var lowerTagName = tagName.ToLower();
-            foreach (var ns in Namespaces)
-            {
-                var candidateName = ns + lowerTagName;
-                if (TypeCache.LowerCaseFullNameCache.TryGetValue(candidateName, out var type))
-                    return type;
-            }
-
+    [return: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors)]
+    public override Type? Resolve(string tagName)
+    {
+        // this resolver only handles simple namespaceless tagNames
+        if (tagName.Contains('.'))
             return null;
+
+        var lowerTagName = tagName.ToLower();
+        foreach (var ns in Namespaces)
+        {
+            var candidateName = ns + lowerTagName;
+            if (TypeCache.LowerCaseFullNameCache.TryGetValue(candidateName, out var type))
+                return type;
         }
+
+        return null;
     }
 }

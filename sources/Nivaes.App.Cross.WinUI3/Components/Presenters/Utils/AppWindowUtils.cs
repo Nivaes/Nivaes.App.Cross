@@ -1,13 +1,11 @@
-#nullable enable
 using System.Reflection;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using MvvmCross.Platforms.WinUi.Views;
 using WinRT.Interop;
 using Application = Microsoft.UI.Xaml.Application;
 
-namespace MvvmCross.Platforms.WinUi.Presenters.Utils;
+namespace Nivaes.App.Cross.WinUI3;
 
 /// <summary>
 /// Extension methods for MvxWindowsPage.
@@ -21,7 +19,7 @@ public static class AppWindowUtils
     /// <returns>False if no AppWindow can be retrieved.</returns>
     public static bool TryGetAppWindow(out AppWindow? appWindow)
     {
-        Window? mainWidow = (Application.Current as MvxApplication)?.MainWindow;
+        Window? mainWidow = (Application.Current as CrossApplication)?.MainWindow;
         appWindow = null;
 
         if (mainWidow is not null)

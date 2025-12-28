@@ -4,9 +4,8 @@ namespace Nivaes.App.Cross.WinUI3
     using System.Linq;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross;
-    using MvvmCross.Platforms.WinUi.Presenters.Attributes;
     using Nivaes.App.Cross;
+    using Nivaes.IoC;
 
     public static class MvxWindowsExtensions
     {

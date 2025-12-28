@@ -1,10 +1,12 @@
 namespace Nivaes.App.Cross
 {
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
     using MvvmCross.Plugin;
+    using Nivaes.IoC;
 
     public abstract class CrossSetup 
         : ICrossSetup
@@ -91,7 +93,7 @@ namespace Nivaes.App.Cross
                 State = CrossSetupState.InitializingPrimary;
                 _iocProvider = InitializeIoC();
 
-                InitializeLoggingServices(_iocProvider);
+                InitializeLoggingServices();
 
                 // Register the default setup dependencies before
                 // invoking the static call back.
@@ -372,25 +374,23 @@ namespace Nivaes.App.Cross
             // base class implementation is empty by default
         }
 
-        protected virtual void InitializeLoggingServices(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLoggingServices()
         {
-            ValidateArguments(iocProvider);
-
-            var logProvider = CreateLogProvider();
-            var loggerFactory = CreateLogFactory();
-
-            if (logProvider != null)
+            // ToDo: Incluir esto en CrossIoCServiceContainer
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddDelegate<ILoggerProvider>((container) =>
             {
-                iocProvider.RegisterSingleton(logProvider);
-                loggerFactory?.AddProvider(logProvider);
-            }
+                var logProvider = CreateLogProvider();
+                return logProvider;
+            });
 
-            if (loggerFactory != null)
+
+            container.AddDelegate<ILoggerFactory>((container) =>
             {
-                iocProvider.RegisterSingleton(loggerFactory);
-                iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
-                SetupLog = loggerFactory.CreateLogger<CrossSetup>();
-            }
+                var loggerFactory = CreateLogFactory();
+                return loggerFactory;
+            });
+            SetupLog = container.Resolve<ILoggerFactory>()?.CreateLogger<CrossSetup>();
         }
 
         protected abstract ILoggerProvider? CreateLogProvider();
@@ -683,6 +683,7 @@ namespace Nivaes.App.Cross
             StateChanged?.Invoke(this, new CrossSetupStateEventArgs(state));
         }
 
+        [Obsolete("No aporta nada")]
         protected static void ValidateArguments(IMvxIoCProvider iocProvider)
         {
             ArgumentNullException.ThrowIfNull(iocProvider);

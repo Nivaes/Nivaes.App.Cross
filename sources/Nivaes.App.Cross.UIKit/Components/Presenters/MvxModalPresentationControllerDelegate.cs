@@ -4,7 +4,7 @@
 #nullable enable
 
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using Nivaes.App.Cross.UIKit;
+using Nivaes.App.Cross.UIKitOS;
 
 namespace MvvmCross.Platforms.Ios.Presenters;
 

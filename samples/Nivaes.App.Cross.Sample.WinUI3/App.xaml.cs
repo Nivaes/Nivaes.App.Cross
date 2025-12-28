@@ -1,29 +1,25 @@
-﻿namespace Playground.WinUi
+﻿using Microsoft.UI.Xaml;
+
+namespace Nivaes.App.Cross.Sample.WinUI3;
+
+public sealed partial class App 
+    : Nivaes.App.Cross.WinUI3.CrossApplication
 {
-    using Microsoft.UI.Xaml;
-    using MvvmCross.Platforms.WinUi.Views;
-    using Nivaes.App.Cross;
-    using Playground.WinUi3;
-
-    public sealed partial class App 
-        : MvxApplication
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        protected override Window CreateWindow()
+    protected override Window CreateWindow()
+    {
+        return new Window()
         {
-            return new Window()
-            {
-                Title = "MvvmCross WinUI 3 Playground"
-            };
-        }
+            Title = "MvvmCross WinUI 3 Playground"
+        };
+    }
 
-        protected override void RegisterSetup()
-        {
-            this.RegisterSetupType<WinUiPlaygroundSetup>();
-        }
+    protected override void RegisterSetup()
+    {
+        this.RegisterSetupType<WinUiPlaygroundSetup>();
     }
 }

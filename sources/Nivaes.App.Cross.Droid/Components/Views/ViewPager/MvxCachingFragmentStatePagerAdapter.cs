@@ -1,22 +1,18 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.OS;
 using Android.Runtime;
+using AndroidX.Core.OS;
+using AndroidX.Fragment.App;
+using Java.Interop;
+using Java.Lang;
+using Nivaes.IoC;
+using Fragment = AndroidX.Fragment.App.Fragment;
+using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using JavaObject = Java.Lang.Object;
+using JavaString = Java.Lang.String;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using AndroidX.Core.OS;
-    using AndroidX.Fragment.App;
-    using Java.Interop;
-    using Java.Lang;
-    using MvvmCross;
-    using Nivaes.App.Cross;
-    using Fragment = AndroidX.Fragment.App.Fragment;
-    using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-    using JavaObject = Java.Lang.Object;
-    using JavaString = Java.Lang.String;
-
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
     public class MvxCachingFragmentStatePagerAdapter 
         : MvxCachingFragmentPagerAdapter

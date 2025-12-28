@@ -1,24 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
 using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Activities
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxActivityPresentation]
+[Activity(Theme = "@style/AppTheme")]
+[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+public sealed class CollectionView 
+    : MvxActivity<CollectionViewModel>
 {
-    [MvxActivityPresentation]
-    [Activity(Theme = "@style/AppTheme")]
-    [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-    public sealed class CollectionView 
-        : MvxActivity<CollectionViewModel>
+    protected override void OnCreate(Bundle? savedInstanceState)
     {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.CollectionView);
-        }
+        SetContentView(Resource.Layout.CollectionView);
     }
 }

@@ -1,13 +1,10 @@
-namespace Playground.Droid
+namespace Nivaes.App.Cross.Sample
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.Plugin;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
-    using Playground.Core;
     using Playground.Droid.Bindings;
     using Playground.Droid.Controls;
     using Serilog;

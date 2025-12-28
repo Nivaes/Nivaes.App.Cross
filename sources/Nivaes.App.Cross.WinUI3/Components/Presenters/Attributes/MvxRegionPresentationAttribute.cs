@@ -1,15 +1,12 @@
-namespace MvvmCross.Platforms.WinUi.Presenters.Attributes
+namespace Nivaes.App.Cross.WinUI3;
+
+public sealed class MvxRegionPresentationAttribute 
+    : CrossBasePresentationAttribute
 {
-    using Nivaes.App.Cross;
-
-    public sealed class MvxRegionPresentationAttribute 
-        : CrossBasePresentationAttribute
+    public MvxRegionPresentationAttribute(string? regionName = null)
     {
-        public MvxRegionPresentationAttribute(string? regionName = null)
-        {
-            Name = regionName;
-        }
-
-        public string? Name { get; private set; }
+        Name = regionName;
     }
+
+    public string? Name { get; private set; }
 }

@@ -1,15 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
+using Playground.Droid.Fragments;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame, AddToBackStack = true)]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]

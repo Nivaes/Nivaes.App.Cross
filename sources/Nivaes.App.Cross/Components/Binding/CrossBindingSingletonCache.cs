@@ -1,140 +1,139 @@
-namespace Nivaes.App.Cross
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross;
+
+// this class is not perfect OO and it gets in the way of testing
+// however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding
+public class CrossBindingSingletonCache
+    : CrossSingleton<ICrossBindingSingletonCache>, ICrossBindingSingletonCache
 {
-    using MvvmCross;
-
-    // this class is not perfect OO and it gets in the way of testing
-    // however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding
-    public class CrossBindingSingletonCache
-        : CrossSingleton<ICrossBindingSingletonCache>, ICrossBindingSingletonCache
+    public static ICrossBindingSingletonCache Initialize()
     {
-        public static ICrossBindingSingletonCache Initialize()
-        {
-            if (Instance != null)
-                throw new CrossException("You should only initialize MvxBindingSingletonCache once");
+        if (Instance != null)
+            throw new CrossException("You should only initialize MvxBindingSingletonCache once");
 
-            var instance = new CrossBindingSingletonCache();
-            return instance;
+        var instance = new CrossBindingSingletonCache();
+        return instance;
+    }
+
+    private ICrossAutoValueConverters _autoValueConverters;
+    private ICrossBindingDescriptionParser _bindingDescriptionParser;
+    private ICrossSourceBindingFactory _sourceBindingFactory;
+    private ICrossTargetBindingFactory _targetBindingFactory;
+    private ICrossLanguageBindingParser _languageParser;
+    private ICrossPropertyExpressionParser _propertyExpressionParser;
+    private ICrossValueConverterLookup _valueConverterLookup;
+    private ICrossBindingNameLookup _defaultBindingName;
+    private ICrossBinder _binder;
+    private ICrossSourceStepFactory _sourceStepFactory;
+    private ICrossValueCombinerLookup _valueCombinerLookup;
+    private ICrossMainThreadAsyncDispatcher _mainThreadDispatcher;
+
+    public ICrossAutoValueConverters AutoValueConverters
+    {
+        get
+        {
+            _autoValueConverters = _autoValueConverters ?? Mvx.IoCProvider.Resolve<ICrossAutoValueConverters>();
+            return _autoValueConverters;
         }
+    }
 
-        private ICrossAutoValueConverters _autoValueConverters;
-        private ICrossBindingDescriptionParser _bindingDescriptionParser;
-        private ICrossSourceBindingFactory _sourceBindingFactory;
-        private ICrossTargetBindingFactory _targetBindingFactory;
-        private ICrossLanguageBindingParser _languageParser;
-        private ICrossPropertyExpressionParser _propertyExpressionParser;
-        private ICrossValueConverterLookup _valueConverterLookup;
-        private ICrossBindingNameLookup _defaultBindingName;
-        private ICrossBinder _binder;
-        private ICrossSourceStepFactory _sourceStepFactory;
-        private ICrossValueCombinerLookup _valueCombinerLookup;
-        private ICrossMainThreadAsyncDispatcher _mainThreadDispatcher;
-
-        public ICrossAutoValueConverters AutoValueConverters
+    public ICrossBindingDescriptionParser BindingDescriptionParser
+    {
+        get
         {
-            get
-            {
-                _autoValueConverters = _autoValueConverters ?? Mvx.IoCProvider.Resolve<ICrossAutoValueConverters>();
-                return _autoValueConverters;
-            }
+            _bindingDescriptionParser = _bindingDescriptionParser ?? Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
+            return _bindingDescriptionParser;
         }
+    }
 
-        public ICrossBindingDescriptionParser BindingDescriptionParser
+    public ICrossLanguageBindingParser LanguageParser
+    {
+        get
         {
-            get
-            {
-                _bindingDescriptionParser = _bindingDescriptionParser ?? Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
-                return _bindingDescriptionParser;
-            }
+            _languageParser = _languageParser ?? Mvx.IoCProvider.Resolve<ICrossLanguageBindingParser>();
+            return _languageParser;
         }
+    }
 
-        public ICrossLanguageBindingParser LanguageParser
+    public ICrossPropertyExpressionParser PropertyExpressionParser
+    {
+        get
         {
-            get
-            {
-                _languageParser = _languageParser ?? Mvx.IoCProvider.Resolve<ICrossLanguageBindingParser>();
-                return _languageParser;
-            }
+            _propertyExpressionParser = _propertyExpressionParser ?? Mvx.IoCProvider.Resolve<ICrossPropertyExpressionParser>();
+            return _propertyExpressionParser;
         }
+    }
 
-        public ICrossPropertyExpressionParser PropertyExpressionParser
+    public ICrossValueConverterLookup ValueConverterLookup
+    {
+        get
         {
-            get
-            {
-                _propertyExpressionParser = _propertyExpressionParser ?? Mvx.IoCProvider.Resolve<ICrossPropertyExpressionParser>();
-                return _propertyExpressionParser;
-            }
+            _valueConverterLookup = _valueConverterLookup ?? Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
+            return _valueConverterLookup;
         }
+    }
 
-        public ICrossValueConverterLookup ValueConverterLookup
+    public ICrossValueCombinerLookup ValueCombinerLookup
+    {
+        get
         {
-            get
-            {
-                _valueConverterLookup = _valueConverterLookup ?? Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
-                return _valueConverterLookup;
-            }
+            _valueCombinerLookup = _valueCombinerLookup ?? Mvx.IoCProvider.Resolve<ICrossValueCombinerLookup>();
+            return _valueCombinerLookup;
         }
+    }
 
-        public ICrossValueCombinerLookup ValueCombinerLookup
+    public ICrossBindingNameLookup DefaultBindingNameLookup
+    {
+        get
         {
-            get
-            {
-                _valueCombinerLookup = _valueCombinerLookup ?? Mvx.IoCProvider.Resolve<ICrossValueCombinerLookup>();
-                return _valueCombinerLookup;
-            }
+            _defaultBindingName = _defaultBindingName ?? Mvx.IoCProvider.Resolve<ICrossBindingNameLookup>();
+            return _defaultBindingName;
         }
+    }
 
-        public ICrossBindingNameLookup DefaultBindingNameLookup
+    public ICrossBinder Binder
+    {
+        get
         {
-            get
-            {
-                _defaultBindingName = _defaultBindingName ?? Mvx.IoCProvider.Resolve<ICrossBindingNameLookup>();
-                return _defaultBindingName;
-            }
+            _binder = _binder ?? Mvx.IoCProvider.Resolve<ICrossBinder>();
+            return _binder;
         }
+    }
 
-        public ICrossBinder Binder
+    public ICrossSourceBindingFactory SourceBindingFactory
+    {
+        get
         {
-            get
-            {
-                _binder = _binder ?? Mvx.IoCProvider.Resolve<ICrossBinder>();
-                return _binder;
-            }
+            _sourceBindingFactory = _sourceBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceBindingFactory>();
+            return _sourceBindingFactory;
         }
+    }
 
-        public ICrossSourceBindingFactory SourceBindingFactory
+    public ICrossTargetBindingFactory TargetBindingFactory
+    {
+        get
         {
-            get
-            {
-                _sourceBindingFactory = _sourceBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceBindingFactory>();
-                return _sourceBindingFactory;
-            }
+            _targetBindingFactory = _targetBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossTargetBindingFactory>();
+            return _targetBindingFactory;
         }
+    }
 
-        public ICrossTargetBindingFactory TargetBindingFactory
+    public ICrossSourceStepFactory SourceStepFactory
+    {
+        get
         {
-            get
-            {
-                _targetBindingFactory = _targetBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossTargetBindingFactory>();
-                return _targetBindingFactory;
-            }
+            _sourceStepFactory = _sourceStepFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceStepFactory>();
+            return _sourceStepFactory;
         }
+    }
 
-        public ICrossSourceStepFactory SourceStepFactory
+    public ICrossMainThreadAsyncDispatcher MainThreadDispatcher
+    {
+        get
         {
-            get
-            {
-                _sourceStepFactory = _sourceStepFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceStepFactory>();
-                return _sourceStepFactory;
-            }
-        }
-
-        public ICrossMainThreadAsyncDispatcher MainThreadDispatcher
-        {
-            get
-            {
-                _mainThreadDispatcher = _mainThreadDispatcher ?? Mvx.IoCProvider.Resolve<ICrossMainThreadAsyncDispatcher>();
-                return _mainThreadDispatcher;
-            }
+            _mainThreadDispatcher = _mainThreadDispatcher ?? Mvx.IoCProvider.Resolve<ICrossMainThreadAsyncDispatcher>();
+            return _mainThreadDispatcher;
         }
     }
 }

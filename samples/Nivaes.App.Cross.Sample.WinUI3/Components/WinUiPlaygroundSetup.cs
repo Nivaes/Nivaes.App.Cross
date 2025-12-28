@@ -1,25 +1,23 @@
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.WinUI3;
-using Playground.Core;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace Playground.WinUi3
+namespace Nivaes.App.Cross.Sample.WinUI3;
+
+public class WinUiPlaygroundSetup : MvxWindowsSetup<Nivaes.App.Cross.Sample.App>
 {
-    public class WinUiPlaygroundSetup : MvxWindowsSetup<App>
+    protected override ILoggerProvider CreateLogProvider()
     {
-        protected override ILoggerProvider CreateLogProvider()
-        {
-            return new SerilogLoggerProvider();
-        }
+        return new SerilogLoggerProvider();
+    }
 
-        protected override ILoggerFactory CreateLogFactory()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .CreateLogger();
+    protected override ILoggerFactory CreateLogFactory()
+    {
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .CreateLogger();
 
-            return new SerilogLoggerFactory();
-        }
+        return new SerilogLoggerFactory();
     }
 }

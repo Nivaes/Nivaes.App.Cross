@@ -1,33 +1,31 @@
-namespace Playground.Core.ViewModels.Bindings
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class FluentBindingViewModel : BaseViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    bool _bindingsEnabled = true;
 
-    public class FluentBindingViewModel : BaseViewModel
+    public FluentBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
+        : base(loggerFactory, navigationService)
     {
-        bool _bindingsEnabled = true;
+        ClearBindingsCommand = new CrossCommand(ClearBindings);
+    }
 
-        public FluentBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
-            : base(loggerFactory, navigationService)
-        {
-            ClearBindingsCommand = new CrossCommand(ClearBindings);
-        }
+    public ICrossCommand ClearBindingsCommand { get; }
 
-        public ICrossCommand ClearBindingsCommand { get; }
+    public MvxInteraction<bool> ClearBindingInteraction { get; } = new MvxInteraction<bool>();
 
-        public MvxInteraction<bool> ClearBindingInteraction { get; } = new MvxInteraction<bool>();
+    string _textValue;
+    public string TextValue
+    {
+        get => _textValue;
+        set => SetProperty(ref _textValue, value);
+    }
 
-        string _textValue;
-        public string TextValue
-        {
-            get => _textValue;
-            set => SetProperty(ref _textValue, value);
-        }
-
-        void ClearBindings()
-        {
-            _bindingsEnabled = !_bindingsEnabled;
-            ClearBindingInteraction.Raise(_bindingsEnabled);
-        }
+    void ClearBindings()
+    {
+        _bindingsEnabled = !_bindingsEnabled;
+        ClearBindingInteraction.Raise(_bindingsEnabled);
     }
 }

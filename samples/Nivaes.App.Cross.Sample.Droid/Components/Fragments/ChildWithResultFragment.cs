@@ -1,12 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Playground.Core.ViewModels;
-using Playground.Core.ViewModels.Navigation;
 using Playground.Droid.Extensions;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments;
+namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
     Resource.Animation.abc_fade_in,

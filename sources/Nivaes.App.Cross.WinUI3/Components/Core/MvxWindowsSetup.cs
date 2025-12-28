@@ -1,179 +1,178 @@
-namespace Nivaes.App.Cross.WinUI3
+using System.Reflection;
+using Microsoft.UI.Xaml.Controls;
+using MvvmCross.IoC;
+
+namespace Nivaes.App.Cross.WinUI3;
+
+public abstract class MvxWindowsSetup
+    : CrossSetup, IMvxWindowsSetup
 {
-    using System.Reflection;
-    using Microsoft.UI.Xaml.Controls;
-    using MvvmCross.IoC;
-    using MvvmCross.Platforms.WinUi.Views;
+    private IMvxWindowsFrame? _rootFrame;
+    private string? _suspensionManagerSessionStateKey;
+    private IMvxWindowsViewPresenter? _presenter;
 
-    public abstract class MvxWindowsSetup
-        : CrossSetup, IMvxWindowsSetup
+    public virtual void PlatformInitialize(Frame rootFrame, string activatedEventArgs,
+        string? suspensionManagerSessionStateKey = null)
     {
-        private IMvxWindowsFrame? _rootFrame;
-        private string? _suspensionManagerSessionStateKey;
-        private IMvxWindowsViewPresenter? _presenter;
+        PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);
+        ActivationArguments = activatedEventArgs;
+    }
 
-        public virtual void PlatformInitialize(Frame rootFrame, string activatedEventArgs,
-            string? suspensionManagerSessionStateKey = null)
-        {
-            PlatformInitialize(rootFrame, suspensionManagerSessionStateKey);
-            ActivationArguments = activatedEventArgs;
-        }
+    public virtual void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
+    {
+        PlatformInitialize(new MvxWrappedFrame(rootFrame));
+        _suspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
+    }
 
-        public virtual void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
-        {
-            PlatformInitialize(new MvxWrappedFrame(rootFrame));
-            _suspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
-        }
+    public virtual void PlatformInitialize(IMvxWindowsFrame rootFrame)
+    {
+        _rootFrame = rootFrame;
+    }
 
-        public virtual void PlatformInitialize(IMvxWindowsFrame rootFrame)
-        {
-            _rootFrame = rootFrame;
-        }
+    public virtual void UpdateActivationArguments(string e)
+    {
+        ActivationArguments = e;
+    }
 
-        public virtual void UpdateActivationArguments(string e)
-        {
-            ActivationArguments = e;
-        }
+    protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+    {
+        InitializeSuspensionManager(iocProvider);
+        RegisterPresenter(iocProvider);
+        base.InitializeFirstChance(iocProvider);
+    }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
-        {
-            InitializeSuspensionManager(iocProvider);
-            RegisterPresenter(iocProvider);
-            base.InitializeFirstChance(iocProvider);
-        }
+    protected virtual void InitializeSuspensionManager(IMvxIoCProvider iocProvider)
+    {
+        ValidateArguments(iocProvider);
 
-        protected virtual void InitializeSuspensionManager(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
+        var suspensionManager = CreateSuspensionManager();
+        iocProvider.RegisterSingleton(suspensionManager);
 
-            var suspensionManager = CreateSuspensionManager();
-            iocProvider.RegisterSingleton(suspensionManager);
+        if (_suspensionManagerSessionStateKey != null)
+            suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
+    }
 
-            if (_suspensionManagerSessionStateKey != null)
-                suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
-        }
+    protected virtual ICrossSuspensionManager CreateSuspensionManager()
+    {
+        return new CrossSuspensionManager();
+    }
 
-        protected virtual ICrossSuspensionManager CreateSuspensionManager()
-        {
-            return new CrossSuspensionManager();
-        }
+    protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+    {
+        var container = CreateStoreViewsContainer();
+        iocProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
+        iocProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
+        var viewsContainer = container as CrossViewsContainer;
+        if (viewsContainer == null)
+            throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
+        return container;
+    }
 
-        protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
-        {
-            var container = CreateStoreViewsContainer();
-            iocProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
-            iocProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
-            var viewsContainer = container as CrossViewsContainer;
-            if (viewsContainer == null)
-                throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
-            return container;
-        }
+    protected virtual IMvxStoreViewsContainer CreateStoreViewsContainer()
+    {
+        return new MvxWindowsViewsContainer();
+    }
 
-        protected virtual IMvxStoreViewsContainer CreateStoreViewsContainer()
-        {
-            return new MvxWindowsViewsContainer();
-        }
-
-        protected IMvxWindowsViewPresenter Presenter
-        {
-            get
-            {
-                if (_rootFrame == null)
-                    throw new InvalidOperationException("Cannot create View Presenter with null root frame");
-                _presenter ??= CreateViewPresenter(_rootFrame);
-                return _presenter;
-            }
-        }
-
-        protected virtual IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
-        {
-            return new MvxMultiWindowViewPresenter(rootFrame);
-        }
-
-        protected virtual MvxWindowsViewDispatcher CreateViewDispatcher(IMvxWindowsFrame rootFrame)
-        {
-            return new MvxWindowsViewDispatcher(Presenter, rootFrame);
-        }
-
-        protected override ICrossViewDispatcher CreateViewDispatcher()
+    protected IMvxWindowsViewPresenter Presenter
+    {
+        get
         {
             if (_rootFrame == null)
-                throw new InvalidOperationException("Cannot create View Dispatcher with null root frame");
-            return CreateViewDispatcher(_rootFrame);
-        }
-
-        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
-
-            var presenter = Presenter;
-            iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
-        }
-
-        protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
-        {
-            var bindingBuilder = CreateBindingBuilder();
-            bindingBuilder.DoRegistration(iocProvider);
-        }
-
-        protected virtual void FillBindingNames(ICrossBindingNameRegistry registry)
-        {
-            // this base class does nothing
-        }
-
-        protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
-        {
-            registry.Fill(ValueConverterAssemblies);
-            registry.Fill(ValueConverterHolders);
-        }
-
-        protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
-        {
-            // this base class does nothing
-        }
-
-        protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
-        {
-            // this base class does nothing
-        }
-
-        protected string? ActivationArguments { get; private set; }
-
-        protected virtual List<Type> ValueConverterHolders => new List<Type>();
-
-        protected virtual IEnumerable<Assembly> ValueConverterAssemblies
-        {
-            get
-            {
-                var toReturn = new List<Assembly>();
-                toReturn.AddRange(GetViewModelAssemblies());
-                toReturn.AddRange(GetViewAssemblies());
-                return toReturn;
-            }
-        }
-
-        protected virtual CrossBindingBuilder CreateBindingBuilder()
-        {
-            return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
-        }
-
-        protected override ICrossNameMapping CreateViewToViewModelNaming()
-        {
-            return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
+                throw new InvalidOperationException("Cannot create View Presenter with null root frame");
+            _presenter ??= CreateViewPresenter(_rootFrame);
+            return _presenter;
         }
     }
 
-    public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
-         where TApplication : class, ICrossApplication, new()
+    protected virtual IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
     {
-        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
-            iocProvider.IoCConstruct<TApplication>();
+        return new MvxMultiWindowViewPresenter(rootFrame);
+    }
 
-        public override IEnumerable<Assembly> GetViewModelAssemblies()
+    protected virtual MvxWindowsViewDispatcher CreateViewDispatcher(IMvxWindowsFrame rootFrame)
+    {
+        return new MvxWindowsViewDispatcher(Presenter, rootFrame);
+    }
+
+    protected override ICrossViewDispatcher CreateViewDispatcher()
+    {
+        if (_rootFrame == null)
+            throw new InvalidOperationException("Cannot create View Dispatcher with null root frame");
+        return CreateViewDispatcher(_rootFrame);
+    }
+
+    protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+    {
+        ValidateArguments(iocProvider);
+
+        var presenter = Presenter;
+        iocProvider.RegisterSingleton(presenter);
+        iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
+    }
+
+    protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
+    {
+        var bindingBuilder = CreateBindingBuilder();
+        bindingBuilder.DoRegistration(iocProvider);
+    }
+
+    protected virtual void FillBindingNames(ICrossBindingNameRegistry registry)
+    {
+        // this base class does nothing
+    }
+
+    protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
+    {
+        registry.Fill(ValueConverterAssemblies);
+        registry.Fill(ValueConverterHolders);
+    }
+
+    protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
+    {
+        // this base class does nothing
+    }
+
+    protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
+    {
+        // this base class does nothing
+    }
+
+    protected string? ActivationArguments { get; private set; }
+
+    protected virtual List<Type> ValueConverterHolders => new List<Type>();
+
+    protected virtual IEnumerable<Assembly> ValueConverterAssemblies
+    {
+        get
         {
-            return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+            var toReturn = new List<Assembly>();
+            toReturn.AddRange(GetViewModelAssemblies());
+            toReturn.AddRange(GetViewAssemblies());
+            return toReturn;
         }
     }
-#nullable restore
+
+    protected virtual CrossBindingBuilder CreateBindingBuilder()
+    {
+        return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
+    }
+
+    protected override ICrossNameMapping CreateViewToViewModelNaming()
+    {
+        return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
+    }
 }
+
+public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
+     where TApplication : class, ICrossApplication, new()
+{
+    protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
+        iocProvider.IoCConstruct<TApplication>();
+
+    public override IEnumerable<Assembly> GetViewModelAssemblies()
+    {
+        return new[] { typeof(TApplication).GetTypeInfo().Assembly };
+    }
+}
+#nullable restore
+

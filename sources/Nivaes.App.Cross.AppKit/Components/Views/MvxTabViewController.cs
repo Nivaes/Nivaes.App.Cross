@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.AppKit
+namespace Nivaes.App.Cross.AppKitOS
 {
     using ObjCRuntime;
 
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.AppKit
 
         public bool CloseTabView(ICrossViewModel viewModel)
         {
-            var index = ChildViewControllers.Select(v => (MvxViewController)v).ToList().FindIndex(vc => viewModel == vc.ViewModel);
+            var index = ChildViewControllers.Select(v => (CrossViewController)v).ToList().FindIndex(vc => viewModel == vc.ViewModel);
 
             if (index >= 0)
             {

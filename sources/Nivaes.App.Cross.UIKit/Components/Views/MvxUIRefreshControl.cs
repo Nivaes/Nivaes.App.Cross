@@ -1,5 +1,5 @@
 #if IOS || MACCATALYST
-namespace Nivaes.App.Cross.UIKit
+namespace Nivaes.App.Cross.UIKitOS
 {
 
     using System;

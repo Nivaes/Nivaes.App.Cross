@@ -1,10 +1,8 @@
+using Microsoft.UI.Xaml;
+using Nivaes.IoC;
+
 namespace Nivaes.App.Cross.WinUI3
 {
-    using Microsoft.UI.Xaml;
-    using MvvmCross;
-    using MvvmCross.Platforms.WinUi.Binding;
-    using Nivaes.App.Cross;
-
     // ReSharper disable InconsistentNaming
     public static class Bi
     // ReSharper restore InconsistentNaming

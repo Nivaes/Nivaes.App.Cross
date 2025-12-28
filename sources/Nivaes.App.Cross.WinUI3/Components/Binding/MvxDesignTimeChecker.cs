@@ -19,17 +19,20 @@ namespace Nivaes.App.Cross.WinUI3
             if (!DesignMode.DesignModeEnabled)
                 return;
 
-            if (CrossSingleton<IMvxIoCProvider>.Instance == null)
-            {
-                var iocProvider = MvxIoCProvider.Initialize();
-                Mvx.IoCProvider.RegisterSingleton(iocProvider);
-            }
+            throw new InvalidOperationException();
 
-            if (!Mvx.IoCProvider.CanResolve<ICrossBindingParser>())
-            {
-                var builder = new MvxWindowsBindingBuilder(bindingType: MvxWindowsBindingBuilder.BindingType.MvvmCross);
-                builder.DoRegistration(Mvx.IoCProvider);
-            }
+            //if (CrossSingleton<IMvxIoCProvider>.Instance == null)
+            //{
+            //    var iocProvider = MvxIoCProvider.Initialize();
+                
+            //    Mvx.IoCProvider.RegisterSingleton(iocProvider);
+            //}
+
+            //if (!Mvx.IoCProvider.CanResolve<ICrossBindingParser>())
+            //{
+            //    var builder = new MvxWindowsBindingBuilder(bindingType: MvxWindowsBindingBuilder.BindingType.MvvmCross);
+            //    builder.DoRegistration(Mvx.IoCProvider);
+            //}
         }
     }
 }

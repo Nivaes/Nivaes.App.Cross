@@ -1,9 +1,7 @@
-namespace Playground.Core.ViewModels
-{
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.Sample
+{
     public class SplitRootViewModel 
         : CrossNavigationViewModel
     {

@@ -1,91 +1,87 @@
 using Android.Content;
+using System;
 
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid;
+
+public abstract class MvxBaseActivityAdapter
 {
-    using System;
-    using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
+    private readonly IMvxEventSourceActivity _eventSource;
 
-    public abstract class MvxBaseActivityAdapter
+    protected Activity Activity => _eventSource as Activity;
+
+    protected MvxBaseActivityAdapter(IMvxEventSourceActivity eventSource)
     {
-        private readonly IMvxEventSourceActivity _eventSource;
+        _eventSource = eventSource;
 
-        protected Activity Activity => _eventSource as Activity;
+        _eventSource.CreateCalled += EventSourceOnCreateCalled;
+        _eventSource.CreateWillBeCalled += EventSourceOnCreateWillBeCalled;
+        _eventSource.StartCalled += EventSourceOnStartCalled;
+        _eventSource.RestartCalled += EventSourceOnRestartCalled;
+        _eventSource.ResumeCalled += EventSourceOnResumeCalled;
+        _eventSource.PauseCalled += EventSourceOnPauseCalled;
+        _eventSource.StopCalled += EventSourceOnStopCalled;
+        _eventSource.DestroyCalled += EventSourceOnDestroyCalled;
+        _eventSource.DisposeCalled += EventSourceOnDisposeCalled;
+        _eventSource.SaveInstanceStateCalled += EventSourceOnSaveInstanceStateCalled;
+        _eventSource.NewIntentCalled += EventSourceOnNewIntentCalled;
 
-        protected MvxBaseActivityAdapter(IMvxEventSourceActivity eventSource)
-        {
-            _eventSource = eventSource;
+        _eventSource.ActivityResultCalled += EventSourceOnActivityResultCalled;
+        _eventSource.StartActivityForResultCalled += EventSourceOnStartActivityForResultCalled;
+    }
 
-            _eventSource.CreateCalled += EventSourceOnCreateCalled;
-            _eventSource.CreateWillBeCalled += EventSourceOnCreateWillBeCalled;
-            _eventSource.StartCalled += EventSourceOnStartCalled;
-            _eventSource.RestartCalled += EventSourceOnRestartCalled;
-            _eventSource.ResumeCalled += EventSourceOnResumeCalled;
-            _eventSource.PauseCalled += EventSourceOnPauseCalled;
-            _eventSource.StopCalled += EventSourceOnStopCalled;
-            _eventSource.DestroyCalled += EventSourceOnDestroyCalled;
-            _eventSource.DisposeCalled += EventSourceOnDisposeCalled;
-            _eventSource.SaveInstanceStateCalled += EventSourceOnSaveInstanceStateCalled;
-            _eventSource.NewIntentCalled += EventSourceOnNewIntentCalled;
+    protected virtual void EventSourceOnSaveInstanceStateCalled(
+        object sender, CrossValueEventArgs<Bundle> eventArgs)
+    {
+    }
 
-            _eventSource.ActivityResultCalled += EventSourceOnActivityResultCalled;
-            _eventSource.StartActivityForResultCalled += EventSourceOnStartActivityForResultCalled;
-        }
+    protected virtual void EventSourceOnCreateWillBeCalled(
+        object sender, CrossValueEventArgs<Bundle> eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnSaveInstanceStateCalled(
-            object sender, CrossValueEventArgs<Bundle> eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnCreateWillBeCalled(
-            object sender, CrossValueEventArgs<Bundle> eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnStartActivityForResultCalled(
+        object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnStartActivityForResultCalled(
-            object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnDisposeCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnDisposeCalled(object sender, EventArgs eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    {
+    }
 
-        protected virtual void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
-        {
-        }
-
-        protected virtual void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
-        {
-        }
-
-        protected virtual void EventSourceOnActivityResultCalled(
-            object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
-        {
-        }
+    protected virtual void EventSourceOnActivityResultCalled(
+        object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
+    {
     }
 }

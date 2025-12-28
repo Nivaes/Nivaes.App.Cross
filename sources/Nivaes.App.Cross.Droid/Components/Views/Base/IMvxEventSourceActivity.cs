@@ -1,35 +1,32 @@
-namespace Nivaes.App.Cross.Droid
+using System;
+using Android.Content;
+
+namespace Nivaes.App.Cross.Droid;
+
+public interface IMvxEventSourceActivity 
+    : ICrossDisposeSource
 {
-    using System;
-    using Android.Content;
-    using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
+    event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
 
-    public interface IMvxEventSourceActivity 
-        : ICrossDisposeSource
-    {
-        event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
+    event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
 
-        event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
+    event EventHandler DestroyCalled;
 
-        event EventHandler DestroyCalled;
+    event EventHandler<CrossValueEventArgs<Intent>> NewIntentCalled;
 
-        event EventHandler<CrossValueEventArgs<Intent>> NewIntentCalled;
+    event EventHandler ResumeCalled;
 
-        event EventHandler ResumeCalled;
+    event EventHandler PauseCalled;
 
-        event EventHandler PauseCalled;
+    event EventHandler StartCalled;
 
-        event EventHandler StartCalled;
+    event EventHandler RestartCalled;
 
-        event EventHandler RestartCalled;
+    event EventHandler StopCalled;
 
-        event EventHandler StopCalled;
+    event EventHandler<CrossValueEventArgs<Bundle>> SaveInstanceStateCalled;
 
-        event EventHandler<CrossValueEventArgs<Bundle>> SaveInstanceStateCalled;
+    event EventHandler<CrossValueEventArgs<MvxStartActivityForResultParameters>> StartActivityForResultCalled;
 
-        event EventHandler<CrossValueEventArgs<MvxStartActivityForResultParameters>> StartActivityForResultCalled;
-
-        event EventHandler<CrossValueEventArgs<MvxActivityResultParameters>> ActivityResultCalled;
-    }
+    event EventHandler<CrossValueEventArgs<MvxActivityResultParameters>> ActivityResultCalled;
 }

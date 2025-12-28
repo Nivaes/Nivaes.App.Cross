@@ -1,5 +1,3 @@
-using MvvmCross.Localization;
-
 namespace Nivaes.App.Cross
 {
     public interface IMvxTextProviderBuilder

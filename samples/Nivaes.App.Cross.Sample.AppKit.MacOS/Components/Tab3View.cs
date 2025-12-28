@@ -1,14 +1,11 @@
-namespace Playground.Mac
-{
-    using CoreGraphics;
-    using MvvmCross.Platforms.Mac.Presenters.Attributes;
-    using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross.AppKit;
-    using Playground.Core.ViewModels;
+using MvvmCross.Platforms.Mac.Presenters.Attributes;
+using Nivaes.App.Cross.AppKitOS;
 
+namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
+{
     [MvxTabPresentation(TabTitle = "Tab3")]
     public class Tab3View 
-        : MvxViewController<Tab3ViewModel>
+        : CrossViewController<Tab3ViewModel>
     {
         public Tab3View() 
             : base()

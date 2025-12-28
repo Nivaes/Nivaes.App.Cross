@@ -1,26 +1,24 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class NestedChildViewModel
+    : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class NestedChildViewModel
-        : CrossNavigationViewModel
+    public NestedChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
     {
-        public NestedChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
-        {
-            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
-            PopToChildCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopPresentationHint(typeof(ChildViewModel))));
-            PopToRootCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopToRootPresentationHint()));
-            RemoveCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossRemovePresentationHint(typeof(SecondChildViewModel))));
-        }
-
-        public ICrossAsyncCommand CloseCommand { get; }
-
-        public ICrossAsyncCommand PopToChildCommand { get; }
-
-        public ICrossAsyncCommand PopToRootCommand { get; }
-
-        public ICrossAsyncCommand RemoveCommand { get; }
+        CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
+        PopToChildCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopPresentationHint(typeof(ChildViewModel))));
+        PopToRootCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopToRootPresentationHint()));
+        RemoveCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossRemovePresentationHint(typeof(SecondChildViewModel))));
     }
+
+    public ICrossAsyncCommand CloseCommand { get; }
+
+    public ICrossAsyncCommand PopToChildCommand { get; }
+
+    public ICrossAsyncCommand PopToRootCommand { get; }
+
+    public ICrossAsyncCommand RemoveCommand { get; }
 }

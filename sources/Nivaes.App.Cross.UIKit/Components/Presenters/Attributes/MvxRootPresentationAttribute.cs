@@ -1,22 +1,17 @@
+namespace Nivaes.App.Cross.UIKitOS;
 
-
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+public class MvxRootPresentationAttribute 
+    : CrossBasePresentationAttribute
 {
-    using Nivaes.App.Cross;
+    public static readonly float DefaultAnimationDuration = 1.0f;
 
-    public class MvxRootPresentationAttribute 
-        : CrossBasePresentationAttribute
-    {
-        public static readonly float DefaultAnimationDuration = 1.0f;
+    public static readonly bool DefaultWrapInNavigationController = false;
 
-        public static readonly bool DefaultWrapInNavigationController = false;
+    public static readonly UIViewAnimationOptions DefaultAnimationOptions = UIViewAnimationOptions.TransitionNone;
 
-        public static readonly UIViewAnimationOptions DefaultAnimationOptions = UIViewAnimationOptions.TransitionNone;
+    public float AnimationDuration { get; set; } = DefaultAnimationDuration;
 
-        public float AnimationDuration { get; set; } = DefaultAnimationDuration;
+    public UIViewAnimationOptions AnimationOptions { get; set; } = DefaultAnimationOptions;
 
-        public UIViewAnimationOptions AnimationOptions { get; set; } = DefaultAnimationOptions;
-
-        public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
-    }
+    public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
 }

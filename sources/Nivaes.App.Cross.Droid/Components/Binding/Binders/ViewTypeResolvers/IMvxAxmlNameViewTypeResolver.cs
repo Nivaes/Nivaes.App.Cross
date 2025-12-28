@@ -1,13 +1,6 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
+namespace Nivaes.App.Cross.Droid;
 
-using System.Collections.Generic;
-
-namespace MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers
+public interface IMvxAxmlNameViewTypeResolver
 {
-    public interface IMvxAxmlNameViewTypeResolver
-    {
-        IDictionary<string, string> ViewNamespaceAbbreviations { get; }
-    }
+    IDictionary<string, string> ViewNamespaceAbbreviations { get; }
 }

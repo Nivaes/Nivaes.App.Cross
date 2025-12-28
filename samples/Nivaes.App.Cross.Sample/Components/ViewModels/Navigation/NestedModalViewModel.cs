@@ -1,20 +1,18 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class NestedModalViewModel : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class NestedModalViewModel : CrossNavigationViewModel
+    public NestedModalViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
+        : base(logFactory, navigationService)
     {
-        public NestedModalViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-            : base(logFactory, navigationService)
-        {
-            CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
+        CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
-            ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
-        }
-
-        public ICrossAsyncCommand ShowTabsCommand { get; }
-
-        public ICrossAsyncCommand CloseCommand { get; }
+        ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
     }
+
+    public ICrossAsyncCommand ShowTabsCommand { get; }
+
+    public ICrossAsyncCommand CloseCommand { get; }
 }

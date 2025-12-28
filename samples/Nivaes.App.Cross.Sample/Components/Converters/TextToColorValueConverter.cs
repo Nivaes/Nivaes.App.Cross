@@ -1,8 +1,7 @@
 using System.Drawing;
 using System.Globalization;
-using Nivaes.App.Cross.Color;
 
-namespace Playground.Core.Converters;
+namespace Nivaes.App.Cross.Sample;
 
 // Sample converter to show issue found in GH issue #4803
 public sealed class TextToColorValueConverter : CrossColorValueConverter

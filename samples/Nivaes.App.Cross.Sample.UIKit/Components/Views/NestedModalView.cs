@@ -1,33 +1,28 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxModalPresentation(WrapInNavigationController = true)]
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public partial class NestedModalView : MvxViewController<NestedModalViewModel>
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-    using UIKit;
-
-    [MvxFromStoryboard("Main")]
-    [MvxModalPresentation(WrapInNavigationController = true)]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class NestedModalView : MvxViewController<NestedModalViewModel>
+    public NestedModalView(NativeHandle handle) : base(handle)
     {
-        public NestedModalView(NativeHandle handle) : base(handle)
-        {
-        }
+    }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+    public override void ViewDidLoad()
+    {
+        base.ViewDidLoad();
 
-            View.BackgroundColor = UIColor.Orange;
+        View?.BackgroundColor = UIColor.Orange;
 
-            var set = CreateBindingSet();
-            set.Bind(btnTabs).To(vm => vm.ShowTabsCommand);
-            set.Bind(btnClose).To(vm => vm.CloseCommand);
-            set.Apply();
-        }
+        var set = CreateBindingSet();
+        set.Bind(btnTabs).To(vm => vm.ShowTabsCommand);
+        set.Bind(btnClose).To(vm => vm.CloseCommand);
+        set.Apply();
     }
 }

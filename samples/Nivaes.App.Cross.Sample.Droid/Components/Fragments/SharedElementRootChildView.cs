@@ -6,13 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Playground.Droid.Activities;
 using Playground.Droid.Adapter;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
     [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]

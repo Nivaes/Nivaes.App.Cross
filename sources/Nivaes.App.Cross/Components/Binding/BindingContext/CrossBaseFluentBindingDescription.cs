@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
-    using MvvmCross;
+    using Nivaes.IoC;
 
     public class CrossBaseFluentBindingDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>
         : CrossApplicableTo<TTarget>, ICrossBaseFluentBindingDescription
@@ -55,7 +55,7 @@ namespace Nivaes.App.Cross
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
                 var parser = Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
-                var parsedDescription = parser.ParseSingle(_freeText);
+                var parsedDescription = parser?.ParseSingle(_freeText);
 
                 if (inputs.Converter == null
                     && inputs.FallbackValue == null)

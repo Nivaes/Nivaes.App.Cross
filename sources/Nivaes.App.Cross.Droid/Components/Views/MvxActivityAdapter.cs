@@ -1,111 +1,107 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Microsoft.Extensions.Logging;
+using Nivaes.IoC;
 
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid;
+
+[RequiresUnreferencedCode("Loading ViewModels requires unreferenced code")]
+public class MvxActivityAdapter : MvxBaseActivityAdapter
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
-    using MvvmCross.Platforms.Android.Core;
-    using MvvmCross.Platforms.Android.Views.Base;
+    protected IMvxAndroidView AndroidView => Activity as IMvxAndroidView;
 
-    [RequiresUnreferencedCode("Loading ViewModels requires unreferenced code")]
-    public class MvxActivityAdapter : MvxBaseActivityAdapter
+    public MvxActivityAdapter(IMvxEventSourceActivity eventSource)
+        : base(eventSource)
     {
-        protected IMvxAndroidView AndroidView => Activity as IMvxAndroidView;
+    }
 
-        public MvxActivityAdapter(IMvxEventSourceActivity eventSource)
-            : base(eventSource)
+    protected override void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewStop();
+    }
+
+    protected override void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewStart();
+    }
+
+    protected override void EventSourceOnStartActivityForResultCalled(
+        object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+    {
+        var requestCode = eventArgs.Value.RequestCode;
+        switch (requestCode)
         {
+            case (int)MvxIntentRequestCode.PickFromFile:
+                CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                    "Warning - activity request code may clash with Mvx code for {requestCode}",
+                    (MvxIntentRequestCode)requestCode);
+                break;
         }
+    }
 
-        protected override void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
-        {
-            AndroidView.OnViewStop();
-        }
+    protected override void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewResume();
+    }
 
-        protected override void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
-        {
-            AndroidView.OnViewStart();
-        }
+    protected override void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewRestart();
+    }
 
-        protected override void EventSourceOnStartActivityForResultCalled(
-            object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+    protected override void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewPause();
+    }
+
+    protected override void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
+    {
+        AndroidView.OnViewNewIntent();
+    }
+
+    protected override void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
+    {
+        AndroidView.OnViewDestroy();
+    }
+
+    protected override void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    {
+        AndroidView.OnViewCreate(eventArgs.Value);
+    }
+
+    protected override void EventSourceOnSaveInstanceStateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    {
+        var mvxBundle = AndroidView.CreateSaveStateBundle();
+        if (mvxBundle != null)
         {
-            var requestCode = eventArgs.Value.RequestCode;
-            switch (requestCode)
+            if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
             {
-                case (int)MvxIntentRequestCode.PickFromFile:
-                    CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
-                        "Warning - activity request code may clash with Mvx code for {requestCode}",
-                        (MvxIntentRequestCode)requestCode);
-                    break;
+                CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                    "Saved state converter not available - saving state will be hard");
+            }
+            else
+            {
+                converter.Write(eventArgs.Value, mvxBundle);
             }
         }
 
-        protected override void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
+        if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
         {
-            AndroidView.OnViewResume();
+            cache.Cache(AndroidView.ViewModel, eventArgs.Value);
         }
+    }
 
-        protected override void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnActivityResultCalled(
+        object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
+    {
+        if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
         {
-            AndroidView.OnViewRestart();
-        }
-
-        protected override void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
-        {
-            AndroidView.OnViewPause();
-        }
-
-        protected override void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
-        {
-            AndroidView.OnViewNewIntent();
-        }
-
-        protected override void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
-        {
-            AndroidView.OnViewDestroy();
-        }
-
-        protected override void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
-        {
-            AndroidView.OnViewCreate(eventArgs.Value);
-        }
-
-        protected override void EventSourceOnSaveInstanceStateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
-        {
-            var mvxBundle = AndroidView.CreateSaveStateBundle();
-            if (mvxBundle != null)
-            {
-                if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
-                {
-                    CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
-                        "Saved state converter not available - saving state will be hard");
-                }
-                else
-                {
-                    converter.Write(eventArgs.Value, mvxBundle);
-                }
-            }
-
-            if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
-            {
-                cache.Cache(AndroidView.ViewModel, eventArgs.Value);
-            }
-        }
-
-        protected override void EventSourceOnActivityResultCalled(
-            object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
-        {
-            if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
-            {
-                var resultParameters = eventArgs.Value;
-                var intentResult = new MvxIntentResultEventArgs(
-                    resultParameters.RequestCode,
-                    resultParameters.ResultCode,
-                    resultParameters.Data);
-                sink.OnResult(intentResult);
-            }
+            var resultParameters = eventArgs.Value;
+            var intentResult = new MvxIntentResultEventArgs(
+                resultParameters.RequestCode,
+                resultParameters.ResultCode,
+                resultParameters.Data);
+            sink.OnResult(intentResult);
         }
     }
 }

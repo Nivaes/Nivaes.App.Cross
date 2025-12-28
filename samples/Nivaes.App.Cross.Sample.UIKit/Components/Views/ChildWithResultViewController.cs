@@ -1,98 +1,95 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross.Sample;
+
+namespace Nivaes.App.Cross.UIKitOS;
+
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using Playground.Core.ViewModels.Navigation;
+    private UITextField? _message;
+    private UITextField? _value;
+    private UIButton? _close;
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
+    public override void LoadView()
     {
-        private UITextField _message;
-        private UITextField _value;
-        private UIButton _close;
+        base.LoadView();
 
-        public override void LoadView()
+        _message = new UITextField
         {
-            base.LoadView();
+            TranslatesAutoresizingMaskIntoConstraints = false,
+            KeyboardType = UIKeyboardType.Default,
+            ReturnKeyType = UIReturnKeyType.Next,
+            ShouldReturn = ShouldReturn,
+            TextColor = UIColor.White
+        };
 
-            _message = new UITextField
-            {
-                TranslatesAutoresizingMaskIntoConstraints = false,
-                KeyboardType = UIKeyboardType.Default,
-                ReturnKeyType = UIReturnKeyType.Next,
-                ShouldReturn = ShouldReturn,
-                TextColor = UIColor.White
-            };
+        _value = new UITextField
+        {
+            TranslatesAutoresizingMaskIntoConstraints = false,
+            KeyboardType = UIKeyboardType.NumberPad,
+            ReturnKeyType = UIReturnKeyType.Done,
+            ShouldReturn = ShouldReturn,
+            TextColor = UIColor.White
+        };
 
-            _value = new UITextField
-            {
-                TranslatesAutoresizingMaskIntoConstraints = false,
-                KeyboardType = UIKeyboardType.NumberPad,
-                ReturnKeyType = UIReturnKeyType.Done,
-                ShouldReturn = ShouldReturn,
-                TextColor = UIColor.White
-            };
+        _close = new UIButton { TranslatesAutoresizingMaskIntoConstraints = false };
+        _close.SetTitle("Close", UIControlState.Normal);
 
-            _close = new UIButton { TranslatesAutoresizingMaskIntoConstraints = false };
-            _close.SetTitle("Close", UIControlState.Normal);
+        Add(_message);
+        Add(_value);
+        Add(_close);
 
-            Add(_message);
-            Add(_value);
-            Add(_close);
+        NSLayoutConstraint.ActivateConstraints([
+            _message.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor, 16),
+        _message.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
+        _message.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -16),
+        _message.HeightAnchor.ConstraintEqualTo(40),
 
-            NSLayoutConstraint.ActivateConstraints([
-                _message.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor, 16),
-            _message.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-            _message.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -16),
-            _message.HeightAnchor.ConstraintEqualTo(40),
+        _value.TopAnchor.ConstraintEqualTo(_message.BottomAnchor, 16),
+        _value.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
+        _value.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16),
+        _value.HeightAnchor.ConstraintEqualTo(40),
 
-            _value.TopAnchor.ConstraintEqualTo(_message.BottomAnchor, 16),
-            _value.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-            _value.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16),
-            _value.HeightAnchor.ConstraintEqualTo(40),
+        _close.TopAnchor.ConstraintEqualTo(_value.BottomAnchor, 16),
+        _close.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
+        _close.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16)
+        ]);
+    }
 
-            _close.TopAnchor.ConstraintEqualTo(_value.BottomAnchor, 16),
-            _close.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-            _close.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16)
-            ]);
+    private bool ShouldReturn(UITextField textfield)
+    {
+        if (textfield.Equals(_message))
+        {
+            _message.ResignFirstResponder();
+            _value.BecomeFirstResponder();
+            return true;
         }
 
-        private bool ShouldReturn(UITextField textfield)
+        if (textfield.Equals(_value))
         {
-            if (textfield.Equals(_message))
-            {
-                _message.ResignFirstResponder();
-                _value.BecomeFirstResponder();
-                return true;
-            }
-
-            if (textfield.Equals(_value))
-            {
-                _message.ResignFirstResponder();
-                _value.ResignFirstResponder();
-                return true;
-            }
-
-            return false;
+            _message.ResignFirstResponder();
+            _value.ResignFirstResponder();
+            return true;
         }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+        return false;
+    }
 
-            var set = CreateBindingSet();
-            set.Bind(_message).To(vm => vm.Message).TwoWay();
-            set.Bind(_value).To(vm => vm.Value).TwoWay();
-            set.Bind(_close).To(vm => vm.CloseCommand);
-            set.Apply();
-        }
+    public override void ViewDidLoad()
+    {
+        base.ViewDidLoad();
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
+        var set = CreateBindingSet();
+        set.Bind(_message).To(vm => vm.Message).TwoWay();
+        set.Bind(_value).To(vm => vm.Value).TwoWay();
+        set.Bind(_close).To(vm => vm.CloseCommand);
+        set.Apply();
+    }
 
-            _message.BecomeFirstResponder();
-        }
+    public override void ViewDidAppear(bool animated)
+    {
+        base.ViewDidAppear(animated);
+
+        _message.BecomeFirstResponder();
     }
 }

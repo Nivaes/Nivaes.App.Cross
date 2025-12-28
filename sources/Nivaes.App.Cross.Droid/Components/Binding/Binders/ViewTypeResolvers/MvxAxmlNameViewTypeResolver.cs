@@ -1,73 +1,71 @@
-namespace Nivaes.App.Cross.Droid
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Extensions.Logging;
+using MvvmCross.IoC;
+using Nivaes.App.Cross;
+
+namespace Nivaes.App.Cross.Droid;
+
+public class MvxAxmlNameViewTypeResolver : MvxLongLowerCaseViewTypeResolver, IMvxAxmlNameViewTypeResolver
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.IoC;
-    using MvvmCross.Platforms.Android.Binding.Binders.ViewTypeResolvers;
-    using Nivaes.App.Cross;
-
-    public class MvxAxmlNameViewTypeResolver : MvxLongLowerCaseViewTypeResolver, IMvxAxmlNameViewTypeResolver
+    public MvxAxmlNameViewTypeResolver(IMvxTypeCache typeCache)
+        : base(typeCache)
     {
-        public MvxAxmlNameViewTypeResolver(IMvxTypeCache typeCache)
-            : base(typeCache)
-        {
-            ViewNamespaceAbbreviations = new Dictionary<string, string>();
-        }
+        ViewNamespaceAbbreviations = new Dictionary<string, string>();
+    }
 
-        public IDictionary<string, string> ViewNamespaceAbbreviations { get; }
+    public IDictionary<string, string> ViewNamespaceAbbreviations { get; }
 
-        [return: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public override Type Resolve(string tagName)
-        {
-            var unabbreviatedTagName = UnabbreviateTagName(tagName);
-            var longLowerCaseName = GetLookupName(unabbreviatedTagName);
-            return ResolveLowerCaseTypeName(longLowerCaseName);
-        }
+    [return: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors)]
+    public override Type Resolve(string tagName)
+    {
+        var unabbreviatedTagName = UnabbreviateTagName(tagName);
+        var longLowerCaseName = GetLookupName(unabbreviatedTagName);
+        return ResolveLowerCaseTypeName(longLowerCaseName);
+    }
 
-        private string UnabbreviateTagName(string tagName)
+    private string UnabbreviateTagName(string tagName)
+    {
+        var filteredTagName = tagName;
+        if (ViewNamespaceAbbreviations != null)
         {
-            var filteredTagName = tagName;
-            if (ViewNamespaceAbbreviations != null)
+            var split = tagName.Split(new[] { '.' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            if (split.Length == 2)
             {
-                var split = tagName.Split(new[] { '.' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                if (split.Length == 2)
+                var abbreviate = split[0];
+                string fullName;
+                if (ViewNamespaceAbbreviations.TryGetValue(abbreviate, out fullName))
                 {
-                    var abbreviate = split[0];
-                    string fullName;
-                    if (ViewNamespaceAbbreviations.TryGetValue(abbreviate, out fullName))
-                    {
-                        filteredTagName = fullName + "." + split[1];
-                    }
-                    else
-                    {
-                        CrossBindingLog.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
-                    }
+                    filteredTagName = fullName + "." + split[1];
+                }
+                else
+                {
+                    CrossBindingLog.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
                 }
             }
-            return filteredTagName;
         }
+        return filteredTagName;
+    }
 
-        protected string GetLookupName(string tagName)
+    protected string GetLookupName(string tagName)
+    {
+        var nameBuilder = new StringBuilder();
+
+        switch (tagName)
         {
-            var nameBuilder = new StringBuilder();
+            case "View":
+            case "ViewGroup":
+                nameBuilder.Append("android.view.");
+                break;
 
-            switch (tagName)
-            {
-                case "View":
-                case "ViewGroup":
-                    nameBuilder.Append("android.view.");
-                    break;
-
-                default:
-                    if (!IsFullyQualified(tagName))
-                        nameBuilder.Append("android.widget.");
-                    break;
-            }
-
-            nameBuilder.Append(tagName);
-            return nameBuilder.ToString().ToLowerInvariant();
+            default:
+                if (!IsFullyQualified(tagName))
+                    nameBuilder.Append("android.widget.");
+                break;
         }
+
+        nameBuilder.Append(tagName);
+        return nameBuilder.ToString().ToLowerInvariant();
     }
 }

@@ -4,14 +4,14 @@ namespace Playground.Mac
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Platforms.Mac.Presenters.Attributes;
     using MvvmCross.Platforms.Mac.Views;
-    using Nivaes.App.Cross.AppKit;
+    using Nivaes.App.Cross.AppKitOS;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
 
     [MvxFromStoryboard("Main")]
     [MvxSheetPresentation]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class SheetView : MvxViewController<SheetViewModel>
+    public partial class SheetView : CrossViewController<SheetViewModel>
     {
         public SheetView(NativeHandle handle) : base(handle)
         {

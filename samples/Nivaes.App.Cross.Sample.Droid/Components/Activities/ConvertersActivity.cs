@@ -1,12 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels.Samples;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Activities;
+namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxActivityPresentation]
 [Activity(Theme = "@style/AppTheme")]
@@ -14,7 +9,7 @@ namespace Playground.Droid.Activities;
 public sealed class ConvertersActivity
     : MvxActivity<ConvertersViewModel>
 {
-    protected override void OnCreate(Bundle savedInstanceState)
+    protected override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
         SetContentView(Resource.Layout.activity_converters);

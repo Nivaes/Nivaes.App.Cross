@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.UIKit
+namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;

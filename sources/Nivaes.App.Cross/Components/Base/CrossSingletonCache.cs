@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    using MvvmCross;
+    using Nivaes.IoC;
 
     public sealed class CrossSingletonCache
     : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache
@@ -30,6 +30,7 @@ namespace Nivaes.App.Cross
                     return _inpcInterceptor;
 
                 Mvx.IoCProvider?.TryResolve(out _inpcInterceptor);
+                //_inpcInterceptor = Mvx.IoCProvider?.Resolve<ICrossInpcInterceptor>();
                 _inpcInterceptorResolveAttempted = true;
                 return _inpcInterceptor;
             }

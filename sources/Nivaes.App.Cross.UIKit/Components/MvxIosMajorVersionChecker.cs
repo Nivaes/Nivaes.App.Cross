@@ -1,8 +1,8 @@
-namespace Nivaes.App.Cross.UIKit
-{
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
+using Microsoft.Extensions.Logging;
+using Nivaes.IoC;
 
+namespace Nivaes.App.Cross.UIKitOS
+{   
     public class MvxIosMajorVersionChecker
     {
         public bool IsVersionOrHigher { get; private set; }

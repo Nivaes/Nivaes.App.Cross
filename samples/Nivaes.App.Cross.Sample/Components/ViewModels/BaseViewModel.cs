@@ -1,13 +1,11 @@
-namespace Playground.Core.ViewModels
-{
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using Microsoft.Extensions.Logging;
 
-    public class BaseViewModel : CrossNavigationViewModel
+namespace Nivaes.App.Cross.Sample;
+
+public class BaseViewModel : CrossNavigationViewModel
+{
+    public BaseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
+        : base(loggerFactory, navigationService)
     {
-        public BaseViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
-            : base(loggerFactory, navigationService)
-        {
-        }
     }
 }

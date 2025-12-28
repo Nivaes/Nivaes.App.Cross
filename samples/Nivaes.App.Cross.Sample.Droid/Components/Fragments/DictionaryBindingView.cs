@@ -9,45 +9,43 @@ using Android.Views;
 using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
 using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+                     Resource.Animation.abc_fade_in,
+                     Resource.Animation.abc_fade_out,
+                     Resource.Animation.abc_fade_in,
+                     Resource.Animation.abc_fade_out)]
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
 {
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
-                         Resource.Animation.abc_fade_in,
-                         Resource.Animation.abc_fade_out,
-                         Resource.Animation.abc_fade_in,
-                         Resource.Animation.abc_fade_out)]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
+        base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.dictionary_view, container, false);
-            var background = view.FindViewById<LinearLayout>(Resource.Id.container);
-            var descriptionLabel = view.FindViewById<TextView>(Resource.Id.txt_description);
+        var view = this.BindingInflate(Resource.Layout.dictionary_view, container, false);
+        var background = view.FindViewById<LinearLayout>(Resource.Id.container);
+        var descriptionLabel = view.FindViewById<TextView>(Resource.Id.txt_description);
 
-            var bindingSet = CreateBindingSet();
-            bindingSet.Bind(background).For(v => v.Background).To(vm => vm.Value)
-                .WithDictionaryConversion(new Dictionary<int, Drawable>
-                {
-                    [0] = new ColorDrawable(Color.Blue),
-                    [1] = new ColorDrawable(Color.Red),
-                    [2] = new ColorDrawable(Color.Yellow),
-                    [3] = new ColorDrawable(Color.Violet)
-                });
-            bindingSet.Bind(descriptionLabel).To(vm => vm.Value)
-                .WithDictionaryConversion(new Dictionary<int, string>
-                {
-                    [0] = "Description for blue",
-                    [1] = "Description for Red",
-                }, "Fallback description");
+        var bindingSet = CreateBindingSet();
+        bindingSet.Bind(background).For(v => v.Background).To(vm => vm.Value)
+            .WithDictionaryConversion(new Dictionary<int, Drawable>
+            {
+                [0] = new ColorDrawable(Color.Blue),
+                [1] = new ColorDrawable(Color.Red),
+                [2] = new ColorDrawable(Color.Yellow),
+                [3] = new ColorDrawable(Color.Violet)
+            });
+        bindingSet.Bind(descriptionLabel).To(vm => vm.Value)
+            .WithDictionaryConversion(new Dictionary<int, string>
+            {
+                [0] = "Description for blue",
+                [1] = "Description for Red",
+            }, "Fallback description");
 
-            bindingSet.Apply();
+        bindingSet.Apply();
 
-            return view;
-        }
+        return view;
     }
 }

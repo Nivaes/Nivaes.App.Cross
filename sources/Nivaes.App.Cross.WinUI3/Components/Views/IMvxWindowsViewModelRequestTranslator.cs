@@ -1,14 +1,13 @@
-namespace Nivaes.App.Cross.WinUI3
+namespace Nivaes.App.Cross.WinUI3;
+
+public interface IMvxWindowsViewModelRequestTranslator
 {
-    public interface IMvxWindowsViewModelRequestTranslator
-    {
-        string GetRequestTextFor(CrossViewModelRequest request);
+    string GetRequestTextFor(CrossViewModelRequest request);
 
-        // Important: if calling GetRequestTextWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
-        string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse);
+    // Important: if calling GetRequestTextWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
+    string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse);
 
-        void RemoveSubViewModelWithKey(int key);
+    void RemoveSubViewModelWithKey(int key);
 
-        int RequestTextGetKey(string requestText);
-    }
+    int RequestTextGetKey(string requestText);
 }

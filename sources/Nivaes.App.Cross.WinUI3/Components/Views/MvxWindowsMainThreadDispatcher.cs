@@ -1,32 +1,30 @@
-namespace Nivaes.App.Cross.WinUI3
+using System;
+using Microsoft.UI.Dispatching;
+
+namespace Nivaes.App.Cross.WinUI3;
+
+public class MvxWindowsMainThreadDispatcher 
+    : CrossMainThreadAsyncDispatcher
 {
-    using System;
-    using Microsoft.UI.Dispatching;
-    using Nivaes.App.Cross;
+    private readonly DispatcherQueue _uiDispatcher;
 
-    public class MvxWindowsMainThreadDispatcher 
-        : CrossMainThreadAsyncDispatcher
+    public MvxWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher)
     {
-        private readonly DispatcherQueue _uiDispatcher;
+        _uiDispatcher = uiDispatcher;
+    }
 
-        public MvxWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher)
+    public override bool IsOnMainThread => _uiDispatcher.HasThreadAccess;
+
+    public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
+    {
+        if (IsOnMainThread)
         {
-            _uiDispatcher = uiDispatcher;
+            ExceptionMaskedAction(action, maskExceptions);
+            return true;
         }
 
-        public override bool IsOnMainThread => _uiDispatcher.HasThreadAccess;
-
-        public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
-        {
-            if (IsOnMainThread)
-            {
-                ExceptionMaskedAction(action, maskExceptions);
-                return true;
-            }
-
-            var queued = _uiDispatcher.TryEnqueue(DispatcherQueuePriority.Normal,
-                () => ExceptionMaskedAction(action, maskExceptions));
-            return queued;
-        }
+        var queued = _uiDispatcher.TryEnqueue(DispatcherQueuePriority.Normal,
+            () => ExceptionMaskedAction(action, maskExceptions));
+        return queued;
     }
 }

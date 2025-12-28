@@ -1,32 +1,30 @@
-namespace Playground.Core.ViewModels
+using System.Threading.Tasks;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class NavigationCloseViewModel 
+    : CrossViewModel
 {
-    using System.Threading.Tasks;
-    using MvvmCross;
-    using Nivaes.App.Cross;
+    private readonly ICrossNavigationService _mvxNavigationService;
 
-    public class NavigationCloseViewModel 
-        : CrossViewModel
+    public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService)
     {
-        private readonly ICrossNavigationService _mvxNavigationService;
+        _mvxNavigationService = mvxNavigationService;
+    }
 
-        public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService)
-        {
-            _mvxNavigationService = mvxNavigationService;
-        }
+    public ICrossAsyncCommand OpenChildThenCloseThisCommand => new CrossAsyncCommand(CloseThisAndOpenChildAsync);
 
-        public ICrossAsyncCommand OpenChildThenCloseThisCommand => new CrossAsyncCommand(CloseThisAndOpenChildAsync);
+    public ICrossAsyncCommand TryToCloseNewViewModelCommand => new CrossAsyncCommand(TryToCloseNewViewModelAsync);
 
-        public ICrossAsyncCommand TryToCloseNewViewModelCommand => new CrossAsyncCommand(TryToCloseNewViewModelAsync);
+    private async Task CloseThisAndOpenChildAsync()
+    {
+        await _mvxNavigationService.Navigate<SecondChildViewModel>();
+        await _mvxNavigationService.Close(this);
+    }
 
-        private async Task CloseThisAndOpenChildAsync()
-        {
-            await _mvxNavigationService.Navigate<SecondChildViewModel>();
-            await _mvxNavigationService.Close(this);
-        }
-
-        private Task TryToCloseNewViewModelAsync()
-        {
-            return _mvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>());
-        }
+    private Task TryToCloseNewViewModelAsync()
+    {
+        return _mvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>());
     }
 }

@@ -1,301 +1,300 @@
-namespace Nivaes.App.Cross
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross;
+
+public class CrossObservableCollection<T>
+    : ObservableCollection<T>
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using MvvmCross;
-
-    public class CrossObservableCollection<T>
-        : ObservableCollection<T>
+    protected struct SuppressEventsDisposable : IDisposable
     {
-        protected struct SuppressEventsDisposable : IDisposable
+        private readonly CrossObservableCollection<T> _collection;
+
+        public SuppressEventsDisposable(CrossObservableCollection<T> collection)
         {
-            private readonly CrossObservableCollection<T> _collection;
+            _collection = collection;
+            ++collection._suppressEvents;
+        }
 
-            public SuppressEventsDisposable(CrossObservableCollection<T> collection)
-            {
-                _collection = collection;
-                ++collection._suppressEvents;
-            }
+        public void Dispose()
+        {
+            --_collection._suppressEvents;
+        }
+    }
 
-            public void Dispose()
+    private int _suppressEvents;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
+    /// </summary>
+    public CrossObservableCollection()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
+    /// </summary>
+    /// <param name="items">The collection from which the items are copied.</param>
+    public CrossObservableCollection(IEnumerable<T> items)
+        : base(items)
+    {
+    }
+
+    protected virtual SuppressEventsDisposable SuppressEvents()
+    {
+        return new SuppressEventsDisposable(this);
+    }
+
+    public virtual bool EventsAreSuppressed
+    {
+        get { return _suppressEvents > 0; }
+    }
+
+    /// <summary>
+    /// Raises the <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged"/> event with the provided event data.
+    /// </summary>
+    /// <param name="e">The event data to report in the event.</param>
+    protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+    {
+        if (!EventsAreSuppressed)
+        {
+            InvokeOnMainThread(() => base.OnCollectionChanged(e));
+        }
+    }
+
+    /// <summary>
+    /// Adds the specified items collection to the current <see cref="CrossObservableCollection{T}"/> instance.
+    /// </summary>
+    /// <param name="items">The collection of items to be added.</param>
+    /// <exception cref="ArgumentNullException">The items list is null.</exception>
+    public virtual void AddRange(IEnumerable<T> items)
+    {
+        if (items == null)
+        {
+            throw new ArgumentNullException(nameof(items));
+        }
+
+        int startingIndex = this.Items.Count;
+        var itemsList = items.ToList();
+        using (SuppressEvents())
+        {
+            foreach (var item in itemsList)
             {
-                --_collection._suppressEvents;
+                Add(item);
             }
         }
 
-        private int _suppressEvents;
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, itemsList, startingIndex));
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
-        /// </summary>
-        public CrossObservableCollection()
+    /// <summary>
+    /// Inserts the specified items collection in the current <see cref="CrossObservableCollection{T}"/> instance at the specified index.
+    /// </summary>
+    /// <param name="index">The position where the collection of items should be inserted at.</param>
+    /// <param name="items">The collection of items to be inserted.</param>
+    /// <exception cref="ArgumentNullException">The items list is null.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Index incorrect.</exception>
+    public virtual void InsertRange(int index, IEnumerable<T> items)
+    {
+        if (items == null)
         {
+            throw new ArgumentNullException(nameof(items));
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CrossObservableCollection{T}"/> class.
-        /// </summary>
-        /// <param name="items">The collection from which the items are copied.</param>
-        public CrossObservableCollection(IEnumerable<T> items)
-            : base(items)
+        if (index < 0)
         {
+            throw new ArgumentOutOfRangeException(nameof(index));
         }
 
-        protected virtual SuppressEventsDisposable SuppressEvents()
+        int currentIndex = index;
+        var itemsList = items.ToList();
+        using (SuppressEvents())
         {
-            return new SuppressEventsDisposable(this);
-        }
-
-        public virtual bool EventsAreSuppressed
-        {
-            get { return _suppressEvents > 0; }
-        }
-
-        /// <summary>
-        /// Raises the <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged"/> event with the provided event data.
-        /// </summary>
-        /// <param name="e">The event data to report in the event.</param>
-        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            if (!EventsAreSuppressed)
+            foreach (var item in itemsList)
             {
-                InvokeOnMainThread(() => base.OnCollectionChanged(e));
+                InsertItem(currentIndex, item);
+                currentIndex++;
             }
         }
 
-        /// <summary>
-        /// Adds the specified items collection to the current <see cref="CrossObservableCollection{T}"/> instance.
-        /// </summary>
-        /// <param name="items">The collection of items to be added.</param>
-        /// <exception cref="ArgumentNullException">The items list is null.</exception>
-        public virtual void AddRange(IEnumerable<T> items)
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, itemsList, index));
+    }
+
+    /// <summary>
+    /// Replaces the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising a single <see cref="NotifyCollectionChangedAction.Reset"/> event.
+    /// </summary>
+    /// <param name="items">The collection of items that will replace the current <see cref="CrossObservableCollection{T}"/> instance items.</param>
+    /// <exception cref="ArgumentNullException">The items list is null.</exception>
+    public virtual void ReplaceWith(IEnumerable<T> items)
+    {
+        if (items == null)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            int startingIndex = this.Items.Count;
-            var itemsList = items.ToList();
-            using (SuppressEvents())
-            {
-                foreach (var item in itemsList)
-                {
-                    Add(item);
-                }
-            }
-
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, itemsList, startingIndex));
+            throw new ArgumentNullException(nameof(items));
         }
 
-        /// <summary>
-        /// Inserts the specified items collection in the current <see cref="CrossObservableCollection{T}"/> instance at the specified index.
-        /// </summary>
-        /// <param name="index">The position where the collection of items should be inserted at.</param>
-        /// <param name="items">The collection of items to be inserted.</param>
-        /// <exception cref="ArgumentNullException">The items list is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Index incorrect.</exception>
-        public virtual void InsertRange(int index, IEnumerable<T> items)
+        using (SuppressEvents())
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (index < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
-
-            int currentIndex = index;
-            var itemsList = items.ToList();
-            using (SuppressEvents())
-            {
-                foreach (var item in itemsList)
-                {
-                    InsertItem(currentIndex, item);
-                    currentIndex++;
-                }
-            }
-
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, itemsList, index));
+            Clear();
+            AddRange(items);
         }
 
-        /// <summary>
-        /// Replaces the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising a single <see cref="NotifyCollectionChangedAction.Reset"/> event.
-        /// </summary>
-        /// <param name="items">The collection of items that will replace the current <see cref="CrossObservableCollection{T}"/> instance items.</param>
-        /// <exception cref="ArgumentNullException">The items list is null.</exception>
-        public virtual void ReplaceWith(IEnumerable<T> items)
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    }
+
+    public virtual void ReplaceRange(IEnumerable<T> items, int firstIndex, int oldSize)
+    {
+        if (items == null)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            using (SuppressEvents())
-            {
-                Clear();
-                AddRange(items);
-            }
-
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            throw new ArgumentNullException(nameof(items));
         }
 
-        public virtual void ReplaceRange(IEnumerable<T> items, int firstIndex, int oldSize)
+        using (SuppressEvents())
         {
-            if (items == null)
+            var lastIndex = firstIndex + oldSize - 1;
+
+            // If there are more items in the previous list, remove them.
+            while (firstIndex + items.Count() <= lastIndex)
             {
-                throw new ArgumentNullException(nameof(items));
+                RemoveAt(lastIndex--);
             }
-
-            using (SuppressEvents())
-            {
-                var lastIndex = firstIndex + oldSize - 1;
-
-                // If there are more items in the previous list, remove them.
-                while (firstIndex + items.Count() <= lastIndex)
-                {
-                    RemoveAt(lastIndex--);
-                }
-
-                foreach (var item in items)
-                {
-                    if (firstIndex <= lastIndex)
-                        SetItem(firstIndex++, item);
-                    else
-                        Insert(firstIndex++, item);
-                }
-            }
-
-            // TODO: Emit up to two OnCollectionChangedEvents:
-            //   1. Replace for those items replaced.
-            //   2. Add for items added beyond the original size.
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        }
-
-        /// <summary>
-        /// Switches the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising the minimum required change events.
-        /// </summary>
-        /// <param name="items">The collection from which the items are copied.</param>
-        /// <exception cref="ArgumentNullException">The items list is null.</exception>
-        public virtual void SwitchTo(IEnumerable<T> items)
-        {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            var itemIndex = 0;
-            var count = Count;
 
             foreach (var item in items)
             {
-                if (itemIndex >= count)
-                {
-                    Add(item);
-                }
-                else if (!Equals(this[itemIndex], item))
-                {
-                    this[itemIndex] = item;
-                }
-
-                itemIndex++;
-            }
-
-            while (count > itemIndex)
-            {
-                RemoveAt(--count);
+                if (firstIndex <= lastIndex)
+                    SetItem(firstIndex++, item);
+                else
+                    Insert(firstIndex++, item);
             }
         }
 
-        /// <summary>
-        /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the items collection, raising the minimum required change events.
-        /// </summary>
-        /// <param name="items">The collection which items will be removed.</param>
-        /// <exception cref="ArgumentNullException">The items list is null.</exception>
-        public virtual void RemoveItems(IEnumerable<T> items)
-        {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
+        // TODO: Emit up to two OnCollectionChangedEvents:
+        //   1. Replace for those items replaced.
+        //   2. Add for items added beyond the original size.
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    }
 
-            using (SuppressEvents())
-            {
-                foreach (var item in items)
-                {
-                    Remove(item);
-                }
-            }
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    /// <summary>
+    /// Switches the current <see cref="CrossObservableCollection{T}"/> instance items with the ones specified in the items collection, raising the minimum required change events.
+    /// </summary>
+    /// <param name="items">The collection from which the items are copied.</param>
+    /// <exception cref="ArgumentNullException">The items list is null.</exception>
+    public virtual void SwitchTo(IEnumerable<T> items)
+    {
+        if (items == null)
+        {
+            throw new ArgumentNullException(nameof(items));
         }
 
-        /// <summary>
-        /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the range, raising the minimum required change events.
-        /// </summary>
-        /// <param name="start">The start index.</param>
-        /// <param name="count">The count of items to remove.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Start index or count incorrect.</exception>
-        public virtual void RemoveRange(int start, int count)
+        var itemIndex = 0;
+        var count = Count;
+
+        foreach (var item in items)
         {
-            if (start < 0)
+            if (itemIndex >= count)
             {
-                throw new ArgumentOutOfRangeException(nameof(start));
+                Add(item);
+            }
+            else if (!Equals(this[itemIndex], item))
+            {
+                this[itemIndex] = item;
             }
 
-            if (count < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(count));
-            }
-
-            var end = start + count - 1;
-
-            if (end < 0 || end > Count)
-            {
-                throw new ArgumentOutOfRangeException(nameof(count));
-            }
-
-            var removedItems = new List<T>(count);
-            for (var i = start; i <= end; i++)
-            {
-                removedItems.Add(this[i]);
-            }
-
-            using (SuppressEvents())
-            {
-                for (var i = end; i >= start; i--)
-                {
-                    RemoveAt(i);
-                }
-            }
-
-            OnCollectionChanged(
-                new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
+            itemIndex++;
         }
 
-        private ICrossMainThreadAsyncDispatcher _dispatcher;
-
-        protected virtual Task InvokeOnMainThread(Action action)
+        while (count > itemIndex)
         {
-            if (_dispatcher != null)
-                return _dispatcher.ExecuteOnMainThreadAsync(action);
+            RemoveAt(--count);
+        }
+    }
 
-            if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
-                return Task.CompletedTask;
+    /// <summary>
+    /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the items collection, raising the minimum required change events.
+    /// </summary>
+    /// <param name="items">The collection which items will be removed.</param>
+    /// <exception cref="ArgumentNullException">The items list is null.</exception>
+    public virtual void RemoveItems(IEnumerable<T> items)
+    {
+        if (items == null)
+        {
+            throw new ArgumentNullException(nameof(items));
+        }
 
-            _dispatcher = dispatcher;
+        using (SuppressEvents())
+        {
+            foreach (var item in items)
+            {
+                Remove(item);
+            }
+        }
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    }
+
+    /// <summary>
+    /// Removes the current <see cref="CrossObservableCollection{T}"/> instance items of the ones specified in the range, raising the minimum required change events.
+    /// </summary>
+    /// <param name="start">The start index.</param>
+    /// <param name="count">The count of items to remove.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Start index or count incorrect.</exception>
+    public virtual void RemoveRange(int start, int count)
+    {
+        if (start < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(start));
+        }
+
+        if (count < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count));
+        }
+
+        var end = start + count - 1;
+
+        if (end < 0 || end > Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count));
+        }
+
+        var removedItems = new List<T>(count);
+        for (var i = start; i <= end; i++)
+        {
+            removedItems.Add(this[i]);
+        }
+
+        using (SuppressEvents())
+        {
+            for (var i = end; i >= start; i--)
+            {
+                RemoveAt(i);
+            }
+        }
+
+        OnCollectionChanged(
+            new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
+    }
+
+    private ICrossMainThreadAsyncDispatcher _dispatcher;
+
+    protected virtual Task InvokeOnMainThread(Action action)
+    {
+        if (_dispatcher != null)
             return _dispatcher.ExecuteOnMainThreadAsync(action);
-        }
 
-        protected async override void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            await InvokeOnMainThread(() => base.OnPropertyChanged(e));
-        }
+        if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
+            return Task.CompletedTask;
+
+        _dispatcher = dispatcher;
+        return _dispatcher.ExecuteOnMainThreadAsync(action);
+    }
+
+    protected async override void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+        await InvokeOnMainThread(() => base.OnPropertyChanged(e));
     }
 }

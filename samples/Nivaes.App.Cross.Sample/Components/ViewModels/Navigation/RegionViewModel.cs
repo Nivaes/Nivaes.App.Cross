@@ -1,16 +1,15 @@
-namespace Playground.Core.ViewModels.Navigation
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class RegionViewModel 
+    : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class RegionViewModel 
-        : CrossNavigationViewModel
+    public RegionViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) 
+        : base(logFactory, navigationService)
     {
-        public RegionViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
-        {
-        }
-
-        public ICrossAsyncCommand CloseRegionCommand =>
-            new CrossAsyncCommand(() => this.NavigationService.Close(this));
     }
+
+    public ICrossAsyncCommand CloseRegionCommand =>
+        new CrossAsyncCommand(() => this.NavigationService.Close(this));
 }

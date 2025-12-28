@@ -1,53 +1,52 @@
-namespace Playground.Core.ViewModels
+using Nivaes.App.Cross;
+using Nivaes.IoC;
+
+namespace Playground.Core.ViewModels;
+
+public class ParentContentViewModel 
+    : CrossViewModel
 {
-    using MvvmCross;
-    using Nivaes.App.Cross;
-
-    public class ParentContentViewModel 
-        : CrossViewModel
+    private ChildContentViewModel _childViewModel1;
+    public ChildContentViewModel ChildViewModel1
     {
-        private ChildContentViewModel _childViewModel1;
-        public ChildContentViewModel ChildViewModel1
+        get => _childViewModel1;
+        set
         {
-            get => _childViewModel1;
-            set
-            {
-                SetProperty(ref _childViewModel1, value);
-            }
+            SetProperty(ref _childViewModel1, value);
         }
-        private ChildContentViewModel _childBindingContext2;
-        public ChildContentViewModel ChildBindingContext2
+    }
+    private ChildContentViewModel _childBindingContext2;
+    public ChildContentViewModel ChildBindingContext2
+    {
+        get => _childBindingContext2;
+        set
         {
-            get => _childBindingContext2;
-            set
-            {
-                SetProperty(ref _childBindingContext2, value);
-            }
+            SetProperty(ref _childBindingContext2, value);
         }
-        private bool _childViewModelEnabled;
-        public bool ChildViewModelEnabled
+    }
+    private bool _childViewModelEnabled;
+    public bool ChildViewModelEnabled
+    {
+        get => _childViewModelEnabled;
+        set
         {
-            get => _childViewModelEnabled;
-            set
-            {
-                SetProperty(ref _childViewModelEnabled, value);
-            }
+            SetProperty(ref _childViewModelEnabled, value);
         }
-        public ICrossCommand ChangeButtonCmd1 => new CrossCommand(() => ChildViewModel1.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
-        public ICrossCommand ToggleChild1EnabledCmd => new CrossCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
+    }
+    public ICrossCommand ChangeButtonCmd1 => new CrossCommand(() => ChildViewModel1.Test = (ChildViewModel1.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+    public ICrossCommand ToggleChild1EnabledCmd => new CrossCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
 
-        public ICrossCommand ChangeButtonCmd2 => new CrossCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+    public ICrossCommand ChangeButtonCmd2 => new CrossCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
 
-        public override void Prepare()
-        {
-            var vm = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
-            vm.Test = "Child 1";
-            ChildViewModel1 = vm;
-            var bc = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>()
-                    .LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
-                ChildContentViewModel;
-            bc.Test = "Child 2";
-            ChildBindingContext2 = bc;
-        }
+    public override void Prepare()
+    {
+        var vm = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+        vm.Test = "Child 1";
+        ChildViewModel1 = vm;
+        var bc = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>()
+                .LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
+            ChildContentViewModel;
+        bc.Test = "Child 2";
+        ChildBindingContext2 = bc;
     }
 }

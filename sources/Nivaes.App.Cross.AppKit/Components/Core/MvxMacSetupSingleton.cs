@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.AppKit
+namespace Nivaes.App.Cross.AppKitOS
 {
     using System.Diagnostics.CodeAnalysis;
 

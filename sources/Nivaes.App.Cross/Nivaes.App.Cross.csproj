@@ -50,7 +50,7 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="Nivaes.App.Cross.Droid" />
-		<InternalsVisibleTo Include="Nivaes.App.Cross.UIKit" />
+		<InternalsVisibleTo Include="Nivaes.App.Cross.UIKitOS" />
 		<InternalsVisibleTo Include="Nivaes.App.Cross.AppKit" />
 		<InternalsVisibleTo Include="Nivaes.App.Cross.WinUI" />
 	</ItemGroup>

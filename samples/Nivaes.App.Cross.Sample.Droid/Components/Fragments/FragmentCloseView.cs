@@ -1,12 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Playground.Core.ViewModels.Navigation;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid
 {
     //[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]
     [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true, popBackStackImmediateName: null, popBackStackImmediateFlag: MvxPopBackStack.None)]

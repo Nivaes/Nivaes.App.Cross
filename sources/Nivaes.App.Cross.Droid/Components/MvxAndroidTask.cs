@@ -1,62 +1,59 @@
-namespace Nivaes.App.Cross.Droid
+using Android.Content;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.Droid;
+
+
+public class MvxAndroidTask
+    : CrossMainThreadDispatchingObject
 {
-    using System;
-    using Android.App;
-    using Android.Content;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
-    using MvvmCross.Platforms.Android.Views.Base;
-    using Nivaes.App.Cross;
-
-    public class MvxAndroidTask
-        : CrossMainThreadDispatchingObject
+    protected void StartActivity(Intent intent)
     {
-        protected void StartActivity(Intent intent)
-        {
-            DoOnActivity(activity => activity.StartActivity(intent));
-        }
+        DoOnActivity(activity => activity.StartActivity(intent));
+    }
 
-        protected void StartActivityForResult(int requestCode, Intent intent)
-        {
-            DoOnActivity(activity =>
+    protected void StartActivityForResult(int requestCode, Intent intent)
+    {
+        DoOnActivity(activity =>
+            {
+                var androidView = activity as IMvxStartActivityForResult;
+                if (androidView == null)
                 {
-                    var androidView = activity as IMvxStartActivityForResult;
-                    if (androidView == null)
-                    {
-                        CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
-                        return;
-                    }
+                    CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
+                    return;
+                }
 
-                    Mvx.IoCProvider.Resolve<IMvxIntentResultSource>().Result += OnMvxIntentResultReceived;
-                    androidView.MvxInternalStartActivityForResult(intent, requestCode);
-                });
-        }
+                Mvx.IoCProvider.Resolve<IMvxIntentResultSource>().Result += OnMvxIntentResultReceived;
+                androidView.MvxInternalStartActivityForResult(intent, requestCode);
+            });
+    }
 
-        protected virtual void ProcessMvxIntentResult(MvxIntentResultEventArgs result)
+    protected virtual void ProcessMvxIntentResult(MvxIntentResultEventArgs result)
+    {
+        // default processing does nothing
+    }
+
+    private void OnMvxIntentResultReceived(object sender, MvxIntentResultEventArgs e)
+    {
+        CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
+        // TODO - is this correct - should we always remove the result registration even if this isn't necessarily our result?
+        Mvx.IoCProvider.Resolve<IMvxIntentResultSource>().Result -= OnMvxIntentResultReceived;
+        ProcessMvxIntentResult(e);
+    }
+
+    protected void DoOnActivity(Action<Activity> action, bool ensureOnMainThread = true)
+    {
+        var activity = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+
+        if (ensureOnMainThread)
         {
-            // default processing does nothing
+            InvokeOnMainThread(() => action(activity));
         }
-
-        private void OnMvxIntentResultReceived(object sender, MvxIntentResultEventArgs e)
+        else
         {
-            CrossLogHost.GetLog<MvxAndroidTask>()?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
-            // TODO - is this correct - should we always remove the result registration even if this isn't necessarily our result?
-            Mvx.IoCProvider.Resolve<IMvxIntentResultSource>().Result -= OnMvxIntentResultReceived;
-            ProcessMvxIntentResult(e);
-        }
-
-        protected void DoOnActivity(Action<Activity> action, bool ensureOnMainThread = true)
-        {
-            var activity = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
-
-            if (ensureOnMainThread)
-            {
-                InvokeOnMainThread(() => action(activity));
-            }
-            else
-            {
-                action(activity);
-            }
+            action(activity);
         }
     }
 }

@@ -1,8 +1,7 @@
-#nullable enable
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 
-namespace MvvmCross.Platforms.WinUi.Presenters.Models;
+namespace Nivaes.App.Cross.WinUI3;
 
 /// <summary>
 /// Interface for Window root views to allow the View Presenter to set the current appwindow.

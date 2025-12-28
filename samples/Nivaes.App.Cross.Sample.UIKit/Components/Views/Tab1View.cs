@@ -1,9 +1,9 @@
-namespace Playground.iOS.Views
+namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
+    using Nivaes.App.Cross.UIKitOS;
     using ObjCRuntime;
     using Playground.Core.ViewModels;
 

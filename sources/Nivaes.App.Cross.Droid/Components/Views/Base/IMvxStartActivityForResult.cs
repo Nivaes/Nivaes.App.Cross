@@ -1,13 +1,8 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Content;
 
-namespace MvvmCross.Platforms.Android.Views.Base
+namespace Nivaes.App.Cross.Droid;
+
+public interface IMvxStartActivityForResult
 {
-    public interface IMvxStartActivityForResult
-    {
-        void MvxInternalStartActivityForResult(Intent intent, int requestCode);
-    }
+    void MvxInternalStartActivityForResult(Intent intent, int requestCode);
 }

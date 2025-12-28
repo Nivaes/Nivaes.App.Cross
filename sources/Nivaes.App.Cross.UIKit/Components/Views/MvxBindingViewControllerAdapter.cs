@@ -1,34 +1,33 @@
-namespace Nivaes.App.Cross.UIKit
+using System;
+using Microsoft.Extensions.Logging;
+using Nivaes.IoC;
+
+namespace Nivaes.App.Cross.UIKitOS;
+
+public class MvxBindingViewControllerAdapter 
+    : MvxBaseViewControllerAdapter
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
+    protected IMvxIosView? IosView => ViewController as IMvxIosView;
 
-    public class MvxBindingViewControllerAdapter 
-        : MvxBaseViewControllerAdapter
+    public MvxBindingViewControllerAdapter(IMvxEventSourceViewController eventSource)
+        : base(eventSource)
     {
-        protected IMvxIosView? IosView => ViewController as IMvxIosView;
+        if (!(eventSource is IMvxIosView))
+            throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
 
-        public MvxBindingViewControllerAdapter(IMvxEventSourceViewController eventSource)
-            : base(eventSource)
+        if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
+            IosView?.BindingContext = bindingContext;
+    }
+
+    public override void HandleDisposeCalled(object sender, EventArgs e)
+    {
+        if (IosView == null)
         {
-            if (!(eventSource is IMvxIosView))
-                throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
-
-            if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
-                IosView?.BindingContext = bindingContext;
+            CrossLogHost.GetLog<MvxBindingViewControllerAdapter>()?.LogWarning(
+                "{IosView} is null for clear-up of bindings", nameof(IosView));
+            return;
         }
-
-        public override void HandleDisposeCalled(object sender, EventArgs e)
-        {
-            if (IosView == null)
-            {
-                CrossLogHost.GetLog<MvxBindingViewControllerAdapter>()?.LogWarning(
-                    "{IosView} is null for clear-up of bindings", nameof(IosView));
-                return;
-            }
-            IosView.ClearAllBindings();
-            base.HandleDisposeCalled(sender, e);
-        }
+        IosView.ClearAllBindings();
+        base.HandleDisposeCalled(sender, e);
     }
 }

@@ -1,121 +1,116 @@
-namespace Nivaes.App.Cross.Droid
+using System.Collections;
+using System.Collections.Specialized;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Droid;
+
+[Register("mvvmcross.platforms.android.binding.views.MvxLinearLayout")]
+public class MvxLinearLayout
+    : LinearLayout, IMvxWithChangeAdapter
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Specialized;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Views;
-    using Android.Widget;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.BindingContext;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxLinearLayout")]
-    public class MvxLinearLayout
-        : LinearLayout, IMvxWithChangeAdapter
+    public MvxLinearLayout(Context context, IAttributeSet attrs)
+        : this(context, attrs, new MvxAdapterWithChangedEvent(context))
     {
-        public MvxLinearLayout(Context context, IAttributeSet attrs)
-            : this(context, attrs, new MvxAdapterWithChangedEvent(context))
-        {
-        }
+    }
 
-        public MvxLinearLayout(Context context, IAttributeSet attrs, IMvxAdapterWithChangedEvent adapter)
-            : base(context, attrs)
+    public MvxLinearLayout(Context context, IAttributeSet attrs, IMvxAdapterWithChangedEvent adapter)
+        : base(context, attrs)
+    {
+        var itemTemplateId = MvxAttributeHelpers.ReadListItemTemplateId(context, attrs);
+        if (adapter != null)
         {
-            var itemTemplateId = MvxAttributeHelpers.ReadListItemTemplateId(context, attrs);
-            if (adapter != null)
+            Adapter = adapter;
+            Adapter.ItemTemplateId = itemTemplateId;
+        }
+        ChildViewRemoved += OnChildViewRemoved;
+    }
+
+    protected MvxLinearLayout(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+    }
+
+    public void AdapterOnDataSetChanged(object sender, NotifyCollectionChangedEventArgs eventArgs)
+    {
+        this.UpdateDataSetFromChange(sender, eventArgs);
+    }
+
+    private void OnChildViewRemoved(object sender, ViewGroup.ChildViewRemovedEventArgs childViewRemovedEventArgs)
+    {
+        var boundChild = childViewRemovedEventArgs.Child as ICrossBindingContextOwner;
+        boundChild?.ClearAllBindings();
+    }
+
+    private IMvxAdapterWithChangedEvent _adapter;
+
+    public IMvxAdapterWithChangedEvent Adapter
+    {
+        get
+        {
+            return _adapter;
+        }
+        protected set
+        {
+            var existing = _adapter;
+            if (existing == value)
             {
-                Adapter = adapter;
-                Adapter.ItemTemplateId = itemTemplateId;
-            }
-            ChildViewRemoved += OnChildViewRemoved;
-        }
-
-        protected MvxLinearLayout(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-        }
-
-        public void AdapterOnDataSetChanged(object sender, NotifyCollectionChangedEventArgs eventArgs)
-        {
-            this.UpdateDataSetFromChange(sender, eventArgs);
-        }
-
-        private void OnChildViewRemoved(object sender, ViewGroup.ChildViewRemovedEventArgs childViewRemovedEventArgs)
-        {
-            var boundChild = childViewRemovedEventArgs.Child as ICrossBindingContextOwner;
-            boundChild?.ClearAllBindings();
-        }
-
-        private IMvxAdapterWithChangedEvent _adapter;
-
-        public IMvxAdapterWithChangedEvent Adapter
-        {
-            get
-            {
-                return _adapter;
-            }
-            protected set
-            {
-                var existing = _adapter;
-                if (existing == value)
-                {
-                    return;
-                }
-
-                if (existing != null)
-                {
-                    existing.DataSetChanged -= AdapterOnDataSetChanged;
-                    if (value != null)
-                    {
-                        value.ItemsSource = existing.ItemsSource;
-                        value.ItemTemplateId = existing.ItemTemplateId;
-                    }
-                }
-
-                _adapter = value;
-
-                if (_adapter != null)
-                {
-                    _adapter.DataSetChanged += AdapterOnDataSetChanged;
-                }
-                else
-                {
-                    CrossBindingLog.Instance?.LogWarning(
-                        "Setting Adapter to null is not recommended - you may lose ItemsSource binding when doing this");
-                }
-
-                if (existing != null)
-                    existing.ItemsSource = null;
-            }
-        }
-
-        [CrossSetToNullAfterBinding]
-        public IEnumerable ItemsSource
-        {
-            get { return Adapter.ItemsSource; }
-            set { Adapter.ItemsSource = value; }
-        }
-
-        public int ItemTemplateId
-        {
-            get { return Adapter.ItemTemplateId; }
-            set { Adapter.ItemTemplateId = value; }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_adapter != null)
-                    _adapter.DataSetChanged -= AdapterOnDataSetChanged;
-
-                ChildViewRemoved -= OnChildViewRemoved;
+                return;
             }
 
-            base.Dispose(disposing);
+            if (existing != null)
+            {
+                existing.DataSetChanged -= AdapterOnDataSetChanged;
+                if (value != null)
+                {
+                    value.ItemsSource = existing.ItemsSource;
+                    value.ItemTemplateId = existing.ItemTemplateId;
+                }
+            }
+
+            _adapter = value;
+
+            if (_adapter != null)
+            {
+                _adapter.DataSetChanged += AdapterOnDataSetChanged;
+            }
+            else
+            {
+                CrossBindingLog.Instance?.LogWarning(
+                    "Setting Adapter to null is not recommended - you may lose ItemsSource binding when doing this");
+            }
+
+            if (existing != null)
+                existing.ItemsSource = null;
         }
+    }
+
+    [CrossSetToNullAfterBinding]
+    public IEnumerable ItemsSource
+    {
+        get { return Adapter.ItemsSource; }
+        set { Adapter.ItemsSource = value; }
+    }
+
+    public int ItemTemplateId
+    {
+        get { return Adapter.ItemTemplateId; }
+        set { Adapter.ItemTemplateId = value; }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (_adapter != null)
+                _adapter.DataSetChanged -= AdapterOnDataSetChanged;
+
+            ChildViewRemoved -= OnChildViewRemoved;
+        }
+
+        base.Dispose(disposing);
     }
 }

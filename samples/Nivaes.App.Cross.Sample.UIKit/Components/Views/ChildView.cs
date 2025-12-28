@@ -1,32 +1,29 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxChildPresentation]
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public partial class ChildView 
+    : MvxViewController<ChildViewModel>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-
-    [MvxFromStoryboard("Main")]
-    [MvxChildPresentation]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class ChildView 
-        : MvxViewController<ChildViewModel>
+    public ChildView(NativeHandle handle) : base(handle)
     {
-        public ChildView(NativeHandle handle) : base(handle)
-        {
-        }
+    }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+    public override void ViewDidLoad()
+    {
+        base.ViewDidLoad();
 
-            View.BackgroundColor = UIColor.Yellow;
+        View?.BackgroundColor = UIColor.Yellow;
 
-            var set = CreateBindingSet();
-            set.Bind(btnClose).To(vm => vm.CloseCommand);
-            set.Bind(btnShowSecondChild).To(vm => vm.ShowSecondChildCommand);
-            set.Apply();
-        }
+        var set = CreateBindingSet();
+        set.Bind(btnClose).To(vm => vm.CloseCommand);
+        set.Bind(btnShowSecondChild).To(vm => vm.ShowSecondChildCommand);
+        set.Apply();
     }
 }

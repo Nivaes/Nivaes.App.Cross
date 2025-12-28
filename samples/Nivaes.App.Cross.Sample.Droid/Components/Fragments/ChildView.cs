@@ -1,39 +1,33 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
+using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+                         Resource.Animation.abc_fade_in,
+                         Resource.Animation.abc_fade_out,
+                         Resource.Animation.abc_fade_in,
+                         Resource.Animation.abc_fade_out)]
+[MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
+[MvxFragmentPresentation(typeof(TabsRootViewModel), Resource.Id.content_frame)]
+[MvxFragmentPresentation(fragmentHostViewType: typeof(ModalNavView), fragmentContentId: Resource.Id.dialog_content_frame)]
+public class ChildView : MvxFragment<ChildViewModel>
 {
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
-                             Resource.Animation.abc_fade_in,
-                             Resource.Animation.abc_fade_out,
-                             Resource.Animation.abc_fade_in,
-                             Resource.Animation.abc_fade_out)]
-    [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
-    [MvxFragmentPresentation(typeof(TabsRootViewModel), Resource.Id.content_frame)]
-    [MvxFragmentPresentation(fragmentHostViewType: typeof(ModalNavView), fragmentContentId: Resource.Id.dialog_content_frame)]
-    public class ChildView : MvxFragment<ChildViewModel>
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
+        base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
+        var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
 
-            return view;
-        }
+        return view;
+    }
 
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

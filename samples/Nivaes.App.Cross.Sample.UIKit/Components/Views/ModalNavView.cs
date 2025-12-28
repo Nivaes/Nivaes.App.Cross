@@ -1,33 +1,29 @@
-namespace Playground.iOS.Views
+using System.Diagnostics.CodeAnalysis;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.FormSheet)]
+[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+public partial class ModalNavView : MvxViewController<ModalNavViewModel>
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-    using UIKit;
-
-    [MvxFromStoryboard("Main")]
-    [MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.FormSheet)]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public partial class ModalNavView : MvxViewController<ModalNavViewModel>
+    public ModalNavView(NativeHandle handle) : base(handle)
     {
-        public ModalNavView(NativeHandle handle) : base(handle)
-        {
-        }
+    }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+    public override void ViewDidLoad()
+    {
+        base.ViewDidLoad();
 
-            View.BackgroundColor = UIColor.Red;
+        View?.BackgroundColor = UIColor.Red;
 
-            var set = CreateBindingSet();
-            set.Bind(btnShowChild).To(vm => vm.ShowChildCommand);
-            set.Bind(btnClose).To(vm => vm.CloseCommand);
-            set.Bind(btnNestedModal).To(vm => vm.ShowNestedModalCommand);
-            set.Apply();
-        }
+        var set = CreateBindingSet();
+        set.Bind(btnShowChild).To(vm => vm.ShowChildCommand);
+        set.Bind(btnClose).To(vm => vm.CloseCommand);
+        set.Bind(btnNestedModal).To(vm => vm.ShowNestedModalCommand);
+        set.Apply();
     }
 }

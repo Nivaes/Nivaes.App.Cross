@@ -179,15 +179,16 @@ public static class MvxTypeExtensions
         {
             if (pair.ServiceTypes.Count == 0)
                 continue;
+            
+            throw new NotImplementedException();
+            //var instance = Mvx.IoCProvider?.IoCConstruct(pair.ImplementationType, (object?)null);
+            //if (instance == null)
+            //    continue;
 
-            var instance = Mvx.IoCProvider?.IoCConstruct(pair.ImplementationType, (object?)null);
-            if (instance == null)
-                continue;
-
-            foreach (var serviceType in pair.ServiceTypes)
-            {
-                Mvx.IoCProvider?.RegisterSingleton(serviceType, instance);
-            }
+            //foreach (var serviceType in pair.ServiceTypes)
+            //{
+            //    Mvx.IoCProvider?.RegisterSingleton(serviceType, instance);
+            //}
         }
     }
 
@@ -199,25 +200,26 @@ public static class MvxTypeExtensions
                 continue;
 
             var typeToCreate = pair.ImplementationType;
-            var creator = new MvxLazySingletonCreator(typeToCreate);
-            var creationFunc = new Func<object>(() => creator.Instance);
-            foreach (var serviceType in pair.ServiceTypes)
-            {
-                Mvx.IoCProvider?.RegisterSingleton(serviceType, creationFunc);
-            }
+            throw new NotImplementedException();
+            //var creator = new MvxLazySingletonCreator(typeToCreate);
+            //var creationFunc = new Func<object>(() => creator.Instance);
+            //foreach (var serviceType in pair.ServiceTypes)
+            //{
+            //    Mvx.IoCProvider?.RegisterSingleton(serviceType, creationFunc);
+            //}
         }
     }
 
-    public static void RegisterAsDynamic(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
-    {
-        foreach (var pair in pairs)
-        {
-            foreach (var serviceType in pair.ServiceTypes)
-            {
-                Mvx.IoCProvider?.RegisterType(serviceType, pair.ImplementationType);
-            }
-        }
-    }
+    //public static void RegisterAsDynamic(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
+    //{
+    //    foreach (var pair in pairs)
+    //    {
+    //        foreach (var serviceType in pair.ServiceTypes)
+    //        {
+    //            Mvx.IoCProvider?.RegisterType(serviceType, pair.ImplementationType);
+    //        }
+    //    }
+    //}
 
     public static object? CreateDefault(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type? type)

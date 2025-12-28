@@ -1,17 +1,16 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Droid;
+using Nivaes.IoC;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Android.Core;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-
     [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class MvxAndroidApplication 
         : Application, IMvxAndroidApplication
     {
-        public static MvxAndroidApplication Instance { get; private set; }
+        public static MvxAndroidApplication? Instance { get; private set; }
 
         protected MvxAndroidApplication()
         {

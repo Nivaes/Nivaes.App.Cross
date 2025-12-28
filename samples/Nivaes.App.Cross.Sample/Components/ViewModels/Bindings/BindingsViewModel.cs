@@ -1,51 +1,47 @@
-namespace Playground.Core.ViewModels
+namespace Nivaes.App.Cross.Sample;
+
+public class BindingsViewModel 
+    : CrossViewModel
 {
-    using MvvmCross.Localization;
-    using Nivaes.App.Cross;
+    private int _counter = 2;
 
-    public class BindingsViewModel 
-        : CrossViewModel
+    public BindingsViewModel()
     {
-        private int _counter = 2;
+        _counter = 3;
+    }
 
-        public BindingsViewModel()
+    protected override void SaveStateToBundle(ICrossBundle bundle)
+    {
+        base.SaveStateToBundle(bundle);
+
+        bundle.Data["MyKey"] = _counter.ToString();
+    }
+
+    protected override void ReloadFromBundle(ICrossBundle state)
+    {
+        base.ReloadFromBundle(state);
+
+        _counter = int.Parse(state.Data["MyKey"]);
+    }
+
+    public ICrossLanguageBinder TextSource
+    {
+        get { return new CrossLanguageBinder("Playground.Core", "Text"); }
+    }
+
+    private string _bindableText = "I'm bound!";
+    public string BindableText
+    {
+        get
         {
-            _counter = 3;
+            return _bindableText;
         }
-
-        protected override void SaveStateToBundle(ICrossBundle bundle)
+        set
         {
-            base.SaveStateToBundle(bundle);
-
-            bundle.Data["MyKey"] = _counter.ToString();
-        }
-
-        protected override void ReloadFromBundle(ICrossBundle state)
-        {
-            base.ReloadFromBundle(state);
-
-            _counter = int.Parse(state.Data["MyKey"]);
-        }
-
-        public ICrossLanguageBinder TextSource
-        {
-            get { return new CrossLanguageBinder("Playground.Core", "Text"); }
-        }
-
-        private string _bindableText = "I'm bound!";
-        public string BindableText
-        {
-            get
+            if (BindableText != value)
             {
-                return _bindableText;
-            }
-            set
-            {
-                if (BindableText != value)
-                {
-                    _bindableText = value;
-                    RaisePropertyChanged();
-                }
+                _bindableText = value;
+                RaisePropertyChanged();
             }
         }
     }

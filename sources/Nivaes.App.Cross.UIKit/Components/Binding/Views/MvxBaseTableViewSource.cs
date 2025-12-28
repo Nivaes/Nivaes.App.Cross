@@ -1,170 +1,168 @@
-namespace Nivaes.App.Cross.UIKit
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+using Foundation;
+using Microsoft.Extensions.Logging;
+using ObjCRuntime;
+using UIKit;
+
+namespace Nivaes.App.Cross.UIKitOS;
+
+public abstract class MvxBaseTableViewSource : UITableViewSource
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Input;
-    using Foundation;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.BindingContext;
-    using ObjCRuntime;
-    using UIKit;
+    public event EventHandler SelectedItemChanged;
+    private object _selectedItem;
+    private readonly WeakReference<UITableView> _tableView;
 
-    public abstract class MvxBaseTableViewSource : UITableViewSource
+    protected MvxBaseTableViewSource(UITableView tableView)
     {
-        public event EventHandler SelectedItemChanged;
-        private object _selectedItem;
-        private readonly WeakReference<UITableView> _tableView;
+        _tableView = new WeakReference<UITableView>(tableView);
+    }
 
-        protected MvxBaseTableViewSource(UITableView tableView)
+    protected MvxBaseTableViewSource(NativeHandle handle)
+        : base(handle)
+    {
+        CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning,
+            "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+    }
+
+    protected UITableView? TableView
+    {
+        get
         {
-            _tableView = new WeakReference<UITableView>(tableView);
-        }
+            if (_tableView.TryGetTarget(out var tableView))
+                return tableView;
 
-        protected MvxBaseTableViewSource(NativeHandle handle)
-            : base(handle)
-        {
-            CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning,
-                "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
-        }
-
-        protected UITableView? TableView
-        {
-            get
-            {
-                if (_tableView.TryGetTarget(out var tableView))
-                    return tableView;
-
-                // This is not a array Sonar. You are drunk...
+            // This is not a array Sonar. You are drunk...
 #pragma warning disable S1168 // Empty arrays and collections should be returned instead of null
-                return null;
+            return null;
 #pragma warning restore S1168 // Empty arrays and collections should be returned instead of null
-            }
+        }
+    }
+
+    public bool DeselectAutomatically { get; set; }
+
+    public bool DeselectChangedEnabled { get; set; }
+
+    public ICommand SelectionChangedCommand { get; set; }
+
+    public ICommand AccessoryTappedCommand { get; set; }
+
+    public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
+    {
+        var command = AccessoryTappedCommand;
+        if (command == null)
+            return;
+
+        var item = GetItemAt(indexPath);
+        if (command.CanExecute(item))
+            command.Execute(item);
+    }
+
+    public virtual void ReloadTableData()
+    {
+        try
+        {
+            TableView.ReloadData();
+        }
+        catch (Exception exception)
+        {
+            CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning, exception,
+                "Exception masked during TableView ReloadData");
+        }
+    }
+
+    public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+    {
+        if (DeselectAutomatically)
+        {
+            tableView.DeselectRow(indexPath, true);
         }
 
-        public bool DeselectAutomatically { get; set; }
+        var item = GetItemAt(indexPath);
 
-        public bool DeselectChangedEnabled { get; set; }
+        var command = SelectionChangedCommand;
+        if (command?.CanExecute(item) == true)
+            command.Execute(item);
 
-        public ICommand SelectionChangedCommand { get; set; }
+        SelectedItem = item;
+    }
 
-        public ICommand AccessoryTappedCommand { get; set; }
-
-        public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
+    public override void RowDeselected(UITableView tableView, NSIndexPath indexPath)
+    {
+        if (DeselectChangedEnabled && !DeselectAutomatically)
         {
-            var command = AccessoryTappedCommand;
-            if (command == null)
-                return;
-
-            var item = GetItemAt(indexPath);
-            if (command.CanExecute(item))
-                command.Execute(item);
-        }
-
-        public virtual void ReloadTableData()
-        {
-            try
-            {
-                TableView.ReloadData();
-            }
-            catch (Exception exception)
-            {
-                CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning, exception,
-                    "Exception masked during TableView ReloadData");
-            }
-        }
-
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            if (DeselectAutomatically)
-            {
-                tableView.DeselectRow(indexPath, true);
-            }
-
             var item = GetItemAt(indexPath);
 
             var command = SelectionChangedCommand;
-            if (command?.CanExecute(item) == true)
+            if (command != null && command.CanExecute(item))
                 command.Execute(item);
 
-            SelectedItem = item;
+            SelectedItem = null;
         }
+    }
 
-        public override void RowDeselected(UITableView tableView, NSIndexPath indexPath)
+    public object SelectedItem
+    {
+        get
         {
-            if (DeselectChangedEnabled && !DeselectAutomatically)
-            {
-                var item = GetItemAt(indexPath);
-
-                var command = SelectionChangedCommand;
-                if (command != null && command.CanExecute(item))
-                    command.Execute(item);
-
-                SelectedItem = null;
-            }
+            return _selectedItem;
         }
-
-        public object SelectedItem
+        set
         {
-            get
-            {
-                return _selectedItem;
-            }
-            set
-            {
-                // note that we only expect this to be called from the control/Table
-                // we don't have any multi-select or any scroll into view functionality here
-                _selectedItem = value;
-                SelectedItemChanged?.Invoke(this, EventArgs.Empty);
-            }
+            // note that we only expect this to be called from the control/Table
+            // we don't have any multi-select or any scroll into view functionality here
+            _selectedItem = value;
+            SelectedItemChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
 
-        [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "This method creates bindings which are designed to be reflection-safe. The base UITableViewSource.GetCell cannot have RequiresUnreferencedCode annotation.")]
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "This method creates bindings which are designed to be reflection-safe. The base UITableViewSource.GetCell cannot have RequiresUnreferencedCode annotation.")]
+    public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+    {
+        var item = GetItemAt(indexPath);
+        var cell = GetOrCreateCellFor(tableView, indexPath, item);
+
+        BindCell(tableView, cell, item);
+
+        return cell;
+    }
+
+    public override void CellDisplayingEnded(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
+    {
+        // Don't bind to NULL to speed up cells in lists when fast scrolling
+        // There should be almost no scenario in which this is required
+    }
+
+    public override nint NumberOfSections(UITableView tableView)
+    {
+        return 1;
+    }
+
+    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
+    protected abstract UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item);
+
+    protected abstract object GetItemAt(NSIndexPath indexPath);
+
+    private static void BindCell(UITableView tableView, UITableViewCell cell, object item)
+    {
+        if (cell is IMvxBindable bindable)
         {
-            var item = GetItemAt(indexPath);
-            var cell = GetOrCreateCellFor(tableView, indexPath, item);
+            var bindingContext = bindable.BindingContext as CrossTaskBasedBindingContext;
 
-            BindCell(tableView, cell, item);
+            var isTaskBasedBindingContextAndHasAutomaticDimension =
+                bindingContext != null && tableView.RowHeight == UITableView.AutomaticDimension;
 
-            return cell;
-        }
+            // RunSynchronously must be called before DataContext is set
+            if (isTaskBasedBindingContextAndHasAutomaticDimension)
+                bindingContext.RunSynchronously = true;
 
-        public override void CellDisplayingEnded(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
-        {
-            // Don't bind to NULL to speed up cells in lists when fast scrolling
-            // There should be almost no scenario in which this is required
-        }
+            bindable.DataContext = item;
 
-        public override nint NumberOfSections(UITableView tableView)
-        {
-            return 1;
-        }
-
-        [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
-        protected abstract UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item);
-
-        protected abstract object GetItemAt(NSIndexPath indexPath);
-
-        private static void BindCell(UITableView tableView, UITableViewCell cell, object item)
-        {
-            if (cell is IMvxBindable bindable)
-            {
-                var bindingContext = bindable.BindingContext as MvxTaskBasedBindingContext;
-
-                var isTaskBasedBindingContextAndHasAutomaticDimension =
-                    bindingContext != null && tableView.RowHeight == UITableView.AutomaticDimension;
-
-                // RunSynchronously must be called before DataContext is set
-                if (isTaskBasedBindingContextAndHasAutomaticDimension)
-                    bindingContext.RunSynchronously = true;
-
-                bindable.DataContext = item;
-
-                // If AutomaticDimension is used, xib based cells need to re-layout everything after bindings are applied
-                // otherwise the cell height will be wrong
-                if (isTaskBasedBindingContextAndHasAutomaticDimension)
-                    cell.LayoutIfNeeded();
-            }
+            // If AutomaticDimension is used, xib based cells need to re-layout everything after bindings are applied
+            // otherwise the cell height will be wrong
+            if (isTaskBasedBindingContextAndHasAutomaticDimension)
+                cell.LayoutIfNeeded();
         }
     }
 }

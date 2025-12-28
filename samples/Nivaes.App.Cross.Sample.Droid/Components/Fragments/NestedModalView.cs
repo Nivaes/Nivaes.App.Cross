@@ -6,32 +6,28 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample.Droid;
-using Playground.Core.ViewModels;
-using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
-namespace Playground.Droid.Fragments
+namespace Nivaes.App.Cross.Sample.Droid;
+
+[MvxDialogFragmentPresentation]
+[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+public class NestedModalView : MvxDialogFragment<NestedModalViewModel>
 {
-    [MvxDialogFragmentPresentation]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
-    public class NestedModalView : MvxDialogFragment<NestedModalViewModel>
+    public NestedModalView()
     {
-        public NestedModalView()
-        {
-        }
+    }
 
-        protected NestedModalView(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-        }
+    protected NestedModalView(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+    }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
+        var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
 
-            return view;
-        }
+        return view;
     }
 }

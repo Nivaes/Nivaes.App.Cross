@@ -1,57 +1,51 @@
-namespace Playground.iOS.Views
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
+
+namespace Nivaes.App.Cross.Sample.UIKitOS;
+
+[MvxFromStoryboard("Main")]
+[MvxRootPresentation(WrapInNavigationController = true)]
+public partial class TabsRootView : MvxTabBarViewController<TabsRootViewModel>
 {
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.UIKit;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-    using UIKit;
+    private bool _isPresentedFirstTime = true;
 
-    [MvxFromStoryboard("Main")]
-    [MvxRootPresentation(WrapInNavigationController = true)]
-    public partial class TabsRootView : MvxTabBarViewController<TabsRootViewModel>
+    public TabsRootView(NativeHandle handle) : base(handle)
     {
-        private bool _isPresentedFirstTime = true;
+    }
 
-        public TabsRootView(NativeHandle handle) : base(handle)
+    public override void ViewWillAppear(bool animated)
+    {
+        base.ViewWillAppear(animated);
+
+        if (ViewModel != null && _isPresentedFirstTime)
         {
+            _isPresentedFirstTime = false;
+            ViewModel.ShowInitialViewModelsCommand.ExecuteAsync(null);
         }
+    }
 
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
+    protected override void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
+    {
+        // you can override this method to set title or iconName
+        if (string.IsNullOrEmpty(attribute.TabName))
+            attribute.TabName = "Tab 2";
+        if (string.IsNullOrEmpty(attribute.TabIconName))
+            attribute.TabIconName = "ic_tabbar_menu";
 
-            if (ViewModel != null && _isPresentedFirstTime)
-            {
-                _isPresentedFirstTime = false;
-                ViewModel.ShowInitialViewModelsCommand.ExecuteAsync(null);
-            }
-        }
+        base.SetTitleAndTabBarItem(viewController, attribute);
+    }
 
-        protected override void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
-        {
-            // you can override this method to set title or iconName
-            if (string.IsNullOrEmpty(attribute.TabName))
-                attribute.TabName = "Tab 2";
-            if (string.IsNullOrEmpty(attribute.TabIconName))
-                attribute.TabIconName = "ic_tabbar_menu";
+    public override bool ShowChildView(UIViewController viewController)
+    {
+        var type = viewController.GetType();
 
-            base.SetTitleAndTabBarItem(viewController, attribute);
-        }
+        return (type != typeof(ChildView)) && base.ShowChildView(viewController);
+    }
 
-        public override bool ShowChildView(UIViewController viewController)
-        {
-            var type = viewController.GetType();
+    public override bool CloseChildViewModel(ICrossViewModel viewModel)
+    {
+        var type = viewModel.GetType();
 
-            return (type != typeof(ChildView)) && base.ShowChildView(viewController);
-        }
-
-        public override bool CloseChildViewModel(ICrossViewModel viewModel)
-        {
-            var type = viewModel.GetType();
-
-            return (type != typeof(ChildViewModel)) && base.CloseChildViewModel(viewModel);
-        }
+        return (type != typeof(ChildViewModel)) && base.CloseChildViewModel(viewModel);
     }
 }

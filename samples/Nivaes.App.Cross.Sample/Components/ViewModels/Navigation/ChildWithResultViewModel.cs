@@ -1,50 +1,47 @@
-namespace Playground.Core.ViewModels.Navigation
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public sealed class ChildWithResultViewModel(
+        ILoggerFactory logFactory,
+        ICrossNavigationService navigationService,
+        ICrossResultViewModelManager resultViewModelManager)
+    : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
+        logFactory,
+        navigationService,
+        resultViewModelManager)
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using Playground.Core.Models;
+    private SampleModel _model = null!;
 
-    public sealed class ChildWithResultViewModel(
-            ILoggerFactory logFactory,
-            ICrossNavigationService navigationService,
-            ICrossResultViewModelManager resultViewModelManager)
-        : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
-            logFactory,
-            navigationService,
-            resultViewModelManager)
+    public CrossAsyncCommand CloseCommand => new(DoClose);
+
+    public string Message
     {
-        private SampleModel _model = null!;
-
-        public CrossAsyncCommand CloseCommand => new(DoClose);
-
-        public string Message
+        get => _model.Message;
+        set
         {
-            get => _model.Message;
-            set
-            {
-                _model = _model with { Message = value };
-                RaisePropertyChanged();
-            }
+            _model = _model with { Message = value };
+            RaisePropertyChanged();
         }
+    }
 
-        public decimal Value
+    public decimal Value
+    {
+        get => _model.Value;
+        set
         {
-            get => _model.Value;
-            set
-            {
-                _model = _model with { Value = value };
-                RaisePropertyChanged();
-            }
+            _model = _model with { Value = value };
+            RaisePropertyChanged();
         }
+    }
 
-        private Task DoClose()
-        {
-            return NavigationService.CloseSettingResult(this, _model);
-        }
+    private Task DoClose()
+    {
+        return NavigationService.CloseSettingResult(this, _model);
+    }
 
-        public override void Prepare(SampleModel parameter)
-        {
-            _model = parameter;
-        }
+    public override void Prepare(SampleModel parameter)
+    {
+        _model = parameter;
     }
 }

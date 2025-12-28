@@ -1,10 +1,10 @@
-<mvx:MvxApplication x:Class="Playground.WinUi.App"
-                        xmlns:mvx="using:MvvmCross.Platforms.WinUi.Views"
+<cross:CrossApplication x:Class="Nivaes.App.Cross.Sample.WinUI3.App"
+                        xmlns:cross="using:Nivaes.App.Cross.WinUI3"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:local="using:Playground.WinUi"
+                        xmlns:local="using:Nivaes.App.Cross.Sample.WinUI3"
                         RequestedTheme="Light">
     <Application.Resources>
         <x:String x:Key="WelcomeText">Hello World!</x:String>
     </Application.Resources>
-</mvx:MvxApplication>
+</cross:CrossApplication>

@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross.Components.Plugin
 {
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;

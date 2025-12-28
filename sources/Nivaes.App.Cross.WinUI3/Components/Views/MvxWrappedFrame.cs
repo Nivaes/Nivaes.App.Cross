@@ -7,56 +7,55 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Control = Microsoft.UI.Xaml.Controls.Control;
 
-namespace MvvmCross.Platforms.WinUi.Views
+namespace Nivaes.App.Cross.WinUI3;
+
+public class MvxWrappedFrame : IMvxWindowsFrame
 {
-    public class MvxWrappedFrame : IMvxWindowsFrame
+    private readonly Frame _frame;
+
+    public MvxWrappedFrame(Frame frame)
     {
-        private readonly Frame _frame;
+        _frame = frame;
+    }
 
-        public MvxWrappedFrame(Frame frame)
-        {
-            _frame = frame;
-        }
+    public Control UnderlyingControl => _frame;
 
-        public Control UnderlyingControl => _frame;
+    public object Content => _frame.Content;
 
-        public object Content => _frame.Content;
+    public bool CanGoBack => _frame.CanGoBack;
 
-        public bool CanGoBack => _frame.CanGoBack;
+    public bool Navigate(Type viewType, object parameter)
+    {
+        return _frame.Navigate(viewType, parameter);
+    }
 
-        public bool Navigate(Type viewType, object parameter)
-        {
-            return _frame.Navigate(viewType, parameter);
-        }
+    public void GoBack()
+    {
+        _frame.GoBack();
+    }
 
-        public void GoBack()
-        {
-            _frame.GoBack();
-        }
+    public void ClearValue(DependencyProperty property)
+    {
+        _frame.ClearValue(property);
+    }
 
-        public void ClearValue(DependencyProperty property)
-        {
-            _frame.ClearValue(property);
-        }
+    public object GetValue(DependencyProperty property)
+    {
+        return _frame.GetValue(property);
+    }
 
-        public object GetValue(DependencyProperty property)
-        {
-            return _frame.GetValue(property);
-        }
+    public void SetValue(DependencyProperty property, object value)
+    {
+        _frame.SetValue(property, value);
+    }
 
-        public void SetValue(DependencyProperty property, object value)
-        {
-            _frame.SetValue(property, value);
-        }
+    public void SetNavigationState(string state)
+    {
+        _frame.SetNavigationState(state);
+    }
 
-        public void SetNavigationState(string state)
-        {
-            _frame.SetNavigationState(state);
-        }
-
-        public string GetNavigationState()
-        {
-            return _frame.GetNavigationState();
-        }
+    public string GetNavigationState()
+    {
+        return _frame.GetNavigationState();
     }
 }

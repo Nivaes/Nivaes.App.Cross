@@ -1,7 +1,6 @@
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid;
+
+public interface IMvxNamespaceListViewTypeResolver
 {
-    public interface IMvxNamespaceListViewTypeResolver
-    {
-        void Add(string namespaceName);
-    }
+    void Add(string namespaceName);
 }
