@@ -3,9 +3,9 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public class MvxWindowsViewsContainer
+public class CrossWindowsViewsContainer
     : CrossViewsContainer
-    , IMvxStoreViewsContainer
+    , ICrossStoreViewsContainer
 {
     private const string ExtrasKey = "MvxLaunchData";
     private const string SubViewModelKey = "MvxSubViewModelKey";

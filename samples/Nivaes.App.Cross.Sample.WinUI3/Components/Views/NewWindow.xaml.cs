@@ -29,6 +29,6 @@ public sealed partial class NewWindow : NewWindowPage, IMvxNeedWindow
 }
 
 
-public abstract class NewWindowPage : MvxWindowsPage<NewWindowViewModel>
+public abstract class NewWindowPage : CrossWindowsPage<NewWindowViewModel>
 {
 }

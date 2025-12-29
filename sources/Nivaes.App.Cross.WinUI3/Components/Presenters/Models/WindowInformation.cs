@@ -16,7 +16,7 @@ public sealed class WindowInformation
     /// <param name="window">The Window.</param>
     /// <param name="rootFrame">The root frame of the window.</param>
     /// <param name="viewModel">The viewmodel belonging to the root frame.</param>
-    public WindowInformation(Window window, IMvxWindowsFrame rootFrame, ICrossViewModel? viewModel)
+    public WindowInformation(Window window, ICrossWindowsFrame rootFrame, ICrossViewModel? viewModel)
     {
         this.Window = window;
         this.RootFrame = rootFrame;
@@ -31,7 +31,7 @@ public sealed class WindowInformation
     /// <summary>
     /// Gets or sets the root frame belonging to this window.
     /// </summary>
-    public IMvxWindowsFrame RootFrame { get; }
+    public ICrossWindowsFrame RootFrame { get; }
 
     /// <summary>
     /// Gets or sets the ViewModel belonging to this window.

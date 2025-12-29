@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.WinUI3
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [MvxPagePresentation]
-    public sealed partial class SplitRootView : MvxWindowsPage
+    public sealed partial class SplitRootView : CrossWindowsPage
     {
         public SplitRootView()
         {

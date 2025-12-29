@@ -5,7 +5,7 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public interface IMvxWindowsFrame
+public interface ICrossWindowsFrame
 {
     Control UnderlyingControl { get; }
     object Content { get; }

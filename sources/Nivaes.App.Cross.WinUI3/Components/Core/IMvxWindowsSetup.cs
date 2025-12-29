@@ -7,6 +7,6 @@ public interface IMvxWindowsSetup
 {
     void PlatformInitialize(Frame rootFrame, string activatedEventArgs, string? suspensionManagerSessionStateKey = null);
     void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null);
-    void PlatformInitialize(IMvxWindowsFrame rootFrame);
+    void PlatformInitialize(ICrossWindowsFrame rootFrame);
     void UpdateActivationArguments(string e);
 }

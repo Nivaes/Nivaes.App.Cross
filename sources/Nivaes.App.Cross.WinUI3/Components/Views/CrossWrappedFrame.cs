@@ -9,11 +9,11 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public class MvxWrappedFrame : IMvxWindowsFrame
+public class CrossWrappedFrame : ICrossWindowsFrame
 {
     private readonly Frame _frame;
 
-    public MvxWrappedFrame(Frame frame)
+    public CrossWrappedFrame(Frame frame)
     {
         _frame = frame;
     }

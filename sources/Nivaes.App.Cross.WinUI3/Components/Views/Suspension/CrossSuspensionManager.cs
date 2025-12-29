@@ -46,7 +46,7 @@ public class CrossSuspensionManager : ICrossSuspensionManager
             // Save the navigation state for all registered frames
             foreach (var weakFrameReference in _registeredFrames)
             {
-                IMvxWindowsFrame frame;
+                ICrossWindowsFrame frame;
                 if (weakFrameReference.TryGetTarget(out frame))
                 {
                     SaveFrameNavigationState(frame);
@@ -103,7 +103,7 @@ public class CrossSuspensionManager : ICrossSuspensionManager
             // Restore any registered frames to their saved state
             foreach (var weakFrameReference in _registeredFrames)
             {
-                IMvxWindowsFrame frame;
+                ICrossWindowsFrame frame;
                 if (weakFrameReference.TryGetTarget(out frame))
                 {
                     frame.ClearValue(MvxFrameSessionStateProperty);
@@ -122,9 +122,9 @@ public class CrossSuspensionManager : ICrossSuspensionManager
     protected readonly DependencyProperty MvxFrameSessionStateProperty =
         DependencyProperty.RegisterAttached("_MvxFrameSessionState",
             typeof(Dictionary<string, object>), typeof(CrossSuspensionManager), null);
-    protected readonly List<WeakReference<IMvxWindowsFrame>> _registeredFrames = new List<WeakReference<IMvxWindowsFrame>>();
+    protected readonly List<WeakReference<ICrossWindowsFrame>> _registeredFrames = new List<WeakReference<ICrossWindowsFrame>>();
 
-    public virtual void RegisterFrame(IMvxWindowsFrame frame, string sessionStateKey)
+    public virtual void RegisterFrame(ICrossWindowsFrame frame, string sessionStateKey)
     {
         if (frame.GetValue(MvxFrameSessionStateKeyProperty) != null)
         {
@@ -139,25 +139,25 @@ public class CrossSuspensionManager : ICrossSuspensionManager
         // Use a dependency property to associate the session key with a frame, and keep a list of frames whose
         // navigation state should be managed
         frame.SetValue(MvxFrameSessionStateKeyProperty, sessionStateKey);
-        _registeredFrames.Add(new WeakReference<IMvxWindowsFrame>(frame));
+        _registeredFrames.Add(new WeakReference<ICrossWindowsFrame>(frame));
 
         // Check to see if navigation state can be restored
         RestoreFrameNavigationState(frame);
     }
 
-    public virtual void UnregisterFrame(IMvxWindowsFrame frame)
+    public virtual void UnregisterFrame(ICrossWindowsFrame frame)
     {
         // Remove session state and remove the frame from the list of frames whose navigation
         // state will be saved (along with any weak references that are no longer reachable)
         SessionState.Remove((string)frame.GetValue(MvxFrameSessionStateKeyProperty));
         _registeredFrames.RemoveAll((weakFrameReference) =>
         {
-            IMvxWindowsFrame testFrame;
+            ICrossWindowsFrame testFrame;
             return !weakFrameReference.TryGetTarget(out testFrame) || testFrame == frame;
         });
     }
 
-    public virtual Dictionary<string, object> SessionStateForFrame(IMvxWindowsFrame frame)
+    public virtual Dictionary<string, object> SessionStateForFrame(ICrossWindowsFrame frame)
     {
         var frameState = (Dictionary<string, object>)frame.GetValue(MvxFrameSessionStateProperty);
 
@@ -183,7 +183,7 @@ public class CrossSuspensionManager : ICrossSuspensionManager
         return frameState;
     }
 
-    protected virtual void RestoreFrameNavigationState(IMvxWindowsFrame frame)
+    protected virtual void RestoreFrameNavigationState(ICrossWindowsFrame frame)
     {
         var frameState = SessionStateForFrame(frame);
         if (frameState.ContainsKey("Navigation"))
@@ -192,7 +192,7 @@ public class CrossSuspensionManager : ICrossSuspensionManager
         }
     }
 
-    protected virtual void SaveFrameNavigationState(IMvxWindowsFrame frame)
+    protected virtual void SaveFrameNavigationState(ICrossWindowsFrame frame)
     {
         var frameState = SessionStateForFrame(frame);
         frameState["Navigation"] = frame.GetNavigationState();

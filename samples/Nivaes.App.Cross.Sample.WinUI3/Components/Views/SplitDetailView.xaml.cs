@@ -14,6 +14,6 @@ public sealed partial class SplitDetailView : SplitDetailViewPage
     }
 }
 
-public abstract class SplitDetailViewPage : MvxWindowsPage<SplitDetailViewModel>
+public abstract class SplitDetailViewPage : CrossWindowsPage<SplitDetailViewModel>
 {
 }

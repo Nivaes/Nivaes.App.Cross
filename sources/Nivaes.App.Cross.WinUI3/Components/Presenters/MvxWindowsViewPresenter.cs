@@ -11,10 +11,10 @@ namespace Nivaes.App.Cross.WinUI3;
 public class MvxWindowsViewPresenter
     : CrossAttributeViewPresenter, IMvxWindowsViewPresenter
 {
-    protected readonly IMvxWindowsFrame _rootFrame;
+    protected readonly ICrossWindowsFrame _rootFrame;
     private readonly ILogger<MvxWindowsViewPresenter> _logger;
 
-    public MvxWindowsViewPresenter(IMvxWindowsFrame rootFrame)
+    public MvxWindowsViewPresenter(ICrossWindowsFrame rootFrame)
     {
         _rootFrame = rootFrame;
         _logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
@@ -73,7 +73,7 @@ public class MvxWindowsViewPresenter
 
     protected virtual string GetRequestText(CrossViewModelRequest request)
     {
-        var requestTranslator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
+        var requestTranslator = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
         string requestText = string.Empty;
         if (request is CrossViewModelInstanceRequest)
         {
@@ -100,7 +100,7 @@ public class MvxWindowsViewPresenter
     {
         var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
 
-        if (_rootFrame.Content is MvxWindowsPage currentPage)
+        if (_rootFrame.Content is CrossWindowsPage currentPage)
         {
             var splitView = currentPage.Content.FindControl<SplitView>();
             if (splitView == null)
@@ -279,7 +279,7 @@ public class MvxWindowsViewPresenter
         var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(frame.XamlRoot).FirstOrDefault(p =>
         {
             if (attribute.ViewType.IsInstanceOfType(p.Child)
-                && p.Child is IMvxWindowsContentDialog dialog)
+                && p.Child is ICrossWindowsContentDialog dialog)
             {
                 return dialog.ViewModel == viewModel;
             }

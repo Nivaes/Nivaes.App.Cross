@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI3
             return instance;
         }
 
-        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(IMvxWindowsFrame rootFrame)
+        public static MvxWindowsSetupSingleton EnsureSingletonAvailable(ICrossWindowsFrame rootFrame)
         {
             var instance = EnsureSingletonAvailable<MvxWindowsSetupSingleton>();
             instance.PlatformSetup<MvxWindowsSetup>()?.PlatformInitialize(rootFrame);

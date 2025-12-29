@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.WinUI3;
 public abstract class MvxWindowsSetup
     : CrossSetup, IMvxWindowsSetup
 {
-    private IMvxWindowsFrame? _rootFrame;
+    private ICrossWindowsFrame? _rootFrame;
     private string? _suspensionManagerSessionStateKey;
     private IMvxWindowsViewPresenter? _presenter;
 
@@ -21,11 +21,11 @@ public abstract class MvxWindowsSetup
 
     public virtual void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
     {
-        PlatformInitialize(new MvxWrappedFrame(rootFrame));
+        PlatformInitialize(new CrossWrappedFrame(rootFrame));
         _suspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
     }
 
-    public virtual void PlatformInitialize(IMvxWindowsFrame rootFrame)
+    public virtual void PlatformInitialize(ICrossWindowsFrame rootFrame)
     {
         _rootFrame = rootFrame;
     }
@@ -61,17 +61,17 @@ public abstract class MvxWindowsSetup
     protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
     {
         var container = CreateStoreViewsContainer();
-        iocProvider.RegisterSingleton<IMvxWindowsViewModelRequestTranslator>(container);
-        iocProvider.RegisterSingleton<IMvxWindowsViewModelLoader>(container);
+        iocProvider.RegisterSingleton<ICrossWindowsViewModelRequestTranslator>(container);
+        iocProvider.RegisterSingleton<ICrossWindowsViewModelLoader>(container);
         var viewsContainer = container as CrossViewsContainer;
         if (viewsContainer == null)
             throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
         return container;
     }
 
-    protected virtual IMvxStoreViewsContainer CreateStoreViewsContainer()
+    protected virtual ICrossStoreViewsContainer CreateStoreViewsContainer()
     {
-        return new MvxWindowsViewsContainer();
+        return new CrossWindowsViewsContainer();
     }
 
     protected IMvxWindowsViewPresenter Presenter
@@ -85,14 +85,14 @@ public abstract class MvxWindowsSetup
         }
     }
 
-    protected virtual IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+    protected virtual IMvxWindowsViewPresenter CreateViewPresenter(ICrossWindowsFrame rootFrame)
     {
         return new MvxMultiWindowViewPresenter(rootFrame);
     }
 
-    protected virtual MvxWindowsViewDispatcher CreateViewDispatcher(IMvxWindowsFrame rootFrame)
+    protected virtual CrossWindowsViewDispatcher CreateViewDispatcher(ICrossWindowsFrame rootFrame)
     {
-        return new MvxWindowsViewDispatcher(Presenter, rootFrame);
+        return new CrossWindowsViewDispatcher(Presenter, rootFrame);
     }
 
     protected override ICrossViewDispatcher CreateViewDispatcher()

@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.WinUI3
 
     public class CrossWindowsContentDialog
         : ContentDialog
-        , IMvxWindowsContentDialog
+        , ICrossWindowsContentDialog
         , IDisposable
     {
         public CrossWindowsContentDialog()
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.WinUI3
 
     public class CrossWindowsContentDialog<TViewModel>
         : CrossWindowsContentDialog
-        , IMvxWindowsContentDialog<TViewModel> where TViewModel : class, ICrossViewModel
+        , ICrossWindowsContentDialog<TViewModel> where TViewModel : class, ICrossViewModel
     {
         public new TViewModel ViewModel
         {

@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.WinUI3;
 
-public interface IMvxWindowsViewModelRequestTranslator
+public interface ICrossWindowsViewModelRequestTranslator
 {
     string GetRequestTextFor(CrossViewModelRequest request);
 

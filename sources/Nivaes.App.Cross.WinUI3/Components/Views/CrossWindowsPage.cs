@@ -6,12 +6,12 @@ using Windows.UI.Core;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public class MvxWindowsPage
+public class CrossWindowsPage
     : Page
-    , IMvxWindowsView
+    , ICrossWindowsView
     , IDisposable
 {
-    public MvxWindowsPage()
+    public CrossWindowsPage()
     {
         Loading += MvxWindowsPage_Loading;
         Loaded += MvxWindowsPage_Loaded;
@@ -41,7 +41,7 @@ public class MvxWindowsPage
 
     private ICrossViewModel _viewModel;
 
-    public IMvxWindowsFrame WrappedFrame => new MvxWrappedFrame(Frame);
+    public ICrossWindowsFrame WrappedFrame => new CrossWrappedFrame(Frame);
 
     public ICrossViewModel ViewModel
     {
@@ -90,7 +90,7 @@ public class MvxWindowsPage
 
         if (_reqData != string.Empty)
         {
-            var viewModelLoader = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelLoader>();
+            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
             ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
             ViewModel?.ViewCreated();
         }
@@ -106,7 +106,7 @@ public class MvxWindowsPage
         var bundle = this.CreateSaveStateBundle();
         SaveStateBundle(e, bundle);
 
-        var translator = Mvx.IoCProvider.Resolve<IMvxWindowsViewModelRequestTranslator>();
+        var translator = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {
@@ -183,7 +183,7 @@ public class MvxWindowsPage
         GC.SuppressFinalize(this);
     }
 
-    ~MvxWindowsPage()
+    ~CrossWindowsPage()
     {
         Dispose(false);
     }
@@ -199,9 +199,9 @@ public class MvxWindowsPage
     }
 }
 
-public class MvxWindowsPage<TViewModel>
-    : MvxWindowsPage
-    , IMvxWindowsView<TViewModel> where TViewModel : class, ICrossViewModel
+public class CrossWindowsPage<TViewModel>
+    : CrossWindowsPage
+    , ICrossWindowsView<TViewModel> where TViewModel : class, ICrossViewModel
 {
     public new TViewModel ViewModel
     {

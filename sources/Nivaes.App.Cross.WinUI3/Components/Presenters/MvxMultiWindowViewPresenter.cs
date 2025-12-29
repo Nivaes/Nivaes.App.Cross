@@ -34,7 +34,7 @@ public class MvxMultiWindowViewPresenter
     ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
-    public MvxMultiWindowViewPresenter(IMvxWindowsFrame rootFrame)
+    public MvxMultiWindowViewPresenter(ICrossWindowsFrame rootFrame)
     {
         var window = (Microsoft.UI.Xaml.Application.Current as CrossApplication)?.MainWindow;
         if (window != null)
@@ -215,7 +215,7 @@ public class MvxMultiWindowViewPresenter
         var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(frame.XamlRoot).FirstOrDefault(p =>
         {
             if (attribute.ViewType != null && attribute.ViewType.IsInstanceOfType(p.Child)
-                                           && p.Child is IMvxWindowsContentDialog dialog)
+                                           && p.Child is ICrossWindowsContentDialog dialog)
             {
                 return dialog.ViewModel == viewModel;
             }
@@ -337,7 +337,7 @@ public class MvxMultiWindowViewPresenter
     /// <returns>A text representation of the request.</returns>
     protected virtual string GetRequestText(CrossViewModelRequest request)
     {
-        var requestTranslator = Mvx.IoCProvider?.Resolve<IMvxWindowsViewModelRequestTranslator>();
+        var requestTranslator = Mvx.IoCProvider?.Resolve<ICrossWindowsViewModelRequestTranslator>();
         if (requestTranslator == null)
         {
             return "Request translator is not found";
@@ -515,7 +515,7 @@ public class MvxMultiWindowViewPresenter
         CrossViewModelRequest request)
     {
         var windowInformation = GetWindowInformation(request);
-        if (windowInformation.RootFrame.Content is MvxWindowsPage currentPage)
+        if (windowInformation.RootFrame.Content is CrossWindowsPage currentPage)
         {
             var splitView = currentPage.Content.FindControl<SplitView>();
             if (splitView == null)
@@ -644,7 +644,7 @@ public class MvxMultiWindowViewPresenter
             return false;
         }
 
-        var frame = new MvxWrappedFrame(new Frame());
+        var frame = new CrossWrappedFrame(new Frame());
         await ShowPage(frame, viewType, request);
 
         newWindow.Content = frame.UnderlyingControl;
@@ -732,7 +732,7 @@ public class MvxMultiWindowViewPresenter
     /// <param name="request">The request to show the page.</param>
     /// <returns>True if successful, false otherwise.</returns>
     // ReSharper disable once UnusedParameter.Local
-    private Task<bool> ShowPage(IMvxWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
+    private Task<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
     {
         try
         {

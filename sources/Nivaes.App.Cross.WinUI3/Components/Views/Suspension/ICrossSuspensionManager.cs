@@ -27,7 +27,7 @@ public interface ICrossSuspensionManager
     /// <see cref="MvxSuspensionManager"/></param>
     /// <param name="sessionStateKey">A unique key into <see cref="MvxSuspensionManager.SessionState"/> used to
     /// store navigation-related information.</param>
-    void RegisterFrame(IMvxWindowsFrame frame, string sessionStateKey);
+    void RegisterFrame(ICrossWindowsFrame frame, string sessionStateKey);
 
     /// <summary>
     /// Disassociates a <see cref="Frame"/> previously registered by <see cref="RegisterFrame"/>
@@ -36,7 +36,7 @@ public interface ICrossSuspensionManager
     /// </summary>
     /// <param name="frame">An instance whose navigation history should no longer be
     /// managed.</param>
-    void UnregisterFrame(IMvxWindowsFrame frame);
+    void UnregisterFrame(ICrossWindowsFrame frame);
 
     /// <summary>
     /// Provides storage for session state associated with the specified <see cref="Frame"/>.
@@ -51,5 +51,5 @@ public interface ICrossSuspensionManager
     /// <param name="frame">The instance for which session state is desired.</param>
     /// <returns>A collection of state subject to the same serialization mechanism as
     /// <see cref="MvxSuspensionManager.SessionState"/>.</returns>
-    Dictionary<string, object> SessionStateForFrame(IMvxWindowsFrame frame);
+    Dictionary<string, object> SessionStateForFrame(ICrossWindowsFrame frame);
 }

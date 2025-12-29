@@ -1,13 +1,12 @@
 namespace Nivaes.App.Cross.WinUI3;
 
-public interface IMvxWindowsView
+public interface ICrossWindowsContentDialog
     : ICrossView
 {
-    void ClearBackStack();
 }
 
-public interface IMvxWindowsView<TViewModel>
-    : IMvxWindowsView
+public interface ICrossWindowsContentDialog<TViewModel>
+    : ICrossWindowsContentDialog
     , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
 {
 }

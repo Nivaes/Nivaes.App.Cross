@@ -15,6 +15,6 @@ public sealed partial class RootView : RootViewPage
     }
 }
 
-public abstract class RootViewPage : MvxWindowsPage<RootViewModel>
+public abstract class RootViewPage : CrossWindowsPage<RootViewModel>
 {
 }
