@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using MvvmCross.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -10,8 +9,6 @@ namespace Nivaes.App.Cross;
 public class CrossNavigationService 
     : ICrossNavigationService
 {
-    //private readonly IMvxIoCProvider _iocProvider;
-
     private readonly Lazy<ILogger?> _log = new(() =>
         CrossLogHost.GetLog<CrossNavigationService>());
 
