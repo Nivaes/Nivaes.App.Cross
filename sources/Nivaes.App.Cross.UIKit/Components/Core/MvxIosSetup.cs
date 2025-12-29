@@ -26,10 +26,11 @@ namespace Nivaes.App.Cross.UIKitOS
             _presenter = presenter;
         }
 
-        protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected sealed override ICrossViewsContainer CreateViewsContainer()
         {
             var container = CreateIosViewsContainer();
-            RegisterIosViewCreator(iocProvider, container);
+            throw new NotImplementedException("Carga de vies");
+            //RegisterIosViewCreator(iocProvider, container);
             return container;
         }
 

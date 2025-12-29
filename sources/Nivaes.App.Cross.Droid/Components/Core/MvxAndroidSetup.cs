@@ -99,16 +99,17 @@ namespace Nivaes.App.Cross.Droid
             return new MvxSavedStateConverter();
         }
 
-        protected override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected override ICrossViewsContainer CreateViewsContainer()
         {
-            ValidateArguments(iocProvider);
+            //ValidateArguments(iocProvider);
 
             if (ApplicationContext == null)
                 throw new InvalidOperationException("Cannot create Views Container without ApplicationContext");
 
             var container = CreateViewsContainer(ApplicationContext);
-            iocProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
-            iocProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
+            throw new NotImplementedException("Carga de Views");
+            //iocProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
+            //iocProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
             if (container is not CrossViewsContainer viewsContainer)
                 throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
             return viewsContainer;

@@ -30,6 +30,7 @@ namespace Nivaes.App.Cross.Sample
             base.FillTargetFactories(registry);
         }
 
+        [Obsolete("No cargar plugins con reflection")]
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);

@@ -10,14 +10,14 @@ namespace Nivaes.App.Cross;
 public class CrossNavigationService 
     : ICrossNavigationService
 {
-    private readonly IMvxIoCProvider _iocProvider;
+    //private readonly IMvxIoCProvider _iocProvider;
 
     private readonly Lazy<ILogger?> _log = new(() =>
         CrossLogHost.GetLog<CrossNavigationService>());
 
     public ICrossViewDispatcher ViewDispatcher { get; }
 
-    protected Lazy<ICrossViewsContainer?> ViewsContainer { get; }
+    protected ICrossViewsContainer? ViewsContainer { get; }
 
     protected Dictionary<Regex, Type> Routes { get; } = new();
 
@@ -38,13 +38,11 @@ public class CrossNavigationService
     public CrossNavigationService(
         ICrossViewModelLoader viewModelLoader,
         ICrossViewDispatcher viewDispatcher,
-        IMvxIoCProvider iocProvider)
+        ICrossViewsContainer crossViewsContainer)
     {
-        _iocProvider = iocProvider;
-
         ViewModelLoader = viewModelLoader;
         ViewDispatcher = viewDispatcher;
-        ViewsContainer = new Lazy<ICrossViewsContainer?>(() => _iocProvider.Resolve<ICrossViewsContainer>());
+        ViewsContainer = crossViewsContainer;
     }
 
     public void LoadRoutes(IEnumerable<Assembly> assemblies)
@@ -146,43 +144,44 @@ public class CrossNavigationService
             ParameterValues = parameterValues.SafeGetData()
         };
 
-        if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
-        {
-            var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
+        throw new NotImplementedException();
+        //if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
+        //{
+        //    var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
 
-            try
-            {
-                var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
-                if (facadeRequest == null)
-                {
-                    throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
-                }
+        //    try
+        //    {
+        //        var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
+        //        if (facadeRequest == null)
+        //        {
+        //            throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
+        //        }
 
-                request.ViewModelType = facadeRequest.ViewModelType;
+        //        request.ViewModelType = facadeRequest.ViewModelType;
 
-                if (facadeRequest.ParameterValues != null)
-                {
-                    request.ParameterValues = facadeRequest.ParameterValues;
-                }
+        //        if (facadeRequest.ParameterValues != null)
+        //        {
+        //            request.ParameterValues = facadeRequest.ParameterValues;
+        //        }
 
-                if (facadeRequest is CrossViewModelInstanceRequest instanceRequest)
-                {
-                    request.ViewModelInstance = instanceRequest.ViewModelInstance ?? ViewModelLoader.LoadViewModel(request, null);
-                }
-                else
-                {
-                    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
-            }
-        }
-        else
-        {
-            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        }
+        //        if (facadeRequest is CrossViewModelInstanceRequest instanceRequest)
+        //        {
+        //            request.ViewModelInstance = instanceRequest.ViewModelInstance ?? ViewModelLoader.LoadViewModel(request, null);
+        //        }
+        //        else
+        //        {
+        //            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+        //    }
+        //}
+        //else
+        //{
+        //    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        //}
 
         return request;
     }
@@ -212,36 +211,37 @@ public class CrossNavigationService
             ParameterValues = parameterValues.SafeGetData()
         };
 
-        if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
-        {
-            var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
+        throw new NotImplementedException();
+        //if (viewModelType.GetInterfaces().Contains(typeof(ICrossNavigationFacade)))
+        //{
+        //    var facade = (ICrossNavigationFacade)_iocProvider.IoCConstruct(viewModelType);
 
-            try
-            {
-                var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
-                if (facadeRequest == null)
-                {
-                    throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
-                }
+        //    try
+        //    {
+        //        var facadeRequest = await facade.BuildViewModelRequest(path, paramDict).ConfigureAwait(false);
+        //        if (facadeRequest == null)
+        //        {
+        //            throw new CrossException($"{nameof(CrossNavigationService)}: Facade did not return a valid {nameof(CrossViewModelRequest)}.");
+        //        }
 
-                request.ViewModelType = facadeRequest.ViewModelType;
+        //        request.ViewModelType = facadeRequest.ViewModelType;
 
-                if (facadeRequest.ParameterValues != null)
-                {
-                    request.ParameterValues = facadeRequest.ParameterValues;
-                }
+        //        if (facadeRequest.ParameterValues != null)
+        //        {
+        //            request.ParameterValues = facadeRequest.ParameterValues;
+        //        }
 
-                request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
-            }
-            catch (Exception ex)
-            {
-                ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
-            }
-        }
-        else
-        {
-            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
-        }
+        //        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ex.Wrap($"{nameof(CrossNavigationService)}: Exception thrown while processing URL: {path} with RoutingFacade: {viewModelType}");
+        //    }
+        //}
+        //else
+        //{
+        //    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
+        //}
 
         return request;
     }
@@ -254,12 +254,12 @@ public class CrossNavigationService
     public virtual Task<bool> CanNavigate<TViewModel>()
         where TViewModel : ICrossViewModel
     {
-        return Task.FromResult(ViewsContainer.Value?.GetViewType(typeof(TViewModel)) != null);
+        return Task.FromResult(ViewsContainer?.GetViewType(typeof(TViewModel)) != null);
     }
 
     public virtual Task<bool> CanNavigate(Type viewModelType)
     {
-        return Task.FromResult(ViewsContainer.Value?.GetViewType(viewModelType) != null);
+        return Task.FromResult(ViewsContainer?.GetViewType(viewModelType) != null);
     }
 
     protected virtual async Task<bool> Navigate(CrossViewModelRequest request, ICrossViewModel viewModel,

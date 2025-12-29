@@ -58,11 +58,12 @@ public abstract class MvxWindowsSetup
         return new CrossSuspensionManager();
     }
 
-    protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+    protected sealed override ICrossViewsContainer CreateViewsContainer()
     {
         var container = CreateStoreViewsContainer();
-        iocProvider.RegisterSingleton<ICrossWindowsViewModelRequestTranslator>(container);
-        iocProvider.RegisterSingleton<ICrossWindowsViewModelLoader>(container);
+        //throw new NotImplementedException("Carga de views");
+        //iocProvider.RegisterSingleton<ICrossWindowsViewModelRequestTranslator>(container);
+        //iocProvider.RegisterSingleton<ICrossWindowsViewModelLoader>(container);
         var viewsContainer = container as CrossViewsContainer;
         if (viewsContainer == null)
             throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");

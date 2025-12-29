@@ -78,7 +78,7 @@ namespace Nivaes.App.Cross
 
         protected abstract void CreateApp();
 
-        protected abstract ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider);
+        protected abstract ICrossViewsContainer CreateViewsContainer();
 
         protected abstract ICrossViewDispatcher CreateViewDispatcher();
 
@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross
                 SetupLog?.Log(LogLevel.Trace, "Setup: Singleton Cache start");
                 InitializeSingletonCache();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewDispatcher start");
-                InitializeViewDispatcher(_iocProvider);
+                InitializeViewDispatcher();
                 State = CrossSetupState.InitializedPrimary;
             }
             catch (Exception e)
@@ -158,7 +158,7 @@ namespace Nivaes.App.Cross
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewModelTypeFinder start");
                 InitializeViewModelTypeFinder();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewsContainer start");
-                InitializeViewsContainer(_iocProvider);
+                InitializeViewsContainer();
                 //SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
                 //var lookup = InitializeLookupDictionary(_iocProvider);
                 //if (lookup != null)
@@ -358,10 +358,11 @@ namespace Nivaes.App.Cross
             //container.AddDelegate<IMvxPluginManager>(container => new MvxPluginManager(iocProvider, GetPluginConfiguration))
             //iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
 
+            CreateApp();
             //iocProvider.RegisterSingleton(CreateApp(iocProvider));
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
-            iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
-                (loader, dispatcher, p) => new CrossNavigationService(loader, dispatcher, p));
+            //iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
+            //    (loader, dispatcher, p) => new CrossNavigationService(loader, dispatcher, p));
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
             iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
@@ -527,7 +528,7 @@ namespace Nivaes.App.Cross
             if (app != null)
             {
                 var container = Singleton<CrossIoCServiceContainer>.Instance;
-                container.AddInstance<ICrossApplication>(app);
+                container.AddInstance<ICrossViewModelLocatorCollection>(app);
             }
             return app;
         }
@@ -540,23 +541,24 @@ namespace Nivaes.App.Cross
             app.Initialize();
         }
 
-        protected virtual ICrossViewsContainer InitializeViewsContainer(IMvxIoCProvider iocProvider)
+        protected virtual ICrossViewsContainer InitializeViewsContainer()
         {
-            ValidateArguments(iocProvider);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
 
-            var container = CreateViewsContainer(iocProvider);
-            iocProvider.RegisterSingleton(container);
-            return container;
+            var viewContainer = CreateViewsContainer();
+            container.AddInstance(viewContainer);
+            return viewContainer;
         }
 
-        protected virtual void InitializeViewDispatcher(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeViewDispatcher()
         {
-            ValidateArguments(iocProvider);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
 
             var dispatcher = CreateViewDispatcher();
-            iocProvider.RegisterSingleton(dispatcher);
-            iocProvider.RegisterSingleton<ICrossMainThreadAsyncDispatcher>(dispatcher);
-            iocProvider.RegisterSingleton<ICrossMainThreadDispatcher>(dispatcher);
+
+            container.AddInstance(dispatcher);
+            container.AddInstance<ICrossMainThreadAsyncDispatcher>(dispatcher);
+            container.AddInstance<ICrossMainThreadDispatcher>(dispatcher);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

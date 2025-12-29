@@ -33,10 +33,11 @@ namespace Nivaes.App.Cross.AppKitOS
             return new CrossPostfixAwareViewToViewModelNameMapping("View", "ViewController");
         }
 
-        protected sealed override ICrossViewsContainer CreateViewsContainer(IMvxIoCProvider iocProvider)
+        protected sealed override ICrossViewsContainer CreateViewsContainer()
         {
             var container = CreateMacViewsContainer();
-            RegisterMacViewCreator(iocProvider, container);
+            throw new NotImplementedException("Carga de views");
+            //RegisterMacViewCreator(iocProvider, container);
             return container;
         }
 
