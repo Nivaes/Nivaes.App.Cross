@@ -39,9 +39,9 @@ public abstract class CrossApplication
         {
             instance.EnsureInitialized();
 
-            if (Mvx.IoCProvider.TryResolve(out ICrossAppStart startup) && !startup.IsStarted)
+            if (Mvx.IoCProvider.TryResolve(out ICrossAppStart? startup) && !(startup?.IsStarted ?? false))
             {
-                startup.Start(GetAppStartHint(arguments));
+                startup?.Start(GetAppStartHint(arguments));
             }
         }
     }
