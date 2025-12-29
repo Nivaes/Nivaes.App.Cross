@@ -5,8 +5,8 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public abstract class MvxWindowsSetup
-    : CrossSetup, IMvxWindowsSetup
+public abstract class CrossWindowsSetup
+    : CrossSetup, ICrossWindowsSetup
 {
     private ICrossWindowsFrame? _rootFrame;
     private string? _suspensionManagerSessionStateKey;
@@ -170,7 +170,7 @@ public abstract class MvxWindowsSetup
     }
 }
 
-public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
+public abstract class MvxWindowsSetup<TApplication> : CrossWindowsSetup
      where TApplication : class, ICrossApplication, new()
 {
     protected override void CreateApp()

@@ -1,10 +1,9 @@
-namespace Nivaes.App.Cross
-{
-    using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
-    public interface ICrossViewFinder
-    {
-        [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
-        Type? GetViewType(Type? viewModelType);
-    }
+namespace Nivaes.App.Cross;
+
+public interface ICrossViewFinder
+{
+    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
+    Type GetViewType(Type viewModelType);
 }

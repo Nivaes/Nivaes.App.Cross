@@ -33,7 +33,7 @@ public abstract class CrossApplication
 
     protected virtual void RunAppStart(string arguments)
     {
-        var instance = MvxWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
+        var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
 
         if (RootFrame.Content == null)
         {

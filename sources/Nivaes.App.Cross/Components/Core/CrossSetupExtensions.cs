@@ -4,8 +4,10 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using MvvmCross.IoC;
 
+    [Obsolete("No usar reflection")]
     public static class CrossSetupExtensions
     {
+        [Obsolete("No usar reflection")]
         public static void RegisterSetupType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TMvxSetup>(this object platformApplication, params Assembly[]? assemblies)
             where TMvxSetup : CrossSetup, new()
         {
@@ -16,6 +18,7 @@ namespace Nivaes.App.Cross
                 new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? []).ToArray());
         }
 
+        [Obsolete("No usar reflection")]
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
         public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>(Assembly assembly, params object[] parameters) where TSetup : CrossSetup
         {
@@ -35,6 +38,7 @@ namespace Nivaes.App.Cross
             }
         }
 
+        [Obsolete("No usar reflection")]
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
         public static TSetup? CreateSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>() where TSetup : CrossSetup
         {
@@ -54,6 +58,7 @@ namespace Nivaes.App.Cross
             }
         }
 
+        [Obsolete("No usar reflection")]
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
         public static Type? FindSetupType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSetup>(Assembly assembly)
         {
@@ -65,6 +70,7 @@ namespace Nivaes.App.Cross
             return query.FirstOrDefault();
         }
 
+        [Obsolete("No usar reflection")]
         [RequiresUnreferencedCode("This method uses reflection to find types, which may not be preserved in trimmed applications")]
         public static Type? FindSetupType<TSetup>()
         {

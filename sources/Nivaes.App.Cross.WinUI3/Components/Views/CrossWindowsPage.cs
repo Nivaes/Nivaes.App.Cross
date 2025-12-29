@@ -6,11 +6,15 @@ using Windows.UI.Core;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public class CrossWindowsPage
+public class CrossWindowsPage<TViewModel>
     : Page
-    , ICrossWindowsView
     , IDisposable
+    , ICrossWindowsView<TViewModel> 
+    , ICrossWindowsView
+    where TViewModel : class, ICrossViewModel
 {
+    private TViewModel? _viewModel;
+
     public CrossWindowsPage()
     {
         Loading += MvxWindowsPage_Loading;
@@ -39,11 +43,17 @@ public class CrossWindowsPage
         base.OnNavigatingFrom(e);
     }
 
-    private ICrossViewModel _viewModel;
+    
 
     public ICrossWindowsFrame WrappedFrame => new CrossWrappedFrame(Frame);
 
-    public ICrossViewModel ViewModel
+    ICrossViewModel? ICrossView.ViewModel 
+    { 
+        get => ViewModel; 
+        set => ViewModel = (TViewModel?)value;
+    }
+
+    public TViewModel? ViewModel
     {
         get
         {
@@ -91,7 +101,7 @@ public class CrossWindowsPage
         if (_reqData != string.Empty)
         {
             var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-            ViewModel = viewModelLoader.Load(e.Parameter.ToString(), LoadStateBundle(e));
+            ViewModel = (TViewModel?)viewModelLoader?.Load(e.Parameter.ToString(), LoadStateBundle(e));
             ViewModel?.ViewCreated();
         }
         _reqData = (string)e.Parameter;
@@ -131,10 +141,10 @@ public class CrossWindowsPage
         }
     }
 
-    private string _pageKey;
+    private string? _pageKey;
 
-    private ICrossSuspensionManager _suspensionManager;
-    protected ICrossSuspensionManager SuspensionManager
+    private ICrossSuspensionManager? _suspensionManager;
+    protected ICrossSuspensionManager? SuspensionManager
     {
         get
         {
@@ -143,12 +153,12 @@ public class CrossWindowsPage
         }
     }
 
-    protected virtual ICrossBundle LoadStateBundle(NavigationEventArgs e)
+    protected virtual ICrossBundle? LoadStateBundle(NavigationEventArgs e)
     {
         // nothing loaded by default
-        var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
+        var frameState = SuspensionManager?.SessionStateForFrame(WrappedFrame);
         _pageKey = "Page-" + Frame.BackStackDepth;
-        ICrossBundle bundle = null;
+        ICrossBundle? bundle = null;
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.New)
         {
@@ -156,15 +166,18 @@ public class CrossWindowsPage
             // navigation stack
             var nextPageKey = _pageKey;
             var nextPageIndex = Frame.BackStackDepth;
-            while (frameState.Remove(nextPageKey))
+            if (frameState != null)
             {
-                nextPageIndex++;
-                nextPageKey = "Page-" + nextPageIndex;
+                while (frameState.Remove(nextPageKey))
+                {
+                    nextPageIndex++;
+                    nextPageKey = "Page-" + nextPageIndex;
+                }
             }
         }
         else
         {
-            var dictionary = (IDictionary<string, string>)frameState[_pageKey];
+            var dictionary = (IDictionary<string, string>?)frameState?[_pageKey];
             bundle = new CrossBundle(dictionary);
         }
 
@@ -173,8 +186,9 @@ public class CrossWindowsPage
 
     protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, ICrossBundle bundle)
     {
-        var frameState = SuspensionManager.SessionStateForFrame(WrappedFrame);
-        frameState[_pageKey] = bundle.Data;
+        var frameState = SuspensionManager?.SessionStateForFrame(WrappedFrame);
+        if(_pageKey != null)
+            frameState?[_pageKey] = bundle.Data;
     }
 
     public void Dispose()
@@ -196,16 +210,5 @@ public class CrossWindowsPage
             Loaded -= MvxWindowsPage_Loaded;
             Unloaded -= MvxWindowsPage_Unloaded;
         }
-    }
-}
-
-public class CrossWindowsPage<TViewModel>
-    : CrossWindowsPage
-    , ICrossWindowsView<TViewModel> where TViewModel : class, ICrossViewModel
-{
-    public new TViewModel ViewModel
-    {
-        get { return (TViewModel)base.ViewModel; }
-        set { base.ViewModel = value; }
     }
 }

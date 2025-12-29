@@ -1,10 +1,16 @@
-namespace Nivaes.App.Cross.Sample.WinUI3
+using Nivaes.App.Cross.WinUI3;
+
+namespace Nivaes.App.Cross.Sample.WinUI3;
+
+public sealed partial class ChildView : ChildViewPagePage
 {
-    public sealed partial class ChildView
+    public ChildView()
     {
-        public ChildView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
+}
+
+public abstract class ChildViewPagePage 
+    : CrossWindowsPage<ChildViewModel>
+{
 }

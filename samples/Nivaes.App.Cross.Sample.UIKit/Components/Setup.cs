@@ -14,6 +14,17 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 public class Setup : MvxIosSetup<SampleApp>
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 {
+    protected override void InitializeViewLookup()
+    {
+        // ToDo: Cargar esto con roslyn
+        var viewsManager = new CrossViewsManager(new[] {
+                    CrossViewsManager.New<RootViewModel, RootView>(),
+                    CrossViewsManager.New<ChildViewModel, ChildView>(),
+                });
+
+        Singleton<CrossViewsManager>.Add(viewsManager);
+    }
+
     protected override ILoggerProvider CreateLogProvider()
     {
         return new SerilogLoggerProvider();

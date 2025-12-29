@@ -100,7 +100,7 @@ public class MvxWindowsViewPresenter
     {
         var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
 
-        if (_rootFrame.Content is CrossWindowsPage currentPage)
+        if (_rootFrame.Content is ICrossWindowsView currentPage)
         {
             var splitView = currentPage.Content.FindControl<SplitView>();
             if (splitView == null)

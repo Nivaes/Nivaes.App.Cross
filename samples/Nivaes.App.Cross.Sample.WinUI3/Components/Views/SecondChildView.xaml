@@ -1,4 +1,4 @@
-<views:CrossWindowsPage xmlns:views="using:Nivaes.App.Cross.WinUI3"
+<views:SecondChildViewPage xmlns:views="using:Nivaes.App.Cross.Sample.WinUI3"
                       x:Class="Nivaes.App.Cross.Sample.WinUI3.SecondChildView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,4 +15,4 @@
                 Margin="5"
                 Padding="5" />
     </StackPanel>
-</views:CrossWindowsPage>
+</views:SecondChildViewPage>

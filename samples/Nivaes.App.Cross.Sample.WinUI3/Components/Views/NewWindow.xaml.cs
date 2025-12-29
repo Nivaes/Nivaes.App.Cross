@@ -6,7 +6,8 @@ namespace Nivaes.App.Cross.Sample.WinUI3;
 
 [MvxViewFor(typeof(NewWindowViewModel))]
 [MvxNewWindowPresentation]
-public sealed partial class NewWindow : NewWindowPage, IMvxNeedWindow
+public sealed partial class NewWindow 
+    : NewWindowPage, IMvxNeedWindow
 {
     public NewWindow()
     {
@@ -29,6 +30,7 @@ public sealed partial class NewWindow : NewWindowPage, IMvxNeedWindow
 }
 
 
-public abstract class NewWindowPage : CrossWindowsPage<NewWindowViewModel>
+public abstract class NewWindowPage 
+    : CrossWindowsPage<NewWindowViewModel>
 {
 }

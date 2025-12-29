@@ -69,9 +69,9 @@ namespace Nivaes.App.Cross
         }
 
         public ICrossViewModel LoadViewModel<TParameter>(
-            CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+            CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs)
         {
-            if (request.ViewModelType == typeof(CrossNullViewModel))
+            if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
             {
                 return new CrossNullViewModel();
             }
@@ -81,7 +81,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return viewModelLocator.Load(request.ViewModelType!, param, parameterValues, savedState, navigationArgs);
+                return viewModelLocator.Load(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
             }
             catch (Exception exception)
             {

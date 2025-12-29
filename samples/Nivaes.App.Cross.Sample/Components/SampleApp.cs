@@ -23,6 +23,8 @@ public class SampleApp : CrossApplication
             return new TextProviderBuilder().TextProvider;
         });
 
+        container.Merge(new ViewModelsSubcontainer());
+
         RegisterAppStart<RootViewModel>();
     }
 

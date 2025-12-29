@@ -20,6 +20,6 @@ public sealed partial class App
 
     protected override void RegisterSetup()
     {
-        this.RegisterSetupType<WinUiPlaygroundSetup>();
+        this.RegisterSetupType<WinUiSampleSetup>();
     }
 }

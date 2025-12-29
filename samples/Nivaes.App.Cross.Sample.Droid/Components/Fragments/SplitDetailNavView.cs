@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Nivaes.App.Cross.Droid;
-using Playground.Droid.Fragments;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {

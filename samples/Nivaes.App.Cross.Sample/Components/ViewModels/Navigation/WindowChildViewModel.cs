@@ -1,23 +1,21 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class WindowChildViewModel
+    : MvxNavigationViewModel<WindowChildParam>
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+    private WindowChildParam? _param;
 
-    public class WindowChildViewModel
-        : MvxNavigationViewModel<WindowChildParam>
+    public WindowChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
+        : base(logProvider, navigationService)
     {
-        private WindowChildParam _param;
-
-        public WindowChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
-        {
-        }
-
-        public int ParentNo => _param.ParentNo;
-        public string Text => $"I'm No.{_param.ChildNo}. My parent is No.{_param.ParentNo}";
-
-        public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () => await NavigationService.Close(this));
-
-        public override void Prepare(WindowChildParam param) => _param = param;
     }
+
+    public int? ParentNo => _param?.ParentNo;
+    public string Text => $"I'm No.{_param?.ChildNo}. My parent is No.{_param.ParentNo}";
+
+    public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () => await NavigationService.Close(this));
+
+    public override void Prepare(WindowChildParam param) => _param = param;
 }

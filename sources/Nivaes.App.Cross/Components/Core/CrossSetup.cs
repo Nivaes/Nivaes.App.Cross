@@ -109,8 +109,8 @@ namespace Nivaes.App.Cross
                 SetupLog?.Log(LogLevel.Trace, "Setup: Primary start");
                 SetupLog?.Log(LogLevel.Trace, "Setup: FirstChance start");
                 InitializeFirstChance(_iocProvider);
-                SetupLog?.Log(LogLevel.Trace, "Setup: MvvmCross settings start");
-                InitializeSettings(_iocProvider);
+                //SetupLog?.Log(LogLevel.Trace, "Setup: MvvmCross settings start");
+                //InitializeSettings();
                 SetupLog?.Log(LogLevel.Trace, "Setup: Singleton Cache start");
                 InitializeSingletonCache();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewDispatcher start");
@@ -159,7 +159,8 @@ namespace Nivaes.App.Cross
                 InitializeViewModelTypeFinder();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewsContainer start");
                 InitializeViewsContainer();
-                //SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
+                SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
+                InitializeViewLookup();
                 //var lookup = InitializeLookupDictionary(_iocProvider);
                 //if (lookup != null)
                 //{
@@ -245,24 +246,22 @@ namespace Nivaes.App.Cross
             return iocProvider.Resolve<ICrossChildViewModelCache>();
         }
 
-        protected virtual /*ICrossSettings?*/ void InitializeSettings(IMvxIoCProvider iocProvider)
-        {
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.AddDelegate<ICrossSettings>((container) =>
-            {
-                var settings = CreateSettings(iocProvider);
-                return settings;
-            });
+        //protected virtual void InitializeSettings()
+        //{
+        //    var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //    container.AddDelegate<ICrossSettings>((container) =>
+        //    {
+        //        var settings = CreateSettings();
+        //        return settings;
+        //    });
+        //}
 
-            //return settings;
-        }
+        //protected virtual ICrossSettings? CreateSettings(IMvxIoCProvider iocProvider)
+        //{
+        //    ValidateArguments(iocProvider);
 
-        protected virtual ICrossSettings? CreateSettings(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
-
-            return iocProvider.Resolve<ICrossSettings>();
-        }
+        //    return iocProvider.Resolve<ICrossSettings>();
+        //}
 
         //protected virtual ICrossStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
         //{
@@ -686,15 +685,7 @@ namespace Nivaes.App.Cross
             return builder?.Build(viewAssemblies);
         }
 
-        protected virtual ICrossViewsContainer? InitializeViewLookup(IDictionary<Type, Type> viewModelViewLookup,
-            IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
-
-            var container = iocProvider.Resolve<ICrossViewsContainer>();
-            container?.AddAll(viewModelViewLookup);
-            return container;
-        }
+        protected abstract void InitializeViewLookup();
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
         protected virtual void InitializeBindingBuilder(IMvxIoCProvider iocProvider)

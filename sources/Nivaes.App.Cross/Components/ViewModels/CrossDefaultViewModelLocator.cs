@@ -6,24 +6,28 @@ namespace Nivaes.App.Cross;
 public class CrossDefaultViewModelLocator
     : ICrossViewModelLocator
 {
+    // ToDo: ¿Tiene sentido sobrecargar esta clase?
     public virtual ICrossViewModel Load(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
     {
-        if (viewModelType == null)
-            throw new ArgumentNullException(nameof(viewModelType));
+        ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
-        ICrossViewModel viewModel;
+        ICrossViewModel? viewModel;
         try
         {
-            throw new NotImplementedException();
-            //viewModel = (ICrossViewModel)Mvx.IoCProvider.IoCConstruct(viewModelType);
+            viewModel = (ICrossViewModel?)Mvx.IoCProvider.Resolve(viewModelType);
         }
         catch (Exception exception)
         {
-            throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
+            throw exception.Wrap($"Problem creating viewModel of type {viewModelType.Name}");
+        }
+
+        if (viewModel == null)
+        {
+            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -31,6 +35,7 @@ public class CrossDefaultViewModelLocator
         return viewModel;
     }
 
+    // ToDo: ¿Tiene sentido sobrecargar esta clase?
     public virtual ICrossViewModel<TParameter> Load<TParameter>(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         TParameter param,
@@ -38,18 +43,21 @@ public class CrossDefaultViewModelLocator
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
     {
-        if (viewModelType == null)
-            throw new ArgumentNullException(nameof(viewModelType));
+        ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
-        ICrossViewModel<TParameter> viewModel;
+        ICrossViewModel<TParameter>? viewModel;
         try
         {
-            throw new NotImplementedException();
-            //viewModel = (ICrossViewModel<TParameter>)Mvx.IoCProvider.IoCConstruct(viewModelType);
+            viewModel = (ICrossViewModel<TParameter>?)Mvx.IoCProvider.Resolve(viewModelType);
         }
         catch (Exception exception)
         {
-            throw exception.Wrap("Problem creating viewModel of type {0}", viewModelType.Name);
+            throw exception.Wrap($"Problem creating viewModel of type {0}", viewModelType.Name);
+        }
+
+        if (viewModel == null)
+        {
+            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -96,8 +104,7 @@ public class CrossDefaultViewModelLocator
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs)
     {
-        if (viewModel == null)
-            throw new ArgumentNullException(nameof(viewModel));
+        ArgumentNullException.ThrowIfNull(viewModel, nameof(viewModel));
 
         try
         {

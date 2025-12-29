@@ -515,7 +515,7 @@ public class MvxMultiWindowViewPresenter
         CrossViewModelRequest request)
     {
         var windowInformation = GetWindowInformation(request);
-        if (windowInformation.RootFrame.Content is CrossWindowsPage currentPage)
+        if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
         {
             var splitView = currentPage.Content.FindControl<SplitView>();
             if (splitView == null)

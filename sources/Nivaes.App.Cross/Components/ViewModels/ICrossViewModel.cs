@@ -1,37 +1,50 @@
-namespace Nivaes.App.Cross
+using System.ComponentModel;
+
+namespace Nivaes.App.Cross;
+
+public interface ICrossViewModel
+    : INotifyPropertyChanged
 {
-    public interface ICrossViewModel
-    {
-        void ViewCreated();
+    void ViewCreated();
 
-        void ViewAppearing();
+    void ViewAppearing();
 
-        void ViewAppeared();
+    void ViewAppeared();
 
-        void ViewDisappearing();
+    void ViewDisappearing();
 
-        void ViewDisappeared();
+    void ViewDisappeared();
 
-        void ViewDestroy(bool viewFinishing = true);
+    void ViewDestroy(bool viewFinishing = true);
 
-        void Init(ICrossBundle parameters);
+    void Init(ICrossBundle parameters);
 
-        void ReloadState(ICrossBundle state);
+    void ReloadState(ICrossBundle state);
 
-        void Start();
+    void Start();
 
-        void SaveState(ICrossBundle state);
+    void SaveState(ICrossBundle state);
 
-        void Prepare();
+    void Prepare();
 
-        Task Initialize();
+    Task Initialize();
 
-        CrossNotifyTask? InitializeTask { get; set; }
-    }
+    CrossNotifyTask? InitializeTask { get; set; }
+}
 
-    public interface ICrossViewModel<in TParameter>
-        : ICrossViewModel
-    {
-        void Prepare(TParameter parameter);
-    }
+public interface ICrossViewModel<in TParameter>
+    : ICrossViewModel
+{
+    void Prepare(TParameter parameter);
+}
+
+public interface ICrossViewModelResult<out TResult>
+    : ICrossViewModel
+{
+    TaskCompletionSource<object>? CloseCompletionSource { get; set; }
+}
+
+public interface ICrossViewModel<in TParameter, out TResult>
+    : ICrossViewModel<TParameter>, ICrossViewModelResult<TResult>
+{
 }

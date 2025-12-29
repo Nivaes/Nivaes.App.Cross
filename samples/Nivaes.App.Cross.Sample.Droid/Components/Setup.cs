@@ -5,21 +5,33 @@ namespace Nivaes.App.Cross.Sample
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Sample.Droid;
     using Playground.Droid.Bindings;
     using Playground.Droid.Controls;
     using Serilog;
     using Serilog.Extensions.Logging;
 
     [RequiresUnreferencedCode("Uses MvvmCross reflection based plugin loading")]
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     public class Setup : MvxAndroidSetup<SampleApp>
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     {
         protected override IEnumerable<Assembly> AndroidViewAssemblies =>
             new List<Assembly>(base.AndroidViewAssemblies)
             {
                 typeof(MvxRecyclerView).Assembly
             };
+
+        protected override void InitializeViewLookup()
+        {
+            // ToDo: Cargar esto con roslyn
+            var viewsManager = new CrossViewsManager(new[] {
+                CrossViewsManager.New<RootViewModel, RootView>(),
+                //CrossViewsManager.New<NewWindowViewModel, NewWindowView>(),
+                //CrossViewsManager.New<BaseViewModel, BaseView>(),
+                CrossViewsManager.New<ChildViewModel, ChildView>(),
+            });
+
+            Singleton<CrossViewsManager>.Add(viewsManager);
+        }
 
         protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
