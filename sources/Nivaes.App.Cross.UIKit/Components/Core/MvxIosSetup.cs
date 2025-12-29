@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
+    using Nivaes.IoC;
 
     public abstract class MvxIosSetup
     : CrossSetup, IMvxIosSetup
@@ -161,6 +162,7 @@ namespace Nivaes.App.Cross.UIKitOS
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        [Obsolete("No usar reflection")]
         protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             registry.Fill(ValueConverterAssemblies);
@@ -174,8 +176,10 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual List<Type> ValueConverterHolders => new List<Type>();
 
+        [Obsolete("No usar reflection")]
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {
+            [Obsolete("No usar reflection")]
             [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
             get
             {
@@ -200,8 +204,14 @@ namespace Nivaes.App.Cross.UIKitOS
     public abstract class MvxIosSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxIosSetup
         where TApplication : class, ICrossApplication, new()
     {
-        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
-            iocProvider.IoCConstruct<TApplication>();
+        protected override void CreateApp()
+        {
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddDelegate<ICrossApplication>(container =>
+            {
+                return new TApplication();
+            });
+        }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()

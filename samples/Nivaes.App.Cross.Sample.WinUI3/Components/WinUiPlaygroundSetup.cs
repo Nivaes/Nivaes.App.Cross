@@ -5,7 +5,7 @@ using Serilog.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample.WinUI3;
 
-public class WinUiPlaygroundSetup : MvxWindowsSetup<Nivaes.App.Cross.Sample.App>
+public class WinUiPlaygroundSetup : MvxWindowsSetup<Nivaes.App.Cross.Sample.SampleApp>
 {
     protected override ILoggerProvider CreateLogProvider()
     {

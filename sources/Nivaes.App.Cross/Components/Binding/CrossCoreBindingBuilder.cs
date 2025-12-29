@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -11,7 +12,7 @@ public class CrossCoreBindingBuilder
     {
         CreateSingleton();
         RegisterCore(iocProvider);
-        RegisterValueConverterRegistryFiller(iocProvider);
+        RegisterValueConverterRegistryFiller();
         RegisterValueConverterProvider(iocProvider);
         RegisterValueCombinerRegistryFiller(iocProvider);
         RegisterValueCombinerProvider(iocProvider);
@@ -47,11 +48,18 @@ public class CrossCoreBindingBuilder
         CrossBindingSingletonCache.Initialize();
     }
 
-    protected virtual void RegisterValueConverterRegistryFiller(IMvxIoCProvider iocProvider)
+    protected virtual void RegisterValueConverterRegistryFiller()
     {
-        var filler = CreateValueConverterRegistryFiller();
-        iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<ICrossValueConverter>>(filler);
-        iocProvider.RegisterSingleton<ICrossValueConverterRegistryFiller>(filler);
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddDelegate<ICrossNamedInstanceRegistryFiller<ICrossValueConverter>>(container =>
+        {
+            return CreateValueConverterRegistryFiller();
+        });
+
+        container.AddDelegate<ICrossValueConverterRegistryFiller>(container =>
+        {
+            return CreateValueConverterRegistryFiller();
+        });
     }
 
     protected virtual ICrossValueConverterRegistryFiller CreateValueConverterRegistryFiller()
@@ -62,7 +70,7 @@ public class CrossCoreBindingBuilder
     protected virtual void RegisterValueCombinerRegistryFiller(IMvxIoCProvider iocProvider)
     {
         var filler = CreateValueCombinerRegistryFiller();
-        iocProvider.RegisterSingleton<IMvxNamedInstanceRegistryFiller<ICrossValueCombiner>>(filler);
+        iocProvider.RegisterSingleton<ICrossNamedInstanceRegistryFiller<ICrossValueCombiner>>(filler);
         iocProvider.RegisterSingleton<ICrossValueCombinerRegistryFiller>(filler);
     }
 

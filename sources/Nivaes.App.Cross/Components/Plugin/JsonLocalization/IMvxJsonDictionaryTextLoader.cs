@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("Esto se puede hacer de otra manera.")]
 public interface IMvxJsonDictionaryTextLoader
 {
     [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]

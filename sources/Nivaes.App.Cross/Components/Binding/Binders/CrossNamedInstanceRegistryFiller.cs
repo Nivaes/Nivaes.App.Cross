@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     using Nivaes.App.Cross;
 
     public class CrossNamedInstanceRegistryFiller<T> 
-        : IMvxNamedInstanceRegistryFiller<T>
+        : ICrossNamedInstanceRegistryFiller<T>
         where T : class
     {
         protected virtual void FillFromInstance(

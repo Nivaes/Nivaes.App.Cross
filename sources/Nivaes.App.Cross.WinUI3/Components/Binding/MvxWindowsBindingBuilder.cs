@@ -75,8 +75,10 @@ namespace Nivaes.App.Cross.WinUI3
         private void InitializeBindingCreator()
         {
             var creator = CreateBindingCreator();
-            throw new InvalidOperationException();
+            
             //Mvx.IoCProvider.RegisterSingleton(creator);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddInstance(creator);
         }
 
         protected virtual IMvxBindingCreator CreateBindingCreator()
@@ -100,6 +102,7 @@ namespace Nivaes.App.Cross.WinUI3
             _fillBindingNames?.Invoke(registry);
         }
 
+        [Obsolete("No usar reflection")]
         protected override void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             base.FillValueConverters(registry);
@@ -115,6 +118,7 @@ namespace Nivaes.App.Cross.WinUI3
             _fillValueConverters?.Invoke(registry);
         }
 
+        [Obsolete("No usar reflection")]
         protected override void FillValueCombiners(ICrossValueCombinerRegistry registry)
         {
             base.FillValueCombiners(registry);

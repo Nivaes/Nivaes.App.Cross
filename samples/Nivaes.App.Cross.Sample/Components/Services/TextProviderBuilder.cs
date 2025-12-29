@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross;
 
-namespace Playground.Core.Services;
+namespace Nivaes.App.Cross.Sample;
 
 [RequiresUnreferencedCode("MvxTextProvider requires unreferenced code")]
 public class TextProviderBuilder : MvxTextProviderBuilder

@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Sample;
 
 [RequiresUnreferencedCode("MvxApplication requires unreferenced code")]
-public class App : CrossApplication
+public class SampleApp : CrossApplication
 {
     /// <summary>
     /// Breaking change in v6: This method is called on a background thread. Use
@@ -11,14 +12,16 @@ public class App : CrossApplication
     /// </summary>
     public override void Initialize()
     {
-        throw new NotImplementedException();
-
         //CreatableTypes()
         //    .EndingWith("Service")
         //    .AsInterfaces()
         //    .RegisterAsLazySingleton();
 
-        //Mvx.IoCProvider?.RegisterSingleton<ICrossTextProvider>(new TextProviderBuilder().TextProvider);
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddDelegate<ICrossTextProvider>(container =>
+        {
+            return new TextProviderBuilder().TextProvider;
+        });
 
         RegisterAppStart<RootViewModel>();
     }

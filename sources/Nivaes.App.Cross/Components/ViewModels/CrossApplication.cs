@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
+using MvvmCross.IoC;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -60,46 +62,51 @@ public abstract class CrossApplication
         return DefaultLocator;
     }
 
-    protected void RegisterCustomAppStart<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TMvxAppStart>()
-            where TMvxAppStart : class, ICrossAppStart
-    {
-        throw new NotImplementedException();
-        //Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, TMvxAppStart>();
-    }
+    //protected void RegisterCustomAppStart<
+    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TMvxAppStart>()
+    //        where TMvxAppStart : class, ICrossAppStart
+    //{
+    //    //Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, TMvxAppStart>();
+    //}
 
     protected void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>()
         where TViewModel : ICrossViewModel
     {
-        throw new NotImplementedException();
-        //Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, MvxAppStart<TViewModel>>();
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddDelegate<ICrossAppStart>(container =>
+        {
+            var application = container.Resolve<ICrossApplication>();
+            var navigationService = container.Resolve<ICrossNavigationService>();
+            return new CrossAppStart<TViewModel>(application, navigationService);
+        });
     }
 
-    protected void RegisterAppStart(ICrossAppStart appStart)
-    {
-        throw new NotImplementedException();
-        //Mvx.IoCProvider?.RegisterSingleton(appStart);
-    }
+    //protected void RegisterAppStart(ICrossAppStart appStart)
+    //{
+    //    throw new NotImplementedException();
+    //    //Mvx.IoCProvider?.RegisterSingleton(appStart);
+    //}
 
-    protected virtual void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>()
-      where TViewModel : ICrossViewModel<TParameter> where TParameter : class
-    {
-        throw new NotImplementedException();
-        //Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, MvxAppStart<TViewModel, TParameter>>();
-    }
+    //protected virtual void RegisterAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>()
+    //  where TViewModel : ICrossViewModel<TParameter> where TParameter : class
+    //{
+    //    throw new NotImplementedException();
+    //    //Mvx.IoCProvider?.ConstructAndRegisterSingleton<ICrossAppStart, MvxAppStart<TViewModel, TParameter>>();
+    //}
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    protected IEnumerable<Type> CreatableTypes()
-    {
-        return CreatableTypes(GetType().GetTypeInfo().Assembly);
-    }
+    //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+    //[Obsolete("No usar reflection", true)]
+    //protected IEnumerable<Type> CreatableTypes()
+    //{
+    //    return CreatableTypes(GetType().GetTypeInfo().Assembly);
+    //}
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    protected IEnumerable<Type> CreatableTypes(Assembly assembly)
-    {
-        throw new NotImplementedException();
-        //return assembly.CreatableTypes();
-    }
+    //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+    //[Obsolete("No usar reflection")]
+    //protected IEnumerable<Type> CreatableTypes(Assembly assembly)
+    //{
+    //    return assembly.CreatableTypes();
+    //}
 }
 
 public class CrossApplication<TParameter> 

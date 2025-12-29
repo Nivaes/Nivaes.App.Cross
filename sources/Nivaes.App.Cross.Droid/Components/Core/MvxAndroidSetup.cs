@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Views;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Android.Core;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -165,6 +166,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
+        [Obsolete("No usar reflection")]
         protected virtual CrossBindingBuilder CreateBindingBuilder()
         {
             return new MvxAndroidBindingBuilder(FillValueConverters, FillValueCombiners, FillTargetFactories,
@@ -208,6 +210,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
+        [Obsolete("No usar reflection", true)]
         protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             ArgumentNullException.ThrowIfNull(registry);
@@ -223,6 +226,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual IEnumerable<Type> ValueConverterHolders => new List<Type>();
 
+        [Obsolete("No usar reflection")]
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {
             [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
@@ -267,11 +271,18 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    public abstract class MvxAndroidSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxAndroidSetup
-        where TApplication : class, ICrossApplication, new()
+    public abstract class MvxAndroidSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication>
+        : MvxAndroidSetup
+            where TApplication : class, ICrossApplication, new()
     {
-        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
-            iocProvider.IoCConstruct<TApplication>();
+        protected override void CreateApp()
+        {
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddDelegate<ICrossApplication>(container =>
+            {
+                return new TApplication();
+            });
+        }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()

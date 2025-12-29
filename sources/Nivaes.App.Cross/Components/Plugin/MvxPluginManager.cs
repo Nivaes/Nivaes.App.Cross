@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 
+    [Obsolete("Los plugin se meten en el contenedor. Mirar la creación de ambitos para cada plugin.")]
     public class MvxPluginManager : IMvxPluginManager
     {
         private readonly IMvxIoCProvider _provider;

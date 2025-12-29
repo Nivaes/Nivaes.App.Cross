@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross;
 
 [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]
+[Obsolete("¿Esto sirve para algo?")]
 public abstract class MvxTextProviderBuilder
     : IMvxTextProviderBuilder
 {

@@ -40,6 +40,7 @@ public static class MvxTypeExtensions
     }
 
     [RequiresUnreferencedCode("This method uses reflection to get types, which may not be preserved in trimmed applications")]
+    [Obsolete("No usar reflection")]
     public static IEnumerable<Type> CreatableTypes(this Assembly assembly)
     {
         return assembly

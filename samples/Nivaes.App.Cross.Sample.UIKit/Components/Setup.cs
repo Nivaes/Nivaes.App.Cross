@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [RequiresUnreferencedCode("Uses MvvmCross reflection based plugin loading")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-public class Setup : MvxIosSetup<App>
+public class Setup : MvxIosSetup<SampleApp>
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 {
     protected override ILoggerProvider CreateLogProvider()
@@ -39,6 +39,7 @@ public class Setup : MvxIosSetup<App>
         base.FillTargetFactories(registry);
     }
 
+    [Obsolete("Cargar los plugins de otra manera")]
     public override void LoadPlugins(IMvxPluginManager pluginManager)
     {
         base.LoadPlugins(pluginManager);

@@ -28,6 +28,7 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+        [Obsolete("No usar reflection", true)]
         public void AddOrOverwriteFrom(Assembly assembly)
         {
             this.Fill(assembly);

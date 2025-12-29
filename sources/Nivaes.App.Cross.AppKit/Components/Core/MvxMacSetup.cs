@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.AppKitOS
     using System.Reflection;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Mac.Presenters;
+    using Nivaes.IoC;
 
     public abstract class MvxMacSetup
         : CrossSetup, IMvxMacSetup
@@ -95,6 +96,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        [Obsolete("No usar reflection", true)]
         protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
         {
             var bindingBuilder = CreateBindingBuilder();
@@ -102,6 +104,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        [Obsolete("No usar reflection", true)]
         protected virtual CrossBindingBuilder CreateBindingBuilder()
         {
             return new MvxMacBindingBuilder(FillTargetFactories, FillValueConverters, FillBindingNames,
@@ -114,6 +117,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        [Obsolete("No usar reflection", true)]
         protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
         {
             registry.Fill(ValueConverterAssemblies);
@@ -125,6 +129,7 @@ namespace Nivaes.App.Cross.AppKitOS
             // this base class does nothing
         }
 
+        [Obsolete("No usar reflection", true)]
         protected virtual List<Assembly> ValueConverterAssemblies
         {
             [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
@@ -137,6 +142,7 @@ namespace Nivaes.App.Cross.AppKitOS
             }
         }
 
+        [Obsolete("No usar reflection", true)]
         protected virtual IEnumerable<Type> ValueConverterHolders => Array.Empty<Type>();
 
         protected virtual void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
@@ -148,8 +154,14 @@ namespace Nivaes.App.Cross.AppKitOS
     public abstract class MvxMacSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxMacSetup
         where TApplication : class, ICrossApplication, new()
     {
-        protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
-            iocProvider.IoCConstruct<TApplication>();
+        protected override void CreateApp()
+        {
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.AddDelegate<ICrossApplication>(container =>
+            {
+                return new TApplication();
+            });
+        }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()

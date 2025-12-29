@@ -6,7 +6,7 @@ namespace MvvmCross.IoC
     using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     public class MvxPropertyInjector : IMvxPropertyInjector
     {
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Runtime property inspection for generic type parameter with PublicProperties annotation")]

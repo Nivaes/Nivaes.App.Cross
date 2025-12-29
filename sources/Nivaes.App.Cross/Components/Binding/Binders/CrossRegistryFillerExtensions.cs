@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Nivaes.IoC;
 
+    [Obsolete("No usar reflection", true)]
     public static class CrossRegistryFillerExtensions
     {
         extension<T>(ICrossNamedInstanceRegistry<T> registry) where T : notnull
@@ -13,23 +14,25 @@ namespace Nivaes.App.Cross
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
             public void Fill(IEnumerable<Assembly> assemblies, IEnumerable<Type> types)
             {
-                var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();
+                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assemblies);
                 registry.Fill(filler, types);
             }
 
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
+            [Obsolete("No usar reflection", true)]
             public void Fill(IEnumerable<Assembly> assemblies)
             {
                 if (assemblies == null)
                     return;
 
-                var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();
+                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assemblies);
             }
 
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
-            public void Fill(IMvxNamedInstanceRegistryFiller<T> filler, IEnumerable<Assembly> assemblies)
+            [Obsolete("No usar reflection", true)]
+            public void Fill(ICrossNamedInstanceRegistryFiller<T> filler, IEnumerable<Assembly> assemblies)
             {
                 if (assemblies == null)
                     return;
@@ -41,30 +44,33 @@ namespace Nivaes.App.Cross
             }
 
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
+            [Obsolete("No usar reflection", true)]
             public void Fill(Assembly assembly)
             {
-                var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();
+                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assembly);
             }
 
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
-            public void Fill(IMvxNamedInstanceRegistryFiller<T> filler,
+            [Obsolete("No usar reflection", true)]
+            public void Fill(ICrossNamedInstanceRegistryFiller<T> filler,
                                     Assembly assembly)
             {
                 filler.FillFrom(registry, assembly);
             }
 
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
+            [Obsolete("No usar reflection", true)]
             public void Fill(IEnumerable<Type> types)
             {
                 if (types == null)
                     return;
 
-                var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();
+                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, types);
             }
 
-            public void Fill(IMvxNamedInstanceRegistryFiller<T> filler,
+            public void Fill(ICrossNamedInstanceRegistryFiller<T> filler,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] Type type)
             {
                 filler.FillFrom(registry, type);
@@ -73,7 +79,7 @@ namespace Nivaes.App.Cross
             public void Fill(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] Type type)
             {
-                var filler = Mvx.IoCProvider.Resolve<IMvxNamedInstanceRegistryFiller<T>>();
+                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, type);
             }
         }
@@ -82,7 +88,7 @@ namespace Nivaes.App.Cross
         {
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
             public void Fill(
-            IMvxNamedInstanceRegistryFiller<T> filler,
+            ICrossNamedInstanceRegistryFiller<T> filler,
             IEnumerable<Type> types)
             {
                 if (types == null)

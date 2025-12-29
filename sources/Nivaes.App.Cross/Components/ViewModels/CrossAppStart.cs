@@ -58,11 +58,11 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class MvxAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>
+    public class CrossAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>
         : CrossAppStart
             where TViewModel : ICrossViewModel
     {
-        public MvxAppStart(ICrossApplication application, ICrossNavigationService navigationService)
+        public CrossAppStart(ICrossApplication application, ICrossNavigationService navigationService)
             : base(application, navigationService)
         {
         }
@@ -81,7 +81,7 @@ namespace Nivaes.App.Cross
     }
 
     public class MvxAppStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>
-        : MvxAppStart<TViewModel>
+        : CrossAppStart<TViewModel>
             where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {

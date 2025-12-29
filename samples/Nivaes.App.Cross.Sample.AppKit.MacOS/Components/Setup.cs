@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [RequiresUnreferencedCode("MvxSetup requires unreferenced code")]
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-public class Setup : MvxMacSetup<App>
+public class Setup : MvxMacSetup<SampleApp>
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 {
     public Setup()

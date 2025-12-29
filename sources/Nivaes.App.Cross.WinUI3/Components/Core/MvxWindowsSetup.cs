@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.UI.Xaml.Controls;
 using MvvmCross.IoC;
+using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI3;
 
@@ -110,6 +111,7 @@ public abstract class MvxWindowsSetup
         iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
     }
 
+    [Obsolete("No usar reflection", true)]
     protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
     {
         var bindingBuilder = CreateBindingBuilder();
@@ -121,6 +123,7 @@ public abstract class MvxWindowsSetup
         // this base class does nothing
     }
 
+    [Obsolete("No usar reflection", true)]
     protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
     {
         registry.Fill(ValueConverterAssemblies);
@@ -139,8 +142,10 @@ public abstract class MvxWindowsSetup
 
     protected string? ActivationArguments { get; private set; }
 
+    [Obsolete("No usar reflection", true)]
     protected virtual List<Type> ValueConverterHolders => new List<Type>();
 
+    [Obsolete("No usar reflection", true)]
     protected virtual IEnumerable<Assembly> ValueConverterAssemblies
     {
         get
@@ -152,6 +157,7 @@ public abstract class MvxWindowsSetup
         }
     }
 
+    [Obsolete("No usar reflection", true)]
     protected virtual CrossBindingBuilder CreateBindingBuilder()
     {
         return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
@@ -166,8 +172,14 @@ public abstract class MvxWindowsSetup
 public abstract class MvxWindowsSetup<TApplication> : MvxWindowsSetup
      where TApplication : class, ICrossApplication, new()
 {
-    protected override ICrossApplication CreateApp(IMvxIoCProvider iocProvider) =>
-        iocProvider.IoCConstruct<TApplication>();
+    protected override void CreateApp()
+    {
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddDelegate<ICrossApplication>(container =>
+        {
+            return new TApplication();
+        });
+    }
 
     public override IEnumerable<Assembly> GetViewModelAssemblies()
     {
