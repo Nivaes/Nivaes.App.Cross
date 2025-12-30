@@ -41,8 +41,6 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual void RegisterIosViewCreator(IMvxIoCProvider iocProvider, IMvxIosViewsContainer container)
         {
-            ValidateArguments(iocProvider);
-
             iocProvider.RegisterSingleton<IMvxIosViewCreator>(container);
             iocProvider.RegisterSingleton<ICrossCurrentRequest>(container);
         }
@@ -52,22 +50,21 @@ namespace Nivaes.App.Cross.UIKitOS
             return new MvxIosViewDispatcher(Presenter);
         }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance()
         {
-            RegisterPlatformProperties(iocProvider);
-            RegisterPresenter(iocProvider);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            RegisterPlatformProperties(container);
+            RegisterPresenter(container);
 #if IOS || MACCATALYST
-            RegisterPopoverPresentationSourceProvider(iocProvider);
+            RegisterPopoverPresentationSourceProvider(container);
 #endif
-            RegisterLifetime(iocProvider);
-            base.InitializeFirstChance(iocProvider);
+            RegisterLifetime(container);
+            base.InitializeFirstChance();
         }
 
-        protected virtual void RegisterPlatformProperties(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPlatformProperties(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
-            iocProvider.RegisterSingleton<IMvxIosSystem>(CreateIosSystemProperties());
+            container.AddInstance<IMvxIosSystem>(CreateIosSystemProperties());
         }
 
         protected virtual MvxIosSystem CreateIosSystemProperties()
@@ -75,9 +72,8 @@ namespace Nivaes.App.Cross.UIKitOS
             return new MvxIosSystem();
         }
 
-        protected virtual void RegisterLifetime(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterLifetime(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
 
             if (LifetimeInstance == null)
             {
@@ -87,7 +83,7 @@ namespace Nivaes.App.Cross.UIKitOS
                 return;
             }
 
-            iocProvider.RegisterSingleton<ICrossLifetime>(LifetimeInstance);
+            container.AddInstance<ICrossLifetime>(LifetimeInstance);
         }
 
         protected IMvxIosViewPresenter? Presenter
@@ -112,10 +108,8 @@ namespace Nivaes.App.Cross.UIKitOS
             return new MvxIosViewPresenter(Window);
         }
 
-        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPresenter(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
             if (Presenter == null)
             {
                 SetupLog?.LogError("Presenter is null in {MethodName}. Make sure to call {CreatePresenterMethodName}",
@@ -125,16 +119,14 @@ namespace Nivaes.App.Cross.UIKitOS
             }
 
             var presenter = Presenter;
-            iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
+            container.AddInstance(presenter);
+            container.AddInstance<ICrossViewPresenter>(presenter);
         }
 
 #if IOS || MACCATALYST
-        protected virtual void RegisterPopoverPresentationSourceProvider(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPopoverPresentationSourceProvider(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
-            iocProvider.RegisterSingleton(CreatePopoverPresentationSourceProvider());
+            container.AddInstance(CreatePopoverPresentationSourceProvider());
         }
 
         protected virtual IMvxPopoverPresentationSourceProvider CreatePopoverPresentationSourceProvider()

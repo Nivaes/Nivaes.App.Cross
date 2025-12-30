@@ -48,8 +48,6 @@ namespace Nivaes.App.Cross.AppKitOS
 
         protected virtual void RegisterMacViewCreator(IMvxIoCProvider iocProvider, IMvxMacViewsContainer container)
         {
-            ValidateArguments(iocProvider);
-
             iocProvider.RegisterSingleton<IMvxMacViewCreator>(container);
             iocProvider.RegisterSingleton<IMvxCurrentRequest>(container);
         }
@@ -59,18 +57,18 @@ namespace Nivaes.App.Cross.AppKitOS
             return new MvxMacViewDispatcher(_presenter);
         }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance()
         {
-            RegisterPresenter(iocProvider);
-            RegisterLifetime(iocProvider);
-            base.InitializeFirstChance(iocProvider);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+
+            RegisterPresenter(container);
+            RegisterLifetime(container);
+            base.InitializeFirstChance();
         }
 
-        protected virtual void RegisterLifetime(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterLifetime(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
-            iocProvider.RegisterSingleton<ICrossLifetime>(_applicationDelegate);
+            container.AddInstance<ICrossLifetime>(_applicationDelegate);
         }
 
         protected IMvxMacViewPresenter Presenter
@@ -87,13 +85,11 @@ namespace Nivaes.App.Cross.AppKitOS
             return new MvxMacViewPresenter(_applicationDelegate);
         }
 
-        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPresenter(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
             var presenter = Presenter;
-            iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
+            container.AddInstance(presenter);
+            container.AddInstance<ICrossViewPresenter>(presenter);
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

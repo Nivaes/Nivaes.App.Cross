@@ -36,11 +36,12 @@ public abstract class CrossWindowsSetup
         ActivationArguments = e;
     }
 
-    protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+    protected override void InitializeFirstChance()
     {
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
         InitializeSuspensionManager();
         RegisterPresenter();
-        base.InitializeFirstChance(iocProvider);
+        base.InitializeFirstChance();
     }
 
     protected virtual void InitializeSuspensionManager()

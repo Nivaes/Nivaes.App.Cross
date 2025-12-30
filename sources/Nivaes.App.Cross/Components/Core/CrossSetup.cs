@@ -108,7 +108,7 @@ namespace Nivaes.App.Cross
 
                 SetupLog?.Log(LogLevel.Trace, "Setup: Primary start");
                 SetupLog?.Log(LogLevel.Trace, "Setup: FirstChance start");
-                InitializeFirstChance(_iocProvider);
+                InitializeFirstChance();
                 //SetupLog?.Log(LogLevel.Trace, "Setup: MvvmCross settings start");
                 //InitializeSettings();
                 SetupLog?.Log(LogLevel.Trace, "Setup: Singleton Cache start");
@@ -234,8 +234,6 @@ namespace Nivaes.App.Cross
         [Obsolete("No define nada", true)]
         protected virtual ICrossChildViewModelCache? InitializeViewModelCache(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             var cache = CreateViewModelCache(iocProvider);
             return cache;
         }
@@ -258,29 +256,21 @@ namespace Nivaes.App.Cross
 
         //protected virtual ICrossSettings? CreateSettings(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return iocProvider.Resolve<ICrossSettings>();
         //}
 
         //protected virtual ICrossStringToTypeParser? InitializeStringToTypeParser(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return CreateStringToTypeParser(iocProvider);
         //}
 
         //protected virtual ICrossStringToTypeParser? CreateStringToTypeParser(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return iocProvider.Resolve<ICrossStringToTypeParser>();
         //}
 
         //protected virtual ICrossFillableStringToTypeParser? InitializeFillableStringToTypeParser(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    var parser = CreateFillableStringToTypeParser(iocProvider);
         //    if (parser != null)
         //        iocProvider.RegisterSingleton(parser);
@@ -290,8 +280,6 @@ namespace Nivaes.App.Cross
 
         //protected virtual ICrossFillableStringToTypeParser? CreateFillableStringToTypeParser(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return iocProvider.Resolve<ICrossStringToTypeParser>() as ICrossFillableStringToTypeParser;
         //}
 
@@ -309,32 +297,24 @@ namespace Nivaes.App.Cross
         [Obsolete("No define nada", true)]
         protected virtual ICrossNavigationSerializer? InitializeNavigationSerializer(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return CreateNavigationSerializer(iocProvider);
         }
 
         [Obsolete("No define nada", true)]
         protected virtual ICrossNavigationSerializer? CreateNavigationSerializer(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<ICrossNavigationSerializer>();
         }
 
         [Obsolete("No define nada", true)]
         protected virtual ICrossCommandCollectionBuilder? InitializeCommandCollectionBuilder(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return CreateCommandCollectionBuilder(iocProvider);
         }
 
         [Obsolete("No define nada", true)]
         protected virtual ICrossCommandCollectionBuilder? CreateCommandCollectionBuilder(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<ICrossCommandCollectionBuilder>();
         }
 
@@ -351,8 +331,6 @@ namespace Nivaes.App.Cross
         protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-
-            //ValidateArguments(iocProvider);
 
             //container.AddDelegate<IMvxPluginManager>(container => new MvxPluginManager(iocProvider, GetPluginConfiguration))
             //iocProvider.RegisterSingleton<IMvxPluginManager>(() => new MvxPluginManager(iocProvider, GetPluginConfiguration));
@@ -389,7 +367,7 @@ namespace Nivaes.App.Cross
             return MvxIoCProvider.Initialize(CreateIocOptions());
         }
 
-        protected virtual void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeFirstChance()
         {
             // always the very first thing to get initialized - after IoC and base platform
             // base class implementation is empty by default
@@ -420,16 +398,12 @@ namespace Nivaes.App.Cross
         [Obsolete("Solo genera un recurso que no usa", true)]
         protected virtual ICrossViewModelLoader? CreateViewModelLoader(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<ICrossViewModelLoader>();
         }
 
         [Obsolete("Solo genera un recurso que no usa", true)]
         protected virtual ICrossNavigationService? CreateNavigationService(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<ICrossNavigationService>();
         }
 
@@ -437,8 +411,6 @@ namespace Nivaes.App.Cross
         [Obsolete("No usar reflection para cargar plugins", true)]
         protected virtual IMvxPluginManager? InitializePluginFramework(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             var pluginManager = CreatePluginManager(iocProvider);
             if (pluginManager != null)
                 LoadPlugins(pluginManager);
@@ -448,8 +420,6 @@ namespace Nivaes.App.Cross
         [Obsolete("Solo genera un recurso que no usa", true)]
         protected virtual IMvxPluginManager? CreatePluginManager(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<IMvxPluginManager>();
         }
 
@@ -564,8 +534,6 @@ namespace Nivaes.App.Cross
         [Obsolete("Usa reflection para generar los mapas.", true)]
         protected virtual ICrossNavigationService? InitializeNavigationService(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             //CreateViewModelLoader(iocProvider);
             var navigationService = CreateNavigationService(iocProvider);
             if (navigationService != null)
@@ -582,8 +550,6 @@ namespace Nivaes.App.Cross
         {
             if (navigationService == null)
                 throw new ArgumentNullException(nameof(navigationService));
-
-            ValidateArguments(iocProvider);
 
             navigationService.LoadRoutes(GetViewModelAssemblies());
         }
@@ -618,16 +584,12 @@ namespace Nivaes.App.Cross
         [Obsolete("No define nada", true)]
         protected virtual ICrossResultViewModelManager? InitializeResultViewModelManager(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return CreateResultViewModelManager(iocProvider);
         }
 
         [Obsolete("No define nada", true)]
         protected virtual ICrossResultViewModelManager? CreateResultViewModelManager(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             return iocProvider.Resolve<ICrossResultViewModelManager>();
         }
 
@@ -636,15 +598,11 @@ namespace Nivaes.App.Cross
 
         //protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return iocProvider.Resolve<ICrossViewModelByNameLookup>();
         //}
 
         //protected virtual ICrossViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
         //{
-        //    ValidateArguments(iocProvider);
-
         //    return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
         //}
 
@@ -652,8 +610,6 @@ namespace Nivaes.App.Cross
         [Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
         protected virtual /*ICrossNameMapping*/ void InitializeViewModelTypeFinder()
         {
-            //ValidateArguments(iocProvider);
-
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             var viewModelByNameRegistry = (ICrossViewModelByNameRegistry?)container.Resolve<ICrossViewModelByNameLookup>();
 
@@ -680,8 +636,6 @@ namespace Nivaes.App.Cross
         [Obsolete("No usar reflection", true)]
         protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             var viewAssemblies = GetViewAssemblies();
             var builder = iocProvider.Resolve<ICrossTypeToTypeLookupBuilder>();
             return builder?.Build(viewAssemblies);
@@ -716,12 +670,6 @@ namespace Nivaes.App.Cross
         private void FireStateChange(CrossSetupState state)
         {
             StateChanged?.Invoke(this, new CrossSetupStateEventArgs(state));
-        }
-
-        [Obsolete("No aporta nada")]
-        protected static void ValidateArguments(IMvxIoCProvider iocProvider)
-        {
-            ArgumentNullException.ThrowIfNull(iocProvider);
         }
     }
 }

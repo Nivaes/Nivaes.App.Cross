@@ -31,34 +31,32 @@ namespace Nivaes.App.Cross.Droid
 
         public Context? ApplicationContext { get; private set; }
 
-        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+        protected override void InitializeFirstChance()
         {
-            ValidateArguments(iocProvider);
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
 
-            InitializeLifetimeMonitor(iocProvider);
-            InitializeAndroidCurrentTopActivity(iocProvider);
-            RegisterPresenter(iocProvider);
+            InitializeLifetimeMonitor(container);
+            InitializeAndroidCurrentTopActivity(container);
+            RegisterPresenter(container);
 
-            iocProvider.RegisterSingleton<IMvxAndroidGlobals>(this);
+            container.AddInstance<IMvxAndroidGlobals>(this);
 
             var intentResultRouter = new MvxIntentResultSink();
-            iocProvider.RegisterSingleton<IMvxIntentResultSink>(intentResultRouter);
-            iocProvider.RegisterSingleton<IMvxIntentResultSource>(intentResultRouter);
+            container.AddInstance<IMvxIntentResultSink>(intentResultRouter);
+            container.AddInstance<IMvxIntentResultSource>(intentResultRouter);
 
             var viewModelTemporaryCache = new MvxSingleViewModelCache();
-            iocProvider.RegisterSingleton<IMvxSingleViewModelCache>(viewModelTemporaryCache);
+            container.AddInstance<IMvxSingleViewModelCache>(viewModelTemporaryCache);
 
             var viewModelMultiTemporaryCache = new MvxMultipleViewModelCache();
-            iocProvider.RegisterSingleton<IMvxMultipleViewModelCache>(viewModelMultiTemporaryCache);
-            base.InitializeFirstChance(iocProvider);
+            container.AddInstance<IMvxMultipleViewModelCache>(viewModelMultiTemporaryCache);
+            base.InitializeFirstChance();
         }
 
-        protected virtual void InitializeAndroidCurrentTopActivity(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeAndroidCurrentTopActivity(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
             var currentTopActivity = CreateAndroidCurrentTopActivity();
-            iocProvider.RegisterSingleton(currentTopActivity);
+            container.AddInstance(currentTopActivity);
         }
 
         protected virtual IMvxAndroidCurrentTopActivity CreateAndroidCurrentTopActivity()
@@ -69,14 +67,14 @@ namespace Nivaes.App.Cross.Droid
             return _currentTopActivity;
         }
 
-        protected virtual void InitializeLifetimeMonitor(IMvxIoCProvider iocProvider)
+        protected virtual void InitializeLifetimeMonitor(IoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
             var lifetimeMonitor = CreateLifetimeMonitor();
 
-            iocProvider.RegisterSingleton<IMvxAndroidActivityLifetimeListener>(lifetimeMonitor);
-            iocProvider.RegisterSingleton<ICrossLifetime>(lifetimeMonitor);
+            container.AddInstance<IMvxAndroidActivityLifetimeListener>(lifetimeMonitor);
+            container.AddInstance<ICrossLifetime>(lifetimeMonitor);
+            //iocProvider.RegisterSingleton<IMvxAndroidActivityLifetimeListener>(lifetimeMonitor);
+            //iocProvider.RegisterSingleton<ICrossLifetime>(lifetimeMonitor);
         }
 
         protected virtual MvxAndroidLifetimeMonitor CreateLifetimeMonitor()
@@ -87,8 +85,6 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         protected virtual void InitializeSavedStateConverter(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             var converter = CreateSavedStateConverter();
             iocProvider.RegisterSingleton(converter);
         }
@@ -101,8 +97,6 @@ namespace Nivaes.App.Cross.Droid
 
         protected override ICrossViewsContainer CreateViewsContainer()
         {
-            //ValidateArguments(iocProvider);
-
             if (ApplicationContext == null)
                 throw new InvalidOperationException("Cannot create Views Container without ApplicationContext");
 
@@ -139,20 +133,17 @@ namespace Nivaes.App.Cross.Droid
             return new MvxAndroidViewDispatcher(Presenter);
         }
 
-        protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+        protected virtual void RegisterPresenter(CrossIoCServiceContainer container)
         {
-            ValidateArguments(iocProvider);
-
             var presenter = Presenter;
-            iocProvider.RegisterSingleton(presenter);
-            iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
+
+            container.AddInstance(presenter);
+            container.AddInstance<ICrossViewPresenter>(presenter);
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
         protected override void InitializeLastChance(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             InitializeSavedStateConverter(iocProvider);
             base.InitializeLastChance(iocProvider);
         }
@@ -160,8 +151,6 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
         protected override void InitializeBindingBuilder(IMvxIoCProvider iocProvider)
         {
-            ValidateArguments(iocProvider);
-
             var bindingBuilder = CreateBindingBuilder();
             bindingBuilder.DoRegistration(iocProvider);
         }
