@@ -4,6 +4,7 @@ using MvvmCross.IoC;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("Quitar registro de typos")]
 public class CrossViewModelByNameLookup 
     : ICrossViewModelByNameLookup, ICrossViewModelByNameRegistry
 {

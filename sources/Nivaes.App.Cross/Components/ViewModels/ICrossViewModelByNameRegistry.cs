@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete("Quitar registro de typos")]
     public interface ICrossViewModelByNameRegistry
     {
         void Add(Type viewModelType);

@@ -634,19 +634,19 @@ namespace Nivaes.App.Cross
         [Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
         protected abstract ICrossNameMapping CreateViewToViewModelNaming();
 
-        protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
+        //protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
+        //{
+        //    ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<ICrossViewModelByNameLookup>();
-        }
+        //    return iocProvider.Resolve<ICrossViewModelByNameLookup>();
+        //}
 
-        protected virtual ICrossViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
-        {
-            ValidateArguments(iocProvider);
+        //protected virtual ICrossViewModelByNameRegistry? CreateViewModelByNameRegistry(IMvxIoCProvider iocProvider)
+        //{
+        //    ValidateArguments(iocProvider);
 
-            return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
-        }
+        //    return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
+        //}
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         [Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
@@ -654,17 +654,19 @@ namespace Nivaes.App.Cross
         {
             //ValidateArguments(iocProvider);
 
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            var viewModelByNameRegistry = (ICrossViewModelByNameRegistry?)container.Resolve<ICrossViewModelByNameLookup>();
+
             //CreateViewModelByNameLookup(iocProvider);
             //var viewModelByNameRegistry = CreateViewModelByNameRegistry(iocProvider);
-            //if (viewModelByNameRegistry != null)
-            //{
-            //    var viewModelAssemblies = GetViewModelAssemblies();
-            //    foreach (var assembly in viewModelAssemblies)
-            //    {
-            //        viewModelByNameRegistry.AddAll(assembly);
-            //    }
-            //}
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            if (viewModelByNameRegistry != null)
+            {
+                var viewModelAssemblies = GetViewModelAssemblies();
+                foreach (var assembly in viewModelAssemblies)
+                {
+                    viewModelByNameRegistry.AddAll(assembly);
+                }
+            }
             container.AddDelegate<ICrossNameMapping>((container) =>
                 {
                     var nameMappingStrategy = CreateViewToViewModelNaming();

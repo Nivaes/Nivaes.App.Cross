@@ -14,7 +14,7 @@ public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCSe
         bootstrapper.AddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
         bootstrapper.AddSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
         bootstrapper.AddSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>();
-        bootstrapper.AddSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>();
+        //bootstrapper.AddSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>();
         bootstrapper.AddSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
         bootstrapper.AddSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
         bootstrapper.AddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();

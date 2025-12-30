@@ -36,6 +36,7 @@ namespace Nivaes.App.Cross
         //    Add(typeof(TViewModel), typeof(TView));
         //}
 
+        // ToDo: Quitar esta clase y mover la busqueda de vistas.
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
         public Type GetViewType(Type viewModelType)
         {

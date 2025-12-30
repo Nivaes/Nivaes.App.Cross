@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Reflection;
 using Microsoft.UI.Xaml.Controls;
 using MvvmCross.IoC;
@@ -37,17 +38,17 @@ public abstract class CrossWindowsSetup
 
     protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
     {
-        InitializeSuspensionManager(iocProvider);
-        RegisterPresenter(iocProvider);
+        InitializeSuspensionManager();
+        RegisterPresenter();
         base.InitializeFirstChance(iocProvider);
     }
 
-    protected virtual void InitializeSuspensionManager(IMvxIoCProvider iocProvider)
+    protected virtual void InitializeSuspensionManager()
     {
-        ValidateArguments(iocProvider);
 
         var suspensionManager = CreateSuspensionManager();
-        iocProvider.RegisterSingleton(suspensionManager);
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
         if (_suspensionManagerSessionStateKey != null)
             suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
@@ -60,14 +61,14 @@ public abstract class CrossWindowsSetup
 
     protected sealed override ICrossViewsContainer CreateViewsContainer()
     {
-        var container = CreateStoreViewsContainer();
-        //throw new NotImplementedException("Carga de views");
-        //iocProvider.RegisterSingleton<ICrossWindowsViewModelRequestTranslator>(container);
-        //iocProvider.RegisterSingleton<ICrossWindowsViewModelLoader>(container);
-        var viewsContainer = container as CrossViewsContainer;
+        var viewContainer = CreateStoreViewsContainer();
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddInstance<ICrossWindowsViewModelRequestTranslator>(viewContainer);
+        container.AddInstance<ICrossWindowsViewModelLoader>(viewContainer);
+        var viewsContainer = viewContainer as CrossViewsContainer;
         if (viewsContainer == null)
             throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
-        return container;
+        return viewContainer;
     }
 
     protected virtual ICrossStoreViewsContainer CreateStoreViewsContainer()
@@ -103,13 +104,12 @@ public abstract class CrossWindowsSetup
         return CreateViewDispatcher(_rootFrame);
     }
 
-    protected virtual void RegisterPresenter(IMvxIoCProvider iocProvider)
+    protected virtual void RegisterPresenter()
     {
-        ValidateArguments(iocProvider);
-
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
         var presenter = Presenter;
-        iocProvider.RegisterSingleton(presenter);
-        iocProvider.RegisterSingleton<ICrossViewPresenter>(presenter);
+        container.AddInstance(presenter);
+        container.AddInstance<ICrossViewPresenter>(presenter);
     }
 
     [Obsolete("No usar reflection", true)]
