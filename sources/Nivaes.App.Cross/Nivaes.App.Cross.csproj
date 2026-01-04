@@ -17,7 +17,11 @@
 
 		<!--<ImplicitUsings>enable</ImplicitUsings>-->		
 	</PropertyGroup>
-	
+		
+	<PropertyGroup>
+		<MyAppName>MiApp</MyAppName>
+	</PropertyGroup>
+		
 	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
@@ -33,8 +37,9 @@
 	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
-		
+	
 	<ItemGroup>
+		<PackageReference Include="Nivaes.App.Secrets" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="Nivaes.IoC" />
@@ -42,6 +47,8 @@
 		<PackageReference Include="Sentry" />
 		<PackageReference Include="Serilog" />
 		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>

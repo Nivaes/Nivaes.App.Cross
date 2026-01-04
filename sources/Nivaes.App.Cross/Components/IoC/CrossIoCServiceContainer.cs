@@ -6,6 +6,7 @@ public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCSe
 {
     protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
     {
+        bootstrapper.AddSingleton<ILoggingService, LoggingService>();
         bootstrapper.AddSingleton<ICrossNavigationService, CrossNavigationService>();
 
         bootstrapper.AddSingleton<ICrossSettings, CrossSettings>();

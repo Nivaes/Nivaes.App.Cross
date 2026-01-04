@@ -1,5 +1,7 @@
 ﻿[*.cs]
 
+dotnet_diagnostic.MyAppName = MyCoolApp
+
 # Default severity for analyzer diagnostics with category 'Design'
 dotnet_analyzer_diagnostic.category-Design.severity = none
 csharp_indent_labels = one_less_than_current

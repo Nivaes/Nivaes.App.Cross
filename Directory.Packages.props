@@ -1,6 +1,7 @@
 <Project>
   <ItemGroup>
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
+    <PackageVersion Include="Nivaes.App.Secrets" Version="0.1.5" />
     <PackageVersion Include="NuGet.Build.Tasks.Pack" Version="6.14.0" />
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageVersion Include="AsyncFixer" Version="1.6.0" />

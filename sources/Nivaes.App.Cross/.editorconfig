@@ -1,0 +1,3 @@
+﻿[*.cs]
+secret_app_dns = https://localhost/
+secret_sentry_dns = https://5aeafc70fce9e681b6dd6473fac8c38e@o4510324332756992.ingest.de.sentry.io/4510324493385808
