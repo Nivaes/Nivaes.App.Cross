@@ -30,8 +30,5 @@
     <PackageVersion Include="Xamarin.AndroidX.SwipeRefreshLayout" Version="1.2.0" />
     <PackageVersion Include="Xamarin.AndroidX.ViewPager" Version="1.1.0.4" />
     <PackageVersion Include="Xamarin.Google.Android.Material" Version="1.13.0" />
-    <PackageVersion Include="Aspire.Hosting.DevTunnels" Version="13.1.0" />
-    <PackageVersion Include="Aspire.Hosting.Maui" Version="13.1.0-preview.1.25616.3" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.0" />
   </ItemGroup>
 </Project>
