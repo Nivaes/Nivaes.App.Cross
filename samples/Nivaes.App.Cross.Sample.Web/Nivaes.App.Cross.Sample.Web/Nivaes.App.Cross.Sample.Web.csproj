@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orquestation\Nivaes.App.Cross.AppHost.Android\Nivaes.App.Cross.AppHost.Android.ServiceDefaults\Nivaes.App.Cross.AppHost.Android.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\Orquestation\Nivaes.App.Cross.Web\Nivaes.App.Cross.Web.ServiceDefaults\Nivaes.App.Cross.Web.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Nivaes.App.Cross.Sample.Web.Client\Nivaes.App.Cross.Sample.Web.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+  </ItemGroup>
+
+</Project>

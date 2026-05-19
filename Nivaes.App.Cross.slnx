@@ -3,8 +3,10 @@
     <File Path="Estructura.md" />
   </Folder>
   <Folder Name="/Orquestation/">
-    <Project Path="Orquestation/Nivaes.App.Cross.AppHost.Android/Nivaes.App.Cross.AppHost.Android.AppHost/Nivaes.App.Cross.AppHost.Android.AppHost.csproj" Id="ce3a06f5-4556-4aec-9476-a889be094549" />
-    <Project Path="Orquestation/Nivaes.App.Cross.AppHost.Android/Nivaes.App.Cross.AppHost.Android.ServiceDefaults/Nivaes.App.Cross.AppHost.Android.ServiceDefaults.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.Android/Nivaes.App.Cross.Android.AppHost/Nivaes.App.Cross.Android.AppHost.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.Android/Nivaes.App.Cross.Android.ServiceDefaults/Nivaes.App.Cross.AppHost.Android.ServiceDefaults.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.Web/Nivaes.App.Cross.Web.AppHost/Nivaes.App.Cross.Web.AppHost.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.Web/Nivaes.App.Cross.Web.ServiceDefaults/Nivaes.App.Cross.Web.ServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/Packets/">
     <Project Path="packets/Nivaes.App.Cross.Packet/Nivaes.App.Cross.Packet.csproj" />
@@ -21,6 +23,8 @@
       <Deploy />
     </Project>
     <Project Path="samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
+    <Project Path="samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client/Nivaes.App.Cross.Sample.Web.Client.csproj" />
+    <Project Path="samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.csproj" />
     <Project Path="samples/Nivaes.App.Cross.Sample.WinUI3/Nivaes.App.Cross.Sample.WinUI3.csproj">
       <Platform Project="x64" />
       <Deploy />
