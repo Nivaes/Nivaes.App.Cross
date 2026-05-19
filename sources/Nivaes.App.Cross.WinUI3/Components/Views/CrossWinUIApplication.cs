@@ -7,13 +7,13 @@ using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
 namespace Nivaes.App.Cross.WinUI3;
 
-public abstract class CrossApplication 
+public abstract class CrossWinUIApplication 
     : Application
 {
     protected Frame RootFrame { get; set; }
     public Window MainWindow { get; protected set; }
 
-    protected CrossApplication()
+    protected CrossWinUIApplication()
     {
         RegisterSetup();
     }
@@ -94,7 +94,7 @@ public abstract class CrossApplication
     }
 }
 
-public class CrossApplication<TMvxWinUiSetup, TApplication> : CrossApplication
+public class CrossApplication<TMvxWinUiSetup, TApplication> : CrossWinUIApplication
    where TMvxWinUiSetup : MvxWindowsSetup<TApplication>, new()
    where TApplication : class, ICrossApplication, new()
 {

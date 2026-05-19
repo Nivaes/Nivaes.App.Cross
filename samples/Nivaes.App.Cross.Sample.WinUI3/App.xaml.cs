@@ -1,9 +1,10 @@
 ﻿using Microsoft.UI.Xaml;
+using Nivaes.App.Cross.WinUI3;
 
 namespace Nivaes.App.Cross.Sample.WinUI3;
 
 public sealed partial class App 
-    : Nivaes.App.Cross.WinUI3.CrossApplication
+    : CrossWinUIApplication
 {
     public App()
     {

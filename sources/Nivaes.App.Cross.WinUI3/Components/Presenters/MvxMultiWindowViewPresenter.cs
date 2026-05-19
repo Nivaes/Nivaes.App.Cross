@@ -36,7 +36,7 @@ public class MvxMultiWindowViewPresenter
     /// <param name="rootFrame">The root frame.</param>
     public MvxMultiWindowViewPresenter(ICrossWindowsFrame rootFrame)
     {
-        var window = (Microsoft.UI.Xaml.Application.Current as CrossApplication)?.MainWindow;
+        var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)
         {
             window.AppWindow.Closing += (_, __) => CloseAllWindows();
