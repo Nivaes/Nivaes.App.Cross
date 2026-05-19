@@ -2,6 +2,10 @@
   <Folder Name="/Doc/">
     <File Path="Estructura.md" />
   </Folder>
+  <Folder Name="/Orquestation/">
+    <Project Path="Orquestation/Nivaes.App.Cross.AppHost.Android/Nivaes.App.Cross.AppHost.Android.AppHost/Nivaes.App.Cross.AppHost.Android.AppHost.csproj" Id="ce3a06f5-4556-4aec-9476-a889be094549" />
+    <Project Path="Orquestation/Nivaes.App.Cross.AppHost.Android/Nivaes.App.Cross.AppHost.Android.ServiceDefaults/Nivaes.App.Cross.AppHost.Android.ServiceDefaults.csproj" />
+  </Folder>
   <Folder Name="/Packets/">
     <Project Path="packets/Nivaes.App.Cross.Packet/Nivaes.App.Cross.Packet.csproj" />
   </Folder>
