@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+
+		<TargetFramework>net10.0-windows10.0.22000.0</TargetFramework>
+
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+		<PackageId>Nivaes.App.Cross</PackageId>
+		<Version>0.0.1</Version>
+
+		<Title>Nivaes App Cross</Title>
+		<Description>Nivaes Cross Platform Library</Description>
+
+		<Authors>Nivaes</Authors>
+		<Company>Nivaes</Company>
+
+		<RepositoryUrl>https://github.com/nivaes/Nivaes.App.Cross</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<!-- El proyecto empaquetador no genera DLL propia -->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+
+		<!-- Ignorar warning CPM -->
+		<NoWarn>$(NoWarn);NU1507</NoWarn>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="Nivaes.Extensions" />
+		<PackageReference Include="Nivaes.IoC" />
+		<PackageReference Include="OpenTelemetry" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
+	</ItemGroup>
+
+	<!-- Compilar WinUI antes de empaquetar -->
+	<Target Name="BuildReferencedProjects"
+			BeforeTargets="Pack">
+
+		<MSBuild
+			Projects="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj"
+			Targets="Build"
+			Properties="Configuration=$(Configuration)" />
+
+	</Target>
+
+	<!-- Archivos que irán al paquete -->
+	<ItemGroup>
+
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.dll"
+			  Pack="true"
+			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb"
+			  Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb')"
+			  Pack="true"
+			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml"
+			  Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml')"
+			  Pack="true"
+			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+
+	</ItemGroup>
+
+</Project>
