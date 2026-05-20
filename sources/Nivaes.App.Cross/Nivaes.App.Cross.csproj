@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
+		<AssemblyName>Nivaes.App.Cross.Kernel</AssemblyName>
 		
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>
@@ -85,5 +86,4 @@
 	<ItemGroup>
 	  <Folder Include="Components\Observabilidad\" />
 	</ItemGroup>
-
 </Project>

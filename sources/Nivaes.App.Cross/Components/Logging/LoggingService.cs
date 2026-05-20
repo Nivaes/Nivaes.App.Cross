@@ -12,7 +12,7 @@ internal class LoggingService : ILoggingService
             // A Sentry Data Source Name (DSN) is required.
             // See https://docs.sentry.io/concepts/key-terms/dsn-explainer/
             // You can set it in the SENTRY_DSN environment variable, or you can set it in code here.
-            options.Dsn = Nivaes.App.Cross.Secrets.SentryDns;
+            options.Dsn = Nivaes.App.Cross.Kernel.Secrets.SentryDns;
             // When debug is enabled, the Sentry client will emit detailed debugging information to the console.
             // This might be helpful, or might interfere with the normal operation of your application.
             // We enable it here for demonstration purposes when first trying Sentry.
@@ -20,7 +20,7 @@ internal class LoggingService : ILoggingService
 #if DEBUG
             options.Debug = true;
 #else
-    OPToptions.Debug = true;
+            options.Debug = false;
 #endif
             // Adds request URL and headers, IP and name for users, etc.
             options.SendDefaultPii = true;

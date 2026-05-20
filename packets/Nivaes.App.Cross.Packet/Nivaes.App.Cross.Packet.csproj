@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 
-		<TargetFramework>net10.0-windows10.0.22000.0</TargetFramework>
+		<TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
 
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -34,38 +34,40 @@
 		<PackageReference Include="OpenTelemetry" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
-	</ItemGroup>
+	<Target Name="BuildReferencedProjects" BeforeTargets="Pack">
 
-	<!-- Compilar WinUI antes de empaquetar -->
-	<Target Name="BuildReferencedProjects"
-			BeforeTargets="Pack">
-
-		<MSBuild
-			Projects="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj"
-			Targets="Build"
-			Properties="Configuration=$(Configuration)" />
+		<MSBuild Projects="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" Targets="Build" Properties="Configuration=$(Configuration)" />
 
 	</Target>
 
-	<!-- Archivos que irán al paquete -->
-	<ItemGroup>
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'macos'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
+	</ItemGroup>
 
-		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.dll"
-			  Pack="true"
-			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'ios'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+	</ItemGroup>
 
-		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb"
-			  Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb')"
-			  Pack="true"
-			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'maccatalyst'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+	</ItemGroup>
 
-		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml"
-			  Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml')"
-			  Pack="true"
-			  PackagePath="lib\net10.0-windows10.0.22000.0\" />
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'android'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework))) == 'windows'">
+		
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
+		
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.dll" Pack="true" PackagePath="lib\net10.0-windows10.0.22000.0\" />
+
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb" Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.pdb')" Pack="true" PackagePath="lib\net10.0-windows10.0.22000.0\" />
+
+		<None Include="..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml" Condition="Exists('..\..\sources\Nivaes.App.Cross.WinUI3\bin\$(Configuration)\net10.0-windows10.0.22000.0\Nivaes.App.Cross.WinUI3.xml')" Pack="true" PackagePath="lib\net10.0-windows10.0.22000.0\" />
 
 	</ItemGroup>
 
+	
+	
 </Project>
