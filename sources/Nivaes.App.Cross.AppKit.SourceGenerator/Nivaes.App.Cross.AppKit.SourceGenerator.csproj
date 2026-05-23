@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-	  <AssemblyName>Nivaes.App.Cross.App.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.App.SourceGenerator</RootNamespace>
+	  <AssemblyName>Nivaes.App.Cross.AppKit.SourceGenerator</AssemblyName>
+	  <RootNamespace>Nivaes.App.Cross.AppKit.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -15,7 +15,7 @@
 
 	<PropertyGroup>
 		<PackageId>Nivaes.App.Cross.AppKit.SourceGenerator</PackageId>
-		<Title>Nivaes UIKit SourceGenerator</Title>
+		<Title>Nivaes AppKit SourceGenerator</Title>
 		<Product>Nivaes App Cross macos SourceGenerator</Product>
 		<Description>Nivaes App Cross macos AppKit source generator.</Description>
 		<PackageTags>Nivaes;app;cross;AppKit;macos;roslyn</PackageTags>

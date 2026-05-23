@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 
-		<AssemblyName>Nivaes.App.Cross.WinUI.SourceGenerator</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross.WinUI.SourceGenerator</RootNamespace>
+		<AssemblyName>Nivaes.App.Cross.WinUI3.SourceGenerator</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.WinUI3.SourceGenerator</RootNamespace>
 
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
@@ -14,11 +14,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.App.Cross.WinUI.SourceGenerator</PackageId>
-		<Title>Nivaes WinUI SourceGenerator</Title>
-		<Product>Nivaes App Cross WinUI SourceGenerator</Product>
-		<Description>Nivaes App Cross WinUI source generator.</Description>
-		<PackageTags>Nivaes;app;cross;WinUI;roslyn</PackageTags>
+		<PackageId>Nivaes.App.Cross.WinUI3.SourceGenerator</PackageId>
+		<Title>Nivaes WinUI3 SourceGenerator</Title>
+		<Product>Nivaes App Cross WinUI3 SourceGenerator</Product>
+		<Description>Nivaes App Cross WinUI3 source generator.</Description>
+		<PackageTags>Nivaes;app;cross;WinUI3;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
