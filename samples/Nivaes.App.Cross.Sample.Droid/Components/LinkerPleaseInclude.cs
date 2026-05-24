@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 // This class is never actually executed, but when Xamarin linking is enabled it does how to ensure types and properties
 // are preserved in the deployed app
 [Android.Runtime.Preserve(AllMembers = true)]
+[Obsolete("Con Roslyn no deveria ser necesario")]
 public class LinkerPleaseInclude
 {
     public void Include(Button button)

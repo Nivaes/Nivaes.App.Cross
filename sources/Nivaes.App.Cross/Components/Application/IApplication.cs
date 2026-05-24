@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Nivaes.App.Cross;
 
-[Obsolete]
-public interface ILoggingService
+public interface IApplication
 {
 }

@@ -4,6 +4,6 @@
     "rollForward": "latestMajor"
   },
   "msbuild-sdks": {
-    "Aspire.AppHost.Sdk": "13.3.3"
+    "Aspire.AppHost.Sdk": "13.3.5"
   }
 }

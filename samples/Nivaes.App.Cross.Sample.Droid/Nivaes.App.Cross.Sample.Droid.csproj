@@ -48,7 +48,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
-		<PackageReference Include="Xamarin.Android.Glide" />
+		<!--<PackageReference Include="Xamarin.Android.Glide" />-->
 		<PackageReference Include="Serilog.Sinks.Xamarin" />
 	</ItemGroup>
 	<ItemGroup>

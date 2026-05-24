@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.AppKitOS
     using System.Reflection;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.Mac.Presenters;
+    using Nivaes.App.Cross.Components.Hosting;
     using Nivaes.IoC;
 
     public abstract class MvxMacSetup

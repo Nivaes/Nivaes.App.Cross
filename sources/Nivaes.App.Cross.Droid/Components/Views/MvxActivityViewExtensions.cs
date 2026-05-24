@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;

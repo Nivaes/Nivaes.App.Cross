@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using MvvmCross;
     using Nivaes.IoC;
 
+    [Obsolete]
     public static class CrossLogHost
     {
         static CrossLogHost()

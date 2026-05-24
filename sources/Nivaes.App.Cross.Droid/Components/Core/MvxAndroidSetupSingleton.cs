@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
+    [Obsolete]
     public class MvxAndroidSetupSingleton
         : CrossSetupSingleton
     {

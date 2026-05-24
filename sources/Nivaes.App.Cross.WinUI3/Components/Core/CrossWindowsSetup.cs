@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Microsoft.UI.Xaml.Controls;
 using MvvmCross.IoC;
+using Nivaes.App.Cross.Components.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI3;

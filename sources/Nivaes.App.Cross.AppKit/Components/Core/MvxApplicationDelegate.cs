@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross.Components.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.AppKitOS;

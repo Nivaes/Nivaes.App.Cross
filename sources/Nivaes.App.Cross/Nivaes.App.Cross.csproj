@@ -2,8 +2,9 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
-		<AssemblyName>Nivaes.App.Cross.Kernel</AssemblyName>
+		<!--<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>-->
+		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<AssemblyName>Nivaes.App.Cross</AssemblyName>
 		
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>
@@ -40,6 +41,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
 		<PackageReference Include="Nivaes.App.Secrets" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />

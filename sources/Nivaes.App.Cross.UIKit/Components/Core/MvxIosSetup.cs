@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross.Components.Hosting;
     using Nivaes.IoC;
 
     public abstract class MvxIosSetup

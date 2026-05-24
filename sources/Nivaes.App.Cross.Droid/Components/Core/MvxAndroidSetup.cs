@@ -4,10 +4,12 @@ using Android.Content;
 using Android.Views;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Android.Core;
+using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
 {
+    [Obsolete("This class is deprecated. Please use MvxAndroidSetupSingleton instead.")]
     public abstract class MvxAndroidSetup
         : CrossSetup, IMvxAndroidGlobals, IMvxAndroidSetup
     {
@@ -261,23 +263,24 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    public abstract class MvxAndroidSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication>
+    [Obsolete]
+    public abstract class MvxAndroidSetup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApp>
         : MvxAndroidSetup
-            where TApplication : class, ICrossApplication, new()
+            where TApp : class, ICrossApp, new()
     {
         protected override void CreateApp()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.AddDelegate<ICrossApplication>(container =>
+            container.AddDelegate<ICrossApp>(container =>
             {
-                return new TApplication();
+                return new TApp();
             });
         }
 
         [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
-            return [typeof(TApplication).GetTypeInfo().Assembly];
+            return [typeof(TApp).GetTypeInfo().Assembly];
         }
     }
 }

@@ -1,14 +1,13 @@
 namespace Nivaes.App.Cross
 {
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using System.Xml.Linq;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using MvvmCross.Plugin;
+    using Nivaes.App.Cross.Hosting;
     using Nivaes.IoC;
 
+    [Obsolete]
     public abstract class CrossSetup
         : ICrossSetup
     {
@@ -150,7 +149,7 @@ namespace Nivaes.App.Cross
                 //SetupLog?.Log(LogLevel.Trace, "Setup: FillableStringToTypeParser start");
                 //InitializeFillableStringToTypeParser(_iocProvider);
                 SetupLog?.Log(LogLevel.Trace, "Setup: Create App");
-                var app = InitializeMvxApplication();
+                //var app = InitializeMvxApplication();
                 //SetupLog?.Log(LogLevel.Trace, "Setup: NavigationService");
                 //InitializeNavigationService(_iocProvider);
                 //SetupLog?.Log(LogLevel.Trace, "Setup: ResultViewModelManager");
@@ -196,15 +195,15 @@ namespace Nivaes.App.Cross
                 //        nameof(InitializePluginFramework));
                 //}
 
-                if (app != null)
-                {
-                    InitializeApp(app);
-                }
-                else
-                {
-                    SetupLog?.LogWarning("App instance is null returning from {MethodName}",
-                        nameof(InitializeMvxApplication));
-                }
+                //if (app != null)
+                //{
+                //    InitializeApp(app);
+                //}
+                //else
+                //{
+                //    SetupLog?.LogWarning("App instance is null returning from {MethodName}",
+                //        nameof(InitializeMvxApplication));
+                //}
 
                 SetupLog?.Log(LogLevel.Trace, "Setup: LastChance start");
                 InitializeLastChance(_iocProvider);
@@ -485,30 +484,30 @@ namespace Nivaes.App.Cross
                 type.GetCustomAttributes(pluginAttribute, false).Length > 0;
         }
 
-        protected virtual ICrossApplication? CreateMvxApplication()
+        protected virtual ICrossApp? CreateMvxApplication()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
-            return container.Resolve<ICrossApplication>();
+            return container.Resolve<ICrossApp>();
         }
 
-        protected virtual ICrossApplication? InitializeMvxApplication()
-        {         
-            var app = CreateMvxApplication();
-            if (app != null)
-            {
-                var container = Singleton<CrossIoCServiceContainer>.Instance;
-                container.AddInstance<ICrossViewModelLocatorCollection>(app);
-            }
-            return app;
-        }
+        //protected virtual ICrossApp? InitializeMvxApplication()
+        //{         
+        //    var app = CreateMvxApplication();
+        //    if (app != null)
+        //    {
+        //        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //        container.AddInstance<ICrossViewModelLocatorCollection>(app);
+        //    }
+        //    return app;
+        //}
 
-        protected virtual void InitializeApp(ICrossApplication app)
-        {
-            ArgumentNullException.ThrowIfNull(app);
+        //protected virtual void InitializeApp(ICrossApp app)
+        //{
+        //    ArgumentNullException.ThrowIfNull(app);
 
-            SetupLog?.Log(LogLevel.Trace, "Setup: Application Initialize - On background thread");
-            app.Initialize();
-        }
+        //    SetupLog?.Log(LogLevel.Trace, "Setup: Application Initialize - On background thread");
+        //    app.Initialize();
+        //}
 
         protected virtual ICrossViewsContainer InitializeViewsContainer()
         {
@@ -568,7 +567,7 @@ namespace Nivaes.App.Cross
         [Obsolete("No usar reflection", true)]
         public virtual IEnumerable<Assembly> GetViewModelAssemblies()
         {
-            var app = _iocProvider?.Resolve<ICrossApplication>();
+            var app = _iocProvider?.Resolve<ICrossApp>();
             if (app == null) return [];
             var assembly = app.GetType().GetTypeInfo().Assembly;
             return [assembly];

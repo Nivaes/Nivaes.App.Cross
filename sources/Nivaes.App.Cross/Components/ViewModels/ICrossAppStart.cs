@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Threading.Tasks;
 
+    [Obsolete]
     public interface ICrossAppStart
     {
         void Start(object? hint = null);
