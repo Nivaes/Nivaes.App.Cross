@@ -1,6 +1,6 @@
-using Playground.iOS;
+using Nivaes.App.Cross.Sample.UIKitOS;
 
-namespace Playground.iOS
+namespace Nivaes.App.Cross.Sample.UIKit.iOS
 {
     public class Application
     {

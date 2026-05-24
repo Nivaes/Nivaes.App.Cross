@@ -1,4 +1,6 @@
-namespace Playground.iOS;
+using Nivaes.App.Cross.Sample.UIKitOS;
+
+namespace Nivaes.App.Cross.Sample.UIKit.MacCatalyst;
 
 public class Application
 {

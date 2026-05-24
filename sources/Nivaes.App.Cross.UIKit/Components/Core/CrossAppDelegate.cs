@@ -1,20 +1,37 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross.Components.Hosting;
+using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
 [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-public abstract class MvxApplicationDelegate 
+public abstract class CrossAppDelegate 
     : UIApplicationDelegate, IMvxApplicationDelegate
 {
     public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 
     public virtual UIWindow? MainWindow { get; set; }
 
-    protected MvxApplicationDelegate()
+    protected CrossAppDelegate()
     {
-        RegisterSetup();
+        //RegisterSetup();
+    }
+
+    protected abstract CrossApp CreateCrossApp();
+
+    public override bool WillFinishLaunching(UIApplication application, NSDictionary? launchOptions)
+    {
+        var mauiApp = CreateCrossApp();
+
+        //var rootContext = new MauiContext(mauiApp.Services);
+
+        //_applicationContext = rootContext.MakeApplicationScope(this);
+
+        //_services = _applicationContext.Services;
+
+        //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
+
+        return base.WillFinishLaunching(application, launchOptions);
     }
 
     public override void WillEnterForeground(UIApplication application)
@@ -36,7 +53,7 @@ public abstract class MvxApplicationDelegate
     {
         MainWindow ??= new UIWindow(UIScreen.MainScreen.Bounds);
 
-        MvxIosSetupSingleton.EnsureSingletonAvailable(this, MainWindow).EnsureInitialized();
+        //MvxIosSetupSingleton.EnsureSingletonAvailable(this, MainWindow).EnsureInitialized();
 
         RunAppStart(launchOptions);
 
@@ -59,7 +76,7 @@ public abstract class MvxApplicationDelegate
         return hint;
     }
 
-    protected abstract void RegisterSetup();
+    //protected abstract void RegisterSetup();
 
     private void FireLifetimeChanged(CrossLifetimeEvent which)
     {
@@ -68,13 +85,13 @@ public abstract class MvxApplicationDelegate
     }
 }
 
-[RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-public abstract class MvxApplicationDelegate<TMvxIosSetup, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxApplicationDelegate
-    where TMvxIosSetup : MvxIosSetup<TApplication>, new()
-    where TApplication : class, ICrossApplication, new()
-{
-    protected override void RegisterSetup()
-    {
-        this.RegisterSetupType<TMvxIosSetup>();
-    }
-}
+//[RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+//public abstract class MvxApplicationDelegate<TMvxIosSetup, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : CrossAppDelegate
+//    where TMvxIosSetup : MvxIosSetup<TApplication>, new()
+//    where TApplication : class, ICrossApplication, new()
+//{
+//    protected override void RegisterSetup()
+//    {
+//        this.RegisterSetupType<TMvxIosSetup>();
+//    }
+//}

@@ -22,7 +22,7 @@
 
 		<IsAotCompatible>true</IsAotCompatible>
 		<!-- <PublishAot>true</PublishAot> -->
-		<StartupObject>Playground.iOS.Application</StartupObject>
+		<!--<StartupObject>Nivaes.App.Cross.Sample.UIKit.MacCatalyst</StartupObject>-->
 	</PropertyGroup>
   <ItemGroup>
 	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
