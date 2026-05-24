@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross.Components.Hosting;
+using Nivaes.App.Cross.AppKitOS;
+using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.AppKitOS;
@@ -14,12 +15,24 @@ public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplic
         RegisterSetup();
     }
 
+    protected abstract CrossApp CreateCrossApp();
+
     public override void DidFinishLaunching(Foundation.NSNotification notification)
     {
-        MvxMacSetupSingleton.EnsureSingletonAvailable(this).EnsureInitialized();
-        RunAppStart(notification);
+        var crossApp = CreateCrossApp();
 
-        FireLifetimeChanged(CrossLifetimeEvent.Launching);
+        //MvxMacSetupSingleton.EnsureSingletonAvailable(this).EnsureInitialized();
+        //RunAppStart(notification);
+
+        //FireLifetimeChanged(CrossLifetimeEvent.Launching);
+
+        //var rootContext = new MauiContext(mauiApp.Services);
+
+        //_applicationContext = rootContext.MakeApplicationScope(this);
+
+        //_services = _applicationContext.Services;
+
+        //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
     }
 
     protected virtual void RunAppStart(object hint = null)
@@ -62,13 +75,13 @@ public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplic
     public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 }
 
-[RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-public class MvxApplicationDelegate<TMvxMacSetup, TApplication> : MvxApplicationDelegate
-    where TMvxMacSetup : MvxMacSetup<TApplication>, new()
-    where TApplication : class, ICrossApplication, new()
-{
-    protected override void RegisterSetup()
-    {
-        this.RegisterSetupType<TMvxMacSetup>();
-    }
-}
+//[RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
+//public class MvxApplicationDelegate<TMvxMacSetup, TApplication> : MvxApplicationDelegate
+//    where TMvxMacSetup : MvxMacSetup<TApplication>, new()
+//    where TApplication : class, ICrossApplication, new()
+//{
+//    protected override void RegisterSetup()
+//    {
+//        this.RegisterSetupType<TMvxMacSetup>();
+//    }
+//}

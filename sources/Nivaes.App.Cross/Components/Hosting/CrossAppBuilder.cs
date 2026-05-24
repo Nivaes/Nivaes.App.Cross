@@ -172,7 +172,6 @@ namespace Nivaes.App.Cross.Hosting
 
             CrossApp builtApplication = new CrossApp(serviceProvider);
 
-            // Initialize any singleton/app services, for example the OS hooks
             builtApplication.InitializeAppServices();
 
             return builtApplication;

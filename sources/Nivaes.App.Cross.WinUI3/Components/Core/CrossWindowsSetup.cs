@@ -1,12 +1,12 @@
-using System.ComponentModel;
 using System.Reflection;
 using Microsoft.UI.Xaml.Controls;
 using MvvmCross.IoC;
-using Nivaes.App.Cross.Components.Hosting;
+using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI3;
 
+[Obsolete]
 public abstract class CrossWindowsSetup
     : CrossSetup, ICrossWindowsSetup
 {
@@ -173,12 +173,12 @@ public abstract class CrossWindowsSetup
 }
 
 public abstract class MvxWindowsSetup<TApplication> : CrossWindowsSetup
-     where TApplication : class, ICrossApplication, new()
+     where TApplication : class, ICrossApp, new()
 {
     protected override void CreateApp()
     {
         var container = Singleton<CrossIoCServiceContainer>.Instance;
-        container.AddDelegate<ICrossApplication>(container =>
+        container.AddDelegate<ICrossApp>(container =>
         {
             return new TApplication();
         });

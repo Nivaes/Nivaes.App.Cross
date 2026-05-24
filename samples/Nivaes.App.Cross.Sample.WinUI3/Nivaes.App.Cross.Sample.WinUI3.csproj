@@ -24,6 +24,12 @@
 		<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
 		<TrimMode Condition="'$(Configuration)' == 'Release'">link</TrimMode>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Components\IoC\**" />
+	  <EmbeddedResource Remove="Components\IoC\**" />
+	  <None Remove="Components\IoC\**" />
+	  <Page Remove="Components\IoC\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
@@ -113,6 +119,6 @@
 	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Components\IoC\" />
+	  <PRIResource Remove="Components\IoC\**" />
 	</ItemGroup>
 </Project>

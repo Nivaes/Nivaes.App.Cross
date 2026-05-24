@@ -1,8 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using Nivaes.App.Cross.Components.Hosting;
+using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
+using Windows.UI;
 using Application = Microsoft.UI.Xaml.Application;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
@@ -11,13 +13,21 @@ namespace Nivaes.App.Cross.WinUI3;
 public abstract class CrossWinUIApplication 
     : Application
 {
-    protected Frame RootFrame { get; set; }
+    IServiceProvider? _services;
+
+    IApplication? _application;
+
+    //IServiceProvider IPlatformApplication.Services => _services!;
+
+    //protected Frame RootFrame { get; set; }
     public Window MainWindow { get; protected set; }
 
     protected CrossWinUIApplication()
     {
-        RegisterSetup();
+        //RegisterSetup();
     }
+
+    protected abstract CrossApp CreateCrossApp();
 
     /// <summary>
     /// Invoked when the application is launched normally by the end user.
@@ -25,82 +35,102 @@ public abstract class CrossWinUIApplication
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        _ = InitializeFrame(args.Arguments);
+        //if (_application != null && _services != null)
+        //{
+        //    _services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
+        //    _services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
+        //    return;
+        //}
 
-        RunAppStart(args.Arguments);
+        //IPlatformApplication.Current = this;
+        var mauiApp = CreateCrossApp();
 
-        MainWindow.Activate();
+        //var rootContext = new CrossContext(mauiApp.Services);
+
+        //var applicationContext = rootContext.MakeApplicationScope(this);
+
+        //_services = applicationContext.Services;
+
+        //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
+
+        _application = _services.GetRequiredService<IApplication>();
+
+        //this.SetApplicationHandler(_application, applicationContext);
+
+        //this.CreatePlatformWindow(_application, args);
+
+        //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
     }
 
-    protected virtual void RunAppStart(string arguments)
-    {
-        var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
+    //protected virtual void RunAppStart(string arguments)
+    //{
+    //    var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
 
-        if (RootFrame.Content == null)
-        {
-            instance.EnsureInitialized();
+    //    if (RootFrame.Content == null)
+    //    {
+    //        instance.EnsureInitialized();
 
-            if (Mvx.IoCProvider.TryResolve(out ICrossAppStart? startup) && !(startup?.IsStarted ?? false))
-            {
-                startup?.Start(GetAppStartHint(arguments));
-            }
-        }
-    }
+    //        if (Mvx.IoCProvider.TryResolve(out ICrossAppStart? startup) && !(startup?.IsStarted ?? false))
+    //        {
+    //            startup?.Start(GetAppStartHint(arguments));
+    //        }
+    //    }
+    //}
 
-    protected virtual object? GetAppStartHint(object? hint = null)
-    {
-        return hint;
-    }
+    //protected virtual object? GetAppStartHint(object? hint = null)
+    //{
+    //    return hint;
+    //}
 
-    protected virtual Window CreateWindow()
-    {
-        return new Window();
-    }
+    //protected virtual Window CreateWindow()
+    //{
+    //    return new Window();
+    //}
 
-    protected virtual Frame InitializeFrame(string arguments)
-    {
-        if (MainWindow == null)
-        {
-            MainWindow = CreateWindow();
-        }
+    //protected virtual Frame InitializeFrame(string arguments)
+    //{
+    //    if (MainWindow == null)
+    //    {
+    //        MainWindow = CreateWindow();
+    //    }
 
-        var rootFrame = MainWindow.Content as Frame;
+    //    var rootFrame = MainWindow.Content as Frame;
 
-        if (rootFrame == null)
-        {
-            rootFrame = CreateFrame();
-            rootFrame.NavigationFailed += OnNavigationFailed;
+    //    if (rootFrame == null)
+    //    {
+    //        rootFrame = CreateFrame();
+    //        rootFrame.NavigationFailed += OnNavigationFailed;
 
-            MainWindow.Content = rootFrame;
-        }
+    //        MainWindow.Content = rootFrame;
+    //    }
 
-        RootFrame = rootFrame;
+    //    RootFrame = rootFrame;
 
-        return rootFrame;
-    }
+    //    return rootFrame;
+    //}
 
-    protected virtual Frame CreateFrame()
-    {
-        return new Frame();
-    }
+    //protected virtual Frame CreateFrame()
+    //{
+    //    return new Frame();
+    //}
 
-    protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-    {
-        throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
-    }
+    //protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+    //{
+    //    throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+    //}
 
-    protected virtual void RegisterSetup()
-    {
+    //protected virtual void RegisterSetup()
+    //{
 
-    }
+    //}
 }
 
-public class CrossApplication<TMvxWinUiSetup, TApplication> : CrossWinUIApplication
-   where TMvxWinUiSetup : MvxWindowsSetup<TApplication>, new()
-   where TApplication : class, ICrossApplication, new()
-{
-    protected override void RegisterSetup()
-    {
-        this.RegisterSetupType<TMvxWinUiSetup>();
-    }
-}
+//public class CrossApplication<TMvxWinUiSetup, TApplication> : CrossWinUIApplication
+//   where TMvxWinUiSetup : MvxWindowsSetup<TApplication>, new()
+//   where TApplication : class, ICrossApp, new()
+//{
+//    protected override void RegisterSetup()
+//    {
+//        this.RegisterSetupType<TMvxWinUiSetup>();
+//    }
+//}
