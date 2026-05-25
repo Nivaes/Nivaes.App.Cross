@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 public partial class WinUISubcontainer : IoCServiceContainer
 {

@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 /// Attribute to indicate that a view should be shown in a new window.

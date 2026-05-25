@@ -1,8 +1,8 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Nivaes.App.Cross.WinUI3;
+using Nivaes.App.Cross.WinUI;
 
-namespace Nivaes.App.Cross.Sample.WinUI3;
+namespace Nivaes.App.Cross.Sample.WinUI;
 
 [MvxViewFor(typeof(NewWindowViewModel))]
 [MvxNewWindowPresentation]

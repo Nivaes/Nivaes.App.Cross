@@ -1,7 +1,7 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 /// Interface for Window root views to allow the View Presenter to set the current appwindow.

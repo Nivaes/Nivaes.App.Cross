@@ -1,7 +1,7 @@
 using System;
 using Microsoft.UI.Dispatching;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 public class CrossWindowsMainThreadDispatcher 
     : CrossMainThreadAsyncDispatcher

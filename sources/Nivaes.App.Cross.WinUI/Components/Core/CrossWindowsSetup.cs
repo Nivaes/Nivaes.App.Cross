@@ -4,7 +4,7 @@ using MvvmCross.IoC;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 [Obsolete]
 public abstract class CrossWindowsSetup

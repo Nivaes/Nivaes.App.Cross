@@ -10,7 +10,7 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using Window = Microsoft.UI.Xaml.Window;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 ///     Defines a view presenter with multi-windows support.

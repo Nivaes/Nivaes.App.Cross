@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml;
 using WinRT.Interop;
 using Application = Microsoft.UI.Xaml.Application;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 /// Extension methods for MvxWindowsPage.

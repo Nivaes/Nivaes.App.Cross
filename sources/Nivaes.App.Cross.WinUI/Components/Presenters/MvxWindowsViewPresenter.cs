@@ -6,7 +6,7 @@ using Nivaes.IoC;
 using Windows.UI.Core;
 using Control = Microsoft.UI.Xaml.Controls.Control;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 public class MvxWindowsViewPresenter
     : CrossAttributeViewPresenter, IMvxWindowsViewPresenter

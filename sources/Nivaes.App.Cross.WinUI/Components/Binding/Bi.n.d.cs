@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml;
 using Nivaes.IoC;
 
-namespace Nivaes.App.Cross.WinUI3
+namespace Nivaes.App.Cross.WinUI
 {
     // ReSharper disable InconsistentNaming
     public static class Bi

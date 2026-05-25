@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml;
 using Nivaes.App.Cross;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 /// Holds information regarding the different windows.

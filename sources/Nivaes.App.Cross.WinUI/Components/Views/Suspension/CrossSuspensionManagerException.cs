@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.WinUI3
+namespace Nivaes.App.Cross.WinUI
 {
     using System;
     using MvvmCross.Exceptions;

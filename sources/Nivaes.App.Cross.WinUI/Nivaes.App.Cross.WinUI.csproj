@@ -8,7 +8,7 @@
 		<Platforms>x64;ARM64</Platforms>
 		<!--<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>-->
 
-		<RootNamespace>Nivaes.App.Cross.WinUI3</RootNamespace>
+		<RootNamespace>Nivaes.App.Cross.WinUI</RootNamespace>
 
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>

@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Nivaes.IoC;
 using Windows.UI.Core;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 public class CrossWindowsPage<TViewModel>
     : Page

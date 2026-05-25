@@ -4,7 +4,7 @@ using System.Text;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Sample;
 
-namespace Nivaes.App.Cross.Sample.WinUI3;
+namespace Nivaes.App.Cross.Sample.WinUI;
 
 public static class CrossProgram
 {

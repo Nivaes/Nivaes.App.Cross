@@ -1,9 +1,9 @@
-<app:NewWindowPage x:Class="Nivaes.App.Cross.Sample.WinUI3.NewWindow"
+<app:NewWindowPage x:Class="Nivaes.App.Cross.Sample.WinUI.NewWindow"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:app="using:Nivaes.App.Cross.Sample.WinUI3"
+                   xmlns:app="using:Nivaes.App.Cross.Sample.WinUI"
                    mc:Ignorable="d">
     <StackPanel>
         <TextBlock Text="{StaticResource WelcomeText}" />

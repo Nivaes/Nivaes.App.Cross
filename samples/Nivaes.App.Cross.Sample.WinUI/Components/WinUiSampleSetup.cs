@@ -1,9 +1,9 @@
 //using Microsoft.Extensions.Logging;
-//using Nivaes.App.Cross.WinUI3;
+//using Nivaes.App.Cross.WinUI;
 //using Serilog;
 //using Serilog.Extensions.Logging;
 
-//namespace Nivaes.App.Cross.Sample.WinUI3;
+//namespace Nivaes.App.Cross.Sample.WinUI;
 
 //public class WinUiSampleSetup 
 //    : MvxWindowsSetup<Nivaes.App.Cross.Sample.SampleApp>

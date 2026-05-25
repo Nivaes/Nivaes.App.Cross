@@ -1,7 +1,7 @@
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
-namespace Nivaes.App.Cross.WinUI3;
+namespace Nivaes.App.Cross.WinUI;
 
 public class CrossWindowsViewsContainer
     : CrossViewsContainer
