@@ -20,12 +20,12 @@ public abstract class CrossWinUIApplication
     //IServiceProvider IPlatformApplication.Services => _services!;
 
     //protected Frame RootFrame { get; set; }
-    public Window MainWindow { get; protected set; }
+    //public Window MainWindow { get; protected set; }
 
-    protected CrossWinUIApplication()
-    {
-        //RegisterSetup();
-    }
+    //protected CrossWinUIApplication()
+    //{
+    //    //RegisterSetup();
+    //}
 
     protected abstract CrossApp CreateCrossApp();
 
@@ -45,7 +45,7 @@ public abstract class CrossWinUIApplication
         //IPlatformApplication.Current = this;
         var mauiApp = CreateCrossApp();
 
-        //var rootContext = new CrossContext(mauiApp.Services);
+        var rootContext = new CrossContext(mauiApp.Services);
 
         //var applicationContext = rootContext.MakeApplicationScope(this);
 

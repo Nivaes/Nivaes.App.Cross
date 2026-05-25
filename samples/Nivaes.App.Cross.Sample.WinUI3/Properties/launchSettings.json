@@ -1,7 +1,0 @@
-{
-  "profiles": {
-    "Cross.WinUI3 (Package)": {
-      "commandName": "MsixPackage"
-    }
-  }
-}

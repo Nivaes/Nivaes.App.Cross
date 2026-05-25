@@ -59,7 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI3\Nivaes.App.Cross.WinUI3.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
 

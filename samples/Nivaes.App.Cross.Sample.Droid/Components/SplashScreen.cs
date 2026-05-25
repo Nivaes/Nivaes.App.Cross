@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid;
 
 [Activity(
-    Label = "Playground.Droid"
+    Label = "Nivaes.App.Droid"
     , MainLauncher = true
     , Icon = "@mipmap/icon"
     , Theme = "@style/AppTheme.Splash"
