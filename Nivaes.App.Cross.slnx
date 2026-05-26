@@ -44,8 +44,8 @@
   </Folder>
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/build_release.yaml" />
-    <File Path=".github/workflows/ci-local.yaml" />
     <File Path=".github/workflows/ci.yaml" />
+    <File Path=".github/workflows/delete-old-runs.yaml" />
     <File Path=".github/workflows/publish_release.yaml" />
   </Folder>
   <Folder Name="/Sources/">
