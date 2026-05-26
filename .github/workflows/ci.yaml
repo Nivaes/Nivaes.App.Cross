@@ -133,7 +133,7 @@ jobs:
 
   build-app-cross-ios:
     needs: build-app-cross
-    uses:  ./.github/workflows/build_ios.yaml  
+    uses: ./.github/workflows/build_ios.yaml  
     
   build-app-cross-ios-samples:
     needs: build-app-cross-ios
@@ -197,7 +197,7 @@ jobs:
 
   build-app-cross-WinUI:
     needs: build-app-cross
-    uses:  ./.github/workflows/build_winui.yaml 
+    uses: ./.github/workflows/build_winui.yaml 
     
   build-app-cross-WinUI-samples:
     needs: build-app-cross-WinUI
