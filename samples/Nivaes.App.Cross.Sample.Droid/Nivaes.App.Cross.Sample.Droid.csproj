@@ -52,14 +52,6 @@
 		<PackageReference Include="Serilog.Sinks.Xamarin" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid.SourceGenerator\Nivaes.App.Cross.Droid.SourceGenerator.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-
-			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
-			<IncludeAssets>analyzers</IncludeAssets>
-			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
-		</ProjectReference>
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
