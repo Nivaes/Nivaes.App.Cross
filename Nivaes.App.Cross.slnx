@@ -42,11 +42,13 @@
     <File Path=".github/dependabot.yml" />
     <File Path=".github/NuGet.config" />
   </Folder>
+  <Folder Name="/Solution Items/.github/builds/">
+    <File Path=".github/builds/build_android.yaml" />
+    <File Path=".github/builds/build_ios.yaml" />
+    <File Path=".github/builds/build_winui.yaml" />
+  </Folder>
   <Folder Name="/Solution Items/.github/workflows/">
-    <File Path=".github/workflows/build_android.yaml" />
-    <File Path=".github/workflows/build_ios.yaml" />
     <File Path=".github/workflows/build_release.yaml" />
-    <File Path=".github/workflows/build_winui.yaml" />
     <File Path=".github/workflows/ci.yaml" />
     <File Path=".github/workflows/delete-old-runs.yaml" />
     <File Path=".github/workflows/publish_release.yaml" />
