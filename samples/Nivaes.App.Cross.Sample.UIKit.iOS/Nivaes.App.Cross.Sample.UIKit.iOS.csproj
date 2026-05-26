@@ -8,7 +8,6 @@
 		<ImplicitUsings>true</ImplicitUsings>
 		<SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
 		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
-		<iOSRequiredXcodeVersion>26.3</iOSRequiredXcodeVersion>
 		
 		<!--
       Enable full trimming in Release mode.
