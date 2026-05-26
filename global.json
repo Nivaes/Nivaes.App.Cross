@@ -5,5 +5,9 @@
   },
   "msbuild-sdks": {
     "Aspire.AppHost.Sdk": "13.3.5"
+  },
+  "maccatalyst": {},
+  "ios": {
+    "version": "26.3"
   }
 }
