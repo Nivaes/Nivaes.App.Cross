@@ -1,0 +1,47 @@
+name: Build Android
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v5
+      with:
+        global-json-file: ./global.json
+
+    - name: Install workload
+      run: |
+        dotnet workload install android
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+      env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: |
+          dotnet build sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
+          
+    - name: Test
+      run: |
+          dotnet test sources/Nivaes.App.Cross.Droid --configuration Release --no-build --no-restore --verbosity normal 
