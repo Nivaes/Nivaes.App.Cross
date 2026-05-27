@@ -16,17 +16,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
+
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install android
+
+    # - name: Setup Android SDK
+    #   uses: android-actions/setup-android@v3
+
+    - uses: ./.github/actions/setup-android
       with:
         global-json-file: ./global.json
-
-    - name: Install workload
-      run: |
-        dotnet workload install android
-
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
 
     - name: Restore Dependencies
       run: |

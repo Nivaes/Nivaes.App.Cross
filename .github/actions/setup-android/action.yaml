@@ -1,0 +1,25 @@
+name: Android setup
+description: Configures .NET and Android SDK for Android builds
+
+inputs:
+  global-json-file:
+    description: Path to global.json
+    required: false
+    default: global.json
+
+runs:
+  using: composite
+
+  steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v5
+      with:
+        global-json-file: ${{ inputs.global-json-file }}
+
+    - name: Install workload
+      shell: bash
+      run: |
+         dotnet workload install android
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
