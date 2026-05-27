@@ -42,11 +42,18 @@
     <File Path=".github/dependabot.yml" />
     <File Path=".github/NuGet.config" />
   </Folder>
+  <Folder Name="/Solution Items/.github/actions/" />
+  <Folder Name="/Solution Items/.github/actions/setup-android/">
+    <File Path=".github/actions/setup-android/action.yaml" />
+  </Folder>
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/build_release.yaml" />
     <File Path=".github/workflows/ci.yaml" />
     <File Path=".github/workflows/delete-old-runs.yaml" />
     <File Path=".github/workflows/publish_release.yaml" />
+    <File Path=".github/workflows/workflow_call_build_android.yaml" />
+    <File Path=".github/workflows/workflow_call_build_ios.yaml" />
+    <File Path=".github/workflows/workflow_call_build_winui.yaml" />
   </Folder>
   <Folder Name="/Sources/">
     <Project Path="sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
