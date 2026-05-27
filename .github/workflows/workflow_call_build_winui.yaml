@@ -1,4 +1,4 @@
-name: Build WinUI
+name: Build Cross WinUI
 
 on:
   workflow_call:
@@ -20,10 +20,6 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ./global.json
-
-    # - name: Install workload
-    #   run: |
-    #     dotnet workload install android ios
 
     - name: Restore Dependencies
       run: |

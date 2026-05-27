@@ -1,4 +1,4 @@
-name: Build ios
+name: Build Cross iOS
 
 on:
   workflow_call:
