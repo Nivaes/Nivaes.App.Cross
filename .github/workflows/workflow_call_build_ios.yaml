@@ -16,14 +16,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
+    # - name: Setup .NET Core
+    #   uses: actions/setup-dotnet@v5
+    #   with:
+    #     global-json-file: ./global.json
+
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install android ios maccatalyst macos tvos
+
+    - uses: ./.github/actions/setup-xcode
       with:
         global-json-file: ./global.json
-
-    - name: Install workload
-      run: |
-        dotnet workload install android ios maccatalyst macos tvos
 
     - name: Restore Dependencies
       run: |

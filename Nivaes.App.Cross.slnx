@@ -46,6 +46,12 @@
   <Folder Name="/Solution Items/.github/actions/setup-android/">
     <File Path=".github/actions/setup-android/action.yaml" />
   </Folder>
+  <Folder Name="/Solution Items/.github/actions/setup-winui/">
+    <File Path=".github/actions/setup-winui/action.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/actions/setup-xcode/">
+    <File Path=".github/actions/setup-xcode/action.yaml" />
+  </Folder>
   <Folder Name="/Solution Items/.github/workflows/">
     <File Path=".github/workflows/build_release.yaml" />
     <File Path=".github/workflows/ci.yaml" />
