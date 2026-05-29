@@ -157,19 +157,23 @@ jobs:
       with:
         global-json-file: ./global.json
 
-    - name: Update xcode
-      run: |
-        xcodes install 26.5
-        xcodes select 26.5
+    # - name: Update xcode
+    #   run: |
+    #     xcodes install 26.5
+    #     xcodes select 26.5
 
     # - name: Install xcode
     #   uses: maxim-lobanov/setup-xcode@v1
     #   with:
     #     xcode-version: latest
 
-    - name: Install workload
-      run: |
-        dotnet workload install android ios maccatalyst macos tvos
+    # - name: Install workload
+    #   run: |
+    #     dotnet workload install android ios maccatalyst macos tvos
+
+    - uses: ./.github/actions/setup-xcode
+      with:
+        global-json-file: ./global.json
 
     - name: Restore Dependencies
       run: |
