@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CrossViewUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CrossViewUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
