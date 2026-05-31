@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/Doc/">
+    <File Path="docs/DebugiOS.md" />
+    <File Path="docs/InstallMacOS.md" />
     <File Path="Estructura.md" />
   </Folder>
   <Folder Name="/Orquestation/">

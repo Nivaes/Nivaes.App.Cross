@@ -31,7 +31,8 @@ public abstract class CrossAppDelegate
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
 
-        return base.WillFinishLaunching(application, launchOptions);
+        //return base.WillFinishLaunching(application, launchOptions);
+        return true;
     }
 
     public override void WillEnterForeground(UIApplication application)

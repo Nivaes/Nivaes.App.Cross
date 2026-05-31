@@ -19,8 +19,8 @@ public abstract class CrossWinUIApplication
 
     //IServiceProvider IPlatformApplication.Services => _services!;
 
-    //protected Frame RootFrame { get; set; }
-    //public Window MainWindow { get; protected set; }
+    internal Frame? RootFrame { get; set; }
+    internal Window? MainWindow { get; private set; }
 
     //protected CrossWinUIApplication()
     //{
@@ -53,13 +53,16 @@ public abstract class CrossWinUIApplication
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
-        _application = _services.GetRequiredService<IApplication>();
+        //_application = _services.GetRequiredService<IApplication>();
 
         //this.SetApplicationHandler(_application, applicationContext);
 
         //this.CreatePlatformWindow(_application, args);
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
+
+        MainWindow = new Window();
+        MainWindow.Activate();
     }
 
     //protected virtual void RunAppStart(string arguments)
@@ -82,42 +85,42 @@ public abstract class CrossWinUIApplication
     //    return hint;
     //}
 
-    //protected virtual Window CreateWindow()
-    //{
-    //    return new Window();
-    //}
+    protected virtual Window CreateWindow()
+    {
+        return new Window();
+    }
 
-    //protected virtual Frame InitializeFrame(string arguments)
-    //{
-    //    if (MainWindow == null)
-    //    {
-    //        MainWindow = CreateWindow();
-    //    }
+    protected virtual Frame InitializeFrame(string arguments)
+    {
+        if (MainWindow == null)
+        {
+            MainWindow = CreateWindow();
+        }
 
-    //    var rootFrame = MainWindow.Content as Frame;
+        var rootFrame = MainWindow.Content as Frame;
 
-    //    if (rootFrame == null)
-    //    {
-    //        rootFrame = CreateFrame();
-    //        rootFrame.NavigationFailed += OnNavigationFailed;
+        if (rootFrame == null)
+        {
+            rootFrame = CreateFrame();
+            rootFrame.NavigationFailed += OnNavigationFailed;
 
-    //        MainWindow.Content = rootFrame;
-    //    }
+            MainWindow.Content = rootFrame;
+        }
 
-    //    RootFrame = rootFrame;
+        RootFrame = rootFrame;
 
-    //    return rootFrame;
-    //}
+        return rootFrame;
+    }
 
-    //protected virtual Frame CreateFrame()
-    //{
-    //    return new Frame();
-    //}
+    protected virtual Frame CreateFrame()
+    {
+        return new Frame();
+    }
 
-    //protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-    //{
-    //    throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
-    //}
+    protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+    {
+        throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+    }
 
     //protected virtual void RegisterSetup()
     //{

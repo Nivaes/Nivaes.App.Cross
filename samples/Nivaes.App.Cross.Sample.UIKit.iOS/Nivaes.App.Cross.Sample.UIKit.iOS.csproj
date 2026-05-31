@@ -7,7 +7,9 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 		<SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
+		<ApplicationTitle>NivaesCross</ApplicationTitle>
 		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
+		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 		
 		<!--
       Enable full trimming in Release mode.
