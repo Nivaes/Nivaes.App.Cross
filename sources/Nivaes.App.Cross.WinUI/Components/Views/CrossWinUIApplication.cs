@@ -43,17 +43,19 @@ public abstract class CrossWinUIApplication
         //}
 
         //IPlatformApplication.Current = this;
+        //CrossWinUIApplication.Current = this;
+
         var crossApp = CreateCrossApp();
 
         var rootContext = new CrossContext(crossApp.Services);
 
-        //var applicationContext = rootContext.MakeApplicationScope(this);
+        var applicationContext = rootContext.MakeApplicationScope(this);
 
-        //_services = applicationContext.Services;
+        _services = applicationContext.Services;
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
-        ////_application = _services.GetRequiredService<IApplication>();
+        _application = _services.GetRequiredService<IApplication>();
 
         //this.SetApplicationHandler(_application, applicationContext);
 
@@ -63,7 +65,7 @@ public abstract class CrossWinUIApplication
 
         InitializeFrame();
 
-        //_application.Initialize();
+        _application.Initialize();
 
         MainWindow!.Activate();
     }

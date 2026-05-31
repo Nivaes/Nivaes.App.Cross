@@ -15,6 +15,16 @@ public static class CrossContextExtensions
             instance.Initialize(mauiApp.Services);
     }
 
+    public static ICrossContext MakeApplicationScope<TNativeApplication>(this ICrossContext mauiContext, TNativeApplication platformApplication)
+        where TNativeApplication : class
+    {
+        var scopedContext = new CrossContext(mauiContext.Services);
+
+        scopedContext.AddSpecific(platformApplication);
+
+        return scopedContext;
+    }
+
     //public static void InitializeScopedServices(this ICrossContext scopedContext)
     //{
     //    var scopedServices = scopedContext.Services.GetServices<ICrossInitializeScopedService>();

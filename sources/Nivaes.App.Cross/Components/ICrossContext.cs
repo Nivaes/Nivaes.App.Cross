@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross
 {
-    internal interface ICrossContext
+    public interface ICrossContext
     {
         IServiceProvider Services { get; }
 
