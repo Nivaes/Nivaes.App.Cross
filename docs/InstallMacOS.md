@@ -13,7 +13,7 @@ sudo ./OpenCore-Boot.sh
 ## Crear WSL
 
 ```shell
-wsl --install wsl --install -d Ubuntu-22.04 --name macos --location C:\mounts\refs0\Wsl\macos
+wsl --install -d Ubuntu-22.04 --name macos --location C:\mounts\refs0\Wsl\macos
 ```
 
 ## Instalar sobre Proxmox
