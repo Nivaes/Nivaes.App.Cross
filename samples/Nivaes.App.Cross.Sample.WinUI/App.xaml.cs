@@ -21,9 +21,4 @@ public sealed partial class App
             Title = "MvvmCross WinUI 3 Playground"
         };
     }
-
-    //protected override void RegisterSetup()
-    //{
-    //    this.RegisterSetupType<WinUiSampleSetup>();
-    //}
 }

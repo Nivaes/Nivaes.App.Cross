@@ -6,4 +6,9 @@ namespace Nivaes.App.Cross;
 
 public interface IApplication
 {
+    void Initialize();
+
+    void Startup();
+
+    void Reset();
 }

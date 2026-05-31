@@ -10,23 +10,23 @@ public class SampleApp : Application, IApplication
     ///// Breaking change in v6: This method is called on a background thread. Use
     ///// Startup for any UI bound actions
     ///// </summary>
-    //public override void Initialize()
-    //{
-    //    //CreatableTypes()
-    //    //    .EndingWith("Service")
-    //    //    .AsInterfaces()
-    //    //    .RegisterAsLazySingleton();
+    public override void Initialize()
+    {
+        //CreatableTypes()
+        //    .EndingWith("Service")
+        //    .AsInterfaces()
+        //    .RegisterAsLazySingleton();
 
-    //    var container = Singleton<CrossIoCServiceContainer>.Instance;
-    //    container.AddDelegate<ICrossTextProvider>(container =>
-    //    {
-    //        return new TextProviderBuilder().TextProvider;
-    //    });
+        //var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //container.AddDelegate<ICrossTextProvider>(container =>
+        //{
+        //    return new TextProviderBuilder().TextProvider;
+        //});
 
-    //    container.Merge(new ViewModelsSubcontainer());
+        //container.Merge(new ViewModelsSubcontainer());
 
-    //    RegisterAppStart<RootViewModel>();
-    //}
+        //RegisterAppStart<RootViewModel>();
+    }
 
     ///// <summary>
     ///// Do any UI bound startup actions here

@@ -43,9 +43,9 @@ public abstract class CrossWinUIApplication
         //}
 
         //IPlatformApplication.Current = this;
-        var mauiApp = CreateCrossApp();
+        var crossApp = CreateCrossApp();
 
-        var rootContext = new CrossContext(mauiApp.Services);
+        var rootContext = new CrossContext(crossApp.Services);
 
         //var applicationContext = rootContext.MakeApplicationScope(this);
 
@@ -53,7 +53,7 @@ public abstract class CrossWinUIApplication
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
-        //_application = _services.GetRequiredService<IApplication>();
+        ////_application = _services.GetRequiredService<IApplication>();
 
         //this.SetApplicationHandler(_application, applicationContext);
 
@@ -61,8 +61,11 @@ public abstract class CrossWinUIApplication
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
 
-        MainWindow = new Window();
-        MainWindow.Activate();
+        InitializeFrame();
+
+        //_application.Initialize();
+
+        MainWindow!.Activate();
     }
 
     //protected virtual void RunAppStart(string arguments)
@@ -80,22 +83,19 @@ public abstract class CrossWinUIApplication
     //    }
     //}
 
-    //protected virtual object? GetAppStartHint(object? hint = null)
-    //{
-    //    return hint;
-    //}
-
     protected virtual Window CreateWindow()
     {
         return new Window();
     }
 
-    protected virtual Frame InitializeFrame(string arguments)
+    protected virtual Frame CreateFrame()
     {
-        if (MainWindow == null)
-        {
-            MainWindow = CreateWindow();
-        }
+        return new Frame();
+    }
+
+    private Frame InitializeFrame()
+    {
+        MainWindow ??= CreateWindow();
 
         var rootFrame = MainWindow.Content as Frame;
 
@@ -112,28 +112,9 @@ public abstract class CrossWinUIApplication
         return rootFrame;
     }
 
-    protected virtual Frame CreateFrame()
-    {
-        return new Frame();
-    }
-
     protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
     {
+        // ToDo: Integrar con log.
         throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
     }
-
-    //protected virtual void RegisterSetup()
-    //{
-
-    //}
 }
-
-//public class CrossApplication<TMvxWinUiSetup, TApplication> : CrossWinUIApplication
-//   where TMvxWinUiSetup : MvxWindowsSetup<TApplication>, new()
-//   where TApplication : class, ICrossApp, new()
-//{
-//    protected override void RegisterSetup()
-//    {
-//        this.RegisterSetupType<TMvxWinUiSetup>();
-//    }
-//}
