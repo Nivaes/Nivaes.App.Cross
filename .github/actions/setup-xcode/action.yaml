@@ -38,4 +38,4 @@ runs:
     - name: Install workload
       shell: bash
       run: |
-         dotnet workload install android ios maccatalyst macos tvos
+         dotnet workload install android ios maccatalyst macos tvos --version 10.0.103
