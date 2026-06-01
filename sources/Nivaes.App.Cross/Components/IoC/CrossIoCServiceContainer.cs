@@ -2,6 +2,7 @@
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("This class is deprecated")]
 public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCServiceContainer
 {
     protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)

@@ -33,7 +33,7 @@ public abstract class CrossWinUIApplication
     /// Invoked when the application is launched normally by the end user.
     /// </summary>
     /// <param name="args">Details about the launch request and process.</param>
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         //if (_application != null && _services != null)
         //{
@@ -56,6 +56,7 @@ public abstract class CrossWinUIApplication
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
         _application = _services.GetRequiredService<IApplication>();
+        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
         //this.SetApplicationHandler(_application, applicationContext);
 
@@ -65,9 +66,11 @@ public abstract class CrossWinUIApplication
 
         InitializeFrame();
 
-        _application.Initialize();
+        var initializeViewModelType = _application.Initialize();
 
         MainWindow!.Activate();
+
+        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
     }
 
     //protected virtual void RunAppStart(string arguments)
