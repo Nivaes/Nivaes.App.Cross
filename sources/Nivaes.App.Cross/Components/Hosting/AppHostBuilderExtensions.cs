@@ -34,6 +34,7 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
             builder.Services.TryAddSingleton<ICrossViewModelLocator, CrossDefaultViewModelLocator>();
 
+            builder.Services.TryAddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
 
             //bootstrapper.AddSingleton<ILoggingService, LoggingService>();
             //bootstrapper.AddSingleton<ICrossNavigationService, CrossNavigationService>();

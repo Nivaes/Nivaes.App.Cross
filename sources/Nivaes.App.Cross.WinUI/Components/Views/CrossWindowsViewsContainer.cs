@@ -1,18 +1,32 @@
+using ABI.System;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public class CrossWindowsViewsContainer
+internal class CrossWindowsViewsContainer
     : CrossViewsContainer
     , ICrossStoreViewsContainer
 {
     private const string ExtrasKey = "MvxLaunchData";
     private const string SubViewModelKey = "MvxSubViewModelKey";
 
+    private IServiceProvider _serviceProvider;
+
+    public CrossWindowsViewsContainer(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
     public ICrossViewModel Load(string requestText, ICrossBundle savedState)
     {
-        var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
+        var converter = _serviceProvider.GetService<ICrossNavigationSerializer>();
+        if (converter == null) 
+        {
+            throw new CrossException($"Problem creating ICrossNavigationSerializer");
+        }
+
         var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
         dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
@@ -21,13 +35,13 @@ public class CrossWindowsViewsContainer
         if (dictionary.TryGetValue(SubViewModelKey, out string viewModelKey))
         {
             var key = int.Parse(viewModelKey);
-            var viewModel = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>().Get(key);
+            var viewModel = _serviceProvider.GetService<ICrossChildViewModelCache>()?.Get(key);
             if (savedState != null)
                 viewModel.ReloadState(savedState);
             return viewModel;
         }
 
-        var loaderService = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
+        var loaderService = _serviceProvider.GetService<ICrossViewModelLoader>();
         return loaderService.LoadViewModel(request, savedState);
     }
 

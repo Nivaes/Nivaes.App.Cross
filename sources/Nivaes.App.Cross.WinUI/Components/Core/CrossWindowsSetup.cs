@@ -77,7 +77,8 @@ public abstract class CrossWindowsSetup
     [Obsolete("", true)]
     protected virtual ICrossStoreViewsContainer CreateStoreViewsContainer()
     {
-        return new CrossWindowsViewsContainer();
+        return null;
+        //return new CrossWindowsViewsContainer();
     }
 
     [Obsolete("", true)]

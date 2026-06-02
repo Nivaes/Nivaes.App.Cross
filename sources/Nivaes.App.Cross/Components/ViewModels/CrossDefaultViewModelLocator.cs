@@ -7,6 +7,13 @@ namespace Nivaes.App.Cross;
 public class CrossDefaultViewModelLocator
     : ICrossViewModelLocator
 {
+    private IServiceProvider _serviceProvider;
+
+    public CrossDefaultViewModelLocator(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
     // ToDo: ¿Tiene sentido sobrecargar esta clase?
     public virtual ICrossViewModel Load(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
@@ -19,7 +26,7 @@ public class CrossDefaultViewModelLocator
         ICrossViewModel? viewModel;
         try
         {
-            viewModel = (ICrossViewModel?)Mvx.IoCProvider.Resolve(viewModelType);
+            viewModel = (ICrossViewModel?)_serviceProvider.GetService(viewModelType);
         }
         catch (Exception exception)
         {
@@ -43,13 +50,14 @@ public class CrossDefaultViewModelLocator
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
+        where TParameter : notnull
     {
         ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
         ICrossViewModel<TParameter>? viewModel;
         try
         {
-            viewModel = (ICrossViewModel<TParameter>?)Mvx.IoCProvider.Resolve(viewModelType);
+            viewModel = (ICrossViewModel<TParameter>?)_serviceProvider.GetService(viewModelType);
         }
         catch (Exception exception)
         {

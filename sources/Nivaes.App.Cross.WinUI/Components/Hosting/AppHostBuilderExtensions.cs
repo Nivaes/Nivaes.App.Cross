@@ -25,6 +25,8 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
             builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
 
+            builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
+
             return builder;
         }
     }
