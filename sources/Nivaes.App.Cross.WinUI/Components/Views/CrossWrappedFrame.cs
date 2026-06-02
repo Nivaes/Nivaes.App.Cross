@@ -1,7 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -9,6 +5,7 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 
 namespace Nivaes.App.Cross.WinUI;
 
+// ToDo: ¿Hace falta tanta sobrecarga, o se puede usar directamente Frame? Es un Wrapperd que no aporta valor.
 public class CrossWrappedFrame : ICrossWindowsFrame
 {
     private readonly Frame _frame;

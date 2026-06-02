@@ -72,6 +72,7 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
+        [Obsolete]
         private void InitializeBindingCreator()
         {
             var creator = CreateBindingCreator();

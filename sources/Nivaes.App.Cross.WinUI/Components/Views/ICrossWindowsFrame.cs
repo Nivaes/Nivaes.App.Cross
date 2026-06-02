@@ -5,6 +5,7 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 
 namespace Nivaes.App.Cross.WinUI;
 
+// ToDo: ¿Hace falta tanta sobrecarga?
 public interface ICrossWindowsFrame
 {
     Control UnderlyingControl { get; }

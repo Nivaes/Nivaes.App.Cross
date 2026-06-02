@@ -12,7 +12,7 @@ public sealed partial class App
         InitializeComponent();
     }
 
-    protected override CrossApp CreateCrossApp() => CrossProgram.CreateMauiApp();
+    protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);
 
     protected override Window CreateWindow()
     {

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Sample;
+using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
 public static class CrossProgram
 {
-    public static CrossApp CreateMauiApp()
+    public static CrossApp CreateCrossApp(CrossWinUIApplication app)
     {
         var builder = CrossApp.CreateBuilder();
 
-        builder
-            .UseSharedCrossApp();
+        builder.UseSharedCrossApp();
+
+        builder.UseWinUIApp(app);
 
         return builder.Build();
     }

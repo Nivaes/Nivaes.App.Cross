@@ -125,7 +125,7 @@ public abstract class CrossAttributeViewPresenter
     }
 
     protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
-        CrossViewModelRequest request, out CrossBasePresentationAttribute attribute)
+        CrossViewModelRequest? request, out CrossBasePresentationAttribute attribute)
     {
         if (request == null)
             throw new ArgumentNullException(nameof(request));
@@ -178,7 +178,7 @@ public abstract class CrossAttributeViewPresenter
             .Invoke(viewModel, attribute) ?? Task.FromResult(false);
     }
 
-    public override Task<bool> Show(CrossViewModelRequest request)
+    public override Task<bool> Show(CrossViewModelRequest? request)
     {
         var attributeAction = GetPresentationAttributeAction(request, out var attribute);
 

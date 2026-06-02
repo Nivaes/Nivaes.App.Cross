@@ -55,6 +55,8 @@ public abstract class CrossWinUIApplication
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
+        var frame = InitializeFrame();
+      
         _application = _services.GetRequiredService<IApplication>();
         var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
@@ -63,8 +65,6 @@ public abstract class CrossWinUIApplication
         //this.CreatePlatformWindow(_application, args);
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
-
-        InitializeFrame();
 
         var initializeViewModelType = _application.Initialize();
 

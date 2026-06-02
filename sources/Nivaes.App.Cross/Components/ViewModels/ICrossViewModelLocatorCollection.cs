@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
-    [Obsolete]
-    public interface ICrossViewModelLocatorCollection
+    [Obsolete("Use ICrossViewModelLocator instead", true)]
+    internal interface ICrossViewModelLocatorCollection
     {
         ICrossViewModelLocator FindViewModelLocator(CrossViewModelRequest request);
     }

@@ -17,9 +17,11 @@ public abstract class Application : IApplication
     {
     }
 
+    
+
     //protected void RegisterViewStar<TViewModel>()
     //    where TViewModel : ICrossViewModel
     //{
-    
+
     //}
 }

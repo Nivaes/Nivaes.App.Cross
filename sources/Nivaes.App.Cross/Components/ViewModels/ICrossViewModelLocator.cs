@@ -5,8 +5,7 @@ namespace Nivaes.App.Cross;
 /// <summary>
 /// ViewModelLocator helps locating and running start lifecycle of a ViewModel
 /// </summary>
-[Obsolete]
-public interface ICrossViewModelLocator
+internal interface ICrossViewModelLocator
 {
     /// <summary>
     /// Load ViewModel

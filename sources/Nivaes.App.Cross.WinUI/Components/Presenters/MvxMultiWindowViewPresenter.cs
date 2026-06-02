@@ -22,7 +22,7 @@ public class MvxMultiWindowViewPresenter
     private const int DefaultWindowWidth = 786;
 
     private const string WindowTitle = "WindowTitle";
-    private readonly ILogger<MvxWindowsViewPresenter>? _logger;
+    private readonly ILogger<MvxMultiWindowViewPresenter>? _logger;
     private readonly WindowInformation _mainFrame;
     private readonly List<WindowInformation> _windowInformation = new();
 
@@ -34,8 +34,10 @@ public class MvxMultiWindowViewPresenter
     ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
-    public MvxMultiWindowViewPresenter(ICrossWindowsFrame rootFrame)
+    public MvxMultiWindowViewPresenter(ICrossWindowsFrame rootFrame, ILogger<MvxMultiWindowViewPresenter> logger)
     {
+        _logger = logger;
+
         var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)
         {
@@ -43,7 +45,8 @@ public class MvxMultiWindowViewPresenter
         }
 
         _mainFrame = new WindowInformation(window!, rootFrame, null);
-        _logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
+        
+        //_logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
 
         if (Window.Current != null)
         {
@@ -66,10 +69,10 @@ public class MvxMultiWindowViewPresenter
     /// <param name="viewModelType"></param>
     /// <param name="viewType"></param>
     /// <returns></returns>
-    public override CrossBasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+    public override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
         _logger?.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
-            viewType.Name);
+            viewType?.Name);
         return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
     }
 

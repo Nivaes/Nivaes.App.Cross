@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using System.Runtime.Versioning;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
     using Nivaes.App.Cross.Hosting;
@@ -509,6 +510,7 @@ namespace Nivaes.App.Cross
         //    app.Initialize();
         //}
 
+        [Obsolete("", true)]
         protected virtual ICrossViewsContainer InitializeViewsContainer()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;

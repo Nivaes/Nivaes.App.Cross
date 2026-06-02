@@ -4,7 +4,6 @@ using System.Runtime.Versioning;
 namespace Nivaes.App.Cross;
 
 /// <inheritdoc cref="ICrossViewModelLocator"/>
-[Obsolete]
 public class CrossDefaultViewModelLocator
     : ICrossViewModelLocator
 {

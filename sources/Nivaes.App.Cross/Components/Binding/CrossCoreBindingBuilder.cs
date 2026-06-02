@@ -48,6 +48,7 @@ public class CrossCoreBindingBuilder
         CrossBindingSingletonCache.Initialize();
     }
 
+    [Obsolete]
     protected virtual void RegisterValueConverterRegistryFiller()
     {
         var container = Singleton<CrossIoCServiceContainer>.Instance;

@@ -61,6 +61,7 @@ public abstract class CrossWindowsSetup
         return new CrossSuspensionManager();
     }
 
+    [Obsolete("", true)]
     protected sealed override ICrossViewsContainer CreateViewsContainer()
     {
         var viewContainer = CreateStoreViewsContainer();
@@ -73,11 +74,13 @@ public abstract class CrossWindowsSetup
         return viewContainer;
     }
 
+    [Obsolete("", true)]
     protected virtual ICrossStoreViewsContainer CreateStoreViewsContainer()
     {
         return new CrossWindowsViewsContainer();
     }
 
+    [Obsolete("", true)]
     protected IMvxWindowsViewPresenter Presenter
     {
         get
@@ -89,9 +92,11 @@ public abstract class CrossWindowsSetup
         }
     }
 
+    [Obsolete("", true)]
     protected virtual IMvxWindowsViewPresenter CreateViewPresenter(ICrossWindowsFrame rootFrame)
     {
-        return new MvxMultiWindowViewPresenter(rootFrame);
+        return null;
+        //return new MvxMultiWindowViewPresenter(rootFrame);
     }
 
     protected virtual CrossWindowsViewDispatcher CreateViewDispatcher(ICrossWindowsFrame rootFrame)
@@ -106,6 +111,7 @@ public abstract class CrossWindowsSetup
         return CreateViewDispatcher(_rootFrame);
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterPresenter()
     {
         var container = Singleton<CrossIoCServiceContainer>.Instance;
@@ -172,9 +178,11 @@ public abstract class CrossWindowsSetup
     }
 }
 
+[Obsolete]
 public abstract class MvxWindowsSetup<TApplication> : CrossWindowsSetup
      where TApplication : class, ICrossApp, new()
 {
+    [Obsolete]
     protected override void CreateApp()
     {
         var container = Singleton<CrossIoCServiceContainer>.Instance;
