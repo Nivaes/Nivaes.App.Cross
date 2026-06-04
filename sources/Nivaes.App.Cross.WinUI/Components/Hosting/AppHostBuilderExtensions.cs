@@ -21,13 +21,13 @@ namespace Nivaes.App.Cross.WinUI
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, CrossWindowsViewDispatcher>();
 
-            builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWrappedFrame(app.RootFrame!));
+            builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
             builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
 
-            builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
+            builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
 
             return builder;
-        }
+        } 
     }
 }

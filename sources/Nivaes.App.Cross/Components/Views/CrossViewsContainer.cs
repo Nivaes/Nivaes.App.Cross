@@ -40,46 +40,13 @@ namespace Nivaes.App.Cross
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
         public Type GetViewType(Type viewModelType)
         {
-            var viewsManager = Singleton<CrossViewsManager>.Instance;
+            var viewsManager = Singleton<CrossViewModelViewsManager>.Instance;
             if (viewsManager.TryGetValue(viewModelType, out var viewType))
             {
                 return viewType;
             }
-                //Type? binding;
-                //if (viewModelType != null && _bindingMap.TryGetValue(viewModelType, out binding))
-                //{
-                //    return binding;
-                //}
 
-                //foreach (var viewFinder in _secondaryViewFinders)
-                //{
-                //    binding = viewFinder.GetViewType(viewModelType);
-                //    if (binding != null)
-                //    {
-                //        return binding;
-                //    }
-                //}
-
-                //if (_lastResortViewFinder != null)
-                //{
-                //    binding = _lastResortViewFinder.GetViewType(viewModelType);
-                //    if (binding != null)
-                //    {
-                //        return binding;
-                //    }
-                //}
-
-                throw new KeyNotFoundException("Could not find view for " + viewModelType);
+            throw new KeyNotFoundException("Could not find view for " + viewModelType);
         }
-
-        //public void AddSecondary(ICrossViewFinder finder)
-        //{
-        //    _secondaryViewFinders.Add(finder);
-        //}
-
-        //public void SetLastResort(ICrossViewFinder finder)
-        //{
-        //    _lastResortViewFinder = finder;
-        //}
     }
 }

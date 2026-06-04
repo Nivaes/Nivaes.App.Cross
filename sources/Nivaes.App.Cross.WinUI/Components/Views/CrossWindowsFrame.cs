@@ -1,16 +1,14 @@
-using System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Control = Microsoft.UI.Xaml.Controls.Control;
 
 namespace Nivaes.App.Cross.WinUI;
 
-// ToDo: ¿Hace falta tanta sobrecarga, o se puede usar directamente Frame? Es un Wrapperd que no aporta valor.
-public class CrossWrappedFrame : ICrossWindowsFrame
+public class CrossWindowsFrame : ICrossWindowsFrame
 {
     private readonly Frame _frame;
 
-    public CrossWrappedFrame(Frame frame)
+    public CrossWindowsFrame(Frame frame)
     {
         _frame = frame;
     }

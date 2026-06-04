@@ -6,7 +6,7 @@ using Windows.UI.Core;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public class CrossWindowsPage<TViewModel>
+public abstract class CrossWindowsPage<TViewModel>
     : Page
     , IDisposable
     , ICrossWindowsView<TViewModel> 
@@ -45,7 +45,7 @@ public class CrossWindowsPage<TViewModel>
 
     
 
-    public ICrossWindowsFrame WrappedFrame => new CrossWrappedFrame(Frame);
+    public ICrossWindowsFrame WrappedFrame => new CrossWindowsFrame(Frame);
 
     ICrossViewModel? ICrossView.ViewModel 
     { 
@@ -143,12 +143,18 @@ public class CrossWindowsPage<TViewModel>
 
     private string? _pageKey;
 
+    [Obsolete]
     private ICrossSuspensionManager? _suspensionManager;
+
+    [Obsolete]
     protected ICrossSuspensionManager? SuspensionManager
     {
+        // ToDo: Buscar la manera de guardar la sesión de otra manera, que no necesite inyección de dependencias. 
+        // O buscar la manera de acceder al contenerdor de dependencias desde una vista.    
         get
         {
-            _suspensionManager = _suspensionManager ?? Mvx.IoCProvider.Resolve<ICrossSuspensionManager>();
+            var aa = Mvx.IoCProvider;
+            _suspensionManager = _suspensionManager ?? aa.Resolve<ICrossSuspensionManager>();
             return _suspensionManager;
         }
     }

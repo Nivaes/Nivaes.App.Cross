@@ -119,9 +119,11 @@ public class CrossSuspensionManager : ICrossSuspensionManager
 
     protected readonly DependencyProperty MvxFrameSessionStateKeyProperty =
         DependencyProperty.RegisterAttached("_MvxFrameSessionStateKey", typeof(string), typeof(CrossSuspensionManager), null);
+
     protected readonly DependencyProperty MvxFrameSessionStateProperty =
         DependencyProperty.RegisterAttached("_MvxFrameSessionState",
             typeof(Dictionary<string, object>), typeof(CrossSuspensionManager), null);
+
     protected readonly List<WeakReference<ICrossWindowsFrame>> _registeredFrames = new List<WeakReference<ICrossWindowsFrame>>();
 
     public virtual void RegisterFrame(ICrossWindowsFrame frame, string sessionStateKey)

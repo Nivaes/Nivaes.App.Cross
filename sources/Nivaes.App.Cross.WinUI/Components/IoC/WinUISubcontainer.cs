@@ -11,5 +11,6 @@ public partial class WinUISubcontainer : IoCServiceContainer
 
         //bootstrapper.AddSingleton<CrossPageViewPresentation>();
         //bootstrapper.AddSingleton<CrossNewWindowViewPresentation>();
+        bootstrapper.AddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
     }
 }

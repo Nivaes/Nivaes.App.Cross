@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
@@ -22,9 +23,11 @@ public class MvxMultiWindowViewPresenter
     private const int DefaultWindowWidth = 786;
 
     private const string WindowTitle = "WindowTitle";
+    private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<MvxMultiWindowViewPresenter>? _logger;
     private readonly WindowInformation _mainFrame;
     private readonly List<WindowInformation> _windowInformation = new();
+    private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
 
     private readonly object _windowInformationLock = new();
 
@@ -34,9 +37,14 @@ public class MvxMultiWindowViewPresenter
     ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
-    public MvxMultiWindowViewPresenter(ICrossWindowsFrame rootFrame, ILogger<MvxMultiWindowViewPresenter> logger)
+    public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider, 
+        ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
+        ICrossWindowsViewModelRequestTranslator requestTranslator, ILogger<MvxMultiWindowViewPresenter> logger)
+        : base(crossViewsContainer)
     {
+        _serviceProvider = serviceProvider;
         _logger = logger;
+        _requestTranslator = requestTranslator;
 
         var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)
@@ -194,10 +202,10 @@ public class MvxMultiWindowViewPresenter
             return;
         }
 
-        var navigationService = Mvx.IoCProvider?.Resolve<ICrossNavigationService>();
-        if (navigationService != null && currentView.ViewModel != null)
+        if (currentView.ViewModel != null)
         {
-            backRequestedEventArgs.Handled = await navigationService.Close(currentView.ViewModel);
+            var navigationService = _serviceProvider.GetService<ICrossNavigationService>();
+            backRequestedEventArgs.Handled = await navigationService!.Close(currentView.ViewModel);
         }
     }
 
@@ -278,13 +286,13 @@ public class MvxMultiWindowViewPresenter
     protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
-        var viewFinder = Mvx.IoCProvider?.Resolve<ICrossViewsContainer>();
-        if (viewFinder == null)
+        
+        if (base._crossViewsContainer == null)
         {
             return Task.FromResult(false);
         }
 
-        var viewType = viewFinder.GetViewType(viewModel.GetType());
+        var viewType = base._crossViewsContainer.GetViewType(viewModel.GetType());
         if (viewType.HasRegionAttribute())
         {
             var containerView =
@@ -340,16 +348,16 @@ public class MvxMultiWindowViewPresenter
     /// <returns>A text representation of the request.</returns>
     protected virtual string GetRequestText(CrossViewModelRequest request)
     {
-        var requestTranslator = Mvx.IoCProvider?.Resolve<ICrossWindowsViewModelRequestTranslator>();
-        if (requestTranslator == null)
-        {
-            return "Request translator is not found";
-        }
+        //var requestTranslator = Mvx.IoCProvider?.Resolve<ICrossWindowsViewModelRequestTranslator>();
+        //if (requestTranslator == null)
+        //{
+        //    return "Request translator is not found";
+        //}
 
         string requestText;
         requestText = request is CrossViewModelInstanceRequest
-            ? requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance)
-            : requestTranslator.GetRequestTextFor(request);
+            ? _requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance!)
+            : _requestTranslator.GetRequestTextFor(request);
 
         return requestText;
     }
@@ -647,7 +655,7 @@ public class MvxMultiWindowViewPresenter
             return false;
         }
 
-        var frame = new CrossWrappedFrame(new Frame());
+        var frame = new CrossWindowsFrame(new Frame());
         await ShowPage(frame, viewType, request);
 
         newWindow.Content = frame.UnderlyingControl;

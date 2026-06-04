@@ -7,17 +7,24 @@ namespace Nivaes.App.Cross;
 public abstract class CrossAttributeViewPresenter
     : CrossViewPresenter, ICrossAttributeViewPresenter
 {
-    private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
-        new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
+    protected readonly ICrossViewsContainer _crossViewsContainer;
 
-    private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
-        new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
+    protected CrossAttributeViewPresenter(/*IServiceProvider serviceProvider*/ICrossViewsContainer crossViewsContainer)
+    {
+        _crossViewsContainer = crossViewsContainer;
+    }
+
+    //private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
+    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
+
+    //private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
+    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
 
     private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
-    public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
+    //public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
 
-    public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
+    //public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
 
     public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
     {
@@ -95,10 +102,10 @@ public abstract class CrossAttributeViewPresenter
         if (request.ViewModelType == null)
             throw new InvalidOperationException("Cannot get view types for null ViewModelType");
 
-        if (ViewsContainer == null)
-            throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
+        //if (ViewsContainer == null)
+        //    throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
 
-        var viewType = ViewsContainer.GetViewType(request.ViewModelType);
+        var viewType = _crossViewsContainer.GetViewType(request.ViewModelType);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
 

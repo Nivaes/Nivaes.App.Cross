@@ -155,8 +155,8 @@ namespace Nivaes.App.Cross
                 //InitializeNavigationService(_iocProvider);
                 //SetupLog?.Log(LogLevel.Trace, "Setup: ResultViewModelManager");
                 //InitializeResultViewModelManager(_iocProvider);
-                SetupLog?.Log(LogLevel.Trace, "Setup: ViewModelTypeFinder start");
-                InitializeViewModelTypeFinder();
+                //SetupLog?.Log(LogLevel.Trace, "Setup: ViewModelTypeFinder start");
+                //InitializeViewModelTypeFinder();
                 SetupLog?.Log(LogLevel.Trace, "Setup: ViewsContainer start");
                 InitializeViewsContainer();
                 SetupLog?.Log(LogLevel.Trace, "Setup: Lookup Dictionary start");
@@ -328,6 +328,7 @@ namespace Nivaes.App.Cross
             return iocProvider;
         }
 
+        [Obsolete("", true)]
         protected virtual void RegisterDefaultSetupDependencies(IMvxIoCProvider iocProvider)
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;
@@ -341,7 +342,7 @@ namespace Nivaes.App.Cross
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossNavigationService, ICrossViewModelLoader, ICrossViewDispatcher, IMvxIoCProvider>(
             //    (loader, dispatcher, p) => new CrossNavigationService(loader, dispatcher, p));
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
-            iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
+            //iocProvider.RegisterSingleton(() => new CrossViewModelByNameLookup());
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>(
             //    nameLookup => nameLookup);
             //iocProvider.LazyConstructAndRegisterSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>(
@@ -594,8 +595,8 @@ namespace Nivaes.App.Cross
             return iocProvider.Resolve<ICrossResultViewModelManager>();
         }
 
-        [Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
-        protected abstract ICrossNameMapping CreateViewToViewModelNaming();
+        //[Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
+        //protected abstract ICrossNameMapping CreateViewToViewModelNaming();
 
         //protected virtual ICrossViewModelByNameLookup? CreateViewModelByNameLookup(IMvxIoCProvider iocProvider)
         //{
@@ -607,40 +608,40 @@ namespace Nivaes.App.Cross
         //    return iocProvider.Resolve<ICrossViewModelByNameRegistry>();
         //}
 
-        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        [Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
-        protected virtual /*ICrossNameMapping*/ void InitializeViewModelTypeFinder()
-        {
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
-            var viewModelByNameRegistry = (ICrossViewModelByNameRegistry?)container.Resolve<ICrossViewModelByNameLookup>();
+        //[RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        //[Obsolete("No asociar la vista y el modelo por el nombre de la clase")]
+        //protected virtual /*ICrossNameMapping*/ void InitializeViewModelTypeFinder()
+        //{
+        //    var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //    var viewModelByNameRegistry = (ICrossViewModelByNameRegistry?)container.Resolve<ICrossViewModelByNameLookup>();
 
-            //CreateViewModelByNameLookup(iocProvider);
-            //var viewModelByNameRegistry = CreateViewModelByNameRegistry(iocProvider);
-            if (viewModelByNameRegistry != null)
-            {
-                var viewModelAssemblies = GetViewModelAssemblies();
-                foreach (var assembly in viewModelAssemblies)
-                {
-                    viewModelByNameRegistry.AddAll(assembly);
-                }
-            }
-            container.AddDelegate<ICrossNameMapping>((container) =>
-                {
-                    var nameMappingStrategy = CreateViewToViewModelNaming();
-                    return nameMappingStrategy;
-                });
-            //iocProvider.RegisterSingleton(nameMappingStrategy);
-            //return nameMappingStrategy;
-        }
+        //    //CreateViewModelByNameLookup(iocProvider);
+        //    //var viewModelByNameRegistry = CreateViewModelByNameRegistry(iocProvider);
+        //    if (viewModelByNameRegistry != null)
+        //    {
+        //        var viewModelAssemblies = GetViewModelAssemblies();
+        //        foreach (var assembly in viewModelAssemblies)
+        //        {
+        //            viewModelByNameRegistry.AddAll(assembly);
+        //        }
+        //    }
+        //    container.AddDelegate<ICrossNameMapping>((container) =>
+        //        {
+        //            var nameMappingStrategy = CreateViewToViewModelNaming();
+        //            return nameMappingStrategy;
+        //        });
+        //    //iocProvider.RegisterSingleton(nameMappingStrategy);
+        //    //return nameMappingStrategy;
+        //}
 
-        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-        [Obsolete("No usar reflection", true)]
-        protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
-        {
-            var viewAssemblies = GetViewAssemblies();
-            var builder = iocProvider.Resolve<ICrossTypeToTypeLookupBuilder>();
-            return builder?.Build(viewAssemblies);
-        }
+        //[RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
+        //[Obsolete("No usar reflection", true)]
+        //protected virtual IDictionary<Type, Type>? InitializeLookupDictionary(IMvxIoCProvider iocProvider)
+        //{
+        //    var viewAssemblies = GetViewAssemblies();
+        //    var builder = iocProvider.Resolve<ICrossTypeToTypeLookupBuilder>();
+        //    return builder?.Build(viewAssemblies);
+        //}
 
         protected abstract void InitializeViewLookup();
 

@@ -6,8 +6,8 @@ namespace Nivaes.App.Cross;
 public class CrossViewModelRequestCustomTextSerializer
 : ICrossTextSerializer
 {
-    protected Lazy<ICrossViewModelByNameLookup?> ByNameLookup { get; } =
-        new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelByNameLookup>());
+    //protected Lazy<ICrossViewModelByNameLookup?> ByNameLookup { get; } =
+    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelByNameLookup>());
 
     private readonly Lazy<CrpssStringDictionaryWriter> _stringDictionaryWriter =
         new(() => new CrpssStringDictionaryWriter());
@@ -91,10 +91,10 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual Type? DeserializeViewModelType(string viewModelTypeName)
     {
-        if (ByNameLookup.Value?.TryLookupByFullName(viewModelTypeName, out var toReturn) != true)
+        if (!Singleton<CrossNameViewsManager>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
         {
             throw new CrossException(
-                "Failed to find viewmodel for {0} - is the ViewModel in the same Assembly as App.cs? If not, you can add it by overriding GetViewModelAssemblies() in setup",
+                "Failed to find viewmodel for {0}",
                 viewModelTypeName);
         }
 

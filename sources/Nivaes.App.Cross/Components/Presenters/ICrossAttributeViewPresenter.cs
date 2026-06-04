@@ -4,8 +4,8 @@ namespace Nivaes.App.Cross
 
     public interface ICrossAttributeViewPresenter : ICrossViewPresenter
     {
-        ICrossViewModelTypeFinder? ViewModelTypeFinder { get; }
-        ICrossViewsContainer? ViewsContainer { get; }
+        //ICrossViewModelTypeFinder? ViewModelTypeFinder { get; }
+        //ICrossViewsContainer? ViewsContainer { get; }
         IDictionary<Type, CrossPresentationAttributeAction>? AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 

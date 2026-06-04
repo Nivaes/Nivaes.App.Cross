@@ -56,7 +56,9 @@ public abstract class CrossWinUIApplication
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
         var frame = InitializeFrame();
-      
+
+        InitializeContainer();
+
         _application = _services.GetRequiredService<IApplication>();
         var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
@@ -121,5 +123,21 @@ public abstract class CrossWinUIApplication
     {
         // ToDo: Integrar con log.
         throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+    }
+
+    // ToDO: Buscar donde registar ICrossSuspensionManager.
+    private void InitializeContainer()
+    {
+
+        var suspensionManager = new CrossSuspensionManager();
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+
+        //if (_suspensionManagerSessionStateKey != null)
+        //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+
+        container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+
+        //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
     }
 }

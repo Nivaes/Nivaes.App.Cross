@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Nivaes.App.Cross.WinUI;
 
+[Obsolete("", true)]
 public class CrossWindowsSetupSingleton
     : CrossSetupSingleton
 {

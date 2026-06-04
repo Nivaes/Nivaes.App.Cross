@@ -2,7 +2,7 @@
 
 namespace Nivaes.App.Cross;
 
-[Obsolete("This class is deprecated", true)]
+[Obsolete("This class is deprecated")]
 public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCServiceContainer
 {
     protected override void Bootstrap(IIoCServiceContainerBootstrapper bootstrapper)
@@ -14,10 +14,10 @@ public partial class CrossIoCServiceContainer : IoCServiceContainer, ICrossIoCSe
         bootstrapper.AddSingleton<ICrossStringToTypeParser, CrossStringToTypeParser>();
         bootstrapper.AddSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
         bootstrapper.AddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
-        bootstrapper.AddSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
-        bootstrapper.AddSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>();
+        //bootstrapper.AddSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
+        //bootstrapper.AddSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>();
         //bootstrapper.AddSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>();
-        bootstrapper.AddSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
+        //bootstrapper.AddSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
         bootstrapper.AddSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
         bootstrapper.AddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
         bootstrapper.AddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();

@@ -1,82 +1,82 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using MvvmCross.IoC;
+//using System.Diagnostics.CodeAnalysis;
+//using System.Reflection;
+//using Microsoft.Extensions.Logging;
+//using MvvmCross.IoC;
 
-namespace Nivaes.App.Cross;
+//namespace Nivaes.App.Cross;
 
-public class CrossViewModelViewTypeFinder(
-        ICrossViewModelByNameLookup viewModelByNameLookup,
-        ICrossNameMapping viewToViewModelNameMapping)
-    : ICrossViewModelTypeFinder
-{
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
-    public virtual Type? FindTypeOrNull(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type candidateType)
-    {
-        if (!CheckCandidateTypeIsAView(candidateType))
-            return null;
+//public class CrossViewModelViewTypeFinder(
+//        ICrossViewModelByNameLookup viewModelByNameLookup,
+//        ICrossNameMapping viewToViewModelNameMapping)
+//    : ICrossViewModelTypeFinder
+//{
+//    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
+//    public virtual Type? FindTypeOrNull(
+//        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type candidateType)
+//    {
+//        if (!CheckCandidateTypeIsAView(candidateType))
+//            return null;
 
-        if (!candidateType.IsConventional())
-            return null;
+//        if (!candidateType.IsConventional())
+//            return null;
 
-        var typeByAttribute = LookupAttributedViewModelType(candidateType);
-        if (typeByAttribute != null)
-            return typeByAttribute;
+//        var typeByAttribute = LookupAttributedViewModelType(candidateType);
+//        if (typeByAttribute != null)
+//            return typeByAttribute;
 
-        var concrete = LookupAssociatedConcreteViewModelType(candidateType);
-        if (concrete != null)
-            return concrete;
+//        var concrete = LookupAssociatedConcreteViewModelType(candidateType);
+//        if (concrete != null)
+//            return concrete;
 
-        var typeByName = LookupNamedViewModelType(candidateType);
-        if (typeByName != null)
-            return typeByName;
+//        var typeByName = LookupNamedViewModelType(candidateType);
+//        if (typeByName != null)
+//            return typeByName;
 
-        CrossLogHost.Default?.Log(LogLevel.Warning, "No view model association found for candidate view {Name}", candidateType.Name);
-        return null;
-    }
+//        CrossLogHost.Default?.Log(LogLevel.Warning, "No view model association found for candidate view {Name}", candidateType.Name);
+//        return null;
+//    }
 
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
-    protected virtual Type? LookupAttributedViewModelType(Type candidateType)
-    {
-        var attribute = candidateType
-            .GetCustomAttributes(typeof(MvxViewForAttribute), false)
-            .FirstOrDefault() as MvxViewForAttribute;
+//    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
+//    protected virtual Type? LookupAttributedViewModelType(Type candidateType)
+//    {
+//        var attribute = candidateType
+//            .GetCustomAttributes(typeof(MvxViewForAttribute), false)
+//            .FirstOrDefault() as MvxViewForAttribute;
 
-        return attribute?.ViewModel;
-    }
+//        return attribute?.ViewModel;
+//    }
 
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
-    protected virtual Type? LookupNamedViewModelType(Type candidateType)
-    {
-        var viewName = candidateType.Name;
-        var viewModelName = viewToViewModelNameMapping.Map(viewName);
+//    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
+//    protected virtual Type? LookupNamedViewModelType(Type candidateType)
+//    {
+//        var viewName = candidateType.Name;
+//        var viewModelName = viewToViewModelNameMapping.Map(viewName);
 
-        viewModelByNameLookup.TryLookupByName(viewModelName, out Type? toReturn);
-        return toReturn;
-    }
+//        viewModelByNameLookup.TryLookupByName(viewModelName, out Type? toReturn);
+//        return toReturn;
+//    }
 
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
-    protected virtual Type? LookupAssociatedConcreteViewModelType(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type candidateType)
-    {
-        var viewModelPropertyInfo =
-            Array.Find(candidateType.GetProperties(),
-                x => x.Name == "ViewModel" &&
-                     !x.PropertyType.GetTypeInfo().IsInterface &&
-                     !x.PropertyType.GetTypeInfo().IsAbstract);
+//    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
+//    protected virtual Type? LookupAssociatedConcreteViewModelType(
+//        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type candidateType)
+//    {
+//        var viewModelPropertyInfo =
+//            Array.Find(candidateType.GetProperties(),
+//                x => x.Name == "ViewModel" &&
+//                     !x.PropertyType.GetTypeInfo().IsInterface &&
+//                     !x.PropertyType.GetTypeInfo().IsAbstract);
 
-        return viewModelPropertyInfo?.PropertyType;
-    }
+//        return viewModelPropertyInfo?.PropertyType;
+//    }
 
-    protected virtual bool CheckCandidateTypeIsAView(Type candidateType)
-    {
-        if (candidateType.GetTypeInfo().IsAbstract)
-            return false;
+//    protected virtual bool CheckCandidateTypeIsAView(Type candidateType)
+//    {
+//        if (candidateType.GetTypeInfo().IsAbstract)
+//            return false;
 
-        if (!typeof(ICrossView).IsAssignableFrom(candidateType))
-            return false;
+//        if (!typeof(ICrossView).IsAssignableFrom(candidateType))
+//            return false;
 
-        return true;
-    }
-}
+//        return true;
+//    }
+//}

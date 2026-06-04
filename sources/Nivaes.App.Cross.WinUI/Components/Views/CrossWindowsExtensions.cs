@@ -84,14 +84,7 @@ public static class CrossWindowsExtensions
                                                 string requestText,
                                                 ICrossBundle bundle)
     {
-#warning ClearingBackStack disabled for now
-
-        //            if (viewModelRequest.ClearTop)
-        //            {
-        //#warning TODO - BackStack not cleared for WinRT
-        //phoneView.ClearBackStack();
-        //            }
         var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
-        return viewModelLoader.Load(requestText, bundle);
+        return viewModelLoader?.Load(requestText, bundle);
     }
 }

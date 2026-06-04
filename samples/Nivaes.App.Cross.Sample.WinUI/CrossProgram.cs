@@ -19,6 +19,19 @@ public static class CrossProgram
 
         builder.UseWinUIApp(app);
 
+        builder.SetupViews();
+
         return builder.Build();
+    }
+
+    static CrossAppBuilder SetupViews(this CrossAppBuilder builder)
+    {
+        CrossViewsManagerHelper.RegisterViewModel(new[] {
+                    CrossViewsManagerHelper.New<RootViewModel, RootView>(),
+                    CrossViewsManagerHelper.New<NewWindowViewModel, NewWindow>(),
+                    CrossViewsManagerHelper.New<ChildViewModel, ChildView>(),
+                });
+
+        return builder;
     }
 }

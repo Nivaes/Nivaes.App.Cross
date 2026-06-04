@@ -6,7 +6,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI;
 
-[Obsolete]
+[Obsolete("", true)]
 public abstract class CrossWindowsSetup
     : CrossSetup, ICrossWindowsSetup
 {
@@ -23,7 +23,7 @@ public abstract class CrossWindowsSetup
 
     public virtual void PlatformInitialize(Frame rootFrame, string? suspensionManagerSessionStateKey = null)
     {
-        PlatformInitialize(new CrossWrappedFrame(rootFrame));
+        PlatformInitialize(new CrossWindowsFrame(rootFrame));
         _suspensionManagerSessionStateKey = suspensionManagerSessionStateKey;
     }
 
@@ -56,6 +56,7 @@ public abstract class CrossWindowsSetup
             suspensionManager.RegisterFrame(_rootFrame, _suspensionManagerSessionStateKey);
     }
 
+    [Obsolete("", true)]
     protected virtual ICrossSuspensionManager CreateSuspensionManager()
     {
         return new CrossSuspensionManager();
@@ -173,10 +174,10 @@ public abstract class CrossWindowsSetup
         return new MvxWindowsBindingBuilder(FillTargetFactories, FillBindingNames, FillValueConverters, FillValueCombiners);
     }
 
-    protected override ICrossNameMapping CreateViewToViewModelNaming()
-    {
-        return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
-    }
+    //protected override ICrossNameMapping CreateViewToViewModelNaming()
+    //{
+    //    return new CrossPostfixAwareViewToViewModelNameMapping("View", "Page");
+    //}
 }
 
 [Obsolete]
