@@ -7,11 +7,11 @@ namespace Nivaes.App.Cross;
 public abstract class CrossAttributeViewPresenter
     : CrossViewPresenter, ICrossAttributeViewPresenter
 {
-    protected readonly ICrossViewsContainer _crossViewsContainer;
+    protected ICrossViewsContainer ViewsContainer { get; }
 
     protected CrossAttributeViewPresenter(/*IServiceProvider serviceProvider*/ICrossViewsContainer crossViewsContainer)
     {
-        _crossViewsContainer = crossViewsContainer;
+        ViewsContainer = crossViewsContainer;
     }
 
     //private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
@@ -98,7 +98,7 @@ public abstract class CrossAttributeViewPresenter
         //if (ViewsContainer == null)
         //    throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
 
-        var viewType = _crossViewsContainer.GetViewType(request.ViewModelType);
+        var viewType = ViewsContainer.GetViewType(request.ViewModelType);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
 

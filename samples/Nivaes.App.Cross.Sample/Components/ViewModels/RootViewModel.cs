@@ -229,42 +229,42 @@ public class RootViewModel
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
-        throw new NotImplementedException();
+
         //Mvx.IoCProvider.RegisterTypesWithReflection();
-        //var registered = stopwatch.ElapsedTicks;
+        var registered = stopwatch.ElapsedTicks;
         //for (int i = 0; i < 20; i++)
         //{
         //    Mvx.IoCProvider.ResolveTypes();
         //}
-        //stopwatch.Stop();
-        //var total = stopwatch.ElapsedTicks;
-        //var resolved = total - registered;
+        stopwatch.Stop();
+        var total = stopwatch.ElapsedTicks;
+        var resolved = total - registered;
 
-        //TimeToRegister = $"Time to register using reflection - {registered}";
-        //TimeToResolve = $"Time to resolve using reflection - {resolved}";
-        //TotalTime = $"Total time using reflection - {total}";
-        //await RaiseAllPropertiesChanged();
+        TimeToRegister = $"Time to register using reflection - {registered}";
+        TimeToResolve = $"Time to resolve using reflection - {resolved}";
+        TotalTime = $"Total time using reflection - {total}";
+        await RaiseAllPropertiesChanged();
     }
 
     private async Task RegisterAndResolveWithNoReflection()
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
-        throw new NotImplementedException();
+
         //Mvx.IoCProvider.RegisterTypesWithNoReflection();
-        //var registered = stopwatch.ElapsedTicks;
+        var registered = stopwatch.ElapsedTicks;
         //for (int i = 0; i < 20; i++)
         //{
         //    Mvx.IoCProvider.ResolveTypes();
         //}
-        //stopwatch.Stop();
-        //var total = stopwatch.ElapsedTicks;
-        //var resolved = total - registered;
+        stopwatch.Stop();
+        var total = stopwatch.ElapsedTicks;
+        var resolved = total - registered;
 
-        //TimeToRegister = $"Time to register - NO reflection - {registered}";
-        //TimeToResolve = $"Time to resolve - NO reflection - {resolved}";
-        //TotalTime = $"Total time - NO reflection - {total}";
-        //await RaiseAllPropertiesChanged();
+        TimeToRegister = $"Time to register - NO reflection - {registered}";
+        TimeToResolve = $"Time to resolve - NO reflection - {resolved}";
+        TotalTime = $"Total time - NO reflection - {total}";
+        await RaiseAllPropertiesChanged();
     }
 
     public override bool ResultSet(ICrossResultSettingViewModel<SampleModel> viewModel, SampleModel result)

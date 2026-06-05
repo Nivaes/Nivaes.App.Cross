@@ -287,12 +287,12 @@ public class MvxMultiWindowViewPresenter
     {
         var windowInformation = GetWindowInformation(viewModel);
         
-        if (base._crossViewsContainer == null)
+        if (base.ViewsContainer == null)
         {
             return Task.FromResult(false);
         }
 
-        var viewType = base._crossViewsContainer.GetViewType(viewModel.GetType());
+        var viewType = base.ViewsContainer.GetViewType(viewModel.GetType());
         if (viewType.HasRegionAttribute())
         {
             var containerView =
@@ -647,8 +647,8 @@ public class MvxMultiWindowViewPresenter
     protected virtual async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
     {
         var newWindow = new Window();
-        var viewsContainer = Mvx.IoCProvider!.Resolve<ICrossViewsContainer>();
-        var viewType = viewsContainer?.GetViewType(request.ViewModelType);
+
+        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType);
         if (viewType == null)
         {
             _logger?.LogError("Could not find View for ViewModelType: {ViewModelType}", request.ViewModelType);

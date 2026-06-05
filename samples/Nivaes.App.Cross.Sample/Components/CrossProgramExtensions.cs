@@ -37,6 +37,8 @@ namespace Nivaes.App.Cross.Sample
             builder.Services.AddScoped<SplitDetailViewModel>();
             builder.Services.AddScoped<RegionViewModel>();
             builder.Services.AddScoped<NewWindowViewModel>();
+            builder.Services.AddScoped<ModalViewModel>();
+            builder.Services.AddScoped<SecondChildViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -107,7 +107,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(request);
 
-        var viewType = base._crossViewsContainer?.GetViewType(request.ViewModelType);
+        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
 
@@ -456,7 +456,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         if (attribute.ActivityHostViewModelType == null)
             throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
-        var viewType = base._crossViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
+        var viewType = base.ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
         if (viewType?.IsSubclassOf(typeof(Activity)) != true)
             throw new CrossException("The host activity doesn't inherit Activity");
 

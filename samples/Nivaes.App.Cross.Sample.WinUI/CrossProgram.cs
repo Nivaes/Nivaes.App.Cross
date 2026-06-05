@@ -36,6 +36,7 @@ public static class CrossProgram
                     CrossViewsManagerHelper.New<SplitDetailViewModel, SplitDetailView>(),
                     CrossViewsManagerHelper.New<SplitMasterViewModel, SplitMasterView>(),
                     CrossViewsManagerHelper.New<SplitRootViewModel, SplitRootView>(),
+                    CrossViewsManagerHelper.New<ModalViewModel, DialogView>(),
                 });
 
         return builder;
