@@ -9,8 +9,8 @@ namespace Nivaes.App.Cross
     {
         protected override TValue Convert(TKey value, Type? targetType, object? parameter, CultureInfo? culture)
         {
-            if (parameter == null)
-                throw new ArgumentNullException(nameof(parameter), $"Dictionary Converter expected a parameter of type \"{typeof(Tuple<IDictionary<TKey, TValue>, TValue, bool>)}\" but received null");
+            
+            ArgumentNullException.ThrowIfNull(parameter, $"Dictionary Converter expected a parameter of type \"{typeof(Tuple<IDictionary<TKey, TValue>, TValue, bool>)}\" but received null");
 
             try
             {

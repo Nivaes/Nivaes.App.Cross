@@ -191,8 +191,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
     {
-        if (viewType == null)
-            throw new ArgumentNullException(nameof(viewType));
+        ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
         if (viewType.IsSubclassOf(typeof(DialogFragment)))
         {
@@ -229,8 +228,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
 
     public override Task<bool> ChangePresentation(CrossPresentationHint hint)
     {
-        if (hint == null)
-            throw new ArgumentNullException(nameof(hint));
+        ArgumentNullException.ThrowIfNull(hint, nameof(hint));
 
         if (hint is CrossPagePresentationHint pagePresentationHint)
         {
@@ -330,8 +328,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(attribute, request);
 
-        if (intent == null)
-            throw new ArgumentNullException(nameof(intent));
+        ArgumentNullException.ThrowIfNull(intent, nameof(intent));
 
         var bundle = Bundle.Empty!;
 
@@ -426,8 +423,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
 
     protected virtual void ShowIntent(Intent intent, Bundle? bundle)
     {
-        if (intent == null)
-            throw new ArgumentNullException(nameof(intent));
+        ArgumentNullException.ThrowIfNull(intent, nameof(intent));
 
         var activity = CurrentActivity;
         if (activity.IsActivityDead())
@@ -534,8 +530,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(attribute, request);
 
-        if (fragmentManager == null)
-            throw new ArgumentNullException(nameof(fragmentManager));
+        ArgumentNullException.ThrowIfNull(fragmentManager, nameof(fragmentManager));
 
         var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
 
@@ -614,11 +609,8 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         MvxFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        if (fragmentTransaction == null)
-            throw new ArgumentNullException(nameof(fragmentTransaction));
-
-        if (fragment == null)
-            throw new ArgumentNullException(nameof(fragment));
+        ArgumentNullException.ThrowIfNull(fragmentTransaction, nameof(fragmentTransaction));
+        ArgumentNullException.ThrowIfNull(fragment, nameof(fragment));
 
         ValidateArguments(attribute, request);
 
@@ -924,8 +916,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(fragmentAttribute);
 
-        if (fragmentManager == null)
-            throw new ArgumentNullException(nameof(fragmentManager));
+        ArgumentNullException.ThrowIfNull(fragmentManager, nameof(fragmentManager));
 
         try
         {
@@ -1057,8 +1048,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(attribute);
 
-        if (adapter == null)
-            throw new ArgumentNullException(nameof(adapter));
+        ArgumentNullException.ThrowIfNull(adapter);
 
         MvxViewPagerFragmentInfo? fragmentInfo = null;
         if (attribute.Tag != null)

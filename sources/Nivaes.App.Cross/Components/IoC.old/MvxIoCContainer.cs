@@ -44,10 +44,7 @@ public sealed class MvxIoCContainer
     public MvxIoCContainer(IMvxIoCProvider parentProvider)
         : this(null, parentProvider)
     {
-        if (parentProvider == null)
-        {
-            throw new ArgumentNullException(nameof(parentProvider), "Provide a parent ioc provider to this constructor");
-        }
+        ArgumentNullException.ThrowIfNull(parentProvider, "Provide a parent ioc provider to this constructor");
     }
 
     private interface IResolver

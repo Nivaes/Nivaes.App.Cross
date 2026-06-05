@@ -75,10 +75,7 @@ public class CrossObservableCollection<T>
     /// <exception cref="ArgumentNullException">The items list is null.</exception>
     public virtual void AddRange(IEnumerable<T> items)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         int startingIndex = this.Items.Count;
         var itemsList = items.ToList();
@@ -102,10 +99,7 @@ public class CrossObservableCollection<T>
     /// <exception cref="ArgumentOutOfRangeException">Index incorrect.</exception>
     public virtual void InsertRange(int index, IEnumerable<T> items)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         if (index < 0)
         {
@@ -133,10 +127,7 @@ public class CrossObservableCollection<T>
     /// <exception cref="ArgumentNullException">The items list is null.</exception>
     public virtual void ReplaceWith(IEnumerable<T> items)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         using (SuppressEvents())
         {
@@ -149,10 +140,7 @@ public class CrossObservableCollection<T>
 
     public virtual void ReplaceRange(IEnumerable<T> items, int firstIndex, int oldSize)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
 
         using (SuppressEvents())
         {
@@ -186,10 +174,7 @@ public class CrossObservableCollection<T>
     /// <exception cref="ArgumentNullException">The items list is null.</exception>
     public virtual void SwitchTo(IEnumerable<T> items)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         var itemIndex = 0;
         var count = Count;
@@ -221,10 +206,7 @@ public class CrossObservableCollection<T>
     /// <exception cref="ArgumentNullException">The items list is null.</exception>
     public virtual void RemoveItems(IEnumerable<T> items)
     {
-        if (items == null)
-        {
-            throw new ArgumentNullException(nameof(items));
-        }
+        ArgumentNullException.ThrowIfNull(items);
 
         using (SuppressEvents())
         {

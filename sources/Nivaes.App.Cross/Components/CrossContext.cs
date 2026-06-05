@@ -15,7 +15,8 @@ namespace Nivaes.App.Cross
 
         public CrossContext(IServiceProvider services)
         {
-            _ = services ?? throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
+            
             _services = services is IKeyedServiceProvider
                 ? new KeyedWrappedServiceProvider(services)
                 : new WrappedServiceProvider(services);

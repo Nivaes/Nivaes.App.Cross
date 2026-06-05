@@ -15,6 +15,7 @@ namespace Nivaes.App.Cross
             this object target,
             Expression<Func<T>> expression)
         {
+            ArgumentNullException.ThrowIfNull(expression, nameof(expression));
             if (expression == null)
             {
                 throw new ArgumentNullException(nameof(expression));

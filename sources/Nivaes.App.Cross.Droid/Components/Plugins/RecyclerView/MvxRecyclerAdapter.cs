@@ -163,11 +163,8 @@ namespace Nivaes.App.Cross.Droid
 
         public override ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            if (parent.Context == null)
-                throw new ArgumentNullException(nameof(parent), "parent context is null");
-
-            if (BindingContext == null)
-                throw new InvalidOperationException("BindingContext is null. Cannot inflate view for ViewHolder");
+            ArgumentNullException.ThrowIfNull(parent, "parent is null");
+            ArgumentNullException.ThrowIfNull(BindingContext, "BindingContext is null. Cannot inflate view for ViewHolder");
 
             var itemBindingContext = new MvxAndroidBindingContext(parent.Context, BindingContext.LayoutInflaterHolder);
             var view = InflateViewForHolder(parent, viewType, itemBindingContext);
@@ -189,8 +186,7 @@ namespace Nivaes.App.Cross.Droid
         /// <returns>Returns a <see cref="View"/> with the view of the ViewHolder.</returns>
         protected virtual View InflateViewForHolder(ViewGroup parent, int viewType, IMvxAndroidBindingContext bindingContext)
         {
-            if (bindingContext == null)
-                throw new ArgumentNullException(nameof(bindingContext), "BindingContext is null. Cannot inflate view");
+            ArgumentNullException.ThrowIfNull(bindingContext, "BindingContext is null. Cannot inflate view for ViewHolder");
 
             return bindingContext.BindingInflate(viewType, parent, false);
         }

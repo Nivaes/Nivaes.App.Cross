@@ -7,8 +7,7 @@ namespace Nivaes.App.Cross
     {
         public static void ExceptionMaskedAction(Action action, bool maskExceptions)
         {
-            if (action == null)
-                throw new ArgumentNullException(nameof(action));
+            ArgumentNullException.ThrowIfNull(action);
 
             try
             {

@@ -11,8 +11,7 @@ namespace Nivaes.App.Cross
         public static void RegisterSetupType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TMvxSetup>(this object platformApplication, params Assembly[]? assemblies)
             where TMvxSetup : CrossSetup, new()
         {
-            if (platformApplication == null)
-                throw new ArgumentNullException(nameof(platformApplication));
+            ArgumentNullException.ThrowIfNull(platformApplication, nameof(platformApplication));
 
             CrossSetup.RegisterSetupType<TMvxSetup>(
                 new[] { platformApplication.GetType().Assembly }.Union(assemblies ?? []).ToArray());

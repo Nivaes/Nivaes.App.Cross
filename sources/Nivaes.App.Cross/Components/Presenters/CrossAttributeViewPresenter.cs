@@ -48,8 +48,7 @@ public abstract class CrossAttributeViewPresenter
     public virtual object? CreateOverridePresentationAttributeViewInstance(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
     {
-        if (viewType == null)
-            throw new ArgumentNullException(nameof(viewType));
+        ArgumentNullException.ThrowIfNull(viewType, nameof(viewType));
 
         return Activator.CreateInstance(viewType);
     }
@@ -58,11 +57,8 @@ public abstract class CrossAttributeViewPresenter
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        if (viewType == null)
-            throw new ArgumentNullException(nameof(viewType));
+        ArgumentNullException.ThrowIfNull(request, nameof(request));
+        ArgumentNullException.ThrowIfNull(viewType, nameof(viewType));
 
         var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
         if (!hasInterface)
@@ -96,11 +92,8 @@ public abstract class CrossAttributeViewPresenter
 
     public virtual CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        if (request.ViewModelType == null)
-            throw new InvalidOperationException("Cannot get view types for null ViewModelType");
+        ArgumentNullException.ThrowIfNull(request, nameof(request));
+        ArgumentNullException.ThrowIfNull(request.ViewModelType, nameof(request.ViewModelType));
 
         //if (ViewsContainer == null)
         //    throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
@@ -134,8 +127,7 @@ public abstract class CrossAttributeViewPresenter
     protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
         CrossViewModelRequest? request, out CrossBasePresentationAttribute attribute)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
+        ArgumentNullException.ThrowIfNull(request, nameof(request));
 
         var presentationAttribute = GetPresentationAttribute(request);
         presentationAttribute.ViewModelType = request.ViewModelType;

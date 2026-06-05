@@ -149,8 +149,7 @@ public class CrossDefaultViewModelLocator
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs)
     {
-        if (viewModel == null)
-            throw new ArgumentNullException(nameof(viewModel));
+        ArgumentNullException.ThrowIfNull(viewModel, nameof(viewModel));
 
         try
         {

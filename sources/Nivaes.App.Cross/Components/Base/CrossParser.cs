@@ -210,8 +210,7 @@ namespace Nivaes.App.Cross
 
         protected void SkipWhitespaceAndCharacters(IEnumerable<char> toSkip)
         {
-            if (toSkip == null)
-                throw new ArgumentNullException(nameof(toSkip));
+            ArgumentNullException.ThrowIfNull(toSkip, nameof(toSkip));
 
             var skipChars = toSkip.ToArray();
             while (!IsComplete
@@ -223,8 +222,7 @@ namespace Nivaes.App.Cross
 
         protected void SkipWhitespaceAndCharacters(Dictionary<char, bool> toSkip)
         {
-            if (toSkip == null)
-                throw new ArgumentNullException(nameof(toSkip));
+            ArgumentNullException.ThrowIfNull(toSkip, nameof(toSkip));
 
             while (!IsComplete
                    && IsWhiteSpaceOrCharacter(CurrentChar, toSkip))
@@ -411,8 +409,7 @@ namespace Nivaes.App.Cross
 
         protected ValueType NumberFromText(string numberText)
         {
-            if (numberText == null)
-                throw new ArgumentNullException(nameof(numberText));
+            ArgumentNullException.ThrowIfNull(numberText, nameof(numberText));
 
             return NumberFromText(numberText, numberText.Contains("."));
         }
@@ -446,8 +443,7 @@ namespace Nivaes.App.Cross
 
         protected object ReadEnumerationValue(Type enumerationType, bool ignoreCase = true)
         {
-            if (enumerationType == null)
-                throw new ArgumentNullException(nameof(enumerationType));
+            ArgumentNullException.ThrowIfNull(enumerationType, nameof(enumerationType));
 
             var name = ReadValidCSharpName();
             try

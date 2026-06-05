@@ -69,8 +69,7 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual string Serialize(CrossViewModelRequest toSerialise)
     {
-        if (toSerialise == null)
-            throw new ArgumentNullException(nameof(toSerialise));
+        ArgumentNullException.ThrowIfNull(toSerialise, nameof(toSerialise));
 
         var dictionary = new Dictionary<string, string>
         {
@@ -83,8 +82,7 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual string SerializeViewModelName(Type? viewModelType)
     {
-        if (viewModelType?.FullName == null)
-            throw new ArgumentNullException(nameof(viewModelType));
+        ArgumentNullException.ThrowIfNull(viewModelType?.FullName, nameof(viewModelType));
 
         return viewModelType.FullName;
     }

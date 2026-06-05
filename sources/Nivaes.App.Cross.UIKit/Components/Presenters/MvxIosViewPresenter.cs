@@ -278,9 +278,10 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public override Task<bool> ChangePresentation(CrossPresentationHint hint)
         {
+            ArgumentNullException.ThrowIfNull(hint);
+
             return hint switch
             {
-                null => throw new ArgumentNullException(nameof(hint)),
                 CrossPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
                     Task.FromResult(true),
                 _ => base.ChangePresentation(hint)
@@ -563,8 +564,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseRootViewController(ICrossViewModel viewModel, MvxRootPresentationAttribute attribute)
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            ArgumentNullException.ThrowIfNull(viewModel);
 
             CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
                 "Ignored attempt to close the window root (ViewModel type: {ViewModelType}", viewModel.GetType().Name);
@@ -727,8 +727,7 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             ValidateArguments(navController, attribute);
 
-            if (toClose == null)
-                throw new ArgumentNullException(nameof(toClose));
+            ArgumentNullException.ThrowIfNull(toClose);
 
             // check for top view controller
             var topView = navController.TopViewController;
@@ -754,8 +753,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual MvxNavigationController CreateNavigationController(UIViewController viewController)
         {
-            if (viewController == null)
-                throw new ArgumentNullException(nameof(viewController));
+            ArgumentNullException.ThrowIfNull(viewController);
 
             return new MvxNavigationController(viewController);
         }

@@ -20,8 +20,7 @@ namespace MvvmCross.Platforms.Android.ViewModels
 
         public MvxAndroidPropertyChangedListener(INotifyPropertyChanged source, IJavaObject target) : base(source)
         {
-            if (target == null)
-                throw new ArgumentNullException(nameof(target));
+            ArgumentNullException.ThrowIfNull(target, "target");
 
             _target = new WeakReference<IJavaObject>(target);
         }

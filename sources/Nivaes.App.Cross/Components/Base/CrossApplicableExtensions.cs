@@ -9,8 +9,7 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public static void Apply(this IEnumerable<ICrossApplicable> toApply)
         {
-            if (toApply == null)
-                throw new ArgumentNullException(nameof(toApply));
+            ArgumentNullException.ThrowIfNull(toApply, nameof(toApply));
 
             foreach (var applicable in toApply)
                 applicable.Apply();
@@ -30,8 +29,7 @@ namespace Nivaes.App.Cross
         public static void ApplyTo<T>(this IEnumerable<IMvxApplicableTo<T>> toApply, T what)
             where T : notnull
         {
-            if (toApply == null)
-                throw new ArgumentNullException(nameof(toApply));
+            ArgumentNullException.ThrowIfNull(toApply, nameof(toApply));
 
             foreach (var applicable in toApply)
                 applicable.ApplyTo(what);

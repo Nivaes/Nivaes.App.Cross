@@ -46,8 +46,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public void SetSource(UIPopoverPresentationController popoverPresentationController)
         {
-            if (popoverPresentationController == null)
-                throw new ArgumentNullException(nameof(popoverPresentationController));
+            ArgumentNullException.ThrowIfNull(popoverPresentationController);
 
             if (SourceView == null && SourceBarButtonItem == null)
             {

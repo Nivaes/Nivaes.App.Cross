@@ -175,8 +175,7 @@ namespace Nivaes.App.Cross
         public CrossAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
+            ArgumentNullException.ThrowIfNull(execute, nameof(execute));
 
             _execute = _ => execute();
             _canExecute = canExecute;
@@ -185,7 +184,8 @@ namespace Nivaes.App.Cross
         public CrossAsyncCommand(Func<CancellationToken, Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            ArgumentNullException.ThrowIfNull(execute);
+            
             _canExecute = canExecute;
         }
 
@@ -224,8 +224,7 @@ namespace Nivaes.App.Cross
         public MvxAsyncCommand(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
+            ArgumentNullException.ThrowIfNull(execute, nameof(execute));
 
             _execute = (p, _) => execute(p);
             _canExecute = canExecute;
@@ -234,7 +233,8 @@ namespace Nivaes.App.Cross
         public MvxAsyncCommand(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            ArgumentNullException.ThrowIfNull(execute);
+            
             _canExecute = canExecute;
         }
 

@@ -13,16 +13,14 @@ namespace Nivaes.App.Cross
         public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
             where THint : CrossPresentationHint
         {
-            if (action == null)
-                throw new ArgumentNullException(nameof(action));
+            ArgumentNullException.ThrowIfNull(action, nameof(action));
 
             _presentationHintHandlers[typeof(THint)] = hint => action((THint)hint);
         }
 
         protected Task<bool> HandlePresentationChange(CrossPresentationHint hint)
         {
-            if (hint == null)
-                throw new ArgumentNullException(nameof(hint));
+            ArgumentNullException.ThrowIfNull(hint, nameof(hint));
 
             if (_presentationHintHandlers.TryGetValue(
                 hint.GetType(),

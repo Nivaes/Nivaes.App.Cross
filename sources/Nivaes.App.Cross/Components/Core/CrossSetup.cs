@@ -463,8 +463,7 @@ namespace Nivaes.App.Cross
         [Obsolete("No cargar plugins con reflection", true)]
         public virtual void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            if (pluginManager == null)
-                throw new ArgumentNullException(nameof(pluginManager));
+            ArgumentNullException.ThrowIfNull(pluginManager, nameof(pluginManager));
 
             var pluginAttribute = typeof(MvxPluginAttribute);
             var pluginAssemblies = GetPluginAssemblies();
@@ -550,8 +549,7 @@ namespace Nivaes.App.Cross
         [Obsolete("No usar reflection", true)]
         protected virtual void LoadNavigationServiceRoutes(ICrossNavigationService navigationService, IMvxIoCProvider iocProvider)
         {
-            if (navigationService == null)
-                throw new ArgumentNullException(nameof(navigationService));
+            ArgumentNullException.ThrowIfNull(navigationService, nameof(navigationService));
 
             navigationService.LoadRoutes(GetViewModelAssemblies());
         }
