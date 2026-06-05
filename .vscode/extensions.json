@@ -3,8 +3,21 @@
       "ms-dotnettools.csharp",
       "ms-dotnettools.csdevkit",
       "ms-dotnettools.dotnet-maui",
-      "github.vscode-github-actions",
+      "ms-dotnettools.vscode-dotnet-runtime",
+      "github.copilot",
       "github.copilot-chat",
-      "mariano-g.xib-storyboard-editor"
+      "eamodio.gitlens",
+      "github.vscode-github-actions",
+      "mariano-g.xib-storyboard-editor",
+      "eamodio.gitlens",
+      "usernamehw.errorlens",
+      "streetsidesoftware.code-spell-checker",
+      "ms-azuretools.vscode-docker",
+      "redhat.vscode-yaml",
+      "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "ms-dotnettools.dotnet-interactive-vscode",
+      "humao.rest-client",
+      "redhat.vscode-yaml",
+       "ms-kubernetes-tools.vscode-kubernetes-tools",
     ]
 }
