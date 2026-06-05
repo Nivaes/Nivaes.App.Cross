@@ -15,9 +15,10 @@
       "ms-azuretools.vscode-docker",
       "redhat.vscode-yaml",
       "ms-kubernetes-tools.vscode-kubernetes-tools",
-      "ms-dotnettools.dotnet-interactive-vscode",
       "humao.rest-client",
       "redhat.vscode-yaml",
-       "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "banditoth.vscode-maui-archive",
+      "banditoth.banditoth-vscode-maui-appleprivacy"
     ]
 }
