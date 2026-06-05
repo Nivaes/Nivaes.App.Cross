@@ -32,6 +32,12 @@ namespace Nivaes.App.Cross.Sample
             builder.Services.AddScoped<Tab1ViewModel>();
             builder.Services.AddScoped<Tab2ViewModel>();
             builder.Services.AddScoped<Tab3ViewModel>();
+            builder.Services.AddScoped<SplitRootViewModel>();
+            builder.Services.AddScoped<SplitMasterViewModel>();
+            builder.Services.AddScoped<SplitDetailViewModel>();
+            builder.Services.AddScoped<RegionViewModel>();
+            builder.Services.AddScoped<NewWindowViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -257,10 +257,10 @@ namespace Nivaes.App.Cross.Droid
             // nothing to do in this base class
         }
 
-        protected override ICrossNameMapping CreateViewToViewModelNaming()
-        {
-            return new CrossPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
-        }
+        ////protected override ICrossNameMapping CreateViewToViewModelNaming()
+        ////{
+        ////    return new CrossPostfixAwareViewToViewModelNameMapping("View", "Activity", "Fragment");
+        ////}
     }
 
     [Obsolete]

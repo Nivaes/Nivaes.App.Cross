@@ -29,7 +29,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public MvxIosViewPresenter(UIWindow window)
+        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer)
+            :base(crossViewsContainer)
         {
             Window = window;
         }

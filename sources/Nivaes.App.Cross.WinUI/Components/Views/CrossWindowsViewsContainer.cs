@@ -30,7 +30,7 @@ internal class CrossWindowsViewsContainer
         if (dictionary.TryGetValue(SubViewModelKey, out string? viewModelKey))
         {
             var key = int.Parse(viewModelKey);
-            var viewModel = _serviceProvider.GetService<ICrossChildViewModelCache>()?.Get(key);
+            var viewModel = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>()!.Get(key);
             if (savedState != null)
                 viewModel!.ReloadState(savedState);
             return viewModel!;

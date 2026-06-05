@@ -58,7 +58,8 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     protected ICrossNavigationSerializer? NavigationSerializer =>
         _navigationSerializer.Value;
 
-    public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies)
+    public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies, ICrossViewsContainer crossViewsContainer)
+        :base(crossViewsContainer)
     {
         AndroidViewAssemblies = androidViewAssemblies;
         if (ActivityLifetimeListener != null)
@@ -86,12 +87,12 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         }
     }
 
-    protected Type? GetAssociatedViewModelType(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type fromFragmentType)
-    {
-        var viewModelType = ViewModelTypeFinder?.FindTypeOrNull(fromFragmentType);
-        return viewModelType ?? fromFragmentType.GetBasePresentationAttributes().First().ViewModelType;
-    }
+    //protected Type? GetAssociatedViewModelType(
+    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type fromFragmentType)
+    //{
+    //    var viewModelType = ViewModelTypeFinder?.FindTypeOrNull(fromFragmentType);
+    //    return viewModelType ?? fromFragmentType.GetBasePresentationAttributes().First().ViewModelType;
+    //}
 
     public override void RegisterAttributeTypes()
     {
@@ -106,7 +107,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
     {
         ValidateArguments(request);
 
-        var viewType = ViewsContainer?.GetViewType(request.ViewModelType);
+        var viewType = base._crossViewsContainer?.GetViewType(request.ViewModelType);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
 
@@ -301,7 +302,8 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         if (currentActivityType == null)
             return null;
 
-        return ViewModelTypeFinder?.FindTypeOrNull(currentActivityType);
+        //return ViewModelTypeFinder?.FindTypeOrNull(currentActivityType);
+        return null;
     }
 
     #region Show implementations
@@ -458,7 +460,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         if (attribute.ActivityHostViewModelType == null)
             throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
-        var viewType = ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
+        var viewType = base._crossViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
         if (viewType?.IsSubclassOf(typeof(Activity)) != true)
             throw new CrossException("The host activity doesn't inherit Activity");
 

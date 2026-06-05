@@ -64,7 +64,8 @@ public class MvxMacViewPresenter
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate)
+    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer)
+        :base(crossViewsContainer)
     {
         _applicationDelegate = applicationDelegate;
         NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);

@@ -30,6 +30,12 @@ public static class CrossProgram
                     CrossViewsManagerHelper.New<RootViewModel, RootView>(),
                     CrossViewsManagerHelper.New<NewWindowViewModel, NewWindow>(),
                     CrossViewsManagerHelper.New<ChildViewModel, ChildView>(),
+                    CrossViewsManagerHelper.New<ModalViewModel, DialogView>(),
+                    CrossViewsManagerHelper.New<SecondChildViewModel, SecondChildView>(),
+                    CrossViewsManagerHelper.New<RegionViewModel, RegionView>(),
+                    CrossViewsManagerHelper.New<SplitDetailViewModel, SplitDetailView>(),
+                    CrossViewsManagerHelper.New<SplitMasterViewModel, SplitMasterView>(),
+                    CrossViewsManagerHelper.New<SplitRootViewModel, SplitRootView>(),
                 });
 
         return builder;

@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Reflection.Metadata.Ecma335;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using Nivaes.IoC;
@@ -7,14 +8,14 @@ namespace Nivaes.App.Cross
     [Obsolete]
     public static class CrossLogHost
     {
-        static CrossLogHost()
-        {
-            var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
-        }
+        //static CrossLogHost()
+        //{
+        //    var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
+        //}
 
-        private static ILoggerFactory? _defaultLogger;
+        //private static ILoggerFactory? _defaultLogger;
 
-        public static ILogger? Default => GetLog("Default");
+        public static ILogger? Default => null; // GetLog("Default");
 
         public static ILogger<T>? GetLog<T>() => null; //_defaultLogger?.CreateLogger<T>();
 

@@ -131,12 +131,16 @@ public abstract class CrossWinUIApplication
 
         var suspensionManager = new CrossSuspensionManager();
         var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.Merge(new WinUISubcontainer());
+
         container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
         //if (_suspensionManagerSessionStateKey != null)
         //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
         container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+        
+        
 
         //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
     }

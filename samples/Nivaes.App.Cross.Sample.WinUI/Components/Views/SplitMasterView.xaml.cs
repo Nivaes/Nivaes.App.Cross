@@ -15,6 +15,6 @@ public sealed partial class SplitMasterView
 }
 
 public abstract class SplitMasterViewPage
-    : CrossWindowsPage<SecondChildViewModel>
+    : CrossWindowsPage<SplitMasterViewModel>
 {
 }
