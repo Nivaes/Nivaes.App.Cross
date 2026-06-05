@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample
 {
@@ -39,6 +40,23 @@ namespace Nivaes.App.Cross.Sample
             builder.Services.AddScoped<NewWindowViewModel>();
             builder.Services.AddScoped<ModalViewModel>();
             builder.Services.AddScoped<SecondChildViewModel>();
+
+            builder.Services.AddScoped<CollectionViewModel>();
+            builder.Services.AddScoped<ConvertersViewModel>();
+            builder.Services.AddScoped<SharedElementRootViewModel>();
+            builder.Services.AddScoped<SharedElementSecondViewModel>();
+            builder.Services.AddScoped<ChildWithResultViewModel>();
+            builder.Services.AddScoped<DictionaryBindingViewModel>();
+            builder.Services.AddScoped<FluentBindingViewModel>();
+            builder.Services.AddScoped<ModalNavViewModel>();
+            builder.Services.AddScoped<ModalViewModel>();
+            builder.Services.AddScoped<NestedModalViewModel>();
+            builder.Services.AddScoped<OverrideAttributeViewModel>();
+            builder.Services.AddScoped<Tab1ViewModel>();
+            builder.Services.AddScoped<Tab2ViewModel>();
+            builder.Services.AddScoped<Tab3ViewModel>();
+            builder.Services.AddScoped<TabsRootViewModel>();
+            builder.Services.AddScoped<TabsRootBViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();
