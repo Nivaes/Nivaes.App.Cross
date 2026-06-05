@@ -57,7 +57,7 @@ public abstract class CrossWinUIApplication
 
         var frame = InitializeFrame();
 
-        InitializeContainer();
+        InitializeContainer(crossApp.Services);
 
         _application = _services.GetRequiredService<IApplication>();
         var navigationService = _services.GetRequiredService<ICrossNavigationService>();
@@ -126,9 +126,8 @@ public abstract class CrossWinUIApplication
     }
 
     // ToDO: Buscar donde registar ICrossSuspensionManager.
-    private void InitializeContainer()
+    private void InitializeContainer(IServiceProvider serviceProvider)
     {
-
         var suspensionManager = new CrossSuspensionManager();
         var container = Singleton<CrossIoCServiceContainer>.Instance;
         container.Merge(new WinUISubcontainer());
@@ -139,8 +138,9 @@ public abstract class CrossWinUIApplication
         //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
         container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-        
-        
+        container.AddInstance<IServiceProvider>(serviceProvider);
+
+
 
         //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
     }
