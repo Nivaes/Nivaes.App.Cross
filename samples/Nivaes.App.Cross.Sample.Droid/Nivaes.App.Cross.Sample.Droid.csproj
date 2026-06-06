@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
 		<!--<Platforms>x64;arm64</Platforms>-->
-		<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>
+		<!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
 		
 		<SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
@@ -15,37 +15,14 @@
       Enables trim analyzers and full trimming during Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
-		<IsPackable>false</IsPackable>
+		<!--<IsPackable>false</IsPackable>-->
 		<!--<GeneratePackageOnBuild>false</GeneratePackageOnBuild>-->
 
-		<RunAOTAnalysis>true</RunAOTAnalysis>
-		<IsAotCompatible>true</IsAotCompatible>
+		<!--<RunAOTAnalysis>true</RunAOTAnalysis>-->
+		<!--<IsAotCompatible>true</IsAotCompatible>-->
 
 		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
-		
-		<!--<AndroidPackageFormat>aab</AndroidPackageFormat>-->
-		<!--<SelfContained>true</SelfContained>-->
-		<!--<AndroidSupportedAbis>arm64-v8a;armeabi-v7a;x86_64</AndroidSupportedAbis>-->
-		<!--<PublishTrimmed>true</PublishTrimmed>-->
-		<!--<IlcOptimizationPreference>Speed</IlcOptimizationPreference>-->
-		<!--<RunAOTCompilation>true</RunAOTCompilation>-->
-		<!--<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>-->
-		
-
-		<!--<AndroidAotAssembly>true</AndroidAotAssembly>-->
-		<!--<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>-->
 	</PropertyGroup>
-	<ItemGroup>
-	  <AndroidJavaSource Remove="Properties\**" />
-	  <AndroidLibrary Remove="Properties\**" />
-	  <AndroidNativeLibrary Remove="Properties\**" />
-	  <Compile Remove="Properties\**" />
-	  <EmbeddedResource Remove="Properties\**" />
-	  <JavaSourceJar Remove="Properties\**" />
-	  <None Remove="Properties\**" />
-	  <ProguardConfiguration Remove="Properties\**" />
-	  <TransformFile Remove="Properties\**" />
-	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Nivaes.App.Shared" />
 		<!--<PackageReference Include="Xamarin.Android.Glide" />-->

@@ -9,7 +9,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Obsolete("This class is deprecated. Please use MvxAndroidSetupSingleton instead.")]
+    [Obsolete("This class is deprecated. Please use MvxAndroidSetupSingleton instead.", true)]
     public abstract class MvxAndroidSetup
         : CrossSetup, IMvxAndroidGlobals, IMvxAndroidSetup
     {
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
 
             InitializeLifetimeMonitor(container);
             InitializeAndroidCurrentTopActivity(container);
-            RegisterPresenter(container);
+            //RegisterPresenter(container);
 
             container.AddInstance<IMvxAndroidGlobals>(this);
 
@@ -116,32 +116,32 @@ namespace Nivaes.App.Cross.Droid
             return new MvxAndroidViewsContainer(applicationContext);
         }
 
-        protected IMvxAndroidViewPresenter Presenter
-        {
-            get
-            {
-                _presenter ??= CreateViewPresenter();
-                return _presenter;
-            }
-        }
+        //protected IMvxAndroidViewPresenter Presenter
+        //{
+        //    get
+        //    {
+        //        _presenter ??= CreateViewPresenter();
+        //        return _presenter;
+        //    }
+        //}
 
-        protected virtual IMvxAndroidViewPresenter CreateViewPresenter()
-        {
-            return new MvxAndroidViewPresenter(AndroidViewAssemblies);
-        }
+        //protected virtual IMvxAndroidViewPresenter CreateViewPresenter()
+        //{
+        //    return new MvxAndroidViewPresenter(AndroidViewAssemblies);
+        //}
 
-        protected override ICrossViewDispatcher CreateViewDispatcher()
-        {
-            return new MvxAndroidViewDispatcher(Presenter);
-        }
+        //protected override ICrossViewDispatcher CreateViewDispatcher()
+        //{
+        //    return new MvxAndroidViewDispatcher(Presenter);
+        //}
 
-        protected virtual void RegisterPresenter(CrossIoCServiceContainer container)
-        {
-            var presenter = Presenter;
+        //protected virtual void RegisterPresenter(CrossIoCServiceContainer container)
+        //{
+        //    var presenter = Presenter;
 
-            container.AddInstance(presenter);
-            container.AddInstance<ICrossViewPresenter>(presenter);
-        }
+        //    container.AddInstance(presenter);
+        //    container.AddInstance<ICrossViewPresenter>(presenter);
+        //}
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
         protected override void InitializeLastChance(IMvxIoCProvider iocProvider)

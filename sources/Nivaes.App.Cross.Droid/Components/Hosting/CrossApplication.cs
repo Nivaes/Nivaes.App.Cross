@@ -4,6 +4,7 @@ using System.Text;
 using Android.Content;
 using Android.Content.Res;
 using Android.Runtime;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
@@ -24,27 +25,34 @@ namespace Nivaes.App.Cross.Droid
 
         protected abstract CrossApp CreateCrossApp();
 
-        public override void OnCreate()
+        public override async void OnCreate()
         {
             //RegisterActivityLifecycleCallbacks(new ActivityLifecycleCallbacks());
 
-            var mauiApp = CreateCrossApp();
+            var crossApp = CreateCrossApp();
 
-            //var rootContext = new MauiContext(mauiApp.Services, this);
+           var rootContext = new CrossAndroidContext(crossApp.Services, this);
 
-            //var applicationContext = rootContext.MakeApplicationScope(this);
+            var applicationContext = rootContext.MakeApplicationScope(this);
 
-            //_services = applicationContext.Services;
+            _services = applicationContext.Services;
 
             //_services.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreating>(del => del(this));
 
-            //_application = _services.GetRequiredService<IApplication>();
+            InitializeContainer(crossApp.Services);
+
+            _application = _services.GetRequiredService<IApplication>();
+            var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
             //this.SetApplicationHandler(_application, applicationContext);
 
             //_services?.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreate>(del => del(this));
 
+            var initializeViewModelType = _application.Initialize();
+
             base.OnCreate();
+
+            await initializeViewModelType.NavigateToFirstViewModel(navigationService);
         }
 
         public override void OnLowMemory()
@@ -75,26 +83,47 @@ namespace Nivaes.App.Cross.Droid
 
         //public class ActivityLifecycleCallbacks : Java.Lang.Object, IActivityLifecycleCallbacks
         //{
-            //public void OnActivityCreated(Activity activity, Bundle? savedInstanceState) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnCreate>(del => del(activity, savedInstanceState));
+        //public void OnActivityCreated(Activity activity, Bundle? savedInstanceState) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnCreate>(del => del(activity, savedInstanceState));
 
-            //public void OnActivityStarted(Activity activity) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnStart>(del => del(activity));
+        //public void OnActivityStarted(Activity activity) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnStart>(del => del(activity));
 
-            //public void OnActivityResumed(Activity activity) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnResume>(del => del(activity));
+        //public void OnActivityResumed(Activity activity) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnResume>(del => del(activity));
 
-            //public void OnActivityPaused(Activity activity) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnPause>(del => del(activity));
+        //public void OnActivityPaused(Activity activity) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnPause>(del => del(activity));
 
-            //public void OnActivityStopped(Activity activity) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnStop>(del => del(activity));
+        //public void OnActivityStopped(Activity activity) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnStop>(del => del(activity));
 
-            //public void OnActivitySaveInstanceState(Activity activity, Bundle outState) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnSaveInstanceState>(del => del(activity, outState));
+        //public void OnActivitySaveInstanceState(Activity activity, Bundle outState) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnSaveInstanceState>(del => del(activity, outState));
 
-            //public void OnActivityDestroyed(Activity activity) =>
-            //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnDestroy>(del => del(activity));
+        //public void OnActivityDestroyed(Activity activity) =>
+        //    IPlatformApplication.Current?.Services?.InvokeLifecycleEvents<AndroidLifecycle.OnDestroy>(del => del(activity));
         //}
+
+
+        // ToDO: Buscar donde registar ICrossSuspensionManager.
+        private void InitializeContainer(IServiceProvider serviceProvider)
+        {
+            //var suspensionManager = new CrossSuspensionManager();
+            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            container.Merge(new DroidIoCServiceContainer());
+
+            //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+
+            //if (_suspensionManagerSessionStateKey != null)
+            //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+
+            //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+            container.AddInstance<IServiceProvider>(serviceProvider);
+
+
+
+            //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
+        }
     }
 }

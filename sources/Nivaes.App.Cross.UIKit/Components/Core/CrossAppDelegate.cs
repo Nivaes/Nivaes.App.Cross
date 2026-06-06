@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
 
@@ -8,6 +9,10 @@ namespace Nivaes.App.Cross.UIKitOS;
 public abstract class CrossAppDelegate 
     : UIApplicationDelegate, IMvxApplicationDelegate
 {
+    private IServiceProvider? _services;
+
+    private IApplication? _application;
+
     public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 
     public virtual UIWindow? MainWindow { get; set; }
@@ -21,17 +26,27 @@ public abstract class CrossAppDelegate
 
     public override bool WillFinishLaunching(UIApplication application, NSDictionary? launchOptions)
     {
-        var mauiApp = CreateCrossApp();
+        var crossApp = CreateCrossApp();
 
-        //var rootContext = new MauiContext(mauiApp.Services);
+        var rootContext = new CrossContext(crossApp.Services);
 
-        //_applicationContext = rootContext.MakeApplicationScope(this);
+        var applicationContext = rootContext.MakeApplicationScope(this);
 
-        //_services = _applicationContext.Services;
+        _services = applicationContext.Services;
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
 
+        InitializeContainer(crossApp.Services);
+
+        _application = _services.GetRequiredService<IApplication>();
+        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+
+        var initializeViewModelType = _application.Initialize();
+
         //return base.WillFinishLaunching(application, launchOptions);
+
+        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+
         return true;
     }
 
@@ -83,6 +98,26 @@ public abstract class CrossAppDelegate
     {
         var handler = LifetimeChanged;
         handler?.Invoke(this, new CrossLifetimeEventArgs(which));
+    }
+
+    // ToDO: Buscar donde registar ICrossSuspensionManager.
+    private void InitializeContainer(IServiceProvider serviceProvider)
+    {
+        var suspensionManager = new CrossSuspensionManager();
+        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        container.Merge(new WinUISubcontainer());
+
+        container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+
+        //if (_suspensionManagerSessionStateKey != null)
+        //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+
+        container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+        container.AddInstance<IServiceProvider>(serviceProvider);
+
+
+
+        //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
     }
 }
 
