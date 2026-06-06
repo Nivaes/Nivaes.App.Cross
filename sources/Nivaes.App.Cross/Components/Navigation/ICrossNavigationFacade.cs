@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
 
-namespace Nivaes.App.Cross;
+//namespace Nivaes.App.Cross;
 
-public interface ICrossNavigationFacade
-{
-    Task<CrossViewModelRequest> BuildViewModelRequest(string url, IDictionary<string, string> currentParameters);
-}
+//public interface ICrossNavigationFacade
+//{
+//    Task<CrossViewModelRequest> BuildViewModelRequest(string url, IDictionary<string, string> currentParameters);
+//}

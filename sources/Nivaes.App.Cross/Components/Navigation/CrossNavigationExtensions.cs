@@ -6,34 +6,34 @@ public static class CrossNavigationExtensions
 {
     extension(ICrossNavigationService navigationService)
     {
-        /// <summary>
-        /// Verifies if the provided Uri can be routed to a ViewModel request.
-        /// </summary>
-        /// <param name="path">URI to route</param>
-        /// <returns>True if the uri can be routed or false if it cannot.</returns>
-        public Task<bool> CanNavigate(Uri path)
-        {
-            return navigationService.CanNavigate(path.ToString());
-        }
+        ///// <summary>
+        ///// Verifies if the provided Uri can be routed to a ViewModel request.
+        ///// </summary>
+        ///// <param name="path">URI to route</param>
+        ///// <returns>True if the uri can be routed or false if it cannot.</returns>
+        //public Task<bool> CanNavigate(Uri path)
+        //{
+        //    return navigationService.CanNavigate(path.ToString());
+        //}
 
-        /// <summary>
-        /// Translates the provided Uri to a ViewModel request and dispatches it.
-        /// </summary>
-        /// <param name="path">URI to route</param>
-        /// <param name="presentationBundle"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns>A task to await upon</returns>
-        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public Task Navigate(Uri path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-        {
-            return navigationService.Navigate(path.ToString(), presentationBundle, cancellationToken);
-        }
+        ///// <summary>
+        ///// Translates the provided Uri to a ViewModel request and dispatches it.
+        ///// </summary>
+        ///// <param name="path">URI to route</param>
+        ///// <param name="presentationBundle"></param>
+        ///// <param name="cancellationToken"></param>
+        ///// <returns>A task to await upon</returns>
+        //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+        //public Task Navigate(Uri path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        //{
+        //    return navigationService.Navigate(path.ToString(), presentationBundle, cancellationToken);
+        //}
 
-        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-        public Task Navigate<TParameter>(Uri path, TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-        {
-            return navigationService.Navigate(path.ToString(), param, presentationBundle, cancellationToken);
-        }
+        //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
+        //public Task Navigate<TParameter>(Uri path, TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        //{
+        //    return navigationService.Navigate(path.ToString(), param, presentationBundle, cancellationToken);
+        //}
 
         /// <summary>
         /// Navigate from a Result Awaiting ViewModel to a Result Setting ViewModel determined by its type

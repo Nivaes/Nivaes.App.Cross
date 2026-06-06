@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Versioning;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;
 
@@ -26,7 +27,7 @@ public class CrossDefaultViewModelLocator
         ICrossViewModel? viewModel;
         try
         {
-            viewModel = (ICrossViewModel?)_serviceProvider.GetService(viewModelType);
+            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
         catch (Exception exception)
         {
@@ -57,7 +58,7 @@ public class CrossDefaultViewModelLocator
         ICrossViewModel<TParameter>? viewModel;
         try
         {
-            viewModel = (ICrossViewModel<TParameter>?)_serviceProvider.GetService(viewModelType);
+            viewModel = (ICrossViewModel<TParameter>?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
         catch (Exception exception)
         {

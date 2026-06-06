@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     public interface ICrossViewDispatcher : ICrossMainThreadAsyncDispatcher, ICrossMainThreadDispatcher

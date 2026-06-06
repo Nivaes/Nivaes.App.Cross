@@ -28,28 +28,28 @@ public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
 
     public IEnumerable<MenuItem> Menu { get; set; }
 
-    public MenuItem SelectedMenu
-    {
-        get => _menuItem;
-        set
-        {
-            if (SetProperty(ref _menuItem, value))
-                OnSelectedChangedCommand.Execute(value);
-        }
-    }
+    //public MenuItem SelectedMenu
+    //{
+    //    get => _menuItem;
+    //    set
+    //    {
+    //        if (SetProperty(ref _menuItem, value))
+    //            OnSelectedChangedCommand.Execute(value);
+    //    }
+    //}
 
-    private ICrossAsyncCommand<MenuItem> OnSelectedChangedCommand
-    {
-        get
-        {
-            return _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
-            {
-                if (item == null)
-                    return;
+    //private ICrossAsyncCommand<MenuItem> OnSelectedChangedCommand
+    //{
+    //    get
+    //    {
+    //        return _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
+    //        {
+    //            if (item == null)
+    //                return;
 
-                var vmType = item.ViewModelType;
-                await NavigationService.Navigate(vmType);
-            });
-        }
-    }
+    //            var vmType = item.ViewModelType;
+    //            await NavigationService.Navigate(vmType);
+    //        });
+    //    }
+    //}
 }
