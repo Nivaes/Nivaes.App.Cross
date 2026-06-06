@@ -7,12 +7,31 @@ using Nivaes.IoC;
 namespace Nivaes.App.Cross.AppKitOS;
 
 [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-public abstract class MvxApplicationDelegate : NSApplicationDelegate, IMvxApplicationDelegate
+public abstract class MvxApplicationDelegate : 
+    NSApplicationDelegate, IMvxApplicationDelegate, IPlatformApplication
 {
+    private IServiceProvider? _services;
+
+    private IApplication? _application;
+
+    public IServiceProvider Services
+    {
+        get => _services!;
+        protected set => _services = value;
+    }
+
+    public IApplication Application
+    {
+        get => _application!;
+        protected set => _application = value;
+    }
+
     protected MvxApplicationDelegate() 
         : base()
     {
         RegisterSetup();
+
+        IPlatformApplication.Current = this;
     }
 
     protected abstract CrossApp CreateCrossApp();

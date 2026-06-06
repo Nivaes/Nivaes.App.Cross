@@ -9,18 +9,25 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public abstract class CrossApplication : Application
+    public abstract class CrossApplication 
+        : Application, IPlatformApplication
     {
-        public static CrossApplication Current { get; private set; } = null!;
-
         IServiceProvider? _services;
 
         IApplication? _application;
 
+
+        public static CrossApplication Current { get; private set; } = null!;
+
+        public IServiceProvider Services => _services!;
+
+        public IApplication Application => _application!;
+
+
         protected CrossApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
         {
             Current = this;
-            //IPlatformApplication.Current = this;
+            IPlatformApplication.Current = this;
         }
 
         protected abstract CrossApp CreateCrossApp();

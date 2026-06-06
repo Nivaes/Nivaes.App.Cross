@@ -11,7 +11,7 @@ using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 namespace Nivaes.App.Cross.WinUI;
 
 public abstract class CrossApplication 
-    : Application
+    : Application, IPlatformApplication
 {
     IServiceProvider? _services;
 
@@ -21,6 +21,18 @@ public abstract class CrossApplication
 
     internal Frame? RootFrame { get; set; }
     internal Window? MainWindow { get; private set; }
+
+    public IServiceProvider Services
+    {
+        get => _services!;
+        protected set => _services = value;
+    }
+
+    public IApplication Application
+    {
+        get => _application!;
+        protected set => _application = value;
+    }
 
     //protected CrossWinUIApplication()
     //{
@@ -42,8 +54,7 @@ public abstract class CrossApplication
         //    return;
         //}
 
-        //IPlatformApplication.Current = this;
-        //CrossWinUIApplication.Current = this;
+        IPlatformApplication.Current = this;
 
         var crossApp = CreateCrossApp();
 

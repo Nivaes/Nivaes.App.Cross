@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitOS;
 
 [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
 public abstract class CrossAppDelegate 
-    : UIApplicationDelegate, IMvxApplicationDelegate
+    : UIApplicationDelegate, IMvxApplicationDelegate, IPlatformApplication
 {
     private IServiceProvider? _services;
 
@@ -17,9 +17,21 @@ public abstract class CrossAppDelegate
 
     public virtual UIWindow? MainWindow { get; set; }
 
+    public IServiceProvider Services
+    {
+        get => _services!;
+        protected set => _services = value;
+    }
+
+    public IApplication Application
+    {
+        get => _application!;
+        protected set => _application = value;
+    }
+
     protected CrossAppDelegate()
     {
-        //RegisterSetup();
+        IPlatformApplication.Current = this;
     }
 
     protected abstract CrossApp CreateCrossApp();
@@ -45,7 +57,8 @@ public abstract class CrossAppDelegate
 
         //return base.WillFinishLaunching(application, launchOptions);
 
-        Task.Run(async () => await initializeViewModelType.NavigateToFirstViewModel(navigationService));
+        //Task.Run(async () => await initializeViewModelType.NavigateToFirstViewModel(navigationService));
+        initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         return true;
     }
