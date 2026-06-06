@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
@@ -10,14 +8,16 @@ public static class CrossProgram
 {
     public static CrossApp CreateCrossApp()
     {
-        var builder = CrossApp.CreateBuilder();
+        var appBuilder = CrossApp.CreateBuilder();
 
-        builder
-            .UseSharedCrossApp();
+        appBuilder.UseSharedCrossApp();
+        appBuilder.UseAppKitApp(/*app*/);
 
-        builder.SetupViews();
+        appBuilder.Services.AddMetrics();
 
-        return builder.Build();
+        appBuilder.SetupViews();
+
+        return appBuilder.Build();
     }
 
     static CrossAppBuilder SetupViews(this CrossAppBuilder builder)

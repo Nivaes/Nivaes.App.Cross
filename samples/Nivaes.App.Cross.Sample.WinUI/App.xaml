@@ -1,4 +1,4 @@
-<cross:CrossWinUIApplication x:Class="Nivaes.App.Cross.Sample.WinUI.App"
+<cross:CrossApplication x:Class="Nivaes.App.Cross.Sample.WinUI.App"
                         xmlns:cross="using:Nivaes.App.Cross.WinUI"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,4 +7,4 @@
     <Application.Resources>
         <x:String x:Key="WelcomeText">Hello World!</x:String>
     </Application.Resources>
-</cross:CrossWinUIApplication>
+</cross:CrossApplication>

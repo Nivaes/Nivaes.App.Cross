@@ -79,8 +79,8 @@
     <Project Path="sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
   </Folder>
-  <Folder Name="/Sources/UIKit/Blazor/">
-    <Project Path="sources/Nivaes.App.Cross.Blazor/Nivaes.App.Cross.Blazor.csproj" Id="734e4e3b-c1a3-4c93-8fc6-3200295d4596" />
+  <Folder Name="/Sources/Web/">
+    <Project Path="sources/Nivaes.App.Cross.Web/Nivaes.App.Cross.Web.csproj" />
   </Folder>
   <Folder Name="/Sources/WinUI/">
     <Project Path="sources/Nivaes.App.Cross.WinUI.SourceGenerator/Nivaes.App.Cross.WinUI.SourceGenerator.csproj" />

@@ -10,7 +10,7 @@ using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public abstract class CrossWinUIApplication 
+public abstract class CrossApplication 
     : Application
 {
     IServiceProvider? _services;

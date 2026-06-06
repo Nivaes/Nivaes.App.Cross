@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
 public static class CrossProgram
 {
-    public static CrossApp CreateCrossApp(CrossWinUIApplication app)
+    public static CrossApp CreateCrossApp(CrossApplication app)
     {
-        var builder = CrossApp.CreateBuilder();
+        var appBuilder = CrossApp.CreateBuilder();
 
-        builder.UseSharedCrossApp();
+        appBuilder.UseSharedCrossApp();
+        appBuilder.UseWinUIApp(app);
 
-        builder.UseWinUIApp(app);
+        appBuilder.Services.AddMetrics();
 
-        builder.SetupViews();
+        appBuilder.SetupViews();
 
-        return builder.Build();
+        return appBuilder.Build();
     }
 
     static CrossAppBuilder SetupViews(this CrossAppBuilder builder)

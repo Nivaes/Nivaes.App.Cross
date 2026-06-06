@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 using Playground.Core.ViewModels;
+using Sentry.Protocol;
+using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
@@ -10,14 +13,16 @@ public static class CrossProgram
 {
     public static CrossApp CreateMauiApp()
     {
-        var builder = CrossApp.CreateBuilder();
+        var appBuilder = CrossApp.CreateBuilder();
 
-        builder
-            .UseSharedCrossApp();
+        appBuilder.UseSharedCrossApp();
+        appBuilder.UseDroidApp(/*app*/);
 
-        builder.SetupViews();
+        appBuilder.Services.AddMetrics();
 
-        return builder.Build();
+        appBuilder.SetupViews();
+
+        return appBuilder.Build();
     }
 
     static CrossAppBuilder SetupViews(this CrossAppBuilder builder)

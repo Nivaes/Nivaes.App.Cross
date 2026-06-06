@@ -45,7 +45,7 @@ public abstract class CrossAppDelegate
 
         //return base.WillFinishLaunching(application, launchOptions);
 
-        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+        Task.Run(async () => await initializeViewModelType.NavigateToFirstViewModel(navigationService));
 
         return true;
     }
@@ -103,16 +103,16 @@ public abstract class CrossAppDelegate
     // ToDO: Buscar donde registar ICrossSuspensionManager.
     private void InitializeContainer(IServiceProvider serviceProvider)
     {
-        var suspensionManager = new CrossSuspensionManager();
+        //var suspensionManager = new CrossSuspensionManager();
         var container = Singleton<CrossIoCServiceContainer>.Instance;
-        container.Merge(new WinUISubcontainer());
+        container.Merge(new UIKitSubcontainer());
 
-        container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+        //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
         //if (_suspensionManagerSessionStateKey != null)
         //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
-        container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+        //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
         container.AddInstance<IServiceProvider>(serviceProvider);
 
 

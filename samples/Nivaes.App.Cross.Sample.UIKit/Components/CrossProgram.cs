@@ -1,8 +1,10 @@
 ﻿using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.UIKitOS;
 using Playground.Core.ViewModels;
 using Playground.iOS.Views;
+using Sentry.Protocol;
 
 namespace Nivaes.App.Cross.Sample.UIKitOS
 {
@@ -10,14 +12,16 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
     {
         public static CrossApp CreateCrossApp()
         {
-            var builder = CrossApp.CreateBuilder();
+            var appBuilder = CrossApp.CreateBuilder();
 
-            builder
-                .UseSharedCrossApp();
+            appBuilder.UseSharedCrossApp();
+            appBuilder.UseUIKitApp(/*app*/);
 
-            builder.SetupViews();
+            appBuilder.Services.AddMetrics();
 
-            return builder.Build();
+            appBuilder.SetupViews();
+
+            return appBuilder.Build();
         }
 
         static CrossAppBuilder SetupViews(this CrossAppBuilder builder)
