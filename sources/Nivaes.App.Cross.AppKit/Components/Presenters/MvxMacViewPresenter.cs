@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross.AppKitOS;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Platforms.Mac.Presenters.Attributes;
 using MvvmCross.Platforms.Mac.Views;
@@ -10,6 +11,8 @@ using Nivaes.App.Cross;
 public class MvxMacViewPresenter
     : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
 {
+    private readonly IServiceProvider _serviceProvider;
+
     private readonly INSApplicationDelegate _applicationDelegate;
 
     /// <summary>
@@ -64,9 +67,10 @@ public class MvxMacViewPresenter
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer)
+    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer, IServiceProvider serviceProvider)
         :base(crossViewsContainer)
     {
+        _serviceProvider = serviceProvider;
         _applicationDelegate = applicationDelegate;
         NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);
     }
@@ -220,7 +224,7 @@ public class MvxMacViewPresenter
                     $"for the corresponding view model.");
             }
             // Instantiate using Reflection - failure is possible if blank constructor is missing
-            windowController = (MvxWindowController)Activator.CreateInstance(controllerType);
+            windowController = (MvxWindowController)ActivatorUtilities.CreateInstance(_serviceProvider, controllerType);
         }
         windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
         return windowController;

@@ -160,7 +160,7 @@ public class MvxMultiWindowViewPresenter
     {
         try
         {
-            var control = Activator.CreateInstance(viewType) as Control;
+            var control = ActivatorUtilities.CreateInstance(_serviceProvider, viewType) as Control;
             if (control is ICrossView mvxControl)
             {
                 if (request is CrossViewModelInstanceRequest instanceRequest)

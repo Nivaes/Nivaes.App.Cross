@@ -22,11 +22,13 @@ namespace Nivaes.App.Cross.UIKitOS
             builder.Services.TryAddSingleton<IMvxIosViewPresenter>(sp =>
             {
                 var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
+                var viewCreator = sp.GetRequiredService<IMvxIosViewCreator>();
 
-                return new MvxIosViewPresenter(windows, viewsContainer);
+                return new MvxIosViewPresenter(windows, viewsContainer, viewCreator);
             });
 
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
+            builder.Services.TryAddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
 
             return builder;
         }

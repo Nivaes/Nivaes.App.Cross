@@ -12,6 +12,7 @@ namespace Nivaes.App.Cross.UIKitOS
         : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
         private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
+        private readonly IMvxIosViewCreator _viewCreator;
 
         protected UIWindow Window { get; }
 
@@ -29,9 +30,10 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer)
+        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer, IMvxIosViewCreator viewCreator)
             :base(crossViewsContainer)
         {
+            _viewCreator = viewCreator;
             Window = window;
         }
 
@@ -66,7 +68,7 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             ArgumentNullException.ThrowIfNull(viewType);
 
-            return this.CreateViewControllerFor(viewType);
+            return (UIViewController?)_viewCreator.CreateViewOfType(viewType);
         }
 
         public override void RegisterAttributeTypes()
@@ -77,7 +79,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxRootPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -91,7 +93,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxChildPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -105,7 +107,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxTabPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -119,7 +121,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxPagePresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -133,7 +135,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxModalPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -147,7 +149,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxSplitViewPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(
@@ -187,7 +189,7 @@ namespace Nivaes.App.Cross.UIKitOS
             AttributeTypesToActionsDictionary.Register<MvxPopoverPresentationAttribute>(
                 (_, attribute, request) =>
                 {
-                    var viewController = (UIViewController?)this.CreateViewControllerFor(request);
+                    var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
                         CrossLogHost.GetLog<MvxIosViewPresenter>()?.LogWarning(

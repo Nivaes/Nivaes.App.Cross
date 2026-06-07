@@ -472,7 +472,7 @@ public class CrossNavigationService
             PresentationValues = presentationBundle?.SafeGetData()
         };
         mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
-        return NavigateAsync<TViewModel>(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
+        return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
     ///// <summary>
@@ -549,7 +549,7 @@ public class CrossNavigationService
             PresentationValues = presentationBundle?.SafeGetData()
         };
         request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return NavigateAsync<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+        return NavigateAsync(request, request.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
     ///// <summary>
@@ -603,7 +603,7 @@ public class CrossNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>True is successful. False otherwise.</returns>
-    protected virtual async Task<bool> NavigateAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+    protected virtual async Task<bool> NavigateAsync(
         CrossViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {

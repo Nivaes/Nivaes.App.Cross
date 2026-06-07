@@ -2,12 +2,20 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class MvxIosViewsContainer
         : CrossViewsContainer
         , IMvxIosViewsContainer
     {
+        private readonly IServiceProvider _serviceProvider;
+
         public CrossViewModelRequest? CurrentRequest { get; private set; }
+
+        public MvxIosViewsContainer(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
         public virtual IMvxIosView CreateView(CrossViewModelRequest request)
         {
@@ -53,7 +61,7 @@ namespace Nivaes.App.Cross.UIKitOS
                 }
             }
 
-            if (Activator.CreateInstance(viewType) is not IMvxIosView view)
+            if (ActivatorUtilities.CreateInstance(_serviceProvider, viewType) is not IMvxIosView view)
                 throw new CrossException("View not loaded for " + viewType);
 
             return view;

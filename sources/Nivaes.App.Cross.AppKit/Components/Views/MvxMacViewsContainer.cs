@@ -3,19 +3,27 @@ namespace Nivaes.App.Cross.AppKitOS
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using Microsoft.Extensions.DependencyInjection;
     using MvvmCross.Platforms.Mac.Views;
 
     public class MvxMacViewsContainer
         : CrossViewsContainer, IMvxMacViewsContainer
     {
-        public CrossViewModelRequest CurrentRequest { get; private set; }
+        private readonly IServiceProvider _serviceProvider;
+
+        public CrossViewModelRequest? CurrentRequest { get; private set; }
+
+        public MvxMacViewsContainer(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
         public virtual IMvxMacView CreateView(CrossViewModelRequest request)
         {
             try
             {
                 CurrentRequest = request;
-                var viewType = GetViewType(request.ViewModelType);
+                var viewType = GetViewType(request.ViewModelType!);
                 if (viewType == null)
                     throw new CrossException("View Type not found for " + request.ViewModelType);
 
@@ -47,7 +55,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 }
             }
 
-            var view = Activator.CreateInstance(viewType) as IMvxMacView;
+            var view = ActivatorUtilities.CreateInstance(_serviceProvider, viewType) as IMvxMacView;
             if (view == null)
                 throw new CrossException("View not loaded for " + viewType);
             return view;

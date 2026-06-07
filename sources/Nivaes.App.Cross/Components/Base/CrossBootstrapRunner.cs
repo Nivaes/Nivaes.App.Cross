@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
 
+    [Obsolete("", true)]
     public class CrossBootstrapRunner
     {
         [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]

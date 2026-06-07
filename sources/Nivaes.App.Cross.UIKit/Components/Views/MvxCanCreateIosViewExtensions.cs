@@ -13,15 +13,16 @@ public static class MvxCanCreateIosViewExtensions
 
     // TODO - could this move down to IMvxView level?
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
-        this IMvxCanCreateIosView view,
+        this IMvxIosViewCreator viewCreator,
         IDictionary<string, string>? parameterValues = null)
         where TTargetViewModel : class, ICrossViewModel
     {
         var parameterBundle = new CrossBundle(parameterValues);
         var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
-        return view.CreateViewControllerFor(request);
+        return viewCreator.CreateView(request);
     }
 
+    [Obsolete("", true)]
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view,
         CrossViewModelRequest request)
@@ -29,12 +30,14 @@ public static class MvxCanCreateIosViewExtensions
         return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateView(request);
     }
 
+    [Obsolete("", true)]
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType)
     {
         return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateViewOfType(viewType);
     }
 
+    [Obsolete("", true)]
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view,
         ICrossViewModel viewModel)
