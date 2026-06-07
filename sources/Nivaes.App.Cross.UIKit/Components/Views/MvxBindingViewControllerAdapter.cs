@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -15,7 +16,8 @@ public class MvxBindingViewControllerAdapter
         if (!(eventSource is IMvxIosView))
             throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
 
-        if (Mvx.IoCProvider?.TryResolve<ICrossBindingContext>(out var bindingContext) == true)
+        var bindingContext = IPlatformApplication.Current!.Services.GetService<ICrossBindingContext>();
+        if(bindingContext != null)
             IosView?.BindingContext = bindingContext;
     }
 

@@ -38,6 +38,7 @@ namespace Nivaes.App.Cross.Hosting
 
             //builder.Services.TryAddSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
             builder.Services.TryAddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
+            builder.Services.TryAddSingleton<ICrossBindingContext, CrossTaskBasedBindingContext>();
 
             //bootstrapper.AddSingleton<ILoggingService, LoggingService>();
 
