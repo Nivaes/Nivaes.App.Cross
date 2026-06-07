@@ -10,12 +10,12 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     public static class CrossProgram
     {
-        public static CrossApp CreateCrossApp()
+        public static CrossApp CreateCrossApp(UIWindow windows)
         {
             var appBuilder = CrossApp.CreateBuilder();
 
             appBuilder.UseSharedCrossApp();
-            appBuilder.UseUIKitApp(/*app*/);
+            appBuilder.UseUIKitApp(windows);
 
             appBuilder.Services.AddMetrics();
 

@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Droid
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder/*, CrossApplication app*/ )
         {
-            //builder.Services.TryAddSingleton<ICrossViewDispatcher, CrossWindowsViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
 
             //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();

@@ -34,34 +34,34 @@ public abstract class CrossAppDelegate
         IPlatformApplication.Current = this;
     }
 
-    protected abstract CrossApp CreateCrossApp();
+    //protected abstract CrossApp CreateCrossApp();
 
-    public override bool WillFinishLaunching(UIApplication application, NSDictionary? launchOptions)
-    {
-        var crossApp = CreateCrossApp();
+    //public override bool WillFinishLaunching(UIApplication application, NSDictionary? launchOptions)
+    //{
+    //    var crossApp = CreateCrossApp();
 
-        var rootContext = new CrossContext(crossApp.Services);
+    //    var rootContext = new CrossContext(crossApp.Services);
 
-        var applicationContext = rootContext.MakeApplicationScope(this);
+    //    var applicationContext = rootContext.MakeApplicationScope(this);
 
-        _services = applicationContext.Services;
+    //    _services = applicationContext.Services;
 
-        //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
+    //    //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
 
-        InitializeContainer(crossApp.Services);
+    //    InitializeContainer(crossApp.Services);
 
-        _application = _services.GetRequiredService<IApplication>();
-        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+    //    _application = _services.GetRequiredService<IApplication>();
+    //    //var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
-        var initializeViewModelType = _application.Initialize();
+    //    //var initializeViewModelType = _application.Initialize();
 
-        //return base.WillFinishLaunching(application, launchOptions);
+    //    //return base.WillFinishLaunching(application, launchOptions);
 
-        //Task.Run(async () => await initializeViewModelType.NavigateToFirstViewModel(navigationService));
-        initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
+    //    //Task.Run(async () => await initializeViewModelType.NavigateToFirstViewModel(navigationService));
+    //    //initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
-        return true;
-    }
+    //    return true;
+    //}
 
     public override void WillEnterForeground(UIApplication application)
     {
@@ -113,25 +113,25 @@ public abstract class CrossAppDelegate
         handler?.Invoke(this, new CrossLifetimeEventArgs(which));
     }
 
-    // ToDO: Buscar donde registar ICrossSuspensionManager.
-    private void InitializeContainer(IServiceProvider serviceProvider)
-    {
-        //var suspensionManager = new CrossSuspensionManager();
-        var container = Singleton<CrossIoCServiceContainer>.Instance;
-        container.Merge(new UIKitSubcontainer());
+    //// ToDO: Buscar donde registar ICrossSuspensionManager.
+    //private void InitializeContainer(IServiceProvider serviceProvider)
+    //{
+    //    //var suspensionManager = new CrossSuspensionManager();
+    //    var container = Singleton<CrossIoCServiceContainer>.Instance;
+    //    container.Merge(new UIKitSubcontainer());
 
-        //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+    //    //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
-        //if (_suspensionManagerSessionStateKey != null)
-        //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+    //    //if (_suspensionManagerSessionStateKey != null)
+    //    //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
-        //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-        container.AddInstance<IServiceProvider>(serviceProvider);
+    //    //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+    //    container.AddInstance<IServiceProvider>(serviceProvider);
 
 
 
-        //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
-    }
+    //    //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
+    //}
 }
 
 //[RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

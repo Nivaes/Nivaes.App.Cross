@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Diagnostics.CodeAnalysis;
     using MvvmCross.Exceptions;
 
     internal class CrossViewModelLoader
@@ -54,7 +55,9 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel LoadViewModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+                    CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+                where TViewModel : ICrossViewModel
         {
             if (request.ViewModelType == typeof(CrossNullViewModel))
             {
@@ -64,7 +67,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
             }
             catch (Exception exception)
             {
@@ -73,8 +76,9 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel<TParameter>(
+        public ICrossViewModel LoadViewModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
             CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs)
+            where TViewModel : ICrossViewModel
         {
             if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
             {
@@ -84,7 +88,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return _viewModelLocator.Load(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
             }
             catch (Exception exception)
             {

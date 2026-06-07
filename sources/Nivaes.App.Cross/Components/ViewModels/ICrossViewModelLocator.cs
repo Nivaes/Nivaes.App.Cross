@@ -15,11 +15,11 @@ internal interface ICrossViewModelLocator
     /// <param name="savedState">Saved state to pass into RestoreState methods of ViewModel</param>
     /// <param name="navigationArgs">(Optional) Extra navigation arguments</param>
     /// <returns>Returns a ViewModel</returns>
-    ICrossViewModel Load(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
+    ICrossViewModel Load<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
-        ICrossNavigateEventArgs? navigationArgs = null);
+        ICrossNavigateEventArgs? navigationArgs = null)
+        where TViewModel : ICrossViewModel;
 
     /// <summary>
     /// Load ViewModel with parameters
@@ -31,12 +31,12 @@ internal interface ICrossViewModelLocator
     /// <param name="savedState">Saved state to pass into RestoreState methods of ViewModel</param>
     /// <param name="navigationArgs">(Optional) Extra navigation arguments</param>
     /// <returns>Returns a ViewModel</returns>
-    ICrossViewModel<TParameter> Load<TParameter>(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
+    ICrossViewModel<TParameter> Load<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
         TParameter param,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
+        where TViewModel : ICrossViewModel
         where TParameter : notnull;
 
     /// <summary>

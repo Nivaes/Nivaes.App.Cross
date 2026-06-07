@@ -9,24 +9,30 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseUIKitApp(this CrossAppBuilder builder/*, CrossApplication app*/)
+        public static CrossAppBuilder UseUIKitApp(this CrossAppBuilder builder, UIWindow windows)
         {
-            builder.SetupDefaults(/*app*/);
-            
+            builder.SetupDefaults(windows);
+
             return builder;
         }
 
-        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder/*, CrossApplication app*/)
+        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, UIWindow windows)
         {
-            //builder.Services.TryAddSingleton<ICrossViewDispatcher, CrossWindowsViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxIosViewDispatcher>();
+            builder.Services.TryAddSingleton<IMvxIosViewPresenter>(sp =>
+            {
+                var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
+
+                return new MvxIosViewPresenter(windows, viewsContainer);
+            });
 
             //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
-            //builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
+            builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
 
             //builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
 
             return builder;
-        } 
+        }
     }
 }

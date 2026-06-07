@@ -344,12 +344,11 @@ public class CrossNavigationService
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        //return Navigate(typeof(TViewModel), presentationBundle, cancellationToken);
         var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        request.ViewModelInstance = ViewModelLoader.LoadViewModel<TViewModel>(request, null);
         return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
@@ -357,12 +356,11 @@ public class CrossNavigationService
         TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel<TParameter>
     {
-        //return Navigate<TViewModel>(param, presentationBundle, cancellationToken);
         var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
+        request.ViewModelInstance = ViewModelLoader.LoadViewModel<TViewModel, TParameter>(request, param, null);
         return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
@@ -473,7 +471,7 @@ public class CrossNavigationService
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel(mvxViewModelInstanceRequest, param, null);
+        mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TViewModel, TParameter>(mvxViewModelInstanceRequest, param, null);
         return NavigateAsync<TViewModel>(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
@@ -550,7 +548,7 @@ public class CrossNavigationService
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        request.ViewModelInstance = ViewModelLoader.LoadViewModel<TViewModel>(request, null);
         return NavigateAsync<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
     }
 

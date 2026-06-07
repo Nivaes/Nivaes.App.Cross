@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder/*, CrossApplication app*/)
+        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder, /*CrossApplication app*/)
         {
             builder.SetupDefaults(/*app*/);
             
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder/*, CrossApplication app*/)
         {
-            //builder.Services.TryAddSingleton<ICrossViewDispatcher, CrossWindowsViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxMacViewDispatcher>();
 
             //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
