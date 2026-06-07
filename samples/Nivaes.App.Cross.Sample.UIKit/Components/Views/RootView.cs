@@ -5,15 +5,19 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 [MvxRootPresentation(WrapInNavigationController = true)]
 public sealed class RootView : MvxViewController<RootViewModel>
 {
-    private UIButton _btnTabs;
-    private UIButton _btnPages;
-    private UIButton _btnSplit;
-    private UIButton _btnChild;
-    private UIButton _btnChildWithResult;
-    private UIButton _btnModal;
-    private UIButton _btnNavModal;
-    private UIButton _btnOverrideAttribute;
-    private UIButton _btnCustomBinding;
+    private UIButton? _btnTabs;
+    private UIButton? _btnPages;
+    private UIButton? _btnSplit;
+    private UIButton? _btnChild;
+    private UIButton? _btnChildWithResult;
+    private UIButton? _btnModal;
+    private UIButton? _btnNavModal;
+    private UIButton? _btnOverrideAttribute;
+    private UIButton? _btnCustomBinding;
+
+    public RootView()
+    {
+    }
 
     public override void LoadView()
     {
@@ -64,7 +68,7 @@ public sealed class RootView : MvxViewController<RootViewModel>
 
         Add(scrollView);
 
-        scrollView.TopAnchor.ConstraintEqualTo(View.TopAnchor).Active = true;
+        scrollView.TopAnchor.ConstraintEqualTo(View!.TopAnchor).Active = true;
         scrollView.BottomAnchor.ConstraintEqualTo(View.BottomAnchor).Active = true;
         scrollView.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor).Active = true;
         scrollView.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor).Active = true;
@@ -81,14 +85,14 @@ public sealed class RootView : MvxViewController<RootViewModel>
         base.ViewDidLoad();
 
         using var set = CreateBindingSet();
-        set.Bind(_btnTabs).To(vm => vm.ShowTabsCommand);
-        set.Bind(_btnPages).To(vm => vm.ShowPagesCommand);
-        set.Bind(_btnSplit).To(vm => vm.ShowSplitCommand);
-        set.Bind(_btnChild).To(vm => vm.ShowChildCommand);
-        set.Bind(_btnModal).To(vm => vm.ShowModalCommand);
-        set.Bind(_btnNavModal).To(vm => vm.ShowModalNavCommand);
-        set.Bind(_btnOverrideAttribute).To(vm => vm.ShowOverrideAttributeCommand);
-        set.Bind(_btnCustomBinding).To(vm => vm.ShowCustomBindingCommand);
-        set.Bind(_btnChildWithResult).To(vm => vm.ShowViewModelWithResult);
+        set.Bind(_btnTabs!).To(vm => vm.ShowTabsCommand);
+        set.Bind(_btnPages!).To(vm => vm.ShowPagesCommand);
+        set.Bind(_btnSplit!).To(vm => vm.ShowSplitCommand);
+        set.Bind(_btnChild!).To(vm => vm.ShowChildCommand);
+        set.Bind(_btnModal!).To(vm => vm.ShowModalCommand);
+        set.Bind(_btnNavModal!).To(vm => vm.ShowModalNavCommand);
+        set.Bind(_btnOverrideAttribute!).To(vm => vm.ShowOverrideAttributeCommand);
+        set.Bind(_btnCustomBinding!).To(vm => vm.ShowCustomBindingCommand);
+        set.Bind(_btnChildWithResult!).To(vm => vm.ShowViewModelWithResult);
     }
 }

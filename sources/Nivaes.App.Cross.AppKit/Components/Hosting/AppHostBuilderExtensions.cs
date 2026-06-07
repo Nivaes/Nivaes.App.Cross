@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder, /*CrossApplication app*/)
+        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder /*CrossApplication app*/)
         {
             builder.SetupDefaults(/*app*/);
             

@@ -23,8 +23,6 @@ namespace Nivaes.App.Cross
         // Reload should be used to re-run cached ViewModels lifecycle if required.
         public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
-            //var viewModelLocator = FindViewModelLocator(request);
-
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
@@ -55,9 +53,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
-                    CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
-                where TViewModel : ICrossViewModel
+        public ICrossViewModel LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == typeof(CrossNullViewModel))
             {
@@ -67,7 +63,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
             }
             catch (Exception exception)
             {
@@ -76,9 +72,29 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
-            CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs)
-            where TViewModel : ICrossViewModel
+        //public ICrossViewModel LoadViewModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+        //            CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+        //        where TViewModel : ICrossViewModel
+        //{
+        //    if (request.ViewModelType == typeof(CrossNullViewModel))
+        //    {
+        //        return new CrossNullViewModel();
+        //    }
+
+        //    var parameterValues = new CrossBundle(request.ParameterValues);
+        //    try
+        //    {
+        //        return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        throw exception.Wrap(
+        //            $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+        //    }
+        //}
+
+        public ICrossViewModel LoadViewModel<TParameter>(CrossViewModelRequest request, TParameter param, ICrossBundle? savedState,
+           ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
             {
@@ -88,7 +104,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
             }
             catch (Exception exception)
             {
@@ -96,6 +112,26 @@ namespace Nivaes.App.Cross
                     $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
+
+        //public ICrossViewModel LoadViewModel<TParameter>(
+        //    CrossViewModelRequest request, TParameter param, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs)
+        //{
+        //    if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
+        //    {
+        //        return new CrossNullViewModel();
+        //    }
+
+        //    var parameterValues = new CrossBundle(request.ParameterValues);
+        //    try
+        //    {
+        //        return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        throw exception.Wrap(
+        //            $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+        //    }
+        //}
 
         //private ICrossViewModelLocator FindViewModelLocator(CrossViewModelRequest request)
         //{

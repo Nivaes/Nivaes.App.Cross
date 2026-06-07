@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
 
     public interface ICrossViewPresenter
     {
-        Task<bool> Show(CrossViewModelRequest? request);
+        Task<bool> Show(CrossViewModelRequest request);
 
         Task<bool> ChangePresentation(CrossPresentationHint hint);
 

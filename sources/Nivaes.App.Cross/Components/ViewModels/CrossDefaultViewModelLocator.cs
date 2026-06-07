@@ -16,25 +16,25 @@ public class CrossDefaultViewModelLocator
     }
 
     // ToDo: ¿Tiene sentido sobrecargar esta clase?
-    public virtual ICrossViewModel Load<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+    public virtual ICrossViewModel Load(
+        Type viewModelType,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
-        where TViewModel : ICrossViewModel
     {
         ICrossViewModel? viewModel;
         try
         {
-            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
+            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
         catch (Exception exception)
         {
-            throw exception.Wrap($"Problem creating viewModel of type {typeof(TViewModel).Name}");
+            throw exception.Wrap($"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
         {
-            throw new CrossException($"Not resolve viewModel of type {typeof(TViewModel).Name}.");
+            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -43,27 +43,27 @@ public class CrossDefaultViewModelLocator
     }
 
     // ToDo: ¿Tiene sentido sobrecargar esta clase?
-    public virtual ICrossViewModel<TParameter> Load<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
+    public virtual ICrossViewModel<TParameter> Load<TParameter>(
+        Type viewModelType,
         TParameter param,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
-        where TViewModel : ICrossViewModel
         where TParameter : notnull
     {
         ICrossViewModel<TParameter>? viewModel;
         try
         {
-            viewModel = (ICrossViewModel<TParameter>?)ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
+            viewModel = (ICrossViewModel<TParameter>?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
         catch (Exception exception)
         {
-            throw exception.Wrap($"Problem creating viewModel of type {typeof(TViewModel).Name}");
+            throw exception.Wrap($"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
         {
-            throw new CrossException($"Not resolve viewModel of type {typeof(TViewModel).Name}.");
+            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);

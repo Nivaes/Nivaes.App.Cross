@@ -26,11 +26,7 @@ namespace Nivaes.App.Cross.UIKitOS
                 return new MvxIosViewPresenter(windows, viewsContainer);
             });
 
-            //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
-            //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
-
-            //builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
 
             return builder;
         }

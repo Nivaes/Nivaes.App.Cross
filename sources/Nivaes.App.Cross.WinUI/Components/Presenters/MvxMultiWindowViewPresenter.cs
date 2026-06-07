@@ -648,7 +648,7 @@ public class MvxMultiWindowViewPresenter
     {
         var newWindow = new Window();
 
-        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType);
+        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
         if (viewType == null)
         {
             _logger?.LogError("Could not find View for ViewModelType: {ViewModelType}", request.ViewModelType);

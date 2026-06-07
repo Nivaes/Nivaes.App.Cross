@@ -7,32 +7,32 @@ namespace Nivaes.App.Cross.UIKitOS;
 
 [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
 public abstract class CrossAppDelegate 
-    : UIApplicationDelegate, IMvxApplicationDelegate, IPlatformApplication
+    : UIApplicationDelegate, IMvxApplicationDelegate //, IPlatformApplication
 {
-    private IServiceProvider? _services;
+    //private IServiceProvider? _services;
 
-    private IApplication? _application;
+    //private IApplication? _application;
 
     public event EventHandler<CrossLifetimeEventArgs>? LifetimeChanged;
 
     public virtual UIWindow? MainWindow { get; set; }
 
-    public IServiceProvider Services
-    {
-        get => _services!;
-        protected set => _services = value;
-    }
+    //public IServiceProvider Services
+    //{
+    //    get => _services!;
+    //    protected set => _services = value;
+    //}
 
-    public IApplication Application
-    {
-        get => _application!;
-        protected set => _application = value;
-    }
+    //public IApplication Application
+    //{
+    //    get => _application!;
+    //    protected set => _application = value;
+    //}
 
-    protected CrossAppDelegate()
-    {
-        IPlatformApplication.Current = this;
-    }
+    //protected CrossAppDelegate()
+    //{
+    //    IPlatformApplication.Current = this;
+    //}
 
     //protected abstract CrossApp CreateCrossApp();
 
@@ -62,6 +62,10 @@ public abstract class CrossAppDelegate
 
     //    return true;
     //}
+    public override bool WillFinishLaunching(UIApplication application, NSDictionary? launchOptions)
+    {
+        return true;
+    }
 
     public override void WillEnterForeground(UIApplication application)
     {
@@ -92,10 +96,10 @@ public abstract class CrossAppDelegate
 
     protected virtual void RunAppStart(object? hint = null)
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart? startup) == true && startup is { IsStarted: false })
-        {
-            startup.Start(GetAppStartHint(hint));
-        }
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart? startup) == true && startup is { IsStarted: false })
+        //{
+        //    startup.Start(GetAppStartHint(hint));
+        //}
 
         MainWindow?.MakeKeyAndVisible();
     }

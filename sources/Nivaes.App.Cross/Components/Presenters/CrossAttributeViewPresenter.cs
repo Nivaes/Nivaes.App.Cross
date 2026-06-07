@@ -177,7 +177,7 @@ public abstract class CrossAttributeViewPresenter
             .Invoke(viewModel, attribute) ?? Task.FromResult(false);
     }
 
-    public override Task<bool> Show(CrossViewModelRequest? request)
+    public override Task<bool> Show(CrossViewModelRequest request)
     {
         var attributeAction = GetPresentationAttributeAction(request, out var attribute);
 

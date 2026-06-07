@@ -53,7 +53,7 @@ public sealed class MultiBackStackView
                 if (!_navigatedToTab2)
                 {
                     _navigatedToTab2 = true;
-                    Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate(typeof(MultiBackStackTab2ViewModel));
+                    Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate<MultiBackStackTab2ViewModel>();
                 }
                 else
                 {
