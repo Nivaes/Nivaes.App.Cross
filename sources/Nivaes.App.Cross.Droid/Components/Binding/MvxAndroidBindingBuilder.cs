@@ -57,10 +57,11 @@ public class MvxAndroidBindingBuilder
     {
         InitializeAppResourceTypeFinder(iocProvider);
         InitializeBindingResources(iocProvider);
-        InitializeLayoutInflation(iocProvider);
+        //InitializeLayoutInflation(iocProvider);
         base.DoRegistration(iocProvider);
     }
 
+    [Obsolete("", true)]
     protected virtual void InitializeLayoutInflation(IMvxIoCProvider iocProvider)
     {
         var inflaterfactoryFactory = CreateLayoutInflaterFactoryFactory();
@@ -83,6 +84,7 @@ public class MvxAndroidBindingBuilder
         return new MvxLayoutInflaterFactoryFactory();
     }
 
+    [Obsolete("", true)]
     protected virtual IMvxAndroidViewFactory CreateAndroidViewFactory()
     {
         return new MvxAndroidViewFactory();

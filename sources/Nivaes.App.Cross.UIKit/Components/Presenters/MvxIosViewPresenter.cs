@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.UIKitOS
     public class MvxIosViewPresenter 
         : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
-        private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
+        //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
         private readonly IMvxIosViewCreator _viewCreator;
 
         protected UIWindow Window { get; }
@@ -473,7 +473,7 @@ namespace Nivaes.App.Cross.UIKitOS
             if (attribute.PreferredContentSize != default)
                 viewController.PreferredContentSize = attribute.PreferredContentSize;
 
-            if (_iosVersion13Checker.IsVersionOrHigher && viewController.PresentationController != null)
+            if (/*_iosVersion13Checker.IsVersionOrHigher &&*/ viewController.PresentationController != null)
             {
                 viewController.PresentationController.Delegate =
                     CreateModalPresentationControllerDelegate(viewController, attribute);

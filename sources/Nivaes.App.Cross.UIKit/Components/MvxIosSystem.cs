@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Linq;
     using UIKit;
 
+    [Obsolete("", true)]
     public class MvxIosSystem
         : IMvxIosSystem
     {

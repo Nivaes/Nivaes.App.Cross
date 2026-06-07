@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.UIKitOS
         : MvxTableViewSource
     {
         private readonly NSString? _cellIdentifier;
-        private readonly MvxIosMajorVersionChecker _iosVersion6Checker = new MvxIosMajorVersionChecker(6);
+        //private readonly MvxIosMajorVersionChecker _iosVersion6Checker = new MvxIosMajorVersionChecker(6);
 
         protected virtual NSString? CellIdentifier => _cellIdentifier;
 
@@ -47,8 +47,8 @@ namespace Nivaes.App.Cross.UIKitOS
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
         {
-            if (_iosVersion6Checker.IsVersionOrHigher)
-                return tableView.DequeueReusableCell(CellIdentifier, indexPath);
+            //if (_iosVersion6Checker.IsVersionOrHigher)
+            //    return tableView.DequeueReusableCell(CellIdentifier, indexPath);
 
             return tableView.DequeueReusableCell(CellIdentifier);
         }

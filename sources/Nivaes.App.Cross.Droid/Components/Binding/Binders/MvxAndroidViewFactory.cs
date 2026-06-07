@@ -13,17 +13,23 @@ public class MvxAndroidViewFactory
     private IMvxViewTypeResolver? _viewTypeResolver;
     private readonly IServiceProvider _serviceProvider;
 
-    protected IMvxViewTypeResolver? ViewTypeResolver => _viewTypeResolver ??= Mvx.IoCProvider?.Resolve<IMvxViewTypeResolver>();
+    //protected IMvxViewTypeResolver? ViewTypeResolver => _viewTypeResolver ??= Mvx.IoCProvider?.Resolve<IMvxViewTypeResolver>();
 
-    public MvxAndroidViewFactory(IServiceProvider serviceProvider)
+    [Obsolete("", true)]
+    public MvxAndroidViewFactory()
+    {
+    }
+
+    public MvxAndroidViewFactory(IServiceProvider serviceProvider, IMvxViewTypeResolver viewTypeResolver)
     {
         _serviceProvider = serviceProvider;
+        _viewTypeResolver = viewTypeResolver;
     }
 
     public virtual View? CreateView(View? parent, string name, Context context, IAttributeSet attrs)
     {
         // resolve the tag name to a type
-        var viewType = ViewTypeResolver?.Resolve(name);
+        var viewType = _viewTypeResolver?.Resolve(name);
 
         if (viewType == null)
         {

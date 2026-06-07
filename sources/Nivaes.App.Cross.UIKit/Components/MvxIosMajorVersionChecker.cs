@@ -2,7 +2,8 @@ using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS
-{   
+{
+    [Obsolete("", true)]
     public class MvxIosMajorVersionChecker
     {
         public bool IsVersionOrHigher { get; private set; }
