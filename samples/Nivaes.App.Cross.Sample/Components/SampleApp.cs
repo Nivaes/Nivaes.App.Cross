@@ -18,7 +18,7 @@ public class SampleApp : Application, IApplication
         //    .AsInterfaces()
         //    .RegisterAsLazySingleton();
 
-        var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //var container = Singleton<CrossIoCServiceContainer>.Instance;
         //container.AddDelegate<ICrossTextProvider>(container =>
         //{
         //    return new TextProviderBuilder().TextProvider;

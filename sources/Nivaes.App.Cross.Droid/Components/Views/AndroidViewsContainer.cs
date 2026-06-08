@@ -32,7 +32,6 @@ public class AndroidViewsContainer
         _childViewModelCache = childViewModelCache;
 
         _logger = logger;
-        //_logger = CrossLogHost.GetLog<AndroidViewsContainer>();
     }
 
     #region Implementation of IMvxAndroidViewModelRequestTranslator

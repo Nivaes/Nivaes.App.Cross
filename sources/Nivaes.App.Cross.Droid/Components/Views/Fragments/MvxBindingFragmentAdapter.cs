@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
@@ -27,8 +28,8 @@ public class MvxBindingFragmentAdapter
 
         if (Fragment?.Activity is not IMvxAndroidView hostMvxView)
         {
-            CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
-                "Fragment host for fragment type {FragmentType} is not of type IMvxAndroidView", Fragment?.GetType());
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+            logger?.Log(LogLevel.Warning, "Fragment host for fragment type {FragmentType} is not of type IMvxAndroidView", Fragment?.GetType());
             return;
         }
 
@@ -39,9 +40,11 @@ public class MvxBindingFragmentAdapter
 
         if (viewModelType == null)
         {
-            CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+            logger?.Log(LogLevel.Warning,
                 "ViewModel type for Activity {FragmentActivityType} not found when trying to show fragment: {FragmentType}",
                 Fragment.Activity.GetType(), Fragment.GetType());
+
             return;
         }
 
@@ -84,7 +87,8 @@ public class MvxBindingFragmentAdapter
         }
         else
         {
-            CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+            logger?.Log(LogLevel.Warning,
                 "Navigation Serializer not available, deserializing ViewModel Request will be hard");
         }
 
@@ -98,8 +102,9 @@ public class MvxBindingFragmentAdapter
             return converter?.Read(bundle) ?? new CrossBundle();
         }
 
-        CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
-        "Saved state converter not available - saving state will be hard");
+        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+        logger?.Log(LogLevel.Warning,
+            "Saved state converter not available - saving state will be hard");
 
         return new CrossBundle();
     }
@@ -127,7 +132,8 @@ public class MvxBindingFragmentAdapter
         {
             if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
             {
-                CrossLogHost.GetLog<MvxBindingFragmentAdapter>()?.Log(LogLevel.Warning,
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+                logger?.Log(LogLevel.Warning,
                     "Saved state converter not available - saving state will be hard");
             }
             else

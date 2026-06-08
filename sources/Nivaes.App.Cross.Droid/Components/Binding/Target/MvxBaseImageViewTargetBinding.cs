@@ -2,6 +2,7 @@ using Android.Graphics;
 
 namespace Nivaes.App.Cross.Droid
 {
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
     public abstract class MvxBaseImageViewTargetBinding(ImageView imageView)
@@ -23,8 +24,8 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                CrossLogHost.GetLog<MvxBaseImageViewTargetBinding>()?
-                    .Log(LogLevel.Error, ex, "Failed to set bitmap on ImageView");
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseImageViewTargetBinding>>();
+                logger!.Log(LogLevel.Error, ex, "Failed to set bitmap on ImageView");
                 throw;
             }
         }

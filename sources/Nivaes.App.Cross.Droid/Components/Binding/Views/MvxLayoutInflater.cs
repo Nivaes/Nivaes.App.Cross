@@ -7,6 +7,7 @@ using Android.Views;
 using Java.Interop;
 using Java.Lang;
 using Java.Lang.Reflect;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Droid;
 using Nivaes.IoC;
@@ -160,9 +161,6 @@ public class MvxLayoutInflater : LayoutInflater
 
     protected override View? OnCreateView(View? parent, string? name, IAttributeSet? attrs)
     {
-        if (Debug)
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", Tag, name);
-
         return _bindingVisitor.OnViewCreated(
             base.OnCreateView(parent, name, attrs),
             Context,
@@ -171,9 +169,6 @@ public class MvxLayoutInflater : LayoutInflater
 
     protected override View? OnCreateView(string? name, IAttributeSet? attrs)
     {
-        if (Debug)
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", Tag, name);
-
         View? view = null;
         if (name != null && Context != null && attrs != null)
             view = AndroidViewFactory?.CreateView(null, name, Context, attrs);
@@ -185,8 +180,6 @@ public class MvxLayoutInflater : LayoutInflater
 
     public override View? OnCreateView(Context viewContext, View? parent, string name, IAttributeSet? attrs)
     {
-        if (Debug)
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 4 ... {Name}", Tag, name);
 
         return _bindingVisitor.OnViewCreated(
             base.OnCreateView(viewContext, parent, name, attrs),
@@ -197,9 +190,6 @@ public class MvxLayoutInflater : LayoutInflater
     // Mimic PhoneLayoutInflater's OnCreateView.
     private View? PhoneLayoutInflaterOnCreateView(string? name, IAttributeSet? attrs)
     {
-        if (Debug)
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... PhoneLayoutInflaterOnCreateView ... {Name}", Tag, name);
-
         foreach (var prefix in ClassPrefixList)
         {
             try
@@ -280,7 +270,8 @@ public class MvxLayoutInflater : LayoutInflater
         }
         catch (Exception ex)
         {
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+            logger?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
         }
 
         _setPrivateFactory = true;
@@ -289,9 +280,6 @@ public class MvxLayoutInflater : LayoutInflater
     internal View? CreateCustomViewInternal(View? parent, View? view, string name, Context viewContext,
         IAttributeSet attrs)
     {
-        if (Debug)
-            CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... CreateCustomViewInternal ... {Name}", Tag, name);
-
         if (view == null &&
             !string.IsNullOrWhiteSpace(name) &&
             name.IndexOf('.', StringComparison.InvariantCulture) > -1)
@@ -375,13 +363,6 @@ public class MvxLayoutInflater : LayoutInflater
             if (_androidViewFactory != null)
                 return _androidViewFactory;
 
-            if (Mvx.IoCProvider == null)
-            {
-                // if IoCProvider is null, Log instance will probably be null too
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... AndroidViewFactory IoCProvider is null!", Tag);
-                return null;
-            }
-
             if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewFactory? viewFactory) == true)
             {
                 _androidViewFactory = viewFactory;
@@ -397,13 +378,6 @@ public class MvxLayoutInflater : LayoutInflater
         {
             if (_layoutInflaterHolderFactoryFactory != null)
                 return _layoutInflaterHolderFactoryFactory;
-
-            if (Mvx.IoCProvider == null)
-            {
-                // if IoCProvider is null, Log instance will probably be null too
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Error, "{Tag} - ... FactoryFactory IoCProvider is null!", Tag);
-                return null;
-            }
 
             if (Mvx.IoCProvider?.TryResolve(out IMvxLayoutInflaterHolderFactoryFactory? factoryFactory) == true)
             {
@@ -431,7 +405,10 @@ public class MvxLayoutInflater : LayoutInflater
         public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
         {
             if (Debug)
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
+            {
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAdapter>>();
+                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
+            }
 
             return _factoryPlaceholder.OnViewCreated(
                 _factory.OnCreateView(parent, name, context, attrs),
@@ -456,7 +433,10 @@ public class MvxLayoutInflater : LayoutInflater
         public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
         {
             if (Debug)
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
+            {
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
+            }
 
             return _factoryPlaceholder.OnViewCreated(
                 _factory.OnCreateView(name, context, attrs),
@@ -492,7 +472,10 @@ public class MvxLayoutInflater : LayoutInflater
         public View? OnCreateView(string name, Context context, IAttributeSet attrs)
         {
             if (Debug)
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
+            {
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
+            }
 
             return _bindingVisitor.OnViewCreated(
                 // The activity's OnCreateView
@@ -503,7 +486,10 @@ public class MvxLayoutInflater : LayoutInflater
         public View? OnCreateView(View? parent, string name, Context context, IAttributeSet attrs)
         {
             if (Debug)
-                CrossLogHost.GetLog<MvxLayoutInflater>()?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
+            {
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
+            }
 
             return _bindingVisitor.OnViewCreated(
                 _inflater.CreateCustomViewInternal(

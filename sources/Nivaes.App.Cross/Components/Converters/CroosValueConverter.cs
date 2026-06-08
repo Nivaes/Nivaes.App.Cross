@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross
 {
     using System.Globalization;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
     public abstract class CroosValueConverter
@@ -56,7 +57,7 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => CrossLogHost.GetLog<CroosValueConverter>();
+        private static ILogger? GetLog() => IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CroosValueConverter>>();
     }
 
     public abstract class MvxValueConverter<TFrom>
@@ -98,6 +99,6 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        private static ILogger? GetLog() => CrossLogHost.GetLog<CroosValueConverter>();
+        private static ILogger? GetLog() => IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CroosValueConverter>>();
     }
 }

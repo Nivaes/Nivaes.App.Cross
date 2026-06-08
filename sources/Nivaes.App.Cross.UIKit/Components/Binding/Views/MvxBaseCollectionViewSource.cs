@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System;
     using System.Windows.Input;
     using Foundation;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using UIKit;
@@ -52,8 +53,8 @@ namespace Nivaes.App.Cross.UIKitOS
             }
             catch (Exception exception)
             {
-                CrossLogHost.GetLog<MvxBaseCollectionViewSource>()?.Log(LogLevel.Warning, exception,
-                    "Exception masked during CollectionView ReloadData");
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseCollectionViewSource>>();
+                logger?.Log(LogLevel.Warning, exception, "Exception masked during CollectionView ReloadData");
             }
         }
 

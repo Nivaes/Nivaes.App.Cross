@@ -35,9 +35,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     private readonly IMvxAndroidActivityLifetimeListener _activityLifetimeListener;
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly IMvxAndroidViewModelRequestTranslator _viewModelRequestTranslator;
+    private readonly ILogger _logger;
 
-
-    private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<AndroidViewPresenter>());
+    //private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<AndroidViewPresenter>());
 
     protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
 
@@ -62,7 +62,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     public AndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies, ICrossViewsContainer crossViewsContainer, 
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
-        IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator )
+        IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
+        ILogger<AndroidViewPresenter> logger)
         :base(crossViewsContainer)
     {
         AndroidViewAssemblies = androidViewAssemblies;
@@ -73,6 +74,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         _activityLifetimeListener = activityLifetimeListener;
         _navigationSerializer = navigationSerializer;
         _viewModelRequestTranslator = viewModelRequestTranslator;
+
+        _logger = logger;
     }
 
     protected virtual void ActivityLifetimeListenerOnActivityChanged(object? sender, MvxActivityEventArgs e)
@@ -204,7 +207,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         if (viewType.IsSubclassOf(typeof(DialogFragment)))
         {
-            _logger.Value?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
+            _logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
             return new MvxDialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
             {
                 ViewType = viewType,
@@ -214,7 +217,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         if (viewType.IsSubclassOf(typeof(Fragment)))
         {
-            _logger.Value?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
+            _logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
             return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
             {
                 ViewType = viewType,
@@ -224,7 +227,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         if (viewType.IsSubclassOf(typeof(Activity)))
         {
-            _logger.Value?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
+            _logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
             return new MvxActivityPresentationAttribute
             {
                 ViewType = viewType,
@@ -262,7 +265,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
                 var index = adapter.FragmentsInfo.IndexOf(fragmentInfo);
                 if (index < 0)
                 {
-                    _logger.Value?.Log(LogLevel.Trace, "Did not find ViewPager index for {Fragment}, skipping presentation change...", pagerFragmentAttribute.Tag);
+                    _logger.Log(LogLevel.Trace, "Did not find ViewPager index for {Fragment}, skipping presentation change...", pagerFragmentAttribute.Tag);
                     return true;
                 }
 
@@ -348,7 +351,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
         {
-            _logger.Value?.Log(LogLevel.Warning, "Shared element transition requires Android v21+");
+            _logger.Log(LogLevel.Warning, "Shared element transition requires Android v21+");
             return bundle;
         }
 
@@ -359,7 +362,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
             if (transitionElementPairs.Count == 0)
             {
-                _logger.Value?.Log(LogLevel.Warning, "No transition elements are provided");
+                _logger.Log(LogLevel.Warning, "No transition elements are provided");
                 return bundle;
             }
 
@@ -405,7 +408,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
             }
             else
             {
-                _logger.Value?.Log(LogLevel.Warning, "A XML transitionName is required in order to transition a control when navigating");
+                _logger.Log(LogLevel.Warning, "A XML transitionName is required in order to transition a control when navigating");
             }
         }
 
@@ -437,7 +440,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         var activity = CurrentActivity;
         if (activity.IsActivityDead())
         {
-            _logger.Value?.Log(LogLevel.Warning, "Cannot Resolve current top activity. Creating new activity from Application Context");
+            _logger.Log(LogLevel.Warning, "Cannot Resolve current top activity. Creating new activity from Application Context");
             intent.AddFlags(ActivityFlags.NewTask);
             StartActivity(Application.Context, intent, bundle);
             return;
@@ -498,7 +501,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         var currentHostViewModelType = GetCurrentActivityViewModelType();
         if (attribute.ActivityHostViewModelType != currentHostViewModelType)
         {
-            _logger.Value?.Log(LogLevel.Warning, "Activity host with ViewModelType {ActivityHostViewModelType} is not CurrentTopActivity. Showing Activity before showing Fragment for {ViewModelType}",
+            _logger.Log(LogLevel.Warning, "Activity host with ViewModelType {ActivityHostViewModelType} is not CurrentTopActivity. Showing Activity before showing Fragment for {ViewModelType}",
                 attribute.ActivityHostViewModelType, attribute.ViewModelType);
             PendingRequest = request;
             ShowHostActivity(attribute);
@@ -527,7 +530,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
             throw new InvalidOperationException($"Fragment host not found when trying to show View {view.Name} as Nested Fragment");
 
         if (!fragmentHost.IsVisible)
-            _logger.Value?.Log(LogLevel.Warning, "Fragment host is not visible when trying to show View {ViewName} as Nested Fragment", view.Name);
+            _logger.Log(LogLevel.Warning, "Fragment host is not visible when trying to show View {ViewName} as Nested Fragment", view.Name);
 
         PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
     }
@@ -637,7 +640,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
                 }
                 else
                 {
-                    _logger.Value?.Log(LogLevel.Warning, "A XML transitionName is required in order to transition a control when navigating");
+                    _logger.Log(LogLevel.Warning, "A XML transitionName is required in order to transition a control when navigating");
                 }
             }
 
@@ -843,13 +846,13 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         if (currentView == null)
         {
-            _logger.Value?.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe has no current page");
+            _logger.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe has no current page");
             return Task.FromResult(false);
         }
 
         if (currentView.ViewModel != viewModel)
         {
-            _logger.Value?.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
+            _logger.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
             return Task.FromResult(false);
         }
 
@@ -885,7 +888,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         catch (System.Exception ex)
 #pragma warning restore CA1031 // Do not catch general exception types
         {
-            _logger.Value?.Log(LogLevel.Warning, ex, "Cannot close any fragments");
+            _logger.Log(LogLevel.Warning, ex, "Cannot close any fragments");
         }
         return true;
     }
@@ -947,7 +950,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         catch (System.Exception ex)
 #pragma warning restore CA1031 // Do not catch general exception types
         {
-            _logger.Value?.Log(LogLevel.Error, ex, "Cannot close fragment transaction");
+            _logger.Log(LogLevel.Error, ex, "Cannot close fragment transaction");
             return false;
         }
 
@@ -1104,7 +1107,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         }
         catch (System.Exception ex)
         {
-            _logger.Value?.Log(LogLevel.Error, ex, "Cannot create Fragment {FragmentName}", fragmentType.Name);
+            _logger.Log(LogLevel.Error, ex, "Cannot create Fragment {FragmentName}", fragmentType.Name);
             throw new CrossException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
         }
     }

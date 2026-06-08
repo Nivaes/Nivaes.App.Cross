@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
@@ -17,22 +18,24 @@ namespace Nivaes.App.Cross.WinUI
             DependencyProperty dependencyProperty = actualType.FindDependencyProperty(bindingDescription.TargetName);
             if (dependencyProperty == null)
             {
-                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
-                    "Dependency property not found for {targetName}", bindingDescription.TargetName);
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxWindowsBindingCreator>>();
+                logger?.Log(LogLevel.Warning, "Dependency property not found for {targetName}", bindingDescription.TargetName);
+
                 return;
             }
 
             var property = actualType.FindActualProperty(bindingDescription.TargetName);
             if (property == null)
             {
-                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
-                    "Property not returned for target {targetName} - may cause issues", bindingDescription.TargetName);
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxWindowsBindingCreator>>();
+                logger?.Log(LogLevel.Warning, "Property not returned for target {targetName} - may cause issues", bindingDescription.TargetName);
             }
 
             var sourceStep = bindingDescription.Source as CrossPathSourceStepDescription;
             if (sourceStep == null)
             {
-                CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxWindowsBindingCreator>>();
+                logger?.Log(LogLevel.Warning,
                     "Binding description for {targetName} is not a simple path - Windows Binding cannot cope with this", bindingDescription.TargetName);
                 return;
             }
@@ -92,8 +95,9 @@ namespace Nivaes.App.Cross.WinUI
                     return BindingMode.OneTime;
 
                 case CrossBindingMode.OneWayToSource:
-                    CrossLogHost.GetLog<MvxWindowsBindingCreator>()?.Log(LogLevel.Warning,
-                        "WinPhone doesn't support OneWayToSource");
+                    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxWindowsBindingCreator>>();
+                    logger?.Log(LogLevel.Warning, "WinPhone doesn't support OneWayToSource");
+
                     return BindingMode.TwoWay;
 
                 default:

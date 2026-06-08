@@ -9,8 +9,7 @@ namespace Nivaes.App.Cross;
 public class CrossNavigationService 
     : ICrossNavigationService
 {
-    private readonly Lazy<ILogger?> _log = new(() =>
-        CrossLogHost.GetLog<CrossNavigationService>());
+    private readonly ILogger _logger;
 
     public ICrossViewDispatcher ViewDispatcher { get; }
 
@@ -35,11 +34,13 @@ public class CrossNavigationService
     public CrossNavigationService(
         ICrossViewModelLoader viewModelLoader,
         ICrossViewDispatcher viewDispatcher,
-        ICrossViewsContainer crossViewsContainer)
+        ICrossViewsContainer crossViewsContainer,
+        ILogger<CrossNavigationService> logger)
     {
         ViewModelLoader = viewModelLoader;
         ViewDispatcher = viewDispatcher;
         ViewsContainer = crossViewsContainer;
+        _logger = logger;
     }
 
     public void LoadRoutes(IEnumerable<Assembly> assemblies)
@@ -385,7 +386,7 @@ public class CrossNavigationService
     {
         ArgumentNullException.ThrowIfNull(hint);
 
-        _log.Value?.Log(LogLevel.Trace, "Requesting presentation change");
+        _logger.Log(LogLevel.Trace, "Requesting presentation change");
         var args = new ChangePresentationEventArgs(hint, cancellationToken);
         OnWillChangePresentation(this, args);
 

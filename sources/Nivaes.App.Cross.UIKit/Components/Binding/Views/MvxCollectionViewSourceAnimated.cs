@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Collections;
     using System.Collections.Specialized;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
@@ -9,7 +10,7 @@ namespace Nivaes.App.Cross.UIKitOS
     public class MvxCollectionViewSourceAnimated : MvxCollectionViewSource
     {
         private readonly object collectionChangedLock = new object();
-        private readonly ILogger<MvxCollectionViewSourceAnimated> _logger;
+        private readonly ILogger? _logger;
 
         private Task runningChangeTask = Task.FromResult(true);
 
@@ -19,7 +20,7 @@ namespace Nivaes.App.Cross.UIKitOS
         /// hoping they won't be disposed explicitely before the next UICollectionView animation ends.
         /// The best would be a new NotifyCollectionChangedEventArgs with support for multiple changes, and a new async (awaitable) event for changes.
         /// </summary>
-        private IEnumerable itemsSourceBeforeAnimation;
+        private IEnumerable? itemsSourceBeforeAnimation;
 
         /// <summary>
         /// When a collectionchanged event is received, if the number of changed items is over MaxAnimatedItems, the collection will not animate changes.
@@ -30,13 +31,13 @@ namespace Nivaes.App.Cross.UIKitOS
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView)
             : base(collectionView)
         {
-            _logger = CrossLogHost.GetLog<MvxCollectionViewSourceAnimated>();
+            _logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCollectionViewSourceAnimated>>();
         }
 
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView, NSString defaultCellIdentifier)
             : base(collectionView, defaultCellIdentifier)
         {
-            _logger = CrossLogHost.GetLog<MvxCollectionViewSourceAnimated>();
+            _logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCollectionViewSourceAnimated>>();
         }
 
         protected override void CollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)

@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using AndroidX.Fragment.App;
     using AndroidX.ViewPager.Widget;
     using Java.Lang;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Fragment = AndroidX.Fragment.App.Fragment;
     using FragmentManager = AndroidX.Fragment.App.FragmentManager;
@@ -53,7 +54,8 @@ namespace Nivaes.App.Cross.Droid
                 _curTransaction = _fragmentManager.BeginTransaction();
 
 #if DEBUG
-            CrossLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCachingFragmentPagerAdapter>>();
+            logger?.Log(LogLevel.Trace,
                 $"Removing item #{position}: f={objectValue} v={((Fragment)objectValue).View} t={fragment.Tag}");
 #endif
 
@@ -116,7 +118,8 @@ namespace Nivaes.App.Cross.Droid
             }
 
 #if DEBUG
-            CrossLogHost.GetLog<MvxCachingFragmentPagerAdapter>()?.Log(LogLevel.Trace,
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCachingFragmentPagerAdapter>>();
+            logger?.Log(LogLevel.Trace,
                 "Adding item #{position}: f={fragment} t={tag}", position, fragment, fragmentTag);
 #endif
 

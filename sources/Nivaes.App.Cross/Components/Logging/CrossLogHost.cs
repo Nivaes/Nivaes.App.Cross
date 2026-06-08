@@ -17,6 +17,7 @@ namespace Nivaes.App.Cross
 
         public static ILogger? Default => null; // GetLog("Default");
 
+        [Obsolete("", true)]
         public static ILogger<T>? GetLog<T>() => null; //_defaultLogger?.CreateLogger<T>();
 
         public static ILogger? GetLog(string categoryName) => null; // _defaultLogger?.CreateLogger(categoryName);

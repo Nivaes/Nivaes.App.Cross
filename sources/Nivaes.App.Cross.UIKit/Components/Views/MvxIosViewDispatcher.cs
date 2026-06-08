@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
@@ -18,8 +19,9 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             Task action()
             {
-                CrossLogHost.GetLog<MvxIosViewDispatcher>()?.LogTrace(
-                    "Navigate requested to {ViewModelType}", request?.ViewModelType);
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxIosViewDispatcher>>();
+                logger?.LogTrace("Navigate requested to {ViewModelType}", request?.ViewModelType);
+
                 return _presenter.Show(request);
             }
             await ExecuteOnMainThreadAsync(action);

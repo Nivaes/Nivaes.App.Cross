@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.UIKitOS
@@ -23,8 +24,9 @@ namespace Nivaes.App.Cross.UIKitOS
             {
                 var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
                 var viewCreator = sp.GetRequiredService<IMvxIosViewCreator>();
+                var logger = sp.GetRequiredService<ILogger<MvxIosViewPresenter>>();
 
-                return new MvxIosViewPresenter(windows, viewsContainer, viewCreator);
+                return new MvxIosViewPresenter(windows, viewsContainer, viewCreator, logger);
             });
 
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();

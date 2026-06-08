@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross.WinUI
 {
     using System.Globalization;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
@@ -36,8 +37,10 @@ namespace Nivaes.App.Cross.WinUI
         {
             if (toReturn == CrossBindingConstant.DoNothing)
             {
-                CrossLogHost.GetLog<MvxNativeValueConverter>()?.Log(
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxNativeValueConverter>>();
+                logger?.Log(
                     LogLevel.Trace, "DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
+
                 return DependencyProperty.UnsetValue;
             }
 

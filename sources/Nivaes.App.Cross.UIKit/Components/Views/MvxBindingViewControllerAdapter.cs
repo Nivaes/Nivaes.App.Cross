@@ -25,8 +25,9 @@ public class MvxBindingViewControllerAdapter
     {
         if (IosView == null)
         {
-            CrossLogHost.GetLog<MvxBindingViewControllerAdapter>()?.LogWarning(
-                "{IosView} is null for clear-up of bindings", nameof(IosView));
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingViewControllerAdapter>>();
+            logger?.LogWarning("{IosView} is null for clear-up of bindings", nameof(IosView));
+
             return;
         }
         IosView.ClearAllBindings();

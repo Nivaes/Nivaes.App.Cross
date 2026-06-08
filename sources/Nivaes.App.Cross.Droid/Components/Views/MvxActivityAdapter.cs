@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -32,7 +33,8 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         switch (requestCode)
         {
             case (int)MvxIntentRequestCode.PickFromFile:
-                CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
+                logger?.Log(LogLevel.Warning,
                     "Warning - activity request code may clash with Mvx code for {requestCode}",
                     (MvxIntentRequestCode)requestCode);
                 break;
@@ -76,7 +78,8 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         {
             if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
             {
-                CrossLogHost.GetLog<MvxActivityAdapter>()?.Log(LogLevel.Warning,
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
+                logger?.Log(LogLevel.Warning,
                     "Saved state converter not available - saving state will be hard");
             }
             else

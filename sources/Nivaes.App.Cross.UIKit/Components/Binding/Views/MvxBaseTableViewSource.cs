@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Foundation;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ObjCRuntime;
 using UIKit;
@@ -22,7 +23,8 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
     protected MvxBaseTableViewSource(NativeHandle handle)
         : base(handle)
     {
-        CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning,
+        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseTableViewSource>>();
+        logger?.Log(LogLevel.Warning,
             "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
     }
 
@@ -67,8 +69,8 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
         }
         catch (Exception exception)
         {
-            CrossLogHost.GetLog<MvxBaseTableViewSource>()?.Log(LogLevel.Warning, exception,
-                "Exception masked during TableView ReloadData");
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseTableViewSource>>();
+            logger?.Log(LogLevel.Warning, exception, "Exception masked during TableView ReloadData");
         }
     }
 
