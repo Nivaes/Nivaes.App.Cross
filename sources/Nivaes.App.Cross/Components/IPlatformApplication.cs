@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross
 {
-    internal interface IPlatformApplication
+    public interface IPlatformApplication
     {
         public static IPlatformApplication? Current { get; set; }
 
