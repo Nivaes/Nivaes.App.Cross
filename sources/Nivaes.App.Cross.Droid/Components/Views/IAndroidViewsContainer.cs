@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
-    public interface IMvxAndroidViewsContainer
+    public interface IAndroidViewsContainer
         : IMvxAndroidViewModelLoader, IMvxAndroidViewModelRequestTranslator
     {
     }

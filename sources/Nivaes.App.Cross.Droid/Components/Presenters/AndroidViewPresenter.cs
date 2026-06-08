@@ -18,21 +18,26 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidViewPresenter
+public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPresenter
 {
     public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
     public const string SharedElementsBundleKey = "__sharedElementsKey";
 
-    private readonly Lazy<IMvxAndroidCurrentTopActivity?> _androidCurrentTopActivity =
-        new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidCurrentTopActivity>());
+    //private readonly Lazy<IMvxAndroidCurrentTopActivity?> _androidCurrentTopActivity =
+    //    new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidCurrentTopActivity>());
 
-    private readonly Lazy<IMvxAndroidActivityLifetimeListener?> _activityLifetimeListener =
-        new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidActivityLifetimeListener>());
+    //private readonly Lazy<IMvxAndroidActivityLifetimeListener?> _activityLifetimeListener =
+    //    new(() => Mvx.IoCProvider?.Resolve<IMvxAndroidActivityLifetimeListener>());
 
-    private readonly Lazy<ICrossNavigationSerializer?> _navigationSerializer =
-        new(() => Mvx.IoCProvider?.Resolve<ICrossNavigationSerializer>());
+    //private readonly Lazy<ICrossNavigationSerializer?> _navigationSerializer =
+    //    new(() => Mvx.IoCProvider?.Resolve<ICrossNavigationSerializer>());
+    private readonly IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;
+    private readonly IMvxAndroidActivityLifetimeListener _activityLifetimeListener;
+    private readonly ICrossNavigationSerializer _navigationSerializer;
+    private readonly IMvxAndroidViewModelRequestTranslator _viewModelRequestTranslator;
 
-    private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<MvxAndroidViewPresenter>());
+
+    private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<AndroidViewPresenter>());
 
     protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
 
@@ -49,21 +54,25 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
         }
     }
 
-    protected virtual Activity? CurrentActivity =>
-        _androidCurrentTopActivity.Value?.Activity as Activity;
+    protected virtual Activity? CurrentActivity => _androidCurrentTopActivity.Activity as Activity;
 
-    protected IMvxAndroidActivityLifetimeListener? ActivityLifetimeListener =>
-        _activityLifetimeListener.Value;
+    protected IMvxAndroidActivityLifetimeListener? ActivityLifetimeListener => _activityLifetimeListener;
 
-    protected ICrossNavigationSerializer? NavigationSerializer =>
-        _navigationSerializer.Value;
+    protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public MvxAndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies, ICrossViewsContainer crossViewsContainer)
+    public AndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies, ICrossViewsContainer crossViewsContainer, 
+        IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
+        IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator )
         :base(crossViewsContainer)
     {
         AndroidViewAssemblies = androidViewAssemblies;
         if (ActivityLifetimeListener != null)
             ActivityLifetimeListener.ActivityChanged += ActivityLifetimeListenerOnActivityChanged;
+
+        _androidCurrentTopActivity = androidCurrentTopActivity;
+        _activityLifetimeListener = activityLifetimeListener;
+        _navigationSerializer = navigationSerializer;
+        _viewModelRequestTranslator = viewModelRequestTranslator;
     }
 
     protected virtual void ActivityLifetimeListenerOnActivityChanged(object? sender, MvxActivityEventArgs e)
@@ -405,12 +414,12 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
 
     protected virtual Intent? CreateIntentForRequest(CrossViewModelRequest? request)
     {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelRequestTranslator? requestTranslator) != true || requestTranslator == null)
-            return null;
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelRequestTranslator? requestTranslator) != true || requestTranslator == null)
+        //    return null;
 
         if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
         {
-            var intentWithKey = requestTranslator.GetIntentWithKeyFor(
+            var intentWithKey = _viewModelRequestTranslator.GetIntentWithKeyFor(
                 viewModelInstanceRequest.ViewModelInstance,
                 viewModelInstanceRequest
             );
@@ -418,7 +427,7 @@ public class MvxAndroidViewPresenter : CrossAttributeViewPresenter, IMvxAndroidV
             return intentWithKey.intent;
         }
 
-        return requestTranslator.GetIntentFor(request);
+        return _viewModelRequestTranslator.GetIntentFor(request!);
     }
 
     protected virtual void ShowIntent(Intent intent, Bundle? bundle)

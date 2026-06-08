@@ -5,19 +5,34 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class MvxAndroidViewsContainer
-    : CrossViewsContainer, IMvxAndroidViewsContainer
+public class AndroidViewsContainer
+    : CrossViewsContainer, IAndroidViewsContainer
 {
     private const string ExtrasKey = "MvxLaunchData";
     private const string SubViewModelKey = "MvxSubViewModelKey";
 
     private readonly Context _applicationContext;
-    private readonly ILogger<MvxAndroidViewsContainer>? _logger;
+    private readonly ILogger<AndroidViewsContainer>? _logger;
+    private readonly ICrossNavigationSerializer _navigationSerializer;
+    private readonly ICrossChildViewModelCache _childViewModelCache;
 
-    public MvxAndroidViewsContainer(Context applicationContext)
+    [Obsolete("", true)]
+    public AndroidViewsContainer(Context applicationContext)
     {
         _applicationContext = applicationContext;
-        _logger = CrossLogHost.GetLog<MvxAndroidViewsContainer>();
+    }
+
+
+    public AndroidViewsContainer(Context applicationContext, 
+        ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,
+        ILogger<AndroidViewsContainer> logger)
+    {
+        _applicationContext = applicationContext;
+        _navigationSerializer = navigationSerializer;
+        _childViewModelCache = childViewModelCache;
+
+        _logger = logger;
+        //_logger = CrossLogHost.GetLog<AndroidViewsContainer>();
     }
 
     #region Implementation of IMvxAndroidViewModelRequestTranslator
@@ -86,13 +101,13 @@ public class MvxAndroidViewsContainer
         if (extraData == null)
             return null;
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
-            navigationSerializer == null)
-        {
-            return null;
-        }
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
+        //    navigationSerializer == null)
+        //{
+        //    return null;
+        //}
 
-        var viewModelRequest = navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(extraData);
+        var viewModelRequest = _navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(extraData);
         return ViewModelFromRequest(viewModelRequest, savedState);
     }
 
@@ -114,14 +129,14 @@ public class MvxAndroidViewsContainer
         var embeddedViewModelKey = intent.Extras?.GetInt(SubViewModelKey);
         if (embeddedViewModelKey != null && embeddedViewModelKey.Value != 0)
         {
-            if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? childViewModelCache) != true ||
-                childViewModelCache == null)
-            {
-                mvxViewModel = null;
-                return false;
-            }
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? childViewModelCache) != true ||
+            //    childViewModelCache == null)
+            //{
+            //    mvxViewModel = null;
+            //    return false;
+            //}
 
-            mvxViewModel = childViewModelCache.Get(embeddedViewModelKey.Value);
+            mvxViewModel = _childViewModelCache.Get(embeddedViewModelKey.Value);
             if (mvxViewModel != null)
             {
                 RemoveSubViewModelWithKey(embeddedViewModelKey.Value);
@@ -143,13 +158,13 @@ public class MvxAndroidViewsContainer
 
         var intent = new Intent(_applicationContext, viewType);
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
-            navigationSerializer == null)
-        {
-            return intent;
-        }
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
+        //    navigationSerializer == null)
+        //{
+        //    return intent;
+        //}
 
-        var requestText = navigationSerializer.Serializer.SerializeObject(request);
+        var requestText = _navigationSerializer.Serializer.SerializeObject(request);
         intent.PutExtra(ExtrasKey, requestText);
         AdjustIntentForPresentation(intent, request);
 
@@ -173,22 +188,22 @@ public class MvxAndroidViewsContainer
         request ??= CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
         var intent = GetIntentFor(request);
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) != true || viewModelCache == null)
-        {
-            return (intent, -1);
-        }
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) != true || viewModelCache == null)
+        //{
+        //    return (intent, -1);
+        //}
 
-        var key = viewModelCache.Cache(existingViewModelToUse);
+        var key = _childViewModelCache.Cache(existingViewModelToUse);
         intent.PutExtra(SubViewModelKey, key);
         return (intent, key);
     }
 
     public void RemoveSubViewModelWithKey(int key)
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) == true && viewModelCache != null)
-        {
-            viewModelCache.Remove(key);
-        }
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) == true && viewModelCache != null)
+        //{
+            _childViewModelCache.Remove(key);
+        //}
     }
 
     #endregion Implementation of IMvxAndroidViewModelRequestTranslator

@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
         : CrossSetup, IMvxAndroidGlobals, IMvxAndroidSetup
     {
         private MvxCurrentTopActivity? _currentTopActivity;
-        private IMvxAndroidViewPresenter? _presenter;
+        private IAndroidViewPresenter? _presenter;
 
         public void PlatformInitialize(Application application)
         {
@@ -111,9 +111,9 @@ namespace Nivaes.App.Cross.Droid
             return viewsContainer;
         }
 
-        protected virtual IMvxAndroidViewsContainer CreateViewsContainer(Context applicationContext)
+        protected virtual IAndroidViewsContainer CreateViewsContainer(Context applicationContext)
         {
-            return new MvxAndroidViewsContainer(applicationContext);
+            return new AndroidViewsContainer(applicationContext);
         }
 
         //protected IMvxAndroidViewPresenter Presenter

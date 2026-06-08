@@ -1,30 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseDroidApp(this CrossAppBuilder builder/*, CrossApplication app*/)
+        public static CrossAppBuilder UseDroidApp(this CrossAppBuilder builder, Context applicationContext)
         {
-            builder.SetupDefaults(/*app*/);
+            builder.SetupDefaults(applicationContext);
             
             return builder;
         }
 
-        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder/*, CrossApplication app*/ )
+        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, Context applicationContext)
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
+            builder.Services.TryAddSingleton<IAndroidViewPresenter, AndroidViewPresenter>();
 
-            //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
-            //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
-            //builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
+            builder.Services.TryAddSingleton<ICrossViewsContainer>(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
+                var navigationSerializer = sp.GetRequiredService<ICrossNavigationSerializer>();
+                var childViewModelCache = sp.GetRequiredService<ICrossChildViewModelCache>();
 
-            //builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
+                return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
+            });
+            builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
+            builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();
+            builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
+                var navigationSerializer = sp.GetRequiredService<ICrossNavigationSerializer>();
+                var childViewModelCache = sp.GetRequiredService<ICrossChildViewModelCache>();
+
+                return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
+            });
+
+            
+
+
 
             return builder;
         } 

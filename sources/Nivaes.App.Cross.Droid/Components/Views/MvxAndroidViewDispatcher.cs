@@ -7,9 +7,9 @@ namespace Nivaes.App.Cross.Droid
         : MvxAndroidMainThreadDispatcher
         , ICrossViewDispatcher
     {
-        private readonly IMvxAndroidViewPresenter _presenter;
+        private readonly IAndroidViewPresenter _presenter;
 
-        public MvxAndroidViewDispatcher(IMvxAndroidViewPresenter presenter)
+        public MvxAndroidViewDispatcher(IAndroidViewPresenter presenter)
         {
             _presenter = presenter;
         }

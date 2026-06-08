@@ -53,7 +53,7 @@ namespace Nivaes.App.Cross.Hosting
             //bootstrapper.AddSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
             //bootstrapper.AddSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
 
-            //bootstrapper.AddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
+            builder.Services.TryAddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
 
             return builder;
         }

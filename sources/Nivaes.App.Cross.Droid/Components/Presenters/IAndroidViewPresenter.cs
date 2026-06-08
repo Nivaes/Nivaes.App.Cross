@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using Nivaes.App.Cross;
 
-    public interface IMvxAndroidViewPresenter
+    public interface IAndroidViewPresenter
         : ICrossViewPresenter
     {
     }

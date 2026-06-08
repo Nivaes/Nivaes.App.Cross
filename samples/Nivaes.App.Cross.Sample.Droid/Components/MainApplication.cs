@@ -13,5 +13,5 @@ public class MainApplication
     {
     }
 
-    protected override CrossApp CreateCrossApp() => CrossProgram.CreateMauiApp();
+    protected override CrossApp CreateCrossApp() => CrossProgram.CreateMauiApp(this);
 }

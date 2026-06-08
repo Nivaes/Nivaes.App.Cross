@@ -100,15 +100,15 @@ public class CrossCommandBase
 
     protected CrossCommandBase()
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossCommandHelper? commandHelper) == true && commandHelper != null)
-        {
-            _commandHelper = commandHelper;
-        }
-        else
-        {
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossCommandHelper? commandHelper) == true && commandHelper != null)
+        //{
+        //    _commandHelper = commandHelper;
+        //}
+        //else
+        //{
             // fallback on MvxWeakCommandHelper if no IoC has been set up
             _commandHelper = new CrossWeakCommandHelper();
-        }
+        //}
 
         // default to true if no Singleton Cache has been set up
         var alwaysOnUIThread =
