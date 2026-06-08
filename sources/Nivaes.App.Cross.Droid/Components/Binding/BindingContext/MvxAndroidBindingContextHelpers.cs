@@ -1,6 +1,8 @@
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
+
 
 public static class MvxAndroidBindingContextHelpers
 {
@@ -12,9 +14,9 @@ public static class MvxAndroidBindingContextHelpers
     public static T Current<T>()
         where T : class, ICrossBindingContext
     {
-        if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
-            return stack?.Current;
-
-        return null;
+        var stack = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContextStack<T>>();
+        //if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
+            
+        return stack?.Current!;
     }
 }

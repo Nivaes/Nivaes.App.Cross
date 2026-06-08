@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    public interface ICrossBindingContextStack<TContext>
+    public interface ICrossBindingContextStack< TContext>
     {
         TContext? Current { get; }
 
