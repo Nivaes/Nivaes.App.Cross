@@ -7,7 +7,7 @@ using Nivaes.App.Cross;
 
 namespace MvvmCross.Exceptions
 {
-    [Obsolete]
+    [Obsolete("", true)]
     [Serializable]
     public class MvxIoCResolveException : CrossException
     {

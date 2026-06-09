@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.WinUI
@@ -26,6 +21,8 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
 
             builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
+
+            builder.Services.TryAddSingleton<ICrashHandler, WinUICrashHandler>();
 
             return builder;
         } 

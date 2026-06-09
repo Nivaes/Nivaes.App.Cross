@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Android.Content;
+﻿using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
@@ -42,9 +39,7 @@ namespace Nivaes.App.Cross.Droid
                 return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
             });
 
-            
-
-
+            builder.Services.TryAddSingleton<ICrashHandler, AndroidCrashHandler>();
 
             return builder;
         } 

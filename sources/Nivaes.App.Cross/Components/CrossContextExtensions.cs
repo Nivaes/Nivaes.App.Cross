@@ -5,17 +5,22 @@ namespace Nivaes.App.Cross;
 
 public static class CrossContextExtensions
 {
-    public static void InitializeAppServices(this CrossApp mauiApp)
+    public static void InitializeAppServices(this CrossApp crossApp)
     {
-        var initServices = mauiApp.Services.GetServices<ICrossInitializeService>();
+        crossApp.Services.SetupCrash();
+
+        var initServices = crossApp.Services.GetServices<ICrossInitializeService>();
         if (initServices is null)
             return;
 
         foreach (var instance in initServices)
-            instance.Initialize(mauiApp.Services);
+            instance.Initialize(crossApp.Services);
+
+        
     }
 
-    public static ICrossContext MakeApplicationScope<TNativeApplication>(this ICrossContext mauiContext, TNativeApplication platformApplication)
+    public static ICrossContext MakeApplicationScope<TNativeApplication>(this ICrossContext mauiContext, 
+            TNativeApplication platformApplication)
         where TNativeApplication : class
     {
         var scopedContext = new CrossContext(mauiContext.Services);

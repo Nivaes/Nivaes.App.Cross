@@ -32,6 +32,8 @@ namespace Nivaes.App.Cross.UIKitOS
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
             builder.Services.TryAddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
 
+            builder.Services.TryAddSingleton<ICrashHandler, UIKitCrashHandler>();
+
             return builder;
         }
     }

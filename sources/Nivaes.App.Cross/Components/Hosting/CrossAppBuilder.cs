@@ -153,9 +153,9 @@ namespace Nivaes.App.Cross.Hosting
         }
 
         /// <summary>
-        /// Builds the <see cref="MauiApp"/>.
+        /// Builds the <see cref="CrossApp"/>.
         /// </summary>
-        /// <returns>A configured <see cref="MauiApp"/>.</returns>
+        /// <returns>A configured <see cref="CrossApp"/>.</returns>
         public CrossApp Build()
         {
             ConfigureDefaultLogging();
