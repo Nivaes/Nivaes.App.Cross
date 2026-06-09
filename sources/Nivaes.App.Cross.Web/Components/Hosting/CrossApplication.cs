@@ -4,13 +4,13 @@ using Nivaes.App.Cross.Hosting;
 namespace Nivaes.App.Cross.Web;
 
 public abstract class CrossApplication 
-    //: Application, IPlatformApplication
+    : /*Application,*/ IPlatformApplication
 {
     IServiceProvider? _services;
 
     IApplication? _application;
 
-    //IServiceProvider IPlatformApplication.Services => _services!;
+    IServiceProvider IPlatformApplication.Services => _services!;
 
     //internal Frame? RootFrame { get; set; }
     //internal Window? MainWindow { get; private set; }
