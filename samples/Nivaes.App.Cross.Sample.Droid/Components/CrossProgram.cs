@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Android.Content;
+﻿using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Droid;
 using Nivaes.App.Cross.Hosting;
 using Playground.Core.ViewModels;
-using Sentry.Protocol;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

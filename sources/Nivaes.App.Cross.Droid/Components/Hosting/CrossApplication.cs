@@ -49,14 +49,8 @@ namespace Nivaes.App.Cross.Droid
             InitializeContainer(crossApp.Services);
 
             _application = _services.GetRequiredService<IApplication>();
-            ICrossNavigationService? navigationService = null;
-            try
-            {
-                navigationService = _services.GetRequiredService<ICrossNavigationService>();
-            }
-            catch (Exception ex)
-            {
-            }
+            var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+
             //this.SetApplicationHandler(_application, applicationContext);
 
             //_services?.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreate>(del => del(this));
