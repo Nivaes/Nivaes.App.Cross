@@ -22,6 +22,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
+          dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
       env:

@@ -48,6 +48,9 @@
   <Folder Name="/Solution Items/.github/actions/setup-android/">
     <File Path=".github/actions/setup-android/action.yaml" />
   </Folder>
+  <Folder Name="/Solution Items/.github/actions/setup-web/">
+    <File Path=".github/actions/setup-web/action.yaml" />
+  </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-winui/">
     <File Path=".github/actions/setup-winui/action.yaml" />
   </Folder>
@@ -61,6 +64,7 @@
     <File Path=".github/workflows/publish_release.yaml" />
     <File Path=".github/workflows/workflow_call_build_android.yaml" />
     <File Path=".github/workflows/workflow_call_build_ios.yaml" />
+    <File Path=".github/workflows/workflow_call_build_web.yaml" />
     <File Path=".github/workflows/workflow_call_build_winui.yaml" />
   </Folder>
   <Folder Name="/Sources/">
@@ -80,6 +84,7 @@
     <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
   </Folder>
   <Folder Name="/Sources/Web/">
+    <Project Path="sources/Nivaes.App.Cross.Web.SourceGenerator/Nivaes.App.Cross.Web.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.Web/Nivaes.App.Cross.Web.csproj" />
   </Folder>
   <Folder Name="/Sources/WinUI/">

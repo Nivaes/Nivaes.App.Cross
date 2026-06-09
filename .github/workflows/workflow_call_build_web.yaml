@@ -1,0 +1,42 @@
+name: Build Cross WinUI
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - uses: ./.github/actions/setup-web
+      with:
+        global-json-file: ./global.json
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources\Nivaes.App.Cross --configfile .github/NuGet.config
+          dotnet restore sources\Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources\Nivaes.App.Cross.Web --configfile .github/NuGet.config
+          dotnet restore sources\Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+      env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: |
+          dotnet build sources/Nivaes.App.Cross.Web --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet build sources/Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-restore
+
+    - name: Test
+      run: |
+          dotnet test sources\Nivaes.App.Cross.Web --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test sources\Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore

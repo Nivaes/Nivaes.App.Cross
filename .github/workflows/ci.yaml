@@ -152,24 +152,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
+    - uses: ./.github/actions/setup-xcode
       with:
         global-json-file: ./global.json
-
-    # - name: Update xcode
-    #   run: |
-    #     xcodes install 26.5
-    #     xcodes select 26.5
-
-    # - name: Install xcode
-    #   uses: maxim-lobanov/setup-xcode@v1
-    #   with:
-    #     xcode-version: latest
-
-    # - name: Install workload
-    #   run: |
-    #     dotnet workload install android ios maccatalyst macos tvos
 
     - uses: ./.github/actions/setup-xcode
       with:
@@ -220,10 +205,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    # - name: Setup .NET Core
-    #   uses: actions/setup-dotnet@v5
-    #   with:
-    #     global-json-file: ./global.json
+    - uses: ./.github/actions/setup-WinUI
+      with:
+        global-json-file: ./global.json
 
     - name: Restore Dependencies
       run: |
@@ -251,3 +235,66 @@ jobs:
             -r win-x64 -p:PublishReadyToRun=true \
             --configuration Release \
             --no-restore --no-build --verbosity normal
+
+  build-app-cross-web:
+    needs: build-app-cross
+    uses: ./.github/workflows/workflow_call_build_web.yaml
+             
+  build-app-cross-web-samples:
+    needs: build-app-cross-web
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - uses: ./.github/actions/setup-web
+      with:
+        global-json-file: ./global.json
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.Web.Client --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.Web --configfile .github/NuGet.config
+      env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                 
+    - name: Build Web Client
+      run: |
+          dotnet build samples/Nivaes.App.Cross.Sample.Web.Client \
+            --property:AndroidEnableProfiledAot=false \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidPackageFormat=aab \
+            --runtime android-arm64 \
+            --configuration Release \
+            --no-restore 
+
+    - name: Build
+      run: |
+          dotnet build samples/Nivaes.App.Cross.Sample.Web \
+            --property:AndroidEnableProfiledAot=false \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidPackageFormat=aab \
+            --runtime android-arm64 \
+            --configuration Release \
+            --no-restore 
+
+    - name: publish
+      run: |
+        dotnet publish samples/Nivaes.App.Cross.Sample.Web \
+            --property:AndroidPackageFormat=aab \
+            --property:PublishTrimmed=true \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidEnableProfiledAot=false \
+            --runtime android-arm64 \
+            --configuration Release \
+            --no-restore --no-build
