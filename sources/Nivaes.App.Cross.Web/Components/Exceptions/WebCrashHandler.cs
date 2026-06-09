@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Web
 {
     public class WebCrashHandler : CrashHandler
     {
-        public WebCrashHandler(ILogger logger)
+        public WebCrashHandler(ILogger<WebCrashHandler> logger)
             : base(logger)
         {
         }

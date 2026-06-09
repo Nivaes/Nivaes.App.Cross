@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Android.Runtime;
-using Java.Lang;
+﻿using Android.Runtime;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid
 {
     public class AndroidCrashHandler : CrashHandler
     {
-        public AndroidCrashHandler(ILogger logger)
+        public AndroidCrashHandler(ILogger<AndroidCrashHandler> logger)
             : base(logger)
         {
         }

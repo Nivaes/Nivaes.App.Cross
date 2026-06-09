@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     public class AppKitCrashHandler : CrashHandler
     {
-        public AppKitCrashHandler(ILogger logger)
+        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger)
             : base(logger)
         {
         }
