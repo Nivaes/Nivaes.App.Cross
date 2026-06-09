@@ -274,7 +274,6 @@ jobs:
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
-            --runtime android-arm64 \
             --configuration Release \
             --no-restore 
 
@@ -284,7 +283,6 @@ jobs:
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
-            --runtime android-arm64 \
             --configuration Release \
             --no-restore 
 
@@ -295,6 +293,5 @@ jobs:
             --property:PublishTrimmed=true \
             --property:AndroidUseLLVM=true \
             --property:AndroidEnableProfiledAot=false \
-            --runtime android-arm64 \
             --configuration Release \
             --no-restore --no-build
