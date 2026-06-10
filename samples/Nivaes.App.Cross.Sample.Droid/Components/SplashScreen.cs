@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
     , Theme = "@style/AppTheme.Splash"
     , NoHistory = true
     , ScreenOrientation = ScreenOrientation.Portrait)]
-[RequiresUnreferencedCode("MvxStartActivity require unreferenced code")]
+[RequiresUnreferencedCode("CrossStartActivity require unreferenced code")]
 public class SplashScreen : MvxStartActivity
 {
     public SplashScreen()

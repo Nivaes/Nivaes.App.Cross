@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 public static class CrossProgram
 {
-    public static CrossApp CreateMauiApp(Context context)
+    public static CrossApp CreateCrossApp(Context context)
     {
         var appBuilder = CrossApp.CreateBuilder();
 

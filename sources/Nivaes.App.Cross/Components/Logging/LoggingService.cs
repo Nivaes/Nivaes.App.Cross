@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Nivaes.App.Cross;
 
-[Obsolete]
+[Obsolete("", true)]
 internal class LoggingService : ILoggingService
 {
     public LoggingService()

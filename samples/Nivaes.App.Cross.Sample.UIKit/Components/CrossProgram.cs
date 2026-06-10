@@ -1,10 +1,8 @@
-﻿using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.UIKitOS;
 using Playground.Core.ViewModels;
 using Playground.iOS.Views;
-using Sentry.Protocol;
 
 namespace Nivaes.App.Cross.Sample.UIKitOS
 {

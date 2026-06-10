@@ -12,6 +12,15 @@ namespace Nivaes.App.Cross.AppKitOS
         public override void Register()
         {
             base.Register();
+
+            ObjCRuntime.Runtime.MarshalManagedException += Runtime_MarshalManagedException;
+        }
+
+        private void Runtime_MarshalManagedException(object sender, ObjCRuntime.MarshalManagedExceptionEventArgs args)
+        {
+            var ex = args.Exception;
+
+            base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
         }
     }
 }

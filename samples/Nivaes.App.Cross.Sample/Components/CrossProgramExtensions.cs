@@ -17,49 +17,8 @@ namespace Nivaes.App.Cross.Sample
             builder
                 .UseCrossApp<SampleApp>();
 
-            /* ToDo: Cargar esto con roslyn */
-            //builder.Services.AddScoped<BaseViewModel>();
-            //builder.Services.AddScoped<MainViewModel>();
-            //builder.Services.AddScoped<NewWindowViewModel>();
-            //builder.Services.AddScoped<RootViewModel>();
-
-            //builder.Services.AddScoped<ChildViewModel>();
-            //builder.Services.AddScoped<ChildWithResultViewModel>();
-            //builder.Services.AddScoped<FragmentCloseViewModel>();
-            //builder.Services.AddScoped<WindowViewModel>();
-            //builder.Services.AddScoped<WindowChildViewModel>();
-            //builder.Services.AddScoped<TabsRootViewModel>();
-            //builder.Services.AddScoped<TabsRootBViewModel>();
-            //builder.Services.AddScoped<Tab1ViewModel>();
-            //builder.Services.AddScoped<Tab2ViewModel>();
-            //builder.Services.AddScoped<Tab3ViewModel>();
-            //builder.Services.AddScoped<SplitRootViewModel>();
-            //builder.Services.AddScoped<SplitMasterViewModel>();
-            //builder.Services.AddScoped<SplitDetailViewModel>();
-            //builder.Services.AddScoped<RegionViewModel>();
-            //builder.Services.AddScoped<NewWindowViewModel>();
-            //builder.Services.AddScoped<ModalViewModel>();
-            //builder.Services.AddScoped<SecondChildViewModel>();
-
-            //builder.Services.AddScoped<CollectionViewModel>();
-            //builder.Services.AddScoped<ConvertersViewModel>();
-            //builder.Services.AddScoped<SharedElementRootViewModel>();
-            //builder.Services.AddScoped<SharedElementSecondViewModel>();
-            //builder.Services.AddScoped<ChildWithResultViewModel>();
-            //builder.Services.AddScoped<DictionaryBindingViewModel>();
-            //builder.Services.AddScoped<FluentBindingViewModel>();
-            //builder.Services.AddScoped<ModalNavViewModel>();
-            //builder.Services.AddScoped<ModalViewModel>();
-            //builder.Services.AddScoped<NestedModalViewModel>();
-            //builder.Services.AddScoped<OverrideAttributeViewModel>();
-            //builder.Services.AddScoped<Tab1ViewModel>();
-            //builder.Services.AddScoped<Tab2ViewModel>();
-            //builder.Services.AddScoped<Tab3ViewModel>();
-            //builder.Services.AddScoped<TabsRootViewModel>();
-            //builder.Services.AddScoped<TabsRootBViewModel>();
-
 #if DEBUG
-            builder.Logging.AddDebug();
+            //builder.Logging.AddDebug();
 #endif
             builder.Services.AddOpenTelemetry()
                 .WithTracing(static tracing =>
