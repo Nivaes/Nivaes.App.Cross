@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Content.Res;
 using Android.Runtime;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
@@ -16,13 +17,11 @@ namespace Nivaes.App.Cross.Droid
 
         IApplication? _application;
 
-
         public static CrossApplication Current { get; private set; } = null!;
 
         public IServiceProvider Services => _services!;
 
         public IApplication Application => _application!;
-
 
         protected CrossApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
         {
@@ -50,6 +49,12 @@ namespace Nivaes.App.Cross.Droid
 
             _application = _services.GetRequiredService<IApplication>();
             var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+
+            var logger = _services.GetRequiredService<ILogger<CrossApplication>>();
+            logger.LogCritical("Inicio app.");
+
+            //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
+            //logger2.LogInformation("Hola OpenTelemetry");
 
             //this.SetApplicationHandler(_application, applicationContext);
 

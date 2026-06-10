@@ -24,7 +24,6 @@ namespace Nivaes.App.Cross
             //_handlers = new Lazy<ICrossHandlersFactory>(() => _services.GetRequiredService<ICrossHandlersFactory>());
         }
         
-
         internal void AddSpecific<TService>(TService instance)
             where TService : class
         {
