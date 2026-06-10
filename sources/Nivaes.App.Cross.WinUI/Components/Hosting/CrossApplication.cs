@@ -70,8 +70,7 @@ public abstract class CrossApplication
 
         InitializeContainer(crossApp.Services);
 
-        _application = _services.GetRequiredService<IApplication>();
-        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+        _application = _services.GetRequiredService<IApplication>();       
 
         //this.SetApplicationHandler(_application, applicationContext);
 
@@ -83,6 +82,7 @@ public abstract class CrossApplication
 
         MainWindow!.Activate();
 
+        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
         await initializeViewModelType.NavigateToFirstViewModel(navigationService);
     }
 

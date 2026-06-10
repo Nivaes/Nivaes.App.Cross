@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Components.ViewModels;
 using Nivaes.App.Cross.Controls;
 
@@ -7,12 +8,18 @@ namespace Nivaes.App.Cross.Sample;
 [RequiresUnreferencedCode("Application requires unreferenced code")]
 public class SampleApp : Application, IApplication
 {
+    public SampleApp(ILogger<SampleApp> logger)
+        : base(logger)
+    { }
+
     ///// <summary>
     ///// Breaking change in v6: This method is called on a background thread. Use
     ///// Startup for any UI bound actions
     ///// </summary>
     public override ICrossViewModelStar Initialize()
     {
+        base.Logger.LogCritical("Inicio app.");
+
         //CreatableTypes()
         //    .EndingWith("Service")
         //    .AsInterfaces()

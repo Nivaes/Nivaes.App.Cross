@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     public class WinUICrashHandler : CrashHandler
     {
-        public WinUICrashHandler(ILogger logger)
+        public WinUICrashHandler(ILogger<WinUICrashHandler> logger)
             : base(logger)
         {
         }
