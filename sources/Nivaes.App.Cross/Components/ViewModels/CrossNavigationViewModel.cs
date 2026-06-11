@@ -1,23 +1,39 @@
 namespace Nivaes.App.Cross
 {
+    using System.Diagnostics;
     using Microsoft.Extensions.Logging;
+    using OpenTelemetry.Resources;
+    using OpenTelemetry.Trace;
 
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        private ILogger? _log;
+        private ILogger? _logger;
+
+        private static readonly ActivitySource Source = new("SampleCrossClient");
 
         protected CrossNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
         {
             LoggerFactory = logFactory;
             NavigationService = navigationService;
+
+            Log.LogCritical($"Se inicio {this.GetType().Name}");
+
+            using var activity = Source.StartActivity("Test");
+
+            activity?.SetTag("Prueba", this.GetType().Name);
+
+            //await Task.Delay(1000);
+            Thread.Sleep(1000);
+
+            activity?.Stop();
         }
 
         protected virtual ICrossNavigationService NavigationService { get; }
 
         protected virtual ILoggerFactory LoggerFactory { get; }
 
-        protected virtual ILogger Log => _log ??= LoggerFactory.CreateLogger(GetType().Name);
+        protected virtual ILogger Log => _logger ??= LoggerFactory.CreateLogger(GetType().Name);
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
@@ -26,6 +42,7 @@ namespace Nivaes.App.Cross
         protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)
         {
+            Log.LogCritical($"Se inicio {this.GetType().Name}");
         }
 
         public abstract void Prepare(TParameter parameter);

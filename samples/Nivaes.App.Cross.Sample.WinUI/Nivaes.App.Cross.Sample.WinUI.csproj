@@ -57,6 +57,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Diagnostics" />
 		<PackageReference Include="Nivaes.App.Shared" />
+		<PackageReference Include="OpenTelemetry.Exporter.Console" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -91,35 +92,5 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.foundation\1.8.250906002\buildTransitive\..\include\DeploymentManagerAutoInitializer.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="C:\Apl\NivaesLibrary\packages\microsoft.windowsappsdk.runtime\1.8.251003001\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <PRIResource Remove="Components\IoC\**" />
 	</ItemGroup>
 </Project>
