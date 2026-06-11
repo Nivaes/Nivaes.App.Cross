@@ -15,12 +15,14 @@ namespace Nivaes.App.Cross.Sample
 {
     public static class CrossProgramExtensions
     {
-        //private static string urlString = "http://10.0.2.2:4318";
-        private static string urlString = "http://localhost:4318";
+        //const string urlString = "http://10.0.2.2:4318";
+        const string urlString = "http://localhost:4318";
 
         public static CrossAppBuilder UseSharedCrossApp(this CrossAppBuilder builder)
         {
             builder.UseCrossApp<SampleApp>();
+
+            builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
             builder.Services.AddLogging();
             builder.Logging.AddDebug();
@@ -51,6 +53,7 @@ namespace Nivaes.App.Cross.Sample
                     //    .AddHttpClientInstrumentation()
                     //    .AddRuntimeInstrumentation();
                     metrics.AddRuntimeInstrumentation()
+                           //.AddProcessInstrumentation()
                            .AddHttpClientInstrumentation()
                            .AddOtlpExporter(options =>
                            {
@@ -68,12 +71,19 @@ namespace Nivaes.App.Cross.Sample
                                     serviceVersion: "1.0"))
                         .AddSource("SampleCrossClient")
                         .AddHttpClientInstrumentation()
+                        .SetSampler(new AlwaysOnSampler())
+                        .AddConsoleExporter()
                         .AddOtlpExporter(options =>
                         {
-                            options.Protocol = OtlpExportProtocol.HttpProtobuf;
-                            options.Endpoint = new Uri(urlString);
+                            options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
+                            options.Endpoint =
+                                new Uri("http://10.0.2.2:4318");
                         });
                 });
+
+            AppContext.SetSwitch(
+                "OpenTelemetry.Experimental.EnableEventSource",
+                true);
 
             return builder;
         }

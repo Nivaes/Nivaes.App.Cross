@@ -11,7 +11,7 @@ public abstract class Application : IApplication
 {
     protected ILogger Logger { get; private set; }
 
-    public Application(ILogger logger)
+    protected Application(ILogger logger)
     {
         Logger = logger;
     }

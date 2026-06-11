@@ -50,12 +50,6 @@ namespace Nivaes.App.Cross.Droid
             _application = _services.GetRequiredService<IApplication>();
             var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
-            var logger = _services.GetRequiredService<ILogger<CrossApplication>>();
-            logger.LogCritical("Inicio app.");
-
-            //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
-            //logger2.LogInformation("Hola OpenTelemetry");
-
             //this.SetApplicationHandler(_application, applicationContext);
 
             //_services?.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreate>(del => del(this));
