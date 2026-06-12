@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross
 
             Log.LogCritical($"Se inicio {this.GetType().Name}");
 
-            using var activity = Source.StartActivity("Test");
+            using var activity = Source.StartActivity("SampleCrossClient");
 
             activity?.SetTag("Prueba", this.GetType().Name);
 
