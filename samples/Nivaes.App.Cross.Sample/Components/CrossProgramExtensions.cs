@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -27,6 +29,8 @@ namespace Nivaes.App.Cross.Sample
             builder.Services.AddLogging();
             builder.Logging.AddDebug();
             builder.Logging.AddConsole();
+
+            var listener = new OpenTelemetryEventListener();
 
             builder.Logging.AddOpenTelemetry(logging =>
             {
@@ -81,6 +85,9 @@ namespace Nivaes.App.Cross.Sample
                         });
                 });
 
+            AppContext.SetSwitch(
+                "OpenTelemetry.Experimental.EnableEventSource",
+                true);
             AppContext.SetSwitch(
                 "OpenTelemetry.Experimental.EnableEventSource",
                 true);
