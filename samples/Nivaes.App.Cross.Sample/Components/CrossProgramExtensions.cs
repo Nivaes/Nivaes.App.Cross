@@ -17,13 +17,15 @@ namespace Nivaes.App.Cross.Sample
 {
     public static class CrossProgramExtensions
     {
-        //const string urlString = "http://10.0.2.2:4318";
-        const string urlString = "http://localhost:4318";
-
         public static CrossAppBuilder UseSharedCrossApp(this CrossAppBuilder builder)
         {
             builder.UseCrossApp<SampleApp>();
 
+            return builder;
+        }
+
+        public static OpenTelemetryBuilder AddObservability(this CrossAppBuilder builder)
+        { 
             builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
             builder.Services.AddLogging();
@@ -37,14 +39,14 @@ namespace Nivaes.App.Cross.Sample
                 logging.IncludeFormattedMessage = true;
                 logging.IncludeScopes = true;
 
-                logging.AddOtlpExporter(o =>
-                {
-                    o.Protocol = OtlpExportProtocol.HttpProtobuf;
-                    o.Endpoint = new Uri(urlString);
-                });
+                //logging.AddOtlpExporter(o =>
+                //{
+                //    o.Protocol = OtlpExportProtocol.HttpProtobuf;
+                //    o.Endpoint = new Uri(urlString);
+                //});
             });
 
-            builder.Services.AddOpenTelemetry()
+            var openTelemetryBuilder = builder.Services.AddOpenTelemetry()
                   .ConfigureResource(r =>
                   {
                       r.AddService(
@@ -59,11 +61,12 @@ namespace Nivaes.App.Cross.Sample
                     metrics.AddRuntimeInstrumentation()
                            //.AddProcessInstrumentation()
                            .AddHttpClientInstrumentation()
-                           .AddOtlpExporter(options =>
-                           {
-                               options.Protocol = OtlpExportProtocol.HttpProtobuf;
-                               options.Endpoint = new Uri(urlString);
-                           });
+                           //.AddOtlpExporter(options =>
+                           //{
+                           //    options.Protocol = OtlpExportProtocol.HttpProtobuf;
+                           //    options.Endpoint = new Uri(urlObservability, "/v1/metrics");
+                           //})
+                           ;
                 })
                 .WithTracing(static tracing =>
                 {
@@ -77,22 +80,43 @@ namespace Nivaes.App.Cross.Sample
                         .AddHttpClientInstrumentation()
                         .SetSampler(new AlwaysOnSampler())
                         .AddConsoleExporter()
-                        .AddOtlpExporter(options =>
-                        {
-                            options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
-                            options.Endpoint =
-                                new Uri("http://10.0.2.2:4318");
-                        });
-                });
+                        //.AddOtlpExporter(options =>
+                        //{
+                        //    options.Protocol = OtlpExportProtocol.HttpProtobuf;
+                        //    options.Endpoint = new Uri(urlObservability, "/v1/traces");
+                        //})
+                        ;
+                })
+                 .WithLogging(loggersProviderBuilder =>
+                 {
+                     //loggersProviderBuilder.
+                     //loggersProviderBuilder.AddOtlpExporter(options =>
+                     //{
+                     //    options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
+                     //    options.Endpoint = new Uri(urlObservability, "/v1/logs");
+                     //});
+                 })
+            //.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://localhost:4318"))
+            ;
 
             AppContext.SetSwitch(
                 "OpenTelemetry.Experimental.EnableEventSource",
                 true);
+
             AppContext.SetSwitch(
                 "OpenTelemetry.Experimental.EnableEventSource",
                 true);
 
-            return builder;
+            builder.Logging.AddFilter(
+                    "OpenTelemetry.Exporter.OpenTelemetryProtocol",
+                    LogLevel.Trace);
+
+            builder.Logging.AddFilter(
+                "OpenTelemetry",
+                LogLevel.Trace);
+
+
+            return openTelemetryBuilder;
         }
     }
 }

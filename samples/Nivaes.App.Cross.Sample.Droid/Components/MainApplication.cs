@@ -4,7 +4,11 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[Application()]
+[Application(
+#if DEBUG    
+    UsesCleartextTraffic = true
+#endif
+)]
 public class MainApplication 
     : CrossApplication
 {

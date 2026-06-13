@@ -10,13 +10,16 @@ namespace Nivaes.App.Cross.Sample;
 [RequiresUnreferencedCode("Application requires unreferenced code")]
 public class SampleApp : Application, IApplication
 {
-    public SampleApp(ILogger<SampleApp> logger)
-        : base(logger)
-    { }
+    private readonly TracerProvider _tracerProvider;
+
+    //public SampleApp(ILogger<SampleApp> logger)
+    //    : base(logger)
+    //{ }
 
     public SampleApp(ILogger<SampleApp> logger, TracerProvider tracer)
         : base(logger)
     {
+        _tracerProvider = tracer;
     }
 
     ///// <summary>
@@ -27,16 +30,16 @@ public class SampleApp : Application, IApplication
     {
         base.Logger.LogCritical("Inicio app.");
 
-        base.Logger.LogCritical("Inicio app.");
-
         var source = new ActivitySource("SampleCrossClient");
 
         var aa = source.HasListeners();
 
-        using (var activity = source.StartActivity("Startup"))
+        using (var activity = source.StartActivity("SampleCrossClient"))
         {
             activity?.SetTag("test", "true");
         }
+
+        _tracerProvider.ForceFlush();
 
         //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
         //logger2.LogInformation("Hola OpenTelemetry");

@@ -24,9 +24,11 @@ namespace Nivaes.App.Cross
             activity?.SetTag("Prueba", this.GetType().Name);
 
             //await Task.Delay(1000);
-            Thread.Sleep(1000);
+            //Thread.Sleep(100);
 
             activity?.Stop();
+
+            //Thread.Sleep(15000);
         }
 
         protected virtual ICrossNavigationService NavigationService { get; }

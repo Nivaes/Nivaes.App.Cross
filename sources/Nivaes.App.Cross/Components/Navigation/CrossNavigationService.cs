@@ -345,12 +345,22 @@ public class CrossNavigationService
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
+        try
         {
-            PresentationValues = presentationBundle?.SafeGetData()
-        };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+            _logger.LogCritical("Navigate-1");
+            var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
+            {
+                PresentationValues = presentationBundle?.SafeGetData()
+            };
+            _logger.LogCritical("Navigate-2");
+            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+            _logger.LogCritical("Navigate-3");
+            return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+        }
+        finally
+        {
+            _logger.LogCritical("Navigate-fin");
+        }
     }
 
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
