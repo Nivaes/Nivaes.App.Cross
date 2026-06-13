@@ -14,7 +14,12 @@ namespace Nivaes.App.Cross.WinUI
             base.Register();
         }
 
-        protected override void Report(Exception ex)
+        protected override void SaveException(Exception ex)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void LoadAndSendException(Exception ex)
         {
             throw new NotImplementedException();
         }

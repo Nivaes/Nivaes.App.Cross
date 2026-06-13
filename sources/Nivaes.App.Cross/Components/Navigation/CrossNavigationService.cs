@@ -347,14 +347,11 @@ public class CrossNavigationService
     {
         try
         {
-            _logger.LogCritical("Navigate-1");
             var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
             {
                 PresentationValues = presentationBundle?.SafeGetData()
             };
-            _logger.LogCritical("Navigate-2");
             request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-            _logger.LogCritical("Navigate-3");
             return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
         }
         finally

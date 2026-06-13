@@ -438,9 +438,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         ArgumentNullException.ThrowIfNull(intent, nameof(intent));
 
         var activity = CurrentActivity;
-        if (activity.IsActivityDead())
+        if (activity!.IsActivityDead())
         {
-            _logger.Log(LogLevel.Warning, "Cannot Resolve current top activity. Creating new activity from Application Context");
+            _logger.Log(LogLevel.Error, "Cannot Resolve current top activity. Creating new activity from Application Context");
             intent.AddFlags(ActivityFlags.NewTask);
             StartActivity(Application.Context, intent, bundle);
             return;

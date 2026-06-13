@@ -12,7 +12,9 @@ namespace Nivaes.App.Cross.Droid
         public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)
+            {
                 ExceptionMaskedAction(action, maskExceptions);
+            }
             else
             {
                 Application.SynchronizationContext.Post(ignored =>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Components.Exceptions.Crash;
 
 namespace Nivaes.App.Cross.Web
 {
@@ -15,7 +14,7 @@ namespace Nivaes.App.Cross.Web
             base.Register();
         }
 
-        protected override void Report(Exception ex)
+        protected override void SaveException(Exception ex)
         {
             throw new NotImplementedException();
         }
