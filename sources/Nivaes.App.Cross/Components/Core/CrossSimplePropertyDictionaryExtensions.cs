@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
 
     public static class CrossSimplePropertyDictionaryExtensions
     {

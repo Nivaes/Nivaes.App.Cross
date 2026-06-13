@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;

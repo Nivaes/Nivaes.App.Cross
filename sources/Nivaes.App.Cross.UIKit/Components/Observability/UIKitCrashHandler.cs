@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.UIKitOS
 {
-    public class AppKitCrashHandler : CrashHandler
+    public class UIKitCrashHandler : CrashHandler
     {
-        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger)
+        public UIKitCrashHandler(ILogger<UIKitCrashHandler> logger)
             : base(logger)
         {
         }
@@ -12,8 +12,12 @@ namespace Nivaes.App.Cross.AppKitOS
         public override void Register()
         {
             base.Register();
-
             ObjCRuntime.Runtime.MarshalManagedException += Runtime_MarshalManagedException;
+        }
+
+        protected override void Report(Exception ex)
+        {
+            throw new NotImplementedException();
         }
 
         private void Runtime_MarshalManagedException(object sender, ObjCRuntime.MarshalManagedExceptionEventArgs args)

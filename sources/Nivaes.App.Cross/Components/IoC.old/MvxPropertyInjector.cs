@@ -3,7 +3,6 @@ namespace MvvmCross.IoC
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Exceptions;
     using Nivaes.App.Cross;
 
     [Obsolete("Quitar MvxIoC", true)]

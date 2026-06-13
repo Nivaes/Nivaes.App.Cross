@@ -22,6 +22,8 @@ namespace Nivaes.App.Cross
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
         }
 
+        protected abstract void Report(Exception ex);
+
         private void CurrentDomain_UnhandledException(
             object sender,
             UnhandledExceptionEventArgs e)

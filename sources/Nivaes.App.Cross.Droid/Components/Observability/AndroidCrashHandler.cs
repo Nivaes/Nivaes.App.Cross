@@ -17,6 +17,11 @@ namespace Nivaes.App.Cross.Droid
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
         }
 
+        protected override void Report(Exception ex)
+        {
+            throw new NotImplementedException();
+        }
+
         private void AndroidEnvironment_UnhandledExceptionRaiser(
             object? sender,
             RaiseThrowableEventArgs e)

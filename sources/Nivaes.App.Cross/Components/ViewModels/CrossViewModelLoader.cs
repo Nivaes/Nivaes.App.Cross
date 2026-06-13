@@ -1,8 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Exceptions;
-
     internal class CrossViewModelLoader
         : ICrossViewModelLoader
     {

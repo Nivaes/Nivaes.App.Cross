@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using MvvmCross.Exceptions;
 
     public abstract class CrossParser
     {

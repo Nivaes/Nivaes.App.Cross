@@ -1,13 +1,10 @@
 using Android.Graphics;
 using AndroidX.AppCompat.Widget;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Exceptions;
-
+    
     public abstract class MvxAppCompatBaseImageViewTargetBinding
         : MvxAndroidTargetBinding
     {

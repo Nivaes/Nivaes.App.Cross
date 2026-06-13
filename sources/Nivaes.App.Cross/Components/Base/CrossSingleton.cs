@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System;
     using System.Collections.Generic;
-    using MvvmCross.Exceptions;
 
     [Obsolete]
     public abstract class CrossSingleton
