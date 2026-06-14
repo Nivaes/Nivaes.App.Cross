@@ -4,7 +4,8 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid;
 
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[Register("nivaes.cross.activity")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class MvxActivity
     : MvxEventSourceActivity
     , IMvxAndroidView

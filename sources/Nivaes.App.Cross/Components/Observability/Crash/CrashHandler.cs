@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
         }
 
-        protected abstract void SaveException(Exception ex);
+        protected abstract void SaveException(Exception ex, string message);
 
         protected abstract void LoadAndSendException(Exception ex);
 
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
         {
             var ex = (Exception)e.ExceptionObject;
 
-            SaveException(ex);
+            SaveException(ex, "Unhandled exception occurred.");
 
             _logger.LogCritical(ex, "Unhandled exception occurred.");
         }
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross
             UnobservedTaskExceptionEventArgs e)
         {
             var ex = e.Exception;
-            SaveException(ex);
+            SaveException(ex, "Unobserved task exception occurred.");
 
             _logger.LogCritical(ex, "Unobserved task exception occurred.");
 

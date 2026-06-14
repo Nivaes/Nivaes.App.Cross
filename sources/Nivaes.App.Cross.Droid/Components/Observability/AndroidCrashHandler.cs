@@ -19,18 +19,34 @@ namespace Nivaes.App.Cross.Droid
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
         }
 
-        protected override void SaveException(Exception ex)
+        protected override void SaveException(Exception ex, string description)
         {
-            string path = Path.Combine(
-                 Application.Context.FilesDir?.AbsolutePath!,
-                 "crash.log");
+            try
+            {
+                string path = Path.Combine(
+                     Application.Context.FilesDir?.AbsolutePath!,
+                     "crash.log");
 
-            //var json = File.ReadAllText(file);
-            var json = JsonSerializer.Serialize(ex);
+                //var json = File.ReadAllText(file);
+                //var json = JsonSerializer.Serialize(ex);
 
-            //var json = File.ReadAllText(file);
+                //var json = File.ReadAllText(file);
 
-            File.WriteAllText(path, json);
+                //File.WriteAllText(path, json);
+
+                var logText = $"""
+                        {description}
+                        {ex.GetType().FullName}
+                        message: {ex.Message}
+                        stacktrace: {ex.StackTrace}
+                        {ex}
+                        """;
+
+
+                base.Logger.LogCritical(logText);
+            }
+            catch(Exception exx)
+            { }
         }
 
         protected override void LoadAndSendException(Exception ex)
@@ -48,11 +64,10 @@ namespace Nivaes.App.Cross.Droid
         {
             var ex = e.Exception;
 
-            SaveException(ex);
+            SaveException(ex, "Unhandled Java exception occurred.");
 
             base.Logger.LogCritical(ex, "Unhandled Java exception occurred.");
 
-            // Indica que la excepción ha sido manejada
             e.Handled = true;
         }
     }

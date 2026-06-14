@@ -43,6 +43,7 @@ public class CrossNavigationService
         _logger = logger;
     }
 
+    [Obsolete("", true)]
     public void LoadRoutes(IEnumerable<Assembly> assemblies)
     {
         ArgumentNullException.ThrowIfNull(assemblies);
@@ -345,19 +346,12 @@ public class CrossNavigationService
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        try
+        var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
         {
-            var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
-            {
-                PresentationValues = presentationBundle?.SafeGetData()
-            };
-            request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-            return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
-        }
-        finally
-        {
-            _logger.LogCritical("Navigate-fin");
-        }
+            PresentationValues = presentationBundle?.SafeGetData()
+        };
+        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);        
     }
 
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(

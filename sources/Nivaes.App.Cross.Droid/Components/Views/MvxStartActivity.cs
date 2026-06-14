@@ -1,12 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("mvvmcross.platforms.android.views.MvxStartActivity")]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[Register("nivaes.cross.startActivity")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class MvxStartActivity
     : MvxActivity
 {
@@ -14,17 +15,17 @@ public abstract class MvxStartActivity
 
     private readonly int _resourceId;
 
-    private Bundle _bundle;
+    private Bundle? _bundle;
 
-    public new CrossNullViewModel ViewModel
-    {
-        get { return base.ViewModel as CrossNullViewModel; }
-        set { base.ViewModel = value; }
-    }
+    //public new CrossNullViewModel ViewModel
+    //{
+    //    get { return base.ViewModel as CrossNullViewModel; }
+    //    set { base.ViewModel = value; }
+    //}
 
     protected MvxStartActivity(int resourceId = NoContent)
     {
-        RegisterSetup();
+        //RegisterSetup();
         _resourceId = resourceId;
     }
 
@@ -55,35 +56,39 @@ public abstract class MvxStartActivity
         }
     }
 
-#pragma warning disable AsyncFixer01, AsyncFixer03
     protected override async void OnResume()
     {
         base.OnResume();
-        await RunAppStartAsync(_bundle);
-    }
-#pragma warning restore AsyncFixer01, AsyncFixer03
+        //await RunAppStartAsync(_bundle);
 
-    protected virtual async Task RunAppStartAsync(Bundle bundle)
-    {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true)
-        {
-            if (!startup.IsStarted)
-            {
-                await startup.StartAsync(GetAppStartHint(bundle));
-            }
-            else
-            {
-                Finish();
-            }
-        }
+        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
+        var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
+
+        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+
     }
+
+    //protected virtual async Task RunAppStartAsync(Bundle bundle)
+    //{
+    //    if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true)
+    //    {
+    //        if (!startup.IsStarted)
+    //        {
+    //            await startup.StartAsync(GetAppStartHint(bundle));
+    //        }
+    //        else
+    //        {
+    //            Finish();
+    //        }
+    //    }
+    //}
 
     protected virtual object? GetAppStartHint(object? hint = null)
     {
         return hint;
     }
 
-    protected virtual void RegisterSetup()
-    {
-    }
+    //protected virtual void RegisterSetup()
+    //{
+    //}
 }

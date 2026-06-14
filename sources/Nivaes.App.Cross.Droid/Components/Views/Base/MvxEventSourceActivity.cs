@@ -1,11 +1,10 @@
 using Android.Content;
 using Android.Runtime;
+using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-
-    [Register("mvvmcross.platforms.android.views.base.MvxEventSourceActivity")]
+    [Register("nivaes.cross.eventSourceActivity")]
     public abstract class MvxEventSourceActivity
         : Activity, IMvxEventSourceActivity
     {

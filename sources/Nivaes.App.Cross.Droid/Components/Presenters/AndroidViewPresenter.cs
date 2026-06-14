@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
+//using System.Reflection;
 using Android.Content;
 using Android.OS;
 using Android.Util;
@@ -39,7 +39,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     //private readonly Lazy<ILogger?> _logger = new(() => CrossLogHost.GetLog<AndroidViewPresenter>());
 
-    protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
+    //protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
 
     protected CrossViewModelRequest? PendingRequest { get; set; }
 
@@ -60,13 +60,13 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public AndroidViewPresenter(IEnumerable<Assembly> androidViewAssemblies, ICrossViewsContainer crossViewsContainer, 
+    public AndroidViewPresenter(/*IEnumerable<Assembly> androidViewAssemblies,*/ ICrossViewsContainer crossViewsContainer, 
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
         IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
         ILogger<AndroidViewPresenter> logger)
         :base(crossViewsContainer)
     {
-        AndroidViewAssemblies = androidViewAssemblies;
+        //AndroidViewAssemblies = androidViewAssemblies;
         if (ActivityLifetimeListener != null)
             ActivityLifetimeListener.ActivityChanged += ActivityLifetimeListenerOnActivityChanged;
 
@@ -119,7 +119,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     {
         ValidateArguments(request);
 
-        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType);
+        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
 
@@ -127,8 +127,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (overrideAttribute != null)
             return overrideAttribute;
 
-        IList<CrossBasePresentationAttribute> attributes =
-            viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
+        //IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
+        IList<CrossBasePresentationAttribute> attributes = new List<CrossBasePresentationAttribute>() { new MvxActivityPresentationAttribute() };
         if (attributes.Count > 0)
         {
             CrossBasePresentationAttribute? attribute = null;

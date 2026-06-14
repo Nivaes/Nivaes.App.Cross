@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using MvvmCross.Plugin;
 
-    [Obsolete]
+    [Obsolete("", true)]
     public interface ICrossSetup
     {
         void InitializePrimary();

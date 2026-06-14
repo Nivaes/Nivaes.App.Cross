@@ -18,5 +18,10 @@ namespace Nivaes.App.Cross.Web
         {
             throw new NotImplementedException();
         }
+
+        protected override void LoadAndSendException(Exception ex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

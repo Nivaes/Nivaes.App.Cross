@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseImageViewTargetBinding>>();
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger<MvxBaseImageViewTargetBinding>>();
                 logger!.Log(LogLevel.Error, ex, "Failed to set bitmap on ImageView");
                 throw;
             }

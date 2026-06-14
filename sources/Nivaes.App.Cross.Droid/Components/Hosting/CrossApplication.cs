@@ -48,17 +48,23 @@ namespace Nivaes.App.Cross.Droid
             InitializeContainer(crossApp.Services);
 
             _application = _services.GetRequiredService<IApplication>();
-            var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+            
+            var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
+            base.RegisterActivityLifecycleCallbacks(currentTopActivity);
+
+            
 
             //this.SetApplicationHandler(_application, applicationContext);
 
             //_services?.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreate>(del => del(this));
 
-            var initializeViewModelType = _application.Initialize();
+            //var initializeViewModelType = _application.Initialize();
 
             base.OnCreate();
 
-            await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+            //var navigationService = _services.GetRequiredService<ICrossNavigationService>();
+
+            //await initializeViewModelType.NavigateToFirstViewModel(navigationService);
         }
 
         public override void OnLowMemory()

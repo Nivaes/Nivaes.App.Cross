@@ -24,12 +24,12 @@ public sealed class RootView : MvxActivity<RootViewModel>, IOnApplyWindowInsetsL
     {
         var inset = insets?.GetInsets(WindowInsetsCompat.Type.SystemBars());
 
-        (v.LayoutParameters as FrameLayout.LayoutParams).SetMargins(
-            inset.Left,
+        (v?.LayoutParameters as FrameLayout.LayoutParams)?.SetMargins(
+            inset!.Left,
             inset.Top,
             inset.Right,
             inset.Bottom);
 
-        return WindowInsetsCompat.Consumed;
+        return WindowInsetsCompat.Consumed!;
     }
 }

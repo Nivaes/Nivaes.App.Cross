@@ -40,6 +40,7 @@ namespace Nivaes.App.Cross.Droid
             });
 
             builder.Services.TryAddSingleton<ICrashHandler, AndroidCrashHandler>();
+            builder.Services.TryAddSingleton<ICrossBindingContextStack<IMvxAndroidBindingContext>, MvxAndroidBindingContextStack>();
 
             return builder;
         } 

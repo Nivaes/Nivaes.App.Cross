@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvvmCross;
 using Nivaes.IoC;
@@ -8,7 +9,7 @@ namespace Nivaes.App.Cross;
 public class CrossBindingContextStackRegistration<TBindingContext>
     : IDisposable
 {
-    protected ICrossBindingContextStack<TBindingContext> Stack => Mvx.IoCProvider.Resolve<ICrossBindingContextStack<TBindingContext>>();
+        protected ICrossBindingContextStack<TBindingContext> Stack => IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContextStack<TBindingContext>>();
 
     public CrossBindingContextStackRegistration(TBindingContext toRegister)
     {

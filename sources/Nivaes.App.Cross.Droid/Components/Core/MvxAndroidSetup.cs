@@ -216,9 +216,10 @@ namespace Nivaes.App.Cross.Droid
             // this base class does nothing
         }
 
+        [Obsolete("No usar reflection", true)]
         protected virtual IEnumerable<Type> ValueConverterHolders => new List<Type>();
 
-        [Obsolete("No usar reflection")]
+        [Obsolete("No usar reflection", true)]
         protected virtual IEnumerable<Assembly> ValueConverterAssemblies
         {
             [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
