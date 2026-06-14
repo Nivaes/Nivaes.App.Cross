@@ -37,10 +37,10 @@ namespace Nivaes.App.Cross.Droid
 
         protected override async Task LoadAndSendException()
         {
-            var json = await File.ReadAllTextAsync(PathCrashFile);
-
             if (File.Exists(PathCrashFile))
             {
+                var json = await File.ReadAllTextAsync(PathCrashFile);
+
                 base.Logger.LogCritical(json);
                 File.Delete(PathCrashFile);
             }

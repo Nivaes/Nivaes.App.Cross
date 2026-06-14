@@ -18,8 +18,8 @@
 		<!--<IsPackable>false</IsPackable>-->
 		<!--<GeneratePackageOnBuild>false</GeneratePackageOnBuild>-->
 
-		<!--<RunAOTAnalysis>true</RunAOTAnalysis>-->
-		<!--<IsAotCompatible>true</IsAotCompatible>-->
+		<RunAOTAnalysis>true</RunAOTAnalysis>
+		<IsAotCompatible>true</IsAotCompatible>
 
 		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
 		<!--<AndroidFastDeploymentType>true</AndroidFastDeploymentType>-->

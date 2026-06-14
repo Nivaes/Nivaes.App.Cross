@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-//using System.Reflection;
+using System.Reflection;
 using Android.Content;
 using Android.OS;
 using Android.Util;
@@ -117,7 +117,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     public override CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
-        ValidateArguments(request);
+        ArgumentNullException.ThrowIfNull(request);
 
         var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
         if (viewType == null)
@@ -127,8 +127,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (overrideAttribute != null)
             return overrideAttribute;
 
-        //IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
-        IList<CrossBasePresentationAttribute> attributes = new List<CrossBasePresentationAttribute>() { new MvxActivityPresentationAttribute() };
+        IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
+        //IList<CrossBasePresentationAttribute> attributes = new List<CrossBasePresentationAttribute>() { new MvxActivityPresentationAttribute() };
         if (attributes.Count > 0)
         {
             CrossBasePresentationAttribute? attribute = null;
@@ -280,7 +280,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     protected virtual ViewPager? FindViewPagerInFragmentPresentation(
         MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
     {
-        ValidateArguments(pagerFragmentAttribute);
+        ArgumentNullException.ThrowIfNull(pagerFragmentAttribute);
 
         ViewPager? viewPager = null;
 
@@ -338,7 +338,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     protected virtual Bundle CreateActivityTransitionOptions(
         Intent intent, MvxActivityPresentationAttribute attribute, CrossViewModelRequest request)
     {
-        ValidateArguments(attribute, request);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
+
 
         ArgumentNullException.ThrowIfNull(intent, nameof(intent));
 
@@ -463,7 +465,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected virtual void ShowHostActivity(MvxFragmentPresentationAttribute attribute)
     {
-        ValidateArguments(attribute);
+        ArgumentNullException.ThrowIfNull(attribute);
 
         if (attribute.ActivityHostViewModelType == null)
             throw new ArgumentException("ActivityHostViewModelType not set on attribute");
@@ -540,7 +542,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(attribute, request);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         ArgumentNullException.ThrowIfNull(fragmentManager, nameof(fragmentManager));
 
@@ -623,8 +626,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     {
         ArgumentNullException.ThrowIfNull(fragmentTransaction, nameof(fragmentTransaction));
         ArgumentNullException.ThrowIfNull(fragment, nameof(fragment));
-
-        ValidateArguments(attribute, request);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         if (CurrentActivity.IsActivityAlive() && CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity)
         {
@@ -866,7 +869,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     protected virtual Task<bool> CloseFragmentDialog(
         ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
     {
-        ValidateArguments(attribute);
+        ArgumentNullException.ThrowIfNull(attribute);
 
         string tag = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
         var toClose = CurrentFragmentManager?.FindFragmentByTag(tag);
@@ -896,7 +899,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     protected virtual Task<bool> CloseFragment(
         ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
     {
-        ValidateArguments(attribute);
+        ArgumentNullException.ThrowIfNull(attribute);
 
         // try to close nested fragment first
         if (attribute.FragmentHostViewType != null)
@@ -926,7 +929,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         FragmentManager fragmentManager,
         MvxFragmentPresentationAttribute fragmentAttribute)
     {
-        ValidateArguments(fragmentAttribute);
+        ArgumentNullException.ThrowIfNull(fragmentAttribute);
 
         ArgumentNullException.ThrowIfNull(fragmentManager, nameof(fragmentManager));
 
@@ -1010,7 +1013,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         ICrossViewModel? viewModel,
         MvxViewPagerFragmentPresentationAttribute attribute)
     {
-        ValidateArguments(attribute);
+        ArgumentNullException.ThrowIfNull(attribute);
 
         ViewPager? viewPager = null;
         FragmentManager? fragmentManager;
@@ -1058,8 +1061,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxFragmentPresentationAttribute attribute,
         MvxCachingFragmentStatePagerAdapter adapter)
     {
-        ValidateArguments(attribute);
-
+        ArgumentNullException.ThrowIfNull(attribute);
         ArgumentNullException.ThrowIfNull(adapter);
 
         MvxViewPagerFragmentInfo? fragmentInfo = null;
@@ -1093,8 +1095,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         CrossBasePresentationAttribute attribute,
         Type fragmentType)
     {
-        ValidateArguments(attribute);
-
+        ArgumentNullException.ThrowIfNull(attribute);
         ArgumentNullException.ThrowIfNull(fragmentManager);
         ArgumentNullException.ThrowIfNull(fragmentType);
 
@@ -1167,23 +1168,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     private static void ValidateArguments(Type? view, CrossBasePresentationAttribute? attribute, CrossViewModelRequest? request)
     {
         ArgumentNullException.ThrowIfNull(view);
-        ValidateArguments(attribute, request);
-    }
-
-    private static void ValidateArguments(CrossBasePresentationAttribute? attribute, CrossViewModelRequest? request)
-    {
-        ValidateArguments(attribute);
-
-        ValidateArguments(request);
-    }
-
-    private static void ValidateArguments(CrossBasePresentationAttribute? attribute)
-    {
         ArgumentNullException.ThrowIfNull(attribute);
-    }
-
-    private static void ValidateArguments(CrossViewModelRequest? request)
-    {
         ArgumentNullException.ThrowIfNull(request);
     }
 }
