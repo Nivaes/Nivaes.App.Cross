@@ -16,12 +16,12 @@ namespace Nivaes.App.Cross.AppKitOS
             ObjCRuntime.Runtime.MarshalManagedException += Runtime_MarshalManagedException;
         }
 
-        protected override void SaveException(Exception ex)
+        protected override void SaveException(Exception ex, string description)
         {
             throw new NotImplementedException();
         }
 
-        protected override void LoadAndSendException(Exception ex)
+        protected override Task LoadAndSendException()
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             var ex = args.Exception;
 
-            SaveException(ex);
+            SaveException(ex, "Marshall managed exception ocurred");
 
             base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
         }

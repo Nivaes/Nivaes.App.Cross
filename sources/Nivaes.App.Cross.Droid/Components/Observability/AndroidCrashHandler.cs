@@ -2,11 +2,16 @@
 using Android.Runtime;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using System.IO.Enumeration;
 
 namespace Nivaes.App.Cross.Droid
 {
     public class AndroidCrashHandler : CrashHandler
     {
+        private string PathCrashFile => Path.Combine(
+                     Application.Context.FilesDir?.AbsolutePath!,
+                     "crash.log");
+
         public AndroidCrashHandler(ILogger<AndroidCrashHandler> logger)
             : base(logger)
         {
@@ -23,39 +28,22 @@ namespace Nivaes.App.Cross.Droid
         {
             try
             {
-                string path = Path.Combine(
-                     Application.Context.FilesDir?.AbsolutePath!,
-                     "crash.log");
-
-                //var json = File.ReadAllText(file);
-                //var json = JsonSerializer.Serialize(ex);
-
-                //var json = File.ReadAllText(file);
-
-                //File.WriteAllText(path, json);
-
-                var logText = $"""
-                        {description}
-                        {ex.GetType().FullName}
-                        message: {ex.Message}
-                        stacktrace: {ex.StackTrace}
-                        {ex}
-                        """;
-
-
-                base.Logger.LogCritical(logText);
+                var json = Serialize(ex);
+                File.WriteAllText(PathCrashFile, json);
             }
             catch(Exception exx)
             { }
         }
 
-        protected override void LoadAndSendException(Exception ex)
+        protected override async Task LoadAndSendException()
         {
-            string path = Path.Combine(
-                 Application.Context.FilesDir?.AbsolutePath!,
-                 "crash.log");
+            var json = await File.ReadAllTextAsync(PathCrashFile);
 
-            var json = File.ReadAllText(path);
+            if (File.Exists(PathCrashFile))
+            {
+                base.Logger.LogCritical(json);
+                File.Delete(PathCrashFile);
+            }
         }
 
         private void AndroidEnvironment_UnhandledExceptionRaiser(

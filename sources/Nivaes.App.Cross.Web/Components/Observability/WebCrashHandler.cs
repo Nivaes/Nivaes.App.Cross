@@ -14,12 +14,12 @@ namespace Nivaes.App.Cross.Web
             base.Register();
         }
 
-        protected override void SaveException(Exception ex)
+        protected override void SaveException(Exception ex, string description)
         {
             throw new NotImplementedException();
         }
 
-        protected override void LoadAndSendException(Exception ex)
+        protected override Task LoadAndSendException()
         {
             throw new NotImplementedException();
         }

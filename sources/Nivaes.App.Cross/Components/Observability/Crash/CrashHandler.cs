@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
 {
@@ -20,11 +21,14 @@ namespace Nivaes.App.Cross
 
             // Excepciones en tareas asíncronas no observadas
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            Task.Run(async () => LoadAndSendException());
         }
 
         protected abstract void SaveException(Exception ex, string message);
 
-        protected abstract void LoadAndSendException(Exception ex);
+        protected abstract Task LoadAndSendException();
+
 
         private void CurrentDomain_UnhandledException(
             object sender,
@@ -47,6 +51,19 @@ namespace Nivaes.App.Cross
             _logger.LogCritical(ex, "Unobserved task exception occurred.");
 
             e.SetObserved();
+        }
+
+        protected static string Serialize(Exception ex)
+        {
+            var crash = new CrashInfo
+            {
+                Timestamp = DateTime.UtcNow,
+                Type = ex.GetType().FullName ?? "",
+                Message = ex.Message,
+                StackTrace = ex.ToString()
+            };
+
+            return JsonSerializer.Serialize(crash);
         }
     }
 }
