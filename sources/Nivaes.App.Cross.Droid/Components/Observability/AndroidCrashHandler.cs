@@ -1,8 +1,5 @@
-﻿using System.Text.Json;
-using Android.Runtime;
+﻿using Android.Runtime;
 using Microsoft.Extensions.Logging;
-using System.IO;
-using System.IO.Enumeration;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -20,7 +17,6 @@ namespace Nivaes.App.Cross.Droid
         public override void Register()
         {
             base.Register();
-            // Excepciones en código Java
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
         }
 

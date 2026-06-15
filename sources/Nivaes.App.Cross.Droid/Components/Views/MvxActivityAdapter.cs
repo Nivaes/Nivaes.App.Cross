@@ -9,25 +9,25 @@ namespace Nivaes.App.Cross.Droid;
 [RequiresUnreferencedCode("Loading ViewModels requires unreferenced code")]
 public class MvxActivityAdapter : MvxBaseActivityAdapter
 {
-    protected IMvxAndroidView AndroidView => Activity as IMvxAndroidView;
+    protected IMvxAndroidView? AndroidView => Activity as IMvxAndroidView;
 
-    public MvxActivityAdapter(IMvxEventSourceActivity eventSource)
+    public MvxActivityAdapter(ICrossEventSourceActivity eventSource)
         : base(eventSource)
     {
     }
 
-    protected override void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnStopCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewStop();
+        AndroidView?.OnViewStop();
     }
 
-    protected override void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnStartCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewStart();
+        AndroidView?.OnViewStart();
     }
 
     protected override void EventSourceOnStartActivityForResultCalled(
-        object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+        object? sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
     {
         var requestCode = eventArgs.Value.RequestCode;
         switch (requestCode)
@@ -41,39 +41,39 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         }
     }
 
-    protected override void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnResumeCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewResume();
+        AndroidView?.OnViewResume();
     }
 
-    protected override void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnRestartCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewRestart();
+        AndroidView?.OnViewRestart();
     }
 
-    protected override void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnPauseCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewPause();
+        AndroidView?.OnViewPause();
     }
 
-    protected override void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
+    protected override void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent> eventArgs)
     {
-        AndroidView.OnViewNewIntent();
+        AndroidView?.OnViewNewIntent();
     }
 
-    protected override void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
+    protected override void EventSourceOnDestroyCalled(object? sender, EventArgs eventArgs)
     {
-        AndroidView.OnViewDestroy();
+        AndroidView?.OnViewDestroy();
     }
 
-    protected override void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    protected override void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle> eventArgs)
     {
-        AndroidView.OnViewCreate(eventArgs.Value);
+        AndroidView?.OnViewCreate(eventArgs.Value);
     }
 
-    protected override void EventSourceOnSaveInstanceStateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    protected override void EventSourceOnSaveInstanceStateCalled(object? sender, CrossValueEventArgs<Bundle> eventArgs)
     {
-        var mvxBundle = AndroidView.CreateSaveStateBundle();
+        var mvxBundle = AndroidView?.CreateSaveStateBundle();
         if (mvxBundle != null)
         {
             if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
@@ -95,7 +95,7 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
     }
 
     protected override void EventSourceOnActivityResultCalled(
-        object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
+        object? sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
     {
         if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
         {

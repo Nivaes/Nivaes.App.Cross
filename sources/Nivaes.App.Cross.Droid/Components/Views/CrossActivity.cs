@@ -6,16 +6,16 @@ namespace Nivaes.App.Cross.Droid;
 
 [Register("nivaes.cross.activity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
-public abstract class MvxActivity
-    : MvxEventSourceActivity
+public abstract class CrossActivity
+    : CrossEventSourceActivity
     , IMvxAndroidView
 {
-    protected MvxActivity(IntPtr javaReference, JniHandleOwnership transfer)
+    protected CrossActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
     {
     }
 
-    protected MvxActivity()
+    protected CrossActivity()
     {
         BindingContext = new MvxAndroidBindingContext(this, this);
         this.AddEventListeners();
@@ -117,7 +117,7 @@ public abstract class MvxActivity
 }
 
 [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-public abstract class MvxActivity<TViewModel> : MvxActivity, IMvxAndroidView<TViewModel>
+public abstract class MvxActivity<TViewModel> : CrossActivity, IMvxAndroidView<TViewModel>
     where TViewModel : class, ICrossViewModel
 {
     public new TViewModel? ViewModel

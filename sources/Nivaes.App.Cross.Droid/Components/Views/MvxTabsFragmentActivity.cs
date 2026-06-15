@@ -15,7 +15,7 @@ namespace MvvmCross.Platforms.Android.Views
     [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
     public abstract class MvxTabsFragmentActivity
-        : MvxActivity, TabHost.IOnTabChangeListener
+        : CrossActivity, TabHost.IOnTabChangeListener
     {
         private const string SavedTabIndexStateKey = "__savedTabIndex";
         private readonly Dictionary<string, TabInfo> _lookup = new Dictionary<string, TabInfo>();

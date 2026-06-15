@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [MvxActivityPresentation]
 [Activity(Label = "View for CustomBindingViewModel", Theme = "@style/AppTheme")]
 [RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
-public sealed class CustomBindingView : MvxActivity
+public sealed class CustomBindingView : CrossActivity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
     {

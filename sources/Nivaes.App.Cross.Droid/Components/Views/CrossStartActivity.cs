@@ -8,8 +8,8 @@ namespace Nivaes.App.Cross.Droid;
 
 [Register("nivaes.cross.startActivity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
-public abstract class MvxStartActivity
-    : MvxActivity
+public abstract class CrossStartActivity
+    : CrossActivity
 {
     protected const int NoContent = 0;
 
@@ -23,13 +23,13 @@ public abstract class MvxStartActivity
     //    set { base.ViewModel = value; }
     //}
 
-    protected MvxStartActivity(int resourceId = NoContent)
+    protected CrossStartActivity(int resourceId = NoContent)
     {
         //RegisterSetup();
         _resourceId = resourceId;
     }
 
-    protected MvxStartActivity(IntPtr javaReference, JniHandleOwnership transfer)
+    protected CrossStartActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
     {
     }
