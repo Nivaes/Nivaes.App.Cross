@@ -5,11 +5,11 @@ namespace Nivaes.App.Cross.Droid;
 
 public abstract class MvxBaseActivityAdapter
 {
-    private readonly IMvxEventSourceActivity _eventSource;
+    private readonly ICrossEventSourceActivity _eventSource;
 
-    protected Activity Activity => _eventSource as Activity;
+    protected Activity? Activity => _eventSource as Activity;
 
-    protected MvxBaseActivityAdapter(IMvxEventSourceActivity eventSource)
+    protected MvxBaseActivityAdapter(ICrossEventSourceActivity eventSource)
     {
         _eventSource = eventSource;
 
@@ -30,58 +30,58 @@ public abstract class MvxBaseActivityAdapter
     }
 
     protected virtual void EventSourceOnSaveInstanceStateCalled(
-        object sender, CrossValueEventArgs<Bundle> eventArgs)
+        object? sender, CrossValueEventArgs<Bundle> eventArgs)
     {
     }
 
     protected virtual void EventSourceOnCreateWillBeCalled(
-        object sender, CrossValueEventArgs<Bundle> eventArgs)
+        object? sender, CrossValueEventArgs<Bundle> eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnStopCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnStopCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnStartCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnStartCalled(object? sender, EventArgs eventArgs)
     {
     }
 
     protected virtual void EventSourceOnStartActivityForResultCalled(
-        object sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
+        object? sender, CrossValueEventArgs<MvxStartActivityForResultParameters> eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnResumeCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnResumeCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnRestartCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnRestartCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnPauseCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnPauseCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnNewIntentCalled(object sender, CrossValueEventArgs<Intent> eventArgs)
+    protected virtual void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent> eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnDisposeCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnDisposeCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
+    protected virtual void EventSourceOnDestroyCalled(object? sender, EventArgs eventArgs)
     {
     }
 
-    protected virtual void EventSourceOnCreateCalled(object sender, CrossValueEventArgs<Bundle> eventArgs)
+    protected virtual void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle> eventArgs)
     {
     }
 
     protected virtual void EventSourceOnActivityResultCalled(
-        object sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
+        object? sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
     {
     }
 }

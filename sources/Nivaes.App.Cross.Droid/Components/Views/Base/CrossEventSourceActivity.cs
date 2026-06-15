@@ -5,14 +5,14 @@ using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 namespace Nivaes.App.Cross.Droid
 {
     [Register("nivaes.cross.eventSourceActivity")]
-    public abstract class MvxEventSourceActivity
-        : Activity, IMvxEventSourceActivity
+    public abstract class CrossEventSourceActivity
+        : Activity, ICrossEventSourceActivity
     {
-        protected MvxEventSourceActivity()
+        protected CrossEventSourceActivity()
         {
         }
 
-        protected MvxEventSourceActivity(IntPtr javaReference, JniHandleOwnership transfer)
+        protected CrossEventSourceActivity(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
         }

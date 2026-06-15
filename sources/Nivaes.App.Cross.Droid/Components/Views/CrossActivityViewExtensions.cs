@@ -4,11 +4,12 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
-public static class MvxActivityViewExtensions
+public static class CrossActivityViewExtensions
 {
     [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
-    public static void AddEventListeners(this IMvxEventSourceActivity activity)
+    public static void AddEventListeners(this ICrossEventSourceActivity activity)
     {
+        // ToDo: Mirar si es mejor meter esto en cada clase, para que no sea tan generico.
         if (activity is IMvxAndroidView)
         {
             var adapter = new MvxActivityAdapter(activity);

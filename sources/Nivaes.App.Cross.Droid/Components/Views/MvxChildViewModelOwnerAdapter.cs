@@ -5,9 +5,9 @@ namespace Nivaes.App.Cross.Droid
     public class MvxChildViewModelOwnerAdapter 
         : MvxBaseActivityAdapter
     {
-        protected IMvxChildViewModelOwner ChildOwner => (IMvxChildViewModelOwner)Activity;
+        protected IMvxChildViewModelOwner? ChildOwner => (IMvxChildViewModelOwner?)Activity;
 
-        public MvxChildViewModelOwnerAdapter(IMvxEventSourceActivity eventSource)
+        public MvxChildViewModelOwnerAdapter(ICrossEventSourceActivity eventSource)
             : base(eventSource)
         {
             if (!(eventSource is IMvxChildViewModelOwner))
@@ -17,15 +17,15 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        protected override void EventSourceOnDestroyCalled(object sender, EventArgs eventArgs)
+        protected override void EventSourceOnDestroyCalled(object? sender, EventArgs eventArgs)
         {
-            ChildOwner.ClearOwnedSubIndicies();
+            ChildOwner?.ClearOwnedSubIndicies();
             base.EventSourceOnDestroyCalled(sender, eventArgs);
         }
 
-        protected override void EventSourceOnDisposeCalled(object sender, EventArgs eventArgs)
+        protected override void EventSourceOnDisposeCalled(object? sender, EventArgs eventArgs)
         {
-            ChildOwner.ClearOwnedSubIndicies();
+            ChildOwner?.ClearOwnedSubIndicies();
             base.EventSourceOnDisposeCalled(sender, eventArgs);
         }
     }

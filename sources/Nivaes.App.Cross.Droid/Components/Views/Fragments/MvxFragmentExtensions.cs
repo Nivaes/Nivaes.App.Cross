@@ -90,7 +90,7 @@ public static class MvxFragmentExtensions2
         }
     }
 
-    public static TFragment? FindFragmentById<TFragment>(this MvxActivity activity, int resourceId)
+    public static TFragment? FindFragmentById<TFragment>(this CrossActivity activity, int resourceId)
         where TFragment : Fragment
     {
         var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
@@ -104,7 +104,7 @@ public static class MvxFragmentExtensions2
         return SafeCast<TFragment>(fragment);
     }
 
-    public static TFragment? FindFragmentByTag<TFragment>(this MvxActivity activity, string tag)
+    public static TFragment? FindFragmentByTag<TFragment>(this CrossActivity activity, string tag)
         where TFragment : Fragment
     {
         var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
