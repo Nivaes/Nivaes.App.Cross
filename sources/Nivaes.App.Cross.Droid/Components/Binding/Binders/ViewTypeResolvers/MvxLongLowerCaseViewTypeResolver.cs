@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
     using MvvmCross.IoC;
 
+    [Obsolete("", true)]
     public abstract class MvxLongLowerCaseViewTypeResolver 
         : MvxReflectionViewTypeResolver
     {

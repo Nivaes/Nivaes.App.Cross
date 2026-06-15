@@ -3,6 +3,7 @@ using MvvmCross.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
+[Obsolete("", true)]
 public class MvxNamespaceListViewTypeResolver 
     : MvxLongLowerCaseViewTypeResolver, IMvxNamespaceListViewTypeResolver
 {

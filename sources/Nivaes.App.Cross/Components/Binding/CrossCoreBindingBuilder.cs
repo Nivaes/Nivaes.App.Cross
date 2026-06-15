@@ -5,6 +5,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public class CrossCoreBindingBuilder
 {
     [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]

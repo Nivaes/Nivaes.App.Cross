@@ -7,6 +7,7 @@ using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Droid;
 
+[Obsolete("", true)]
 public class MvxAxmlNameViewTypeResolver : MvxLongLowerCaseViewTypeResolver, IMvxAxmlNameViewTypeResolver
 {
     public MvxAxmlNameViewTypeResolver(IMvxTypeCache typeCache)

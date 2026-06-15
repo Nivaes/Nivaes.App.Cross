@@ -10,7 +10,7 @@ namespace MvvmCross.IoC;
 [Obsolete("Quitar MvxIoC")]
 public interface IMvxIoCProvider
 {
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     bool CanResolve<T>()
         where T : class;
 
@@ -24,7 +24,7 @@ public interface IMvxIoCProvider
     [Obsolete("Quitar MvxIoC", true)]
     object? Resolve([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type type);
 
-    [Obsolete("Quitar MvxIoC", true)]
+    [Obsolete("Quitar MvxIoC")]
     bool TryResolve<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(out T? resolved)
         where T : class;
 

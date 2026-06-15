@@ -12,7 +12,7 @@ namespace MvvmCross.IoC;
 /// <para>Singleton IoC Provider.</para>
 /// <para>Delegates to the <see cref="MvxIoCContainer"/> implementation</para>
 /// </summary>
-[Obsolete("Quitar MvxIoC", true)]
+[Obsolete("Quitar MvxIoC")]
 public sealed class MvxIoCProvider
     : CrossSingleton<IMvxIoCProvider>, IMvxIoCProvider
 {

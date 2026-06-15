@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.IoC;
     using MvvmCross.Plugin;
 
+    [Obsolete("", true)]
     [MvxPlugin]
     [Preserve(AllMembers = true)]
     public sealed class Plugin : CrossBasePlugin

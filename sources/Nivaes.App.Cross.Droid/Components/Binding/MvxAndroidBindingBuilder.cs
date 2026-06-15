@@ -11,6 +11,7 @@ using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace Nivaes.App.Cross.Droid;
 
+[Obsolete("", true)]
 public class MvxAndroidBindingBuilder
     : CrossBindingBuilder
 {

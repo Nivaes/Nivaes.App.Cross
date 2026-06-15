@@ -3,6 +3,7 @@ using MvvmCross.Platforms.Mac.Binding.Target;
 
 namespace Nivaes.App.Cross.AppKitOS;
 
+[Obsolete("", true)]
 public class MvxMacBindingBuilder
     : CrossBindingBuilder
 {

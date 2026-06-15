@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
     using MvvmCross.IoC;
 
+    [Obsolete("", true)]
     public class MvxJustNameViewTypeResolver : MvxReflectionViewTypeResolver
     {
         public MvxJustNameViewTypeResolver(IMvxTypeCache typeCache) : base(typeCache)

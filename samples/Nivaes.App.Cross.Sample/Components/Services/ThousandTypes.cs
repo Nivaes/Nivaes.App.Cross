@@ -2,6 +2,7 @@ using MvvmCross.IoC;
 
 namespace Playground.Core.Services
 {
+    [Obsolete("", true)]
     public static class ThousandTypes
     {
         private static void RegisterParameters(this IMvxIoCProvider provider)
