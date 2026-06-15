@@ -51,7 +51,7 @@ public abstract class CrossActivity
     // ReSharper disable once InconsistentNaming
     public override void SetContentView(int layoutResID)
     {
-        if (BaseContextToAttach(this) is MvxContextWrapper)
+        if (BaseContextToAttach(this) is CrossContextWrapper)
         {
             var view = this.BindingInflate(layoutResID, null);
             SetContentView(view);
@@ -66,7 +66,7 @@ public abstract class CrossActivity
     }
 
     protected virtual Context BaseContextToAttach(Context? @base)
-        => MvxContextWrapper.Wrap(@base, this);
+        => CrossContextWrapper.Wrap(@base, this);
 
     protected override void AttachBaseContext(Context? @base)
     {

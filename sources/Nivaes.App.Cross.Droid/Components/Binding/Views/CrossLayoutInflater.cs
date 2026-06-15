@@ -9,7 +9,6 @@ using Java.Lang;
 using Java.Lang.Reflect;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Droid;
 using Nivaes.IoC;
 using Boolean = Java.Lang.Boolean;
 using Exception = Java.Lang.Exception;
@@ -40,9 +39,9 @@ namespace Nivaes.App.Cross.Droid;
 /// See: https://github.com/chrisjenx/Calligraphy/blob/master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/CalligraphyLayoutInflater.java" />
 /// </para>
 /// </summary>
-[Register("mvvmcross.platforms.android.binding.views.MvxLayoutInflater")]
-[RequiresUnreferencedCode("MvvmCross binding requires unreferenced code")]
-public class MvxLayoutInflater : LayoutInflater
+[Register("nivaes.cross.LayoutInflater")]
+[RequiresUnreferencedCode("Cross binding requires unreferenced code")]
+public class CrossLayoutInflater : LayoutInflater
 {
     public class MvxBindingVisitor
     {
@@ -81,14 +80,14 @@ public class MvxLayoutInflater : LayoutInflater
     private Field? _constructorArgs;
     private bool _setPrivateFactory;
 
-    public MvxLayoutInflater(Context context)
+    public CrossLayoutInflater(Context context)
         : base(context)
     {
         _bindingVisitor = new MvxBindingVisitor();
         SetupLayoutFactories(false);
     }
 
-    public MvxLayoutInflater(LayoutInflater original, Context? newContext, MvxBindingVisitor? bindingVisitor, bool cloned)
+    public CrossLayoutInflater(LayoutInflater? original, Context? newContext, MvxBindingVisitor? bindingVisitor, bool cloned)
         : base(original, newContext)
     {
         _bindingVisitor = bindingVisitor ?? new MvxBindingVisitor();
@@ -96,8 +95,8 @@ public class MvxLayoutInflater : LayoutInflater
         SetupLayoutFactories(cloned);
     }
 
-    [DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(MvxLayoutInflater))]
-    public MvxLayoutInflater(IntPtr handle, JniHandleOwnership transfer)
+    [DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(CrossLayoutInflater))]
+    public CrossLayoutInflater(IntPtr handle, JniHandleOwnership transfer)
         : base(handle, transfer)
     {
         _bindingVisitor = new MvxBindingVisitor();
@@ -106,7 +105,7 @@ public class MvxLayoutInflater : LayoutInflater
 
     public override LayoutInflater CloneInContext(Context? newContext)
     {
-        return new MvxLayoutInflater(this, newContext, _bindingVisitor, true);
+        return new CrossLayoutInflater(this, newContext, _bindingVisitor, true);
     }
 
     // We can't call this.  See: https://bugzilla.xamarin.com/show_bug.cgi?id=30843
@@ -270,7 +269,7 @@ public class MvxLayoutInflater : LayoutInflater
         }
         catch (Exception ex)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
             logger?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
         }
 
@@ -434,7 +433,7 @@ public class MvxLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
                 logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
             }
 
@@ -451,9 +450,9 @@ public class MvxLayoutInflater : LayoutInflater
 
         private readonly IFactory2 _factory2;
         private readonly MvxBindingVisitor _bindingVisitor;
-        private readonly MvxLayoutInflater _inflater;
+        private readonly CrossLayoutInflater _inflater;
 
-        internal PrivateFactoryWrapper2(IFactory2 factory2, MvxLayoutInflater inflater,
+        internal PrivateFactoryWrapper2(IFactory2 factory2, CrossLayoutInflater inflater,
             MvxBindingVisitor bindingVisitor)
         {
             _factory2 = factory2;
@@ -473,7 +472,7 @@ public class MvxLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
                 logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
             }
 
@@ -487,7 +486,7 @@ public class MvxLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxLayoutInflater>>();
+                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
                 logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
             }
 

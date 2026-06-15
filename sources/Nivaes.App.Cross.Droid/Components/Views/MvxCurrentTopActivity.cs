@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using Android.Runtime;
 
-    [Register("nivaes.cross.currentTopActivity")]
+    [Register("nivaes.cross.CurrentTopActivity")]
     public class MvxCurrentTopActivity
         : Java.Lang.Object, Application.IActivityLifecycleCallbacks, IMvxAndroidCurrentTopActivity
     {

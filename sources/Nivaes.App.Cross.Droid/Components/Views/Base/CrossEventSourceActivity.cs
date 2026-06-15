@@ -4,7 +4,7 @@ using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Register("nivaes.cross.eventSourceActivity")]
+    [Register("nivaes.cross.EventSourceActivity")]
     public abstract class CrossEventSourceActivity
         : Activity, ICrossEventSourceActivity
     {

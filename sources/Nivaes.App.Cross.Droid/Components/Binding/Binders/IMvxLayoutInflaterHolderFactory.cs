@@ -10,6 +10,6 @@ namespace Nivaes.App.Cross.Droid
     {
         IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings { get; }
 
-        View BindCreatedView(View view, Context context, IAttributeSet attrs);
+        View BindCreatedView(View view, Context? context, IAttributeSet? attrs);
     }
 }
