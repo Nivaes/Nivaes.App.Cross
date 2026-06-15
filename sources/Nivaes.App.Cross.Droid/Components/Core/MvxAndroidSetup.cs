@@ -35,23 +35,23 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void InitializeFirstChance()
         {
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
+            //var container = Singleton<CrossIoCServiceContainer>.Instance;
 
-            InitializeLifetimeMonitor(container);
-            InitializeAndroidCurrentTopActivity(container);
-            //RegisterPresenter(container);
+            //InitializeLifetimeMonitor(container);
+            //InitializeAndroidCurrentTopActivity(container);
+            ////RegisterPresenter(container);
 
-            container.AddInstance<IMvxAndroidGlobals>(this);
+            //container.AddInstance<IMvxAndroidGlobals>(this);
 
-            var intentResultRouter = new MvxIntentResultSink();
-            container.AddInstance<IMvxIntentResultSink>(intentResultRouter);
-            container.AddInstance<IMvxIntentResultSource>(intentResultRouter);
+            //var intentResultRouter = new MvxIntentResultSink();
+            //container.AddInstance<IMvxIntentResultSink>(intentResultRouter);
+            //container.AddInstance<IMvxIntentResultSource>(intentResultRouter);
 
-            var viewModelTemporaryCache = new MvxSingleViewModelCache();
-            container.AddInstance<IMvxSingleViewModelCache>(viewModelTemporaryCache);
+            //var viewModelTemporaryCache = new MvxSingleViewModelCache();
+            //container.AddInstance<IMvxSingleViewModelCache>(viewModelTemporaryCache);
 
-            var viewModelMultiTemporaryCache = new MvxMultipleViewModelCache();
-            container.AddInstance<IMvxMultipleViewModelCache>(viewModelMultiTemporaryCache);
+            //var viewModelMultiTemporaryCache = new MvxMultipleViewModelCache();
+            //container.AddInstance<IMvxMultipleViewModelCache>(viewModelMultiTemporaryCache);
             base.InitializeFirstChance();
         }
 
@@ -94,7 +94,8 @@ namespace Nivaes.App.Cross.Droid
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
         protected virtual IMvxSavedStateConverter CreateSavedStateConverter()
         {
-            return new MvxSavedStateConverter();
+            return null;
+            //return new MvxSavedStateConverter();
         }
 
         protected override ICrossViewsContainer CreateViewsContainer()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
+using ProtoBuf;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -10,8 +11,17 @@ namespace Nivaes.App.Cross.Droid;
 public class MvxSavedStateConverter : IMvxSavedStateConverter
 {
     private const string ExtrasKey = "MvxSaved";
+    private readonly ICrossNavigationSerializer _serializer;
+    private readonly ILogger _logger;
 
-    public ICrossBundle? Read(Bundle bundle)
+
+    public MvxSavedStateConverter(ICrossNavigationSerializer serializer, ILogger<MvxSavedStateConverter> logger)
+    {
+        _serializer = serializer;
+        _logger = logger;
+    }
+
+    public ICrossBundle? Read(Bundle? bundle)
     {
         var extras = bundle?.GetString(ExtrasKey);
         if (string.IsNullOrEmpty(extras))
@@ -19,19 +29,17 @@ public class MvxSavedStateConverter : IMvxSavedStateConverter
 
         try
         {
-            var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
-            var data = converter.Serializer.DeserializeObject<Dictionary<string, string>>(extras);
+            var data = _serializer.Serializer.DeserializeObject<Dictionary<string, string>>(extras);
             return new CrossBundle(data);
         }
         catch (Exception ex)
         {
-            CrossLogHost.Default?.Log(LogLevel.Error, ex,
-                "Problem getting the saved state - will return null - from {Extras}", extras);
+            _logger.LogError(ex, "Problem getting the saved state - will return null - from {Extras}", extras);
             return null;
         }
     }
 
-    public void Write(Bundle bundle, ICrossBundle savedState)
+    public void Write(Bundle bundle, ICrossBundle? savedState)
     {
         if (savedState == null)
             return;
@@ -39,8 +47,7 @@ public class MvxSavedStateConverter : IMvxSavedStateConverter
         if (savedState.Data.Count == 0)
             return;
 
-        var converter = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
-        var data = converter.Serializer.SerializeObject(savedState.Data);
+        var data = _serializer.Serializer.SerializeObject(savedState.Data);
         bundle.PutString(ExtrasKey, data);
     }
 }

@@ -56,7 +56,7 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         AndroidView?.OnViewPause();
     }
 
-    protected override void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent> eventArgs)
+    protected override void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent?> eventArgs)
     {
         AndroidView?.OnViewNewIntent();
     }
@@ -66,7 +66,7 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         AndroidView?.OnViewDestroy();
     }
 
-    protected override void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle> eventArgs)
+    protected override void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle?> eventArgs)
     {
         AndroidView?.OnViewCreate(eventArgs.Value);
     }
@@ -76,35 +76,41 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         var mvxBundle = AndroidView?.CreateSaveStateBundle();
         if (mvxBundle != null)
         {
-            if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
-            {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
-                logger?.Log(LogLevel.Warning,
-                    "Saved state converter not available - saving state will be hard");
-            }
-            else
-            {
+            var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+
+            //if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
+            //{
+            //    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
+            //    logger?.Log(LogLevel.Warning,
+            //        "Saved state converter not available - saving state will be hard");
+            //}
+            //else
+            //{
                 converter.Write(eventArgs.Value, mvxBundle);
-            }
+            //}
         }
 
-        if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
-        {
-            cache.Cache(AndroidView.ViewModel, eventArgs.Value);
-        }
+        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
+
+        //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
+        //{
+            cache.Cache(AndroidView!.ViewModel!, eventArgs.Value);
+        //}
     }
 
     protected override void EventSourceOnActivityResultCalled(
         object? sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
     {
-        if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
-        {
+        var sink = IPlatformApplication.Current!.Services.GetRequiredService<IMvxIntentResultSink>();
+
+        //if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
+        //{
             var resultParameters = eventArgs.Value;
             var intentResult = new MvxIntentResultEventArgs(
                 resultParameters.RequestCode,
                 resultParameters.ResultCode,
-                resultParameters.Data);
+                resultParameters.Data!);
             sink.OnResult(intentResult);
-        }
+        //}
     }
 }

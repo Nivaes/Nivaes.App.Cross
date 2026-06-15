@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
             LoggerFactory = logFactory;
             NavigationService = navigationService;
 
-            Log.LogCritical($"Se inicio {this.GetType().Name}");
+            Log.LogTrace($"Se inicio {this.GetType().Name}");
 
             using var activity = Source.StartActivity("SampleCrossClient");
 
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross
         protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
             : base(logFactory, navigationService)
         {
-            Log.LogCritical($"Se inicio {this.GetType().Name}");
+            Log.LogTrace($"Se inicio {this.GetType().Name}");
         }
 
         public abstract void Prepare(TParameter parameter);

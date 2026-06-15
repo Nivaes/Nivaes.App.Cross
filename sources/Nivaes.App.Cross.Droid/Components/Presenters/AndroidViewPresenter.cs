@@ -164,7 +164,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         foreach (var item in fragmentAttributes.Where(
             att => att.ActivityHostViewModelType != null))
         {
-            if (CurrentActivity.IsActivityDead())
+            if (CurrentActivity!.IsActivityDead())
                 break;
 
             if (CurrentActivity!.FindViewById(item.FragmentContentId) != null &&
@@ -205,7 +205,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     {
         ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
-        if (viewType.IsSubclassOf(typeof(DialogFragment)))
+        if (viewType!.IsSubclassOf(typeof(DialogFragment)))
         {
             _logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
             return new MvxDialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
@@ -262,7 +262,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
             if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
             {
                 var fragmentInfo = FindFragmentInfoFromAttribute(pagerFragmentAttribute, adapter);
-                var index = adapter.FragmentsInfo.IndexOf(fragmentInfo);
+                var index = adapter.FragmentsInfo.IndexOf(fragmentInfo!);
                 if (index < 0)
                 {
                     _logger.Log(LogLevel.Trace, "Did not find ViewPager index for {Fragment}, skipping presentation change...", pagerFragmentAttribute.Tag);

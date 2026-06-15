@@ -5,13 +5,13 @@ namespace Nivaes.App.Cross.Droid;
 public interface ICrossEventSourceActivity 
     : ICrossDisposeSource
 {
-    event EventHandler<CrossValueEventArgs<Bundle>> CreateWillBeCalled;
+    event EventHandler<CrossValueEventArgs<Bundle?>> CreateWillBeCalled;
 
-    event EventHandler<CrossValueEventArgs<Bundle>> CreateCalled;
+    event EventHandler<CrossValueEventArgs<Bundle?>> CreateCalled;
 
     event EventHandler DestroyCalled;
 
-    event EventHandler<CrossValueEventArgs<Intent>> NewIntentCalled;
+    event EventHandler<CrossValueEventArgs<Intent?>> NewIntentCalled;
 
     event EventHandler ResumeCalled;
 

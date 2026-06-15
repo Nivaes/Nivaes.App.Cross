@@ -1,7 +1,7 @@
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
-namespace Playground.Core.ViewModels;
+namespace Nivaes.App.Cross.Sample;
 
 public class ParentContentViewModel 
     : CrossViewModel

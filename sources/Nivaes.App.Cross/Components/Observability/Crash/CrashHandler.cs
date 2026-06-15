@@ -55,14 +55,7 @@ namespace Nivaes.App.Cross
 
         protected static string Serialize(Exception ex)
         {
-            var crash = new CrashInfo
-            {
-                Timestamp = DateTime.UtcNow,
-                Type = ex.GetType().FullName ?? "",
-                Message = ex.Message,
-                StackTrace = ex.ToString()
-            };
-
+            var crash = new CrashInfo(ex);
             return JsonSerializer.Serialize(crash);
         }
     }

@@ -1,7 +1,7 @@
-namespace Playground.Mac
-{
-    using AppKit;
+using AppKit;
 
+namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
+{
     static class MainClass
     {
         static void Main(string[] args)

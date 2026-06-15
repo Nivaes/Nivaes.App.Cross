@@ -35,7 +35,7 @@ public abstract class MvxBaseActivityAdapter
     }
 
     protected virtual void EventSourceOnCreateWillBeCalled(
-        object? sender, CrossValueEventArgs<Bundle> eventArgs)
+        object? sender, CrossValueEventArgs<Bundle?> eventArgs)
     {
     }
 
@@ -64,7 +64,7 @@ public abstract class MvxBaseActivityAdapter
     {
     }
 
-    protected virtual void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent> eventArgs)
+    protected virtual void EventSourceOnNewIntentCalled(object? sender, CrossValueEventArgs<Intent?> eventArgs)
     {
     }
 
@@ -76,7 +76,7 @@ public abstract class MvxBaseActivityAdapter
     {
     }
 
-    protected virtual void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle> eventArgs)
+    protected virtual void EventSourceOnCreateCalled(object? sender, CrossValueEventArgs<Bundle?> eventArgs)
     {
     }
 

@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
 
             //_services.InvokeLifecycleEvents<AndroidLifecycle.OnApplicationCreating>(del => del(this));
 
-            InitializeContainer(crossApp.Services);
+            //InitializeContainer(crossApp.Services);
 
             _application = _services.GetRequiredService<IApplication>();
             
@@ -118,24 +118,24 @@ namespace Nivaes.App.Cross.Droid
         //}
 
 
-        // ToDO: Buscar donde registar ICrossSuspensionManager.
-        private void InitializeContainer(IServiceProvider serviceProvider)
-        {
-            //var suspensionManager = new CrossSuspensionManager();
-            var container = Singleton<CrossIoCServiceContainer>.Instance;
-            container.Merge(new DroidIoCServiceContainer());
+        //// ToDO: Buscar donde registar ICrossSuspensionManager.
+        //private void InitializeContainer(IServiceProvider serviceProvider)
+        //{
+        //    //var suspensionManager = new CrossSuspensionManager();
+        //    var container = Singleton<CrossIoCServiceContainer>.Instance;
+        //    container.Merge(new DroidIoCServiceContainer());
 
-            //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+        //    //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
-            //if (_suspensionManagerSessionStateKey != null)
-            //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+        //    //if (_suspensionManagerSessionStateKey != null)
+        //    //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
-            //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-            container.AddInstance<IServiceProvider>(serviceProvider);
+        //    //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+        //    container.AddInstance<IServiceProvider>(serviceProvider);
 
 
 
-            //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
-        }
+        //    //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
+        //}
     }
 }

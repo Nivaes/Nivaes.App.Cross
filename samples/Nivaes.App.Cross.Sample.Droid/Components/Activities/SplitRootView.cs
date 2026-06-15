@@ -3,7 +3,6 @@ using Android.Content.PM;
 using AndroidX.Core.View;
 using AndroidX.DrawerLayout.Widget;
 using Nivaes.App.Cross.Droid;
-using Playground.Core.ViewModels;
 using Playground.Droid.Extensions;
 
 namespace Nivaes.App.Cross.Sample.Droid;

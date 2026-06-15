@@ -4,6 +4,6 @@ namespace Nivaes.App.Cross.Droid
     {
         void Cache(ICrossViewModel toCache, Bundle bundle);
 
-        ICrossViewModel? GetAndClear(Bundle bundle);
+        ICrossViewModel? GetAndClear(Bundle? bundle);
     }
 }

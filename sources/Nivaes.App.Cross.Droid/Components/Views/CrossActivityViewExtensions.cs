@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -25,12 +26,14 @@ public static class CrossActivityViewExtensions
     }
 
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    public static void OnViewCreate(this IMvxAndroidView androidView, Bundle bundle)
+    public static void OnViewCreate(this IMvxAndroidView androidView, Bundle? bundle)
     {
         androidView.OnLifetimeEvent((listener, activity) => listener.OnCreate(activity, bundle));
 
         ICrossViewModel? cached = null;
-        if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
+
+        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
+        //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
             cached = cache?.GetAndClear(bundle);
 
         var view = (ICrossView)androidView;
@@ -43,18 +46,21 @@ public static class CrossActivityViewExtensions
         if (bundle == null)
             return null;
 
-        if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true || converter == null)
-        {
-            CrossLogHost.Default?.Log(LogLevel.Trace, "No saved state converter available - this is OK if seen during start");
-            return null;
-        }
+        var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+        //if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true || converter == null)
+        //{
+        //    CrossLogHost.Default?.Log(LogLevel.Trace, "No saved state converter available - this is OK if seen during start");
+        //    return null;
+        //}
         var savedState = converter.Read(bundle);
         return savedState;
     }
 
     public static void OnViewNewIntent(this IMvxAndroidView androidView)
     {
-        CrossLogHost.Default?.Log(LogLevel.Trace, "OnViewNewIntent called - MvvmCross lifecycle won't run automatically in this case");
+        var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+        logger.LogTrace("OnViewNewIntent called - Cross lifecycle won't run automatically in this case");
+        //CrossLogHost.Default?.Log(LogLevel.Trace, "OnViewNewIntent called - MvvmCross lifecycle won't run automatically in this case");
     }
 
     public static void OnViewDestroy(this IMvxAndroidView androidView)
@@ -63,21 +69,26 @@ public static class CrossActivityViewExtensions
         var view = androidView as ICrossView;
         view.OnViewDestroy();
 
-        if (Mvx.IoCProvider?.TryResolve<ICrossAppStart>(out var appStart) != true ||
-            Mvx.IoCProvider?.TryResolve<IMvxAndroidCurrentTopActivity>(out var topActivity) != true ||
-            appStart == null || topActivity == null)
-        {
-            return;
-        }
+        //var appStart = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
+        var application = IPlatformApplication.Current!.Services.GetRequiredService<IApplication>();
+        var topActivity = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
+
+
+        //if (Mvx.IoCProvider?.TryResolve<ICrossAppStart>(out var appStart) != true ||
+        //    Mvx.IoCProvider?.TryResolve<IMvxAndroidCurrentTopActivity>(out var topActivity) != true ||
+        //    appStart == null || topActivity == null)
+        //{
+        //    return;
+        //}
 
         var currentActivity = topActivity.Activity;
         if (IsActivityTearingDown(currentActivity))
         {
-            appStart.ResetStart();
+            application.Startup();
         }
         else if (currentActivity == null && IsActivityTearingDown(view as Activity))
         {
-            appStart.ResetStart();
+            application.Startup();
         }
     }
 
@@ -118,11 +129,13 @@ public static class CrossActivityViewExtensions
         this IMvxAndroidView androidView,
         Action<IMvxAndroidActivityLifetimeListener, Activity> report)
     {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidActivityLifetimeListener? activityLifetimeListener) == true &&
-            activityLifetimeListener != null)
-        {
+        var activityLifetimeListener = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidActivityLifetimeListener>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidActivityLifetimeListener? activityLifetimeListener) == true &&
+        //    activityLifetimeListener != null)
+        //{
             report(activityLifetimeListener, androidView.ToActivity());
-        }
+        //}
     }
 
     public static Activity ToActivity(this IMvxAndroidView androidView)
@@ -133,7 +146,7 @@ public static class CrossActivityViewExtensions
         return activity;
     }
 
-    [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
+    //[UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, ICrossBundle? savedState)
     {

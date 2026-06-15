@@ -1,4 +1,4 @@
-namespace Playground.Core.ViewModels
+namespace Nivaes.App.Cross.Sample
 {
     using System.Threading.Tasks;
     using Nivaes.App.Cross;

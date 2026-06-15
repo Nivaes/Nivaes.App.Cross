@@ -20,7 +20,7 @@ public class MvxBindingActivityAdapter
     }
 
     protected override void EventSourceOnCreateWillBeCalled(object? sender,
-                                                            CrossValueEventArgs<Bundle> MvxValueEventArgs)
+                                                            CrossValueEventArgs<Bundle?> MvxValueEventArgs)
     {
         BindingContext?.ClearAllBindings();
         base.EventSourceOnCreateWillBeCalled(sender, MvxValueEventArgs);

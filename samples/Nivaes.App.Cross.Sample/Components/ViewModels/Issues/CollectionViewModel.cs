@@ -1,4 +1,4 @@
-namespace Playground.Core.ViewModels
+namespace Nivaes.App.Cross.Sample
 {
     using System;
     using System.Drawing;
