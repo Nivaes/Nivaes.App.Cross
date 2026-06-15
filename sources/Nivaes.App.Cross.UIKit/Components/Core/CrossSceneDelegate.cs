@@ -66,7 +66,7 @@ public abstract class CrossSceneDelegate
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
 
-        InitializeContainer(crossApp.Services);
+        //InitializeContainer(crossApp.Services);
 
         _application = _services.GetRequiredService<IApplication>();
 
@@ -78,25 +78,25 @@ public abstract class CrossSceneDelegate
         FireLifetimeChanged(CrossLifetimeEvent.Launching);
     }
 
-    // ToDO: Buscar donde registar ICrossSuspensionManager.
-    private void InitializeContainer(IServiceProvider serviceProvider)
-    {
-        //var suspensionManager = new CrossSuspensionManager();
-        var container = Singleton<CrossIoCServiceContainer>.Instance;
-        container.Merge(new UIKitSubcontainer());
+    //// ToDO: Buscar donde registar ICrossSuspensionManager.
+    //private void InitializeContainer(IServiceProvider serviceProvider)
+    //{
+    //    //var suspensionManager = new CrossSuspensionManager();
+    //    var container = Singleton<CrossIoCServiceContainer>.Instance;
+    //    container.Merge(new UIKitSubcontainer());
 
-        //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
+    //    //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
 
-        //if (_suspensionManagerSessionStateKey != null)
-        //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
+    //    //if (_suspensionManagerSessionStateKey != null)
+    //    //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
 
-        //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-        container.AddInstance<IServiceProvider>(serviceProvider);
+    //    //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
+    //    container.AddInstance<IServiceProvider>(serviceProvider);
 
 
 
-        //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
-    }
+    //    //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
+    //}
 
     [Export("sceneDidDisconnect:")]
     public virtual void DidDisconnect(UIScene scene)

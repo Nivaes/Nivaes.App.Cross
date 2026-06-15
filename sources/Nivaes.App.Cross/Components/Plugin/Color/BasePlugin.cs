@@ -2,6 +2,7 @@ using MvvmCross.IoC;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public abstract class BasePlugin : IMvxPlugin
 {
     public virtual void Load(IMvxIoCProvider provider)

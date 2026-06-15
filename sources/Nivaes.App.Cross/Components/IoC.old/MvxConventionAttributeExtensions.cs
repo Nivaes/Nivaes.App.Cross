@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace MvvmCross.IoC;
 
-[Obsolete("Quitar MvxIoC")]
+[Obsolete("Quitar MvxIoC", true)]
 public static class MvxConventionAttributeExtensions
 {
     /// <summary>

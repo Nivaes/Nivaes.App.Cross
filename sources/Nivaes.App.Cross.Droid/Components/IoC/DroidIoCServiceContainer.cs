@@ -2,6 +2,7 @@
 {
     using Nivaes.IoC;
 
+    [Obsolete("", true)]
     public partial class DroidIoCServiceContainer 
         : IoCServiceContainer
     {

@@ -4,7 +4,7 @@
 
 namespace MvvmCross.IoC
 {
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     public interface IMvxPropertyInjectorOptions
     {
         MvxPropertyInjection InjectIntoProperties { get; }

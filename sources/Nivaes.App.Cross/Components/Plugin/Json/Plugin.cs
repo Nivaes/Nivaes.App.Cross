@@ -4,6 +4,7 @@ namespace MvvmCross.Plugin.Json
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 
+    [Obsolete("", true)]
     [MvxPlugin]
     [Preserve(AllMembers = true)]
     [RequiresUnreferencedCode("MvxJsonConverter requires unreferenced code")]

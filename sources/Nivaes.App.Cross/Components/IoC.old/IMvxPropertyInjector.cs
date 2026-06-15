@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC
 {
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     public interface IMvxPropertyInjector
     {
         void Inject<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TTarget>(

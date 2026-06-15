@@ -11,7 +11,7 @@ using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;
 
-[Obsolete("Quitar MvxIoC")]
+[Obsolete("Quitar MvxIoC", true)]
 public static class MvxTypeExtensions
 {
     [RequiresUnreferencedCode("This method uses reflection to get types, which may not be preserved in trimmed applications")]

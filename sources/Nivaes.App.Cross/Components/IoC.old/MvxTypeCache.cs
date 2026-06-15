@@ -10,7 +10,7 @@ using Nivaes.App.Cross;
 
 namespace MvvmCross.IoC;
 
-[Obsolete("Quitar MvxIoC")]
+[Obsolete("Quitar MvxIoC", true)]
 public class MvxTypeCache<TType> : IMvxTypeCache
 {
     public Dictionary<string, Type> LowerCaseFullNameCache { get; } = new();

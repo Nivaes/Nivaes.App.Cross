@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.IoC;
     using Nivaes.App.Cross.Visibility;
 
+    [Obsolete("", true)]
     public abstract class CrossBasePlugin 
         : IMvxPlugin
     {

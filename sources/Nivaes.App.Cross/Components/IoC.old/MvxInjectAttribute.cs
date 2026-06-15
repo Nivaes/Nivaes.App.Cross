@@ -6,7 +6,7 @@ using System;
 
 namespace MvvmCross.IoC
 {
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
     public class MvxInjectAttribute : Attribute
     {
