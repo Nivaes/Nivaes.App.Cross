@@ -15,8 +15,9 @@ namespace Playground.Core.ViewModels
             Description = $"View number {_counter++}";
         }
 
-        private string _description;
-        public string Description
+        private string? _description;
+
+        public string? Description
         {
             get => _description;
             set => SetProperty(ref _description, value);
