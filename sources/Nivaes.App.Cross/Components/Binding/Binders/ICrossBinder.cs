@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross
         IEnumerable<ICrossUpdateableBinding> LanguageBind(object? source, object target, string bindingText);
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        ICrossUpdateableBinding BindSingle(object? source, object target, string targetPropertyName,
+        ICrossUpdateableBinding? BindSingle(object? source, object target, string targetPropertyName,
                                          string partialBindingDescription);
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]

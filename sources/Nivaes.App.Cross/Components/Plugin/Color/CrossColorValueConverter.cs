@@ -1,10 +1,11 @@
 using System.Globalization;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 public abstract class CrossColorValueConverter : CroosValueConverter
 {
-    private readonly Lazy<ICrossNativeColor?> _nativeColor = new(() => Mvx.IoCProvider?.Resolve<ICrossNativeColor>());
+    private readonly Lazy<ICrossNativeColor?> _nativeColor = new(() => IPlatformApplication.Current!.Services.GetRequiredService<ICrossNativeColor>());
 
     protected abstract System.Drawing.Color Convert(object value, object? parameter, CultureInfo? culture);
 

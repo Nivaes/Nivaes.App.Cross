@@ -10,14 +10,14 @@ namespace Nivaes.App.Cross
         : ICrossBinder
     {
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<ICrossUpdateableBinding> Bind(object source, object target, string bindingText)
+        public IEnumerable<ICrossUpdateableBinding> Bind(object? source, object target, string bindingText)
         {
-            var bindingDescriptions = CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingText);
+            var bindingDescriptions = CrossBindingSingletonCache.Instance!.BindingDescriptionParser.Parse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<ICrossUpdateableBinding> Bind(object source, object target,
+        public IEnumerable<ICrossUpdateableBinding> Bind(object? source, object target,
                                                        IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
             if (bindingDescriptions == null)
@@ -28,19 +28,19 @@ namespace Nivaes.App.Cross
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public IEnumerable<ICrossUpdateableBinding> LanguageBind(object source, object target, string bindingText)
+        public IEnumerable<ICrossUpdateableBinding> LanguageBind(object? source, object target, string bindingText)
         {
             var bindingDescriptions =
-                CrossBindingSingletonCache.Instance.BindingDescriptionParser.LanguageParse(bindingText);
+                CrossBindingSingletonCache.Instance!.BindingDescriptionParser.LanguageParse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        public ICrossUpdateableBinding BindSingle(object source, object target, string targetPropertyName,
+        public ICrossUpdateableBinding? BindSingle(object? source, object target, string targetPropertyName,
                                                 string partialBindingDescription)
         {
             var bindingDescription =
-                CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(partialBindingDescription);
+                CrossBindingSingletonCache.Instance!.BindingDescriptionParser.ParseSingle(partialBindingDescription);
             if (bindingDescription == null)
                 return null;
 

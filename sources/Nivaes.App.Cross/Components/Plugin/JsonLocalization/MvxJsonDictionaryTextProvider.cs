@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
@@ -18,7 +19,7 @@ public abstract class MvxJsonDictionaryTextProvider
     {
         get
         {
-            _jsonConvert = _jsonConvert ?? Mvx.IoCProvider.Resolve<ICrossJsonConverter>();
+            _jsonConvert = _jsonConvert ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossJsonConverter>();
             return _jsonConvert;
         }
     }

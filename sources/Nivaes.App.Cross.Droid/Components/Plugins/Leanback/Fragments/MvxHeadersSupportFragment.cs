@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid
     using Nivaes.App.Cross;
 
     [Register("mvvmcross.droidx.leanback.fragments.MvxHeadersSupportFragment")]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxHeadersSupportFragment
         : MvxEventSourceHeadersSupportFragment, IMvxFragmentView
     {
@@ -73,7 +73,7 @@ namespace Nivaes.App.Cross.Droid
         public string UniqueImmutableCacheTag => Tag;
     }
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxHeadersSupportFragment<TViewModel> : MvxHeadersSupportFragment, IMvxFragmentView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

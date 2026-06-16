@@ -5,7 +5,7 @@ namespace Playground.iOS.Bindings
     using Nivaes.App.Cross;
     using Playground.iOS.Controls;
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class BinaryEditTargetBinding
         : MvxConvertingTargetBinding<BinaryEdit, int>
     {

@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using MvvmCross;
 
+    [Obsolete("", true)]
     [Preserve(AllMembers = true)]
     public class MvxTextViewTextColorBinding
         : MvxViewColorBinding

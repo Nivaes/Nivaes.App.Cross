@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -17,8 +18,9 @@ public static class MvxViewControllerExtensions
             CrossLogHost.Default?.LogTrace(
                 "MvxViewControllerExtensions: LoadViewModelRequest is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
 
-            if (Mvx.IoCProvider?.TryResolve(out ICrossCurrentRequest? currentRequest) == true &&
-                currentRequest?.CurrentRequest != null)
+            var currentRequest = IPlatformApplication.Current!.Services.GetRequiredService<ICrossCurrentRequest>();
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossCurrentRequest? currentRequest) == true &&
+            if (currentRequest?.CurrentRequest != null)
             {
                 iosView.Request = currentRequest.CurrentRequest;
             }
@@ -33,8 +35,9 @@ public static class MvxViewControllerExtensions
             return instanceRequest.ViewModelInstance;
         }
 
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
         if (iosView.Request != null &&
-            Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true &&
+            //Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true &&
             viewModelLoader != null)
         {
             var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);

@@ -4,7 +4,9 @@ namespace MvvmCross.DroidX.RecyclerView
     using Android.Runtime;
     using AndroidX.RecyclerView.Widget;
     using Java.Lang;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
     [Register("mvvmcross.droidx.recyclerview.MvxGuardedGridLayoutManager")]
@@ -38,7 +40,8 @@ namespace MvvmCross.DroidX.RecyclerView
             }
             catch (IndexOutOfBoundsException e)
             {
-                MvxAndroidLog.Instance?.LogWarning(e,
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                logger.LogWarning(e,
                     "Workaround of issue - https://code.google.com/p/android/issues/detail?id=77846#c1 - IndexOutOfBoundsException");
             }
         }

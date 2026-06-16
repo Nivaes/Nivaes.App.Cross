@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxActivityPresentation]
 [Activity(Theme = "@style/AppTheme", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public class TabsRootView : MvxActivity<TabsRootViewModel>
 {
     protected override void OnCreate(Bundle? savedInstanceState)

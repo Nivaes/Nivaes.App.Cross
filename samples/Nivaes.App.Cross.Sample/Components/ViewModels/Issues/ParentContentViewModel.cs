@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
@@ -40,10 +41,10 @@ public class ParentContentViewModel
 
     public override void Prepare()
     {
-        var vm = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+        var vm = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
         vm.Test = "Child 1";
         ChildViewModel1 = vm;
-        var bc = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>()
+        var bc = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>()
                 .LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
             ChildContentViewModel;
         bc.Test = "Child 2";

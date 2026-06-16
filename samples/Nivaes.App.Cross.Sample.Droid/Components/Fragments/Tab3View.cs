@@ -9,7 +9,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxTabLayoutPresentation(TabLayoutResourceId = Resource.Id.tabs, ViewPagerResourceId = Resource.Id.viewpager, Title = "Tab 3")]
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class Tab3View : MvxFragment<Tab3ViewModel>
 {
     public override void OnCreate(Bundle savedInstanceState)

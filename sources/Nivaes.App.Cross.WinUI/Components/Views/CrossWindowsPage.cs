@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -100,7 +101,7 @@ public abstract class CrossWindowsPage<TViewModel>
 
         if (_reqData != string.Empty)
         {
-            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
+            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelLoader>();
             ViewModel = (TViewModel?)viewModelLoader?.Load(e.Parameter.ToString(), LoadStateBundle(e));
             ViewModel?.ViewCreated();
         }
@@ -116,7 +117,7 @@ public abstract class CrossWindowsPage<TViewModel>
         var bundle = this.CreateSaveStateBundle();
         SaveStateBundle(e, bundle);
 
-        var translator = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
+        var translator = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {

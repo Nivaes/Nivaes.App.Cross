@@ -116,7 +116,7 @@ public abstract class CrossActivity
     }
 }
 
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class MvxActivity<TViewModel> : CrossActivity, IMvxAndroidView<TViewModel>
     where TViewModel : class, ICrossViewModel
 {

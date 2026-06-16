@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Content.Res;
 using Android.Util;
 using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -22,9 +23,9 @@ public class MvxAndroidViewBinder
         _source = source;
     }
 
-    private ICrossBinder _binder;
+    private ICrossBinder? _binder;
 
-    protected ICrossBinder Binder => _binder ?? (_binder = Mvx.IoCProvider.Resolve<ICrossBinder>());
+    protected ICrossBinder? Binder => _binder ?? (_binder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>());
 
     public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _viewBindings;
 

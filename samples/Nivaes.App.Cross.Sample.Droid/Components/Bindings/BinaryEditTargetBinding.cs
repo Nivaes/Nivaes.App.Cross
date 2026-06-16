@@ -6,7 +6,7 @@ namespace Playground.Droid.Bindings
     using Nivaes.App.Cross.Droid;
     using Playground.Droid.Controls;
 
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+    [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class BinaryEditTargetBinding 
         : MvxAndroidTargetBinding<BinaryEdit, int>
     {

@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
     Theme = "@style/AppTheme",
     LaunchMode = LaunchMode.SingleTop,
     ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public class SplitRootView : MvxActivity<SplitRootViewModel>
 {
     public DrawerLayout DrawerLayout { get; set; }

@@ -528,7 +528,7 @@ namespace Nivaes.App.Cross.UIKitOS
             if (presentationController != null)
             {
                 presentationController.PermittedArrowDirections = attribute.PermittedArrowDirections;
-                var sourceProvider = Mvx.IoCProvider?.Resolve<IMvxPopoverPresentationSourceProvider>();
+                var sourceProvider = IPlatformApplication.Current!.Services.GetRequiredService<IMvxPopoverPresentationSourceProvider>();
                 sourceProvider?.SetSource(presentationController);
                 presentationController.Delegate = new MvxPopoverPresentationControllerDelegate(this);
             }

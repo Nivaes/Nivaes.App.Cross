@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
 [MvxChildPresentation]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ChildView 
     : MvxViewController<ChildViewModel>
 {

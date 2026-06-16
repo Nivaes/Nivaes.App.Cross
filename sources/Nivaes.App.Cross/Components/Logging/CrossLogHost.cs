@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross
 {
     using System.Reflection.Metadata.Ecma335;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross;
     using Nivaes.IoC;
@@ -8,32 +9,19 @@ namespace Nivaes.App.Cross
     [Obsolete]
     public static class CrossLogHost
     {
-        //static CrossLogHost()
-        //{
-        //    var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
-        //}
+        static CrossLogHost()
+        {
+            //var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
+            _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
+        }
 
-        //private static ILoggerFactory? _defaultLogger;
+        private static ILoggerFactory? _defaultLogger;
 
-        public static ILogger? Default => null; // GetLog("Default");
+        public static ILogger? Default => GetLog("Default");
 
         [Obsolete("", true)]
-        public static ILogger<T>? GetLog<T>() => null; //_defaultLogger?.CreateLogger<T>();
+        public static ILogger<T>? GetLog<T>() => _defaultLogger?.CreateLogger<T>();
 
-        public static ILogger? GetLog(string categoryName) => null; // _defaultLogger?.CreateLogger(categoryName);
-
-        //private static ILogger? _defaultLogger;
-
-        //public static ILogger? Default => _defaultLogger ??= GetLog("Default");
-
-        //public static ILogger<T>? GetLog<T>() =>
-        //    Mvx.IoCProvider?.TryResolve<ILoggerFactory>(out var loggerFactory) == true
-        //        ? loggerFactory?.CreateLogger<T>()
-        //        : null;
-
-        //public static ILogger? GetLog(string categoryName) =>
-        //    Mvx.IoCProvider?.TryResolve<ILoggerFactory>(out var loggerFactory) == true
-        //        ? loggerFactory?.CreateLogger(categoryName)
-        //        : null;
+        public static ILogger? GetLog(string categoryName) => _defaultLogger?.CreateLogger(categoryName);
     }
 }

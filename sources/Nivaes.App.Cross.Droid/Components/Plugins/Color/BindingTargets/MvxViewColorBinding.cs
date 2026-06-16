@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.Binding;
     using MvvmCross.Platforms.Android.Binding.Target;
 
+    [Obsolete("", true)]
     [Preserve(AllMembers = true)]
     public abstract class MvxViewColorBinding
         : MvxAndroidTargetBinding

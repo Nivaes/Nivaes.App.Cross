@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MvvmCross.IoC;
 
-[Obsolete("Quitar MvxIoC")]
+[Obsolete("Quitar MvxIoC", true)]
 public interface IMvxIoCProvider
 {
     [Obsolete("Quitar MvxIoC", true)]
@@ -24,7 +24,7 @@ public interface IMvxIoCProvider
     [Obsolete("Quitar MvxIoC", true)]
     object? Resolve([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type type);
 
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     bool TryResolve<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(out T? resolved)
         where T : class;
 
@@ -45,7 +45,7 @@ public interface IMvxIoCProvider
     [Obsolete("Quitar MvxIoC", true)]
     object? GetSingleton([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type type);
 
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     void RegisterType<TFrom, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTo>()
         where TFrom : class
         where TTo : class, TFrom;
@@ -60,7 +60,7 @@ public interface IMvxIoCProvider
     [Obsolete("Quitar MvxIoC", true)]
     void RegisterType(Type tFrom, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type tTo);
 
-    [Obsolete("Quitar MvxIoC")]
+    [Obsolete("Quitar MvxIoC", true)]
     void RegisterSingleton<TInterface>(TInterface theObject)
         where TInterface : class;
 

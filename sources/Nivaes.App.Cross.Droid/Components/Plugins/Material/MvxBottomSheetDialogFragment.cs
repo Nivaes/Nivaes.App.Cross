@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using Nivaes.App.Cross;
 
     [Register("mvvmcross.droidx.material.MvxBottomSheetDialogFragment")]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxBottomSheetDialogFragment
         : MvxEventSourceBottomSheetDialogFragment, IMvxFragmentView
     {
@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxBottomSheetDialogFragment<TViewModel> : MvxBottomSheetDialogFragment, IMvxFragmentView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

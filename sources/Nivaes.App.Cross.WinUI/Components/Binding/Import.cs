@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.WinUI
     using MvvmCross.IoC;
     using Nivaes.App.Cross;
 
+    [Obsolete("", true)]
     public class Import
     {
         static Import()

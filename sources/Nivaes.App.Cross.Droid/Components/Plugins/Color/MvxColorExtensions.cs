@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
+    [Obsolete("", true)]
     public static class MvxColorExtensions
     {
         private static readonly MvxAndroidColor _mvxNativeColor = new MvxAndroidColor();

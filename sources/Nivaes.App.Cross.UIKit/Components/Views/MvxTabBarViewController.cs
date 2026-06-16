@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 using ObjCRuntime;
 
@@ -67,8 +68,9 @@ public class MvxTabBarViewController
 
         if (IsMovingFromParentViewController)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxIosViewPresenter iPresenter) == true
-                && iPresenter is MvxIosViewPresenter mvxIosViewPresenter)
+            var iPresenter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewPresenter>();
+            //if (Mvx.IoCProvider?.TryResolve(out IMvxIosViewPresenter iPresenter) == true
+            if (iPresenter is MvxIosViewPresenter mvxIosViewPresenter)
             {
                 mvxIosViewPresenter.CloseTabBarViewController();
             }

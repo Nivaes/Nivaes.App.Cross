@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Util;
 using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
@@ -20,9 +21,9 @@ public class MvxBindingLayoutInflaterFactory
         _source = source;
     }
 
-    protected virtual IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewFactory>();
+    protected virtual IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewFactory>();
 
-    protected virtual IMvxAndroidViewBinder? Binder => _binder ??= Mvx.IoCProvider?.Resolve<IMvxAndroidViewBinderFactory>().Create(_source);
+    protected virtual IMvxAndroidViewBinder? Binder => _binder ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewBinderFactory>().Create(_source);
 
     public virtual IList<KeyValuePair<object, ICrossUpdateableBinding>>? CreatedBindings => Binder?.CreatedBindings;
 

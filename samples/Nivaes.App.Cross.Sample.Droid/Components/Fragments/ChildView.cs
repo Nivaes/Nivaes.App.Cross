@@ -6,7 +6,7 @@ using Nivaes.App.Cross.Sample.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
                          Resource.Animation.abc_fade_in,
                          Resource.Animation.abc_fade_out,

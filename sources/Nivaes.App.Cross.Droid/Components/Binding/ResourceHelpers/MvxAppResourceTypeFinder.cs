@@ -28,7 +28,7 @@ namespace MvvmCross.Platforms.Android.Binding.ResourceHelpers
 
         public Type Find()
         {
-            var setup = Mvx.IoCProvider.Resolve<IMvxAndroidGlobals>();
+            var setup = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
             var resourceType = FindResourceType(setup.ExecutableAssembly);
             if (resourceType == null)
                 throw new MvxException("Unable to find resource type. Please check if your setup class is in your application's root namespace.");

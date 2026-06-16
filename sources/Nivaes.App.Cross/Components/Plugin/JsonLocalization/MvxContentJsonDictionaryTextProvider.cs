@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
@@ -13,7 +14,7 @@ public class MvxContentJsonDictionaryTextProvider
     {
         get
         {
-            _resourceLoader = _resourceLoader ?? Mvx.IoCProvider.Resolve<ICrossResourceLoader>();
+            _resourceLoader = _resourceLoader ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossResourceLoader>();
             return _resourceLoader;
         }
     }

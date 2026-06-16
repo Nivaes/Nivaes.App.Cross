@@ -5,6 +5,7 @@ using AndroidX.Core.OS;
 using AndroidX.Fragment.App;
 using Java.Interop;
 using Java.Lang;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 using Fragment = AndroidX.Fragment.App.Fragment;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
@@ -29,7 +30,7 @@ namespace Nivaes.App.Cross.Droid
         protected MvxCachingFragmentStatePagerAdapter(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
-            _activityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            _activityType = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
@@ -37,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             List<MvxViewPagerFragmentInfo> fragmentsInfo) : base(fragmentManager)
         {
             FragmentsInfo = fragmentsInfo;
-            _activityType = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            _activityType = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Fragment types are preserved by the Android presenter infrastructure.")]
@@ -98,14 +99,14 @@ namespace Nivaes.App.Cross.Droid
                 return instanceRequest.ViewModelInstance;
             }
 
-            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
+            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
 
             return viewModelLoader.LoadViewModel(fragmentInfo.Request, null);
         }
 
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            var navigationSerializer = Mvx.IoCProvider.Resolve<ICrossNavigationSerializer>();
+            var navigationSerializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();
 
             var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
 

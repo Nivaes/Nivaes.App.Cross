@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
 [MvxTabPresentation(TabTitle = "Tab1")]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class Tab1View : CrossViewController<Tab1ViewModel>
 {
     public Tab1View(NativeHandle handle) : base(handle)

@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
 [MvxTabPresentation]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class Tab2View : MvxViewController<Tab2ViewModel>
 {
     public Tab2View(NativeHandle handle) : base(handle)

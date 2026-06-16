@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvvmCross;
 using Nivaes.IoC;
@@ -11,7 +12,7 @@ public class CrossSourceBindingFactory
 {
     private ICrossSourcePropertyPathParser? _propertyPathParser;
 
-    protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= Mvx.IoCProvider.Resolve<ICrossSourcePropertyPathParser>();
+    protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourcePropertyPathParser>();
 
     private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 

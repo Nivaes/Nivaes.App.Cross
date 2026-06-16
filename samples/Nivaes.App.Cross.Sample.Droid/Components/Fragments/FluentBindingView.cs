@@ -7,7 +7,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class FluentBindingView : MvxFragment<FluentBindingViewModel>
 {
     EditText _inputText;
@@ -45,7 +45,7 @@ public class FluentBindingView : MvxFragment<FluentBindingViewModel>
         return view;
     }
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     void BindTextInput()
     {
         var bindingSet = CreateBindingSet();

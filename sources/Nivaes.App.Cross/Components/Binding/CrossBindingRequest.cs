@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public CrossBindingRequest(object source, object target, CrossBindingDescription description)
+        public CrossBindingRequest(object? source, object? target, CrossBindingDescription? description)
         {
             Target = target;
             Source = source;

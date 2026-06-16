@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
@@ -24,12 +25,12 @@ namespace Nivaes.App.Cross.Droid
 
         public static Intent CreateIntentFor(this IMvxAndroidView view, CrossViewModelRequest request)
         {
-            return Mvx.IoCProvider.Resolve<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
+            return IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
         }
 
         public static Intent CreateIntentFor(this IMvxChildViewModelOwner view, ICrossViewModel subViewModel)
         {
-            var requestTranslator = Mvx.IoCProvider.Resolve<IMvxAndroidViewModelRequestTranslator>();
+            var requestTranslator = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
             var (intent, key) = requestTranslator.GetIntentWithKeyFor(subViewModel, null);
 
             view.OwnedSubViewModelIndicies.Add(key);
@@ -39,7 +40,7 @@ namespace Nivaes.App.Cross.Droid
 
         public static void ClearOwnedSubIndicies(this IMvxChildViewModelOwner view)
         {
-            var translator = Mvx.IoCProvider.Resolve<IMvxAndroidViewModelRequestTranslator>();
+            var translator = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
             foreach (var ownedSubViewModelIndex in view.OwnedSubViewModelIndicies)
             {
                 translator.RemoveSubViewModelWithKey(ownedSubViewModelIndex);

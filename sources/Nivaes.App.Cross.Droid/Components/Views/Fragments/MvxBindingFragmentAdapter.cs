@@ -81,26 +81,29 @@ public class MvxBindingFragmentAdapter
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? serializer) == true)
-        {
-            request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
-        }
-        else
-        {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-            logger?.Log(LogLevel.Warning,
-                "Navigation Serializer not available, deserializing ViewModel Request will be hard");
-        }
+        var serializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? serializer) == true)
+        //{
+        request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
+        //}
+        //else
+        //{
+        //    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+        //    logger?.Log(LogLevel.Warning,
+        //        "Navigation Serializer not available, deserializing ViewModel Request will be hard");
+        //}
 
         return request;
     }
 
     private static ICrossBundle ReadAndroidBundle(Bundle? bundle)
     {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
-        {
+        var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
+        //{
+        if(bundle != null)
             return converter?.Read(bundle) ?? new CrossBundle();
-        }
+        //}
 
         var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
         logger?.Log(LogLevel.Warning,
@@ -115,7 +118,9 @@ public class MvxBindingFragmentAdapter
 
     protected override void HandleResumeCalled(object? sender, EventArgs e)
     {
-        if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true && cache != null && FragmentView?.ViewModel != null)
+        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true && cache != null &&
+        if(FragmentView?.ViewModel != null)
         {
             // clear cache if still there
             cache.GetAndClear(FragmentView.ViewModel.GetType(), FragmentView.UniqueImmutableCacheTag);
@@ -130,23 +135,27 @@ public class MvxBindingFragmentAdapter
         var mvxBundle = FragmentView?.CreateSaveStateBundle();
         if (mvxBundle != null)
         {
-            if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
-            {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-                logger?.Log(LogLevel.Warning,
-                    "Saved state converter not available - saving state will be hard");
-            }
-            else
-            {
+            var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+
+            //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
+            //{
+                //var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+                //logger?.Log(LogLevel.Warning,
+                //    "Saved state converter not available - saving state will be hard");
+            //}
+            //else
+            //{
                 converter?.Write(e.Value, mvxBundle);
-            }
+            //}
         }
 
         if (FragmentView == null)
             return;
 
-        if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true)
-            cache?.Cache(FragmentView.ViewModel, FragmentView.UniqueImmutableCacheTag);
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true)
+
+        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+        cache?.Cache(FragmentView.ViewModel, FragmentView.UniqueImmutableCacheTag);
     }
 
     protected override void HandleDestroyViewCalled(object? sender, EventArgs e)

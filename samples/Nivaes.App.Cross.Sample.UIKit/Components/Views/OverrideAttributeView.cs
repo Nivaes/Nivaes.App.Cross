@@ -6,7 +6,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class OverrideAttributeView 
     : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
 {

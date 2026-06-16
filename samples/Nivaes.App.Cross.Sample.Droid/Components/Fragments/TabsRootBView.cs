@@ -6,7 +6,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxFragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class TabsRootBView : MvxFragment<TabsRootBViewModel>
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

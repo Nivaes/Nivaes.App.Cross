@@ -2,8 +2,10 @@ namespace MvvmCross.DroidX.Leanback.Listeners
 {
     using System.Windows.Input;
     using AndroidX.Leanback.Widget;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.DroidX.RecyclerView;
+    using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 
     /// <summary>
@@ -23,7 +25,8 @@ namespace MvvmCross.DroidX.Leanback.Listeners
 
             if (item == null)
             {
-                MvxAndroidLog.Instance.Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                logger.Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
                 return;
             }
 

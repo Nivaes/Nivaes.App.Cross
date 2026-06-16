@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
+    using Microsoft.Extensions.DependencyInjection;
     using Nivaes.IoC;
 
     public class CrossBaseFluentBindingDescription<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>
@@ -54,7 +55,7 @@ namespace Nivaes.App.Cross
 
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                var parser = Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
+                var parser = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
                 var parsedDescription = parser?.ParseSingle(_freeText);
 
                 if (inputs.Converter == null
@@ -114,7 +115,7 @@ namespace Nivaes.App.Cross
 
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                var parser = Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
+                var parser = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
                 var innerSteps = _useParser ?
                     _properties.Select(p => parser.ParseSingle(p).Source) :
                     _properties.Select(p => new CrossPathSourceStepDescription { SourcePropertyPath = p });

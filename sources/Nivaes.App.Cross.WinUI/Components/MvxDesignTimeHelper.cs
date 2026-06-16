@@ -4,6 +4,7 @@ namespace MvvmCross.Platforms.WinUi
     using Nivaes.App.Cross;
     using Windows.ApplicationModel;
 
+    [Obsolete("", true)]
     public abstract class MvxDesignTimeHelper
     {
         protected MvxDesignTimeHelper()

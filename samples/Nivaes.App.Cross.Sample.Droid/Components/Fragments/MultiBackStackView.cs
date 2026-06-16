@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Google.Android.Material.Navigation;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
 using Nivaes.IoC;
@@ -11,7 +12,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 AllowReordering = true,
 ViewModelType = typeof(MultiBackStackViewModel),
 SetAsPrimaryFragment = true)]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackView 
     : MvxFragment<MultiBackStackViewModel>
 {
@@ -53,7 +54,7 @@ public sealed class MultiBackStackView
                 if (!_navigatedToTab2)
                 {
                     _navigatedToTab2 = true;
-                    Mvx.IoCProvider.Resolve<ICrossNavigationService>().Navigate<MultiBackStackTab2ViewModel>();
+                    IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>().Navigate<MultiBackStackTab2ViewModel>();
                 }
                 else
                 {
@@ -68,7 +69,7 @@ public sealed class MultiBackStackView
     FragmentHostViewType = typeof(MultiBackStackView),
     AllowReordering = true,
     ViewModelType = typeof(MultiBackStackTab1ViewModel))]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewModel>
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -86,7 +87,7 @@ public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewM
     FragmentHostViewType = typeof(MultiBackStackView),
     AllowReordering = true,
     ViewModelType = typeof(MultiBackStackTab2ViewModel))]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewModel>
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -99,7 +100,7 @@ public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewM
     }
 }
 
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel>, ICrossOverridePresentationAttribute
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

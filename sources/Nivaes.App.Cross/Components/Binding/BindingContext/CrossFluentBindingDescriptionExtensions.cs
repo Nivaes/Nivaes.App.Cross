@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
@@ -12,7 +13,7 @@ public static class CrossFluentBindingDescriptionExtensions
                 where TSource : ICrossLocalizedTextSourceOwner
                 where TTarget : class
     {
-        var valueConverter = Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>().Find("Language");
+        var valueConverter = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterLookup>().Find("Language");
         return bindingDescription.To(vm => vm.LocalizedTextSource)
             .OneTime()
             .WithConversion(valueConverter, localizationId);

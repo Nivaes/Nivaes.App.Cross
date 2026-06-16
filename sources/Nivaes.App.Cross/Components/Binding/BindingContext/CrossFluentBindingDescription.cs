@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -86,7 +87,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     public CrossFluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params Expression<Func<TSource, object>>[] properties)
         where TValueCombiner : ICrossValueCombiner
     {
-        var filler = Mvx.IoCProvider.Resolve<ICrossValueCombinerRegistryFiller>();
+        var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerRegistryFiller>();
         var combinerName = filler.FindName(typeof(TValueCombiner));
 
         return ByCombining(combinerName, properties);
@@ -95,7 +96,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     public CrossFluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params string[] properties)
         where TValueCombiner : ICrossValueCombiner
     {
-        var filler = Mvx.IoCProvider.Resolve<ICrossValueCombinerRegistryFiller>();
+        var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerRegistryFiller>();
         var combinerName = filler.FindName(typeof(TValueCombiner));
 
         return ByCombining(combinerName, properties);
@@ -124,7 +125,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     public CrossFluentBindingDescription<TTarget, TSource> WithConversion<TValueConverter>(object converterParameter = null)
         where TValueConverter : ICrossValueConverter
     {
-        var filler = Mvx.IoCProvider.Resolve<ICrossValueConverterRegistryFiller>();
+        var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterRegistryFiller>();
         var converterName = filler.FindName(typeof(TValueConverter));
 
         return WithConversion(converterName, converterParameter);
@@ -259,7 +260,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
     public MvxFluentBindingDescription<TTarget> WithConversion<TValueConverter>(object converterParameter = null)
         where TValueConverter : ICrossValueConverter
     {
-        var filler = Mvx.IoCProvider.Resolve<ICrossValueConverterRegistryFiller>();
+        var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterRegistryFiller>();
         var converterName = filler.FindName(typeof(TValueConverter));
 
         return WithConversion(converterName, converterParameter);

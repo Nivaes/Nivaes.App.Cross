@@ -10,10 +10,10 @@ namespace Nivaes.App.Cross
         event EventHandler DataContextChanged;
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        ICrossBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue);
+        ICrossBindingContext Init(object? dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue);
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-        ICrossBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue);
+        ICrossBindingContext Init(object? dataContext, object firstBindingKey, string firstBindingValue);
 
         void RegisterBinding(object target, ICrossUpdateableBinding binding);
 

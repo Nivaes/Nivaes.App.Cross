@@ -6,7 +6,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame, true)]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+    [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SharedElementSecondChildView : MvxFragment<SharedElementSecondChildViewModel>
     {
         public override void OnCreate(Bundle savedInstanceState)

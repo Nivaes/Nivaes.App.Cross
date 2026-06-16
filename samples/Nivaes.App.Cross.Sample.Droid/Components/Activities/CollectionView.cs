@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxActivityPresentation]
 [Activity(Theme = "@style/AppTheme")]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class CollectionView 
     : MvxActivity<CollectionViewModel>
 {

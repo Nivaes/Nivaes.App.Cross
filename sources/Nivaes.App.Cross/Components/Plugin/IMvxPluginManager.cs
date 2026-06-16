@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete("", true)]
     public interface IMvxPluginManager
     {
         Func<Type, IMvxPluginConfiguration?> ConfigurationSource { get; }

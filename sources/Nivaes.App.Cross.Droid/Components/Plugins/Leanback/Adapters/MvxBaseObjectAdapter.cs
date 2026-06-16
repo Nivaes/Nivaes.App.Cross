@@ -4,6 +4,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
     using System.Collections.Specialized;
     using Android.Runtime;
     using AndroidX.Leanback.Widget;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
@@ -44,7 +45,8 @@ namespace MvvmCross.DroidX.Leanback.Adapters
                 {
                     if (!(value is ICollection))
                     {
-                        MvxAndroidLog.Instance.Log(LogLevel.Warning,
+                        var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                        logger.Log(LogLevel.Warning,
                             "Using a enumerable is not recommended due to performance issues. Consider using an ICollection (e.g. List) as ItemsSource.");
                     }
                 }
@@ -132,7 +134,8 @@ namespace MvvmCross.DroidX.Leanback.Adapters
             }
             catch (Exception exception)
             {
-                MvxAndroidLog.Instance?.Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                logger.Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
             }
         }
 

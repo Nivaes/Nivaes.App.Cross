@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
@@ -268,8 +269,10 @@ public class CrossObservableCollection<T>
         if (_dispatcher != null)
             return _dispatcher.ExecuteOnMainThreadAsync(action);
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
-            return Task.CompletedTask;
+        var dispatcher = IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
+        //    return Task.CompletedTask;
 
         _dispatcher = dispatcher;
         return _dispatcher.ExecuteOnMainThreadAsync(action);

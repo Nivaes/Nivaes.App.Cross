@@ -9,7 +9,7 @@ using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public abstract class BaseSplitDetailView<TViewModel>
     : MvxFragment<TViewModel> where TViewModel : class, ICrossViewModel
 {

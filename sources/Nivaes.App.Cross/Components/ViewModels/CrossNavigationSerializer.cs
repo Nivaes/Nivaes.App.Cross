@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public class CrossNavigationSerializer
     : ICrossNavigationSerializer
 {
@@ -14,13 +16,14 @@ public class CrossNavigationSerializer
     public ICrossTextSerializer Serializer { get; }
 }
 
+[Obsolete("", true)]
 public class CrossNavigationSerializer<
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>
         : CrossNavigationSerializer
             where T : class, ICrossTextSerializer
 {
     public CrossNavigationSerializer()
-        : base(Mvx.IoCProvider.Resolve<T>())
+        : base(IPlatformApplication.Current!.Services.GetRequiredService<T>())
     {
     }
 }

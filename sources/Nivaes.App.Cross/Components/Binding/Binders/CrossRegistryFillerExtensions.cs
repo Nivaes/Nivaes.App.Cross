@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using Nivaes.IoC;
+    using Microsoft.Extensions.DependencyInjection;
 
     [Obsolete("No usar reflection", true)]
     public static class CrossRegistryFillerExtensions
@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
             public void Fill(IEnumerable<Assembly> assemblies, IEnumerable<Type> types)
             {
-                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
+                var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assemblies);
                 registry.Fill(filler, types);
             }
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross
                 if (assemblies == null)
                     return;
 
-                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
+                var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assemblies);
             }
 
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
             [Obsolete("No usar reflection", true)]
             public void Fill(Assembly assembly)
             {
-                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
+                var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, assembly);
             }
 
@@ -66,7 +66,7 @@ namespace Nivaes.App.Cross
                 if (types == null)
                     return;
 
-                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
+                var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, types);
             }
 
@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross
             public void Fill(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicFields)] Type type)
             {
-                var filler = Mvx.IoCProvider.Resolve<ICrossNamedInstanceRegistryFiller<T>>();
+                var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNamedInstanceRegistryFiller<T>>();
                 registry.Fill(filler, type);
             }
         }

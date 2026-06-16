@@ -1,9 +1,6 @@
-using System;
-using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI;
 
@@ -27,7 +24,7 @@ public static class CrossWindowsExtensions
     {
         if (key > 0)
         {
-            var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
+            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
             viewModelLoader.RemoveSubViewModelWithKey(key);
         }
     }
@@ -84,7 +81,7 @@ public static class CrossWindowsExtensions
                                                 string requestText,
                                                 ICrossBundle bundle)
     {
-        var viewModelLoader = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelLoader>();
         return viewModelLoader?.Load(requestText, bundle);
     }
 }

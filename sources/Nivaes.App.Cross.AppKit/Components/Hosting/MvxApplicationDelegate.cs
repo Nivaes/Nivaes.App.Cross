@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.IoC;
@@ -54,9 +55,13 @@ public abstract class MvxApplicationDelegate :
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
     }
 
+    [Obsolete]
     protected virtual void RunAppStart(object hint = null)
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
+        var startup = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
+        if(!startup.IsStarted)
         {
             startup.Start(GetAppStartHint(hint));
         }

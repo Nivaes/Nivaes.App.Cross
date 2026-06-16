@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
                      Resource.Animation.abc_fade_out,
                      Resource.Animation.abc_fade_in,
                      Resource.Animation.abc_fade_out)]
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

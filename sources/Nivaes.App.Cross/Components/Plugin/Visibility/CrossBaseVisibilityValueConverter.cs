@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
@@ -20,7 +21,7 @@ public abstract class MvxBaseVisibilityValueConverter
 {
     private ICrossNativeVisibility _nativeVisibility;
 
-    private ICrossNativeVisibility NativeVisibility => _nativeVisibility ??= Mvx.IoCProvider.Resolve<ICrossNativeVisibility>();
+    private ICrossNativeVisibility NativeVisibility => _nativeVisibility ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossNativeVisibility>();
 
     protected abstract CrossVisibility Convert(object value, object parameter, CultureInfo culture);
 

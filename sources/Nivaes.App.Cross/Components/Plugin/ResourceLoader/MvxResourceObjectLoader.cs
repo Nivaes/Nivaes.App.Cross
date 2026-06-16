@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross;
 
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 public abstract class MvxResourceObjectLoader<TResource>
@@ -29,7 +30,7 @@ public abstract class MvxResourceObjectLoader<TResource>
     public TResource Load(string namespaceKey, string typeKey, string entryKey)
     {
         var streamLocation = GetStreamLocation(namespaceKey, typeKey, entryKey);
-        var resourceLoader = Mvx.IoCProvider.Resolve<ICrossResourceLoader>();
+        var resourceLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossResourceLoader>();
         TResource resource = default(TResource);
         resourceLoader.GetResourceStream(streamLocation, (stream) =>
             {

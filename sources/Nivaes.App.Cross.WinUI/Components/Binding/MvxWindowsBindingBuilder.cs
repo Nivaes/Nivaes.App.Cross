@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross.WinUI
     using MvvmCross.IoC;
     using MvvmCross.Platforms.WinUi.Binding;
 
+    [Obsolete("")]
     public class MvxWindowsBindingBuilder 
         : CrossBindingBuilder
     {

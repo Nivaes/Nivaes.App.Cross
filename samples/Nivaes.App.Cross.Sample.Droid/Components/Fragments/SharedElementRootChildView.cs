@@ -11,7 +11,7 @@ using Playground.Droid.Adapter;
 namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+    [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

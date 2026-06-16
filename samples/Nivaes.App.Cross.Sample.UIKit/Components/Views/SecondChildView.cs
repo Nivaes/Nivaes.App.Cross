@@ -6,7 +6,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class SecondChildView : MvxViewController<SecondChildViewModel>
 {
     public SecondChildView(NativeHandle handle) : base(handle)

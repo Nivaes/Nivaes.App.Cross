@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -82,11 +83,13 @@ public class AndroidViewsContainer
             return null;
         }
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) != true ||
-            viewModelLoader == null)
-        {
-            return null;
-        }
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) != true ||
+        //    viewModelLoader == null)
+        //{
+        //    return null;
+        //}
 
         var viewModelRequest = CrossViewModelRequest.GetDefaultRequest(viewModelTypeHint);
         var viewModel = viewModelLoader.LoadViewModel(viewModelRequest, savedState);
@@ -115,12 +118,14 @@ public class AndroidViewsContainer
         if (viewModelRequest == null)
             return null;
 
-        if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
-        {
-            return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
-        }
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
 
-        return null;
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
+        //{
+        return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
+        //}
+
+        //return null;
     }
 
     protected virtual bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? mvxViewModel)

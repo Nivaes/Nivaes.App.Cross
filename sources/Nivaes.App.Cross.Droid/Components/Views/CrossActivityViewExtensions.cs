@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid;
 
 public static class CrossActivityViewExtensions
 {
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public static void AddEventListeners(this ICrossEventSourceActivity activity)
     {
         // ToDo: Mirar si es mejor meter esto en cada clase, para que no sea tan generico.
@@ -159,15 +159,19 @@ public static class CrossActivityViewExtensions
         if (viewModelType == null
             || viewModelType == typeof(ICrossViewModel))
         {
-            CrossLogHost.Default?.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
+            var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+
+            logger.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
                 androidView.GetType().Name);
         }
 
-        if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelLoader? viewModelLoader) == true &&
-            viewModelLoader != null)
-        {
-            return viewModelLoader.Load(activity.Intent, savedState, viewModelType);
-        }
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelLoader? viewModelLoader) == true &&
+        //    viewModelLoader != null)
+        //{
+        return viewModelLoader.Load(activity.Intent, savedState, viewModelType);
+        //}
 
         return null;
     }

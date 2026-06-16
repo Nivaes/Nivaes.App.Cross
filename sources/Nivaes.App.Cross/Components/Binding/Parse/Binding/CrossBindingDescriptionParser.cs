@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvvmCross;
 using Nivaes.IoC;
@@ -17,7 +18,7 @@ public class CrossBindingDescriptionParser
     {
         get
         {
-            _bindingParser ??= Mvx.IoCProvider.Resolve<ICrossBindingParser>();
+            _bindingParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingParser>();
             return _bindingParser;
         }
     }
@@ -28,7 +29,7 @@ public class CrossBindingDescriptionParser
     {
         get
         {
-            _languageBindingParser ??= Mvx.IoCProvider.Resolve<ICrossLanguageBindingParser>();
+            _languageBindingParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossLanguageBindingParser>();
             return _languageBindingParser;
         }
     }
@@ -37,7 +38,7 @@ public class CrossBindingDescriptionParser
     {
         get
         {
-            _valueConverterLookup ??= Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
+            _valueConverterLookup ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterLookup>();
             return _valueConverterLookup;
         }
     }

@@ -44,6 +44,8 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxSingleViewModelCache, MvxSingleViewModelCache>();
             builder.Services.TryAddSingleton<IMvxIntentResultSink, MvxIntentResultSink>();
             builder.Services.TryAddSingleton<IMvxSavedStateConverter, MvxSavedStateConverter>();
+            builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
+
 
             return builder;
         } 

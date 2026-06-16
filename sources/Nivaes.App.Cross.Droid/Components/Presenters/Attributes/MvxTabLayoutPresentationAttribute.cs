@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
@@ -45,8 +46,10 @@ public class MvxTabLayoutPresentationAttribute : MvxViewPagerFragmentPresentatio
               fragmentHostViewType,
               isCacheableFragment)
     {
+        var globals = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
+
         if (!string.IsNullOrEmpty(tabLayoutResourceName) &&
-            Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
+            //Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
             globals.ApplicationContext.Resources != null)
         {
             TabLayoutResourceId = globals.ApplicationContext.Resources.GetIdentifier(

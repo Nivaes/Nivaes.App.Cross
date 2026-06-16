@@ -8,7 +8,7 @@ public class MvxView
     : NSView
     , IMvxBindable
 {
-    public ICrossBindingContext BindingContext { get; set; }
+    public ICrossBindingContext? BindingContext { get; set; }
 
     [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]
     public MvxView()

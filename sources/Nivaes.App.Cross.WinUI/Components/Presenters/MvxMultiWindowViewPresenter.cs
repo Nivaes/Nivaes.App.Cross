@@ -67,7 +67,7 @@ public class MvxMultiWindowViewPresenter
     /// </summary>
     public ICrossViewModelLoader? ViewModelLoader
     {
-        get => _viewModelLoader ??= Mvx.IoCProvider?.Resolve<ICrossViewModelLoader>();
+        get => _viewModelLoader ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
         set => _viewModelLoader = value;
     }
 

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
@@ -78,7 +79,8 @@ public class CrossTaskBasedBindingContext : ICrossBindingContext, IDisposable
     {
         get
         {
-            _binder ??= Mvx.IoCProvider.Resolve<ICrossBinder>();
+            //_binder ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
+            _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             return _binder;
         }
     }

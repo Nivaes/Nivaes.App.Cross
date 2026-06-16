@@ -31,7 +31,7 @@
 //        get
 //        {
 //            if (_viewModelLoader == null)
-//                _viewModelLoader = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
+//                _viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
 //            return _viewModelLoader;
 //        }
 //        set
@@ -66,14 +66,14 @@
 //            return;
 //        }
 
-//        var navigationService = Mvx.IoCProvider.Resolve<ICrossNavigationService>();
+//        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
 
 //        backRequestedEventArgs.Handled = await navigationService.Close(currentView.ViewModel);
 //    }
 
 //    protected virtual string GetRequestText(CrossViewModelRequest request)
 //    {
-//        var requestTranslator = Mvx.IoCProvider.Resolve<ICrossWindowsViewModelRequestTranslator>();
+//        var requestTranslator = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
 //        string requestText = string.Empty;
 //        if (request is CrossViewModelInstanceRequest)
 //        {
@@ -98,7 +98,7 @@
 
 //    protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
 //    {
-//        var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
+//        var viewsContainer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewsContainer>();
 
 //        if (_rootFrame.Content is ICrossWindowsView currentPage)
 //        {
@@ -158,7 +158,7 @@
 
 //    protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
 //    {
-//        var viewFinder = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
+//        var viewFinder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewsContainer>();
 //        var viewType = viewFinder.GetViewType(viewModel.GetType());
 //        if (viewType.HasRegionAttribute())
 //        {
@@ -210,7 +210,7 @@
 //        try
 //        {
 //            var requestText = GetRequestText(request);
-//            var viewsContainer = Mvx.IoCProvider.Resolve<ICrossViewsContainer>();
+//            var viewsContainer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewsContainer>();
 
 //            _rootFrame.Navigate(viewType, requestText); //Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
 

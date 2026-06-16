@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Foundation;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 using ObjCRuntime;
@@ -83,7 +84,7 @@ public class MvxStandardTableViewSource
         if (string.IsNullOrEmpty(bindingText))
             return DefaultBindingDescription;
 
-        return Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>().Parse(bindingText);
+        return IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>().Parse(bindingText);
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]

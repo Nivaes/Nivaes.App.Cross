@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 
     [MvxFromStoryboard("Main")]
     [MvxWindowPresentation(PositionX = 300)]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class RootView 
         : CrossViewController<RootViewModel>, ICrossOverridePresentationAttribute
     {

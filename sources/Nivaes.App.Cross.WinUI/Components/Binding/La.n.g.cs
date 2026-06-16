@@ -47,7 +47,7 @@ public static class La
     {
         get
         {
-            _bindingCreator = _bindingCreator ?? Mvx.IoCProvider.Resolve<IMvxBindingCreator>();
+            _bindingCreator = _bindingCreator ?? IPlatformApplication.Current!.Services.GetRequiredService<IMvxBindingCreator>();
             return _bindingCreator;
         }
     }

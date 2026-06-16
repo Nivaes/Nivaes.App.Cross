@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Sample;
@@ -25,6 +26,6 @@ public class NavigationCloseViewModel
 
     private Task TryToCloseNewViewModelAsync()
     {
-        return _mvxNavigationService.Close(Mvx.IoCProvider.Resolve<SecondChildViewModel>());
+        return _mvxNavigationService.Close(IPlatformApplication.Current!.Services.GetRequiredService<SecondChildViewModel>());
     }
 }

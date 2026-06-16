@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Runtime;
 
     [Register("mvvmcross.droidx.leanback.fragments.MvxBrowseSupportFragment")]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxBrowseSupportFragment
         : MvxEventSourceBrowseSupportFragment, IMvxFragmentView
     {
@@ -72,7 +72,7 @@ namespace Nivaes.App.Cross.Droid
         public string UniqueImmutableCacheTag => Tag;
     }
 
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxBrowseSupportFragment<TViewModel> : MvxBrowseSupportFragment, IMvxFragmentView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

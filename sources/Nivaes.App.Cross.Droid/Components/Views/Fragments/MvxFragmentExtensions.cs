@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 using Fragment = AndroidX.Fragment.App.Fragment;
@@ -24,8 +25,11 @@ public static class MvxFragmentExtensions2
     {
         public void OnCreate(ICrossBundle bundle, CrossViewModelRequest? request = null)
         {
-            IMvxMultipleViewModelCache? cache = null;
-            if (Mvx.IoCProvider?.TryResolve(out cache) == true && fragmentView.ViewModel != null)
+            //IMvxMultipleViewModelCache? cache = null;
+
+            var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+            //if (Mvx.IoCProvider?.TryResolve(out cache) == true && fragmentView.ViewModel != null)
+            if (fragmentView.ViewModel != null)
             {
                 // check if ViewModel instance was cached. If so, clear it and ignore previous instance
                 cache!.GetAndClear(fragmentView.ViewModel.GetType(), fragmentView.UniqueImmutableCacheTag);
@@ -131,8 +135,10 @@ public static class MvxFragmentExtensions2
 
     public static void LoadViewModelFrom(this IMvxFragmentView view, CrossViewModelRequest request, ICrossBundle? savedState = null)
     {
-        if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
-            return;
+        var loader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
+        //    return;
 
         var viewModel = loader?.LoadViewModel(request, savedState);
         if (viewModel == null)

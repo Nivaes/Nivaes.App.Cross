@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.IoC;
 
@@ -47,7 +48,7 @@ public static class MvxFragmentExtensions
             if (request == null)
                 request = CrossViewModelRequest.GetDefaultRequest(viewModelType);
 
-            var viewModelCache = Mvx.IoCProvider.Resolve<ICrossChildViewModelCache>();
+            var viewModelCache = IPlatformApplication.Current!.Services.GetRequiredService<ICrossChildViewModelCache>();
             if (viewModelCache.Exists(viewModelType))
             {
                 var viewModelCached = viewModelCache.Get(viewModelType);
@@ -55,7 +56,7 @@ public static class MvxFragmentExtensions
                 return viewModelCached;
             }
 
-            var loaderService = Mvx.IoCProvider.Resolve<ICrossViewModelLoader>();
+            var loaderService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
             var viewModel = loaderService.LoadViewModel(request, savedState);
 
             return viewModel;

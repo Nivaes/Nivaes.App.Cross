@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Android.Views
     using Object = Java.Lang.Object;
 
     [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxTabsFragmentActivity
         : CrossActivity, TabHost.IOnTabChangeListener
     {

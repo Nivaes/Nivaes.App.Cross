@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using Microsoft.Extensions.DependencyInjection;
     using Nivaes.IoC;
 
     public sealed class CrossSingletonCache
@@ -29,8 +30,8 @@ namespace Nivaes.App.Cross
                 if (_inpcInterceptorResolveAttempted)
                     return _inpcInterceptor;
 
-                Mvx.IoCProvider?.TryResolve(out _inpcInterceptor);
-                //_inpcInterceptor = Mvx.IoCProvider?.Resolve<ICrossInpcInterceptor>();
+                _inpcInterceptor = IPlatformApplication.Current!.Services.GetRequiredService<ICrossInpcInterceptor>();
+
                 _inpcInterceptorResolveAttempted = true;
                 return _inpcInterceptor;
             }
@@ -40,7 +41,7 @@ namespace Nivaes.App.Cross
         {
             get
             {
-                _parser ??= Mvx.IoCProvider?.Resolve<ICrossStringToTypeParser>();
+                _parser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossStringToTypeParser>();
                 return _parser;
             }
         }
@@ -49,7 +50,7 @@ namespace Nivaes.App.Cross
         {
             get
             {
-                _settings ??= Mvx.IoCProvider?.Resolve<ICrossSettings>();
+                _settings ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossSettings>();
                 return _settings;
             }
         }

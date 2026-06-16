@@ -10,7 +10,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid
 {
     [MvxDialogFragmentPresentation]
-    [RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+    [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public sealed class ModalNavView : MvxDialogFragment<ModalNavViewModel>
     {
         public ModalNavView()

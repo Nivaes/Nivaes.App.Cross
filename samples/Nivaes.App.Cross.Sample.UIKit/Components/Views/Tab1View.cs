@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
 
     [MvxFromStoryboard("Main")]
     [MvxTabPresentation(WrapInNavigationController = true, TabIconName = "home", TabName = "Tab 1")]
-    [RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class Tab1View 
         : MvxViewController<Tab1ViewModel>
     {

@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
     Resource.Animation.abc_fade_out,
     Resource.Animation.abc_fade_in,
     Resource.Animation.abc_fade_out)]
-[RequiresUnreferencedCode("Uses MvxBindings which require unreferenced code")]
+[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class ChildWithResultFragment : MvxFragment<ChildWithResultViewModel>
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

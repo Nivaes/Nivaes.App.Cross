@@ -3,7 +3,7 @@ using Nivaes.App.Cross.Sample;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
 {
     private UITextField? _message;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
@@ -11,19 +12,19 @@ public static partial class CrossBindingContextOwnerExtensions
     {
         public void CreateBindingContext()
         {
-            view.BindingContext = Mvx.IoCProvider.Resolve<ICrossBindingContext>();
+            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>();
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public void CreateBindingContext(string bindingText)
         {
-            view.BindingContext = Mvx.IoCProvider.Resolve<ICrossBindingContext>().Init(null, view, bindingText);
+            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>().Init(null, view, bindingText);
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public void CreateBindingContext(IEnumerable<CrossBindingDescription> bindings)
         {
-            view.BindingContext = Mvx.IoCProvider.Resolve<ICrossBindingContext>().Init(null, view, bindings);
+            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>().Init(null, view, bindings);
         }
 
         /*

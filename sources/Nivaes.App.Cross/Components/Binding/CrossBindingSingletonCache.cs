@@ -1,9 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
 // this class is not perfect OO and it gets in the way of testing
-// however, it is here for speed - to help avoid obscene numbers of Mvx.IoCProvider.Resolve<T> calls during binding
+// however, it is here for speed - to help avoid obscene numbers of IPlatformApplication.Current!.Services.GetRequiredService<T> calls during binding
 public class CrossBindingSingletonCache
     : CrossSingleton<ICrossBindingSingletonCache>, ICrossBindingSingletonCache
 {
@@ -33,7 +34,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _autoValueConverters = _autoValueConverters ?? Mvx.IoCProvider.Resolve<ICrossAutoValueConverters>();
+            _autoValueConverters = _autoValueConverters ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossAutoValueConverters>();
             return _autoValueConverters;
         }
     }
@@ -42,7 +43,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _bindingDescriptionParser = _bindingDescriptionParser ?? Mvx.IoCProvider.Resolve<ICrossBindingDescriptionParser>();
+            _bindingDescriptionParser = _bindingDescriptionParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
             return _bindingDescriptionParser;
         }
     }
@@ -51,7 +52,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _languageParser = _languageParser ?? Mvx.IoCProvider.Resolve<ICrossLanguageBindingParser>();
+            _languageParser = _languageParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossLanguageBindingParser>();
             return _languageParser;
         }
     }
@@ -60,7 +61,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _propertyExpressionParser = _propertyExpressionParser ?? Mvx.IoCProvider.Resolve<ICrossPropertyExpressionParser>();
+            _propertyExpressionParser = _propertyExpressionParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossPropertyExpressionParser>();
             return _propertyExpressionParser;
         }
     }
@@ -69,7 +70,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _valueConverterLookup = _valueConverterLookup ?? Mvx.IoCProvider.Resolve<ICrossValueConverterLookup>();
+            _valueConverterLookup = _valueConverterLookup ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterLookup>();
             return _valueConverterLookup;
         }
     }
@@ -78,7 +79,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _valueCombinerLookup = _valueCombinerLookup ?? Mvx.IoCProvider.Resolve<ICrossValueCombinerLookup>();
+            _valueCombinerLookup = _valueCombinerLookup ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerLookup>();
             return _valueCombinerLookup;
         }
     }
@@ -87,7 +88,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _defaultBindingName = _defaultBindingName ?? Mvx.IoCProvider.Resolve<ICrossBindingNameLookup>();
+            _defaultBindingName = _defaultBindingName ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingNameLookup>();
             return _defaultBindingName;
         }
     }
@@ -96,7 +97,8 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _binder = _binder ?? Mvx.IoCProvider.Resolve<ICrossBinder>();
+            //_binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
+            _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             return _binder;
         }
     }
@@ -105,7 +107,8 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _sourceBindingFactory = _sourceBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceBindingFactory>();
+            //_sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
+            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             return _sourceBindingFactory;
         }
     }
@@ -114,7 +117,8 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _targetBindingFactory = _targetBindingFactory ?? Mvx.IoCProvider.Resolve<ICrossTargetBindingFactory>();
+            //_targetBindingFactory = _targetBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
+            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             return _targetBindingFactory;
         }
     }
@@ -123,7 +127,8 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _sourceStepFactory = _sourceStepFactory ?? Mvx.IoCProvider.Resolve<ICrossSourceStepFactory>();
+            //_sourceStepFactory = _sourceStepFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceStepFactory>();
+            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             return _sourceStepFactory;
         }
     }
@@ -132,7 +137,8 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _mainThreadDispatcher = _mainThreadDispatcher ?? Mvx.IoCProvider.Resolve<ICrossMainThreadAsyncDispatcher>();
+            //_mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+            _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
             return _mainThreadDispatcher;
         }
     }

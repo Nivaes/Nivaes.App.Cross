@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
 [MvxSplitViewPresentation(MasterDetailPosition.Master)]
-[RequiresUnreferencedCode("MvxBindings require unreferenced code")]
+[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class SplitMasterView : MvxViewController<SplitMasterViewModel>
 {
     public SplitMasterView(NativeHandle handle) : base(handle)

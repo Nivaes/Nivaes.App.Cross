@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
 [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
-[RequiresUnreferencedCode("MvxBindings requires unreferenced code")]
+[RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
 {
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

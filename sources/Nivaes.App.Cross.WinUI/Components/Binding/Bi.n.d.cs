@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Nivaes.IoC;
 
@@ -45,11 +46,11 @@ namespace Nivaes.App.Cross.WinUI
 
         private static IMvxBindingCreator ResolveBindingCreator()
         {
-            IMvxBindingCreator toReturn;
-            if (!Mvx.IoCProvider.TryResolve<IMvxBindingCreator>(out toReturn))
-            {
-                throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
-            }
+            IMvxBindingCreator toReturn = IPlatformApplication.Current!.Services.GetRequiredService<IMvxBindingCreator>();
+            //if (!Mvx.IoCProvider.TryResolve<IMvxBindingCreator>(out toReturn))
+            //{
+            //    throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
+            //}
 
             return toReturn;
         }
