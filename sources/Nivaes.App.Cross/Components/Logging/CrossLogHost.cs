@@ -1,27 +1,21 @@
-namespace Nivaes.App.Cross
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross;
+
+public static class CrossLogHost
 {
-    using System.Reflection.Metadata.Ecma335;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross;
-    using Nivaes.IoC;
-
-    [Obsolete]
-    public static class CrossLogHost
+    static CrossLogHost()
     {
-        static CrossLogHost()
-        {
-            //var _defaultLogger = Nivaes.Singleton<CrossIoCServiceContainer>.Instance.Resolve<ILoggerFactory>();
-            _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
-        }
-
-        private static ILoggerFactory? _defaultLogger;
-
-        public static ILogger? Default => GetLog("Default");
-
-        [Obsolete("", true)]
-        public static ILogger<T>? GetLog<T>() => _defaultLogger?.CreateLogger<T>();
-
-        public static ILogger? GetLog(string categoryName) => _defaultLogger?.CreateLogger(categoryName);
+        _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
     }
+
+    private static ILoggerFactory? _defaultLogger;
+
+    public static ILogger? Default => GetLogger("Default");
+
+    public static ILogger? GetLogger(string categoryName) => _defaultLogger?.CreateLogger(categoryName);
+
+    public static ILogger? GetLogger<T>([CallerMemberName] string member = "") => _defaultLogger?.CreateLogger($"{typeof(T).Name}.{member}");
 }

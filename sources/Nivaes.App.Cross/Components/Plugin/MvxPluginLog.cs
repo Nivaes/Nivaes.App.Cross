@@ -5,6 +5,6 @@ namespace Nivaes.App.Cross.Components.Plugin
 
     internal static class MvxPluginLog
     {
-        internal static ILogger Instance { get; } = CrossLogHost.GetLog("MvxPlugin.JsonLocalization");
+        internal static ILogger Instance { get; } = CrossLogHost.GetLogger("MvxPlugin.JsonLocalization");
     }
 }

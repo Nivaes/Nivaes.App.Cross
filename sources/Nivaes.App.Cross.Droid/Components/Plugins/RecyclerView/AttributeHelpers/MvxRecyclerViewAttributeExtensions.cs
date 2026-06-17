@@ -63,11 +63,15 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
 
             if (type == null)
             {
-                const string message =
-                    "Type with class name: {TemplateSelectorClassName} does not exist." +
-                    "Make sure you have provided full Type name: namespace + class name, AssemblyName." +
-                    "Example (check Example.Droid sample!): Example.Droid.Common.TemplateSelectors.MultiItemTemplateModelTemplateSelector, Example.Droid";
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                string message =
+                    @$"Type with class name: {templateSelectorClassName} does not exist.
+                    Make sure you have provided full Type name: namespace + class name, AssemblyName.
+                    Example (check Example.Droid sample!): Example.Droid.Common.TemplateSelectors.MultiItemTemplateModelTemplateSelector, Example.Droid";
+
+                //var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>()
+                //   .CreateLogger($"{nameof(MvxRecyclerViewAttributeExtensions)}.{nameof(BuildItemTemplateSelector)}");
+
+                var logger = CrossLogHost.GetLogger();
                 logger.Log(LogLevel.Error, message, templateSelectorClassName);
                 throw new InvalidOperationException(message);
             }

@@ -271,10 +271,12 @@ namespace Nivaes.App.Cross.Droid
                 if (itemsSourcePosition >= 0 && itemsSourcePosition < items.Count)
                     return items[itemsSourcePosition];
 
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>()
+                    .CreateLogger($"{nameof(MvxRecyclerAdapter)}.{nameof(MvxRecyclerAdapter.GetItem)}");
+
                 logger.Log(LogLevel.Error,
                     "MvxRecyclerView GetItem index out of range. viewPosition: {ViewPosition}, itemsSourcePosition: {ItemsSourcePosition}, itemCount: {ItemsSourceCount}",
-                    viewPosition, itemsSourcePosition, _itemsSource.Count());
+                    viewPosition, itemsSourcePosition, _itemsSource!.Count());
                 //We should trigger an exception instead of hiding it here, as it means you have bugs in your code.
                 return null;
             }
