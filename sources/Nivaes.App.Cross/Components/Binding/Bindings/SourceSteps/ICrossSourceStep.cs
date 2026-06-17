@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross
 
         object GetValue();
 
-        object DataContext
+        object? DataContext
         {
             get;
             [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]

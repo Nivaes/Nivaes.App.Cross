@@ -107,7 +107,6 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            //_sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             return _sourceBindingFactory;
         }
@@ -117,8 +116,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            //_targetBindingFactory = _targetBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
-            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
+            _targetBindingFactory = _targetBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
             return _targetBindingFactory;
         }
     }
@@ -127,8 +125,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            //_sourceStepFactory = _sourceStepFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceStepFactory>();
-            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
+            _sourceStepFactory = _sourceStepFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceStepFactory>();
             return _sourceStepFactory;
         }
     }
@@ -137,7 +134,6 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            //_mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
             _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
             return _mainThreadDispatcher;
         }

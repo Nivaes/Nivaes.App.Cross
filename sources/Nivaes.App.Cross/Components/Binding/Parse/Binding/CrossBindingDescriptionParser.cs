@@ -11,8 +11,8 @@ namespace Nivaes.App.Cross;
 public class CrossBindingDescriptionParser
     : ICrossBindingDescriptionParser
 {
-    private ICrossBindingParser _bindingParser;
-    private ICrossValueConverterLookup _valueConverterLookup;
+    private ICrossBindingParser? _bindingParser;
+    private ICrossValueConverterLookup? _valueConverterLookup;
 
     protected ICrossBindingParser BindingParser
     {
@@ -23,7 +23,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    private ICrossLanguageBindingParser _languageBindingParser;
+    private ICrossLanguageBindingParser? _languageBindingParser;
 
     protected ICrossLanguageBindingParser LanguageBindingParser
     {
@@ -43,7 +43,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    protected ICrossValueConverter FindConverter(string converterName)
+    protected ICrossValueConverter? FindConverter(string converterName)
     {
         if (converterName == null)
             return null;
@@ -89,7 +89,7 @@ public class CrossBindingDescriptionParser
         return Parse(text, parser);
     }
 
-    public CrossBindingDescription ParseSingle(string text)
+    public CrossBindingDescription? ParseSingle(string text)
     {
         CrossSerializableBindingDescription description;
         var parser = BindingParser;
@@ -118,7 +118,7 @@ public class CrossBindingDescriptionParser
     }
 
     public CrossBindingDescription SerializableBindingToBinding(
-        string targetName, CrossSerializableBindingDescription description)
+        string? targetName, CrossSerializableBindingDescription description)
     {
         return new CrossBindingDescription
         {

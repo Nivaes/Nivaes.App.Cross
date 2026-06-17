@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
 
-    [Obsolete("")]
+    [Obsolete("", true)]
     public class CrossBindingBuilder 
         : CrossCoreBindingBuilder
     {
@@ -39,6 +39,7 @@ namespace Nivaes.App.Cross
 
         protected virtual void FillSourceStepFactory(ICrossSourceStepFactoryRegistry registry)
         {
+            Mover esto
             registry.AddOrOverwrite(typeof(CrossCombinerSourceStepDescription), new CrossCombinerSourceStepFactory());
             registry.AddOrOverwrite(typeof(CrossPathSourceStepDescription), new CrossPathSourceStepFactory());
             registry.AddOrOverwrite(typeof(CrossLiteralSourceStepDescription), new CrossLiteralSourceStepFactory());

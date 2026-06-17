@@ -56,7 +56,6 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
 
-
             return builder;
         } 
     }

@@ -54,9 +54,13 @@ namespace Nivaes.App.Cross.Hosting
             //bootstrapper.AddSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
 
             builder.Services.TryAddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
+            builder.Services.TryAddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
+            builder.Services.TryAddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
+            builder.Services.TryAddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();
+            builder.Services.TryAddSingleton<ICrossTargetBindingFactory, CrossTargetBindingFactoryRegistry>();
+            builder.Services.TryAddSingleton<ICrossSourceStepFactory, CrossSourceStepFactory>();
 
             return builder;
         }
-
     }
 }

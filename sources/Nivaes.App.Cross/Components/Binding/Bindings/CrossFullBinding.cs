@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross
         private ICrossSourceStep _sourceStep;
         private ICrossTargetBinding _targetBinding;
         private object _dataContext;
-        private CancellationTokenSource _cancelSource = new();
+        private CancellationTokenSource? _cancelSource = new();
 
         public object DataContext
         {
@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross
 
         private ICrossSourceStep CreateSourceBinding(CrossBindingRequest bindingRequest)
         {
-            var sourceStep = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory.Create(bindingRequest.Description.Source);
+            var sourceStep = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory.Create(bindingRequest.Description!.Source);
             sourceStep.TargetType = _targetBinding.TargetValueType;
             sourceStep.DataContext = bindingRequest.Source;
 
@@ -81,7 +81,7 @@ namespace Nivaes.App.Cross
             return sourceStep;
         }
 
-        private void OnSourceBindingChanged(object sender, EventArgs e)
+        private void OnSourceBindingChanged(object? sender, EventArgs e)
         {
             var value = _sourceStep.GetValue();
             CancellationToken cancel;
@@ -187,7 +187,7 @@ namespace Nivaes.App.Cross
             });
         }
 
-        private void UpdateSourceFromTarget(object sender, CrossTargetChangedEventArgs args)
+        private void UpdateSourceFromTarget(object? sender, CrossTargetChangedEventArgs args)
         {
             if (args.Value == CrossBindingConstant.DoNothing)
                 return;
@@ -199,7 +199,7 @@ namespace Nivaes.App.Cross
             {
                 lock (_lock)
                 {
-                    _sourceStep?.SetValue(args.Value);
+                    _sourceStep?.SetValue(args.Value!);
                 }
             }
             catch (Exception exception)

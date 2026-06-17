@@ -183,6 +183,7 @@ public class CrossCoreBindingBuilder
         iocProvider.RegisterSingleton(CreateLanguageBindingParser());
     }
 
+    [Obsolete("", true)]
     protected virtual ICrossLanguageBindingParser CreateLanguageBindingParser()
     {
         return new CrossLanguageBindingParser();
