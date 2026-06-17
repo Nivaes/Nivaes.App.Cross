@@ -6,6 +6,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
+// ToDo: Unificar l
 public class AndroidViewsContainer
     : CrossViewsContainer, IAndroidViewsContainer
 {
@@ -16,13 +17,6 @@ public class AndroidViewsContainer
     private readonly ILogger<AndroidViewsContainer>? _logger;
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly ICrossChildViewModelCache _childViewModelCache;
-
-    [Obsolete("", true)]
-    public AndroidViewsContainer(Context applicationContext)
-    {
-        _applicationContext = applicationContext;
-    }
-
 
     public AndroidViewsContainer(Context applicationContext, 
         ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,

@@ -28,7 +28,7 @@ public class SampleApp : Application, IApplication
     ///// </summary>
     public override ICrossViewModelStar Initialize()
     {
-        base.Logger.LogCritical("Inicio app.");
+        base.Logger.LogTrace("Inicio app.");
 
         var source = new ActivitySource("SampleCrossClient");
 

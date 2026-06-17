@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -146,26 +145,35 @@ public static class CrossActivityViewExtensions
         return activity;
     }
 
-    //[UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, ICrossBundle? savedState)
     {
         var activity = androidView.ToActivity();
 
-        var viewModelType = androidView.FindAssociatedViewModelTypeOrNull();
-        if (viewModelType == typeof(CrossNullViewModel))
-            return new CrossNullViewModel();
+        //var viewModelType = androidView.FindAssociatedViewModelTypeOrNull();
+        //if (viewModelType == typeof(CrossNullViewModel))
+        //    return new CrossNullViewModel();
 
-        if (viewModelType == null
-            || viewModelType == typeof(ICrossViewModel))
+        //if (viewModelType == null
+        //    || viewModelType == typeof(ICrossViewModel))
+        //{
+        //    var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+
+        //    logger.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
+        //        androidView.GetType().Name);
+        //}
+
+        var viewType = androidView.GetType();
+
+        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
+
+        if(!Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(viewType.GetType(), out var viewModelType))
         {
             var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
 
-            logger.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
+            logger.Log(LogLevel.Trace, $"No ViewModel class specified for {viewType} in LoadViewModel",
                 androidView.GetType().Name);
         }
-
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
 
         //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelLoader? viewModelLoader) == true &&
         //    viewModelLoader != null)
@@ -173,6 +181,6 @@ public static class CrossActivityViewExtensions
         return viewModelLoader.Load(activity.Intent, savedState, viewModelType);
         //}
 
-        return null;
+        //return null;
     }
 }

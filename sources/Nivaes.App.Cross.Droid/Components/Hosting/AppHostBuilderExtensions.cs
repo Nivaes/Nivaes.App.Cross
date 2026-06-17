@@ -30,7 +30,9 @@ namespace Nivaes.App.Cross.Droid
             });
             builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
             builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();
-            builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
+
+
+            builder.Services.TryAddSingleton<AndroidViewsContainer>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
                 var navigationSerializer = sp.GetRequiredService<ICrossNavigationSerializer>();
@@ -38,6 +40,10 @@ namespace Nivaes.App.Cross.Droid
 
                 return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
             });
+            builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
+                sp.GetRequiredService<AndroidViewsContainer>());
+            builder.Services.TryAddSingleton<IMvxAndroidViewModelLoader>(sp =>
+                sp.GetRequiredService<AndroidViewsContainer>());
 
             builder.Services.TryAddSingleton<ICrashHandler, AndroidCrashHandler>();
             builder.Services.TryAddSingleton<ICrossBindingContextStack<IMvxAndroidBindingContext>, MvxAndroidBindingContextStack>();
@@ -45,6 +51,10 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxIntentResultSink, MvxIntentResultSink>();
             builder.Services.TryAddSingleton<IMvxSavedStateConverter, MvxSavedStateConverter>();
             builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
+            builder.Services.TryAddSingleton<IMvxAndroidViewFactory, MvxAndroidViewFactory>();
+            builder.Services.TryAddSingleton<IMvxLayoutInflaterHolderFactoryFactory, MvxLayoutInflaterFactoryFactory>();
+            builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
+            builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
 
 
             return builder;

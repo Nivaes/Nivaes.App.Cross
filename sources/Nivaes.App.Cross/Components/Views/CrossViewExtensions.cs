@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -48,11 +47,14 @@ public static class CrossViewExtensions
     {
         ArgumentNullException.ThrowIfNull(view);
 
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
-        //    return associatedTypeFinder?.FindTypeOrNull(view.GetType());
+        //var associatedTypeFinder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelTypeFinder>();
 
-        CrossLogHost.Default?.Log(LogLevel.Trace,
-            "No view model type finder available - assuming we are looking for a splash screen - returning null");
+        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
+        //return associatedTypeFinder?.FindTypeOrNull(view.GetType());
+
+        //CrossLogHost.Default?.Log(LogLevel.Trace,
+        //    "No view model type finder available - assuming we are looking for a splash screen - returning null");
+
         return typeof(CrossNullViewModel);
     }
 }

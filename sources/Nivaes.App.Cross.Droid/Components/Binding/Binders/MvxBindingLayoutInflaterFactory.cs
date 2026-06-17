@@ -11,12 +11,12 @@ namespace Nivaes.App.Cross.Droid;
 public class MvxBindingLayoutInflaterFactory
     : IMvxLayoutInflaterHolderFactory
 {
-    private readonly object _source;
+    private readonly object? _source;
 
     private IMvxAndroidViewFactory? _androidViewFactory;
     private IMvxAndroidViewBinder? _binder;
 
-    public MvxBindingLayoutInflaterFactory(object source)
+    public MvxBindingLayoutInflaterFactory(object? source)
     {
         _source = source;
     }
@@ -39,7 +39,7 @@ public class MvxBindingLayoutInflaterFactory
         return BindCreatedView(view, context, attrs);
     }
 
-    public virtual View? BindCreatedView(View? view, Context context, IAttributeSet attrs)
+    public virtual View? BindCreatedView(View? view, Context? context, IAttributeSet attrs)
     {
         if (view != null)
             Binder?.BindView(view, context, attrs);

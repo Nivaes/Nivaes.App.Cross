@@ -1,7 +1,8 @@
-//namespace Nivaes.App.Cross
-//{
-//    public interface ICrossViewModelTypeFinder
-//        : ICrossTypeFinder
-//    {
-//    }
-//}
+namespace Nivaes.App.Cross
+{
+    [Obsolete("", true)]
+    public interface ICrossViewModelTypeFinder
+        : ICrossTypeFinder
+    {
+    }
+}

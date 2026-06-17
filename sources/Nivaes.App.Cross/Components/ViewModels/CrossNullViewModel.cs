@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    [Obsolete("")]
+    [Obsolete]
     public class CrossNullViewModel
         : CrossViewModel
     {

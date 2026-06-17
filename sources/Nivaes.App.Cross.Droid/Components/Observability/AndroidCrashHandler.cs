@@ -38,9 +38,10 @@ namespace Nivaes.App.Cross.Droid
                 var json = await File.ReadAllTextAsync(PathCrashFile);
 
                 //base.Logger.LogCritical(json);
+                int i = 0;
                 base.Logger.Log<string>(LogLevel.Critical, default, json, null, (message, ex) =>
                 {
-                    return message;
+                    return $"{++i} - {message}";
                 });
                 File.Delete(PathCrashFile);
             }

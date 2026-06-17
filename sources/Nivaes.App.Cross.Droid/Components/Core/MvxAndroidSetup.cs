@@ -103,19 +103,19 @@ namespace Nivaes.App.Cross.Droid
             if (ApplicationContext == null)
                 throw new InvalidOperationException("Cannot create Views Container without ApplicationContext");
 
-            var container = CreateViewsContainer(ApplicationContext);
+            //var container = CreateViewsContainer(ApplicationContext);
             throw new NotImplementedException("Carga de Views");
             //iocProvider.RegisterSingleton<IMvxAndroidViewModelRequestTranslator>(container);
             //iocProvider.RegisterSingleton<IMvxAndroidViewModelLoader>(container);
-            if (container is not CrossViewsContainer viewsContainer)
-                throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
-            return viewsContainer;
+            //if (container is not CrossViewsContainer viewsContainer)
+            //    throw new CrossException("CreateViewsContainer must return an MvxViewsContainer");
+            //return viewsContainer;
         }
 
-        protected virtual IAndroidViewsContainer CreateViewsContainer(Context applicationContext)
-        {
-            return new AndroidViewsContainer(applicationContext);
-        }
+        //protected virtual IAndroidViewsContainer CreateViewsContainer(Context applicationContext)
+        //{
+        //    return new AndroidViewsContainer(applicationContext);
+        //}
 
         //protected IMvxAndroidViewPresenter Presenter
         //{

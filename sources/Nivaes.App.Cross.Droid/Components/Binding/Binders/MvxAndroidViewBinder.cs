@@ -5,16 +5,15 @@ using Android.Util;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
-
 
 public class MvxAndroidViewBinder
     : IMvxAndroidViewBinder
 {
     private readonly List<KeyValuePair<object, ICrossUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, ICrossUpdateableBinding>>();
-    private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => throw new NotImplementedException() /*Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>()*/);
+    private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() =>
+          IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidBindingResource>());
 
     private readonly object _source;
 
@@ -33,8 +32,7 @@ public class MvxAndroidViewBinder
     public virtual void BindView(View view, Context context, IAttributeSet attrs)
     {
         using (
-            var typedArray = context.ObtainStyledAttributes(attrs,
-                                                            mvxAndroidBindingResource.Value.BindingStylableGroupId))
+            var typedArray = context.ObtainStyledAttributes(attrs, mvxAndroidBindingResource.Value.BindingStylableGroupId))
         {
             int numStyles = typedArray.IndexCount;
             for (var i = 0; i < numStyles; ++i)
