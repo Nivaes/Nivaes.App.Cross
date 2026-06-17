@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross
             public void BindLanguage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(TTarget target
                                                      , string sourceKey)
             {
-                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = Singleton<CrossBindingSingletonCache>.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 owner.BindLanguage(target, targetPath, sourceKey);
             }
 
@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross
                                                      , string sourceKey
                                                      , CrossBindingMode bindingMode)
             {
-                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = Singleton<CrossBindingSingletonCache>.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 owner.BindLanguage(target, targetPath, sourceKey, bindingMode: bindingMode);
             }
 
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
                                                                  , CrossBindingMode bindingMode = CrossBindingMode.OneTime)
             {
                 var parser = PropertyExpressionParser;
-                var targetPath = CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                var targetPath = Singleton<CrossBindingSingletonCache>.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
                 var sourcePath = parser.Parse(textProvider).Print();
                 owner.BindLanguage(target, targetPath, sourceKey, sourcePath, bindingMode: bindingMode);
             }

@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         public IEnumerable<ICrossUpdateableBinding> Bind(object? source, object target, string bindingText)
         {
-            var bindingDescriptions = CrossBindingSingletonCache.Instance!.BindingDescriptionParser.Parse(bindingText);
+            var bindingDescriptions = Singleton<CrossBindingSingletonCache>.Instance!.BindingDescriptionParser.Parse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
         public IEnumerable<ICrossUpdateableBinding> LanguageBind(object? source, object target, string bindingText)
         {
             var bindingDescriptions =
-                CrossBindingSingletonCache.Instance!.BindingDescriptionParser.LanguageParse(bindingText);
+                Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(bindingText);
             return Bind(source, target, bindingDescriptions);
         }
 
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross
                                                 string partialBindingDescription)
         {
             var bindingDescription =
-                CrossBindingSingletonCache.Instance!.BindingDescriptionParser.ParseSingle(partialBindingDescription);
+                Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.ParseSingle(partialBindingDescription);
             if (bindingDescription == null)
                 return null;
 

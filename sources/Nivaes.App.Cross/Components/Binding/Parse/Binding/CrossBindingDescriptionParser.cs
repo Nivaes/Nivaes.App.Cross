@@ -55,9 +55,9 @@ public class CrossBindingDescriptionParser
         return toReturn;
     }
 
-    protected ICrossValueCombiner FindCombiner(string combiner)
+    protected ICrossValueCombiner? FindCombiner(string combiner)
     {
-        return CrossBindingSingletonCache.Instance?.ValueCombinerLookup.Find(combiner);
+        return Singleton<CrossBindingSingletonCache>.Instance.ValueCombinerLookup.Find(combiner);
     }
 
     public IEnumerable<CrossBindingDescription> Parse(string text)

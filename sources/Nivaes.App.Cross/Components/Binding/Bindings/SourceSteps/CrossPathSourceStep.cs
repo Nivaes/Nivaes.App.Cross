@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        private ICrossSourceBindingFactory SourceBindingFactory => CrossBindingSingletonCache.Instance.SourceBindingFactory;
+        private ICrossSourceBindingFactory SourceBindingFactory => Singleton<CrossBindingSingletonCache>.Instance.SourceBindingFactory;
 
         protected override void Dispose(bool isDisposing)
         {

@@ -6,16 +6,16 @@ namespace Nivaes.App.Cross;
 // this class is not perfect OO and it gets in the way of testing
 // however, it is here for speed - to help avoid obscene numbers of IPlatformApplication.Current!.Services.GetRequiredService<T> calls during binding
 public class CrossBindingSingletonCache
-    : CrossSingleton<ICrossBindingSingletonCache>, ICrossBindingSingletonCache
+    : ICrossBindingSingletonCache
 {
-    public static ICrossBindingSingletonCache Initialize()
-    {
-        if (Instance != null)
-            throw new CrossException("You should only initialize MvxBindingSingletonCache once");
+    //public static ICrossBindingSingletonCache Initialize()
+    //{
+    //    //if (Instance != null)
+    //    //    throw new CrossException("You should only initialize MvxBindingSingletonCache once");
 
-        var instance = new CrossBindingSingletonCache();
-        return instance;
-    }
+    //    var instance = new CrossBindingSingletonCache();
+    //    return instance;
+    //}
 
     private ICrossAutoValueConverters _autoValueConverters;
     private ICrossBindingDescriptionParser _bindingDescriptionParser;

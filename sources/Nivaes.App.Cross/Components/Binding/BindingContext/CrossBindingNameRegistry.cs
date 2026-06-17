@@ -65,7 +65,7 @@ namespace Nivaes.App.Cross
 
         public void AddOrOverwrite<T>(Expression<Func<T, object>> nameExpression)
         {
-            var path = CrossBindingSingletonCache.Instance.PropertyExpressionParser.Parse(nameExpression);
+            var path = Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser.Parse(nameExpression);
             _lookup[typeof(T)] = path.Print();
         }
     }

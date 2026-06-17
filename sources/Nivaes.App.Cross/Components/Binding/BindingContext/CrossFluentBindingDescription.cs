@@ -140,7 +140,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     public CrossFluentBindingDescription<TTarget, TSource> SourceDescribed(string bindingDescription)
     {
         var newBindingDescription =
-            CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
+            Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
         return SourceDescribed(newBindingDescription);
     }
 
@@ -153,7 +153,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     public CrossFluentBindingDescription<TTarget, TSource> FullyDescribed(string bindingDescription)
     {
         var newBindingDescription =
-            CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
+            Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingDescription)
             .ToList();
 
         if (newBindingDescription.Count > 1)
@@ -275,7 +275,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
     public MvxFluentBindingDescription<TTarget> SourceDescribed(string bindingDescription)
     {
         var newBindingDescription =
-            CrossBindingSingletonCache.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
+            Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.ParseSingle(bindingDescription);
         return SourceDescribed(newBindingDescription);
     }
 
@@ -288,7 +288,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
     public MvxFluentBindingDescription<TTarget> FullyDescribed(string bindingDescription)
     {
         var newBindingDescription =
-            CrossBindingSingletonCache.Instance.BindingDescriptionParser.Parse(bindingDescription)
+            Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.Parse(bindingDescription)
             .ToList();
 
         if (newBindingDescription.Count > 1)

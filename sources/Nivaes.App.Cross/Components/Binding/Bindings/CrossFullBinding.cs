@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross
 
         private ICrossSourceStep CreateSourceBinding(CrossBindingRequest bindingRequest)
         {
-            var sourceStep = CrossBindingSingletonCache.Instance.SourceStepFactory.Create(bindingRequest.Description.Source);
+            var sourceStep = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory.Create(bindingRequest.Description.Source);
             sourceStep.TargetType = _targetBinding.TargetValueType;
             sourceStep.DataContext = bindingRequest.Source;
 
@@ -132,7 +132,7 @@ namespace Nivaes.App.Cross
 
         private static ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
         {
-            var binding = CrossBindingSingletonCache.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
+            var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
 
             if (binding == null)
             {
@@ -165,7 +165,7 @@ namespace Nivaes.App.Cross
                 }
             }
 
-            await CrossBindingSingletonCache.Instance.MainThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+            await Singleton<CrossBindingSingletonCache>.Instance.MainThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
                 if (cancel.IsCancellationRequested)
                     return;

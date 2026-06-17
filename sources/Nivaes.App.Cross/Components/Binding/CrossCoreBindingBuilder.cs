@@ -46,7 +46,7 @@ public class CrossCoreBindingBuilder
 
     protected virtual void CreateSingleton()
     {
-        CrossBindingSingletonCache.Initialize();
+        //CrossBindingSingletonCache.Initialize();
     }
 
     [Obsolete]

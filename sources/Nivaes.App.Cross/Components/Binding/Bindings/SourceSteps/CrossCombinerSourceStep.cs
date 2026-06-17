@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         public CrossCombinerSourceStep(CrossCombinerSourceStepDescription description)
             : base(description)
         {
-            var sourceStepFactory = CrossBindingSingletonCache.Instance.SourceStepFactory;
+            var sourceStepFactory = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory;
             _subSteps = [.. description.InnerSteps.Select(d => sourceStepFactory.Create(d))];
         }
 

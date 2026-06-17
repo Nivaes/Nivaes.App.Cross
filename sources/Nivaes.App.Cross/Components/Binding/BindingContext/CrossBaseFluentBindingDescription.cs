@@ -210,21 +210,21 @@ namespace Nivaes.App.Cross
 
         protected static string TargetPropertyName(Expression<Func<TTarget, object>> targetPropertyPath)
         {
-            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser;
             var targetPropertyName = parser.Parse(targetPropertyPath).Print();
             return targetPropertyName;
         }
 
         protected static string SourcePropertyPath<TSource>(Expression<Func<TSource, object>> sourceProperty)
         {
-            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser;
             var sourcePropertyPath = parser.Parse(sourceProperty).Print();
             return sourcePropertyPath;
         }
 
         protected static ICrossValueConverter ValueConverterFromName(string converterName)
         {
-            var converter = CrossBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
+            var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
             return converter;
         }
 
@@ -279,7 +279,7 @@ namespace Nivaes.App.Cross
                 return;
 
             var defaultTargetName =
-                CrossBindingSingletonCache.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
+                Singleton<CrossBindingSingletonCache>.Instance?.DefaultBindingNameLookup.DefaultFor(typeof(TTarget));
 
             if (string.IsNullOrEmpty(defaultTargetName))
             {

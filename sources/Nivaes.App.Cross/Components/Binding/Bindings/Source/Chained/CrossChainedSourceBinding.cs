@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
             base.Dispose(isDisposing);
         }
 
-        private ICrossSourceBindingFactory SourceBindingFactory => CrossBindingSingletonCache.Instance.SourceBindingFactory;
+        private ICrossSourceBindingFactory SourceBindingFactory => Singleton<CrossBindingSingletonCache>.Instance.SourceBindingFactory;
 
         public override Type SourceType
         {

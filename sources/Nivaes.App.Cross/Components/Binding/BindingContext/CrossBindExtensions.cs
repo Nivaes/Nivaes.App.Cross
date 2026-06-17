@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross
                                             object fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
-            var converter = CrossBindingSingletonCache.Instance.ValueConverterLookup.Find(converterName);
+            var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
             return element.Bind(target, targetPropertyPath, sourcePropertyPath, converter, converterParameter,
                                 fallbackValue, mode);
         }
@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross
                                             object fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
-            var parser = CrossBindingSingletonCache.Instance.PropertyExpressionParser;
+            var parser = Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser;
             var sourcePath = parser.Parse(sourcePropertyPath).Print();
             var targetPath = targetPropertyPath == null ? null : parser.Parse(targetPropertyPath).Print();
             return element.Bind(target, targetPath, sourcePath, converter, converterParameter, fallbackValue, mode);
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             if (string.IsNullOrEmpty(targetPath))
-                targetPath = CrossBindingSingletonCache.Instance.DefaultBindingNameLookup.DefaultFor(typeof(T));
+                targetPath = Singleton<CrossBindingSingletonCache>.Instance.DefaultBindingNameLookup.DefaultFor(typeof(T));
 
             var bindingDescription = new CrossBindingDescription(
                 targetPath,
