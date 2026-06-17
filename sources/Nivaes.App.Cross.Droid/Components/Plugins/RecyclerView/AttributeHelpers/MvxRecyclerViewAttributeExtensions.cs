@@ -68,10 +68,7 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
                     Make sure you have provided full Type name: namespace + class name, AssemblyName.
                     Example (check Example.Droid sample!): Example.Droid.Common.TemplateSelectors.MultiItemTemplateModelTemplateSelector, Example.Droid";
 
-                //var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>()
-                //   .CreateLogger($"{nameof(MvxRecyclerViewAttributeExtensions)}.{nameof(BuildItemTemplateSelector)}");
-
-                var logger = CrossLogHost.GetLogger();
+                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
                 logger.Log(LogLevel.Error, message, templateSelectorClassName);
                 throw new InvalidOperationException(message);
             }

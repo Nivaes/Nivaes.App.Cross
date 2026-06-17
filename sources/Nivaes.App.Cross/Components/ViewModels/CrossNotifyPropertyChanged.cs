@@ -82,8 +82,7 @@ namespace Nivaes.App.Cross
 
             if (ShouldLogInpc())
             {
-                CrossLogHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' changing value to {NewValue}",
-                    changingArgs.PropertyName, changingArgs.NewValue);
+                CrossLogHost.Default?.LogTrace("Property '{PropertyName}' changing value to {NewValue}", changingArgs.PropertyName, changingArgs.NewValue);
             }
 
             PropertyChanging?.Invoke(this, changingArgs);

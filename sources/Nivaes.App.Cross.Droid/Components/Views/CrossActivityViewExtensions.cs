@@ -169,7 +169,9 @@ public static class CrossActivityViewExtensions
 
         if(!Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(viewType.GetType(), out var viewModelType))
         {
-            var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
+            var logger = CrossLogHost.GetLogger($"{nameof(CrossActivityViewExtensions)}.{nameof(LoadViewModel)}");
+
+            //var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
 
             logger.Log(LogLevel.Trace, $"No ViewModel class specified for {viewType} in LoadViewModel",
                 androidView.GetType().Name);

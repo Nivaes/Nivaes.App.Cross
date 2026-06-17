@@ -24,8 +24,8 @@ namespace Nivaes.App.Cross.Droid
         {
             try
             {
-                var json = Serialize(ex);
-                File.WriteAllText(PathCrashFile, json);
+                var message = Serialize(ex);
+                File.WriteAllText(PathCrashFile, message);
             }
             catch(Exception exx)
             { }
@@ -35,9 +35,9 @@ namespace Nivaes.App.Cross.Droid
         {
             if (File.Exists(PathCrashFile))
             {
-                var json = await File.ReadAllTextAsync(PathCrashFile);
+                var message = await File.ReadAllTextAsync(PathCrashFile);
 
-                base.Logger.LogCritical(json);
+                base.Logger.LogCritical(message);
                 File.Delete(PathCrashFile);
             }
         }
