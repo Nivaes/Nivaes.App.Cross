@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     public class CrossMissingSourceBinding 
         : CrossSourceBinding
     {
-        public CrossMissingSourceBinding(object source) : base(source)
+        public CrossMissingSourceBinding(object? source) : base(source)
         {
         }
 

@@ -16,6 +16,13 @@ public class CrossSourceBindingFactory
 
     private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 
+    private readonly ILogger _logger;
+
+    public CrossSourceBindingFactory(ILogger<CrossSourceBindingFactory> logger) 
+    {
+        _logger = logger;
+    }
+
     [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
     protected bool TryCreateBindingFromExtensions(
         object source, ICrossPropertyToken propertyToken,
@@ -57,7 +64,7 @@ public class CrossSourceBindingFactory
 
         if (source != null)
         {
-            CrossBindingLog.Instance?.LogWarning(
+            _logger.LogWarning(
                 "Unable to bind: source property source not found @{CurrentToken} on {SourceTypeName}",
                 currentToken,
                 source.GetType().Name);

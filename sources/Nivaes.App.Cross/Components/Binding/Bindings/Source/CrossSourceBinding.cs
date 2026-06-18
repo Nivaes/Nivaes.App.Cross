@@ -5,14 +5,14 @@ namespace Nivaes.App.Cross
     public abstract class CrossSourceBinding
         : CrossBinding, ICrossSourceBinding
     {
-        private readonly object _source;
+        private readonly object? _source;
 
-        protected CrossSourceBinding(object source)
+        protected CrossSourceBinding(object? source)
         {
             _source = source;
         }
 
-        protected object Source => _source;
+        protected object? Source => _source;
 
         public event EventHandler Changed;
 

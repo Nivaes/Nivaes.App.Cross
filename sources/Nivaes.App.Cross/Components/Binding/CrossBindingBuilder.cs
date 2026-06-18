@@ -29,6 +29,7 @@ namespace Nivaes.App.Cross
             RegisterTargetFactory(iocProvider);
         }
 
+        [Obsolete("", true)]
         protected virtual void RegisterSourceStepFactory(IMvxIoCProvider iocProvider)
         {
             var sourceStepFactory = CreateSourceStepFactoryRegistry();
@@ -37,14 +38,15 @@ namespace Nivaes.App.Cross
             iocProvider.RegisterSingleton<ICrossSourceStepFactory>(sourceStepFactory);
         }
 
+        [Obsolete("", true)]
         protected virtual void FillSourceStepFactory(ICrossSourceStepFactoryRegistry registry)
         {
-            Mover esto
             registry.AddOrOverwrite(typeof(CrossCombinerSourceStepDescription), new CrossCombinerSourceStepFactory());
             registry.AddOrOverwrite(typeof(CrossPathSourceStepDescription), new CrossPathSourceStepFactory());
             registry.AddOrOverwrite(typeof(CrossLiteralSourceStepDescription), new CrossLiteralSourceStepFactory());
         }
 
+        [Obsolete("", true)]
         protected virtual ICrossSourceStepFactoryRegistry CreateSourceStepFactoryRegistry()
         {
             return new CrossSourceStepFactory();
@@ -69,6 +71,7 @@ namespace Nivaes.App.Cross
             extensionHost.Extensions.Add(new CrossPropertySourceBindingFactoryExtension());
         }
 
+        [Obsolete("", true)]
         protected virtual ICrossSourceBindingFactory CreateSourceBindingFactory()
         {
             return new CrossSourceBindingFactory();

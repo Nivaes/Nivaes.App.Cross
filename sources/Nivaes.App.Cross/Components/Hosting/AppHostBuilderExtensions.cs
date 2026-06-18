@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Win32;
 
 namespace Nivaes.App.Cross.Hosting
 {
@@ -36,29 +37,31 @@ namespace Nivaes.App.Cross.Hosting
 
             builder.Services.TryAddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
 
-            //builder.Services.TryAddSingleton<ICrossViewModelTypeFinder, CrossViewModelViewTypeFinder>();
             builder.Services.TryAddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
             builder.Services.TryAddSingleton<ICrossBindingContext, CrossTaskBasedBindingContext>();
 
-            //bootstrapper.AddSingleton<ILoggingService, LoggingService>();
+            builder.SetupBinding();
 
+            return builder;
+        }
 
-            //bootstrapper.AddSingleton<ICrossSettings, CrossSettings>();
-            //bootstrapper.AddSingleton<ICrossStringToTypeParser, CrossStringToTypeParser>();
-
-
-
-            //bootstrapper.AddSingleton<ICrossViewModelByNameLookup, CrossViewModelByNameLookup>();
-            ////bootstrapper.AddSingleton<ICrossViewModelByNameRegistry, CrossViewModelByNameLookup>();
-            //bootstrapper.AddSingleton<ICrossTypeToTypeLookupBuilder, CrossViewModelViewLookupBuilder>();
-            //bootstrapper.AddSingleton<ICrossCommandCollectionBuilder, CrossCommandCollectionBuilder>();
-
+        static CrossAppBuilder SetupBinding(this CrossAppBuilder builder)
+        {
+            // ToDo: Refactorizar esto (posiblemente merezca la pena crear un almacen separado para binding)
             builder.Services.TryAddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
             builder.Services.TryAddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
             builder.Services.TryAddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
             builder.Services.TryAddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();
             builder.Services.TryAddSingleton<ICrossTargetBindingFactory, CrossTargetBindingFactoryRegistry>();
-            builder.Services.TryAddSingleton<ICrossSourceStepFactory, CrossSourceStepFactory>();
+            builder.Services.TryAddSingleton<ICrossSourcePropertyPathParser, CrossSourcePropertyPathParser>();
+
+            // ToDo: Refactorizar esto (posiblemente merezca la pena crear un almacen separado para binding)
+            var sourceStepFactory = new CrossSourceStepFactory();
+            sourceStepFactory.AddOrOverwrite(typeof(CrossCombinerSourceStepDescription), new CrossCombinerSourceStepFactory());
+            sourceStepFactory.AddOrOverwrite(typeof(CrossPathSourceStepDescription), new CrossPathSourceStepFactory());
+            sourceStepFactory.AddOrOverwrite(typeof(CrossLiteralSourceStepDescription), new CrossLiteralSourceStepFactory());
+            builder.Services.TryAddSingleton<ICrossSourceStepFactoryRegistry>(sourceStepFactory);
+            builder.Services.TryAddSingleton<ICrossSourceStepFactory>(sourceStepFactory);
 
             return builder;
         }
