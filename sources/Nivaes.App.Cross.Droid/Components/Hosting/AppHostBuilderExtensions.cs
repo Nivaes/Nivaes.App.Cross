@@ -55,6 +55,7 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxLayoutInflaterHolderFactoryFactory, MvxLayoutInflaterFactoryFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
+            builder.Services.TryAddSingleton<IMvxViewTypeResolver, MvxCachedViewTypeResolver>();
 
             return builder;
         } 

@@ -88,7 +88,8 @@ public class MvxAndroidBindingBuilder
     [Obsolete("", true)]
     protected virtual IMvxAndroidViewFactory CreateAndroidViewFactory()
     {
-        return new MvxAndroidViewFactory();
+        //return new MvxAndroidViewFactory();
+        return null;
     }
 
     protected virtual void InitializeBindingResources(IMvxIoCProvider iocProvider)

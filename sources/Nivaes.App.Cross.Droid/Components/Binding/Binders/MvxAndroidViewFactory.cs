@@ -3,7 +3,6 @@ using Android.Util;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -12,28 +11,26 @@ public class MvxAndroidViewFactory
 {
     private IMvxViewTypeResolver? _viewTypeResolver;
     private readonly IServiceProvider _serviceProvider;
+    private readonly ILogger _logger;
 
-    //protected IMvxViewTypeResolver? ViewTypeResolver => _viewTypeResolver ??= Mvx.IoCProvider?.Resolve<IMvxViewTypeResolver>();
+    // ToDo: Solucionar la referencia circular. Probablemente fusionando las dos clases.
+    protected IMvxViewTypeResolver ViewTypeResolver => _viewTypeResolver ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxViewTypeResolver>();
 
-    [Obsolete("", true)]
-    public MvxAndroidViewFactory()
-    {
-    }
-
-    public MvxAndroidViewFactory(IServiceProvider serviceProvider, IMvxViewTypeResolver viewTypeResolver)
+    public MvxAndroidViewFactory(IServiceProvider serviceProvider,
+        ILogger<MvxAndroidViewFactory> logger)
     {
         _serviceProvider = serviceProvider;
-        _viewTypeResolver = viewTypeResolver;
+        _logger = logger;
     }
 
     public virtual View? CreateView(View? parent, string name, Context context, IAttributeSet attrs)
     {
         // resolve the tag name to a type
-        var viewType = _viewTypeResolver?.Resolve(name);
+        var viewType = ViewTypeResolver.Resolve(name);
 
         if (viewType == null)
         {
-            //MvxBindingLog.Error( "View type not found - {0}", name);
+            _logger.LogError("View type not found - {0}", name);
             return null;
         }
 
@@ -42,7 +39,7 @@ public class MvxAndroidViewFactory
             var view = ActivatorUtilities.CreateInstance(_serviceProvider, viewType, context, attrs) as View;
             if (view == null)
             {
-                CrossBindingLog.Instance?.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
+                _logger.LogError("Unable to load view {ViewName} from type {ViewTypeName}",
                     name,
                     viewType.FullName);
             }
@@ -54,7 +51,7 @@ public class MvxAndroidViewFactory
         }
         catch (Exception exception)
         {
-            CrossBindingLog.Instance?.LogError(
+            _logger.LogError(
                 exception,
                 "Exception during creation of {ViewName} from type {ViewTypeName}", name, viewType.FullName);
             return null;

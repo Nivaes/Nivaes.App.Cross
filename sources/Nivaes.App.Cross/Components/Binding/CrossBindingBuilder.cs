@@ -74,7 +74,8 @@ namespace Nivaes.App.Cross
         [Obsolete("", true)]
         protected virtual ICrossSourceBindingFactory CreateSourceBindingFactory()
         {
-            return new CrossSourceBindingFactory();
+            //return new CrossSourceBindingFactory();
+            return null;
         }
 
         [RequiresUnreferencedCode("This method registers target bindings that may not be preserved by trimming")]
