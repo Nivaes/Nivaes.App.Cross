@@ -1,7 +1,10 @@
 ﻿using Android.Content;
+using Android.Graphics;
+using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using MvvmCross.IoC;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
@@ -55,9 +58,31 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxLayoutInflaterHolderFactoryFactory, MvxLayoutInflaterFactoryFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
-            builder.Services.TryAddSingleton<IMvxViewTypeResolver, MvxCachedViewTypeResolver>();
+
+            //builder.Services.TryAddSingleton<IMvxTypeCache, MvxTypeCache<View>>();
+            //builder.Services.TryAddSingleton<IMvxAxmlNameViewTypeResolver, MvxAxmlNameViewTypeResolver>();
+            //builder.Services.TryAddSingleton<IMvxNamespaceListViewTypeResolver, MvxNamespaceListViewTypeResolver>();
+            //builder.Services.TryAddSingleton<MvxReflectionViewTypeResolver, MvxJustNameViewTypeResolver>();
+
+
+            // ToDo: Refactorizar esto. Hay clases con el mismo interface que están anidadas.
+
+            //builder.Services.TryAddSingleton<IMvxViewTypeResolver>(sp =>
+            //{
+            //    var fullNameViewTypeResolver = (MvxAxmlNameViewTypeResolver)sp.GetRequiredService<IMvxAxmlNameViewTypeResolver>();
+            //    var listViewTypeResolver = (MvxNamespaceListViewTypeResolver)sp.GetRequiredService<IMvxNamespaceListViewTypeResolver>();
+            //    var justNameTypeResolver = sp.GetRequiredService<MvxReflectionViewTypeResolver>();
+
+            //    var composite = new MvxCompositeViewTypeResolver(fullNameViewTypeResolver, listViewTypeResolver, justNameTypeResolver);
+            //    return composite;
+            //});
+            builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>(); 
+
+            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxAndroidViewDispatcher>();
 
             return builder;
-        } 
+        }
+
+        
     }
 }

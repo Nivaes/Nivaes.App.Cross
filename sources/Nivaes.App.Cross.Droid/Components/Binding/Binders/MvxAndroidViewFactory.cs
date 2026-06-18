@@ -9,28 +9,29 @@ namespace Nivaes.App.Cross.Droid;
 public class MvxAndroidViewFactory
     : IMvxAndroidViewFactory
 {
-    private IMvxViewTypeResolver? _viewTypeResolver;
+    private IMvxViewTypeResolver _viewTypeResolver;
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger _logger;
 
     // ToDo: Solucionar la referencia circular. Probablemente fusionando las dos clases.
-    protected IMvxViewTypeResolver ViewTypeResolver => _viewTypeResolver ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxViewTypeResolver>();
+    //protected IMvxViewTypeResolver ViewTypeResolver => _viewTypeResolver ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxViewTypeResolver>();
 
-    public MvxAndroidViewFactory(IServiceProvider serviceProvider,
+    public MvxAndroidViewFactory(IServiceProvider serviceProvider, IMvxViewTypeResolver viewTypeResolver,
         ILogger<MvxAndroidViewFactory> logger)
     {
         _serviceProvider = serviceProvider;
+        _viewTypeResolver = viewTypeResolver;
         _logger = logger;
     }
 
     public virtual View? CreateView(View? parent, string name, Context context, IAttributeSet attrs)
     {
         // resolve the tag name to a type
-        var viewType = ViewTypeResolver.Resolve(name);
+        var viewType = _viewTypeResolver.Resolve(name);
 
         if (viewType == null)
         {
-            _logger.LogError("View type not found - {0}", name);
+            _logger.LogError(new EventId(100, nameof(MvxAndroidViewFactory)) , "View type not found - {0}", name);
             return null;
         }
 

@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using MvvmCross.IoC;
 
+    [Obsolete("", true)]
     public abstract class MvxReflectionViewTypeResolver : IMvxViewTypeResolver
     {
         protected IMvxTypeCache TypeCache { get; }

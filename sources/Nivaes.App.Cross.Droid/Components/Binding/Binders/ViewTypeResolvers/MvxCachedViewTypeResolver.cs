@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    [Obsolete("", true)]
     public class MvxCachedViewTypeResolver 
         : IMvxViewTypeResolver
     {

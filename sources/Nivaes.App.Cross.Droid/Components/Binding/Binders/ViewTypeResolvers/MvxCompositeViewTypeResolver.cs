@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Droid
     {
         private readonly List<IMvxViewTypeResolver> _resolvers;
 
+        [Obsolete("", true)]
         public MvxCompositeViewTypeResolver(params IMvxViewTypeResolver[] resolvers)
         {
             _resolvers = new List<IMvxViewTypeResolver>(resolvers);

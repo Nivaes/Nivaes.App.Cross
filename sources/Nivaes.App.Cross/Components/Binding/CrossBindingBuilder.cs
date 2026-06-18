@@ -66,6 +66,7 @@ namespace Nivaes.App.Cross
                 CrossLogHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
         }
 
+        [Obsolete("", true)]
         protected virtual void RegisterSourceBindingFactoryExtensions(ICrossSourceBindingFactoryExtensionHost extensionHost)
         {
             extensionHost.Extensions.Add(new CrossPropertySourceBindingFactoryExtension());

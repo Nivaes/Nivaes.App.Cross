@@ -3,7 +3,8 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
 
-    public abstract class CrossMainThreadDispatcher : CrossSingleton<ICrossMainThreadDispatcher>, ICrossMainThreadDispatcher
+    public abstract class CrossMainThreadDispatcher :
+        ICrossMainThreadDispatcher
     {
         public static void ExceptionMaskedAction(Action action, bool maskExceptions)
         {
