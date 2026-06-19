@@ -1,10 +1,10 @@
 {
   "sdk": {
-    "version": "10.0.300",
+    "version": "10.0.301",
     "rollForward": "latestMajor"
   },
   "msbuild-sdks": {
-    "Aspire.AppHost.Sdk": "13.4.3"
+    "Aspire.AppHost.Sdk": "13.4.5"
   },
   "maccatalyst": {},
   "ios": {
