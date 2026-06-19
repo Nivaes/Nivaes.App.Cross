@@ -4,11 +4,11 @@ namespace Nivaes.App.Cross.Sample;
 
 public class ChildViewModel : MvxNavigationViewModel<SampleModel>
 {
-    public string BrokenTextValue { get => _brokenTextValue; set => SetProperty(ref _brokenTextValue, value); }
-    public string AnotherBrokenTextValue { get => _anotherBrokenTextValue; set => SetProperty(ref _anotherBrokenTextValue, value); }
+    public string? BrokenTextValue { get => _brokenTextValue; set => SetProperty(ref _brokenTextValue, value); }
+    public string? AnotherBrokenTextValue { get => _anotherBrokenTextValue; set => SetProperty(ref _anotherBrokenTextValue, value); }
 
-    private string _brokenTextValue;
-    private string _anotherBrokenTextValue;
+    private string? _brokenTextValue;
+    private string? _anotherBrokenTextValue;
 
     public ChildViewModel(
         ILoggerFactory logProvider, ICrossNavigationService navigationService)
@@ -28,7 +28,7 @@ public class ChildViewModel : MvxNavigationViewModel<SampleModel>
         return NavigationService.Close(this);
     }
 
-    private void ChildViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void ChildViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
         // Demonstrates that exceptions can be raised on property changed but are swallowed by default to 
         // protect the app from crashing

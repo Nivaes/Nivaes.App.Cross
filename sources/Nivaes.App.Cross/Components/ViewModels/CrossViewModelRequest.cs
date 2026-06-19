@@ -24,7 +24,12 @@ namespace Nivaes.App.Cross
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewModelType { get; set; }
+        public Type? ViewModelType 
+        { 
+            get;
+            set; 
+        }
+
         public IDictionary<string, string>? ParameterValues { get; set; }
         public IDictionary<string, string>? PresentationValues { get; set; }
 

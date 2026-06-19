@@ -32,6 +32,7 @@ public static class CrossProgram
         // ToDo: Cargar esto con roslyn.
         CrossViewsManagerHelper.RegisterViewModel(new[] {
                     CrossViewsManagerHelper.New<CollectionViewModel, CollectionView>(),
+                    CrossViewsManagerHelper.New<CrossStartActivityViewModel, SplashScreen>(),
                     CrossViewsManagerHelper.New<ConvertersViewModel, ConvertersActivity>(),
                     CrossViewsManagerHelper.New<SharedElementRootViewModel, SharedElementRootView>(),
                     CrossViewsManagerHelper.New<SharedElementSecondViewModel, SharedElementSecondView>(),

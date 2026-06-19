@@ -45,7 +45,11 @@ public abstract class CrossActivity<TViewModel>
         }
     }
 
-    ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
+    ICrossViewModel? ICrossView.ViewModel 
+    { 
+        get => ViewModel; 
+        set => ViewModel = (TViewModel?)value; 
+    }
     #endregion
 
     public void MvxInternalStartActivityForResult(Intent intent, int requestCode)

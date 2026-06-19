@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;
@@ -15,7 +16,7 @@ public class CrossDefaultViewModelLocator
 
     // ToDo: ¿Tiene sentido sobrecargar esta clase?
     public virtual ICrossViewModel Load(
-        Type viewModelType,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
@@ -23,7 +24,7 @@ public class CrossDefaultViewModelLocator
         ICrossViewModel? viewModel;
         try
         {
-            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
+            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType); 
         }
         catch (Exception ex)
         {

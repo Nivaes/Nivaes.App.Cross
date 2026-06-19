@@ -39,13 +39,17 @@ public static class CrossViewExtensions
         }
     }
 
-    [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "The generic constraint ensures TViewType has the required members")]
     [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
     public static Type? FindAssociatedViewModelTypeOrNull<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] TViewType>(
             this TViewType view)
         where TViewType : ICrossView
     {
         ArgumentNullException.ThrowIfNull(view);
+
+        if(Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        {  
+            return viewModelType; 
+        }
 
         //var associatedTypeFinder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelTypeFinder>();
 
@@ -55,6 +59,7 @@ public static class CrossViewExtensions
         //CrossLogHost.Default?.Log(LogLevel.Trace,
         //    "No view model type finder available - assuming we are looking for a splash screen - returning null");
 
-        return typeof(CrossNullViewModel);
+        //return typeof(CrossNullViewModel);
+        return null;
     }
 }

@@ -38,14 +38,14 @@ public class AndroidViewsContainer
     }
 
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    public virtual ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState,
+    public virtual ICrossViewModel Load(Intent? intent, ICrossBundle? savedState,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
     {
         return CreateViewModel(intent!, savedState, viewModelTypeHint);
     }
 
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    protected virtual ICrossViewModel? CreateViewModel(
+    protected virtual ICrossViewModel CreateViewModel(
         Intent intent,
         ICrossBundle? savedState,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
@@ -116,13 +116,14 @@ public class AndroidViewsContainer
 
         //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
         //{
+        var aa = viewModelRequest.ViewModelType.FullName;
         return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
         //}
 
         //return null;
     }
 
-    protected virtual bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? mvxViewModel)
+    protected virtual bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel mvxViewModel)
     {
         var embeddedViewModelKey = intent.Extras?.GetInt(SubViewModelKey);
         if (embeddedViewModelKey != null && embeddedViewModelKey.Value != 0)

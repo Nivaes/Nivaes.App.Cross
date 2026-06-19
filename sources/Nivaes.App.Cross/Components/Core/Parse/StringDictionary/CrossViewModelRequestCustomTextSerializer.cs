@@ -89,7 +89,7 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual Type? DeserializeViewModelType(string viewModelTypeName)
     {
-        if (!Singleton<CrossNameViewsManager>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
+        if (!Singleton<CrossNameViewModelsManager>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
         {
             throw new CrossException(
                 "Failed to find viewmodel for {0}",

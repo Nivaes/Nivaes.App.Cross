@@ -27,7 +27,10 @@ public class RootViewModel
     {
         _mvxViewModelLoader = mvxViewModelLoader;
 
-        ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
+        ShowChildCommand = new CrossAsyncCommand(() =>
+        {
+            return NavigationService.Navigate<ChildViewModel>();
+        });
 
         ShowModalCommand = new CrossAsyncCommand(Navigate);
 

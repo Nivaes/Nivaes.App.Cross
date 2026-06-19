@@ -185,7 +185,8 @@ namespace Nivaes.App.Cross
             : base(allowConcurrentExecutions)
         {
             ArgumentNullException.ThrowIfNull(execute);
-            
+
+            _execute = execute;
             _canExecute = canExecute;
         }
 
@@ -234,7 +235,8 @@ namespace Nivaes.App.Cross
             : base(allowConcurrentExecutions)
         {
             ArgumentNullException.ThrowIfNull(execute);
-            
+
+            _execute = execute;
             _canExecute = canExecute;
         }
 

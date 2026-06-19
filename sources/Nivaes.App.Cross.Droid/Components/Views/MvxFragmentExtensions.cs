@@ -34,8 +34,11 @@ public static class MvxFragmentExtensions
         public ICrossViewModel LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
-            if (viewModelType == typeof(CrossNullViewModel))
-                return new CrossNullViewModel();
+            //if (viewModelType == typeof(CrossNullViewModel))
+            //    return new CrossNullViewModel();
+
+            if (viewModelType == null)
+                return null;
 
             if (viewModelType == null
                 || viewModelType == typeof(ICrossViewModel))

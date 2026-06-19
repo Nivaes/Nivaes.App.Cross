@@ -4,9 +4,10 @@
     {
         public sealed class ViewManagerItem
         {
-            internal CrossNameViewsManager.KeyStoreItem NameStoreItem { get; set; }
-            internal CrossViewModelViewsManager.KeyStoreItem TypeModel { get; set; }
-            internal CrossViewsViewModelManager.KeyStoreItem TypeViewModel { get; set; }
+            internal CrossNameViewsManager.KeyStoreItem NameViews { get; set; }
+            internal CrossNameViewModelsManager.KeyStoreItem NameViewModels { get; set; }
+            internal CrossViewModelViewsManager.KeyStoreItem TypeViewModels { get; set; }
+            internal CrossViewsViewModelManager.KeyStoreItem TypeViews { get; set; }
         }
 
         public static ViewManagerItem New<TViewModel, TView>()
@@ -15,21 +16,24 @@
         {
             return new ViewManagerItem()
             {
-                NameStoreItem = new CrossNameViewsManager.KeyStoreItem { Key = typeof(TViewModel).FullName!.GetHashCode(), Value = typeof(TView) },
-                TypeModel = new CrossViewModelViewsManager.KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) },
-                TypeViewModel = new CrossViewsViewModelManager.KeyStoreItem { Key = typeof(TView).GetHashCode(), Value = typeof(TViewModel) } 
+                NameViews = new CrossNameViewsManager.KeyStoreItem { Key = typeof(TView).FullName!.GetHashCode(), Value = typeof(TView) },
+                NameViewModels = new CrossNameViewModelsManager.KeyStoreItem { Key = typeof(TViewModel).FullName!.GetHashCode(), Value = typeof(TViewModel) },
+                TypeViews = new CrossViewsViewModelManager.KeyStoreItem { Key = typeof(TView).GetHashCode(), Value = typeof(TViewModel) },
+                TypeViewModels = new CrossViewModelViewsManager.KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) },
             };
         }
 
         public static void RegisterViewModel(ViewManagerItem[] items) 
         {
-            var viewModelViewsManager = new CrossViewModelViewsManager(items.Select(x => x.TypeModel).ToArray());
-            var nameViewsManager = new CrossNameViewsManager(items.Select(x => x.NameStoreItem).ToArray());
-            var ViewsManager = new CrossViewsViewModelManager(items.Select(x => x.TypeViewModel).ToArray());
+            var nameViewsManager = new CrossNameViewsManager(items.Select(x => x.NameViews).ToArray());
+            var nameViewModels = new CrossNameViewModelsManager(items.Select(x => x.NameViewModels).ToArray());
+            var viewModelViewsManager = new CrossViewModelViewsManager(items.Select(x => x.TypeViewModels).ToArray());            
+            var viewsManager = new CrossViewsViewModelManager(items.Select(x => x.TypeViews).ToArray());
 
-            Singleton<CrossViewModelViewsManager>.Add(viewModelViewsManager);
             Singleton<CrossNameViewsManager>.Add(nameViewsManager);
-            Singleton<CrossViewsViewModelManager>.Add(ViewsManager);
+            Singleton<CrossNameViewModelsManager>.Add(nameViewModels);
+            Singleton<CrossViewModelViewsManager>.Add(viewModelViewsManager);
+            Singleton<CrossViewsViewModelManager>.Add(viewsManager);
         }
     }
 }

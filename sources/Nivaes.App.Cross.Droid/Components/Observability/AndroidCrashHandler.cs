@@ -38,6 +38,11 @@ namespace Nivaes.App.Cross.Droid
                 var message = await File.ReadAllTextAsync(PathCrashFile);
 
                 base.Logger.LogCritical(message);
+                base.Logger.LogDebug(message);
+                base.Logger.LogTrace("LoadAndSendException");
+                base.Logger.LogCritical("LoadAndSendException");
+                base.Logger.LogError("LoadAndSendException");
+
                 File.Delete(PathCrashFile);
             }
         }

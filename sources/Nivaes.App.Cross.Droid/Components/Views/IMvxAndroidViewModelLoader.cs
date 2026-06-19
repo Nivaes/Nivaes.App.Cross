@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
         ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState);
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        ICrossViewModel? Load(
+        ICrossViewModel Load(
             Intent? intent,
             ICrossBundle? savedState,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint);
