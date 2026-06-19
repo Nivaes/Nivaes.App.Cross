@@ -1,9 +1,10 @@
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using ObjCRuntime;
-
-    public class MvxViewController
-        : MvxEventSourceViewController, IMvxIosView
+    public class MvxViewController<TViewModel>
+        : MvxEventSourceViewController, IMvxIosView<TViewModel>
+        where TViewModel : class, ICrossViewModel
     {
         public MvxViewController() : base()
         {
@@ -30,21 +31,25 @@ namespace Nivaes.App.Cross.UIKitOS
             this.AdaptForBinding();
         }
 
+        #region Data
+        public ICrossBindingContext? BindingContext { get; set; }
+
         public object? DataContext
         {
             get { return BindingContext?.DataContext; }
             set { BindingContext?.DataContext = value; }
         }
 
-        public ICrossViewModel? ViewModel
+        public TViewModel? ViewModel
         {
-            get { return DataContext as ICrossViewModel; }
+            get { return DataContext as TViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest? Request { get; set; } = default;
+        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel ?)value; }
+        #endregion
 
-        public ICrossBindingContext? BindingContext { get; set; }
+        public CrossViewModelRequest? Request { get; set; } = default;
 
         public override void ViewDidLoad()
         {
@@ -87,37 +92,6 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             base.PrepareForSegue(segue, sender);
             this.ViewModelRequestForSegue(segue, sender);
-        }
-    }
-
-    public class MvxViewController<TViewModel> 
-        : MvxViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        public MvxViewController()
-        {
-        }
-
-        public MvxViewController(NSCoder coder) : base(coder)
-        {
-        }
-
-        public MvxViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
-        {
-        }
-
-        protected MvxViewController(NSObjectFlag t) : base(t)
-        {
-        }
-
-        protected internal MvxViewController(NativeHandle handle) : base(handle)
-        {
-        }
-
-        public new TViewModel? ViewModel
-        {
-            get { return (TViewModel?)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()

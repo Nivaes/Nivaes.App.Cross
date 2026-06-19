@@ -22,6 +22,9 @@ public abstract class CrossActivity<TViewModel>
         this.AddEventListeners();
     }
 
+    #region Data
+    public ICrossBindingContext? BindingContext { get; set; }
+
     public object? DataContext
     {
         get => BindingContext?.DataContext;
@@ -31,16 +34,6 @@ public abstract class CrossActivity<TViewModel>
                 BindingContext.DataContext = value;
         }
     }
-
-    //public ICrossViewModel? ViewModel
-    //{
-    //    get => DataContext as ICrossViewModel;
-    //    set
-    //    {
-    //        DataContext = value;
-    //        OnViewModelSet();
-    //    }
-    //}
 
     public TViewModel? ViewModel
     {
@@ -52,14 +45,13 @@ public abstract class CrossActivity<TViewModel>
         }
     }
 
+    ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
+    #endregion
+
     public void MvxInternalStartActivityForResult(Intent intent, int requestCode)
     {
         StartActivityForResult(intent, requestCode);
     }
-
-    public ICrossBindingContext? BindingContext { get; set; }
-    TViewModel? ICrossView<TViewModel>.ViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => throw new NotImplementedException(); }
 
     // ReSharper disable once InconsistentNaming
     public override void SetContentView(int layoutResID)
