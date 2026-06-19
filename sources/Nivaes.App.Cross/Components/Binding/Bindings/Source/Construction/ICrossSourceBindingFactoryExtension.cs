@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
 
-    [Obsolete]
     public interface ICrossSourceBindingFactoryExtension
     {
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]

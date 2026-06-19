@@ -65,18 +65,21 @@ namespace Nivaes.App.Cross.Droid
             //builder.Services.TryAddSingleton<MvxReflectionViewTypeResolver, MvxJustNameViewTypeResolver>();
 
 
-            // ToDo: Refactorizar esto. Hay clases con el mismo interface que están anidadas.
+            //ToDo: Refactorizar esto. Hay clases con el mismo interface que están anidadas.
 
             //builder.Services.TryAddSingleton<IMvxViewTypeResolver>(sp =>
-            //{
-            //    var fullNameViewTypeResolver = (MvxAxmlNameViewTypeResolver)sp.GetRequiredService<IMvxAxmlNameViewTypeResolver>();
-            //    var listViewTypeResolver = (MvxNamespaceListViewTypeResolver)sp.GetRequiredService<IMvxNamespaceListViewTypeResolver>();
-            //    var justNameTypeResolver = sp.GetRequiredService<MvxReflectionViewTypeResolver>();
+            //     {
+            //         var fullNameViewTypeResolver = (MvxAxmlNameViewTypeResolver)sp.GetRequiredService<IMvxAxmlNameViewTypeResolver>();
+            //         var listViewTypeResolver = (MvxNamespaceListViewTypeResolver)sp.GetRequiredService<IMvxNamespaceListViewTypeResolver>();
+            //         var justNameTypeResolver = sp.GetRequiredService<MvxReflectionViewTypeResolver>();
 
-            //    var composite = new MvxCompositeViewTypeResolver(fullNameViewTypeResolver, listViewTypeResolver, justNameTypeResolver);
-            //    return composite;
-            //});
-            builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>(); 
+            //         var composite = new MvxCompositeViewTypeResolver(fullNameViewTypeResolver, listViewTypeResolver, justNameTypeResolver);
+            //         return composite;
+            //     });
+
+            builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();
+
+            builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
 
             builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxAndroidViewDispatcher>();
 
