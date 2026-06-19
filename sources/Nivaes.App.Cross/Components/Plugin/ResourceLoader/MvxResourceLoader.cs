@@ -32,7 +32,7 @@ public abstract class MvxResourceLoader
         //#endif
         catch (Exception ex)
         {
-            throw ex.Wrap("Cannot load resource {0}", resourcePath);
+            throw new CrossException(ex, "Cannot load resource {0}", resourcePath);
         }
     }
 

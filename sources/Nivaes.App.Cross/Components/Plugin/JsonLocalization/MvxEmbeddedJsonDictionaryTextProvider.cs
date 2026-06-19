@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw ex.Wrap("Cannot load resource {0}", path);
+                throw new CrossException(ex, "Cannot load resource {0}", path);
             }
         }
     }

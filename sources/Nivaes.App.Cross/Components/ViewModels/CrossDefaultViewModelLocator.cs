@@ -25,9 +25,9 @@ public class CrossDefaultViewModelLocator
         {
             viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            throw exception.Wrap($"Problem creating viewModel of type {viewModelType.Name}");
+            throw new CrossException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
@@ -54,9 +54,9 @@ public class CrossDefaultViewModelLocator
         {
             viewModel = (ICrossViewModel<TParameter>?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            throw exception.Wrap($"Problem creating viewModel of type {viewModelType.Name}");
+            throw new CrossException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
@@ -131,9 +131,9 @@ public class CrossDefaultViewModelLocator
 
             viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
         }
     }
 
@@ -171,9 +171,9 @@ public class CrossDefaultViewModelLocator
 
             viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
         }
     }
 }

@@ -25,10 +25,10 @@ namespace Nivaes.App.Cross
             {
                 viewModel = _viewModelLocator.Reload(viewModel, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.Wrap(
-                    $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+   
             }
 
             return viewModel;
@@ -43,10 +43,9 @@ namespace Nivaes.App.Cross
             {
                 return _viewModelLocator.Reload(viewModel, param, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.Wrap(
-                    $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 
@@ -62,10 +61,9 @@ namespace Nivaes.App.Cross
             {
                 return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.Wrap(
-                    $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 
@@ -103,10 +101,9 @@ namespace Nivaes.App.Cross
             {
                 return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                throw exception.Wrap(
-                    $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 

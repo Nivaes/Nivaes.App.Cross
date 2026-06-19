@@ -449,9 +449,9 @@ namespace Nivaes.App.Cross
             {
                 return Enum.Parse(enumerationType, name, ignoreCase);
             }
-            catch (ArgumentException exception)
+            catch (ArgumentException ex)
             {
-                throw exception.Wrap($"Problem parsing {enumerationType.Name} from {name} in {FullText}");
+                throw new CrossException(ex, $"Problem parsing {enumerationType.Name} from {name} in {FullText}");
             }
         }
 
