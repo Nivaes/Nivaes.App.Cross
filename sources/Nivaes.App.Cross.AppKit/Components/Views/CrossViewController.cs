@@ -3,7 +3,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.AppKitOS;
 
 public class CrossViewController<TViewModel>
-    : MvxEventSourceViewController, IMvxMacView<TViewModel>
+    : MvxEventSourceViewController, ICrossViewController, IMvxMacView<TViewModel>
     where TViewModel : class, ICrossViewModel
 {
     // Called when created from unmanaged code

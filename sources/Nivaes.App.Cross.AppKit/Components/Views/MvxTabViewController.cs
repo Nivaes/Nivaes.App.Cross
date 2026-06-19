@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
         public bool CloseTabView(ICrossViewModel viewModel)
         {
-            var index = ChildViewControllers.Select(v => (CrossViewController)v).ToList().FindIndex(vc => viewModel == vc.ViewModel);
+            var index = ChildViewControllers.Select(v => (ICrossView)v).ToList().FindIndex(vc => viewModel == vc.ViewModel);
 
             if (index >= 0)
             {

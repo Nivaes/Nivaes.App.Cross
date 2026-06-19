@@ -315,10 +315,10 @@ public class MvxMacViewPresenter
                 return Task.FromResult(true);
             }
 
-            var controller = window.ContentViewController as CrossViewController;
+            var controller = window.ContentViewController as ICrossViewController;
 
             // if closing controller is a sheet or modal, it must have a presenting parent
-            var presentedController = controller.PresentedViewControllers?.FirstOrDefault(c => ((CrossViewController)c).ViewModel == viewModel);
+            var presentedController = controller!.PresentedViewControllers?.FirstOrDefault(c => ((ICrossView)c).ViewModel == viewModel);
             if (presentedController != null)
             {
                 controller.DismissViewController(presentedController);
@@ -326,7 +326,7 @@ public class MvxMacViewPresenter
             }
 
             // closing controller is content in a regular window
-            if (controller != null && controller.ViewModel == viewModel)
+            if (controller != null && ((ICrossView)controller).ViewModel == viewModel)
             {
                 Windows.Remove(window);
                 window.Close();
