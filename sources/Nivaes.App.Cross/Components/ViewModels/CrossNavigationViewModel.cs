@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
             //Thread.Sleep(15000);
         }
 
-        protected virtual ICrossNavigationService NavigationService { get; }
+        protected virtual ICrossNavigationService NavigationService { [DebuggerHidden]get; }
 
         protected virtual ILoggerFactory LoggerFactory { get; }
 

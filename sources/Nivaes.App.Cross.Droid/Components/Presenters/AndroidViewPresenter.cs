@@ -302,18 +302,17 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
     }
 
     [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-    [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
     protected Type? GetCurrentActivityViewModelType()
     {
         Type? currentActivityType = null;
-        if (CurrentActivity.IsActivityAlive())
+        if (CurrentActivity!.IsActivityAlive())
             currentActivityType = CurrentActivity!.GetType();
 
         if (currentActivityType == null)
             return null;
 
         //return ViewModelTypeFinder?.FindTypeOrNull(currentActivityType);
-        return null;
+        return currentActivityType;
     }
 
     #region Show implementations

@@ -12,6 +12,7 @@ namespace Nivaes.App.Cross.Droid
         public AndroidCrashHandler(ILogger<AndroidCrashHandler> logger)
             : base(logger)
         {
+            logger.LogDebug("Se inicio AndroidCrashHandler");
         }
 
         public override void Register()
@@ -36,12 +37,7 @@ namespace Nivaes.App.Cross.Droid
             if (File.Exists(PathCrashFile))
             {
                 var message = await File.ReadAllTextAsync(PathCrashFile);
-
                 base.Logger.LogCritical(message);
-                base.Logger.LogDebug(message);
-                base.Logger.LogTrace("LoadAndSendException");
-                base.Logger.LogCritical("LoadAndSendException");
-                base.Logger.LogError("LoadAndSendException");
 
                 File.Delete(PathCrashFile);
             }
@@ -54,6 +50,8 @@ namespace Nivaes.App.Cross.Droid
             var ex = e.Exception;
 
             SaveException(ex, "Unhandled Java exception occurred.");
+
+            base.Logger.LogDebug("Se guardó AndroidCrashHandler");
 
             base.Logger.LogCritical(ex, "Unhandled Java exception occurred.");
 
