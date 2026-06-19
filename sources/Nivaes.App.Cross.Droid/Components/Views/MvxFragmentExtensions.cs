@@ -80,9 +80,9 @@ public static class MvxFragmentExtensions
             }
             viewModel.Start();
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            throw exception.Wrap("Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
         }
     }
 
