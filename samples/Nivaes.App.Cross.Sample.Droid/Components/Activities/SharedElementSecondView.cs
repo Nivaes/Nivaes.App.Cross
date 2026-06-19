@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [Activity(Theme = "@style/AppTheme")]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class SharedElementSecondView 
-    : MvxActivity<SharedElementSecondViewModel>
+    : CrossActivity<SharedElementSecondViewModel>
 {
     protected override void OnCreate(Bundle? savedInstanceState)
     {

@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;
@@ -65,7 +64,7 @@ public static class MvxFragmentExtensions2
 
         if (fragment.BindingContext == null)
         {
-            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Activity,
+            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Activity!,
                 new MvxSimpleLayoutInflaterHolder(inflater),
                 fragment.DataContext);
         }
@@ -83,7 +82,7 @@ public static class MvxFragmentExtensions2
 
         if (fragment.BindingContext == null)
         {
-            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Context,
+            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Context!,
                 new MvxSimpleLayoutInflaterHolder(
                     actualFragment.LayoutInflater),
                 fragment.DataContext);
@@ -94,7 +93,7 @@ public static class MvxFragmentExtensions2
         }
     }
 
-    public static TFragment? FindFragmentById<TFragment>(this CrossActivity activity, int resourceId)
+    public static TFragment? FindFragmentById<TFragment>(this ICrossActivity activity, int resourceId)
         where TFragment : Fragment
     {
         var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
@@ -108,7 +107,7 @@ public static class MvxFragmentExtensions2
         return SafeCast<TFragment>(fragment);
     }
 
-    public static TFragment? FindFragmentByTag<TFragment>(this CrossActivity activity, string tag)
+    public static TFragment? FindFragmentByTag<TFragment>(this ICrossActivity activity, string tag)
         where TFragment : Fragment
     {
         var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);

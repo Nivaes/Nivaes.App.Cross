@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid;
 [Register("nivaes.cross.startActivity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class CrossStartActivity
-    : CrossActivity
+    : CrossActivity<CrossStartActivityViewModel>
 {
     protected const int NoContent = 0;
 

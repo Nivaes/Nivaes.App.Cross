@@ -97,7 +97,6 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            //_binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             return _binder;
         }

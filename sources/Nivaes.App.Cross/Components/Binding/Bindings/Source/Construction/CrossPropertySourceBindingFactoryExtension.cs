@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross
     /// <summary>
     /// Uses a global cache of calls in Reflection namespace
     /// </summary>
+    [Obsolete]
     public class CrossPropertySourceBindingFactoryExtension
         : ICrossSourceBindingFactoryExtension
     {

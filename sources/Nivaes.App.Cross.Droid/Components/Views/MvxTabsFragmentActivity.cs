@@ -1,21 +1,18 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
+using Java.Lang;
+using Fragment = AndroidX.Fragment.App.Fragment;
+using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
+using Object = Java.Lang.Object;
 
-namespace MvvmCross.Platforms.Android.Views
+namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Java.Lang;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using Fragment = AndroidX.Fragment.App.Fragment;
-    using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
-    using Object = Java.Lang.Object;
-
     [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxTabsFragmentActivity
-        : CrossActivity, TabHost.IOnTabChangeListener
+        : CrossActivity<CrossTabsFragmentActivityViewModel>, TabHost.IOnTabChangeListener
     {
         private const string SavedTabIndexStateKey = "__savedTabIndex";
         private readonly Dictionary<string, TabInfo> _lookup = new Dictionary<string, TabInfo>();

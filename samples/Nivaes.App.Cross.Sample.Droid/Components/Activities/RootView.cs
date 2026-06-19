@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [Activity(Theme = "@style/AppTheme",
     WindowSoftInputMode = SoftInput.AdjustPan)]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
-public sealed class RootView : MvxActivity<RootViewModel>, IOnApplyWindowInsetsListener
+public sealed class RootView : CrossActivity<RootViewModel>, IOnApplyWindowInsetsListener
 {
     protected override void OnCreate(Bundle? savedInstanceState)
     {

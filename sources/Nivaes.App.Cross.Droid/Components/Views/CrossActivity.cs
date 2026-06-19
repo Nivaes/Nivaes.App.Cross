@@ -1,14 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
+using AndroidX.Lifecycle;
 
 namespace Nivaes.App.Cross.Droid;
 
 [Register("nivaes.cross.activity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
-public abstract class CrossActivity
-    : CrossEventSourceActivity
-    , IMvxAndroidView
+public abstract class CrossActivity<TViewModel>
+    : CrossEventSourceActivity, ICrossActivity, IMvxAndroidView<TViewModel>
+    where TViewModel : class, ICrossViewModel
 {
     protected CrossActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
@@ -31,9 +32,19 @@ public abstract class CrossActivity
         }
     }
 
-    public ICrossViewModel? ViewModel
+    //public ICrossViewModel? ViewModel
+    //{
+    //    get => DataContext as ICrossViewModel;
+    //    set
+    //    {
+    //        DataContext = value;
+    //        OnViewModelSet();
+    //    }
+    //}
+
+    public TViewModel? ViewModel
     {
-        get => DataContext as ICrossViewModel;
+        get => DataContext as TViewModel;
         set
         {
             DataContext = value;
@@ -47,6 +58,8 @@ public abstract class CrossActivity
     }
 
     public ICrossBindingContext? BindingContext { get; set; }
+    TViewModel? ICrossView<TViewModel>.ViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => throw new NotImplementedException(); }
 
     // ReSharper disable once InconsistentNaming
     public override void SetContentView(int layoutResID)
@@ -113,26 +126,6 @@ public abstract class CrossActivity
     {
         base.OnStop();
         ViewModel?.ViewDisappeared();
-    }
-}
-
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
-public abstract class MvxActivity<TViewModel> : CrossActivity, IMvxAndroidView<TViewModel>
-    where TViewModel : class, ICrossViewModel
-{
-    public new TViewModel? ViewModel
-    {
-        get => (TViewModel?)base.ViewModel;
-        set => base.ViewModel = value;
-    }
-
-    protected MvxActivity()
-    {
-    }
-
-    protected MvxActivity(IntPtr javaReference, JniHandleOwnership transfer)
-        : base(javaReference, transfer)
-    {
     }
 
     public CrossFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet()

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
 
-    [Obsolete("", true)]
+    [Obsolete("")]
     public class CrossBindingBuilder 
         : CrossCoreBindingBuilder
     {

@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.WinUI
         protected override void ApplyBindings(FrameworkElement attachedObject,
                                               IEnumerable<CrossBindingDescription> bindingDescriptions)
         {
-            var binder = CrossBindingSingletonCache.Instance.Binder;
+            var binder = Singleton<CrossBindingSingletonCache>.Instance.Binder;
             var bindingDescriptionList = bindingDescriptions.ToList();
             var bindings = binder.Bind(attachedObject.DataContext, attachedObject, bindingDescriptionList);
             RegisterBindingsForUpdates(attachedObject, bindings);
