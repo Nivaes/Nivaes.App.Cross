@@ -8,8 +8,8 @@ public class MainViewModel : CrossNavigationViewModel
 
     private int _counter = 2;
 
-    public MainViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public MainViewModel(ILogger<MainViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 

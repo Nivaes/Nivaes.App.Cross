@@ -7,8 +7,8 @@ namespace Nivaes.App.Cross.Sample;
 public class SheetViewModel 
     : CrossNavigationViewModel
 {
-    public SheetViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public SheetViewModel(ILogger<SheetViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         CloseCommand = new CrossAsyncCommand(CloseSheet);
     }

@@ -2,8 +2,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class MultiBackStackViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) 
-    : CrossNavigationViewModel(logFactory, navigationService)
+public class MultiBackStackViewModel(ILogger<MultiBackStackViewModel> logger, ICrossNavigationService navigationService) 
+    : CrossNavigationViewModel(logger, navigationService)
 {
     private bool _initialNavigationDone = false;
 
@@ -36,7 +36,8 @@ public class MultiBackStackViewModel(ILoggerFactory logFactory, ICrossNavigation
     }
 }
 
-public class MultiBackStackTab1ViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : CrossNavigationViewModel(logFactory, navigationService)
+public class MultiBackStackTab1ViewModel(ILogger<MultiBackStackTab1ViewModel> logger, ICrossNavigationService navigationService) 
+    : CrossNavigationViewModel(logger, navigationService)
 {
     public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
 }
@@ -55,7 +56,8 @@ public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
         set => SetProperty(ref _depth, value);
     }
 
-    public MultiBackStackInnerViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
+    public MultiBackStackInnerViewModel(ILogger<MultiBackStackInnerViewModel> logFactory, ICrossNavigationService navigationService) 
+        : base(logFactory, navigationService)
     {
         GoDeeperCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackInnerViewModel, int>(Depth + 1));
         CloseCommand = new CrossAsyncCommand(async () => await NavigationService.Close(this));

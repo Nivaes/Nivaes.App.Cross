@@ -6,8 +6,8 @@ namespace Playground.Core.ViewModels
     public class Page3ViewModel 
         : CrossNavigationViewModel
     {
-        public Page3ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public Page3ViewModel(ILogger<Page3ViewModel> logger, ICrossNavigationService navigationService)
+            : base(logger, navigationService)
         {
         }
     }

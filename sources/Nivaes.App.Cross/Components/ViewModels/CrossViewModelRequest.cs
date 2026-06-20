@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Text;
 
@@ -24,14 +25,10 @@ namespace Nivaes.App.Cross
         }
 
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewModelType 
-        { 
-            get;
-            set; 
-        }
+        public Type? ViewModelType { [DebuggerHidden] get; [DebuggerHidden] set; }
 
-        public IDictionary<string, string>? ParameterValues { get; set; }
-        public IDictionary<string, string>? PresentationValues { get; set; }
+        public IDictionary<string, string>? ParameterValues { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public IDictionary<string, string>? PresentationValues { [DebuggerHidden] get; [DebuggerHidden] set; }
 
         public static CrossViewModelRequest GetDefaultRequest(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType)

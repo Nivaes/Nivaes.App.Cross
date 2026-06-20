@@ -5,19 +5,19 @@ namespace Nivaes.App.Cross.Sample;
 
 public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
 {
-    private MenuItem _menuItem;
-    private ICrossAsyncCommand<MenuItem> _onSelectedChangedCommand;
+    private MenuItem? _menuItem;
+    private ICrossAsyncCommand<MenuItem>? _onSelectedChangedCommand;
 
-    public class MenuItem
+    public record MenuItem
     {
-        public string Title { get; set; }
+        public string? Title { get; init; }
 
-        public string Description { get; set; }
-        public Type ViewModelType { get; set; }
+        public string? Description { get; init; }
+        public Type? ViewModelType { get; init; }
     }
 
-    public MixedNavMasterDetailViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public MixedNavMasterDetailViewModel(ILogger<MixedNavMasterDetailViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         Menu = new[] {
             new MenuItem { Title = "Root", Description = "The root page", ViewModelType = typeof(MixedNavMasterRootContentViewModel) },
@@ -26,7 +26,7 @@ public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
         };
     }
 
-    public IEnumerable<MenuItem> Menu { get; set; }
+    public IEnumerable<MenuItem> Menu { get; init; }
 
     //public MenuItem SelectedMenu
     //{

@@ -10,13 +10,11 @@ namespace Nivaes.App.Cross
 {
     public abstract class CrashHandler : ICrashHandler
     {
-        private readonly ILogger _logger;
-
-        protected ILogger Logger => _logger;
+        protected ILogger Logger { [DebuggerHidden] get; }
 
         public CrashHandler(ILogger logger) 
         {
-            _logger = logger;
+            Logger = logger;
         }
 
         public virtual void Register()
@@ -42,7 +40,7 @@ namespace Nivaes.App.Cross
 
             SaveException(ex, "Unhandled exception occurred.");
 
-            _logger.LogCritical(ex, "Unhandled exception occurred.");
+            Logger.LogCritical(ex, "Unhandled exception occurred.");
         }
 
         private void TaskScheduler_UnobservedTaskException(
@@ -52,7 +50,7 @@ namespace Nivaes.App.Cross
             var ex = e.Exception;
             SaveException(ex, "Unobserved task exception occurred.");
 
-            _logger.LogCritical(ex, "Unobserved task exception occurred.");
+            Logger.LogCritical(ex, "Unobserved task exception occurred.");
 
             e.SetObserved();
         }

@@ -19,11 +19,11 @@ public class RootViewModel
     }
 
     public RootViewModel(
-            ILoggerFactory logProvider,
+            ILogger<RootViewModel> logger,
             ICrossNavigationService navigationService,
             ICrossViewModelLoader mvxViewModelLoader,
             ICrossResultViewModelManager resultViewModelManager)
-        : base(logProvider, navigationService, resultViewModelManager)
+        : base(logger, navigationService, resultViewModelManager)
     {
         _mvxViewModelLoader = mvxViewModelLoader;
 
@@ -168,7 +168,7 @@ public class RootViewModel
 
     public override Task Initialize()
     {
-        Log.LogWarning("Testing log");
+        Logger.LogWarning("Testing log");
 
         return base.Initialize();
     }
@@ -251,7 +251,7 @@ public class RootViewModel
 
     public override bool ResultSet(ICrossResultSettingViewModel<SampleModel> viewModel, SampleModel result)
     {
-        Log.LogInformation("Got Result {@Result} from {ViewModel}", result, viewModel.GetType().Name);
+        Logger.LogInformation("Got Result {@Result} from {ViewModel}", result, viewModel.GetType().Name);
         return true;
     }
 }

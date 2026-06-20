@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class RegionViewModel 
     : CrossNavigationViewModel
 {
-    public RegionViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) 
-        : base(logFactory, navigationService)
+    public RegionViewModel(ILogger<RegionViewModel> logger, ICrossNavigationService navigationService) 
+        : base(logger, navigationService)
     {
     }
 

@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class SecondChildViewModel 
     : CrossNavigationViewModel
 {
-    public SecondChildViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-        : base(logFactory, navigationService)
+    public SecondChildViewModel(ILogger<SecondChildViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         ShowNestedChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedChildViewModel>());
 

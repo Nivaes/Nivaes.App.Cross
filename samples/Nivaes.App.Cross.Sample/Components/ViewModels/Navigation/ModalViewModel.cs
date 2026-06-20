@@ -6,7 +6,8 @@ namespace Nivaes.App.Cross.Sample;
 public class ModalViewModel 
     : CrossNavigationViewModel
 {
-    public ModalViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService) : base(logProvider, navigationService)
+    public ModalViewModel(ILogger<ModalViewModel> logger, ICrossNavigationService navigationService) 
+        : base(logger, navigationService)
     {
         ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 

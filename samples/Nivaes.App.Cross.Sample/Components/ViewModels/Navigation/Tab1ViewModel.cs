@@ -7,8 +7,8 @@ namespace Nivaes.App.Cross.Sample;
 public class Tab1ViewModel 
     : MvxNavigationViewModel<string>
 {
-    public Tab1ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public Tab1ViewModel(ILogger<Tab1ViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         OpenChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 

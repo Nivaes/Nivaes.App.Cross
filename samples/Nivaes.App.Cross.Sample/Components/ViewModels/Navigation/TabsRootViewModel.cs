@@ -8,8 +8,8 @@ namespace Nivaes.App.Cross.Sample;
 public class TabsRootViewModel 
     : CrossNavigationViewModel
 {
-    public TabsRootViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService) 
-        : base(logProvider, navigationService)
+    public TabsRootViewModel(ILogger<TabsRootViewModel> logger, ICrossNavigationService navigationService) 
+        : base(logger, navigationService)
     {
         ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
         ShowTabsRootBCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());
@@ -37,7 +37,7 @@ public class TabsRootViewModel
         {
             if (_itemIndex == value) return;
             _itemIndex = value;
-            Log.LogTrace("Tab item changed to {ItemIndex}", _itemIndex);
+            Logger.LogTrace("Tab item changed to {ItemIndex}", _itemIndex);
             RaisePropertyChanged(() => ItemIndex);
         }
     }

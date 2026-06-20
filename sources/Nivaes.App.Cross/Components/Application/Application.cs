@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Components.ViewModels;
-using Serilog.Core;
 
 namespace Nivaes.App.Cross.Controls;
 
 public abstract class Application : IApplication
 {
-    protected ILogger Logger { get; private set; }
+    protected ILogger Logger { [DebuggerHidden]get; }
 
     protected Application(ILogger logger)
     {

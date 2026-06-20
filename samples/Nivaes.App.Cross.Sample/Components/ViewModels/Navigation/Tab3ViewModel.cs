@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class Tab3ViewModel 
     : CrossNavigationViewModel
 {
-    public Tab3ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public Tab3ViewModel(ILogger<Tab3ViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         ShowRootViewModelCommand = new CrossAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
 

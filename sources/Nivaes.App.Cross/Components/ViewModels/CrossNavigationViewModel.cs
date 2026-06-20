@@ -8,16 +8,16 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        private ILogger? _logger;
+        protected ILogger Logger { [DebuggerHidden] get; }
 
         private static readonly ActivitySource Source = new("SampleCrossClient");
 
-        protected CrossNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
+        protected CrossNavigationViewModel(ILogger logger, ICrossNavigationService navigationService)
         {
-            LoggerFactory = logFactory;
+            Logger = logger;
             NavigationService = navigationService;
 
-            Log.LogTrace($"Se inicio {this.GetType().Name}");
+            Logger.LogTrace($"Se inicio {this.GetType().Name}");
 
             using var activity = Source.StartActivity("SampleCrossClient");
 
@@ -32,19 +32,15 @@ namespace Nivaes.App.Cross
         }
 
         protected virtual ICrossNavigationService NavigationService { [DebuggerHidden]get; }
-
-        protected virtual ILoggerFactory LoggerFactory { get; }
-
-        protected virtual ILogger Log => _logger ??= LoggerFactory.CreateLogger(GetType().Name);
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
         : CrossNavigationViewModel, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-            : base(logFactory, navigationService)
+        protected MvxNavigationViewModel(ILogger logger, ICrossNavigationService navigationService)
+            : base(logger, navigationService)
         {
-            Log.LogTrace($"Se inicio {this.GetType().Name}");
+            logger.LogTrace($"Se inicio {this.GetType().Name}");
         }
 
         public abstract void Prepare(TParameter parameter);
@@ -56,10 +52,10 @@ namespace Nivaes.App.Cross
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected MvxNavigationResultAwaitingViewModel(
-                ILoggerFactory logFactory,
+                ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
-            : base(logFactory, navigationService)
+            : base(logger, navigationService)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -93,10 +89,10 @@ namespace Nivaes.App.Cross
         : MvxNavigationResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxNavigationResultAwaitingViewModel(
-                ILoggerFactory logFactory,
+                ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
-            : base(logFactory, navigationService, resultViewModelManager)
+            : base(logger, navigationService, resultViewModelManager)
         {
         }
 
@@ -109,10 +105,10 @@ namespace Nivaes.App.Cross
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected MvxNavigationResultSettingViewModel(
-                ILoggerFactory logFactory,
+                ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
-            : base(logFactory, navigationService)
+            : base(logger, navigationService)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -127,10 +123,10 @@ namespace Nivaes.App.Cross
         : MvxNavigationResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected MvxNavigationResultSettingViewModel(
-                ILoggerFactory logFactory,
+                ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
-            : base(logFactory, navigationService, resultViewModelManager)
+            : base(logger, navigationService, resultViewModelManager)
         {
         }
 

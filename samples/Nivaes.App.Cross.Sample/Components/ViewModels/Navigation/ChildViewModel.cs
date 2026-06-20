@@ -11,8 +11,8 @@ public class ChildViewModel : MvxNavigationViewModel<SampleModel>
     private string? _anotherBrokenTextValue;
 
     public ChildViewModel(
-        ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+        ILogger<ChildViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         CloseCommand = new CrossAsyncCommand(DoCloseCommand);
 

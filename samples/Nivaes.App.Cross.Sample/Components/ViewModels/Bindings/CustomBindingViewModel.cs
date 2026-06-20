@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Sample;
 public class CustomBindingViewModel
     : CrossNavigationViewModel
 {
-    private ICrossAsyncCommand _closeCommand;
+    private ICrossAsyncCommand? _closeCommand;
 
     private int _counter = 2;
 
@@ -13,8 +13,8 @@ public class CustomBindingViewModel
 
     private string _hello = "Hello MvvmCross";
 
-    public CustomBindingViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-        : base(logFactory, navigationService)
+    public CustomBindingViewModel(ILogger<CustomBindingViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
     }
 

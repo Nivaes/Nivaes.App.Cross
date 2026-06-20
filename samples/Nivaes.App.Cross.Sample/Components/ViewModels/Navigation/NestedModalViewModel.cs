@@ -4,8 +4,8 @@ namespace Nivaes.App.Cross.Sample;
 
 public class NestedModalViewModel : CrossNavigationViewModel
 {
-    public NestedModalViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-        : base(logFactory, navigationService)
+    public NestedModalViewModel(ILogger<NestedModalViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 

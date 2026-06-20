@@ -6,8 +6,8 @@ public class FluentBindingViewModel : BaseViewModel
 {
     bool _bindingsEnabled = true;
 
-    public FluentBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
-        : base(loggerFactory, navigationService)
+    public FluentBindingViewModel(ILogger<FluentBindingViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         ClearBindingsCommand = new CrossCommand(ClearBindings);
     }

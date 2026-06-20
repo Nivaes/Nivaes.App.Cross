@@ -18,8 +18,8 @@ public class DictionaryBindingViewModel : BaseViewModel
 
     ICrossCommand _incrementCommand;
 
-    public DictionaryBindingViewModel(ILoggerFactory loggerFactory, ICrossNavigationService navigationService)
-        : base(loggerFactory, navigationService)
+    public DictionaryBindingViewModel(ILogger<DictionaryBindingViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
     }
 

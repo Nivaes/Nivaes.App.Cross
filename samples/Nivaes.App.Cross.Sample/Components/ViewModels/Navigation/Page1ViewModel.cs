@@ -9,8 +9,8 @@ namespace Playground.Core.ViewModels
     {
         public MvxCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-            : base(logProvider, navigationService)
+        public Page1ViewModel(ILogger<Page1ViewModel> logger, ICrossNavigationService navigationService)
+            : base(logger, navigationService)
         {
             HeaderTappedCommand = new MvxCommand<int>(DoHeaderTappedCommand);
 

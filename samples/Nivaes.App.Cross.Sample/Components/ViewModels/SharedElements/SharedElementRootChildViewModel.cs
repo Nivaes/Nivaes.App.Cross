@@ -28,8 +28,8 @@ public class SharedElementRootChildViewModel
 
     private ListItemViewModel _selectedItem;
 
-    public SharedElementRootChildViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public SharedElementRootChildViewModel(ILogger<SharedElementRootChildViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
     }
 

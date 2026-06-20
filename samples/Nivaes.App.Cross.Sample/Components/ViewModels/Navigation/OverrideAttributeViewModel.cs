@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class OverrideAttributeViewModel 
     : CrossNavigationViewModel
 {
-    public OverrideAttributeViewModel(ILoggerFactory logProvider, ICrossNavigationService navigationService)
-        : base(logProvider, navigationService)
+    public OverrideAttributeViewModel(ILogger<OverrideAttributeViewModel> logger, ICrossNavigationService navigationService)
+        : base(logger, navigationService)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 

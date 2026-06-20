@@ -3,11 +3,11 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.Sample;
 
 public sealed class ChildWithResultViewModel(
-        ILoggerFactory logFactory,
+        ILogger<ChildWithResultViewModel> logger,
         ICrossNavigationService navigationService,
         ICrossResultViewModelManager resultViewModelManager)
     : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
-        logFactory,
+        logger,
         navigationService,
         resultViewModelManager)
 {

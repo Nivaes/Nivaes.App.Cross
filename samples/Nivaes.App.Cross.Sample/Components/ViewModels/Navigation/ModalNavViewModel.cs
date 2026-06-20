@@ -5,7 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class ModalNavViewModel
     : CrossNavigationViewModel
 {
-    public ModalNavViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService) : base(logFactory, navigationService)
+    public ModalNavViewModel(ILogger<ModalNavViewModel> logger, ICrossNavigationService navigationService) 
+        : base(logger, navigationService)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 
