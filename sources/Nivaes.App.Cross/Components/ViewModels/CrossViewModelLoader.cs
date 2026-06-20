@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Nivaes.App.Cross
 {
     internal class CrossViewModelLoader
@@ -73,19 +75,21 @@ namespace Nivaes.App.Cross
         //            CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         //        where TViewModel : ICrossViewModel
         //{
-        //    if (request.ViewModelType == typeof(CrossNullViewModel))
-        //    {
-        //        return new CrossNullViewModel();
-        //    }
+        //    //if (request.ViewModelType == typeof(CrossNullViewModel))
+        //    //{
+        //    //    return new CrossNullViewModel();
+        //    //}
+        //    if (request.ViewModelType == null)
+        //        return null;
 
         //    var parameterValues = new CrossBundle(request.ParameterValues);
         //    try
         //    {
         //        return _viewModelLocator.Load<TViewModel>(parameterValues, savedState, navigationArgs);
         //    }
-        //    catch (Exception exception)
+        //    catch (Exception ex)
         //    {
-        //        throw exception.Wrap(
+        //        throw new CrossException(ex,
         //            $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
         //    }
         //}
@@ -103,7 +107,7 @@ namespace Nivaes.App.Cross
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                return _viewModelLocator.Load(request.ViewModelType!, parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load<TParameter>(request.ViewModelType!, param, parameterValues, savedState, navigationArgs);
             }
             catch (Exception ex)
             {
