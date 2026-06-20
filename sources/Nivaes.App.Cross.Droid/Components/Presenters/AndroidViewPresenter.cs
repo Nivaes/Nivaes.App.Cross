@@ -311,8 +311,8 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (currentActivityType == null)
             return null;
 
-        //return ViewModelTypeFinder?.FindTypeOrNull(currentActivityType);
-        return currentActivityType;
+        Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);        
+        return viewModelType;
     }
 
     #region Show implementations
@@ -321,7 +321,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxActivityPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         var intent = CreateIntentForRequest(request);
         if (intent == null)
@@ -485,7 +487,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         // if attribute has a Fragment Host, then show it as nested and return
         if (attribute.FragmentHostViewType != null)
@@ -522,7 +526,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         // current implementation only supports one level of nesting 
 
@@ -679,7 +685,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxDialogFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         if (CurrentActivity == null)
             throw new InvalidOperationException("CurrentActivity is null");
@@ -732,7 +740,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxViewPagerFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         // if the attribute doesn't supply any host, assume current activity!
         if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)
@@ -807,7 +817,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         MvxTabLayoutPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ValidateArguments(view, attribute, request);
+        ArgumentNullException.ThrowIfNull(view);
+        ArgumentNullException.ThrowIfNull(attribute);
+        ArgumentNullException.ThrowIfNull(request);
 
         var showViewPagerFragment = await ShowViewPagerFragment(view, attribute, request).ConfigureAwait(true);
         if (!showViewPagerFragment)
@@ -1162,12 +1174,5 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         }
 
         return null;
-    }
-
-    private static void ValidateArguments(Type? view, CrossBasePresentationAttribute? attribute, CrossViewModelRequest? request)
-    {
-        ArgumentNullException.ThrowIfNull(view);
-        ArgumentNullException.ThrowIfNull(attribute);
-        ArgumentNullException.ThrowIfNull(request);
     }
 }

@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
 
     [AttributeUsage(AttributeTargets.Class)]
@@ -9,10 +10,10 @@ namespace Nivaes.App.Cross
     {
         /// <inheritdoc />
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewModelType { get; set; }
+        public Type? ViewModelType { [DebuggerHidden]get; [DebuggerHidden]set; }
 
         /// <inheritdoc />
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewType { get; set; }
+        public Type? ViewType { [DebuggerHidden]get; [DebuggerHidden]set; }
     }
 }
