@@ -27,15 +27,11 @@ public class RootViewModel
     {
         _mvxViewModelLoader = mvxViewModelLoader;
 
-        ShowChildCommand = new CrossAsyncCommand(() =>
-        {
-            return NavigationService.Navigate<ChildViewModel>();
-        });
+        ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 
         ShowModalCommand = new CrossAsyncCommand(Navigate);
 
-        ShowModalNavCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
+        ShowModalNavCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
         ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 
@@ -45,30 +41,23 @@ public class RootViewModel
 
         ShowNativeCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NativeViewModel>());
 
-        ShowOverrideAttributeCommand = new CrossAsyncCommand(async () =>
-            await NavigationService.Navigate<OverrideAttributeViewModel>());
+        ShowOverrideAttributeCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<OverrideAttributeViewModel>());
 
         ShowSheetCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
 
         ShowWindowCommand = new CrossAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
 
-        ShowMixedNavigationCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
+        ShowMixedNavigationCommand = new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
 
-        ShowDictionaryBindingCommand = new CrossAsyncCommand(async () =>
-            await NavigationService.Navigate<DictionaryBindingViewModel>());
+        ShowDictionaryBindingCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<DictionaryBindingViewModel>());
 
-        ShowCollectionViewCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<CollectionViewModel, CollectionViewParameter>(new CollectionViewParameter(50)));
+        ShowCollectionViewCommand = new CrossAsyncCommand(() => NavigationService.Navigate<CollectionViewModel, CollectionViewParameter>(new CollectionViewParameter(50)));
 
-        ShowSharedElementsCommand = new CrossAsyncCommand(async () =>
-            await NavigationService.Navigate<SharedElementRootChildViewModel>());
+        ShowSharedElementsCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<SharedElementRootChildViewModel>());
 
-        ShowCustomBindingCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
+        ShowCustomBindingCommand = new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
 
-        ShowFluentBindingCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<FluentBindingViewModel>());
+        ShowFluentBindingCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FluentBindingViewModel>());
 
         RegisterAndResolveWithReflectionCommand = new CrossAsyncCommand(RegisterAndResolveWithReflection);
         RegisterAndResolveWithNoReflectionCommand = new CrossAsyncCommand(RegisterAndResolveWithNoReflection);
@@ -77,13 +66,11 @@ public class RootViewModel
 
         _counter = 3;
 
-        TriggerVisibilityCommand =
-            new CrossCommand(() => IsVisible = !IsVisible);
+        TriggerVisibilityCommand = new CrossCommand(() => IsVisible = !IsVisible);
 
         FragmentCloseCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());
 
-        ShowBottomNavigationCommand = new CrossAsyncCommand(async () =>
-            await NavigationService.Navigate<MultiBackStackViewModel>());
+        ShowBottomNavigationCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackViewModel>());
     }
 
     private Task DoShowChildWithResult()
@@ -122,28 +109,20 @@ public class RootViewModel
 
     public ICrossAsyncCommand ShowCollectionViewCommand { get; }
 
-    public ICrossAsyncCommand ShowListViewCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<ListViewModel>());
+    public ICrossAsyncCommand ShowListViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<ListViewModel>());
 
-    public ICrossAsyncCommand ShowBindingsViewCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<BindingsViewModel>());
+    public ICrossAsyncCommand ShowBindingsViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<BindingsViewModel>());
 
-    public ICrossAsyncCommand ShowCodeBehindViewCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<CodeBehindViewModel>());
+    public ICrossAsyncCommand ShowCodeBehindViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<CodeBehindViewModel>());
 
-    public ICrossAsyncCommand ShowNavigationCloseCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<NavigationCloseViewModel>());
+    public ICrossAsyncCommand ShowNavigationCloseCommand => new CrossAsyncCommand(() => NavigationService.Navigate<NavigationCloseViewModel>());
 
-    public ICrossAsyncCommand ShowContentViewCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<ParentContentViewModel>());
+    public ICrossAsyncCommand ShowContentViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<ParentContentViewModel>());
 
-    public ICrossAsyncCommand ShowConvertersCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<ConvertersViewModel>());
+    public ICrossAsyncCommand ShowConvertersCommand => new CrossAsyncCommand(() => NavigationService.Navigate<ConvertersViewModel>());
 
-    public ICrossAsyncCommand ShowNewWindowCommand =>
-        new CrossAsyncCommand(() => NavigationService.Navigate<NewWindowViewModel>());
-    public ICrossAsyncCommand ShowRegionCommand =>
-        new CrossAsyncCommand(() => this.NavigationService.Navigate<RegionViewModel>(this));
+    public ICrossAsyncCommand ShowNewWindowCommand => new CrossAsyncCommand(() => NavigationService.Navigate<NewWindowViewModel>());
+    public ICrossAsyncCommand ShowRegionCommand => new CrossAsyncCommand(() => this.NavigationService.Navigate<RegionViewModel>(this));
 
     public ICrossAsyncCommand ShowSharedElementsCommand { get; }
 
