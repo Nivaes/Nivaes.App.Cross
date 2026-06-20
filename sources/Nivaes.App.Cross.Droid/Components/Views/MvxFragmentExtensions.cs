@@ -43,7 +43,7 @@ public static class MvxFragmentExtensions
             if (viewModelType == null
                 || viewModelType == typeof(ICrossViewModel))
             {
-                CrossLogHost.Default?.Log(LogLevel.Trace,
+                CrossLoggerHost.Default?.Log(LogLevel.Trace,
                     "No ViewModel class specified for {FragmentViewType} in LoadViewModel",
                     fragmentView.GetType().Name);
             }

@@ -78,7 +78,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                CrossLogHost.Default?.Log(LogLevel.Warning, ex, "Failed to load plugin {FullPluginName}", type.FullName);
+                CrossLoggerHost.Default?.Log(LogLevel.Warning, ex, "Failed to load plugin {FullPluginName}", type.FullName);
                 return false;
             }
         }

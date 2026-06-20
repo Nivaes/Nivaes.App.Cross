@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross
                 iocProvider.RegisterSingleton<ICrossSourceBindingFactoryExtensionHost>(extensionHost);
             }
             else
-                CrossLogHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
+                CrossLoggerHost.Default?.Log(LogLevel.Trace, "source binding factory extension host not provided - so no source extensions will be used");
         }
 
         [Obsolete("", true)]

@@ -1,12 +1,13 @@
 using System;
 using Android.Content;
 using Android.Util;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross.Droid;
 
 public static class MvxAttributeHelpers
 {
-    private static readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => throw new NotImplementedException() /*Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>()*/);
+    private static readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidBindingResource>());
 
     public static int ReadDropDownListItemTemplateId(Context context, IAttributeSet attrs)
     {

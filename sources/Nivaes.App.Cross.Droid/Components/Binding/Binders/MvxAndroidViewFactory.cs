@@ -31,7 +31,6 @@ public class MvxAndroidViewFactory
 
         if (viewType == null)
         {
-            _logger.LogError(new EventId(100, nameof(MvxAndroidViewFactory)) , "View type not found - {0}", name);
             return null;
         }
 

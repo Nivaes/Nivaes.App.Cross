@@ -9,8 +9,8 @@ public class CrossFluentBindingDescriptionSet<
             where TOwningTarget : class, ICrossBindingContextOwner
 {
     private readonly List<ICrossApplicable> _applicables = [];
-    private readonly TOwningTarget _bindingContextOwner;
-    private readonly string _clearBindingKey;
+    private readonly TOwningTarget? _bindingContextOwner;
+    private readonly string? _clearBindingKey;
 
     public CrossFluentBindingDescriptionSet(TOwningTarget bindingContextOwner)
     {

@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.WinUI
             var attachedObject = sender as FrameworkElement;
             if (attachedObject == null)
             {
-                CrossLogHost.Default?.LogWarning("Null attached FrameworkElement seen in Bi.nd binding");
+                CrossLoggerHost.Default?.LogWarning("Null attached FrameworkElement seen in Bi.nd binding");
                 return;
             }
 

@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitOS
         public MvxSimpleTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            CrossLogHost.Default?.LogWarning("MvxSimpleTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            CrossLoggerHost.Default?.LogWarning("MvxSimpleTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
         public MvxSimpleTableViewSource(UITableView tableView, string nibName, string cellIdentifier = null,

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nivaes.App.Cross;
+﻿namespace Nivaes.App.Cross;
 
 [Obsolete("", true)]
 internal class LoggingService : ILoggingService

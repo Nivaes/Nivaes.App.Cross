@@ -52,7 +52,9 @@ namespace Nivaes.App.Cross.Droid
             var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);
 
-            
+            _services
+                .TargetBindingFactoryRegistry()
+                .BindingNameRegister();
 
             //this.SetApplicationHandler(_application, applicationContext);
 

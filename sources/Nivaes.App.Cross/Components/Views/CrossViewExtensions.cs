@@ -20,7 +20,7 @@ public static class CrossViewExtensions
             var viewModel = viewModelLoader();
             if (viewModel == null)
             {
-                CrossLogHost.Default.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
+                CrossLoggerHost.Default.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
                 return;
             }
 

@@ -10,11 +10,11 @@ namespace Nivaes.App.Cross
     // Inspiration used under Microsoft Public License Ms-PL
     public class CrossPropertyExpressionParser : ICrossPropertyExpressionParser
     {
-        private readonly ILogger<CrossPropertyExpressionParser> _log;
+        private readonly ILogger _logger;
 
-        public CrossPropertyExpressionParser(ILoggerFactory loggerFactory)
+        public CrossPropertyExpressionParser(ILogger<CrossPropertyExpressionParser> logger)
         {
-            _log = loggerFactory.CreateLogger<CrossPropertyExpressionParser>();
+            _logger = logger;
         }
 
         public ICrossParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath)
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross
             while (current != null
                    && current.NodeType != ExpressionType.Parameter)
             {
-                current = ParseTo(current, toReturn, _log);
+                current = ParseTo(current, toReturn, _logger);
             }
 
             return toReturn;

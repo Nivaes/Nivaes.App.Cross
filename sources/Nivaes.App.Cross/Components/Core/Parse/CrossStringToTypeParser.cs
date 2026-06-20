@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception)
                 {
-                    CrossLogHost.Default?.Log(LogLevel.Error,
+                    CrossLoggerHost.Default?.Log(LogLevel.Error,
                         "Failed to parse enum parameter {FieldOrParameterName} from string {Input}",
                         fieldOrParameterName,
                         input);
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross
                     }
                     catch (Exception)
                     {
-                        CrossLogHost.Default?.Log(LogLevel.Error,
+                        CrossLoggerHost.Default?.Log(LogLevel.Error,
                             "Failed to create default enum value for {FieldOrParameterName} - will return null",
                             fieldOrParameterName);
                     }
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross
             {
                 if (!TryParse(input, out var result))
                 {
-                    CrossLogHost.Default?.Log(LogLevel.Error,
+                    CrossLoggerHost.Default?.Log(LogLevel.Error,
                         "Failed to parse {Type} parameter {FieldOrParameterName} from string {Input}",
                         GetType().Name, fieldOrParameterName, input);
                 }
@@ -195,7 +195,7 @@ namespace Nivaes.App.Cross
                 return extra.ReadValue(targetType, rawValue, fieldOrParameterName);
             }
 
-            CrossLogHost.Default?.Log(LogLevel.Error,
+            CrossLoggerHost.Default?.Log(LogLevel.Error,
                 "Parameter {ParameterName} is invalid targetType {TypeName}",
                 fieldOrParameterName, targetType.Name);
             return null;

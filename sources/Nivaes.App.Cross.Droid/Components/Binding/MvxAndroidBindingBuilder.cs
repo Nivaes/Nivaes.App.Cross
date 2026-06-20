@@ -306,6 +306,7 @@ public class MvxAndroidBindingBuilder
         _fillTargetFactories?.Invoke(registry);
     }
 
+    [Obsolete("", true)]
     protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
     {
         base.FillDefaultBindingNames(registry);

@@ -57,9 +57,7 @@ public static class CrossActivityViewExtensions
 
     public static void OnViewNewIntent(this IMvxAndroidView androidView)
     {
-        var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-        logger.LogTrace("OnViewNewIntent called - Cross lifecycle won't run automatically in this case");
-        //CrossLogHost.Default?.Log(LogLevel.Trace, "OnViewNewIntent called - MvvmCross lifecycle won't run automatically in this case");
+        CrossLoggerHost.Default.LogTrace("OnViewNewIntent called - Cross lifecycle won't run automatically in this case");
     }
 
     public static void OnViewDestroy(this IMvxAndroidView androidView)
@@ -159,9 +157,7 @@ public static class CrossActivityViewExtensions
         //if (viewModelType == null
         //    || viewModelType == typeof(ICrossViewModel))
         //{
-        //    var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-
-        //    logger.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
+        //    CrossLoggerHost.Default.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
         //        androidView.GetType().Name);
         //}
 

@@ -165,7 +165,7 @@ public abstract class CrossAttributeViewPresenter
             return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
         }
 
-        CrossLogHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+        CrossLoggerHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
         return false;
     }
 

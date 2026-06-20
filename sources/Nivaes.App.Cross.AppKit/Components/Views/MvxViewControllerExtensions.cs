@@ -17,8 +17,7 @@ public static class MvxViewControllerExtensions
     {
         if (macView.Request == null)
         {
-            var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-            logger.Log(LogLevel.Trace,
+            CrossLoggerHost.Default.Log(LogLevel.Trace,
                 "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
 
             

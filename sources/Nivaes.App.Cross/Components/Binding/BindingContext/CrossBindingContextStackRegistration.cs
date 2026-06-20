@@ -18,7 +18,7 @@ public class CrossBindingContextStackRegistration<TBindingContext>
 
     ~CrossBindingContextStackRegistration()
     {
-        CrossLogHost.Default?.Log(LogLevel.Error,
+        CrossLoggerHost.Default?.Log(LogLevel.Error,
             "You should always Dispose of MvxBindingContextStackRegistration");
         Dispose(false);
     }

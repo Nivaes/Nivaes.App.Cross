@@ -25,8 +25,7 @@ namespace MvvmCross.DroidX.Leanback.Listeners
 
             if (item == null)
             {
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                logger.Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
+                CrossLoggerHost.Default.Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
                 return;
             }
 

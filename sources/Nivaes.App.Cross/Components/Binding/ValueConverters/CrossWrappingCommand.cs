@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross
                 return false;
 
             if (parameter != null)
-                CrossLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
+                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
 
             return _wrapped.CanExecute(_commandParameterOverride);
         }
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
                 return;
 
             if (parameter != null)
-                CrossLogHost.Default?.Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
+                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
             _wrapped.Execute(_commandParameterOverride);
         }
 

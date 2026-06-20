@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross
     {
         public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
         {
-            CrossLogHost.Default?.Log(LogLevel.Trace, "The Add Combiner does not support SetValue");
+            CrossLoggerHost.Default?.Log(LogLevel.Trace, "The Add Combiner does not support SetValue");
         }
 
         public override Type SourceType(IEnumerable<ICrossSourceStep> steps)
@@ -162,7 +162,7 @@ namespace Nivaes.App.Cross
                 CombinerFunc<object, object> combinerFunc;
                 if (!_combinerActions.TryGetValue(new TypeTuple(firstType, secondType), out combinerFunc))
                 {
-                    CrossLogHost.Default?.Log(LogLevel.Error, "Unknown type pair in Pairwise combiner {firstType}, {secondType}",
+                    CrossLoggerHost.Default?.Log(LogLevel.Error, "Unknown type pair in Pairwise combiner {firstType}, {secondType}",
                         firstType, secondType);
                     value = CrossBindingConstant.UnsetValue;
                     return true;

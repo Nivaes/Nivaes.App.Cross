@@ -50,7 +50,7 @@ public class MvxStandardTableViewSource
     public MvxStandardTableViewSource(NativeHandle handle)
         : base(handle)
     {
-        CrossLogHost.Default?.LogWarning("MvxStandardTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+        CrossLoggerHost.Default?.LogWarning("MvxStandardTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
     }
 
     public MvxStandardTableViewSource(

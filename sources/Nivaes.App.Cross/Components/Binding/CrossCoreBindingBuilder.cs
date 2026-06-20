@@ -212,6 +212,7 @@ public class CrossCoreBindingBuilder
         return new CrossSourcePropertyPathParser();
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterBindingNameRegistry(IMvxIoCProvider iocProvider)
     {
         var registry = new CrossBindingNameRegistry();

@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
                 var toRun = Activator.CreateInstance(type);
                 if (toRun is not ICrossBootstrapAction bootstrapAction)
                 {
-                    CrossLogHost.Default?.Log(LogLevel.Trace,
+                    CrossLoggerHost.Default?.Log(LogLevel.Trace,
                         "Could not run startup task {TypeName} - it's not a startup task", type.Name);
                     return;
                 }
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross
 #pragma warning restore CA1031 // Do not catch general exception types
             {
                 // pokemon handling
-                CrossLogHost.Default?.Log(LogLevel.Trace, exception, "Error running startup task {TypeName}", type.Name);
+                CrossLoggerHost.Default?.Log(LogLevel.Trace, exception, "Error running startup task {TypeName}", type.Name);
             }
         }
     }

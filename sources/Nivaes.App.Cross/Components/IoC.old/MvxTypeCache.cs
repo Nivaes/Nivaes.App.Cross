@@ -47,7 +47,7 @@ public class MvxTypeCache<TType> : IMvxTypeCache
         }
         catch (ReflectionTypeLoadException e)
         {
-            CrossLogHost.Default?.Log(LogLevel.Warning, e, "ReflectionTypeLoadException masked during loading of {AssemblyName}",
+            CrossLoggerHost.Default?.Log(LogLevel.Warning, e, "ReflectionTypeLoadException masked during loading of {AssemblyName}",
                 assembly.FullName);
         }
     }

@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             Func<Task> action = () =>
             {
-                CrossLogHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Navigate requested");
+                CrossLoggerHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Navigate requested");
                 return _presenter.Show(request);
             };
             await ExecuteOnMainThreadAsync(action);
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             Func<Task> action = () =>
             {
-                CrossLogHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Change presentation requested");
+                CrossLoggerHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Change presentation requested");
                 return _presenter.ChangePresentation(hint);
             };
             await ExecuteOnMainThreadAsync(action);

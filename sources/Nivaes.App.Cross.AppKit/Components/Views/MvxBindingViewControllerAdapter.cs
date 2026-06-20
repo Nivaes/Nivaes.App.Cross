@@ -24,7 +24,7 @@ public class MvxBindingViewControllerAdapter
     {
         if (MacView == null)
         {
-            CrossLogHost.Default?.Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
+            CrossLoggerHost.Default?.Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
             return;
         }
         MacView.ClearAllBindings();

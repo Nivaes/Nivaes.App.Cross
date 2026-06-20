@@ -109,8 +109,7 @@ namespace Nivaes.App.Cross.Droid
 
         public new void SetOnChildViewHolderSelectedListener(OnChildViewHolderSelectedListener listener)
         {
-            var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-            logger.Log(LogLevel.Warning, "Overwriting OnChildViewHolderSelectedListener will possibly break ItemSelection command.");
+            CrossLoggerHost.Default.Log(LogLevel.Warning, "Overwriting OnChildViewHolderSelectedListener will possibly break ItemSelection command.");
             base.SetOnChildViewHolderSelectedListener(listener);
         }
 
@@ -118,8 +117,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (FocusFirstChildOnLaidOut && !(listener is MvxFocusFirstChildOnChildLaidOutListener))
             {
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                logger.Log(LogLevel.Warning, "Overwriting OnChildLaidOutListener will possibly break focusing of first child!");
+                CrossLoggerHost.Default.Log(LogLevel.Warning, "Overwriting OnChildLaidOutListener will possibly break focusing of first child!");
             }
             base.SetOnChildLaidOutListener(listener);
         }

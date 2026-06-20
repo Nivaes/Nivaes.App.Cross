@@ -10,7 +10,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     : CrossBaseFluentBindingDescription<TTarget>
     where TTarget : class
 {
-    public CrossFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget target)
+    public CrossFluentBindingDescription(ICrossBindingContextOwner? bindingContextOwner, TTarget? target)
         : base(bindingContextOwner, target)
     {
     }

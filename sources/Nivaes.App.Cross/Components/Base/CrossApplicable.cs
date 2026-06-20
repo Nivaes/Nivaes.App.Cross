@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross
 
         ~CrossApplicable()
         {
-            CrossLogHost.Default?.Log(LogLevel.Trace, "Finaliser called on {0} - suggests that  Apply() was never called", GetType().Name);
+            CrossLoggerHost.Default?.Log(LogLevel.Trace, "Finaliser called on {0} - suggests that  Apply() was never called", GetType().Name);
         }
 
         protected void SuppressFinalizer()

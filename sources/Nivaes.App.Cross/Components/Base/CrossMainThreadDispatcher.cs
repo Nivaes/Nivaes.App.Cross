@@ -16,17 +16,17 @@ namespace Nivaes.App.Cross
             }
             catch (TargetInvocationException exception)
             {
-                CrossLogHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
+                CrossLoggerHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
-                    CrossLogHost.Default?.LogWarning(exception.InnerException, "TargetInvocationException masked");
+                    CrossLoggerHost.Default?.LogWarning(exception.InnerException, "TargetInvocationException masked");
                 else
                     throw;
             }
             catch (Exception exception)
             {
-                CrossLogHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
+                CrossLoggerHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
-                    CrossLogHost.Default?.LogWarning(exception, "Exception masked");
+                    CrossLoggerHost.Default?.LogWarning(exception, "Exception masked");
                 else
                     throw;
             }

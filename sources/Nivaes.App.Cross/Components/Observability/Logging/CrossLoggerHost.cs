@@ -1,13 +1,12 @@
 using System.Runtime.CompilerServices;
-using System.ServiceModel.Channels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-public static class CrossLogHost
+public static class CrossLoggerHost
 {
-    static CrossLogHost()
+    static CrossLoggerHost()
     {
         _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
     }

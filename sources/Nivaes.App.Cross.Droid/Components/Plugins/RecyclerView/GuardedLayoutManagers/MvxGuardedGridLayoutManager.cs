@@ -40,8 +40,7 @@ namespace MvvmCross.DroidX.RecyclerView
             }
             catch (IndexOutOfBoundsException e)
             {
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                logger.LogWarning(e,
+                CrossLoggerHost.Default.LogWarning(e,
                     "Workaround of issue - https://code.google.com/p/android/issues/detail?id=77846#c1 - IndexOutOfBoundsException");
             }
         }

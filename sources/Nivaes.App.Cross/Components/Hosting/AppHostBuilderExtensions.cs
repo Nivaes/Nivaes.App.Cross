@@ -63,6 +63,19 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossSourceStepFactoryRegistry>(sourceStepFactory);
             builder.Services.TryAddSingleton<ICrossSourceStepFactory>(sourceStepFactory);
 
+            builder.Services.TryAddSingleton<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
+
+            var bindingNameRegistry = new CrossBindingNameRegistry();
+            builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
+            builder.Services.TryAddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
+
+            builder.Services.TryAddSingleton<ICrossTargetBindingFactoryRegistry, CrossTargetBindingFactoryRegistry>();
+
+            var valueConverterRegistry = new CrossValueConverterRegistry();
+            builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);
+            builder.Services.TryAddSingleton<ICrossValueConverterRegistry>(valueConverterRegistry);
+            builder.Services.TryAddSingleton<ICrossValueCombinerLookup, CrossValueCombinerRegistry>();
+
             return builder;
         }
     }

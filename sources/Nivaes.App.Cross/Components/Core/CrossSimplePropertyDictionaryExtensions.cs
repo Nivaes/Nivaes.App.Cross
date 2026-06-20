@@ -76,7 +76,7 @@ namespace Nivaes.App.Cross
         {
             if (requiredParameter.Name == null)
             {
-                CrossLogHost.Default?.LogWarning("ParameterInfo Name is null");
+                CrossLoggerHost.Default?.LogWarning("ParameterInfo Name is null");
                 return Type.Missing;
             }
 
@@ -88,7 +88,7 @@ namespace Nivaes.App.Cross
                     return Type.Missing;
                 }
 
-                CrossLogHost.Default?.Log(LogLevel.Trace,
+                CrossLoggerHost.Default?.Log(LogLevel.Trace,
                     "Missing parameter for call to {DebugText} - missing parameter {RequiredParameterName} - asssuming null - this may fail for value types!",
                     debugText, requiredParameter.Name);
 
@@ -129,7 +129,7 @@ namespace Nivaes.App.Cross
                 }
                 else
                 {
-                    CrossLogHost.Default?.Log(LogLevel.Trace,
+                    CrossLoggerHost.Default?.Log(LogLevel.Trace,
                         "Skipping serialization of property {PropertyName} - don't know how to serialize type {PropertyTypeName} - some answers on http://stackoverflow.com/questions/16524236/custom-types-in-navigation-parameters-in-v3",
                         propertyInfo.Property.Name,
                         propertyInfo.Property.PropertyType.Name);

@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     using Nivaes.App.Cross.Hosting;
     using Nivaes.IoC;
 
-    [Obsolete]
+    [Obsolete("", true)]
     public abstract class CrossSetup
         : ICrossSetup
     {
@@ -66,7 +66,7 @@ namespace Nivaes.App.Cross
                 }
             }
 
-            CrossLogHost.Default?.LogInformation("Setup: RegisterSetupType already called");
+            CrossLoggerHost.Default?.LogInformation("Setup: RegisterSetupType already called");
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]

@@ -4,6 +4,6 @@ namespace Nivaes.App.Cross
 
     public static class CrossBindingLog
     {
-        public static ILogger? Instance { get; } = CrossLogHost.GetLogger("MvxBind");
+        public static ILogger? Instance { get; } = CrossLoggerHost.GetLogger("MvxBind");
     }
 }

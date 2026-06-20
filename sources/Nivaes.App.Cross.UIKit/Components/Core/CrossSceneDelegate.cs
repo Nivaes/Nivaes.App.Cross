@@ -71,8 +71,12 @@ public abstract class CrossSceneDelegate
         _application = _services.GetRequiredService<IApplication>();
 
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
-        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
 
+        _services
+               .TargetBindingFactoryRegistry()
+               .BindingNameRegister();
+
+        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         FireLifetimeChanged(CrossLifetimeEvent.Launching);

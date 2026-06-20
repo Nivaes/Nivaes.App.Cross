@@ -9,8 +9,8 @@ namespace Nivaes.App.Cross
         : CrossApplicableTo<TTarget>, ICrossBaseFluentBindingDescription
         where TTarget : class
     {
-        private readonly TTarget _target;
-        private readonly ICrossBindingContextOwner _bindingContextOwner;
+        private readonly TTarget? _target;
+        private readonly ICrossBindingContextOwner? _bindingContextOwner;
 
         private readonly CrossBindingDescription _bindingDescription = new CrossBindingDescription();
         private readonly CrossSourceStepDescription _sourceStepDescription = new CrossSourceStepDescription();
@@ -61,10 +61,10 @@ namespace Nivaes.App.Cross
                 if (inputs.Converter == null
                     && inputs.FallbackValue == null)
                 {
-                    return parsedDescription.Source;
+                    return parsedDescription!.Source;
                 }
 
-                if (parsedDescription.Source.Converter == null
+                if (parsedDescription!.Source.Converter == null
                     && parsedDescription.Source.FallbackValue == null)
                 {
                     var parsedStep = parsedDescription.Source;
@@ -202,7 +202,7 @@ namespace Nivaes.App.Cross
             _sourceSpec = new FullySourceSpec(bindingDescription.Source);
         }
 
-        public CrossBaseFluentBindingDescription(ICrossBindingContextOwner bindingContextOwner, TTarget target)
+        public CrossBaseFluentBindingDescription(ICrossBindingContextOwner? bindingContextOwner, TTarget? target)
         {
             _bindingContextOwner = bindingContextOwner;
             _target = target;

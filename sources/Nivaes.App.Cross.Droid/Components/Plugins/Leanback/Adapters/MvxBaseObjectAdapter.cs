@@ -45,8 +45,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
                 {
                     if (!(value is ICollection))
                     {
-                        var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                        logger.Log(LogLevel.Warning,
+                        CrossLoggerHost.Default.Log(LogLevel.Warning,
                             "Using a enumerable is not recommended due to performance issues. Consider using an ICollection (e.g. List) as ItemsSource.");
                     }
                 }
@@ -134,8 +133,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
             }
             catch (Exception exception)
             {
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                logger.Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
+                CrossLoggerHost.Default.Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
             }
         }
 

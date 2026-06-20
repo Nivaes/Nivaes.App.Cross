@@ -11,11 +11,10 @@ namespace Nivaes.App.Cross
     {
         private readonly Dictionary<Type, string> _lookup = [];
 
-        public string DefaultFor(
+        public string? DefaultFor(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] Type type)
         {
-            string toReturn;
-            TryDefaultFor(type, out toReturn, true);
+            TryDefaultFor(type, out var toReturn, true);
             return toReturn;
         }
 
@@ -23,7 +22,7 @@ namespace Nivaes.App.Cross
             Justification = "The interface types returned by GetInterfaces() on a type with DynamicallyAccessedMemberTypes.Interfaces are safe to process")]
         private bool TryDefaultFor(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] Type type,
-            out string toReturn,
+            out string? toReturn,
             bool includeInterfaces = true)
         {
             if (type == typeof(object))

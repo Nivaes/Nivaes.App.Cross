@@ -99,7 +99,7 @@ public static class MvxFragmentExtensions2
         var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
         if (fragment == null)
         {
-            CrossLogHost.Default?.Log(LogLevel.Warning,
+            CrossLoggerHost.Default?.Log(LogLevel.Warning,
                 "Failed to find fragment id {ResourceId} in {ActivityTypeName}", resourceId, activity.GetType().Name);
             return default(TFragment);
         }
@@ -113,7 +113,7 @@ public static class MvxFragmentExtensions2
         var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
         if (fragment == null)
         {
-            CrossLogHost.Default?.Log(LogLevel.Warning,
+            CrossLoggerHost.Default?.Log(LogLevel.Warning,
                 "Failed to find fragment tag {Tag} in {ActivityTypeName}", tag, activity.GetType().Name);
             return default(TFragment);
         }
@@ -126,7 +126,7 @@ public static class MvxFragmentExtensions2
         if (fragment is TFragment castFragment)
             return castFragment;
 
-        CrossLogHost.Default?.Log(LogLevel.Warning,
+        CrossLoggerHost.Default?.Log(LogLevel.Warning,
             "Fragment type mismatch got {FragmentType} but expected {ExpectedType}",
             fragment.GetType().FullName, typeof(TFragment).FullName);
         return default;
@@ -142,7 +142,7 @@ public static class MvxFragmentExtensions2
         var viewModel = loader?.LoadViewModel(request, savedState);
         if (viewModel == null)
         {
-            CrossLogHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for {ViewModelType}",
+            CrossLoggerHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for {ViewModelType}",
                 request.ViewModelType?.FullName);
             return;
         }

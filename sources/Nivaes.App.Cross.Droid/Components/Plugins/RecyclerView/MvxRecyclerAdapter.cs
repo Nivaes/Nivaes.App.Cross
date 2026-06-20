@@ -65,8 +65,7 @@ namespace Nivaes.App.Cross.Droid
 
                 if (_itemClick != null && value != null)
                 {
-                    var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                    logger.Log(LogLevel.Warning,
+                    CrossLoggerHost.Default.Log(LogLevel.Warning,
                         "Changing ItemClick may cause inconsistencies where some items still call the old command");
                 }
 
@@ -88,8 +87,7 @@ namespace Nivaes.App.Cross.Droid
 
                 if (_itemLongClick != null && value != null)
                 {
-                    var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-                    logger.Log(LogLevel.Warning,
+                    CrossLoggerHost.Default.Log(LogLevel.Warning,
                         "Changing ItemLongClick may cause inconsistencies where some items still call the old command");
                 }
 
@@ -303,11 +301,9 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual void SetItemsSource(IEnumerable? value)
         {
-            var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-
             if (Looper.MainLooper != Looper.MyLooper())
-            {  
-                logger.Log(LogLevel.Error,
+            {
+                CrossLoggerHost.Default.Log(LogLevel.Error,
                     "ItemsSource property set on a worker thread. This leads to crash in the RecyclerView. It must be set only from the main thread");
             }
 
@@ -319,7 +315,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value != null && value is not IList)
             {
-                logger.LogWarning("Binding to IEnumerable rather than IList - this can be inefficient, especially for large lists");
+                CrossLoggerHost.Default.LogWarning("Binding to IEnumerable rather than IList - this can be inefficient, especially for large lists");
             }
 
             if (value is INotifyCollectionChanged newObservable)
@@ -340,9 +336,7 @@ namespace Nivaes.App.Cross.Droid
             }
             else
             {
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILogger>();
-
-                logger.Log(LogLevel.Error,
+                CrossLoggerHost.Default.Log(LogLevel.Error,
                     "ItemsSource collection content changed on a worker thread." +
                     "This leads to crash in the RecyclerView as it will not be aware of changes" +
                     "immediately and may get a deleted item or update an item with a bad item template." +

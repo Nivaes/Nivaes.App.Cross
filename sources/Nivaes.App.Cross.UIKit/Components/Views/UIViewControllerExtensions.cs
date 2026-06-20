@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.UIKitOS
                     return iosView;
                 }
 
-                CrossLogHost.Default?.Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
+                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
                     viewController?.GetType().Name);
                 return null;
             }

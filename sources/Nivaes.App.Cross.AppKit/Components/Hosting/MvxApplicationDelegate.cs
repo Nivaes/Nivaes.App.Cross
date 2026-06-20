@@ -53,6 +53,10 @@ public abstract class MvxApplicationDelegate :
         //_services = _applicationContext.Services;
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
+
+        _services
+                .TargetBindingFactoryRegistry()
+                .BindingNameRegister();
     }
 
     [Obsolete]
