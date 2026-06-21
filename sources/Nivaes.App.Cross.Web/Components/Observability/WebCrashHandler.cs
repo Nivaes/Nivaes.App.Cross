@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.Web
 {
     public class WebCrashHandler : CrashHandler
     {
-        public WebCrashHandler(ILogger<WebCrashHandler> logger)
-            : base(logger)
+        public WebCrashHandler(ILogger<WebCrashHandler> logger, LoggerProvider loggerProvider)
+            : base(logger, loggerProvider)
         {
         }
 

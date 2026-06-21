@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
 
     public class CrossViewModelInstanceRequest(
@@ -12,6 +13,6 @@ namespace Nivaes.App.Cross
             ViewModelInstance = viewModelInstance;
         }
 
-        public ICrossViewModel? ViewModelInstance { get; set; }
+        public ICrossViewModel? ViewModelInstance { [DebuggerHidden]get; [DebuggerHidden]set; }
     }
 }

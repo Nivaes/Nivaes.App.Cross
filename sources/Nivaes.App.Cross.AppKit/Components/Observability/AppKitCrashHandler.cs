@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.AppKitOS
 {
     public class AppKitCrashHandler : CrashHandler
     {
-        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger)
-            : base(logger)
+        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger, LoggerProvider loggerProvider)
+            : base(logger, loggerProvider)
         {
         }
 
