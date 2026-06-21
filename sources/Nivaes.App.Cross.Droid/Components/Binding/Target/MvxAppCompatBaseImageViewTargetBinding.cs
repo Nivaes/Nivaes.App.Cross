@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception ex)
             {
-                CrossBindingLog.Instance?.LogError(ex, "Failed to set value");
+                CrossBindingLogger.Instance?.LogError(ex, "Failed to set value");
                 throw;
             }
         }

@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var autoComplete = View;
             if (autoComplete == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "autoComplete is null in MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding");
             }
         }

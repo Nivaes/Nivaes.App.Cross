@@ -63,7 +63,7 @@ public class MvxAndroidViewBinder
         }
         catch (Exception exception)
         {
-            CrossBindingLog.Instance?.LogError(exception, $"Exception thrown during the view {view.GetType().FullName} binding");
+            CrossBindingLogger.Instance?.LogError(exception, $"Exception thrown during the view {view.GetType().FullName} binding");
         }
     }
 
@@ -86,7 +86,7 @@ public class MvxAndroidViewBinder
         }
         catch (Exception exception)
         {
-            CrossBindingLog.Instance?.LogError(exception, "Exception thrown during the view language binding");
+            CrossBindingLogger.Instance?.LogError(exception, "Exception thrown during the view language binding");
             throw;
         }
     }

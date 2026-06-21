@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value is not string drawableName)
             {
-                CrossBindingLog.Instance?.LogWarning(
+                CrossBindingLogger.Instance?.LogWarning(
                     "Value '{Value}' could not be parsed as a valid string identifier", value);
                 view.SetImageDrawable(null);
                 return;
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.Droid
             var id = resources.GetIdentifier(drawableName, "drawable", appContext.PackageName);
             if (id == 0)
             {
-                CrossBindingLog.Instance?.LogWarning(
+                CrossBindingLogger.Instance?.LogWarning(
                     "Value '{DrawableName}' was not a known drawable name", drawableName);
                 view.SetImageDrawable(null);
                 return;

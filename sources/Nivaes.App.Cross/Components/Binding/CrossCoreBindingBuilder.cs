@@ -160,10 +160,10 @@ public class CrossCoreBindingBuilder
     {
         if (iocProvider.CanResolve<ICrossBindingParser>())
         {
-            CrossBindingLog.Instance?.LogTrace("Binding Parser already registered - so skipping Default parser");
+            CrossBindingLogger.Instance?.LogTrace("Binding Parser already registered - so skipping Default parser");
             return;
         }
-        CrossBindingLog.Instance?.LogTrace("Registering Default Binding Parser");
+        CrossBindingLogger.Instance?.LogTrace("Registering Default Binding Parser");
         iocProvider.RegisterSingleton(CreateBindingParser());
     }
 
@@ -176,10 +176,10 @@ public class CrossCoreBindingBuilder
     {
         if (iocProvider.CanResolve<ICrossLanguageBindingParser>())
         {
-            CrossBindingLog.Instance?.LogTrace("Binding Parser already registered - so skipping Language parser");
+            CrossBindingLogger.Instance?.LogTrace("Binding Parser already registered - so skipping Language parser");
             return;
         }
-        CrossBindingLog.Instance?.LogTrace("Registering Language Binding Parser");
+        CrossBindingLogger.Instance?.LogTrace("Registering Language Binding Parser");
         iocProvider.RegisterSingleton(CreateLanguageBindingParser());
     }
 

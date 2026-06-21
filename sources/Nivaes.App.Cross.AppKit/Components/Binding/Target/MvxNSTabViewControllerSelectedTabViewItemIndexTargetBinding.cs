@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.AppKitOS
             var view = View;
             if (view == null)
             {
-                CrossBindingLog.Instance?.LogError("NSTabViewController is null in MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NSTabViewController is null in MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 }
                 catch (Exception ex)
                 {
-                    CrossBindingLog.Instance?.LogError(ex, "Failed to subscribe to events");
+                    CrossBindingLogger.Instance?.LogError(ex, "Failed to subscribe to events");
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross.AppKitOS
                         }
                         catch (Exception ex)
                         {
-                            CrossBindingLog.Instance?.LogError(ex, "Failed to unsubscribe from event");
+                            CrossBindingLogger.Instance?.LogError(ex, "Failed to unsubscribe from event");
                         }
                     }
                     _subscribed = false;

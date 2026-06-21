@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
             var seekBar = View;
             if (seekBar == null)
             {
-                CrossBindingLog.Instance?.LogError("SeekBar is null in MvxSeekBarProgressTargetBinding");
+                CrossBindingLogger.Instance?.LogError("SeekBar is null in MvxSeekBarProgressTargetBinding");
                 return;
             }
 

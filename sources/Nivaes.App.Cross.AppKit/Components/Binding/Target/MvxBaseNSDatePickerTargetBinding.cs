@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
             if (datePicker == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                                       "NSDatePicker is null in MvxBaseNSDatePickerTargetBinding");
                 return;
             }

@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value is not int resourceIdentifier)
             {
-                CrossBindingLog.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
+                CrossBindingLogger.Instance?.LogWarning("Value '{ResourceIdentifier}' was not a valid Drawable", value);
                 view.SetImageDrawable(null);
                 return;
             }

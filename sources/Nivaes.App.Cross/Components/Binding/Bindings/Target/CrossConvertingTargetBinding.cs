@@ -19,11 +19,11 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method performs type conversions which may not be preserved by trimming")]
         public override void SetValue(object? value)
         {
-            CrossBindingLog.Instance?.LogTrace("Receiving SetValue to {Value}", value);
+            CrossBindingLogger.Instance?.LogTrace("Receiving SetValue to {Value}", value);
             var t = Target;
             if (t == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            CrossBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLogger.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;
@@ -126,7 +126,7 @@ namespace Nivaes.App.Cross
             var target = Target;
             if (target == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
@@ -178,7 +178,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            CrossBindingLog.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLogger.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;

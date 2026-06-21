@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             if (button == null)
             {
-                CrossBindingLog.Instance?.LogError("NSButton is null in MvxNSButtonTitleTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NSButton is null in MvxNSButtonTitleTargetBinding");
             }
         }
 

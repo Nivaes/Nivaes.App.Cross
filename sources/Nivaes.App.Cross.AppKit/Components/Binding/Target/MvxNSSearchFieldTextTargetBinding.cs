@@ -17,7 +17,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var searchField = View;
             if (searchField == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                                       "NSSearchField is null in MvxNSSearchFieldTextTargetBinding");
             }
             else

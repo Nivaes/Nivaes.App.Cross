@@ -158,7 +158,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
 
         if (newBindingDescription.Count > 1)
         {
-            CrossBindingLog.Instance?.LogWarning("More than one description found - only first will be used in: {BindingDescription}", bindingDescription);
+            CrossBindingLogger.Instance?.LogWarning("More than one description found - only first will be used in: {BindingDescription}", bindingDescription);
         }
 
         return FullyDescribed(newBindingDescription.FirstOrDefault());
@@ -293,7 +293,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
 
         if (newBindingDescription.Count > 1)
         {
-            CrossBindingLog.Instance?.LogWarning(
+            CrossBindingLogger.Instance?.LogWarning(
                 "More than one description found - only first will be used in: {BindingDescription}",
                 bindingDescription);
         }

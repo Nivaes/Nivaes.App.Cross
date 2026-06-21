@@ -6,8 +6,6 @@ namespace Nivaes.App.Cross
 
     public abstract class CrossMainThreadDispatchingObject
     {
-        //protected ICrossMainThreadAsyncDispatcher AsyncDispatcher =>  CrossMainThreadDispatcher.Instance as ICrossMainThreadAsyncDispatcher;
-        
         protected ICrossMainThreadAsyncDispatcher AsyncDispatcher => IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
 
         protected void InvokeOnMainThread(Action action, bool maskExceptions = true)

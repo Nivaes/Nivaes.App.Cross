@@ -3,7 +3,9 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nivaes.App.Cross
@@ -12,9 +14,12 @@ namespace Nivaes.App.Cross
     {
         protected ILogger Logger { [DebuggerHidden] get; }
 
-        public CrashHandler(ILogger logger) 
+        protected LoggerProvider LoggerProvider { [DebuggerHidden] get; }
+
+        public CrashHandler(ILogger logger, LoggerProvider loggerProvider) 
         {
             Logger = logger;
+            LoggerProvider = loggerProvider;
         }
 
         public virtual void Register()

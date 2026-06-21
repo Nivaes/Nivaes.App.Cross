@@ -22,7 +22,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var compoundButton = View;
             if (compoundButton == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "compoundButton is null in MvxCompoundButtonCheckedTargetBinding");
                 return;
             }

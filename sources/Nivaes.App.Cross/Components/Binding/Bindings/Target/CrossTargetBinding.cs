@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross
         {
             if (value != null && value is not TValue)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "Invalid value type for target binding {TypeName}: received {ValueTypeName} but expects {ExpectedTypeName}, and cast failed",
                     GetType().Name, value.GetType().Name, typeof(TValue).Name);
                 return;

@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var popupButton = View;
             if (popupButton == null)
             {
-                CrossBindingLog.Instance?.LogError("NSPopUpButton is null in MvxNSPopUpButtonSelectedTagTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NSPopUpButton is null in MvxNSPopUpButtonSelectedTagTargetBinding");
                 return;
             }
 

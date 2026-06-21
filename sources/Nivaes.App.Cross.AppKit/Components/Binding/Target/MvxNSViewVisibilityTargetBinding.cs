@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.AppKitOS
                     break;
 
                 default:
-                    CrossBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
+                    CrossBindingLogger.Instance?.LogWarning("Visibility out of range {Value}", value);
                     break;
             }
         }

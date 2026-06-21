@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross
             switch (bindingMode)
             {
                 case CrossBindingMode.Default:
-                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                    CrossBindingLogger.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
                 case CrossBindingMode.OneWay:
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross
             switch (bindingMode)
             {
                 case CrossBindingMode.Default:
-                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                    CrossBindingLogger.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
                 case CrossBindingMode.OneWay:
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
             switch (bindingMode)
             {
                 case CrossBindingMode.Default:
-                    CrossBindingLog.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
+                    CrossBindingLogger.Instance?.LogWarning("Mode of default seen for binding - assuming TwoWay");
                     return true;
 
                 case CrossBindingMode.OneWay:

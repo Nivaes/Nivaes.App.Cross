@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross
             var target = Target as FrameworkElement;
             if (target == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
+                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
                 return null;
             }
 
@@ -70,11 +70,11 @@ namespace Nivaes.App.Cross
 
         protected override void SetValueImpl(object target, object value)
         {
-            CrossBindingLog.Instance?.LogTrace("Receiving setValue to {Value}", value);
+            CrossBindingLogger.Instance?.LogTrace("Receiving setValue to {Value}", value);
             var frameworkElement = target as FrameworkElement;
             if (frameworkElement == null)
             {
-                CrossBindingLog.Instance?.LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.Instance?.LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 

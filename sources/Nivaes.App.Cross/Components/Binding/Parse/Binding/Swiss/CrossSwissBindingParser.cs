@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
             ParseEquals(block);
             var converter = ReadTargetPropertyName();
             if (!string.IsNullOrEmpty(description.Converter))
-                CrossBindingLog.Instance?.LogWarning("Overwriting existing Converter with {ConverterName}", converter);
+                CrossBindingLogger.Instance?.LogWarning("Overwriting existing Converter with {ConverterName}", converter);
             description.Converter = converter;
         }
 
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross
         {
             ParseEquals(block);
             if (description.ConverterParameter != null)
-                CrossBindingLog.Instance?.LogWarning("Overwriting existing ConverterParameter");
+                CrossBindingLogger.Instance?.LogWarning("Overwriting existing ConverterParameter");
             description.ConverterParameter = ReadValue();
         }
 
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
             {
                 ParseEquals(block);
                 if (!string.IsNullOrEmpty(description.Converter))
-                    CrossBindingLog.Instance?.LogWarning("Overwriting existing Converter with CommandParameter");
+                    CrossBindingLogger.Instance?.LogWarning("Overwriting existing Converter with CommandParameter");
                 description.Converter = "CommandParameter";
                 description.ConverterParameter = ReadValue();
             }
@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross
         {
             ParseEquals(block);
             if (description.FallbackValue != null)
-                CrossBindingLog.Instance?.LogWarning("Overwriting existing FallbackValue");
+                CrossBindingLogger.Instance?.LogWarning("Overwriting existing FallbackValue");
             description.FallbackValue = ReadValue();
         }
 

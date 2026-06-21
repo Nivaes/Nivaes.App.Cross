@@ -9,11 +9,8 @@ namespace Nivaes.App.Cross
     public class CrossFullBinding
         : CrossBinding, ICrossUpdateableBinding
     {
-#if NET9_0_OR_GREATER
+
         private readonly Lock _lock = new();
-#else
-        private readonly object _lock = new();
-#endif
         private readonly CrossBindingDescription _bindingDescription;
         private readonly object _defaultTargetValue;
 
@@ -112,7 +109,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    CrossBindingLog.Instance?.LogTrace(exception, "Exception masked in UpdateTargetOnBind");
+                    CrossBindingLogger.Instance?.LogTrace(exception, "Exception masked in UpdateTargetOnBind");
                 }
             }
         }
@@ -136,7 +133,7 @@ namespace Nivaes.App.Cross
 
             if (binding == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
+                CrossBindingLogger.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
                 binding = new CrossNullTargetBinding();
             }
 
@@ -179,7 +176,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    CrossBindingLog.Instance?.LogError(
+                    CrossBindingLogger.Instance?.LogError(
                         exception,
                         "Problem seen during binding execution for {BindingDescription}",
                         _bindingDescription.ToString());
@@ -204,7 +201,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
                     _bindingDescription.ToString());

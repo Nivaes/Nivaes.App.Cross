@@ -20,7 +20,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var view = (UIView)target;
             if (value is not CrossVisibility visibility)
             {
-                CrossBindingLog.Instance?.LogWarning("Visibility out of range {Value}", value);
+                CrossBindingLogger.Instance?.LogWarning("Visibility out of range {Value}", value);
                 return;
             }
 

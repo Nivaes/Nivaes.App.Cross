@@ -92,7 +92,7 @@ public class MvxAppCompatRadioGroup : RadioGroup, IMvxWithChangeAdapter
             }
             else
             {
-                CrossBindingLog.Instance?.LogWarning(
+                CrossBindingLogger.Instance?.LogWarning(
                     "Setting Adapter to null is not recommended - you may lose ItemsSource binding when doing this");
             }
 

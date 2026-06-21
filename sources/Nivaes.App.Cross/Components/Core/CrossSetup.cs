@@ -520,6 +520,7 @@ namespace Nivaes.App.Cross
             return viewContainer;
         }
 
+        [Obsolete("Usa reflection para generar los mapas.", true)]
         protected virtual void InitializeViewDispatcher()
         {
             var container = Singleton<CrossIoCServiceContainer>.Instance;

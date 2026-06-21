@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.UIKitOS
             var stepper = View;
             if (stepper == null)
             {
-                CrossBindingLog.Instance?.LogError("UIStepper is null in MvxUIStepperValueTargetBinding");
+                CrossBindingLogger.Instance?.LogError("UIStepper is null in MvxUIStepperValueTargetBinding");
                 return;
             }
 

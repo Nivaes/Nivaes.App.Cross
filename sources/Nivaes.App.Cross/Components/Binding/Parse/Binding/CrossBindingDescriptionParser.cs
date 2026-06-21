@@ -50,7 +50,7 @@ public class CrossBindingDescriptionParser
 
         var toReturn = ValueConverterLookup.Find(converterName);
         if (toReturn == null)
-            CrossBindingLog.Instance?.LogTrace("Could not find named converter for {ConverterName}", converterName);
+            CrossBindingLogger.Instance?.LogTrace("Could not find named converter for {ConverterName}", converterName);
 
         return toReturn;
     }
@@ -71,7 +71,7 @@ public class CrossBindingDescriptionParser
         CrossSerializableBindingSpecification specification;
         if (!parser.TryParseBindingSpecification(text, out specification))
         {
-            CrossBindingLog.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
+            CrossBindingLogger.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
                 GetErrorTextParameter(text));
             return Array.Empty<CrossBindingDescription>();
         }
@@ -95,7 +95,7 @@ public class CrossBindingDescriptionParser
         var parser = BindingParser;
         if (!parser.TryParseBindingDescription(text, out description))
         {
-            CrossBindingLog.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
+            CrossBindingLogger.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
                 GetErrorTextParameter(text));
             return null;
         }
@@ -179,13 +179,13 @@ public class CrossBindingDescriptionParser
                 var converter = FindConverter(description.Function);
                 if (converter == null)
                 {
-                    CrossBindingLog.Instance?.LogError("Failed to find combiner or converter for {FunctionName}",
+                    CrossBindingLogger.Instance?.LogError("Failed to find combiner or converter for {FunctionName}",
                         description.Function);
                 }
 
                 if (description.Sources == null || description.Sources.Count == 0)
                 {
-                    CrossBindingLog.Instance?.LogError("Value Converter {FunctionName} supplied with no source",
+                    CrossBindingLogger.Instance?.LogError("Value Converter {FunctionName} supplied with no source",
                         description.Function);
                     return new CrossLiteralSourceStepDescription()
                     {
@@ -194,7 +194,7 @@ public class CrossBindingDescriptionParser
                 }
                 else if (description.Sources.Count > 2)
                 {
-                    CrossBindingLog.Instance?.LogError(
+                    CrossBindingLogger.Instance?.LogError(
                         "Value Converter {FunctionName} supplied with too many parameters - {ParameterCount}",
                         description.Function, description.Sources.Count);
                     return new CrossLiteralSourceStepDescription()

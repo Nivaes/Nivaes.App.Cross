@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
         {
             if (target is not TTarget castTarget)
             {
-                CrossBindingLog.Instance?.LogError("Passed an invalid target for MvxCustomBindingFactory");
+                CrossBindingLogger.Instance?.LogError("Passed an invalid target for MvxCustomBindingFactory");
                 return null;
             }
 

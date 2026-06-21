@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross
 
             if (Source == null)
             {
-                CrossBindingLog.Instance?.LogTrace(
+                CrossBindingLogger.Instance?.LogTrace(
                     "Unable to bind to source as it's null. PropertyName: {PropertyName}", PropertyName);
                 return;
             }

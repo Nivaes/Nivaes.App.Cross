@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.Droid
             var autoComplete = View;
             if (autoComplete == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "autoComplete is null in {TypeName}", nameof(MvxAutoCompleteTextViewPartialTextTargetBinding));
             }
         }

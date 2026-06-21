@@ -42,7 +42,7 @@ public class MvxAxmlNameViewTypeResolver : MvxLongLowerCaseViewTypeResolver, IMv
                 }
                 else
                 {
-                    CrossBindingLog.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
+                    CrossBindingLogger.Instance?.LogTrace("Abbreviation not found {Abbreviation}", abbreviate);
                 }
             }
         }

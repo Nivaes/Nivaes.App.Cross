@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.UIKitOS
             var slider = View;
             if (slider == null)
             {
-                CrossBindingLog.Instance?.LogError("UISlider is null in MvxUISliderValueTargetBinding");
+                CrossBindingLogger.Instance?.LogError("UISlider is null in MvxUISliderValueTargetBinding");
                 return;
             }
 

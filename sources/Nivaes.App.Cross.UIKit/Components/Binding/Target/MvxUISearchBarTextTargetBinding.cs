@@ -19,7 +19,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var searchBar = View;
             if (searchBar == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "UISearchBar is null in {TargetBindingName}", nameof(MvxUISearchBarTextTargetBinding));
                 return;
             }

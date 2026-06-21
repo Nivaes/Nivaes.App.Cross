@@ -53,7 +53,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (value == null)
             {
-                CrossBindingLog.Instance?.LogWarning(
+                CrossBindingLogger.Instance?.LogWarning(
                     "Null values not permitted in spinner SelectedItem binding currently");
                 return;
             }
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross.Droid
                 var index = spinner.Adapter.GetPosition(value);
                 if (index < 0)
                 {
-                    CrossBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
+                    CrossBindingLogger.Instance?.LogWarning("Value not found for spinner @{Value}", value);
                     return;
                 }
                 _currentValue = value;

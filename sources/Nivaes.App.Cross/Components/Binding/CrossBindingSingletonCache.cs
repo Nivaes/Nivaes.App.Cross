@@ -17,18 +17,18 @@ public class CrossBindingSingletonCache
     //    return instance;
     //}
 
-    private ICrossAutoValueConverters _autoValueConverters;
-    private ICrossBindingDescriptionParser _bindingDescriptionParser;
-    private ICrossSourceBindingFactory _sourceBindingFactory;
-    private ICrossTargetBindingFactory _targetBindingFactory;
-    private ICrossLanguageBindingParser _languageParser;
-    private ICrossPropertyExpressionParser _propertyExpressionParser;
-    private ICrossValueConverterLookup _valueConverterLookup;
-    private ICrossBindingNameLookup _defaultBindingName;
-    private ICrossBinder _binder;
-    private ICrossSourceStepFactory _sourceStepFactory;
-    private ICrossValueCombinerLookup _valueCombinerLookup;
-    private ICrossMainThreadAsyncDispatcher _mainThreadDispatcher;
+    private ICrossAutoValueConverters? _autoValueConverters;
+    private ICrossBindingDescriptionParser? _bindingDescriptionParser;
+    private ICrossSourceBindingFactory? _sourceBindingFactory;
+    private ICrossTargetBindingFactory? _targetBindingFactory;
+    private ICrossLanguageBindingParser? _languageParser;
+    private ICrossPropertyExpressionParser? _propertyExpressionParser;
+    private ICrossValueConverterLookup? _valueConverterLookup;
+    private ICrossBindingNameLookup? _defaultBindingName;
+    private ICrossBinder? _binder;
+    private ICrossSourceStepFactory? _sourceStepFactory;
+    private ICrossValueCombinerLookup? _valueCombinerLookup;
+    private ICrossMainThreadAsyncDispatcher? _mainThreadDispatcher;
 
     public ICrossAutoValueConverters AutoValueConverters
     {

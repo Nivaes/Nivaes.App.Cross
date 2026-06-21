@@ -99,7 +99,7 @@ namespace Nivaes.App.Cross
             {
                 // pokemon exception - force the use of Fallback in this case
                 // we expect this exception to occur sometimes - so only "Diagnostic" level logging here
-                CrossBindingLog.Instance?.LogTrace(
+                CrossBindingLogger.Instance?.LogTrace(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
                     _description.ToString());

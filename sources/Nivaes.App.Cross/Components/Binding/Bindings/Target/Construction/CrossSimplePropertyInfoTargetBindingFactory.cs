@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross
             var targetBinding = targetBindingCandidate as ICrossTargetBinding;
             if (targetBinding == null)
             {
-                CrossBindingLog.Instance?.LogWarning("The TargetBinding created did not support IMvxTargetBinding");
+                CrossBindingLogger.Instance?.LogWarning("The TargetBinding created did not support IMvxTargetBinding");
                 var disposable = targetBindingCandidate as IDisposable;
                 disposable?.Dispose();
             }

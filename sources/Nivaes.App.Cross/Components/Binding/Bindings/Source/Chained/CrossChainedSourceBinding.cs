@@ -100,7 +100,7 @@ namespace Nivaes.App.Cross
         {
             if (_currentChildBinding == null)
             {
-                CrossBindingLog.Instance?.LogWarning("SetValue ignored in binding - target property path missing");
+                CrossBindingLogger.Instance?.LogWarning("SetValue ignored in binding - target property path missing");
                 return;
             }
 

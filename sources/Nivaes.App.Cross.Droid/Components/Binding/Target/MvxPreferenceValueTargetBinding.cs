@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected override void SetValueImpl(object target, object? value)
         {
-            CrossBindingLog.Instance?.LogWarning("SetValueImpl called on generic Preference target");
+            CrossBindingLogger.Instance?.LogWarning("SetValueImpl called on generic Preference target");
         }
     }
 }

@@ -77,7 +77,7 @@ public class CrossFluentBindingDescriptionSet<
             }
             else
             {
-                CrossBindingLog.Instance?.LogWarning(
+                CrossBindingLogger.Instance?.LogWarning(
                     "Fluent binding description must implement {InterfaceName} in order to add {Description}",
                     nameof(ICrossBaseFluentBindingDescription),
                     nameof(ICrossBaseFluentBindingDescription.ClearBindingKey));

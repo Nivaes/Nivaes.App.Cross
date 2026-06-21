@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.WinUI
 
             if (string.IsNullOrEmpty(targetName))
             {
-                CrossBindingLog.Instance?.LogError("Empty binding target passed to MvxWindowsTargetBindingFactoryRegistry");
+                CrossBindingLogger.Instance?.LogError("Empty binding target passed to MvxWindowsTargetBindingFactoryRegistry");
                 binding = null;
                 return false;
             }

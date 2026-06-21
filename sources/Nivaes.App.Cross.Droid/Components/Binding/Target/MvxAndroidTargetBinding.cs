@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (target is IJavaObject javaTarget && javaTarget.Handle == IntPtr.Zero)
             {
-                CrossBindingLog.Instance?.LogWarning("Weak Target has been GCed by Android {TargetTypeName}",
+                CrossBindingLogger.Instance?.LogWarning("Weak Target has been GCed by Android {TargetTypeName}",
                     javaTarget.GetType().Name);
                 return true;
             }
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (target is IJavaObject javaTarget && javaTarget.Handle == IntPtr.Zero)
             {
-                CrossBindingLog.Instance?.LogWarning("Weak Target has been GCed by Android {TargetTypeName}",
+                CrossBindingLogger.Instance?.LogWarning("Weak Target has been GCed by Android {TargetTypeName}",
                     javaTarget.GetType().Name);
                 return true;
             }

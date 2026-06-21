@@ -176,7 +176,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (ItemsSource == null)
             {
-                CrossBindingLog.Instance?.LogError("GetView called when ItemsSource is null");
+                CrossBindingLogger.Instance?.LogError("GetView called when ItemsSource is null");
                 return null;
             }
 

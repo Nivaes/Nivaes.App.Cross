@@ -17,7 +17,7 @@ public class CrossIfValueCombiner
                 return TryEvaluateif(list[0], list[1], list[2], out value);
 
             default:
-                CrossBindingLog.Instance?.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
+                CrossBindingLogger.Instance?.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
                 return base.TryGetValue(list, out value);
         }
     }

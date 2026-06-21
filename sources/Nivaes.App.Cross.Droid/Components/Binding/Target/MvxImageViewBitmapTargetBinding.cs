@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (value is not Bitmap valueBitmap)
             {
-                CrossBindingLog.Instance?.LogWarning("Value was not a valid Bitmap: {Value}", value);
+                CrossBindingLogger.Instance?.LogWarning("Value was not a valid Bitmap: {Value}", value);
                 bitmap = null;
                 return false;
             }

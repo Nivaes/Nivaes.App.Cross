@@ -28,7 +28,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var view = View;
             if (view == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "UITextView is null in MvxUITextViewTextTargetBinding");
                 return;
             }
@@ -36,7 +36,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var textStorage = view.LayoutManager.TextStorage;
             if (textStorage == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "NSTextStorage of UITextView is null in MvxUITextViewTextTargetBinding");
                 return;
             }

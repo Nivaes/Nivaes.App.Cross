@@ -125,7 +125,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
                     _controlEventSubscription = control.WeakSubscribe(nameof(control.AllEvents), ControlEvent);
                     break;
                 default:
-                    CrossBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
+                    CrossBindingLogger.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
                     break;
             }
         }
@@ -150,7 +150,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
                     _controlEventSubscription?.Dispose();
                     break;
                 default:
-                    CrossBindingLog.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
+                    CrossBindingLogger.Instance?.LogError("Error - Invalid controlEvent in MvxUIControlTargetBinding");
                     break;
             }
         }

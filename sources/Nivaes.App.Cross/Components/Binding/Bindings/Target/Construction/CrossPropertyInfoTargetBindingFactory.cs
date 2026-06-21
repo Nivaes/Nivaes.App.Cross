@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    CrossBindingLog.Instance?.LogError(
+                    CrossBindingLogger.Instance?.LogError(
                         exception,
                         "Problem creating target binding for {TargetName} - exception {ExceptionMessage}", _targetType.Name,
                         exception.ToString());

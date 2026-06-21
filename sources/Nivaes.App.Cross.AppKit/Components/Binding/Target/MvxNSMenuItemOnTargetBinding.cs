@@ -16,7 +16,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var checkBox = View;
             if (checkBox == null)
             {
-                CrossBindingLog.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
             }
             else
             {

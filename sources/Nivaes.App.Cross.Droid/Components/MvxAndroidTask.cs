@@ -1,11 +1,8 @@
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
-
 
 public class MvxAndroidTask
     : CrossMainThreadDispatchingObject
@@ -37,7 +34,7 @@ public class MvxAndroidTask
         // default processing does nothing
     }
 
-    private void OnMvxIntentResultReceived(object sender, MvxIntentResultEventArgs e)
+    private void OnMvxIntentResultReceived(object? sender, MvxIntentResultEventArgs e)
     {
         var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAndroidTask>>();
         logger?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");

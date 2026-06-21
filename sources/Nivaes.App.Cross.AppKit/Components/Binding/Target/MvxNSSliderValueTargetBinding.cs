@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var slider = View;
             if (slider == null)
             {
-                CrossBindingLog.Instance?.LogError("NSSlider is null in MvxNSSliderValueTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NSSlider is null in MvxNSSliderValueTargetBinding");
             }
             else
             {

@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             var index = listView.Adapter.GetPosition(value);
             if (index < 0)
             {
-                CrossBindingLog.Instance?.LogWarning("Value not found for spinner {Value}", value);
+                CrossBindingLogger.Instance?.LogWarning("Value not found for spinner {Value}", value);
                 return;
             }
             _currentValue = value;

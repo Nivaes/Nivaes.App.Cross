@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.UIKitOS
             var uiSwitch = Target;
             if (uiSwitch == null)
             {
-                CrossBindingLog.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
+                CrossBindingLogger.Instance?.LogError("Switch is null in MvxUISwitchOnTargetBinding");
                 return;
             }
 

@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLog.Instance?.LogError(exception, "Problem parsing binding");
+                CrossBindingLogger.Instance?.LogError(exception, "Problem parsing binding");
                 requestedDescription = null;
                 return false;
             }
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLog.Instance?.LogError(exception, "Problem parsing binding");
+                CrossBindingLogger.Instance?.LogError(exception, "Problem parsing binding");
                 requestedBindings = null;
                 return false;
             }

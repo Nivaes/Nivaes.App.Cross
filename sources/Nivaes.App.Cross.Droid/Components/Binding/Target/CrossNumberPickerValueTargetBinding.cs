@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             var numberPicker = View;
             if (numberPicker == null)
             {
-                CrossBindingLog.Instance?.LogError("NumberPicker is null in MvxNumberPickerValueTargetBinding");
+                CrossBindingLogger.Instance?.LogError("NumberPicker is null in MvxNumberPickerValueTargetBinding");
                 return;
             }
 

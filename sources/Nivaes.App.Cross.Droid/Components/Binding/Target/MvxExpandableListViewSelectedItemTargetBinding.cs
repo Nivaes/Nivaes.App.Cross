@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
             var positions = ((MvxExpandableListAdapter?)listView.ExpandableListAdapter)?.GetPositions(value);
             if (positions == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Value not found for spinner @{Value}", value);
+                CrossBindingLogger.Instance?.LogWarning("Value not found for spinner @{Value}", value);
                 return;
             }
 

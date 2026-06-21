@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.UIKitOS
             var datePicker = View;
             if (datePicker == null)
             {
-                CrossBindingLog.Instance?.LogError("UIDatePicker is null in {TargetBindingType}",
+                CrossBindingLogger.Instance?.LogError("UIDatePicker is null in {TargetBindingType}",
                     nameof(MvxBaseUIDatePickerTargetBinding));
             }
             // Only listen for value changes if we are binding against one of the value-derived properties.

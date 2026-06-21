@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var segmentedControl = View;
             if (segmentedControl == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "UISegmentedControl is null in MvxUISegmentedControlSelectedSegmentTargetBinding");
                 return;
             }

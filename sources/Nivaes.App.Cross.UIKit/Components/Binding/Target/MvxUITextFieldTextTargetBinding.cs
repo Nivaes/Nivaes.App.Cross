@@ -30,7 +30,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
             var view = View;
             if (view == null)
             {
-                CrossBindingLog.Instance?.LogError(
+                CrossBindingLogger.Instance?.LogError(
                     "UITextField is null in MvxUITextFieldTextTargetBinding");
                 return;
             }

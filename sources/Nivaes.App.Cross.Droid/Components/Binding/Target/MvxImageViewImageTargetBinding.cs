@@ -39,14 +39,14 @@ namespace Nivaes.App.Cross.Droid
         {
             if (value == null)
             {
-                CrossBindingLog.Instance?.LogWarning("Null value passed to ImageView binding");
+                CrossBindingLogger.Instance?.LogWarning("Null value passed to ImageView binding");
                 return null;
             }
 
             var stringValue = value as string;
             if (string.IsNullOrWhiteSpace(stringValue))
             {
-                CrossBindingLog.Instance?.LogWarning("Empty value passed to ImageView binding");
+                CrossBindingLogger.Instance?.LogWarning("Empty value passed to ImageView binding");
                 return null;
             }
 

@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
 
             if (list.Count < 1)
             {
-                CrossBindingLog.Instance?.LogWarning("Format called with no parameters - will fail");
+                CrossBindingLogger.Instance?.LogWarning("Format called with no parameters - will fail");
                 value = CrossBindingConstant.DoNothing;
                 return true;
             }
