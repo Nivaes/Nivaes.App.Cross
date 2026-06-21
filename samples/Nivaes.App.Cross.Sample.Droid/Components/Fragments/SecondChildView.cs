@@ -1,7 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
@@ -19,7 +15,7 @@ namespace Nivaes.App.Cross.Sample.Droid
 
             var view = this.BindingInflate(Resource.Layout.SecondChildView, container, false);
 
-            return view;
+            return view!;
         }
     }
 }

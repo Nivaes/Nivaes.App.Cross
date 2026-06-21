@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
-using Nivaes.App.Cross.Sample;
-using Nivaes.App.Cross.Sample.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
@@ -23,7 +21,7 @@ public class ChildView : MvxFragment<ChildViewModel>
 
         var view = this.BindingInflate(Resource.Layout.ChildView, container, false);
 
-        return view;
+        return view!;
     }
 
     public override void OnDestroy()

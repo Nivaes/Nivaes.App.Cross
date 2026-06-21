@@ -36,7 +36,7 @@ public class ChildViewModel : MvxNavigationViewModel<SampleModel>
             throw new System.NotImplementedException();
     }
 
-    public override async System.Threading.Tasks.Task Initialize()
+    public override async Task Initialize()
     {
         await base.Initialize();
 
