@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -11,13 +12,13 @@ public class CrossNavigationService
 {
     private readonly ILogger _logger;
 
-    public ICrossViewDispatcher ViewDispatcher { get; }
+    public ICrossViewDispatcher ViewDispatcher { [DebuggerHidden]get; }
 
-    protected ICrossViewsContainer? ViewsContainer { get; }
+    protected ICrossViewsContainer? ViewsContainer { [DebuggerHidden]get; }
 
-    protected Dictionary<Regex, Type> Routes { get; } = new();
+    protected Dictionary<Regex, Type> Routes { [DebuggerHidden]get; } = new();
 
-    protected ICrossViewModelLoader ViewModelLoader { get; set; }
+    protected ICrossViewModelLoader ViewModelLoader { [DebuggerHidden]get; [DebuggerHidden]set; }
 
     public event EventHandler<ICrossNavigateEventArgs>? WillNavigate;
 

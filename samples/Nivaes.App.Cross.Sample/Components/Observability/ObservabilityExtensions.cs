@@ -17,7 +17,10 @@ namespace Nivaes.App.Cross.Sample
 
             builder.Services.AddLogging();
             builder.Logging.AddDebug();
-            builder.Logging.AddConsole();
+            builder.Logging.AddSimpleConsole(options =>
+            {
+                options.IncludeScopes = true;
+            });
 
             //var listener = new OpenTelemetryEventListener();
 
