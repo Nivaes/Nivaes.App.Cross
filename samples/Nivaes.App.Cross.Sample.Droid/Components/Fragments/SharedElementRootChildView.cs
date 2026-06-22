@@ -1,7 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
@@ -14,13 +10,18 @@ namespace Nivaes.App.Cross.Sample.Droid
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
     {
+        public SharedElementRootChildView()
+        {
+
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(Resource.Layout.SharedElementRootChildView, null);
 
-            var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
+            var recyclerView = view!.FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
             if (recyclerView != null)
             {
                 recyclerView.HasFixedSize = true;
@@ -35,14 +36,13 @@ namespace Nivaes.App.Cross.Sample.Droid
             return view;
         }
 
-        private void AdapterOnItemClick(object sender, SelectedItemRecyclerAdapter.SelectedItemEventArgs e)
+        private void AdapterOnItemClick(object? sender, SelectedItemRecyclerAdapter.SelectedItemEventArgs e)
         {
-            Toast.MakeText(Activity, $"Selected item {e.Position + 1}", ToastLength.Short)
-                .Show();
+            Toast.MakeText(Activity, $"Selected item {e.Position + 1}", ToastLength.Short)?.Show();
 
-            (Activity as SharedElementRootView).SelectedListItem = e.Position;
+            ((SharedElementRootView?)Activity)?.SelectedListItem = e.Position;
 
-            ViewModel.SelectItemExecution(e.DataContext as ListItemViewModel);
+            ViewModel.SelectItemExecution((ListItemViewModel)e.DataContext!);
         }
     }
 }

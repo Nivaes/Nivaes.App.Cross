@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-  <mvvmcross.droidx.recyclerview.MvxRecyclerView
-      android:id="@+id/my_recycler_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:scrollbars="vertical"
-      local:MvxBind="ItemsSource Items"
-      local:MvxItemTemplate="@layout/itemlistsharedelementstemplate" />
+	<nivaes.cross.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        local:MvxBind="ItemsSource Items"
+        local:MvxItemTemplate="@layout/itemlistsharedelementstemplate" />
 
 </RelativeLayout>

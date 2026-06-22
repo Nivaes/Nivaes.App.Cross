@@ -11,7 +11,7 @@ namespace Playground.Droid.Adapter
     {
         public class SelectedItemEventArgs : EventArgs
         {
-            public SelectedItemEventArgs(int position, View view, object dataContext)
+            public SelectedItemEventArgs(int position, View? view, object? dataContext)
             {
                 Position = position;
                 View = view;
@@ -19,8 +19,8 @@ namespace Playground.Droid.Adapter
             }
 
             public int Position { get; }
-            public View View { get; }
-            public object DataContext { get; }
+            public View? View { get; }
+            public object? DataContext { get; }
         }
     }
 }

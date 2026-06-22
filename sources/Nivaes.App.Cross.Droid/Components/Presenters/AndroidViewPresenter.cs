@@ -60,22 +60,20 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public AndroidViewPresenter(/*IEnumerable<Assembly> androidViewAssemblies,*/ ICrossViewsContainer crossViewsContainer, 
+    public AndroidViewPresenter(ICrossViewsContainer crossViewsContainer, 
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
         IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
         ILogger<AndroidViewPresenter> logger)
         :base(crossViewsContainer)
     {
-        //AndroidViewAssemblies = androidViewAssemblies;
-        if (ActivityLifetimeListener != null)
-            ActivityLifetimeListener.ActivityChanged += ActivityLifetimeListenerOnActivityChanged;
-
         _androidCurrentTopActivity = androidCurrentTopActivity;
         _activityLifetimeListener = activityLifetimeListener;
         _navigationSerializer = navigationSerializer;
         _viewModelRequestTranslator = viewModelRequestTranslator;
 
         _logger = logger;
+
+        ActivityLifetimeListener?.ActivityChanged += ActivityLifetimeListenerOnActivityChanged;
     }
 
     protected virtual void ActivityLifetimeListenerOnActivityChanged(object? sender, MvxActivityEventArgs e)
@@ -511,7 +509,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
             PendingRequest = request;
             ShowHostActivity(attribute);
         }
-        else if (CurrentActivity.IsActivityAlive())
+        else if (CurrentActivity!.IsActivityAlive())
         {
             if (CurrentActivity!.FindViewById(attribute.FragmentContentId) == null)
                 throw new InvalidOperationException("FrameLayout to show Fragment not found");
@@ -552,7 +550,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
         ArgumentNullException.ThrowIfNull(fragmentManager, nameof(fragmentManager));
 
-        var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
+        var fragmentName = attribute.Tag ?? attribute.ViewType!.FragmentJavaName();
 
         IMvxFragmentView? fragmentView = null;
         if (attribute.IsCacheableFragment)

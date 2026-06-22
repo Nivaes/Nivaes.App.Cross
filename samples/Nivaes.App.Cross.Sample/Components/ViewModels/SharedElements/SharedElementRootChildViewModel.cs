@@ -19,24 +19,28 @@ public class SharedElementRootChildViewModel
         return base.Initialize();
     }
 
-    private CrossObservableCollection<ListItemViewModel> _items;
-    public CrossObservableCollection<ListItemViewModel> Items
+    #region Items
+    private CrossObservableCollection<ListItemViewModel>? _items;
+    public CrossObservableCollection<ListItemViewModel>? Items
     {
         get => _items;
         set => SetProperty(ref _items, value);
     }
+    #endregion
 
-    private ListItemViewModel _selectedItem;
+    #region SelectedItem
+    private ListItemViewModel? _selectedItem;
+
+    public ListItemViewModel? SelectedItem
+    {
+        get => _selectedItem;
+        set => SetProperty(ref _selectedItem, value);
+    }
+    #endregion
 
     public SharedElementRootChildViewModel(ILogger<SharedElementRootChildViewModel> logger, ICrossNavigationService navigationService)
         : base(logger, navigationService)
     {
-    }
-
-    public ListItemViewModel SelectedItem
-    {
-        get => _selectedItem;
-        set => SetProperty(ref _selectedItem, value);
     }
 
     public void SelectItemExecution(ListItemViewModel item)

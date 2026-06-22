@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using MvvmCross.Platforms.Ios.Binding;
     using MvvmCross.Platforms.Ios.Binding.Target;
 
+    [Obsolete("", true)]
     public class MvxIosBindingBuilder
         : CrossBindingBuilder
     {

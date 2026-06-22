@@ -1,87 +1,87 @@
-using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.Sample;
+//namespace Nivaes.App.Cross.Sample;
 
-public class MainViewModel : CrossNavigationViewModel
-{
-    private string _bindableText = "I'm bound!";
+//public class MainViewModel : CrossNavigationViewModel
+//{
+//    private string _bindableText = "I'm bound!";
 
-    private int _counter = 2;
+//    private int _counter = 2;
 
-    public MainViewModel(ILogger<MainViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
-    {
-        ShowChildCommand = new CrossAsyncCommand(() =>
-        {
-            return NavigationService.Navigate<ChildViewModel>();
-        });
+//    public MainViewModel(ILogger<MainViewModel> logger, ICrossNavigationService navigationService)
+//        : base(logger, navigationService)
+//    {
+//        ShowChildCommand = new CrossAsyncCommand(() =>
+//        {
+//            return NavigationService.Navigate<ChildViewModel>();
+//        });
 
-        ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalViewModel>());
+//        ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalViewModel>());
 
-        ShowModalNavCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
+//        ShowModalNavCommand =
+//            new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
-        ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
+//        ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 
-        ShowSplitCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
+//        ShowSplitCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitRootViewModel>());
 
-        ShowOverrideAttributeCommand = new CrossAsyncCommand(() => NavigationService.Navigate<OverrideAttributeViewModel>());
+//        ShowOverrideAttributeCommand = new CrossAsyncCommand(() => NavigationService.Navigate<OverrideAttributeViewModel>());
 
-        ShowSheetCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
+//        ShowSheetCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SheetViewModel>());
 
-        ShowWindowCommand = new CrossAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
+//        ShowWindowCommand = new CrossAsyncCommand(() => NavigationService.Navigate<WindowViewModel>());
 
-        ShowMixedNavigationCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
+//        ShowMixedNavigationCommand =
+//            new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
 
-        ShowCustomBindingCommand =
-            new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
+//        ShowCustomBindingCommand =
+//            new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
 
-        _counter = 3;
-    }
+//        _counter = 3;
+//    }
 
-    public ICrossAsyncCommand ShowChildCommand { get; }
+//    public ICrossAsyncCommand ShowChildCommand { get; }
 
-    public ICrossAsyncCommand ShowModalCommand { get; }
+//    public ICrossAsyncCommand ShowModalCommand { get; }
 
-    public ICrossAsyncCommand ShowModalNavCommand { get; }
+//    public ICrossAsyncCommand ShowModalNavCommand { get; }
 
-    public ICrossAsyncCommand ShowTabsCommand { get; }
+//    public ICrossAsyncCommand ShowTabsCommand { get; }
 
-    public ICrossAsyncCommand ShowCustomBindingCommand { get; }
+//    public ICrossAsyncCommand ShowCustomBindingCommand { get; }
 
-    public ICrossAsyncCommand ShowSplitCommand { get; }
+//    public ICrossAsyncCommand ShowSplitCommand { get; }
 
-    public ICrossAsyncCommand ShowOverrideAttributeCommand { get; }
+//    public ICrossAsyncCommand ShowOverrideAttributeCommand { get; }
 
-    public ICrossAsyncCommand ShowSheetCommand { get; }
+//    public ICrossAsyncCommand ShowSheetCommand { get; }
 
-    public ICrossAsyncCommand ShowWindowCommand { get; }
+//    public ICrossAsyncCommand ShowWindowCommand { get; }
 
-    public ICrossAsyncCommand ShowMixedNavigationCommand { get; }
+//    public ICrossAsyncCommand ShowMixedNavigationCommand { get; }
 
-    public ICrossLanguageBinder TextSource => new CrossLanguageBinder("MvxBindingsExample", "Text");
+//    public ICrossLanguageBinder TextSource => new CrossLanguageBinder("MvxBindingsExample", "Text");
 
-    public string BindableText
-    {
-        get => _bindableText;
-        set
-        {
-            SetProperty(ref _bindableText, value);
-        }
-    }
+//    public string BindableText
+//    {
+//        get => _bindableText;
+//        set
+//        {
+//            SetProperty(ref _bindableText, value);
+//        }
+//    }
 
-    protected override void SaveStateToBundle(ICrossBundle bundle)
-    {
-        base.SaveStateToBundle(bundle);
+//    protected override void SaveStateToBundle(ICrossBundle bundle)
+//    {
+//        base.SaveStateToBundle(bundle);
 
-        bundle.Data["MyKey"] = _counter.ToString();
-    }
+//        bundle.Data["MyKey"] = _counter.ToString();
+//    }
 
-    protected override void ReloadFromBundle(ICrossBundle state)
-    {
-        base.ReloadFromBundle(state);
+//    protected override void ReloadFromBundle(ICrossBundle state)
+//    {
+//        base.ReloadFromBundle(state);
 
-        _counter = int.Parse(state.Data["MyKey"]);
-    }
-}
+//        _counter = int.Parse(state.Data["MyKey"]);
+//    }
+//}

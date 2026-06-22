@@ -228,7 +228,7 @@ namespace Nivaes.App.Cross.Droid
         /// </summary>
         public override bool OnFailedToRecycleView(Object holder) => true;
 
-        protected virtual void OnItemViewClick(object? sender, EventArgs? e)
+        protected virtual void OnItemViewClick(object? sender, EventArgs e)
         {
             if (sender is IMvxRecyclerViewHolder holder)
             {
@@ -236,7 +236,7 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        protected virtual void OnItemViewLongClick(object? sender, EventArgs? e)
+        protected virtual void OnItemViewLongClick(object? sender, EventArgs e)
         {
             if (sender is IMvxRecyclerViewHolder holder)
             {

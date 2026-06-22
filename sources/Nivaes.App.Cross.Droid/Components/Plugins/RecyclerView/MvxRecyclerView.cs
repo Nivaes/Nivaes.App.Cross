@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.DroidX.RecyclerView.AttributeHelpers;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 
-    [Register("mvvmcross.droidx.recyclerview.MvxRecyclerView")]
+    [Register("nivaes.cross.RecyclerView")]
     public class MvxRecyclerView : AndroidX.RecyclerView.Widget.RecyclerView
     {
         public MvxRecyclerView(Context context, IAttributeSet attrs)
@@ -119,7 +119,7 @@ namespace Nivaes.App.Cross.Droid
         /// <para>
         /// It is recommended to use a type inheriting from <see cref="IList"/>, such as
         /// <see cref="System.Collections.ObjectModel.ObservableCollection{T}"/>,
-        /// <see cref="MvvmCross.ViewModels.CrossObservableCollection{T}"/> or
+        /// <see cref="Nivaes.App.Cross.CrossObservableCollection{T}"/> or
         /// <see cref="System.Collections.Generic.List{T}"/>.
         /// </para>
         /// </summary>

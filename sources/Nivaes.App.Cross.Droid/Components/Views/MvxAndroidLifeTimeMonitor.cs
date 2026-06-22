@@ -66,11 +66,11 @@ namespace Nivaes.App.Cross.Droid
             FireActivityChange(activity, MvxActivityState.OnSaveInstanceState, eventArgs);
         }
 
-        protected void FireActivityChange(Activity activity, MvxActivityState state, object extras = null)
+        protected void FireActivityChange(Activity activity, MvxActivityState state, object? extras = null)
         {
             ActivityChanged?.Invoke(this, new MvxActivityEventArgs(activity, state, extras));
         }
 
-        public event EventHandler<MvxActivityEventArgs> ActivityChanged;
+        public event EventHandler<MvxActivityEventArgs>? ActivityChanged;
     }
 }
