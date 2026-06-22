@@ -6,7 +6,7 @@ public class SecondChildViewModel
     : CrossNavigationViewModel
 {
     public SecondChildViewModel(ILogger<SecondChildViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         ShowNestedChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<NestedChildViewModel>());
 

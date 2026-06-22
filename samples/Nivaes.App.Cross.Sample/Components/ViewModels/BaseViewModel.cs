@@ -6,7 +6,7 @@ public class BaseViewModel
     : CrossNavigationViewModel
 {
     public BaseViewModel(ILogger<BaseViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
     }
 }

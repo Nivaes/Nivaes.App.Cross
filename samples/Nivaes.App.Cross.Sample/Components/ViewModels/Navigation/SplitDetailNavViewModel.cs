@@ -7,7 +7,7 @@ public class SplitDetailNavViewModel
     : CrossNavigationViewModel
 {
     public SplitDetailNavViewModel(ILogger<SplitDetailNavViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         MainMenuCommand = new CrossAsyncCommand(() => NavigationService.Navigate<MixedNavFirstViewModel>());
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));

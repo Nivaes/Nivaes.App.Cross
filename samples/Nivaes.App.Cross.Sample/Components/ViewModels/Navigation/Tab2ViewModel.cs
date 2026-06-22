@@ -6,7 +6,7 @@ public class Tab2ViewModel
     : CrossNavigationViewModel
 {
     public Tab2ViewModel(ILogger<Tab2ViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         ShowRootViewModelCommand = new CrossAsyncCommand(() => NavigationService.Navigate<RootViewModel>());
 

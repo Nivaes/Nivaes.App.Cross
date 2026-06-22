@@ -78,7 +78,7 @@ public class WindowViewModel
     public int Count { get; set; }
 
     public WindowViewModel(ILogger<WindowViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         _count++;
         Count = _count;

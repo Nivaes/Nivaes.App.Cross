@@ -6,7 +6,7 @@ public class RegionViewModel
     : CrossNavigationViewModel
 {
     public RegionViewModel(ILogger<RegionViewModel> logger, ICrossNavigationService navigationService) 
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
     }
 

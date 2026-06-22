@@ -7,7 +7,7 @@ namespace Playground.Core.ViewModels
         : CrossNavigationViewModel
     {
         public PagesRootViewModel(ILogger<PagesRootViewModel> logger, ICrossNavigationService navigationService)
-            : base(logger, navigationService)
+            : base(navigationService, logger)
         {
             ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
         }

@@ -7,7 +7,7 @@ public class ModalViewModel
     : CrossNavigationViewModel
 {
     public ModalViewModel(ILogger<ModalViewModel> logger, ICrossNavigationService navigationService) 
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
 

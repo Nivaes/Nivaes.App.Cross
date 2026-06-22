@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample
         : CrossNavigationViewModel
     {
         public SplitRootViewModel(ILogger<SplitRootViewModel> logger, ICrossNavigationService navigationService)
-            : base(logger, navigationService)
+            : base(navigationService, logger)
         {
             ShowInitialMenuCommand = new CrossAsyncCommand(ShowInitialViewModel);
             ShowDetailCommand = new CrossAsyncCommand(ShowDetailViewModel);

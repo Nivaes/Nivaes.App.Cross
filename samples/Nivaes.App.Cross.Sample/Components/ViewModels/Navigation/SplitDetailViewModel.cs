@@ -6,7 +6,7 @@ public class SplitDetailViewModel
     : CrossNavigationViewModel
 {
     public SplitDetailViewModel(ILogger<SplitDetailViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<SplitDetailNavViewModel>());
         ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());

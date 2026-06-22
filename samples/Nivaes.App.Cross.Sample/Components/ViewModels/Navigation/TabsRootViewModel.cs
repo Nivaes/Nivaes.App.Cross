@@ -9,7 +9,7 @@ public class TabsRootViewModel
     : CrossNavigationViewModel
 {
     public TabsRootViewModel(ILogger<TabsRootViewModel> logger, ICrossNavigationService navigationService) 
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
         ShowTabsRootBCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootBViewModel>());

@@ -6,7 +6,7 @@ public class ModalNavViewModel
     : CrossNavigationViewModel
 {
     public ModalNavViewModel(ILogger<ModalNavViewModel> logger, ICrossNavigationService navigationService) 
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
 

@@ -6,7 +6,7 @@ public class NestedChildViewModel
     : CrossNavigationViewModel
 {
     public NestedChildViewModel(ILogger<NestedChildViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
         PopToChildCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopPresentationHint(typeof(ChildViewModel))));
