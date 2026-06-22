@@ -13,9 +13,6 @@ public class MvxAndroidViewFactory
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger _logger;
 
-    // ToDo: Solucionar la referencia circular. Probablemente fusionando las dos clases.
-    //protected IMvxViewTypeResolver ViewTypeResolver => _viewTypeResolver ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxViewTypeResolver>();
-
     public MvxAndroidViewFactory(IServiceProvider serviceProvider, IMvxViewTypeResolver viewTypeResolver,
         ILogger<MvxAndroidViewFactory> logger)
     {

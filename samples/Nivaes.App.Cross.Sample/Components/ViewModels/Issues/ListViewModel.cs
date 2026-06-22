@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.Sample
             });
         }
 
-        private async Task ItemClicked(TestItem arg)
+        private async Task ItemClicked(TestItem? arg)
         {
             var item = arg;
         }
@@ -29,6 +29,6 @@ namespace Nivaes.App.Cross.Sample
 
     public class TestItem
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
     }
 }

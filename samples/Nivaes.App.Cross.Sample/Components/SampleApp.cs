@@ -28,38 +28,40 @@ public class SampleApp : Application, IApplication
     ///// </summary>
     public override ICrossViewModelStar Initialize()
     {
-        base.Logger.LogTrace("Inicio app.");
-
-        var source = new ActivitySource("SampleCrossClient");
-
-        var aa = source.HasListeners();
-
-        using (var activity = source.StartActivity("SampleCrossClient"))
+        using (Logger.BeginScope("Initialice app"))
         {
-            activity?.SetTag("test", "true");
+
+            var source = new ActivitySource("SampleCrossClient");
+
+            var aa = source.HasListeners();
+
+            using (var activity = source.StartActivity("SampleCrossClient"))
+            {
+                activity?.SetTag("test", "true");
+            }
+
+            _tracerProvider.ForceFlush();
+
+            //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
+            //logger2.LogInformation("Hola OpenTelemetry");
+
+            //CreatableTypes()
+            //    .EndingWith("Service")
+            //    .AsInterfaces()
+            //    .RegisterAsLazySingleton();
+
+            //var container = Singleton<CrossIoCServiceContainer>.Instance;
+            //container.AddDelegate<ICrossTextProvider>(container =>
+            //{
+            //    return new TextProviderBuilder().TextProvider;
+            //});
+
+            //container.Merge(new ViewModelsSubcontainer());
+
+            //RegisterAppStart<RootViewModel>();
+
+            return new CrossViewModelStar<RootViewModel>();
         }
-
-        _tracerProvider.ForceFlush();
-
-        //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
-        //logger2.LogInformation("Hola OpenTelemetry");
-
-        //CreatableTypes()
-        //    .EndingWith("Service")
-        //    .AsInterfaces()
-        //    .RegisterAsLazySingleton();
-
-        //var container = Singleton<CrossIoCServiceContainer>.Instance;
-        //container.AddDelegate<ICrossTextProvider>(container =>
-        //{
-        //    return new TextProviderBuilder().TextProvider;
-        //});
-
-        //container.Merge(new ViewModelsSubcontainer());
-
-        //RegisterAppStart<RootViewModel>();
-
-        return new CrossViewModelStar<RootViewModel>();
     }
 
     ///// <summary>
