@@ -29,8 +29,7 @@ namespace Nivaes.App.Cross.Droid
                 var message = Serialize(ex);
                 File.WriteAllText(PathCrashFile, message);
             }
-            catch(Exception exx)
-            { }
+            catch { }
         }
 
         protected override async Task LoadAndSendException()
