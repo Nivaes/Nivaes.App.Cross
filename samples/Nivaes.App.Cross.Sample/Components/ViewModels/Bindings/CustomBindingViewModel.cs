@@ -13,7 +13,7 @@ public class CustomBindingViewModel
 
     private string _hello = "Hello MvvmCross";
 
-    public CustomBindingViewModel(ILogger<CustomBindingViewModel> logger, ICrossNavigationService navigationService)
+    public CustomBindingViewModel(ICrossNavigationService navigationService, ILogger<CustomBindingViewModel> logger)
         : base(navigationService, logger)
     {
     }

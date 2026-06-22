@@ -41,7 +41,6 @@ namespace Nivaes.App.Cross.Droid
                 base.Logger.LogCritical(message);
                 LoggerProvider.ForceFlush();
 
-                File.Delete(PathCrashFile);
             }
         }
 
