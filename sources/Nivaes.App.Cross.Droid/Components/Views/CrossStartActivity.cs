@@ -65,7 +65,6 @@ public abstract class CrossStartActivity
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         await initializeViewModelType.NavigateToFirstViewModel(navigationService);
-
     }
 
     //protected virtual async Task RunAppStartAsync(Bundle bundle)

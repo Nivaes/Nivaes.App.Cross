@@ -1,14 +1,18 @@
-namespace Nivaes.App.Cross
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross
+{  
     public class CrossTargetBindingFactoryRegistry 
         : ICrossTargetBindingFactoryRegistry
     {
         private readonly Dictionary<int, ICrossPluginTargetBindingFactory> _lookups = [];
+
+        public CrossTargetBindingFactoryRegistry()
+        {
+
+        }
 
         [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
         public virtual ICrossTargetBinding? CreateBinding(object target, string targetName)
@@ -16,7 +20,7 @@ namespace Nivaes.App.Cross
             if (TryCreateSpecificFactoryBinding(target, targetName, out ICrossTargetBinding first))
                 return first;
 
-            if (TryCreateReflectionBasedBinding(target, targetName, out ICrossTargetBinding second))
+            if (TryCreateReflectionBasedBinding(target, targetName, out ICrossTargetBinding? second))
                 return second;
 
             return null;
@@ -24,7 +28,7 @@ namespace Nivaes.App.Cross
 
         [RequiresUnreferencedCode("This method uses reflection to access properties and events which may not be preserved by trimming")]
         protected virtual bool TryCreateReflectionBasedBinding(
-            object target, string targetName, out ICrossTargetBinding binding)
+            object target, string targetName, out ICrossTargetBinding? binding)
         {
             if (string.IsNullOrEmpty(targetName))
             {
@@ -63,7 +67,7 @@ namespace Nivaes.App.Cross
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         protected virtual bool TryCreateSpecificFactoryBinding(object target, string targetName,
-                                                               out ICrossTargetBinding binding)
+                                                               out ICrossTargetBinding? binding)
         {
             if (target == null)
             {
@@ -97,8 +101,6 @@ namespace Nivaes.App.Cross
             return (type.GetHashCode() * 9) ^ name.GetHashCode();
         }
 
-        [UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' requirements",
-            Justification = "The interface types returned by ImplementedInterfaces on a type with DynamicallyAccessedMemberTypes.Interfaces are safe to process")]
         private ICrossPluginTargetBindingFactory? FindSpecificFactory(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] Type type, string name)
         {
@@ -107,10 +109,18 @@ namespace Nivaes.App.Cross
             {
                 return factory;
             }
+
             var baseType = type.GetTypeInfo().BaseType;
             if (baseType != null)
+            {
                 factory = FindSpecificFactory(baseType, name);
-            if (factory != null) return factory;
+            }
+
+            if (factory != null)
+            {
+                return factory;
+            }
+            
             var implementedInterfaces = type.GetTypeInfo().ImplementedInterfaces;
             foreach (var implementedInterface in implementedInterfaces)
             {

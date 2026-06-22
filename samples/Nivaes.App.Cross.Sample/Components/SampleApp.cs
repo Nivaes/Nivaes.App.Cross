@@ -16,10 +16,10 @@ public class SampleApp : Application, IApplication
     //    : base(logger)
     //{ }
 
-    public SampleApp(ILogger<SampleApp> logger, TracerProvider tracer)
+    public SampleApp(ILogger<SampleApp> logger, TracerProvider tracerProvider)
         : base(logger)
     {
-        _tracerProvider = tracer;
+        _tracerProvider = tracerProvider;
     }
 
     ///// <summary>
@@ -30,17 +30,14 @@ public class SampleApp : Application, IApplication
     {
         using (Logger.BeginScope("Initialice app"))
         {
-
             var source = new ActivitySource("SampleCrossClient");
-
-            var aa = source.HasListeners();
 
             using (var activity = source.StartActivity("SampleCrossClient"))
             {
                 activity?.SetTag("test", "true");
             }
 
-            _tracerProvider.ForceFlush();
+            //_tracerProvider.ForceFlush();
 
             //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
             //logger2.LogInformation("Hola OpenTelemetry");

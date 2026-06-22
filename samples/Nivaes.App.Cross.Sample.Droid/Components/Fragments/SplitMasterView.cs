@@ -18,7 +18,7 @@ public class SplitMasterView
 
         var view = this.BindingInflate(Resource.Layout.SplitMasterView, container, false);
 
-        return view;
+        return view!;
     }
 
     public bool OnNavigationItemSelected(IMenuItem menuItem)

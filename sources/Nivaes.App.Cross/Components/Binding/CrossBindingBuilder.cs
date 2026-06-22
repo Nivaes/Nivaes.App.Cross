@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
 
-    [Obsolete("")]
+    [Obsolete("", true)]
     public class CrossBindingBuilder 
         : CrossCoreBindingBuilder
     {
@@ -88,6 +88,7 @@ namespace Nivaes.App.Cross
             iocProvider.RegisterSingleton<ICrossTargetBindingFactory>(targetRegistry);
         }
 
+        [Obsolete("", true)]
         protected virtual ICrossTargetBindingFactoryRegistry CreateTargetBindingRegistry()
         {
             return new CrossTargetBindingFactoryRegistry();

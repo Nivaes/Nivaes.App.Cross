@@ -52,7 +52,11 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
             builder.Services.TryAddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
             builder.Services.TryAddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();
-            builder.Services.TryAddSingleton<ICrossTargetBindingFactory, CrossTargetBindingFactoryRegistry>();
+
+            var targetBindingFactoryRegistry = new CrossTargetBindingFactoryRegistry();
+            builder.Services.TryAddSingleton<ICrossTargetBindingFactoryRegistry>(targetBindingFactoryRegistry);
+            builder.Services.TryAddSingleton<ICrossTargetBindingFactory>(targetBindingFactoryRegistry);
+
             builder.Services.TryAddSingleton<ICrossSourcePropertyPathParser, CrossSourcePropertyPathParser>();
 
             // ToDo: Refactorizar esto (posiblemente merezca la pena crear un almacen separado para binding)
@@ -69,12 +73,13 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
             builder.Services.TryAddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
 
-            builder.Services.TryAddSingleton<ICrossTargetBindingFactoryRegistry, CrossTargetBindingFactoryRegistry>();
+            
 
             var valueConverterRegistry = new CrossValueConverterRegistry();
             builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);
             builder.Services.TryAddSingleton<ICrossValueConverterRegistry>(valueConverterRegistry);
             builder.Services.TryAddSingleton<ICrossValueCombinerLookup, CrossValueCombinerRegistry>();
+            builder.Services.TryAddSingleton<ICrossAutoValueConverters, CrossAutoValueConverters>();
 
             return builder;
         }

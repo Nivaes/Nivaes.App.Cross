@@ -11,7 +11,10 @@ public class MainViewModel : CrossNavigationViewModel
     public MainViewModel(ILogger<MainViewModel> logger, ICrossNavigationService navigationService)
         : base(logger, navigationService)
     {
-        ShowChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
+        ShowChildCommand = new CrossAsyncCommand(() =>
+        {
+            return NavigationService.Navigate<ChildViewModel>();
+        });
 
         ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalViewModel>());
 

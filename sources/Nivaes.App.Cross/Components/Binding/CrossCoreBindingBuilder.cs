@@ -86,12 +86,14 @@ public class CrossCoreBindingBuilder
         iocProvider.RegisterType<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterCore(IMvxIoCProvider iocProvider)
     {
         iocProvider.RegisterSingleton<ICrossBinder>(new CrossFromTextBinder());
         iocProvider.RegisterType<ICrossBindingContext, CrossTaskBasedBindingContext>();
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterValueConverterProvider(IMvxIoCProvider iocProvider)
     {
         var registry = CreateValueConverterRegistry();
