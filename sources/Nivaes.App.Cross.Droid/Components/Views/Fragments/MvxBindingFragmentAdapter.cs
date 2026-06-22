@@ -155,7 +155,7 @@ public class MvxBindingFragmentAdapter
         //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true)
 
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
-        cache?.Cache(FragmentView.ViewModel, FragmentView.UniqueImmutableCacheTag);
+        cache?.Cache(FragmentView.ViewModel!, FragmentView.UniqueImmutableCacheTag);
     }
 
     protected override void HandleDestroyViewCalled(object? sender, EventArgs e)

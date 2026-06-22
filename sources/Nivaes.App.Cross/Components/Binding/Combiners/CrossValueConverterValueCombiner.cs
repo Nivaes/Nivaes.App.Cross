@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
     using System.Linq;
     using MvvmCross.IoC;
 
-    [MvxUnconventional]
+    //[MvxUnconventional]
     public class CrossValueConverterValueCombiner 
         : CrossValueCombiner
     {
