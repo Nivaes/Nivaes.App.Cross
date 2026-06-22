@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross
                 return viewType;
             }
 
-            throw new KeyNotFoundException("Could not find view for " + viewModelType);
+            throw new CrossException($"Could not find view for {viewModelType}");
         }
     }
 }

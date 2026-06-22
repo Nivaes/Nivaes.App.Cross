@@ -58,7 +58,7 @@ public static class CrossProgram
                     CrossViewsManagerHelper.New<SplitDetailViewModel, SplitDetailView>(),
                     CrossViewsManagerHelper.New<SplitMasterViewModel, SplitMasterView>(),
                     CrossViewsManagerHelper.New<SplitRootViewModel, SplitRootView>(),
-                    //CrossViewsManagerHelper.New<CustomBindingViewModel, CustomBindingView>(),
+                    CrossViewsManagerHelper.New<CustomBindingViewModel, CustomBindingView>(),
                     CrossViewsManagerHelper.New<ModalNavViewModel, ModalNavView>(),
                     CrossViewsManagerHelper.New<ModalViewModel, ModalView>(),
                     CrossViewsManagerHelper.New<NestedModalViewModel, NestedModalView>(),

@@ -14,8 +14,8 @@ namespace Nivaes.App.Cross
 
         protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
         {
-            Logger = logger;
             NavigationService = navigationService;
+            Logger = logger;
 
             Logger.LogTrace($"Se inicio {this.GetType().Name}");
 

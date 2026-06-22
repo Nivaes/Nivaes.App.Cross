@@ -8,6 +8,9 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class CustomBindingView : CrossActivity<CustomBindingViewModel>
 {
+    public CustomBindingView()
+    { }
+
     protected override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
