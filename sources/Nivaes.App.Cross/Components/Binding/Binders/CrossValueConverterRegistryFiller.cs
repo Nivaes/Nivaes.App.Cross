@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
+    [Obsolete("", true)]
     public class CrossValueConverterRegistryFiller
         : CrossNamedInstanceRegistryFiller<ICrossValueConverter>, ICrossValueConverterRegistryFiller
     {

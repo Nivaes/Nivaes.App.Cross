@@ -49,7 +49,7 @@ public class CrossCoreBindingBuilder
         //CrossBindingSingletonCache.Initialize();
     }
 
-    [Obsolete]
+    [Obsolete("", true)]
     protected virtual void RegisterValueConverterRegistryFiller()
     {
         var container = Singleton<CrossIoCServiceContainer>.Instance;
@@ -69,6 +69,7 @@ public class CrossCoreBindingBuilder
         return new CrossValueConverterRegistryFiller();
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterValueCombinerRegistryFiller(IMvxIoCProvider iocProvider)
     {
         var filler = CreateValueCombinerRegistryFiller();
@@ -130,6 +131,7 @@ public class CrossCoreBindingBuilder
         return new CrossValueCombinerRegistry();
     }
 
+    [Obsolete("", true)]
     protected virtual void FillValueCombiners(ICrossValueCombinerRegistry registry)
     {
         // note that assembly based registration is not used here for efficiency reasons
@@ -155,7 +157,7 @@ public class CrossCoreBindingBuilder
         registry.AddOrOverwrite("Inverted", new MvxInvertedValueCombiner());
 
         // Note: MvxValueConverterValueCombiner is not registered - it is unconventional
-        //registry.AddOrOverwrite("ValueConverter", new MvxValueConverterValueCombiner());
+        //registry.AddOrOverwrite("ValueConverter", new CrossValueConverterValueCombiner());
     }
 
     protected virtual void RegisterBindingParser(IMvxIoCProvider iocProvider)

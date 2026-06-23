@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Windows.Input;
 
     public class CrossCommandParameterValueConverter
-        : MvxValueConverter<ICommand, ICommand>
+        : CrossValueConverter<ICommand, ICommand>
     {
         protected override ICommand Convert(ICommand value, Type? targetType, object? parameter,
                                             CultureInfo? culture)

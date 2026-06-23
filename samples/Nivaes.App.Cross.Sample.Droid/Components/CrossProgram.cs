@@ -32,7 +32,7 @@ public static class CrossProgram
     static CrossAppBuilder SetupViews(this CrossAppBuilder builder)
     {
         // ToDo: Cargar esto con roslyn.
-        CrossViewsManagerHelper.RegisterViewModel(new[] {
+        CrossViewsManagerHelper.RegisterViewModels(new[] {
                     CrossViewsManagerHelper.New<CollectionViewModel, CollectionView>(),
                     CrossViewsManagerHelper.New<CrossStartActivityViewModel, SplashScreen>(),
                     CrossViewsManagerHelper.New<ConvertersViewModel, ConvertersActivity>(),

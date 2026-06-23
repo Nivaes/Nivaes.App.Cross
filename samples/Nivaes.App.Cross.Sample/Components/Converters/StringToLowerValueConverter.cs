@@ -1,19 +1,24 @@
 using System.Globalization;
-using Nivaes.App.Cross;
 
-namespace Playground.Core.Converters;
+namespace Nivaes.App.Cross.Sample;
 
-public sealed class StringToLowerValueConverter : MvxValueConverter<string, string>
+public sealed class StringToLowerValueConverter : CrossValueConverter<string, string>
 {
-    protected override string Convert(string value, Type targetType, object parameter, CultureInfo culture)
+    public StringToLowerValueConverter()
+    { }
+
+    protected override string Convert(string value, Type? targetType, object? parameter, CultureInfo? culture)
     {
         return value.ToLower();
     }
 }
 
-public sealed class StringToUpperValueConverter : MvxValueConverter<string, string>
+public sealed class StringToUpperValueConverter : CrossValueConverter<string, string>
 {
-    protected override string Convert(string value, Type targetType, object parameter, CultureInfo culture)
+    public StringToUpperValueConverter() 
+    { }
+
+    protected override string Convert(string value, Type? targetType, object? parameter, CultureInfo? culture)
     {
         return value.ToUpper();
     }

@@ -1,12 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Binding;
+using MvvmCross.IoC;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.IoC;
-    using Nivaes.App.Cross;
-
+    [Obsolete("", true)]
     public class CrossNamedInstanceRegistryFiller<T> 
         : ICrossNamedInstanceRegistryFiller<T>
         where T : class
@@ -71,6 +72,7 @@ namespace Nivaes.App.Cross
             }
         }
 
+        [Obsolete("", true)]
         [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
         public virtual void FillFrom(ICrossNamedInstanceRegistry<T> registry, Assembly assembly)
         {

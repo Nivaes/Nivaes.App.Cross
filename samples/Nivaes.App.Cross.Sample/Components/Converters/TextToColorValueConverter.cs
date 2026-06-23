@@ -6,7 +6,10 @@ namespace Nivaes.App.Cross.Sample;
 // Sample converter to show issue found in GH issue #4803
 public sealed class TextToColorValueConverter : CrossColorValueConverter
 {
-    protected override Color Convert(object value, object parameter, CultureInfo culture)
+    public TextToColorValueConverter()
+    { }
+
+    protected override Color Convert(object value, object? parameter, CultureInfo? culture)
     {
         if (value is not string stringValue)
             return Color.Magenta;

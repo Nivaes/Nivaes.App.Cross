@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Globalization;
 
-    public class CrossDictionaryValueConverter<TKey, TValue> : MvxValueConverter<TKey, TValue>
+    public class CrossDictionaryValueConverter<TKey, TValue> : CrossValueConverter<TKey, TValue>
         where TKey : notnull
     {
         protected override TValue Convert(TKey value, Type? targetType, object? parameter, CultureInfo? culture)

@@ -11,6 +11,7 @@ namespace Nivaes.App.Cross
     {
         extension<T>(ICrossNamedInstanceRegistry<T> registry) where T : notnull
         {
+            [Obsolete("No usar reflection", true)]
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
             public void Fill(IEnumerable<Assembly> assemblies, IEnumerable<Type> types)
             {
@@ -87,6 +88,7 @@ namespace Nivaes.App.Cross
         extension<T>(ICrossNamedInstanceRegistry<T> registry)
         {
             [RequiresUnreferencedCode("This method uses reflection to check for creatable types, which may not be preserved by trimming")]
+            [Obsolete("No usar reflection", true)]
             public void Fill(
             ICrossNamedInstanceRegistryFiller<T> filler,
             IEnumerable<Type> types)

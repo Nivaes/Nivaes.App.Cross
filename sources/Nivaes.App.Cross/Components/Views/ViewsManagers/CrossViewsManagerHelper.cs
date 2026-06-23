@@ -23,7 +23,7 @@
             };
         }
 
-        public static void RegisterViewModel(ViewManagerItem[] items) 
+        public static void RegisterViewModels(ViewManagerItem[] items) 
         {
             var nameViewsManager = new CrossNameViewsManager(items.Select(x => x.NameViews).ToArray());
             var nameViewModels = new CrossNameViewModelsManager(items.Select(x => x.NameViewModels).ToArray());

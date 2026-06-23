@@ -14,6 +14,7 @@ namespace MvvmCross.IoC;
 [Obsolete("Quitar MvxIoC", true)]
 public static class MvxTypeExtensions
 {
+    [Obsolete("Quitar MvxIoC", true)]
     [RequiresUnreferencedCode("This method uses reflection to get types, which may not be preserved in trimmed applications")]
     public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)
     {
@@ -40,7 +41,7 @@ public static class MvxTypeExtensions
     }
 
     [RequiresUnreferencedCode("This method uses reflection to get types, which may not be preserved in trimmed applications")]
-    [Obsolete("No usar reflection")]
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> CreatableTypes(this Assembly assembly)
     {
         return assembly
@@ -50,11 +51,13 @@ public static class MvxTypeExtensions
             .Select(t => t.AsType());
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> EndingWith(this IEnumerable<Type> types, string endingWith)
     {
         return types.Where(x => x.Name.EndsWith(endingWith));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> StartingWith(this IEnumerable<Type> types, string endingWith)
     {
         return types.Where(x => x.Name.StartsWith(endingWith));

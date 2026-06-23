@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public interface ICrossNamedInstanceRegistryFiller<out T>
 {
     string FindName(Type type);
@@ -16,6 +17,7 @@ public interface ICrossNamedInstanceRegistryFiller<out T>
     void FillFrom(ICrossNamedInstanceRegistry<T> registry, Assembly assembly);
 }
 
+[Obsolete("", true)]
 public interface ICrossValueConverterRegistryFiller : ICrossNamedInstanceRegistryFiller<ICrossValueConverter>
 {
 }
