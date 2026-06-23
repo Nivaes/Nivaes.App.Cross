@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
             };
         }
 
-        public static void RegisterBindersModel(ConverterManagerItem[] items) 
+        public static void RegisterComverters(ConverterManagerItem[] items) 
         {
             var nameConvertesManager = new CrossNameConvertersManager(items.Select(x => x.NameConverters).ToArray());
             var convertesManager = new CrossConvertersManager(items.Select(x => x.NameConverters).ToArray());

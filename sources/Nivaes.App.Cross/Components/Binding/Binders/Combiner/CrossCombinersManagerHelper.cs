@@ -10,48 +10,22 @@ namespace Nivaes.App.Cross
             internal CrossCombinersManager.KeyStoreItem Combiners { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
-        public static CombinersManagerItem New<TCombiner>()
-                        where TCombiner : class, ICrossValueCombiner
+        public static CombinersManagerItem New(string name, ICrossValueCombiner combiner)
         {
-            var combiner = Activator.CreateInstance<TCombiner>();
-
             return new CombinersManagerItem()
             {
-                NameCombiners = new CrossNameCombinerManager.KeyStoreItem { Key = FindName(typeof(TCombiner)).GetHashCode(), Value = combiner },
-                Combiners = new CrossCombinersManager.KeyStoreItem { Key = typeof(TCombiner).GetHashCode(), Value = combiner }
+                NameCombiners = new CrossNameCombinerManager.KeyStoreItem { Key =name.GetHashCode(), Value = combiner },
+                Combiners = new CrossCombinersManager.KeyStoreItem { Key = combiner.GetType().GetHashCode(), Value = combiner }
             };
         }
 
-        public static void RegisterBindersModel(CombinersManagerItem[] items) 
+        public static void RegisterCombiners(CombinersManagerItem[] items) 
         {
             var nameCombertesManager = new CrossNameCombinerManager(items.Select(x => x.NameCombiners).ToArray());
             var combertersManager = new CrossCombinersManager(items.Select(x => x.Combiners).ToArray());
 
             Singleton<CrossNameCombinerManager>.Add(nameCombertesManager);
             Singleton<CrossCombinersManager>.Add(combertersManager);
-        }
-
-        private static string FindName(Type type)
-        {
-            var name = type.Name;
-            name = RemoveHead(name, "Mvx");
-            name = RemoveTail(name, "ValueConverter");
-            name = RemoveTail(name, "Converter");
-            return name;
-        }
-
-        private static string RemoveHead(string name, string word)
-        {
-            if (name.StartsWith(word))
-                name = name[word.Length..];
-            return name;
-        }
-
-        private static string RemoveTail(string name, string word)
-        {
-            if (name.EndsWith(word))
-                name = name[..^word.Length];
-            return name;
         }
     }
 }
