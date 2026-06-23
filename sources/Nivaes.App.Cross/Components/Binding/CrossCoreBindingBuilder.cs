@@ -27,6 +27,7 @@ public class CrossCoreBindingBuilder
         RegisterBindingNameRegistry(iocProvider);
     }
 
+    [Obsolete("", true)]
     protected virtual void RegisterAutoValueConverters(IMvxIoCProvider iocProvider)
     {
         var autoValueConverters = CreateAutoValueConverters();
@@ -34,6 +35,7 @@ public class CrossCoreBindingBuilder
         FillAutoValueConverters(autoValueConverters);
     }
 
+    [Obsolete("", true)]
     protected virtual void FillAutoValueConverters(ICrossAutoValueConverters autoValueConverters)
     {
         // nothing to do in base class

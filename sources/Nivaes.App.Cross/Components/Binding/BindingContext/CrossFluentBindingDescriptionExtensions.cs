@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross;
 
 public static class CrossFluentBindingDescriptionExtensions
 {
+    [Obsolete("", true)]
     public static CrossFluentBindingDescription<TTarget, TSource> ToLocalizationId<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource>(
             this CrossFluentBindingDescription<TTarget, TSource> bindingDescription,

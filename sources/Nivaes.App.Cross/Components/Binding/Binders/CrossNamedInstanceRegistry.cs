@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete("", true)]
     public class CrossNamedInstanceRegistry<T>
         : IMvxNamedInstanceLookup<T>, ICrossNamedInstanceRegistry<T>
         where T : class

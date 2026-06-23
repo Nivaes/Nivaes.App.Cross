@@ -95,7 +95,11 @@ namespace Nivaes.App.Cross
                 converterName ??= LanguageParser.DefaultConverterName;
                 sourcePropertyName ??= LanguageParser.DefaultTextSourceName;
 
-                var converter = ValueConverterLookup.Find(converterName);
+                /*var converter = ValueConverterLookup.Find(converterName);*/
+                ICrossValueConverter? converter = null;
+
+                if(converterName != null)
+                    converter = Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
 
                 var bindingDescription = new CrossBindingDescription
                 {

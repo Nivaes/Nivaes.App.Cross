@@ -17,19 +17,28 @@ public class CrossBindingSingletonCache
     //    return instance;
     //}
 
+    [Obsolete("", true)]
     private ICrossAutoValueConverters? _autoValueConverters;
+
     private ICrossBindingDescriptionParser? _bindingDescriptionParser;
     private ICrossSourceBindingFactory? _sourceBindingFactory;
     private ICrossTargetBindingFactory? _targetBindingFactory;
     private ICrossLanguageBindingParser? _languageParser;
     private ICrossPropertyExpressionParser? _propertyExpressionParser;
+
+    [Obsolete("", true)]
     private ICrossValueConverterLookup? _valueConverterLookup;
+
     private ICrossBindingNameLookup? _defaultBindingName;
     private ICrossBinder? _binder;
     private ICrossSourceStepFactory? _sourceStepFactory;
+
+    [Obsolete("", true)]
     private ICrossValueCombinerLookup? _valueCombinerLookup;
+
     private ICrossMainThreadAsyncDispatcher? _mainThreadDispatcher;
 
+    [Obsolete("", true)]
     public ICrossAutoValueConverters AutoValueConverters
     {
         get
@@ -66,6 +75,7 @@ public class CrossBindingSingletonCache
         }
     }
 
+    [Obsolete("", true)]
     public ICrossValueConverterLookup ValueConverterLookup
     {
         get
@@ -75,6 +85,7 @@ public class CrossBindingSingletonCache
         }
     }
 
+    [Obsolete("", true)]
     public ICrossValueCombinerLookup ValueCombinerLookup
     {
         get

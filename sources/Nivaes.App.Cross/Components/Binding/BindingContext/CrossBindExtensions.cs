@@ -24,9 +24,9 @@ namespace Nivaes.App.Cross
         public static T Bind<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] T, TViewModel>(this T element,
                                             CrossInlineBindingTarget<TViewModel> target,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
-                                            string converterName = null,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            string? converterName = null,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             return element.Bind(target, null, sourcePropertyPath, converterName, converterParameter, fallbackValue, mode);
@@ -49,12 +49,16 @@ namespace Nivaes.App.Cross
                                             CrossInlineBindingTarget<TViewModel> target,
                                             Expression<Func<T, object>> targetPropertyPath,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
-                                            string converterName = null,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            string? converterName = null,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
-            var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
+            ICrossValueConverter? converter = null;
+            //var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
+            if (converterName != null)
+                converter = Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
+
             return element.Bind(target, targetPropertyPath, sourcePropertyPath, converter, converterParameter,
                                 fallbackValue, mode);
         }
@@ -64,9 +68,9 @@ namespace Nivaes.App.Cross
                                             CrossInlineBindingTarget<TViewModel> target,
                                             Expression<Func<T, object>> targetPropertyPath,
                                             Expression<Func<TViewModel, object>> sourcePropertyPath,
-                                            ICrossValueConverter converter,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            ICrossValueConverter? converter,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             var parser = Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser;
@@ -80,9 +84,9 @@ namespace Nivaes.App.Cross
                                             CrossInlineBindingTarget<TViewModel> target,
                                             string targetPath,
                                             string sourcePath,
-                                            ICrossValueConverter converter = null,
-                                            object converterParameter = null,
-                                            object fallbackValue = null,
+                                            ICrossValueConverter? converter = null,
+                                            object? converterParameter = null,
+                                            object? fallbackValue = null,
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             if (string.IsNullOrEmpty(targetPath))

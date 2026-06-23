@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("", true)]
     public class CrossAutoValueConverters
         : ICrossAutoValueConverters
     {

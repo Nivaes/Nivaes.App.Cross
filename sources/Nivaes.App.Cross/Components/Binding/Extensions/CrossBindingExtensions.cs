@@ -60,9 +60,8 @@ namespace Nivaes.App.Cross
                 return propertyType.CreateDefault();
             }
 
-            var autoConverter = Singleton<CrossBindingSingletonCache>.Instance?.AutoValueConverters.Find(
-                value.GetType(), propertyType);
-            if (autoConverter != null)
+            //var autoConverter = Singleton<CrossBindingSingletonCache>.Instance?.AutoValueConverters.Find(value.GetType(), propertyType);
+            if(Singleton<CrossAutoValueConvertersManager>.Instance.TryGetValue(value.GetType(), propertyType, out var autoConverter))
             {
                 return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
             }

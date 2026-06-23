@@ -75,17 +75,17 @@ namespace Nivaes.App.Cross.Hosting
 
             
 
-            var valueConverterRegistry = new CrossValueConverterRegistry();
-            builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);
-            builder.Services.TryAddSingleton<ICrossValueConverterRegistry>(valueConverterRegistry);
-            builder.Services.TryAddSingleton<ICrossValueCombinerLookup, CrossValueCombinerRegistry>();
-            builder.Services.TryAddSingleton<ICrossAutoValueConverters, CrossAutoValueConverters>();
+            //var valueConverterRegistry = new CrossValueConverterRegistry();
+            //builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);
+            //builder.Services.TryAddSingleton<ICrossValueConverterRegistry>(valueConverterRegistry);
+            //builder.Services.TryAddSingleton<ICrossValueCombinerLookup, CrossValueCombinerRegistry>();
+            //builder.Services.TryAddSingleton<ICrossAutoValueConverters, CrossAutoValueConverters>();
 
-            var valueCombinerRegistry = new CrossValueCombinerRegistry();
-            builder.Services.TryAddSingleton<IMvxNamedInstanceLookup<ICrossValueCombiner>>(valueCombinerRegistry);
-            builder.Services.TryAddSingleton<ICrossNamedInstanceRegistry<ICrossValueCombiner>>(valueCombinerRegistry);
-            builder.Services.TryAddSingleton<ICrossValueCombinerLookup>(valueCombinerRegistry);
-            builder.Services.TryAddSingleton<ICrossValueCombinerRegistry>(valueCombinerRegistry);
+            //var valueCombinerRegistry = new CrossValueCombinerRegistry();
+            //builder.Services.TryAddSingleton<IMvxNamedInstanceLookup<ICrossValueCombiner>>(valueCombinerRegistry);
+            //builder.Services.TryAddSingleton<ICrossNamedInstanceRegistry<ICrossValueCombiner>>(valueCombinerRegistry);
+            //builder.Services.TryAddSingleton<ICrossValueCombinerLookup>(valueCombinerRegistry);
+            //builder.Services.TryAddSingleton<ICrossValueCombinerRegistry>(valueCombinerRegistry);
 
             return builder;
         }

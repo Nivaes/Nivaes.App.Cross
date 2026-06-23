@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [Obsolete("", true)]
     public interface ICrossNamedInstanceRegistry<in T>
         where T : notnull
     {

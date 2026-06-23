@@ -13,8 +13,20 @@ public sealed class CrossNameConvertersManager : KeyContainerManager<ICrossValue
     {
     }
 
-    public bool TryGetValue(string viewName, [MaybeNullWhen(false)] out ICrossValueConverter presentationType)
+    public ICrossValueConverter GetValue(string converterName)
     {
-        return base.TryGetValue(viewName.GetHashCode(), out presentationType);
+        if(TryGetValue(converterName, out var converter))
+        {
+            return converter;
+        }
+        else
+        {
+            throw new CrossException($"Unregistered {converterName} type of converter.");  
+        }
+    }
+
+    public bool TryGetValue(string converterName, [MaybeNullWhen(false)] out ICrossValueConverter converter)
+    {
+        return base.TryGetValue(converterName.GetHashCode(), out converter);
     }
 }

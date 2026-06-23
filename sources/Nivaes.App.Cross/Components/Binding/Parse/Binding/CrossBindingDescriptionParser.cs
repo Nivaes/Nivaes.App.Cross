@@ -12,6 +12,8 @@ public class CrossBindingDescriptionParser
     : ICrossBindingDescriptionParser
 {
     private ICrossBindingParser? _bindingParser;
+
+    [Obsolete("", true)]
     private ICrossValueConverterLookup? _valueConverterLookup;
 
     protected ICrossBindingParser BindingParser
@@ -34,6 +36,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
+    [Obsolete("", true)]
     protected ICrossValueConverterLookup ValueConverterLookup
     {
         get
@@ -45,19 +48,34 @@ public class CrossBindingDescriptionParser
 
     protected ICrossValueConverter? FindConverter(string converterName)
     {
-        if (converterName == null)
+        if (string.IsNullOrWhiteSpace(converterName))
             return null;
 
-        var toReturn = ValueConverterLookup.Find(converterName);
-        if (toReturn == null)
-            CrossBindingLogger.Instance?.LogTrace("Could not find named converter for {ConverterName}", converterName);
-
-        return toReturn;
+        if (Singleton<CrossNameConvertersManager>.Instance.TryGetValue(converterName, out var converter))
+        {
+            return converter;
+        }
+        else
+        {
+            CrossBindingLogger.Instance?.LogTrace($"Could not find named converter for {converterName}");
+            return null;
+        }
     }
 
-    protected ICrossValueCombiner? FindCombiner(string combiner)
+    protected ICrossValueCombiner? FindCombiner(string combinerName)
     {
-        return Singleton<CrossBindingSingletonCache>.Instance.ValueCombinerLookup.Find(combiner);
+        if (string.IsNullOrWhiteSpace(combinerName))
+            return null;
+
+        if (Singleton<CrossNameAutoValueConvertesManager>.Instance.TryGetValue(combinerName, out var combiner))
+        {
+            return combiner;
+        }
+        else
+        {
+            CrossBindingLogger.Instance?.LogTrace("Could not find named comberter for {combinerName}");
+            return null;
+        }
     }
 
     public IEnumerable<CrossBindingDescription> Parse(string text)

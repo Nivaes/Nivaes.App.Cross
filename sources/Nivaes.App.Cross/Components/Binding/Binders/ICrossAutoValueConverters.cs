@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("", true)]
     public interface ICrossAutoValueConverters
     {
         ICrossValueConverter? Find(Type viewModelType, Type viewType);

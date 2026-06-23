@@ -224,8 +224,11 @@ namespace Nivaes.App.Cross
 
         protected static ICrossValueConverter ValueConverterFromName(string converterName)
         {
-            var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
-            return converter;
+            //var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
+            //return converter;
+
+            var converter =Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
+            return converter!;
         }
 
         protected CrossBindingDescription CreateBindingDescription()
