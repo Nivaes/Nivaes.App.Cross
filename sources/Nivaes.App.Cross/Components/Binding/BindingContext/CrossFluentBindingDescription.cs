@@ -92,7 +92,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
 
         //return ByCombining(combinerName, properties);
 
-        if (Singleton<CrossAutoValueConvertesManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CrossCombinersManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }
@@ -108,7 +108,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
         //var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerRegistryFiller>();
         //var combinerName = filler.FindName(typeof(TValueCombiner));
 
-        if (Singleton<CrossAutoValueConvertesManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CrossCombinersManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }

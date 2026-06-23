@@ -67,7 +67,7 @@ public class CrossBindingDescriptionParser
         if (string.IsNullOrWhiteSpace(combinerName))
             return null;
 
-        if (Singleton<CrossNameAutoValueConvertesManager>.Instance.TryGetValue(combinerName, out var combiner))
+        if (Singleton<CrossNameCombinersManager>.Instance.TryGetValue(combinerName, out var combiner))
         {
             return combiner;
         }
