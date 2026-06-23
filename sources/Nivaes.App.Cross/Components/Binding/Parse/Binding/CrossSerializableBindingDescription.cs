@@ -1,26 +1,22 @@
-namespace Nivaes.App.Cross
+using System.Diagnostics;
+
+namespace Nivaes.App.Cross;
+
+public class CrossSerializableBindingDescription
 {
-    using System.Collections.Generic;
+    public string? Converter { [DebuggerHidden]get; [DebuggerHidden]set; }
 
-    public class CrossSerializableBindingDescription
-    {
-        public string? Converter { get; set; }
-        public object? ConverterParameter { get; set; }
-        public object? FallbackValue { get; set; }
-        public CrossBindingMode Mode { get; set; }
-        public IList<CrossSerializableBindingDescription>? Sources 
-        { 
-            get;
-            set; 
-        }
+    public object? ConverterParameter { [DebuggerHidden]get; [DebuggerHidden]set; }
 
-        public string? Function 
-        { 
-            get; 
-            set;
-        }
+    public object? FallbackValue { [DebuggerHidden]get; [DebuggerHidden]set; }
 
-        public object? Literal { get; set; }
-        public string? Path { get; set; }
-    }
+    public CrossBindingMode Mode { [DebuggerHidden]get; [DebuggerHidden]set; }
+
+    public IList<CrossSerializableBindingDescription>? Sources { [DebuggerHidden]get; [DebuggerHidden]set; }
+
+    public string? Function { [DebuggerHidden]get; [DebuggerHidden]set; }
+
+    public object? Literal { [DebuggerHidden]get; [DebuggerHidden]set; }
+
+    public string? Path { [DebuggerHidden]get; [DebuggerHidden]set; }
 }

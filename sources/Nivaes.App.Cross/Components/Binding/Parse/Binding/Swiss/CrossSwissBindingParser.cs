@@ -21,16 +21,20 @@ namespace Nivaes.App.Cross
         {
             ParseEquals(block);
             var converter = ReadTargetPropertyName();
+
             if (!string.IsNullOrEmpty(description.Converter))
                 CrossBindingLogger.Instance?.LogWarning("Overwriting existing Converter with {ConverterName}", converter);
+
             description.Converter = converter;
         }
 
         private void ParseConverterParameter(string block, CrossSerializableBindingDescription description)
         {
             ParseEquals(block);
+
             if (description.ConverterParameter != null)
                 CrossBindingLogger.Instance?.LogWarning("Overwriting existing ConverterParameter");
+
             description.ConverterParameter = ReadValue();
         }
 
@@ -46,8 +50,10 @@ namespace Nivaes.App.Cross
             else
             {
                 ParseEquals(block);
+
                 if (!string.IsNullOrEmpty(description.Converter))
                     CrossBindingLogger.Instance?.LogWarning("Overwriting existing Converter with CommandParameter");
+
                 description.Converter = "CommandParameter";
                 description.ConverterParameter = ReadValue();
             }
@@ -86,20 +92,26 @@ namespace Nivaes.App.Cross
                     ParsePath(block, description);
                     break;
                 case "Converter":
+
                     ParseConverter(block, description);
                     break;
                 case "ConverterParameter":
+
                     ParseConverterParameter(block, description);
                     break;
+
                 case "CommandParameter":
                     ParseCommandParameter(block, description);
                     break;
+
                 case "FallbackValue":
                     ParseFallbackValue(block, description);
                     break;
+
                 case "Mode":
                     ParseMode(block, description);
                     break;
+
                 default:
                     ParseNonKeywordBlockInto(description, block);
                     break;
@@ -128,6 +140,7 @@ namespace Nivaes.App.Cross
         {
             description.Converter = block;
             MoveNext();
+
             if (IsComplete)
                 throw new CrossException("Unterminated () pair for converter {0}", block);
 
@@ -154,8 +167,10 @@ namespace Nivaes.App.Cross
             SkipWhitespace();
             description.ConverterParameter = ReadValue();
             SkipWhitespace();
+
             if (CurrentChar != ')')
                 throw new CrossException("Unterminated () pair for converter {0}");
+
             MoveNext();
         }
 

@@ -46,7 +46,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    protected ICrossValueConverter? FindConverter(string converterName)
+    protected ICrossValueConverter? FindConverter(string? converterName)
     {
         if (string.IsNullOrWhiteSpace(converterName))
             return null;
@@ -62,7 +62,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    protected ICrossValueCombiner? FindCombiner(string combinerName)
+    protected ICrossValueCombiner? FindCombiner(string? combinerName)
     {
         if (string.IsNullOrWhiteSpace(combinerName))
             return null;
