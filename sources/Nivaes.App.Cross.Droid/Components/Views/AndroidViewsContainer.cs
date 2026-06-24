@@ -6,7 +6,6 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
-// ToDo: Unificar l
 public class AndroidViewsContainer
     : CrossViewsContainer, IAndroidViewsContainer
 {
@@ -14,19 +13,17 @@ public class AndroidViewsContainer
     private const string SubViewModelKey = "MvxSubViewModelKey";
 
     private readonly Context _applicationContext;
-    private readonly ILogger<AndroidViewsContainer>? _logger;
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly ICrossChildViewModelCache _childViewModelCache;
 
     public AndroidViewsContainer(Context applicationContext, 
         ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,
         ILogger<AndroidViewsContainer> logger)
+        :base (logger)
     {
         _applicationContext = applicationContext;
         _navigationSerializer = navigationSerializer;
         _childViewModelCache = childViewModelCache;
-
-        _logger = logger;
     }
 
     #region Implementation of IMvxAndroidViewModelRequestTranslator
@@ -54,16 +51,16 @@ public class AndroidViewsContainer
 
         if (TryGetEmbeddedViewModel(intent, out var mvxViewModel))
         {
-            _logger?.Log(LogLevel.Trace, "Embedded ViewModel used");
+            base.Logger.Log(LogLevel.Trace, "Embedded ViewModel used");
             return mvxViewModel;
         }
 
-        _logger?.Log(LogLevel.Trace, "Attempting to load new ViewModel from Intent with Extras");
+        Logger.Log(LogLevel.Trace, "Attempting to load new ViewModel from Intent with Extras");
         var toReturn = CreateViewModelFromIntent(intent, savedState);
         if (toReturn != null)
             return toReturn;
 
-        _logger?.Log(LogLevel.Trace, "ViewModel not loaded from Extras - will try DirectLoad");
+        Logger?.Log(LogLevel.Trace, "ViewModel not loaded from Extras - will try DirectLoad");
         return DirectLoad(savedState, viewModelTypeHint);
     }
 
@@ -73,7 +70,7 @@ public class AndroidViewsContainer
     {
         if (viewModelTypeHint == null)
         {
-            _logger?.Log(LogLevel.Error, "Unable to load viewmodel - no type hint provided");
+            Logger?.Log(LogLevel.Error, "Unable to load viewmodel - no type hint provided");
             return null;
         }
 

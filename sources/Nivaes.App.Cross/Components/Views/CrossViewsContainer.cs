@@ -1,40 +1,17 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Logging;
 
     public abstract class CrossViewsContainer
         : ICrossViewsContainer
     {
-        //private readonly Dictionary<Type, Type> _bindingMap = [];
-        //private readonly List<ICrossViewFinder> _secondaryViewFinders;
-        //private ICrossViewFinder? _lastResortViewFinder;
+        protected ILogger Logger { get; }
 
-        //protected CrossViewsContainer()
-        //{
-        //    _secondaryViewFinders = new List<ICrossViewFinder>();
-        //}
-
-        //[UnconditionalSuppressMessage("Trimming", "IL2072:UnrecognizedReflectionPattern",
-        //    Justification = "Type annotations already guarantee that types have public constructors")]
-        //public void AddAll(IDictionary<Type, Type> viewModelViewLookup)
-        //{
-        //    foreach (var pair in viewModelViewLookup)
-        //    {
-        //        Add(pair.Key, pair.Value);
-        //    }
-        //}
-
-        //public void Add(Type viewModelType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
-        //{
-        //    _bindingMap[viewModelType] = viewType;
-        //}
-
-        //public void Add<TViewModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] TView>()
-        //    where TViewModel : ICrossViewModel
-        //    where TView : ICrossView
-        //{
-        //    Add(typeof(TViewModel), typeof(TView));
-        //}
+        public CrossViewsContainer(ILogger logger)
+        {
+            Logger = logger;
+        }
 
         // ToDo: Quitar esta clase y mover la busqueda de vistas.
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]

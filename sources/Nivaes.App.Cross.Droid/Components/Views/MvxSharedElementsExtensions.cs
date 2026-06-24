@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross.Droid
         /// <returns>The name for the transition.</returns>
         public static string GetTransitionNameSupport(this View view)
         {
-            return view.TransitionName;
+            return view.TransitionName!;
         }
     }
 }

@@ -18,4 +18,17 @@ public class MainApplication
     }
 
     protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);
+
+    public override void OnCreate()
+    {
+        base.OnCreate();
+    }
+
+    protected override void RegisterServices(IServiceProvider services)
+    {
+        base.RegisterServices(services);
+
+        services
+               .TargetBindingFactoryRegistry();
+    }
 }

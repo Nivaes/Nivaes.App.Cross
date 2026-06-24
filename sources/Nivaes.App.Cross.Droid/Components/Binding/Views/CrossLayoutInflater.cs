@@ -9,7 +9,6 @@ using Java.Lang;
 using Java.Lang.Reflect;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 using Boolean = Java.Lang.Boolean;
 using Exception = Java.Lang.Exception;
 using Object = Java.Lang.Object;
@@ -65,7 +64,7 @@ public class CrossLayoutInflater : LayoutInflater
 
     public static bool Debug { get; set; }
 
-    private const string Tag = "MvxLayoutInflater";
+    private const string Tag = "CrossLayoutInflater";
 
     private static readonly string[] ClassPrefixList = {
         "android.widget.",
@@ -446,7 +445,7 @@ public class CrossLayoutInflater : LayoutInflater
         }
     }
 
-    [RequiresUnreferencedCode("MvvmCross binding requires unreferenced code")]
+    [RequiresUnreferencedCode("Cross binding requires unreferenced code")]
     private sealed class PrivateFactoryWrapper2 : Object, IFactory2
     {
         private const string PrivateFactoryWrapper2Tag = "PrivateFactoryWrapper2";

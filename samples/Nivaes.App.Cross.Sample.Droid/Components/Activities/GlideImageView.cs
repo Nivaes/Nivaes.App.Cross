@@ -8,9 +8,9 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [Register("nivaes.cross.GlideImageView")]
 public sealed class GlideImageView : ImageView
 {
-    private string _imagePath;
+    private string? _imagePath;
 
-    public string ImagePath
+    public string? ImagePath
     {
         get => _imagePath;
         set
@@ -19,7 +19,7 @@ public sealed class GlideImageView : ImageView
                 return;
 
             _imagePath = value;
-            Glide.With(Context).Load(_imagePath).Into(this);
+            Glide.With(Context!).Load(_imagePath).Into(this);
         }
     }
 

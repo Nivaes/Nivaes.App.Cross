@@ -1,5 +1,6 @@
 using ABI.System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross;
 using Nivaes.IoC;
 
@@ -14,7 +15,8 @@ internal class CrossWindowsViewsContainer
 
     private IServiceProvider _serviceProvider;
 
-    public CrossWindowsViewsContainer(IServiceProvider serviceProvider)
+    public CrossWindowsViewsContainer(IServiceProvider serviceProvider, ILogger<CrossWindowsViewsContainer> logger)
+        : base(logger)
     {
         _serviceProvider = serviceProvider;
     }

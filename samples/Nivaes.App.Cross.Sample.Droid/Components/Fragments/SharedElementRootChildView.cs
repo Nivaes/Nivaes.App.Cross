@@ -12,7 +12,6 @@ namespace Nivaes.App.Cross.Sample.Droid
     {
         public SharedElementRootChildView()
         {
-
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

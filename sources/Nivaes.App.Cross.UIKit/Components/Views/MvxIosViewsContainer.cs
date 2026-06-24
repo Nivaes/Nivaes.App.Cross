@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public class MvxIosViewsContainer
         : CrossViewsContainer
@@ -12,7 +13,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public CrossViewModelRequest? CurrentRequest { get; private set; }
 
-        public MvxIosViewsContainer(IServiceProvider serviceProvider)
+        public MvxIosViewsContainer(IServiceProvider serviceProvider, ILogger<MvxIosViewsContainer> logger)
+            : base(logger)
         {
             _serviceProvider = serviceProvider;
         }

@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.Content;
+using Android.Runtime;
 using Android.Util;
-using Android.Widget;
 
-namespace Playground.Droid.Controls
+namespace Nivaes.App.Cross.Sample.Droid
 {
+    [Register("nivaes.cross.BinaryEdit")]
     public class BinaryEdit : LinearLayout
     {
         private readonly List<CheckBox> _boxes = new List<CheckBox>();
@@ -40,7 +38,7 @@ namespace Playground.Droid.Controls
             MyCountChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public event EventHandler MyCountChanged;
+        public event EventHandler? MyCountChanged;
 
         public int GetCount()
         {

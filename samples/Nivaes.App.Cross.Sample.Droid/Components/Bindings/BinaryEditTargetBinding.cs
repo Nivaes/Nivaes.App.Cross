@@ -1,11 +1,10 @@
-namespace Playground.Droid.Bindings
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using Playground.Droid.Controls;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Droid;
 
+namespace Nivaes.App.Cross.Sample.Droid
+{
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class BinaryEditTargetBinding 
         : MvxAndroidTargetBinding<BinaryEdit, int>
