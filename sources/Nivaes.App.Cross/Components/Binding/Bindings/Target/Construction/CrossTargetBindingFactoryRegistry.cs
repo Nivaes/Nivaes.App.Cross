@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
         public virtual ICrossTargetBinding? CreateBinding(object target, string targetName)
         {
-            if (TryCreateSpecificFactoryBinding(target, targetName, out ICrossTargetBinding first))
+            if (TryCreateSpecificFactoryBinding(target, targetName, out ICrossTargetBinding? first))
                 return first;
 
             if (TryCreateReflectionBasedBinding(target, targetName, out ICrossTargetBinding? second))
@@ -98,7 +98,8 @@ namespace Nivaes.App.Cross
 
         private static int GenerateKey(Type type, string name)
         {
-            return (type.GetHashCode() * 9) ^ name.GetHashCode();
+            //return (type.GetHashCode() * 9) ^ name.GetHashCode();
+            return (type, name).GetHashCode();
         }
 
         private ICrossPluginTargetBindingFactory? FindSpecificFactory(

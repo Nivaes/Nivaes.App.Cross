@@ -18,8 +18,8 @@ namespace Nivaes.App.Cross.Droid
 
         private static void RegisterDefaultBindings(IMvxIoCProvider provider)
         {
-            var helper = new MvxDefaultColorBindingSet();
-            helper.RegisterBindings(provider);
+            //var helper = new CrossDefaultColorBindingHelper();
+            //helper.RegisterBindings(/*provider*/);
         }
     }
 }

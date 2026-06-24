@@ -1,19 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Target;
 
-    [Obsolete("", true)]
-    [Preserve(AllMembers = true)]
     public abstract class MvxViewColorBinding
         : MvxAndroidTargetBinding
     {
-        protected View TextView => (View)Target;
+        protected View TextView => (View)Target!;
 
         protected MvxViewColorBinding(View view)
             : base(view)

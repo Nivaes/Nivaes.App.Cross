@@ -15,7 +15,9 @@ namespace Nivaes.App.Cross
         ICrossBindingNameLookup DefaultBindingNameLookup { get; }
         ICrossBinder Binder { get; }
         ICrossSourceBindingFactory SourceBindingFactory { get; }
+
         ICrossTargetBindingFactory TargetBindingFactory { get; }
+
         ICrossSourceStepFactory SourceStepFactory { get; }
 
         [Obsolete("", true)]

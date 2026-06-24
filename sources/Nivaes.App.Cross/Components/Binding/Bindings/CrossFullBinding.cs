@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding;
     using MvvmCross.IoC;
@@ -17,6 +18,8 @@ namespace Nivaes.App.Cross
         private ICrossTargetBinding? _targetBinding;
         private object? _dataContext;
         private CancellationTokenSource? _cancelSource = new();
+
+        //private readonly ICrossTargetBindingFactory _targetBindingFactory;
 
         public object? DataContext
         {
@@ -45,6 +48,8 @@ namespace Nivaes.App.Cross
             ObserveTargetChangesIfNeeded();
             _defaultTargetValue = _targetBinding.TargetValueType.CreateDefault();
             _sourceStep = CreateSourceBinding(bindingRequest);
+
+            //_targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
 
             UpdateTargetOnBind();
         }
@@ -126,9 +131,10 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private static ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
+        private ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
         {
             var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
+            //var binding = _targetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
 
             if (binding == null)
             {

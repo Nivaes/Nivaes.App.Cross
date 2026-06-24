@@ -8,7 +8,6 @@ public class CrossNativeColorValueConverter : CrossColorValueConverter<System.Dr
     public CrossNativeColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossNativeColorValueConverter> logger)
         :base(nativeColor, logger)
     {
-
     }
 
     protected override System.Drawing.Color Convert(System.Drawing.Color value, object? parameter, CultureInfo? culture)

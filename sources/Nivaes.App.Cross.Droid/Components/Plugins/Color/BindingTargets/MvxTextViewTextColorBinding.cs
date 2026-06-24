@@ -1,11 +1,5 @@
-using Android.Widget;
-
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross;
-
-    [Obsolete("", true)]
-    [Preserve(AllMembers = true)]
     public class MvxTextViewTextColorBinding
         : MvxViewColorBinding
     {
@@ -14,10 +8,10 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
             var textView = (TextView)target;
-            textView?.SetTextColor((global::Android.Graphics.Color)value);
+            textView?.SetTextColor((global::Android.Graphics.Color)value!);
         }
     }
 }

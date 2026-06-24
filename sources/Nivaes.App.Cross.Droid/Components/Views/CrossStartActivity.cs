@@ -65,8 +65,6 @@ public abstract class CrossStartActivity
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
-        
-
         await initializeViewModelType.NavigateToFirstViewModel(navigationService);
     }
 

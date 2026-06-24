@@ -4,6 +4,7 @@ using AndroidX.Preference;
 using Microsoft.Extensions.DependencyInjection;
 using MvvmCross.Platforms.Android.Binding.Target;
 using MvvmCross.Platforms.Android.Binding.Views;
+using MvvmCross.Plugin.Color.Platforms.Android.Binding;
 using AppCompatSearchView = AndroidX.AppCompat.Widget.SearchView;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
@@ -200,6 +201,14 @@ namespace Nivaes.App.Cross.Droid
                 registry.RegisterCustomBindingFactory<AppCompatSearchView>(
                     MvxAndroidPropertyBinding.SearchView_Query,
                     searchView => new MvxAppCompatSearchViewQueryTextTargetBinding(searchView));
+
+                registry.RegisterFactory(new CrossCustomBindingFactory<View>(
+                    MvxAndroidColorPropertyBinding.View_BackgroundColor,
+                    view => new MvxViewBackgroundColorBinding(view)));
+
+                registry.RegisterFactory(new CrossCustomBindingFactory<TextView>(
+                    MvxAndroidColorPropertyBinding.TextView_TextColor,
+                    textView => new MvxTextViewTextColorBinding(textView)));
 
                 return service;
             }
