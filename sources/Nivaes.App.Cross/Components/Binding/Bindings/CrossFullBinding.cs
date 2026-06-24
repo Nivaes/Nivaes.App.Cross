@@ -1,11 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MvvmCross.IoC;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.IoC;
-
     [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
     public class CrossFullBinding
         : CrossBinding, ICrossUpdateableBinding
@@ -18,8 +17,6 @@ namespace Nivaes.App.Cross
         private ICrossTargetBinding? _targetBinding;
         private object? _dataContext;
         private CancellationTokenSource? _cancelSource = new();
-
-        //private readonly ICrossTargetBindingFactory _targetBindingFactory;
 
         public object? DataContext
         {
@@ -44,7 +41,6 @@ namespace Nivaes.App.Cross
         {
             _dataContext = bindingRequest.Source;
             _bindingDescription = bindingRequest.Description;
-            //_targetBinding = CreateTargetBinding(bindingRequest);
             var targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
             _targetBinding = targetBindingFactory.CreateBinding(bindingRequest.Target!, bindingRequest.Description!.TargetName!);
 
@@ -132,20 +128,6 @@ namespace Nivaes.App.Cross
                 }
             }
         }
-
-        //private ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
-        //{
-        //    var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
-        //    //var binding = _targetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
-
-        //    if (binding == null)
-        //    {
-        //        CrossBindingLogger.Instance?.LogError($"Failed to create target binding for {request.Description}");
-        //        binding = new CrossNullTargetBinding();
-        //    }
-
-        //    return binding;
-        //}
 
         private void ObserveTargetChangesIfNeeded()
         {

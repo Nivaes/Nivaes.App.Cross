@@ -225,6 +225,7 @@ public static class MvxTypeExtensions
     //    }
     //}
 
+    [Obsolete()]
     public static object? CreateDefault(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type? type)
     {
