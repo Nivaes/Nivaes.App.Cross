@@ -1,11 +1,16 @@
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-[Preserve(AllMembers = true)]
-public class CrossRGBIntColorValueConverter : MvxColorValueConverter<int>
+public class CrossRGBIntColorValueConverter : CrossColorValueConverter<int>
 {
-    protected override System.Drawing.Color Convert(int value, object parameter, CultureInfo culture)
+    public CrossRGBIntColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBIntColorValueConverter> logger) 
+        : base(nativeColor, logger)
+    {
+    }
+
+    protected override System.Drawing.Color Convert(int value, object? parameter, CultureInfo? culture)
     {
         CrossHexParser.ParseRGBInteger(value, out int red, out int green, out int blue);
 

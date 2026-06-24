@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
 {
@@ -10,31 +11,34 @@ namespace Nivaes.App.Cross
             internal CrossConvertersManager.KeyStoreItem Converters { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
-        public static ConverterManagerItem New<TConverter>()
+        public static ConverterManagerItem New<TConverter>(IServiceProvider services, string name)
                         where TConverter : class, ICrossValueConverter
         {
-            var converter = Activator.CreateInstance<TConverter>();
+            var converter = ActivatorUtilities.CreateInstance<TConverter>(services);
 
             return new ConverterManagerItem()
-            {                
-                NameConverters = new CrossNameConvertersManager.KeyStoreItem { Key = FindName(typeof(TConverter)).GetHashCode(), Value = converter },
+            {
+                NameConverters = new CrossNameConvertersManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
                 Converters = new CrossConvertersManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
             };
         }
 
+        public static ConverterManagerItem New<TConverter>(IServiceProvider services)
+                        where TConverter : class, ICrossValueConverter
+        {
+            return New<TConverter>(services, FindName(typeof(TConverter)));
+        }
+
         public static void RegisterComverters(ConverterManagerItem[] items) 
         {
-            var nameConvertesManager = new CrossNameConvertersManager(items.Select(x => x.NameConverters).ToArray());
-            var convertesManager = new CrossConvertersManager(items.Select(x => x.NameConverters).ToArray());
-
-            Singleton<CrossNameConvertersManager>.Add(nameConvertesManager);
-            Singleton<CrossConvertersManager>.Add(convertesManager);
+            Singleton<CrossNameConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
+            Singleton<CrossConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
         }
 
         private static string FindName(Type type)
         {
             var name = type.Name;
-            name = RemoveHead(name, "Mvx");
+            name = RemoveHead(name, "Cross");
             name = RemoveTail(name, "ValueConverter");
             name = RemoveTail(name, "Converter");
             return name;

@@ -12,14 +12,16 @@ public class SampleApp : Application, IApplication
 {
     private readonly TracerProvider _tracerProvider;
 
-    //public SampleApp(ILogger<SampleApp> logger)
-    //    : base(logger)
-    //{ }
-
-    public SampleApp(ILogger<SampleApp> logger, TracerProvider tracerProvider)
-        : base(logger)
+    public SampleApp(IServiceProvider serviceProvider, ILogger<SampleApp> logger, TracerProvider tracerProvider)
+        : base(serviceProvider, logger)
     {
         _tracerProvider = tracerProvider;
+    }
+
+    public override void Setup()
+    {
+        base.Setup();
+        ServiceProvider.SetupConverters();
     }
 
     ///// <summary>
@@ -36,26 +38,6 @@ public class SampleApp : Application, IApplication
             {
                 activity?.SetTag("test", "true");
             }
-
-            //_tracerProvider.ForceFlush();
-
-            //var logger2 = _services.GetRequiredService<ILoggerFactory>().CreateLogger("Test");
-            //logger2.LogInformation("Hola OpenTelemetry");
-
-            //CreatableTypes()
-            //    .EndingWith("Service")
-            //    .AsInterfaces()
-            //    .RegisterAsLazySingleton();
-
-            //var container = Singleton<CrossIoCServiceContainer>.Instance;
-            //container.AddDelegate<ICrossTextProvider>(container =>
-            //{
-            //    return new TextProviderBuilder().TextProvider;
-            //});
-
-            //container.Merge(new ViewModelsSubcontainer());
-
-            //RegisterAppStart<RootViewModel>();
 
             return new CrossViewModelStar<RootViewModel>();
         }

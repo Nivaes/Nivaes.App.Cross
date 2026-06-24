@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
 
         public CrossValueConverterValueCombiner(ICrossValueConverter valueConverter)
         {
-            _valueConverter = valueConverter;
+             _valueConverter = valueConverter;
         }
 
         public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
@@ -41,10 +41,10 @@ namespace Nivaes.App.Cross
             return base.SubStepTargetTypes(subSteps, overallTargetType);
         }
 
-        private static object GetParameterValue(IEnumerable<ICrossSourceStep> steps)
+        private static object? GetParameterValue(IEnumerable<ICrossSourceStep> steps)
         {
             var parameterStep = steps.Skip(1).FirstOrDefault();
-            object parameter = null;
+            object? parameter = null;
             if (parameterStep != null)
             {
                 parameter = parameterStep.GetValue();

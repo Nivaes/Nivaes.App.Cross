@@ -15,8 +15,8 @@ namespace Nivaes.App.Cross
 
         private static void RegisterValueConverters(ICrossValueConverterRegistry registry)
         {
-            registry.AddOrOverwrite("Visibility", new CrossVisibilityValueConverter());
-            registry.AddOrOverwrite("InvertedVisibility", new CrossInvertedVisibilityValueConverter());
+            registry.AddOrOverwrite("Visibility", new CrossVisibilityValueConverter(null, null));
+            registry.AddOrOverwrite("InvertedVisibility", new CrossInvertedVisibilityValueConverter(null, null));
         }
     }
 }

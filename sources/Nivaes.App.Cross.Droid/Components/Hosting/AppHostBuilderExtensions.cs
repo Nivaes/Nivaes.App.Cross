@@ -1,10 +1,7 @@
 ﻿using Android.Content;
-using Android.Graphics;
-using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using MvvmCross.IoC;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
@@ -83,6 +80,10 @@ namespace Nivaes.App.Cross.Droid
 
             builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxAndroidViewDispatcher>();
             builder.Services.TryAddSingleton<IMvxMultipleViewModelCache, MvxMultipleViewModelCache>();
+
+            // Plugins
+            builder.Services.TryAddSingleton<ICrossNativeColor, MvxAndroidColor>();
+            builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossDroidVisibility>();
 
 
             return builder;

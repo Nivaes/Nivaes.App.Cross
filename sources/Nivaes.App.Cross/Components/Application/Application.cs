@@ -6,11 +6,19 @@ namespace Nivaes.App.Cross.Controls;
 
 public abstract class Application : IApplication
 {
+    protected IServiceProvider ServiceProvider { [DebuggerHidden] get; }
     protected ILogger Logger { [DebuggerHidden]get; }
 
-    protected Application(ILogger logger)
+    protected Application(IServiceProvider serviceProvider, ILogger logger)
     {
+        ServiceProvider = serviceProvider;
         Logger = logger;
+    }
+
+    public virtual void Setup()
+    {
+        ServiceProvider.SetupConverters();
+        ServiceProvider.SetupCombertes();
     }
 
     public abstract ICrossViewModelStar Initialize();
@@ -23,12 +31,4 @@ public abstract class Application : IApplication
     public virtual void Reset()
     {
     }
-
-    
-
-    //protected void RegisterViewStar<TViewModel>()
-    //    where TViewModel : ICrossViewModel
-    //{
-
-    //}
 }

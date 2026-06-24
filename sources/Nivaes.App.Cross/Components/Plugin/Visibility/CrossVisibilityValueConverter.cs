@@ -1,13 +1,18 @@
 namespace Nivaes.App.Cross.Visibility
 {
     using System.Globalization;
+    using Microsoft.Extensions.Logging;
     using MvvmCross;
 
-    [Preserve(AllMembers = true)]
     public class CrossVisibilityValueConverter 
-        : MvxBaseVisibilityValueConverter
+        : CrossBaseVisibilityValueConverter
     {
-        protected override CrossVisibility Convert(object value, object parameter, CultureInfo culture)
+        public CrossVisibilityValueConverter(ICrossNativeVisibility nativeVisibility, ILogger<CrossVisibilityValueConverter> logger)
+            : base(nativeVisibility, logger)
+            {
+            }
+
+        protected override CrossVisibility Convert(object value, object? parameter, CultureInfo? culture)
         {
             bool visible = value.ConvertToBooleanCore();
             bool hide = parameter.ConvertToBooleanCore();

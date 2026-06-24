@@ -3,10 +3,16 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using Microsoft.Extensions.Logging;
 
     public class CrossDictionaryValueConverter<TKey, TValue> : CrossValueConverter<TKey, TValue>
         where TKey : notnull
     {
+        public CrossDictionaryValueConverter(ILogger<CrossDictionaryValueConverter<TKey, TValue>> logger)
+        : base(logger)
+        {
+        }
+
         protected override TValue Convert(TKey value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             

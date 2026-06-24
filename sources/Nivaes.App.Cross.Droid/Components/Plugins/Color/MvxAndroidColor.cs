@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using Nivaes.App.Cross;
 
-    [Obsolete("", true)]
     public class MvxAndroidColor 
         : ICrossNativeColor
     {

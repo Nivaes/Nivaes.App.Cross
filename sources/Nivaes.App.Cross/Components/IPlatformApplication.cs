@@ -1,12 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
 public interface IPlatformApplication
 {
-    public static IPlatformApplication? Current { get; set; }
+    public static IPlatformApplication? Current { [DebuggerHidden]get; [DebuggerHidden]set; }
 
-    public IServiceProvider Services { get; }
+    public IServiceProvider Services { [DebuggerHidden]get; }
 
-    public IApplication Application { get; }
+    public IApplication Application { [DebuggerHidden]get; }
 }

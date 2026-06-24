@@ -114,8 +114,8 @@ public class CrossCoreBindingBuilder
 
     protected virtual void FillValueConverters(ICrossValueConverterRegistry registry)
     {
-        registry.AddOrOverwrite("CommandParameter", new CrossCommandParameterValueConverter());
-        registry.AddOrOverwrite("Language", new CrossLanguageConverter());
+        registry.AddOrOverwrite("CommandParameter", new CrossCommandParameterValueConverter(null));
+        registry.AddOrOverwrite("Language", new CrossLanguageConverter(null));
     }
 
     protected virtual void RegisterValueCombinerProvider(IMvxIoCProvider iocProvider)

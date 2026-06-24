@@ -120,7 +120,9 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
 
     public CrossFluentBindingDescription<TTarget, TSource> CommandParameter(object parameter)
     {
-        return WithConversion(new CrossCommandParameterValueConverter(), parameter);
+        var converter = Singleton<CrossConvertersManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+
+        return WithConversion(converter, parameter);
     }
 
     public CrossFluentBindingDescription<TTarget, TSource> WithConversion(string converterName,
@@ -261,7 +263,9 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
 
     public MvxFluentBindingDescription<TTarget> CommandParameter(object parameter)
     {
-        return WithConversion(new CrossCommandParameterValueConverter(), parameter);
+        var converter = Singleton<CrossConvertersManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+
+        return WithConversion(converter, parameter);
     }
 
     public MvxFluentBindingDescription<TTarget> WithConversion(string converterName,

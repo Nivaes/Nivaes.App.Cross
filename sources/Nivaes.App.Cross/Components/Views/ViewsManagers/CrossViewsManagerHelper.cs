@@ -25,15 +25,10 @@
 
         public static void RegisterViewModels(ViewManagerItem[] items) 
         {
-            var nameViewsManager = new CrossNameViewsManager(items.Select(x => x.NameViews).ToArray());
-            var nameViewModels = new CrossNameViewModelsManager(items.Select(x => x.NameViewModels).ToArray());
-            var viewModelViewsManager = new CrossViewModelViewsManager(items.Select(x => x.TypeViewModels).ToArray());            
-            var viewsManager = new CrossViewsViewModelManager(items.Select(x => x.TypeViews).ToArray());
-
-            Singleton<CrossNameViewsManager>.Add(nameViewsManager);
-            Singleton<CrossNameViewModelsManager>.Add(nameViewModels);
-            Singleton<CrossViewModelViewsManager>.Add(viewModelViewsManager);
-            Singleton<CrossViewsViewModelManager>.Add(viewsManager);
+            Singleton<CrossNameViewsManager>.Instance.Merge(items.Select(x => x.NameViews).ToArray());
+            Singleton<CrossNameViewModelsManager>.Instance.Merge(items.Select(x => x.NameViewModels).ToArray());
+            Singleton<CrossViewModelViewsManager>.Instance.Merge(items.Select(x => x.TypeViewModels).ToArray());
+            Singleton<CrossViewsViewModelManager>.Instance.Merge(items.Select(x => x.TypeViews).ToArray());
         }
     }
 }

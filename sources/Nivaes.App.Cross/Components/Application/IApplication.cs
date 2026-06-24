@@ -7,6 +7,8 @@ namespace Nivaes.App.Cross;
 
 public interface IApplication
 {
+    void Setup();
+
     ICrossViewModelStar Initialize();
 
     void Startup();

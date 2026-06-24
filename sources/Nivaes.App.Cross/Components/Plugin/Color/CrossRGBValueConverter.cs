@@ -1,10 +1,14 @@
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-[Preserve(AllMembers = true)]
-public class CrossRGBValueConverter : MvxColorValueConverter<string>
+public class CrossRGBValueConverter : CrossColorValueConverter<string>
 {
-    protected override System.Drawing.Color Convert(string value, object parameter, CultureInfo culture)
+    public CrossRGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBValueConverter> logger) 
+        : base(nativeColor, logger) 
+    { }
+
+    protected override System.Drawing.Color Convert(string value, object? parameter, CultureInfo? culture)
         => CrossHexParser.ColorFromHexString(value);
 }

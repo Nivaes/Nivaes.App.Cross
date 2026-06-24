@@ -90,9 +90,7 @@ namespace Nivaes.App.Cross
             return !changingArgs.Cancel;
         }
 
-#pragma warning disable CA1030 // Use events where appropriate
         public virtual Task RaiseAllPropertiesChanged()
-#pragma warning restore CA1030 // Use events where appropriate
         {
             return RaisePropertyChanged(AllPropertiesChanged);
         }

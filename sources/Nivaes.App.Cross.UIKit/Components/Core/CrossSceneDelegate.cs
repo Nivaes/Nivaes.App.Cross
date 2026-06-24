@@ -70,6 +70,7 @@ public abstract class CrossSceneDelegate
 
         _application = _services.GetRequiredService<IApplication>();
 
+        IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         _services

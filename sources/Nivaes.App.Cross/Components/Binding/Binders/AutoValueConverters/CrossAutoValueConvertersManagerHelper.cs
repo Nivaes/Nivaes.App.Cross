@@ -20,9 +20,7 @@ namespace Nivaes.App.Cross
 
         public static void RegisterCombiners(AutoValueConvertersManagerItem[] items) 
         {
-            var autoValueConverters = new CrossAutoValueConvertersManager(items.Select(x => x.AutoValueConvertes).ToArray());
-
-            Singleton<CrossAutoValueConvertersManager>.Add(autoValueConverters);
+            Singleton<CrossAutoValueConvertersManager>.Instance.Merge(items.Select(x => x.AutoValueConvertes).ToArray());
         }
     }
 }

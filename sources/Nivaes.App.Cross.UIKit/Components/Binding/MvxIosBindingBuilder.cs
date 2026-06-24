@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.UIKitOS
         private readonly Action<ICrossTargetBindingFactoryRegistry>? _fillRegistryAction;
         private readonly Action<ICrossValueConverterRegistry>? _fillValueConvertersAction;
         private readonly Action<ICrossBindingNameRegistry>? _fillBindingNamesAction;
-        private readonly MvxUnifiedTypesValueConverter? _unifiedValueTypesConverter;
+        private readonly CrossUnifiedTypesValueConverter? _unifiedValueTypesConverter;
         private readonly Action<ICrossValueCombinerRegistry>? _fillValueCombinersAction;
 
         public MvxIosBindingBuilder(Action<ICrossTargetBindingFactoryRegistry>? fillRegistryAction = null,
@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.UIKitOS
             _fillValueCombinersAction = fillValueCombinersAction;
             _fillBindingNamesAction = fillBindingNamesAction;
 
-            _unifiedValueTypesConverter = new MvxUnifiedTypesValueConverter();
+            _unifiedValueTypesConverter = new CrossUnifiedTypesValueConverter(null);
         }
 
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]
@@ -242,7 +242,7 @@ namespace Nivaes.App.Cross.UIKitOS
             base.FillAutoValueConverters(autoValueConverters);
 
             //register converter for xamarin unified types
-            foreach (var kvp in MvxUnifiedTypesValueConverter.UnifiedTypeConversions)
+            foreach (var kvp in CrossUnifiedTypesValueConverter.UnifiedTypeConversions)
                 autoValueConverters.Register(kvp.Key, kvp.Value, _unifiedValueTypesConverter);
         }
 

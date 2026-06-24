@@ -9,17 +9,16 @@ namespace Nivaes.App.Cross
     public class CrossFullBinding
         : CrossBinding, ICrossUpdateableBinding
     {
-
         private readonly Lock _lock = new();
-        private readonly CrossBindingDescription _bindingDescription;
-        private readonly object _defaultTargetValue;
+        private readonly CrossBindingDescription? _bindingDescription;
+        private readonly object? _defaultTargetValue;
 
-        private ICrossSourceStep _sourceStep;
-        private ICrossTargetBinding _targetBinding;
-        private object _dataContext;
+        private ICrossSourceStep? _sourceStep;
+        private ICrossTargetBinding? _targetBinding;
+        private object? _dataContext;
         private CancellationTokenSource? _cancelSource = new();
 
-        public object DataContext
+        public object? DataContext
         {
             get => _dataContext;
             set
@@ -66,8 +65,8 @@ namespace Nivaes.App.Cross
 
         private ICrossSourceStep CreateSourceBinding(CrossBindingRequest bindingRequest)
         {
-            var sourceStep = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory.Create(bindingRequest.Description!.Source);
-            sourceStep.TargetType = _targetBinding.TargetValueType;
+            var sourceStep = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory.Create(bindingRequest.Description!.Source!);
+            sourceStep.TargetType = _targetBinding!.TargetValueType;
             sourceStep.DataContext = bindingRequest.Source;
 
             if (NeedToObserveSourceChanges)
@@ -80,11 +79,11 @@ namespace Nivaes.App.Cross
 
         private void OnSourceBindingChanged(object? sender, EventArgs e)
         {
-            var value = _sourceStep.GetValue();
+            var value = _sourceStep!.GetValue();
             CancellationToken cancel;
             lock (_lock)
             {
-                cancel = _cancelSource.Token;
+                cancel = _cancelSource!.Token;
             }
             UpdateTargetFromSource(value, cancel);
         }
@@ -96,8 +95,8 @@ namespace Nivaes.App.Cross
                 CancellationToken cancel;
                 lock (_lock)
                 {
-                    _cancelSource.Cancel();
-                    _cancelSource.Dispose();
+                    _cancelSource!.Cancel();
+                    _cancelSource!.Dispose();
                     _cancelSource = new CancellationTokenSource();
                     cancel = _cancelSource.Token;
                 }
@@ -107,9 +106,9 @@ namespace Nivaes.App.Cross
                     var currentValue = _sourceStep.GetValue();
                     UpdateTargetFromSource(currentValue, cancel);
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
-                    CrossBindingLogger.Instance?.LogTrace(exception, "Exception masked in UpdateTargetOnBind");
+                    CrossBindingLogger.Instance?.LogError(ex, "Exception masked in UpdateTargetOnBind");
                 }
             }
         }
@@ -129,11 +128,11 @@ namespace Nivaes.App.Cross
 
         private static ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
         {
-            var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target, request.Description.TargetName);
+            var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
 
             if (binding == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("Failed to create target binding for {BindingDescription}", request.Description.ToString());
+                CrossBindingLogger.Instance?.LogError($"Failed to create target binding for {request.Description}");
                 binding = new CrossNullTargetBinding();
             }
 
@@ -158,7 +157,7 @@ namespace Nivaes.App.Cross
             {
                 lock (_lock)
                 {
-                    value = _defaultTargetValue;
+                    value = _defaultTargetValue!;
                 }
             }
 
@@ -179,7 +178,7 @@ namespace Nivaes.App.Cross
                     CrossBindingLogger.Instance?.LogError(
                         exception,
                         "Problem seen during binding execution for {BindingDescription}",
-                        _bindingDescription.ToString());
+                        _bindingDescription!.ToString());
                 }
             });
         }
@@ -204,7 +203,7 @@ namespace Nivaes.App.Cross
                 CrossBindingLogger.Instance?.LogError(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
-                    _bindingDescription.ToString());
+                    _bindingDescription!.ToString());
             }
         }
 
@@ -241,7 +240,7 @@ namespace Nivaes.App.Cross
             {
                 lock (_lock)
                 {
-                    var mode = _bindingDescription.Mode;
+                    var mode = _bindingDescription!.Mode;
                     if (mode == CrossBindingMode.Default && _targetBinding != null)
                         mode = _targetBinding.DefaultMode;
                     return mode;

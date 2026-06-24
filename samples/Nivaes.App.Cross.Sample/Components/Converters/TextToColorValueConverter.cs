@@ -1,13 +1,16 @@
 using System.Drawing;
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
 // Sample converter to show issue found in GH issue #4803
 public sealed class TextToColorValueConverter : CrossColorValueConverter
 {
-    public TextToColorValueConverter()
-    { }
+    public TextToColorValueConverter(ICrossNativeColor nativeColor, ILogger<TextToColorValueConverter> logger)
+        : base(nativeColor, logger)
+    {
+    }
 
     protected override Color Convert(object value, object? parameter, CultureInfo? culture)
     {

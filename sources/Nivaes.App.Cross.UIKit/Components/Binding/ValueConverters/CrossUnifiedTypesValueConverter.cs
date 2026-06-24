@@ -1,11 +1,17 @@
+using System.Collections.ObjectModel;
+using System.Globalization;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System.Collections.ObjectModel;
-    using System.Globalization;
-
-    internal sealed class MvxUnifiedTypesValueConverter
-    : CroosValueConverter
+    internal sealed class CrossUnifiedTypesValueConverter
+    : CrossValueConverter
     {
+        public CrossUnifiedTypesValueConverter(ILogger<CrossUnifiedTypesValueConverter> logger)
+            : base(logger)
+        {
+        }
+
         // dictionary of supported unified type conversions
         internal static readonly IReadOnlyDictionary<Type, Type> UnifiedTypeConversions =
             new ReadOnlyDictionary<Type, Type>(new Dictionary<Type, Type>

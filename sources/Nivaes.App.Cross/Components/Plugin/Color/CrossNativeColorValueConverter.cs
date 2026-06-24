@@ -1,11 +1,17 @@
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-[Preserve(AllMembers = true)]
-public class CrossNativeColorValueConverter : MvxColorValueConverter<System.Drawing.Color>
+public class CrossNativeColorValueConverter : CrossColorValueConverter<System.Drawing.Color>
 {
-    protected override System.Drawing.Color Convert(System.Drawing.Color value, object parameter, CultureInfo culture)
+    public CrossNativeColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossNativeColorValueConverter> logger)
+        :base(nativeColor, logger)
+    {
+
+    }
+
+    protected override System.Drawing.Color Convert(System.Drawing.Color value, object? parameter, CultureInfo? culture)
     {
         return value;
     }

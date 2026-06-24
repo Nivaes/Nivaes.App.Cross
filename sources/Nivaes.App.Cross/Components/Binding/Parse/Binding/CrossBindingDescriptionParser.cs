@@ -57,7 +57,7 @@ public class CrossBindingDescriptionParser
         }
         else
         {
-            CrossBindingLogger.Instance?.LogTrace($"Could not find named converter for {converterName}");
+            CrossBindingLogger.Instance?.LogWarning($"Could not find named converter for {converterName}");
             return null;
         }
     }
@@ -197,8 +197,7 @@ public class CrossBindingDescriptionParser
                 var converter = FindConverter(description.Function);
                 if (converter == null)
                 {
-                    CrossBindingLogger.Instance?.LogError("Failed to find combiner or converter for {FunctionName}",
-                        description.Function);
+                    CrossBindingLogger.Instance?.LogError($"Failed to find combiner or converter for {description.Function}");
                 }
 
                 if (description.Sources == null || description.Sources.Count == 0)

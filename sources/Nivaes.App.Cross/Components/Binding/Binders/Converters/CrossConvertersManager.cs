@@ -13,6 +13,13 @@ public sealed class CrossConvertersManager : KeyContainerManager<ICrossValueConv
     {
     }
 
+    public ICrossValueConverter GetValue<TConverter>()
+        where TConverter : ICrossValueConverter
+
+    {
+        return GetValue(typeof(TConverter));
+    }
+
     public ICrossValueConverter GetValue(Type converterType)
     {
         if (TryGetValue(converterType, out var converter))

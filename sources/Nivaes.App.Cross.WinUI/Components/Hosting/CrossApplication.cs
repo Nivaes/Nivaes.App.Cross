@@ -70,7 +70,7 @@ public abstract class CrossApplication
 
         //InitializeContainer(crossApp.Services);
 
-        _application = _services.GetRequiredService<IApplication>();       
+        _application = _services.GetRequiredService<IApplication>();
 
         //this.SetApplicationHandler(_application, applicationContext);
 
@@ -78,6 +78,7 @@ public abstract class CrossApplication
 
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
 
+        _application.Setup();
         var initializeViewModelType = _application.Initialize();
 
         MainWindow!.Activate();

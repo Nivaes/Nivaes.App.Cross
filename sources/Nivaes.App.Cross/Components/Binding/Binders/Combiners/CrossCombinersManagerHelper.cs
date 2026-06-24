@@ -21,11 +21,8 @@ namespace Nivaes.App.Cross
 
         public static void RegisterCombiners(CombinersManagerItem[] items) 
         {
-            var nameCombertesManager = new CrossNameCombinersManager(items.Select(x => x.NameCombiners).ToArray());
-            var combertersManager = new CrossCombinersManager(items.Select(x => x.Combiners).ToArray());
-
-            Singleton<CrossNameCombinersManager>.Add(nameCombertesManager);
-            Singleton<CrossCombinersManager>.Add(combertersManager);
+            Singleton<CrossNameCombinersManager>.Instance.Merge(items.Select(x => x.NameCombiners).ToArray());
+            Singleton<CrossCombinersManager>.Instance.Merge(items.Select(x => x.Combiners).ToArray());
         }
     }
 }

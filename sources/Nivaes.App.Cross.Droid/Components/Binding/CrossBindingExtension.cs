@@ -144,14 +144,14 @@ namespace Nivaes.App.Cross.Droid
 
                 var allMargins = new[]
                 {
-            MvxAndroidPropertyBinding.View_Margin,
-            MvxAndroidPropertyBinding.View_MarginLeft,
-            MvxAndroidPropertyBinding.View_MarginRight,
-            MvxAndroidPropertyBinding.View_MarginTop,
-            MvxAndroidPropertyBinding.View_MarginBottom,
-            MvxAndroidPropertyBinding.View_MarginStart,
-            MvxAndroidPropertyBinding.View_MarginEnd
-        };
+                    MvxAndroidPropertyBinding.View_Margin,
+                    MvxAndroidPropertyBinding.View_MarginLeft,
+                    MvxAndroidPropertyBinding.View_MarginRight,
+                    MvxAndroidPropertyBinding.View_MarginTop,
+                    MvxAndroidPropertyBinding.View_MarginBottom,
+                    MvxAndroidPropertyBinding.View_MarginStart,
+                    MvxAndroidPropertyBinding.View_MarginEnd
+                };
 
                 foreach (var margin in allMargins)
                 {

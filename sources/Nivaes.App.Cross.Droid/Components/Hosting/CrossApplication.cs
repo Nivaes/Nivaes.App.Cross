@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Android.Content;
 using Android.Content.Res;
@@ -17,11 +18,11 @@ namespace Nivaes.App.Cross.Droid
 
         IApplication? _application;
 
-        public static CrossApplication Current { get; private set; } = null!;
+        public static CrossApplication Current { [DebuggerHidden]get; [DebuggerHidden]private set; } = null!;
 
-        public IServiceProvider Services => _services!;
+        public IServiceProvider Services { [DebuggerHidden]get => _services!; }
 
-        public IApplication Application => _application!;
+        public IApplication Application { [DebuggerHidden]get => _application!; }
 
         protected CrossApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
         {
