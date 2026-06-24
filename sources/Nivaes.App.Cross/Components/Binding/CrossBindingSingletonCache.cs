@@ -122,6 +122,7 @@ public class CrossBindingSingletonCache
         }
     }
 
+    [Obsolete("", true)]
     public ICrossTargetBindingFactory TargetBindingFactory
     {
         get

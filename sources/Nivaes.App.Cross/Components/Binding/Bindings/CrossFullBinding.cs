@@ -44,12 +44,14 @@ namespace Nivaes.App.Cross
         {
             _dataContext = bindingRequest.Source;
             _bindingDescription = bindingRequest.Description;
-            _targetBinding = CreateTargetBinding(bindingRequest);
-            ObserveTargetChangesIfNeeded();
-            _defaultTargetValue = _targetBinding.TargetValueType.CreateDefault();
-            _sourceStep = CreateSourceBinding(bindingRequest);
+            //_targetBinding = CreateTargetBinding(bindingRequest);
+            var targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
+            _targetBinding = targetBindingFactory.CreateBinding(bindingRequest.Target!, bindingRequest.Description!.TargetName!);
 
-            //_targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
+
+            ObserveTargetChangesIfNeeded();
+            _defaultTargetValue = _targetBinding!.TargetValueType.CreateDefault();
+            _sourceStep = CreateSourceBinding(bindingRequest);
 
             UpdateTargetOnBind();
         }
@@ -131,19 +133,19 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
-        {
-            var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
-            //var binding = _targetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
+        //private ICrossTargetBinding CreateTargetBinding(CrossBindingRequest request)
+        //{
+        //    var binding = Singleton<CrossBindingSingletonCache>.Instance.TargetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
+        //    //var binding = _targetBindingFactory.CreateBinding(request.Target!, request.Description!.TargetName!);
 
-            if (binding == null)
-            {
-                CrossBindingLogger.Instance?.LogError($"Failed to create target binding for {request.Description}");
-                binding = new CrossNullTargetBinding();
-            }
+        //    if (binding == null)
+        //    {
+        //        CrossBindingLogger.Instance?.LogError($"Failed to create target binding for {request.Description}");
+        //        binding = new CrossNullTargetBinding();
+        //    }
 
-            return binding;
-        }
+        //    return binding;
+        //}
 
         private void ObserveTargetChangesIfNeeded()
         {
