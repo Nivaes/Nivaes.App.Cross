@@ -5,6 +5,10 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     public class UIKitCrashHandler : CrashHandler
     {
+        private string PathCrashFile => Path.Combine(
+                      Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                     "crash.log");
+
         public UIKitCrashHandler(ILogger<UIKitCrashHandler> logger, LoggerProvider loggerProvider)
             : base(logger, loggerProvider)
         {
@@ -18,12 +22,24 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected override void SaveException(Exception ex, string description)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var message = Serialize(ex);
+                File.WriteAllText(PathCrashFile, message);
+            }
+            catch { }
         }
 
-        protected override Task LoadAndSendException()
+        protected override async Task LoadAndSendException()
         {
-            throw new NotImplementedException();
+            if (File.Exists(PathCrashFile))
+            {
+                var message = await File.ReadAllTextAsync(PathCrashFile);
+
+                base.Logger.LogCritical(message);
+                LoggerProvider.ForceFlush();
+
+            }
         }
 
         private void Runtime_MarshalManagedException(object sender, ObjCRuntime.MarshalManagedExceptionEventArgs args)
