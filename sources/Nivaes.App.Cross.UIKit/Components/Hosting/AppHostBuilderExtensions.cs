@@ -31,6 +31,10 @@ namespace Nivaes.App.Cross.UIKitOS
 
             builder.Services.TryAddSingleton<ICrashHandler, UIKitCrashHandler>();
 
+            // Plugins
+            builder.Services.TryAddSingleton<ICrossNativeColor, MvxIosColor>();
+            builder.Services.TryAddSingleton<ICrossNativeVisibility, MvxIosVisibility>();
+
             return builder;
         }
     }

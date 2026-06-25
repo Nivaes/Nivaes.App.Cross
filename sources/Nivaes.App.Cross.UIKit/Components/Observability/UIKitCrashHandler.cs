@@ -38,7 +38,6 @@ namespace Nivaes.App.Cross.UIKitOS
 
                 base.Logger.LogCritical(message);
                 LoggerProvider.ForceFlush();
-
             }
         }
 

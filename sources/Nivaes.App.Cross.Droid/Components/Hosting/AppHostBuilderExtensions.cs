@@ -85,7 +85,6 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<ICrossNativeColor, MvxAndroidColor>();
             builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossDroidVisibility>();
 
-
             return builder;
         }
 
