@@ -68,6 +68,12 @@ public static class CrossProgram
                     CrossViewsManagerHelper.New<Tab3ViewModel, Tab3View>(),
                     CrossViewsManagerHelper.New<TabsRootViewModel, TabsRootView>(),
                     CrossViewsManagerHelper.New<TabsRootBViewModel, TabsRootBView>(),
+
+                    CrossViewsManagerHelper.New<MultiBackStackViewModel, MultiBackStackView>(),
+                    CrossViewsManagerHelper.New<MultiBackStackTab1ViewModel, MultiBackStackTab1View>(),
+                    CrossViewsManagerHelper.New<MultiBackStackTab2ViewModel, MultiBackStackTab2View>(),
+                    CrossViewsManagerHelper.New<MultiBackStackInnerViewModel, MultiBackStackInnerView>(),
+
                 });
 
         return builder;

@@ -16,7 +16,7 @@ SetAsPrimaryFragment = true)]
 public sealed class MultiBackStackView 
     : MvxFragment<MultiBackStackViewModel>
 {
-    private NavigationBarView _navigationView;
+    private NavigationBarView? _navigationView;
     private bool _navigatedToTab2;
 
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -25,8 +25,8 @@ public sealed class MultiBackStackView
 
         var view = this.BindingInflate(Resource.Layout.MultiBackStackView, container, false);
 
-        _navigationView = view.FindViewById<NavigationBarView>(Resource.Id.navigationview);
-        _navigationView.ItemSelected += NavigationViewOnItemSelected;
+        _navigationView = view?.FindViewById<NavigationBarView>(Resource.Id.navigationview);
+        _navigationView?.ItemSelected += NavigationViewOnItemSelected;
 
         return view;
     }
@@ -41,7 +41,7 @@ public sealed class MultiBackStackView
         }
     }
 
-    private void NavigationViewOnItemSelected(object sender, NavigationBarView.ItemSelectedEventArgs ev)
+    private void NavigationViewOnItemSelected(object? sender, NavigationBarView.ItemSelectedEventArgs ev)
     {
         switch (ev.Item.ItemId)
         {
@@ -78,7 +78,7 @@ public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewM
 
         var view = this.BindingInflate(Resource.Layout.MultiBackStackTab1View, container, false);
 
-        return view;
+        return view!;
     }
 
 }
@@ -96,7 +96,7 @@ public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewM
 
         var view = this.BindingInflate(Resource.Layout.MultiBackStackTab2View, container, false);
 
-        return view;
+        return view!;
     }
 }
 
@@ -110,10 +110,10 @@ public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerVie
         var view = this.BindingInflate(Resource.Layout.MultiBackStackInnerView, container, false);
 
         var f = ParentFragmentManager.PrimaryNavigationFragment;
-        return view;
+        return view!;
     }
 
-    public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+    public CrossBasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
     {
         if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
         {
