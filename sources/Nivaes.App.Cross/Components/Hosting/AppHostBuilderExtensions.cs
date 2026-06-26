@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Nivaes.App.Cross.Hosting
@@ -69,6 +70,9 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
             builder.Services.TryAddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
 
+            builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
+            builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
+            
 
 
             //var valueConverterRegistry = new CrossValueConverterRegistry();

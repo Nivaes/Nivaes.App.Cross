@@ -4,7 +4,6 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-[RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
 public abstract class CrossSceneDelegate
     : UIResponder, IUIWindowSceneDelegate,
     ICrossLifetime, IPlatformApplication
@@ -79,28 +78,10 @@ public abstract class CrossSceneDelegate
         var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
+        Window?.MakeKeyAndVisible();
+
         FireLifetimeChanged(CrossLifetimeEvent.Launching);
     }
-
-    //// ToDO: Buscar donde registar ICrossSuspensionManager.
-    //private void InitializeContainer(IServiceProvider serviceProvider)
-    //{
-    //    //var suspensionManager = new CrossSuspensionManager();
-    //    var container = Singleton<CrossIoCServiceContainer>.Instance;
-    //    container.Merge(new UIKitSubcontainer());
-
-    //    //container.AddInstance<ICrossSuspensionManager>(suspensionManager);
-
-    //    //if (_suspensionManagerSessionStateKey != null)
-    //    //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
-
-    //    //container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-    //    container.AddInstance<IServiceProvider>(serviceProvider);
-
-
-
-    //    //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
-    //}
 
     [Export("sceneDidDisconnect:")]
     public virtual void DidDisconnect(UIScene scene)
@@ -129,18 +110,6 @@ public abstract class CrossSceneDelegate
     {
     }
 
-    //protected virtual void RunAppStart()
-    //{
-    //    //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart? startup) == true &&
-    //    //    startup is { IsStarted: false })
-    //    //{
-    //        //startup.Start();
-    //    //}
-
-    //    Window?.MakeKeyAndVisible();
-    //}
-
-    //protected abstract void RegisterSetup();
 
     private void FireLifetimeChanged(CrossLifetimeEvent which)
     {
@@ -148,14 +117,3 @@ public abstract class CrossSceneDelegate
         handler?.Invoke(this, new CrossLifetimeEventArgs(which));
     }
 }
-
-//[RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-//public abstract class MvxSceneDelegate<TMvxIosSetup, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplication> : MvxSceneDelegate
-//    where TMvxIosSetup : MvxIosSetup<TApplication>, new()
-//    where TApplication : class, ICrossApplication, new()
-//{
-//    protected override void RegisterSetup()
-//    {
-//        this.RegisterSetupType<TMvxIosSetup>();
-//    }
-//}

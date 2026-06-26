@@ -93,7 +93,6 @@ namespace Nivaes.App.Cross
             throw new CrossException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);
         }
 
-        [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Property reflection is core to binding functionality. Properties accessed through bindings are preserved by [DynamicallyAccessedMembers] on binding-related types.")]
         protected PropertyInfo? FindPropertyInfo<
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(T? source, string propertyName = "Item")
         {

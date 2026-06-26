@@ -11,9 +11,9 @@ public abstract class CrashHandler : ICrashHandler
 
     protected readonly ILogger Logger;
 
-    protected readonly LoggerProvider LoggerProvider;
+    protected readonly LoggerProvider? LoggerProvider;
 
-    public CrashHandler(ILogger logger, LoggerProvider loggerProvider)
+    public CrashHandler(ILogger logger, LoggerProvider? loggerProvider)
     {
         Logger = logger;
         LoggerProvider = loggerProvider;
@@ -21,13 +21,13 @@ public abstract class CrashHandler : ICrashHandler
 
     public virtual void Register()
     {
+        Task.Run(async () => LoadAndSendException());
+
         // Excepciones en código .NET
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
         // Excepciones en tareas asíncronas no observadas
         TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-
-        Task.Run(async () => LoadAndSendException());
     }
 
     protected virtual void SaveException(Exception ex, string description)
@@ -47,8 +47,7 @@ public abstract class CrashHandler : ICrashHandler
             var message = await File.ReadAllTextAsync(PathCrashFile);
 
             Logger.LogCritical(message);
-            LoggerProvider.ForceFlush();
-
+            LoggerProvider?.ForceFlush();
         }
     }
 

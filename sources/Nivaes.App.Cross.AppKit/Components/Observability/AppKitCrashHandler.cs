@@ -20,6 +20,7 @@ namespace Nivaes.App.Cross.AppKitOS.Observability
             base.Register();
 
             ObjCRuntime.Runtime.MarshalManagedException += Runtime_MarshalManagedException;
+            ObjCRuntime.Runtime.MarshalObjectiveCException += Runtime_MarshalObjectiveCException;
         }
 
         private void Runtime_MarshalManagedException(object sender, ObjCRuntime.MarshalManagedExceptionEventArgs args)
@@ -31,5 +32,16 @@ namespace Nivaes.App.Cross.AppKitOS.Observability
             base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
             LoggerProvider.ForceFlush();
         }
+
+        private void Runtime_MarshalObjectiveCException(object sender, ObjCRuntime.MarshalObjectiveCExceptionEventArgs args)
+        {
+            var ex = new NSExceptionWrapper(args.Exception);
+
+            SaveException(ex, "MarshallC managed exception ocurred");
+
+            base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
+            LoggerProvider.ForceFlush();
+        }
+
     }
 }

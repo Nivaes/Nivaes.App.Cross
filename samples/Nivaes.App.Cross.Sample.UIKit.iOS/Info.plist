@@ -46,7 +46,7 @@
                     <key>UISceneDelegateClassName</key>
                     <string>SceneDelegate</string>
                     <key>UISceneConfigurationName</key>
-                    <string>MvxSceneConfiguration</string>
+                    <string>CrossSceneConfiguration</string>
                 </dict>
             </array>
         </dict>
