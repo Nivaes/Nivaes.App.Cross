@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross
 {
@@ -7,6 +8,11 @@ namespace Nivaes.App.Cross
     {
         protected CrossViewModel(ILogger logger)
             :base(logger)
+        {
+        }
+
+        protected CrossViewModel()
+            : base(CrossLoggerHost.GetLogger<CrossViewModel>())
         {
         }
 

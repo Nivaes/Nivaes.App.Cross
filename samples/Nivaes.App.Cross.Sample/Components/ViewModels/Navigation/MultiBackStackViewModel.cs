@@ -63,7 +63,7 @@ public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
     }
 
     public MultiBackStackInnerViewModel(ILogger<MultiBackStackInnerViewModel> logFactory, ICrossNavigationService navigationService)
-        : base(logFactory, navigationService)
+        : base(navigationService, logFactory)
     {
         GoDeeperCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackInnerViewModel, int>(Depth + 1));
         CloseCommand = new CrossAsyncCommand(async () => await NavigationService.Close(this));

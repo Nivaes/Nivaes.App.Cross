@@ -6,7 +6,7 @@ public class Tab1ViewModel
     : MvxNavigationViewModel<string>
 {
     public Tab1ViewModel(ILogger<Tab1ViewModel> logger, ICrossNavigationService navigationService)
-        : base(logger, navigationService)
+        : base(navigationService, logger)
     {
         OpenChildCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ChildViewModel>());
 
@@ -24,10 +24,11 @@ public class Tab1ViewModel
         return Task.Delay(3000);
     }
 
-    string para;
+    private string? _parameter;
+
     public override void Prepare(string parameter)
     {
-        para = parameter;
+        _parameter = parameter;
     }
 
     public ICrossAsyncCommand OpenChildCommand { get; }

@@ -8,6 +8,8 @@ namespace Nivaes.App.Cross
     {
         private static readonly ActivitySource Source = new("SampleCrossClient");
 
+        protected readonly ICrossNavigationService NavigationService;
+
         protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
             :base(logger)
         {
@@ -26,14 +28,12 @@ namespace Nivaes.App.Cross
 
             //Thread.Sleep(15000);
         }
-
-        protected virtual ICrossNavigationService NavigationService { [DebuggerHidden] get; }
     }
 
     public abstract class MvxNavigationViewModel<TParameter>
         : CrossNavigationViewModel, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(ILogger logger, ICrossNavigationService navigationService)
+        protected MvxNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             logger.LogTrace($"Se inicio {this.GetType().Name}");
