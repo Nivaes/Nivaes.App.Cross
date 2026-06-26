@@ -7,7 +7,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Util;
     using Android.Widget;
     using AndroidX.AppCompat.Widget;
-    using MvvmCross.Platforms.Android.Binding.Views;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxAppCompatAutoCompleteTextView")]
     public class MvxAppCompatAutoCompleteTextView

@@ -2,11 +2,10 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Android.Views;
     using MvvmCross.IoC;
 
     [Obsolete("", true)]
-    public abstract class MvxLongLowerCaseViewTypeResolver 
+    public abstract class MvxLongLowerCaseViewTypeResolver
         : MvxReflectionViewTypeResolver
     {
         protected MvxLongLowerCaseViewTypeResolver(IMvxTypeCache typeCache)

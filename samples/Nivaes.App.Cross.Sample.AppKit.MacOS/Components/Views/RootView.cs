@@ -1,17 +1,14 @@
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Mac.Presenters.Attributes;
-    using MvvmCross.Platforms.Mac.Views;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.AppKitOS;
     using ObjCRuntime;
-    using Playground.Core.ViewModels;
 
     [MvxFromStoryboard("Main")]
     [MvxWindowPresentation(PositionX = 300)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public partial class RootView 
+    public partial class RootView
         : CrossViewController<RootViewModel>, ICrossOverridePresentationAttribute
     {
         // prevents presentation in a new window when navigating back to root from a child

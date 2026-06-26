@@ -16,14 +16,14 @@ namespace Nivaes.App.Cross
         public CrossContext(IServiceProvider services)
         {
             ArgumentNullException.ThrowIfNull(services);
-            
+
             _services = services is IKeyedServiceProvider
                 ? new KeyedWrappedServiceProvider(services)
                 : new WrappedServiceProvider(services);
 
             //_handlers = new Lazy<ICrossHandlersFactory>(() => _services.GetRequiredService<ICrossHandlersFactory>());
         }
-        
+
         internal void AddSpecific<TService>(TService instance)
             where TService : class
         {

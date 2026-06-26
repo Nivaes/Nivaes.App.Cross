@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
-public partial class OverrideAttributeView 
+public partial class OverrideAttributeView
     : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
 {
     public OverrideAttributeView(NativeHandle handle) : base(handle)

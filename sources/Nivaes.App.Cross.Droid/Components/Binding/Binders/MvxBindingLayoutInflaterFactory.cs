@@ -3,7 +3,6 @@ using Android.Content;
 using Android.Util;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 

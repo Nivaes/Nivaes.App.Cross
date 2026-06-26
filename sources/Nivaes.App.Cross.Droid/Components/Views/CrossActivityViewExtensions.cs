@@ -33,7 +33,7 @@ public static class CrossActivityViewExtensions
 
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
         //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
-            cached = cache?.GetAndClear(bundle);
+        cached = cache?.GetAndClear(bundle);
 
         var view = (ICrossView)androidView;
         var savedState = GetSavedStateFromBundle(bundle);
@@ -131,7 +131,7 @@ public static class CrossActivityViewExtensions
         //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidActivityLifetimeListener? activityLifetimeListener) == true &&
         //    activityLifetimeListener != null)
         //{
-            report(activityLifetimeListener, androidView.ToActivity());
+        report(activityLifetimeListener, androidView.ToActivity());
         //}
     }
 
@@ -164,7 +164,7 @@ public static class CrossActivityViewExtensions
         var viewType = androidView.GetType();
 
         var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
-        if(!Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(viewType, out viewModelType))
+        if (!Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(viewType, out viewModelType))
         {
             //var logger = CrossLogHost.GetLogger($"{nameof(CrossActivityViewExtensions)}.{nameof(LoadViewModel)}");
             //logger.Log(LogLevel.Trace, $"No ViewModel class specified for {viewType} in LoadViewModel",
@@ -179,5 +179,5 @@ public static class CrossActivityViewExtensions
         //}
 
         //return null;
-    }         
+    }
 }

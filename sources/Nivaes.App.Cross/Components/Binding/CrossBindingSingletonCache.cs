@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 

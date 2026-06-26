@@ -1,11 +1,9 @@
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-public class MvxBindingViewControllerAdapter 
+public class MvxBindingViewControllerAdapter
     : MvxBaseViewControllerAdapter
 {
     protected IMvxIosView? IosView => ViewController as IMvxIosView;
@@ -17,7 +15,7 @@ public class MvxBindingViewControllerAdapter
             throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
 
         var bindingContext = IPlatformApplication.Current!.Services.GetService<ICrossBindingContext>();
-        if(bindingContext != null)
+        if (bindingContext != null)
             IosView?.BindingContext = bindingContext;
     }
 

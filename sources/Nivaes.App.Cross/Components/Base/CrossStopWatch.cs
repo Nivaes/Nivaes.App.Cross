@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    
+
     [Obsolete("", true)]
     public sealed class CrossStopWatch
         : IDisposable

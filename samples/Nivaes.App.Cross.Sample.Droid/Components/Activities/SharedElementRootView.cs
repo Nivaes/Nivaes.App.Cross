@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [MvxActivityPresentation]
 [Activity(Theme = "@style/AppTheme")]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
-public sealed class SharedElementRootView 
+public sealed class SharedElementRootView
     : CrossActivity<SharedElementRootViewModel>, IMvxAndroidSharedElements
 {
     public int SelectedListItem { get; set; }

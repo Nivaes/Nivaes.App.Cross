@@ -1,9 +1,8 @@
-using System;
 using Microsoft.UI.Dispatching;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public class CrossWindowsMainThreadDispatcher 
+public class CrossWindowsMainThreadDispatcher
     : CrossMainThreadAsyncDispatcher
 {
     private readonly DispatcherQueue _uiDispatcher;

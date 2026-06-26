@@ -3,9 +3,8 @@ namespace Nivaes.App.Cross.AppKitOS
     using System;
     using AppKit;
     using Foundation;
-    using MvvmCross.Platforms.Mac.Binding.Target;
 
-    public class MvxNSDatePickerTimeTargetBinding 
+    public class MvxNSDatePickerTimeTargetBinding
         : MvxBaseNSDatePickerTargetBinding
     {
         public MvxNSDatePickerTimeTargetBinding(NSDatePicker datePicker)

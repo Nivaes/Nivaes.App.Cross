@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.Binding.Extensions;
     using Object = Java.Lang.Object;
 
-    public class MvxExpandableListAdapter 
+    public class MvxExpandableListAdapter
         : MvxAdapter, IExpandableListAdapter
     {
         public MvxExpandableListAdapter(Context context)

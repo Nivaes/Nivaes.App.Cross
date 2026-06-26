@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Linq;
     using Foundation;
-    using MvvmCross.Platforms.Ios.Views;
     using ObjCRuntime;
     using UIKit;
 

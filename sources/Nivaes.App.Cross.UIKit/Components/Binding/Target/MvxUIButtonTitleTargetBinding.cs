@@ -1,7 +1,6 @@
 namespace MvvmCross.Platforms.Ios.Binding.Target
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxUIButtonTitleTargetBinding(UIButton button, UIControlState state = UIControlState.Normal)

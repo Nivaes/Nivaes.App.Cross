@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 

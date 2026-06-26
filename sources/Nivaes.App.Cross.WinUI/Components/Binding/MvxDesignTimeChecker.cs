@@ -1,8 +1,5 @@
 namespace Nivaes.App.Cross.WinUI
 {
-    using MvvmCross;
-    using MvvmCross.IoC;
-    using Nivaes.App.Cross;
     using Windows.ApplicationModel;
 
     public static class MvxDesignTimeChecker
@@ -24,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI
             //if (CrossSingleton<IMvxIoCProvider>.Instance == null)
             //{
             //    var iocProvider = MvxIoCProvider.Initialize();
-                
+
             //    Mvx.IoCProvider.RegisterSingleton(iocProvider);
             //}
 

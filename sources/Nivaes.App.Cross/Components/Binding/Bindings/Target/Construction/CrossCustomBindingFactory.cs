@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class CrossCustomBindingFactory<TTarget>
         : ICrossPluginTargetBindingFactory

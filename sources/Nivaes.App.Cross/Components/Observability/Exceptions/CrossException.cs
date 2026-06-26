@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
-    public class CrossException 
+    public class CrossException
         : Exception
     {
         public CrossException()
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public CrossException(string message, Exception innerException) 
+        public CrossException(string message, Exception innerException)
             : base(message, innerException)
         {
         }

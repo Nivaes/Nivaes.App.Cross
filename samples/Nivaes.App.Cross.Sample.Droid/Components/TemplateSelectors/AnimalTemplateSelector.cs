@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 using static Nivaes.App.Cross.Sample.CollectionViewModel;
 

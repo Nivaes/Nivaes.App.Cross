@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class TabsRootViewModel 
+public class TabsRootViewModel
     : CrossNavigationViewModel
 {
-    public TabsRootViewModel(ILogger<TabsRootViewModel> logger, ICrossNavigationService navigationService) 
+    public TabsRootViewModel(ILogger<TabsRootViewModel> logger, ICrossNavigationService navigationService)
         : base(navigationService, logger)
     {
         ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);

@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross
 {
     [Obsolete("", true)]
-    public interface ICrossValueConverterRegistry 
+    public interface ICrossValueConverterRegistry
         : ICrossNamedInstanceRegistry<ICrossValueConverter>
     {
     }

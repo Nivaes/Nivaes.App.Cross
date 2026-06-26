@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Util;
     using Android.Views;
 
-    public interface IMvxLayoutInflaterHolderFactory 
+    public interface IMvxLayoutInflaterHolderFactory
         : IMvxLayoutInflaterFactory
     {
         IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings { get; }

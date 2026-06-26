@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.WinUI;
 
-public sealed class MvxRegionPresentationAttribute 
+public sealed class MvxRegionPresentationAttribute
     : CrossBasePresentationAttribute
 {
     public MvxRegionPresentationAttribute(string? regionName = null)

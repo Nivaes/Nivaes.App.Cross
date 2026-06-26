@@ -4,17 +4,16 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using MvvmCross.IoC;
 
     //[MvxUnconventional]
-    public class CrossValueConverterValueCombiner 
+    public class CrossValueConverterValueCombiner
         : CrossValueCombiner
     {
         private readonly ICrossValueConverter _valueConverter;
 
         public CrossValueConverterValueCombiner(ICrossValueConverter valueConverter)
         {
-             _valueConverter = valueConverter;
+            _valueConverter = valueConverter;
         }
 
         public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)

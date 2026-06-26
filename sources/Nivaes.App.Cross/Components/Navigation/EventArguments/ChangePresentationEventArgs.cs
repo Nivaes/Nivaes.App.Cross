@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Threading;
 
-    public class ChangePresentationEventArgs 
+    public class ChangePresentationEventArgs
         : CrossCancelEventArgs
     {
         public ChangePresentationEventArgs(CancellationToken cancellationToken = default)

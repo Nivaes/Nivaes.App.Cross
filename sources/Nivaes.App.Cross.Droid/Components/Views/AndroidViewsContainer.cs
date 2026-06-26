@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -16,10 +15,10 @@ public class AndroidViewsContainer
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly ICrossChildViewModelCache _childViewModelCache;
 
-    public AndroidViewsContainer(Context applicationContext, 
+    public AndroidViewsContainer(Context applicationContext,
         ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,
         ILogger<AndroidViewsContainer> logger)
-        :base (logger)
+        : base(logger)
     {
         _applicationContext = applicationContext;
         _navigationSerializer = navigationSerializer;
@@ -198,7 +197,7 @@ public class AndroidViewsContainer
     {
         //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) == true && viewModelCache != null)
         //{
-            _childViewModelCache.Remove(key);
+        _childViewModelCache.Remove(key);
         //}
     }
 

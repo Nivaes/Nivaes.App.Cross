@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Runtime;
     using Android.Util;
     using Android.Widget;
-    using MvvmCross.Platforms.Android;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxDatePicker")]
     public class MvxDatePicker

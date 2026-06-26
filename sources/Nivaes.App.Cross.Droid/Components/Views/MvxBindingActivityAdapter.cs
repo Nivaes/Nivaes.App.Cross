@@ -1,5 +1,3 @@
-using System;
-
 namespace Nivaes.App.Cross.Droid;
 
 public class MvxBindingActivityAdapter

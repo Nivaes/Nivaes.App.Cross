@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.WinUI;
 public abstract class CrossWindowsPage<TViewModel>
     : Page
     , IDisposable
-    , ICrossWindowsView<TViewModel> 
+    , ICrossWindowsView<TViewModel>
     , ICrossWindowsView
     where TViewModel : class, ICrossViewModel
 {
@@ -44,13 +44,13 @@ public abstract class CrossWindowsPage<TViewModel>
         base.OnNavigatingFrom(e);
     }
 
-    
+
 
     public ICrossWindowsFrame WrappedFrame => new CrossWindowsFrame(Frame);
 
-    ICrossViewModel? ICrossView.ViewModel 
-    { 
-        get => ViewModel; 
+    ICrossViewModel? ICrossView.ViewModel
+    {
+        get => ViewModel;
         set => ViewModel = (TViewModel?)value;
     }
 
@@ -194,7 +194,7 @@ public abstract class CrossWindowsPage<TViewModel>
     protected virtual void SaveStateBundle(NavigationEventArgs navigationEventArgs, ICrossBundle bundle)
     {
         var frameState = SuspensionManager?.SessionStateForFrame(WrappedFrame);
-        if(_pageKey != null)
+        if (_pageKey != null)
             frameState?[_pageKey] = bundle.Data;
     }
 

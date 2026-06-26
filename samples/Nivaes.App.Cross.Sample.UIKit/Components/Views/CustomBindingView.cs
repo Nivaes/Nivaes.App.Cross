@@ -4,7 +4,6 @@ using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
 using Playground.iOS.Controls;
-using UIKit;
 
 namespace Nivaes.App.Cross.Sample.UIKitOS;
 

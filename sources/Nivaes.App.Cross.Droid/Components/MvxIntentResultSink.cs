@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
 
-    public class MvxIntentResultSink 
+    public class MvxIntentResultSink
         : IMvxIntentResultSink, IMvxIntentResultSource
     {
         public void OnResult(MvxIntentResultEventArgs result)

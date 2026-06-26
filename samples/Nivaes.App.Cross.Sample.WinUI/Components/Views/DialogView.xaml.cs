@@ -1,4 +1,3 @@
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;

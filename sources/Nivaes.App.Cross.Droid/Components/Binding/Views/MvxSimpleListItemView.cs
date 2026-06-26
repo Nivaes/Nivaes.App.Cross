@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Widget;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxSimpleListItemView")]
-    public class MvxSimpleListItemView 
+    public class MvxSimpleListItemView
         : MvxListItemView
     {
         public MvxSimpleListItemView(Context context, IMvxLayoutInflaterHolder layoutInflaterHolder,

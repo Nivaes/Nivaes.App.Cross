@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
+﻿using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI;
 

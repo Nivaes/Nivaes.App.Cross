@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
-    public class CrossSourcePropertyBindingEventArgs 
+    public class CrossSourcePropertyBindingEventArgs
         : EventArgs
     {
         private readonly object _value;

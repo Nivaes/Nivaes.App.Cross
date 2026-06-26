@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross;
 
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 public abstract class MvxResourceObjectLoader<TResource>
     : MvxResourceProvider, IMvxResourceObjectLoaderConfiguration<TResource>, IMvxResourceObjectLoader<TResource>

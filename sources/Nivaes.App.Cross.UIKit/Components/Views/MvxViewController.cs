@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.UIKitOS
             set { DataContext = value; }
         }
 
-        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel ?)value; }
+        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
         #endregion
 
         public CrossViewModelRequest? Request { get; set; } = default;

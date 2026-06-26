@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 using ObjCRuntime;
 
 namespace Nivaes.App.Cross.UIKitOS;
@@ -231,7 +230,7 @@ public class MvxTabBarViewController
     }
 }
 
-public class MvxTabBarViewController<TViewModel> 
+public class MvxTabBarViewController<TViewModel>
     : MvxTabBarViewController, IMvxIosView<TViewModel>
     where TViewModel : class, ICrossViewModel
 {

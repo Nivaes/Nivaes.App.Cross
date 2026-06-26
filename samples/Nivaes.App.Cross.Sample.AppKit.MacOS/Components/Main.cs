@@ -1,5 +1,3 @@
-using AppKit;
-
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 {
     static class MainClass

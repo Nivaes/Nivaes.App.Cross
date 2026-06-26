@@ -1,5 +1,4 @@
 using System.Globalization;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
@@ -9,7 +8,7 @@ public abstract class CrossColorValueConverter : CrossValueConverter
     private readonly ICrossNativeColor _nativeColor;
 
     public CrossColorValueConverter(ICrossNativeColor nativeColor, ILogger logger)
-        :base(logger)
+        : base(logger)
     {
         _nativeColor = nativeColor;
     }
@@ -26,7 +25,7 @@ public abstract class CrossColorValueConverter : CrossValueConverter
 public abstract class CrossColorValueConverter<T> : CrossColorValueConverter
 {
     public CrossColorValueConverter(ICrossNativeColor nativeColor, ILogger logger)
-        :base(nativeColor, logger)
+        : base(nativeColor, logger)
     { }
 
     protected sealed override System.Drawing.Color Convert(object value, object? parameter, CultureInfo? culture)

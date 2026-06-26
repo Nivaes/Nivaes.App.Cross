@@ -9,14 +9,14 @@
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
     [Generator]
-    internal class BindingActivityIncrementalGenerator 
+    internal class BindingActivityIncrementalGenerator
         : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-//#if DEBUG
-//            System.Diagnostics.Debugger.Launch();
-//#endif
+            //#if DEBUG
+            //            System.Diagnostics.Debugger.Launch();
+            //#endif
 
             var classDeclarations = context.SyntaxProvider
                 .CreateSyntaxProvider(

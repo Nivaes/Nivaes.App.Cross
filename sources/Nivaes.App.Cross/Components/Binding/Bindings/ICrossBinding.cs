@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
-    public interface ICrossBinding 
+    public interface ICrossBinding
         : IDisposable
     {
     }

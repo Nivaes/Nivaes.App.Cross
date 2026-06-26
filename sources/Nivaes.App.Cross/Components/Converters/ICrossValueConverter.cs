@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
 
     public interface ICrossValueConverter

@@ -2,7 +2,7 @@ using Android.Content;
 
 namespace Nivaes.App.Cross.Droid;
 
-public interface ICrossEventSourceActivity 
+public interface ICrossEventSourceActivity
     : ICrossDisposeSource
 {
     event EventHandler<CrossValueEventArgs<Bundle?>> CreateWillBeCalled;

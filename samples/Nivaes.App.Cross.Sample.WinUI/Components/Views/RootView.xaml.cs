@@ -1,5 +1,3 @@
-using Nivaes.App.Cross;
-using Playground.Core.ViewModels;
 using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;

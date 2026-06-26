@@ -4,7 +4,7 @@ namespace Playground.Core.ViewModels
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
-    public class Page1ViewModel 
+    public class Page1ViewModel
         : CrossNavigationViewModel
     {
         public MvxCommand<int> HeaderTappedCommand { get; }

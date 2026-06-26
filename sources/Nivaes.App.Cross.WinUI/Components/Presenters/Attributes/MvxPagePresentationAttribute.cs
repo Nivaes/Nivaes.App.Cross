@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.WinUI;
 
-public class MvxPagePresentationAttribute 
+public class MvxPagePresentationAttribute
     : CrossBasePresentationAttribute
 {
 }

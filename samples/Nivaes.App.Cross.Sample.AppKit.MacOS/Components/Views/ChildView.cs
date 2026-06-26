@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Mac.Views;
 using Nivaes.App.Cross.AppKitOS;
 using ObjCRuntime;
 

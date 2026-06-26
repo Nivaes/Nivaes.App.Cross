@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using ObjCRuntime;
     using UIKit;
 
-    public class MvxEventSourcePageViewController 
+    public class MvxEventSourcePageViewController
         : UIPageViewController, IMvxEventSourceViewController
     {
         public MvxEventSourcePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)

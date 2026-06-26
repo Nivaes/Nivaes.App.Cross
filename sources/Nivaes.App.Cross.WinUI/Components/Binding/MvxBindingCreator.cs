@@ -4,10 +4,9 @@ namespace Nivaes.App.Cross.WinUI
     using System.Collections.Generic;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
-    using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
 
-    public abstract class MvxBindingCreator 
+    public abstract class MvxBindingCreator
         : IMvxBindingCreator
     {
         public void CreateBindings(

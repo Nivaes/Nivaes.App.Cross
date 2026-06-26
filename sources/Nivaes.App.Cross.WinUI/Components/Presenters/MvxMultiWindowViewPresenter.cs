@@ -4,7 +4,6 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
-using Nivaes.IoC;
 using Windows.Graphics;
 using Windows.UI.Core;
 using Control = Microsoft.UI.Xaml.Controls.Control;
@@ -37,7 +36,7 @@ public class MvxMultiWindowViewPresenter
     ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
-    public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider, 
+    public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider,
         ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
         ICrossWindowsViewModelRequestTranslator requestTranslator, ILogger<MvxMultiWindowViewPresenter> logger)
         : base(crossViewsContainer)
@@ -53,7 +52,7 @@ public class MvxMultiWindowViewPresenter
         }
 
         _mainFrame = new WindowInformation(window!, rootFrame, null);
-        
+
         //_logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
 
         if (Window.Current != null)
@@ -286,7 +285,7 @@ public class MvxMultiWindowViewPresenter
     protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
-        
+
         if (base.ViewsContainer == null)
         {
             return Task.FromResult(false);

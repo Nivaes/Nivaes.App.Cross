@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class CrossSimplePropertyInfoTargetBindingFactory
         : ICrossPluginTargetBindingFactory

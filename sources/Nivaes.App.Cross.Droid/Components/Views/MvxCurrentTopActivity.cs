@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Droid
     {
         private readonly WeakReference<Activity?> _lastSeenActivity = new(null);
 
-        public MvxCurrentTopActivity() 
+        public MvxCurrentTopActivity()
         { }
 
         public Activity? Activity

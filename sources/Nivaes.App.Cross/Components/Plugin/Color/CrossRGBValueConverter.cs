@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross;
 
 public class CrossRGBValueConverter : CrossColorValueConverter<string>
 {
-    public CrossRGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBValueConverter> logger) 
-        : base(nativeColor, logger) 
+    public CrossRGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBValueConverter> logger)
+        : base(nativeColor, logger)
     { }
 
     protected override System.Drawing.Color Convert(string value, object? parameter, CultureInfo? culture)

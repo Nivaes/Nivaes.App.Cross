@@ -1,6 +1,3 @@
-using Nivaes.App.Cross.Sample.Web.Client.Pages;
-using Nivaes.App.Cross.Sample.Web.Components;
-
 namespace Nivaes.App.Cross.Sample.Web;
 
 public class Program

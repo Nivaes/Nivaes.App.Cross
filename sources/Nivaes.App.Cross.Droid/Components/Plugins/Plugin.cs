@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross;
     using MvvmCross.IoC;
-    using MvvmCross.Plugin;
 
     [Obsolete("", true)]
     [MvxPlugin]

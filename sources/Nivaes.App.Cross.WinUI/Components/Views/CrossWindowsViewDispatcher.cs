@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace Nivaes.App.Cross.WinUI;
 
 public class CrossWindowsViewDispatcher

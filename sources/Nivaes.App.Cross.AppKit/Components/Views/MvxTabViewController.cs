@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     using ObjCRuntime;
 
-    public class MvxTabViewController 
+    public class MvxTabViewController
         : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView
     {
         protected MvxTabViewController()

@@ -1,7 +1,6 @@
 namespace MvvmCross.Platforms.Mac.Binding.Target
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxNSTextViewTextTargetBinding : MvxConvertingTargetBinding<NSTextView, string>

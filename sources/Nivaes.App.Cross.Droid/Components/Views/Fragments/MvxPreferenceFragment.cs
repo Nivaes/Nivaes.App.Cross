@@ -94,7 +94,7 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    public abstract class MvxPreferenceFragment<TViewModel> 
+    public abstract class MvxPreferenceFragment<TViewModel>
         : MvxPreferenceFragment, IMvxFragmentView<TViewModel>
             where TViewModel : class, ICrossViewModel
     {

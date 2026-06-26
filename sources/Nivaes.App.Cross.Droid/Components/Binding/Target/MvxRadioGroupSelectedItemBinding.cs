@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Android.Views;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Views;
 
     public class MvxRadioGroupSelectedItemBinding
     : MvxAndroidTargetBinding

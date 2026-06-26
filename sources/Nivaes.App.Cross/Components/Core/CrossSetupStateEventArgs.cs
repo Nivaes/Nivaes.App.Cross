@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
-    public class CrossSetupStateEventArgs 
+    public class CrossSetupStateEventArgs
         : EventArgs
     {
         public CrossSetupStateEventArgs(CrossSetupState setupState)

@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
-    using MvvmCross.Binding;
-    using Nivaes.App.Cross;
 
     public class CrossEventNameTargetBinding<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TTarget> : CrossTargetBinding
         where TTarget : class

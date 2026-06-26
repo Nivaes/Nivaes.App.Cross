@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.AppKitOS;
 
@@ -20,7 +19,7 @@ public static class MvxViewControllerExtensions
             CrossLoggerHost.Default.Log(LogLevel.Trace,
                 "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
 
-            
+
             macView.Request = IPlatformApplication.Current!.Services.GetRequiredService<IMvxCurrentRequest>().CurrentRequest;
         }
 

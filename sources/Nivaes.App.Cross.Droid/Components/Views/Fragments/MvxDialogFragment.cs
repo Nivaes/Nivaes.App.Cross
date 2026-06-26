@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.OS;
     using Android.Runtime;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
 
     [Register("mvvmcross.platforms.android.views.fragments.MvxDialogFragment")]
     public abstract class MvxDialogFragment

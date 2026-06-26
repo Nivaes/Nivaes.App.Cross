@@ -1,5 +1,3 @@
-using System;
-
 namespace Nivaes.App.Cross.AppKitOS;
 
 [AttributeUsage(AttributeTargets.Class)]

@@ -81,15 +81,15 @@ namespace Nivaes.App.Cross.UIKitOS
                     view => new MvxUIViewHiddenTargetBinding(view));
 
 #if IOS || MACCATALYST
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUISliderValueTargetBinding),
-                typeof(UISlider),
-                MvxIosPropertyBinding.UISlider_Value);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUISliderValueTargetBinding),
+                    typeof(UISlider),
+                    MvxIosPropertyBinding.UISlider_Value);
 
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUIStepperValueTargetBinding),
-                typeof(UIStepper),
-                MvxIosPropertyBinding.UIStepper_Value);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUIStepperValueTargetBinding),
+                    typeof(UIStepper),
+                    MvxIosPropertyBinding.UIStepper_Value);
 #endif
 
                 registry.RegisterPropertyInfoBindingFactory(
@@ -103,29 +103,29 @@ namespace Nivaes.App.Cross.UIKitOS
                     MvxIosPropertyBinding.UISegmentedControl_SelectedSegment);
 
 #if IOS || MACCATALYST
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUIDatePickerDateTargetBinding),
-                typeof(UIDatePicker),
-                MvxIosPropertyBinding.UIDatePicker_Date);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUIDatePickerDateTargetBinding),
+                    typeof(UIDatePicker),
+                    MvxIosPropertyBinding.UIDatePicker_Date);
 
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUIDatePickerMinMaxTargetBinding),
-                typeof(UIDatePicker),
-                MvxIosPropertyBinding.UIDatePicker_MinimumDate);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUIDatePickerMinMaxTargetBinding),
+                    typeof(UIDatePicker),
+                    MvxIosPropertyBinding.UIDatePicker_MinimumDate);
 
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUIDatePickerMinMaxTargetBinding),
-                typeof(UIDatePicker),
-                MvxIosPropertyBinding.UIDatePicker_MaximumDate);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUIDatePickerMinMaxTargetBinding),
+                    typeof(UIDatePicker),
+                    MvxIosPropertyBinding.UIDatePicker_MaximumDate);
 
-            registry.RegisterCustomBindingFactory<UIDatePicker>(
-                MvxIosPropertyBinding.UIDatePicker_Time,
-                view => new MvxUIDatePickerTimeTargetBinding(view, typeof(UIDatePicker).GetProperty(MvxIosPropertyBinding.UIDatePicker_Date)));
+                registry.RegisterCustomBindingFactory<UIDatePicker>(
+                    MvxIosPropertyBinding.UIDatePicker_Time,
+                    view => new MvxUIDatePickerTimeTargetBinding(view, typeof(UIDatePicker).GetProperty(MvxIosPropertyBinding.UIDatePicker_Date)));
 
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(MvxUIDatePickerCountDownDurationTargetBinding),
-                typeof(UIDatePicker),
-                MvxIosPropertyBinding.UIDatePicker_CountDownDuration);
+                registry.RegisterPropertyInfoBindingFactory(
+                    typeof(MvxUIDatePickerCountDownDurationTargetBinding),
+                    typeof(UIDatePicker),
+                    MvxIosPropertyBinding.UIDatePicker_CountDownDuration);
 #endif
                 registry.RegisterCustomBindingFactory<UITextField>(
                     MvxIosPropertyBinding.UITextField_ShouldReturn,
@@ -147,9 +147,9 @@ namespace Nivaes.App.Cross.UIKitOS
                     MvxIosPropertyBinding.UIView_LayerBorderWidth,
                     view => new MvxUIViewLayerBorderWidthTargetBinding(view));
 #if IOS || MACCATALYST
-            registry.RegisterCustomBindingFactory<UISwitch>(
-                MvxIosPropertyBinding.UISwitch_On,
-                uiSwitch => new MvxUISwitchOnTargetBinding(uiSwitch));
+                registry.RegisterCustomBindingFactory<UISwitch>(
+                    MvxIosPropertyBinding.UISwitch_On,
+                    uiSwitch => new MvxUISwitchOnTargetBinding(uiSwitch));
 #endif
                 registry.RegisterPropertyInfoBindingFactory(
                     typeof(MvxUISearchBarTextTargetBinding),
@@ -218,9 +218,9 @@ namespace Nivaes.App.Cross.UIKitOS
                 registry.AddOrOverwrite(typeof(MvxTableViewSource), nameof(MvxTableViewSource.ItemsSource));
                 registry.AddOrOverwrite(typeof(UIImageView), nameof(UIImageView.Image));
 #if IOS || MACCATALYST
-            registry.AddOrOverwrite(typeof(UIDatePicker), MvxIosPropertyBinding.UIDatePicker_Date);
-            registry.AddOrOverwrite(typeof(UISlider), MvxIosPropertyBinding.UISlider_Value);
-            registry.AddOrOverwrite(typeof(UISwitch), MvxIosPropertyBinding.UISwitch_On);
+                registry.AddOrOverwrite(typeof(UIDatePicker), MvxIosPropertyBinding.UIDatePicker_Date);
+                registry.AddOrOverwrite(typeof(UISlider), MvxIosPropertyBinding.UISlider_Value);
+                registry.AddOrOverwrite(typeof(UISwitch), MvxIosPropertyBinding.UISwitch_On);
 #endif
                 registry.AddOrOverwrite(typeof(UIProgressView), nameof(UIProgressView.Progress));
                 registry.AddOrOverwrite(typeof(UISegmentedControl), MvxIosPropertyBinding.UISegmentedControl_SelectedSegment);

@@ -24,7 +24,7 @@ public class CrossDefaultViewModelLocator
         ICrossViewModel? viewModel;
         try
         {
-            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType); 
+            viewModel = (ICrossViewModel?)ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType);
         }
         catch (Exception ex)
         {

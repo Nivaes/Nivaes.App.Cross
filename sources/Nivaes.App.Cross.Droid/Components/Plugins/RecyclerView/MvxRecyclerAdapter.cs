@@ -11,7 +11,6 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.Binding.Extensions;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
     using Nivaes.App.Cross.Droid.RecyclerView;
     using Object = Java.Lang.Object;
     using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;

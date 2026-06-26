@@ -6,11 +6,8 @@ namespace Nivaes.App.Cross.Droid
     using Android.Runtime;
     using Android.Util;
     using AndroidX.Leanback.Widget;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.DroidX.Leanback.Listeners;
-    using MvvmCross.DroidX.RecyclerView;
-    using Nivaes.App.Cross.Droid;
 
     /// <summary>
     /// 

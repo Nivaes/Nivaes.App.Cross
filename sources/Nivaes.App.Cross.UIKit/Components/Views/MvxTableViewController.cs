@@ -117,7 +117,7 @@ namespace Nivaes.App.Cross.UIKitOS
         }
     }
 
-    public class MvxTableViewController<TViewModel> 
+    public class MvxTableViewController<TViewModel>
         : MvxTableViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

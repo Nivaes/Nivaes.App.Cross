@@ -2,10 +2,10 @@ namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
 
-    public class CrossPropertyChangingEventArgs<T> 
+    public class CrossPropertyChangingEventArgs<T>
         : PropertyChangingEventArgs
     {
-        public CrossPropertyChangingEventArgs(string? propertyName, T newValue) 
+        public CrossPropertyChangingEventArgs(string? propertyName, T newValue)
             : base(propertyName)
         {
             NewValue = newValue;

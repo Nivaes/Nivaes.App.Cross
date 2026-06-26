@@ -1,10 +1,9 @@
-using Android.Views;
 using MvvmCross.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
 [Obsolete("", true)]
-public class MvxNamespaceListViewTypeResolver 
+public class MvxNamespaceListViewTypeResolver
     : MvxLongLowerCaseViewTypeResolver, IMvxNamespaceListViewTypeResolver
 {
     public IList<string> Namespaces { get; }

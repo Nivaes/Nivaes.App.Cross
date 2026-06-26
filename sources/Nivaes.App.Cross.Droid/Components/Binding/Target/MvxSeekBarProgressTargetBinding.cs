@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxSeekBarProgressTargetBinding

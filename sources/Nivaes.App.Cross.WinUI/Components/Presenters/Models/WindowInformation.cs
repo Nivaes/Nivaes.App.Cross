@@ -1,5 +1,4 @@
 using Microsoft.UI.Xaml;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.WinUI;
 

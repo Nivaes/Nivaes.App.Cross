@@ -76,7 +76,7 @@ namespace Nivaes.App.Cross.UIKitOS
         public static bool IsLandscape()
         {
 #if TVOS
-            return false;       
+            return false;
 #else
             var orientation = UIDevice.CurrentDevice.Orientation;
             return orientation is UIDeviceOrientation.LandscapeLeft or UIDeviceOrientation.LandscapeRight;

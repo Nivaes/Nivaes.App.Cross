@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using Android.Views;
-    using MvvmCross.Binding;
 
     public class MvxViewLongClickBinding
     : MvxAndroidTargetBinding

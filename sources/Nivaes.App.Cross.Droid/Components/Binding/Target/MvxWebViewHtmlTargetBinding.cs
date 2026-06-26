@@ -3,7 +3,6 @@ using Android.Webkit;
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
 
     public class MvxWebViewHtmlTargetBinding(object target)
     : MvxAndroidTargetBinding(target)

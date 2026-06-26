@@ -1,7 +1,7 @@
 #if IOS || MACCATALYST
 namespace Nivaes.App.Cross.UIKitOS
 {
-    public class MvxPopoverPresentationControllerDelegate 
+    public class MvxPopoverPresentationControllerDelegate
         : UIPopoverPresentationControllerDelegate
     {
         private readonly IMvxIosViewPresenter _presenter;

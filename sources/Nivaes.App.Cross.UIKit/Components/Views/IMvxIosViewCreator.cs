@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
-    public interface IMvxIosViewCreator 
+    public interface IMvxIosViewCreator
         : ICrossCurrentRequest
     {
         IMvxIosView CreateView(CrossViewModelRequest request);

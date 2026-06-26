@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid
 {

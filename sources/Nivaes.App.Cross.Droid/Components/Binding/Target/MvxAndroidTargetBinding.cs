@@ -2,9 +2,8 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;   
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public abstract class MvxAndroidTargetBinding

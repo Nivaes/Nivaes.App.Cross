@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         public CrossAndroidContext(IServiceProvider services)
-                :base(services)
+                : base(services)
         {
             _context = new Lazy<Context?>(() => _services.GetService<Context>());
         }

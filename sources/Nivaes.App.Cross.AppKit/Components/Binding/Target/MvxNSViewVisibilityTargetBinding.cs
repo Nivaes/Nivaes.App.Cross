@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class MvxNSViewVisibilityTargetBinding
         : MvxMacTargetBinding

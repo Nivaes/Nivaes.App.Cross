@@ -1,10 +1,9 @@
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 
 
 namespace Nivaes.App.Cross.Sample;
 
-public class SheetViewModel 
+public class SheetViewModel
     : CrossNavigationViewModel
 {
     public SheetViewModel(ILogger<SheetViewModel> logger, ICrossNavigationService navigationService)

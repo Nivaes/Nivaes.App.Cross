@@ -1,7 +1,3 @@
-using System;
-using ObjCRuntime;
-using UIKit;
-
 namespace Nivaes.App.Cross.UIKitOS
 {
     public static class MvxIosColorExtensions

@@ -15,5 +15,5 @@ public sealed partial class RegionView : RegionViewPage
     }
 }
 
-public abstract class RegionViewPage 
+public abstract class RegionViewPage
     : CrossWindowsPage<RegionViewModel>;

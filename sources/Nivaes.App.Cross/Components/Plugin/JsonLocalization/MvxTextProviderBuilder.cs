@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
@@ -52,7 +51,7 @@ public abstract class MvxTextProviderBuilder
             catch (Exception exception)
             {
                 //MvxPluginLog.Instance?.LogWarning(exception, "Language file could not be loaded for {FolderName}.{FileName}",
-                               //whichLocalizationFolder, kvp.Key);
+                //whichLocalizationFolder, kvp.Key);
             }
         }
     }

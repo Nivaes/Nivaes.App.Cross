@@ -4,10 +4,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
     using System.Reflection;
     using AppKit;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxNSPopUpButtonSelectedTagTargetBinding 
+    public class MvxNSPopUpButtonSelectedTagTargetBinding
         : MvxPropertyInfoTargetBinding<NSPopUpButton>
     {
         private bool _subscribed;

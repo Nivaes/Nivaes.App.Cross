@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
     internal static class MvxSegueExtensions
     {
-        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TViewType>(TViewType? view) 
+        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TViewType>(TViewType? view)
             where TViewType : class, ICrossView
         {
             [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]

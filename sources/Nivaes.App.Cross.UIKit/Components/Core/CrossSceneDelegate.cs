@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 

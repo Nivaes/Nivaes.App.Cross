@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     using MvvmCross.IoC;
 
     [Obsolete("", true)]
-    public class CrossBindingBuilder 
+    public class CrossBindingBuilder
         : CrossCoreBindingBuilder
     {
         [RequiresUnreferencedCode("This method registers source steps that may not be preserved by trimming")]

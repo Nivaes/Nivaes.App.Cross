@@ -1,11 +1,8 @@
 ﻿using Android.Content;
-using Android.Webkit;
 using Microsoft.Extensions.DependencyInjection;
-using MvvmCross.Platforms.Android.Binding.Views;
 using Nivaes.App.Cross.Droid;
 using Nivaes.App.Cross.Hosting;
 using OpenTelemetry;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

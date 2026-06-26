@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class SecondChildViewModel 
+public class SecondChildViewModel
     : CrossNavigationViewModel
 {
     public SecondChildViewModel(ILogger<SecondChildViewModel> logger, ICrossNavigationService navigationService)

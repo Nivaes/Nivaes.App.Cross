@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -27,14 +26,14 @@ public static class CrossFluentBindingDescriptionExtensions
             IDictionary<TFrom, TTo> converterParameter)
                 where TFrom : notnull
                 where TTarget : class
-        {
-            var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
+    {
+        var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
 
-            return bindingDescription.WithConversion(
-                    converter, new Tuple<IDictionary<TFrom, TTo>, TTo?, bool>(
-                    converterParameter, default, false))
-                    .OneWay();
-        }
+        return bindingDescription.WithConversion(
+                converter, new Tuple<IDictionary<TFrom, TTo>, TTo?, bool>(
+                converterParameter, default, false))
+                .OneWay();
+    }
 
     public static CrossFluentBindingDescription<TTarget, TSource> WithDictionaryConversion<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource, TFrom, TTo>(
@@ -43,11 +42,11 @@ public static class CrossFluentBindingDescriptionExtensions
             TTo fallback)
                 where TFrom : notnull
                 where TTarget : class
-            {
-                var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
+    {
+        var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
 
-                return bindingDescription.WithConversion(
-                    converter, new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(converterParameter, fallback, true))
-                    .OneWay();
-            }
+        return bindingDescription.WithConversion(
+            converter, new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(converterParameter, fallback, true))
+            .OneWay();
+    }
 }

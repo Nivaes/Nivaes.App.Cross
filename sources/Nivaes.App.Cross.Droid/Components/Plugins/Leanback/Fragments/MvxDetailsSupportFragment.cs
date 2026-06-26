@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross.Droid
     }
 
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public abstract class MvxDetailsSupportFragment<TViewModel> 
+    public abstract class MvxDetailsSupportFragment<TViewModel>
         : MvxDetailsSupportFragment, IMvxFragmentView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

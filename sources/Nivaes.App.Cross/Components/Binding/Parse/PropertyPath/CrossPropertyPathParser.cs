@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
     using System.Text;
-    using Nivaes.App.Cross;
 
     public class CrossPropertyPathParser : CrossParser
     {

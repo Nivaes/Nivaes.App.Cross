@@ -1,12 +1,11 @@
 using Microsoft.Extensions.Logging;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class ModalViewModel 
+public class ModalViewModel
     : CrossNavigationViewModel
 {
-    public ModalViewModel(ILogger<ModalViewModel> logger, ICrossNavigationService navigationService) 
+    public ModalViewModel(ILogger<ModalViewModel> logger, ICrossNavigationService navigationService)
         : base(navigationService, logger)
     {
         ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());

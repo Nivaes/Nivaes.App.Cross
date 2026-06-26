@@ -1,5 +1,3 @@
-using AppKit;
-
 namespace Nivaes.App.Cross.AppKitOS
 {
     public class CrossMacColor : ICrossNativeColor

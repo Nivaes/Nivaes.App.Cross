@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Droid;
 

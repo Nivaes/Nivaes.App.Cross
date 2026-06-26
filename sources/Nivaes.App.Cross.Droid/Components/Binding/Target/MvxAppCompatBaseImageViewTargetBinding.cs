@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid
 {
-    
+
     public abstract class MvxAppCompatBaseImageViewTargetBinding
         : MvxAndroidTargetBinding
     {

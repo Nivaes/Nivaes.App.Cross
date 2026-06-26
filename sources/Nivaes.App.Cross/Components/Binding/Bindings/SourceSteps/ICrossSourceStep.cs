@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    public interface ICrossSourceStep 
+    public interface ICrossSourceStep
         : ICrossBinding
     {
         Type TargetType { get; set; }

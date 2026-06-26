@@ -2,10 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Target;
-    using MvvmCross.Platforms.Android.Binding.Views;
-    using Nivaes.App.Cross.Droid;
 
     public class MvxAppCompatSpinnerSelectedItemBinding
         : MvxAndroidTargetBinding

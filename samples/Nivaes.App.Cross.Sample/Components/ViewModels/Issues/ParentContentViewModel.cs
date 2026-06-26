@@ -1,10 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class ParentContentViewModel 
+public class ParentContentViewModel
     : CrossViewModel
 {
     private ChildContentViewModel _childViewModel1;

@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using ObjCRuntime;
     using UIKit;
 
-    public class MvxSimpleTableViewSource 
+    public class MvxSimpleTableViewSource
         : MvxTableViewSource
     {
         private readonly NSString? _cellIdentifier;

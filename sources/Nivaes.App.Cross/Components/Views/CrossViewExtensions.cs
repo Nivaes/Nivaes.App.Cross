@@ -46,9 +46,9 @@ public static class CrossViewExtensions
     {
         ArgumentNullException.ThrowIfNull(view);
 
-        if(Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
-        {  
-            return viewModelType; 
+        if (Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        {
+            return viewModelType;
         }
 
         //var associatedTypeFinder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelTypeFinder>();

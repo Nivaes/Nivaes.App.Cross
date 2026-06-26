@@ -4,8 +4,6 @@ using Android.Views;
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding;
 
     public class MvxViewMarginTargetBinding
     : MvxAndroidTargetBinding

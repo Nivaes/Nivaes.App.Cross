@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public interface ICrossNotifyPropertyChanged 
+    public interface ICrossNotifyPropertyChanged
         : INotifyPropertyChanged, INotifyPropertyChanging
     {
         // this ShouldAlwaysRaiseInpcOnUserInterfaceThread is not a Property so as to avoid Inpc pollution

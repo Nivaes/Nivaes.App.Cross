@@ -1,11 +1,8 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
-using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using Nivaes.App.Cross.Droid;
 using Nivaes.App.Cross.Droid.RecyclerView;
-using Nivaes.App.Cross.Sample.Droid;
 using Resource = Nivaes.App.Cross.Sample.Droid.Resource;
 
 namespace Playground.Droid.Adapter

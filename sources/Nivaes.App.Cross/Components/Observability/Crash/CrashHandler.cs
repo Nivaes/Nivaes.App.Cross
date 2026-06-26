@@ -1,12 +1,7 @@
 ﻿using System.Diagnostics;
-using System.ServiceModel.Channels;
 using System.Text;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Logs;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nivaes.App.Cross
 {
@@ -16,7 +11,7 @@ namespace Nivaes.App.Cross
 
         protected LoggerProvider LoggerProvider { [DebuggerHidden] get; }
 
-        public CrashHandler(ILogger logger, LoggerProvider loggerProvider) 
+        public CrashHandler(ILogger logger, LoggerProvider loggerProvider)
         {
             Logger = logger;
             LoggerProvider = loggerProvider;
@@ -67,14 +62,14 @@ namespace Nivaes.App.Cross
         }
 
         private static string Serialize(CrashInfo crash)
-        { 
+        {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Timestamp: {crash.Timestamp}");
             sb.AppendLine($"Type: {crash.Type}");
             sb.AppendLine($"Message: {crash.Message}");
             sb.AppendLine($"StackTrace: {crash.StackTrace}");
-            
-            if(crash.Data != null && crash.Data.Count > 0)
+
+            if (crash.Data != null && crash.Data.Count > 0)
                 sb.AppendLine($"Data: {crash.Data}");
 
             if (crash.InnerException != null)

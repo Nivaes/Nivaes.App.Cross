@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Views;
 
     public class MvxListViewSelectedItemTargetBinding(MvxListView view)
     : MvxAndroidTargetBinding(view)

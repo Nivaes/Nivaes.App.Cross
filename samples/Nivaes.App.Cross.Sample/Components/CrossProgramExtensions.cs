@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Win32;
-using Nivaes.App.Cross.Hosting;
+﻿using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Sample
 {

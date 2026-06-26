@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid
     using System;
     using Nivaes.App.Cross;
 
-    public interface ICrossEventSourceFragment 
+    public interface ICrossEventSourceFragment
         : ICrossDisposeSource
     {
         //Created sate

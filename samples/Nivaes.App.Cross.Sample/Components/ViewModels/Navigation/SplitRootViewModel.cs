@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample
 {
-    public class SplitRootViewModel 
+    public class SplitRootViewModel
         : CrossNavigationViewModel
     {
         public SplitRootViewModel(ILogger<SplitRootViewModel> logger, ICrossNavigationService navigationService)

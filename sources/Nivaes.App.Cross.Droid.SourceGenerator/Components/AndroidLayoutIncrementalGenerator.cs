@@ -33,7 +33,7 @@
 
 //            context.RegisterSourceOutput(layoutFiles, GenerateLayoutCode);
 
-           
+
 
 //            //var compilationProvider = context.CompilationProvider;
 //            ////compilationProvider.Select(

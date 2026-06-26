@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Sample
 {
     using Nivaes.App.Cross;
 
-    public class CodeBehindViewModel 
+    public class CodeBehindViewModel
         : CrossViewModel
     {
         private string _bindableText = "I'm bound!";

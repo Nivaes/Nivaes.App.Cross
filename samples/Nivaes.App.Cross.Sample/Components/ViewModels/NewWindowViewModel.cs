@@ -2,12 +2,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class NewWindowViewModel 
+public class NewWindowViewModel
     : CrossNavigationViewModel
 {
     private string _welcomeText = "Default welcome";
 
-    public NewWindowViewModel(ILogger<NewWindowViewModel> logger, ICrossNavigationService navigationService) 
+    public NewWindowViewModel(ILogger<NewWindowViewModel> logger, ICrossNavigationService navigationService)
         : base(navigationService, logger)
     {
     }

@@ -23,7 +23,7 @@
             };
         }
 
-        public static void RegisterViewModels(ViewManagerItem[] items) 
+        public static void RegisterViewModels(ViewManagerItem[] items)
         {
             Singleton<CrossNameViewsManager>.Instance.Merge(items.Select(x => x.NameViews).ToArray());
             Singleton<CrossNameViewModelsManager>.Instance.Merge(items.Select(x => x.NameViewModels).ToArray());

@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MvvmCross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -11,7 +9,7 @@ public class CrossSourceBindingFactory
     , ICrossSourceBindingFactoryExtensionHost
 {
     private ICrossSourcePropertyPathParser? _propertyPathParser;
-    
+
 
     protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourcePropertyPathParser>();
 
@@ -20,7 +18,7 @@ public class CrossSourceBindingFactory
     //private readonly ICrossSourceBindingFactoryExtension _sourceBindingFactoryExtension;
     private readonly ILogger _logger;
 
-    public CrossSourceBindingFactory(ILogger<CrossSourceBindingFactory> logger, ICrossSourceBindingFactoryExtension sourceBindingFactoryExtension) 
+    public CrossSourceBindingFactory(ILogger<CrossSourceBindingFactory> logger, ICrossSourceBindingFactoryExtension sourceBindingFactoryExtension)
     {
         //_sourceBindingFactoryExtension = sourceBindingFactoryExtension;
         _extensions.Add(sourceBindingFactoryExtension);

@@ -11,14 +11,14 @@ namespace Nivaes.App.Cross
 
         public static AutoValueConvertersManagerItem New(Type viewModelType, Type viewType, ICrossValueConverter converters)
         {
-            var key = (viewModelType.GetType(),viewType.GetType()).GetHashCode();
+            var key = (viewModelType.GetType(), viewType.GetType()).GetHashCode();
             return new AutoValueConvertersManagerItem()
             {
                 AutoValueConvertes = new CrossAutoValueConvertersManager.KeyStoreItem { Key = key, Value = converters }
             };
         }
 
-        public static void RegisterCombiners(AutoValueConvertersManagerItem[] items) 
+        public static void RegisterCombiners(AutoValueConvertersManagerItem[] items)
         {
             Singleton<CrossAutoValueConvertersManager>.Instance.Merge(items.Select(x => x.AutoValueConvertes).ToArray());
         }

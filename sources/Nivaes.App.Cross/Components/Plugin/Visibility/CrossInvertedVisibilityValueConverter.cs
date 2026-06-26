@@ -1,7 +1,5 @@
 using System.Globalization;
 using Microsoft.Extensions.Logging;
-using MvvmCross;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Visibility
 {

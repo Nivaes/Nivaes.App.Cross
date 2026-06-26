@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Nivaes.App.Cross
 {
     public interface ICrossViewModelLoader

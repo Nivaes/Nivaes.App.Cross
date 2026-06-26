@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Nivaes.App.Cross;
 
-public record CrossBundle(IDictionary<string, string>? data) 
+public record CrossBundle(IDictionary<string, string>? data)
     : ICrossBundle
 {
     public CrossBundle()

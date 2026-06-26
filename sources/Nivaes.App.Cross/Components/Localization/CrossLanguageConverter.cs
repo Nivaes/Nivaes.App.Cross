@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
         : CrossValueConverter
     {
         public CrossLanguageConverter(ILogger<CrossLanguageConverter> logger)
-            : base(logger) 
+            : base(logger)
         { }
 
         public override object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)

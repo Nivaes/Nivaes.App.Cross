@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.Droid
 
             foreach (var item in viewList)
             {
-                if(!string.IsNullOrWhiteSpace(item.FullName))
+                if (!string.IsNullOrWhiteSpace(item.FullName))
                     _cacheFullName.Add(item.FullName.ToUpperInvariant(), item);
 
                 _cacheName.Add(item.Name, item);

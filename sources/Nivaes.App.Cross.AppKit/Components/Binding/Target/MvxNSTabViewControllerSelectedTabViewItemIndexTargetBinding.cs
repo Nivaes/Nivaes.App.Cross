@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxNSTabViewControllerSelectedTabViewItemIndexTargetBinding

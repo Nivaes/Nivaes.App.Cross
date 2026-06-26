@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using Nivaes.App.Cross;
 
-    public class MvxAndroidColor 
+    public class MvxAndroidColor
         : ICrossNativeColor
     {
         public object ToNative(System.Drawing.Color color)

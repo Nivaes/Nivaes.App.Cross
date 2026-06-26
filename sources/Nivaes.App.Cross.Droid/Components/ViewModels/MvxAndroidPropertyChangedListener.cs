@@ -13,7 +13,7 @@ namespace MvvmCross.Platforms.Android.ViewModels
     ///     limbo" (where the object still exists in the mono VM, but not
     ///     in the Java VM).
     /// </summary>
-    public class MvxAndroidPropertyChangedListener 
+    public class MvxAndroidPropertyChangedListener
         : CrossPropertyChangedListener
     {
         private readonly WeakReference<IJavaObject> _target;

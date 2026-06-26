@@ -1,5 +1,3 @@
-using System;
-
 namespace Nivaes.App.Cross;
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]

@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
- 
+
     public class MvxUIDatePickerCountDownDurationTargetBinding(UIDatePicker target, PropertyInfo targetPropertyInfo)
         : MvxBaseUIDatePickerTargetBinding(target, targetPropertyInfo)
     {

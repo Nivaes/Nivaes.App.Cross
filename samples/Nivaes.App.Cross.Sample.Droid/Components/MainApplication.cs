@@ -9,10 +9,10 @@ namespace Nivaes.App.Cross.Sample.Droid;
     UsesCleartextTraffic = true
 #endif
 )]
-public class MainApplication 
+public class MainApplication
     : CrossApplication
 {
-    public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) 
+    public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
     {
     }

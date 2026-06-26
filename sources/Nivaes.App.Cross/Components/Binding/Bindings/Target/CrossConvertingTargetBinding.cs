@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Extensions;
 
     public abstract class CrossConvertingTargetBinding(object target)
         : CrossTargetBinding(target)

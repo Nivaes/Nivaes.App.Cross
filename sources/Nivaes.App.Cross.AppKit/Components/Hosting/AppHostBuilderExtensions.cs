@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.AppKitOS
         public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder /*CrossApplication app*/)
         {
             builder.SetupDefaults(/*app*/);
-            
+
             return builder;
         }
 
@@ -29,6 +29,6 @@ namespace Nivaes.App.Cross.AppKitOS
             builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossMacVisibility>();
 
             return builder;
-        } 
+        }
     }
 }

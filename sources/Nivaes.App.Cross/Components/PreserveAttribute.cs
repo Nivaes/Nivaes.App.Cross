@@ -1,5 +1,3 @@
-using System;
-
 namespace Nivaes.App.Cross;
 
 [Obsolete("Siver para algo?")]

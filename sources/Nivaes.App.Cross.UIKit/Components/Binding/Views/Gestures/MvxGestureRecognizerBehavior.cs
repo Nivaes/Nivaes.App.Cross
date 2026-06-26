@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Windows.Input;
     using UIKit;
 
-    public abstract class MvxGestureRecognizerBehavior 
+    public abstract class MvxGestureRecognizerBehavior
         : UIGestureRecognizerDelegate
     {
         public ICommand? Command { get; set; }

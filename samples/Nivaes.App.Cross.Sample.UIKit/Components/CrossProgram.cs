@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
         {
             // ToDo: Cargar esto con roslyn.
             CrossViewsManagerHelper.RegisterViewModels(new[] {
-                    CrossViewsManagerHelper.New<RootViewModel, RootView>(),                  
+                    CrossViewsManagerHelper.New<RootViewModel, RootView>(),
                     CrossViewsManagerHelper.New<ChildViewModel, ChildView>(),
                     CrossViewsManagerHelper.New<ChildWithResultViewModel,ChildWithResultViewController>(),
                     CrossViewsManagerHelper.New<SecondChildViewModel, SecondChildView>(),

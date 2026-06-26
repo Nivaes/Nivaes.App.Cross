@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Win32;
 
 namespace Nivaes.App.Cross.Hosting
 {
@@ -14,7 +10,7 @@ namespace Nivaes.App.Cross.Hosting
         {
             builder.Services.TryAddSingleton<IApplication, TApp>();
             builder.SetupDefaults();
-            
+
             return builder;
         }
 
@@ -73,7 +69,7 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
             builder.Services.TryAddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
 
-            
+
 
             //var valueConverterRegistry = new CrossValueConverterRegistry();
             //builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);

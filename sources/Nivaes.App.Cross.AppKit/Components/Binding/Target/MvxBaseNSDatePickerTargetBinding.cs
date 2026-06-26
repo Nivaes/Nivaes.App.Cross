@@ -2,9 +2,8 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     using System;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
-    public abstract class MvxBaseNSDatePickerTargetBinding 
+    public abstract class MvxBaseNSDatePickerTargetBinding
         : MvxMacTargetBinding
     {
         private bool _subscribed;

@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
-    using Nivaes.App.Cross;
 
     public static class CrossBindExtensions
     {

@@ -60,7 +60,7 @@ public class CrossViewController<TViewModel>
     #endregion
 
     public CrossViewModelRequest? Request { get; set; }
-    
+
 
     public override void ViewDidLoad()
     {

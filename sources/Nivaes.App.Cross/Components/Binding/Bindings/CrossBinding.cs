@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     /// <summary>
     /// Base class for all cross bindings.
     /// </summary>
-    public abstract class CrossBinding 
+    public abstract class CrossBinding
         : ICrossBinding
     {
         public void Dispose()

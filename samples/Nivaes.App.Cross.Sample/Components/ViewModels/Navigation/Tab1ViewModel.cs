@@ -1,10 +1,8 @@
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class Tab1ViewModel 
+public class Tab1ViewModel
     : MvxNavigationViewModel<string>
 {
     public Tab1ViewModel(ILogger<Tab1ViewModel> logger, ICrossNavigationService navigationService)

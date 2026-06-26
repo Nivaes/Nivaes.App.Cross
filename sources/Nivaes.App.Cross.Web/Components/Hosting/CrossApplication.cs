@@ -1,9 +1,8 @@
-using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Web;
 
-public abstract class CrossApplication 
+public abstract class CrossApplication
     : /*Application,*/ IPlatformApplication
 {
     IServiceProvider? _services;

@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.Sample;
 
-public class BindingsViewModel 
+public class BindingsViewModel
     : CrossViewModel
 {
     private int _counter = 2;

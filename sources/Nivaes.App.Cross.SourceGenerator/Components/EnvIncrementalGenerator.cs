@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
-using System.Text;
 
 namespace Nivaes.App.Cross.SourceGenerator;
 
@@ -10,9 +8,9 @@ public class EnvIncrementalGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-//#if DEBUG
-//        System.Diagnostics.Debugger.Launch();
-//#endif
+        //#if DEBUG
+        //        System.Diagnostics.Debugger.Launch();
+        //#endif
 
         var appNameProvider = context.AnalyzerConfigOptionsProvider
         .Select((optionsProvider, _) =>

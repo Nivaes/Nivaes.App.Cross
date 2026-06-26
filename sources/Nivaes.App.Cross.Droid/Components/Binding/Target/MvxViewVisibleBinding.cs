@@ -2,8 +2,6 @@ using Android.Views;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using MvvmCross.Binding.Extensions;
-
     public class MvxViewVisibleBinding(object target)
         : MvxBaseViewVisibleBinding(target)
     {

@@ -4,11 +4,9 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
     using Android.Content;
     using Android.Content.Res;
     using Android.Util;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
 
     public static class MvxRecyclerViewAttributeExtensions
     {

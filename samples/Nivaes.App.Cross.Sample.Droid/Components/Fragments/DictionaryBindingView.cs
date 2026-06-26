@@ -6,9 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

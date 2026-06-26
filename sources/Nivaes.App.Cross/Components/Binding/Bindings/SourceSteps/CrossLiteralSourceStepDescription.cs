@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    public class CrossLiteralSourceStepDescription 
+    public class CrossLiteralSourceStepDescription
         : CrossSourceStepDescription
     {
         public object? Literal { get; set; }

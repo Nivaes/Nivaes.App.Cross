@@ -5,7 +5,6 @@ namespace Nivaes.App.Cross.AppKitOS
     using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Platforms.Mac.Views;
 
     public class MvxMacViewsContainer
         : CrossViewsContainer, IMvxMacViewsContainer
@@ -15,7 +14,7 @@ namespace Nivaes.App.Cross.AppKitOS
         public CrossViewModelRequest? CurrentRequest { get; private set; }
 
         public MvxMacViewsContainer(IServiceProvider serviceProvider, ILogger<MvxMacViewsContainer> logger)
-            :base(logger)
+            : base(logger)
         {
             _serviceProvider = serviceProvider;
         }

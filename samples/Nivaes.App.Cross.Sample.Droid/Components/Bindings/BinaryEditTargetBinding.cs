@@ -1,12 +1,10 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
-    public class BinaryEditTargetBinding 
+    public class BinaryEditTargetBinding
         : MvxAndroidTargetBinding<BinaryEdit, int>
     {
         public BinaryEditTargetBinding(BinaryEdit target) : base(target)

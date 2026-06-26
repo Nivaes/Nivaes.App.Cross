@@ -3,7 +3,7 @@ namespace Playground.Core.ViewModels
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
-    public class PagesRootViewModel 
+    public class PagesRootViewModel
         : CrossNavigationViewModel
     {
         public PagesRootViewModel(ILogger<PagesRootViewModel> logger, ICrossNavigationService navigationService)

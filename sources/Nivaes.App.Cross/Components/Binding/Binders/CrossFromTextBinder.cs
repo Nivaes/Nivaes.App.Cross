@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Nivaes.App.Cross;
 
     public class CrossFromTextBinder
         : ICrossBinder

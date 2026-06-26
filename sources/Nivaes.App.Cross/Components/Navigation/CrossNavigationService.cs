@@ -7,18 +7,18 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross;
 
 /// <inheritdoc cref="ICrossNavigationService"/>
-public class CrossNavigationService 
+public class CrossNavigationService
     : ICrossNavigationService
 {
     private readonly ILogger _logger;
 
-    public ICrossViewDispatcher ViewDispatcher { [DebuggerHidden]get; }
+    public ICrossViewDispatcher ViewDispatcher { [DebuggerHidden] get; }
 
-    protected ICrossViewsContainer? ViewsContainer { [DebuggerHidden]get; }
+    protected ICrossViewsContainer? ViewsContainer { [DebuggerHidden] get; }
 
-    protected Dictionary<Regex, Type> Routes { [DebuggerHidden]get; } = new();
+    protected Dictionary<Regex, Type> Routes { [DebuggerHidden] get; } = new();
 
-    protected ICrossViewModelLoader ViewModelLoader { [DebuggerHidden]get; [DebuggerHidden]set; }
+    protected ICrossViewModelLoader ViewModelLoader { [DebuggerHidden] get; [DebuggerHidden] set; }
 
     public event EventHandler<ICrossNavigateEventArgs>? WillNavigate;
 
@@ -352,7 +352,7 @@ public class CrossNavigationService
             PresentationValues = presentationBundle?.SafeGetData()
         };
         request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);        
+        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
     }
 
     public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(

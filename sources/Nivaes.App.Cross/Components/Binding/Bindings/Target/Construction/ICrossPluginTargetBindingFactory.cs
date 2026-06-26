@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Collections.Generic;
 
-    public interface ICrossPluginTargetBindingFactory 
+    public interface ICrossPluginTargetBindingFactory
         : ICrossTargetBindingFactory
     {
         IEnumerable<CrossTypeAndNamePair> SupportedTypes { get; }

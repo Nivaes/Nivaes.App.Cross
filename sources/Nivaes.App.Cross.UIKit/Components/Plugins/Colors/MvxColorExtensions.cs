@@ -1,5 +1,3 @@
-using UIKit;
-
 namespace Nivaes.App.Cross.UIKitOS
 {
     public static class MvxColorExtensions

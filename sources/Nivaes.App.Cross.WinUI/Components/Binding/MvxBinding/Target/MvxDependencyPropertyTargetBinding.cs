@@ -4,10 +4,8 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Extensions;
 
-    public class MvxDependencyPropertyTargetBinding 
+    public class MvxDependencyPropertyTargetBinding
         : CrossConvertingTargetBinding
     {
         private readonly string _targetName;

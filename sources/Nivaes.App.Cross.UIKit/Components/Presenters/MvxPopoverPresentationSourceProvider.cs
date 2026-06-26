@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System;
     using UIKit;
 
-    public class MvxPopoverPresentationSourceProvider 
+    public class MvxPopoverPresentationSourceProvider
         : IMvxPopoverPresentationSourceProvider
     {
         private readonly WeakReference<UIView?> _sourceViewWeakReference = new WeakReference<UIView?>(null);

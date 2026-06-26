@@ -1,14 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Binding;
 using MvvmCross.IoC;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross
 {
     [Obsolete("", true)]
-    public class CrossNamedInstanceRegistryFiller<T> 
+    public class CrossNamedInstanceRegistryFiller<T>
         : ICrossNamedInstanceRegistryFiller<T>
         where T : class
     {

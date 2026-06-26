@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross;
 public class CrossNativeColorValueConverter : CrossColorValueConverter<System.Drawing.Color>
 {
     public CrossNativeColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossNativeColorValueConverter> logger)
-        :base(nativeColor, logger)
+        : base(nativeColor, logger)
     {
     }
 

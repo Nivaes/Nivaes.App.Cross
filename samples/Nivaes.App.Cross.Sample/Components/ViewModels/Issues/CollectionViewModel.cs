@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample
 
     public record CollectionViewParameter(int InitialCount = 40);
 
-    public class CollectionViewModel 
+    public class CollectionViewModel
         : CrossViewModel<CollectionViewParameter>
     {
         private readonly Random _random;

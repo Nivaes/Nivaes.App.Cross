@@ -1,10 +1,9 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 
-    public interface IMvxAndroidActivityLifetimeListener 
+    public interface IMvxAndroidActivityLifetimeListener
         : ICrossLifetime
     {
         void OnCreate(Activity activity, Bundle eventArgs);

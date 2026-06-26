@@ -1,8 +1,5 @@
 using System.Globalization;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Visibility;
 
@@ -27,7 +24,7 @@ public abstract class CrossBaseVisibilityValueConverter
 {
     private ICrossNativeVisibility _nativeVisibility;
 
-    public CrossBaseVisibilityValueConverter(ICrossNativeVisibility nativeVisibility, ILogger logger) 
+    public CrossBaseVisibilityValueConverter(ICrossNativeVisibility nativeVisibility, ILogger logger)
         : base(logger)
     {
         _nativeVisibility = nativeVisibility;

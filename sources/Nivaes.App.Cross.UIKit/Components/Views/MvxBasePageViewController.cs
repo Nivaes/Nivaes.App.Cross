@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Foundation;
     using ObjCRuntime;
 
-    public class MvxBasePageViewController 
+    public class MvxBasePageViewController
         : MvxEventSourcePageViewController, IMvxIosView
     {
         public MvxBasePageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
@@ -113,7 +113,7 @@ namespace Nivaes.App.Cross.UIKitOS
     }
 
     public class MvxBasePageViewController<TViewModel>
-        : MvxPageViewController, IMvxIosView<TViewModel> 
+        : MvxPageViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public MvxBasePageViewController()

@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
 
     /// <summary>
     /// Custom binding for UIActivityIndicator hidden.

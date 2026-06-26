@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
 
@@ -41,7 +40,7 @@ public partial class SecondChildView : MvxViewController<SecondChildViewModel>
     private void BtnCloseStack_TouchUpInside(object sender, EventArgs e)
     {
         var appDelegate = UIApplication.SharedApplication.Delegate as UIApplicationDelegate;
-        throw new NotImplementedException();    
+        throw new NotImplementedException();
         //var presenter = Mvx.IoCProvider.GetSingleton<IMvxIosViewPresenter>() as MvxIosViewPresenter;
 
         //if (appDelegate.Window.RootViewController.PresentedViewController != null)

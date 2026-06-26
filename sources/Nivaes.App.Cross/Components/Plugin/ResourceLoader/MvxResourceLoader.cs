@@ -2,7 +2,7 @@ using Nivaes.App.Cross;
 
 namespace MvvmCross.Plugin.ResourceLoader;
 
-public abstract class MvxResourceLoader 
+public abstract class MvxResourceLoader
     : ICrossResourceLoader
 {
     #region Implementation of IMvxResourceLoader

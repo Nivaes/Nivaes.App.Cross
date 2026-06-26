@@ -7,9 +7,6 @@ using AndroidX.ViewPager.Widget;
 using Google.Android.Material.Tabs;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
-using Nivaes.App.Cross.Droid;
-using Nivaes.IoC;
 using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 using DialogFragment = AndroidX.Fragment.App.DialogFragment;
 using Fragment = AndroidX.Fragment.App.Fragment;
@@ -60,11 +57,11 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public AndroidViewPresenter(ICrossViewsContainer crossViewsContainer, 
+    public AndroidViewPresenter(ICrossViewsContainer crossViewsContainer,
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
         IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
         ILogger<AndroidViewPresenter> logger)
-        :base(crossViewsContainer)
+        : base(crossViewsContainer)
     {
         _androidCurrentTopActivity = androidCurrentTopActivity;
         _activityLifetimeListener = activityLifetimeListener;
@@ -309,7 +306,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (currentActivityType == null)
             return null;
 
-        Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);        
+        Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
         return viewModelType;
     }
 

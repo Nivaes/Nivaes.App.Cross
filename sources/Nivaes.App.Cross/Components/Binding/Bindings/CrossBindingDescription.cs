@@ -22,9 +22,9 @@ namespace Nivaes.App.Cross
             };
         }
 
-        public string? TargetName { [DebuggerHidden]get; [DebuggerHidden]set; }
-        public CrossBindingMode Mode { [DebuggerHidden]get; [DebuggerHidden]set; }
-        public CrossSourceStepDescription? Source { [DebuggerHidden]get; [DebuggerHidden]set; }
+        public string? TargetName { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public CrossBindingMode Mode { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public CrossSourceStepDescription? Source { [DebuggerHidden] get; [DebuggerHidden] set; }
 
         public override string ToString()
         {

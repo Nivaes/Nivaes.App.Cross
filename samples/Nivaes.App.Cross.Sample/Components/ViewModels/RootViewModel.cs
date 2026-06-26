@@ -4,7 +4,7 @@ using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class RootViewModel 
+public class RootViewModel
     : MvxNavigationResultAwaitingViewModel<SampleModel>
 {
     private readonly ICrossViewModelLoader _mvxViewModelLoader;

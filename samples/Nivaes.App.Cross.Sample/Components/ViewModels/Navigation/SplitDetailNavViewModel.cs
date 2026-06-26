@@ -1,9 +1,8 @@
 using Microsoft.Extensions.Logging;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class SplitDetailNavViewModel 
+public class SplitDetailNavViewModel
     : CrossNavigationViewModel
 {
     public SplitDetailNavViewModel(ILogger<SplitDetailNavViewModel> logger, ICrossNavigationService navigationService)

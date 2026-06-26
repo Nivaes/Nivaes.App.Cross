@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Web
         public static CrossAppBuilder UseWinUIApp(this CrossAppBuilder builder, CrossApplication app)
         {
             builder.SetupDefaults(app);
-            
+
             return builder;
         }
 
@@ -25,6 +25,6 @@ namespace Nivaes.App.Cross.Web
             builder.Services.TryAddSingleton<ICrashHandler, WebCrashHandler>();
 
             return builder;
-        } 
+        }
     }
 }

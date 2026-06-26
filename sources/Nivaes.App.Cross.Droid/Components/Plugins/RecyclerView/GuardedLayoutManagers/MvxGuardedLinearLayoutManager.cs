@@ -4,10 +4,8 @@ namespace MvvmCross.DroidX.RecyclerView
     using Android.Runtime;
     using AndroidX.RecyclerView.Widget;
     using Java.Lang;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
 
     [Register("mvvmcross.droidx.recyclerview.MvxGuardedLinearLayoutManager")]
     public class MvxGuardedLinearLayoutManager : LinearLayoutManager

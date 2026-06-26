@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using AndroidX.Preference;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class MvxPreferenceValueTargetBinding(Preference preference)
         : MvxAndroidTargetBinding(preference)

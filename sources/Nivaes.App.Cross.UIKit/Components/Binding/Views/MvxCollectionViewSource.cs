@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
 
-    public class MvxCollectionViewSource 
+    public class MvxCollectionViewSource
         : MvxBaseCollectionViewSource
     {
         private IEnumerable? _itemsSource;

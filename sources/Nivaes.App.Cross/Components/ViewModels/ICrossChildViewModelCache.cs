@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System;
-    using Nivaes.App.Cross;
 
     public interface ICrossChildViewModelCache
     {

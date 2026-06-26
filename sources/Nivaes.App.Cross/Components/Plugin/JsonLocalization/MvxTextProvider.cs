@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using MvvmCross.Plugin.ResourceLoader;
-
     public abstract class MvxTextProvider :
         MvxResourceProvider, ICrossTextProvider
     {

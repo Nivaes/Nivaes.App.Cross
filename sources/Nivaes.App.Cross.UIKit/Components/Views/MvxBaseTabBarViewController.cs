@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using ObjCRuntime;
     using UIKit;
 
-    public class MvxBaseTabBarViewController 
+    public class MvxBaseTabBarViewController
         : MvxEventSourceTabBarController, IMvxIosView
     {
         public MvxBaseTabBarViewController() : base()

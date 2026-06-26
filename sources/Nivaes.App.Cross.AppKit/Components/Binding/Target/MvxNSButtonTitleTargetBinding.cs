@@ -3,9 +3,8 @@ namespace Nivaes.App.Cross.AppKitOS
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
-    public class MvxNSButtonTitleTargetBinding 
+    public class MvxNSButtonTitleTargetBinding
         : MvxMacTargetBinding
     {
         protected NSButton? Button

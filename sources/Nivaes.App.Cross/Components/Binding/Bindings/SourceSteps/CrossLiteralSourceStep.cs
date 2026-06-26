@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
 
     [RequiresUnreferencedCode("This class uses GetType() for type inspection which may not be preserved by trimming")]
-    public class CrossLiteralSourceStep 
+    public class CrossLiteralSourceStep
         : MvxSourceStep<CrossLiteralSourceStepDescription>
     {
         public CrossLiteralSourceStep(CrossLiteralSourceStepDescription description)

@@ -1,16 +1,13 @@
 namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
     using Nivaes.App.Cross.UIKitOS;
     using ObjCRuntime;
-    using Playground.Core.ViewModels;
 
     [MvxFromStoryboard("Main")]
     [MvxTabPresentation(WrapInNavigationController = true, TabIconName = "home", TabName = "Tab 1")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public partial class Tab1View 
+    public partial class Tab1View
         : MvxViewController<Tab1ViewModel>
     {
         public Tab1View(NativeHandle handle) : base(handle)

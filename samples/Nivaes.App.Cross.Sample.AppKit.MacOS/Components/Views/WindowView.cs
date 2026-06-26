@@ -3,7 +3,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Nivaes.App.Cross.AppKitOS;
 using ObjCRuntime;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 

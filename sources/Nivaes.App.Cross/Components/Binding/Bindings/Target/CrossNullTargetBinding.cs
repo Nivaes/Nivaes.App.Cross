@@ -1,9 +1,8 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
 
-    public sealed class CrossNullTargetBinding() 
+    public sealed class CrossNullTargetBinding()
         : CrossTargetBinding(null)
     {
         public override CrossBindingMode DefaultMode => CrossBindingMode.OneTime;

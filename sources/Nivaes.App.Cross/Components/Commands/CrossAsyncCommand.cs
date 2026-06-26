@@ -1,8 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossAsyncCommandBase
         : CrossCommandBase
     {

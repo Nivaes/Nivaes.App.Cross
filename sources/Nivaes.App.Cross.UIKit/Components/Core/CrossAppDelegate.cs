@@ -1,12 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross.Hosting;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
 [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
-public abstract class CrossAppDelegate 
+public abstract class CrossAppDelegate
     : UIApplicationDelegate, IMvxApplicationDelegate //, IPlatformApplication
 {
     //private IServiceProvider? _services;

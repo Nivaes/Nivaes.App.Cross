@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Reflection;
-    using Nivaes.App.Cross;
 
     public class CrossValueEventSubscription<TEventArgs>
         : CrossWeakEventSubscription<object, CrossValueEventArgs<TEventArgs>>

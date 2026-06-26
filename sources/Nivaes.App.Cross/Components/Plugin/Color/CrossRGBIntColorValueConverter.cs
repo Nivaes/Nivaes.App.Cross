@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross;
 
 public class CrossRGBIntColorValueConverter : CrossColorValueConverter<int>
 {
-    public CrossRGBIntColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBIntColorValueConverter> logger) 
+    public CrossRGBIntColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBIntColorValueConverter> logger)
         : base(nativeColor, logger)
     {
     }

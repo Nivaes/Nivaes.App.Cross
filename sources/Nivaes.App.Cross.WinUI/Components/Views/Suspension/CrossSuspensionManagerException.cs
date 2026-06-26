@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     using System;
 
-    public class CrossSuspensionManagerException 
+    public class CrossSuspensionManagerException
         : CrossException
     {
         public CrossSuspensionManagerException()

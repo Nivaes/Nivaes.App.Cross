@@ -2,9 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Google.Android.Material.Navigation;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Droid;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
@@ -13,7 +11,7 @@ AllowReordering = true,
 ViewModelType = typeof(MultiBackStackViewModel),
 SetAsPrimaryFragment = true)]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
-public sealed class MultiBackStackView 
+public sealed class MultiBackStackView
     : MvxFragment<MultiBackStackViewModel>
 {
     private NavigationBarView? _navigationView;

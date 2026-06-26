@@ -2,7 +2,7 @@ namespace Playground.Core.ViewModels
 {
     using Nivaes.App.Cross;
 
-    public class NativeViewModel 
+    public class NativeViewModel
         : CrossViewModel
     {
         private static int _counter = 0;

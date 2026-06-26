@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -288,14 +286,14 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
     {
         //var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterRegistryFiller>();
         //var converterName = filler.FindName(typeof(TValueConverter));
-        if(Singleton<CrossConvertersManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
+        if (Singleton<CrossConvertersManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
         {
             return WithConversion(converter, converterParameter);
         }
         else
         {
             throw new CrossException($"Unregistered {typeof(TValueConverter).FullName} type converter.");
-        }       
+        }
     }
 
     public MvxFluentBindingDescription<TTarget> WithFallback(object fallback)

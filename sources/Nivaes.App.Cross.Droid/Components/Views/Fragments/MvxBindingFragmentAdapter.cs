@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;
@@ -101,7 +99,7 @@ public class MvxBindingFragmentAdapter
         var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
         //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
         //{
-        if(bundle != null)
+        if (bundle != null)
             return converter?.Read(bundle) ?? new CrossBundle();
         //}
 
@@ -120,7 +118,7 @@ public class MvxBindingFragmentAdapter
     {
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
         //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true && cache != null &&
-        if(FragmentView?.ViewModel != null)
+        if (FragmentView?.ViewModel != null)
         {
             // clear cache if still there
             cache.GetAndClear(FragmentView.ViewModel.GetType(), FragmentView.UniqueImmutableCacheTag);
@@ -139,13 +137,13 @@ public class MvxBindingFragmentAdapter
 
             //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
             //{
-                //var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-                //logger?.Log(LogLevel.Warning,
-                //    "Saved state converter not available - saving state will be hard");
+            //var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
+            //logger?.Log(LogLevel.Warning,
+            //    "Saved state converter not available - saving state will be hard");
             //}
             //else
             //{
-                converter?.Write(e.Value, mvxBundle);
+            converter?.Write(e.Value, mvxBundle);
             //}
         }
 

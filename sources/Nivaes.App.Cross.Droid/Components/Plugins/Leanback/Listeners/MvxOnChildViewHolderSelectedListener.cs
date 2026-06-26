@@ -2,9 +2,7 @@ namespace MvvmCross.DroidX.Leanback.Listeners
 {
     using System.Windows.Input;
     using AndroidX.Leanback.Widget;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.DroidX.RecyclerView;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 

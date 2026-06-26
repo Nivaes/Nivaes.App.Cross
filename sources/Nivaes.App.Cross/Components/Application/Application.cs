@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Controls;
 public abstract class Application : IApplication
 {
     protected IServiceProvider ServiceProvider { [DebuggerHidden] get; }
-    protected ILogger Logger { [DebuggerHidden]get; }
+    protected ILogger Logger { [DebuggerHidden] get; }
 
     protected Application(IServiceProvider serviceProvider, ILogger logger)
     {
@@ -25,7 +25,7 @@ public abstract class Application : IApplication
 
     public virtual void Startup()
     {
-        
+
     }
 
     public virtual void Reset()

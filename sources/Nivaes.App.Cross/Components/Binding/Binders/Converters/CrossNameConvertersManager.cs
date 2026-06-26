@@ -15,13 +15,13 @@ public sealed class CrossNameConvertersManager : KeyContainerManager<ICrossValue
 
     public ICrossValueConverter GetValue(string converterName)
     {
-        if(TryGetValue(converterName, out var converter))
+        if (TryGetValue(converterName, out var converter))
         {
             return converter;
         }
         else
         {
-            throw new CrossException($"Unregistered {converterName} type of converter.");  
+            throw new CrossException($"Unregistered {converterName} type of converter.");
         }
     }
 

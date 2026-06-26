@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Nivaes.IoC;
 
     public sealed class CrossSingletonCache
     : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache

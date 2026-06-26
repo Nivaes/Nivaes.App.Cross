@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Linq;
 
-    public class CrossSingleValueCombiner 
+    public class CrossSingleValueCombiner
         : CrossValueCombiner
     {
         public override Type SourceType(IEnumerable<ICrossSourceStep> steps)

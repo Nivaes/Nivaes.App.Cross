@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Runtime;
     using Android.Views;
     using AndroidX.Leanback.App;
-    using MvvmCross.Platforms.Android.Views;
     using Nivaes.App.Cross;
 
     public class MvxEventSourceGuidedStepSupportFragment

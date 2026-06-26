@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace Nivaes.App.Cross.WinUI;
 
 [Obsolete("", true)]
-public interface ICrossWindowsSetup 
+public interface ICrossWindowsSetup
     : ICrossSetup
 {
     void PlatformInitialize(Frame rootFrame, string activatedEventArgs, string? suspensionManagerSessionStateKey = null);

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Foundation;
     using ObjCRuntime;
 
-    public class MvxEventSourceSplitViewController 
+    public class MvxEventSourceSplitViewController
         : UISplitViewController, IMvxEventSourceViewController
     {
         public MvxEventSourceSplitViewController() : base()

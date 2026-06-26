@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Text;
 
-    public class CrossParsedExpression 
+    public class CrossParsedExpression
         : ICrossParsedExpression
     {
         public interface INode

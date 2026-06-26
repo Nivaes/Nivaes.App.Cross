@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross.WinUI
 {
-    using System;
     using Microsoft.UI.Xaml;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxVisibleTargetBinding

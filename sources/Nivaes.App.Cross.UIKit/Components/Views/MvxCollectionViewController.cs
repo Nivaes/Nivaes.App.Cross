@@ -97,7 +97,7 @@ namespace Nivaes.App.Cross.UIKitOS
         }
     }
 
-    public class MvxCollectionViewController<TViewModel> 
+    public class MvxCollectionViewController<TViewModel>
         : MvxCollectionViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {

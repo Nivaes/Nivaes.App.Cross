@@ -4,7 +4,7 @@ using Android.Views;
 
 namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
 {
-    using System;    
+    using System;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
     using ListFragment = AndroidX.Fragment.App.ListFragment;

@@ -3,7 +3,7 @@ namespace MvvmCross.Platforms.Ios.Presenters.Attributes
     using Nivaes.App.Cross;
 
 
-    public class MvxPopoverPresentationAttribute 
+    public class MvxPopoverPresentationAttribute
         : CrossBasePresentationAttribute
     {
         public static readonly bool DefaultWrapInNavigationController = false;

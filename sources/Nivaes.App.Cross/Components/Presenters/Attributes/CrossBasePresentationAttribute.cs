@@ -5,15 +5,15 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
 
     [AttributeUsage(AttributeTargets.Class)]
-    public abstract class CrossBasePresentationAttribute 
+    public abstract class CrossBasePresentationAttribute
         : Attribute, ICrossPresentationAttribute
     {
         /// <inheritdoc />
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewModelType { [DebuggerHidden]get; [DebuggerHidden]set; }
+        public Type? ViewModelType { [DebuggerHidden] get; [DebuggerHidden] set; }
 
         /// <inheritdoc />
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type? ViewType { [DebuggerHidden]get; [DebuggerHidden]set; }
+        public Type? ViewType { [DebuggerHidden] get; [DebuggerHidden] set; }
     }
 }

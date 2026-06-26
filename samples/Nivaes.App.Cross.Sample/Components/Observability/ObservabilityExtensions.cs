@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample
     public static class ObservabilityExtensions
     {
         public static OpenTelemetryBuilder AddObservability(this CrossAppBuilder builder)
-        { 
+        {
             builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
             builder.Services.AddLogging();

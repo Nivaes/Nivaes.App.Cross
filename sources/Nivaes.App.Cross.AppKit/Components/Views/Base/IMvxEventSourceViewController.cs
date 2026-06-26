@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     using System;
 
-    public interface IMvxEventSourceViewController 
+    public interface IMvxEventSourceViewController
         : ICrossDisposeSource
     {
         event EventHandler ViewDidLoadCalled;

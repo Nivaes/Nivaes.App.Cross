@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Threading.Tasks;
 
-    public abstract class CrossMainThreadAsyncDispatcher 
+    public abstract class CrossMainThreadAsyncDispatcher
         : CrossMainThreadDispatcher, ICrossMainThreadAsyncDispatcher
     {
         public Task ExecuteOnMainThreadAsync(Action action, bool maskExceptions = true)

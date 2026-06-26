@@ -2,9 +2,8 @@ namespace Nivaes.App.Cross
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
 
-    public class CrossPathSourceStep 
+    public class CrossPathSourceStep
         : MvxSourceStep<CrossPathSourceStepDescription>
     {
         private ICrossSourceBinding _sourceBinding;

@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Globalization;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
     public abstract class CrossValueConverter

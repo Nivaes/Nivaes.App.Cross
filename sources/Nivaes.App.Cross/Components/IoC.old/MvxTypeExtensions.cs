@@ -183,7 +183,7 @@ public static class MvxTypeExtensions
         {
             if (pair.ServiceTypes.Count == 0)
                 continue;
-            
+
             throw new NotImplementedException();
             //var instance = Mvx.IoCProvider?.IoCConstruct(pair.ImplementationType, (object?)null);
             //if (instance == null)

@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    public class CrossPathSourceStepDescription 
+    public class CrossPathSourceStepDescription
         : CrossSourceStepDescription
     {
         public string? SourcePropertyPath { get; set; }

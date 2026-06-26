@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
 
     public class MvxImageViewResourceNameTargetBinding(ImageView imageView)
         : MvxImageViewDrawableTargetBinding(imageView)

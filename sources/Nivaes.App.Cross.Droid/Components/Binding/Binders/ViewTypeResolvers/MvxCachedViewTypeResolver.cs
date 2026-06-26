@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
 
     [Obsolete("", true)]
-    public class MvxCachedViewTypeResolver 
+    public class MvxCachedViewTypeResolver
         : IMvxViewTypeResolver
     {
         private readonly Dictionary<string, Type> _cache = new Dictionary<string, Type>();

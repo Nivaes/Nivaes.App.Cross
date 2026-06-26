@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Target;
     using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
     public class MvxAppCompatSearchViewQueryTextTargetBinding

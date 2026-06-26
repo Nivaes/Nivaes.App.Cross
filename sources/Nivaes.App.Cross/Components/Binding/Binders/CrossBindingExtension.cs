@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using Nivaes.App.Cross.Visibility;
+﻿using Nivaes.App.Cross.Visibility;
 
 namespace Nivaes.App.Cross
 {

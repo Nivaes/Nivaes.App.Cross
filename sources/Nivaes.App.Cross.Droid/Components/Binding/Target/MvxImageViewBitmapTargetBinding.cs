@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class MvxImageViewBitmapTargetBinding(ImageView imageView)
     : MvxBaseImageViewTargetBinding(imageView)

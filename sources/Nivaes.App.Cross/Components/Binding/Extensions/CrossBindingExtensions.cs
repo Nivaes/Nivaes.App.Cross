@@ -2,9 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using MvvmCross.Binding;
     using MvvmCross.IoC;
-    using Nivaes.App.Cross;
 
     public static class CrossBindingExtensions
     {
@@ -61,7 +59,7 @@ namespace Nivaes.App.Cross
             }
 
             //var autoConverter = Singleton<CrossBindingSingletonCache>.Instance?.AutoValueConverters.Find(value.GetType(), propertyType);
-            if(Singleton<CrossAutoValueConvertersManager>.Instance.TryGetValue(value.GetType(), propertyType, out var autoConverter))
+            if (Singleton<CrossAutoValueConvertersManager>.Instance.TryGetValue(value.GetType(), propertyType, out var autoConverter))
             {
                 return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
             }

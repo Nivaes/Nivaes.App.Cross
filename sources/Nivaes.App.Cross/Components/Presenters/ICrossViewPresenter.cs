@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross
 
         Task<bool> ChangePresentation(CrossPresentationHint hint);
 
-        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action) 
+        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
             where THint : CrossPresentationHint;
 
         Task<bool> Close(ICrossViewModel viewModel);

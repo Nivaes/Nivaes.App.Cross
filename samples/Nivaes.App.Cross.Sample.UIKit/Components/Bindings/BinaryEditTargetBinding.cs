@@ -1,7 +1,6 @@
 namespace Playground.iOS.Bindings
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
     using Playground.iOS.Controls;
 

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross
         Close
     }
 
-    public class CrossNavigateEventArgs 
+    public class CrossNavigateEventArgs
         : CrossCancelEventArgs, ICrossNavigateEventArgs
     {
         public CrossNavigateEventArgs(NavigationMode mode, CancellationToken cancellationToken = default)

@@ -1,4 +1,3 @@
-using Android.Views;
 using static Android.Views.View;
 
 namespace Nivaes.App.Cross.Droid
@@ -6,10 +5,9 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using Android.Views;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxViewFocusChangedTargetBinding 
+    public class MvxViewFocusChangedTargetBinding
         : MvxAndroidTargetBinding
     {
         private ICommand? _command;

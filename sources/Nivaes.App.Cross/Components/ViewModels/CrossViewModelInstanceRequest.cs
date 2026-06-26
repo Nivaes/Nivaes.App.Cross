@@ -13,6 +13,6 @@ namespace Nivaes.App.Cross
             ViewModelInstance = viewModelInstance;
         }
 
-        public ICrossViewModel? ViewModelInstance { [DebuggerHidden]get; [DebuggerHidden]set; }
+        public ICrossViewModel? ViewModelInstance { [DebuggerHidden] get; [DebuggerHidden] set; }
     }
 }

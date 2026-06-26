@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.AppKitOS
 {
-    public abstract class MvxMacTargetBinding 
+    public abstract class MvxMacTargetBinding
         : CrossConvertingTargetBinding
     {
         protected MvxMacTargetBinding(object view)

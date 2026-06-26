@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -72,7 +71,7 @@ public class MvxFragmentPresentationAttribute
     {
         var globals = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
         //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
-        if(globals.ApplicationContext.Resources != null)
+        if (globals.ApplicationContext.Resources != null)
         {
             var context = globals.ApplicationContext;
 

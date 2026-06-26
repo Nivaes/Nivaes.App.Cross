@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.UIKitOS;
 
-public class MvxRootPresentationAttribute 
+public class MvxRootPresentationAttribute
     : CrossBasePresentationAttribute
 {
     public static readonly float DefaultAnimationDuration = 1.0f;

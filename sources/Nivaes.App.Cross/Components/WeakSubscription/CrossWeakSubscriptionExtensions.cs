@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Windows.Input;
-    using Nivaes.App.Cross;
 
     public static class CrossWeakSubscriptionExtensions
     {

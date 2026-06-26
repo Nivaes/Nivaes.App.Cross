@@ -3,14 +3,12 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.IoC;
-using Windows.UI;
 using Application = Microsoft.UI.Xaml.Application;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public abstract class CrossApplication 
+public abstract class CrossApplication
     : Application, IPlatformApplication
 {
     IServiceProvider? _services;

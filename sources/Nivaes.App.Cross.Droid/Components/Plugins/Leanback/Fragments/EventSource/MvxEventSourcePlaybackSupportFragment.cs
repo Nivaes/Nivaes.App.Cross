@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Views;
     using AndroidX.Leanback.App;
     using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
 
     public class MvxEventSourcePlaybackSupportFragment
         : PlaybackSupportFragment, ICrossEventSourceFragment

@@ -15,7 +15,7 @@ namespace Playground.iOS.Views
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public partial class Page1View 
+    public partial class Page1View
         : MvxViewController<Page1ViewModel>
     {
         private UITableView _tableView;
@@ -169,7 +169,7 @@ namespace Playground.iOS.Views
         }
 
         [RequiresUnreferencedCode("Bindings require unreferenced code")]
-        private sealed class TableSource 
+        private sealed class TableSource
             : MvxExpandableTableViewSource<Page1ViewModel.SectionViewModel, Page1ViewModel.SectionItemViewModel>
         {
             public TableSource(UITableView tableView) : base(tableView)

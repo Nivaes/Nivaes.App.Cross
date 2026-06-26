@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Nivaes.App.Cross
 {
     internal class CrossViewModelLoader
@@ -30,7 +28,7 @@ namespace Nivaes.App.Cross
             catch (Exception ex)
             {
                 throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
-   
+
             }
 
             return viewModel;
@@ -57,7 +55,7 @@ namespace Nivaes.App.Cross
             //{
             //    return new CrossNullViewModel();
             //}
-            if(request.ViewModelType == null)
+            if (request.ViewModelType == null)
                 return null;
 
             var parameterValues = new CrossBundle(request.ParameterValues);

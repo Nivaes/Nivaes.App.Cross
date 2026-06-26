@@ -1,11 +1,8 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Foundation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ObjCRuntime;
-using UIKit;
 
 namespace Nivaes.App.Cross.UIKitOS;
 

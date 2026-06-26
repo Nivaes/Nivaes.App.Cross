@@ -1,20 +1,17 @@
 using System.Diagnostics.CodeAnalysis;
-using CoreGraphics;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
-using UIKit;
 
 namespace Nivaes.App.Cross.Sample.UIKitOS;
 
 [MvxFromStoryboard("Main")]
 [MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
-public partial class ModalView 
+public partial class ModalView
     : MvxViewController<ModalViewModel>
 {
-    public ModalView(NativeHandle handle) 
+    public ModalView(NativeHandle handle)
         : base(handle)
     {
     }

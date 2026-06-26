@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross
 {
@@ -16,8 +15,8 @@ namespace Nivaes.App.Cross
             Description = description;
         }
 
-        public object? Target { [DebuggerHidden]get; [DebuggerHidden]set; }
-        public object? Source { [DebuggerHidden]get; [DebuggerHidden]set; }
-        public CrossBindingDescription? Description { [DebuggerHidden]get; [DebuggerHidden]set; }
+        public object? Target { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public object? Source { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public CrossBindingDescription? Description { [DebuggerHidden] get; [DebuggerHidden] set; }
     }
 }

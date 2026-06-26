@@ -1,5 +1,5 @@
 namespace Nivaes.App.Cross.UIKitOS
 {
-    public interface IMvxApplicationDelegate 
+    public interface IMvxApplicationDelegate
         : IUIApplicationDelegate, ICrossLifetime;
 }

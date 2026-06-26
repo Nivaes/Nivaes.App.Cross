@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
-using AndroidX.Lifecycle;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -45,10 +44,10 @@ public abstract class CrossActivity<TViewModel>
         }
     }
 
-    ICrossViewModel? ICrossView.ViewModel 
-    { 
-        get => ViewModel; 
-        set => ViewModel = (TViewModel?)value; 
+    ICrossViewModel? ICrossView.ViewModel
+    {
+        get => ViewModel;
+        set => ViewModel = (TViewModel?)value;
     }
     #endregion
 

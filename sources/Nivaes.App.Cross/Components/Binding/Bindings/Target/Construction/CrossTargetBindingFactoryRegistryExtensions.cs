@@ -11,18 +11,18 @@ namespace Nivaes.App.Cross
                 string customName,
                 Func<TView, ICrossTargetBinding> creator)
                 where TView : class
-                {
-                    registry.RegisterFactory(new CrossCustomBindingFactory<TView>(customName, creator));
-                }
+            {
+                registry.RegisterFactory(new CrossCustomBindingFactory<TView>(customName, creator));
+            }
 
             [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
             public void RegisterPropertyInfoBindingFactory(
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type bindingType,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType,
                 string targetName)
-                {
-                    registry.RegisterFactory(new CrossSimplePropertyInfoTargetBindingFactory(bindingType, targetType, targetName));
-                }
+            {
+                registry.RegisterFactory(new CrossSimplePropertyInfoTargetBindingFactory(bindingType, targetType, targetName));
+            }
         }
     }
 }

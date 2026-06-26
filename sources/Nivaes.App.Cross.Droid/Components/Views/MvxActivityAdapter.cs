@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -86,7 +85,7 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
             //}
             //else
             //{
-                converter.Write(eventArgs.Value, mvxBundle);
+            converter.Write(eventArgs.Value, mvxBundle);
             //}
         }
 
@@ -94,7 +93,7 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
 
         //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
         //{
-            cache.Cache(AndroidView!.ViewModel!, eventArgs.Value);
+        cache.Cache(AndroidView!.ViewModel!, eventArgs.Value);
         //}
     }
 
@@ -105,12 +104,12 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
 
         //if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
         //{
-            var resultParameters = eventArgs.Value;
-            var intentResult = new MvxIntentResultEventArgs(
-                resultParameters.RequestCode,
-                resultParameters.ResultCode,
-                resultParameters.Data!);
-            sink.OnResult(intentResult);
+        var resultParameters = eventArgs.Value;
+        var intentResult = new MvxIntentResultEventArgs(
+            resultParameters.RequestCode,
+            resultParameters.ResultCode,
+            resultParameters.Data!);
+        sink.OnResult(intentResult);
         //}
     }
 }

@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -21,7 +20,7 @@ public class CrossLanguageBinder(string? namespaceName = null, string? typeName 
             if (_cachedTextProvider != null)
                 return _cachedTextProvider;
 
-            var cachedTextProvider  = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTextProvider>();
+            var cachedTextProvider = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTextProvider>();
             //if (Mvx.IoCProvider?.TryResolve(out ICrossTextProvider? cachedTextProvider) != true)
             //{
             //    throw new CrossException(

@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross;
 
 public class CrossARGBValueConverter : CrossColorValueConverter<string>
 {
-    public CrossARGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossARGBValueConverter> logger) 
+    public CrossARGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossARGBValueConverter> logger)
         : base(nativeColor, logger)
     { }
 

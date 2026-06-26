@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Nivaes.App.Cross;
-
 namespace Nivaes.App.Cross;
 
 public interface ICrossBindingDescriptionParser

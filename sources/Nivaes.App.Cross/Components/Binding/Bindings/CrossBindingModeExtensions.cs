@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using Nivaes.App.Cross;
 
     public static class CrossBindingModeExtensions
     {

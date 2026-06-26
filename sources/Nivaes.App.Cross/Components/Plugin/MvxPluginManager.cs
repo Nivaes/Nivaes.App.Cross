@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
-    using Nivaes.App.Cross;
 
     [Obsolete("Los plugin se meten en el contenedor. Mirar la creación de ambitos para cada plugin.")]
     public class MvxPluginManager : IMvxPluginManager

@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class SharedElementRootChildViewModel 
+public class SharedElementRootChildViewModel
     : BaseViewModel
 {
     public override Task Initialize()

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using Nivaes.App.Cross.Visibility;
 
     [Obsolete("", true)]
-    public abstract class CrossBasePlugin 
+    public abstract class CrossBasePlugin
         : IMvxPlugin
     {
         public virtual void Load(IMvxIoCProvider provider)

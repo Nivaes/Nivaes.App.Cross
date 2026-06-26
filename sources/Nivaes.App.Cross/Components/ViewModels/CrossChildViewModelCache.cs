@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Nivaes.App.Cross;
 
     public class CrossChildViewModelCache
         : ICrossChildViewModelCache

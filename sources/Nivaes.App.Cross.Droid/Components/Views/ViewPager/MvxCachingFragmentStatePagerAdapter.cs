@@ -6,7 +6,6 @@ using AndroidX.Fragment.App;
 using Java.Interop;
 using Java.Lang;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 using Fragment = AndroidX.Fragment.App.Fragment;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
 using JavaObject = Java.Lang.Object;
@@ -15,7 +14,7 @@ using JavaString = Java.Lang.String;
 namespace Nivaes.App.Cross.Droid
 {
     [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
-    public class MvxCachingFragmentStatePagerAdapter 
+    public class MvxCachingFragmentStatePagerAdapter
         : MvxCachingFragmentPagerAdapter
     {
         public const string ViewPagerFragmentsInfoBundleKey = "__mvxViewPagerFragmentsInfo";

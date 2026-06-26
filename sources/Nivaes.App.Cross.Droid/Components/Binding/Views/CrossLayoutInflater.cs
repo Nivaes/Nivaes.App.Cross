@@ -365,7 +365,7 @@ public class CrossLayoutInflater : LayoutInflater
 
             //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewFactory? viewFactory) == true)
             //{
-                _androidViewFactory = viewFactory;
+            _androidViewFactory = viewFactory;
             //}
 
             return _androidViewFactory;
@@ -382,7 +382,7 @@ public class CrossLayoutInflater : LayoutInflater
             var factoryFactory = IPlatformApplication.Current!.Services.GetRequiredService<IMvxLayoutInflaterHolderFactoryFactory>();
             //if (Mvx.IoCProvider?.TryResolve(out IMvxLayoutInflaterHolderFactoryFactory? factoryFactory) == true)
             //{
-                _layoutInflaterHolderFactoryFactory = factoryFactory;
+            _layoutInflaterHolderFactoryFactory = factoryFactory;
             //}
 
             return _layoutInflaterHolderFactoryFactory;

@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Specialized;
-using System.Threading;
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;

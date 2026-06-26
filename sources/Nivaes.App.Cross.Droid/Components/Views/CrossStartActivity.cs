@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Droid;
 

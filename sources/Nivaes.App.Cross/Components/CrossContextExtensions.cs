@@ -14,10 +14,10 @@ public static class CrossContextExtensions
             return;
 
         foreach (var instance in initServices)
-            instance.Initialize(crossApp.Services);   
+            instance.Initialize(crossApp.Services);
     }
 
-    public static ICrossContext MakeApplicationScope<TNativeApplication>(this ICrossContext mauiContext, 
+    public static ICrossContext MakeApplicationScope<TNativeApplication>(this ICrossContext mauiContext,
             TNativeApplication platformApplication)
         where TNativeApplication : class
     {

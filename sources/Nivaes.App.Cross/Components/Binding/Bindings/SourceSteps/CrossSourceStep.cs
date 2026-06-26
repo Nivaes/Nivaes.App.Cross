@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public abstract class CrossSourceStep
         : ICrossSourceStep
@@ -83,7 +82,7 @@ namespace Nivaes.App.Cross
 
         private object? ApplyValueConverterSourceToTarget(object? value)
         {
-            if(value == null) return null;
+            if (value == null) return null;
 
             if (_description.Converter == null) return value;
 

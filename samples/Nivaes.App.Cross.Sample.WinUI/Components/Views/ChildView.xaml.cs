@@ -10,7 +10,7 @@ public sealed partial class ChildView : ChildViewPagePage
     }
 }
 
-public abstract class ChildViewPagePage 
+public abstract class ChildViewPagePage
     : CrossWindowsPage<ChildViewModel>
 {
 }

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
 
     public static class CrossInteractionExtensions
     {
-        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] T>(T interaction) 
+        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] T>(T interaction)
             where T : ICrossInteraction
         {
             [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime event inspection for generic type parameter with PublicEvents annotation")]
@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(TInteraction interaction) 
+        extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicEvents)] TInteraction, TValue>(TInteraction interaction)
             where TInteraction : ICrossInteraction<TValue>
         {
             [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Runtime event inspection for generic type parameter with PublicEvents annotation")]

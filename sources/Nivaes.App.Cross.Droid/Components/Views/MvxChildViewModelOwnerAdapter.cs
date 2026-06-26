@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.Droid
 {
     using System;
 
-    public class MvxChildViewModelOwnerAdapter 
+    public class MvxChildViewModelOwnerAdapter
         : MvxBaseActivityAdapter
     {
         protected IMvxChildViewModelOwner? ChildOwner => (IMvxChildViewModelOwner?)Activity;

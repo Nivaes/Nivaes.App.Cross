@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     {
         public sealed class ConverterManagerItem
         {
-            internal CrossNameConvertersManager.KeyStoreItem NameConverters { [DebuggerHidden]get; [DebuggerHidden]set; }
+            internal CrossNameConvertersManager.KeyStoreItem NameConverters { [DebuggerHidden] get; [DebuggerHidden] set; }
             internal CrossConvertersManager.KeyStoreItem Converters { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross
             return New<TConverter>(services, FindName(typeof(TConverter)));
         }
 
-        public static void RegisterComverters(ConverterManagerItem[] items) 
+        public static void RegisterComverters(ConverterManagerItem[] items)
         {
             Singleton<CrossNameConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
             Singleton<CrossConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross
 
         private static string RemoveHead(string name, string word)
         {
-            if (name.StartsWith(word)) 
+            if (name.StartsWith(word))
                 name = name[word.Length..];
             return name;
         }

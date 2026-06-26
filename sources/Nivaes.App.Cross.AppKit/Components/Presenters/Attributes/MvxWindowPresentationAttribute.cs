@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.AppKitOS
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
 
-    public class MvxWindowPresentationAttribute 
+    public class MvxWindowPresentationAttribute
         : CrossBasePresentationAttribute
     {
         public static float DefaultPositionX = 200;

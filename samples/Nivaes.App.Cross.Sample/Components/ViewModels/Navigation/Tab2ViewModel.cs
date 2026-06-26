@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class Tab2ViewModel 
+public class Tab2ViewModel
     : CrossNavigationViewModel
 {
     public Tab2ViewModel(ILogger<Tab2ViewModel> logger, ICrossNavigationService navigationService)

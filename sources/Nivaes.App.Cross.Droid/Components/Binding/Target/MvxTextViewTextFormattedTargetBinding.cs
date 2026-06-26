@@ -2,8 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Android.Text;
-    using MvvmCross.Binding;
-    using MvvmCross.Binding.Extensions;
 
     public class MvxTextViewTextFormattedTargetBinding(TextView target)
     : MvxAndroidTargetBinding(target), ICrossEditableTextView

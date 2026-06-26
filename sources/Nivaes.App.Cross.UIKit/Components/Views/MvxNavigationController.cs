@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Foundation;
     using ObjCRuntime;
 
-    public class MvxNavigationController 
+    public class MvxNavigationController
         : UINavigationController
     {
         public MvxNavigationController()

@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public abstract class CrossViewPresenter 
+    public abstract class CrossViewPresenter
         : ICrossViewPresenter
     {
         private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =

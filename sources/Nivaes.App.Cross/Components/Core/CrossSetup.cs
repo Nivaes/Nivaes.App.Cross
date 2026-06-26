@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using System.Runtime.Versioning;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
     using Nivaes.App.Cross.Hosting;

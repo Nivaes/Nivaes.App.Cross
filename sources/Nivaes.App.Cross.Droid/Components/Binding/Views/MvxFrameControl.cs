@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.Droid
                     {
                         var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxFrameControl>>();
                         logger?.Log(LogLevel.Trace, "DataContext is {dataContext}", DataContext?.ToString() ?? "Null");
-                        
+
                         Content = _bindingContext.BindingInflate(_templateId, this);
                     }
                 });

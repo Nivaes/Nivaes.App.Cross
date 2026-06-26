@@ -4,11 +4,10 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
     using AppKit;
     using Foundation;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
     using ObjCRuntime;
 
-    public class MvxNSSearchFieldTextTargetBinding 
+    public class MvxNSSearchFieldTextTargetBinding
         : MvxPropertyInfoTargetBinding<NSSearchField>
     {
         public MvxNSSearchFieldTextTargetBinding(object target, PropertyInfo targetPropertyInfo)

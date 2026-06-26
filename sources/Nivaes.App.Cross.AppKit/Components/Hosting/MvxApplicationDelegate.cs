@@ -1,14 +1,11 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.AppKitOS;
 
 [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
-public abstract class MvxApplicationDelegate : 
+public abstract class MvxApplicationDelegate :
     NSApplicationDelegate, IMvxApplicationDelegate, IPlatformApplication
 {
     private IServiceProvider? _services;
@@ -27,7 +24,7 @@ public abstract class MvxApplicationDelegate :
         protected set => _application = value;
     }
 
-    protected MvxApplicationDelegate() 
+    protected MvxApplicationDelegate()
         : base()
     {
         RegisterSetup();
@@ -65,7 +62,7 @@ public abstract class MvxApplicationDelegate :
         var startup = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
 
         //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
-        if(!startup.IsStarted)
+        if (!startup.IsStarted)
         {
             startup.Start(GetAppStartHint(hint));
         }

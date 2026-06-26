@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-
 namespace Nivaes.App.Cross.UIKitOS
 {
     public abstract class MvxIosUIThreadDispatcher

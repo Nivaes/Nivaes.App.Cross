@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
@@ -106,8 +105,8 @@ public class CrossCommandBase
         //}
         //else
         //{
-            // fallback on MvxWeakCommandHelper if no IoC has been set up
-            _commandHelper = new CrossWeakCommandHelper();
+        // fallback on MvxWeakCommandHelper if no IoC has been set up
+        _commandHelper = new CrossWeakCommandHelper();
         //}
 
         // default to true if no Singleton Cache has been set up

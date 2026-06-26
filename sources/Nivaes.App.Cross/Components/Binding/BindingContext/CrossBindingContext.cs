@@ -1,10 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 
-public class CrossBindingContext 
+public class CrossBindingContext
     : ICrossBindingContext, IDisposable
 {
     public record TargetAndBinding(object Target, ICrossUpdateableBinding Binding);

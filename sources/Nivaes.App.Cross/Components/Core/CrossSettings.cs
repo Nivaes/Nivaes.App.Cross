@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    public class CrossSettings 
+    public class CrossSettings
         : ICrossSettings
     {
         public bool AlwaysRaiseInpcOnUserInterfaceThread { get; set; }

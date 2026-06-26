@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross;
 

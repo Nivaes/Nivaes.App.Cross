@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
-    public interface ICrossSourceBinding 
+    public interface ICrossSourceBinding
         : ICrossBinding
     {
         Type SourceType { get; }

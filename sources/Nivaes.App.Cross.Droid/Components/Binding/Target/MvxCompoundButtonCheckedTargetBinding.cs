@@ -3,7 +3,6 @@ namespace MvvmCross.Platforms.Android.Binding.Target
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
 

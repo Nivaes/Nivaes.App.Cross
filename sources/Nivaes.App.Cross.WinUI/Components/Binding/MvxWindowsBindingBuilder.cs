@@ -1,12 +1,11 @@
 namespace Nivaes.App.Cross.WinUI
 {
     using Microsoft.UI.Xaml;
-    using MvvmCross;
     using MvvmCross.IoC;
     using MvvmCross.Platforms.WinUi.Binding;
 
     [Obsolete("")]
-    public class MvxWindowsBindingBuilder 
+    public class MvxWindowsBindingBuilder
         : CrossBindingBuilder
     {
         public enum BindingType
@@ -77,7 +76,7 @@ namespace Nivaes.App.Cross.WinUI
         private void InitializeBindingCreator()
         {
             var creator = CreateBindingCreator();
-            
+
             //Mvx.IoCProvider.RegisterSingleton(creator);
             var container = Singleton<CrossIoCServiceContainer>.Instance;
             container.AddInstance(creator);

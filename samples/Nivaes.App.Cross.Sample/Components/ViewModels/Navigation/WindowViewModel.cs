@@ -8,7 +8,7 @@ public class WindowChildParam
     public int ChildNo { get; set; }
 }
 
-public class WindowViewModel 
+public class WindowViewModel
     : CrossNavigationViewModel
 {
     private static int _count;

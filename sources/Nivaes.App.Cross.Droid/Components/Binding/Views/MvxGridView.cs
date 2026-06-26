@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Collections;
     using System.Windows.Input;
     using Android.Content;
-    using Android.OS;
     using Android.Runtime;
     using Android.Util;
     using Android.Views;

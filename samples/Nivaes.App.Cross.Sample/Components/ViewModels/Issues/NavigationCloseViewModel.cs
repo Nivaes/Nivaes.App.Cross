@@ -1,10 +1,8 @@
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class NavigationCloseViewModel 
+public class NavigationCloseViewModel
     : CrossViewModel
 {
     private readonly ICrossNavigationService _mvxNavigationService;

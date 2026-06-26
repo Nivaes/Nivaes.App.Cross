@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Nivaes.App.Cross;
 
-public class CrossCombinerSourceStepDescription 
+public class CrossCombinerSourceStepDescription
     : CrossSourceStepDescription
 {
     public ICrossValueCombiner? Combiner { get; set; }

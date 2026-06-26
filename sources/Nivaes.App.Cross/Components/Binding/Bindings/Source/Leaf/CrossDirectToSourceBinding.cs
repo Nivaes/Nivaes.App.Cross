@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     [RequiresUnreferencedCode("This class uses GetType() on source objects which may not be preserved by trimming")]
     public class CrossDirectToSourceBinding : CrossSourceBinding

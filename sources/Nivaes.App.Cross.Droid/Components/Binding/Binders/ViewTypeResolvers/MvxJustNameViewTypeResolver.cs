@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System;
-    using Android.Views;
     using MvvmCross.IoC;
 
     [Obsolete("", true)]

@@ -1,6 +1,5 @@
 namespace MvvmCross.Platforms.Android.Binding.Target
 {
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxNumberPickerDisplayedValuesTargetBinding(NumberPicker target)

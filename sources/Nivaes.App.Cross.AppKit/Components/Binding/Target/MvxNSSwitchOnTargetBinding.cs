@@ -2,10 +2,9 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
 {
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
-    public class MvxNSSwitchOnTargetBinding 
+    public class MvxNSSwitchOnTargetBinding
         : MvxPropertyInfoTargetBinding<NSButton>
     {
         public MvxNSSwitchOnTargetBinding(object target, PropertyInfo targetPropertyInfo)

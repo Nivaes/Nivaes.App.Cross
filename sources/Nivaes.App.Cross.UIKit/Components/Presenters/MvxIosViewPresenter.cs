@@ -3,13 +3,11 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross;
     using MvvmCross.Platforms.Ios.Presenters;
     using MvvmCross.Platforms.Ios.Presenters.Attributes;
     using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.IoC;
 
-    public class MvxIosViewPresenter 
+    public class MvxIosViewPresenter
         : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
         //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
@@ -34,7 +32,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer, IMvxIosViewCreator viewCreator,
             ILogger<MvxIosViewPresenter> logger)
-            :base(crossViewsContainer)
+            : base(crossViewsContainer)
         {
             _viewCreator = viewCreator;
             Window = window;

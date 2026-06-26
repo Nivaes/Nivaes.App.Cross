@@ -3,8 +3,8 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
-{  
-    public class CrossTargetBindingFactoryRegistry 
+{
+    public class CrossTargetBindingFactoryRegistry
         : ICrossTargetBindingFactoryRegistry
     {
         private readonly Dictionary<int, ICrossPluginTargetBindingFactory> _lookups = [];
@@ -121,7 +121,7 @@ namespace Nivaes.App.Cross
             {
                 return factory;
             }
-            
+
             var implementedInterfaces = type.GetTypeInfo().ImplementedInterfaces;
             foreach (var implementedInterface in implementedInterfaces)
             {

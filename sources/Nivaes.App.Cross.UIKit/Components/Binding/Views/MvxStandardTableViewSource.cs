@@ -1,14 +1,11 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Foundation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.IoC;
 using ObjCRuntime;
-using UIKit;
 
 namespace Nivaes.App.Cross.UIKitOS;
-public class MvxStandardTableViewSource 
+
+public class MvxStandardTableViewSource
     : MvxTableViewSource
 {
     private static readonly NSString DefaultCellIdentifier = new NSString("SimpleBindableTableViewCell");

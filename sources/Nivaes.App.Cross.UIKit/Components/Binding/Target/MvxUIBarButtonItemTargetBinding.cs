@@ -4,7 +4,7 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
     using System.Windows.Input;
     using Nivaes.App.Cross;
 
-    public class MvxUIBarButtonItemTargetBinding 
+    public class MvxUIBarButtonItemTargetBinding
         : CrossConvertingTargetBinding
     {
         private readonly EventHandler<EventArgs> _canExecuteEventHandler;

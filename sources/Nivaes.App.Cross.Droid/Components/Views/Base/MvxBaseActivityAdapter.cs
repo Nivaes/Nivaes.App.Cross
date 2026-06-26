@@ -1,5 +1,4 @@
 using Android.Content;
-using System;
 
 namespace Nivaes.App.Cross.Droid;
 

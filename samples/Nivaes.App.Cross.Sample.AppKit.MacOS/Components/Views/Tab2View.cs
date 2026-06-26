@@ -4,10 +4,10 @@ using Nivaes.App.Cross.AppKitOS;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxTabPresentation(TabTitle = "Tab2")]
-public class Tab2View 
+public class Tab2View
     : CrossViewController<Tab2ViewModel>
 {
-    public Tab2View() 
+    public Tab2View()
         : base()
     {
     }

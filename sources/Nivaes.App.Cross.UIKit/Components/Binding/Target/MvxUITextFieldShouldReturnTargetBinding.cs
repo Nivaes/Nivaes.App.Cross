@@ -2,7 +2,6 @@ namespace MvvmCross.Platforms.Ios.Binding.Target
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
-    using MvvmCross.Binding;
     using Nivaes.App.Cross;
 
     public class MvxUITextFieldShouldReturnTargetBinding

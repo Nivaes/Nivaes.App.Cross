@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
         public static CrossAppBuilder UseDroidApp(this CrossAppBuilder builder, Context applicationContext)
         {
             builder.SetupDefaults(applicationContext);
-            
+
             return builder;
         }
 
@@ -88,6 +88,6 @@ namespace Nivaes.App.Cross.Droid
             return builder;
         }
 
-        
+
     }
 }

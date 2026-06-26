@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
 
     public class MvxAutoCompleteTextViewSelectedObjectTargetBinding
         : MvxAndroidPropertyInfoTargetBinding<MvxAutoCompleteTextView>

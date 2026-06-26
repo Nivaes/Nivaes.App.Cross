@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.WinUI;
 
-public class MvxSplitViewPresentationAttribute 
+public class MvxSplitViewPresentationAttribute
     : CrossBasePresentationAttribute
 {
     public MvxSplitViewPresentationAttribute() : this(SplitPanePosition.Content)

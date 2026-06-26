@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Windows.Input;
-    using MvvmCross.Binding;
 
     public class CrossEventInfoTargetBinding<T> : CrossTargetBinding
         where T : EventArgs

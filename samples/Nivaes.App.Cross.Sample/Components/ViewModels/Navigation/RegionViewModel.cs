@@ -2,10 +2,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class RegionViewModel 
+public class RegionViewModel
     : CrossNavigationViewModel
 {
-    public RegionViewModel(ILogger<RegionViewModel> logger, ICrossNavigationService navigationService) 
+    public RegionViewModel(ILogger<RegionViewModel> logger, ICrossNavigationService navigationService)
         : base(navigationService, logger)
     {
     }

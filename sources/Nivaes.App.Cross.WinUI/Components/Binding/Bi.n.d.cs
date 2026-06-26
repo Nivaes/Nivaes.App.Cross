@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
-using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.WinUI
 {

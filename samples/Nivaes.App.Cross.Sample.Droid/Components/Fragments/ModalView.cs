@@ -3,8 +3,6 @@ using Android.Runtime;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Droid;
-using Nivaes.IoC;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

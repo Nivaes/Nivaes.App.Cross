@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using Android.Content;
 using Android.Content.Res;
 using Android.Runtime;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public abstract class CrossApplication 
+    public abstract class CrossApplication
         : Application, IPlatformApplication
     {
         IServiceProvider? _services;
 
         IApplication? _application;
 
-        public static CrossApplication Current { [DebuggerHidden]get; [DebuggerHidden]private set; } = null!;
+        public static CrossApplication Current { [DebuggerHidden] get; [DebuggerHidden] private set; } = null!;
 
-        public IServiceProvider Services { [DebuggerHidden]get => _services!; }
+        public IServiceProvider Services { [DebuggerHidden] get => _services!; }
 
-        public IApplication Application { [DebuggerHidden]get => _application!; }
+        public IApplication Application { [DebuggerHidden] get => _application!; }
 
         protected CrossApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
         {
@@ -38,7 +34,7 @@ namespace Nivaes.App.Cross.Droid
 
             var crossApp = CreateCrossApp();
 
-           var rootContext = new CrossAndroidContext(crossApp.Services, this);
+            var rootContext = new CrossAndroidContext(crossApp.Services, this);
 
             var applicationContext = rootContext.MakeApplicationScope(this);
 
@@ -49,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
             //InitializeContainer(crossApp.Services);
 
             _application = _services.GetRequiredService<IApplication>();
-            
+
             var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);
 

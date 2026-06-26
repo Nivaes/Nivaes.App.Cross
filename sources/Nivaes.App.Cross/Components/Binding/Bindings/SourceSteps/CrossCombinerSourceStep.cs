@@ -1,8 +1,6 @@
 namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using Nivaes.App.Cross;
 
     public class CrossCombinerSourceStep : MvxSourceStep<CrossCombinerSourceStepDescription>
     {

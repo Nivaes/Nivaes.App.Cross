@@ -12,7 +12,7 @@ public static class CrossProgram
         var appBuilder = CrossApp.CreateBuilder();
 
         appBuilder.UseSharedCrossApp();
-        
+
         appBuilder.AddObservability().
            UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://localhost:4318"));
 

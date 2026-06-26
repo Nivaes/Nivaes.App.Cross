@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
     using Android.Views;
-    using MvvmCross.Binding;
 
     public class MvxTextViewFocusTargetBinding
     : MvxAndroidTargetBinding

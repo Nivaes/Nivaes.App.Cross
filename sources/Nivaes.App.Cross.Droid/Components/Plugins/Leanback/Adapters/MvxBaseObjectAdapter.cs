@@ -4,7 +4,6 @@ namespace MvvmCross.DroidX.Leanback.Adapters
     using System.Collections.Specialized;
     using Android.Runtime;
     using AndroidX.Leanback.Widget;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;

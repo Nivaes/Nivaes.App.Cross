@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Droid
     using System.Threading;
     using Android.App;
 
-    public class MvxAndroidMainThreadDispatcher 
+    public class MvxAndroidMainThreadDispatcher
         : CrossMainThreadAsyncDispatcher
     {
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;

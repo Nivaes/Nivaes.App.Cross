@@ -4,8 +4,6 @@ using AndroidX.AppCompat.Widget;
 namespace Nivaes.App.Cross.Droid
 {
     using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Android.Binding.Views;
     using Nivaes.App.Cross;
 
     public class MvxAppCompatRadioGroupSelectedItemBinding
