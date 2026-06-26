@@ -1,8 +1,5 @@
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Threading;
-
     // For lifetime explained, see http://developer.android.com/guide/topics/fundamentals/activities.html
     public class MvxAndroidLifetimeMonitor
         : CrossLifetimeMonitor, IMvxAndroidActivityLifetimeListener

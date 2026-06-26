@@ -129,11 +129,7 @@ public static class CrossActivityViewExtensions
     {
         var activityLifetimeListener = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidActivityLifetimeListener>();
 
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidActivityLifetimeListener? activityLifetimeListener) == true &&
-        //    activityLifetimeListener != null)
-        //{
         report(activityLifetimeListener, androidView.ToActivity());
-        //}
     }
 
     public static Activity ToActivity(this IMvxAndroidView androidView)
