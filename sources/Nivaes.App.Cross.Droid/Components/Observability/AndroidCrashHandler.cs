@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.Droid.Observability
                      Application.Context.FilesDir?.AbsolutePath!,
                      "crash.log");
 
-        public AndroidCrashHandler(ILogger<AndroidCrashHandler> logger, LoggerProvider loggerFactory)
-            : base(logger, loggerFactory)
+        public AndroidCrashHandler(ILogger<AndroidCrashHandler> logger, LoggerProvider? loggerProvider = null)
+            : base(logger, loggerProvider)
         {
         }
 
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.Droid.Observability
             SaveException(ex, "Unhandled Java exception occurred.");
 
             base.Logger.LogCritical(ex, "Unhandled Java exception occurred.");
-            LoggerProvider.ForceFlush();
+            LoggerProvider?.ForceFlush();
 
             e.Handled = true;
         }

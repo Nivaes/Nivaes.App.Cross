@@ -5,6 +5,7 @@ using Microsoft.Extensions.Diagnostics.Metrics;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.Hosting
 {
@@ -188,6 +189,7 @@ namespace Nivaes.App.Cross.Hosting
             // ILogger<> from the IServiceProvider, they don't get 'null'.
             Services.TryAdd(ServiceDescriptor.Singleton<ILoggerFactory, NullLoggerFactory>());
             Services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(NullLogger<>)));
+            //Services.TryAddSingleton<LoggerProvider>(NullLoggerProvider.Instance);
         }
 
         private sealed class NullLoggerFactory : ILoggerFactory

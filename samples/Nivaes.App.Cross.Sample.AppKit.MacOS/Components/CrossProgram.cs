@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
+using OpenTelemetry;
 
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
@@ -11,7 +12,11 @@ public static class CrossProgram
         var appBuilder = CrossApp.CreateBuilder();
 
         appBuilder.UseSharedCrossApp();
-        appBuilder.UseAppKitApp(/*app*/);
+
+        appBuilder.AddObservability().
+              UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://192.168.86.205:4318"));
+
+        appBuilder.UseAppKitApp();
 
         appBuilder.Services.AddMetrics();
 

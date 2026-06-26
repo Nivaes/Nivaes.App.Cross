@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.AppKitOS.Observability
               Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
              "crash.log");
 
-        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger, LoggerProvider loggerProvider)
+        public AppKitCrashHandler(ILogger<AppKitCrashHandler> logger, LoggerProvider? loggerProvider = null)
             : base(logger, loggerProvider)
         {
         }
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.AppKitOS.Observability
             SaveException(ex, "Marshall managed exception ocurred");
 
             base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
-            LoggerProvider.ForceFlush();
+            LoggerProvider?.ForceFlush();
         }
 
         private void Runtime_MarshalObjectiveCException(object sender, ObjCRuntime.MarshalObjectiveCExceptionEventArgs args)
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross.AppKitOS.Observability
             SaveException(ex, "MarshallC managed exception ocurred");
 
             base.Logger.LogCritical(ex, "Marshall managed exception ocurred");
-            LoggerProvider.ForceFlush();
+            LoggerProvider?.ForceFlush();
         }
 
     }

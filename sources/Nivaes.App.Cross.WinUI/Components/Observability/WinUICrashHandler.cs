@@ -10,8 +10,8 @@ namespace Nivaes.App.Cross.WinUI.Observability
             Windows.Storage.ApplicationData.Current.LocalFolder.Path,
             "crash.log");
 
-        public WinUICrashHandler(ILogger<WinUICrashHandler> logger, LoggerProvider loggerFactory)
-            : base(logger, loggerFactory)
+        public WinUICrashHandler(ILogger<WinUICrashHandler> logger, , LoggerProvider? loggerProvider = null)
+            : base(logger, loggerProvider)
         {
         }
     }

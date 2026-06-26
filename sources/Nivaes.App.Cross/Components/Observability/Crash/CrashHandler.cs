@@ -60,6 +60,7 @@ public abstract class CrashHandler : ICrashHandler
         SaveException(ex, "Unhandled exception occurred.");
 
         Logger.LogCritical(ex, "Unhandled exception occurred.");
+        LoggerProvider?.ForceFlush();
     }
 
     private void TaskScheduler_UnobservedTaskException(
@@ -70,6 +71,7 @@ public abstract class CrashHandler : ICrashHandler
         SaveException(ex, "Unobserved task exception occurred.");
 
         Logger.LogCritical(ex, "Unobserved task exception occurred.");
+        LoggerProvider?.ForceFlush();
 
         e.SetObserved();
     }

@@ -59,7 +59,7 @@ namespace Nivaes.App.Cross.UIKitOS
                 }
                 catch (Exception ex)
                 {
-                    throw new CrossException(ex, $"Loading view of type {viewType.Name} from storyboard {storyboardName} failed: {2}");
+                    throw new CrossException(ex, $"Loading view of type {viewType.Name} from storyboard '{storyboardName}' failed: {2}");
                 }
             }
 

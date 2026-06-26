@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Web.Observability
     {
         protected override string PathCrashFile => throw new NotImplementedException();
 
-        public WebCrashHandler(ILogger<WebCrashHandler> logger, LoggerProvider loggerProvider)
+        public WebCrashHandler(ILogger<WebCrashHandler> logger, LoggerProvider? loggerProvider = null)
             : base(logger, loggerProvider)
         {
         }
