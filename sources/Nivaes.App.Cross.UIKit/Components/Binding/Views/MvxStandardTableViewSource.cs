@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
 
 namespace Nivaes.App.Cross.UIKitOS;

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS

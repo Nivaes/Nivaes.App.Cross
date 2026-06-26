@@ -1,13 +1,14 @@
 ﻿using Android.Runtime;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Trace;
 
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid.Observability
 {
     public class AndroidCrashHandler : CrashHandler
     {
-        private string PathCrashFile => Path.Combine(
+        protected override string PathCrashFile => Path.Combine(
                      Application.Context.FilesDir?.AbsolutePath!,
                      "crash.log");
 
@@ -20,28 +21,6 @@ namespace Nivaes.App.Cross.Droid
         {
             base.Register();
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
-        }
-
-        protected override void SaveException(Exception ex, string description)
-        {
-            try
-            {
-                var message = Serialize(ex);
-                File.WriteAllText(PathCrashFile, message);
-            }
-            catch { }
-        }
-
-        protected override async Task LoadAndSendException()
-        {
-            if (File.Exists(PathCrashFile))
-            {
-                var message = await File.ReadAllTextAsync(PathCrashFile);
-
-                base.Logger.LogCritical(message);
-                LoggerProvider.ForceFlush();
-
-            }
         }
 
         private void AndroidEnvironment_UnhandledExceptionRaiser(

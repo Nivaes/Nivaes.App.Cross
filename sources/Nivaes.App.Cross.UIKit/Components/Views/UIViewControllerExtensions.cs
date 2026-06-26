@@ -1,7 +1,8 @@
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using Microsoft.Extensions.Logging;
-
     public static class UIViewControllerExtensions
     {
         extension(UIViewController? viewController)
@@ -13,7 +14,7 @@ namespace Nivaes.App.Cross.UIKitOS
                     return iosView;
                 }
 
-                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
+                CrossLoggerHost.GetLogger(nameof(UIViewControllerExtensions)).Log(LogLevel.Warning, "Could not get IMvxIosView from ViewController {viewControllerName}",
                     viewController?.GetType().Name);
                 return null;
             }

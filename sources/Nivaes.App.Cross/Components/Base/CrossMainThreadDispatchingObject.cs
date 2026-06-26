@@ -3,10 +3,18 @@ namespace Nivaes.App.Cross
     using System;
     using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public abstract class CrossMainThreadDispatchingObject
     {
         protected ICrossMainThreadAsyncDispatcher AsyncDispatcher => IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+
+        protected readonly ILogger Logger;
+
+        public CrossMainThreadDispatchingObject(ILogger logger)
+        {
+            Logger = logger;
+        }
 
         protected void InvokeOnMainThread(Action action, bool maskExceptions = true)
         {

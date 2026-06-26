@@ -4,6 +4,7 @@ namespace MvvmCross.IoC
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     [Obsolete("Quitar MvxIoC", true)]
     public class MvxPropertyInjector : IMvxPropertyInjector
@@ -27,6 +28,7 @@ namespace MvvmCross.IoC
             }
         }
 
+        [Obsolete("Quitar MvxIoC", true)]
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "The Inject method already has proper DynamicallyAccessedMembers annotations")]
         protected virtual void InjectProperty(object toReturn, PropertyInfo injectableProperty, IMvxPropertyInjectorOptions options)
         {

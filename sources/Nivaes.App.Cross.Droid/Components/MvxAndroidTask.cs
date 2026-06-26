@@ -1,12 +1,17 @@
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.Droid;
 
 public class MvxAndroidTask
     : CrossMainThreadDispatchingObject
 {
+    public MvxAndroidTask()
+        :base(CrossLoggerHost.GetLogger<MvxAndroidTask>())
+    { }
+
     protected void StartActivity(Intent intent)
     {
         DoOnActivity(activity => activity.StartActivity(intent));
@@ -19,8 +24,7 @@ public class MvxAndroidTask
                 var androidView = activity as IMvxStartActivityForResult;
                 if (androidView == null)
                 {
-                    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAndroidTask>>();
-                    logger?.Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
+                    CrossLoggerHost.GetLogger<MvxAndroidTask >().Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
                     return;
                 }
 
@@ -36,8 +40,7 @@ public class MvxAndroidTask
 
     private void OnMvxIntentResultReceived(object? sender, MvxIntentResultEventArgs e)
     {
-        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAndroidTask>>();
-        logger?.Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
+        CrossLoggerHost.GetLogger<MvxAndroidTask>().Log(LogLevel.Trace, "OnMvxIntentResultReceived in MvxAndroidTask");
 
         // TODO - is this correct - should we always remove the result registration even if this isn't necessarily our result?
         IPlatformApplication.Current!.Services.GetRequiredService<IMvxIntentResultSource>().Result -= OnMvxIntentResultReceived;

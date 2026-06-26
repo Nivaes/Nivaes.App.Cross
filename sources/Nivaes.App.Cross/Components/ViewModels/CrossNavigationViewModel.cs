@@ -6,16 +6,14 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        protected ILogger Logger { [DebuggerHidden] get; }
-
         private static readonly ActivitySource Source = new("SampleCrossClient");
 
         protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
+            :base(logger)
         {
             NavigationService = navigationService;
-            Logger = logger;
 
-            Logger.LogTrace($"Se inicio {this.GetType().Name}");
+            Logger.LogTrace($"Started {this.GetType().Name}");
 
             using var activity = Source.StartActivity("SampleCrossClient");
 
@@ -50,9 +48,9 @@ namespace Nivaes.App.Cross
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected MvxNavigationResultAwaitingViewModel(
-                ILogger logger,
                 ICrossNavigationService navigationService,
-                ICrossResultViewModelManager resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager,
+                ILogger logger)
             : base(navigationService, logger)
         {
             ResultViewModelManager = resultViewModelManager;
@@ -90,7 +88,7 @@ namespace Nivaes.App.Cross
                 ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
-            : base(logger, navigationService, resultViewModelManager)
+            : base(navigationService, resultViewModelManager, logger)
         {
         }
 

@@ -1,14 +1,16 @@
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.Sample
 {
-    using System.Threading.Tasks;
-    using Nivaes.App.Cross;
-
     public class ListViewModel : CrossViewModel
     {
         public CrossObservableCollection<TestItem> TestItems { get; } = new CrossObservableCollection<TestItem>();
         public ICrossAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);
 
-        public ListViewModel()
+        public ListViewModel(ILogger<ListViewModel> logger)
+            :base(logger)
         {
             TestItems.Add(new TestItem()
             {

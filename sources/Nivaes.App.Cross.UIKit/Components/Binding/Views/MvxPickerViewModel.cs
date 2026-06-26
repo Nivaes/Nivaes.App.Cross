@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     public class MvxPickerViewModel
         : UIPickerViewModel

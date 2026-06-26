@@ -1,14 +1,12 @@
-namespace Playground.Core.ViewModels
-{
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using Microsoft.Extensions.Logging;
 
-    public class Page2ViewModel
-        : CrossNavigationViewModel
+namespace Nivaes.App.Cross.Sample;
+
+public class Page2ViewModel
+    : CrossNavigationViewModel
+{
+    public Page2ViewModel(ICrossNavigationService navigationService, ILogger<Page2ViewModel> loggger)
+        : base(navigationService, loggger)
     {
-        public Page2ViewModel(ILogger<Page2ViewModel> loggger, ICrossNavigationService navigationService)
-            : base(navigationService, loggger)
-        {
-        }
     }
 }

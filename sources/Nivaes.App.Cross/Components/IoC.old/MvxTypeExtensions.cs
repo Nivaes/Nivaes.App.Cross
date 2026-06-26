@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross;
+using Nivaes.App.Cross.Observability;
 
 namespace MvvmCross.IoC;
 

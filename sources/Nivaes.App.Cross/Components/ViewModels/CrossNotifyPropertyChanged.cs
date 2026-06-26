@@ -4,9 +4,10 @@ namespace Nivaes.App.Cross
     using System.Linq.Expressions;
     using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     public abstract class CrossNotifyPropertyChanged
-    : CrossMainThreadDispatchingObject, ICrossNotifyPropertyChanged
+        : CrossMainThreadDispatchingObject, ICrossNotifyPropertyChanged
     {
         private static readonly PropertyChangedEventArgs AllPropertiesChanged = new(string.Empty);
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -45,7 +46,8 @@ namespace Nivaes.App.Cross
             _shouldLogInpc = value;
         }
 
-        protected CrossNotifyPropertyChanged()
+        protected CrossNotifyPropertyChanged(ILogger logger)
+            : base(logger)
         {
             var alwaysOnUIThread = CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread != false;
             ShouldAlwaysRaiseInpcOnUserInterfaceThread(alwaysOnUIThread);
@@ -81,7 +83,7 @@ namespace Nivaes.App.Cross
 
             if (ShouldLogInpc())
             {
-                CrossLoggerHost.Default?.LogTrace("Property '{PropertyName}' changing value to {NewValue}", changingArgs.PropertyName, changingArgs.NewValue);
+                CrossLoggerHost.GetLogger<CrossNotifyPropertyChanged>().LogTrace("Property '{PropertyName}' changing value to {NewValue}", changingArgs.PropertyName, changingArgs.NewValue);
             }
 
             PropertyChanging?.Invoke(this, changingArgs);
@@ -118,7 +120,7 @@ namespace Nivaes.App.Cross
             void RaiseChange()
             {
                 if (ShouldLogInpc())
-                    CrossLoggerHost.Default?.Log(LogLevel.Trace, "Property '{PropertyName}' value changed", changedArgs.PropertyName);
+                    CrossLoggerHost.GetLogger<CrossNotifyPropertyChanged>().Log(LogLevel.Trace, "Property '{PropertyName}' value changed", changedArgs.PropertyName);
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 

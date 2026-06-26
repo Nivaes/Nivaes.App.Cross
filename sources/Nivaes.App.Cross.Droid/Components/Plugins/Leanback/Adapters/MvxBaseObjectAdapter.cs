@@ -7,13 +7,14 @@ namespace MvvmCross.DroidX.Leanback.Adapters
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Observability;
 
     public abstract class MvxBaseObjectAdapter
         : ObjectAdapter, IMvxObjectAdapter
     {
-        public event EventHandler DataSetChanged;
+        public event EventHandler? DataSetChanged;
 
-        private IDisposable _subscription;
+        private IDisposable? _subscription;
 
         protected IMvxAndroidBindingContext BindingContext { get; }
 
@@ -44,7 +45,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
                 {
                     if (!(value is ICollection))
                     {
-                        CrossLoggerHost.Default.Log(LogLevel.Warning,
+                        CrossLoggerHost.GetLogger<MvxBaseObjectAdapter>().Log(LogLevel.Warning,
                             "Using a enumerable is not recommended due to performance issues. Consider using an ICollection (e.g. List) as ItemsSource.");
                     }
                 }
@@ -95,7 +96,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
         {
         }
 
-        protected virtual void OnItemsSourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs eventArgs)
+        protected virtual void OnItemsSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs eventArgs)
         {
             NotifyChanged(eventArgs);
         }
@@ -132,7 +133,7 @@ namespace MvvmCross.DroidX.Leanback.Adapters
             }
             catch (Exception exception)
             {
-                CrossLoggerHost.Default.Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
+                CrossLoggerHost.GetLogger<MvxBaseObjectAdapter>().Log(LogLevel.Warning, exception, "Exception masked during Adapter NotifyChanged");
             }
         }
 

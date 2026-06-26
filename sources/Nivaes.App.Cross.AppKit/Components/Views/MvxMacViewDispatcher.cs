@@ -7,19 +7,19 @@ namespace Nivaes.App.Cross.AppKitOS
         , ICrossViewDispatcher
     {
         private readonly IMvxMacViewPresenter _presenter;
-        private readonly ILogger _logger;
+        
 
         public MvxMacViewDispatcher(IMvxMacViewPresenter presenter, ILogger<MvxMacViewDispatcher> logger)
+            :base(logger)
         {
             _presenter = presenter;
-            _logger = logger;
         }
 
         public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             Func<Task> action = () =>
             {
-                _logger.LogTrace($"Navigate requested{request.ViewModelType!.FullName}");
+                Logger.LogTrace($"Navigate requested{request.ViewModelType!.FullName}");
                 return _presenter.Show(request);
             };
             await ExecuteOnMainThreadAsync(action);
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             Func<Task> action = () =>
             {
-                _logger.LogTrace($"Change presentation requested");
+                Logger.LogTrace($"Change presentation requested");
                 return _presenter.ChangePresentation(hint);
             };
             await ExecuteOnMainThreadAsync(action);

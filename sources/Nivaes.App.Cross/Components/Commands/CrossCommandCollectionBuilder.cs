@@ -179,7 +179,7 @@ namespace Nivaes.App.Cross
                 if (CanExecutePropertyInfo != null)
                     canExecuteFunc = _ => (bool)(CanExecutePropertyInfo.GetValue(owner, null) ?? true);
 
-                return new MvxCommand<object>(executeAction, canExecuteFunc);
+                return new CrossCommand<object>(executeAction, canExecuteFunc);
             }
         }
 

@@ -7,6 +7,7 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
     using Microsoft.Extensions.Logging;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     public static class MvxRecyclerViewAttributeExtensions
     {
@@ -66,14 +67,14 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
                     Make sure you have provided full Type name: namespace + class name, AssemblyName.
                     Example (check Example.Droid sample!): Example.Droid.Common.TemplateSelectors.MultiItemTemplateModelTemplateSelector, Example.Droid";
 
-                CrossLoggerHost.Default.Log(LogLevel.Error, message, templateSelectorClassName);
+                CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).Log(LogLevel.Error, message, templateSelectorClassName);
                 throw new InvalidOperationException(message);
             }
 
             if (!typeof(IMvxTemplateSelector).IsAssignableFrom(type))
             {
                 const string message = "Type: {Type} does not implement {TemplateSelectorType} interface.";
-                CrossLoggerHost.Default.Log(LogLevel.Error, message, type, nameof(IMvxTemplateSelector));
+                CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).Log(LogLevel.Error, message, type, nameof(IMvxTemplateSelector));
 
                 throw new InvalidOperationException(message);
             }
@@ -81,7 +82,7 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
             if (type.IsAbstract)
             {
                 const string message = "Cannot instantiate {TemplateSelectorType} as provided type: {Type} is abstract/interface.";
-                CrossLoggerHost.Default.Log(LogLevel.Error, message, nameof(IMvxTemplateSelector), type);
+                CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).Log(LogLevel.Error, message, nameof(IMvxTemplateSelector), type);
 
                 throw new InvalidOperationException(message);
             }
@@ -101,12 +102,12 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
                 var styleableType = typeof(global::_Microsoft.Android.Resource.Designer.Resource).GetNestedType("Styleable");
                 if (styleableType == null)
                 {
-                    CrossLoggerHost.Default.LogWarning("Could not find Styleable Type - MvxRecyclerView binding won't work correctly");
+                    CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).LogWarning("Could not find Styleable Type - MvxRecyclerView binding won't work correctly");
                     selectorGroup = [];
                     selector = 0;
                     return false;
                 }
-                CrossLoggerHost.Default.LogTrace("Styleable Type found: {Type}", styleableType.FullName);
+                CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).LogTrace("Styleable Type found: {Type}", styleableType.FullName);
 
                 selectorGroup = (int[])(styleableType.GetProperty("MvxRecyclerView")?.GetValue(null) ?? Array.Empty<int>());
                 selector = (int)(styleableType.GetProperty("MvxRecyclerView_MvxTemplateSelector")?.GetValue(null) ?? 0);
@@ -114,7 +115,7 @@ namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
             }
             catch (Exception e)
             {
-                CrossLoggerHost.Default.LogError(e, "Failed to initialize MvxRecyclerView binding resources");
+                CrossLoggerHost.GetLogger(nameof(MvxRecyclerViewAttributeExtensions)).LogError(e, "Failed to initialize MvxRecyclerView binding resources");
             }
 
             selectorGroup = [];

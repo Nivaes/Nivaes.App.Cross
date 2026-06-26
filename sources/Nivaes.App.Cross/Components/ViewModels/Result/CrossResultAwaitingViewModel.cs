@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
     public abstract class CrossResultAwaitingViewModel<TResult>
@@ -5,7 +7,8 @@ namespace Nivaes.App.Cross
     {
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected CrossResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
+        protected CrossResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            :base(logger)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -53,8 +56,8 @@ namespace Nivaes.App.Cross
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult>
         : CrossResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 
@@ -64,8 +67,8 @@ namespace Nivaes.App.Cross
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2>
         : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 
@@ -75,8 +78,8 @@ namespace Nivaes.App.Cross
     public abstract class MvxResultAwaitingViewModel<TParameter, TResult1, TResult2, TResult3>
         : MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>, ICrossViewModel<TParameter>
     {
-        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected MvxResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 
@@ -86,8 +89,8 @@ namespace Nivaes.App.Cross
     public abstract class MvxMultiResultAwaitingViewModel<TResult1, TResult2>
         : CrossResultAwaitingViewModel<TResult1>, ICrossResultAwaitingViewModel<TResult2>
     {
-        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 
@@ -115,8 +118,8 @@ namespace Nivaes.App.Cross
     public abstract class MvxMultiResultAwaitingViewModel<TResult1, TResult2, TResult3>
         : MvxMultiResultAwaitingViewModel<TResult1, TResult2>, ICrossResultAwaitingViewModel<TResult3>
     {
-        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected MvxMultiResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 

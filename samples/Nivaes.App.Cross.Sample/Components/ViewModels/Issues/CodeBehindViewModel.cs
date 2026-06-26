@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross.Sample
 {
+    using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
 
     public class CodeBehindViewModel
@@ -21,5 +22,9 @@ namespace Nivaes.App.Cross.Sample
                 }
             }
         }
+
+        public CodeBehindViewModel(ILogger<CodeBehindViewModel> logger)
+            :base(logger)
+        { }
     }
 }

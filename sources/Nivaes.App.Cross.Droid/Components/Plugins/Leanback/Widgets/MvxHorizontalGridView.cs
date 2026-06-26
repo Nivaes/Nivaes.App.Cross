@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Droid
     using AndroidX.Leanback.Widget;
     using Microsoft.Extensions.Logging;
     using MvvmCross.DroidX.Leanback.Listeners;
+    using Nivaes.App.Cross.Observability;
 
     /// <summary>
     /// 
@@ -106,7 +107,7 @@ namespace Nivaes.App.Cross.Droid
 
         public new void SetOnChildViewHolderSelectedListener(OnChildViewHolderSelectedListener listener)
         {
-            CrossLoggerHost.Default.Log(LogLevel.Warning, "Overwriting OnChildViewHolderSelectedListener will possibly break ItemSelection command.");
+            CrossLoggerHost.GetLogger<MvxHorizontalGridView>().Log(LogLevel.Warning, "Overwriting OnChildViewHolderSelectedListener will possibly break ItemSelection command.");
             base.SetOnChildViewHolderSelectedListener(listener);
         }
 
@@ -114,7 +115,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (FocusFirstChildOnLaidOut && !(listener is MvxFocusFirstChildOnChildLaidOutListener))
             {
-                CrossLoggerHost.Default.Log(LogLevel.Warning, "Overwriting OnChildLaidOutListener will possibly break focusing of first child!");
+                CrossLoggerHost.GetLogger<MvxHorizontalGridView>().Log(LogLevel.Warning, "Overwriting OnChildLaidOutListener will possibly break focusing of first child!");
             }
             base.SetOnChildLaidOutListener(listener);
         }

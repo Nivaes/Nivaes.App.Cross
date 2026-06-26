@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using System.Diagnostics.CodeAnalysis;
     using Foundation;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
     using ObjCRuntime;
     using UIKit;
 
@@ -21,8 +22,8 @@ namespace Nivaes.App.Cross.UIKitOS
             CrossLoggerHost.Default?.LogWarning("MvxSimpleTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
-        public MvxSimpleTableViewSource(UITableView tableView, string nibName, string cellIdentifier = null,
-                                        NSBundle bundle = null, bool registerNibForCellReuse = true)
+        public MvxSimpleTableViewSource(UITableView tableView, string nibName, string? cellIdentifier = null,
+                                        NSBundle? bundle = null, bool registerNibForCellReuse = true)
             : base(tableView)
         {
             // if no cellIdentifier supplied, then use the nibName as cellId

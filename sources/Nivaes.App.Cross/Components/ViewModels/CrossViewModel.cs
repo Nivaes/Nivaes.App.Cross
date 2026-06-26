@@ -1,9 +1,12 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
     public abstract class CrossViewModel
         : CrossNotifyPropertyChanged, ICrossViewModel
     {
-        protected CrossViewModel()
+        protected CrossViewModel(ILogger logger)
+            :base(logger)
         {
         }
 
@@ -81,6 +84,11 @@ namespace Nivaes.App.Cross
 
     public abstract class CrossViewModel<TParameter> : CrossViewModel, ICrossViewModel<TParameter>
     {
+        protected CrossViewModel(ILogger logger)
+           : base(logger)
+        {
+        }
+
         public abstract void Prepare(TParameter parameter);
     }
 }

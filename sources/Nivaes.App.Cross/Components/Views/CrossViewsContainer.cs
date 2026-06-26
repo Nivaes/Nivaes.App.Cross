@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 
@@ -7,7 +8,7 @@ namespace Nivaes.App.Cross
     public abstract class CrossViewsContainer
         : ICrossViewsContainer
     {
-        protected ILogger Logger { get; }
+        protected readonly ILogger Logger;
 
         public CrossViewsContainer(ILogger logger)
         {

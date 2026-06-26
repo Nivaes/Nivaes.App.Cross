@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
@@ -42,7 +43,12 @@ public class MultiBackStackTab1ViewModel(ILogger<MultiBackStackTab1ViewModel> lo
     public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
 }
 
-public class MultiBackStackTab2ViewModel : CrossViewModel;
+public class MultiBackStackTab2ViewModel : CrossViewModel
+{
+    public MultiBackStackTab2ViewModel(ILogger<MultiBackStackTab2ViewModel> logger)
+       : base(logger)
+    { }
+}
 
 public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
 {

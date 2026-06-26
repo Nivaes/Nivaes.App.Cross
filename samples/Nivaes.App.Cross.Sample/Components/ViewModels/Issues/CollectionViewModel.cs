@@ -1,10 +1,9 @@
+using System.Drawing;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross.Sample
 {
-    using System;
-    using System.Drawing;
-    using System.Linq;
-    using Nivaes.App.Cross;
-
     public record CollectionViewParameter(int InitialCount = 40);
 
     public class CollectionViewModel
@@ -14,17 +13,18 @@ namespace Nivaes.App.Cross.Sample
 
         public CrossObservableCollection<AnimalViewModel> Animals { get; } = new();
 
-        public MvxCommand<AnimalViewModel> DeleteAnimalCommand { get; }
-        public MvxCommand<int> AddAnimalCommand { get; }
-        public MvxCommand<AnimalViewModel> MarkFavoriteCommand { get; }
+        public CrossCommand<AnimalViewModel> DeleteAnimalCommand { get; }
+        public CrossCommand<int> AddAnimalCommand { get; }
+        public CrossCommand<AnimalViewModel> MarkFavoriteCommand { get; }
 
-        public CollectionViewModel()
+        public CollectionViewModel(ILogger<CollectionViewModel> logger)
+            : base(logger)
         {
             _random = new Random();
 
-            DeleteAnimalCommand = new MvxCommand<AnimalViewModel>(DoDeleteAnimalCommand);
-            AddAnimalCommand = new MvxCommand<int>(DoAddAnimalCommand);
-            MarkFavoriteCommand = new MvxCommand<AnimalViewModel>(DoMarkFavoriteCommand);
+            DeleteAnimalCommand = new CrossCommand<AnimalViewModel>(DoDeleteAnimalCommand);
+            AddAnimalCommand = new CrossCommand<int>(DoAddAnimalCommand);
+            MarkFavoriteCommand = new CrossCommand<AnimalViewModel>(DoMarkFavoriteCommand);
         }
 
         public override void Prepare(CollectionViewParameter parameter)
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross.Sample
 
         private AnimalViewModel CreateRandomAnimal()
         {
-            AnimalViewModel animal = null;
+            AnimalViewModel? animal = null;
 
             var name = _names[_random.Next(0, _names.Length - 1)];
             var color = _colors[_random.Next(0, _colors.Length - 1)];
@@ -127,30 +127,30 @@ namespace Nivaes.App.Cross.Sample
             return animal;
         }
 
-        private void DoDeleteAnimalCommand(AnimalViewModel animal)
+        private void DoDeleteAnimalCommand(AnimalViewModel? animal)
         {
             Animals.Remove(animal);
         }
 
-        private void DoMarkFavoriteCommand(AnimalViewModel animal)
+        private void DoMarkFavoriteCommand(AnimalViewModel? animal)
         {
             animal.Favorite = !animal.Favorite;
         }
 
         public abstract class AnimalViewModel : CrossNotifyPropertyChanged
         {
-            private string _name;
-            private string _imageUrl;
+            private string? _name;
+            private string? _imageUrl;
             private Color _favoriteColor;
             private bool _favorite;
 
-            public string Name
+            public string? Name
             {
                 get => _name;
                 set => SetProperty(ref _name, value);
             }
 
-            public string ImageUrl
+            public string? ImageUrl
             {
                 get => _imageUrl;
                 set => SetProperty(ref _imageUrl, value);
@@ -167,18 +167,31 @@ namespace Nivaes.App.Cross.Sample
                 get => _favorite;
                 set => SetProperty(ref _favorite, value);
             }
+
+            public AnimalViewModel(ILogger logger)
+                :base(logger)
+            { }
         }
 
         public class CatViewModel : AnimalViewModel
         {
+            public CatViewModel()
+                : base(CrossLoggerHost.GetLogger<CatViewModel>())
+            { }
         }
 
         public class DogViewModel : AnimalViewModel
         {
+            public DogViewModel()
+                : base(CrossLoggerHost.GetLogger<DogViewModel>())
+            { }
         }
 
         public class MonkeyViewModel : AnimalViewModel
         {
+            public MonkeyViewModel()
+                : base(CrossLoggerHost.GetLogger<MonkeyViewModel>())
+            { }
         }
     }
 }

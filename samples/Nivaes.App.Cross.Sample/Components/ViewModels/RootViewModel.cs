@@ -19,11 +19,11 @@ public class RootViewModel
     }
 
     public RootViewModel(
-            ILogger<RootViewModel> logger,
             ICrossNavigationService navigationService,
             ICrossViewModelLoader mvxViewModelLoader,
-            ICrossResultViewModelManager resultViewModelManager)
-        : base(logger, navigationService, resultViewModelManager)
+            ICrossResultViewModelManager resultViewModelManager,
+            ILogger<RootViewModel> logger)
+        : base(navigationService, resultViewModelManager, logger)
     {
         _mvxViewModelLoader = mvxViewModelLoader;
 

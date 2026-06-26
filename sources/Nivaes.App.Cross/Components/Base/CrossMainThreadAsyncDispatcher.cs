@@ -2,10 +2,17 @@ namespace Nivaes.App.Cross
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
 
     public abstract class CrossMainThreadAsyncDispatcher
         : CrossMainThreadDispatcher, ICrossMainThreadAsyncDispatcher
     {
+        public CrossMainThreadAsyncDispatcher(ILogger logger)
+            :base(logger)
+        {
+
+        }
+
         public Task ExecuteOnMainThreadAsync(Action action, bool maskExceptions = true)
         {
             if (action == null)

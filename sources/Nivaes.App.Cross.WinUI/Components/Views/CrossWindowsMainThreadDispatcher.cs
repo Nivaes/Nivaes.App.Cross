@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 
 namespace Nivaes.App.Cross.WinUI;
@@ -7,7 +8,8 @@ public class CrossWindowsMainThreadDispatcher
 {
     private readonly DispatcherQueue _uiDispatcher;
 
-    public CrossWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher)
+    public CrossWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher, ILogger<CrossWindowsMainThreadDispatcher> logger)
+        :base(logger)
     {
         _uiDispatcher = uiDispatcher;
     }

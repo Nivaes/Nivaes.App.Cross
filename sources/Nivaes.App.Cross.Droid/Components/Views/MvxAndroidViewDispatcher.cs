@@ -1,15 +1,17 @@
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Threading.Tasks;
-    using Nivaes.App.Cross;
-
     public class MvxAndroidViewDispatcher
         : MvxAndroidMainThreadDispatcher
         , ICrossViewDispatcher
     {
         private readonly IAndroidViewPresenter _presenter;
 
-        public MvxAndroidViewDispatcher(IAndroidViewPresenter presenter)
+        public MvxAndroidViewDispatcher(IAndroidViewPresenter presenter, ILogger<MvxAndroidViewDispatcher> logger)
+            :base(logger)
         {
             _presenter = presenter;
         }

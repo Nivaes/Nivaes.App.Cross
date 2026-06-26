@@ -1,12 +1,13 @@
+using System.Collections;
+using System.Collections.Specialized;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Binding.Extensions;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Observability;
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
-    using ObjCRuntime;
-
     public abstract class MvxTableViewSource : MvxBaseTableViewSource
     {
         private IEnumerable? _itemsSource;

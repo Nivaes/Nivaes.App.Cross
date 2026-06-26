@@ -1,14 +1,25 @@
 using System.Reflection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross
 {
     public abstract class CrossMainThreadDispatcher :
         ICrossMainThreadDispatcher
     {
+        protected readonly ILogger Logger;
+
+        public CrossMainThreadDispatcher(ILogger logger)
+        {
+            Logger = logger;
+        }
+
+        // ToDo: Refactorizar para que no sea static.
         public static void ExceptionMaskedAction(Action action, bool maskExceptions)
         {
             ArgumentNullException.ThrowIfNull(action);
+
+            ILogger logger = CrossLoggerHost.GetLogger<CrossMainThreadDispatcher>();
 
             try
             {
@@ -16,17 +27,17 @@ namespace Nivaes.App.Cross
             }
             catch (TargetInvocationException exception)
             {
-                CrossLoggerHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
+                logger.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
-                    CrossLoggerHost.Default?.LogWarning(exception.InnerException, "TargetInvocationException masked");
+                    logger.LogWarning(exception.InnerException, "TargetInvocationException masked");
                 else
                     throw;
             }
             catch (Exception exception)
             {
-                CrossLoggerHost.Default?.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
+                logger.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
-                    CrossLoggerHost.Default?.LogWarning(exception, "Exception masked");
+                    logger.LogWarning(exception, "Exception masked");
                 else
                     throw;
             }
@@ -36,5 +47,4 @@ namespace Nivaes.App.Cross
 
         public abstract bool IsOnMainThread { get; }
     }
-#nullable restore
 }

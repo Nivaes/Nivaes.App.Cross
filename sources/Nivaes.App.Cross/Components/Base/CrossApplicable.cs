@@ -1,8 +1,9 @@
+using System;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossApplicable
         : ICrossApplicable
     {
@@ -10,7 +11,7 @@ namespace Nivaes.App.Cross
 
         ~CrossApplicable()
         {
-            CrossLoggerHost.Default?.Log(LogLevel.Trace, "Finaliser called on {0} - suggests that  Apply() was never called", GetType().Name);
+            CrossLoggerHost.GetLogger<CrossApplicable>().Log(LogLevel.Trace, "Finaliser called on {0} - suggests that  Apply() was never called", GetType().Name);
         }
 
         protected void SuppressFinalizer()

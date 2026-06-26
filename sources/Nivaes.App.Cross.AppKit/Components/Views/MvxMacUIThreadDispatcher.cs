@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.AppKitOS
 {
     public abstract class MvxMacUIThreadDispatcher
@@ -5,9 +7,10 @@ namespace Nivaes.App.Cross.AppKitOS
     {
         private readonly SynchronizationContext _uiSynchronizationContext;
 
-        protected MvxMacUIThreadDispatcher()
+        protected MvxMacUIThreadDispatcher(ILogger logger)
+            :base(logger)
         {
-            _uiSynchronizationContext = SynchronizationContext.Current;
+            _uiSynchronizationContext = SynchronizationContext.Current!;
             if (_uiSynchronizationContext == null)
                 throw new CrossException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }

@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     public class CrossStringToTypeParser
         : ICrossStringToTypeParser, ICrossFillableStringToTypeParser
@@ -35,7 +36,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception)
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Error,
+                    CrossLoggerHost.GetLogger<CrossStringToTypeParser>().Log(LogLevel.Error,
                         "Failed to parse enum parameter {FieldOrParameterName} from string {Input}",
                         fieldOrParameterName,
                         input);
@@ -49,7 +50,7 @@ namespace Nivaes.App.Cross
                     }
                     catch (Exception)
                     {
-                        CrossLoggerHost.Default?.Log(LogLevel.Error,
+                        CrossLoggerHost.GetLogger<CrossStringToTypeParser>().Log(LogLevel.Error,
                             "Failed to create default enum value for {FieldOrParameterName} - will return null",
                             fieldOrParameterName);
                     }
@@ -74,7 +75,7 @@ namespace Nivaes.App.Cross
             {
                 if (!TryParse(input, out var result))
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Error,
+                    CrossLoggerHost.GetLogger<CrossStringToTypeParser>().Log(LogLevel.Error,
                         "Failed to parse {Type} parameter {FieldOrParameterName} from string {Input}",
                         GetType().Name, fieldOrParameterName, input);
                 }
@@ -195,7 +196,7 @@ namespace Nivaes.App.Cross
                 return extra.ReadValue(targetType, rawValue, fieldOrParameterName);
             }
 
-            CrossLoggerHost.Default?.Log(LogLevel.Error,
+            CrossLoggerHost.GetLogger<CrossStringToTypeParser>().Log(LogLevel.Error,
                 "Parameter {ParameterName} is invalid targetType {TypeName}",
                 fieldOrParameterName, targetType.Name);
             return null;

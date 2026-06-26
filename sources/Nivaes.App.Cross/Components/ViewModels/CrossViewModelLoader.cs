@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross
             //    return new CrossNullViewModel();
             //}
             if (request.ViewModelType == null)
-                return null;
+                return null;  // ToDo: Puede haber un viewModelType == null?
 
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross
         //    }
         //}
 
-        public ICrossViewModel? LoadViewModel<TParameter>(CrossViewModelRequest request, TParameter param, ICrossBundle? savedState,
+        public ICrossViewModel LoadViewModel<TParameter>(CrossViewModelRequest request, TParameter param, ICrossBundle? savedState,
            ICrossNavigateEventArgs? navigationArgs = null)
         {
             //if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
@@ -100,7 +100,7 @@ namespace Nivaes.App.Cross
             //    return new CrossNullViewModel();
             //}
             if (request.ViewModelType == null)
-                return null;
+                return null; // ToDo: Puede haber un viewModelType == null?
 
             var parameterValues = new CrossBundle(request.ParameterValues);
             try

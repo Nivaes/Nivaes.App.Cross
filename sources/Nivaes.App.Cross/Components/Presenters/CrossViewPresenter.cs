@@ -1,14 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     public abstract class CrossViewPresenter
         : ICrossViewPresenter
     {
         private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =
             new Dictionary<Type, Func<CrossPresentationHint, Task<bool>>>();
+
+        protected readonly ILogger Logger;
+
+        public CrossViewPresenter(ILogger logger)
+        {
+            Logger = logger;
+        }
 
         public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
             where THint : CrossPresentationHint
@@ -22,9 +31,7 @@ namespace Nivaes.App.Cross
         {
             ArgumentNullException.ThrowIfNull(hint, nameof(hint));
 
-            if (_presentationHintHandlers.TryGetValue(
-                hint.GetType(),
-                out Func<CrossPresentationHint, Task<bool>> handler))
+            if (_presentationHintHandlers.TryGetValue(hint.GetType(), out var handler))
             {
                 return handler(hint);
             }

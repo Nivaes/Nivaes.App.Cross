@@ -1,13 +1,15 @@
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+
 namespace Playground.Core.ViewModels
 {
-    using Nivaes.App.Cross;
-
     public class NativeViewModel
         : CrossViewModel
     {
         private static int _counter = 0;
 
-        public NativeViewModel(ICrossNavigationService navigationService)
+        public NativeViewModel(ICrossNavigationService navigationService, ILogger<NativeViewModel> logger)
+            :base(logger)
         {
             ForwardCommand = new CrossAsyncCommand(() => navigationService.Navigate<NativeViewModel>());
             CloseCommand = new CrossAsyncCommand(() => navigationService.Close(this));

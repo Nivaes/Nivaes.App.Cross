@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross
 {
@@ -12,6 +13,7 @@ namespace Nivaes.App.Cross
         private int _concurrentExecutions;
 
         protected CrossAsyncCommandBase(bool allowConcurrentExecutions = false)
+            :base(CrossLoggerHost.GetLogger<CrossAsyncCommandBase>())
         {
             _allowConcurrentExecutions = allowConcurrentExecutions;
         }
@@ -30,7 +32,7 @@ namespace Nivaes.App.Cross
             {
                 if (_cts == null)
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Warning, "MvxAsyncCommand : Attempt to cancel a task that is not running");
+                    Logger.Log(LogLevel.Warning, "MvxAsyncCommand : Attempt to cancel a task that is not running");
                 }
                 else
                 {
@@ -62,7 +64,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception e)
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Error, e, "MvxAsyncCommand : exception executing task");
+                Logger.Log(LogLevel.Error, e, "MvxAsyncCommand : exception executing task");
                 throw;
             }
         }
@@ -93,7 +95,7 @@ namespace Nivaes.App.Cross
                     }
                     else if (!_allowConcurrentExecutions)
                     {
-                        CrossLoggerHost.Default?.Log(LogLevel.Information, "MvxAsyncCommand: execute ignored, already running");
+                        Logger.Log(LogLevel.Information, "MvxAsyncCommand: execute ignored, already running");
                         return;
                     }
                     _concurrentExecutions++;
@@ -113,7 +115,7 @@ namespace Nivaes.App.Cross
                     }
                     catch (OperationCanceledException e)
                     {
-                        CrossLoggerHost.Default?.Log(LogLevel.Trace, "MvxAsyncCommand: OperationCanceledException");
+                        Logger.Log(LogLevel.Trace, "MvxAsyncCommand: OperationCanceledException");
                         //Rethrow if the exception does not come from the current cancellation token
                         if (!hideCanceledException || e.CancellationToken != CancelToken)
                         {
@@ -146,7 +148,7 @@ namespace Nivaes.App.Cross
         {
             if (_cts == null)
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected ClearCancellationTokenSource, no token available!");
+                Logger.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected ClearCancellationTokenSource, no token available!");
             }
             else
             {
@@ -159,7 +161,7 @@ namespace Nivaes.App.Cross
         {
             if (_cts != null)
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected InitCancellationTokenSource, a token is already available!");
+                Logger.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected InitCancellationTokenSource, a token is already available!");
             }
             _cts = new CancellationTokenSource();
         }

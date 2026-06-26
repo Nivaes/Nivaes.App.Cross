@@ -1,18 +1,19 @@
-namespace Playground.Core.ViewModels
-{
-    using System.Collections;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Collections;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+using static Nivaes.App.Cross.Sample.CollectionViewModel;
 
+namespace Nivaes.App.Cross.Sample
+{
     public class Page1ViewModel
         : CrossNavigationViewModel
     {
-        public MvxCommand<int> HeaderTappedCommand { get; }
+        public CrossCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(ILogger<Page1ViewModel> logger, ICrossNavigationService navigationService)
+        public Page1ViewModel(ICrossNavigationService navigationService, ILogger<Page1ViewModel> logger)
             : base(navigationService, logger)
         {
-            HeaderTappedCommand = new MvxCommand<int>(DoHeaderTappedCommand);
+            HeaderTappedCommand = new CrossCommand<int>(DoHeaderTappedCommand);
 
             var random = new Random();
             var sections = new List<SectionViewModel>();
@@ -47,12 +48,12 @@ namespace Playground.Core.ViewModels
         public class SectionViewModel : CrossNotifyPropertyChanged, IEnumerable<SectionItemViewModel>
         {
             private List<SectionItemViewModel> _items;
-            private string _title;
+            private string? _title;
             private bool _on;
 
             public bool ShowsControl { get; }
 
-            public string Title
+            public string? Title
             {
                 get => _title;
                 set => SetProperty(ref _title, value);
@@ -65,6 +66,7 @@ namespace Playground.Core.ViewModels
             }
 
             public SectionViewModel(IEnumerable<SectionItemViewModel> items, bool showsControl)
+                : base(CrossLoggerHost.GetLogger<SectionViewModel>())
             {
                 _items = new List<SectionItemViewModel>(items);
                 ShowsControl = showsControl;
@@ -83,13 +85,18 @@ namespace Playground.Core.ViewModels
 
         public class SectionItemViewModel : CrossNotifyPropertyChanged
         {
-            private string _title;
+            private string? _title;
 
-            public string Title
+            public string? Title
             {
                 get => _title;
                 set => SetProperty(ref _title, value);
             }
+
+            public SectionItemViewModel()
+                : base(CrossLoggerHost.GetLogger<SectionItemViewModel>())
+            { }
+
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross.Observability;
+
+public static class CrashHandlerExtension
 {
-    public static class CrashHandlerExtension
+    public static void SetupCrash(this IServiceProvider serviceProvider)
     {
-        public static void SetupCrash(this IServiceProvider serviceProvider)
-        {
-            var crashHandler = serviceProvider.GetRequiredService<ICrashHandler>();
-            crashHandler.Register();
-        }
+        var crashHandler = serviceProvider.GetRequiredService<ICrashHandler>();
+        crashHandler.Register();
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
@@ -7,7 +8,8 @@ public class NavigationCloseViewModel
 {
     private readonly ICrossNavigationService _mvxNavigationService;
 
-    public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService)
+    public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService, ILogger<NavigationCloseViewModel> logger)
+        :base(logger)
     {
         _mvxNavigationService = mvxNavigationService;
     }

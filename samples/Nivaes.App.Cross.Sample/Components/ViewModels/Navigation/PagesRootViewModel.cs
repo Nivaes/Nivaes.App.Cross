@@ -1,26 +1,24 @@
-namespace Playground.Core.ViewModels
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.Sample;
+
+public class PagesRootViewModel
+    : CrossNavigationViewModel
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
-    public class PagesRootViewModel
-        : CrossNavigationViewModel
+    public PagesRootViewModel(ICrossNavigationService navigationService, ILogger<PagesRootViewModel> logger)
+        : base(navigationService, logger)
     {
-        public PagesRootViewModel(ILogger<PagesRootViewModel> logger, ICrossNavigationService navigationService)
-            : base(navigationService, logger)
-        {
-            ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
-        }
+        ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
+    }
 
-        public ICrossAsyncCommand ShowInitialViewModelsCommand { get; }
+    public ICrossAsyncCommand ShowInitialViewModelsCommand { get; }
 
-        private Task ShowInitialViewModels()
-        {
-            var tasks = new List<Task>();
-            tasks.Add(NavigationService.Navigate<Page1ViewModel>());
-            tasks.Add(NavigationService.Navigate<Page2ViewModel>());
-            tasks.Add(NavigationService.Navigate<Page3ViewModel>());
-            return Task.WhenAll(tasks);
-        }
+    private Task ShowInitialViewModels()
+    {
+        var tasks = new List<Task>();
+        tasks.Add(NavigationService.Navigate<Page1ViewModel>());
+        tasks.Add(NavigationService.Navigate<Page2ViewModel>());
+        tasks.Add(NavigationService.Navigate<Page3ViewModel>());
+        return Task.WhenAll(tasks);
     }
 }

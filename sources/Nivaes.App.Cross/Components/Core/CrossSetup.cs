@@ -5,6 +5,7 @@ namespace Nivaes.App.Cross
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
     using Nivaes.App.Cross.Hosting;
+    using Nivaes.App.Cross.Observability;
     using Nivaes.IoC;
 
     [Obsolete("", true)]

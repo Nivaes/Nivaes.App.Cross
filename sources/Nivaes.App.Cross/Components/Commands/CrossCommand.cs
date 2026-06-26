@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross;
 
@@ -92,12 +94,13 @@ public class CrossWeakCommandHelper
     }
 }
 
-public class CrossCommandBase
+public abstract class CrossCommandBase
     : CrossMainThreadDispatchingObject
 {
     private readonly ICrossCommandHelper _commandHelper;
 
-    protected CrossCommandBase()
+    protected CrossCommandBase(ILogger logger)
+        :base(logger)
     {
         //if (Mvx.IoCProvider?.TryResolve(out ICrossCommandHelper? commandHelper) == true && commandHelper != null)
         //{
@@ -144,6 +147,7 @@ public class CrossCommand
     private readonly Action _execute;
 
     public CrossCommand(Action execute, Func<bool>? canExecute = null)
+        :base(CrossLoggerHost.GetLogger<CrossCommand>())
     {
         _execute = execute;
         _canExecute = canExecute;
@@ -167,14 +171,15 @@ public class CrossCommand
         => Execute(null);
 }
 
-public class MvxCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
+public class CrossCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
     : CrossCommandBase
     , ICrossCommand, ICrossCommand<T>
 {
     private readonly Func<T?, bool>? _canExecute;
     private readonly Action<T?> _execute;
 
-    public MvxCommand(Action<T?> execute, Func<T?, bool>? canExecute = null)
+    public CrossCommand(Action<T?> execute, Func<T?, bool>? canExecute = null)
+        :base(CrossLoggerHost.GetLogger<CrossCommand<T>>())
     {
         _execute = execute;
         _canExecute = canExecute;

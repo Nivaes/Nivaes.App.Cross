@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross;
 
@@ -15,7 +16,7 @@ public class CrossBindingContextStackRegistration<TBindingContext>
 
     ~CrossBindingContextStackRegistration()
     {
-        CrossLoggerHost.Default?.Log(LogLevel.Error,
+        CrossLoggerHost.GetLogger<CrossBindingContextStackRegistration<TBindingContext>>().Log(LogLevel.Error,
             "You should always Dispose of MvxBindingContextStackRegistration");
         Dispose(false);
     }

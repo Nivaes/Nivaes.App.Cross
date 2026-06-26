@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
@@ -36,6 +37,10 @@ public class ParentContentViewModel
     public ICrossCommand ToggleChild1EnabledCmd => new CrossCommand(() => ChildViewModelEnabled = !ChildViewModelEnabled);
 
     public ICrossCommand ChangeButtonCmd2 => new CrossCommand(() => ChildBindingContext2.Test = (ChildBindingContext2.Test == "Bound Text 1" ? "Bound Text 2" : "Bound Text 1"));
+
+    public ParentContentViewModel(ILogger<ParentContentViewModel> logger)
+        :base(logger)
+    { }
 
     public override void Prepare()
     {

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.Sample;
 
 public class BindingsViewModel
@@ -5,7 +7,8 @@ public class BindingsViewModel
 {
     private int _counter = 2;
 
-    public BindingsViewModel()
+    public BindingsViewModel(ILogger<BindingsViewModel> logger)
+        : base(logger)
     {
         _counter = 3;
     }

@@ -9,6 +9,7 @@ using Java.Lang;
 using Java.Lang.Reflect;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using Boolean = Java.Lang.Boolean;
 using Exception = Java.Lang.Exception;
 using Object = Java.Lang.Object;
@@ -268,8 +269,7 @@ public class CrossLayoutInflater : LayoutInflater
         }
         catch (Exception ex)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
-            logger?.Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
+            CrossLoggerHost.GetLogger<CrossLayoutInflater>().Log(LogLevel.Warning, ex, "Cannot invoke LayoutInflater.setPrivateFactory");
         }
 
         _setPrivateFactory = true;

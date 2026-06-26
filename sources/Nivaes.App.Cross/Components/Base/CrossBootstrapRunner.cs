@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross.Observability;
 
     [Obsolete("", true)]
     public class CrossBootstrapRunner

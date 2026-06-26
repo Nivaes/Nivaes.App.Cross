@@ -1,25 +1,24 @@
-namespace Playground.iOS.Views
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using CoreGraphics;
-    using Foundation;
-    using MvvmCross.Platforms.Ios.Binding;
-    using MvvmCross.Platforms.Ios.Views.Expandable;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.UIKitOS;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
-    using UIKit;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using CoreGraphics;
+using Foundation;
+using MvvmCross.Platforms.Ios.Binding;
+using MvvmCross.Platforms.Ios.Views.Expandable;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Sample;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
 
+namespace Nivaes.App.Cross.Sample.UIKitOS
+{
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class Page1View
         : MvxViewController<Page1ViewModel>
     {
-        private UITableView _tableView;
-        private TableSource _source;
+        private UITableView? _tableView;
+        private TableSource? _source;
 
         public Page1View(NativeHandle handle) : base(handle)
         {

@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.ComponentModel;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     public class CrossCommandCollection
         : ICrossCommandCollection
@@ -57,7 +58,7 @@ namespace Nivaes.App.Cross
             {
                 if (_commandLookup.Count == 0)
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Trace, "MvxCommandCollection is empty - did you forget to add your commands?");
+                    CrossLoggerHost.GetLogger<CrossCommandCollection>().Log(LogLevel.Trace, "MvxCommandCollection is empty - did you forget to add your commands?");
                     return null;
                 }
 
@@ -79,7 +80,7 @@ namespace Nivaes.App.Cross
 
             if (lookup.ContainsKey(name))
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Warning,
+                CrossLoggerHost.GetLogger<CrossCommandCollection>().Log(LogLevel.Warning,
                     "Ignoring Commmand - it would overwrite the existing Command, name {Name}", name);
                 return;
             }

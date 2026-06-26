@@ -23,35 +23,30 @@ namespace Nivaes.App.Cross.Sample
                 options.IncludeScopes = true;
             });
 
-            //var listener = new OpenTelemetryEventListener();
-
             builder.Logging.AddOpenTelemetry(logging =>
             {
                 logging.IncludeFormattedMessage = true;
                 logging.IncludeScopes = true;
-
-                //logging.AddOtlpExporter(o =>
-                //{
-                //    o.Protocol = OtlpExportProtocol.HttpProtobuf;
-                //    o.Endpoint = new Uri(urlString);
-                //});
             });
 
             var openTelemetryBuilder = builder.Services.AddOpenTelemetry()
-                  .ConfigureResource(r =>
-                  {
-                      r.AddService(
-                          serviceName: $"CrossSample: {RuntimeInformation.OSDescription} - {NameOS()}",
-                          serviceVersion: "{0.1}");
-                  })
+                .ConfigureResource(r =>
+                {
+                    r.AddService(
+                        serviceName: $"CrossSample: {RuntimeInformation.OSDescription} - {NameOS()}",
+                        serviceVersion: "{0.1}");
+                })
                 .WithMetrics(metrics =>
                 {
                     //metrics.AddAspNetCoreInstrumentation()
                     //    .AddHttpClientInstrumentation()
                     //    .AddRuntimeInstrumentation();
                     metrics.AddRuntimeInstrumentation()
-                           //.AddProcessInstrumentation()
+                           .AddMeter("Metrica1")                        
                            .AddHttpClientInstrumentation()
+
+                           //.AddProcessInstrumentation()
+                           //.AddHttpClientInstrumentation()
                            //.AddOtlpExporter(options =>
                            //{
                            //    options.Protocol = OtlpExportProtocol.HttpProtobuf;
@@ -61,16 +56,17 @@ namespace Nivaes.App.Cross.Sample
                 })
                 .WithTracing(static tracing =>
                 {
-                    tracing
-                        .SetResourceBuilder(
-                            ResourceBuilder.CreateDefault()
-                                .AddService(
-                                    serviceName: "SampleCrossClient",
-                                    serviceVersion: "1.0"))
-                        .AddSource("SampleCrossClient")
-                        .AddHttpClientInstrumentation()
-                        .SetSampler(new AlwaysOnSampler())
-                        .AddConsoleExporter()
+                    tracing.AddHttpClientInstrumentation()
+                           .AddSource("Traza1")
+                        //.SetResourceBuilder(
+                        //    ResourceBuilder.CreateDefault()
+                        //        .AddService(
+                        //            serviceName: "SampleCrossClient",
+                        //            serviceVersion: "1.0"))
+                        //.AddSource("SampleCrossClient")
+                        //.AddHttpClientInstrumentation()
+                        //.SetSampler(new AlwaysOnSampler())
+                        //.AddConsoleExporter()
                         //.AddOtlpExporter(options =>
                         //{
                         //    options.Protocol = OtlpExportProtocol.HttpProtobuf;

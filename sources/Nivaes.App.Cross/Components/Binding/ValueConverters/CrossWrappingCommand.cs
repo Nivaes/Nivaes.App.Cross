@@ -1,13 +1,14 @@
+using System.Reflection;
+using System.Windows.Input;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System.Reflection;
-    using System.Windows.Input;
-    using Microsoft.Extensions.Logging;
-
     public class CrossWrappingCommand
         : ICommand
     {
-        private static readonly EventInfo CanExecuteChangedEventInfo = typeof(ICommand).GetEvent("CanExecuteChanged");
+        private static readonly EventInfo? CanExecuteChangedEventInfo = typeof(ICommand).GetEvent("CanExecuteChanged");
 
         private readonly ICommand? _wrapped;
         private readonly object? _commandParameterOverride;
@@ -20,34 +21,34 @@ namespace Nivaes.App.Cross
 
             if (_wrapped != null)
             {
-                _canChangedEventSubscription = CanExecuteChangedEventInfo.WeakSubscribe(_wrapped, WrappedOnCanExecuteChanged);
+                _canChangedEventSubscription = CanExecuteChangedEventInfo?.WeakSubscribe(_wrapped, WrappedOnCanExecuteChanged);
             }
         }
 
         // Note - this is public because we use it in weak referenced situations
-        public void WrappedOnCanExecuteChanged(object sender, EventArgs eventArgs)
+        public void WrappedOnCanExecuteChanged(object? sender, EventArgs eventArgs)
         {
             CanExecuteChanged?.Invoke(this, eventArgs);
         }
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             if (_wrapped == null)
                 return false;
 
             if (parameter != null)
-                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
+                CrossLoggerHost.GetLogger<CrossWrappingCommand>()?.Log(LogLevel.Warning, "Non-null parameter will be ignored in MvxWrappingCommand.CanExecute");
 
             return _wrapped.CanExecute(_commandParameterOverride);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (_wrapped == null)
                 return;
 
             if (parameter != null)
-                CrossLoggerHost.Default?.Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
+                CrossLoggerHost.GetLogger<CrossWrappingCommand>().Log(LogLevel.Warning, "Non-null parameter overridden in MvxWrappingCommand");
             _wrapped.Execute(_commandParameterOverride);
         }
 

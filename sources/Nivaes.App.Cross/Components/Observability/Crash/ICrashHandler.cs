@@ -1,7 +1,6 @@
-﻿namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross.Observability;
+
+internal interface ICrashHandler
 {
-    internal interface ICrashHandler
-    {
-        void Register();
-    }
+    void Register();
 }

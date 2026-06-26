@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
     public abstract class CrossResultSettingViewModel<TResult>
@@ -5,7 +7,8 @@ namespace Nivaes.App.Cross
     {
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected CrossResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager)
+        protected CrossResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            :base(logger)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -18,8 +21,8 @@ namespace Nivaes.App.Cross
 
     public abstract class CrossResultSettingViewModel<TParameter, TResult> : CrossResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected CrossResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager)
-            : base(resultViewModelManager)
+        protected CrossResultSettingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 

@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using OpenTelemetry.Logs;
 
-namespace Nivaes.App.Cross.Web
+namespace Nivaes.App.Cross.Web.Observability
 {
     public class WebCrashHandler : CrashHandler
     {
+        protected override string PathCrashFile => throw new NotImplementedException();
+
         public WebCrashHandler(ILogger<WebCrashHandler> logger, LoggerProvider loggerProvider)
             : base(logger, loggerProvider)
         {

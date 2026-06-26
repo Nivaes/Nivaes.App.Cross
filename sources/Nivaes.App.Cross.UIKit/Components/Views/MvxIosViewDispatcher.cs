@@ -6,19 +6,18 @@ namespace Nivaes.App.Cross.UIKitOS
         : MvxIosUIThreadDispatcher, ICrossViewDispatcher
     {
         private readonly IMvxIosViewPresenter _presenter;
-        private readonly ILogger _logger;
 
         public MvxIosViewDispatcher(IMvxIosViewPresenter presenter, ILogger<MvxIosViewDispatcher> logger)
+            :base(logger)
         {
             _presenter = presenter;
-            _logger = logger;
         }
 
         public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             Task action()
             {
-                _logger.LogTrace("Navigate requested to {ViewModelType}", request?.ViewModelType);
+                Logger.LogTrace("Navigate requested to {ViewModelType}", request?.ViewModelType);
 
                 return _presenter.Show(request!);
             }

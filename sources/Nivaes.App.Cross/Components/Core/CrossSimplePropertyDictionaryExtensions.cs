@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Globalization;
     using System.Reflection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     public static class CrossSimplePropertyDictionaryExtensions
     {
@@ -76,7 +77,7 @@ namespace Nivaes.App.Cross
         {
             if (requiredParameter.Name == null)
             {
-                CrossLoggerHost.Default?.LogWarning("ParameterInfo Name is null");
+                CrossLoggerHost.GetLogger(nameof(CrossSimplePropertyDictionaryExtensions)).LogWarning("ParameterInfo Name is null");
                 return Type.Missing;
             }
 
@@ -88,7 +89,7 @@ namespace Nivaes.App.Cross
                     return Type.Missing;
                 }
 
-                CrossLoggerHost.Default?.Log(LogLevel.Trace,
+                CrossLoggerHost.GetLogger(nameof(CrossSimplePropertyDictionaryExtensions)).Log(LogLevel.Trace,
                     "Missing parameter for call to {DebugText} - missing parameter {RequiredParameterName} - asssuming null - this may fail for value types!",
                     debugText, requiredParameter.Name);
 
@@ -129,7 +130,7 @@ namespace Nivaes.App.Cross
                 }
                 else
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Trace,
+                    CrossLoggerHost.GetLogger(nameof(CrossSimplePropertyDictionaryExtensions)).Log(LogLevel.Trace,
                         "Skipping serialization of property {PropertyName} - don't know how to serialize type {PropertyTypeName} - some answers on http://stackoverflow.com/questions/16524236/custom-types-in-navigation-parameters-in-v3",
                         propertyInfo.Property.Name,
                         propertyInfo.Property.PropertyType.Name);

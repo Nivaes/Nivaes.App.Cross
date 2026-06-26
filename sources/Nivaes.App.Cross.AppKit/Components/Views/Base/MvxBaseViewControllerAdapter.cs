@@ -29,31 +29,31 @@ namespace Nivaes.App.Cross.AppKitOS
             this._eventSource.ViewWillAppearCalled += this.HandleViewDidDisappearCalled;
         }
 
-        public virtual void HandleViewDidLoadCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidLoadCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewDidLayoutCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidLayoutCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewWillAppearCalled(object sender, EventArgs e)
+        public virtual void HandleViewWillAppearCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewDidAppearCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidAppearCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewWillDisappearCalled(object sender, EventArgs e)
+        public virtual void HandleViewWillDisappearCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewDidDisappearCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidDisappearCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleDisposeCalled(object sender, EventArgs e)
+        public virtual void HandleDisposeCalled(object? sender, EventArgs e)
         {
         }
     }

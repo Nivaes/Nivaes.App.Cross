@@ -8,7 +8,8 @@ public abstract class CrossAttributeViewPresenter
 {
     protected ICrossViewsContainer ViewsContainer { get; }
 
-    protected CrossAttributeViewPresenter(/*IServiceProvider serviceProvider*/ICrossViewsContainer crossViewsContainer)
+    protected CrossAttributeViewPresenter(ICrossViewsContainer crossViewsContainer, ILogger logger)
+        :base(logger)
     {
         ViewsContainer = crossViewsContainer;
     }
@@ -164,7 +165,7 @@ public abstract class CrossAttributeViewPresenter
             return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
         }
 
-        CrossLoggerHost.Default?.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+        Logger.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
         return false;
     }
 

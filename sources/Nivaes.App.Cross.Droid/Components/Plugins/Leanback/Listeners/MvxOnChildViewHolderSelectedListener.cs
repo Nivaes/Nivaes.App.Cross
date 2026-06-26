@@ -5,6 +5,7 @@ namespace MvvmCross.DroidX.Leanback.Listeners
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Droid;
+    using Nivaes.App.Cross.Observability;
 
     /// <summary>
     /// Forwards "OnChildViewHolderSelected"-Events to a command.
@@ -23,7 +24,7 @@ namespace MvvmCross.DroidX.Leanback.Listeners
 
             if (item == null)
             {
-                CrossLoggerHost.Default.Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
+                CrossLoggerHost.GetLogger<MvxOnChildViewHolderSelectedListener>().Log(LogLevel.Error, "Could not retrieve item from adapter. Can't pass currently selected item through!");
                 return;
             }
 

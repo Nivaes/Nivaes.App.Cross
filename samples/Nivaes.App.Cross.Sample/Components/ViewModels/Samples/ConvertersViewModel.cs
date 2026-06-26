@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Windows.Input;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
@@ -36,7 +37,8 @@ public sealed class ConvertersViewModel : CrossViewModel
     public ICommand ToggleVisibilityCommand { get; }
     public ICommand ToggleColorCommand { get; }
 
-    public ConvertersViewModel()
+    public ConvertersViewModel(ILogger<ConvertersViewModel> logger)
+        :base(logger)
     {
         ToggleVisibilityCommand = new CrossCommand(DoToggleVisibility);
         ToggleColorCommand = new CrossCommand(DoToggleColor);

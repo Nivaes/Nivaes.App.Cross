@@ -2,7 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Droid.Observability;
 using Nivaes.App.Cross.Hosting;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.Droid
 {

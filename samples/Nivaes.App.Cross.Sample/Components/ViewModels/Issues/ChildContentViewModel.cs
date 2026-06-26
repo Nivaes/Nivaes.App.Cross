@@ -1,18 +1,18 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.Sample
 {
-    using System.Threading.Tasks;
-    using Nivaes.App.Cross;
-
     public class ChildContentViewModel
         : CrossViewModel
     {
-        public ChildContentViewModel()
+        public ChildContentViewModel(ILogger<ChildContentViewModel> logger)
+            :base(logger)
         {
         }
 
-        private string _test;
+        private string? _test;
 
-        public string Test
+        public string? Test
         {
             get { return _test; }
             set { SetProperty(ref _test, value); }

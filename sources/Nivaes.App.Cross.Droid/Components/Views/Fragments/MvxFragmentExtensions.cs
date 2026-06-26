@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;

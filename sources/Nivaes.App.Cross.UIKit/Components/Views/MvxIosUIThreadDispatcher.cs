@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
     public abstract class MvxIosUIThreadDispatcher
@@ -5,7 +7,8 @@ namespace Nivaes.App.Cross.UIKitOS
     {
         private readonly SynchronizationContext _uiSynchronizationContext;
 
-        protected MvxIosUIThreadDispatcher()
+        protected MvxIosUIThreadDispatcher(ILogger<MvxIosUIThreadDispatcher> logger)
+            :base(logger)
         {
             _uiSynchronizationContext = SynchronizationContext.Current!;
             if (_uiSynchronizationContext == null)

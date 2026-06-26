@@ -23,7 +23,6 @@ public class MvxMultiWindowViewPresenter
 
     private const string WindowTitle = "WindowTitle";
     private readonly IServiceProvider _serviceProvider;
-    private readonly ILogger<MvxMultiWindowViewPresenter>? _logger;
     private readonly WindowInformation _mainFrame;
     private readonly List<WindowInformation> _windowInformation = new();
     private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
@@ -39,10 +38,9 @@ public class MvxMultiWindowViewPresenter
     public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider,
         ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
         ICrossWindowsViewModelRequestTranslator requestTranslator, ILogger<MvxMultiWindowViewPresenter> logger)
-        : base(crossViewsContainer)
+        : base(crossViewsContainer, logger)
     {
         _serviceProvider = serviceProvider;
-        _logger = logger;
         _requestTranslator = requestTranslator;
 
         var window = (Microsoft.UI.Xaml.Application.Current as CrossApplication)?.MainWindow;
@@ -78,7 +76,7 @@ public class MvxMultiWindowViewPresenter
     /// <returns></returns>
     public override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
-        _logger?.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
+        Logger?.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
             viewType?.Name);
         return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
     }
@@ -197,7 +195,7 @@ public class MvxMultiWindowViewPresenter
         var currentView = GetWindowInformation(Window.Current).RootFrame.Content as ICrossView;
         if (currentView == null)
         {
-            _logger?.LogWarning("Ignoring close for viewmodel - root frame has no current page");
+            Logger?.LogWarning("Ignoring close for viewmodel - root frame has no current page");
             return;
         }
 
@@ -250,20 +248,20 @@ public class MvxMultiWindowViewPresenter
         var currentView = windowInformation.RootFrame.Content as ICrossView;
         if (currentView == null)
         {
-            _logger?.LogWarning("Ignoring close for viewmodel - root frame has no current page");
+            Logger?.LogWarning("Ignoring close for viewmodel - root frame has no current page");
             return Task.FromResult(false);
         }
 
         if (currentView.ViewModel != viewModel)
         {
-            _logger?.LogWarning(
+            Logger?.LogWarning(
                 "Ignoring close for viewmodel - root frame's current page is not the view for the requested viewmodel");
             return Task.FromResult(false);
         }
 
         if (!windowInformation.RootFrame.CanGoBack)
         {
-            _logger?.LogWarning("Ignoring close for viewmodel - root frame refuses to go back");
+            Logger?.LogWarning("Ignoring close for viewmodel - root frame refuses to go back");
             return Task.FromResult(false);
         }
 
@@ -461,7 +459,7 @@ public class MvxMultiWindowViewPresenter
         }
         catch (Exception exception)
         {
-            _logger?.LogError(exception, "Error seen during navigation request to {ViewModelTypeName}",
+            Logger?.LogError(exception, "Error seen during navigation request to {ViewModelTypeName}",
                 request.ViewModelType?.Name);
             return false;
         }
@@ -650,7 +648,7 @@ public class MvxMultiWindowViewPresenter
         var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
         if (viewType == null)
         {
-            _logger?.LogError("Could not find View for ViewModelType: {ViewModelType}", request.ViewModelType);
+            Logger.LogError("Could not find View for ViewModelType: {ViewModelType}", request.ViewModelType);
             return false;
         }
 
@@ -670,7 +668,7 @@ public class MvxMultiWindowViewPresenter
         // Set size of new window based on the main window.
         if (!AppWindowUtils.TryGetAppWindow(out Microsoft.UI.Windowing.AppWindow? mainWindow) || mainWindow == null)
         {
-            _logger?.LogWarning("Failed to get App Window");
+            Logger.LogWarning("Failed to get App Window");
             return false;
         }
 
@@ -756,7 +754,7 @@ public class MvxMultiWindowViewPresenter
         }
         catch (Exception exception)
         {
-            _logger?.LogTrace(exception, "Error seen during navigation request to {viewModelTypeName}",
+            Logger.LogTrace(exception, "Error seen during navigation request to {viewModelTypeName}",
                 request.ViewModelType?.Name ?? "No view model type specified.");
             return Task.FromResult(false);
         }

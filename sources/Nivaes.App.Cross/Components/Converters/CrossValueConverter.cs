@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross
     public abstract class CrossValueConverter
         : ICrossValueConverter
     {
-        protected ILogger Logger { get; }
+        protected readonly ILogger Logger;
 
         public CrossValueConverter(ILogger logger)
         {
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
     public abstract class CrossValueConverter<TFrom, TTo>
         : ICrossValueConverter
     {
-        protected ILogger Logger { get; }
+        protected readonly ILogger Logger;
 
         public CrossValueConverter(ILogger logger)
         {
@@ -76,7 +76,7 @@ namespace Nivaes.App.Cross
     public abstract class CrossValueConverter<TFrom>
         : ICrossValueConverter
     {
-        protected ILogger Logger { get; }
+        protected readonly ILogger Logger;
 
         public CrossValueConverter(ILogger logger)
         {

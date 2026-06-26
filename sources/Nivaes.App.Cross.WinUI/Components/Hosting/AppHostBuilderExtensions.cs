@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nivaes.App.Cross.Hosting;
+using Nivaes.App.Cross.Observability;
+using Nivaes.App.Cross.WinUI.Observability;
 
 namespace Nivaes.App.Cross.WinUI
 {

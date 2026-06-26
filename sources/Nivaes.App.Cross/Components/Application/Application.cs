@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Controls;
 public abstract class Application : IApplication
 {
     protected IServiceProvider ServiceProvider { [DebuggerHidden] get; }
-    protected ILogger Logger { [DebuggerHidden] get; }
+    protected readonly ILogger Logger;
 
     protected Application(IServiceProvider serviceProvider, ILogger logger)
     {

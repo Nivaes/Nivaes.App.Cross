@@ -101,11 +101,13 @@ public abstract class CrossWindowsSetup
         //return new MvxMultiWindowViewPresenter(rootFrame);
     }
 
+    [Obsolete("", true)]
     protected virtual CrossWindowsViewDispatcher CreateViewDispatcher(ICrossWindowsFrame rootFrame)
     {
-        return new CrossWindowsViewDispatcher(Presenter, rootFrame);
+        return new CrossWindowsViewDispatcher(Presenter, rootFrame, null);
     }
 
+    [Obsolete("", true)]
     protected override ICrossViewDispatcher CreateViewDispatcher()
     {
         if (_rootFrame == null)

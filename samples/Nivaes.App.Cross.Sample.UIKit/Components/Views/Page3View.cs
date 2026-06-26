@@ -1,9 +1,8 @@
-namespace Playground.iOS.Views
-{
-    using Nivaes.App.Cross.UIKitOS;
-    using ObjCRuntime;
-    using Playground.Core.ViewModels;
+using Nivaes.App.Cross.UIKitOS;
+using ObjCRuntime;
 
+namespace Nivaes.App.Cross.Sample.UIKitOS
+{
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]
     public partial class Page3View : MvxViewController<Page3ViewModel>

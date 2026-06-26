@@ -26,7 +26,7 @@ public class MvxMacViewPresenter
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
     {
-        CrossLoggerHost.Default?.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewTypeName}. Assuming new window presentation", viewType.Name);
+        Logger.Log(LogLevel.Trace, $"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
         return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
     }
 
@@ -43,7 +43,7 @@ public class MvxMacViewPresenter
 
                 if (presentationAttribute == null)
                 {
-                    CrossLoggerHost.Default?.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
+                    Logger.Log(LogLevel.Warning, "Override PresentationAttribute null. Falling back to existing attribute.");
                 }
                 else
                 {
@@ -67,8 +67,9 @@ public class MvxMacViewPresenter
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer, IServiceProvider serviceProvider)
-        : base(crossViewsContainer)
+    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer, IServiceProvider serviceProvider,
+        ILogger<MvxMacViewPresenter> logger)
+        : base(crossViewsContainer, logger)
     {
         _serviceProvider = serviceProvider;
         _applicationDelegate = applicationDelegate;
@@ -337,7 +338,7 @@ public class MvxMacViewPresenter
         throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
     }
 
-    protected void OnWindowWillCloseNotification(object sender, NSNotificationEventArgs e)
+    protected void OnWindowWillCloseNotification(object? sender, NSNotificationEventArgs e)
     {
         var window = e.Notification.Object as NSWindow;
         if (Windows.Contains(window))

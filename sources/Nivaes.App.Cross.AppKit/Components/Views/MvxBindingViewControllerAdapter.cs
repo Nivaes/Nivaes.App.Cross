@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.AppKitOS;
 
@@ -23,7 +24,7 @@ public class MvxBindingViewControllerAdapter
     {
         if (MacView == null)
         {
-            CrossLoggerHost.Default?.Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
+            CrossLoggerHost.GetLogger<MvxBindingViewControllerAdapter>().Log(LogLevel.Warning, "{PropertyName} is null for clearup of bindings", nameof(MacView));
             return;
         }
         MacView.ClearAllBindings();

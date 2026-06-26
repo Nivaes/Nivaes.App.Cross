@@ -2,17 +2,18 @@ using System.Runtime.CompilerServices;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross;
+namespace Nivaes.App.Cross.Observability;
 
 public static class CrossLoggerHost
 {
+    private static ILoggerFactory _defaultLogger;
+
     static CrossLoggerHost()
     {
         _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
     }
 
-    private static ILoggerFactory _defaultLogger;
-
+    [Obsolete("")]
     public static ILogger Default => GetLogger("Default");
 
     public static ILogger GetLogger(string categoryName,

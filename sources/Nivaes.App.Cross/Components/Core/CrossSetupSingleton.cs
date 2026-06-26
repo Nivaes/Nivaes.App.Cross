@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     /// <summary>
     /// The setup singleton is designed to ensure only a single instance
@@ -18,7 +19,7 @@ namespace Nivaes.App.Cross
     /// are no other UI methods are being invoked. This method is typically called
     /// in applications where there is no splash screen.
     /// </summary>
-    [Obsolete]
+    [Obsolete("", true)]
     public abstract class CrossSetupSingleton
        : CrossSingleton<CrossSetupSingleton>
     {

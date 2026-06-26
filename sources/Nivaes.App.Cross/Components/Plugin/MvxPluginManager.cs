@@ -3,8 +3,9 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Logging;
     using MvvmCross.IoC;
+    using Nivaes.App.Cross.Observability;
 
-    [Obsolete("Los plugin se meten en el contenedor. Mirar la creación de ambitos para cada plugin.")]
+    [Obsolete("Los plugin se meten en el contenedor. Mirar la creación de ambitos para cada plugin.", true)]
     public class MvxPluginManager : IMvxPluginManager
     {
         private readonly IMvxIoCProvider _provider;

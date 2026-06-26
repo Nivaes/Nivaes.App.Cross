@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross;
 
@@ -20,7 +21,7 @@ public static class CrossViewExtensions
             var viewModel = viewModelLoader();
             if (viewModel == null)
             {
-                CrossLoggerHost.Default.Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
+                CrossLoggerHost.GetLogger(nameof(CrossViewExtensions)).Log(LogLevel.Warning, "ViewModel not loaded for view {ViewTypeName}", view.GetType().Name);
                 return;
             }
 
