@@ -3,7 +3,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.AppKitOS;
 
 public class CrossViewController<TViewModel>
-    : MvxEventSourceViewController, ICrossViewController, IMvxMacView<TViewModel>
+        : MvxEventSourceViewController, ICrossViewController, IMvxMacView<TViewModel>
     where TViewModel : class, ICrossViewModel
 {
     // Called when created from unmanaged code
@@ -60,7 +60,6 @@ public class CrossViewController<TViewModel>
     #endregion
 
     public CrossViewModelRequest? Request { get; set; }
-
 
     public override void ViewDidLoad()
     {

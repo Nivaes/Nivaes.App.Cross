@@ -1,6 +1,6 @@
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.UIKitOS
 {
-    public static class MvxViewControllerAdaptingExtensions
+    public static class CrossViewControllerAdaptingExtensions
     {
         public static void AdaptForBinding(this IMvxEventSourceViewController view)
         {

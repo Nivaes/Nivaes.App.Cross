@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.UIKitOS
     {
         private readonly IMvxEventSourceViewController _eventSource;
 
-        protected UIViewController ViewController => _eventSource as UIViewController;
+        protected UIViewController? ViewController => _eventSource as UIViewController;
 
         public MvxBaseViewControllerAdapter(IMvxEventSourceViewController eventSource)
         {
@@ -26,31 +26,31 @@ namespace Nivaes.App.Cross.UIKitOS
             _eventSource.ViewDidLayoutSubviewsCalled += HandleViewDidLayoutSubviewsCalled;
         }
 
-        public virtual void HandleViewDidLoadCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidLoadCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewDidLayoutSubviewsCalled(object sender, EventArgs e)
+        public virtual void HandleViewDidLayoutSubviewsCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleDisposeCalled(object sender, EventArgs e)
+        public virtual void HandleDisposeCalled(object? sender, EventArgs e)
         {
         }
 
-        public virtual void HandleViewWillDisappearCalled(object sender, CrossValueEventArgs<bool> e)
+        public virtual void HandleViewWillDisappearCalled(object? sender, CrossValueEventArgs<bool> e)
         {
         }
 
-        public virtual void HandleViewWillAppearCalled(object sender, CrossValueEventArgs<bool> e)
+        public virtual void HandleViewWillAppearCalled(object? sender, CrossValueEventArgs<bool> e)
         {
         }
 
-        public virtual void HandleViewDidDisappearCalled(object sender, CrossValueEventArgs<bool> e)
+        public virtual void HandleViewDidDisappearCalled(object? sender, CrossValueEventArgs<bool> e)
         {
         }
 
-        public virtual void HandleViewDidAppearCalled(object sender, CrossValueEventArgs<bool> e)
+        public virtual void HandleViewDidAppearCalled(object? sender, CrossValueEventArgs<bool> e)
         {
         }
     }

@@ -11,8 +11,6 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        //private static readonly ActivitySource Source = new("SampleCrossClient");
-
         protected readonly ICrossNavigationService NavigationService;
 
         protected Activity? Trace;
@@ -39,8 +37,6 @@ namespace Nivaes.App.Cross
                 throw;
             }
 
-            //var mp = IPlatformApplication.Current!.Services.GetRequiredService<MeterProvider>();
-
             // Send Meter
             Telemetry.ButtonClicks.Add(
                 1,
@@ -55,7 +51,6 @@ namespace Nivaes.App.Cross
 
 
             Telemetry.OperationDuration.Record(sw.Elapsed.TotalMilliseconds);
-            //mp.ForceFlush();
         }
 
         public override void ViewDestroy(bool viewFinishing = true)

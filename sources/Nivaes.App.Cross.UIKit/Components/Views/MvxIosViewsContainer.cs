@@ -24,9 +24,9 @@ namespace Nivaes.App.Cross.UIKitOS
             try
             {
                 CurrentRequest = request;
-                var viewType = GetViewType(request.ViewModelType);
+                var viewType = GetViewType(request.ViewModelType!);
                 if (viewType == null)
-                    throw new CrossException("View Type not found for " + request.ViewModelType);
+                    throw new CrossException($"View Type not found for {request.ViewModelType}");
 
                 var view = CreateViewOfType(viewType);
                 view.Request = request;
