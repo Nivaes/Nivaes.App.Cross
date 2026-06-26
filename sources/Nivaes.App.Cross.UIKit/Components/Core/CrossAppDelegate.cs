@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitOS;
 
 [RequiresUnreferencedCode("This class uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
 public abstract class CrossAppDelegate
-    : UIApplicationDelegate, IMvxApplicationDelegate //, IPlatformApplication
+    : UIApplicationDelegate, IMvxApplicationDelegate
 {
     //private IServiceProvider? _services;
 
