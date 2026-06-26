@@ -1,12 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Platforms.Ios.Presenters;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using MvvmCross.Platforms.Ios.Views;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Platforms.Ios.Presenters;
-    using MvvmCross.Platforms.Ios.Presenters.Attributes;
-    using MvvmCross.Platforms.Ios.Views;
-
     public class MvxIosViewPresenter
         : CrossAttributeViewPresenter, IMvxIosViewPresenter
     {
@@ -41,7 +41,8 @@ namespace Nivaes.App.Cross.UIKitOS
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
                 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
         {
-            ValidateArguments(viewModelType, viewType);
+            ArgumentNullException.ThrowIfNull(viewModelType);
+            ArgumentNullException.ThrowIfNull(viewType);
 
             if (MasterNavigationController == null &&
                 TabBarViewController?.CanShowChildView() != true)
@@ -83,7 +84,7 @@ namespace Nivaes.App.Cross.UIKitOS
                     var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
-                        Logger?.LogWarning(
+                        Logger.LogWarning(
                             "Got null ViewController for request {Request}", request);
 
                         return Task.FromResult(false);
@@ -98,7 +99,7 @@ namespace Nivaes.App.Cross.UIKitOS
                     var viewController = (UIViewController?)_viewCreator.CreateView(request);
                     if (viewController == null)
                     {
-                        Logger?.LogWarning(
+                        Logger.LogWarning(
                             "Got null ViewController for request {Request}", request);
 
                         return Task.FromResult(false);
@@ -215,7 +216,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxRootPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             return viewController switch
             {
@@ -332,7 +334,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected void SetupWindowRootNavigation(UIViewController viewController, MvxRootPresentationAttribute attribute)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (attribute.WrapInNavigationController)
             {
@@ -353,7 +356,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxChildPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (viewController is IMvxSplitViewController)
                 throw new CrossException("A SplitViewController cannot be presented as a child. Consider using Root instead");
@@ -417,7 +421,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxTabPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (TabBarViewController == null)
                 throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
@@ -443,7 +448,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxPagePresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (PageViewController == null)
                 throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
@@ -468,7 +474,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxModalPresentationAttribute attribute,
             CrossViewModelRequest? request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             // setup modal based on attribute
             if (attribute.WrapInNavigationController)
@@ -501,7 +508,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxPopoverPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (PopoverViewController != null)
                 throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
@@ -549,7 +557,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxSplitViewPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController == null)
                 throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
@@ -563,7 +572,8 @@ namespace Nivaes.App.Cross.UIKitOS
             MvxSplitViewPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController == null)
                 throw new CrossException("Trying to show a detail page without a SplitViewController, this is not possible!");
@@ -584,7 +594,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
 #if IOS || MACCATALYST
             // if a popover is presented
@@ -626,7 +637,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseTabViewController(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
                 return Task.FromResult(true);
@@ -636,7 +648,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> ClosePageViewController(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (PageViewController != null && PageViewController.RemovePage(viewModel))
                 return Task.FromResult(true);
@@ -646,7 +659,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return Task.FromResult(true);
@@ -656,7 +670,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return Task.FromResult(true);
@@ -666,7 +681,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual Task<bool> CloseModalViewController(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (ModalViewControllers.Count == 0)
                 return Task.FromResult(false);
@@ -702,7 +718,8 @@ namespace Nivaes.App.Cross.UIKitOS
 #if IOS || MACCATALYST
         protected virtual Task<bool> ClosePopoverViewController(ICrossViewModel viewModel, MvxPopoverPresentationAttribute attribute)
         {
-            ValidateArguments(viewModel, attribute);
+            ArgumentNullException.ThrowIfNull(viewModel);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (PopoverViewController == null)
                 return Task.FromResult(false);
@@ -735,7 +752,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, MvxChildPresentationAttribute attribute)
         {
-            ValidateArguments(navController, attribute);
+            ArgumentNullException.ThrowIfNull(navController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             ArgumentNullException.ThrowIfNull(toClose);
 
@@ -771,7 +789,9 @@ namespace Nivaes.App.Cross.UIKitOS
         protected virtual void PushViewControllerIntoStack(
             UINavigationController navigationController, UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
-            ValidateArguments(navigationController, attribute);
+            ArgumentNullException.ThrowIfNull(navigationController);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             navigationController.PushViewController(viewController, attribute.Animated);
 
@@ -795,7 +815,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public virtual async Task<bool> CloseModalViewController(UIViewController viewController, MvxModalPresentationAttribute attribute)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (viewController is UINavigationController modalNavController &&
                 modalNavController.ViewControllers != null)
@@ -827,7 +848,8 @@ namespace Nivaes.App.Cross.UIKitOS
 #if IOS || MACCATALYST
         public virtual async Task<bool> ClosePopoverViewController(UIViewController viewController, MvxPopoverPresentationAttribute attribute)
         {
-            ValidateArguments(viewController, attribute);
+            ArgumentNullException.ThrowIfNull(viewController);
+            ArgumentNullException.ThrowIfNull(attribute);
 
             if (viewController is UINavigationController { ViewControllers: not null } popoverNavController)
             {
@@ -904,23 +926,5 @@ namespace Nivaes.App.Cross.UIKitOS
             PopoverViewController = null;
         }
 #endif
-
-        private static void ValidateArguments(Type? viewModelType, Type? viewType)
-        {
-            ArgumentNullException.ThrowIfNull(viewModelType);
-            ArgumentNullException.ThrowIfNull(viewType);
-        }
-
-        private static void ValidateArguments(UIViewController viewController, CrossBasePresentationAttribute attribute)
-        {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-        }
-
-        private static void ValidateArguments(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
-        {
-            ArgumentNullException.ThrowIfNull(viewModel);
-            ArgumentNullException.ThrowIfNull(attribute);
-        }
     }
 }

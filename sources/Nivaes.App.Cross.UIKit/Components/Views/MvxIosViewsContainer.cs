@@ -1,10 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-
     public class MvxIosViewsContainer
         : CrossViewsContainer
         , IMvxIosViewsContainer
@@ -59,12 +59,12 @@ namespace Nivaes.App.Cross.UIKitOS
                 }
                 catch (Exception ex)
                 {
-                    throw new CrossException("Loading view of type {0} from storyboard {1} failed: {2}", viewType.Name, storyboardName, ex.Message);
+                    throw new CrossException(ex, $"Loading view of type {viewType.Name} from storyboard {storyboardName} failed: {2}");
                 }
             }
 
             if (ActivatorUtilities.CreateInstance(_serviceProvider, viewType) is not IMvxIosView view)
-                throw new CrossException("View not loaded for " + viewType);
+                throw new CrossException($"View not loaded for {viewType}");
 
             return view;
         }

@@ -12,17 +12,6 @@
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 	<ItemGroup>
-	  <BundleResource Remove="Resources\home.png" />
-	  <BundleResource Remove="Resources\home@2x.png" />
-	  <BundleResource Remove="Resources\home@3x.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu@2x.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu@3x.png" />
-	  <BundleResource Remove="Resources\settings.png" />
-	  <BundleResource Remove="Resources\settings@2x.png" />
-	  <BundleResource Remove="Resources\settings@3x.png" />
-	</ItemGroup>
-	<ItemGroup>
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_1x.png" />
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_2x.png" />
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_3x.png" />
