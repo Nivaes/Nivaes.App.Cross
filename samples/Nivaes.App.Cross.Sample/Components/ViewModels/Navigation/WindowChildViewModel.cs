@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.Sample;
 
 public class WindowChildViewModel
-    : MvxNavigationViewModel<WindowChildParam>
+    : CrossNavigationViewModel<WindowChildParam>
 {
     private WindowChildParam? _param;
 

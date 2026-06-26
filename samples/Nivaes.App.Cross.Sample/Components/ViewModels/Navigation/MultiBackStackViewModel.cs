@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Playground.Core.ViewModels;
 
 namespace Nivaes.App.Cross.Sample;
 
@@ -32,12 +31,12 @@ public class MultiBackStackViewModel(ILogger<MultiBackStackViewModel> logger, IC
     protected override void ReloadFromBundle(ICrossBundle state)
     {
         base.ReloadFromBundle(state);
-        if (state.Data.TryGetValue(nameof(_initialNavigationDone), out string initDone))
+        if (state.Data.TryGetValue(nameof(_initialNavigationDone), out var initDone))
             _ = bool.TryParse(initDone, out _initialNavigationDone);
     }
 }
 
-public class MultiBackStackTab1ViewModel(ILogger<MultiBackStackTab1ViewModel> logger, ICrossNavigationService navigationService)
+public class MultiBackStackTab1ViewModel(ICrossNavigationService navigationService, ILogger<MultiBackStackTab1ViewModel> logger)
     : CrossNavigationViewModel(navigationService, logger)
 {
     public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
@@ -45,12 +44,9 @@ public class MultiBackStackTab1ViewModel(ILogger<MultiBackStackTab1ViewModel> lo
 
 public class MultiBackStackTab2ViewModel : CrossViewModel
 {
-    public MultiBackStackTab2ViewModel(ILogger<MultiBackStackTab2ViewModel> logger)
-       : base(logger)
-    { }
 }
 
-public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
+public class MultiBackStackInnerViewModel : CrossNavigationViewModel<int>
 {
     public ICrossCommand GoDeeperCommand { get; init; }
     public ICrossCommand CloseCommand { get; init; }
@@ -62,7 +58,7 @@ public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
         set => SetProperty(ref _depth, value);
     }
 
-    public MultiBackStackInnerViewModel(ILogger<MultiBackStackInnerViewModel> logFactory, ICrossNavigationService navigationService)
+    public MultiBackStackInnerViewModel(ICrossNavigationService navigationService, ILogger<MultiBackStackInnerViewModel> logFactory)
         : base(navigationService, logFactory)
     {
         GoDeeperCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackInnerViewModel, int>(Depth + 1));
@@ -89,7 +85,7 @@ public class MultiBackStackInnerViewModel : MvxNavigationViewModel<int>
     protected override void ReloadFromBundle(ICrossBundle state)
     {
         base.ReloadFromBundle(state);
-        if (state.Data.TryGetValue(nameof(Depth), out string ds))
+        if (state.Data.TryGetValue(nameof(Depth), out var ds))
             _ = int.TryParse(ds, out _depth);
     }
 }

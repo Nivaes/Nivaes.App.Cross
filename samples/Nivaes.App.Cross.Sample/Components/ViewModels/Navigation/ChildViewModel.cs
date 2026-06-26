@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class ChildViewModel : MvxNavigationViewModel<SampleModel>
+public class ChildViewModel : CrossNavigationViewModel<SampleModel>
 {
     public string? BrokenTextValue { get => _brokenTextValue; set => SetProperty(ref _brokenTextValue, value); }
     public string? AnotherBrokenTextValue { get => _anotherBrokenTextValue; set => SetProperty(ref _anotherBrokenTextValue, value); }

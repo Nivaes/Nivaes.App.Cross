@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.Sample;
 
 public class Tab1ViewModel
-    : MvxNavigationViewModel<string>
+    : CrossNavigationViewModel<string>
 {
     public Tab1ViewModel(ILogger<Tab1ViewModel> logger, ICrossNavigationService navigationService)
         : base(navigationService, logger)

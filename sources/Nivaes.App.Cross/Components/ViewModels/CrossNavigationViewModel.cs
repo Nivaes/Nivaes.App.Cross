@@ -1,53 +1,91 @@
 using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
+using Sentry.Protocol;
 
 namespace Nivaes.App.Cross
 {
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        private static readonly ActivitySource Source = new("SampleCrossClient");
+        //private static readonly ActivitySource Source = new("SampleCrossClient");
 
         protected readonly ICrossNavigationService NavigationService;
+
+        protected Activity? Trace;
 
         protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
             :base(logger)
         {
             NavigationService = navigationService;
 
-            Logger.LogTrace($"Started {this.GetType().Name}");
+            Logger.LogTrace($"Started {this.GetType().FullName}");
 
-            using var activity = Source.StartActivity("SampleCrossClient");
+            // Send Trace.
+            Trace = Telemetry.ActivitySource.StartActivity("Load View");
 
-            activity?.SetTag("Prueba", this.GetType().Name);
+            Trace?.SetTag(this.GetType().FullName!, "Load");
+            
+            try
+            {
+                Trace?.SetTag("success", true);
+            }
+            catch (Exception ex)
+            {
+                Trace?.AddException(ex);
+                throw;
+            }
 
-            //await Task.Delay(1000);
-            //Thread.Sleep(100);
+            //var mp = IPlatformApplication.Current!.Services.GetRequiredService<MeterProvider>();
 
-            activity?.Stop();
+            // Send Meter
+            Telemetry.ButtonClicks.Add(
+                1,
+                new("screen", "Home"),
+                new("platform", "Plataforma" /*DeviceInfo.Platform.ToString()*/));
 
-            //Thread.Sleep(15000);
+            var sw = Stopwatch.StartNew();
+
+            Thread.Sleep(150);
+
+            sw.Stop();
+
+
+            Telemetry.OperationDuration.Record(sw.Elapsed.TotalMilliseconds);
+            //mp.ForceFlush();
+        }
+
+        public override void ViewDestroy(bool viewFinishing = true)
+        {
+            base.ViewDestroy(viewFinishing);
+            
+            Trace?.SetTag("finalice", true);
+
+            Trace?.Dispose();
+            Trace = null;
         }
     }
 
-    public abstract class MvxNavigationViewModel<TParameter>
+    public abstract class CrossNavigationViewModel<TParameter>
         : CrossNavigationViewModel, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
-            logger.LogTrace($"Se inicio {this.GetType().Name}");
         }
 
         public abstract void Prepare(TParameter parameter);
     }
 
-    public abstract class MvxNavigationResultAwaitingViewModel<TResult>
+    public abstract class CrossNavigationResultAwaitingViewModel<TResult>
         : CrossNavigationViewModel, ICrossResultAwaitingViewModel<TResult>
     {
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected MvxNavigationResultAwaitingViewModel(
+        protected CrossNavigationResultAwaitingViewModel(
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager,
                 ILogger logger)
@@ -81,10 +119,10 @@ namespace Nivaes.App.Cross
         public abstract bool ResultSet(ICrossResultSettingViewModel<TResult> viewModel, TResult result);
     }
 
-    public abstract class MvxNavigationResultAwaitingViewModel<TParameter, TResult>
-        : MvxNavigationResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
+    public abstract class CrossNavigationResultAwaitingViewModel<TParameter, TResult>
+        : CrossNavigationResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationResultAwaitingViewModel(
+        protected CrossNavigationResultAwaitingViewModel(
                 ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
@@ -95,12 +133,12 @@ namespace Nivaes.App.Cross
         public abstract void Prepare(TParameter parameter);
     }
 
-    public abstract class MvxNavigationResultSettingViewModel<TResult>
+    public abstract class CrossNavigationResultSettingViewModel<TResult>
         : CrossNavigationViewModel, ICrossResultSettingViewModel<TResult>
     {
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected MvxNavigationResultSettingViewModel(
+        protected CrossNavigationResultSettingViewModel(
                 ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)
@@ -115,10 +153,10 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public abstract class MvxNavigationResultSettingViewModel<TParameter, TResult>
-        : MvxNavigationResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
+    public abstract class CrossNavigationResultSettingViewModel<TParameter, TResult>
+        : CrossNavigationResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
-        protected MvxNavigationResultSettingViewModel(
+        protected CrossNavigationResultSettingViewModel(
                 ILogger logger,
                 ICrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager)

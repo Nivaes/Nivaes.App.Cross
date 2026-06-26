@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
+using Nivaes.App.Cross.Observability;
 using OpenTelemetry;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -42,7 +43,8 @@ namespace Nivaes.App.Cross.Sample
                     //    .AddHttpClientInstrumentation()
                     //    .AddRuntimeInstrumentation();
                     metrics.AddRuntimeInstrumentation()
-                           .AddMeter("Metrica1")                        
+                           .AddMeter("Metrica1")
+                           .AddMeter(Telemetry.Meter.Name)
                            .AddHttpClientInstrumentation()
 
                            //.AddProcessInstrumentation()
@@ -58,6 +60,7 @@ namespace Nivaes.App.Cross.Sample
                 {
                     tracing.AddHttpClientInstrumentation()
                            .AddSource("Traza1")
+                           .AddSource(Telemetry.ActivitySource.Name)
                         //.SetResourceBuilder(
                         //    ResourceBuilder.CreateDefault()
                         //        .AddService(

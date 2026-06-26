@@ -70,7 +70,6 @@ public static class CrossProgram
                     CrossViewsManagerHelper.New<MultiBackStackTab1ViewModel, MultiBackStackTab1View>(),
                     CrossViewsManagerHelper.New<MultiBackStackTab2ViewModel, MultiBackStackTab2View>(),
                     CrossViewsManagerHelper.New<MultiBackStackInnerViewModel, MultiBackStackInnerView>(),
-
                 });
 
         return builder;

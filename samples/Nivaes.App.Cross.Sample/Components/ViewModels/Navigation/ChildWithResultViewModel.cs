@@ -6,7 +6,7 @@ public sealed class ChildWithResultViewModel(
         ILogger<ChildWithResultViewModel> logger,
         ICrossNavigationService navigationService,
         ICrossResultViewModelManager resultViewModelManager)
-    : MvxNavigationResultSettingViewModel<SampleModel, SampleModel>(
+    : CrossNavigationResultSettingViewModel<SampleModel, SampleModel>(
         logger,
         navigationService,
         resultViewModelManager)
