@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using OpenTelemetry;
@@ -40,8 +41,8 @@ namespace Nivaes.App.Cross.Sample
                   .ConfigureResource(r =>
                   {
                       r.AddService(
-                          serviceName: "CrossSample",
-                          serviceVersion: "0.1");
+                          serviceName: $"CrossSample: {RuntimeInformation.OSDescription} - {NameOS()}",
+                          serviceVersion: "{0.1}");
                   })
                 .WithMetrics(metrics =>
                 {
@@ -89,24 +90,28 @@ namespace Nivaes.App.Cross.Sample
             //.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://localhost:4318"))
             ;
 
-            //AppContext.SetSwitch(
-            //    "OpenTelemetry.Experimental.EnableEventSource",
-            //    true);
-
-            //AppContext.SetSwitch(
-            //    "OpenTelemetry.Experimental.EnableEventSource",
-            //    true);
-
-            //builder.Logging.AddFilter(
-            //        "OpenTelemetry.Exporter.OpenTelemetryProtocol",
-            //        LogLevel.Trace);
-
-            //builder.Logging.AddFilter(
-            //    "OpenTelemetry",
-            //    LogLevel.Trace);
-
-
             return openTelemetryBuilder;
+        }
+
+        private static string NameOS()
+        {
+            if (OperatingSystem.IsAndroid())
+            {
+                return "Android";
+            }
+            else if (OperatingSystem.IsIOS())
+            {
+                return "iOS";
+            }
+            else if (OperatingSystem.IsMacCatalyst())
+            {
+                return "MacCatalyst";
+            }
+            else if (OperatingSystem.IsWindows())
+            {
+                return "Windows";
+            }
+            return String.Empty;
         }
     }
 }

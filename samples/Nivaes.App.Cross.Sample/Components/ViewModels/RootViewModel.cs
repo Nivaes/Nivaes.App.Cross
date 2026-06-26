@@ -171,7 +171,7 @@ public class RootViewModel
 
     public override Task Initialize()
     {
-        Logger.LogWarning("Testing log");
+        Logger.LogTrace("Initialize");
 
         return base.Initialize();
     }

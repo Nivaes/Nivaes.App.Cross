@@ -1,25 +1,27 @@
+using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.AppKitOS
 {
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.Logging;
-
     public class MvxMacViewDispatcher
         : MvxMacUIThreadDispatcher
         , ICrossViewDispatcher
     {
         private readonly IMvxMacViewPresenter _presenter;
+        private readonly ILogger _logger;
 
-        public MvxMacViewDispatcher(IMvxMacViewPresenter presenter)
+        public MvxMacViewDispatcher(IMvxMacViewPresenter presenter, ILogger<MvxMacViewDispatcher> logger)
         {
             _presenter = presenter;
+            _logger = logger;
         }
 
         public async Task<bool> ShowViewModel(CrossViewModelRequest request)
         {
             Func<Task> action = () =>
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Navigate requested");
+                _logger.LogTrace($"Navigate requested{request.ViewModelType!.FullName}");
                 return _presenter.Show(request);
             };
             await ExecuteOnMainThreadAsync(action);
@@ -30,7 +32,7 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             Func<Task> action = () =>
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Trace, "MacNavigation", "Change presentation requested");
+                _logger.LogTrace($"Change presentation requested");
                 return _presenter.ChangePresentation(hint);
             };
             await ExecuteOnMainThreadAsync(action);
