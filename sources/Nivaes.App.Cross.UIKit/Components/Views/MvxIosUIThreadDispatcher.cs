@@ -1,8 +1,8 @@
+using System;
+using System.Threading;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System;
-    using System.Threading;
-
     public abstract class MvxIosUIThreadDispatcher
         : CrossMainThreadAsyncDispatcher
     {
@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected MvxIosUIThreadDispatcher()
         {
-            _uiSynchronizationContext = SynchronizationContext.Current;
+            _uiSynchronizationContext = SynchronizationContext.Current!;
             if (_uiSynchronizationContext == null)
                 throw new CrossException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }

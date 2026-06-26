@@ -1,10 +1,8 @@
+using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics;
-    using Microsoft.Extensions.Logging;
-    using OpenTelemetry.Resources;
-    using OpenTelemetry.Trace;
-
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {

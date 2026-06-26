@@ -61,8 +61,6 @@
 		<Nullable>enable</Nullable>
 		<NeutralLanguage>en</NeutralLanguage>
 
-		<ImplicitUsings>true</ImplicitUsings> 
-
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 

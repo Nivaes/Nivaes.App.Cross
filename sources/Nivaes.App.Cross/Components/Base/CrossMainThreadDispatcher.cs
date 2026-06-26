@@ -1,8 +1,8 @@
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossMainThreadDispatcher :
         ICrossMainThreadDispatcher
     {
