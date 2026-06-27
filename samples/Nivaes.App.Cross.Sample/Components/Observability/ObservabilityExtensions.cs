@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.Sample
                 .ConfigureResource(r =>
                 {
                     r.AddService(
-                        serviceName: $"CrossSample: {RuntimeInformation.OSDescription} - {NameOS()}",
+                        serviceName: $"CrossSample: {RuntimeInformation.OSDescription}",
                         serviceVersion: "{0.1}");
                 })
                 .WithMetrics(metrics =>
@@ -90,27 +90,6 @@ namespace Nivaes.App.Cross.Sample
             ;
 
             return openTelemetryBuilder;
-        }
-
-        private static string NameOS()
-        {
-            if (OperatingSystem.IsAndroid())
-            {
-                return "Android";
-            }
-            else if (OperatingSystem.IsIOS())
-            {
-                return "iOS";
-            }
-            else if (OperatingSystem.IsMacCatalyst())
-            {
-                return "MacCatalyst";
-            }
-            else if (OperatingSystem.IsWindows())
-            {
-                return "Windows";
-            }
-            return String.Empty;
         }
     }
 }

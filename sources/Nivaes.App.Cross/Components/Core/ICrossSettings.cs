@@ -5,7 +5,5 @@ namespace Nivaes.App.Cross
         bool AlwaysRaiseInpcOnUserInterfaceThread { get; set; }
 
         bool ShouldRaisePropertyChanging { get; set; }
-
-        bool ShouldLogInpc { get; set; }
     }
 }

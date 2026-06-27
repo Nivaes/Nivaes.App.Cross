@@ -15,7 +15,15 @@ namespace Nivaes.App.Cross
 
         private bool _shouldAlwaysRaiseInpcOnUserInterfaceThread;
         private bool _shouldRaisePropertyChanging;
-        private bool _shouldLogInpc;
+
+        protected CrossNotifyPropertyChanged(ILogger logger)
+            : base(logger)
+        {
+            var alwaysOnUIThread = CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread != false;
+            ShouldAlwaysRaiseInpcOnUserInterfaceThread(alwaysOnUIThread);
+            var raisePropertyChanging = CrossSingletonCache.Instance?.Settings?.ShouldRaisePropertyChanging != false;
+            ShouldRaisePropertyChanging(raisePropertyChanging);
+        }
 
         public bool ShouldAlwaysRaiseInpcOnUserInterfaceThread()
         {
@@ -35,26 +43,6 @@ namespace Nivaes.App.Cross
         public void ShouldRaisePropertyChanging(bool value)
         {
             _shouldRaisePropertyChanging = value;
-        }
-        public bool ShouldLogInpc()
-        {
-            return _shouldLogInpc;
-        }
-
-        public void ShouldLogInpc(bool value)
-        {
-            _shouldLogInpc = value;
-        }
-
-        protected CrossNotifyPropertyChanged(ILogger logger)
-            : base(logger)
-        {
-            var alwaysOnUIThread = CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread != false;
-            ShouldAlwaysRaiseInpcOnUserInterfaceThread(alwaysOnUIThread);
-            var raisePropertyChanging = CrossSingletonCache.Instance?.Settings?.ShouldRaisePropertyChanging != false;
-            ShouldRaisePropertyChanging(raisePropertyChanging);
-            var shouldLogInpc = CrossSingletonCache.Instance?.Settings?.ShouldLogInpc == true;
-            ShouldLogInpc(shouldLogInpc);
         }
 
         public bool RaisePropertyChanging<T>(T newValue, Expression<Func<T>> propertyExpression)
@@ -79,11 +67,6 @@ namespace Nivaes.App.Cross
                 == CrossInpcInterceptionResult.DoNotRaisePropertyChanging)
             {
                 return !changingArgs.Cancel;
-            }
-
-            if (ShouldLogInpc())
-            {
-                CrossLoggerHost.GetLogger<CrossNotifyPropertyChanged>().LogTrace("Property '{PropertyName}' changing value to {NewValue}", changingArgs.PropertyName, changingArgs.NewValue);
             }
 
             PropertyChanging?.Invoke(this, changingArgs);
@@ -118,9 +101,7 @@ namespace Nivaes.App.Cross
             }
 
             void RaiseChange()
-            {
-                if (ShouldLogInpc())
-                    CrossLoggerHost.GetLogger<CrossNotifyPropertyChanged>().Log(LogLevel.Trace, "Property '{PropertyName}' value changed", changedArgs.PropertyName);
+            {               
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 

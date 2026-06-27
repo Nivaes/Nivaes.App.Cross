@@ -155,12 +155,7 @@ public class RootViewModel
     public string WelcomeText
     {
         get => _welcomeText;
-        set
-        {
-            ShouldLogInpc(true);
-            SetProperty(ref _welcomeText, value);
-            ShouldLogInpc(false);
-        }
+        set => SetProperty(ref _welcomeText, value);
     }
 
     public string? TimeToRegister { get; set; }
