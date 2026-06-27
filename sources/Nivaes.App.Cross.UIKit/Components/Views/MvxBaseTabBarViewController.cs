@@ -1,12 +1,12 @@
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using Foundation;
-    using ObjCRuntime;
-    using UIKit;
-
-    public class MvxBaseTabBarViewController
-        : MvxEventSourceTabBarController, IMvxIosView
+    public class MvxBaseTabBarViewController<TViewModel>
+      : MvxEventSourceTabBarController, IMvxIosView<TViewModel>, IMvxIosView
+      where TViewModel : class, ICrossViewModel
     {
+        #region Constructors
         public MvxBaseTabBarViewController() : base()
         {
             this.AdaptForBinding();
@@ -31,6 +31,10 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             this.AdaptForBinding();
         }
+        #endregion
+
+        #region Data
+        public ICrossBindingContext? BindingContext { get; set; }
 
         public object? DataContext
         {
@@ -45,15 +49,21 @@ namespace Nivaes.App.Cross.UIKitOS
             }
         }
 
-        public ICrossViewModel? ViewModel
+        public TViewModel? ViewModel
         {
-            get { return DataContext as ICrossViewModel; }
+            get { return DataContext as TViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest? Request { get; set; }
+        ICrossViewModel? ICrossView.ViewModel 
+        { 
+            get => this.ViewModel;
+            set => ViewModel = (TViewModel?)value;
+        }
+        #endregion
 
-        public ICrossBindingContext? BindingContext { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
+        
 
         public override void ViewDidLoad()
         {
@@ -85,48 +95,17 @@ namespace Nivaes.App.Cross.UIKitOS
             ViewModel?.ViewDisappeared();
         }
 
-        public override void DidMoveToParentViewController(UIViewController parent)
+        public override void DidMoveToParentViewController(UIViewController? parent)
         {
             base.DidMoveToParentViewController(parent);
             if (parent == null)
                 ViewModel?.ViewDestroy();
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject? sender)
         {
             base.PrepareForSegue(segue, sender);
             this.ViewModelRequestForSegue(segue, sender);
-        }
-    }
-
-    public class MvxBaseTabBarViewController<TViewModel>
-        : MvxBaseTabBarViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        public MvxBaseTabBarViewController()
-        {
-        }
-
-        public MvxBaseTabBarViewController(NSCoder coder) : base(coder)
-        {
-        }
-
-        public MvxBaseTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
-        {
-        }
-
-        protected MvxBaseTabBarViewController(NSObjectFlag t) : base(t)
-        {
-        }
-
-        protected internal MvxBaseTabBarViewController(NativeHandle handle) : base(handle)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()

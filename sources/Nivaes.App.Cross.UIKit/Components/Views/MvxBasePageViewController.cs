@@ -1,11 +1,12 @@
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using Foundation;
-    using ObjCRuntime;
-
-    public class MvxBasePageViewController
-        : MvxEventSourcePageViewController, IMvxIosView
+    public class MvxBasePageViewController<TViewModel>
+        : MvxEventSourcePageViewController, IMvxIosView<TViewModel>, IMvxIosView
+        where TViewModel : class, ICrossViewModel
     {
+        #region Constructors
         public MvxBasePageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
         {
             this.AdaptForBinding();
@@ -45,6 +46,11 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             this.AdaptForBinding();
         }
+        #endregion
+
+        #region Data
+        public ICrossBindingContext? BindingContext { get; set; }
+
         public object? DataContext
         {
             get
@@ -58,15 +64,21 @@ namespace Nivaes.App.Cross.UIKitOS
             }
         }
 
-        public ICrossViewModel? ViewModel
+        public TViewModel? ViewModel
         {
-            get { return DataContext as ICrossViewModel; }
+            get { return DataContext as TViewModel; }
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest? Request { get; set; }
+        ICrossViewModel? ICrossView.ViewModel 
+        { 
+            get => ViewModel; 
+            set => ViewModel = (TViewModel?)value;
+        }
+        #endregion
 
-        public ICrossBindingContext? BindingContext { get; set; }
+        public CrossViewModelRequest? Request { get; set; }
+        
 
         public override void ViewDidLoad()
         {
@@ -98,64 +110,17 @@ namespace Nivaes.App.Cross.UIKitOS
             ViewModel?.ViewDisappeared();
         }
 
-        public override void DidMoveToParentViewController(UIViewController parent)
+        public override void DidMoveToParentViewController(UIViewController? parent)
         {
             base.DidMoveToParentViewController(parent);
             if (parent == null)
                 ViewModel?.ViewDestroy();
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject? sender)
         {
             base.PrepareForSegue(segue, sender);
             this.ViewModelRequestForSegue(segue, sender);
-        }
-    }
-
-    public class MvxBasePageViewController<TViewModel>
-        : MvxPageViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        public MvxBasePageViewController()
-        {
-        }
-
-        public MvxBasePageViewController(NSCoder coder) : base(coder)
-        {
-        }
-
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation) : base(style, navigationOrientation)
-        {
-        }
-
-        public MvxBasePageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
-        {
-        }
-
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation) : base(style, navigationOrientation, spineLocation)
-        {
-        }
-
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
-        {
-        }
-
-        public MvxBasePageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation, float interPageSpacing) : base(style, navigationOrientation, spineLocation, interPageSpacing)
-        {
-        }
-
-        protected MvxBasePageViewController(NSObjectFlag t) : base(t)
-        {
-        }
-
-        protected internal MvxBasePageViewController(NativeHandle handle) : base(handle)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()

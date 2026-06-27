@@ -19,7 +19,7 @@ public class MvxBindingViewControllerAdapter
             IosView?.BindingContext = bindingContext;
     }
 
-    public override void HandleDisposeCalled(object sender, EventArgs e)
+    public override void HandleDisposeCalled(object? sender, EventArgs e)
     {
         if (IosView == null)
         {

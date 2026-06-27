@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross.UIKitOS
 {
-    using System;
-
     public class MvxBaseViewControllerAdapter
     {
         private readonly IMvxEventSourceViewController _eventSource;
@@ -10,8 +8,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public MvxBaseViewControllerAdapter(IMvxEventSourceViewController eventSource)
         {
-            if (eventSource == null)
-                throw new ArgumentException("eventSource - eventSource should not be null");
+            ArgumentNullException.ThrowIfNull(eventSource);
 
             if (!(eventSource is UIViewController))
                 throw new ArgumentException("eventSource - eventSource should be a UIViewController");

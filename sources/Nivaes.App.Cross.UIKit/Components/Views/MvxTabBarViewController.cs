@@ -3,8 +3,9 @@ using ObjCRuntime;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-public class MvxTabBarViewController
-    : MvxBaseTabBarViewController, IMvxTabBarViewController
+public class MvxTabBarViewController<TViewModel>
+        : MvxBaseTabBarViewController<TViewModel>, IMvxTabBarViewController
+    where TViewModel : class, ICrossViewModel
 {
     public MvxTabBarViewController() : base()
     {
@@ -56,7 +57,7 @@ public class MvxTabBarViewController
             }
             else
             {
-                return topViewController;
+                return topViewController!;
             }
         }
     }
@@ -79,7 +80,7 @@ public class MvxTabBarViewController
     public virtual void ShowTabView(UIViewController viewController, MvxTabPresentationAttribute attribute)
     {
         if (!string.IsNullOrEmpty(attribute.TabAccessibilityIdentifier))
-            viewController.View.AccessibilityIdentifier = attribute.TabAccessibilityIdentifier;
+            viewController.View!.AccessibilityIdentifier = attribute.TabAccessibilityIdentifier;
 
         // setup Tab
         SetTitleAndTabBarItem(viewController, attribute);
@@ -191,7 +192,7 @@ public class MvxTabBarViewController
         // loop through plain Tabs
         var plainToClose = ViewControllers.Where(v => !(v is UINavigationController))
                                           .Select(v => v.GetIMvxIosView())
-                                          .FirstOrDefault(mvxView => mvxView.ViewModel == viewModel);
+                                          .FirstOrDefault(mvxView => mvxView!.ViewModel == viewModel);
         if (plainToClose != null)
         {
             RemoveTabController((UIViewController)plainToClose);
@@ -199,11 +200,12 @@ public class MvxTabBarViewController
         }
 
         // loop through nav stack Tabs
-        UIViewController toClose = null;
+        UIViewController? toClose = null;
+
         foreach (var vc in ViewControllers.Where(v => v is UINavigationController))
         {
-            var root = ((UINavigationController)vc).ViewControllers.FirstOrDefault();
-            if (root != null && root.GetIMvxIosView().ViewModel == viewModel)
+            var root = ((UINavigationController)vc).ViewControllers!.FirstOrDefault();
+            if (root != null && root.GetIMvxIosView()!.ViewModel == viewModel)
             {
                 toClose = vc;
                 break;
@@ -218,50 +220,14 @@ public class MvxTabBarViewController
         return false;
     }
 
-    public void PresentViewControllerWithNavigation(UIViewController controller, bool animated = true, Action completionHandler = null)
+    public void PresentViewControllerWithNavigation(UIViewController controller, bool animated = true, Action? completionHandler = null)
     {
         PresentViewController(new UINavigationController(controller), animated, completionHandler);
     }
 
     protected virtual void RemoveTabController(UIViewController toClose)
     {
-        var newTabs = ViewControllers.Where(v => v != toClose);
-        ViewControllers = newTabs.ToArray();
-    }
-}
-
-public class MvxTabBarViewController<TViewModel>
-    : MvxTabBarViewController, IMvxIosView<TViewModel>
-    where TViewModel : class, ICrossViewModel
-{
-    public MvxTabBarViewController()
-    {
-    }
-
-    public MvxTabBarViewController(NSCoder coder) : base(coder)
-    {
-    }
-
-    public MvxTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
-    {
-    }
-
-    protected MvxTabBarViewController(NSObjectFlag t) : base(t)
-    {
-    }
-
-    protected internal MvxTabBarViewController(NativeHandle handle) : base(handle)
-    {
-    }
-
-    public new TViewModel ViewModel
-    {
-        get { return (TViewModel)base.ViewModel; }
-        set { base.ViewModel = value; }
-    }
-
-    public CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet()
-    {
-        return this.CreateBindingSet<IMvxIosView<TViewModel>, TViewModel>();
+        var newTabs = ViewControllers?.Where(v => v != toClose);
+        ViewControllers = newTabs?.ToArray();
     }
 }
