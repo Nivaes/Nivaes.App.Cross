@@ -1,8 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -12,7 +7,6 @@ using Nivaes.App.Cross.Observability;
 
 namespace MvvmCross.IoC;
 
-[Obsolete("Quitar MvxIoC", true)]
 public static class MvxTypeExtensions
 {
     [Obsolete("Quitar MvxIoC", true)]
@@ -64,48 +58,57 @@ public static class MvxTypeExtensions
         return types.Where(x => x.Name.StartsWith(endingWith));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> Containing(this IEnumerable<Type> types, string containing)
     {
         return types.Where(x => x.Name.Contains(containing));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> InNamespace(this IEnumerable<Type> types, string namespaceBase)
     {
         return types.Where(x => x.Namespace?.StartsWith(namespaceBase) == true);
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> WithAttribute(this IEnumerable<Type> types, Type attributeType)
     {
         return types.Where(x => x.GetCustomAttributes(attributeType, true).Length > 0);
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> WithAttribute<TAttribute>(this IEnumerable<Type> types)
         where TAttribute : Attribute
     {
         return types.WithAttribute(typeof(TAttribute));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> Inherits(this IEnumerable<Type> types, Type baseType)
     {
         return types.Where(baseType.IsAssignableFrom);
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> Inherits<TBase>(this IEnumerable<Type> types)
     {
         return types.Inherits(typeof(TBase));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> DoesNotInherit(this IEnumerable<Type> types, Type baseType)
     {
         return types.Where(x => !baseType.IsAssignableFrom(x));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> DoesNotInherit<TBase>(this IEnumerable<Type> types)
         where TBase : Attribute
     {
         return types.DoesNotInherit(typeof(TBase));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<Type> Except(this IEnumerable<Type> types, params Type[] except)
     {
         // optimisation - if we have 3 or more except cases, then use a dictionary
@@ -118,11 +121,13 @@ public static class MvxTypeExtensions
         return types.Where(x => !except.Contains(x));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static bool IsGenericPartiallyClosed(this Type type) =>
         type.GetTypeInfo().IsGenericType &&
         type.GetTypeInfo().ContainsGenericParameters &&
         type.GetGenericTypeDefinition() != type;
 
+    [Obsolete("No usar reflection", true)]
     public class ServiceTypeAndImplementationTypePair
     {
         public List<Type> ServiceTypes { get; }
@@ -137,16 +142,19 @@ public static class MvxTypeExtensions
         }
     }
 
+    [Obsolete("No usar reflection", true)]
     [UnconditionalSuppressMessage("Trimming", "IL2067", Justification = "Types passed to AsTypes are preserved by IoC registration infrastructure.")]
     public static IEnumerable<ServiceTypeAndImplementationTypePair> AsTypes(this IEnumerable<Type> types)
     {
         return types.Select(t => new ServiceTypeAndImplementationTypePair([t], t));
     }
 
+    [Obsolete("No usar reflection", true)]
     [RequiresUnreferencedCode("This method uses reflection to get interfaces, which may not be preserved in trimmed applications")]
     public static IEnumerable<ServiceTypeAndImplementationTypePair> AsInterfaces(this IEnumerable<Type> types) =>
         types.Select(t => new ServiceTypeAndImplementationTypePair(t.GetInterfaces().ToList(), t));
 
+    [Obsolete("No usar reflection", true)]
     [RequiresUnreferencedCode("This method uses reflection to get interfaces, which may not be preserved in trimmed applications")]
     public static IEnumerable<ServiceTypeAndImplementationTypePair> AsInterfaces(this IEnumerable<Type> types, params Type[] interfaces)
     {
@@ -168,6 +176,7 @@ public static class MvxTypeExtensions
                         t.GetInterfaces().Where(interfaces.Contains).ToList(), t));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static IEnumerable<ServiceTypeAndImplementationTypePair> ExcludeInterfaces(
         this IEnumerable<ServiceTypeAndImplementationTypePair> pairs, params Type[] toExclude)
     {
@@ -178,6 +187,7 @@ public static class MvxTypeExtensions
             .Select(t => new ServiceTypeAndImplementationTypePair(t.excludedList, t.pair.ImplementationType));
     }
 
+    [Obsolete("No usar reflection", true)]
     public static void RegisterAsSingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
     {
         foreach (var pair in pairs)
@@ -197,6 +207,7 @@ public static class MvxTypeExtensions
         }
     }
 
+    [Obsolete("No usar reflection", true)]
     public static void RegisterAsLazySingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
     {
         foreach (var pair in pairs)
@@ -226,7 +237,6 @@ public static class MvxTypeExtensions
     //    }
     //}
 
-    [Obsolete()]
     public static object? CreateDefault(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type? type)
     {
@@ -244,6 +254,7 @@ public static class MvxTypeExtensions
         return Activator.CreateInstance(type);
     }
 
+    [Obsolete("No usar reflection", true)]
     public static ConstructorInfo? FindApplicableConstructor(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] this Type type,
         IDictionary<string, object>? arguments)
@@ -268,6 +279,7 @@ public static class MvxTypeExtensions
         return null;
     }
 
+    [Obsolete("No usar reflection", true)]
     public static ConstructorInfo? FindApplicableConstructor(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] this Type type,
         object?[] arguments)
@@ -301,6 +313,7 @@ public static class MvxTypeExtensions
         return null;
     }
 
+    [Obsolete("No usar reflection", true)]
     private static void CheckConstructors(
         IDictionary<string, object> arguments, MethodBase constructor, ref List<string> unusedKeys)
     {
