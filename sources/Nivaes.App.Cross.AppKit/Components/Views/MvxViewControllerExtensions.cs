@@ -17,9 +17,8 @@ public static class MvxViewControllerExtensions
     {
         if (macView.Request == null)
         {
-            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).Log(LogLevel.Trace,
+            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
                 "Request is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
-
 
             macView.Request = IPlatformApplication.Current!.Services.GetRequiredService<IMvxCurrentRequest>().CurrentRequest;
         }
@@ -27,7 +26,7 @@ public static class MvxViewControllerExtensions
         var instanceRequest = macView.Request as CrossViewModelInstanceRequest;
         if (instanceRequest != null)
         {
-            return instanceRequest.ViewModelInstance;
+            return instanceRequest.ViewModelInstance!;
         }
 
         var loader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
@@ -47,11 +46,9 @@ public static class MvxViewControllerExtensions
                                                                : parameterObject.ToSimplePropertyDictionary());
     }
 
-#warning TODO - could this move down to IMvxView level?
-
     public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
         this IMvxMacView view,
-        IDictionary<string, string> parameterValues = null)
+        IDictionary<string, string>? parameterValues = null)
         where TTargetViewModel : class, ICrossViewModel
     {
         var parameterBundle = new CrossBundle(parameterValues);

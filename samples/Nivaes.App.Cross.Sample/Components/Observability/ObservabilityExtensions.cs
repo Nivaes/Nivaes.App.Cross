@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
 using OpenTelemetry;
-using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -39,55 +38,18 @@ namespace Nivaes.App.Cross.Sample
                 })
                 .WithMetrics(metrics =>
                 {
-                    //metrics.AddAspNetCoreInstrumentation()
-                    //    .AddHttpClientInstrumentation()
-                    //    .AddRuntimeInstrumentation();
                     metrics.AddRuntimeInstrumentation()
                            .AddMeter("Metrica1")
                            .AddMeter(Telemetry.Meter.Name)
-                           .AddHttpClientInstrumentation()
-
-                           //.AddProcessInstrumentation()
-                           //.AddHttpClientInstrumentation()
-                           //.AddOtlpExporter(options =>
-                           //{
-                           //    options.Protocol = OtlpExportProtocol.HttpProtobuf;
-                           //    options.Endpoint = new Uri(urlObservability, "/v1/metrics");
-                           //})
-                           ;
+                           .AddHttpClientInstrumentation();
                 })
                 .WithTracing(static tracing =>
                 {
                     tracing.AddHttpClientInstrumentation()
                            .AddSource("Traza1")
-                           .AddSource(Telemetry.ActivitySource.Name)
-                        //.SetResourceBuilder(
-                        //    ResourceBuilder.CreateDefault()
-                        //        .AddService(
-                        //            serviceName: "SampleCrossClient",
-                        //            serviceVersion: "1.0"))
-                        //.AddSource("SampleCrossClient")
-                        //.AddHttpClientInstrumentation()
-                        //.SetSampler(new AlwaysOnSampler())
-                        //.AddConsoleExporter()
-                        //.AddOtlpExporter(options =>
-                        //{
-                        //    options.Protocol = OtlpExportProtocol.HttpProtobuf;
-                        //    options.Endpoint = new Uri(urlObservability, "/v1/traces");
-                        //})
-                        ;
+                           .AddSource(Telemetry.ActivitySource.Name);
                 })
-                 .WithLogging(loggersProviderBuilder =>
-                 {
-                     //loggersProviderBuilder.
-                     //loggersProviderBuilder.AddOtlpExporter(options =>
-                     //{
-                     //    options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
-                     //    options.Endpoint = new Uri(urlObservability, "/v1/logs");
-                     //});
-                 })
-            //.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://localhost:4318"))
-            ;
+                .WithLogging();
 
             return openTelemetryBuilder;
         }

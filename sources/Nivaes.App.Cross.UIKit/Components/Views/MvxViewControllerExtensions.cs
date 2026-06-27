@@ -15,8 +15,8 @@ public static class MvxViewControllerExtensions
     {
         if (iosView.Request == null)
         {
-            CrossLoggerHost.Default?.LogTrace(
-                "MvxViewControllerExtensions: LoadViewModelRequest is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
+            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
+                "LoadViewModelRequest is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
 
             var currentRequest = IPlatformApplication.Current!.Services.GetRequiredService<ICrossCurrentRequest>();
             //if (Mvx.IoCProvider?.TryResolve(out ICrossCurrentRequest? currentRequest) == true &&
@@ -29,24 +29,21 @@ public static class MvxViewControllerExtensions
         if (iosView.Request is CrossViewModelInstanceRequest instanceRequest &&
             instanceRequest.ViewModelInstance != null)
         {
-            CrossLoggerHost.Default?.LogTrace(
-                "MvxViewControllerExtensions: LoadViewModel ({ViewModelType}) instance already set - returning it directly without loading from locator",
-                instanceRequest.ViewModelInstance.GetType().Name);
+            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
+                $"LoadViewModel ({instanceRequest.ViewModelInstance.GetType().Name}) instance already set - returning it directly without loading from locator");
             return instanceRequest.ViewModelInstance;
         }
 
         var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
         if (iosView.Request != null &&
-            //Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true &&
             viewModelLoader != null)
         {
             var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);
             if (viewModel == null)
                 throw new CrossException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
 
-            CrossLoggerHost.Default?.LogTrace(
-                "MvxViewControllerExtensions: LoadViewModel loaded ({ViewModelType})",
-                viewModel.GetType().Name);
+            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
+                $"LoadViewModel loaded ({viewModel.GetType().Name})");
             return viewModel;
         }
 

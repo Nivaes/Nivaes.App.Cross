@@ -36,7 +36,10 @@ public class RootViewModel
 
         ShowModalNavCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
-        ShowTabsCommand = new CrossAsyncCommand(() => NavigationService.Navigate<TabsRootViewModel>());
+        ShowTabsCommand = new CrossAsyncCommand(()=>
+        {
+            return NavigationService.Navigate<TabsRootViewModel>();
+        });
 
         ShowPagesCommand = new CrossAsyncCommand(() => NavigationService.Navigate<PagesRootViewModel>());
 
