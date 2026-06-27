@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Playground.iOS.Views
+namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     [Register ("PagesRootView")]
     partial class PagesRootView
