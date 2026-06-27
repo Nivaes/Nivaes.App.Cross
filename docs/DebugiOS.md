@@ -18,3 +18,9 @@ log stream --predicate 'process contains "Nivaes"'
 ```shell
 log stream --process NivaesCross
 ```
+
+## Editar Storyboard
+
+```shell
+dotnet tool install -g dotnet-xcsync --prerelease
+```
