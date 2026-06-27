@@ -17,11 +17,11 @@ namespace Nivaes.App.Cross
         [RequiresUnreferencedCode("This method performs type conversions which may not be preserved by trimming")]
         public override void SetValue(object? value)
         {
-            CrossBindingLogger.Instance?.LogTrace("Receiving SetValue to {Value}", value);
+            //CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogTrace("Receiving SetValue to {Value}", value);
             var t = Target;
             if (t == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 

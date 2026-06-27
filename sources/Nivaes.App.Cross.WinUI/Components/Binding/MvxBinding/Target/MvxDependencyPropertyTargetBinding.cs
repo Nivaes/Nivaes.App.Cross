@@ -1,10 +1,9 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.UI.Xaml;
-    using Microsoft.UI.Xaml.Media;
-
     public class MvxDependencyPropertyTargetBinding
         : CrossConvertingTargetBinding
     {
@@ -59,27 +58,27 @@ namespace Nivaes.App.Cross
             var target = Target as FrameworkElement;
             if (target == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
+                CrossBindingLogger.GetLogger<MvxDependencyPropertyTargetBinding>().LogWarning("Weak Target is null in {TypeName} - skipping Get", GetType().Name);
                 return null;
             }
 
             return target.GetValue(_targetDependencyProperty);
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object target, object? value)
         {
-            CrossBindingLogger.Instance?.LogTrace("Receiving setValue to {Value}", value);
+            //CrossBindingLogger.GetLogger<MvxDependencyPropertyTargetBinding>().LogTrace("Receiving setValue to {Value}", value);
             var frameworkElement = target as FrameworkElement;
             if (frameworkElement == null)
             {
-                CrossBindingLogger.Instance?.LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.GetLogger<MvxDependencyPropertyTargetBinding>().LogTrace("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
             frameworkElement.SetValue(_targetDependencyProperty, value);
         }
 
-        protected override object MakeSafeValue(object value)
+        protected override object? MakeSafeValue(object? value)
         {
             return _actualPropertyType.MakeSafeValue(value);
         }
