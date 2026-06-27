@@ -48,6 +48,8 @@ public abstract class CrashHandler : ICrashHandler
 
             Logger.LogCritical(message);
             LoggerProvider?.ForceFlush();
+
+            File.Delete(PathCrashFile);
         }
     }
 
