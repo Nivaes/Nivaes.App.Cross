@@ -407,8 +407,7 @@ public class CrossLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAdapter>>();
-                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
+                CrossLoggerHost.GetLogger<DelegateFactory2>().LogTrace("{Tag} - ... OnCreateView ... {Name}", DelegateFactory2Tag, name);
             }
 
             return _factoryPlaceholder.OnViewCreated(
@@ -435,8 +434,7 @@ public class CrossLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
-                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
+                CrossLoggerHost.GetLogger<DelegateFactory1>().LogTrace("{Tag} - ... OnCreateView ... {Name}", DelegateFactory1Tag, name);
             }
 
             return _factoryPlaceholder.OnViewCreated(
@@ -474,8 +472,7 @@ public class CrossLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
-                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
+                CrossLoggerHost.GetLogger<PrivateFactoryWrapper2>().LogTrace("{Tag} - ... OnCreateView 2 ... {Name}", PrivateFactoryWrapper2Tag, name);
             }
 
             return _bindingVisitor.OnViewCreated(
@@ -488,8 +485,7 @@ public class CrossLayoutInflater : LayoutInflater
         {
             if (Debug)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossLayoutInflater>>();
-                logger?.Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
+                CrossLoggerHost.GetLogger<PrivateFactoryWrapper2>().Log(LogLevel.Trace, "{Tag} - ... OnCreateView 3 ... {Name}", PrivateFactoryWrapper2Tag, name);
             }
 
             return _bindingVisitor.OnViewCreated(

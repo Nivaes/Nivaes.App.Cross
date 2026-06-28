@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
@@ -23,8 +24,7 @@ public class MvxBindingViewControllerAdapter
     {
         if (IosView == null)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingViewControllerAdapter>>();
-            logger?.LogWarning("{IosView} is null for clear-up of bindings", nameof(IosView));
+            CrossLoggerHost.GetLogger<MvxBindingViewControllerAdapter>().LogWarning("{IosView} is null for clear-up of bindings", nameof(IosView));
 
             return;
         }

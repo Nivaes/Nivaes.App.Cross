@@ -9,6 +9,7 @@ namespace Nivaes.App.Cross.Droid
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
     using Object = Java.Lang.Object;
 
     public class MvxAdapter
@@ -101,11 +102,10 @@ namespace Nivaes.App.Cross.Droid
 
             if (_itemsSource != null && !(_itemsSource is IList))
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAdapter>>();
-                logger?.Log(LogLevel.Warning,
-                  "You are currently binding to IEnumerable - " +
-                  "this can be inefficient, especially for large collections. " +
-                  "Binding to IList is more efficient.");
+                CrossLoggerHost.GetLogger<MvxAdapter>().LogWarning(
+                  @"You are currently binding to IEnumerable - 
+                  this can be inefficient, especially for large collections.
+                  Binding to IList is more efficient.");
             }
 
             if (_itemsSource is INotifyCollectionChanged newObservable)
@@ -137,8 +137,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (Exception exception)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxAdapter>>();
-                logger?.Log(LogLevel.Warning, exception,
+                CrossLoggerHost.GetLogger<MvxAdapter>().LogWarning(exception,
                     "Exception masked during Adapter RealNotifyDataSetChanged Are you trying to update your collection from a background task? See http://goo.gl/0nW0L6");
             }
         }

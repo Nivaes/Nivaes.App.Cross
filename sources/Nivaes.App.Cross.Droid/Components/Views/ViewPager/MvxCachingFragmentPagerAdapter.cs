@@ -8,6 +8,7 @@ namespace Nivaes.App.Cross.Droid
     using Java.Lang;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
     using Fragment = AndroidX.Fragment.App.Fragment;
     using FragmentManager = AndroidX.Fragment.App.FragmentManager;
     using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
@@ -53,11 +54,8 @@ namespace Nivaes.App.Cross.Droid
             if (_curTransaction == null)
                 _curTransaction = _fragmentManager.BeginTransaction();
 
-#if DEBUG
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCachingFragmentPagerAdapter>>();
-            logger?.Log(LogLevel.Trace,
+            CrossLoggerHost.GetLogger<MvxFrameControl>().LogDebug(
                 $"Removing item #{position}: f={objectValue} v={((Fragment)objectValue).View} t={fragment.Tag}");
-#endif
 
             while (_savedState.Count <= position)
             {
@@ -117,11 +115,8 @@ namespace Nivaes.App.Cross.Droid
                 fragmentTag = fragment.GetType().FragmentJavaName();
             }
 
-#if DEBUG
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCachingFragmentPagerAdapter>>();
-            logger?.Log(LogLevel.Trace,
+            CrossLoggerHost.GetLogger<MvxCachingFragmentPagerAdapter>().LogDebug(
                 "Adding item #{position}: f={fragment} t={tag}", position, fragment, fragmentTag);
-#endif
 
             while (Fragments.Count <= position)
                 Fragments.Add(null);

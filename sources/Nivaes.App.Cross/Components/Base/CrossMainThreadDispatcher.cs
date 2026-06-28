@@ -19,14 +19,14 @@ namespace Nivaes.App.Cross
         {
             ArgumentNullException.ThrowIfNull(action);
 
-            ILogger logger = CrossLoggerHost.GetLogger<CrossMainThreadDispatcher>();
-
             try
             {
                 action();
             }
             catch (TargetInvocationException exception)
             {
+                ILogger logger = CrossLoggerHost.GetLogger<CrossMainThreadDispatcher>();
+
                 logger.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
                     logger.LogWarning(exception.InnerException, "TargetInvocationException masked");
@@ -35,6 +35,8 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
+                ILogger logger = CrossLoggerHost.GetLogger<CrossMainThreadDispatcher>();
+
                 logger.LogWarning(exception, "Exception thrown when invoking action via dispatcher");
                 if (maskExceptions)
                     logger.LogWarning(exception, "Exception masked");

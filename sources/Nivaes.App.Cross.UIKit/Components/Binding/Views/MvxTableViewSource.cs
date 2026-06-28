@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.UIKitOS
         protected MvxTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            CrossLoggerHost.Default?.LogWarning("TableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            CrossLoggerHost.GetLogger<MvxTableViewSource>().LogWarning("TableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
         }
 
         [CrossSetToNullAfterBinding]
@@ -54,9 +54,13 @@ namespace Nivaes.App.Cross.UIKitOS
         }
 
         public bool ReloadOnAllItemsSourceSets { get; set; }
+
         public bool UseAnimations { get; set; }
+
         public UITableViewRowAnimation AddAnimation { get; set; }
+
         public UITableViewRowAnimation RemoveAnimation { get; set; }
+
         public UITableViewRowAnimation ReplaceAnimation { get; set; }
 
         public override nint RowsInSection(UITableView tableview, nint section)
@@ -64,13 +68,12 @@ namespace Nivaes.App.Cross.UIKitOS
             return ItemsSource?.Count() ?? 0;
         }
 
-        protected override object GetItemAt(NSIndexPath indexPath)
+        protected override object? GetItemAt(NSIndexPath indexPath)
         {
             return ItemsSource?.ElementAt(indexPath.Row);
         }
 
-        protected virtual void CollectionChangedOnCollectionChanged(object sender,
-                                                                    NotifyCollectionChangedEventArgs args)
+        protected virtual void CollectionChangedOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
             void Action()
             {
@@ -102,13 +105,13 @@ namespace Nivaes.App.Cross.UIKitOS
                 case NotifyCollectionChangedAction.Add:
                     {
                         var newIndexPaths = CreateNSIndexPathArray(args.NewStartingIndex, args.NewItems.Count);
-                        TableView.InsertRows(newIndexPaths, AddAnimation);
+                        TableView?.InsertRows(newIndexPaths, AddAnimation);
                         return true;
                     }
                 case NotifyCollectionChangedAction.Remove:
                     {
                         var oldIndexPaths = CreateNSIndexPathArray(args.OldStartingIndex, args.OldItems.Count);
-                        TableView.DeleteRows(oldIndexPaths, RemoveAnimation);
+                        TableView?.DeleteRows(oldIndexPaths, RemoveAnimation);
                         return true;
                     }
                 case NotifyCollectionChangedAction.Move:
@@ -118,7 +121,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
                         var oldIndexPath = NSIndexPath.FromRowSection(args.OldStartingIndex, 0);
                         var newIndexPath = NSIndexPath.FromRowSection(args.NewStartingIndex, 0);
-                        TableView.MoveRow(oldIndexPath, newIndexPath);
+                        TableView?.MoveRow(oldIndexPath, newIndexPath);
                         return true;
                     }
                 case NotifyCollectionChangedAction.Replace:
@@ -128,7 +131,7 @@ namespace Nivaes.App.Cross.UIKitOS
 
                         var indexPaths = Enumerable.Range(args.NewStartingIndex, args.NewItems.Count)
                             .Select(index => NSIndexPath.FromRowSection(index, 0)).ToArray();
-                        TableView.ReloadRows(indexPaths, ReplaceAnimation);
+                        TableView?.ReloadRows(indexPaths, ReplaceAnimation);
                         return true;
                     }
                 default:

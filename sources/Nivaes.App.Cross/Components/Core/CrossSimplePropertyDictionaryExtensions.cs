@@ -1,11 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Observability;
-
     public static class CrossSimplePropertyDictionaryExtensions
     {
         public static IDictionary<string, string> ToSimpleStringPropertyDictionary(

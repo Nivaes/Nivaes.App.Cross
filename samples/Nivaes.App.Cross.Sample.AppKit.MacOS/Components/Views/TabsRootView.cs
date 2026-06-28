@@ -15,10 +15,6 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
         {
         }
 
-        public TabsRootView()
-        {
-        }
-
         public override void LoadView()
         {
             base.LoadView();

@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
 
     [Obsolete("", true)]
     public sealed class CrossStopWatch
@@ -27,8 +28,8 @@ namespace Nivaes.App.Cross
 
         public void Dispose()
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<CrossStopWatch>>();
-            logger?.Log(LogLevel.Trace, "{Ticks} - {Message}", Environment.TickCount - _startTickCount, _message);
+
+            CrossLoggerHost.GetLogger<CrossStopWatch>().Log(LogLevel.Trace, "{Ticks} - {Message}", Environment.TickCount - _startTickCount, _message);
             GC.SuppressFinalize(this);
         }
 

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.Droid;
 
@@ -32,9 +33,8 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         switch (requestCode)
         {
             case (int)MvxIntentRequestCode.PickFromFile:
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
-                logger?.Log(LogLevel.Warning,
-                    "Warning - activity request code may clash with Mvx code for {requestCode}",
+                CrossLoggerHost.GetLogger<MvxActivityAdapter>().LogWarning(
+                    "Activity request code may clash with code for {requestCode}",
                     (MvxIntentRequestCode)requestCode);
                 break;
         }
@@ -76,25 +76,11 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         if (mvxBundle != null)
         {
             var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
-
-            //if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true)
-            //{
-            //    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActivityAdapter>>();
-            //    logger?.Log(LogLevel.Warning,
-            //        "Saved state converter not available - saving state will be hard");
-            //}
-            //else
-            //{
             converter.Write(eventArgs.Value, mvxBundle);
-            //}
         }
 
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
-
-        //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
-        //{
         cache.Cache(AndroidView!.ViewModel!, eventArgs.Value);
-        //}
     }
 
     protected override void EventSourceOnActivityResultCalled(

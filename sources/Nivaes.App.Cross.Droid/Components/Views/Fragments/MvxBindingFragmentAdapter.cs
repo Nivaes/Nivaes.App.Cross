@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;
@@ -26,8 +27,7 @@ public class MvxBindingFragmentAdapter
 
         if (Fragment?.Activity is not IMvxAndroidView hostMvxView)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-            logger?.Log(LogLevel.Warning, "Fragment host for fragment type {FragmentType} is not of type IMvxAndroidView", Fragment?.GetType());
+            CrossLoggerHost.GetLogger<MvxBindingFragmentAdapter>().LogWarning("Fragment host for fragment type {FragmentType} is not of type IMvxAndroidView", Fragment?.GetType());
             return;
         }
 
@@ -38,8 +38,7 @@ public class MvxBindingFragmentAdapter
 
         if (viewModelType == null)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-            logger?.Log(LogLevel.Warning,
+            CrossLoggerHost.GetLogger<MvxBindingFragmentAdapter>().LogWarning(
                 "ViewModel type for Activity {FragmentActivityType} not found when trying to show fragment: {FragmentType}",
                 Fragment.Activity.GetType(), Fragment.GetType());
 
@@ -80,31 +79,18 @@ public class MvxBindingFragmentAdapter
     private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
     {
         var serializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? serializer) == true)
-        //{
-        request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
-        //}
-        //else
-        //{
-        //    var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-        //    logger?.Log(LogLevel.Warning,
-        //        "Navigation Serializer not available, deserializing ViewModel Request will be hard");
-        //}
 
+        request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
         return request;
     }
 
     private static ICrossBundle ReadAndroidBundle(Bundle? bundle)
     {
         var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) == true && bundle != null)
-        //{
         if (bundle != null)
             return converter?.Read(bundle) ?? new CrossBundle();
-        //}
 
-        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-        logger?.Log(LogLevel.Warning,
+        CrossLoggerHost.GetLogger<MvxBindingFragmentAdapter>().LogWarning(
             "Saved state converter not available - saving state will be hard");
 
         return new CrossBundle();
@@ -135,22 +121,11 @@ public class MvxBindingFragmentAdapter
         {
             var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
 
-            //if (Mvx.IoCProvider?.TryResolve(out IMvxSavedStateConverter? converter) != true)
-            //{
-            //var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBindingFragmentAdapter>>();
-            //logger?.Log(LogLevel.Warning,
-            //    "Saved state converter not available - saving state will be hard");
-            //}
-            //else
-            //{
             converter?.Write(e.Value, mvxBundle);
-            //}
         }
 
         if (FragmentView == null)
             return;
-
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true)
 
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
         cache?.Cache(FragmentView.ViewModel!, FragmentView.UniqueImmutableCacheTag);

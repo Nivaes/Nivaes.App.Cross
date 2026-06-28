@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Foundation;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Nivaes.App.Cross.Observability;
     using ObjCRuntime;
     using UIKit;
 
@@ -22,9 +23,8 @@ namespace Nivaes.App.Cross.UIKitOS
         public MvxActionBasedTableViewSource(NativeHandle handle)
             : base(handle)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxActionBasedTableViewSource>>();
-            logger?.Log(
-                LogLevel.Warning, "MvxActionBasedTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+            CrossLoggerHost.GetLogger<MvxActionBasedTableViewSource>().LogWarning(
+                $"{nameof(MvxActionBasedTableViewSource)} NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
 
             Initialize();
         }

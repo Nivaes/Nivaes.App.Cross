@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Microsoft.Extensions.Logging;
     using MvvmCross.Binding.Extensions;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     public class MvxCollectionViewSourceAnimated : MvxCollectionViewSource
     {
@@ -31,13 +32,13 @@ namespace Nivaes.App.Cross.UIKitOS
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView)
             : base(collectionView)
         {
-            _logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCollectionViewSourceAnimated>>();
+            _logger = CrossLoggerHost.GetLogger<MvxCollectionViewSourceAnimated>();
         }
 
         public MvxCollectionViewSourceAnimated(UICollectionView collectionView, NSString defaultCellIdentifier)
             : base(collectionView, defaultCellIdentifier)
         {
-            _logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxCollectionViewSourceAnimated>>();
+            _logger = CrossLoggerHost.GetLogger<MvxCollectionViewSourceAnimated>();
         }
 
         protected override void CollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)

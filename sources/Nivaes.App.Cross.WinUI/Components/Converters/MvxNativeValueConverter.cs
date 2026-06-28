@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.WinUI
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     public class MvxNativeValueConverter
         : IValueConverter
@@ -37,9 +38,8 @@ namespace Nivaes.App.Cross.WinUI
         {
             if (toReturn == CrossBindingConstant.DoNothing)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxNativeValueConverter>>();
-                logger?.Log(
-                    LogLevel.Trace, "DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
+                CrossLoggerHost.GetLogger<MvxNativeValueConverter>().LogTrace(
+                    "DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
 
                 return DependencyProperty.UnsetValue;
             }

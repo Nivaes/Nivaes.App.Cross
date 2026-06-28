@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross.UIKitOS
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
     using UIKit;
 
     public abstract class MvxBaseCollectionViewSource : UICollectionViewSource
@@ -53,8 +54,7 @@ namespace Nivaes.App.Cross.UIKitOS
             }
             catch (Exception exception)
             {
-                var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseCollectionViewSource>>();
-                logger?.Log(LogLevel.Warning, exception, "Exception masked during CollectionView ReloadData");
+                CrossLoggerHost.GetLogger<MvxBaseCollectionViewSource>().LogWarning(exception, "Exception masked during CollectionView ReloadData");
             }
         }
 

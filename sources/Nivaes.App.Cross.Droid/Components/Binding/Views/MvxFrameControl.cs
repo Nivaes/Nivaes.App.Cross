@@ -7,6 +7,7 @@ namespace Nivaes.App.Cross.Droid
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
+    using Nivaes.App.Cross.Observability;
 
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
     public class MvxFrameControl
@@ -35,8 +36,7 @@ namespace Nivaes.App.Cross.Droid
                 {
                     if (Content == null && _templateId != 0)
                     {
-                        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxFrameControl>>();
-                        logger?.Log(LogLevel.Trace, "DataContext is {dataContext}", DataContext?.ToString() ?? "Null");
+                        CrossLoggerHost.GetLogger<MvxFrameControl>().LogTrace("DataContext is {dataContext}", DataContext?.ToString() ?? "Null");
 
                         Content = _bindingContext.BindingInflate(_templateId, this);
                     }

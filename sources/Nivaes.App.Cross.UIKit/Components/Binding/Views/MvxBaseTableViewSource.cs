@@ -2,15 +2,18 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
 public abstract class MvxBaseTableViewSource : UITableViewSource
 {
-    public event EventHandler SelectedItemChanged;
-    private object _selectedItem;
-    private readonly WeakReference<UITableView> _tableView;
+    public event EventHandler? SelectedItemChanged;
+    
+    private object? _selectedItem;
+
+    private readonly WeakReference<UITableView>? _tableView;
 
     protected MvxBaseTableViewSource(UITableView tableView)
     {
@@ -20,22 +23,18 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
     protected MvxBaseTableViewSource(NativeHandle handle)
         : base(handle)
     {
-        var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseTableViewSource>>();
-        logger?.Log(LogLevel.Warning,
-            "MvxBaseTableViewSource NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
+        CrossLoggerHost.GetLogger<MvxBaseTableViewSource>().Log(LogLevel.Warning,
+            $"{nameof(MvxBaseTableViewSource)} NativeHandle constructor used - we expect this only to be called during memory leak debugging - see https://github.com/MvvmCross/MvvmCross/pull/467");
     }
 
     protected UITableView? TableView
     {
         get
         {
-            if (_tableView.TryGetTarget(out var tableView))
+            if (_tableView != null && _tableView.TryGetTarget(out var tableView))
                 return tableView;
 
-            // This is not a array Sonar. You are drunk...
-#pragma warning disable S1168 // Empty arrays and collections should be returned instead of null
             return null;
-#pragma warning restore S1168 // Empty arrays and collections should be returned instead of null
         }
     }
 
@@ -43,9 +42,9 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
 
     public bool DeselectChangedEnabled { get; set; }
 
-    public ICommand SelectionChangedCommand { get; set; }
+    public ICommand? SelectionChangedCommand { get; set; }
 
-    public ICommand AccessoryTappedCommand { get; set; }
+    public ICommand? AccessoryTappedCommand { get; set; }
 
     public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
     {
@@ -62,12 +61,11 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
     {
         try
         {
-            TableView.ReloadData();
+            TableView?.ReloadData();
         }
         catch (Exception exception)
         {
-            var logger = IPlatformApplication.Current?.Services.GetRequiredService<ILogger<MvxBaseTableViewSource>>();
-            logger?.Log(LogLevel.Warning, exception, "Exception masked during TableView ReloadData");
+            CrossLoggerHost.GetLogger<MvxBaseTableViewSource>().LogWarning(exception, "Exception masked during TableView ReloadData");
         }
     }
 
@@ -101,7 +99,7 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
         }
     }
 
-    public object SelectedItem
+    public object? SelectedItem
     {
         get
         {
@@ -139,11 +137,11 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
-    protected abstract UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item);
+    protected abstract UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object? item);
 
-    protected abstract object GetItemAt(NSIndexPath indexPath);
+    protected abstract object? GetItemAt(NSIndexPath indexPath);
 
-    private static void BindCell(UITableView tableView, UITableViewCell cell, object item)
+    private static void BindCell(UITableView tableView, UITableViewCell cell, object? item)
     {
         if (cell is IMvxBindable bindable)
         {
@@ -154,7 +152,7 @@ public abstract class MvxBaseTableViewSource : UITableViewSource
 
             // RunSynchronously must be called before DataContext is set
             if (isTaskBasedBindingContextAndHasAutomaticDimension)
-                bindingContext.RunSynchronously = true;
+                bindingContext?.RunSynchronously = true;
 
             bindable.DataContext = item;
 
