@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
 using Nivaes.App.Cross.WinUI.Observability;
@@ -16,7 +18,12 @@ namespace Nivaes.App.Cross.WinUI
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, CrossApplication app)
         {
-            builder.Services.TryAddSingleton<ICrossViewDispatcher, CrossWindowsViewDispatcher>();
+            // ToDo: Unificar interfaces.
+            builder.Services.TryAddSingleton<CrossWindowsViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
+                sp.GetRequiredService<CrossWindowsViewDispatcher>());
+            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
+                sp.GetRequiredService<CrossWindowsViewDispatcher>());
 
             builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
@@ -32,6 +39,7 @@ namespace Nivaes.App.Cross.WinUI
 
             builder.Services.TryAddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
             builder.Services.TryAddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
+            
 
 
 

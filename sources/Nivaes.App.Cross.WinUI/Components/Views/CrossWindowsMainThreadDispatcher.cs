@@ -3,7 +3,7 @@ using Microsoft.UI.Dispatching;
 
 namespace Nivaes.App.Cross.WinUI;
 
-public class CrossWindowsMainThreadDispatcher
+public abstract class CrossWindowsMainThreadDispatcher
     : CrossMainThreadAsyncDispatcher
 {
     private readonly DispatcherQueue _uiDispatcher;
