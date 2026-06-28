@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 public static class CrossProgram
 {
-    public static CrossApp CreateCrossApp()
+    public static CrossApp CreateCrossApp(INSApplicationDelegate applicationDelegation)
     {
         var appBuilder = CrossApp.CreateBuilder();
 
@@ -16,7 +16,7 @@ public static class CrossProgram
         appBuilder.AddObservability().
               UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri("http://192.168.86.205:4318"));
 
-        appBuilder.UseAppKitApp();
+        appBuilder.UseAppKitApp(applicationDelegation);
 
         appBuilder.Services.AddMetrics();
 

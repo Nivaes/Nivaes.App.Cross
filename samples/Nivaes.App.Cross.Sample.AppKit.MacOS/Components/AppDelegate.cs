@@ -14,5 +14,5 @@ public class AppDelegate : MvxApplicationDelegate //<Setup, Nivaes.App.Cross.Sam
         MvxWindowPresentationAttribute.DefaultHeight = 250;
     }
 
-    protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp();
+    protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);
 }
