@@ -24,6 +24,17 @@
 		<!-- <PublishAot>true</PublishAot> -->
 		<!--<StartupObject>Nivaes.App.Cross.Sample.UIKit.MacCatalyst</StartupObject>-->
 	</PropertyGroup>
+	<ItemGroup>
+	  <BundleResource Remove="Resources\home%402x.png" />
+	  <BundleResource Remove="Resources\home%403x.png" />
+	  <BundleResource Remove="Resources\home.png" />
+	  <BundleResource Remove="Resources\ic_tabbar_menu%402x.png" />
+	  <BundleResource Remove="Resources\ic_tabbar_menu%403x.png" />
+	  <BundleResource Remove="Resources\ic_tabbar_menu.png" />
+	  <BundleResource Remove="Resources\settings%402x.png" />
+	  <BundleResource Remove="Resources\settings%403x.png" />
+	  <BundleResource Remove="Resources\settings.png" />
+	</ItemGroup>
   <ItemGroup>
 	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
 	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
