@@ -16,7 +16,7 @@
 	<PropertyGroup>
 		<_CrossMacOSVersion>13.0</_CrossMacOSVersion>
 		<_CrossiOSVersion>15.8</_CrossiOSVersion>
-		<_CrossMacCatalystVersion>14.0</_CrossMacCatalystVersion>
+		<_CrossMacCatalystVersion>15.0</_CrossMacCatalystVersion>
 		<_CrossWatchOSVersion>15.8</_CrossWatchOSVersion>
 		<_CrossTvOSVersion>15.8</_CrossTvOSVersion>
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
@@ -62,7 +62,6 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<Nullable>enable</Nullable>
 		<NeutralLanguage>en</NeutralLanguage>
-
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 

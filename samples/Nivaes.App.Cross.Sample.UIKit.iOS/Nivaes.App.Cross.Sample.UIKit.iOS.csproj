@@ -2,25 +2,20 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossiOSTargets)</TargetFramework>
 		<!--<RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>-->
-
 		<OutputType>Exe</OutputType>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>true</ImplicitUsings>
-		<SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
+        
 		<ApplicationTitle>NivaesCross</ApplicationTitle>
 		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
 		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 		
-		<!--
-      Enable full trimming in Release mode.
-      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
-    -->
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
-
 		<IsPackable>false</IsPackable>
-		
 		<IsAotCompatible>true</IsAotCompatible>
 		<!--<PublishAot>true</PublishAot>-->
+
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
 	  <BundleResource Remove="Resources\home.png" />
