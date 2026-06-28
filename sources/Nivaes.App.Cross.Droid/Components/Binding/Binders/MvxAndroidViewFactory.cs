@@ -33,7 +33,8 @@ public class MvxAndroidViewFactory
 
         try
         {
-            var view = ActivatorUtilities.CreateInstance(_serviceProvider, viewType, context, attrs) as View;
+            //var view = ActivatorUtilities.CreateInstance(_serviceProvider, viewType, context, attrs) as View;
+            var view = Activator.CreateInstance(viewType, context, attrs) as View;
             if (view == null)
             {
                 _logger.LogError("Unable to load view {ViewName} from type {ViewTypeName}",

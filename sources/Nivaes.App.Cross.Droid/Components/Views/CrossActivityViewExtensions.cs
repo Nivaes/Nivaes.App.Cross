@@ -47,18 +47,14 @@ public static class CrossActivityViewExtensions
             return null;
 
         var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
-        //if (Mvx.IoCProvider?.TryResolve<IMvxSavedStateConverter>(out var converter) != true || converter == null)
-        //{
-        //    CrossLogHost.Default?.Log(LogLevel.Trace, "No saved state converter available - this is OK if seen during start");
-        //    return null;
-        //}
+
         var savedState = converter.Read(bundle);
         return savedState;
     }
 
     public static void OnViewNewIntent(this IMvxAndroidView androidView)
     {
-        CrossLoggerHost.Default.LogTrace("OnViewNewIntent called - Cross lifecycle won't run automatically in this case");
+        CrossLoggerHost.GetLogger(nameof(CrossActivityViewExtensions)).LogTrace("OnViewNewIntent called - Cross lifecycle won't run automatically in this case");
     }
 
     public static void OnViewDestroy(this IMvxAndroidView androidView)

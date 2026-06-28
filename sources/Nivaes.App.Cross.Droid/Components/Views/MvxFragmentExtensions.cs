@@ -22,7 +22,7 @@ public static class MvxFragmentExtensions
                     throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not have {nameof(MvxFragmentPresentationAttribute)} attribute set!");
 
                 var cacheableFragmentAttribute = type.GetBasePresentationAttribute();
-                if (cacheableFragmentAttribute.ViewModelType == null)
+                if (cacheableFragmentAttribute?.ViewModelType == null)
                     throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not use {nameof(MvxFragmentPresentationAttribute)} with ViewModel Type constructor.");
 
                 viewModelType = cacheableFragmentAttribute.ViewModelType;
@@ -31,7 +31,7 @@ public static class MvxFragmentExtensions
             return viewModelType;
         }
 
-        public ICrossViewModel LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
+        public ICrossViewModel? LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
             //if (viewModelType == typeof(CrossNullViewModel))
@@ -43,20 +43,20 @@ public static class MvxFragmentExtensions
             if (viewModelType == null
                 || viewModelType == typeof(ICrossViewModel))
             {
-                CrossLoggerHost.Default?.Log(LogLevel.Trace,
+                CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).Log(LogLevel.Trace,
                     "No ViewModel class specified for {FragmentViewType} in LoadViewModel",
                     fragmentView.GetType().Name);
             }
 
             if (request == null)
-                request = CrossViewModelRequest.GetDefaultRequest(viewModelType);
+                request = CrossViewModelRequest.GetDefaultRequest(viewModelType!);
 
             var viewModelCache = IPlatformApplication.Current!.Services.GetRequiredService<ICrossChildViewModelCache>();
-            if (viewModelCache.Exists(viewModelType))
+            if (viewModelCache.Exists(viewModelType!))
             {
-                var viewModelCached = viewModelCache.Get(viewModelType);
-                viewModelCache.Remove(viewModelType);
-                return viewModelCached;
+                var viewModelCached = viewModelCache.Get(viewModelType!);
+                viewModelCache.Remove(viewModelType!);
+                return viewModelCached!;
             }
 
             var loaderService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();

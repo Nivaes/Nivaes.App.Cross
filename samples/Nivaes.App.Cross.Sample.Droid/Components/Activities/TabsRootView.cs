@@ -16,12 +16,12 @@ public class TabsRootView : CrossActivity<TabsRootViewModel>
         SetContentView(Resource.Layout.TabsRootView);
 
         var viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
-        if (viewPager.Adapter is not MvxCachingFragmentStatePagerAdapter)
+        if (viewPager!.Adapter is not MvxCachingFragmentStatePagerAdapter)
             viewPager.Adapter = new MvxCachingFragmentStatePagerAdapter(SupportFragmentManager, new());
 
         if (savedInstanceState == null)
         {
-            ViewModel.ShowInitialViewModelsCommand.Execute();
+            ViewModel!.ShowInitialViewModelsCommand.Execute();
         }
     }
 }
