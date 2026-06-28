@@ -5,9 +5,9 @@ namespace Nivaes.App.Cross.Observability;
 
 public static class Telemetry
 {
-    public static readonly ActivitySource ActivitySource = new("MyCrossApp");
+    public static readonly ActivitySource ActivitySource = new("CrossApp");
 
-    public static readonly Meter Meter = new("MyCrossApp");
+    public static readonly Meter Meter = new("CrossApp");
 
     public static readonly Counter<long> ButtonClicks = Meter.CreateCounter<long>("button_clicks");
 

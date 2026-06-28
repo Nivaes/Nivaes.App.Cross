@@ -1,9 +1,7 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.AppKitOS
 {
-    using System;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Observability;
-
     public abstract class MvxBaseNSDatePickerTargetBinding
         : MvxMacTargetBinding
     {
@@ -26,7 +24,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
             if (datePicker == null)
             {
-                CrossBindingLogger.Instance?.LogError(
+                CrossBindingLogger.GetLogger<MvxBaseNSDatePickerTargetBinding>().LogError(
                                       $"NSDatePicker is null in {nameof(MvxBaseNSDatePickerTargetBinding)}.");
                 return;
             }
