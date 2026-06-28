@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Orquestation\Nivaes.App.Cross.Web\Nivaes.App.Cross.Web.ServiceDefaults\Nivaes.App.Cross.Web.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\orquestation\Nivaes.App.Cross.AppHost\Nivaes.App.Cross.ServiceDefaults\Nivaes.App.Cross.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Nivaes.App.Cross.Sample.Web.Client\Nivaes.App.Cross.Sample.Web.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
   </ItemGroup>
