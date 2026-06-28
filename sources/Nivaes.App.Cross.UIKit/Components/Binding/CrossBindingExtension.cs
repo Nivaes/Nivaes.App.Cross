@@ -10,11 +10,12 @@ namespace Nivaes.App.Cross.UIKitOS
         {
             public IServiceProvider TargetBindingFactoryRegistry()
             {
+                // Registrar con roslyn.
                 var registry = service.GetRequiredService<ICrossTargetBindingFactoryRegistry>();
 
                 registry.RegisterCustomBindingFactory<UIControl>(
-               MvxIosPropertyBinding.UIControl_TouchDown,
-               view => new MvxUIControlTargetBinding(view, MvxIosPropertyBinding.UIControl_TouchDown));
+                   MvxIosPropertyBinding.UIControl_TouchDown,
+                   view => new MvxUIControlTargetBinding(view, MvxIosPropertyBinding.UIControl_TouchDown));
 
                 registry.RegisterCustomBindingFactory<UIControl>(
                     MvxIosPropertyBinding.UIControl_TouchDownRepeat,

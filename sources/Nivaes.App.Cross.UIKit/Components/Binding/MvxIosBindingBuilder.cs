@@ -248,6 +248,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
         {
+            // Registrar con roslyn.
+
             base.FillDefaultBindingNames(registry);
 
             registry.AddOrOverwrite(typeof(UIButton), MvxIosPropertyBinding.UIControl_TouchUpInside);

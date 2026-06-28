@@ -9,6 +9,8 @@ namespace Nivaes.App.Cross.AppKitOS
         {
             public IServiceProvider TargetBindingFactoryRegistry()
             {
+                // Registrar con roslyn.
+
                 var registry = service.GetRequiredService<ICrossTargetBindingFactoryRegistry>();
 
                 registry.RegisterCustomBindingFactory<NSView>(

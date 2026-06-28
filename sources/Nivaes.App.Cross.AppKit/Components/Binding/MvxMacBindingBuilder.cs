@@ -126,6 +126,8 @@ public class MvxMacBindingBuilder
 
     protected override void FillDefaultBindingNames(ICrossBindingNameRegistry registry)
     {
+        // Registrar con roslyn.
+
         base.FillDefaultBindingNames(registry);
 
         registry.AddOrOverwrite(typeof(NSButton), nameof(NSButton.Activated));

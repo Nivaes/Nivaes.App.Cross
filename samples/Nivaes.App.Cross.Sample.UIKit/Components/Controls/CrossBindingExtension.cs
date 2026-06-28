@@ -6,8 +6,12 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
     {
         extension(IServiceProvider service)
         {
+            // Registrar con roslyn.
+
             public IServiceProvider TargetBindingFactoryRegistry()
             {
+                // Registrar con roslyn.
+
                 var registry = service.GetRequiredService<ICrossTargetBindingFactoryRegistry>();
 
                 registry.RegisterCustomBindingFactory<BinaryEdit>(

@@ -8,6 +8,8 @@ namespace Nivaes.App.Cross.Sample.Droid
         {
             public IServiceProvider TargetBindingFactoryRegistry()
             {
+                // Registrar con roslyn.
+
                 var registry = service.GetRequiredService<ICrossTargetBindingFactoryRegistry>();
 
                 registry.RegisterCustomBindingFactory<BinaryEdit>(

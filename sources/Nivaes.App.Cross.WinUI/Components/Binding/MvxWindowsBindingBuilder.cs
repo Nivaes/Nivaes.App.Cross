@@ -137,6 +137,8 @@ namespace Nivaes.App.Cross.WinUI
 
         protected override void FillTargetFactories(ICrossTargetBindingFactoryRegistry registry)
         {
+            // Registrar con roslyn.
+
             registry.RegisterCustomBindingFactory<FrameworkElement>(
                 MvxWindowsPropertyBinding.FrameworkElement_Visible,
                 view => new MvxVisibleTargetBinding(view));
