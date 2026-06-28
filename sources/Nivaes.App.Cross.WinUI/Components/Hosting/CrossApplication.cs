@@ -62,6 +62,8 @@ public abstract class CrossApplication
 
         _services = applicationContext.Services;
 
+        _services.RegisterWinUICrash(this);
+
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunching>(del => del(this, args));
 
         var frame = InitializeFrame();

@@ -30,6 +30,11 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.TryAddSingleton<ICrossNativeColor, CrossWinUIColor>();
             builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossWinUIVisibility>();
 
+            builder.Services.TryAddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
+            builder.Services.TryAddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
+
+
+
             return builder;
         }
     }

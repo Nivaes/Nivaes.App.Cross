@@ -144,18 +144,15 @@ public abstract class CrossWindowsPage<TViewModel>
 
     private string? _pageKey;
 
-    [Obsolete]
     private ICrossSuspensionManager? _suspensionManager;
 
-    [Obsolete]
     protected ICrossSuspensionManager? SuspensionManager
     {
         // ToDo: Buscar la manera de guardar la sesión de otra manera, que no necesite inyección de dependencias. 
         // O buscar la manera de acceder al contenerdor de dependencias desde una vista.    
         get
         {
-            var aa = Mvx.IoCProvider;
-            _suspensionManager = _suspensionManager ?? aa.Resolve<ICrossSuspensionManager>();
+            _suspensionManager = _suspensionManager ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSuspensionManager>();
             return _suspensionManager;
         }
     }
