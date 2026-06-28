@@ -36,7 +36,7 @@ public class RootViewModel
 
         ShowModalNavCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());
 
-        ShowTabsCommand = new CrossAsyncCommand(()=>
+        ShowTabsCommand = new CrossAsyncCommand(() =>
         {
             return NavigationService.Navigate<TabsRootViewModel>();
         });
@@ -61,7 +61,10 @@ public class RootViewModel
 
         ShowSharedElementsCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<SharedElementRootChildViewModel>());
 
-        ShowCustomBindingCommand = new CrossAsyncCommand(() => NavigationService.Navigate<CustomBindingViewModel>());
+        ShowCustomBindingCommand = new CrossAsyncCommand(() =>
+        {
+            return NavigationService.Navigate<CustomBindingViewModel>();
+        });
 
         ShowFluentBindingCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FluentBindingViewModel>());
 

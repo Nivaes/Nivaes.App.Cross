@@ -9,5 +9,13 @@ namespace Nivaes.App.Cross.Sample.UIKitOS
     public class SceneDelegate : CrossSceneDelegate
     {
         protected override CrossApp CreateCrossApp(UIWindow window) => CrossProgram.CreateCrossApp(window);
+
+        protected override void RegisterServices(IServiceProvider services)
+        {
+            base.RegisterServices(services);
+
+            services
+               .TargetBindingFactoryRegistry();
+        }
     }
 }

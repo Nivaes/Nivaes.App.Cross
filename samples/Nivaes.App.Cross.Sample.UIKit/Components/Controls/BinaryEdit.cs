@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Playground.iOS.Controls
+namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     [Register("BinaryEdit")]
     public class BinaryEdit : UIView
@@ -42,7 +42,7 @@ namespace Playground.iOS.Controls
             MyCountChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public event EventHandler MyCountChanged;
+        public event EventHandler? MyCountChanged;
 
         public int GetCount()
         {

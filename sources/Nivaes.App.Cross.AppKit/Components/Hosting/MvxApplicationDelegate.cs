@@ -43,17 +43,29 @@ public abstract class MvxApplicationDelegate :
 
         //FireLifetimeChanged(CrossLifetimeEvent.Launching);
 
-        //var rootContext = new MauiContext(mauiApp.Services);
+        var rootContext = new CrossContext(crossApp.Services);
 
-        //_applicationContext = rootContext.MakeApplicationScope(this);
+        var applicationContext = rootContext.MakeApplicationScope(this);
 
-        //_services = _applicationContext.Services;
+        _services = applicationContext.Services;
+
+        _application = _services.GetRequiredService<IApplication>();
+        IPlatformApplication.Current!.Application.Setup();
+        var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
+
+        RegisterServices(_services);
+
+        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
+        initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
+    }
 
-        _services
-                .TargetBindingFactoryRegistry()
-                .BindingNameRegister();
+    protected virtual void RegisterServices(IServiceProvider services)
+    {
+        services
+            .TargetBindingFactoryRegistry()
+            .BindingNameRegister();
     }
 
     [Obsolete]

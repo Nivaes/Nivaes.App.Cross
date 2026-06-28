@@ -12,8 +12,8 @@ namespace Nivaes.App.Cross.AppKitOS
                 var registry = service.GetRequiredService<ICrossTargetBindingFactoryRegistry>();
 
                 registry.RegisterCustomBindingFactory<NSView>(
-             MvxMacPropertyBinding.NSView_Visibility,
-             view => new MvxNSViewVisibilityTargetBinding(view));
+                     MvxMacPropertyBinding.NSView_Visibility,
+                     view => new MvxNSViewVisibilityTargetBinding(view));
 
                 registry.RegisterCustomBindingFactory<NSView>(
                     MvxMacPropertyBinding.NSView_Visible,

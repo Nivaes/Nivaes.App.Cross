@@ -71,9 +71,7 @@ public abstract class CrossSceneDelegate
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
-        _services
-               .TargetBindingFactoryRegistry()
-               .BindingNameRegister();
+        RegisterServices(_services);
 
         var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
@@ -81,6 +79,13 @@ public abstract class CrossSceneDelegate
         Window?.MakeKeyAndVisible();
 
         FireLifetimeChanged(CrossLifetimeEvent.Launching);
+    }
+
+    protected virtual void RegisterServices(IServiceProvider services)
+    {
+        services
+            .TargetBindingFactoryRegistry()
+            .BindingNameRegister();
     }
 
     [Export("sceneDidDisconnect:")]

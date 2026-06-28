@@ -3,7 +3,6 @@ using System.Drawing;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
-using Playground.iOS.Controls;
 
 namespace Nivaes.App.Cross.Sample.UIKitOS;
 
@@ -12,7 +11,7 @@ namespace Nivaes.App.Cross.Sample.UIKitOS;
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class CustomBindingView : MvxViewController<CustomBindingViewModel>
 {
-    private UIDatePicker _datePicker;
+    private UIDatePicker? _datePicker;
 
     public CustomBindingView(NativeHandle handle) : base(handle)
     {

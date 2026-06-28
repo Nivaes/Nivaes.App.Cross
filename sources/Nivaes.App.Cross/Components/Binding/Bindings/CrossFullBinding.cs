@@ -44,7 +44,6 @@ namespace Nivaes.App.Cross
             var targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
             _targetBinding = targetBindingFactory.CreateBinding(bindingRequest.Target!, bindingRequest.Description!.TargetName!);
 
-
             ObserveTargetChangesIfNeeded();
             _defaultTargetValue = _targetBinding!.TargetValueType.CreateDefault();
             _sourceStep = CreateSourceBinding(bindingRequest);
@@ -111,7 +110,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception ex)
                 {
-                    CrossBindingLogger.Instance?.LogError(ex, "Exception masked in UpdateTargetOnBind");
+                    CrossBindingLogger.GetLogger<CrossFullBinding>().LogError(ex, "Exception masked in UpdateTargetOnBind");
                 }
             }
         }
@@ -165,7 +164,7 @@ namespace Nivaes.App.Cross
                 }
                 catch (Exception exception)
                 {
-                    CrossBindingLogger.Instance?.LogError(
+                    CrossBindingLogger.GetLogger<CrossFullBinding>().LogError(
                         exception,
                         "Problem seen during binding execution for {BindingDescription}",
                         _bindingDescription!.ToString());
@@ -190,7 +189,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLogger.Instance?.LogError(
+                CrossBindingLogger.GetLogger<CrossFullBinding>()?.LogError(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
                     _bindingDescription!.ToString());

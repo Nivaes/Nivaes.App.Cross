@@ -1,8 +1,7 @@
-namespace Playground.iOS.Bindings
+namespace Nivaes.App.Cross.Sample.UIKitOS
 {
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;
-    using Playground.iOS.Controls;
 
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class BinaryEditTargetBinding
@@ -25,7 +24,7 @@ namespace Playground.iOS.Bindings
             _target.MyCountChanged += Target_CountChanged;
         }
 
-        private void Target_CountChanged(object sender, EventArgs e)
+        private void Target_CountChanged(object? sender, EventArgs e)
         {
             if (_target == null)
             {

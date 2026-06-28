@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Sample.Droid
             Target.MyCountChanged += TargetOnMyCountChanged;
         }
 
-        private void TargetOnMyCountChanged(object sender, EventArgs eventArgs)
+        private void TargetOnMyCountChanged(object? sender, EventArgs eventArgs)
         {
             var target = Target;
 
