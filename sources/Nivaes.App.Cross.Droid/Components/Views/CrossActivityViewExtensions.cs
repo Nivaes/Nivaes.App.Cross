@@ -165,12 +165,6 @@ public static class CrossActivityViewExtensions
             throw new CrossException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);
         }
 
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelLoader? viewModelLoader) == true &&
-        //    viewModelLoader != null)
-        //{
         return viewModelLoader!.Load(activity.Intent, savedState, viewModelType);
-        //}
-
-        //return null;
     }
 }

@@ -21,19 +21,11 @@ namespace Nivaes.App.Cross.Droid
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
             builder.Services.TryAddSingleton<IAndroidViewPresenter, AndroidViewPresenter>();
-
-            builder.Services.TryAddSingleton<ICrossViewsContainer>(sp =>
-            {
-                var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
-                var navigationSerializer = sp.GetRequiredService<ICrossNavigationSerializer>();
-                var childViewModelCache = sp.GetRequiredService<ICrossChildViewModelCache>();
-
-                return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
-            });
+            
             builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
             builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();
 
-
+            // ToDo: Unificar interfaces.
             builder.Services.TryAddSingleton<AndroidViewsContainer>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
@@ -42,6 +34,8 @@ namespace Nivaes.App.Cross.Droid
 
                 return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
             });
+            builder.Services.TryAddSingleton<ICrossViewsContainer>(sp =>
+                sp.GetRequiredService<AndroidViewsContainer>());
             builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
                 sp.GetRequiredService<AndroidViewsContainer>());
             builder.Services.TryAddSingleton<IMvxAndroidViewModelLoader>(sp =>
@@ -57,24 +51,6 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxLayoutInflaterHolderFactoryFactory, MvxLayoutInflaterFactoryFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
-
-            //builder.Services.TryAddSingleton<IMvxTypeCache, MvxTypeCache<View>>();
-            //builder.Services.TryAddSingleton<IMvxAxmlNameViewTypeResolver, MvxAxmlNameViewTypeResolver>();
-            //builder.Services.TryAddSingleton<IMvxNamespaceListViewTypeResolver, MvxNamespaceListViewTypeResolver>();
-            //builder.Services.TryAddSingleton<MvxReflectionViewTypeResolver, MvxJustNameViewTypeResolver>();
-
-
-            //ToDo: Refactorizar esto. Hay clases con el mismo interface que están anidadas.
-
-            //builder.Services.TryAddSingleton<IMvxViewTypeResolver>(sp =>
-            //     {
-            //         var fullNameViewTypeResolver = (MvxAxmlNameViewTypeResolver)sp.GetRequiredService<IMvxAxmlNameViewTypeResolver>();
-            //         var listViewTypeResolver = (MvxNamespaceListViewTypeResolver)sp.GetRequiredService<IMvxNamespaceListViewTypeResolver>();
-            //         var justNameTypeResolver = sp.GetRequiredService<MvxReflectionViewTypeResolver>();
-
-            //         var composite = new MvxCompositeViewTypeResolver(fullNameViewTypeResolver, listViewTypeResolver, justNameTypeResolver);
-            //         return composite;
-            //     });
 
             builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();
 
