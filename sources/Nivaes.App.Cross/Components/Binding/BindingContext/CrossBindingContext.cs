@@ -14,14 +14,14 @@ public class CrossBindingContext
 
     private readonly List<KeyValuePair<object, IList<TargetAndBinding>>> _viewBindings = new();
 
-    private object _dataContext;
+    private object? _dataContext;
 
     public CrossBindingContext()
-        : this((object)null)
+        : this((object?)null)
     {
     }
 
-    public CrossBindingContext(object dataContext)
+    public CrossBindingContext(object? dataContext)
     {
         _dataContext = dataContext;
     }
@@ -51,7 +51,7 @@ public class CrossBindingContext
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-    public CrossBindingContext Init(object dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
+    public CrossBindingContext Init(object? dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
     {
         foreach (var kvp in firstBindings)
         {
@@ -64,7 +64,7 @@ public class CrossBindingContext
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-    public CrossBindingContext Init(object dataContext, IDictionary<object, string> firstBindings)
+    public CrossBindingContext Init(object? dataContext, IDictionary<object, string> firstBindings)
     {
         foreach (var kvp in firstBindings)
         {
@@ -77,7 +77,7 @@ public class CrossBindingContext
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-    public ICrossBindingContext Init(object dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
+    public ICrossBindingContext Init(object? dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
     {
         AddDelayedAction(firstBindingKey, firstBindingValue);
         if (dataContext != null)
@@ -87,7 +87,7 @@ public class CrossBindingContext
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-    public ICrossBindingContext Init(object dataContext, object firstBindingKey, string firstBindingValue)
+    public ICrossBindingContext Init(object? dataContext, object firstBindingKey, string firstBindingValue)
     {
         AddDelayedAction(firstBindingKey, firstBindingValue);
         if (dataContext != null)
@@ -159,19 +159,21 @@ public class CrossBindingContext
         }
     }
 
-    private ICrossBinder _binder;
+    #region Binder
+    private ICrossBinder? _binder;
 
     protected ICrossBinder Binder
     {
         get
         {
-            //_binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
             return _binder;
         }
     }
+    #endregion
 
-    public object DataContext
+    #region DataContext
+    public object? DataContext
     {
         get
         {
@@ -187,8 +189,10 @@ public class CrossBindingContext
             DataContextChanged?.Invoke(this, EventArgs.Empty);
         }
     }
+    #endregion
 
-    public event EventHandler DataContextChanged;
+    #region DataContextChanged
+    public event EventHandler? DataContextChanged;
 
     protected virtual void OnDataContextChange()
     {
@@ -218,6 +222,7 @@ public class CrossBindingContext
         }
         _delayedActions.Clear();
     }
+    #endregion
 
     public virtual void DelayBind(Action action)
     {

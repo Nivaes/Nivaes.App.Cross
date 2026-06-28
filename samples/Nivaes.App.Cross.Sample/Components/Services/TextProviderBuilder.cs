@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Nivaes.App.Cross.Sample;
 
+[Obsolete("", true)]
 [RequiresUnreferencedCode("MvxTextProvider requires unreferenced code")]
 public class TextProviderBuilder : MvxTextProviderBuilder
 {

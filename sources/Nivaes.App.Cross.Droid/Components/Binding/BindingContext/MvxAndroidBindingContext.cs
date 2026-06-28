@@ -21,12 +21,12 @@ public class MvxAndroidBindingContext
 
     public IMvxLayoutInflaterHolder LayoutInflaterHolder { get; set; }
 
-    public virtual View? BindingInflate(int resourceId, ViewGroup viewGroup)
+    public virtual View? BindingInflate(int resourceId, ViewGroup? viewGroup)
     {
         return BindingInflate(resourceId, viewGroup, true);
     }
 
-    public virtual View? BindingInflate(int resourceId, ViewGroup viewGroup, bool attachToParent)
+    public virtual View? BindingInflate(int resourceId, ViewGroup? viewGroup, bool attachToParent)
     {
         var view = CommonInflate(
             resourceId,
@@ -35,7 +35,7 @@ public class MvxAndroidBindingContext
         return view;
     }
 
-    protected virtual View? CommonInflate(int resourceId, ViewGroup viewGroup, bool attachToParent)
+    protected virtual View? CommonInflate(int resourceId, ViewGroup? viewGroup, bool attachToParent)
     {
         using (new CrossBindingContextStackRegistration<IMvxAndroidBindingContext>(this))
         {

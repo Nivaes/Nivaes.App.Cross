@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public abstract class MvxJsonDictionaryTextProvider
     : MvxDictionaryTextProvider
      , IMvxJsonDictionaryTextLoader

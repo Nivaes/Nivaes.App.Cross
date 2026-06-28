@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
 
             builder.Services.TryAddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
-            builder.Services.TryAddSingleton<ICrossBindingContext, CrossTaskBasedBindingContext>();
+            builder.Services.TryAddTransient<ICrossBindingContext, CrossTaskBasedBindingContext>();
 
             builder.SetupBinding();
 
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.Hosting
             builder.Services.TryAddSingleton<ICrossSourceStepFactoryRegistry>(sourceStepFactory);
             builder.Services.TryAddSingleton<ICrossSourceStepFactory>(sourceStepFactory);
 
-            builder.Services.TryAddSingleton<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
+            builder.Services.AddTransient<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
 
             var bindingNameRegistry = new CrossBindingNameRegistry();
             builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
