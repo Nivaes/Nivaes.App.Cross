@@ -6,12 +6,12 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [Register("AppDelegate")]
 [RequiresUnreferencedCode("MvxApplicationDelegate requires unreferenced code")]
-public class AppDelegate : MvxApplicationDelegate //<Setup, Nivaes.App.Cross.Sample.SampleApp>
+public class AppDelegate : MvxApplicationDelegate 
 {
     public AppDelegate()
     {
-        MvxWindowPresentationAttribute.DefaultWidth = 250;
-        MvxWindowPresentationAttribute.DefaultHeight = 250;
+        MvxWindowPresentationAttribute.DefaultWidth = 512;
+        MvxWindowPresentationAttribute.DefaultHeight = 512;
     }
 
     protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);
