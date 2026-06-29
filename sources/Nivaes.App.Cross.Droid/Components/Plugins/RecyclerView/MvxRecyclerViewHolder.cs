@@ -1,13 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using Android.Runtime;
+using Android.Views;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-    using Android.Runtime;
-    using Android.Views;
-    using Nivaes.App.Cross;
-
-    //using MvvmCross.Platforms.Android.WeakSubscription;
-    //using Nivaes.App.Cross;
-
-    [Register("mvvmcross.droidx.recyclerview.MvxRecyclerViewHolder")]
+    [Register("nivaes.cross.recyclerview.RecyclerViewHolder")]
     public class MvxRecyclerViewHolder
         : AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder, IMvxRecyclerViewHolder
     {
@@ -46,7 +44,8 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
             _bindingContext = context;
         }
 
-        [Android.Runtime.Preserve(Conditional = true)]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MvxRecyclerViewHolder))]
+
         protected MvxRecyclerViewHolder(IntPtr handle, JniHandleOwnership ownership)
             : base(handle, ownership)
         {

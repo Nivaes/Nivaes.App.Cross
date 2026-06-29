@@ -7,45 +7,19 @@ namespace Nivaes.App.Cross;
 public class CrossBindingSingletonCache
     : ICrossBindingSingletonCache
 {
-    //public static ICrossBindingSingletonCache Initialize()
-    //{
-    //    //if (Instance != null)
-    //    //    throw new CrossException("You should only initialize MvxBindingSingletonCache once");
-
-    //    var instance = new CrossBindingSingletonCache();
-    //    return instance;
-    //}
-
-    [Obsolete("", true)]
-    private ICrossAutoValueConverters? _autoValueConverters;
-
     private ICrossBindingDescriptionParser? _bindingDescriptionParser;
     private ICrossSourceBindingFactory? _sourceBindingFactory;
     private ICrossTargetBindingFactory? _targetBindingFactory;
     private ICrossLanguageBindingParser? _languageParser;
     private ICrossPropertyExpressionParser? _propertyExpressionParser;
 
-    [Obsolete("", true)]
-    private ICrossValueConverterLookup? _valueConverterLookup;
-
+  
     private ICrossBindingNameLookup? _defaultBindingName;
     private ICrossBinder? _binder;
     private ICrossSourceStepFactory? _sourceStepFactory;
 
-    [Obsolete("", true)]
-    private ICrossValueCombinerLookup? _valueCombinerLookup;
 
     private ICrossMainThreadAsyncDispatcher? _mainThreadDispatcher;
-
-    [Obsolete("", true)]
-    public ICrossAutoValueConverters AutoValueConverters
-    {
-        get
-        {
-            _autoValueConverters = _autoValueConverters ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossAutoValueConverters>();
-            return _autoValueConverters;
-        }
-    }
 
     public ICrossBindingDescriptionParser BindingDescriptionParser
     {
@@ -74,26 +48,6 @@ public class CrossBindingSingletonCache
         }
     }
 
-    [Obsolete("", true)]
-    public ICrossValueConverterLookup ValueConverterLookup
-    {
-        get
-        {
-            _valueConverterLookup = _valueConverterLookup ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterLookup>();
-            return _valueConverterLookup;
-        }
-    }
-
-    [Obsolete("", true)]
-    public ICrossValueCombinerLookup ValueCombinerLookup
-    {
-        get
-        {
-            _valueCombinerLookup = _valueCombinerLookup ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerLookup>();
-            return _valueCombinerLookup;
-        }
-    }
-
     public ICrossBindingNameLookup DefaultBindingNameLookup
     {
         get
@@ -118,16 +72,6 @@ public class CrossBindingSingletonCache
         {
             _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
             return _sourceBindingFactory;
-        }
-    }
-
-    [Obsolete("", true)]
-    public ICrossTargetBindingFactory TargetBindingFactory
-    {
-        get
-        {
-            _targetBindingFactory = _targetBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
-            return _targetBindingFactory;
         }
     }
 

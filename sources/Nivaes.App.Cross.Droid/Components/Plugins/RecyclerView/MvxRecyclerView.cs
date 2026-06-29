@@ -1,6 +1,7 @@
 namespace Nivaes.App.Cross.Droid
 {
     using System.Collections;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Input;
     using Android.Content;
     using Android.Runtime;
@@ -9,7 +10,7 @@ namespace Nivaes.App.Cross.Droid
     using MvvmCross.DroidX.RecyclerView.AttributeHelpers;
     using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 
-    [Register("nivaes.cross.RecyclerView")]
+    [Register("nivaes.cross.recyclerView.RecyclerView")]
     public class MvxRecyclerView : AndroidX.RecyclerView.Widget.RecyclerView
     {
         public MvxRecyclerView(Context context, IAttributeSet attrs)
@@ -22,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        [Android.Runtime.Preserve(Conditional = true)]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MvxRecyclerView))]
         protected MvxRecyclerView(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {

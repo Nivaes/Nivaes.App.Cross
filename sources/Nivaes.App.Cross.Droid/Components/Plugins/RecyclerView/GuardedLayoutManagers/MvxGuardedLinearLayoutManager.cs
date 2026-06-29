@@ -1,9 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
 using AndroidX.RecyclerView.Widget;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Observability;
 
 namespace MvvmCross.DroidX.RecyclerView
@@ -15,7 +15,7 @@ namespace MvvmCross.DroidX.RecyclerView
         {
         }
 
-        [Android.Runtime.Preserve(Conditional = true)]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MvxGuardedLinearLayoutManager))]
         protected MvxGuardedLinearLayoutManager(IntPtr ptr, JniHandleOwnership transfer) : base(ptr, transfer)
         {
         }

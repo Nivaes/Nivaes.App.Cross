@@ -1,23 +1,22 @@
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MvvmCross.Binding.Extensions;
+using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+using Nivaes.App.Cross.Droid.RecyclerView;
+using Nivaes.App.Cross.Observability;
+using Object = Java.Lang.Object;
+using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;
+using ViewHolder = AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using System.Windows.Input;
-    using Android.OS;
-    using Android.Runtime;
-    using Android.Views;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Extensions;
-    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid.RecyclerView;
-    using Nivaes.App.Cross.Observability;
-    using Object = Java.Lang.Object;
-    using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;
-    using ViewHolder = AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder;
-
-
     [Register("mvvmcross.droidx.recyclerview.MvxRecyclerAdapter")]
     public class MvxRecyclerAdapter
         : RecyclerViewAdapter, IMvxRecyclerAdapter, IMvxRecyclerAdapterBindableHolder
@@ -45,7 +44,7 @@ namespace Nivaes.App.Cross.Droid
             BindingContext = bindingContext ?? MvxAndroidBindingContextHelpers.Current();
         }
 
-        [Android.Runtime.Preserve(Conditional = true)]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MvxRecyclerAdapter))]
         protected MvxRecyclerAdapter(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {

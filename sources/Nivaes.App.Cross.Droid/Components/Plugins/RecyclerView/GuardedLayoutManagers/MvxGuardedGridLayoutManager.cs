@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
 using AndroidX.RecyclerView.Widget;
@@ -14,7 +15,7 @@ namespace MvvmCross.DroidX.RecyclerView
         {
         }
 
-        [Android.Runtime.Preserve(Conditional = true)]
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MvxGuardedGridLayoutManager))]
         protected MvxGuardedGridLayoutManager(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
         }

@@ -5,7 +5,7 @@ using Bumptech.Glide;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[Register("nivaes.cross.GlideImageView")]
+[Register("nivaes.cross.sample.GlideImageView")]
 public sealed class GlideImageView : ImageView
 {
     private string? _imagePath;

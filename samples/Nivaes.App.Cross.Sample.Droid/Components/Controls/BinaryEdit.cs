@@ -4,7 +4,7 @@ using Android.Util;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [Register("nivaes.cross.BinaryEdit")]
+    [Register("nivaes.cross.sample.BinaryEdit")]
     public class BinaryEdit : LinearLayout
     {
         private readonly List<CheckBox> _boxes = new List<CheckBox>();

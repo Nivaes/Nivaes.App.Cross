@@ -1,14 +1,12 @@
+using System.Collections;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using AndroidX.AppCompat.Widget;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Widget;
-    using AndroidX.AppCompat.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxAppCompatAutoCompleteTextView")]
+    [Register("nivaes.cross.AppCompatAutoCompleteTextView")]
     public class MvxAppCompatAutoCompleteTextView
         : AppCompatAutoCompleteTextView
     {
@@ -36,12 +34,12 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        private void OnItemClick(object sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
+        private void OnItemClick(object? sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
         {
             OnItemClick(itemClickEventArgs.Position);
         }
 
-        private void OnItemSelected(object sender, AdapterView.ItemSelectedEventArgs itemSelectedEventArgs)
+        private void OnItemSelected(object? sender, AdapterView.ItemSelectedEventArgs itemSelectedEventArgs)
         {
             OnItemSelected(itemSelectedEventArgs.Position);
         }
@@ -106,9 +104,9 @@ namespace Nivaes.App.Cross.Droid
 
         public string PartialText => Adapter.PartialText;
 
-        private object _selectedObject;
+        private object? _selectedObject;
 
-        public object SelectedObject
+        public object? SelectedObject
         {
             get
             {

@@ -1,11 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System;
-    using System.Reflection;
-    using AppKit;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
 
+namespace Nivaes.App.Cross.AppKitOS
+{
     public class MvxNSMenuItemOnTargetBinding
         : MvxPropertyInfoTargetBinding<NSMenuItem>
     {
@@ -15,7 +13,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var checkBox = View;
             if (checkBox == null)
             {
-                CrossBindingLogger.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSMenuItemOnTargetBinding>().LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
             }
             else
             {
@@ -23,7 +21,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             }
         }
 
-        private void HandleMenuItemCheckBoxAction(object sender, EventArgs e)
+        private void HandleMenuItemCheckBoxAction(object? sender, EventArgs e)
         {
             var view = View;
             if (view == null)
@@ -33,7 +31,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
         }
 
         [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("This method may perform type conversions which may not be preserved by trimming")]
-        protected override object MakeSafeValue(object value)
+        protected override object? MakeSafeValue(object? value)
         {
             if (value is bool)
             {

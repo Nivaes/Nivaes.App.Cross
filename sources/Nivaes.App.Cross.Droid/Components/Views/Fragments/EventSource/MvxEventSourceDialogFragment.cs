@@ -1,14 +1,11 @@
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Android.Content;
-    using Android.OS;
-    using Android.Runtime;
-    using Android.Views;
-    using Nivaes.App.Cross;
-    using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceDialogFragment")]
+    [Register("nivaes.cross.EventSourceDialogFragment")]
     public class MvxEventSourceDialogFragment
         : DialogFragment
         , ICrossEventSourceFragment

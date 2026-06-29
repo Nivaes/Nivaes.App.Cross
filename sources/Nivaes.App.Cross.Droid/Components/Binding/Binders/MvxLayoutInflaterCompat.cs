@@ -1,22 +1,20 @@
+using System.Diagnostics.CodeAnalysis;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
+using Object = Java.Lang.Object;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Views;
-    using Object = Java.Lang.Object;
-
     public static class MvxLayoutInflaterCompat
     {
         internal class FactoryWrapper : Object, LayoutInflater.IFactory
         {
-            protected readonly IMvxLayoutInflaterFactory DelegateFactory;
+            protected readonly IMvxLayoutInflaterFactory? DelegateFactory;
 
-            [Preserve(Conditional = true)]
-#pragma warning disable 8618
+            [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(FactoryWrapper))]
             public FactoryWrapper(IntPtr handle, JniHandleOwnership ownership)
-#pragma warning restore 8618
                 : base(handle, ownership)
             {
             }

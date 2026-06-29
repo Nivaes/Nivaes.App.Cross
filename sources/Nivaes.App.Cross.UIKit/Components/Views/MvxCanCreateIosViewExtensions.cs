@@ -3,7 +3,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-[Obsolete("??", true)]
+[Obsolete("1", true)]
 public static class MvxCanCreateIosViewExtensions
 {
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(

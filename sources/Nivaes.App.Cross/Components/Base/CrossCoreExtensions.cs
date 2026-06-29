@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Components;
 
 namespace Nivaes.App.Cross
 {
-    [Obsolete("???", true)]
+    [Obsolete("1", true)]
     public static class CrossCoreExtensions
     {
         // core implementation of ConvertToBoolean

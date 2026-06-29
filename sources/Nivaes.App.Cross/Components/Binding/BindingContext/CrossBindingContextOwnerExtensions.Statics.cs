@@ -6,9 +6,7 @@ namespace Nivaes.App.Cross
 
         public static ICrossPropertyExpressionParser PropertyExpressionParser => Singleton<CrossBindingSingletonCache>.Instance.PropertyExpressionParser;
 
-        [Obsolete("", true)]
-        public static ICrossValueConverterLookup ValueConverterLookup => Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup;
-
+        [Obsolete("1", true)]
         public static ICrossBindingNameLookup DefaultBindingNameLookup => Singleton<CrossBindingSingletonCache>.Instance.DefaultBindingNameLookup;
 
         public static ICrossBinder Binder => Singleton<CrossBindingSingletonCache>.Instance.Binder;

@@ -8,11 +8,13 @@ namespace Nivaes.App.Cross.WinUI
     public static class Bi
     // ReSharper restore InconsistentNaming
     {
+        [Obsolete("1", true)]
         static Bi()
         {
             MvxDesignTimeChecker.Check();
         }
 
+        [Obsolete("1", true)]
         // ReSharper disable InconsistentNaming
         public static readonly DependencyProperty ndProperty =
             // ReSharper restore InconsistentNaming
@@ -21,11 +23,13 @@ namespace Nivaes.App.Cross.WinUI
                                                 typeof(Bi),
                                                 new PropertyMetadata(null, CallBackWhenndIsChanged));
 
+        [Obsolete("1", true)]
         public static string Getnd(DependencyObject obj)
         {
             return obj.GetValue(ndProperty) as string;
         }
 
+        [Obsolete("1", true)]
         public static void Setnd(
             DependencyObject obj,
             string value)
@@ -33,8 +37,10 @@ namespace Nivaes.App.Cross.WinUI
             obj.SetValue(ndProperty, value);
         }
 
+        [Obsolete("1", true)]
         private static IMvxBindingCreator _bindingCreator;
 
+        [Obsolete("1", true)]
         private static IMvxBindingCreator BindingCreator
         {
             get
@@ -44,6 +50,7 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
+        [Obsolete("1", true)]
         private static IMvxBindingCreator ResolveBindingCreator()
         {
             IMvxBindingCreator toReturn = IPlatformApplication.Current!.Services.GetRequiredService<IMvxBindingCreator>();
@@ -55,6 +62,7 @@ namespace Nivaes.App.Cross.WinUI
             return toReturn;
         }
 
+        [Obsolete("1", true)]
         private static void CallBackWhenndIsChanged(
             object sender,
             DependencyPropertyChangedEventArgs args)
@@ -65,6 +73,7 @@ namespace Nivaes.App.Cross.WinUI
             bindingCreator?.CreateBindings(sender, args, ParseBindingDescriptions);
         }
 
+        [Obsolete("1", true)]
         private static IEnumerable<CrossBindingDescription> ParseBindingDescriptions(string bindingText)
         {
             if (CrossSingleton<ICrossBindingSingletonCache>.Instance == null)
