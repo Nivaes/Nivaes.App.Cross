@@ -8,6 +8,9 @@
     <Project Path="orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost.csproj" />
     <Project Path="orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.ServiceDefaults/Nivaes.App.Cross.ServiceDefaults.csproj" />
   </Folder>
+  <Folder Name="/Packets/">
+    <Project Path="packets/Nivaes.App.Cross/Nivaes.App.Cross.csproj" Id="c917988f-2eac-49bb-8a0b-5cde3db68587" />
+  </Folder>
   <Folder Name="/Samples/">
     <Project Path="samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj" />
     <Project Path="samples/Nivaes.App.Cross.Sample.Droid/Nivaes.App.Cross.Sample.Droid.csproj">

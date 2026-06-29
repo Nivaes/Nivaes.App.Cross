@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(_CrossTargetFrameworks)</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
+    <ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+    <ProjectReference Include="..\..\sources\Nivaes.App.Cross.Web\Nivaes.App.Cross.Web.csproj" />
+    <ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj" />
+    <ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+  </ItemGroup>
+
+</Project>
