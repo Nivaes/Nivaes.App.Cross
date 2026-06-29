@@ -1,32 +1,43 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.AppKitOS.Observability;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
+using ScreenCaptureKit;
 
 namespace Nivaes.App.Cross.AppKitOS
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder /*CrossApplication app*/)
+        public static CrossAppBuilder UseAppKitApp(this CrossAppBuilder builder, INSApplicationDelegate applicationDelegation)
         {
-            builder.SetupDefaults(/*app*/);
+            builder.SetupDefaults(applicationDelegation);
 
             return builder;
         }
 
-        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder/*, CrossApplication app*/)
+        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, INSApplicationDelegate applicationDelegation)
         {
-            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxMacViewDispatcher>();
+            builder.Services.TryAddSingleton<MvxMacViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
+                    sp.GetRequiredService<MvxMacViewDispatcher>());
+            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
+                    sp.GetRequiredService<MvxMacViewDispatcher>());
 
-            //builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
-            //builder.Services.TryAddSingleton<IMvxWindowsViewPresenter, MvxMultiWindowViewPresenter>();
-            //builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
+            builder.Services.TryAddSingleton<IMvxMacViewPresenter>(sp =>
+            {
+                var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
+                var viewCreator = sp.GetRequiredService<IMvxMacViewCreator>();
+                var logger = sp.GetRequiredService<ILogger<MvxMacViewPresenter>>();
 
-            //builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
+                return new MvxMacViewPresenter(applicationDelegation, viewsContainer, logger);
+            });
+
+            builder.Services.TryAddSingleton<ICrossViewsContainer, MvxMacViewsContainer>();
 
             builder.Services.TryAddSingleton<ICrashHandler, AppKitCrashHandler>();
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxMacViewDispatcher>();
-
+            
             // Plugins
             builder.Services.TryAddSingleton<ICrossNativeColor, CrossMacColor>();
             builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossMacVisibility>();

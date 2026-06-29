@@ -11,8 +11,6 @@ using Nivaes.App.Cross;
 public class MvxMacViewPresenter
     : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
 {
-    private readonly IServiceProvider _serviceProvider;
-
     private readonly INSApplicationDelegate _applicationDelegate;
 
     /// <summary>
@@ -67,11 +65,10 @@ public class MvxMacViewPresenter
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer, IServiceProvider serviceProvider,
+    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer,
         ILogger<MvxMacViewPresenter> logger)
         : base(crossViewsContainer, logger)
     {
-        _serviceProvider = serviceProvider;
         _applicationDelegate = applicationDelegate;
         NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);
     }
@@ -206,7 +203,7 @@ public class MvxMacViewPresenter
     [RequiresUnreferencedCode("This method creates instances which use reflection and may not be preserved by trimming")]
     protected virtual MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
     {
-        MvxWindowController windowController;
+        MvxWindowController? windowController;
         if (!string.IsNullOrEmpty(attribute.StoryboardName))
         {
             // Instantiate from storyboard
@@ -225,9 +222,9 @@ public class MvxMacViewPresenter
                     $"for the corresponding view model.");
             }
             // Instantiate using Reflection - failure is possible if blank constructor is missing
-            windowController = (MvxWindowController)ActivatorUtilities.CreateInstance(_serviceProvider, controllerType);
+            windowController = (MvxWindowController?)Activator.CreateInstance(controllerType);
         }
-        windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
+        windowController!.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
         return windowController;
     }
 

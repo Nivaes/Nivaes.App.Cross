@@ -18,7 +18,12 @@ namespace Nivaes.App.Cross.UIKitOS
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, UIWindow windows)
         {
-            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxIosViewDispatcher>();
+            builder.Services.TryAddSingleton<MvxIosViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
+                    sp.GetRequiredService<MvxIosViewDispatcher>());
+            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
+                    sp.GetRequiredService<MvxIosViewDispatcher>());
+
             builder.Services.TryAddSingleton<IMvxIosViewPresenter>(sp =>
             {
                 var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
@@ -36,7 +41,7 @@ namespace Nivaes.App.Cross.UIKitOS
             // Plugins
             builder.Services.TryAddSingleton<ICrossNativeColor, MvxIosColor>();
             builder.Services.TryAddSingleton<ICrossNativeVisibility, MvxIosVisibility>();
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxIosViewDispatcher>();
+            
 
             return builder;
         }
