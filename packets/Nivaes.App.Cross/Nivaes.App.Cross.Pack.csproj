@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+
+		<PackageId>Nivaes.Cross</PackageId>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>0.0.2</Version>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'web'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Web\Nivaes.App.Cross.Web.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj" />
+		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -37,7 +37,7 @@
 	<PropertyGroup>
 		<_CrossTargetFrameworks>$(_CrossCommonTargets)</_CrossTargetFrameworks>
 		<!-- Windows-specific targets -->
-		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
+		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_CrossAndroidTargets);$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
 		<!-- Linux-specific targets -->
 		<_CrossTargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_CrossAndroidTargets);$(TargetFrameworks)</_CrossTargetFrameworks>
 		<!-- Mac-specific targets -->

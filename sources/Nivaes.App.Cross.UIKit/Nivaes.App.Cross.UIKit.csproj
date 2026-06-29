@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<!--<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>-->
-		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets)</TargetFrameworks>
-		<Nullable>enable</Nullable>
+		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>
+		<!--<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets)</TargetFrameworks>-->
+		<!--<TargetFrameworks>net10.0-tvos</TargetFrameworks>-->
+			<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 
 		<!--
