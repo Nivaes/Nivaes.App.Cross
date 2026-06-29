@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using Microsoft.Extensions.DependencyInjection;
 
+    [Obsolete("1")]
     public sealed class CrossSingletonCache
     : CrossSingleton<ICrossSingletonCache>, ICrossSingletonCache
     {

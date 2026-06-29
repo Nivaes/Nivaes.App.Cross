@@ -8,9 +8,6 @@ public class CrossBindingDescriptionParser
 {
     private ICrossBindingParser? _bindingParser;
 
-    [Obsolete("", true)]
-    private ICrossValueConverterLookup? _valueConverterLookup;
-
     protected ICrossBindingParser BindingParser
     {
         get
@@ -31,16 +28,6 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    [Obsolete("", true)]
-    protected ICrossValueConverterLookup ValueConverterLookup
-    {
-        get
-        {
-            _valueConverterLookup ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterLookup>();
-            return _valueConverterLookup;
-        }
-    }
-
     protected ICrossValueConverter? FindConverter(string? converterName)
     {
         if (string.IsNullOrWhiteSpace(converterName))
@@ -52,7 +39,7 @@ public class CrossBindingDescriptionParser
         }
         else
         {
-            CrossBindingLogger.Instance?.LogWarning($"Could not find named converter for {converterName}");
+            CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogWarning($"Could not find named converter for {converterName}");
             return null;
         }
     }
@@ -68,7 +55,7 @@ public class CrossBindingDescriptionParser
         }
         else
         {
-            CrossBindingLogger.Instance?.LogTrace("Could not find named comberter for {combinerName}");
+            CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogTrace("Could not find named comberter for {combinerName}");
             return null;
         }
     }
@@ -84,7 +71,7 @@ public class CrossBindingDescriptionParser
         CrossSerializableBindingSpecification specification;
         if (!parser.TryParseBindingSpecification(text, out specification))
         {
-            CrossBindingLogger.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
+            CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogError("Failed to parse binding description starting with {BindingText}",
                 GetErrorTextParameter(text));
             return Array.Empty<CrossBindingDescription>();
         }
@@ -108,7 +95,7 @@ public class CrossBindingDescriptionParser
         var parser = BindingParser;
         if (!parser.TryParseBindingDescription(text, out description))
         {
-            CrossBindingLogger.Instance?.LogError("Failed to parse binding description starting with {BindingText}",
+            CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogError("Failed to parse binding description starting with {BindingText}",
                 GetErrorTextParameter(text));
             return null;
         }
@@ -192,12 +179,12 @@ public class CrossBindingDescriptionParser
                 var converter = FindConverter(description.Function);
                 if (converter == null)
                 {
-                    CrossBindingLogger.Instance?.LogError($"Failed to find combiner or converter for {description.Function}");
+                    CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogError($"Failed to find combiner or converter for {description.Function}");
                 }
 
                 if (description.Sources == null || description.Sources.Count == 0)
                 {
-                    CrossBindingLogger.Instance?.LogError("Value Converter {FunctionName} supplied with no source",
+                    CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogError("Value Converter {FunctionName} supplied with no source",
                         description.Function);
                     return new CrossLiteralSourceStepDescription()
                     {
@@ -206,7 +193,7 @@ public class CrossBindingDescriptionParser
                 }
                 else if (description.Sources.Count > 2)
                 {
-                    CrossBindingLogger.Instance?.LogError(
+                    CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogError(
                         "Value Converter {FunctionName} supplied with too many parameters - {ParameterCount}",
                         description.Function, description.Sources.Count);
                     return new CrossLiteralSourceStepDescription()
