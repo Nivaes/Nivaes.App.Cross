@@ -22,6 +22,10 @@
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
 	
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
