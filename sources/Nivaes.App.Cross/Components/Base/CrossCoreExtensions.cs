@@ -1,11 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Reflection;
+using Nivaes.App.Cross.Components;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Reflection;
-    using MvvmCross.IoC;
-
+    [Obsolete("???", true)]
     public static class CrossCoreExtensions
     {
         // core implementation of ConvertToBoolean
@@ -80,9 +80,7 @@ namespace Nivaes.App.Cross
             {
                 return Convert.ChangeType(value, type, cultureInfo);
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
-#pragma warning restore CA1031 // Do not catch general exception types
             {
                 // pokemon - mask the error
                 return value;

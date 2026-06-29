@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Reflection;
 
     [Obsolete("", true)]
-    [Preserve(AllMembers = true)]
     public class MvxEmbeddedJsonDictionaryTextProvider
         : MvxJsonDictionaryTextProvider
     {

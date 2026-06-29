@@ -5,7 +5,6 @@ namespace MvvmCross.Plugin.Json
     using Nivaes.App.Cross;
 
     [Obsolete("", true)]
-    [Preserve(AllMembers = true)]
     [RequiresUnreferencedCode("Uses JsonSerializer which may not be fully preserved in trimming scenarios")]
     public class CrossJsonConverter
         : ICrossJsonConverter

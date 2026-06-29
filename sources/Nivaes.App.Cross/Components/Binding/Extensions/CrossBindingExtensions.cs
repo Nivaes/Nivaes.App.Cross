@@ -1,9 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using Nivaes.App.Cross.Components;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using MvvmCross.IoC;
-
     public static class CrossBindingExtensions
     {
         extension(ICrossEditableTextView mvxEditableTextView)

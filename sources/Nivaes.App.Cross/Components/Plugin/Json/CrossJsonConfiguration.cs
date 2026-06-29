@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    [Preserve(AllMembers = true)]
     public class CrossJsonConfiguration
         : IMvxPluginConfiguration
     {

@@ -1,6 +1,5 @@
 namespace Nivaes.App.Cross;
 
-[Preserve(AllMembers = true)]
 public class MvxDictionaryTextProvider : MvxTextProvider
 {
     private readonly Dictionary<string, string> _entries = new Dictionary<string, string>();

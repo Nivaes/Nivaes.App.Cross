@@ -3,6 +3,7 @@ using Nivaes.IoC;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
+[Obsolete("??", true)]
 public static class MvxCanCreateIosViewExtensions
 {
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
@@ -20,28 +21,5 @@ public static class MvxCanCreateIosViewExtensions
         var parameterBundle = new CrossBundle(parameterValues);
         var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
         return viewCreator.CreateView(request);
-    }
-
-    [Obsolete("", true)]
-    public static IMvxIosView? CreateViewControllerFor(
-        this IMvxCanCreateIosView view,
-        CrossViewModelRequest request)
-    {
-        return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateView(request);
-    }
-
-    [Obsolete("", true)]
-    public static IMvxIosView? CreateViewControllerFor(
-        this IMvxCanCreateIosView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType)
-    {
-        return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateViewOfType(viewType);
-    }
-
-    [Obsolete("", true)]
-    public static IMvxIosView? CreateViewControllerFor(
-        this IMvxCanCreateIosView view,
-        ICrossViewModel viewModel)
-    {
-        return Mvx.IoCProvider?.Resolve<IMvxIosViewCreator>()?.CreateView(viewModel);
     }
 }
