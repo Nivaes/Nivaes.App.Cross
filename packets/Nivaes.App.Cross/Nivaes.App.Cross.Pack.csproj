@@ -45,6 +45,11 @@
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 	</ItemGroup>
 
+
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<Platforms>x64;ARM64</Platforms>
+	</PropertyGroup>
+	
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.WinUI\Nivaes.App.Cross.WinUI.csproj" />
 		<ProjectReference Include="..\..\sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
