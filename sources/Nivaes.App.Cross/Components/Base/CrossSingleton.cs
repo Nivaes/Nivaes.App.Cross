@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Collections.Generic;
 
-    [Obsolete("", true)]
+    [Obsolete("1", true)]
     public abstract class CrossSingleton
         : IDisposable
     {
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    [Obsolete("")]
+    [Obsolete("1")]
     public abstract class CrossSingleton<TInterface>
         : CrossSingleton
         where TInterface : class

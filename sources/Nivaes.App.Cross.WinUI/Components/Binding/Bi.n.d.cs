@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    [Obsolete("", true)]
+    [Obsolete("1", true)]
     // ReSharper disable InconsistentNaming
     public static class Bi
     // ReSharper restore InconsistentNaming

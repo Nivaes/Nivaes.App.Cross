@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
-    [Obsolete("", true)]
+    [Obsolete("Json", true)]
     public class MvxEmbeddedJsonDictionaryTextProvider
         : MvxJsonDictionaryTextProvider
     {
