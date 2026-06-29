@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<!--<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>-->
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
 		<AssemblyName>Nivaes.App.Cross</AssemblyName>
-		
+		<RootNamespace>Nivaes.App.Cross</RootNamespace>
+
 		<!--<Platforms Condition=" $([MSBuild]::IsOSPlatform('windows')) ">x86;x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('linux')) ">x64;arm64</Platforms>
 		<Platforms Condition=" $([MSBuild]::IsOSPlatform('osx')) ">x64;arm64</Platforms>-->
@@ -18,6 +18,16 @@
 		<RootNamespace>Nivaes.App.Cross</RootNamespace>-->
 
 		<!--<ImplicitUsings>enable</ImplicitUsings>-->		
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<PackageId>Nivaes.App.Cross.Core</PackageId>
+		<Title>Nivaes app Cross core</Title>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Cross librery core.</Product>
+		<Description>Cross librery core.</Description>
+		<PackageTags>Nivaes;cross</PackageTags>
 	</PropertyGroup>
 		
 	<PropertyGroup>

@@ -6,9 +6,13 @@
 		<Nullable>enable</Nullable>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 
-		<PackageId>Nivaes.Cross</PackageId>
+		<PackageId>Nivaes.App.Cross</PackageId>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Version>0.0.2</Version>
+		
+		<Product>Cross librery for android, iOS, MacCatalyst, Android, WinUI3.</Product>
+		<Description>Cross librery for android, iOS, MacCatalyst, Android, WinUI3.</Description>
+		<PackageTags>Nivaes;cross;mvvm;android;maccatalyst;ios;macos;winui3</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">

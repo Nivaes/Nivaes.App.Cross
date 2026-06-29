@@ -17,12 +17,26 @@
 		<!--<UseAppHost>false</UseAppHost>
 		<SelfContained>false</SelfContained>-->
 		<IsAotCompatible>true</IsAotCompatible>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>Nivaes.App.Cross.WinUI</PackageId>
+		<Title>Nivaes app Cross WinUI</Title>
+		<AssemblyName>Nivaes.App.Cross.WinUI</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.WinUI</RootNamespace>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Cross librery for WinUI3.</Product>
+		<Description>Cross librery for WinUI.</Description>
+		<PackageTags>Nivaes;cross;mvvm;WinUI;WinUI3</PackageTags>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" />
 		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 

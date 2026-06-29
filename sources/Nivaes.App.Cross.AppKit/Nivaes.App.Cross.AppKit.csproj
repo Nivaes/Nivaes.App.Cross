@@ -1,20 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-	  <ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+		<IsAotCompatible>true</IsAotCompatible>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
+	</PropertyGroup>
 
-	  <ProjectReference Include="..\Nivaes.App.Cross.AppKit.SourceGenerator\Nivaes.App.Cross.AppKit.SourceGenerator.csproj">
-		  <PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
-		  <IncludeAssets>analyzers</IncludeAssets>
-		  <ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
-	  </ProjectReference>
-  </ItemGroup>
+	<PropertyGroup>
+		<PackageId>Nivaes.App.Cross.AppKit</PackageId>
+		<Title>Nivaes app Cross AppKit</Title>
+		<AssemblyName>Nivaes.App.Cross.AppKit</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.AppKitOS</RootNamespace>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Cross librery for AppKit.</Product>
+		<Description>Cross librery for AppKit.</Description>
+		<PackageTags>Nivaes;cross;mvvm;AppKit;macos</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+
+		<ProjectReference Include="..\Nivaes.App.Cross.AppKit.SourceGenerator\Nivaes.App.Cross.AppKit.SourceGenerator.csproj">
+			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+		</ProjectReference>
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />

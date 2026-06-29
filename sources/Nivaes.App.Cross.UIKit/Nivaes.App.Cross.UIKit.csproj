@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>
-		<!--<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets)</TargetFrameworks>-->
-		<!--<TargetFrameworks>net10.0-tvos</TargetFrameworks>-->
-			<Nullable>enable</Nullable>
+		<AssemblyName>Nivaes.App.Cross.UIKit</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.UIKitOS</RootNamespace>
+
+		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 
 		<!--
@@ -12,7 +13,18 @@
     -->
 		<!--<IsTrimmable>true</IsTrimmable>-->
 		<IsAotCompatible>true</IsAotCompatible>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>Nivaes.App.Cross.UIKit</PackageId>
+		<Title>Nivaes app Cross UIKit</Title>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Cross librery for UIKit.</Product>
+		<Description>Cross librery for UIKit.</Description>
+		<PackageTags>Nivaes;cross;mvvm;UIKit;iOS;MacCatalyst;tvos</PackageTags>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 

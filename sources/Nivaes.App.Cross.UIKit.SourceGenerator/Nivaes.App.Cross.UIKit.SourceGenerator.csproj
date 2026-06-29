@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 
 	  <AssemblyName>Nivaes.App.Cross.UIKit.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.UIKit.SourceGenerator</RootNamespace>
+	  <RootNamespace>Nivaes.App.Cross.UIKitOS.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -17,6 +17,7 @@
 		<PackageId>Nivaes.App.Cross.UIKitOS.SourceGenerator</PackageId>
 		<Title>Nivaes UIKit SourceGenerator</Title>
 		<Product>Nivaes App Cross iOS SourceGenerator</Product>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Description>Nivaes App Cross iOS maccatalyst UIKit source generator.</Description>
 		<PackageTags>Nivaes;app;cross;iOS;UIKit;maccatalyst;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>

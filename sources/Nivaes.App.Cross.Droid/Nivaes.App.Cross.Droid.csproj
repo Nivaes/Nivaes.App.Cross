@@ -12,6 +12,17 @@
 	<RunAOTAnalysis>true</RunAOTAnalysis>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<PackageId>Nivaes.App.Cross.Droid</PackageId>
+		<Title>Nivaes app Cross Droid</Title>
+		<AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Product>Cross librery for android.</Product>
+		<Description>Cross librery for Android.</Description>
+		<PackageTags>Nivaes;cross;mvvm;android</PackageTags>
+	</PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Nivaes.App.Shared" />
     <PackageReference Include="Serilog.Sinks.Async" />
