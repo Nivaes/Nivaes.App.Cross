@@ -40,7 +40,7 @@ jobs:
 
   macos-samples:
     needs: macos
-    uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
+    uses: ./.github/workflows/workflow_call_build_macos_sample.yaml  
 
   ios:
     needs: core
