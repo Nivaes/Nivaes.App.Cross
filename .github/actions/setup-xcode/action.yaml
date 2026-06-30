@@ -33,9 +33,9 @@ runs:
     - name: Install xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: latest
+        xcode-version: 26.2
 
     - name: Install workload
       shell: bash
       run: |
-         dotnet workload install android ios maccatalyst macos tvos --version 10.0.103
+         dotnet workload install android ios maccatalyst macos tvos --version 10.0.301

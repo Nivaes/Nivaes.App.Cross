@@ -19,11 +19,7 @@ jobs:
     - uses: ./.github/actions/setup-xcode
       with:
         global-json-file: ./global.json
-
-    - uses: ./.github/actions/setup-xcode
-      with:
-        global-json-file: ./global.json
-
+ 
     # - name: Restore Dependencies
     #   run: |
     #       dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config --runtime osx-arm64
@@ -50,7 +46,7 @@ jobs:
     - name: Publish
       run: |
           dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
-            --runtime ios-arm64 \
+            --runtime osx-arm64 \
             --configuration Release\
             --verbosity normal --no-restore --no-build \
             --property:RuntimeIdentifiers="osx-x64;osx-arm64"
