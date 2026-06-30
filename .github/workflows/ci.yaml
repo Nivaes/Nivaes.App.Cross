@@ -23,45 +23,45 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-app-cross-core:
+  core:
      uses: ./.github/workflows/workflow_call_build_core.yaml
   
-  build-app-cross-android:
-    needs: build-app-cross-core
+  android:
+    needs: core
     uses: ./.github/workflows/workflow_call_build_android.yaml  
 
-  build-app-cross-android-sample:
-    needs: build-app-cross-android
+  android-sample:
+    needs: android
     uses: ./.github/workflows/workflow_call_build_android_sample.yaml  
 
-  build-app-cross-macos:
-    needs: build-app-cross-core
+  macos:
+    needs: core
     uses: ./.github/workflows/workflow_call_build_macos.yaml  
 
-  # build-app-cross-macos-samples:
+  # macos-samples:
   #   needs: build-app-cross-ios
   #   uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
 
-  build-app-cross-ios:
-    needs: build-app-cross-core
+  ios:
+    needs: core
     uses: ./.github/workflows/workflow_call_build_ios.yaml  
 
-  build-app-cross-ios-samples:
+  ios-samples:
     needs: build-app-cross-ios
     uses: ./.github/workflows/workflow_call_build_ios_sample.yaml  
 
-  build-app-cross-WinUI:
-    needs: build-app-cross-core
+  WinUI:
+    needs: core
     uses: ./.github/workflows/workflow_call_build_winui.yaml 
     
-  build-app-cross-WinUI-samples:
-    needs: build-app-cross-WinUI
+  WinUI-samples:
+    needs: WinUI
     uses: ./.github/workflows/workflow_call_build_winui_sample.yaml
 
-  build-app-cross-web:
-    needs: build-app-cross-core
+  Web:
+    needs: core
     uses: ./.github/workflows/workflow_call_build_web.yaml
              
-  build-app-cross-web-samples:
+  Web-samples:
     needs: build-app-cross-web
     uses: ./.github/workflows/workflow_call_build_web_sample.yaml
