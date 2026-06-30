@@ -11,6 +11,8 @@
 
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);NU1507;1591</NoWarn>
+
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
