@@ -74,7 +74,8 @@ jobs:
   build-app-cross-android:
     needs: build-app-cross
     uses: ./.github/workflows/workflow_call_build_android.yaml
-             
+   
+  #build-app-cross-android-sample
   build-app-cross-android-sample:
     needs: build-app-cross-android
     runs-on: ubuntu-latest
@@ -135,6 +136,7 @@ jobs:
             --configuration Release \
             --no-restore --no-build
 
+  #build-app-cross-ios
   build-app-cross-ios:
     needs: build-app-cross
     uses: ./.github/workflows/workflow_call_build_ios.yaml  
@@ -181,9 +183,12 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
 
   build-app-cross-WinUI:
     needs: build-app-cross
@@ -286,12 +291,12 @@ jobs:
             --configuration Release \
             --no-restore 
 
-    - name: publish
-      run: |
-        dotnet publish samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
-            --property:AndroidPackageFormat=aab \
-            --property:PublishTrimmed=true \
-            --property:AndroidUseLLVM=true \
-            --property:AndroidEnableProfiledAot=false \
-            --configuration Release \
-            --no-restore --no-build
+    # - name: publish
+    #   run: |
+    #     dotnet publish samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+    #         --property:AndroidPackageFormat=aab \
+    #         --property:PublishTrimmed=true \
+    #         --property:AndroidUseLLVM=true \
+    #         --property:AndroidEnableProfiledAot=false \
+    #         --configuration Release \
+    #         --no-restore --no-build
