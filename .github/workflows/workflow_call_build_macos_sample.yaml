@@ -16,7 +16,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - uses: ./.github/actions/setup-xcode
+    - name: setup-xcode
+      uses: ./.github/actions/setup-xcode
       with:
         global-json-file: ./global.json
  
@@ -41,13 +42,18 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.AppKit.MacOS --property:RunAOTAnalysis=true --runtime osx-arm64 --configuration Release --verbosity normal --no-restore
+          dotnet build samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
+          --configuration Release \
+          --property:RunAOTAnalysis=true \ 
+          --runtime osx-arm64 \
+          --property:RuntimeIdentifiers="osx-x64;osx-arm64"
+          --verbosity normal \
+          --no-restore
     
     - name: Publish
       run: |
           dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
+            --configuration Release \
             --runtime osx-arm64 \
-            --configuration Release\
             --verbosity normal --no-restore --no-build \
-            --property:EnableCodeSigning=false \
             --property:RuntimeIdentifiers="osx-x64;osx-arm64"

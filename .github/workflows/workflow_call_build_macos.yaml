@@ -25,7 +25,8 @@ jobs:
     #   run: |
     #     dotnet workload install android ios maccatalyst macos tvos
 
-    - uses: ./.github/actions/setup-xcode
+    - name: setup-xcode 
+      uses: ./.github/actions/setup-xcode
       with:
         global-json-file: ./global.json
 
