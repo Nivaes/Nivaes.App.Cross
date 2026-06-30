@@ -43,10 +43,10 @@ jobs:
       run: |
           dotnet build samples/Nivaes.App.Cross.Sample.AppKit.MacOS --property:RunAOTAnalysis=true --runtime osx-arm64 --configuration Release --verbosity normal --no-restore
     
-    - name: Publish
-      run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
-            --runtime osx-arm64 \
-            --configuration Release\
-            --verbosity normal --no-restore --no-build \
-            --property:RuntimeIdentifiers="osx-x64;osx-arm64"
+    # - name: Publish
+    #   run: |
+    #       dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
+    #         --runtime osx-arm64 \
+    #         --configuration Release\
+    #         --verbosity normal --no-restore --no-build \
+    #         --property:RuntimeIdentifiers="osx-x64;osx-arm64"
