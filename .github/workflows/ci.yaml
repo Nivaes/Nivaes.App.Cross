@@ -39,7 +39,7 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_macos.yaml  
 
   macos-samples:
-    needs: build-app-cross-ios
+    needs: macos
     uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
 
   ios:
@@ -47,7 +47,7 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_ios.yaml  
 
   ios-samples:
-    needs: build-app-cross-ios
+    needs: ios
     uses: ./.github/workflows/workflow_call_build_ios_sample.yaml  
 
   WinUI:
