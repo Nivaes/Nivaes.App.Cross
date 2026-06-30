@@ -35,7 +35,7 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_android-sample.yaml  
 
   build-app-cross-macos:
-    needs: build-app-cross
+    needs: build-app-cross-core
     uses: ./.github/workflows/workflow_call_build_macos.yaml  
 
   # build-app-cross-macos-samples:
@@ -43,16 +43,15 @@ jobs:
   #   uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
 
   build-app-cross-ios:
-    needs: build-app-cross
+    needs: build-app-cross-core
     uses: ./.github/workflows/workflow_call_build_ios.yaml  
 
   build-app-cross-ios-samples:
     needs: build-app-cross-ios
     uses: ./.github/workflows/workflow_call_build_ios-sample.yaml  
-    
 
   build-app-cross-WinUI:
-    needs: build-app-cross
+    needs: build-app-cross-core
     uses: ./.github/workflows/workflow_call_build_winui.yaml 
     
   build-app-cross-WinUI-samples:
@@ -60,7 +59,7 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_winui-sample.yaml
 
   build-app-cross-web:
-    needs: build-app-cross
+    needs: build-app-cross-core
     uses: ./.github/workflows/workflow_call_build_web.yaml
              
   build-app-cross-web-samples:
