@@ -19,6 +19,9 @@ runs:
         cache-dependency-path: |
           **/packages.lock.json
 
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: Cache workloads
       id: workload-cache
       uses: actions/cache@v4
@@ -31,10 +34,7 @@ runs:
           workloads-${{ runner.os }}-
 
     - name: Install workload
-      if: steps.workload-cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
          dotnet workload install android
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3

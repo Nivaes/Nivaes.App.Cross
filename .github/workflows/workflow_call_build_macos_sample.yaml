@@ -54,4 +54,4 @@ jobs:
           dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
             --configuration Release \
             --runtime osx-arm64 \
-            --verbosity normal --no-restore --no-build
+            --verbosity normal --no-restore
