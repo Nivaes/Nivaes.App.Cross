@@ -50,18 +50,18 @@ jobs:
     needs: ios
     uses: ./.github/workflows/workflow_call_build_ios_sample.yaml  
 
-  WinUI:
+  winui:
     needs: core
     uses: ./.github/workflows/workflow_call_build_winui.yaml 
     
-  WinUI-samples:
-    needs: WinUI
+  winui-samples:
+    needs: winui
     uses: ./.github/workflows/workflow_call_build_winui_sample.yaml
 
-  Web:
+  web:
     needs: core
     uses: ./.github/workflows/workflow_call_build_web.yaml
              
-  Web-samples:
+  web-samples:
     needs: web
     uses: ./.github/workflows/workflow_call_build_web_sample.yaml
