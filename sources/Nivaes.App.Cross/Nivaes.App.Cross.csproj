@@ -63,8 +63,6 @@
 		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="Nivaes.IoC" />
 		<PackageReference Include="OpenTelemetry" />
-		<PackageReference Include="Sentry" />
-		<PackageReference Include="Serilog" />
 		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>

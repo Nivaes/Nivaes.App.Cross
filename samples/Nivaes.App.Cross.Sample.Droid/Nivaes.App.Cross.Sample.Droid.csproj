@@ -28,7 +28,6 @@
 		<PackageReference Include="Microsoft.Extensions.Diagnostics" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<!--<PackageReference Include="Xamarin.Android.Glide" />-->
-		<PackageReference Include="Serilog.Sinks.Xamarin" />
 		<PackageReference Include="Xamarin.Android.Glide" />
 	</ItemGroup>
 	<ItemGroup>

@@ -7,8 +7,8 @@
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x64;arm64</Platforms>
-		<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
-		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<!--<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>-->
+		<!--<PublishProfile>win-$(Platform).pubxml</PublishProfile>-->
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<Nullable>enable</Nullable>
@@ -16,21 +16,15 @@
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>false</IsPackable>
 
-		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
-		<AppxBundle>Always</AppxBundle>
-		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+		<!--<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>-->
+		<!--<AppxBundle>Always</AppxBundle>
+		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>-->
 		
 		<IsAotCompatible>false</IsAotCompatible>
-		<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
-		<TrimMode Condition="'$(Configuration)' == 'Release'">link</TrimMode>
+		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
+		<!--<TrimMode Condition="'$(Configuration)' == 'Release'">link</TrimMode>-->
 	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="Components\IoC\**" />
-	  <EmbeddedResource Remove="Components\IoC\**" />
-	  <None Remove="Components\IoC\**" />
-	  <Page Remove="Components\IoC\**" />
-	</ItemGroup>
-
+	
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
 		<Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -76,10 +70,10 @@
 
 	<!-- Publish Properties -->
 	<PropertyGroup>
-		<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
-		<PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
-		<PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
-		<PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+		<!--<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+		<PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>-->
+		<!--<PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+		<PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>-->
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">

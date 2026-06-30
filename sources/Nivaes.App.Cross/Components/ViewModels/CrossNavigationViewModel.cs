@@ -1,10 +1,6 @@
 using System.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Trace;
-using Sentry.Protocol;
 
 namespace Nivaes.App.Cross
 {
