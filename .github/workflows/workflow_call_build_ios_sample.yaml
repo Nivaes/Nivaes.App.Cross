@@ -55,23 +55,23 @@ jobs:
     #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
     #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
     
-    # - name: Build
-    #   run: |
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
-
-    - name: Publish
+    - name: Build
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS 
-            --runtime ios-arm64 \
-            --configuration Release \
-            --verbosity normal 
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
-            --runtime maccatalyst-arm64 \
-            --configuration Release\
-            --verbosity normal 
-            --property:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal
+
+    # - name: Publish
+    #   run: |
+    #       dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS 
+    #         --runtime ios-arm64 \
+    #         --configuration Release \
+    #         --verbosity normal 
+    #       dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
+    #         --runtime maccatalyst-arm64 \
+    #         --configuration Release\
+    #         --verbosity normal 
+    #         --property:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"
