@@ -64,4 +64,4 @@ jobs:
              
   build-app-cross-web-samples:
     needs: build-app-cross-web
-    uses: ./.github/workflows/workflow_call_build_web-sample.yaml
+    uses: ./.github/workflows/workflow_call_build_web_sample.yaml
