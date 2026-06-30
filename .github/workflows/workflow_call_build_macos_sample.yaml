@@ -46,7 +46,7 @@ jobs:
           --configuration Release \
           --property:RunAOTAnalysis=true \ 
           --runtime osx-arm64 \
-          --property:RuntimeIdentifiers="osx-x64;osx-arm64"
+          --property:RuntimeIdentifiers="osx-x64;osx-arm64" \
           --verbosity normal \
           --no-restore
     
