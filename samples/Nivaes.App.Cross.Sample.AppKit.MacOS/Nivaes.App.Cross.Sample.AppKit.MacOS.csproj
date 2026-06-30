@@ -3,9 +3,8 @@
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
 		
-		<!-- <RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers> -->
-		<!-- <Nullable>enable</Nullable>
-		<ImplicitUsings>true</ImplicitUsings> -->
+		 <Nullable>enable</Nullable>
+		<!--<ImplicitUsings>true</ImplicitUsings> -->
 		<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
 		<!--export PATH="$PATH:/Users/andres/.dotnet/tools"-->
 		<!--

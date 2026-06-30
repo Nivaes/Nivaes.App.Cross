@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
 		<!--<Platforms>x64;arm64</Platforms>-->
-		<!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
 		<OutputType>Exe</OutputType>
 		
 		<SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>

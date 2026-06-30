@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacCatalystTargets)</TargetFramework>
-		<!--<RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>-->
 		<OutputType>Exe</OutputType>
 		<MacCatalystMinimumVersion>$(_CrossMacCatalystVersion)</MacCatalystMinimumVersion>
 

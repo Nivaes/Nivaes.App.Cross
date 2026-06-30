@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>$(_CrossiOSTargets)</TargetFramework>
-		<!--<RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>-->
 		<OutputType>Exe</OutputType>
         <SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
         
