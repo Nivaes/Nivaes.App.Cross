@@ -64,9 +64,16 @@
     <File Path=".github/workflows/delete-old-runs.yaml" />
     <File Path=".github/workflows/publish_release.yaml" />
     <File Path=".github/workflows/workflow_call_build_android.yaml" />
+    <File Path=".github/workflows/workflow_call_build_android_sample.yaml" />
+    <File Path=".github/workflows/workflow_call_build_core.yaml" />
     <File Path=".github/workflows/workflow_call_build_ios.yaml" />
+    <File Path=".github/workflows/workflow_call_build_ios_sample.yaml" />
+    <File Path=".github/workflows/workflow_call_build_macos.yaml" />
+    <File Path=".github/workflows/workflow_call_build_macos_sample.yaml" />
     <File Path=".github/workflows/workflow_call_build_web.yaml" />
+    <File Path=".github/workflows/workflow_call_build_web_sample.yaml" />
     <File Path=".github/workflows/workflow_call_build_winui.yaml" />
+    <File Path=".github/workflows/workflow_call_build_winui_sample.yaml" />
   </Folder>
   <Folder Name="/Sources/">
     <Project Path="sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />

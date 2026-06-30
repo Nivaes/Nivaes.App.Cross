@@ -1,0 +1,60 @@
+name: Build Cross Android
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - uses: ./.github/actions/setup-web
+      with:
+        global-json-file: ./global.json
+
+    - name: Restore Dependencies
+      run: |
+          dotnet restore sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client --configfile .github/NuGet.config
+          dotnet restore samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web --configfile .github/NuGet.config
+      env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                 
+    - name: Build Web Client
+      run: |
+          dotnet build samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client \
+            --property:AndroidEnableProfiledAot=false \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidPackageFormat=aab \
+            --configuration Release \
+            --no-restore 
+
+    - name: Build Web
+      run: |
+          dotnet build samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+            --property:AndroidEnableProfiledAot=false \
+            --property:AndroidUseLLVM=true \
+            --property:AndroidPackageFormat=aab \
+            --configuration Release \
+            --no-restore 
+
+    # - name: publish
+    #   run: |
+    #     dotnet publish samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+    #         --property:AndroidPackageFormat=aab \
+    #         --property:PublishTrimmed=true \
+    #         --property:AndroidUseLLVM=true \
+    #         --property:AndroidEnableProfiledAot=false \
+    #         --configuration Release \
+    #         --no-restore --no-build
