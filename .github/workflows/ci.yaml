@@ -196,6 +196,9 @@ jobs:
     needs: build-app-cross-WinUI
     runs-on: windows-latest
 
+    env:
+      Platform: x64
+
     steps:
     - name: Dump GitHub context
       env:
@@ -221,20 +224,24 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.WinUI --property:RunAOTAnalysis=true --configuration Release --no-restore --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.WinUI `
+            -p:RuntimeIdentifiers="win-x64" `
+            -p:Platform=%Platform% `
+            --configuration Release `
+            --no-restore `
+            --verbosity normal
 
     - name: publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.WinUI \
-            --framework:net10.0-windows10.0.19041.0 \
-            --property:RunAOTAnalysis=true \
-            --property:GenerateAppxPackageOnBuild=true \
-            --property:AppxPackageDir=bin\Release\ \
-            --property:AppxBundle=Always \
-            --property:AppxBundlePlatforms="x86|x64|arm64" \
-            -r win-x64 -p:PublishReadyToRun=true \
-            --configuration Release \
-            --no-restore --no-build --verbosity normal
+         msbuild samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj `
+              /p:Configuration=Release `
+              /p:Platform=%Platform% `
+              /p:GenerateAppxPackageOnBuild=true `
+              /p:AppxBundle=Always `
+              /p:AppxBundlePlatforms="x64|ARM64" `
+              /p:UapAppxPackageBuildMode=StoreUpload `
+              /p:AppxPackageSigningEnabled=false
+
 
   build-app-cross-web:
     needs: build-app-cross
