@@ -15,8 +15,21 @@ runs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ${{ inputs.global-json-file }}
+        cache: true
+
+    - name: Cache workloads
+      id: workload-cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.dotnet
+          ~/.nuget/packages
+        key: workloads-${{ runner.os }}-${{ hashFiles('global.json') }}
+        restore-keys: |
+          workloads-${{ runner.os }}-
 
     - name: Install workload
+      if: steps.workload-cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
          dotnet workload install android
