@@ -32,7 +32,7 @@ jobs:
 
   build-app-cross-android-sample:
     needs: build-app-cross-android
-    uses: ./.github/workflows/workflow_call_build_android-sample.yaml  
+    uses: ./.github/workflows/workflow_call_build_android_sample.yaml  
 
   build-app-cross-macos:
     needs: build-app-cross-core
