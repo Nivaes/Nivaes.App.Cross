@@ -57,12 +57,12 @@ jobs:
     
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal 
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal 
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal 
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
+          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
 
     # - name: Publish
     #   run: |
