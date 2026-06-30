@@ -46,7 +46,6 @@ jobs:
           --configuration Release \
           --property:RunAOTAnalysis=true \
           --runtime osx-arm64 \
-          --property:RuntimeIdentifiers="osx-x64;osx-arm64" \
           --verbosity normal \
           --no-restore
     
@@ -55,5 +54,4 @@ jobs:
           dotnet publish samples/Nivaes.App.Cross.Sample.AppKit.MacOS \
             --configuration Release \
             --runtime osx-arm64 \
-            --verbosity normal --no-restore --no-build \
-            --property:RuntimeIdentifiers="osx-x64;osx-arm64"
+            --verbosity normal --no-restore --no-build

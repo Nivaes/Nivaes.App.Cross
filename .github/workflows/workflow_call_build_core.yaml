@@ -16,16 +16,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
+    - name: setup-xcode 
+      uses: ./.github/actions/setup-core
       with:
         global-json-file: ./global.json
-        cache: true
-        cache-dependency-path: |
-          **/packages.lock.json
-    #     source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-    #   env:
-    #     NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Install workload
       run: |

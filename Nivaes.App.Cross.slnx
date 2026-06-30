@@ -49,6 +49,9 @@
   <Folder Name="/Solution Items/.github/actions/setup-android/">
     <File Path=".github/actions/setup-android/action.yaml" />
   </Folder>
+  <Folder Name="/Solution Items/.github/actions/setup-core/">
+    <File Path=".github/actions/setup-core/action.yaml" />
+  </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-web/">
     <File Path=".github/actions/setup-web/action.yaml" />
   </Folder>
