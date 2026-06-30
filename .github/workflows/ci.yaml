@@ -27,7 +27,7 @@ jobs:
      uses: ./.github/workflows/workflow_call_build_core.yaml
   
   build-app-cross-android:
-    needs: build-app-cross
+    needs: build-app-cross-core
     uses: ./.github/workflows/workflow_call_build_android.yaml  
 
   build-app-cross-android-sample:
