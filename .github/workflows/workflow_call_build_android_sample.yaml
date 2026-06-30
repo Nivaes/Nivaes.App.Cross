@@ -54,4 +54,4 @@ jobs:
         dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
             --property:AndroidPackageFormat=aab \
             --configuration Release \
-            --no-restore --no-build
+            --no-restore

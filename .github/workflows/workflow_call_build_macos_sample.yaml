@@ -24,13 +24,19 @@ jobs:
       with:
         global-json-file: ./global.json
 
+    # - name: Restore Dependencies
+    #   run: |
+    #       dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config --runtime osx-arm64
+    #       dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config --runtime osx-x64
+    #       dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator --configfile .github/NuGet.config 
+    #       dotnet restore samples/Nivaes.App.Cross.Sample.AppKit.MacOS --configfile .github/NuGet.config --runtime osx-arm64
+    #       dotnet restore samples/Nivaes.App.Cross.Sample.AppKit.MacOS --configfile .github/NuGet.config --runtime osx-x64
+
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config --runtime osx-arm64
-          dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config --runtime osx-x64
+          dotnet restore sources/Nivaes.App.Cross.AppKit --configfile .github/NuGet.config
           dotnet restore sources/Nivaes.App.Cross.AppKit.SourceGenerator --configfile .github/NuGet.config 
-          dotnet restore samples/Nivaes.App.Cross.Sample.AppKit.MacOS --configfile .github/NuGet.config --runtime osx-arm64
-          dotnet restore samples/Nivaes.App.Cross.Sample.AppKit.MacOS --configfile .github/NuGet.config --runtime osx-x64
+          dotnet restore samples/Nivaes.App.Cross.Sample.AppKit.MacOS --configfile .github/NuGet.config
 
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
@@ -40,7 +46,6 @@ jobs:
     - name: Build
       run: |
           dotnet build samples/Nivaes.App.Cross.Sample.AppKit.MacOS --property:RunAOTAnalysis=true --runtime osx-arm64 --configuration Release --verbosity normal --no-restore
-          dotnet build samples/Nivaes.App.Cross.Sample.AppKit.MacOS --property:RunAOTAnalysis=true --runtime osx-x6464 --configuration Release --verbosity normal --no-restore
     
     - name: Publish
       run: |
