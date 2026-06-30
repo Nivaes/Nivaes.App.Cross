@@ -38,9 +38,9 @@ jobs:
     needs: core
     uses: ./.github/workflows/workflow_call_build_macos.yaml  
 
-  # macos-samples:
-  #   needs: build-app-cross-ios
-  #   uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
+  macos-samples:
+    needs: build-app-cross-ios
+    uses: ./.github/workflows/workflow_call_build_macos-sample.yaml  
 
   ios:
     needs: core
@@ -63,5 +63,5 @@ jobs:
     uses: ./.github/workflows/workflow_call_build_web.yaml
              
   Web-samples:
-    needs: build-app-cross-web
+    needs: web
     uses: ./.github/workflows/workflow_call_build_web_sample.yaml
