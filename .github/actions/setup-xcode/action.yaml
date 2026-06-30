@@ -16,6 +16,8 @@ runs:
       with:
         global-json-file: ${{ inputs.global-json-file }}
         cache: true
+        cache-dependency-path: |
+          **/packages.lock.json
 
     - name: Install xcode
       uses: maxim-lobanov/setup-xcode@v1

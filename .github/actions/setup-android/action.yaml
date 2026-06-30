@@ -16,6 +16,8 @@ runs:
       with:
         global-json-file: ${{ inputs.global-json-file }}
         cache: true
+        cache-dependency-path: |
+          **/packages.lock.json
 
     - name: Cache workloads
       id: workload-cache

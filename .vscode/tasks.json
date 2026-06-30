@@ -26,7 +26,7 @@
         {
             "label": "Run iOS Simulator",
             "type": "shell",
-            "command": "dotnet watch samples/Nivaes.App.Cross.Sample.UIKit.iOS -f net8.0-ios run -p:RuntimeIdentifier=iossimulator-x64",
+            "command": "dotnet watch samples/Nivaes.App.Cross.Sample.UIKit.iOS -f net8.0-ios run --property:RuntimeIdentifier=iossimulator-x64",
             "group": "build",
             "isBackground": true,
             "problemMatcher": "$msCompile"

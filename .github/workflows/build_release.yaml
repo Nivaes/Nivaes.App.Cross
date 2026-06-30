@@ -28,6 +28,8 @@ jobs:
         global-json-file: ./global.json
         source-url: https://nuget.pkg.github.com/Nivaes/index.json
         cache: true
+        cache-dependency-path: |
+          **/packages.lock.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
