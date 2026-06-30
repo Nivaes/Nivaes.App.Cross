@@ -63,4 +63,4 @@ jobs:
             --runtime ios-arm64 \
             --configuration Release\
             --verbosity normal --no-restore --no-build \
-            -p:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"
+            --property:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"

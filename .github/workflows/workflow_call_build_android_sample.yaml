@@ -45,10 +45,7 @@ jobs:
     - name: Build
       run: |
           dotnet build samples/Nivaes.App.Cross.Sample.Droid \
-            --property:AndroidEnableProfiledAot=false \
-            --property:AndroidUseLLVM=true \
-            --property:AndroidPackageFormat=aab \
-            --runtime android-arm64 \
+            --property:AndroidPackageFormat=aab \  
             --configuration Release \
             --no-restore 
 
@@ -56,9 +53,5 @@ jobs:
       run: |
         dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
             --property:AndroidPackageFormat=aab \
-            --property:PublishTrimmed=true \
-            --property:AndroidUseLLVM=true \
-            --property:AndroidEnableProfiledAot=false \
-            --runtime android-arm64 \
             --configuration Release \
             --no-restore --no-build

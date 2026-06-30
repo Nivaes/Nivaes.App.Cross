@@ -29,7 +29,7 @@ fi
 
 # 4. Compilar el proyecto
 echo "Compilando proyecto para iOS..."
-dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS -f $TARGET_FRAMEWORK -p:RuntimeIdentifier=$RUNTIME_ID
+dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS -f $TARGET_FRAMEWORK --property:RuntimeIdentifier=$RUNTIME_ID
 
 # 5. Ejecutar la app en el simulador
 APP_PATH=$(find ./samples/Nivaes.App.Cross.Sample.UIKit.iOS/bin/Debug -name "*.app" | head -n 1)

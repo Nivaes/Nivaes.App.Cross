@@ -46,13 +46,13 @@ jobs:
           dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+      run: dotnet build --configuration Release --property:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal --no-restore
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ -p:Version=${{ steps.version_run_number.outputs.version }} --no-restore
+      run: dotnet pack --configuration Release --no-build --verbosity normal --output ./Artifacts/ --property:Version=${{ steps.version_run_number.outputs.version }} --no-restore
 
     - name: Publish packages
       run: dotnet nuget push ./Artifacts/*.nupkg --source https://nuget.pkg.github.com/Nivaes/index.json --skip-duplicate --api-key ${{secrets.GITHUB_TOKEN}}

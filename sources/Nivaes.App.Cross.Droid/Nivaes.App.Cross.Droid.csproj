@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
-	<!--<Platforms>x64;arm64</Platforms>-->
-	<!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
 	  
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

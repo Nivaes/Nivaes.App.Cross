@@ -2,31 +2,15 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<!--<TargetFrameworks>$(_CrossTargetFrameworks)</TargetFrameworks>-->
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<TrimMode>full</TrimMode>
+		<!--<TrimMode>full</TrimMode>-->
 
 		<IsPackable>false</IsPackable>
+		<IsAotCompatible>true</IsAotCompatible>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacCatalystTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>

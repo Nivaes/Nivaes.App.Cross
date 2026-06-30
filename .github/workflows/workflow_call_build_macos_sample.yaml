@@ -48,4 +48,4 @@ jobs:
             --runtime ios-arm64 \
             --configuration Release\
             --verbosity normal --no-restore --no-build \
-            -p:RuntimeIdentifiers="osx-x64;osx-arm64"
+            --property:RuntimeIdentifiers="osx-x64;osx-arm64"

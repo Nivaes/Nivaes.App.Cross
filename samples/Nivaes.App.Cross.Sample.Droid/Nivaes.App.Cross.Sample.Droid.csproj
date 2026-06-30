@@ -3,9 +3,16 @@
 		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
 		<!--<Platforms>x64;arm64</Platforms>-->
 		<!--<RuntimeIdentifiers>android-x64;android-arm64</RuntimeIdentifiers>-->
+		<OutputType>Exe</OutputType>
 		
 		<SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
-		<OutputType>Exe</OutputType>
+		<AndroidSupportedAbis>
+			arm64-v8a;
+			armeabi-v7a;
+			x86_64
+		</AndroidSupportedAbis>
+		
+		
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationId>com.nivaes.app.sample.cross</ApplicationId>
@@ -20,7 +27,7 @@
 
 		<RunAOTAnalysis>true</RunAOTAnalysis>
 		<IsAotCompatible>true</IsAotCompatible>
-
+		<PublishTrimmed Condition="'$(Configuration)' == 'Release'">true</PublishTrimmed>
 		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
 		<!--<AndroidFastDeploymentType>true</AndroidFastDeploymentType>-->
 	</PropertyGroup>
