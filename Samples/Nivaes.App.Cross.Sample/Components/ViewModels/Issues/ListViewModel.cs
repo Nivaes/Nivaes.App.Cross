@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample
     public class ListViewModel : CrossViewModel
     {
         public CrossObservableCollection<TestItem> TestItems { get; } = new CrossObservableCollection<TestItem>();
-        public ICrossAsyncCommand<TestItem> ItemClickedCommand => new MvxAsyncCommand<TestItem>(ItemClicked);
+        public ICrossAsyncCommand<TestItem> ItemClickedCommand => new CrossAsyncCommand<TestItem>(ItemClicked);
 
         public ListViewModel(ILogger<ListViewModel> logger)
             :base(logger)

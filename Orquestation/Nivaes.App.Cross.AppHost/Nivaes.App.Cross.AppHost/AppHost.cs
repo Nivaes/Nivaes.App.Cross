@@ -12,8 +12,7 @@ if (OperatingSystem.IsMacOS())
 var appAndroid = builder.AddMauiProject("Sample-Droid", "../../../samples/Nivaes.App.Cross.Sample.Droid/Nivaes.App.Cross.Sample.Droid.csproj");
 appAndroid.AddAndroidEmulator();
 
-builder.AddProject<Projects.Nivaes_App_Cross_Sample_Web>("nivaes-app-cross-sample-web");
-
+builder.AddProject<Projects.Nivaes_App_Cross_Sample_PWA>("nivaes-app-cross-sample-pwa");
 
 if (OperatingSystem.IsWindows())
 {

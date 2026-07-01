@@ -83,7 +83,7 @@ public class WindowViewModel
         _count++;
         Count = _count;
 
-        ShowWindowChildCommand = new MvxAsyncCommand<int>(async no =>
+        ShowWindowChildCommand = new CrossAsyncCommand<int>(async no =>
         {
             await NavigationService.Navigate<WindowChildViewModel, WindowChildParam>(new WindowChildParam
             {
