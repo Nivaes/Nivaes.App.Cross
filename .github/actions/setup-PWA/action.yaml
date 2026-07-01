@@ -1,5 +1,5 @@
-name: Web setup
-description: Configures .NET and WinUI SDK for Web builds
+name: PWA setup
+description: Configures .NET
 
 inputs:
   global-json-file:

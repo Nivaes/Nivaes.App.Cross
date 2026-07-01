@@ -53,7 +53,7 @@
     <File Path=".github/actions/setup-core/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-PWA/">
-    <File Path=".github/actions/setup-web/action.yaml" />
+    <File Path=".github/actions/setup-PWA/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-winui/">
     <File Path=".github/actions/setup-winui/action.yaml" />
