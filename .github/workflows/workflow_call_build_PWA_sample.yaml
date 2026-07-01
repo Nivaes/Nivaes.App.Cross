@@ -35,27 +35,18 @@ jobs:
     - name: Build Web Client
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.Client \
-            --property:AndroidEnableProfiledAot=false \
-            --property:AndroidUseLLVM=true \
-            --property:AndroidPackageFormat=aab \
             --configuration Release \
             --no-restore 
 
     - name: Build Web
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA \
-            --property:AndroidEnableProfiledAot=false \
-            --property:AndroidUseLLVM=true \
-            --property:AndroidPackageFormat=aab \
             --configuration Release \
             --no-restore 
 
     # - name: publish
     #   run: |
     #     dotnet publish Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA \
-    #         --property:AndroidPackageFormat=aab \
     #         --property:PublishTrimmed=true \
-    #         --property:AndroidUseLLVM=true \
-    #         --property:AndroidEnableProfiledAot=false \
     #         --configuration Release \
     #         --no-restore --no-build
