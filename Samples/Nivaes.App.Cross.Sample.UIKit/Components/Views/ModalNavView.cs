@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
 
