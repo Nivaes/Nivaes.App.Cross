@@ -35,7 +35,7 @@
 		<PackageReference Include="Xamarin.Android.Glide" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.Droid\Nivaes.App.Cross.Droid.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
 	<ItemGroup>

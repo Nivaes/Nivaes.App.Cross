@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.AppKit\Nivaes.App.Cross.AppKit.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
 

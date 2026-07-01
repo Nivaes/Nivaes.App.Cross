@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.App.Cross.Pwa</PackageId>
+		<PackageId>Nivaes.App.Cross.PWA</PackageId>
 		<Title>Nivaes app Cross PWA</Title>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Cross librery for PWA.</Product>
@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Nivaes.App.Cross.Pwa.SourceGenerator\Nivaes.App.Cross.Pwa.SourceGenerator.csproj">
+		<ProjectReference Include="..\Nivaes.App.Cross.PWA.SourceGenerator\Nivaes.App.Cross.PWA.SourceGenerator.csproj">
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
