@@ -1,8 +1,8 @@
+using System.Globalization;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Globalization;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossValueConverter
         : ICrossValueConverter
     {
@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public virtual object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public virtual object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             return CrossBindingConstant.UnsetValue;
         }
@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
@@ -48,12 +48,12 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected virtual TTo Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
+        protected virtual TTo? Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotImplementedException();
         }
 
-        public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected virtual TFrom ConvertBack(TTo value, Type? targetType, object? parameter, CultureInfo? culture)
+        protected virtual TFrom? ConvertBack(TTo value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
@@ -96,12 +96,12 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected virtual object Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
+        protected virtual object? Convert(TFrom value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotImplementedException();
         }
 
-        public object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected virtual TFrom TypedConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        protected virtual TFrom? TypedConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             throw new NotImplementedException();
         }
