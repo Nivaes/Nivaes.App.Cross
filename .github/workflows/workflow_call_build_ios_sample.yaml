@@ -23,24 +23,24 @@ jobs:
 
     # - name: Restore Dependencies
     #   run: |
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime ios-arm64
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime maccatalyst-arm64
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime maccatalyst-x64
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config 
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime ios-arm64
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime maccatalyst-arm64
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime maccatalyst-x64
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.iOS --configfile .github/NuGet.config --runtime ios-arm64
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config --runtime maccatalyst-arm64
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config --runtime maccatalyst-x64       
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime ios-arm64
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime maccatalyst-arm64
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config --runtime maccatalyst-x64
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config 
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime ios-arm64
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime maccatalyst-arm64
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config --runtime maccatalyst-x64
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit.iOS --configfile .github/NuGet.config --runtime ios-arm64
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config --runtime maccatalyst-arm64
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config --runtime maccatalyst-x64       
     
     # - name: Restore Dependencies
     #   run: |
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config 
-    #       dotnet restore sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config 
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config 
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.iOS --configfile .github/NuGet.config 
-    #       dotnet restore samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config 
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit --configfile .github/NuGet.config 
+    #       dotnet restore Sources/Nivaes.App.Cross.UIKit.SourceGenerator --configfile .github/NuGet.config 
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit --configfile .github/NuGet.config 
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit.iOS --configfile .github/NuGet.config 
+    #       dotnet restore Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --configfile .github/NuGet.config 
 
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
@@ -49,34 +49,33 @@ jobs:
 
     # - name: Build
     #   run: |
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
-    #       dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --no-restore
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --no-restore
     
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal 
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal 
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal 
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
-          dotnet build samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-ios --runtime ios-arm64 --configuration Release --verbosity normal 
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-arm64 --configuration Release --verbosity normal 
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit --property:RunAOTAnalysis=true --framework net10.0-maccatalyst --runtime maccatalyst-x64 --configuration Release --verbosity normal 
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.iOS --property:RunAOTAnalysis=true --runtime ios-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-arm64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
+          dotnet build Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst --property:RunAOTAnalysis=true --runtime maccatalyst-x64 --configuration Release --verbosity normal --property:EnableCodeSigning=false
 
     # - name: Publish
     #   run: |
-          # dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.iOS 
+          # dotnet publish Samples/Nivaes.App.Cross.Sample.UIKit.iOS 
           #   --runtime ios-arm64 \
           #   --configuration Release \
           #   --property:EnableCodeSigning=false \
           #   --verbosity normal 
 
-
     - name: Publish
       run: |
-          dotnet publish samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
+          dotnet publish Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
             --configuration Release \
             --property:EnableCodeSigning=false \
             --verbosity normal \

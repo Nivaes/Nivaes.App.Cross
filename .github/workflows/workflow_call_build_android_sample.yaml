@@ -23,13 +23,13 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
-          # dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-x64
-          # dotnet restore sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-arm64
-          # dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-x64
-          # dotnet restore samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-arm64
+          dotnet restore Sources/Nivaes.App.Cross.Droid.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config
+          # dotnet restore Sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-x64
+          # dotnet restore Sources/Nivaes.App.Cross.Droid --configfile .github/NuGet.config --runtime android-arm64
+          # dotnet restore Samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-x64
+          # dotnet restore Samples/Nivaes.App.Cross.Sample.Droid --configfile .github/NuGet.config --runtime android-arm64
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -37,14 +37,14 @@ jobs:
                    
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Droid \
+          dotnet build Samples/Nivaes.App.Cross.Sample.Droid \
             --property:AndroidPackageFormat=aab \
             --configuration Release \
             --no-restore
 
     - name: publish
       run: |
-        dotnet publish samples/Nivaes.App.Cross.Sample.Droid \
+        dotnet publish Samples/Nivaes.App.Cross.Sample.Droid \
             --property:AndroidPackageFormat=aab \
             --configuration Release \
             --no-restore

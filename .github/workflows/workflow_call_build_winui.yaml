@@ -22,9 +22,9 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -32,10 +32,10 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.WinUI --property:RunAOTAnalysis=true --configuration Release --no-restore
-          dotnet build sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
+          dotnet build Sources/Nivaes.App.Cross.WinUI --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet build Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-restore
 
     - name: Test
       run: |
-          dotnet test sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.WinUI --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore

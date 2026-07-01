@@ -27,8 +27,8 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -37,14 +37,14 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
-          dotnet build sources/Nivaes.App.Cross --configuration Release --property:RunAOTAnalysis=true --no-restore
+          dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
+          dotnet build Sources/Nivaes.App.Cross --configuration Release --property:RunAOTAnalysis=true --no-restore
 
     - name: Test
       run: |
-          dotnet test sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross --configuration Release --no-build --verbosity normal --no-restore
           
     - name: Check-AotCompatible
       run: |
-          dotnet publish sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore --no-build
+          dotnet publish Sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --framework net10.0 --configuration Release --no-restore --no-build

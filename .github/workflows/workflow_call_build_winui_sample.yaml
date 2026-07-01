@@ -22,9 +22,9 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -32,7 +32,7 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.WinUI `
+          dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
             --property:RuntimeIdentifiers="win-x64" `
             --property:Platform=x64 `

@@ -22,10 +22,10 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client --configfile .github/NuGet.config
-          dotnet restore samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -33,7 +33,7 @@ jobs:
                  
     - name: Build Web Client
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client \
+          dotnet build Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client \
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
@@ -42,7 +42,7 @@ jobs:
 
     - name: Build Web
       run: |
-          dotnet build samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+          dotnet build Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
@@ -51,7 +51,7 @@ jobs:
 
     # - name: publish
     #   run: |
-    #     dotnet publish samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+    #     dotnet publish Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
     #         --property:AndroidPackageFormat=aab \
     #         --property:PublishTrimmed=true \
     #         --property:AndroidUseLLVM=true \

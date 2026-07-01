@@ -29,4 +29,4 @@ fi
 
 # 4. Ejecutar dotnet watch con Hot Reload
 echo "Iniciando dotnet watch con Hot Reload..."
-dotnet watch samples/Nivaes.App.Cross.Sample.UIKit.iOS  -f $TARGET_FRAMEWORK run --property:RuntimeIdentifier=$RUNTIME_ID
+dotnet watch Samples/Nivaes.App.Cross.Sample.UIKit.iOS  -f $TARGET_FRAMEWORK run --property:RuntimeIdentifier=$RUNTIME_ID
