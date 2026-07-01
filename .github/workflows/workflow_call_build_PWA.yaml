@@ -1,4 +1,4 @@
-name: Build Cross WinUI
+name: Build Cross PWA
 
 on:
   workflow_call:
@@ -25,8 +25,8 @@ jobs:
       run: |
           dotnet restore Sources/Nivaes.App.Cross --configfile .github/NuGet.config
           dotnet restore Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore Sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
-          dotnet restore Sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.PWA --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.PWA.SourceGenerator --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -34,10 +34,10 @@ jobs:
 
     - name: Build
       run: |
-          dotnet build Sources/Nivaes.App.Cross.Web --property:RunAOTAnalysis=true --configuration Release --no-restore
-          dotnet build Sources/Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-restore
+          dotnet build Sources/Nivaes.App.Cross.PWA --property:RunAOTAnalysis=true --configuration Release --no-restore
+          dotnet build Sources/Nivaes.App.Cross.PWA.SourceGenerator --configuration Release --no-restore
 
     - name: Test
       run: |
-          dotnet test Sources/Nivaes.App.Cross.Web --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test Sources/Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.PWA --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.PWA.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore

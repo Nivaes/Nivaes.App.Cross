@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.Sample.Web;
+namespace Nivaes.App.Cross.Sample.PWA;
 
 public class Program
 {

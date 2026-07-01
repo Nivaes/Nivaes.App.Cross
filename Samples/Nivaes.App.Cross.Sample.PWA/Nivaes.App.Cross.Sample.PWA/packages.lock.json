@@ -202,7 +202,7 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sample.web.client": {
+      "nivaes.app.cross.sample.pwa.client": {
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Components.WebAssembly": "[10.0.9, )",

@@ -9,7 +9,7 @@
     <Project Path="Orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.ServiceDefaults/Nivaes.App.Cross.ServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/Packets/">
-    <Project Path="Packets/Nivaes.App.Cross/Nivaes.App.Cross.Pack.csproj" Id="c917988f-2eac-49bb-8a0b-5cde3db68587" />
+    <Project Path="Packets/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
   </Folder>
   <Folder Name="/Samples/">
     <Project Path="Samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj" />
@@ -23,8 +23,8 @@
       <Deploy />
     </Project>
     <Project Path="Samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
-    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client/Nivaes.App.Cross.Sample.Web.Client.csproj" />
-    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.Client/Nivaes.App.Cross.Sample.PWA.Client.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.csproj" />
     <Project Path="Samples/Nivaes.App.Cross.Sample.WinUI/Nivaes.App.Cross.Sample.WinUI.csproj">
       <Platform Project="x64" />
       <Deploy />
@@ -53,7 +53,7 @@
     <File Path=".github/actions/setup-core/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-PWA/">
-    <File Path=".github/actions/setup-web/action.yaml" />
+    <File Path=".github/actions/setup-PWA/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-winui/">
     <File Path=".github/actions/setup-winui/action.yaml" />

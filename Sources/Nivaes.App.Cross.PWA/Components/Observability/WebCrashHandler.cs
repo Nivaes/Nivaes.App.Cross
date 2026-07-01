@@ -2,7 +2,7 @@
 using Nivaes.App.Cross.Observability;
 using OpenTelemetry.Logs;
 
-namespace Nivaes.App.Cross.Web.Observability
+namespace Nivaes.App.Cross.PWA.Observability
 {
     public class WebCrashHandler : CrashHandler
     {
