@@ -2,22 +2,22 @@
   "solution": {
     "path": "Nivaes.App.Cross.slnx",
     "projects": [
-      "samples\\Nivaes.App.Cross.Sample.AppKit.MacOS\\Nivaes.App.Cross.Sample.AppKit.MacOS.csproj",
-      "samples\\Nivaes.App.Cross.Sample.Droid\\Nivaes.App.Cross.Sample.Droid.csproj",
-      "samples\\Nivaes.App.Cross.Sample.UIKit.MacCatalyst\\Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj",
-      "samples\\Nivaes.App.Cross.Sample.UIKit.iOS\\Nivaes.App.Cross.Sample.UIKit.iOS.csproj",
-      "samples\\Nivaes.App.Cross.Sample.UIKit\\Nivaes.App.Cross.Sample.UIKit.csproj",
-      "samples\\Nivaes.App.Cross.Sample\\Nivaes.App.Cross.Sample.csproj",
-      "sources\\Nivaes.App.Cross.AppKit.SourceGenerator\\Nivaes.App.Cross.AppKit.SourceGenerator.csproj",
-      "sources\\Nivaes.App.Cross.AppKit\\Nivaes.App.Cross.AppKit.csproj",
-      "sources\\Nivaes.App.Cross.Droid.SourceGenerator\\Nivaes.App.Cross.Droid.SourceGenerator.csproj",
-      "sources\\Nivaes.App.Cross.Droid\\Nivaes.App.Cross.Droid.csproj",
-      "sources\\Nivaes.App.Cross.SourceGenerator\\Nivaes.App.Cross.SourceGenerator.csproj",
-      "sources\\Nivaes.App.Cross.UIKit.SourceGenerator\\Nivaes.App.Cross.UIKit.SourceGenerator.csproj",
-      "sources\\Nivaes.App.Cross.UIKit.TvOS.SourceGenerator\\Nivaes.App.Cross.UIKit.TvOS.SourceGenerator.csproj",
-      "sources\\Nivaes.App.Cross.UIKit.TvOS\\Nivaes.App.Cross.UIKit.TvOS.csproj",
-      "sources\\Nivaes.App.Cross.UIKit\\Nivaes.App.Cross.UIKit.csproj",
-      "sources\\Nivaes.App.Cross\\Nivaes.App.Cross.csproj"
+      "Samples\\Nivaes.App.Cross.Sample.AppKit.MacOS\\Nivaes.App.Cross.Sample.AppKit.MacOS.csproj",
+      "Samples\\Nivaes.App.Cross.Sample.Droid\\Nivaes.App.Cross.Sample.Droid.csproj",
+      "Samples\\Nivaes.App.Cross.Sample.UIKit.MacCatalyst\\Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj",
+      "Samples\\Nivaes.App.Cross.Sample.UIKit.iOS\\Nivaes.App.Cross.Sample.UIKit.iOS.csproj",
+      "Samples\\Nivaes.App.Cross.Sample.UIKit\\Nivaes.App.Cross.Sample.UIKit.csproj",
+      "Samples\\Nivaes.App.Cross.Sample\\Nivaes.App.Cross.Sample.csproj",
+      "Sources\\Nivaes.App.Cross.AppKit.SourceGenerator\\Nivaes.App.Cross.AppKit.SourceGenerator.csproj",
+      "Sources\\Nivaes.App.Cross.AppKit\\Nivaes.App.Cross.AppKit.csproj",
+      "Sources\\Nivaes.App.Cross.Droid.SourceGenerator\\Nivaes.App.Cross.Droid.SourceGenerator.csproj",
+      "Sources\\Nivaes.App.Cross.Droid\\Nivaes.App.Cross.Droid.csproj",
+      "Sources\\Nivaes.App.Cross.SourceGenerator\\Nivaes.App.Cross.SourceGenerator.csproj",
+      "Sources\\Nivaes.App.Cross.UIKit.SourceGenerator\\Nivaes.App.Cross.UIKit.SourceGenerator.csproj",
+      "Sources\\Nivaes.App.Cross.UIKit.TvOS.SourceGenerator\\Nivaes.App.Cross.UIKit.TvOS.SourceGenerator.csproj",
+      "Sources\\Nivaes.App.Cross.UIKit.TvOS\\Nivaes.App.Cross.UIKit.TvOS.csproj",
+      "Sources\\Nivaes.App.Cross.UIKit\\Nivaes.App.Cross.UIKit.csproj",
+      "Sources\\Nivaes.App.Cross\\Nivaes.App.Cross.csproj"
     ]
   }
 }

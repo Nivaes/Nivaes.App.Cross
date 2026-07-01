@@ -1,35 +1,35 @@
 <Solution>
   <Folder Name="/Doc/">
-    <File Path="docs/DebugiOS.md" />
-    <File Path="docs/InstallMacOS.md" />
-    <File Path="Estructura.md" />
+    <File Path="Docs/DebugiOS.md" />
+    <File Path="Docs/InstallMacOS.md" />
+    <File Path="Docs/Estructura.md" />
   </Folder>
   <Folder Name="/Orquestation/">
-    <Project Path="orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost.csproj" />
-    <Project Path="orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.ServiceDefaults/Nivaes.App.Cross.ServiceDefaults.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost.csproj" />
+    <Project Path="Orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.ServiceDefaults/Nivaes.App.Cross.ServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/Packets/">
-    <Project Path="packets/Nivaes.App.Cross/Nivaes.App.Cross.Pack.csproj" Id="c917988f-2eac-49bb-8a0b-5cde3db68587" />
+    <Project Path="Packets/Nivaes.App.Cross/Nivaes.App.Cross.Pack.csproj" Id="c917988f-2eac-49bb-8a0b-5cde3db68587" />
   </Folder>
   <Folder Name="/Samples/">
-    <Project Path="samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj" />
-    <Project Path="samples/Nivaes.App.Cross.Sample.Droid/Nivaes.App.Cross.Sample.Droid.csproj">
+    <Project Path="Samples/Nivaes.App.Cross.Sample.AppKit.MacOS/Nivaes.App.Cross.Sample.AppKit.MacOS.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.Droid/Nivaes.App.Cross.Sample.Droid.csproj">
       <Deploy Solution="Debug|*" />
     </Project>
-    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit.iOS/Nivaes.App.Cross.Sample.UIKit.iOS.csproj">
+    <Project Path="Samples/Nivaes.App.Cross.Sample.UIKit.iOS/Nivaes.App.Cross.Sample.UIKit.iOS.csproj">
       <Deploy />
     </Project>
-    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst/Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj">
+    <Project Path="Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst/Nivaes.App.Cross.Sample.UIKit.MacCatalyst.csproj">
       <Deploy />
     </Project>
-    <Project Path="samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
-    <Project Path="samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client/Nivaes.App.Cross.Sample.Web.Client.csproj" />
-    <Project Path="samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.csproj" />
-    <Project Path="samples/Nivaes.App.Cross.Sample.WinUI/Nivaes.App.Cross.Sample.WinUI.csproj">
+    <Project Path="Samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client/Nivaes.App.Cross.Sample.Web.Client.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.WinUI/Nivaes.App.Cross.Sample.WinUI.csproj">
       <Platform Project="x64" />
       <Deploy />
     </Project>
-    <Project Path="samples/Nivaes.App.Cross.Sample/Nivaes.App.Cross.Sample.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample/Nivaes.App.Cross.Sample.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
@@ -79,28 +79,28 @@
     <File Path=".github/workflows/workflow_call_build_winui_sample.yaml" />
   </Folder>
   <Folder Name="/Sources/">
-    <Project Path="sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
   </Folder>
   <Folder Name="/Sources/AppKit/">
-    <Project Path="sources/Nivaes.App.Cross.AppKit.SourceGenerator/Nivaes.App.Cross.AppKit.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.AppKit/Nivaes.App.Cross.AppKit.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.AppKit.SourceGenerator/Nivaes.App.Cross.AppKit.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.AppKit/Nivaes.App.Cross.AppKit.csproj" />
   </Folder>
   <Folder Name="/Sources/Droid/">
-    <Project Path="sources/Nivaes.App.Cross.Droid.SourceGenerator/Nivaes.App.Cross.Droid.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.Droid/Nivaes.App.Cross.Droid.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.Droid.SourceGenerator/Nivaes.App.Cross.Droid.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.Droid/Nivaes.App.Cross.Droid.csproj" />
   </Folder>
   <Folder Name="/Sources/Pwa/">
-    <Project Path="sources/Nivaes.App.Cross.Pwa/Nivaes.App.Cross.Pwa.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.Web.SourceGenerator/Nivaes.App.Cross.Pwa.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.Pwa/Nivaes.App.Cross.Pwa.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.Web.SourceGenerator/Nivaes.App.Cross.Pwa.SourceGenerator.csproj" />
   </Folder>
   <Folder Name="/Sources/UIKit/">
-    <Project Path="sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
   </Folder>
   <Folder Name="/Sources/WinUI/">
-    <Project Path="sources/Nivaes.App.Cross.WinUI.SourceGenerator/Nivaes.App.Cross.WinUI.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj">
+    <Project Path="Sources/Nivaes.App.Cross.WinUI.SourceGenerator/Nivaes.App.Cross.WinUI.SourceGenerator.csproj" />
+    <Project Path="Sources/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj">
       <Platform Solution="Debug|*" Project="x64" />
     </Project>
   </Folder>
