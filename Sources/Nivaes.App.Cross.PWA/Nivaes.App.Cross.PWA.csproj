@@ -4,6 +4,10 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+
+		<IsTrimmable>true</IsTrimmable>
+		<IsAotCompatible>true</IsAotCompatible>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
 
 	<PropertyGroup>
