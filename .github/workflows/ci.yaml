@@ -58,10 +58,10 @@ jobs:
     needs: winui
     uses: ./.github/workflows/workflow_call_build_winui_sample.yaml
 
-  web:
+  PWA:
     needs: core
     uses: ./.github/workflows/workflow_call_build_PWA.yaml
              
-  web-samples:
+  PWA-samples:
     needs: PWA
     uses: ./.github/workflows/workflow_call_build_PWA_sample.yaml
