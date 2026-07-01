@@ -90,13 +90,13 @@
     <Project Path="sources/Nivaes.App.Cross.Droid.SourceGenerator/Nivaes.App.Cross.Droid.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.Droid/Nivaes.App.Cross.Droid.csproj" />
   </Folder>
+  <Folder Name="/Sources/Pwa/">
+    <Project Path="sources/Nivaes.App.Cross.Pwa/Nivaes.App.Cross.Pwa.csproj" />
+    <Project Path="sources/Nivaes.App.Cross.Web.SourceGenerator/Nivaes.App.Cross.Pwa.SourceGenerator.csproj" />
+  </Folder>
   <Folder Name="/Sources/UIKit/">
     <Project Path="sources/Nivaes.App.Cross.UIKit.SourceGenerator/Nivaes.App.Cross.UIKit.SourceGenerator.csproj" />
     <Project Path="sources/Nivaes.App.Cross.UIKit/Nivaes.App.Cross.UIKit.csproj" />
-  </Folder>
-  <Folder Name="/Sources/Web/">
-    <Project Path="sources/Nivaes.App.Cross.Web.SourceGenerator/Nivaes.App.Cross.Web.SourceGenerator.csproj" />
-    <Project Path="sources/Nivaes.App.Cross.Web/Nivaes.App.Cross.Web.csproj" />
   </Folder>
   <Folder Name="/Sources/WinUI/">
     <Project Path="sources/Nivaes.App.Cross.WinUI.SourceGenerator/Nivaes.App.Cross.WinUI.SourceGenerator.csproj" />
