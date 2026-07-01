@@ -27,7 +27,6 @@ runs:
       uses: actions/cache@v4
       with:
         path: |
-          ~/.dotnet
           ~/.nuget/packages
         key: workloads-${{ runner.os }}-${{ hashFiles('global.json') }}
         restore-keys: |
