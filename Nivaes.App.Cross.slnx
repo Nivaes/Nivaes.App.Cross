@@ -23,8 +23,8 @@
       <Deploy />
     </Project>
     <Project Path="Samples/Nivaes.App.Cross.Sample.UIKit/Nivaes.App.Cross.Sample.UIKit.csproj" />
-    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client/Nivaes.App.Cross.Sample.Web.Client.csproj" />
-    <Project Path="Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.Client/Nivaes.App.Cross.Sample.PWA.Client.csproj" />
+    <Project Path="Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.csproj" />
     <Project Path="Samples/Nivaes.App.Cross.Sample.WinUI/Nivaes.App.Cross.Sample.WinUI.csproj">
       <Platform Project="x64" />
       <Deploy />

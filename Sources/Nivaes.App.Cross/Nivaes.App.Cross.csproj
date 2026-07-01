@@ -4,7 +4,11 @@
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
 		<AssemblyName>Nivaes.App.Cross</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross</RootNamespace>	
+		<RootNamespace>Nivaes.App.Cross</RootNamespace>
+
+		<IsTrimmable>true</IsTrimmable>
+		<IsAotCompatible>true</IsAotCompatible>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
 
 	<PropertyGroup>

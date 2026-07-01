@@ -18,6 +18,7 @@
 
 		<!--<UseAppHost>false</UseAppHost>
 		<SelfContained>false</SelfContained>-->
+		<IsTrimmable>true</IsTrimmable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<RunAOTAnalysis>true</RunAOTAnalysis>
 	</PropertyGroup>
