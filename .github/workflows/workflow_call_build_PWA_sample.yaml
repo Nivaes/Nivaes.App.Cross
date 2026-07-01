@@ -1,4 +1,4 @@
-name: Build Cross Android
+name: Build Cross PWA
 
 on:
   workflow_call:
@@ -23,10 +23,10 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore Sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore Sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
-          dotnet restore Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client --configfile .github/NuGet.config
-          dotnet restore Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.PWA.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.PWA --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.Client --configfile .github/NuGet.config
+          dotnet restore Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -34,7 +34,7 @@ jobs:
                  
     - name: Build Web Client
       run: |
-          dotnet build Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web.Client \
+          dotnet build Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA.Client \
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
@@ -43,7 +43,7 @@ jobs:
 
     - name: Build Web
       run: |
-          dotnet build Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+          dotnet build Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA \
             --property:AndroidEnableProfiledAot=false \
             --property:AndroidUseLLVM=true \
             --property:AndroidPackageFormat=aab \
@@ -52,7 +52,7 @@ jobs:
 
     # - name: publish
     #   run: |
-    #     dotnet publish Samples/Nivaes.App.Cross.Sample.Web/Nivaes.App.Cross.Sample.Web \
+    #     dotnet publish Samples/Nivaes.App.Cross.Sample.PWA/Nivaes.App.Cross.Sample.PWA \
     #         --property:AndroidPackageFormat=aab \
     #         --property:PublishTrimmed=true \
     #         --property:AndroidUseLLVM=true \

@@ -1,14 +1,4 @@
 ﻿<Project>
-	<!--<PropertyGroup>
-		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
-		<PackageProjectUrl>https://github.com/Nivaes</PackageProjectUrl>
-		<Authors>Nivaes Systems</Authors>
-		<Owners>Nivaes</Owners>
-		<PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-	</PropertyGroup>-->
-
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);NU1507;1591</NoWarn>
 
@@ -33,7 +23,6 @@
 		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
 		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
-		<!--<_CrossWinUITargets>net10.0-windows</_CrossWinUITargets>-->
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -74,16 +63,15 @@
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 	
-	<!--<PropertyGroup>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<RepositoryUrl>https://github.com/nivaes/Nivaes.App.Cross</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-
+	<PropertyGroup>
+		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
+		<PackageProjectUrl>https://github.com/Nivaes/Nivaes.App.Cross</PackageProjectUrl>
+		<Authors>Nivaes Systems</Authors>
+		<Owners>Nivaes</Owners>
+		<PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-
-		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>-dev-0.2</VersionSuffix>
-	</PropertyGroup>-->
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<EnablePackageValidation>true</EnablePackageValidation>
@@ -96,17 +84,5 @@
 		<IsSampleProject>$(MSBuildProjectName.Contains('Sample'))</IsSampleProject>
 
 		<GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
-		<!--<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>-->
 	</PropertyGroup>
-
-	<!--<PropertyGroup>
-
-		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-
-		<DesignTimeBuild>false</DesignTimeBuild>
-		<DebugSymbols>true</DebugSymbols>
-
-	</PropertyGroup>-->
-
 </Project>
