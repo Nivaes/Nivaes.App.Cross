@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
             {
                 if (_cts == null)
                 {
-                    Logger.Log(LogLevel.Warning, "MvxAsyncCommand : Attempt to cancel a task that is not running");
+                    Logger.LogWarning($"{nameof(CrossAsyncCommand)} : Attempt to cancel a task that is not running");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception e)
             {
-                Logger.Log(LogLevel.Error, e, "MvxAsyncCommand : exception executing task");
+                Logger.LogError(e, $"{nameof(CrossAsyncCommand)} : exception executing task");
                 throw;
             }
         }
@@ -95,7 +95,7 @@ namespace Nivaes.App.Cross
                     }
                     else if (!_allowConcurrentExecutions)
                     {
-                        Logger.Log(LogLevel.Information, "MvxAsyncCommand: execute ignored, already running");
+                        Logger.LogInformation($"{nameof(CrossAsyncCommand)}: execute ignored, already running");
                         return;
                     }
                     _concurrentExecutions++;
@@ -115,7 +115,7 @@ namespace Nivaes.App.Cross
                     }
                     catch (OperationCanceledException e)
                     {
-                        Logger.Log(LogLevel.Trace, "MvxAsyncCommand: OperationCanceledException");
+                        Logger.LogTrace($"{nameof(CrossAsyncCommand)}: OperationCanceledException");
                         //Rethrow if the exception does not come from the current cancellation token
                         if (!hideCanceledException || e.CancellationToken != CancelToken)
                         {
@@ -148,7 +148,7 @@ namespace Nivaes.App.Cross
         {
             if (_cts == null)
             {
-                Logger.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected ClearCancellationTokenSource, no token available!");
+                Logger.LogError($"{nameof(CrossAsyncCommand)}: Unexpected ClearCancellationTokenSource, no token available!");
             }
             else
             {
@@ -161,7 +161,7 @@ namespace Nivaes.App.Cross
         {
             if (_cts != null)
             {
-                Logger.Log(LogLevel.Error, "MvxAsyncCommand: Unexpected InitCancellationTokenSource, a token is already available!");
+                Logger.LogError($"{nameof(CrossAsyncCommand)}: Unexpected InitCancellationTokenSource, a token is already available!");
             }
             _cts = new CancellationTokenSource();
         }
@@ -202,14 +202,14 @@ namespace Nivaes.App.Cross
             return _execute(CancelToken);
         }
 
-        public static MvxAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public static CrossAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
-            return new MvxAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
+            return new CrossAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
         }
 
-        public static MvxAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public static CrossAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
-            return new MvxAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
+            return new CrossAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
         }
 
         public Task ExecuteAsync(object? parameter = null)
@@ -218,13 +218,13 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class MvxAsyncCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
+    public class CrossAsyncCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
         : CrossAsyncCommandBase, ICrossCommand, ICrossAsyncCommand<T>
     {
         private readonly Func<T?, CancellationToken, Task> _execute;
         private readonly Func<T?, bool>? _canExecute;
 
-        public MvxAsyncCommand(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public CrossAsyncCommand(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             ArgumentNullException.ThrowIfNull(execute, nameof(execute));
@@ -233,7 +233,7 @@ namespace Nivaes.App.Cross
             _canExecute = canExecute;
         }
 
-        public MvxAsyncCommand(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public CrossAsyncCommand(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
             ArgumentNullException.ThrowIfNull(execute);

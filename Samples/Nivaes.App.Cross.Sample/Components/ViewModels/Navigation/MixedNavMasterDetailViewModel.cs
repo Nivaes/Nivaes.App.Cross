@@ -42,7 +42,7 @@ public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
     //{
     //    get
     //    {
-    //        return _onSelectedChangedCommand ??= new MvxAsyncCommand<MenuItem>(async (item) =>
+    //        return _onSelectedChangedCommand ??= new CrossAsyncCommand<MenuItem>(async (item) =>
     //        {
     //            if (item == null)
     //                return;
