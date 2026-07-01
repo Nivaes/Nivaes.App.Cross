@@ -13,7 +13,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Samples\Nivaes.App.Cross.Sample.Web\Nivaes.App.Cross.Sample.Web\Nivaes.App.Cross.Sample.PWA.csproj" />
+		<ProjectReference Include="..\..\..\Samples\Nivaes.App.Cross.Sample.PWA\Nivaes.App.Cross.Sample.PWA\Nivaes.App.Cross.Sample.PWA.csproj" />
 	</ItemGroup>
 
 
