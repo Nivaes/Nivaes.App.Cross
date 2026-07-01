@@ -7,17 +7,6 @@
 		
 		<UseWinUI>true</UseWinUI>
 		
-		<!--<Platforms>AnyCPU</Platforms>
-		<PlatformTarget>AnyCPU</PlatformTarget>-->
-		<!--<Platforms>x64;arm64</Platforms>-->
-		
-
-		<!--<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-		<GenerateLibraryLayout>true</GenerateLibraryLayout>
-		<EnableWindowsTargeting>true</EnableWindowsTargeting>-->
-
-		<!--<UseAppHost>false</UseAppHost>
-		<SelfContained>false</SelfContained>-->
 		<IsTrimmable>true</IsTrimmable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<RunAOTAnalysis>true</RunAOTAnalysis>

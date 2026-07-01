@@ -19,6 +19,12 @@
 		<Description>Cross librery core.</Description>
 		<PackageTags>Nivaes;cross</PackageTags>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Components\Services1\**" />
+	  <EmbeddedResource Remove="Components\Services1\**" />
+	  <None Remove="Components\Services1\**" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" />
@@ -66,4 +72,24 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Components\Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="LocationString\DialogLocalizationString.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DialogLocalizationString.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="LocationString\DialogLocalizationString.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>DialogLocalizationString.Designer.cs</LastGenOutput>
+			<CustomToolNamespace>Nivaes.App</CustomToolNamespace>
+		</EmbeddedResource>
+	</ItemGroup>
+	
 </Project>
