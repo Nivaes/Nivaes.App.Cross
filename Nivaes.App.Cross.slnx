@@ -52,7 +52,7 @@
   <Folder Name="/Solution Items/.github/actions/setup-core/">
     <File Path=".github/actions/setup-core/action.yaml" />
   </Folder>
-  <Folder Name="/Solution Items/.github/actions/setup-web/">
+  <Folder Name="/Solution Items/.github/actions/setup-PWA/">
     <File Path=".github/actions/setup-web/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-winui/">
@@ -73,8 +73,8 @@
     <File Path=".github/workflows/workflow_call_build_ios_sample.yaml" />
     <File Path=".github/workflows/workflow_call_build_macos.yaml" />
     <File Path=".github/workflows/workflow_call_build_macos_sample.yaml" />
-    <File Path=".github/workflows/workflow_call_build_web.yaml" />
-    <File Path=".github/workflows/workflow_call_build_web_sample.yaml" />
+    <File Path=".github/workflows/workflow_call_build_PWA.yaml" />
+    <File Path=".github/workflows/workflow_call_build_PWA_sample.yaml" />
     <File Path=".github/workflows/workflow_call_build_winui.yaml" />
     <File Path=".github/workflows/workflow_call_build_winui_sample.yaml" />
   </Folder>

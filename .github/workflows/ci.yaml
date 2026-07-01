@@ -60,8 +60,8 @@ jobs:
 
   web:
     needs: core
-    uses: ./.github/workflows/workflow_call_build_web.yaml
+    uses: ./.github/workflows/workflow_call_build_PWA.yaml
              
   web-samples:
-    needs: web
-    uses: ./.github/workflows/workflow_call_build_web_sample.yaml
+    needs: PWA
+    uses: ./.github/workflows/workflow_call_build_PWA_sample.yaml

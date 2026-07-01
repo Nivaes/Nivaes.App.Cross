@@ -73,10 +73,18 @@ jobs:
           #   --property:EnableCodeSigning=false \
           #   --verbosity normal 
 
-    - name: Publish
+    - name: Publish x64
       run: |
           dotnet publish Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
             --configuration Release \
             --property:EnableCodeSigning=false \
             --verbosity normal \
-            --property:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"
+            --property:RuntimeIdentifiers=maccatalyst-x64
+
+    - name: Publish arm64
+      run: |
+          dotnet publish Samples/Nivaes.App.Cross.Sample.UIKit.MacCatalyst \
+            --configuration Release \
+            --property:EnableCodeSigning=false \
+            --verbosity normal \
+            --property:RuntimeIdentifiers=maccatalyst-arm64

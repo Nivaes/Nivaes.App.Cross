@@ -16,7 +16,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - uses: ./.github/actions/setup-web
+    - name: Setup PWA
+      uses: ./.github/actions/setup-PWA
       with:
         global-json-file: ./global.json
 

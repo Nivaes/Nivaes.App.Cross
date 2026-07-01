@@ -16,16 +16,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - uses: ./.github/actions/setup-web
+    - name: Setup PWA
+      uses: ./.github/actions/setup-PWA
       with:
         global-json-file: ./global.json
 
     - name: Restore Dependencies
       run: |
-          dotnet restore sources\Nivaes.App.Cross --configfile .github/NuGet.config
-          dotnet restore sources\Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
-          dotnet restore sources\Nivaes.App.Cross.Web --configfile .github/NuGet.config
-          dotnet restore sources\Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.Web --configfile .github/NuGet.config
+          dotnet restore Sources/Nivaes.App.Cross.Web.SourceGenerator --configfile .github/NuGet.config
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -38,5 +39,5 @@ jobs:
 
     - name: Test
       run: |
-          dotnet test sources\Nivaes.App.Cross.Web --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test sources\Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.Web --configuration Release --no-build --verbosity normal --no-restore
+          dotnet test Sources/Nivaes.App.Cross.Web.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
