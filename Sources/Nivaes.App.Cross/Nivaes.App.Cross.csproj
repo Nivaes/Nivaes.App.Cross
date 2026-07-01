@@ -19,31 +19,6 @@
 		<Description>Cross librery core.</Description>
 		<PackageTags>Nivaes;cross</PackageTags>
 	</PropertyGroup>
-		
-	<PropertyGroup>
-		<MyAppName>MiApp</MyAppName>
-	</PropertyGroup>
-		
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossAndroidTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossiOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacCatalystTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossMacOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='$(_CrossTvOSTargets)'">
-		<IsAotCompatible>true</IsAotCompatible>
-	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="Components\Observabilidad\**" />
-	  <EmbeddedResource Remove="Components\Observabilidad\**" />
-	  <None Remove="Components\Observabilidad\**" />
-	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
