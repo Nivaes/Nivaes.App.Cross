@@ -1,6 +1,6 @@
 using Nivaes.App.Cross.Hosting;
 
-namespace Nivaes.App.Cross.Web;
+namespace Nivaes.App.Cross.PWA;
 
 public abstract class CrossApplication
     : /*Application,*/ IPlatformApplication

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-namespace Nivaes.App.Cross.Sample.Web.Client;
+namespace Nivaes.App.Cross.Sample.PWA.Client;
 
 class Program
 {

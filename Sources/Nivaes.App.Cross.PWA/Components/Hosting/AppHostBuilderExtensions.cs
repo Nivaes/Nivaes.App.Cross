@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
-using Nivaes.App.Cross.Web.Observability;
+using Nivaes.App.Cross.PWA.Observability;
 
-namespace Nivaes.App.Cross.Web
+namespace Nivaes.App.Cross.PWA
 {
     public static class AppHostBuilderExtensions
     {
