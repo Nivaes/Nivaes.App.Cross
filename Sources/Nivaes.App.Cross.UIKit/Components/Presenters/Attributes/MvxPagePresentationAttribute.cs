@@ -1,9 +1,8 @@
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitOS;
+
+public class MvxPagePresentationAttribute
+    : CrossBasePresentationAttribute
 {
-    public class MvxPagePresentationAttribute
-        : CrossBasePresentationAttribute
-    {
-        public static bool DefaultWrapInNavigationController = false;
-        public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
-    }
+    public static bool DefaultWrapInNavigationController = false;
+    public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
 }

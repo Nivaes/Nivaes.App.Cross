@@ -1,23 +1,20 @@
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+namespace Nivaes.App.Cross.UIKitOS;
+
+public class MvxModalPresentationAttribute : CrossBasePresentationAttribute
 {
-    using Nivaes.App.Cross;
+    public static readonly bool DefaultWrapInNavigationController = false;
+    public static readonly UIModalPresentationStyle DefaultModalPresentationStyle = UIModalPresentationStyle.FullScreen;
+    public static readonly UIModalTransitionStyle DefaultModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+    public static readonly CGSize DefaultPreferredContentSize = CGSize.Empty;
+    public static readonly bool DefaultAnimated = true;
 
-    public class MvxModalPresentationAttribute : CrossBasePresentationAttribute
-    {
-        public static readonly bool DefaultWrapInNavigationController = false;
-        public static readonly UIModalPresentationStyle DefaultModalPresentationStyle = UIModalPresentationStyle.FullScreen;
-        public static readonly UIModalTransitionStyle DefaultModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-        public static readonly CGSize DefaultPreferredContentSize = CGSize.Empty;
-        public static readonly bool DefaultAnimated = true;
+    public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
 
-        public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
+    public UIModalPresentationStyle ModalPresentationStyle { get; set; } = DefaultModalPresentationStyle;
 
-        public UIModalPresentationStyle ModalPresentationStyle { get; set; } = DefaultModalPresentationStyle;
+    public UIModalTransitionStyle ModalTransitionStyle { get; set; } = DefaultModalTransitionStyle;
 
-        public UIModalTransitionStyle ModalTransitionStyle { get; set; } = DefaultModalTransitionStyle;
+    public CGSize PreferredContentSize { get; set; } = DefaultPreferredContentSize;
 
-        public CGSize PreferredContentSize { get; set; } = DefaultPreferredContentSize;
-
-        public bool Animated { get; set; } = DefaultAnimated;
-    }
+    public bool Animated { get; set; } = DefaultAnimated;
 }

@@ -1,12 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-#nullable enable
-
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using Nivaes.App.Cross.UIKitOS;
-
-namespace MvvmCross.Platforms.Ios.Presenters;
+namespace Nivaes.App.Cross.UIKitOS;
 
 public sealed class MvxModalPresentationControllerDelegate(
         MvxIosViewPresenter presenter,

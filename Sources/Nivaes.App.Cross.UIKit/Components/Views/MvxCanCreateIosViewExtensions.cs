@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.IoC;
+using System.Runtime.Intrinsics.X86;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross.UIKitOS;
 
-[Obsolete("1", true)]
+//[Obsolete("1", true)]
 public static class MvxCanCreateIosViewExtensions
 {
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
@@ -12,7 +13,6 @@ public static class MvxCanCreateIosViewExtensions
         where TTargetViewModel : class, ICrossViewModel =>
         view.CreateViewControllerFor<TTargetViewModel>(parameterObject.ToSimplePropertyDictionary());
 
-    // TODO - could this move down to IMvxView level?
     public static IMvxIosView? CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
         this IMvxIosViewCreator viewCreator,
         IDictionary<string, string>? parameterValues = null)
@@ -21,5 +21,25 @@ public static class MvxCanCreateIosViewExtensions
         var parameterBundle = new CrossBundle(parameterValues);
         var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
         return viewCreator.CreateView(request);
+    }
+
+    public static IMvxIosView? CreateViewControllerFor(
+        this IMvxCanCreateIosView view,
+        CrossViewModelRequest request)
+    {
+        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateView(request); 
+    }
+
+    public static IMvxIosView? CreateViewControllerFor(
+        this IMvxCanCreateIosView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType)
+    {
+        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateViewOfType(viewType);
+    }
+
+    public static IMvxIosView? CreateViewControllerFor(
+        this IMvxCanCreateIosView view,
+        ICrossViewModel viewModel)
+    {
+        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>()?.CreateView(viewModel);
     }
 }

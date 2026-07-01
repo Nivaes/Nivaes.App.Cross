@@ -1,9 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.Ios.Presenters;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
 
 namespace Nivaes.App.Cross.UIKitOS
 {
@@ -29,8 +26,8 @@ namespace Nivaes.App.Cross.UIKitOS
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer, IMvxIosViewCreator viewCreator,
-            ILogger<MvxIosViewPresenter> logger)
+        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer, 
+            IMvxIosViewCreator viewCreator, ILogger<MvxIosViewPresenter> logger)
             : base(crossViewsContainer, logger)
         {
             _viewCreator = viewCreator;

@@ -1,22 +1,18 @@
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
+namespace Nivaes.App.Cross.UIKitOS;
+
+public class MvxPopoverPresentationAttribute
+    : CrossBasePresentationAttribute
 {
-    using Nivaes.App.Cross;
+    public static readonly bool DefaultWrapInNavigationController = false;
+    public static readonly CGSize DefaultPreferredContentSize = CGSize.Empty;
+    public static readonly bool DefaultAnimated = true;
+    public static readonly UIPopoverArrowDirection DefaultPermittedArrowDirections = UIPopoverArrowDirection.Any;
 
+    public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
 
-    public class MvxPopoverPresentationAttribute
-        : CrossBasePresentationAttribute
-    {
-        public static readonly bool DefaultWrapInNavigationController = false;
-        public static readonly CGSize DefaultPreferredContentSize = CGSize.Empty;
-        public static readonly bool DefaultAnimated = true;
-        public static readonly UIPopoverArrowDirection DefaultPermittedArrowDirections = UIPopoverArrowDirection.Any;
+    public CGSize PreferredContentSize { get; set; } = DefaultPreferredContentSize;
 
-        public bool WrapInNavigationController { get; set; } = DefaultWrapInNavigationController;
+    public bool Animated { get; set; } = DefaultAnimated;
 
-        public CGSize PreferredContentSize { get; set; } = DefaultPreferredContentSize;
-
-        public bool Animated { get; set; } = DefaultAnimated;
-
-        public UIPopoverArrowDirection PermittedArrowDirections { get; set; } = DefaultPermittedArrowDirections;
-    }
+    public UIPopoverArrowDirection PermittedArrowDirections { get; set; } = DefaultPermittedArrowDirections;
 }

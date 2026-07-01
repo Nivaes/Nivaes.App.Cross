@@ -1,10 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Presenters.Attributes
-{
-    using Nivaes.App.Cross;
+namespace Nivaes.App.Cross.UIKitOS;
 
-    public class MvxChildPresentationAttribute : CrossBasePresentationAttribute
-    {
-        public static readonly bool DefaultAnimated = true;
-        public bool Animated { get; set; } = DefaultAnimated;
-    }
+public class MvxChildPresentationAttribute : CrossBasePresentationAttribute
+{
+    public static readonly bool DefaultAnimated = true;
+    public bool Animated { get; set; } = DefaultAnimated;
 }
