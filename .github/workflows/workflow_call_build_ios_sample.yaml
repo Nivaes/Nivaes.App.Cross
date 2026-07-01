@@ -80,4 +80,4 @@ jobs:
             --configuration Release \
             --property:EnableCodeSigning=false \
             --verbosity normal \
-            --property:RuntimeIdentifiers="maccatalyst-x64\;maccatalyst-arm64"
+            --property:RuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"

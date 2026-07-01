@@ -16,7 +16,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - uses: ./.github/actions/setup-android
+    - name: Setup Android SDK 
+      uses: ./.github/actions/setup-android
       with:
         global-json-file: ./global.json
 
