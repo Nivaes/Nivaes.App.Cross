@@ -56,12 +56,12 @@
       },
       "Nivaes.App.Shared": {
         "type": "Direct",
-        "requested": "[0.9.11, )",
-        "resolved": "0.9.11",
-        "contentHash": "/apf3SPFi7WYd2b91oBu4ySnltMuRZGDAdf80ht7bPJW4f6+YHlDePzj6WhOjfl60OYtGKQ7BmJiCw2fSu2v3Q==",
+        "requested": "[0.9.16, )",
+        "resolved": "0.9.16",
+        "contentHash": "H5wsMosz0ZwpXzVFlqgpDRC9k2bebfq7uiiQKT6kXlhAM7L5BDYKxURvamaGAI5t4XptcjNQVx48Ze5di++1cA==",
         "dependencies": {
           "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "0.9.11",
+          "Nivaes.App.Shared.SourceGenerator": "0.9.16",
           "Nivaes.Extensions": "2.3.6"
         }
       },
@@ -234,8 +234,8 @@
       },
       "Nivaes.App.Shared.SourceGenerator": {
         "type": "Transitive",
-        "resolved": "0.9.11",
-        "contentHash": "n6oYU4jLhZ5AduhA9mMs9llMfxDrngQyL2ZbpuInL71Z9BYBmfajoECKXYsqcL25X3zDcNQBhMjfWr3RVN25pw==",
+        "resolved": "0.9.16",
+        "contentHash": "PfZexnioS7un2HsrI3rFemogYFNUf7610FkaOoYQpNnr8Zgj1tbn7Ed1smpYgF6EN7ybpN1TcYkgweh+PW1izQ==",
         "dependencies": {
           "Microsoft.Bcl.Memory": "10.0.9",
           "Microsoft.CodeAnalysis.CSharp": "5.6.0"
