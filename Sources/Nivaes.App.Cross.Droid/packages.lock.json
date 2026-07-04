@@ -1183,7 +1183,7 @@
       "nivaes.app.cross.droid.sourcegenerator": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.3.0, )"
+          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "nivaes.app.cross.sourcegenerator": {
