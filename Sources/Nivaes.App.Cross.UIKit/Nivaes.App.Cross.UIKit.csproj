@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>
 		<AssemblyName>Nivaes.App.Cross.UIKit</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross.UIKitOS</RootNamespace>
+		<RootNamespace>Nivaes.App.Cross.UIKitLib</RootNamespace>
 
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>

@@ -3,6 +3,9 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<AssemblyName>Nivaes.App.Cross.Sample</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Sample</RootNamespace>
+
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 

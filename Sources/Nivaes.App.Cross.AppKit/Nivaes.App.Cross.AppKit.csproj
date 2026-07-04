@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
+		<AssemblyName>Nivaes.App.AppKit</AssemblyName>
+		<RootNamespace>Nivaes.App.AppKitLib</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 

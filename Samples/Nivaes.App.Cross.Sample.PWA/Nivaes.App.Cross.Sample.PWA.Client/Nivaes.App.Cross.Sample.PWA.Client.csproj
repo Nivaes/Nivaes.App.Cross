@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+
+	  <AssemblyName>Nivaes.App.Cross.Sample.PWA.Client</AssemblyName>
+	  <RootNamespace>Nivaes.App.Cross.Sample.PWA.Client</RootNamespace>
+	  
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>

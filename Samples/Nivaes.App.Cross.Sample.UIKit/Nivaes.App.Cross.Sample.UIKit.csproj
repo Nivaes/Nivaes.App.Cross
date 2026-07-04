@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets)</TargetFrameworks>
+		<AssemblyName>Nivaes.App.Cross.Sample.UIKit</AssemblyName>
+		<RootNamespace>Nivaes.App.CrossSample.UIKitLib</RootNamespace>
+
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 

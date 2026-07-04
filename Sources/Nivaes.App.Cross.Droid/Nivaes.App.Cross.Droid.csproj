@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
+	  <AssemblyName>Nivaes.App.Droid</AssemblyName>
+	  <RootNamespace>Nivaes.App.Droid</RootNamespace>
 	  
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

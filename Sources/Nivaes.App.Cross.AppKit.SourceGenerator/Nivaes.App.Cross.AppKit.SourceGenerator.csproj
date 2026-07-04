@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 
 	  <AssemblyName>Nivaes.App.Cross.AppKit.SourceGenerator</AssemblyName>
-	  <RootNamespace>Nivaes.App.Cross.AppKitOS.SourceGenerator</RootNamespace>
+	  <RootNamespace>Nivaes.App.Cross.AppKitLib.SourceGenerator</RootNamespace>
 
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
