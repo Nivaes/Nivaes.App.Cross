@@ -23,4 +23,20 @@ namespace Nivaes.App.Cross
            : base(navigationService, logger)
         { }
     }
+
+    public abstract class BaseMainViewModelResult<TResult>
+     : BaseViewModelResult<TResult>, IBaseMainViewModel
+    {
+        protected BaseMainViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+           : base(navigationService, logger)
+        { }
+    }
+
+    public abstract class BaseMainViewModel<TParameter, TResult>
+        : BaseViewModel<TParameter, TResult>, IBaseMainViewModel
+    {
+        protected BaseMainViewModel(ICrossNavigationService navigationService, ILogger logger)
+           : base(navigationService, logger)
+        { }
+    }
 }

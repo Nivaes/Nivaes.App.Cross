@@ -24,19 +24,19 @@ namespace Nivaes.App.Cross
         { }
     }
 
-    //public abstract class SelectorDialogViewModelResult<TResult>
-    //   : DialogViewModelResult<TResult>, ISelectorDialogViewModel
-    //{
-    //    protected SelectorDialogViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class SelectorDialogViewModelResult<TResult>
+       : DialogViewModelResult<TResult>, ISelectorDialogViewModel
+    {
+        protected SelectorDialogViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
+    }
 
-    //public abstract class SelectorDialogViewModel<TParameter, TResult>
-    //    : DialogViewModel<TParameter, TResult>, ISelectorDialogViewModel
-    //{
-    //    protected SelectorDialogViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class SelectorDialogViewModel<TParameter, TResult>
+        : DialogViewModel<TParameter, TResult>, ISelectorDialogViewModel
+    {
+        protected SelectorDialogViewModel(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
+    }
 }

@@ -52,7 +52,6 @@ namespace Nivaes.App.Cross
 
     public abstract class BaseViewModel<TParameter>
         : CrossNavigationViewModel<TParameter>, IBaseViewModel, IInternalBaseViewModel
-            where TParameter : class
     {
         public string? Title { get; protected set; }
 
@@ -82,67 +81,65 @@ namespace Nivaes.App.Cross
         { }
     }
 
-    //public abstract class BaseViewModelResult<TResult>
-    //    : MvxNavigationViewModelResult<TResult>, IBaseViewModel, IInternalBaseViewModel
-    //        where TResult : class
-    //{
-    //    public string Title { get; protected set; }
+    public abstract class BaseViewModelResult<TResult>
+        : CrossNavigationViewModelResult<TResult>, IBaseViewModel, IInternalBaseViewModel
+    {
+        public string? Title { get; protected set; }
 
-    //    public ValidateController ValidateController { get; private set; }
+        public ValidateController ValidateController { get; private set; }
 
-    //    public IValidator Validator { get; set; }
+        public IValidator? Validator { get; set; }
 
-    //    protected BaseViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    {
-    //        ValidateController = new ValidateController(this);
-    //    }
+        protected BaseViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        {
+            ValidateController = new ValidateController(this);
+        }
 
-    //    public override void ViewAppeared()
-    //    {
-    //        base.ViewAppeared();
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
 
-    //        ValidateController.Initialize();
-    //    }
+            ValidateController.Initialize();
+        }
 
-    //    void IInternalBaseViewModel.OnDataModeChanged(ExPropertyChangedEventArgs args)
-    //    {
-    //        OnDataModeChanged(args);
-    //    }
+        void IInternalBaseViewModel.OnDataModeChanged(ExPropertyChangedEventArgs args)
+        {
+            OnDataModeChanged(args);
+        }
 
-    //    protected virtual void OnDataModeChanged(ExPropertyChangedEventArgs args)
-    //    { }
-    //}
+        protected virtual void OnDataModeChanged(ExPropertyChangedEventArgs args)
+        { }
+    }
 
-    //public abstract class BaseViewModel<TParameter, TResult>
-    //    : MvxNavigationViewModel<TParameter, TResult>, IBaseViewModel, IInternalBaseViewModel
-    //        where TParameter : class
-    //{
-    //    public string Title { get; protected set; }
+    public abstract class BaseViewModel<TParameter, TResult>
+        : CrossNavigationViewModel<TParameter, TResult>, IBaseViewModel, IInternalBaseViewModel
+    {
+        public string? Title { get; protected set; }
 
-    //    public ValidateController ValidateController { get; private set; }
+        public ValidateController ValidateController { get; private set; }
 
-    //    public IValidator Validator { get; set; }
- 
-    //    protected BaseViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    {
-    //        ValidateController = new ValidateController(this);
-    //    }
+        public IValidator? Validator { get; set; }
 
-    //    public override void ViewAppeared()
-    //    {
-    //        base.ViewAppeared();
+        protected BaseViewModel(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        {
+            ValidateController = new ValidateController(this);
+        }
 
-    //        ValidateController.Initialize();
-    //    }
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
 
-    //    void IInternalBaseViewModel.OnDataModeChanged(ExPropertyChangedEventArgs args)
-    //    {
-    //        OnDataModeChanged(args);
-    //    }
+            ValidateController.Initialize();
+        }
 
-    //    protected virtual void OnDataModeChanged(ExPropertyChangedEventArgs args)
-    //    { }
-    //}
+        void IInternalBaseViewModel.OnDataModeChanged(ExPropertyChangedEventArgs args)
+        {
+            OnDataModeChanged(args);
+        }
+
+        protected virtual void OnDataModeChanged(ExPropertyChangedEventArgs args)
+        { }
+    }
 }

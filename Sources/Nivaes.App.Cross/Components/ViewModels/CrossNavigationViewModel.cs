@@ -124,6 +124,36 @@ namespace Nivaes.App.Cross
         public abstract void Prepare(TParameter parameter);
     }
 
+    public abstract class CrossNavigationViewModelResult<TResult> 
+        : CrossNavigationViewModel, ICrossViewModelResult<TResult>
+    {
+        protected CrossNavigationViewModelResult(ICrossNavigationService navigationService, ILogger logger) 
+            : base(navigationService, logger)
+        {
+        }
+
+        public TaskCompletionSource<object>? CloseCompletionSource { get; set; }
+
+        public override void ViewDestroy(bool viewFinishing = true)
+        {
+            if (viewFinishing && CloseCompletionSource != null && !CloseCompletionSource.Task.IsCompleted && !CloseCompletionSource.Task.IsFaulted)
+                CloseCompletionSource?.TrySetCanceled();
+
+            base.ViewDestroy(viewFinishing);
+        }
+    }
+
+    public abstract class CrossNavigationViewModel<TParameter, TResult> : 
+        CrossNavigationViewModelResult<TResult>, ICrossViewModel<TParameter, TResult>
+    {
+        protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger) : 
+            base(navigationService, logger)
+        {
+        }
+
+        public abstract void Prepare(TParameter parameter);
+    }
+
     public abstract class CrossNavigationResultSettingViewModel<TResult>
         : CrossNavigationViewModel, ICrossResultSettingViewModel<TResult>
     {

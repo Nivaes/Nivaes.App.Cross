@@ -24,19 +24,19 @@ namespace Nivaes.App.Cross
         { }
     }
 
-    //public abstract class FullViewModelResult<TResult>
-    //   : BaseViewModelResult<TResult>, IFullViewModel
-    //{
-    //    protected FullViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //      : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class FullViewModelResult<TResult>
+       : BaseViewModelResult<TResult>, IFullViewModel
+    {
+        protected FullViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+          : base(navigationService, logger)
+        { }
+    }
 
-    //public abstract class FullViewModel<TParameter, TResult>
-    //    : BaseViewModel<TParameter, TResult>, IFullViewModel
-    //{
-    //    protected FullViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //      : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class FullViewModel<TParameter, TResult>
+        : BaseViewModel<TParameter, TResult>, IFullViewModel
+    {
+        protected FullViewModel(ICrossNavigationService navigationService, ILogger logger)
+          : base(navigationService, logger)
+        { }
+    }
 }

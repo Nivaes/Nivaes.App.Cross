@@ -54,6 +54,15 @@ public interface ICrossNavigationService
     Task<bool> Close(ICrossViewModel viewModel, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Closes the View attached to the ViewModel and returns a result to the underlaying ViewModel
+    /// </summary>
+    /// <typeparam name="TResult"></typeparam>
+    /// <param name="viewModel"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    Task<bool> Close<TResult>(ICrossViewModelResult<TResult> viewModel, TResult result, CancellationToken cancellationToken = default(CancellationToken));
+
+    /// <summary>
     /// Dispatches a ChangePresentation with Hint
     /// </summary>
     /// <param name="hint"></param>
@@ -68,7 +77,7 @@ public interface ICrossNavigationService
     /// <param name="cancellationToken">CancellationToken to cancel the navigation</param>
     /// <typeparam name="TViewModel">Type of <see cref="ICrossViewModel"/></typeparam>
     /// <returns>Boolean indicating successful navigation</returns>
-    Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+    Task<bool> Navigate<TViewModel>(
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel;
 
@@ -81,7 +90,7 @@ public interface ICrossNavigationService
     /// <typeparam name="TViewModel">Type of <see cref="ICrossViewModel{Parameter}"/></typeparam>
     /// <typeparam name="TParameter">Parameter passed to ViewModel</typeparam>
     /// <returns>Boolean indicating successful navigation</returns>
-    Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
+    Task<bool> Navigate<TViewModel, TParameter>(
         TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
             where TViewModel : ICrossViewModel<TParameter>;
 
@@ -98,10 +107,16 @@ public interface ICrossNavigationService
     /// <param name="presentationBundle">The presentation bungle.</param>
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if navigation was successful.</returns>
-    Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
+    Task<bool> Navigate<TViewModel, TParameter>(
         TParameter param, ICrossViewModel source, ICrossBundle? presentationBundle = null,
         CancellationToken cancellationToken = default) where TViewModel : ICrossViewModel<TParameter>
         where TParameter : notnull;
+
+    Task<TResult> Navigate<TViewModel, TResult>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        where TViewModel : ICrossViewModelResult<TResult>;
+
+    Task<TResult> Navigate<TViewModel, TParameter, TResult>(TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default(CancellationToken))
+        where TViewModel : ICrossViewModel<TParameter, TResult>;
 
     /// <summary>
     ///     Navigates to the viewmodel for the given type.
@@ -114,7 +129,7 @@ public interface ICrossNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
-    Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(ICrossViewModel source,
+    Task<bool> Navigate<TViewModel>(ICrossViewModel source,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel;
 }
