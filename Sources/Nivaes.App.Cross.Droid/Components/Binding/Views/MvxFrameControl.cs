@@ -1,14 +1,14 @@
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Views;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Observability;
-
     [Register("mvvmcross.platforms.android.binding.views.MvxFrameControl")]
     public class MvxFrameControl
         : FrameLayout, ICrossBindingContextOwner
