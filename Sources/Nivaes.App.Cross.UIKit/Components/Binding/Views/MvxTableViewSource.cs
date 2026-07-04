@@ -6,7 +6,7 @@ using Nivaes.App.Cross;
 using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class MvxTableViewSource : MvxBaseTableViewSource
     {

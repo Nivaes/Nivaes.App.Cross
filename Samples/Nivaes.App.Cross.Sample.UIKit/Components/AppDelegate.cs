@@ -1,6 +1,6 @@
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.UIKitLib;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS;
+namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [Register(nameof(AppDelegate))]
 public class AppDelegate : CrossAppDelegate

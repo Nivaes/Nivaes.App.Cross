@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 
-		<AssemblyName>Nivaes.App.Cross.Web.SourceGenerator</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross.Web.SourceGenerator</RootNamespace>
+		<AssemblyName>Nivaes.App.Cross.PWA.SourceGenerator</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.PWA.SourceGenerator</RootNamespace>
 
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
@@ -14,12 +14,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Nivaes.App.Cross.Web.SourceGenerator</PackageId>
-		<Title>Nivaes Web SourceGenerator</Title>
-		<Product>Nivaes App Cross Web SourceGenerator</Product>
+		<PackageId>Nivaes.App.Cross.PWA.SourceGenerator</PackageId>
+		<Title>Nivaes PWA SourceGenerator</Title>
+		<Product>Nivaes App Cross PWA SourceGenerator</Product>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-		<Description>Nivaes App Cross Web source generator.</Description>
-		<PackageTags>Nivaes;app;cross;Web;roslyn</PackageTags>
+		<Description>Nivaes App Cross PWA source generator.</Description>
+		<PackageTags>Nivaes;app;cross;PWA;roslyn</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>

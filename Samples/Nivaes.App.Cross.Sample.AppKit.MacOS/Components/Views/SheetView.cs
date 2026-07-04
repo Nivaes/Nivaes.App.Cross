@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using Nivaes.App.Cross.AppKitOS;
+using Nivaes.App.Cross.AppKitLib;
 using ObjCRuntime;
 
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;

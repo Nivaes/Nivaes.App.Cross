@@ -2,7 +2,7 @@
 using Nivaes.App.Cross.Observability;
 using OpenTelemetry.Logs;
 
-namespace Nivaes.App.Cross.UIKitOS.Observability
+namespace Nivaes.App.Cross.UIKitLib.Observability
 {
     public class UIKitCrashHandler : CrashHandler
     {

@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 
-namespace Nivaes.App.Cross.AppKitOS;
+namespace Nivaes.App.Cross.AppKitLib;
 
 [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
 public abstract class MvxApplicationDelegate :

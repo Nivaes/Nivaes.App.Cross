@@ -206,13 +206,13 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
+      "nivaes.app.cross.pwa.sourcegenerator": {
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
-      "Nivaes.App.Cross.Web.SourceGenerator": {
+      "nivaes.app.cross.sourcegenerator": {
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"

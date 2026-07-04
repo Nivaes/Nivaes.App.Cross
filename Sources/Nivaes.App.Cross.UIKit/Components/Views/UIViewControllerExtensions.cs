@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public static class UIViewControllerExtensions
     {

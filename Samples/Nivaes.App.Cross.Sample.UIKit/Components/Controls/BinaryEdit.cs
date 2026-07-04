@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [Register("BinaryEdit")]
     public class BinaryEdit : UIView

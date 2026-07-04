@@ -1,12 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitOS.Observability;
+using Nivaes.App.Cross.AppKitLib.Observability;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
-using ScreenCaptureKit;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
     public static class AppHostBuilderExtensions
     {

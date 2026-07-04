@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     internal sealed class CrossUnifiedTypesValueConverter
     : CrossValueConverter

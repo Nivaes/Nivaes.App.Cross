@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 //[Obsolete("1", true)]
 public static class MvxCanCreateIosViewExtensions

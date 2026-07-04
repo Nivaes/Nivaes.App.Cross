@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.AppKitOS;
+﻿namespace Nivaes.App.Cross.AppKitLib;
 
 public class NSExceptionWrapper : Exception
 {

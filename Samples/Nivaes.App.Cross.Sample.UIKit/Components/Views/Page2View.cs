@@ -1,8 +1,8 @@
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.UIKitLib;
 using ObjCRuntime;
 using Playground.Core.ViewModels;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {  
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]

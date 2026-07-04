@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross.AppKitOS;
+using Nivaes.App.Cross.AppKitLib;
 using Nivaes.App.Cross.Hosting;
 using OpenTelemetry;
 

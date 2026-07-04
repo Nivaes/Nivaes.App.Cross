@@ -3,7 +3,8 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>$(_CrossWindowsTargets)</TargetFrameworks>
 		<TargetPlatformMinVersion>$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
-		
+
+		<AssemblyName>Nivaes.App.Cross.Sample.WinUI</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x64;arm64</Platforms>

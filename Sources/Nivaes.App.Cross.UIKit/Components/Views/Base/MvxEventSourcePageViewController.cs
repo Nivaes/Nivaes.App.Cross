@@ -3,7 +3,7 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxEventSourcePageViewController
         : UIPageViewController, IMvxEventSourceViewController

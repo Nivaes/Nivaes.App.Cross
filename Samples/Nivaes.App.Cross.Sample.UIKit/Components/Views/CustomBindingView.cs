@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.UIKitLib;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS;
+namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
 [MvxChildPresentation]

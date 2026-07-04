@@ -6,10 +6,10 @@ using MvvmCross.Platforms.Ios.Binding;
 using MvvmCross.Platforms.Ios.Views.Expandable;
 using Nivaes.App.Cross;
 using Nivaes.App.Cross.Sample;
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.UIKitLib;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
     [MvxPagePresentation(WrapInNavigationController = false)]

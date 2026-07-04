@@ -1,7 +1,7 @@
 //using System.Diagnostics.CodeAnalysis;
 //using AppKit;
 //using Microsoft.Extensions.Logging;
-//using Nivaes.App.Cross.AppKitOS;
+//using Nivaes.App.Cross.AppKitLib;
 //using Serilog;
 //using Serilog.Extensions.Logging;
 

@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
-using Nivaes.App.Cross.UIKitOS.Observability;
+using Nivaes.App.Cross.UIKitLib.Observability;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public static class AppHostBuilderExtensions
     {

@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.UIKitLib;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [Register("SceneDelegate")]
     [RequiresUnreferencedCode("Uses Cross reflection based plugin loading")]

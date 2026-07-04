@@ -3,6 +3,8 @@
 		<TargetFramework>$(_CrossMacCatalystTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<MacCatalystMinimumVersion>$(_CrossMacCatalystVersion)</MacCatalystMinimumVersion>
+		<AssemblyName>Nivaes.App.Cross.Sample.UIKit.MacCatalyst</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Sample.UIKitLib.MacCatalyst</RootNamespace>
 
     	<ApplicationId>com.nivaes.cross.maccatalyst.sample</ApplicationId>
         <ApplicationTitle>NivaesCross</ApplicationTitle>

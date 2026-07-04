@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public static class CrossViewControllerAdaptingExtensions
     {

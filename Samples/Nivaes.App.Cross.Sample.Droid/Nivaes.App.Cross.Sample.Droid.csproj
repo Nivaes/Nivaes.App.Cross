@@ -3,7 +3,9 @@
 		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
 		<!--<Platforms>x64;arm64</Platforms>-->
 		<OutputType>Exe</OutputType>
-		
+		<AssemblyName>Nivaes.App.Cross.Sample.Droid</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Sample.Droid</RootNamespace>
+
 		<SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
 		<RuntimeIdentifiers>
 			android-arm64;

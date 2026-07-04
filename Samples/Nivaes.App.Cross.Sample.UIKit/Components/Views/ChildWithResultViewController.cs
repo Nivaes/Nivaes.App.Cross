@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Nivaes.App.Cross.Sample;
 
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public sealed class ChildWithResultViewController : MvxViewController<ChildWithResultViewModel>
