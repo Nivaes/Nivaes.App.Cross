@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
     //public abstract class SelectorDialogViewModelResult<TResult>
     //   : DialogViewModelResult<TResult>, ISelectorDialogViewModel
     //{
-    //    protected SelectorDialogViewModelResult(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected SelectorDialogViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
     //}
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
     //public abstract class SelectorDialogViewModel<TParameter, TResult>
     //    : DialogViewModel<TParameter, TResult>, ISelectorDialogViewModel
     //{
-    //    protected SelectorDialogViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected SelectorDialogViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
     //}

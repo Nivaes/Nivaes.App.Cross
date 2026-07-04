@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross
 
     //    public IValidator Validator { get; set; }
 
-    //    protected BaseViewModelResult(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected BaseViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    {
     //        ValidateController = new ValidateController(this);
@@ -124,7 +124,7 @@ namespace Nivaes.App.Cross
 
     //    public IValidator Validator { get; set; }
  
-    //    protected BaseViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected BaseViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    {
     //        ValidateController = new ValidateController(this);

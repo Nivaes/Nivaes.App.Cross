@@ -4,7 +4,7 @@
     "rollForward": "latestPatch"
   },
   "msbuild-sdks": {
-    "Aspire.AppHost.Sdk": "13.4.5"
+    "Aspire.AppHost.Sdk": "13.4.6"
   },
   "maccatalyst": {},
   "ios": {

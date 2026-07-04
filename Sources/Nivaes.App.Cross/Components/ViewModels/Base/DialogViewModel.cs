@@ -58,11 +58,11 @@ namespace Nivaes.App.Cross
     //    public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
     //    #endregion
 
-    //    protected DialogViewModelResult(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected DialogViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
 
-    //    public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(async () =>
+    //    public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
     //    {
     //        await base.NavigationService.Close(this).ConfigureAwait(false);
     //    });
@@ -76,11 +76,11 @@ namespace Nivaes.App.Cross
     //    public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
     //    #endregion
 
-    //    protected DialogViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected DialogViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
 
-    //    public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(async () =>
+    //    public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
     //    {
     //        await base.NavigationService.Close(this).ConfigureAwait(false);
     //    });

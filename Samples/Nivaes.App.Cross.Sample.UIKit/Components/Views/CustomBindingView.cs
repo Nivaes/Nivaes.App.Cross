@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Nivaes.App.Cross.UIKitOS;
 using ObjCRuntime;
 

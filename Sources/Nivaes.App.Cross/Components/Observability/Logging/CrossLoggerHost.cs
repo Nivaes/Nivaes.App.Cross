@@ -21,8 +21,5 @@ public static class CrossLoggerHost
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0) => _defaultLogger.CreateLogger($"{categoryName} - {member} ({file}:{line})");
 
-    public static ILogger GetLogger<T>(
-        [CallerMemberName] string member = "",
-        [CallerFilePath] string file = "",
-        [CallerLineNumber] int line = 0) => _defaultLogger.CreateLogger($"{typeof(T).Name}.{member} ({file}:{line})");
+    public static ILogger<T> GetLogger<T>() => _defaultLogger.CreateLogger<T>();
 }

@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
     //public abstract class BaseDetailViewModelResult<TResult>
     //    : BaseMainViewModelResult<TResult>, IBaseDetailViewModel
     //{
-    //    protected BaseDetailViewModelResult(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected BaseDetailViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
     //}
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross
     //public abstract class BaseDetailViewModel<TParameter, TResult>
     //    : BaseMainViewModel<TParameter, TResult>, IBaseDetailViewModel
     //{
-    //    protected BaseDetailViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService)
+    //    protected BaseDetailViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    { }
     //}

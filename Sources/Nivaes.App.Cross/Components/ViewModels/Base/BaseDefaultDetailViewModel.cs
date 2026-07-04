@@ -6,7 +6,7 @@ namespace Nivaes.App
     public abstract class BaseDefaultDetailViewModel
         : BaseMainViewModel
     {
-        protected BaseDefaultDetailViewModel(ILogger logger, ICrossNavigationService navigationService)
+        protected BaseDefaultDetailViewModel(ICrossNavigationService navigationService, ILogger logger)
            : base(navigationService, logger)
         { }
 
