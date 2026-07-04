@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross.AppKitOS;
+using Nivaes.App.Cross.AppKitLib;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;

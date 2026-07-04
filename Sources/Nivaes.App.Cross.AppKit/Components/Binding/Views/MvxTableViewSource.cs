@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using MvvmCross.Binding.Extensions;
 using MvvmCross.Platforms.Mac.Binding.Views;
 
-namespace Nivaes.App.Cross.AppKitOS;
+namespace Nivaes.App.Cross.AppKitLib;
 
 public class MvxTableViewSource : NSTableViewSource
 {

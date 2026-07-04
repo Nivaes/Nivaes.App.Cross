@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 public class MvxCollectionReusableView
     : UICollectionReusableView, IMvxBindable

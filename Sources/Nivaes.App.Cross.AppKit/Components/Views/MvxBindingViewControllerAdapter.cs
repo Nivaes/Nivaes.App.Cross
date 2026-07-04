@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
-namespace Nivaes.App.Cross.AppKitOS;
+namespace Nivaes.App.Cross.AppKitLib;
 
 public class MvxBindingViewControllerAdapter
     : MvxBaseViewControllerAdapter

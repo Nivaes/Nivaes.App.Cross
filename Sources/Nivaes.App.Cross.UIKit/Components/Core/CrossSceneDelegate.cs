@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 public abstract class CrossSceneDelegate
     : UIResponder, IUIWindowSceneDelegate,

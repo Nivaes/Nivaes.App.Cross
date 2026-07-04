@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
-		<AssemblyName>Nivaes.App.PWA</AssemblyName>
-		<RootNamespace>Nivaes.App.PWA</RootNamespace>
+		<AssemblyName>Nivaes.App.Cross.PWA</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.PWA</RootNamespace>
 		
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

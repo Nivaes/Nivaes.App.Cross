@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 public abstract class MvxBaseTableViewSource : UITableViewSource
 {

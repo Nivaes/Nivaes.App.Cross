@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [Register ("NestedModalView")]
     partial class NestedModalView

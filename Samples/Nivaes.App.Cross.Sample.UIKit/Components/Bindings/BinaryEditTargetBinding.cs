@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;

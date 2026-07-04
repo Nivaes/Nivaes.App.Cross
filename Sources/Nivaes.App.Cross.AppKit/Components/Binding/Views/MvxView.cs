@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.AppKitOS;
+namespace Nivaes.App.Cross.AppKitLib;
 
 public class MvxView
     : NSView

@@ -1,5 +1,5 @@
 ﻿using Nivaes.IoC;
-namespace Nivaes.App.Cross.UIKitOS;
+namespace Nivaes.App.Cross.UIKitLib;
 
 public partial class UIKitSubcontainer : IoCServiceContainer
 {

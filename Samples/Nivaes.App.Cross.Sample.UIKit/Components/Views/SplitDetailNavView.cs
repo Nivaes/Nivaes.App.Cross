@@ -1,6 +1,6 @@
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
-    using Nivaes.App.Cross.UIKitOS;
+    using Nivaes.App.Cross.UIKitLib;
     using ObjCRuntime;
 
     [MvxFromStoryboard("Main")]

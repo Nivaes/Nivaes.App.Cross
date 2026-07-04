@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
     using System.Reflection;
     using Microsoft.Extensions.Logging;

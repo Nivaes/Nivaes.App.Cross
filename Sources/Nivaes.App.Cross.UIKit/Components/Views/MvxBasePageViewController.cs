@@ -1,6 +1,6 @@
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxBasePageViewController<TViewModel>
         : MvxEventSourcePageViewController, IMvxIosView<TViewModel>, IMvxIosView

@@ -1,6 +1,6 @@
 using ObjCRuntime;
 
-namespace Nivaes.App.Cross.UIKitOS
+namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxBaseTabBarViewController<TViewModel>
       : MvxEventSourceTabBarController, IMvxIosView<TViewModel>, IMvxIosView

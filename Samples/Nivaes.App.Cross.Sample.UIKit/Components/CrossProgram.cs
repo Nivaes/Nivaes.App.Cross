@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.App.Cross.UIKitOS;
+using Nivaes.App.Cross.Sample.UIKitLib;
+using Nivaes.App.Cross.UIKitLib;
 using OpenTelemetry;
 
-namespace Nivaes.App.Cross.Sample.UIKitOS
+namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     public static class CrossProgram
     {

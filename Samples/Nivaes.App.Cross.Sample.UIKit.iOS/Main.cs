@@ -1,6 +1,6 @@
-using Nivaes.App.Cross.Sample.UIKitOS;
+using Nivaes.App.Cross.Sample.UIKitLib;
 
-namespace Nivaes.App.Cross.Sample.UIKit.iOS
+namespace Nivaes.App.Cross.Sample.UIKitLib.iOS
 {
     public class Application
     {
