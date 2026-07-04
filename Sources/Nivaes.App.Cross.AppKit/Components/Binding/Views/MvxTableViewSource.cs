@@ -155,11 +155,11 @@ public class MvxTableViewSource : NSTableViewSource
     /// Debug-only method that validates the <see cref="SelectionChangedCommand"/> implementation to ensure it can
     /// properly handle empty selections for value types.
     /// For example, if <see cref="ItemsSource"/> is a collection of integers (or other value types) and the
-    /// <see cref="SelectionChangedCommand"/> is implemented with a signature <c>MvxCommand&lt;int&gt;</c>,
+    /// <see cref="SelectionChangedCommand"/> is implemented with a signature <c>CrossCommand&lt;int&gt;</c>,
     /// we cannot distinguish between an empty selection and when item <c>0</c> is selected
-    /// (because <c>null</c> becomes <c>default(int)==0</c> when passed into <c>MvxCommand&lt;int&gt;</c>).
+    /// (because <c>null</c> becomes <c>default(int)==0</c> when passed into <c>CrossCommand&lt;int&gt;</c>).
     /// To properly handle empty selections, provide a command with a nullable argument,
-    /// such as <c>MvxCommand&lt;Nullable&lt;int&gt;&gt;</c>.
+    /// such as <c>CrossCommand&lt;Nullable&lt;int&gt;&gt;</c>.
     /// </summary>
     [Conditional("DEBUG")]
     [SuppressMessage("ILLink", "IL2075", Justification = "Method is DEBUG-only and uses reflection for debug checks. Trimming is not expected/problematic for this specific debug-time code.")]

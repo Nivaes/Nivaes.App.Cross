@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross
             {
                 if (_commandLookup.Count == 0)
                 {
-                    CrossLoggerHost.GetLogger<CrossCommandCollection>().Log(LogLevel.Trace, "MvxCommandCollection is empty - did you forget to add your commands?");
+                    CrossLoggerHost.GetLogger<CrossCommandCollection>().Log(LogLevel.Trace, "CrossCommandCollection is empty - did you forget to add your commands?");
                     return null;
                 }
 

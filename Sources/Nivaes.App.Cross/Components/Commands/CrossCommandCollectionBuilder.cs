@@ -48,9 +48,9 @@ namespace Nivaes.App.Cross
             var canExecuteProperty = CanExecutePropertyInfo(owner.GetType(), commandMethod);
 
             var helper = hasParameter
-                ? (IMvxCommandBuilder)
+                ? (ICrossCommandBuilder)
                 new MvxParameterizedCommandBuilder(commandMethod, canExecuteProperty)
-                : new MvxCommandBuilder(commandMethod, canExecuteProperty);
+                : new CrossCommandBuilder(commandMethod, canExecuteProperty);
 
             var command = helper.ToCommand(owner);
             collection.Add(command, commandName, helper.CanExecutePropertyName);
@@ -124,14 +124,14 @@ namespace Nivaes.App.Cross
 
         #region Nested classes for building commands by reflection - 'hidden as nested' currently as they are not used anywhere else
 
-        public interface IMvxCommandBuilder
+        public interface ICrossCommandBuilder
         {
             ICrossCommand ToCommand(object owner);
 
             string? CanExecutePropertyName { get; }
         }
 
-        public abstract class MvxBaseCommandBuilder : IMvxCommandBuilder
+        public abstract class MvxBaseCommandBuilder : ICrossCommandBuilder
         {
             protected MethodInfo ExecuteMethodInfo { get; }
             protected PropertyInfo? CanExecutePropertyInfo { get; }
@@ -147,9 +147,9 @@ namespace Nivaes.App.Cross
             public string? CanExecutePropertyName => CanExecutePropertyInfo?.Name;
         }
 
-        public class MvxCommandBuilder : MvxBaseCommandBuilder
+        public class CrossCommandBuilder : MvxBaseCommandBuilder
         {
-            public MvxCommandBuilder(MethodInfo executeMethodInfo, PropertyInfo? canExecutePropertyInfo)
+            public CrossCommandBuilder(MethodInfo executeMethodInfo, PropertyInfo? canExecutePropertyInfo)
                 : base(executeMethodInfo, canExecutePropertyInfo)
             {
             }

@@ -6,18 +6,18 @@ namespace Nivaes.App.Cross
     /// protected override void ReloadFromBundle(IMvxBundle state)
     /// {
     ///     base.ReloadFromBundle(state);
-    ///     this.ReloadAndRegisterToResult&lt;<typeparamref name="TResult"/>&gt;(state, Mvx.IoCProvider.Resolve&lt;IMvxResultViewModelManager&gt;());
+    ///     this.ReloadAndRegisterToResult&lt;<typeparamref name="TResult"/>&gt;(state, IPlatformApplication.Current!.Services.GetRequiredService&lt;IMvxResultViewModelManager&gt;());
     /// }
     /// protected override void SaveStateToBundle(IMvxBundle bundle)
     /// {
     ///     base.SaveStateToBundle(bundle);
-    ///     this.SaveRegisterToResult&lt;<typeparamref name="TResult"/>&gt;(bundle, Mvx.IoCProvider.Resolve&lt;IMvxResultViewModelManager&gt;());
+    ///     this.SaveRegisterToResult&lt;<typeparamref name="TResult"/>&gt;(bundle, IPlatformApplication.Current!.Services.GetRequiredService&lt;IMvxResultViewModelManager&gt;());
     /// }
     /// public override ViewDestroy(bool viewFinishing = true)
     /// {
     ///     base.ViewDestroy();
     ///     if (viewFinishing)
-    ///         this.UnregisterToResult&lt;<typeparamref name="TResult"/>&gt;(Mvx.IoCProvider.Resolve&lt;IMvxResultViewModelManager&gt;());
+    ///         this.UnregisterToResult&lt;<typeparamref name="TResult"/>&gt;(IPlatformApplication.Current!.Services.GetRequiredService&lt;IMvxResultViewModelManager&gt;());
     /// }
     /// </code>
     /// </summary>
