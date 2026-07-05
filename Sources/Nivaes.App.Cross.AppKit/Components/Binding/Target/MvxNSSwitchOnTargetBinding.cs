@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSSwitchOnTargetBinding
         : MvxPropertyInfoTargetBinding<NSButton>
     {
@@ -13,7 +12,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var checkBox = View;
             if (checkBox == null)
             {
-                CrossBindingLogger.Instance?.LogError("NSButton is null in MvxNSSwitchOnTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSSwitchOnTargetBinding>().
+                    LogError($"{nameof(NSTextView)} is null in {nameof(MvxNSSwitchOnTargetBinding)}");
             }
             else
             {

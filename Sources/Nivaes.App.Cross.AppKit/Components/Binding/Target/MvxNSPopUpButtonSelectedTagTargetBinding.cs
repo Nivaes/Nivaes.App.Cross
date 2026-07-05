@@ -1,11 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System;
-    using System.Reflection;
-    using AppKit;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSPopUpButtonSelectedTagTargetBinding
         : MvxPropertyInfoTargetBinding<NSPopUpButton>
     {
@@ -16,7 +13,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
         {
         }
 
-        private void HandleValueChanged(object sender, EventArgs e)
+        private void HandleValueChanged(object? sender, EventArgs e)
         {
             var view = View;
             if (view == null)
@@ -35,7 +32,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var popupButton = View;
             if (popupButton == null)
             {
-                CrossBindingLogger.Instance?.LogError("NSPopUpButton is null in MvxNSPopUpButtonSelectedTagTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSPopUpButtonSelectedTagTargetBinding>()
+                    .LogError($"{nameof(NSPopUpButton)} is null in {nameof(MvxNSPopUpButtonSelectedTagTargetBinding)}");
                 return;
             }
 
@@ -43,7 +41,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             popupButton.Activated += HandleValueChanged;
         }
 
-        protected override void SetValueImpl(object target, object value)
+        protected override void SetValueImpl(object? target, object? value)
         {
             var view = target as NSPopUpButton;
             if (view == null)

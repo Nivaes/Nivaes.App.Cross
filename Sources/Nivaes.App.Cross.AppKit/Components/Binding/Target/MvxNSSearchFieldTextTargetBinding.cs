@@ -1,12 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System.Reflection;
-    using AppKit;
-    using Foundation;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using ObjCRuntime;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using ObjCRuntime;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSSearchFieldTextTargetBinding
         : MvxPropertyInfoTargetBinding<NSSearchField>
     {
@@ -16,8 +13,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var searchField = View;
             if (searchField == null)
             {
-                CrossBindingLogger.Instance?.LogError(
-                                      "NSSearchField is null in MvxNSSearchFieldTextTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSSearchFieldTextTargetBinding>().LogError(
+                                      $"{nameof(NSTextView)} is null in {nameof(MvxNSSearchFieldTextTargetBinding)} ");
             }
             else
             {
@@ -45,7 +42,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
                 var searchBar = View;
                 if (searchBar != null)
                 {
-                    //                    searchBar.TextChanged -= HandleSearchBarValueChanged;
+                    //searchBar.TextChanged -= HandleSearchBarValueChanged;
                 }
             }
         }

@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Views
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
-    using ObjCRuntime;
+using System.Diagnostics.CodeAnalysis;
+using ObjCRuntime;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     [Register("MvxTableCellView")]
     public class MvxTableCellView : NSTableCellView, ICrossBindingContextOwner, ICrossDataConsumer
     {
@@ -70,16 +69,16 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
             this.CreateBindingContext(bindingText);
         }
 
-        public ICrossBindingContext BindingContext
+        public ICrossBindingContext? BindingContext
         {
             get;
             set;
         }
 
-        public object DataContext
+        public object? DataContext
         {
-            get { return this.BindingContext.DataContext; }
-            set { this.BindingContext.DataContext = value; }
+            get { return this.BindingContext?.DataContext; }
+            set { this.BindingContext?.DataContext = value; }
         }
 
         public string Text
@@ -98,7 +97,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Views
         {
             if (disposing)
             {
-                this.BindingContext.ClearAllBindings();
+                this.BindingContext?.ClearAllBindings();
             }
             base.Dispose(disposing);
         }

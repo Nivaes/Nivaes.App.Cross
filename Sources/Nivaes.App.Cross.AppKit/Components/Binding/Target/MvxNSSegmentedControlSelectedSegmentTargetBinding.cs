@@ -1,11 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System;
-    using System.Reflection;
-    using AppKit;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSSegmentedControlSelectedSegmentTargetBinding
         : MvxPropertyInfoTargetBinding<NSSegmentedControl>
     {

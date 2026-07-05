@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSTextFieldTextTargetBinding
         : MvxPropertyInfoTargetBinding<NSTextField>
     {
@@ -13,7 +12,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var editText = View;
             if (editText == null)
             {
-                CrossBindingLogger.Instance?.LogError("NSTextField is null in MvxNSTextFieldTextTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSTextFieldTextTargetBinding>()
+                    .LogError($"{nameof(NSTextView)} is null in {nameof(MvxNSTextFieldTextTargetBinding)}");
             }
             else
             {
@@ -21,7 +21,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             }
         }
 
-        private void HandleEditTextChanged(object sender, EventArgs e)
+        private void HandleEditTextChanged(object? sender, EventArgs e)
         {
             var view = View;
             if (view == null)

@@ -1,9 +1,9 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSSliderValueTargetBinding : MvxPropertyInfoTargetBinding<NSSlider>
     {
         public MvxNSSliderValueTargetBinding(object target, PropertyInfo targetPropertyInfo)
@@ -12,7 +12,7 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var slider = View;
             if (slider == null)
             {
-                CrossBindingLogger.Instance?.LogError("NSSlider is null in MvxNSSliderValueTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSSliderValueTargetBinding>().LogError($"NSSlider is null in {nameof(MvxNSSliderValueTargetBinding)}");
             }
             else
             {

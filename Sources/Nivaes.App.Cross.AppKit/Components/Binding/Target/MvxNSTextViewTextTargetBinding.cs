@@ -1,8 +1,8 @@
-namespace MvvmCross.Platforms.Mac.Binding.Target
-{
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
 
+namespace Nivaes.App.Cross.AppKitLib
+{
     public class MvxNSTextViewTextTargetBinding : MvxConvertingTargetBinding<NSTextView, string>
     {
         public MvxNSTextViewTextTargetBinding(NSTextView target)
@@ -11,8 +11,8 @@ namespace MvvmCross.Platforms.Mac.Binding.Target
             var editText = Target;
             if (editText == null)
             {
-                CrossBindingLogger.Instance?.LogError(
-                                      "NSTextView is null in MvxNSTextViewTextTargetBinding");
+                CrossBindingLogger.GetLogger<MvxNSTextViewTextTargetBinding>().LogError(
+                                      $"{nameof(NSTextView)} is null in {nameof(MvxNSTextViewTextTargetBinding)}");
             }
         }
 
