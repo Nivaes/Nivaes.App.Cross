@@ -24,19 +24,19 @@ namespace Nivaes.App.Cross
         { }
     }
 
-    //public abstract class BaseDetailViewModelResult<TResult>
-    //    : BaseMainViewModelResult<TResult>, IBaseDetailViewModel
-    //{
-    //    protected BaseDetailViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class BaseDetailViewModelResult<TResult>
+        : BaseMainViewModelResult<TResult>, IBaseDetailViewModel
+    {
+        protected BaseDetailViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
+    }
 
-    //public abstract class BaseDetailViewModel<TParameter, TResult>
-    //    : BaseMainViewModel<TParameter, TResult>, IBaseDetailViewModel
-    //{
-    //    protected BaseDetailViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
-    //}
+    public abstract class BaseDetailViewModel<TParameter, TResult>
+        : BaseMainViewModel<TParameter, TResult>, IBaseDetailViewModel
+    {
+        protected BaseDetailViewModel(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
+    }
 }

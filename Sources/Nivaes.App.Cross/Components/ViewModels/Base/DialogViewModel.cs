@@ -33,7 +33,6 @@ namespace Nivaes.App.Cross
 
     public abstract class DialogViewModel<TParameter>
         : BaseViewModel<TParameter>, IDialogViewModel
-            where TParameter : class
     {
         #region Localization
         public virtual string AcceptButtonLabel => DialogLocalizationString.AcceptButtonLabel;
@@ -50,39 +49,39 @@ namespace Nivaes.App.Cross
         });
     }
 
-    //public abstract class DialogViewModelResult<TResult>
-    //   : BaseViewModelResult<TResult>, IDialogViewModel
-    //{
-    //    #region Localization
-    //    public virtual string AcceptButtonLabel => DialogLocalizationString.AcceptButtonLabel;
-    //    public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
-    //    #endregion
+    public abstract class DialogViewModelResult<TResult>
+       : BaseViewModelResult<TResult>, IDialogViewModel
+    {
+        #region Localization
+        public virtual string AcceptButtonLabel => DialogLocalizationString.AcceptButtonLabel;
+        public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
+        #endregion
 
-    //    protected DialogViewModelResult(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
+        protected DialogViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
 
-    //    public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
-    //    {
-    //        await base.NavigationService.Close(this).ConfigureAwait(false);
-    //    });
-    //}
+        public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
+        {
+            await base.NavigationService.Close(this).ConfigureAwait(false);
+        });
+    }
 
-    //public abstract class DialogViewModel<TParameter, TResult>
-    //    : BaseViewModel<TParameter, TResult>, IDialogViewModel
-    //{
-    //    #region Localization
-    //    public virtual string AcceptButtonLabel => DialogLocalizationString.AcceptButtonLabel;
-    //    public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
-    //    #endregion
+    public abstract class DialogViewModel<TParameter, TResult>
+        : BaseViewModel<TParameter, TResult>, IDialogViewModel
+    {
+        #region Localization
+        public virtual string AcceptButtonLabel => DialogLocalizationString.AcceptButtonLabel;
+        public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
+        #endregion
 
-    //    protected DialogViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    { }
+        protected DialogViewModel(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        { }
 
-    //    public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
-    //    {
-    //        await base.NavigationService.Close(this).ConfigureAwait(false);
-    //    });
-    //}
+        public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
+        {
+            await base.NavigationService.Close(this).ConfigureAwait(false);
+        });
+    }
 }

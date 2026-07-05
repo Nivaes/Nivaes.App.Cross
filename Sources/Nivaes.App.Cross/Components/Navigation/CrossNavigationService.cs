@@ -227,6 +227,10 @@ public class CrossNavigationService
 
         return close;
     }
+    public Task<bool> Close<TResult>(ICrossViewModelResult<TResult> viewModel, TResult result, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
 
     protected virtual void OnWillNavigate(object sender, ICrossNavigateEventArgs e)
     {
@@ -271,7 +275,7 @@ public class CrossNavigationService
     /// <param name="presentationBundle">The presentation bungle.</param>
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if navigation was successful.</returns>
-    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
+    public virtual Task<bool> Navigate<TViewModel, TParameter>(
         TParameter param, ICrossViewModel source, ICrossBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
             where TViewModel : ICrossViewModel<TParameter>
@@ -285,6 +289,16 @@ public class CrossNavigationService
         };
         mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
         return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
+    }
+
+    public Task<TResult> Navigate<TViewModel, TResult>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default) where TViewModel : ICrossViewModelResult<TResult>
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TResult> Navigate<TViewModel, TParameter, TResult>(TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default) where TViewModel : ICrossViewModel<TParameter, TResult>
+    {
+        throw new NotImplementedException();
     }
 
     ///// <summary>
