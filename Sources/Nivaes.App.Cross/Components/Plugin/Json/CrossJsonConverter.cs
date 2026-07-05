@@ -1,4 +1,4 @@
-namespace MvvmCross.Plugin.Json
+namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;

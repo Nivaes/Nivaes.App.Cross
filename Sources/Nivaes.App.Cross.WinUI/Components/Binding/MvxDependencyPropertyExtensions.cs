@@ -1,15 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using System.Reflection;
 using Microsoft.UI.Xaml;
 
-namespace MvvmCross.Platforms.WinUi.Binding
+namespace Nivaes.App.Cross.WinUI
 {
     public static class MvxDependencyPropertyExtensions
     {
-        public static PropertyInfo FindActualProperty(this Type type, string name)
+        public static PropertyInfo? FindActualProperty(this Type type, string name)
         {
             if (string.IsNullOrEmpty(name))
                 return null;
@@ -18,7 +14,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             return property;
         }
 
-        private static PropertyInfo FindDependencyPropertyInfo(Type type, string dependencyPropertyName)
+        private static PropertyInfo? FindDependencyPropertyInfo(Type type, string dependencyPropertyName)
         {
             if (string.IsNullOrEmpty(dependencyPropertyName))
                 return null;
@@ -46,7 +42,7 @@ namespace MvvmCross.Platforms.WinUi.Binding
             return null;
         }
 
-        public static DependencyProperty FindDependencyProperty(this Type type, string name)
+        public static DependencyProperty? FindDependencyProperty(this Type type, string name)
         {
             if (string.IsNullOrEmpty(name))
                 return null;

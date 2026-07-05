@@ -1,6 +1,4 @@
-using Nivaes.App.Cross;
-
-namespace MvvmCross.Plugin.ResourceLoader;
+namespace Nivaes.App.Cross;
 
 public abstract class MvxResourceLoader
     : ICrossResourceLoader
