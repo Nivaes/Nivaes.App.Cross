@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
-		<!--<Platforms>x64;arm64</Platforms>-->
 		<OutputType>Exe</OutputType>
 		<AssemblyName>Nivaes.App.Cross.Sample.Droid</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.Droid</RootNamespace>
@@ -17,12 +16,6 @@
 		<ApplicationId>com.nivaes.app.sample.cross</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<!--		
-      Enables trim analyzers and full trimming during Release mode.
-      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
-    -->
-		<!--<IsPackable>false</IsPackable>-->
-		<!--<GeneratePackageOnBuild>false</GeneratePackageOnBuild>-->
 
 		<RunAOTAnalysis>true</RunAOTAnalysis>
 		<IsAotCompatible>true</IsAotCompatible>

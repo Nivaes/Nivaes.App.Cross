@@ -1,8 +1,7 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
+using System.Diagnostics.CodeAnalysis;
 
+namespace Nivaes.App.Cross.UIKitLib
+{
     public class MvxUITextFieldTextFocusTargetBinding(UITextField target)
         : CrossTargetBinding(target)
     {

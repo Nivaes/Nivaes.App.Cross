@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Input;
-    using Nivaes.App.Cross;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
 
+namespace Nivaes.App.Cross.UIKitLib
+{
     public class MvxUITextFieldShouldReturnTargetBinding
         : CrossTargetBinding
     {

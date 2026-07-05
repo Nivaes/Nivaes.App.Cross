@@ -20,17 +20,6 @@
         "resolved": "10.0.9",
         "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
       },
-      "Nivaes.App.Shared": {
-        "type": "Direct",
-        "requested": "[0.9.16, )",
-        "resolved": "0.9.16",
-        "contentHash": "H5wsMosz0ZwpXzVFlqgpDRC9k2bebfq7uiiQKT6kXlhAM7L5BDYKxURvamaGAI5t4XptcjNQVx48Ze5di++1cA==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "0.9.16",
-          "Nivaes.Extensions": "2.3.6"
-        }
-      },
       "Roslynator.Analyzers": {
         "type": "Direct",
         "requested": "[4.15.0, )",
@@ -357,6 +346,17 @@
         "requested": "[0.1.5, )",
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
+      },
+      "Nivaes.App.Shared": {
+        "type": "CentralTransitive",
+        "requested": "[0.9.16, )",
+        "resolved": "0.9.16",
+        "contentHash": "H5wsMosz0ZwpXzVFlqgpDRC9k2bebfq7uiiQKT6kXlhAM7L5BDYKxURvamaGAI5t4XptcjNQVx48Ze5di++1cA==",
+        "dependencies": {
+          "MemoryPack": "1.21.4",
+          "Nivaes.App.Shared.SourceGenerator": "0.9.16",
+          "Nivaes.Extensions": "2.3.6"
+        }
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",

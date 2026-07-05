@@ -1,4 +1,4 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
+namespace Nivaes.App.Cross.UIKitLib
 {
     using System.Diagnostics.CodeAnalysis;
     using Nivaes.App.Cross;

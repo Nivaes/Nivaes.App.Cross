@@ -8,18 +8,13 @@
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x64;arm64</Platforms>
-		<!--<PublishProfile>win-$(Platform).pubxml</PublishProfile>-->
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<Nullable>enable</Nullable>
 
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>false</IsPackable>
-
-		<!--<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>-->
-		<!--<AppxBundle>Always</AppxBundle>
-		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>-->
-		
+	
 		<IsAotCompatible>false</IsAotCompatible>
 		<!--<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>-->
 		<!--<TrimMode Condition="'$(Configuration)' == 'Release'">link</TrimMode>-->

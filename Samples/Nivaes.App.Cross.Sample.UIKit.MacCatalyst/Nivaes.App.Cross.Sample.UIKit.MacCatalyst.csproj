@@ -6,20 +6,22 @@
 		<AssemblyName>Nivaes.App.Cross.Sample.UIKit.MacCatalyst</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.UIKitLib.MacCatalyst</RootNamespace>
 
-    	<ApplicationId>com.nivaes.cross.maccatalyst.sample</ApplicationId>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		
+		<ApplicationId>com.nivaes.cross.maccatalyst.sample</ApplicationId>
         <ApplicationTitle>NivaesCross</ApplicationTitle>
         <ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
         <ValidateXcodeVersion>false</ValidateXcodeVersion>
-	
+
+		<PublishTrimmed>true</PublishTrimmed>
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 		<IsPackable>false</IsPackable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<!-- <PublishAot>true</PublishAot> -->
 		<!--<StartupObject>Nivaes.App.Cross.Sample.UIKit.MacCatalyst</StartupObject>-->
-
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>true</ImplicitUsings>
 	</PropertyGroup>
+	
 	<ItemGroup>
 	  <BundleResource Remove="Resources\home%402x.png" />
 	  <BundleResource Remove="Resources\home%403x.png" />
@@ -41,10 +43,8 @@
 	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Nivaes.App.Shared" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj" />
+		<TrimmerRootAssembly Include="Nivaes.App.Cross.Sample.UIKit" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">

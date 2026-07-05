@@ -1,12 +1,10 @@
 #if IOS || MACCATALYST
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using MvvmCross.Platforms.Ios;
-
     public abstract class MvxBaseUIDatePickerTargetBinding(
         UIDatePicker target,
         PropertyInfo targetPropertyInfo)

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MvvmCross.Platforms.Ios.Binding;
-using MvvmCross.Platforms.Ios.Binding.Target;
+using Nivaes.App.Cross.UIKit;
 
 namespace Nivaes.App.Cross.UIKitLib
 {

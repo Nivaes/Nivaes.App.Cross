@@ -1,9 +1,8 @@
-namespace MvvmCross.Platforms.Ios.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.UIKitLib
+{
     public class MvxUIViewVisibilityTargetBinding(UIView target)
         : CrossConvertingTargetBinding(target)
     {

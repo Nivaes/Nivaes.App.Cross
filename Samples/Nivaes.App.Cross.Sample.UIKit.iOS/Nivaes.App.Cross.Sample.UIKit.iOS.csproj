@@ -4,19 +4,21 @@
 		<OutputType>Exe</OutputType>
         <SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
 		<AssemblyName>Nivaes.App.Cross.Sample.UIKit.iOS</AssemblyName>
-		<RootNamespace>Nivaes.App.Cross.Sample.UIKitLib.iOS</RootNamespace>	
+		<RootNamespace>Nivaes.App.Cross.Sample.UIKitLib.iOS</RootNamespace>
+
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
 
 		<ApplicationTitle>NivaesCross</ApplicationTitle>
 		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
 		<ValidateXcodeVersion>false</ValidateXcodeVersion>
-		
+
+		<PublishTrimmed>true</PublishTrimmed>
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 		<IsPackable>false</IsPackable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<!--<PublishAot>true</PublishAot>-->
 
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>true</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
 	  <BundleResource Remove="Resources\home.png" />
@@ -42,8 +44,8 @@
 		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj" />
+		<TrimmerRootAssembly Include="Nivaes.App.Cross.Sample.UIKit" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">

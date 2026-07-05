@@ -1,12 +1,11 @@
+using System.Collections;
+using System.Collections.Specialized;
+using System.Windows.Input;
+using Nivaes.App.Cross;
+using Nivaes.App.Cross.UIKit;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using System.Windows.Input;
-    using MvvmCross.Platforms.Ios.Views.Expandable;
-    using MvvmCross.Platforms.Ios.Views.Expandable.Controllers;
-    using Nivaes.App.Cross;
-
     public abstract class MvxExpandableTableViewSource : MvxExpandableTableViewSource<IEnumerable<object>, object>
     {
         protected MvxExpandableTableViewSource(UITableView tableView) : base(tableView)
