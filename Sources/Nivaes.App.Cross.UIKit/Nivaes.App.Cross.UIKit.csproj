@@ -7,6 +7,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 
+		<OptimizationPreference>Speed</OptimizationPreference>
 		<IsTrimmable>true</IsTrimmable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<RunAOTAnalysis>true</RunAOTAnalysis>
