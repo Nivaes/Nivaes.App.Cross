@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid.RecyclerView
 {
     public class MvxViewHolderBoundEventArgs(
         int itemPosition,

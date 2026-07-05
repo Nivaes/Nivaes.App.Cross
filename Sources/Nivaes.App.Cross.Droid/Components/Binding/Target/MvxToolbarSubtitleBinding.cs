@@ -1,9 +1,9 @@
-namespace MvvmCross.Platforms.Android.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
-    using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
+namespace Nivaes.App.Cross.Droid
+{
     public class MvxToolbarSubtitleBinding(Toolbar toolbar)
         : CrossConvertingTargetBinding(toolbar)
     {

@@ -1,17 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Views;
 using Android.Views.Animations;
 
-namespace MvvmCross.DroidX.Material.Extensions
+namespace Nivaes.App.Cross.Droid.Material
 {
     public static class MvxViewExtensions
     {
         public static View ShowWithTranslateAnimation(this View view)
         {
-            view.Animate()
+            view.Animate()?
                 .TranslationY(0)
                 .SetInterpolator(new DecelerateInterpolator(2f))
                 .Start();
@@ -24,7 +20,7 @@ namespace MvvmCross.DroidX.Material.Extensions
             var marginLayoutParams = view.LayoutParameters as ViewGroup.MarginLayoutParams;
             int margin = marginLayoutParams?.BottomMargin ?? 0;
 
-            view.Animate()
+            view.Animate()?
                 .TranslationY(view.Height + margin)
                 .SetInterpolator(new AccelerateInterpolator(2f))
                 .Start();

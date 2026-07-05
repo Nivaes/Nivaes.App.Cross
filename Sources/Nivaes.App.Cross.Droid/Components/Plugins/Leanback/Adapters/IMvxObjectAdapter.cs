@@ -1,7 +1,7 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System.Collections;
+using System.Collections;
 
+namespace Nivaes.App.Cross.Droid.Leanback
+{
     public interface IMvxObjectAdapter
     {
         [CrossSetToNullAfterBinding]

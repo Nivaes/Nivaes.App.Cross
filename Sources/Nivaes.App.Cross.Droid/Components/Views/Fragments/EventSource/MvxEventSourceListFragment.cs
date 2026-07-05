@@ -1,15 +1,11 @@
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
+using ListFragment = AndroidX.Fragment.App.ListFragment;
 
-namespace MvvmCross.Platforms.Android.Views.Fragments.EventSource
+namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using ListFragment = AndroidX.Fragment.App.ListFragment;
-
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceListFragment")]
+    [Register("nivaes.cross.EventSourceListFragment")]
     public class MvxEventSourceListFragment
         : ListFragment
         , ICrossEventSourceFragment

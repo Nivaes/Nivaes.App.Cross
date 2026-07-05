@@ -1,13 +1,10 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System;
-    using Android.Content;
-    using Android.OS;
-    using Android.Runtime;
-    using Android.Views;
-    using Google.Android.Material.BottomSheet;
-    using Nivaes.App.Cross;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Google.Android.Material.BottomSheet;
 
+namespace Nivaes.App.Cross.Droid.Material
+{
     public class MvxEventSourceBottomSheetDialogFragment
         : BottomSheetDialogFragment, ICrossEventSourceFragment
     {

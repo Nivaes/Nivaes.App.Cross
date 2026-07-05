@@ -1,7 +1,5 @@
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-    using System;
-
     public interface IMvxRecyclerAdapterBindableHolder
     {
         event EventHandler<MvxViewHolderBoundEventArgs> MvxViewHolderBound;

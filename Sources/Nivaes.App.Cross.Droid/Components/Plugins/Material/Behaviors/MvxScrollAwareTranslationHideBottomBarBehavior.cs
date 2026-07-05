@@ -1,7 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
@@ -11,9 +7,9 @@ using AndroidX.Core.View;
 using MvvmCross.DroidX.Material.Extensions;
 using Object = Java.Lang.Object;
 
-namespace MvvmCross.DroidX.Material.Behaviors
+namespace Nivaes.App.Cross.Droid.Material
 {
-    [Register("mvvmcross.droidx.material.behaviors.MvxScrollAwareTranslationAutoHideBehavior")]
+    [Register("nivaes.cross.material.ScrollAwareTranslationAutoHideBehavior")]
     public class MvxScrollAwareTranslationHideBottomBarBehavior
         : CoordinatorLayout.Behavior
     {

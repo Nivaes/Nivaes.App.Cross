@@ -1,11 +1,7 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Views;
 using AndroidX.Leanback.Widget;
 
-namespace MvvmCross.DroidX.Leanback.Listeners
+namespace Nivaes.App.Cross.Droid.Listeners
 {
     /// <summary>
     /// Requests focus for first laid out child.
@@ -13,7 +9,7 @@ namespace MvvmCross.DroidX.Leanback.Listeners
     public class MvxFocusFirstChildOnChildLaidOutListener
         : Java.Lang.Object, IOnChildLaidOutListener
     {
-        public void OnChildLaidOut(ViewGroup parent, View view, int position, long id)
+        public void OnChildLaidOut(ViewGroup? parent, View? view, int position, long id)
         {
             if (view != null && position == 0)
             {

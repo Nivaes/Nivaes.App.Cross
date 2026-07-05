@@ -1,25 +1,23 @@
-namespace MvvmCross.DroidX.Leanback.Listeners
-{
-    using System.Windows.Input;
-    using AndroidX.Leanback.Widget;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
-    using Nivaes.App.Cross.Observability;
+using System.Windows.Input;
+using AndroidX.Leanback.Widget;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
+namespace Nivaes.App.Cross.Droid.Listeners
+{
     /// <summary>
     /// Forwards "OnChildViewHolderSelected"-Events to a command.
     /// </summary>
     public class MvxOnChildViewHolderSelectedListener
         : OnChildViewHolderSelectedListener
     {
-        public ICommand ItemSelection { get; set; }
+        public ICommand? ItemSelection { get; set; }
 
-        public override void OnChildViewHolderSelected(AndroidX.RecyclerView.Widget.RecyclerView parent, AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder child, int position, int subposition)
+        public override void OnChildViewHolderSelected(AndroidX.RecyclerView.Widget.RecyclerView? parent, AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder? child, int position, int subposition)
         {
             base.OnChildViewHolderSelected(parent, child, position, subposition);
 
-            var adapter = parent.GetAdapter() as IMvxRecyclerAdapter;
+            var adapter = parent?.GetAdapter() as IMvxRecyclerAdapter;
             var item = adapter?.GetItem(position);
 
             if (item == null)

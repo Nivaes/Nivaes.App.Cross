@@ -1,14 +1,12 @@
-namespace MvvmCross.DroidX.RecyclerView.AttributeHelpers
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Content;
-    using Android.Content.Res;
-    using Android.Util;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Observability;
+using System.Diagnostics.CodeAnalysis;
+using Android.Content;
+using Android.Content.Res;
+using Android.Util;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
 
+namespace Nivaes.App.Cross.Droid.RecyclerView
+{
     public static class MvxRecyclerViewAttributeExtensions
     {
         private static bool _areBindingResourcesInitialized;

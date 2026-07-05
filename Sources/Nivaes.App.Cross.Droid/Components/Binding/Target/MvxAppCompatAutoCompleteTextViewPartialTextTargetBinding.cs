@@ -1,11 +1,9 @@
-namespace MvvmCross.Platforms.Android.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.Droid
+{
     public class MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding
         : MvxAndroidPropertyInfoTargetBinding<MvxAppCompatAutoCompleteTextView>
     {
@@ -18,8 +16,8 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var autoComplete = View;
             if (autoComplete == null)
             {
-                CrossBindingLogger.Instance?.LogError(
-                    "autoComplete is null in MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding");
+                CrossBindingLogger.GetLogger<MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding>().LogError(
+                    $"autoComplete is null in {nameof(MvxAppCompatAutoCompleteTextViewPartialTextTargetBinding)}");
             }
         }
 

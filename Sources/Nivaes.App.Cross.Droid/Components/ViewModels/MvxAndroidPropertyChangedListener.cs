@@ -1,11 +1,8 @@
+using System.ComponentModel;
 using Android.Runtime;
 
-namespace MvvmCross.Platforms.Android.ViewModels
+namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.ComponentModel;
-    using Nivaes.App.Cross;
-
     /// <summary>
     ///     Just like <see cref="CrossPropertyChangedListener"/> but
     ///     won't call handlers if the target (being an activity, fragment,
@@ -25,7 +22,7 @@ namespace MvvmCross.Platforms.Android.ViewModels
             _target = new WeakReference<IJavaObject>(target);
         }
 
-        public override void NotificationObjectOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public override void NotificationObjectOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             IJavaObject target;
 

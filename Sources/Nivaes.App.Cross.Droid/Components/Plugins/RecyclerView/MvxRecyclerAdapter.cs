@@ -7,17 +7,15 @@ using Android.Runtime;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 using Nivaes.App.Cross.Droid.RecyclerView;
 using Nivaes.App.Cross.Observability;
 using Object = Java.Lang.Object;
 using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;
 using ViewHolder = AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder;
 
-namespace Nivaes.App.Cross.Droid
+namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-    [Register("mvvmcross.droidx.recyclerview.MvxRecyclerAdapter")]
+    [Register("nivaes.cross.recyclerview.MvxRecyclerAdapter")]
     public class MvxRecyclerAdapter
         : RecyclerViewAdapter, IMvxRecyclerAdapter, IMvxRecyclerAdapterBindableHolder
     {

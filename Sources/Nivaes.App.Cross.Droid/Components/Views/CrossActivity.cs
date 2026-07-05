@@ -4,7 +4,7 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("nivaes.cross.activity")]
+[Register("nivaes.cross.Activity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class CrossActivity<TViewModel>
     : CrossEventSourceActivity, ICrossActivity, IMvxAndroidView<TViewModel>

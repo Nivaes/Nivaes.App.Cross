@@ -1,11 +1,9 @@
-namespace MvvmCross.Platforms.Android.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
 
+namespace Nivaes.App.Cross.Droid
+{
     public class MvxCompoundButtonCheckedTargetBinding(
         object target,
         PropertyInfo targetPropertyInfo)
@@ -21,7 +19,7 @@ namespace MvvmCross.Platforms.Android.Binding.Target
             var compoundButton = View;
             if (compoundButton == null)
             {
-                CrossBindingLogger.Instance?.LogError(
+                CrossBindingLogger.GetLogger<MvxCompoundButtonCheckedTargetBinding>().LogError(
                     "compoundButton is null in MvxCompoundButtonCheckedTargetBinding");
                 return;
             }

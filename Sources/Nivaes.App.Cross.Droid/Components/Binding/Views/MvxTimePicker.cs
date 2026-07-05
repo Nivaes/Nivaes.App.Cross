@@ -1,17 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Content;
 using Android.Runtime;
 using Android.Util;
 
-namespace MvvmCross.Platforms.Android.Binding.Views
+namespace Nivaes.App.Cross.Droid
 {
     // Special thanks for this file to Emi - https://github.com/eMi-/mvvmcross_datepicker_timepicker
     // Code used under Creative Commons with attribution
     // See also http://stackoverflow.com/questions/14829521/bind-timepicker-datepicker-mvvmcross-mono-for-android
-    [Register("mvvmcross.platforms.android.binding.views.MvxTimePicker")]
+    [Register("nivaes.cross.TimePicker")]
     public class MvxTimePicker
         : TimePicker
         , TimePicker.IOnTimeChangedListener
@@ -68,11 +64,11 @@ namespace MvvmCross.Platforms.Android.Binding.Views
             }
         }
 
-        public event EventHandler ValueChanged;
+        public event EventHandler? ValueChanged;
 
-        public void OnTimeChanged(TimePicker view, int hourOfDay, int minute)
+        public void OnTimeChanged(TimePicker? view, int hourOfDay, int minute)
         {
-            ValueChanged?.Invoke(this, null);
+            ValueChanged?.Invoke(this, new EventArgs());
         }
     }
 }

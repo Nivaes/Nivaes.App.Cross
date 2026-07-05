@@ -1,11 +1,10 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Android.Content;
-    using Android.Runtime;
-    using Nivaes.App.Cross;
+using System.Diagnostics.CodeAnalysis;
+using Android.Content;
+using Android.Runtime;
 
-    [Register("mvvmcross.droidx.material.MvxBottomSheetDialogFragment")]
+namespace Nivaes.App.Cross.Droid.Material
+{
+    [Register("nivaes.cross.material.BottomSheetDialogFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxBottomSheetDialogFragment
         : MvxEventSourceBottomSheetDialogFragment, IMvxFragmentView
@@ -56,7 +55,7 @@ namespace Nivaes.App.Cross.Droid
 
         public virtual string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();

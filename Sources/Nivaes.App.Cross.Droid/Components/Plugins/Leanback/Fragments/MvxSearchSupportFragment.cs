@@ -1,10 +1,8 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Android.OS;
-    using Android.Runtime;
+using System.Diagnostics.CodeAnalysis;
+using Android.Runtime;
 
+namespace Nivaes.App.Cross.Droid.Leanback
+{
     [Register("mvvmcross.droidx.leanback.fragments.MvxSearchSupportFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxSearchSupportFragment

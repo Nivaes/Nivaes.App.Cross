@@ -1,11 +1,11 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Views;
-    using AndroidX.Leanback.App;
-    using Nivaes.App.Cross;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using AndroidX.Leanback.App;
+using Nivaes.App.Cross;
 
+namespace Nivaes.App.Cross.Droid.Leanback
+{
     public class MvxEventSourceGuidedStepSupportFragment
         : GuidedStepSupportFragment, ICrossEventSourceFragment
     {

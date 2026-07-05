@@ -1,6 +1,6 @@
 using AndroidX.Preference;
 
-namespace MvvmCross.Platforms.Android.Binding
+namespace Nivaes.App.Cross.Droid
 {
     public static class MvxPreferencePropertyBindingExtensions
     {

@@ -1,9 +1,7 @@
-namespace MvvmCross.Platforms.Android.Binding.Target
-{
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Droid;
+using System.Diagnostics.CodeAnalysis;
 
+namespace Nivaes.App.Cross.Droid
+{
     public class MvxAdapterViewSelectedItemPositionTargetBinding(AdapterView adapterView)
         : MvxAndroidTargetBinding(adapterView)
     {

@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("nivaes.cross.startActivity")]
+[Register("nivaes.cross.StartActivity")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class CrossStartActivity
     : CrossActivity<CrossStartActivityViewModel>

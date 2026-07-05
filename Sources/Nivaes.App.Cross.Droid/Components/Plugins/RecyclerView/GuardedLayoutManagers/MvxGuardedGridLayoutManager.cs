@@ -6,7 +6,7 @@ using Java.Lang;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
-namespace MvvmCross.DroidX.RecyclerView
+namespace Nivaes.App.Cross.Droid.RecyclerView
 {
     [Register("nivaes.cross.GuardedGridLayoutManager")]
     public class MvxGuardedGridLayoutManager : GridLayoutManager

@@ -1,15 +1,12 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System.Collections;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using MvvmCross.DroidX.RecyclerView;
-    using MvvmCross.DroidX.RecyclerView.AttributeHelpers;
-    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
 
+namespace Nivaes.App.Cross.Droid.RecyclerView
+{
     [Register("nivaes.cross.recyclerView.RecyclerView")]
     public class MvxRecyclerView : AndroidX.RecyclerView.Widget.RecyclerView
     {

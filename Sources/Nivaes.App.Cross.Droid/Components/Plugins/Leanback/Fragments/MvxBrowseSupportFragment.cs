@@ -1,11 +1,11 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Android.OS;
-    using Android.Runtime;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Android.OS;
+using Android.Runtime;
 
-    [Register("mvvmcross.droidx.leanback.fragments.MvxBrowseSupportFragment")]
+namespace Nivaes.App.Cross.Droid.Leanback
+{
+    [Register("nivaes.cross.leanback.BrowseSupportFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxBrowseSupportFragment
         : MvxEventSourceBrowseSupportFragment, IMvxFragmentView

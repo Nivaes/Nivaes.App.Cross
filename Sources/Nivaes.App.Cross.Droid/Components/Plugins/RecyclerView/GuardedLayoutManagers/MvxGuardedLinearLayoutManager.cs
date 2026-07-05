@@ -6,9 +6,9 @@ using Java.Lang;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
-namespace MvvmCross.DroidX.RecyclerView
+namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-    [Register("mvvmcross.droidx.recyclerview.MvxGuardedLinearLayoutManager")]
+    [Register("nivaes.cross.recyclerview.GuardedLinearLayoutManager")]
     public class MvxGuardedLinearLayoutManager : LinearLayoutManager
     {
         public MvxGuardedLinearLayoutManager(Context context) : base(context)

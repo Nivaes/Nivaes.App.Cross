@@ -1,13 +1,10 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System;
-    using Android.Content;
-    using Android.OS;
-    using Android.Runtime;
-    using Android.Views;
-    using AndroidX.Leanback.App;
-    using Nivaes.App.Cross;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using AndroidX.Leanback.App;
 
+namespace Nivaes.App.Cross.Droid.Leanback
+{
     public class MvxEventSourceHeadersSupportFragment
         : HeadersSupportFragment, ICrossEventSourceFragment
     {
@@ -52,14 +49,14 @@ namespace Nivaes.App.Cross.Droid
             base.OnAttach(context);
         }
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             CreateWillBeCalled.Raise(this, savedInstanceState);
             base.OnCreate(savedInstanceState);
             CreateCalled.Raise(this, savedInstanceState);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView(LayoutInflater? inflater, ViewGroup? container, Bundle? savedInstanceState)
         {
             CreateViewCalled.Raise(this, new MvxCreateViewParameters(inflater, container, savedInstanceState));
             return base.OnCreateView(inflater, container, savedInstanceState);

@@ -1,14 +1,10 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MS-PL license.
-// See the LICENSE file in the project root for more information.
-
 using Android.Runtime;
 using Android.Views;
 using AndroidX.AppCompat.App;
 using AndroidX.DrawerLayout.Widget;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
-namespace MvvmCross.Platforms.Android.Views.AppCompat
+namespace Nivaes.App.Cross.AppCompat
 {
     public class ActionBarDrawerEventArgs : EventArgs
     {
@@ -41,7 +37,7 @@ namespace MvvmCross.Platforms.Android.Views.AppCompat
         }
     }
 
-    [Register("mvvmcross.platforms.android.views.appcompat.MvxActionBarDrawerToggle")]
+    [Register("mvvmcross.cross.ActionBarDrawerToggle")]
     public sealed class MvxActionBarDrawerToggle : ActionBarDrawerToggle
     {
         public MvxActionBarDrawerToggle(IntPtr handle, JniHandleOwnership ownership)
@@ -61,29 +57,29 @@ namespace MvvmCross.Platforms.Android.Views.AppCompat
         {
         }
 
-        public event EventHandler<ActionBarDrawerEventArgs> DrawerClosed;
+        public event EventHandler<ActionBarDrawerEventArgs>? DrawerClosed;
 
-        public event EventHandler<ActionBarDrawerEventArgs> DrawerOpened;
+        public event EventHandler<ActionBarDrawerEventArgs>? DrawerOpened;
 
-        public event EventHandler<ActionBarDrawerSlideEventArgs> DrawerSlide;
+        public event EventHandler<ActionBarDrawerSlideEventArgs>? DrawerSlide;
 
-        public event EventHandler<ActionBarDrawerStateChangeEventArgs> DrawerStateChanged;
+        public event EventHandler<ActionBarDrawerStateChangeEventArgs>? DrawerStateChanged;
 
-        public override void OnDrawerClosed(View drawerView)
+        public override void OnDrawerClosed(View? drawerView)
         {
             DrawerClosed?.Invoke(this, new ActionBarDrawerEventArgs(drawerView));
 
             base.OnDrawerClosed(drawerView);
         }
 
-        public override void OnDrawerOpened(View drawerView)
+        public override void OnDrawerOpened(View? drawerView)
         {
             DrawerOpened?.Invoke(this, new ActionBarDrawerEventArgs(drawerView));
 
             base.OnDrawerOpened(drawerView);
         }
 
-        public override void OnDrawerSlide(View drawerView, float slideOffset)
+        public override void OnDrawerSlide(View? drawerView, float slideOffset)
         {
             DrawerSlide?.Invoke(this, new ActionBarDrawerSlideEventArgs(drawerView, slideOffset));
 

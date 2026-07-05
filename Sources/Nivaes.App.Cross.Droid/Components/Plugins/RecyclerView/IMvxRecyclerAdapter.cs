@@ -1,9 +1,9 @@
-namespace Nivaes.App.Cross.Droid
-{
-    using System.Collections;
-    using System.Windows.Input;
-    using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+using System.Collections;
+using System.Windows.Input;
+using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 
+namespace Nivaes.App.Cross.Droid.RecyclerView
+{
     public interface IMvxRecyclerAdapter
     {
         [CrossSetToNullAfterBinding]
