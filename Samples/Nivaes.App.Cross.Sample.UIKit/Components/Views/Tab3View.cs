@@ -1,10 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+using Nivaes.App.Cross.UIKitLib;
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
-    using System.Diagnostics.CodeAnalysis;
-    using MvvmCross.Platforms.Ios.Views;
-    using Nivaes.App.Cross.UIKitLib;
-    using ObjCRuntime;
-
     [MvxFromStoryboard("Main")]
     [MvxTabPresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]

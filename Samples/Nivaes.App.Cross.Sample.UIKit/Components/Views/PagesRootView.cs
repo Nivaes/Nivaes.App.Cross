@@ -1,4 +1,3 @@
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.UIKitLib;
 using ObjCRuntime;
 

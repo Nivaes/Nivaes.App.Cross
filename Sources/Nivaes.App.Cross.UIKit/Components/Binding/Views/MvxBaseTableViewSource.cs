@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
@@ -10,7 +9,7 @@ namespace Nivaes.App.Cross.UIKitLib;
 public abstract class MvxBaseTableViewSource : UITableViewSource
 {
     public event EventHandler? SelectedItemChanged;
-    
+
     private object? _selectedItem;
 
     private readonly WeakReference<UITableView>? _tableView;

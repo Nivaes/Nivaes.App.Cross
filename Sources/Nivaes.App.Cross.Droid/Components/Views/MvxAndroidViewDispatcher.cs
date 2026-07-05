@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -11,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
         private readonly IAndroidViewPresenter _presenter;
 
         public MvxAndroidViewDispatcher(IAndroidViewPresenter presenter, ILogger<MvxAndroidViewDispatcher> logger)
-            :base(logger)
+            : base(logger)
         {
             _presenter = presenter;
         }

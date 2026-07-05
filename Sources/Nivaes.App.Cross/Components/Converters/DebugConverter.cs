@@ -7,14 +7,14 @@ namespace Nivaes.App.Cross
         : CrossValueConverter
     {
         public DebugConverter(ILogger<DebugConverter> logger)
-            :base(logger)
+            : base(logger)
         { }
 
         public override object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
 
             //if (System.Diagnostics.Debugger.IsAttached)
-                System.Diagnostics.Debugger.Break();
+            System.Diagnostics.Debugger.Break();
 
             return value;
         }
@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
         public override object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             //if (System.Diagnostics.Debugger.IsAttached)
-                System.Diagnostics.Debugger.Break();
+            System.Diagnostics.Debugger.Break();
 
             return value;
         }

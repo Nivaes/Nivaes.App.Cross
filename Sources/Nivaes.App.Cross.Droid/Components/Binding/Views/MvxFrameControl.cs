@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.Droid
     using Android.Runtime;
     using Android.Util;
     using Android.Views;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Observability;

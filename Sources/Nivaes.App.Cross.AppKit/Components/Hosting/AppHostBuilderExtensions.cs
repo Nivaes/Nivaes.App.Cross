@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
             builder.Services.TryAddSingleton<ICrashHandler, AppKitCrashHandler>();
             builder.Services.TryAddSingleton<IMvxMacViewCreator, MvxMacViewsContainer>();
-            
+
             // Plugins
             builder.Services.TryAddSingleton<ICrossNativeColor, CrossMacColor>();
             builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossMacVisibility>();

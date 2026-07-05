@@ -59,26 +59,6 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public static object? ElementAt(this IEnumerable items, int position)
-        {
-            if (items == null)
-                return null;
-
-            var itemsList = items as IList;
-            if (itemsList != null)
-            {
-                return itemsList[position];
-            }
-
-            var enumerator = items.GetEnumerator();
-            for (var i = 0; i <= position; i++)
-            {
-                enumerator.MoveNext();
-            }
-
-            return enumerator.Current;
-        }
-
         public static IEnumerable Filter(this IEnumerable items, Func<object, bool> predicate)
         {
             if (items == null)

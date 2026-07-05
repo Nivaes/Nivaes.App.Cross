@@ -5,7 +5,6 @@ using Microsoft.Extensions.Diagnostics.Metrics;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.Hosting
 {

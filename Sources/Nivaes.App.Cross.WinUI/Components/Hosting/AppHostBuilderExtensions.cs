@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
 using Nivaes.App.Cross.WinUI.Observability;
@@ -39,7 +38,7 @@ namespace Nivaes.App.Cross.WinUI
 
             builder.Services.TryAddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
             builder.Services.TryAddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
-            
+
 
 
 

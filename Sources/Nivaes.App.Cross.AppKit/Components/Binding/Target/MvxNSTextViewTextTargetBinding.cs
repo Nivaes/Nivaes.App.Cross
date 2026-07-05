@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.AppKitLib
 {

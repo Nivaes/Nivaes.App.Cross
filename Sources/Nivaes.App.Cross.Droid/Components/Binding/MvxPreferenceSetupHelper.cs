@@ -1,10 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+using AndroidX.Preference;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-    using AndroidX.Preference;
-    using MvvmCross.Platforms.Android.Binding;
-    using Nivaes.App.Cross;
-
     public static class MvxPreferenceSetupHelper
     {
         [RequiresUnreferencedCode("This method may use types that are not preserved by trimming")]

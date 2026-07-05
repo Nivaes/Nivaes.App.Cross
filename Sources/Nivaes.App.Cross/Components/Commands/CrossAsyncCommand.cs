@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross
         private int _concurrentExecutions;
 
         protected CrossAsyncCommandBase(bool allowConcurrentExecutions = false)
-            :base(CrossLoggerHost.GetLogger<CrossAsyncCommandBase>())
+            : base(CrossLoggerHost.GetLogger<CrossAsyncCommandBase>())
         {
             _allowConcurrentExecutions = allowConcurrentExecutions;
         }

@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Nivaes.App.Cross;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace Nivaes.App.Cross.Droid

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
+using Nivaes.App.Cross.Droid.Material;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

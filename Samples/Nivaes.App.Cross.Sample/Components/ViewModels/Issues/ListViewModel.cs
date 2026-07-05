@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Sample
 {
@@ -10,7 +8,7 @@ namespace Nivaes.App.Cross.Sample
         public ICrossAsyncCommand<TestItem> ItemClickedCommand => new CrossAsyncCommand<TestItem>(ItemClicked);
 
         public ListViewModel(ILogger<ListViewModel> logger)
-            :base(logger)
+            : base(logger)
         {
             TestItems.Add(new TestItem()
             {

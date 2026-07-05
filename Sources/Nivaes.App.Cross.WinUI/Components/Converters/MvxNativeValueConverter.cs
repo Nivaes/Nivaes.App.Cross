@@ -1,9 +1,7 @@
 using System.Globalization;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.WinUI

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross
     {
         public DisplayDescriptionConverter(ILogger<DisplayDescriptionConverter> logger)
             : base(logger)
-            { }
+        { }
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

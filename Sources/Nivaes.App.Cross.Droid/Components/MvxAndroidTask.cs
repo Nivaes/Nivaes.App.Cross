@@ -9,7 +9,7 @@ public class MvxAndroidTask
     : CrossMainThreadDispatchingObject
 {
     public MvxAndroidTask()
-        :base(CrossLoggerHost.GetLogger<MvxAndroidTask>())
+        : base(CrossLoggerHost.GetLogger<MvxAndroidTask>())
     { }
 
     protected void StartActivity(Intent intent)
@@ -24,7 +24,7 @@ public class MvxAndroidTask
                 var androidView = activity as IMvxStartActivityForResult;
                 if (androidView == null)
                 {
-                    CrossLoggerHost.GetLogger<MvxAndroidTask >().Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
+                    CrossLoggerHost.GetLogger<MvxAndroidTask>().Log(LogLevel.Error, "Error - current activity is null or does not support IMvxAndroidView");
                     return;
                 }
 

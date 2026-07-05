@@ -1,14 +1,11 @@
+using System.Collections;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Object = Java.Lang.Object;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Views;
-    using Android.Widget;
-    using MvvmCross.Binding.Extensions;
-    using Object = Java.Lang.Object;
-
     public class MvxExpandableListAdapter
         : MvxAdapter, IExpandableListAdapter
     {
@@ -102,7 +99,7 @@ namespace Nivaes.App.Cross.Droid
 
         public virtual object GetRawItem(int groupPosition, int position)
         {
-            return ((IEnumerable)GetRawGroup(groupPosition)).ElementAt(position);
+            return ((IEnumerable)GetRawGroup(groupPosition)).Cast<object>().ElementAt(position);
         }
 
         public virtual object GetRawGroup(int groupPosition)

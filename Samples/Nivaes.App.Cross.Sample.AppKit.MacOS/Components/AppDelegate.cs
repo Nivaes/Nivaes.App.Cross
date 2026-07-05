@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [Register("AppDelegate")]
 [RequiresUnreferencedCode("MvxApplicationDelegate requires unreferenced code")]
-public class AppDelegate : MvxApplicationDelegate 
+public class AppDelegate : MvxApplicationDelegate
 {
     public AppDelegate()
     {

@@ -1,4 +1,4 @@
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+using Nivaes.App.Cross.Droid.RecyclerView;
 using static Nivaes.App.Cross.Sample.CollectionViewModel;
 
 namespace Nivaes.App.Cross.Sample.Droid

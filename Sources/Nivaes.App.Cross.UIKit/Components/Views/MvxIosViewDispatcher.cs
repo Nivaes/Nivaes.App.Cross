@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private readonly IMvxIosViewPresenter _presenter;
 
         public MvxIosViewDispatcher(IMvxIosViewPresenter presenter, ILogger<MvxIosViewDispatcher> logger)
-            :base(logger)
+            : base(logger)
         {
             _presenter = presenter;
         }

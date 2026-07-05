@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample
         : CrossViewModel
     {
         public ChildContentViewModel(ILogger<ChildContentViewModel> logger)
-            :base(logger)
+            : base(logger)
         {
         }
 

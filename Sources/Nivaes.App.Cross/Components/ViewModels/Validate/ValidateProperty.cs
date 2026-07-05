@@ -14,12 +14,12 @@
             get => mErrors;
             set
             {
-                if(base.SetProperty(ref mErrors, value))
+                if (base.SetProperty(ref mErrors, value))
                 {
                     base.RaisePropertyChanged(nameof(IsValid));
                 }
             }
-        } 
+        }
 
         public bool IsValid => !mErrors.Any();
     }

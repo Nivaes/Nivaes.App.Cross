@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         protected Activity? Trace;
 
         protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger)
-            :base(logger)
+            : base(logger)
         {
             NavigationService = navigationService;
 
@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
             Trace = Telemetry.ActivitySource.StartActivity("Load View");
 
             Trace?.SetTag(this.GetType().FullName!, "Load");
-            
+
             try
             {
                 Trace?.SetTag("success", true);
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross
         public override void ViewDestroy(bool viewFinishing = true)
         {
             base.ViewDestroy(viewFinishing);
-            
+
             Trace?.SetTag("finalice", true);
 
             Trace?.Dispose();

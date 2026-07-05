@@ -1,8 +1,5 @@
 ﻿namespace Nivaes.App
 {
-    using System;
-    using System.ComponentModel;
-
     /// <summary>Information of element.</summary>
     internal sealed class ModelElementInformation
     {

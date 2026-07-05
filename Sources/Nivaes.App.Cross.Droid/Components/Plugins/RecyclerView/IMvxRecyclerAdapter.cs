@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Windows.Input;
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 
 namespace Nivaes.App.Cross.Droid.RecyclerView
 {

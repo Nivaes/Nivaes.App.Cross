@@ -1,8 +1,8 @@
+using System.Collections;
+using Android.Widget;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Collections;
-    using Android.Widget;
-
     public interface IMvxAdapter
         : ISpinnerAdapter
         , IListAdapter
@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Droid
         int ItemTemplateId { get; set; }
         int DropDownItemTemplateId { get; set; }
 
-        object GetRawItem(int position);
+        object? GetRawItem(int position);
 
         int GetPosition(object value);
     }

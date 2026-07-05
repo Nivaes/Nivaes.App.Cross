@@ -1,14 +1,12 @@
 #if IOS || MACCATALYST
+using System.Collections;
+using System.Collections.Specialized;
+using System.Windows.Input;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using System.Windows.Input;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Observability;
-
     public class MvxPickerViewModel
         : UIPickerViewModel
     {
@@ -92,7 +90,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public override string GetTitle(UIPickerView pickerView, nint row, nint component)
         {
-            return _itemsSource == null ? "-" : RowTitle(row, _itemsSource.ElementAt((int)row));
+            return _itemsSource == null ? "-" : RowTitle(row, _itemsSource.Cast<object>().ElementAt((int)row));
         }
 
         protected virtual string RowTitle(nint row, object item)
@@ -105,7 +103,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (_itemsSource.Count() == 0)
                 return;
 
-            _selectedItem = _itemsSource.ElementAt((int)row);
+            _selectedItem = _itemsSource.Cast<object>().ElementAt((int)row);
 
             var handler = SelectedItemChanged;
             handler?.Invoke(this, EventArgs.Empty);

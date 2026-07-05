@@ -1,7 +1,4 @@
-using System;
-using Foundation;
 using ObjCRuntime;
-using UIKit;
 
 namespace Nivaes.App.Cross.UIKitLib
 {

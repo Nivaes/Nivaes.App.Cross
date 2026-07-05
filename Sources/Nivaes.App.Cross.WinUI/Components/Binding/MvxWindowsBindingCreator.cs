@@ -2,12 +2,10 @@ namespace Nivaes.App.Cross.WinUI
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Data;
     using Microsoft.UI.Xaml.Media;
-    using MvvmCross.Platforms.WinUi.Binding;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Observability;
 

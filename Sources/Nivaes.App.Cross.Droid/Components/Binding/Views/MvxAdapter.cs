@@ -1,17 +1,14 @@
+using System.Collections;
+using System.Collections.Specialized;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+using Object = Java.Lang.Object;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Views;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Observability;
-    using Object = Java.Lang.Object;
-
     public class MvxAdapter
         : BaseAdapter
         , IMvxAdapter
@@ -147,9 +144,9 @@ namespace Nivaes.App.Cross.Droid
             return ItemsSource.GetPosition(item);
         }
 
-        public virtual object GetRawItem(int position)
+        public virtual object? GetRawItem(int position)
         {
-            return ItemsSource.ElementAt(position);
+            return ItemsSource.Cast<object>().ElementAt(position);
         }
 
         public override Object GetItem(int position)

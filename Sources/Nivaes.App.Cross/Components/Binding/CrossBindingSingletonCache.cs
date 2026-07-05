@@ -13,7 +13,7 @@ public class CrossBindingSingletonCache
     private ICrossLanguageBindingParser? _languageParser;
     private ICrossPropertyExpressionParser? _propertyExpressionParser;
 
-  
+
     private ICrossBindingNameLookup? _defaultBindingName;
     private ICrossBinder? _binder;
     private ICrossSourceStepFactory? _sourceStepFactory;

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.Windows.Input;
-using Nivaes.App.Cross;
-using Nivaes.App.Cross.UIKit;
 
 namespace Nivaes.App.Cross.UIKitLib
 {

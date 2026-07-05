@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross
     using System.Linq.Expressions;
     using System.Runtime.CompilerServices;
     using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Observability;
 
     public abstract class CrossNotifyPropertyChanged
         : CrossMainThreadDispatchingObject, ICrossNotifyPropertyChanged
@@ -101,7 +100,7 @@ namespace Nivaes.App.Cross
             }
 
             void RaiseChange()
-            {               
+            {
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 

@@ -1,10 +1,8 @@
+using System.Collections;
+using System.Collections.Specialized;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
-
     public class MvxCollectionViewSource
         : MvxBaseCollectionViewSource
     {
@@ -61,7 +59,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (indexPath == null)
                 return null;
 
-            return ItemsSource?.ElementAt(indexPath.Row);
+            return ItemsSource?.Cast<object>().ElementAt(indexPath.Row);
         }
 
         /// <summary>

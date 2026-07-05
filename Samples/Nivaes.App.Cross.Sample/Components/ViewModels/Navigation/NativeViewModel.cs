@@ -9,7 +9,7 @@ namespace Playground.Core.ViewModels
         private static int _counter = 0;
 
         public NativeViewModel(ICrossNavigationService navigationService, ILogger<NativeViewModel> logger)
-            :base(logger)
+            : base(logger)
         {
             ForwardCommand = new CrossAsyncCommand(() => navigationService.Navigate<NativeViewModel>());
             CloseCommand = new CrossAsyncCommand(() => navigationService.Close(this));

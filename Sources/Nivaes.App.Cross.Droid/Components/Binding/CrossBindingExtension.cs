@@ -2,9 +2,6 @@
 using Android.Webkit;
 using AndroidX.Preference;
 using Microsoft.Extensions.DependencyInjection;
-using MvvmCross.Platforms.Android.Binding.Target;
-using MvvmCross.Platforms.Android.Binding.Views;
-using MvvmCross.Plugin.Color.Platforms.Android.Binding;
 using AppCompatSearchView = AndroidX.AppCompat.Widget.SearchView;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 

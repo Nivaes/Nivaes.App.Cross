@@ -2,7 +2,6 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
-    using Nivaes.App.Cross;
 
     [Obsolete("Json", true)]
     [RequiresUnreferencedCode("Uses JsonSerializer which may not be fully preserved in trimming scenarios")]

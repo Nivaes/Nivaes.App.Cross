@@ -3,7 +3,6 @@ namespace Nivaes.App.Cross.UIKitLib
     using System;
     using System.Windows.Input;
     using Foundation;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross;
     using Nivaes.App.Cross.Observability;

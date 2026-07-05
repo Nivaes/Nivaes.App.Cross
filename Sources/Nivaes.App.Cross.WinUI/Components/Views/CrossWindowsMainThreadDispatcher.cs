@@ -9,7 +9,7 @@ public abstract class CrossWindowsMainThreadDispatcher
     private readonly DispatcherQueue _uiDispatcher;
 
     public CrossWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher, ILogger<CrossWindowsMainThreadDispatcher> logger)
-        :base(logger)
+        : base(logger)
     {
         _uiDispatcher = uiDispatcher;
     }

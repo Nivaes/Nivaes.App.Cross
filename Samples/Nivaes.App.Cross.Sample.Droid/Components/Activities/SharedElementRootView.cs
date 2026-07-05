@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using Nivaes.App.Cross.Droid;
+using Nivaes.App.Cross.Droid.RecyclerView;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 

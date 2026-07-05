@@ -38,7 +38,7 @@ public sealed class ConvertersViewModel : CrossViewModel
     public ICommand ToggleColorCommand { get; }
 
     public ConvertersViewModel(ILogger<ConvertersViewModel> logger)
-        :base(logger)
+        : base(logger)
     {
         ToggleVisibilityCommand = new CrossCommand(DoToggleVisibility);
         ToggleColorCommand = new CrossCommand(DoToggleColor);

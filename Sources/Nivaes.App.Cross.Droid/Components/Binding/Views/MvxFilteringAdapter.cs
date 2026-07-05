@@ -1,17 +1,11 @@
+using System.Collections;
+using Android.Content;
+using Android.Runtime;
+using Java.Lang;
+using Object = Java.Lang.Object;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using System.Linq;
-    using Android.App;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Widget;
-    using Java.Lang;
-    using MvvmCross.Binding.Extensions;
-    using MvvmCross.Platforms.Android;
-    using Object = Java.Lang.Object;
-
     public class MvxFilteringAdapter
         : MvxAdapter, IFilterable
     {
@@ -152,11 +146,11 @@ namespace Nivaes.App.Cross.Droid
             return base.GetItem(position);
         }
 
-        public override object GetRawItem(int position)
+        public override object? GetRawItem(int position)
         {
             lock (_syncLock)
             {
-                var element = FilteredItemsSource?.ElementAt(position);
+                var element = FilteredItemsSource?.Cast<object>().ElementAt(position);
                 return element;
             }
         }

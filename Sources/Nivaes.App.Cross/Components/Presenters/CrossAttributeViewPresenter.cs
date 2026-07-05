@@ -9,7 +9,7 @@ public abstract class CrossAttributeViewPresenter
     protected ICrossViewsContainer ViewsContainer { get; }
 
     protected CrossAttributeViewPresenter(ICrossViewsContainer crossViewsContainer, ILogger logger)
-        :base(logger)
+        : base(logger)
     {
         ViewsContainer = crossViewsContainer;
     }

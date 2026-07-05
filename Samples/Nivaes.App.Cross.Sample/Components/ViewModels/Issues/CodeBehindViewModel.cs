@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Sample
         }
 
         public CodeBehindViewModel(ILogger<CodeBehindViewModel> logger)
-            :base(logger)
+            : base(logger)
         { }
     }
 }

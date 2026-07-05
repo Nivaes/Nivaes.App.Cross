@@ -9,7 +9,7 @@ public class NavigationCloseViewModel
     private readonly ICrossNavigationService _mvxNavigationService;
 
     public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService, ILogger<NavigationCloseViewModel> logger)
-        :base(logger)
+        : base(logger)
     {
         _mvxNavigationService = mvxNavigationService;
     }

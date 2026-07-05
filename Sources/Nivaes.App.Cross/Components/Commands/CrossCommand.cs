@@ -100,7 +100,7 @@ public abstract class CrossCommandBase
     private readonly ICrossCommandHelper _commandHelper;
 
     protected CrossCommandBase(ILogger logger)
-        :base(logger)
+        : base(logger)
     {
         //if (Mvx.IoCProvider?.TryResolve(out ICrossCommandHelper? commandHelper) == true && commandHelper != null)
         //{
@@ -147,7 +147,7 @@ public class CrossCommand
     private readonly Action _execute;
 
     public CrossCommand(Action execute, Func<bool>? canExecute = null)
-        :base(CrossLoggerHost.GetLogger<CrossCommand>())
+        : base(CrossLoggerHost.GetLogger<CrossCommand>())
     {
         _execute = execute;
         _canExecute = canExecute;
@@ -179,7 +179,7 @@ public class CrossCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberT
     private readonly Action<T?> _execute;
 
     public CrossCommand(Action<T?> execute, Func<T?, bool>? canExecute = null)
-        :base(CrossLoggerHost.GetLogger<CrossCommand<T>>())
+        : base(CrossLoggerHost.GetLogger<CrossCommand<T>>())
     {
         _execute = execute;
         _canExecute = canExecute;

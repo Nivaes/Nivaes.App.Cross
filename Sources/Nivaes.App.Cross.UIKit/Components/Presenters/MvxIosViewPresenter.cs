@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer, 
+        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer,
             IMvxIosViewCreator viewCreator, ILogger<MvxIosViewPresenter> logger)
             : base(crossViewsContainer, logger)
         {

@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using AndroidX.Leanback.Widget;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Droid.RecyclerView;
 using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.Droid.Listeners

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross.UIKit;
 
 namespace Nivaes.App.Cross.UIKitLib
 {

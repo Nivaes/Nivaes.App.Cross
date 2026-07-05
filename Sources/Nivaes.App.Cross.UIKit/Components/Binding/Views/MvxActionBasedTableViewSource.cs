@@ -4,7 +4,6 @@ namespace Nivaes.App.Cross.UIKitLib
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Foundation;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Nivaes.App.Cross.Observability;
     using ObjCRuntime;

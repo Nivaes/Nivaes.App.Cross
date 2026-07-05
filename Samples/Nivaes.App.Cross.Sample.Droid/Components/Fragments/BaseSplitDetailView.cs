@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Content.Res;
 using Android.Views;
-using MvvmCross.Platforms.Android.Views.AppCompat;
+using Nivaes.App.Cross.AppCompat;
 using Nivaes.App.Cross.Droid;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 

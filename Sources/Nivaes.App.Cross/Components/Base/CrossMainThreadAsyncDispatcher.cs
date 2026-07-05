@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
         : CrossMainThreadDispatcher, ICrossMainThreadAsyncDispatcher
     {
         public CrossMainThreadAsyncDispatcher(ILogger logger)
-            :base(logger)
+            : base(logger)
         {
 
         }

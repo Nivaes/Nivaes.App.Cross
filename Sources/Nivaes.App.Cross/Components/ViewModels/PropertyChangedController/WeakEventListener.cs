@@ -38,7 +38,7 @@
 
             mWeakInstance = new WeakReference(instance);
         }
-        
+
         /// <summary>
         /// Gets or sets the method to call when the event fires.
         /// </summary>

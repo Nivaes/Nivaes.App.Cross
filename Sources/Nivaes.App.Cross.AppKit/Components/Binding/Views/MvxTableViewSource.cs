@@ -5,8 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Windows.Input;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Extensions;
-using MvvmCross.Platforms.Mac.Binding.Views;
 
 namespace Nivaes.App.Cross.AppKitLib;
 
@@ -85,7 +83,7 @@ public class MvxTableViewSource : NSTableViewSource
         if (ItemsSource == null)
             return null;
 
-        var item = ItemsSource.ElementAt((int)row);
+        var item = ItemsSource.Cast<object>().ElementAt((int)row);
         var view = GetOrCreateViewFor(tableView, tableColumn);
 
         if (view is ICrossDataConsumer bindable)
@@ -142,7 +140,7 @@ public class MvxTableViewSource : NSTableViewSource
         if (row < -1)
             return;
 
-        var item = row is not -1 ? ItemsSource.ElementAt((int)row) : null; //row==-1 => no selection.
+        var item = row is not -1 ? ItemsSource.Cast<object>().ElementAt((int)row) : null; //row==-1 => no selection.
 
         if (!command.CanExecute(item))
             return;

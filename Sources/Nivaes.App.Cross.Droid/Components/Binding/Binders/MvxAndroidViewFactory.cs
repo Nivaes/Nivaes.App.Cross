@@ -1,7 +1,6 @@
 using Android.Content;
 using Android.Util;
 using Android.Views;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;

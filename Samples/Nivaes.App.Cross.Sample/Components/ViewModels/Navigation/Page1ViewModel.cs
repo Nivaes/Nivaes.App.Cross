@@ -1,7 +1,6 @@
 using System.Collections;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
-using static Nivaes.App.Cross.Sample.CollectionViewModel;
 
 namespace Nivaes.App.Cross.Sample
 {

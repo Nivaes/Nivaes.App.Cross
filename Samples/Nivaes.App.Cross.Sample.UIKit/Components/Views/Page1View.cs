@@ -1,11 +1,4 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using CoreGraphics;
-using Foundation;
-using MvvmCross.Platforms.Ios.Binding;
-using MvvmCross.Platforms.Ios.Views.Expandable;
-using Nivaes.App.Cross;
-using Nivaes.App.Cross.Sample;
 using Nivaes.App.Cross.UIKitLib;
 using ObjCRuntime;
 

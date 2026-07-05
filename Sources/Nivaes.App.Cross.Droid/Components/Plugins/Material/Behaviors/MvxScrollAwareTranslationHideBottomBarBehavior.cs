@@ -4,7 +4,6 @@ using Android.Util;
 using Android.Views;
 using AndroidX.CoordinatorLayout.Widget;
 using AndroidX.Core.View;
-using MvvmCross.DroidX.Material.Extensions;
 using Object = Java.Lang.Object;
 
 namespace Nivaes.App.Cross.Droid.Material

@@ -1,5 +1,3 @@
-using Nivaes.App.Cross.Sample.UIKitLib;
-
 namespace Nivaes.App.Cross.Sample.UIKitLib.MacCatalyst;
 
 public class Application

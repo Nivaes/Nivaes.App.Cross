@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Specialized;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Binding.Extensions;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
+using System.Linq;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
@@ -70,7 +69,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override object? GetItemAt(NSIndexPath indexPath)
         {
-            return ItemsSource?.ElementAt(indexPath.Row);
+            return ItemsSource?.Cast<object>().ElementAt(indexPath.Row);
         }
 
         protected virtual void CollectionChangedOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)

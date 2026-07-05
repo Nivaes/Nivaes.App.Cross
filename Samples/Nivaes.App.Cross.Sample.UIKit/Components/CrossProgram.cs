@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
-using Nivaes.App.Cross.Sample.UIKitLib;
 using Nivaes.App.Cross.UIKitLib;
 using OpenTelemetry;
 

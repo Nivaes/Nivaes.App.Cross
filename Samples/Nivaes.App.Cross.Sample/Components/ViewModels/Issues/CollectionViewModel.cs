@@ -169,7 +169,7 @@ namespace Nivaes.App.Cross.Sample
             }
 
             public AnimalViewModel(ILogger logger)
-                :base(logger)
+                : base(logger)
             { }
         }
 

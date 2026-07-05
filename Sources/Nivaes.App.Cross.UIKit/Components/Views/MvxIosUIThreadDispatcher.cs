@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private readonly SynchronizationContext _uiSynchronizationContext;
 
         protected MvxIosUIThreadDispatcher(ILogger<MvxIosUIThreadDispatcher> logger)
-            :base(logger)
+            : base(logger)
         {
             _uiSynchronizationContext = SynchronizationContext.Current!;
             if (_uiSynchronizationContext == null)

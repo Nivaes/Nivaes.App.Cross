@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 
         public MvxAndroidMainThreadDispatcher(ILogger<MvxAndroidMainThreadDispatcher> logger)
-            :base(logger)
+            : base(logger)
         {
         }
 

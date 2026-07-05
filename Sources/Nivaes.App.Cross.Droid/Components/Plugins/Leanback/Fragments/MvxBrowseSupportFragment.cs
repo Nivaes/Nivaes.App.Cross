@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using Android.OS;
 using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid.Leanback

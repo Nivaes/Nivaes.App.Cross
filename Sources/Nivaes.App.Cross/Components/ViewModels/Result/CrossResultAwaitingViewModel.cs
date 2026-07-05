@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected CrossResultAwaitingViewModel(ICrossResultViewModelManager resultViewModelManager, ILogger logger)
-            :base(logger)
+            : base(logger)
         {
             ResultViewModelManager = resultViewModelManager;
         }

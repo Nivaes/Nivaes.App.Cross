@@ -1,12 +1,8 @@
-namespace Nivaes.App.Cross.AppKitLib;
-
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MvvmCross.Platforms.Mac.Presenters.Attributes;
-using MvvmCross.Platforms.Mac.Views;
-using Nivaes.App.Cross;
+
+namespace Nivaes.App.Cross.AppKitLib;
 
 public class MvxMacViewPresenter
     : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter

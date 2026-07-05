@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
         : CrossNotifyPropertyChanged, ICrossViewModel
     {
         protected CrossViewModel(ILogger logger)
-            :base(logger)
+            : base(logger)
         {
         }
 

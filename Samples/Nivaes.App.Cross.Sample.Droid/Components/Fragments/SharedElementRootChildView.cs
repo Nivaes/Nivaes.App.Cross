@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using Nivaes.App.Cross.Droid;
+using Nivaes.App.Cross.Droid.RecyclerView;
 using Playground.Droid.Adapter;
 
 namespace Nivaes.App.Cross.Sample.Droid

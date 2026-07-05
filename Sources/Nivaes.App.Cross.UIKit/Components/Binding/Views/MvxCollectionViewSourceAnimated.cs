@@ -1,13 +1,11 @@
+using System.Collections;
+using System.Collections.Specialized;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+using System.Linq;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Collections;
-    using System.Collections.Specialized;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding.Extensions;
-    using Nivaes.App.Cross;
-    using Nivaes.App.Cross.Observability;
-
     public class MvxCollectionViewSourceAnimated : MvxCollectionViewSource
     {
         private readonly object collectionChangedLock = new object();
@@ -60,10 +58,10 @@ namespace Nivaes.App.Cross.UIKitLib
             }
         }
 
-        protected override object GetItemAt(NSIndexPath indexPath)
+        protected override object? GetItemAt(NSIndexPath indexPath)
         {
             var itemsSource = itemsSourceBeforeAnimation ?? ItemsSource;
-            return itemsSource?.ElementAt(indexPath.Row);
+            return itemsSource?.Cast<object>().ElementAt(indexPath.Row);
         }
 
         public override nint GetItemsCount(UICollectionView collectionView, nint section)

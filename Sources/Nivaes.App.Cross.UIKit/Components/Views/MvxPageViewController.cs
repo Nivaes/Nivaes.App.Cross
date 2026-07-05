@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
         public IList<UIViewController> Pages { get; protected set; } = new List<UIViewController>();
-        
+
         //public new TViewModel? ViewModel
         //{
         //    get { return (TViewModel?)base.ViewModel; }

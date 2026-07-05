@@ -7,7 +7,6 @@ using Android.Runtime;
 using Android.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Droid.RecyclerView;
 using Nivaes.App.Cross.Observability;
 using Object = Java.Lang.Object;
 using RecyclerViewAdapter = AndroidX.RecyclerView.Widget.RecyclerView.Adapter;
@@ -277,7 +276,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
             }
 
             //May crash if itemsSourcePosition is out or range. Which should never happen anyway, except when you have bugs in your code.
-            return _itemsSource?.ElementAt(itemsSourcePosition);
+            return _itemsSource?.Cast<object>().ElementAt(itemsSourcePosition);
         }
 
         protected virtual int GetViewPosition(object item)

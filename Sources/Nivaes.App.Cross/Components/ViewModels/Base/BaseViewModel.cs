@@ -123,7 +123,7 @@ namespace Nivaes.App.Cross
     //    public ValidateController ValidateController { get; private set; }
 
     //    public IValidator Validator { get; set; }
- 
+
     //    protected BaseViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
     //        : base(logFactory, navigationService)
     //    {

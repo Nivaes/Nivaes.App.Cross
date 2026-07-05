@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross.WinUI
 {
     using Microsoft.Extensions.Logging;
-    using MvvmCross.Platforms.WinUi.Binding;
 
     public class MvxWindowsTargetBindingFactoryRegistry
         : CrossTargetBindingFactoryRegistry

@@ -72,7 +72,7 @@ namespace Nivaes.App.Cross.Hosting
 
             builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
             builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
-            
+
 
 
             //var valueConverterRegistry = new CrossValueConverterRegistry();

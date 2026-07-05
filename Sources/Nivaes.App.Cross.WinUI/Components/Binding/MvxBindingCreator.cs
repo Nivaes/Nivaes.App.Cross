@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
-using Nivaes.App.Cross;
 using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.WinUI

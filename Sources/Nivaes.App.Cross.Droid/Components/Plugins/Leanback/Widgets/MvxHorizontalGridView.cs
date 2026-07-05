@@ -1,15 +1,16 @@
+using System.Collections;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using AndroidX.Leanback.Widget;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Droid.Listeners;
+using Nivaes.App.Cross.Droid.RecyclerView;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Collections;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using AndroidX.Leanback.Widget;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.DroidX.Leanback.Listeners;
-    using Nivaes.App.Cross.Observability;
-
     /// <summary>
     /// 
     /// </summary>

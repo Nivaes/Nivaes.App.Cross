@@ -34,10 +34,10 @@ namespace Nivaes.App.Cross.UIKitLib
         #endregion
 
         #region Data
-        public ICrossBindingContext? BindingContext 
+        public ICrossBindingContext? BindingContext
         {
-            get; 
-            set; 
+            get;
+            set;
         }
 
         public object? DataContext
@@ -56,21 +56,21 @@ namespace Nivaes.App.Cross.UIKitLib
         public TViewModel? ViewModel
         {
             get { return (TViewModel?)DataContext; }
-            set 
-            { 
-                DataContext = value; 
+            set
+            {
+                DataContext = value;
             }
         }
 
-        ICrossViewModel? ICrossView.ViewModel 
-        { 
+        ICrossViewModel? ICrossView.ViewModel
+        {
             get => this.ViewModel;
             set => ViewModel = (TViewModel?)value;
         }
         #endregion
 
         public CrossViewModelRequest? Request { get; set; }
-        
+
 
         public override void ViewDidLoad()
         {

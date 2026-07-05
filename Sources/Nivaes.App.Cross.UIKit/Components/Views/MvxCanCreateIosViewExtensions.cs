@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Intrinsics.X86;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross.UIKitLib;
@@ -27,7 +26,7 @@ public static class MvxCanCreateIosViewExtensions
         this IMvxCanCreateIosView view,
         CrossViewModelRequest request)
     {
-        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateView(request); 
+        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateView(request);
     }
 
     public static IMvxIosView? CreateViewControllerFor(

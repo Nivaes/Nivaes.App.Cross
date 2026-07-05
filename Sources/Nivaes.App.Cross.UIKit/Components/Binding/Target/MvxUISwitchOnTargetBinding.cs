@@ -1,11 +1,9 @@
 #if IOS || MACCATALYST
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-    using MvvmCross.Binding;
-    using Nivaes.App.Cross;
-
     public class MvxUISwitchOnTargetBinding(UISwitch target)
         : MvxTargetBinding<UISwitch, bool>(target)
     {

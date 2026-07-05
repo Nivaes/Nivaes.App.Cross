@@ -1,7 +1,7 @@
 using Android.Content;
 
 namespace Nivaes.App.Cross.Droid
-{  
+{
     public record MvxActivityResultParameters
     {
         public MvxActivityResultParameters(int requestCode, Android.App.Result resultCode, Intent? data)

@@ -7,10 +7,10 @@ namespace Nivaes.App.Cross.AppKitLib
         , ICrossViewDispatcher
     {
         private readonly IMvxMacViewPresenter _presenter;
-        
+
 
         public MvxMacViewDispatcher(IMvxMacViewPresenter presenter, ILogger<MvxMacViewDispatcher> logger)
-            :base(logger)
+            : base(logger)
         {
             _presenter = presenter;
         }
