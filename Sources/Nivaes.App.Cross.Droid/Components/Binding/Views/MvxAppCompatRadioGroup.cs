@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("mvvmcross.platforms.android.binding.views.MvxAppCompatRadioGroup")]
+[Register("nivaes.cross.AppCompatRadioGroup")]
 public class MvxAppCompatRadioGroup : RadioGroup, IMvxWithChangeAdapter
 {
     public MvxAppCompatRadioGroup(Context context, IAttributeSet attrs)

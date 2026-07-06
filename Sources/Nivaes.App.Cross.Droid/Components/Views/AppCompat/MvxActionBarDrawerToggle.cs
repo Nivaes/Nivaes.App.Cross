@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.AppCompat
         }
     }
 
-    [Register("mvvmcross.cross.ActionBarDrawerToggle")]
+    [Register("nivaes.cross.ActionBarDrawerToggle")]
     public sealed class MvxActionBarDrawerToggle : ActionBarDrawerToggle
     {
         public MvxActionBarDrawerToggle(IntPtr handle, JniHandleOwnership ownership)

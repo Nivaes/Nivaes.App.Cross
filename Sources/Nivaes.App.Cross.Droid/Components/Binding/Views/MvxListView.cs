@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Droid
     using Android.Util;
     using Android.Widget;
 
-    [Register("mvvmcross.platforms.android.binding.views.MvxListView")]
+    [Register("nivaes.cross.ListView")]
     public class MvxListView
         : ListView
     {

@@ -1,13 +1,13 @@
+using System;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Nivaes.App.Cross;
+using Fragment = AndroidX.Fragment.App.Fragment;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Views;
-    using Nivaes.App.Cross;
-    using Fragment = AndroidX.Fragment.App.Fragment;
-
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourceFragment")]
+    [Register("nivaes.cross.EventSourceFragment")]
     public class MvxEventSourceFragment
         : Fragment
         , ICrossEventSourceFragment

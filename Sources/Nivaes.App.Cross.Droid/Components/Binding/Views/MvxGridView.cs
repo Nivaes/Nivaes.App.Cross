@@ -1,15 +1,13 @@
+using System.Collections;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Views;
-    using Android.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxGridView")]
+    [Register("nivaes.cross.GridView")]
     public class MvxGridView
         : GridView
     {

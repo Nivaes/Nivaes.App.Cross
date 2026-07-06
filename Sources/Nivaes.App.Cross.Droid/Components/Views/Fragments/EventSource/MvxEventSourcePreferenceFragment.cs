@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid
     using Nivaes.App.Cross;
     using PreferenceFragment = AndroidX.Preference.PreferenceFragmentCompat;
 
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourcePreferenceFragment")]
+    [Register("nivaes.cross.EventSourcePreferenceFragment")]
     public abstract class MvxEventSourcePreferenceFragment : PreferenceFragment
     , ICrossEventSourceFragment
     {

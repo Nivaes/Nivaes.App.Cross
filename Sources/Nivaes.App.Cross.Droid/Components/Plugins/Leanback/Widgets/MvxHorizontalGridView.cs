@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Droid
     /// <remarks>
     /// This class is actually (almost) the same as MvxRecylerView. Please keep this in mind if fixing bugs or implementing improvements!
     /// </remarks>
-    [Register("mvvmcross.droidx.leanback.widgets.MvxHorizontalGridView")]
+    [Register("nivaes.cross.leanback.widgets.HorizontalGridView")]
     public class MvxHorizontalGridView
         : HorizontalGridView
     {

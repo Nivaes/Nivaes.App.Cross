@@ -1,14 +1,14 @@
+using System;
+using System.Collections;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using Android.Widget;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxExpandableListView")]
+    [Register("nivaes.cross.ExpandableListView")]
     public class MvxExpandableListView : ExpandableListView
     {
         private bool _groupClickOverloaded;

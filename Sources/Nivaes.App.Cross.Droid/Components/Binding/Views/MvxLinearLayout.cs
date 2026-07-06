@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("mvvmcross.platforms.android.binding.views.MvxLinearLayout")]
+[Register("nivaes.cross.LinearLayout")]
 public class MvxLinearLayout
     : LinearLayout, IMvxWithChangeAdapter
 {

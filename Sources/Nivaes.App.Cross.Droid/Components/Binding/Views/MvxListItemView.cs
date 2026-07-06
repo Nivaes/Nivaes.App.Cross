@@ -1,13 +1,11 @@
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
+using Object = Java.Lang.Object;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Object = Java.Lang.Object;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxListItemView")]
+    [Register("nivaes.cross.ListItemView")]
     public class MvxListItemView : Object, IMvxListItemView,
         ICrossBindingContextOwner, View.IOnAttachStateChangeListener
     {
