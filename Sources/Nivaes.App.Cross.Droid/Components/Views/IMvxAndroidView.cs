@@ -10,7 +10,7 @@ public interface IMvxAndroidView
 
 public interface IMvxAndroidView<TViewModel>
     : IMvxAndroidView
-    , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
+    , ICrossView<TViewModel> where TViewModel : ICrossViewModel
 {
     CrossFluentBindingDescriptionSet<IMvxAndroidView<TViewModel>, TViewModel> CreateBindingSet();
 }
