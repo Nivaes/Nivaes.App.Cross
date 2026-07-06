@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.UIKitLib
             var view = View;
             if (view == null)
             {
-                CrossBindingLogger.Instance?.LogError(
+                CrossBindingLogger.GetLogger<MvxUITextFieldTextTargetBinding>().LogError(
                     "UITextField is null in MvxUITextFieldTextTargetBinding");
                 return;
             }

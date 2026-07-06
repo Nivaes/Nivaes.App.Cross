@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     }
 
     public interface ICrossView<TViewModel>
-        : ICrossView where TViewModel : class, ICrossViewModel
+        : ICrossView where TViewModel : ICrossViewModel
     {
         new TViewModel? ViewModel { get; set; }
     }

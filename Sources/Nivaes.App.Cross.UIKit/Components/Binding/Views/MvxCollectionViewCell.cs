@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.UIKitLib
     public class MvxCollectionViewCell
         : UICollectionViewCell, IMvxBindable
     {
-        public ICrossBindingContext BindingContext { get; set; }
+        public ICrossBindingContext? BindingContext { get; set; }
 
         [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public MvxCollectionViewCell()
@@ -67,15 +67,15 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             if (disposing)
             {
-                BindingContext.ClearAllBindings();
+                BindingContext?.ClearAllBindings();
             }
             base.Dispose(disposing);
         }
 
-        public object DataContext
+        public object? DataContext
         {
-            get { return BindingContext.DataContext; }
-            set { BindingContext.DataContext = value; }
+            get { return BindingContext?.DataContext; }
+            set { BindingContext?.DataContext = value; }
         }
     }
 }

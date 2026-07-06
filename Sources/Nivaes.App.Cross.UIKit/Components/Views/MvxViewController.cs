@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxViewController<TViewModel>
         : MvxEventSourceViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, ICrossViewModel
+        where TViewModel : ICrossViewModel
     {
         public MvxViewController() : base()
         {
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public TViewModel? ViewModel
         {
-            get { return DataContext as TViewModel; }
+            get { return (TViewModel?)DataContext; }
             set { DataContext = value; }
         }
 

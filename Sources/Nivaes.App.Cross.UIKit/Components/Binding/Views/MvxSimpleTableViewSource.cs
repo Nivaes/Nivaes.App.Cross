@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
-        protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
+        protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object? item)
         {
             //if (_iosVersion6Checker.IsVersionOrHigher)
             //    return tableView.DequeueReusableCell(CellIdentifier, indexPath);
