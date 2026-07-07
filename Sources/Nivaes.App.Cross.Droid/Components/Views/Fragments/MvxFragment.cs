@@ -1,29 +1,15 @@
 using Android.Runtime;
 using System.Diagnostics.CodeAnalysis;
+using AndroidX.Lifecycle;
 
 namespace Nivaes.App.Cross.Droid
 {
     [Register("nivaes.cross.Fragment")]
     public class MvxFragment<TViewModel>
-        : MvxEventSourceFragment, IMvxFragmentView<TViewModel>
-        , IMvxFragmentView
+        : MvxEventSourceFragment, IMvxFragmentView<TViewModel>, IMvxFragmentView
         where TViewModel : ICrossViewModel
     {
-        ///// <summary>
-        ///// Create new instance of a Fragment
-        ///// </summary>
-        ///// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
-        ///// <returns>Returns an instance of a MvxFragment</returns>
-        //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        //public static MvxFragment NewInstance(Bundle bundle)
-        //{
-        //    // Setting Arguments needs to happen before Fragment is attached
-        //    // to Activity. Arguments are persisted when Fragment is recreated!
-        //    var fragment = new MvxFragment { Arguments = bundle };
-
-        //    return fragment;
-        //}
-
+        #region Constructors
         protected MvxFragment(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
@@ -34,6 +20,7 @@ namespace Nivaes.App.Cross.Droid
         {
             this.AddEventListeners();
         }
+        #endregion
 
         #region Data
         public ICrossBindingContext ?BindingContext { get; set; }
@@ -65,6 +52,7 @@ namespace Nivaes.App.Cross.Droid
         }
         #endregion
 
+        #region Life cycle
         public virtual void OnViewModelSet()
         {
         }
@@ -106,10 +94,13 @@ namespace Nivaes.App.Cross.Droid
             base.OnStop();
             ViewModel?.ViewDisappeared();
         }
+        #endregion
 
+        #region Binding
         public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<IMvxFragmentView<TViewModel>, TViewModel>();
         }
+        #endregion
     }
 }

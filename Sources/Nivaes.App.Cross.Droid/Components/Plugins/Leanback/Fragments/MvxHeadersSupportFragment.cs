@@ -1,27 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Runtime;
+using AndroidX.Lifecycle;
 
 namespace Nivaes.App.Cross.Droid.Leanback
 {
     [Register("nivaes.cross.leanback.fragments.HeadersSupportFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public class MvxHeadersSupportFragment
-        : MvxEventSourceHeadersSupportFragment, IMvxFragmentView
+    public class MvxHeadersSupportFragment<TViewModel>
+        : MvxEventSourceHeadersSupportFragment, IMvxFragmentView<TViewModel>, IMvxFragmentView
+        where TViewModel : class, ICrossViewModel
     {
-        /// <summary>
-        /// Create new instance of a MvxHeadersSupportFragment
-        /// </summary>
-        /// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
-        /// <returns>Returns an instance of a MvxFragment</returns>
-        public static MvxHeadersSupportFragment NewInstance(Bundle bundle)
-        {
-            // Setting Arguments needs to happen before Fragment is attached
-            // to Activity. Arguments are persisted when Fragment is recreated!
-            var fragment = new MvxHeadersSupportFragment { Arguments = bundle };
-
-            return fragment;
-        }
-
+        #region Constructors
         protected MvxHeadersSupportFragment()
         {
             var _ = new MvxBindingFragmentAdapter(this);
@@ -31,31 +20,24 @@ namespace Nivaes.App.Cross.Droid.Leanback
             : base(javaReference, transfer)
         {
         }
+        #endregion
 
-        public ICrossBindingContext BindingContext { get; set; }
+        #region Data
+        public ICrossBindingContext? BindingContext { get; set; }
 
-        private object _dataContext;
-
-        public object DataContext
+        public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
+            get => BindingContext?.DataContext;
             set
             {
-                _dataContext = value;
                 if (BindingContext != null)
                     BindingContext.DataContext = value;
             }
         }
 
-        public virtual ICrossViewModel ViewModel
+        public TViewModel? ViewModel
         {
-            get
-            {
-                return DataContext as ICrossViewModel;
-            }
+            get => (TViewModel?)DataContext;
             set
             {
                 DataContext = value;
@@ -63,35 +45,26 @@ namespace Nivaes.App.Cross.Droid.Leanback
             }
         }
 
+        ICrossViewModel? ICrossView.ViewModel
+        {
+            get => ViewModel;
+            set => ViewModel = (TViewModel?)value;
+        }
+        #endregion
+
+        #region Life cycle
         public virtual void OnViewModelSet()
         {
         }
 
         public string UniqueImmutableCacheTag => Tag;
-    }
+        #endregion
 
-    [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public abstract class MvxHeadersSupportFragment<TViewModel> : MvxHeadersSupportFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        protected MvxHeadersSupportFragment()
-        {
-        }
-
-        protected MvxHeadersSupportFragment(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
+        #region Binding
         public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<IMvxFragmentView<TViewModel>, TViewModel>();
         }
+        #endregion
     }
 }
