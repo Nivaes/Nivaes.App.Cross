@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>$(_CrossiOSTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
-        <SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>
+        <!--<SupportedOSPlatformVersion>$(_CrossiOSVersion)</SupportedOSPlatformVersion>-->
 		<AssemblyName>Nivaes.App.Cross.Sample.UIKit.iOS</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.UIKitLib.iOS</RootNamespace>
 

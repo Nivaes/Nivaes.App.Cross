@@ -7,7 +7,7 @@
 		
 		 <Nullable>enable</Nullable>
 		<!--<ImplicitUsings>true</ImplicitUsings> -->
-		<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>
+		<!--<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>-->
 		<!--export PATH="$PATH:/Users/andres/.dotnet/tools"-->
 		<!--
       Enable full trimming in Release mode.

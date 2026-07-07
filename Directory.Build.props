@@ -54,9 +54,7 @@
 		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
-		
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
-		
+			
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_SupportedOSPlatformWindowsVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_TargetPlatformWinodwsMinVersion)</TargetPlatformMinVersion>
 	</PropertyGroup>

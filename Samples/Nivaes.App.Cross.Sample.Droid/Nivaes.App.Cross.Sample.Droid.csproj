@@ -5,6 +5,8 @@
 		<AssemblyName>Nivaes.App.Cross.Sample.Droid</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.Droid</RootNamespace>
 
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
+		
 		<RuntimeIdentifiers>
 			android-arm64;
 			android-x64
