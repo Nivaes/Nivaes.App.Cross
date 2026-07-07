@@ -9,13 +9,13 @@
 		<_SupportedOSPlatformMacOSVersion>13.0</_SupportedOSPlatformMacOSVersion>
 
 		<_SupportedOSPlatformiOSVersion>15.8</_SupportedOSPlatformiOSVersion>
-		<_TargetPlatformiOSVersion>26</_TargetPlatformiOSVersion>
+		<_TargetPlatformiOSVersion>26.0</_TargetPlatformiOSVersion>
 
 		<_SupportedOSPlatformMacCatalystVersion>15.0</_SupportedOSPlatformMacCatalystVersion>
-		<_TargetPlatformMacCatalystVersion>26</_TargetPlatformMacCatalystVersion>
+		<_TargetPlatformMacCatalystVersion>26.0</_TargetPlatformMacCatalystVersion>
 
 		<_SupportedOSPlatformTvOSVersion>15.8</_SupportedOSPlatformTvOSVersion>
-		<_TargetPlatformTvOSVersion>26</_TargetPlatformTvOSVersion>
+		<_TargetPlatformTvOSVersion>26.0</_TargetPlatformTvOSVersion>
 
 		<_SupportedOSPlatformAndroidVersion>23.0</_SupportedOSPlatformAndroidVersion>
 		

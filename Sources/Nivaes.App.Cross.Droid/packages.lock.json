@@ -16,9 +16,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.0, )",
-        "resolved": "10.0.0",
-        "contentHash": "kICGrGYEzCNI3wPzfEXcwNHgTvlvVn9yJDhSdRK+oZQy4jvYH529u7O0xf5ocQKzOMjfS07+3z9PKRIjrFMJDA=="
+        "requested": "[10.0.9, )",
+        "resolved": "10.0.9",
+        "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
       },
       "Nivaes.App.Shared": {
         "type": "Direct",
@@ -116,9 +116,9 @@
       },
       "Xamarin.Google.Android.Material": {
         "type": "Direct",
-        "requested": "[1.14.0.4, )",
-        "resolved": "1.14.0.4",
-        "contentHash": "d6RQeDqZeIgeq61772H78pXYcbtpfKjfDY6hf73ShF6O3wzAsGJ7ZZXrdb0f4jOyc+59yspCOP50WOGX3L6GTg==",
+        "requested": "[1.14.0.5, )",
+        "resolved": "1.14.0.5",
+        "contentHash": "ORxIVscXHmZ6C6zQ+AG3PyikW2BWA2RsqfW++5ZdCiXHpPGc5rZS41ev/Wxk7jyqUDY9YF9TwhePhToCFBed6Q==",
         "dependencies": {
           "Xamarin.AndroidX.Activity": "1.13.0.1",
           "Xamarin.AndroidX.Annotation": "1.10.0.1",
