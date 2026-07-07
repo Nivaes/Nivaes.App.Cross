@@ -19,7 +19,7 @@ public class ModalView : MvxDialogFragment<ModalViewModel>
     {
     }
 
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 

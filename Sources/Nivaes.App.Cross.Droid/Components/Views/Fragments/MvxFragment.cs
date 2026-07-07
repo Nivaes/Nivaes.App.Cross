@@ -9,20 +9,20 @@ namespace Nivaes.App.Cross.Droid
         , IMvxFragmentView
         where TViewModel : ICrossViewModel
     {
-        /// <summary>
-        /// Create new instance of a Fragment
-        /// </summary>
-        /// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
-        /// <returns>Returns an instance of a MvxFragment</returns>
-        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        public static MvxFragment NewInstance(Bundle bundle)
-        {
-            // Setting Arguments needs to happen before Fragment is attached
-            // to Activity. Arguments are persisted when Fragment is recreated!
-            var fragment = new MvxFragment { Arguments = bundle };
+        ///// <summary>
+        ///// Create new instance of a Fragment
+        ///// </summary>
+        ///// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
+        ///// <returns>Returns an instance of a MvxFragment</returns>
+        //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
+        //public static MvxFragment NewInstance(Bundle bundle)
+        //{
+        //    // Setting Arguments needs to happen before Fragment is attached
+        //    // to Activity. Arguments are persisted when Fragment is recreated!
+        //    var fragment = new MvxFragment { Arguments = bundle };
 
-            return fragment;
-        }
+        //    return fragment;
+        //}
 
         protected MvxFragment(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
@@ -35,32 +35,35 @@ namespace Nivaes.App.Cross.Droid
             this.AddEventListeners();
         }
 
-        public ICrossBindingContext BindingContext { get; set; }
+        #region Data
+        public ICrossBindingContext ?BindingContext { get; set; }
 
-        private object _dataContext;
-
-        public object DataContext
+        public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
+            get => BindingContext?.DataContext;
             set
             {
-                _dataContext = value;
                 if (BindingContext != null)
                     BindingContext.DataContext = value;
             }
         }
 
-        public TViewModel ViewModel
+        public TViewModel? ViewModel
         {
-            get { return (ICrossViewModel)DataContext; }
-            set {
+            get => (TViewModel?)DataContext;
+            set
+            {
                 DataContext = value;
                 OnViewModelSet();
             }
         }
+
+        ICrossViewModel? ICrossView.ViewModel
+        {
+            get => ViewModel;
+            set => ViewModel = (TViewModel?)value;
+        }
+        #endregion
 
         public virtual void OnViewModelSet()
         {
@@ -68,7 +71,7 @@ namespace Nivaes.App.Cross.Droid
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();

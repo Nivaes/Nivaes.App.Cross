@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [MvxFragmentPresentation(fragmentHostViewType: typeof(ModalNavView), fragmentContentId: Resource.Id.dialog_content_frame)]
 public class ChildView : MvxFragment<ChildViewModel>
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 

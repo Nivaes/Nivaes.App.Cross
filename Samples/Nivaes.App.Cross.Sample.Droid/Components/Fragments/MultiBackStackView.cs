@@ -17,7 +17,7 @@ public sealed class MultiBackStackView
     private NavigationBarView? _navigationView;
     private bool _navigatedToTab2;
 
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 
@@ -70,7 +70,7 @@ public sealed class MultiBackStackView
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewModel>
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 
@@ -88,7 +88,7 @@ public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewM
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewModel>
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 
@@ -101,7 +101,7 @@ public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewM
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel>, ICrossOverridePresentationAttribute
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 

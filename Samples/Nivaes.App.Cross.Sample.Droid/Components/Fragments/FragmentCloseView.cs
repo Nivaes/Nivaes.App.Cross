@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample.Droid
     [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
     internal sealed class FragmentCloseView : MvxFragment<FragmentCloseViewModel>
     {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 

@@ -100,9 +100,7 @@
   </Folder>
   <Folder Name="/Sources/WinUI/">
     <Project Path="Sources/Nivaes.App.Cross.WinUI.SourceGenerator/Nivaes.App.Cross.WinUI.SourceGenerator.csproj" />
-    <Project Path="Sources/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj">
-      <Platform Solution="Debug|*" Project="x64" />
-    </Project>
+    <Project Path="Sources/Nivaes.App.Cross.WinUI/Nivaes.App.Cross.WinUI.csproj" />
   </Folder>
   <Folder Name="/Tools/" />
 </Solution>

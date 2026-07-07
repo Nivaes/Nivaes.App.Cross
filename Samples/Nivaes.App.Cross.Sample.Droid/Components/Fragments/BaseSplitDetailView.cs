@@ -18,7 +18,7 @@ public abstract class BaseSplitDetailView<TViewModel>
 
     protected abstract int FragmentLayoutId { get; }
 
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 

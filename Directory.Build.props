@@ -17,7 +17,7 @@
 		<_SupportedOSPlatformTvOSVersion>15.8</_SupportedOSPlatformTvOSVersion>
 		<_TargetPlatformTvOSVersion>26.0</_TargetPlatformTvOSVersion>
 
-		<_SupportedOSPlatformAndroidVersion>23.0</_SupportedOSPlatformAndroidVersion>
+		<_SupportedOSPlatformAndroidVersion>24</_SupportedOSPlatformAndroidVersion>
 		
 		<_SupportedOSPlatformWindowsVersion>10.0.22000.0</_SupportedOSPlatformWindowsVersion>
 		<_TargetPlatformWinodwsMinVersion>10.0.19041.0</_TargetPlatformWinodwsMinVersion>
@@ -45,13 +45,18 @@
 
 	<PropertyGroup>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">$(_SupportedOSPlatformMacOSVersion)</SupportedOSPlatformVersion>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">$(_SupportedOSPlatformiOSVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">$(_TargetPlatformiOSVersion)</TargetPlatformVersion>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">$(_SupportedOSPlatformMacCatalystVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">$(_TargetPlatformMacCatalystVersion)</TargetPlatformVersion>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_SupportedOSPlatformWindowsVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(_TargetPlatformWinodwsMinVersion)</TargetPlatformMinVersion>
 	</PropertyGroup>
