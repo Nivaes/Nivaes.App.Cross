@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
 		<AssemblyName>Nivaes.App.Sample.AppKit</AssemblyName>
 		<RootNamespace>Nivaes.App.Sample.AppKitLib</RootNamespace>
 		
-		 <Nullable>enable</Nullable>
-		<!--<ImplicitUsings>true</ImplicitUsings> -->
-		<!--<SupportedOSPlatformVersion>$(_CrossMacOSVersion)</SupportedOSPlatformVersion>-->
-		<!--export PATH="$PATH:/Users/andres/.dotnet/tools"-->
 		<!--
       Enable full trimming in Release mode.
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity

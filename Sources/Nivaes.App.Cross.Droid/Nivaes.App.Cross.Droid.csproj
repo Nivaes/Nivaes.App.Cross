@@ -2,9 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
+		
 		<AssemblyName>Nivaes.App.Droid</AssemblyName>
 		<RootNamespace>Nivaes.App.Droid</RootNamespace>
-		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
 
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

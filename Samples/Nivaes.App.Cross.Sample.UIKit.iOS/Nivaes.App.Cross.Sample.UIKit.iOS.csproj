@@ -20,6 +20,20 @@
 		<!--<PublishAot>true</PublishAot>-->
 
 	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformiOSVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformiOSVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformMacCatalystVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformMacCatalystVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	
 	<ItemGroup>
 	  <BundleResource Remove="Resources\home.png" />
 	  <BundleResource Remove="Resources\home@2x.png" />

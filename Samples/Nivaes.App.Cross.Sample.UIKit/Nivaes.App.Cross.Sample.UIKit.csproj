@@ -12,6 +12,21 @@
 		<IsPackable>false</IsPackable>
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
+	
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformiOSVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformiOSVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformMacCatalystVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformMacCatalystVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+
+	
 	<ItemGroup>
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_1x.png" />
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_2x.png" />
