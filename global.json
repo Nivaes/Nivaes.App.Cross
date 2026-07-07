@@ -6,8 +6,13 @@
   "msbuild-sdks": {
     "Aspire.AppHost.Sdk": "13.4.6"
   },
-  "maccatalyst": {},
   "ios": {
+    "version": "26.2"
+  },
+  "maccatalyst": {
+    "version": "26.2"
+  },
+  "tvos": {
     "version": "26.2"
   }
 }

@@ -13,7 +13,7 @@
 		<_CrossAndroidVersion>23.0</_CrossAndroidVersion>
 		<_CrossWindowsVersion>10.0.22000.0</_CrossWindowsVersion>
 		<_CrossWindowsPlatformMinVersion>10.0.19041.0</_CrossWindowsPlatformMinVersion>
-    </PropertyGroup>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<_CrossCommonTargets>net10.0</_CrossCommonTargets>
@@ -62,7 +62,7 @@
 		<DebugType>portable</DebugType>
 		<Optimize>true</Optimize>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
 		<PackageProjectUrl>https://github.com/Nivaes/Nivaes.App.Cross</PackageProjectUrl>
@@ -74,6 +74,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<NoWarn>$(NoWarn);NU1507</NoWarn>
 		<EnablePackageValidation>true</EnablePackageValidation>
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
