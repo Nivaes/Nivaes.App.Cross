@@ -3,7 +3,7 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid.Leanback
 {
-    [Register("mvvmcross.droidx.leanback.fragments.MvxSearchSupportFragment")]
+    [Register("nivaes.cross.leanback.fragments.SearchSupportFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxSearchSupportFragment
         : MvxEventSourceSearchSupportFragment, IMvxFragmentView

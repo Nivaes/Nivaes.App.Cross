@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
     public interface IMvxIosView<TViewModel>
         : IMvxIosView, ICrossView<TViewModel>
-        where TViewModel : class, ICrossViewModel
+        where TViewModel : ICrossViewModel
     {
         CrossFluentBindingDescriptionSet<IMvxIosView<TViewModel>, TViewModel> CreateBindingSet();
     }

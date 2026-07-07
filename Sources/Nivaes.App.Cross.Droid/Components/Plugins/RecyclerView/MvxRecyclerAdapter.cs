@@ -14,7 +14,7 @@ using ViewHolder = AndroidX.RecyclerView.Widget.RecyclerView.ViewHolder;
 
 namespace Nivaes.App.Cross.Droid.RecyclerView
 {
-    [Register("nivaes.cross.recyclerview.MvxRecyclerAdapter")]
+    [Register("nivaes.cross.recyclerview.RecyclerAdapter")]
     public class MvxRecyclerAdapter
         : RecyclerViewAdapter, IMvxRecyclerAdapter, IMvxRecyclerAdapterBindableHolder
     {

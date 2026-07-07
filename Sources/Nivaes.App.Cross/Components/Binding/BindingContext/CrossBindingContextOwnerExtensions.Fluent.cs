@@ -4,7 +4,8 @@ namespace Nivaes.App.Cross;
 
 public static partial class CrossBindingContextOwnerExtensions
 {
-    extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(TTarget target) where TTarget : class, ICrossBindingContextOwner
+    extension<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(TTarget target)
+        where TTarget : class, ICrossBindingContextOwner
     {
         public CrossFluentBindingDescriptionSet<TTarget, TSource> CreateBindingSet<TSource>()
         {

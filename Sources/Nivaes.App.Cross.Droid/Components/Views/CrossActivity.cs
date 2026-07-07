@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Droid;
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class CrossActivity<TViewModel>
     : CrossEventSourceActivity, ICrossActivity, IMvxAndroidView<TViewModel>
-    where TViewModel : class, ICrossViewModel
+    where TViewModel : ICrossViewModel
 {
     protected CrossActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
@@ -36,7 +36,7 @@ public abstract class CrossActivity<TViewModel>
 
     public TViewModel? ViewModel
     {
-        get => DataContext as TViewModel;
+        get => (TViewModel?)DataContext;
         set
         {
             DataContext = value;

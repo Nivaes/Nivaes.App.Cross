@@ -119,13 +119,13 @@ namespace Nivaes.App.Cross
 
         public ValidateController ValidateController { get; private set; }
 
-    //    public IValidator Validator { get; set; }
+        public IValidator? Validator { get; set; }
 
-    //    protected BaseViewModel(ILoggerFactory logFactory, ICrossNavigationService navigationService)
-    //        : base(logFactory, navigationService)
-    //    {
-    //        ValidateController = new ValidateController(this);
-    //    }
+        protected BaseViewModel(ICrossNavigationService navigationService, ILogger logger)
+            : base(navigationService, logger)
+        {
+            ValidateController = new ValidateController(this);
+        }
 
         public override void ViewAppeared()
         {

@@ -119,7 +119,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
     public class MvxTableViewController<TViewModel>
         : MvxTableViewController, IMvxIosView<TViewModel>
-        where TViewModel : class, ICrossViewModel
+        where TViewModel : ICrossViewModel
     {
         public MvxTableViewController(UITableViewStyle style = UITableViewStyle.Plain) : base(style)
         {

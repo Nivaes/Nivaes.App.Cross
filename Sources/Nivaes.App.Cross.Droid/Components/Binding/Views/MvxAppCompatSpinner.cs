@@ -1,18 +1,17 @@
+using System.Collections;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+using AndroidX.AppCompat.Widget;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using AndroidX.AppCompat.Widget;
-
     /// <summary>
     /// Tint-aware version of MvxSpinner styled properly with AppCompat V22.2+.
     /// TODO: We may want to figure out a way to delegate to a common class for both.
     /// </summary>
-    [Register("mvvmcross.platforms.android.binding.views.MvxAppCompatSpinner")]
+    [Register("nivaes.cross.views.AppCompatSpinner")]
     public class MvxAppCompatSpinner : AppCompatSpinner
     {
         public MvxAppCompatSpinner(Context context, IAttributeSet attrs)

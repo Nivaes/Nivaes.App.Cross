@@ -1,12 +1,12 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Android.OS;
+using Android.Runtime;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Android.OS;
-    using Android.Runtime;
-    using Nivaes.App.Cross;
-
-    [Register("mvvmcross.platforms.android.views.fragments.MvxDialogFragment")]
+    [Register("nivaes.cross.DialogFragment")]
     public abstract class MvxDialogFragment
         : MvxEventSourceDialogFragment, IMvxFragmentView
     {
@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross.Droid
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();

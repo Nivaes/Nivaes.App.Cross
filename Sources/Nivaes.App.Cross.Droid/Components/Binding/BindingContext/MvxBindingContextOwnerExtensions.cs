@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid
                 return context?.BindingInflate(resourceId, viewGroup);
             }
 
-            public View? BindingInflate(int resourceId, ViewGroup viewGroup, bool attachToParent)
+            public View? BindingInflate(int resourceId, ViewGroup? viewGroup, bool attachToParent)
             {
                 var context = (IMvxAndroidBindingContext?)owner.BindingContext;
                 return context?.BindingInflate(resourceId, viewGroup, attachToParent);

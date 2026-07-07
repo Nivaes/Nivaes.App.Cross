@@ -1,14 +1,12 @@
+using System.Collections;
+using System.Windows.Input;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using System.Windows.Input;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxSpinner")]
+    [Register("nivaes.cross.Spinner")]
     public class MvxSpinner : Spinner
     {
         public MvxSpinner(Context context, IAttributeSet attrs)

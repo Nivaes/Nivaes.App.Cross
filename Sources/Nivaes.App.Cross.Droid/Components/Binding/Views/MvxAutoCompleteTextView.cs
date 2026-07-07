@@ -1,13 +1,11 @@
+using System.Collections;
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxAutoCompleteTextView")]
+    [Register("nivaes.cross.AutoCompleteTextView")]
     public class MvxAutoCompleteTextView
         : AutoCompleteTextView
     {

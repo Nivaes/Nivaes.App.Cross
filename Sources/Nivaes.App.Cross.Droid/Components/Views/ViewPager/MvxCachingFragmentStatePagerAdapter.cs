@@ -13,7 +13,7 @@ using JavaString = Java.Lang.String;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Register("mvvmcross.platforms.android.views.viewpager.MvxCachingFragmentStatePagerAdapter")]
+    [Register("nivaes.cross.CachingFragmentStatePagerAdapter")]
     public class MvxCachingFragmentStatePagerAdapter
         : MvxCachingFragmentPagerAdapter
     {

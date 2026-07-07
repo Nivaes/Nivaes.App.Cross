@@ -1,28 +1,28 @@
 using Android.Runtime;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    [Register("mvvmcross.platforms.android.views.fragments.MvxFragment")]
-    public class MvxFragment
-        : MvxEventSourceFragment
+    [Register("nivaes.cross.Fragment")]
+    public class MvxFragment<TViewModel>
+        : MvxEventSourceFragment, IMvxFragmentView<TViewModel>
         , IMvxFragmentView
+        where TViewModel : ICrossViewModel
     {
-        /// <summary>
-        /// Create new instance of a Fragment
-        /// </summary>
-        /// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
-        /// <returns>Returns an instance of a MvxFragment</returns>
-        [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        public static MvxFragment NewInstance(Bundle bundle)
-        {
-            // Setting Arguments needs to happen before Fragment is attached
-            // to Activity. Arguments are persisted when Fragment is recreated!
-            var fragment = new MvxFragment { Arguments = bundle };
+        ///// <summary>
+        ///// Create new instance of a Fragment
+        ///// </summary>
+        ///// <param name="bundle">Usually this would be MvxViewModelRequest serialized</param>
+        ///// <returns>Returns an instance of a MvxFragment</returns>
+        //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
+        //public static MvxFragment NewInstance(Bundle bundle)
+        //{
+        //    // Setting Arguments needs to happen before Fragment is attached
+        //    // to Activity. Arguments are persisted when Fragment is recreated!
+        //    var fragment = new MvxFragment { Arguments = bundle };
 
-            return fragment;
-        }
+        //    return fragment;
+        //}
 
         protected MvxFragment(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
@@ -35,30 +35,22 @@ namespace Nivaes.App.Cross.Droid
             this.AddEventListeners();
         }
 
-        public ICrossBindingContext BindingContext { get; set; }
+        #region Data
+        public ICrossBindingContext ?BindingContext { get; set; }
 
-        private object _dataContext;
-
-        public object DataContext
+        public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
+            get => BindingContext?.DataContext;
             set
             {
-                _dataContext = value;
                 if (BindingContext != null)
                     BindingContext.DataContext = value;
             }
         }
 
-        public virtual ICrossViewModel ViewModel
+        public TViewModel? ViewModel
         {
-            get
-            {
-                return DataContext as ICrossViewModel;
-            }
+            get => (TViewModel?)DataContext;
             set
             {
                 DataContext = value;
@@ -66,13 +58,20 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
+        ICrossViewModel? ICrossView.ViewModel
+        {
+            get => ViewModel;
+            set => ViewModel = (TViewModel?)value;
+        }
+        #endregion
+
         public virtual void OnViewModelSet()
         {
         }
 
         public string UniqueImmutableCacheTag => Tag;
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ViewModel?.ViewCreated();
@@ -106,25 +105,6 @@ namespace Nivaes.App.Cross.Droid
         {
             base.OnStop();
             ViewModel?.ViewDisappeared();
-        }
-    }
-
-    public abstract class MvxFragment<TViewModel> : MvxFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        [RequiresUnreferencedCode("This constructor uses reflection which may not be preserved during trimming.")]
-        protected MvxFragment()
-        {
-        }
-
-        protected MvxFragment(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()

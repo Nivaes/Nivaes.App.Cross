@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.UIKitLib;
 public class MvxCollectionReusableView
     : UICollectionReusableView, IMvxBindable
 {
-    public ICrossBindingContext BindingContext { get; set; }
+    public ICrossBindingContext? BindingContext { get; set; }
 
     [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
     public MvxCollectionReusableView()
@@ -64,15 +64,15 @@ public class MvxCollectionReusableView
     {
         if (disposing)
         {
-            BindingContext.ClearAllBindings();
+            BindingContext?.ClearAllBindings();
         }
         base.Dispose(disposing);
     }
 
     [CrossSetToNullAfterBinding]
-    public object DataContext
+    public object? DataContext
     {
-        get { return BindingContext.DataContext; }
-        set { BindingContext.DataContext = value; }
+        get { return BindingContext?.DataContext; }
+        set { BindingContext?.DataContext = value; }
     }
 }

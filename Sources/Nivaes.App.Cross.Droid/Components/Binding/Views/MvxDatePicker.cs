@@ -1,12 +1,10 @@
+using Android.Content;
+using Android.Runtime;
+using Android.Util;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Android.Content;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Widget;
-
-    [Register("mvvmcross.platforms.android.binding.views.MvxDatePicker")]
+    [Register("nivaes.cross.DatePicker")]
     public class MvxDatePicker
         : DatePicker
         , DatePicker.IOnDateChangedListener

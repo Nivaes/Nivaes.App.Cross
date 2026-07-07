@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Droid
     using Nivaes.App.Cross;
     using PreferenceFragment = AndroidX.Preference.PreferenceFragmentCompat;
 
-    [Register("mvvmcross.platforms.android.views.fragments.eventsource.MvxEventSourcePreferenceFragment")]
+    [Register("nivaes.cross.EventSourcePreferenceFragment")]
     public abstract class MvxEventSourcePreferenceFragment : PreferenceFragment
     , ICrossEventSourceFragment
     {
@@ -42,14 +42,14 @@ namespace Nivaes.App.Cross.Droid
             base.OnAttach(context);
         }
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle? savedInstanceState)
         {
             CreateWillBeCalled.Raise(this, savedInstanceState);
             base.OnCreate(savedInstanceState);
             CreateCalled.Raise(this, savedInstanceState);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
         {
             CreateViewCalled.Raise(this, new MvxCreateViewParameters(inflater, container, savedInstanceState));
             return base.OnCreateView(inflater, container, savedInstanceState);

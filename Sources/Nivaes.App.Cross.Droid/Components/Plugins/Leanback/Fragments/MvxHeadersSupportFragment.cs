@@ -3,7 +3,7 @@ using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid.Leanback
 {
-    [Register("mvvmcross.droidx.leanback.fragments.MvxHeadersSupportFragment")]
+    [Register("nivaes.cross.leanback.fragments.HeadersSupportFragment")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public class MvxHeadersSupportFragment
         : MvxEventSourceHeadersSupportFragment, IMvxFragmentView

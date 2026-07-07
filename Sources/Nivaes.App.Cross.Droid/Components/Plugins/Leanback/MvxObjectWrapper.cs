@@ -3,7 +3,7 @@ using Object = Java.Lang.Object;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Register("nivaes.cross.ObjectWrapper")]
+    [Register("nivaes.cross.leanback.widgets.ObjectWrapper")]
     public class MvxObjectWrapper : Object
     {
         /// <summary>

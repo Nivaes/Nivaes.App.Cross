@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class TabsRootBView : MvxFragment<TabsRootBViewModel>
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
 

@@ -9,7 +9,7 @@ using Object = Java.Lang.Object;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Register("mvvmcross.platforms.android.views.MvxTabsFragmentActivity")]
+    [Register("nivaes.cross.TabsFragmentActivity")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public abstract class MvxTabsFragmentActivity
         : CrossActivity<CrossTabsFragmentActivityViewModel>, TabHost.IOnTabChangeListener

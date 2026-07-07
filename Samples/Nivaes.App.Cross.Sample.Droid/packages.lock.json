@@ -56,17 +56,17 @@
       },
       "Xamarin.Android.Glide": {
         "type": "Direct",
-        "requested": "[5.0.7, )",
-        "resolved": "5.0.7",
-        "contentHash": "FHR5JVX8EuhBeP1+UIgGSJWQmarEIHfX+ONmKBEFRK7xfdDKBBFnjJzxOwr2r8u/MjOVCHbUuUbyVywF6hmLVg==",
+        "requested": "[5.0.7.1, )",
+        "resolved": "5.0.7.1",
+        "contentHash": "JUMtWWybqo2VMx6SgSuOX6B65lMFdm8prBYOUjzsVtZD8iZe1/nCMimD/bYfd0CQ72EIoeGu4js7kz54/EPS6Q==",
         "dependencies": {
-          "Xamarin.Android.Glide.Annotations": "5.0.7",
-          "Xamarin.Android.Glide.DiskLruCache": "5.0.7",
-          "Xamarin.Android.Glide.GifDecoder": "5.0.7",
-          "Xamarin.AndroidX.ExifInterface": "1.4.2.2",
-          "Xamarin.AndroidX.Fragment": "1.8.9.2",
-          "Xamarin.AndroidX.Tracing.Tracing": "1.3.0.3",
-          "Xamarin.AndroidX.VectorDrawable.Animated": "1.2.0.10"
+          "Xamarin.Android.Glide.Annotations": "5.0.7.1",
+          "Xamarin.Android.Glide.DiskLruCache": "5.0.7.1",
+          "Xamarin.Android.Glide.GifDecoder": "5.0.7.1",
+          "Xamarin.AndroidX.ExifInterface": "1.4.2.3",
+          "Xamarin.AndroidX.Fragment": "1.8.9.3",
+          "Xamarin.AndroidX.Tracing.Tracing": "1.3.0.4",
+          "Xamarin.AndroidX.VectorDrawable.Animated": "1.2.0.11"
         }
       },
       "MemoryPack": {
@@ -231,20 +231,20 @@
       },
       "Xamarin.Android.Glide.Annotations": {
         "type": "Transitive",
-        "resolved": "5.0.7",
-        "contentHash": "8XP7k8KZyVCT6ZgxDNpMoKGatl54VtH+ZhlWHVODM2cDeAapSL0ooOxAtcfwGI11iuXMtPYUlSGvwChKorLEvQ=="
+        "resolved": "5.0.7.1",
+        "contentHash": "X3Z7iqkbXEDXNy48bvQG0n3dbbmiaol3XcBWXk3S1FUoKaxn6atjZYSTUz/iljVI/Tah9ITmufJEdd5YhyNvhQ=="
       },
       "Xamarin.Android.Glide.DiskLruCache": {
         "type": "Transitive",
-        "resolved": "5.0.7",
-        "contentHash": "nDXlutj6WkFz1wwvSWV/lF2luYk9+Q5BM2+nXN9bw1e91lSryvDQ871mUQ+he7arelcor67rQLEIxanrQMyTpA=="
+        "resolved": "5.0.7.1",
+        "contentHash": "DUbQWTFNQd8cPgNQmjvGtI2gHHsWTgqApA7b81ZEahjSUmmtwPraozW3co9rJGey6QOAO9MMkxYs+BlItpXsQg=="
       },
       "Xamarin.Android.Glide.GifDecoder": {
         "type": "Transitive",
-        "resolved": "5.0.7",
-        "contentHash": "zkwGs228uq/DO7hGLHquT3f4t9rrPvItJzvKNpOEORqoZLNMg4/eonfoOv+98zWMTFsbwQ/vCu7fnNzv7Fe7Lg==",
+        "resolved": "5.0.7.1",
+        "contentHash": "dGWNFGOogQC7ghVAAfbtXM79pZIXh04VwE7MbsHctrwX5Wf/sXCiB3x/3Le7flxfK1MQt0JYn3QVGGldHg0MIg==",
         "dependencies": {
-          "Xamarin.AndroidX.Annotation": "1.10.0"
+          "Xamarin.AndroidX.Annotation": "1.10.0.1"
         }
       },
       "Xamarin.AndroidX.Activity": {
@@ -539,11 +539,11 @@
       },
       "Xamarin.AndroidX.ExifInterface": {
         "type": "Transitive",
-        "resolved": "1.4.2.2",
-        "contentHash": "CdXlkfwwwYXkTH2KOesgelp6ALrns5gLlJJg3YI9tK/QVc6Wh4PGztUTEFN4Ptfap+Upca5B5g7oCiXKIFlKuA==",
+        "resolved": "1.4.2.3",
+        "contentHash": "OkfEbH6yZ0b4S4vJMduFwj4YEDFzqkSc4hMkDWRhSnK76UrJM+N72MzQM3+pVBN5gNyOiKIZHZYLxEKXb0KagQ==",
         "dependencies": {
-          "Xamarin.AndroidX.Annotation": "1.9.1.7",
-          "Xamarin.JSpecify": "1.0.0.6"
+          "Xamarin.AndroidX.Annotation": "1.10.0.1",
+          "Xamarin.JSpecify": "1.0.0.7"
         }
       },
       "Xamarin.AndroidX.Fragment.Ktx": {
@@ -1144,7 +1144,7 @@
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",
           "Xamarin.AndroidX.Preference": "[1.2.1.18, )",
           "Xamarin.AndroidX.SwipeRefreshLayout": "[1.2.0.3, )",
-          "Xamarin.Google.Android.Material": "[1.14.0.4, )"
+          "Xamarin.Google.Android.Material": "[1.14.0.5, )"
         }
       },
       "nivaes.app.cross.droid.sourcegenerator": {
@@ -1440,9 +1440,9 @@
       },
       "Xamarin.Google.Android.Material": {
         "type": "CentralTransitive",
-        "requested": "[1.14.0.4, )",
-        "resolved": "1.14.0.4",
-        "contentHash": "d6RQeDqZeIgeq61772H78pXYcbtpfKjfDY6hf73ShF6O3wzAsGJ7ZZXrdb0f4jOyc+59yspCOP50WOGX3L6GTg==",
+        "requested": "[1.14.0.5, )",
+        "resolved": "1.14.0.5",
+        "contentHash": "ORxIVscXHmZ6C6zQ+AG3PyikW2BWA2RsqfW++5ZdCiXHpPGc5rZS41ev/Wxk7jyqUDY9YF9TwhePhToCFBed6Q==",
         "dependencies": {
           "Xamarin.AndroidX.Activity": "1.13.0.1",
           "Xamarin.AndroidX.Annotation": "1.10.0.1",

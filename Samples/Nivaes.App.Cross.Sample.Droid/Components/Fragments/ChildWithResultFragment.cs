@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class ChildWithResultFragment : MvxFragment<ChildWithResultViewModel>
 {
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         _ = base.OnCreateView(inflater, container, savedInstanceState);
 
@@ -21,7 +21,7 @@ public sealed class ChildWithResultFragment : MvxFragment<ChildWithResultViewMod
         return view;
     }
 
-    public override void OnCreate(Bundle savedInstanceState)
+    public override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
 
