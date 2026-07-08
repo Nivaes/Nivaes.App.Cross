@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
+		<TargetFrameworks>$(_CrossMacOSTargets)</TargetFrameworks>
 		<SupportedOSPlatformVersion>$(_SupportedOSPlatformMacOSVersion)</SupportedOSPlatformVersion>
 		<AssemblyName>Nivaes.App.AppKit</AssemblyName>
 		<RootNamespace>Nivaes.App.AppKitLib</RootNamespace>
