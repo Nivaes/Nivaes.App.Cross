@@ -11,7 +11,7 @@ public abstract class CrossWindowsPage<TViewModel>
     , IDisposable
     , ICrossWindowsView<TViewModel>
     , ICrossWindowsView
-    where TViewModel : class, ICrossViewModel
+    where TViewModel : ICrossViewModel
 {
     private TViewModel? _viewModel;
 
@@ -61,7 +61,7 @@ public abstract class CrossWindowsPage<TViewModel>
         }
         set
         {
-            if (_viewModel == value)
+            if (EqualityComparer<TViewModel>.Default.Equals(_viewModel, value))
                 return;
 
             _viewModel = value;

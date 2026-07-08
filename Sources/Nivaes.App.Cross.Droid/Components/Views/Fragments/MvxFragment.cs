@@ -1,6 +1,5 @@
-using Android.Runtime;
 using System.Diagnostics.CodeAnalysis;
-using AndroidX.Lifecycle;
+using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -23,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
         #endregion
 
         #region Data
-        public ICrossBindingContext ?BindingContext { get; set; }
+        public ICrossBindingContext? BindingContext { get; set; }
 
         public object? DataContext
         {

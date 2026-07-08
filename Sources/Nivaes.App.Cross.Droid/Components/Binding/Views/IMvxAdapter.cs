@@ -1,5 +1,4 @@
 using System.Collections;
-using Android.Widget;
 
 namespace Nivaes.App.Cross.Droid
 {

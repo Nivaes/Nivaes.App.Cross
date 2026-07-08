@@ -124,10 +124,10 @@ namespace Nivaes.App.Cross
         public abstract void Prepare(TParameter parameter);
     }
 
-    public abstract class CrossNavigationViewModelResult<TResult> 
+    public abstract class CrossNavigationViewModelResult<TResult>
         : CrossNavigationViewModel, ICrossViewModelResult<TResult>
     {
-        protected CrossNavigationViewModelResult(ICrossNavigationService navigationService, ILogger logger) 
+        protected CrossNavigationViewModelResult(ICrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
         }
@@ -143,10 +143,10 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public abstract class CrossNavigationViewModel<TParameter, TResult> : 
+    public abstract class CrossNavigationViewModel<TParameter, TResult> :
         CrossNavigationViewModelResult<TResult>, ICrossViewModel<TParameter, TResult>
     {
-        protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger) : 
+        protected CrossNavigationViewModel(ICrossNavigationService navigationService, ILogger logger) :
             base(navigationService, logger)
         {
         }

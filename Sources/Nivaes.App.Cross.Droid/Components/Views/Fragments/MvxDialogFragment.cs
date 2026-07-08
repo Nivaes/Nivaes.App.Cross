@@ -1,9 +1,5 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using Android.OS;
 using Android.Runtime;
-using AndroidX.Lifecycle;
-using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -54,10 +50,10 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        ICrossViewModel? ICrossView.ViewModel 
-        { 
-            get => ViewModel; 
-            set => throw new NotImplementedException(); 
+        ICrossViewModel? ICrossView.ViewModel
+        {
+            get => ViewModel;
+            set => throw new NotImplementedException();
         }
 
         public virtual void OnViewModelSet()
@@ -66,7 +62,7 @@ namespace Nivaes.App.Cross.Droid
 
         public string UniqueImmutableCacheTag => Tag;
 
-        
+
 
         public override void OnCreate(Bundle? savedInstanceState)
         {

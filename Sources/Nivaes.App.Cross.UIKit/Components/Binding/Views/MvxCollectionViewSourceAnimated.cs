@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Specialized;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
-using System.Linq;
 
 namespace Nivaes.App.Cross.UIKitLib
 {

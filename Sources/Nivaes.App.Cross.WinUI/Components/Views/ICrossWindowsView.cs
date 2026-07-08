@@ -13,6 +13,6 @@ public interface ICrossWindowsView
 public interface ICrossWindowsView<TViewModel>
         : ICrossWindowsView
         , ICrossView<TViewModel>
-    where TViewModel : class, ICrossViewModel
+    where TViewModel : ICrossViewModel
 {
 }

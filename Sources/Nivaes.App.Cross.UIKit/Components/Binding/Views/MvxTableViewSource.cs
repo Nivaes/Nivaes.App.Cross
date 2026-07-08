@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 using ObjCRuntime;
-using System.Linq;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
