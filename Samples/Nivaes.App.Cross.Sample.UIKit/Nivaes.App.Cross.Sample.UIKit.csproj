@@ -25,7 +25,6 @@
 		<SupportedOSPlatformVersion>$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion>$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
 	</PropertyGroup>
-
 	
 	<ItemGroup>
 	  <ImageAsset Remove="Assets.xcassets\ArrowDown.imageset\baseline_keyboard_arrow_down_black_18pt_1x.png" />
