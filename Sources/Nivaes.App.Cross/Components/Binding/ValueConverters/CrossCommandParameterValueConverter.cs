@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Windows.Input;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
@@ -11,6 +12,7 @@ namespace Nivaes.App.Cross
             : base(logger)
         { }
 
+        [ActivatorUtilitiesConstructor]
         protected override ICommand Convert(ICommand value, Type? targetType, object? parameter,
                                             CultureInfo? culture)
         {
