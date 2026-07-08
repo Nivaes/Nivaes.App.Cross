@@ -2,13 +2,15 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Android.OS;
 using Android.Runtime;
+using AndroidX.Lifecycle;
 using Nivaes.App.Cross;
 
 namespace Nivaes.App.Cross.Droid
 {
     [Register("nivaes.cross.DialogFragment")]
-    public abstract class MvxDialogFragment
-        : MvxEventSourceDialogFragment, IMvxFragmentView
+    public abstract class MvxDialogFragment<TViewModel>
+        : MvxEventSourceDialogFragment, IMvxFragmentView<TViewModel>, IMvxFragmentView
+        where TViewModel : ICrossViewModel
     {
         protected MvxDialogFragment(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
@@ -25,7 +27,7 @@ namespace Nivaes.App.Cross.Droid
 
         private object _dataContext;
 
-        public object DataContext
+        public object? DataContext
         {
             get
             {
@@ -39,11 +41,11 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        public virtual ICrossViewModel ViewModel
+        public virtual TViewModel? ViewModel
         {
             get
             {
-                return DataContext as ICrossViewModel;
+                return (TViewModel?)DataContext;
             }
             set
             {
@@ -52,11 +54,19 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
+        ICrossViewModel? ICrossView.ViewModel 
+        { 
+            get => ViewModel; 
+            set => throw new NotImplementedException(); 
+        }
+
         public virtual void OnViewModelSet()
         {
         }
 
         public string UniqueImmutableCacheTag => Tag;
+
+        
 
         public override void OnCreate(Bundle? savedInstanceState)
         {
@@ -92,25 +102,6 @@ namespace Nivaes.App.Cross.Droid
         {
             base.OnStop();
             ViewModel?.ViewDisappeared();
-        }
-    }
-
-    public abstract class MvxDialogFragment<TViewModel> : MvxDialogFragment, IMvxFragmentView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        [RequiresUnreferencedCode("This constructor uses reflection which may not be preserved during trimming.")]
-        protected MvxDialogFragment()
-        {
-        }
-
-        protected MvxDialogFragment(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxFragmentView<TViewModel>, TViewModel> CreateBindingSet()
