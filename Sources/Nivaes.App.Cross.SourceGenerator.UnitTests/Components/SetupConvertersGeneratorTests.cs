@@ -1,62 +1,60 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Reflection.Emit;
-//using System.Text;
-//using Microsoft.CodeAnalysis;
-//using Microsoft.CodeAnalysis.CSharp;
-//using Nivaes.App.Cross.SourceGenerator;
+﻿using Microsoft.CodeAnalysis;
 
-//namespace Nivaes.App.Cross.SourceGenerator.UnitTest
-//{
-//    public class SetupConvertersGeneratorTests
-//    {
-//        [Fact]
-//        public void ResolveSetupConvertersGenerator()
-//        { }
+namespace Nivaes.App.Cross.SourceGenerator.UnitTests
+{
+    public class SetupConvertersGeneratorTests
+    {
+        [Fact]
+        public async Task CompilesWithoutErrors()
+        {
+            var project = TestProject.Project;
 
-//        [Fact]
-//        public void Generates_Source()
-//        {
-//            // Arrange
-//            var source = """
-//        namespace Test;
+            var newProject = await project.ApplyGenerator<RegisterConvertersGenerator>();
 
-//        public partial class Person
-//        {
-//        }
-//        """;
+            var compilation = await newProject.GetCompilationAsync();
+            compilation.ShouldNotBeNull();
+            var errors = compilation.GetDiagnostics()
+                .Where(o => o.Severity == DiagnosticSeverity.Error)
+                .ToArray();
 
-//            var syntaxTree = CSharpSyntaxTree.ParseText(source);
+            //Assert.False(errors.Any(), errors.Select(o => o.GetMessage()));//.JoinWithNewLine()); 
+            errors.ShouldBeEmpty(errors.ToString());
+        }
 
-//            var compilation = CSharpCompilation.Create(
-//                "TestAssembly",
-//                new[] { syntaxTree },
-//                new[]
-//                {
-//                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-//                MetadataReference.CreateFromFile(typeof(Attribute).Assembly.Location),
-//                },
-//                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+        [Fact]
+        public async Task ProecesValueConverter()
+        {
+            var project = await TestProject.Project.ApplyToProgram(@"
+                using System.Globalization;
+                using Microsoft.Extensions.Logging;
 
-//            IIncrementalGenerator generator = new SetupConvertersGenerator();
+                public sealed class TestValueConverter : CrossValueConverter<string, string>
+                {
+                    public TestValueConverter(ILogger<TestValueConverter> logger)
+                        : base(logger)
+                    { }
 
-//            GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
+                    protected override string Convert(string value, Type? targetType, object? parameter, CultureInfo? culture)
+                    {
+                        return value.ToLower();
+                    }
+                }");
 
-//            // Act
-//            driver = driver.RunGenerators(compilation);
+            var newProject = await project.ApplyGenerator<RegisterConvertersGenerator>();
 
-//            var result = driver.GetRunResult();
+            var assembly = await newProject.CompileToRealAssembly();
+            var containerType1 = assembly.GetType("TestProject.TestValueConverter");
+            containerType1.ShouldNotBeNull();
 
-//            // Assert
-//            Assert.Single(result.Results);
+            var compilation = await newProject.GetCompilationAsync();
+            compilation.ShouldNotBeNull();
+            var errors = compilation.GetDiagnostics()
+                .Where(o => o.Severity == DiagnosticSeverity.Error)
+                .ToArray();
 
-//            var generatedSources = result.Results[0].GeneratedSources;
+            //Assert.False(errors.Any(), errors.Select(o => o.GetMessage()));//.JoinWithNewLine()); 
+            errors.ShouldBeEmpty(errors.ToString());
+        }
 
-//            Assert.Single(generatedSources);
-
-//            var generatedCode = generatedSources[0].SourceText.ToString();
-
-//            Assert.Contains("partial class Person", generatedCode);
-//        }
-//    }
-//}
+    }
+}

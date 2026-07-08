@@ -1,129 +1,130 @@
-﻿//using System.Collections.Immutable;
-//using System.Reflection;
-//using Microsoft.CodeAnalysis;
-//using Microsoft.CodeAnalysis.CSharp;
-//using Microsoft.CodeAnalysis.Diagnostics;
-//using Microsoft.CodeAnalysis.Text;
+﻿using System.Collections.Immutable;
+using System.Reflection;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 
-//namespace Nivaes.IoC.SourceGenerator.UnitTest;
+namespace Nivaes.App.Cross.SourceGenerator.UnitTests;
 
-//public static class TestExtensions
-//{
-//    public static async Task<ImmutableArray<Diagnostic>> ApplyAnalyzer(this Project project, DiagnosticAnalyzer analyzer)
-//    {
-//        var compilation = await project.GetCompilationAsync();
-//        var newCompilation = compilation!.WithAnalyzers(ImmutableArray.Create(analyzer));
-//        var diagnostics = await newCompilation.GetAllDiagnosticsAsync();
+public static class TestExtensions
+{
+    public static async Task<ImmutableArray<Diagnostic>> ApplyAnalyzer(this Project project, DiagnosticAnalyzer analyzer)
+    {
+        var compilation = await project.GetCompilationAsync();
+        var newCompilation = compilation!.WithAnalyzers(ImmutableArray.Create(analyzer));
+        var diagnostics = await newCompilation.GetAllDiagnosticsAsync();
 
-//        return diagnostics;
-//    }
+        return diagnostics;
+    }
 
-//    public static Task<Project> ApplyToProgram(this Project project, string newText)
-//    {
-//        return project.ReplacePartOfDocumentAsync("Program.cs", "// place to replace", newText);
-//    }
+    public static Task<Project> ApplyToProgram(this Project project, string newText)
+    {
+        return project.ReplacePartOfDocumentAsync("Program.cs", "// place to replace", newText);
+    }
 
-//    public static async Task<Project> ReplacePartOfDocumentAsync(this Project project, string documentName, string textToReplace, string newText)
-//    {
-//        var document = project.Documents.First(o => o.Name == documentName);
-//        var text = await document.GetTextAsync();
-//        return document
-//            .WithText(SourceText.From(text.ToString().Replace(textToReplace, newText)))
-//            .Project;
-//    }
+    public static async Task<Project> ReplacePartOfDocumentAsync(this Project project, string documentName, string textToReplace, string newText)
+    {
+        var document = project.Documents.First(o => o.Name == documentName);
+        var text = await document.GetTextAsync();
+        return document
+            .WithText(SourceText.From(text.ToString().Replace(textToReplace, newText)))
+            .Project;
+    }
 
-//    public static async Task<Project> ApplyIoCGenerator(this Project project)
-//    {
-//        var newProject = await project.RunSourceGenerator(new IoCServiceContainerGenerator());
+    public static async Task<Project> ApplyGenerator<T>(this Project project)
+        where T : IIncrementalGenerator, new()
+    {
+        var newProject = await project.RunSourceGenerator(new T());
 
-//        return newProject;
-//    }
+        return newProject;
+    }
 
-//    public static async Task<Project> RunSourceGenerator<TGenerator>(this Project project, TGenerator generator)
-//        where TGenerator : IIncrementalGenerator
-//    {
-//        var compilation = await project.GetCompilationAsync();
-//        var driver = CSharpGeneratorDriver.Create(incrementalGenerators: generator);
-//        var results = driver
-//            .RunGenerators(compilation!)
-//            .GetRunResult()
-//            .Results
-//            .SelectMany(o => o
-//                .GeneratedSources
-//                .Select(o => new { o.SyntaxTree, o.HintName, }));
+    public static async Task<Project> RunSourceGenerator<TGenerator>(this Project project, TGenerator generator)
+        where TGenerator : IIncrementalGenerator
+    {
+        var compilation = await project.GetCompilationAsync();
+        var driver = CSharpGeneratorDriver.Create(incrementalGenerators: generator);
+        var results = driver
+            .RunGenerators(compilation!)
+            .GetRunResult()
+            .Results
+            .SelectMany(o => o
+                .GeneratedSources
+                .Select(o => new { o.SyntaxTree, o.HintName, }));
 
 
-//        foreach (var file in results)
-//        {
-//            project = project
-//                .AddDocument(file.HintName, file.SyntaxTree.ToString())
-//                .Project;
-//        }
+        foreach (var file in results)
+        {
+            project = project
+                .AddDocument(file.HintName, file.SyntaxTree.ToString())
+                .Project;
+        }
 
-//        return project;
-//    }
+        return project;
+    }
 
-//    public static object? ReflectionGetValue(this object @object, string name)
-//    {
-//        var nonPublic = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-//        var member = @object.GetType().GetField(name, nonPublic);
-//        if (member is null)
-//        {
-//            return @object
-//                .GetType()
-//                .GetProperty(name, nonPublic)
-//                ?.GetValue(@object);
-//        }
+    public static object? ReflectionGetValue(this object @object, string name)
+    {
+        var nonPublic = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        var member = @object.GetType().GetField(name, nonPublic);
+        if (member is null)
+        {
+            return @object
+                .GetType()
+                .GetProperty(name, nonPublic)
+                ?.GetValue(@object);
+        }
 
-//        return member.GetValue(@object);
-//    }
+        return member.GetValue(@object);
+    }
 
-//    public static object? ReflectionCall(this object @object, string name, params object[] args)
-//    {
-//        var nonPublic = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-//        var member = @object.GetType().GetMethod(name, nonPublic);
-//        if (member is null)
-//        {
-//            return @object
-//                .GetType()
-//                .GetProperty(name, nonPublic)
-//                ?.GetValue(@object);
-//        }
+    public static object? ReflectionCall(this object @object, string name, params object[] args)
+    {
+        var nonPublic = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        var member = @object.GetType().GetMethod(name, nonPublic);
+        if (member is null)
+        {
+            return @object
+                .GetType()
+                .GetProperty(name, nonPublic)
+                ?.GetValue(@object);
+        }
 
-//        return member.Invoke(@object, args);
-//    }
+        return member.Invoke(@object, args);
+    }
 
-//    public static object? StaticReflectionCall(this object @object, string name, params object[] args)
-//    {
-//        var nonPublic = BindingFlags.Static | BindingFlags.Public;
-//        var member = @object.GetType().GetMethod(name, nonPublic);
-//        if (member is null)
-//        {
-//            return @object
-//                .GetType()
-//                .GetProperty(name, nonPublic)
-//                ?.GetValue(@object);
-//        }
+    public static object? StaticReflectionCall(this object @object, string name, params object[] args)
+    {
+        var nonPublic = BindingFlags.Static | BindingFlags.Public;
+        var member = @object.GetType().GetMethod(name, nonPublic);
+        if (member is null)
+        {
+            return @object
+                .GetType()
+                .GetProperty(name, nonPublic)
+                ?.GetValue(@object);
+        }
 
-//        return member.Invoke(@object, args);
-//    }
+        return member.Invoke(@object, args);
+    }
 
-//    public static async Task<Assembly> CompileToRealAssembly(this Project project)
-//    {
-//        var compilation = await project.GetCompilationAsync();
-//        var error = compilation!.GetDiagnostics().FirstOrDefault(o => o.Severity == DiagnosticSeverity.Error);
-//        if (error != null)
-//        {
-//            throw new Exception(error.GetMessage());
-//        }
+    public static async Task<Assembly> CompileToRealAssembly(this Project project)
+    {
+        var compilation = await project.GetCompilationAsync();
+        var error = compilation!.GetDiagnostics().FirstOrDefault(o => o.Severity == DiagnosticSeverity.Error);
+        if (error != null)
+        {
+            throw new Exception(error.GetMessage());
+        }
 
-//        using (var memoryStream = new MemoryStream())
-//        {
-//            compilation.Emit(memoryStream);
-//            var bytes = memoryStream.ToArray();
-//            var assembly = Assembly.Load(bytes);
+        using (var memoryStream = new MemoryStream())
+        {
+            compilation.Emit(memoryStream);
+            var bytes = memoryStream.ToArray();
+            var assembly = Assembly.Load(bytes);
 
-//            return assembly;
-//        }
-//    }
-//}
+            return assembly;
+        }
+    }
+}

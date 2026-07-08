@@ -24,30 +24,30 @@ namespace Nivaes.App.Cross
             return services;
         }
 
-        public static IServiceProvider SetupCombertes(this IServiceProvider services)
+        public static IServiceProvider SetupCombiners(this IServiceProvider services)
         {
             CrossCombinersManagerHelper.RegisterCombiners(new[]
             {
-                CrossCombinersManagerHelper.New("Add", new CrossAddValueCombiner()),
-                CrossCombinersManagerHelper.New("Add", new CrossAddValueCombiner()),
-                CrossCombinersManagerHelper.New("Divide", new CrossDivideValueCombiner()),
-                CrossCombinersManagerHelper.New("Format", new CrossFormatValueCombiner()),
-                CrossCombinersManagerHelper.New("If", new CrossIfValueCombiner()),
-                CrossCombinersManagerHelper.New("Modulus", new CrossModulusValueCombiner()),
-                CrossCombinersManagerHelper.New("Multiply", new CrossMultiplyValueCombiner()),
-                CrossCombinersManagerHelper.New("Single", new CrossSingleValueCombiner()),
-                CrossCombinersManagerHelper.New("Subtract", new CrossSubtractValueCombiner()),
-                CrossCombinersManagerHelper.New("EqualTo", new CrossEqualToValueCombiner()),
-                CrossCombinersManagerHelper.New("NotEqualTo", new MvxNotEqualToValueCombiner()),
-                CrossCombinersManagerHelper.New("GreaterThanOrEqualTo", new CrossGreaterThanOrEqualToValueCombiner()),
-                CrossCombinersManagerHelper.New("GreaterThan", new CrossGreaterThanValueCombiner()),
-                CrossCombinersManagerHelper.New("LessThanOrEqualTo", new CrossLessThanOrEqualToValueCombiner()),
-                CrossCombinersManagerHelper.New("LessThan", new CrossLessThanValueCombiner()),
-                CrossCombinersManagerHelper.New("Not", new MvxNotValueCombiner()),
-                CrossCombinersManagerHelper.New("And", new MvxAndValueCombiner()),
-                CrossCombinersManagerHelper.New("Or", new MvxOrValueCombiner()),
-                CrossCombinersManagerHelper.New("XOr", new MvxXorValueCombiner()),
-                CrossCombinersManagerHelper.New("Inverted", new MvxInvertedValueCombiner()),
+                CrossCombinersManagerHelper.New(new CrossAddValueCombiner(), "Add"),
+                CrossCombinersManagerHelper.New(new CrossAddValueCombiner(), "Add"),
+                CrossCombinersManagerHelper.New(new CrossDivideValueCombiner(), "Divide"),
+                CrossCombinersManagerHelper.New(new CrossFormatValueCombiner(), "Format"),
+                CrossCombinersManagerHelper.New(new CrossIfValueCombiner(), "If"),
+                CrossCombinersManagerHelper.New(new CrossModulusValueCombiner(), "Modulus"),
+                CrossCombinersManagerHelper.New(new CrossMultiplyValueCombiner(), "Multiply"),
+                CrossCombinersManagerHelper.New(new CrossSingleValueCombiner(), "Single"),
+                CrossCombinersManagerHelper.New(new CrossSubtractValueCombiner(), "Subtract"),
+                CrossCombinersManagerHelper.New(new CrossEqualToValueCombiner(), "EqualTo"),
+                CrossCombinersManagerHelper.New(new MvxNotEqualToValueCombiner(), "NotEqualTo"),
+                CrossCombinersManagerHelper.New(new CrossGreaterThanOrEqualToValueCombiner(), "GreaterThanOrEqualTo"),
+                CrossCombinersManagerHelper.New(new CrossGreaterThanValueCombiner(), "GreaterThan"),
+                CrossCombinersManagerHelper.New(new CrossLessThanOrEqualToValueCombiner(), "LessThanOrEqualTo"),
+                CrossCombinersManagerHelper.New(new CrossLessThanValueCombiner(), "LessThan"),
+                CrossCombinersManagerHelper.New(new MvxNotValueCombiner(), "Not"),
+                CrossCombinersManagerHelper.New(new MvxAndValueCombiner(), "And"),
+                CrossCombinersManagerHelper.New(new MvxOrValueCombiner(), "Or"),
+                CrossCombinersManagerHelper.New(new MvxXorValueCombiner(), "XOr"),
+                CrossCombinersManagerHelper.New(new MvxInvertedValueCombiner(), "Inverted"),
             });
 
             return services;

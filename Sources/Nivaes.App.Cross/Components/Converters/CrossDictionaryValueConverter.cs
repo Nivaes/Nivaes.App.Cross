@@ -1,10 +1,8 @@
+using System.Globalization;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using Microsoft.Extensions.Logging;
-
     public class CrossDictionaryValueConverter<TKey, TValue> : CrossValueConverter<TKey, TValue>
         where TKey : notnull
     {

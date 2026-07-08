@@ -18,7 +18,7 @@ public abstract class Application : IApplication
     public virtual void Setup()
     {
         ServiceProvider.SetupConverters();
-        ServiceProvider.SetupCombertes();
+        ServiceProvider.SetupCombiners();
     }
 
     public abstract ICrossViewModelStar Initialize();

@@ -1,14 +1,17 @@
 ﻿using System.Buffers;
+using System.Globalization;
 using System.Reflection;
 using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
 
-namespace Nivaes.IoC.SourceGenerator.UnitTest;
+namespace Nivaes.App.Cross.SourceGenerator.UnitTests;
 
 public static class TestProject
 {
     public const string ProgramCs = @"
 using System;
-using Nivaes.IoC;
+using Nivaes.App.Cross;
 
 namespace TestProject 
 {
@@ -48,7 +51,13 @@ namespace TestProject
             MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(Attribute).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(ArrayPool<>).Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(IoCServiceContainer).Assembly.Location),
+            //MetadataReference.CreateFromFile(typeof(CultureInfo).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(ILogger<>).Assembly.Location),
+            //MetadataReference.CreateFromFile(typeof(CrossConvertersManagerHelper).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(IServiceProvider).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(KeyContainerManager<>).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(ICrossValueConverter).Assembly.Location),
+            //MetadataReference.CreateFromFile(typeof(StringToLowerValueConverter).Assembly.Location),
         };
     }
 }

@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross
         }
 
         public static ConverterManagerItem New<TConverter>(IServiceProvider services, string name)
-                        where TConverter : class, ICrossValueConverter
+                        where TConverter : ICrossValueConverter
         {
             var converter = ActivatorUtilities.CreateInstance<TConverter>(services);
 
@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross
         }
 
         public static ConverterManagerItem New<TConverter>(IServiceProvider services)
-                        where TConverter : class, ICrossValueConverter
+                        where TConverter : ICrossValueConverter
         {
             return New<TConverter>(services, FindName(typeof(TConverter)));
         }

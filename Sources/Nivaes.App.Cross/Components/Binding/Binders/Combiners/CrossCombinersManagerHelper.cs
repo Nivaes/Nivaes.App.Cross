@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross
             internal CrossCombinersManager.KeyStoreItem Combiners { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
-        public static CombinersManagerItem New(string name, ICrossValueCombiner combiner)
+        public static CombinersManagerItem New(ICrossValueCombiner combiner, string name)
         {
             return new CombinersManagerItem()
             {

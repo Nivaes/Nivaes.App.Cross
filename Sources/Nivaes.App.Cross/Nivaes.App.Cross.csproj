@@ -23,13 +23,12 @@
 		<Description>Cross librery core.</Description>
 		<PackageTags>Nivaes;cross</PackageTags>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Compile Remove="Components\Services1\**" />
-	  <EmbeddedResource Remove="Components\Services1\**" />
-	  <None Remove="Components\Services1\**" />
-	</ItemGroup>
 	
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
