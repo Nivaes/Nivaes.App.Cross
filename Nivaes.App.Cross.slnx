@@ -79,6 +79,7 @@
     <File Path=".github/workflows/workflow_call_build_winui_sample.yaml" />
   </Folder>
   <Folder Name="/Sources/">
+    <Project Path="Sources/Nivaes.App.Cross.SourceGenerator.UnitTests/Nivaes.App.Cross.SourceGenerator.UnitTests.csproj" Id="c33e33f3-21bb-4286-a752-f3a4a6525325" />
     <Project Path="Sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
     <Project Path="Sources/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
   </Folder>

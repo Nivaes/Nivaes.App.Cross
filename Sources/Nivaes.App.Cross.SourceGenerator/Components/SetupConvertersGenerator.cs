@@ -3,7 +3,7 @@
     using Microsoft.CodeAnalysis;
 
     [Generator(LanguageNames.CSharp)]
-    public class CrossServiceContainerGenerator : IIncrementalGenerator
+    public class SetupConvertersGenerator : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
