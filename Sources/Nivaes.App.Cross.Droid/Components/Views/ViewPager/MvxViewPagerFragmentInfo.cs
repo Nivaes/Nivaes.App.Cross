@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Droid
 
     public class MvxViewPagerFragmentInfo
     {
-        public MvxViewPagerFragmentInfo(string title, string tag, Type fragmentType, CrossViewModelRequest request)
+        public MvxViewPagerFragmentInfo(string? title, string? tag, Type? fragmentType, CrossViewModelRequest request)
         {
             Title = title;
             Tag = tag;

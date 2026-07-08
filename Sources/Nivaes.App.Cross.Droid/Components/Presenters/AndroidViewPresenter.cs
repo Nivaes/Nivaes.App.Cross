@@ -781,7 +781,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (viewPager == null)
             throw new CrossException("ViewPager not found");
 
-        var tag = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
+        var tag = attribute.Tag ?? attribute.ViewType?.FragmentJavaName();
         var fragmentInfo = new MvxViewPagerFragmentInfo(attribute.Title, tag, attribute.ViewType, request);
 
         if (viewPager.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
