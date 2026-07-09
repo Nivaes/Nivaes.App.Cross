@@ -2,13 +2,12 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Components.ViewModels;
-using Nivaes.App.Cross.Controls;
 using OpenTelemetry.Trace;
 
 namespace Nivaes.App.Cross.Sample;
 
 [RequiresUnreferencedCode("Application requires unreferenced code")]
-public class SampleApp : Application, IApplication
+public class SampleApp : CrossApplication, ICrossApplication
 {
     private readonly TracerProvider _tracerProvider;
 
@@ -21,7 +20,7 @@ public class SampleApp : Application, IApplication
     public override void Setup()
     {
         base.Setup();
-        ServiceProvider.SetupConverters();
+        Nivaes.App.Cross.Sample.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
     }
 
     ///// <summary>

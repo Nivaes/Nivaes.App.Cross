@@ -8,5 +8,5 @@ public interface IPlatformApplication
 
     public IServiceProvider Services { [DebuggerHidden] get; }
 
-    public IApplication Application { [DebuggerHidden] get; }
+    public ICrossApplication Application { [DebuggerHidden] get; }
 }

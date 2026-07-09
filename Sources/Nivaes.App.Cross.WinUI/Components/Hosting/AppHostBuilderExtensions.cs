@@ -8,14 +8,14 @@ namespace Nivaes.App.Cross.WinUI
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseWinUIApp(this CrossAppBuilder builder, CrossApplication app)
+        public static CrossAppBuilder UseWinUIApp(this CrossAppBuilder builder, CrossWinUIApplication app)
         {
             builder.SetupDefaults(app);
 
             return builder;
         }
 
-        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, CrossApplication app)
+        static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, CrossWinUIApplication app)
         {
             // ToDo: Unificar interfaces.
             builder.Services.TryAddSingleton<CrossWindowsViewDispatcher>();

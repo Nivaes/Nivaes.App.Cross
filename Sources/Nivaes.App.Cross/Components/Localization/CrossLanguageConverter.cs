@@ -1,25 +1,25 @@
 using System.Globalization;
 using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross;
+
+[CrossValueConverter(Name = "Language")]
+public class CrossLanguageConverter
+    : CrossValueConverter
 {
-    public class CrossLanguageConverter
-        : CrossValueConverter
+    public CrossLanguageConverter(ILogger<CrossLanguageConverter> logger)
+        : base(logger)
+    { }
+
+    public override object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
     {
-        public CrossLanguageConverter(ILogger<CrossLanguageConverter> logger)
-            : base(logger)
-        { }
+        if (value is not ICrossLanguageBinder binder)
+            return CrossBindingConstant.UnsetValue;
 
-        public override object Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
-        {
-            if (value is not ICrossLanguageBinder binder)
-                return CrossBindingConstant.UnsetValue;
+        if (parameter == null)
+            return CrossBindingConstant.UnsetValue;
 
-            if (parameter == null)
-                return CrossBindingConstant.UnsetValue;
-
-            var translatedText = binder.GetText(parameter.ToString() ?? string.Empty);
-            return translatedText ?? (object)CrossBindingConstant.UnsetValue;
-        }
+        var translatedText = binder.GetText(parameter.ToString() ?? string.Empty);
+        return translatedText ?? (object)CrossBindingConstant.UnsetValue;
     }
 }

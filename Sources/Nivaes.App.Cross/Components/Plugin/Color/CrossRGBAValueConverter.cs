@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
+[CrossValueConverter(Name = "RGBA")]
 public class CrossRGBAValueConverter
     : CrossRGBValueConverter
 {

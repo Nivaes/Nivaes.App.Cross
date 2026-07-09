@@ -64,7 +64,7 @@ public static class CrossActivityViewExtensions
         view.OnViewDestroy();
 
         //var appStart = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
-        var application = IPlatformApplication.Current!.Services.GetRequiredService<IApplication>();
+        var application = IPlatformApplication.Current!.Services.GetRequiredService<ICrossApplication>();
         var topActivity = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
 
 

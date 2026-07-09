@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross.Components.ViewModels
+﻿namespace Nivaes.App.Cross
 {
     public interface ICrossViewModelStar
     {

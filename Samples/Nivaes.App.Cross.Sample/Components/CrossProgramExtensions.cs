@@ -11,6 +11,7 @@ namespace Nivaes.App.Cross.Sample
             return builder;
         }
 
+        [Obsolete("", true)]
         public static IServiceProvider SetupConverters(this IServiceProvider services)
         {
             CrossConvertersManagerHelper.RegisterComverters(new[]

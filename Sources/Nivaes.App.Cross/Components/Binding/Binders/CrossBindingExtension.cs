@@ -4,25 +4,26 @@ namespace Nivaes.App.Cross
 {
     public static class CrossBindingExtension
     {
-        public static IServiceProvider SetupConverters(this IServiceProvider services)
-        {
-            CrossConvertersManagerHelper.RegisterComverters(new[]
-            {
-                CrossConvertersManagerHelper.New<CrossARGBValueConverter>(services, "ARGB"),
-                CrossConvertersManagerHelper.New<CrossNativeColorValueConverter>(services, "NativeColor"),
-                CrossConvertersManagerHelper.New<CrossRGBAValueConverter>(services, "RGBA"),
-                CrossConvertersManagerHelper.New<CrossRGBValueConverter>(services, "RGB"),
-                CrossConvertersManagerHelper.New<CrossRGBIntColorValueConverter>(services, "RGBIntColor"),
+        //[Obsolete("", true)]
+        //public static IServiceProvider SetupConverters(this IServiceProvider services)
+        //{
+        //    CrossConvertersManagerHelper.RegisterComverters(new[]
+        //    {
+        //        CrossConvertersManagerHelper.New<CrossARGBValueConverter>(services, "ARGB"),
+        //        CrossConvertersManagerHelper.New<CrossNativeColorValueConverter>(services, "NativeColor"),
+        //        CrossConvertersManagerHelper.New<CrossRGBAValueConverter>(services, "RGBA"),
+        //        CrossConvertersManagerHelper.New<CrossRGBValueConverter>(services, "RGB"),
+        //        CrossConvertersManagerHelper.New<CrossRGBIntColorValueConverter>(services, "RGBIntColor"),
 
-                CrossConvertersManagerHelper.New<CrossCommandParameterValueConverter>(services, "CommandParameter"),
-                CrossConvertersManagerHelper.New<CrossLanguageConverter>(services, "Language"),
+        //        CrossConvertersManagerHelper.New<CrossCommandParameterValueConverter>(services, "CommandParameter"),
+        //        CrossConvertersManagerHelper.New<CrossLanguageConverter>(services, "Language"),
 
-                CrossConvertersManagerHelper.New<CrossVisibilityValueConverter>(services, "Visibility"),
-                CrossConvertersManagerHelper.New<CrossInvertedVisibilityValueConverter>(services, "InvertedVisibility"),
-        });
+        //        CrossConvertersManagerHelper.New<CrossVisibilityValueConverter>(services, "Visibility"),
+        //        CrossConvertersManagerHelper.New<CrossInvertedVisibilityValueConverter>(services, "InvertedVisibility"),
+        //});
 
-            return services;
-        }
+        //    return services;
+        //}
 
         public static IServiceProvider SetupCombiners(this IServiceProvider services)
         {

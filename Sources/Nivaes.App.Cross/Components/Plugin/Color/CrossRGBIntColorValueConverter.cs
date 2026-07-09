@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
+[CrossValueConverter(Name = "RGBIntColor")]
 public class CrossRGBIntColorValueConverter : CrossColorValueConverter<int>
 {
     public CrossRGBIntColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossRGBIntColorValueConverter> logger)

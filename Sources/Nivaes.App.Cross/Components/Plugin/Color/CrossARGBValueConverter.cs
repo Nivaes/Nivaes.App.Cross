@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
+[CrossValueConverter(Name = "ARGB")]
 public class CrossARGBValueConverter : CrossColorValueConverter<string>
 {
     public CrossARGBValueConverter(ICrossNativeColor nativeColor, ILogger<CrossARGBValueConverter> logger)

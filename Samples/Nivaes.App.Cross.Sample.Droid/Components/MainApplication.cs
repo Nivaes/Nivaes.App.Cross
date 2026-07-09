@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
 #endif
 )]
 public class MainApplication
-    : CrossApplication
+    : CrossDroidApplication
 {
     public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)

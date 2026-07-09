@@ -19,7 +19,7 @@ public static class AppWindowUtils
     /// <returns>False if no AppWindow can be retrieved.</returns>
     public static bool TryGetAppWindow(out AppWindow? appWindow)
     {
-        Window? mainWidow = (Application.Current as CrossApplication)?.MainWindow;
+        Window? mainWidow = (Application.Current as CrossWinUIApplication)?.MainWindow;
         appWindow = null;
 
         if (mainWidow is not null)

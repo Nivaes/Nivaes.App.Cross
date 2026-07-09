@@ -7,18 +7,18 @@ namespace Nivaes.App.Cross.Hosting
     public static class AppHostBuilderExtensions
     {
         public static CrossAppBuilder UseCrossApp<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApp>(this CrossAppBuilder builder)
-        where TApp : class, IApplication
+        where TApp : class, ICrossApplication
         {
-            builder.Services.TryAddSingleton<IApplication, TApp>();
+            builder.Services.TryAddSingleton<ICrossApplication, TApp>();
             builder.SetupDefaults();
 
             return builder;
         }
 
         public static CrossAppBuilder UseCrossApp<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApp>(this CrossAppBuilder builder, Func<IServiceProvider, TApp> implementationFactory)
-        where TApp : class, IApplication
+        where TApp : class, ICrossApplication
         {
-            builder.Services.TryAddSingleton<IApplication>(implementationFactory);
+            builder.Services.TryAddSingleton<ICrossApplication>(implementationFactory);
             builder.SetupDefaults();
 
             return builder;

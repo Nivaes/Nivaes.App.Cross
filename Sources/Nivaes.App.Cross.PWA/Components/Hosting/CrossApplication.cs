@@ -7,7 +7,7 @@ public abstract class CrossApplication
 {
     IServiceProvider? _services;
 
-    IApplication? _application;
+    ICrossApplication? _application;
 
     IServiceProvider IPlatformApplication.Services => _services!;
 
@@ -20,7 +20,7 @@ public abstract class CrossApplication
         protected set => _services = value;
     }
 
-    public IApplication Application
+    public ICrossApplication Application
     {
         get => _application!;
         protected set => _application = value;

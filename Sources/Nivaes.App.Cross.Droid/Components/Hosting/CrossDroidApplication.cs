@@ -7,20 +7,21 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public abstract class CrossApplication
+    public abstract class CrossDroidApplication
         : Application, IPlatformApplication
     {
         IServiceProvider? _services;
 
-        IApplication? _application;
+        ICrossApplication? _application;
 
-        public static CrossApplication Current { [DebuggerHidden] get; [DebuggerHidden] private set; } = null!;
+        public static CrossDroidApplication Current { [DebuggerHidden] get; [DebuggerHidden] private set; } = null!;
 
         public IServiceProvider Services { [DebuggerHidden] get => _services!; }
 
-        public IApplication Application { [DebuggerHidden] get => _application!; }
+        public ICrossApplication Application { [DebuggerHidden] get => _application!; }
 
-        protected CrossApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
+        protected CrossDroidApplication(IntPtr handle, JniHandleOwnership ownership) 
+            : base(handle, ownership)
         {
             Current = this;
             IPlatformApplication.Current = this;
@@ -44,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
 
             //InitializeContainer(crossApp.Services);
 
-            _application = _services.GetRequiredService<IApplication>();
+            _application = _services.GetRequiredService<ICrossApplication>();
 
             var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);

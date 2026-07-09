@@ -10,7 +10,7 @@ public abstract class MvxApplicationDelegate :
 {
     private IServiceProvider? _services;
 
-    private IApplication? _application;
+    private ICrossApplication? _application;
 
     public IServiceProvider Services
     {
@@ -18,7 +18,7 @@ public abstract class MvxApplicationDelegate :
         protected set => _services = value;
     }
 
-    public IApplication Application
+    public ICrossApplication Application
     {
         get => _application!;
         protected set => _application = value;
@@ -49,7 +49,7 @@ public abstract class MvxApplicationDelegate :
 
         _services = applicationContext.Services;
 
-        _application = _services.GetRequiredService<IApplication>();
+        _application = _services.GetRequiredService<ICrossApplication>();
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 

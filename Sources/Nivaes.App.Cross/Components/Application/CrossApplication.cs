@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Components.ViewModels;
 
-namespace Nivaes.App.Cross.Controls;
+namespace Nivaes.App.Cross;
 
-public abstract class Application : IApplication
+public abstract class CrossApplication : ICrossApplication
 {
     protected IServiceProvider ServiceProvider { [DebuggerHidden] get; }
     protected readonly ILogger Logger;
 
-    protected Application(IServiceProvider serviceProvider, ILogger logger)
+    protected CrossApplication(IServiceProvider serviceProvider, ILogger logger)
     {
         ServiceProvider = serviceProvider;
         Logger = logger;
@@ -17,7 +17,7 @@ public abstract class Application : IApplication
 
     public virtual void Setup()
     {
-        ServiceProvider.SetupConverters();
+        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
         ServiceProvider.SetupCombiners();
     }
 

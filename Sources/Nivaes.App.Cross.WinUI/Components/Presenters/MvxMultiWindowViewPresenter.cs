@@ -43,7 +43,7 @@ public class MvxMultiWindowViewPresenter
         _serviceProvider = serviceProvider;
         _requestTranslator = requestTranslator;
 
-        var window = (Microsoft.UI.Xaml.Application.Current as CrossApplication)?.MainWindow;
+        var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)
         {
             window.AppWindow.Closing += (_, __) => CloseAllWindows();

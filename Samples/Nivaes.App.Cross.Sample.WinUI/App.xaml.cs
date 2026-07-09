@@ -5,7 +5,7 @@ using Nivaes.App.Cross.WinUI;
 namespace Nivaes.App.Cross.Sample.WinUI;
 
 public sealed partial class App
-    : CrossApplication
+    : CrossWinUIApplication
 {
     public App()
     {

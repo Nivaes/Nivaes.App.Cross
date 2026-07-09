@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
+[CrossValueConverter(Name = "NativeColor")]
 public class CrossNativeColorValueConverter : CrossColorValueConverter<System.Drawing.Color>
 {
     public CrossNativeColorValueConverter(ICrossNativeColor nativeColor, ILogger<CrossNativeColorValueConverter> logger)

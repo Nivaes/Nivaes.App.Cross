@@ -2,7 +2,7 @@
 
 namespace Nivaes.App.Cross;
 
-public interface IApplication
+public interface ICrossApplication
 {
     void Setup();
 
