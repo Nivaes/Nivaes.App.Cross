@@ -20,8 +20,8 @@ public class SampleApp : CrossApplication, ICrossApplication
     public override void Setup()
     {
         base.Setup();
-        Nivaes.App.Cross.Sample.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
-        Nivaes.App.Cross.Sample.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
+        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     ///// <summary>
@@ -42,22 +42,4 @@ public class SampleApp : CrossApplication, ICrossApplication
             return new CrossViewModelStar<RootViewModel>();
         }
     }
-
-    ///// <summary>
-    ///// Do any UI bound startup actions here
-    ///// </summary>
-    //public override Task Startup()
-    //{
-    //    return base.Startup();
-    //}
-
-    /// <summary>
-    /// If the application is restarted (eg primary activity on Android
-    /// can be restarted) this method will be called before Startup
-    /// is called again
-    /// </summary>
-    //public override void Reset()
-    //{
-    //    base.Reset();
-    //}
 }
