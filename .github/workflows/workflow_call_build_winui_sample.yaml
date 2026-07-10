@@ -39,7 +39,6 @@ jobs:
             --configuration Release `
             --property:RuntimeIdentifiers="win-x64" `
             --property:Platform=x64 `
-            --no-restore `
             --verbosity normal
 
     - name: Build-arm64
@@ -48,7 +47,6 @@ jobs:
             --configuration Release `
             --property:RuntimeIdentifiers="win-arm64" `
             --property:Platform=arm64 `
-            --no-restore `
             --verbosity normal
 
     - name: Publish
