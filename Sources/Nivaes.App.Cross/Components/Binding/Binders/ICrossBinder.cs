@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
 namespace Nivaes.App.Cross
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-
     public interface ICrossBinder
     {
         [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]

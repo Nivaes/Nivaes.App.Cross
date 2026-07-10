@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-
     public class CrossFromTextBinder
         : ICrossBinder
     {

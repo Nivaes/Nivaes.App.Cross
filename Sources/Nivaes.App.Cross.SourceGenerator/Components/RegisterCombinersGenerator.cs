@@ -12,15 +12,18 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
     #region ConverterInfo
     private sealed class ConverterInfo
     {
-        public ConverterInfo (INamedTypeSymbol type, string? name)
+        public ConverterInfo (INamedTypeSymbol type, string? name, bool register)
         {
             Type = type;
             Name = name;
+            Register = register;
         }
 
         public INamedTypeSymbol Type { get; }
 
         public string? Name { get; }
+
+        public bool Register { get; }
     }
     #endregion
 
@@ -62,6 +65,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             return null;
 
         string? name = null;
+        bool register = true;
 
         var attribute = symbol.GetAttributes()
             .FirstOrDefault(a =>
@@ -77,6 +81,10 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
                     name = arg.Value.Value as string;
                     break;
                 }
+                else if(arg.Key == "Register")
+                {
+                    register = (bool?)arg.Value.Value ?? true;
+                }
             }
 
             // Opcional: si Name también puede venir por constructor
@@ -86,7 +94,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             }
         }
 
-        return new ConverterInfo(symbol, name);
+        return new ConverterInfo(symbol, name, register);
     }
 
     private static void Generate(
@@ -100,8 +108,6 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             .Select(g => g.First())
             .OrderBy(x => x.Type.Name);
 
-        
-
         var rootNamespace = string.IsNullOrWhiteSpace(input.rootNamespace) ? string.Empty : $"namespace {input.rootNamespace};";
 
         var sourceRegisterConverters = string.Empty;
@@ -109,12 +115,12 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
         if (types.Any())
         {
             var sourceConverters = string.Join(Environment.NewLine,
-                types.Select(converter =>
+                types.Where(combiner => combiner.Register).Select(combiner =>
                     {
-                        if (string.IsNullOrWhiteSpace(converter.Name))
-                            return $"CrossCombinersManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                        if (string.IsNullOrWhiteSpace(combiner.Name))
+                            return $"CrossCombinersManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                         else
-                            return $"CrossCombinersManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{converter.Name}\"),";
+                            return $"CrossCombinersManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
                     }
                 ));
             sourceRegisterConverters = $@"

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross
         protected CrossPairwiseValueCombiner(ILogger logger)
             : base(logger)
         {
-            _combinerActions = new Dictionary<TypeTuple, CombinerFunc<object, object>>();
+            _combinerActions = new Dictionary<(Type?, Type?), CombinerFunc<object, object>>();
             AddSingle<object, object>(CombineObjectAndObject);
             AddSingle<object, double>(CombineObjectAndDouble);
             AddSingle<object, long>(CombineObjectAndLong);
@@ -56,58 +56,30 @@ namespace Nivaes.App.Cross
             return typeof(object);
         }
 
-        private class TypeTuple
-        {
-            public TypeTuple(Type? type1, Type? type2)
-            {
-                Type2 = type2;
-                Type1 = type1;
-            }
-
-            public Type? Type1 { get; }
-            public Type? Type2 { get; }
-
-            public override bool Equals(object? obj)
-            {
-                var rhs = obj as TypeTuple;
-
-                if (rhs == null)
-                    return false;
-
-                return rhs.Type2 == Type2
-                       && rhs.Type1 == Type1;
-            }
-
-            public override int GetHashCode()
-            {
-                return (Type1?.GetHashCode() ?? 0) + (Type2?.GetHashCode() ?? 0);
-            }
-        }
-
         private delegate bool CombinerFunc(out object? value);
 
         private delegate bool CombinerFunc<in T1>(T1? input1, out object? value);
 
         private delegate bool CombinerFunc<in T1, in T2>(T1 input1, T2 input2, out object? value);
 
-        private readonly Dictionary<TypeTuple, CombinerFunc<object, object>> _combinerActions;
+        private readonly Dictionary<(Type?, Type?), CombinerFunc<object, object>> _combinerActions;
 
         private void AddSingle(CombinerFunc combinerAction)
         {
-            _combinerActions[new TypeTuple(null, null)] = (object x, object y, out object? v) => combinerAction(out v);
+            _combinerActions[new (null, null)] = (object x, object y, out object? v) => combinerAction(out v);
         }
 
         private void AddSingle<T1>(CombinerFunc<T1> combinerAction, CombinerFunc<T1> switchedCombinerAction)
         {
-            _combinerActions[new TypeTuple(typeof(T1), null)] =
+            _combinerActions[new (typeof(T1), null)] =
                 (object x, object y, out object? v) => combinerAction((T1)x, out v);
-            _combinerActions[new TypeTuple(null, typeof(T1))] =
+            _combinerActions[new (null, typeof(T1))] =
                 (object x, object y, out object? v) => switchedCombinerAction((T1)y, out v);
         }
 
         private void AddSingle<T1, T2>(CombinerFunc<T1, T2> combinerAction)
         {
-            _combinerActions[new TypeTuple(typeof(T1), typeof(T2))] =
+            _combinerActions[new (typeof(T1), typeof(T2))] =
                 (object x, object y, out object? v) => combinerAction((T1)x, (T2)y, out v);
         }
 
@@ -158,7 +130,7 @@ namespace Nivaes.App.Cross
                 var firstType = GetLookupTypeFor(first);
                 var secondType = GetLookupTypeFor(second);
 
-                if (!_combinerActions.TryGetValue(new TypeTuple(firstType, secondType), out var combinerFunc))
+                if (!_combinerActions.TryGetValue(new (firstType, secondType), out var combinerFunc))
                 {
                     CrossLoggerHost.GetLogger<CrossPairwiseValueCombiner>().Log(LogLevel.Error, "Unknown type pair in Pairwise combiner {firstType}, {secondType}",
                         firstType, secondType);

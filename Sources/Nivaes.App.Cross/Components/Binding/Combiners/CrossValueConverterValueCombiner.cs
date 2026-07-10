@@ -3,6 +3,7 @@ using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross
 {
+    [CrossValueCombiner(Register = false)]
     public class CrossValueConverterValueCombiner
         : CrossValueCombiner
     {
