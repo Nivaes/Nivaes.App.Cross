@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
@@ -56,8 +57,10 @@ namespace Nivaes.App.Cross
                 Inner = serviceProvider;
             }
 
+            [DebuggerHidden]
             public IServiceProvider Inner { get; }
 
+            [DebuggerHidden]
             public object? GetService(Type serviceType)
             {
                 if (_scopeStatic.TryGetValue(serviceType, out var scope))

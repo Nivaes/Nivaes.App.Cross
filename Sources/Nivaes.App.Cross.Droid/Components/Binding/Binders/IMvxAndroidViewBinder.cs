@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
 {
     public interface IMvxAndroidViewBinder
     {
-        void BindView(View view, Context? context, IAttributeSet? attrs);
+        void BindView(View view, Context context, IAttributeSet? attrs);
 
         IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings { get; }
     }
