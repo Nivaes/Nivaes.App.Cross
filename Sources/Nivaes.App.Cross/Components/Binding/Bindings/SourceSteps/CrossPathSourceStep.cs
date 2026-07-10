@@ -1,12 +1,9 @@
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-
     public class CrossPathSourceStep
-        : MvxSourceStep<CrossPathSourceStepDescription>
+        : CrossSourceStep<CrossPathSourceStepDescription>
     {
-        private ICrossSourceBinding _sourceBinding;
+        private ICrossSourceBinding? _sourceBinding;
 
         private readonly object _sourceLocker = new object();
 
@@ -40,7 +37,6 @@ namespace Nivaes.App.Cross
 
         //TODO: optim: dont recreate the source binding on each datacontext change, as SourcePropertyPath does not change.
         //TODO: optim: don't subscribe to the Changed event if the binding mode does not need it.
-        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         protected override void OnDataContextChanged()
         {
             ClearPathSourceBinding();
@@ -57,21 +53,19 @@ namespace Nivaes.App.Cross
             lock (_sourceLocker)
             {
                 if (_sourceBinding != null)
-                    _sourceBinding = null;
                 {
                     _sourceBinding.Changed -= SourceBindingOnChanged;
                     _sourceBinding.Dispose();
-                    _sourceBinding = null;
                 }
             }
         }
 
-        private void SourceBindingOnChanged(object sender, EventArgs args)
+        private void SourceBindingOnChanged(object? sender, EventArgs args)
         {
             SendSourcePropertyChanged();
         }
 
-        protected override void SetSourceValue(object sourceValue)
+        protected override void SetSourceValue(object? sourceValue)
         {
             if (_sourceBinding == null)
                 return;
@@ -85,7 +79,7 @@ namespace Nivaes.App.Cross
             _sourceBinding.SetValue(sourceValue);
         }
 
-        protected override object GetSourceValue()
+        protected override object? GetSourceValue()
         {
             if (_sourceBinding == null)
             {

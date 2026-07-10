@@ -1,15 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class AndroidViewsContainer
+public sealed class AndroidViewsContainer
     : CrossViewsContainer, IAndroidViewsContainer
 {
-    private const string ExtrasKey = "MvxLaunchData";
-    private const string SubViewModelKey = "MvxSubViewModelKey";
+    private const string ExtrasKey = "LaunchDataKey";
+    private const string SubViewModelKey = "SubViewModelKey";
 
     private readonly Context _applicationContext;
     private readonly ICrossNavigationSerializer _navigationSerializer;
@@ -27,24 +26,20 @@ public class AndroidViewsContainer
 
     #region Implementation of IMvxAndroidViewModelRequestTranslator
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    public virtual ICrossViewModel? Load(Intent? intent, ICrossBundle? savedState)
+    public ICrossViewModel? Load(Intent intent, ICrossBundle? savedState)
     {
         return Load(intent, null, null);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    public virtual ICrossViewModel Load(Intent? intent, ICrossBundle? savedState,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
+    public ICrossViewModel? Load(Intent intent, ICrossBundle? savedState, Type? viewModelTypeHint)
     {
-        return CreateViewModel(intent!, savedState, viewModelTypeHint);
+        return CreateViewModel(intent, savedState, viewModelTypeHint);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    protected virtual ICrossViewModel CreateViewModel(
+    private ICrossViewModel? CreateViewModel(
         Intent intent,
         ICrossBundle? savedState,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
+        Type? viewModelTypeHint)
     {
         ArgumentNullException.ThrowIfNull(intent);
 
@@ -63,74 +58,47 @@ public class AndroidViewsContainer
         return DirectLoad(savedState, viewModelTypeHint);
     }
 
-    protected virtual ICrossViewModel? DirectLoad(
+    private ICrossViewModel? DirectLoad(
         ICrossBundle? savedState,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelTypeHint)
+        Type? viewModelTypeHint)
     {
         if (viewModelTypeHint == null)
         {
-            Logger?.Log(LogLevel.Error, "Unable to load viewmodel - no type hint provided");
-            return null;
+            throw new CrossException("Unable to load viewmodel - no type hint provided");
         }
 
         var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) != true ||
-        //    viewModelLoader == null)
-        //{
-        //    return null;
-        //}
 
         var viewModelRequest = CrossViewModelRequest.GetDefaultRequest(viewModelTypeHint);
         var viewModel = viewModelLoader.LoadViewModel(viewModelRequest, savedState);
         return viewModel;
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    protected virtual ICrossViewModel? CreateViewModelFromIntent(Intent intent, ICrossBundle? savedState)
+    private ICrossViewModel? CreateViewModelFromIntent(Intent intent, ICrossBundle? savedState)
     {
         var extraData = intent.Extras?.GetString(ExtrasKey);
         if (extraData == null)
             return null;
 
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
-        //    navigationSerializer == null)
-        //{
-        //    return null;
-        //}
-
         var viewModelRequest = _navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(extraData);
         return ViewModelFromRequest(viewModelRequest, savedState);
     }
 
-    protected virtual ICrossViewModel? ViewModelFromRequest(CrossViewModelRequest? viewModelRequest, ICrossBundle? savedState)
+    private ICrossViewModel? ViewModelFromRequest(CrossViewModelRequest? viewModelRequest, ICrossBundle? savedState)
     {
         if (viewModelRequest == null)
             return null;
 
         var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
 
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? viewModelLoader) == true && viewModelLoader != null)
-        //{
-        var aa = viewModelRequest.ViewModelType.FullName;
         return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
-        //}
-
-        //return null;
     }
 
-    protected virtual bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel mvxViewModel)
+    private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? mvxViewModel)
     {
         var embeddedViewModelKey = intent.Extras?.GetInt(SubViewModelKey);
         if (embeddedViewModelKey != null && embeddedViewModelKey.Value != 0)
         {
-            //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? childViewModelCache) != true ||
-            //    childViewModelCache == null)
-            //{
-            //    mvxViewModel = null;
-            //    return false;
-            //}
-
             mvxViewModel = _childViewModelCache.Get(embeddedViewModelKey.Value);
             if (mvxViewModel != null)
             {
@@ -143,9 +111,9 @@ public class AndroidViewsContainer
         return false;
     }
 
-    public virtual Intent GetIntentFor(CrossViewModelRequest request)
+    public Intent GetIntentFor(CrossViewModelRequest request)
     {
-        var viewType = GetViewType(request.ViewModelType);
+        var viewType = GetViewType(request.ViewModelType!);
         if (viewType == null)
         {
             throw new CrossException("View Type not found for " + request.ViewModelType);
@@ -166,7 +134,7 @@ public class AndroidViewsContainer
         return intent;
     }
 
-    protected virtual void AdjustIntentForPresentation(Intent intent, CrossViewModelRequest request)
+    private void AdjustIntentForPresentation(Intent intent, CrossViewModelRequest request)
     {
         //todo we want to do things here... clear top, remove history item, etc
         //#warning ClearTop is not enough :/ Need to work on an Intent based scheme like http://stackoverflow.com/questions/3007998/on-logout-clear-activity-history-stack-preventing-back-button-from-opening-l
@@ -174,8 +142,7 @@ public class AndroidViewsContainer
         //                intent.AddFlags(ActivityFlags.ClearTop);
     }
 
-    [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "The generic constraint ensures TViewModel has the required members")]
-    public virtual (Intent intent, int key) GetIntentWithKeyFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+    public (Intent intent, int key) GetIntentWithKeyFor<TViewModel>(
             TViewModel existingViewModelToUse,
             CrossViewModelRequest? request)
         where TViewModel : ICrossViewModel

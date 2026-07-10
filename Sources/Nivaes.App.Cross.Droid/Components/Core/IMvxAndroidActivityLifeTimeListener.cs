@@ -1,12 +1,12 @@
+using System;
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using Nivaes.App.Cross;
-
     public interface IMvxAndroidActivityLifetimeListener
         : ICrossLifetime
     {
-        void OnCreate(Activity activity, Bundle eventArgs);
+        void OnCreate(Activity activity, Bundle? eventArgs);
 
         void OnStart(Activity activity);
 
@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
 
         void OnViewNewIntent(Activity activity);
 
-        void OnSaveInstanceState(Activity activity, Bundle eventArgs);
+        void OnSaveInstanceState(Activity activity, Bundle? eventArgs);
 
         event EventHandler<MvxActivityEventArgs> ActivityChanged;
     }

@@ -1,11 +1,9 @@
 namespace Nivaes.App.Cross.Droid
 {
-    using Nivaes.App.Cross;
-
     public class MvxSingleViewModelCache
         : IMvxSingleViewModelCache
     {
-        private const string BundleCacheKey = "__mvxVMCacheKey";
+        private const string BundleCacheKey = "ViewModelCacheKey";
 
         private int _counter;
 

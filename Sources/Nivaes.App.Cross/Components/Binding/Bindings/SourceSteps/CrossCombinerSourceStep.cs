@@ -1,17 +1,15 @@
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    public class CrossCombinerSourceStep : MvxSourceStep<CrossCombinerSourceStepDescription>
+    public class CrossCombinerSourceStep 
+        : CrossSourceStep<CrossCombinerSourceStepDescription>
     {
         private readonly List<ICrossSourceStep> _subSteps;
 
-        [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
         public CrossCombinerSourceStep(CrossCombinerSourceStepDescription description)
             : base(description)
         {
             var sourceStepFactory = Singleton<CrossBindingSingletonCache>.Instance.SourceStepFactory;
-            _subSteps = [.. description.InnerSteps.Select(d => sourceStepFactory.Create(d))];
+            _subSteps = [.. description.InnerSteps!.Select(d => sourceStepFactory.Create(d))];
         }
 
         protected override void Dispose(bool isDisposing)
@@ -34,7 +32,7 @@ namespace Nivaes.App.Cross
             base.OnFirstChangeListenerAdded();
         }
 
-        public override Type TargetType
+        public override Type? TargetType
         {
             get
             {
@@ -92,12 +90,11 @@ namespace Nivaes.App.Cross
             _isSubscribeToChangedEvents = false;
         }
 
-        private void SubStepOnChanged(object sender, EventArgs args)
+        private void SubStepOnChanged(object? sender, EventArgs args)
         {
             SendSourcePropertyChanged();
         }
 
-        [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
         protected override void OnDataContextChanged()
         {
             foreach (var step in _subSteps)
@@ -109,7 +106,7 @@ namespace Nivaes.App.Cross
 
         public override Type SourceType => Description.Combiner.SourceType(_subSteps);
 
-        protected override void SetSourceValue(object sourceValue)
+        protected override void SetSourceValue(object? sourceValue)
         {
             if (sourceValue == CrossBindingConstant.UnsetValue)
                 return;
@@ -120,7 +117,7 @@ namespace Nivaes.App.Cross
             Description.Combiner.SetValue(_subSteps, sourceValue);
         }
 
-        protected override object GetSourceValue()
+        protected override object? GetSourceValue()
         {
             object value;
             if (!Description.Combiner.TryGetValue(_subSteps, out value))

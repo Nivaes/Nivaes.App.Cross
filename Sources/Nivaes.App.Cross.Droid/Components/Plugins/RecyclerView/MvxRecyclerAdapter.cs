@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
 
                 if (_itemClick != null && value != null)
                 {
-                    CrossLoggerHost.Default.Log(LogLevel.Warning,
+                    CrossLoggerHost.GetLogger<MvxRecyclerAdapter>().Log(LogLevel.Warning,
                         "Changing ItemClick may cause inconsistencies where some items still call the old command");
                 }
 
@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
 
                 if (_itemLongClick != null && value != null)
                 {
-                    CrossLoggerHost.Default.Log(LogLevel.Warning,
+                    CrossLoggerHost.GetLogger<MvxRecyclerAdapter>().Log(LogLevel.Warning,
                         "Changing ItemLongClick may cause inconsistencies where some items still call the old command");
                 }
 
@@ -96,7 +96,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
         /// <para>
         /// It is recommended to use a type inheriting from <see cref="IList"/>, such as
         /// <see cref="System.Collections.ObjectModel.ObservableCollection{T}"/>,
-        /// <see cref="MvvmCross.ViewModels.CrossObservableCollection{T}"/> or
+        /// <see cref="Nivaes.App.Cross.CrossObservableCollection{T}"/> or
         /// <see cref="System.Collections.Generic.List{T}"/>.
         /// </para>
         /// </summary>
@@ -163,7 +163,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
             ArgumentNullException.ThrowIfNull(parent, "parent is null");
             ArgumentNullException.ThrowIfNull(BindingContext, "BindingContext is null. Cannot inflate view for ViewHolder");
 
-            var itemBindingContext = new MvxAndroidBindingContext(parent.Context, BindingContext.LayoutInflaterHolder);
+            var itemBindingContext = new MvxAndroidBindingContext(parent.Context!, BindingContext.LayoutInflaterHolder);
             var view = InflateViewForHolder(parent, viewType, itemBindingContext);
             var viewHolder = new MvxRecyclerViewHolder(view, itemBindingContext)
             {
@@ -299,7 +299,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
         {
             if (Looper.MainLooper != Looper.MyLooper())
             {
-                CrossLoggerHost.Default.Log(LogLevel.Error,
+                CrossLoggerHost.GetLogger<MvxRecyclerAdapter>().Log(LogLevel.Error,
                     "ItemsSource property set on a worker thread. This leads to crash in the RecyclerView. It must be set only from the main thread");
             }
 
@@ -311,7 +311,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
 
             if (value != null && value is not IList)
             {
-                CrossLoggerHost.Default.LogWarning("Binding to IEnumerable rather than IList - this can be inefficient, especially for large lists");
+                CrossLoggerHost.GetLogger<MvxRecyclerAdapter>().LogWarning("Binding to IEnumerable rather than IList - this can be inefficient, especially for large lists");
             }
 
             if (value is INotifyCollectionChanged newObservable)
@@ -332,7 +332,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
             }
             else
             {
-                CrossLoggerHost.Default.Log(LogLevel.Error,
+                CrossLoggerHost.GetLogger<MvxRecyclerAdapter>().Log(LogLevel.Error,
                     "ItemsSource collection content changed on a worker thread." +
                     "This leads to crash in the RecyclerView as it will not be aware of changes" +
                     "immediately and may get a deleted item or update an item with a bad item template." +

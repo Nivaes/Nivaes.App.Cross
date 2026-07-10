@@ -1,7 +1,9 @@
-﻿namespace Nivaes.App.Cross.Droid
+﻿using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+
+namespace Nivaes.App.Cross.Droid
 {
     public interface ICrossActivity
     {
-        global::AndroidX.Fragment.App.FragmentManager SupportFragmentManager { get; }
+        FragmentManager SupportFragmentManager { get; }
     }
 }

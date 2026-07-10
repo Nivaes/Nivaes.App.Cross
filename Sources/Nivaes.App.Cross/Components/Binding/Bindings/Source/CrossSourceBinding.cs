@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using System;
-
     public abstract class CrossSourceBinding
         : CrossBinding, ICrossSourceBinding
     {
@@ -14,20 +12,20 @@ namespace Nivaes.App.Cross
 
         protected object? Source => _source;
 
-        public event EventHandler Changed;
+        public event EventHandler? Changed;
 
         public abstract void SetValue(object value);
 
         public abstract Type SourceType { get; }
 
-        public abstract object GetValue();
+        public abstract object? GetValue();
 
         protected void FireChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        protected bool EqualsCurrentValue(object testValue)
+        protected bool EqualsCurrentValue(object? testValue)
         {
             var existing = GetValue();
 

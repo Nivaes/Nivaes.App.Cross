@@ -1,7 +1,6 @@
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross;
+
+public interface ICrossDataConsumer
 {
-    public interface ICrossDataConsumer
-    {
-        object? DataContext { get; set; }
-    }
+    object DataContext { get; set; }
 }

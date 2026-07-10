@@ -13,9 +13,6 @@ public static class CrossLoggerHost
         _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
     }
 
-    [Obsolete("")]
-    public static ILogger Default => GetLogger("Default");
-
     public static ILogger GetLogger(string categoryName,
         [CallerMemberName] string member = "",
         [CallerFilePath] string file = "",

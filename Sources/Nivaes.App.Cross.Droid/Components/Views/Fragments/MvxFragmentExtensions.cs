@@ -7,7 +7,7 @@ using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;
 
-public static class MvxFragmentExtensions2
+public static class MvxFragmentExtensions
 {
     extension(ICrossEventSourceFragment fragment)
     {
@@ -55,99 +55,194 @@ public static class MvxFragmentExtensions2
         {
             return fragmentView as Fragment;
         }
+
+        [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+        public Type FindAssociatedViewModelType(Type fragmentActivityParentType)
+        {
+            var viewModelType = fragmentView.FindAssociatedViewModelTypeOrNull();
+
+            var type = fragmentView.GetType();
+
+            if (viewModelType == null)
+            {
+                if (!type.HasBasePresentationAttribute())
+                    throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not have {nameof(MvxFragmentPresentationAttribute)} attribute set!");
+
+                var cacheableFragmentAttribute = type.GetBasePresentationAttribute();
+                if (cacheableFragmentAttribute?.ViewModelType == null)
+                    throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not use {nameof(MvxFragmentPresentationAttribute)} with ViewModel Type constructor.");
+
+                viewModelType = cacheableFragmentAttribute.ViewModelType;
+            }
+
+            return viewModelType;
+        }
+
+        public ICrossViewModel? LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
+        {
+            var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
+            //if (viewModelType == typeof(CrossNullViewModel))
+            //    return new CrossNullViewModel();
+
+            if (viewModelType == null)
+                return null;
+
+            if (viewModelType == null
+                || viewModelType == typeof(ICrossViewModel))
+            {
+                CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).Log(LogLevel.Trace,
+                    "No ViewModel class specified for {FragmentViewType} in LoadViewModel",
+                    fragmentView.GetType().Name);
+            }
+
+            if (request == null)
+                request = CrossViewModelRequest.GetDefaultRequest(viewModelType!);
+
+            var viewModelCache = IPlatformApplication.Current!.Services.GetRequiredService<ICrossChildViewModelCache>();
+            if (viewModelCache.Exists(viewModelType!))
+            {
+                var viewModelCached = viewModelCache.Get(viewModelType!);
+                viewModelCache.Remove(viewModelType!);
+                return viewModelCached!;
+            }
+
+            var loaderService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+            var viewModel = loaderService.LoadViewModel(request, savedState);
+
+            return viewModel;
+        }
+    
+        public void EnsureBindingContextIsSet(LayoutInflater inflater)
+        {
+            var actualFragment = fragmentView.ToFragment();
+            if (actualFragment == null)
+                throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+
+            if (fragmentView.BindingContext == null)
+            {
+                fragmentView.BindingContext = new MvxAndroidBindingContext(actualFragment.Activity!,
+                    new MvxSimpleLayoutInflaterHolder(inflater),
+                    fragmentView.DataContext);
+            }
+            else if (fragmentView.BindingContext is IMvxAndroidBindingContext androidContext)
+            {
+                androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(inflater);
+            }
+        }
+
+        public void EnsureBindingContextIsSet()
+        {
+            var actualFragment = fragmentView.ToFragment();
+            if (actualFragment == null)
+                throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+
+            if (fragmentView.BindingContext == null)
+            {
+                fragmentView.BindingContext = new MvxAndroidBindingContext(actualFragment.Context!,
+                    new MvxSimpleLayoutInflaterHolder(
+                        actualFragment.LayoutInflater),
+                    fragmentView.DataContext);
+            }
+            else if (fragmentView.BindingContext is IMvxAndroidBindingContext androidContext)
+            {
+                androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(actualFragment.LayoutInflater);
+            }
+        }
+
+        public void LoadViewModelFrom(CrossViewModelRequest request, ICrossBundle? savedState = null)
+        {
+            var loader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+
+            //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
+            //    return;
+
+            var viewModel = loader?.LoadViewModel(request, savedState);
+            if (viewModel == null)
+            {
+                CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).LogWarning("ViewModel not loaded for {ViewModelType}",
+                    request.ViewModelType?.FullName);
+                return;
+            }
+
+            fragmentView.ViewModel = viewModel;
+        }
     }
 
-    public static void EnsureBindingContextIsSet(this IMvxFragmentView fragment, LayoutInflater inflater)
+    extension(ICrossActivity activity)
     {
-        var actualFragment = fragment.ToFragment();
-        if (actualFragment == null)
-            throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
-
-        if (fragment.BindingContext == null)
-        {
-            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Activity!,
-                new MvxSimpleLayoutInflaterHolder(inflater),
-                fragment.DataContext);
-        }
-        else if (fragment.BindingContext is IMvxAndroidBindingContext androidContext)
-        {
-            androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(inflater);
-        }
-    }
-
-    public static void EnsureBindingContextIsSet(this IMvxFragmentView fragment)
-    {
-        var actualFragment = fragment.ToFragment();
-        if (actualFragment == null)
-            throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragment}");
-
-        if (fragment.BindingContext == null)
-        {
-            fragment.BindingContext = new MvxAndroidBindingContext(actualFragment.Context!,
-                new MvxSimpleLayoutInflaterHolder(
-                    actualFragment.LayoutInflater),
-                fragment.DataContext);
-        }
-        else if (fragment.BindingContext is IMvxAndroidBindingContext androidContext)
-        {
-            androidContext.LayoutInflaterHolder = new MvxSimpleLayoutInflaterHolder(actualFragment.LayoutInflater);
-        }
-    }
-
-    public static TFragment? FindFragmentById<TFragment>(this ICrossActivity activity, int resourceId)
+        public TFragment? FindFragmentById<TFragment>(int resourceId)
         where TFragment : Fragment
-    {
-        var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
-        if (fragment == null)
         {
-            CrossLoggerHost.Default?.Log(LogLevel.Warning,
-                "Failed to find fragment id {ResourceId} in {ActivityTypeName}", resourceId, activity.GetType().Name);
-            return default(TFragment);
+            var fragment = activity.SupportFragmentManager.FindFragmentById(resourceId);
+            if (fragment == null)
+            {
+                CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).LogWarning(
+                    "Failed to find fragment id {ResourceId} in {ActivityTypeName}", resourceId, activity.GetType().Name);
+                return default(TFragment);
+            }
+
+            return SafeCast<TFragment>(fragment);
         }
 
-        return SafeCast<TFragment>(fragment);
-    }
-
-    public static TFragment? FindFragmentByTag<TFragment>(this ICrossActivity activity, string tag)
-        where TFragment : Fragment
-    {
-        var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
-        if (fragment == null)
+        public TFragment? FindFragmentByTag<TFragment>(string tag)
+            where TFragment : Fragment
         {
-            CrossLoggerHost.Default?.Log(LogLevel.Warning,
-                "Failed to find fragment tag {Tag} in {ActivityTypeName}", tag, activity.GetType().Name);
-            return default(TFragment);
+            var fragment = activity.SupportFragmentManager.FindFragmentByTag(tag);
+            if (fragment == null)
+            {
+                CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions))?.LogWarning(
+                    "Failed to find fragment tag {Tag} in {ActivityTypeName}", tag, activity.GetType().Name);
+                return default(TFragment);
+            }
+
+            return SafeCast<TFragment>(fragment);
         }
-
-        return SafeCast<TFragment>(fragment);
     }
 
-    private static TFragment? SafeCast<TFragment>(Fragment fragment) where TFragment : Fragment
+    extension(Fragment fragment)
     {
-        if (fragment is TFragment castFragment)
-            return castFragment;
-
-        CrossLoggerHost.Default?.Log(LogLevel.Warning,
-            "Fragment type mismatch got {FragmentType} but expected {ExpectedType}",
-            fragment.GetType().FullName, typeof(TFragment).FullName);
-        return default;
-    }
-
-    public static void LoadViewModelFrom(this IMvxFragmentView view, CrossViewModelRequest request, ICrossBundle? savedState = null)
-    {
-        var loader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
-        //    return;
-
-        var viewModel = loader?.LoadViewModel(request, savedState);
-        if (viewModel == null)
+        private TFragment? SafeCast<TFragment>() where TFragment : Fragment
         {
-            CrossLoggerHost.Default?.Log(LogLevel.Warning, "ViewModel not loaded for {ViewModelType}",
-                request.ViewModelType?.FullName);
-            return;
-        }
+            if (fragment is TFragment castFragment)
+                return castFragment;
 
-        view.ViewModel = viewModel;
+            CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).LogWarning(
+                "Fragment type mismatch got {FragmentType} but expected {ExpectedType}",
+                fragment.GetType().FullName, typeof(TFragment).FullName);
+            return default;
+        }
+    }
+
+    extension(ICrossViewModel viewModel)
+    {
+        public void RunViewModelLifecycle(ICrossBundle savedState,
+        CrossViewModelRequest request)
+        {
+            try
+            {
+                if (request != null)
+                {
+                    var parameterValues = new CrossBundle(request.ParameterValues);
+                    viewModel.CallBundleMethods("Init", parameterValues);
+                }
+                if (savedState != null)
+                {
+                    viewModel.CallBundleMethods("ReloadState", savedState);
+                }
+                viewModel.Start();
+            }
+            catch (Exception ex)
+            {
+                throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            }
+        }
+    }
+
+    extension(Type fragmentType)
+    {
+        public string FragmentJavaName()
+        {
+            return Java.Lang.Class.FromType(fragmentType).Name;
+        }
     }
 }

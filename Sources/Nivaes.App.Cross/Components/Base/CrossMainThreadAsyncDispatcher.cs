@@ -1,9 +1,9 @@
+using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossMainThreadAsyncDispatcher
         : CrossMainThreadDispatcher, ICrossMainThreadAsyncDispatcher
     {

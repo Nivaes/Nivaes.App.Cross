@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected virtual void CollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            CrossLoggerHost.Default?.LogTrace(
+            CrossLoggerHost.GetLogger<MvxPickerViewModel>().LogTrace(
                 "CollectionChanged called inside MvxPickerViewModel - beware that this isn't fully tested - picker might not fully support changes while the picker is visible");
             Reload();
         }

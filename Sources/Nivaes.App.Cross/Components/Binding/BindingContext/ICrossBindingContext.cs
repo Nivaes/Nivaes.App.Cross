@@ -1,18 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-
     public interface ICrossBindingContext
         : ICrossDataConsumer
     {
         event EventHandler DataContextChanged;
 
-        [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         ICrossBindingContext Init(object? dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue);
 
-        [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
         ICrossBindingContext Init(object? dataContext, object firstBindingKey, string firstBindingValue);
 
         void RegisterBinding(object target, ICrossUpdateableBinding binding);

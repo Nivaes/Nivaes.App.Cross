@@ -1,11 +1,10 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-
-    [RequiresUnreferencedCode("This class uses GetType() for type inspection which may not be preserved by trimming")]
     public class CrossLiteralSourceStep
-        : MvxSourceStep<CrossLiteralSourceStepDescription>
+        : CrossSourceStep<CrossLiteralSourceStepDescription>
     {
         public CrossLiteralSourceStep(CrossLiteralSourceStepDescription description)
             : base(description)
@@ -23,12 +22,12 @@ namespace Nivaes.App.Cross
             }
         }
 
-        protected override void SetSourceValue(object sourceValue)
+        protected override void SetSourceValue(object? sourceValue)
         {
             // ignored - there is no way to set the source value
         }
 
-        protected override object GetSourceValue()
+        protected override object? GetSourceValue()
         {
             return Description.Literal;
         }

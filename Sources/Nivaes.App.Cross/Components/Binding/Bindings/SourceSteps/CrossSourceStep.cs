@@ -1,18 +1,19 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using Microsoft.Extensions.Logging;
-
-    public abstract class CrossSourceStep
+    public abstract class CrossSourceStep<TStepDescription>
         : ICrossSourceStep
+        where TStepDescription : CrossSourceStepDescription
     {
-        private readonly CrossSourceStepDescription _description;
+        private readonly TStepDescription _description;
         private object? _dataContext;
 
-        protected CrossSourceStepDescription Description => _description;
+        protected TStepDescription Description => _description;
 
-        protected CrossSourceStep(CrossSourceStepDescription description)
+        protected CrossSourceStep(TStepDescription description)
         {
             _description = description;
         }
@@ -28,7 +29,7 @@ namespace Nivaes.App.Cross
             // nothing to do in the base class
         }
 
-        public virtual Type TargetType { get; set; }
+        public virtual Type? TargetType { get; set; }
 
         public virtual Type SourceType => typeof(object);
 
@@ -39,7 +40,6 @@ namespace Nivaes.App.Cross
             {
                 return _dataContext;
             }
-            [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
             set
             {
                 if (_dataContext == value)
@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross
             // nothing to do in the base class
         }
 
-        public void SetValue(object value)
+        public void SetValue(object? value)
         {
             var sourceValue = ApplyValueConverterTargetToSource(value);
 
@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross
             SetSourceValue(sourceValue);
         }
 
-        private object ApplyValueConverterTargetToSource(object value)
+        private object? ApplyValueConverterTargetToSource(object? value)
         {
             if (_description.Converter == null)
                 return value;
@@ -98,7 +98,7 @@ namespace Nivaes.App.Cross
             {
                 // pokemon exception - force the use of Fallback in this case
                 // we expect this exception to occur sometimes - so only "Diagnostic" level logging here
-                CrossBindingLogger.Instance?.LogTrace(
+                CrossBindingLogger.GetLogger<CrossSourceStep<TStepDescription>>().LogTrace(
                     exception,
                     "Problem seen during binding execution for {BindingDescription}",
                     _description.ToString());
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross
             return CrossBindingConstant.UnsetValue;
         }
 
-        protected abstract void SetSourceValue(object sourceValue);
+        protected abstract void SetSourceValue(object? sourceValue);
 
         protected virtual void SendSourcePropertyChanged()
         {
@@ -135,7 +135,7 @@ namespace Nivaes.App.Cross
             return CrossBindingConstant.UnsetValue;
         }
 
-        private event EventHandler _changed;
+        private event EventHandler? _changed;
 
         public event EventHandler Changed
         {
@@ -164,7 +164,7 @@ namespace Nivaes.App.Cross
             // base class does nothing by default
         }
 
-        public object GetValue()
+        public object? GetValue()
         {
             var sourceValue = GetSourceValue();
             var value = ConvertSourceToTarget(sourceValue);
@@ -172,16 +172,5 @@ namespace Nivaes.App.Cross
         }
 
         protected abstract object? GetSourceValue();
-    }
-
-    public abstract class MvxSourceStep<T> : CrossSourceStep
-        where T : CrossSourceStepDescription
-    {
-        protected new T Description => (T)base.Description;
-
-        protected MvxSourceStep(T description)
-            : base(description)
-        {
-        }
     }
 }

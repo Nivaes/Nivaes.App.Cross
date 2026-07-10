@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Content.Res;
 using Android.Util;
@@ -8,14 +7,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class MvxAndroidViewBinder
+public sealed class MvxAndroidViewBinder
     : IMvxAndroidViewBinder
 {
     private readonly List<KeyValuePair<object, ICrossUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, ICrossUpdateableBinding>>();
     private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() =>
           IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidBindingResource>());
 
-    private readonly object _source;
+    private readonly object? _source;
 
     public MvxAndroidViewBinder(object source)
     {
@@ -24,15 +23,13 @@ public class MvxAndroidViewBinder
 
     private ICrossBinder? _binder;
 
-    protected ICrossBinder? Binder => _binder ?? (_binder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>());
+    private ICrossBinder? Binder => _binder ?? (_binder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>());
 
     public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _viewBindings;
-
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
-    public virtual void BindView(View view, Context context, IAttributeSet attrs)
+  
+    public void BindView(View view, Context context, IAttributeSet? attrs)
     {
-        using (
-            var typedArray = context.ObtainStyledAttributes(attrs, mvxAndroidBindingResource.Value.BindingStylableGroupId))
+        using (var typedArray = context.ObtainStyledAttributes(attrs, mvxAndroidBindingResource.Value.BindingStylableGroupId))
         {
             int numStyles = typedArray.IndexCount;
             for (var i = 0; i < numStyles; ++i)
@@ -52,22 +49,21 @@ public class MvxAndroidViewBinder
         }
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
     private void ApplyBindingsFromAttribute(View view, TypedArray typedArray, int attributeId)
     {
         try
         {
             var bindingText = typedArray.GetString(attributeId);
-            var newBindings = Binder.Bind(_source, view, bindingText);
+            var newBindings = Binder?.Bind(_source, view, bindingText);
             StoreBindings(view, newBindings);
         }
         catch (Exception exception)
         {
-            CrossBindingLogger.Instance?.LogError(exception, $"Exception thrown during the view {view.GetType().FullName} binding");
+            CrossBindingLogger.GetLogger<MvxAndroidViewBinder>().LogError(exception, $"Exception thrown during the view {view.GetType().FullName} binding");
         }
     }
 
-    private void StoreBindings(View view, IEnumerable<ICrossUpdateableBinding> newBindings)
+    private void StoreBindings(View view, IEnumerable<ICrossUpdateableBinding>? newBindings)
     {
         if (newBindings != null)
         {
@@ -75,18 +71,17 @@ public class MvxAndroidViewBinder
         }
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]
     private void ApplyLanguageBindingsFromAttribute(View view, TypedArray typedArray, int attributeId)
     {
         try
         {
             var bindingText = typedArray.GetString(attributeId);
-            var newBindings = Binder.LanguageBind(_source, view, bindingText);
+            var newBindings = Binder?.LanguageBind(_source, view, bindingText);
             StoreBindings(view, newBindings);
         }
         catch (Exception exception)
         {
-            CrossBindingLogger.Instance?.LogError(exception, "Exception thrown during the view language binding");
+            CrossBindingLogger.GetLogger<MvxAndroidViewBinder>().LogError(exception, "Exception thrown during the view language binding");
             throw;
         }
     }

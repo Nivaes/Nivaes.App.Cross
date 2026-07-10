@@ -1,11 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using Android.Content;
 using Android.Runtime;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("nivaes.cross.Activity")]
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public abstract class CrossActivity<TViewModel>
     : CrossEventSourceActivity, ICrossActivity, IMvxAndroidView<TViewModel>
     where TViewModel : ICrossViewModel
@@ -22,11 +19,11 @@ public abstract class CrossActivity<TViewModel>
     }
 
     #region Data
-    public ICrossBindingContext? BindingContext { get; set; }
+    public ICrossBindingContext BindingContext { get; set; }
 
-    public object? DataContext
+    public object DataContext
     {
-        get => BindingContext?.DataContext;
+        get => BindingContext.DataContext;
         set
         {
             if (BindingContext != null)

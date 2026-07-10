@@ -1,26 +1,24 @@
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-
-    [RequiresUnreferencedCode("This method accesses the PropertyInfo which may not be preserved by trimming")]
-    public abstract class CrossLeafPropertyInfoSourceBinding : CrossPropertyInfoSourceBinding
+    public abstract class CrossLeafPropertyInfoSourceBinding 
+        : CrossPropertyInfoSourceBinding
     {
         protected CrossLeafPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
             : base(source, propertyInfo)
         {
         }
 
-        public override Type SourceType => PropertyInfo?.PropertyType;
+        public override Type SourceType => PropertyInfo.PropertyType;
 
         protected override void OnBoundPropertyChanged()
         {
             FireChanged();
         }
 
-        public override object GetValue()
+        public override object? GetValue()
         {
             if (PropertyInfo == null)
             {
@@ -29,7 +27,7 @@ namespace Nivaes.App.Cross
 
             if (!PropertyInfo.CanRead)
             {
-                CrossBindingLogger.Instance?.LogError(
+                CrossBindingLogger.GetLogger<CrossLeafPropertyInfoSourceBinding>().LogError(
                     "GetValue ignored in binding - target property {PropertyTypeName}.{PropertyName} is writeonly",
                     PropertyInfo.DeclaringType?.Name, PropertyName);
                 return CrossBindingConstant.UnsetValue;
@@ -53,13 +51,13 @@ namespace Nivaes.App.Cross
         {
             if (PropertyInfo == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("SetValue ignored in binding - source property {PropertyName} is missing", PropertyName);
+                CrossBindingLogger.GetLogger<CrossLeafPropertyInfoSourceBinding>().LogWarning("SetValue ignored in binding - source property {PropertyName} is missing", PropertyName);
                 return;
             }
 
             if (!PropertyInfo.CanWrite)
             {
-                CrossBindingLogger.Instance?.LogWarning(
+                CrossBindingLogger.GetLogger<CrossLeafPropertyInfoSourceBinding>().LogWarning(
                     "SetValue ignored in binding - target property {PropertyTypeName}.{PropertyName} is readonly",
                     PropertyInfo.DeclaringType?.Name, PropertyName);
                 return;
@@ -78,7 +76,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLogger.Instance?.LogError(exception, "SetValue failed with exception. Property Name: {PropertyName}, Value: {Value}", PropertyName, value);
+                CrossBindingLogger.GetLogger<CrossLeafPropertyInfoSourceBinding>()?.LogError(exception, "SetValue failed with exception. Property Name: {PropertyName}, Value: {Value}", PropertyName, value);
             }
         }
     }

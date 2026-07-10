@@ -497,7 +497,7 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         var currentHostViewModelType = GetCurrentActivityViewModelType();
         if (attribute.ActivityHostViewModelType != currentHostViewModelType)
         {
-            Logger.Log(LogLevel.Warning, "Activity host with ViewModelType {ActivityHostViewModelType} is not CurrentTopActivity. Showing Activity before showing Fragment for {ViewModelType}",
+            Logger.LogWarning("Activity host with ViewModelType {ActivityHostViewModelType} is not CurrentTopActivity. Showing Activity before showing Fragment for {ViewModelType}",
                 attribute.ActivityHostViewModelType, attribute.ViewModelType);
             PendingRequest = request;
             ShowHostActivity(attribute);

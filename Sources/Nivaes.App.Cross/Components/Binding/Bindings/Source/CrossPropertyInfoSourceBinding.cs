@@ -1,15 +1,13 @@
+using System.ComponentModel;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.ComponentModel;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-
-    [RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
     public abstract class CrossPropertyInfoSourceBinding
         : CrossSourceBinding
     {
-        private IDisposable _subscription;
+        private IDisposable? _subscription;
 
         protected CrossPropertyInfoSourceBinding(object source, PropertyInfo propertyInfo)
             : base(source)
@@ -19,7 +17,7 @@ namespace Nivaes.App.Cross
 
             if (Source == null)
             {
-                CrossBindingLogger.Instance?.LogTrace(
+                CrossBindingLogger.GetLogger<CrossPropertyInfoSourceBinding>().LogTrace(
                     "Unable to bind to source as it's null. PropertyName: {PropertyName}", PropertyName);
                 return;
             }
@@ -61,7 +59,7 @@ namespace Nivaes.App.Cross
         }
 
         // Note - this is public because we use it in weak referenced situations
-        public void SourcePropertyChanged(object sender, PropertyChangedEventArgs e)
+        public void SourcePropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             // we test for null or empty here - this means all properties have changed
             // - fix for https://github.com/slodge/MvvmCross/issues/280

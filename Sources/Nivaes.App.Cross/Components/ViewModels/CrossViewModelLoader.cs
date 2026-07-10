@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel? LoadViewModel(CrossViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             if (request.ViewModelType == null)
                 return null;  // ToDo: Puede haber un viewModelType == null?

@@ -1,12 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-
-    [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming")]
-    public class CrossIndexerLeafPropertyInfoSourceBinding : CrossLeafPropertyInfoSourceBinding
+    public class CrossIndexerLeafPropertyInfoSourceBinding 
+        : CrossLeafPropertyInfoSourceBinding
     {
-        private readonly object _key;
+        private readonly object? _key;
 
         public CrossIndexerLeafPropertyInfoSourceBinding(
             object source,
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross
 
         protected override object[] PropertyIndexParameters()
         {
-            return [_key];
+            return [_key!];
         }
     }
 }

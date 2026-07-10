@@ -6,16 +6,12 @@ namespace Nivaes.App.Cross.Droid;
 public class MvxAndroidBindingContext
     : CrossBindingContext, IMvxAndroidBindingContext
 {
-    // Don't remove this or stuff breaks for some reason 🤷‍
-    // ReSharper disable once NotAccessedField.Local
-#pragma warning disable S4487
-    private readonly WeakReference<Context> _context;
-#pragma warning restore S4487
+    //private readonly WeakReference<Context> _context;
 
     public MvxAndroidBindingContext(Context context, IMvxLayoutInflaterHolder layoutInflaterHolder, object? source = null)
         : base(source)
     {
-        _context = new WeakReference<Context>(context);
+        //_context = new WeakReference<Context>(context);
         LayoutInflaterHolder = layoutInflaterHolder;
     }
 

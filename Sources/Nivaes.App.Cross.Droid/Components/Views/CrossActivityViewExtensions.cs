@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
@@ -7,7 +6,6 @@ namespace Nivaes.App.Cross.Droid;
 
 public static class CrossActivityViewExtensions
 {
-    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public static void AddEventListeners(this ICrossEventSourceActivity activity)
     {
         // ToDo: Mirar si es mejor meter esto en cada clase, para que no sea tan generico.
@@ -25,7 +23,6 @@ public static class CrossActivityViewExtensions
         }
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     public static void OnViewCreate(this IMvxAndroidView androidView, Bundle? bundle)
     {
         androidView.OnLifetimeEvent((listener, activity) => listener.OnCreate(activity, bundle));
@@ -33,7 +30,6 @@ public static class CrossActivityViewExtensions
         ICrossViewModel? cached = null;
 
         var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
-        //if (Mvx.IoCProvider?.TryResolve<IMvxSingleViewModelCache>(out var cache) == true)
         cached = cache?.GetAndClear(bundle);
 
         var view = (ICrossView)androidView;
@@ -136,35 +132,23 @@ public static class CrossActivityViewExtensions
         return activity;
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    private static ICrossViewModel LoadViewModel(this IMvxAndroidView androidView, ICrossBundle? savedState)
+    private static ICrossViewModel? LoadViewModel(this IMvxAndroidView androidView, ICrossBundle? savedState)
     {
         var activity = androidView.ToActivity();
 
         var viewModelType = androidView.FindAssociatedViewModelTypeOrNull();
-        //if (viewModelType == typeof(CrossNullViewModel))
-        //    return new CrossNullViewModel();
+
         if (viewModelType == null)
             throw new CrossException($"Not ViewModel asociate to {androidView.GetType().FullName}");
-
-        //if (viewModelType == null
-        //    || viewModelType == typeof(ICrossViewModel))
-        //{
-        //    CrossLoggerHost.Default.Log(LogLevel.Trace, "No ViewModel class specified for {ViewType} in LoadViewModel",
-        //        androidView.GetType().Name);
-        //}
 
         var viewType = androidView.GetType();
 
         var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
         if (!Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(viewType, out viewModelType))
         {
-            //var logger = CrossLogHost.GetLogger($"{nameof(CrossActivityViewExtensions)}.{nameof(LoadViewModel)}");
-            //logger.Log(LogLevel.Trace, $"No ViewModel class specified for {viewType} in LoadViewModel",
-            //    androidView.GetType().Name);
             throw new CrossException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);
         }
 
-        return viewModelLoader!.Load(activity.Intent, savedState, viewModelType);
+        return viewModelLoader!.Load(activity.Intent!, savedState, viewModelType);
     }
 }

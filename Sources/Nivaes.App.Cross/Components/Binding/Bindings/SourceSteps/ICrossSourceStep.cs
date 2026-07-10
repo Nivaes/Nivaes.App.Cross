@@ -6,14 +6,14 @@ namespace Nivaes.App.Cross
     public interface ICrossSourceStep
         : ICrossBinding
     {
-        Type TargetType { get; set; }
+        Type? TargetType { get; set; }
         Type SourceType { get; }
 
         void SetValue(object? value);
 
         event EventHandler Changed;
 
-        object GetValue();
+        object? GetValue();
 
         object? DataContext
         {

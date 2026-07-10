@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;
@@ -17,7 +16,6 @@ public class CrossBindingContext
     private object? _dataContext;
 
     public CrossBindingContext()
-        : this((object?)null)
     {
     }
 
@@ -26,31 +24,26 @@ public class CrossBindingContext
         _dataContext = dataContext;
     }
 
-    [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext(IDictionary<object, string> firstBindings)
     {
         Init(null, firstBindings);
     }
 
-    [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext(object dataContext, IDictionary<object, string> firstBindings)
     {
         Init(dataContext, firstBindings);
     }
 
-    [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext(IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
     {
         Init(null, firstBindings);
     }
 
-    [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext(object dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
     {
         Init(dataContext, firstBindings);
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext Init(object? dataContext, IDictionary<object, IEnumerable<CrossBindingDescription>> firstBindings)
     {
         foreach (var kvp in firstBindings)
@@ -63,7 +56,6 @@ public class CrossBindingContext
         return this;
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     public CrossBindingContext Init(object? dataContext, IDictionary<object, string> firstBindings)
     {
         foreach (var kvp in firstBindings)
@@ -76,8 +68,8 @@ public class CrossBindingContext
         return this;
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
-    public ICrossBindingContext Init(object? dataContext, object firstBindingKey, IEnumerable<CrossBindingDescription> firstBindingValue)
+    public ICrossBindingContext Init(object? dataContext, object firstBindingKey, 
+        IEnumerable<CrossBindingDescription> firstBindingValue)
     {
         AddDelayedAction(firstBindingKey, firstBindingValue);
         if (dataContext != null)
@@ -86,7 +78,6 @@ public class CrossBindingContext
         return this;
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     public ICrossBindingContext Init(object? dataContext, object firstBindingKey, string firstBindingValue)
     {
         AddDelayedAction(firstBindingKey, firstBindingValue);
@@ -96,7 +87,6 @@ public class CrossBindingContext
         return this;
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     private void AddDelayedAction(object key, string value)
     {
         _delayedActions.Add(() =>
@@ -107,7 +97,6 @@ public class CrossBindingContext
         });
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     private void AddDelayedAction(object key, IEnumerable<CrossBindingDescription> value)
     {
         _delayedActions.Add(() =>
@@ -118,7 +107,6 @@ public class CrossBindingContext
         });
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     private void AddDelayedAction(KeyValuePair<object, string> kvp)
     {
         _delayedActions.Add(() =>
@@ -129,7 +117,6 @@ public class CrossBindingContext
         });
     }
 
-    [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming")]
     private void AddDelayedAction(KeyValuePair<object, IEnumerable<CrossBindingDescription>> kvp)
     {
         _delayedActions.Add(() =>
@@ -173,7 +160,7 @@ public class CrossBindingContext
     #endregion
 
     #region DataContext
-    public object? DataContext
+    public object DataContext
     {
         get
         {

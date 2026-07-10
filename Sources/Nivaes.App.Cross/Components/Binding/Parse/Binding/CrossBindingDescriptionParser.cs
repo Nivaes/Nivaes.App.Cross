@@ -60,7 +60,7 @@ public class CrossBindingDescriptionParser
         }
     }
 
-    public IEnumerable<CrossBindingDescription> Parse(string text)
+    public IEnumerable<CrossBindingDescription> Parse(string? text)
     {
         var parser = BindingParser;
         return Parse(text, parser);

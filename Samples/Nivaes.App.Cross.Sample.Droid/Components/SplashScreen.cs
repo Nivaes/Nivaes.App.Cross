@@ -12,7 +12,8 @@ namespace Nivaes.App.Cross.Sample.Droid;
     , NoHistory = true
     , ScreenOrientation = ScreenOrientation.Portrait)]
 [RequiresUnreferencedCode("CrossStartActivity require unreferenced code")]
-public class SplashScreen : CrossStartActivity
+public sealed class SplashScreen 
+    : CrossStartActivity
 {
     public SplashScreen()
         : base(Resource.Layout.SplashScreen)

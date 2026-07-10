@@ -5,7 +5,6 @@ using Nivaes.App.Cross.Components;
 
 namespace Nivaes.App.Cross
 {
-    [RequiresUnreferencedCode("This method uses reflection to check for referenced assemblies, which may not be preserved by trimming")]
     public class CrossFullBinding
         : CrossBinding, ICrossUpdateableBinding
     {
@@ -137,7 +136,7 @@ namespace Nivaes.App.Cross
             }
         }
 
-        private async void UpdateTargetFromSource(object value, CancellationToken cancel)
+        private async void UpdateTargetFromSource(object? value, CancellationToken cancel)
         {
             if (value == CrossBindingConstant.DoNothing || cancel.IsCancellationRequested)
                 return;
