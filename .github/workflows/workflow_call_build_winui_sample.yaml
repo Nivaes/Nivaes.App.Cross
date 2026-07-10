@@ -22,20 +22,32 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build
+    - name: Build-x64
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
             --property:RuntimeIdentifiers="win-x64" `
             --property:Platform=x64 `
+            --no-restore `
+            --verbosity normal
+
+    - name: Build-arm64
+      run: |
+          dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
+            --configuration Release `
+            --property:RuntimeIdentifiers="win-arm64" `
+            --property:Platform=arm64 `
             --no-restore `
             --verbosity normal
 
