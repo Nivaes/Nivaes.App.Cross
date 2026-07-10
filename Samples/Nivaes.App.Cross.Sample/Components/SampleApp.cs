@@ -21,6 +21,7 @@ public class SampleApp : CrossApplication, ICrossApplication
     {
         base.Setup();
         Nivaes.App.Cross.Sample.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
+        Nivaes.App.Cross.Sample.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     ///// <summary>

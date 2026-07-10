@@ -1,8 +1,16 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
+    [CrossValueCombiner(Name = "EqualTo")]
     public class CrossEqualToValueCombiner
         : CrossPairwiseValueCombiner
     {
+        public CrossEqualToValueCombiner(ILogger<CrossEqualToValueCombiner> logger)
+            : base(logger)
+        {
+        }
+
         protected override bool CombineDecimalAndDecimal(decimal input1, decimal input2, out object value)
         {
             value = input1 == input2;

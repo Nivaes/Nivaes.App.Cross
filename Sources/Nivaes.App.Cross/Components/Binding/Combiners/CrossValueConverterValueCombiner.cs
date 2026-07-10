@@ -1,22 +1,20 @@
+using System.Globalization;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-
-    //[MvxUnconventional]
     public class CrossValueConverterValueCombiner
         : CrossValueCombiner
     {
         private readonly ICrossValueConverter _valueConverter;
 
         public CrossValueConverterValueCombiner(ICrossValueConverter valueConverter)
+            :base(CrossLoggerHost.GetLogger<CrossValueConverterValueCombiner>())
         {
             _valueConverter = valueConverter;
         }
 
-        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
+        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object? value)
         {
             var sourceStep = steps.First();
             var parameter = GetParameterValue(steps);
@@ -51,7 +49,7 @@ namespace Nivaes.App.Cross
             return parameter;
         }
 
-        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object? value)
         {
             var sourceStep = steps.First();
             var parameter = GetParameterValue(steps);

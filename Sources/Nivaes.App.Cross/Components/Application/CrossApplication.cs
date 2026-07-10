@@ -18,7 +18,7 @@ public abstract class CrossApplication : ICrossApplication
     public virtual void Setup()
     {
         GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
-        ServiceProvider.SetupCombiners();
+        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     public abstract ICrossViewModelStar Initialize();

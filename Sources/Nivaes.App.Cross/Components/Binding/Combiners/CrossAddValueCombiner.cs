@@ -1,21 +1,29 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    public class CrossAddValueCombiner
+    [CrossValueCombiner(Name = "Add")]
+    public sealed class CrossAddValueCombiner
         : CrossObjectAsStringPairwiseValueCombiner
     {
-        protected override bool CombineStringAndDouble(string input1, double input2, out object value)
+        public CrossAddValueCombiner(ILogger<CrossAddValueCombiner> logger)
+            : base(logger)
+        {
+        }
+
+        protected override bool CombineStringAndDouble(string? input1, double input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineStringAndLong(string input1, long input2, out object value)
+        protected override bool CombineStringAndLong(string? input1, long input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineStringAndNull(string input1, out object value)
+        protected override bool CombineStringAndNull(string? input1, out object? value)
         {
             value = input1;
             return true;
@@ -69,43 +77,43 @@ namespace Nivaes.App.Cross
             return true;
         }
 
-        protected override bool CombineTwoNulls(out object value)
+        protected override bool CombineTwoNulls(out object? value)
         {
             value = null;
             return true;
         }
 
-        protected override bool CombineStringAndString(string input1, string input2, out object value)
+        protected override bool CombineStringAndString(string? input1, string? input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineLongAndString(long input1, string input2, out object value)
+        protected override bool CombineLongAndString(long input1, string? input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineDoubleAndString(double input1, string input2, out object value)
+        protected override bool CombineDoubleAndString(double input1, string? input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineNullAndString(string input2, out object value)
+        protected override bool CombineNullAndString(string? input2, out object? value)
         {
             value = input2;
             return true;
         }
 
-        protected override bool CombineDecimalAndString(decimal input1, string input2, out object value)
+        protected override bool CombineDecimalAndString(decimal input1, string? input2, out object value)
         {
             value = input1 + input2;
             return true;
         }
 
-        protected override bool CombineStringAndDecimal(string input1, decimal input2, out object value)
+        protected override bool CombineStringAndDecimal(string? input1, decimal input2, out object value)
         {
             value = input1 + input2;
             return true;

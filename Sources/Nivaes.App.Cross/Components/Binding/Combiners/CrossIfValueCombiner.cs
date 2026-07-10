@@ -2,10 +2,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
+[CrossValueCombiner(Name = "If")]
 public class CrossIfValueCombiner
     : CrossValueCombiner
 {
-    public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
+    public CrossIfValueCombiner(ILogger<CrossIfValueCombiner> logger)
+        :base(logger)
+    {
+    }
+
+    public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object? value)
     {
         var list = steps.ToList();
         switch (list.Count)
@@ -17,7 +23,7 @@ public class CrossIfValueCombiner
                 return TryEvaluateif(list[0], list[1], list[2], out value);
 
             default:
-                CrossBindingLogger.Instance?.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
+                Logger.LogWarning("Unexpected substep count of {Count} in 'If' ValueCombiner", list.Count);
                 return base.TryGetValue(list, out value);
         }
     }

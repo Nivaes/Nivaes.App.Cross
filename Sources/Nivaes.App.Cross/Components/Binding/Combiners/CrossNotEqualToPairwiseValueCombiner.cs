@@ -1,8 +1,16 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
+    [CrossValueCombiner(Name = "NotEqualTo")]
     public class MvxNotEqualToValueCombiner
         : CrossPairwiseValueCombiner
     {
+        public MvxNotEqualToValueCombiner(ILogger<MvxNotEqualToValueCombiner> logger)
+            : base(logger)
+        {
+        }
+
         protected override bool CombineDecimalAndDecimal(decimal input1, decimal input2, out object value)
         {
             value = input1 != input2;

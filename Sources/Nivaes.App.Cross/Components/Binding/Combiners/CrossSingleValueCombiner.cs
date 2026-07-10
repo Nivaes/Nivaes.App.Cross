@@ -1,12 +1,22 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
+    [CrossValueCombiner(Name = "Single")]
     public class CrossSingleValueCombiner
         : CrossValueCombiner
     {
+        public CrossSingleValueCombiner()
+            :base(CrossLoggerHost.GetLogger<CrossSingleValueCombiner>())
+        { }
+
+        [ActivatorUtilitiesConstructor]
+        public CrossSingleValueCombiner(ILogger<CrossSingleValueCombiner> logger)
+            : base(logger)
+        {
+        }
         public override Type SourceType(IEnumerable<ICrossSourceStep> steps)
         {
             var firstStep = steps.FirstOrDefault();
@@ -16,14 +26,14 @@ namespace Nivaes.App.Cross
             return firstStep.SourceType;
         }
 
-        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object value)
+        public override void SetValue(IEnumerable<ICrossSourceStep> steps, object? value)
         {
             var firstStep = steps.FirstOrDefault();
 
             firstStep?.SetValue(value);
         }
 
-        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
+        public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object? value)
         {
             var firstStep = steps.FirstOrDefault();
             if (firstStep == null)

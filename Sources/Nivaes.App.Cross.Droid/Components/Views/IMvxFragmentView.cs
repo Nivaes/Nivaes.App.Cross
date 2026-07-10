@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.Droid
     public interface IMvxFragmentView
         : ICrossBindingContextOwner, ICrossView
     {
-        string UniqueImmutableCacheTag { get; }
+        string? UniqueImmutableCacheTag { get; }
     }
 
     public interface IMvxFragmentView<TViewModel>

@@ -1,8 +1,16 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
-{
-    public class CrossDivideValueCombiner
+{ 
+    [CrossValueCombiner(Name = "Divide")]
+    public sealed class CrossDivideValueCombiner
         : CrossNumericOnlyValueCombiner
     {
+        public CrossDivideValueCombiner(ILogger<CrossDivideValueCombiner> logger)
+          : base(logger)
+        {
+        }
+
         protected override bool CombineDecimalAndDecimal(decimal input1, decimal input2, out object value)
         {
             value = input1 / input2;
@@ -96,7 +104,7 @@ namespace Nivaes.App.Cross
             return true;
         }
 
-        protected override bool CombineTwoNulls(out object value)
+        protected override bool CombineTwoNulls(out object? value)
         {
             // zero divided by zero... hmmmm
             value = null;

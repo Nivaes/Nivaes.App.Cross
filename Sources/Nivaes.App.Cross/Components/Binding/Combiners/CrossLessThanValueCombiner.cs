@@ -1,8 +1,16 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
+    [CrossValueCombiner(Name = "LessThan")]
     public class CrossLessThanValueCombiner
         : CrossObjectAsStringPairwiseValueCombiner
     {
+        public CrossLessThanValueCombiner(ILogger<CrossLessThanValueCombiner> logger)
+            : base(logger)
+        {
+        }
+
         protected override bool CombineDoubleAndDouble(double input1, double input2, out object value)
         {
             value = input1.CompareTo(input2) < 0;

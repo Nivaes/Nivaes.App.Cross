@@ -1,16 +1,22 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using Microsoft.Extensions.Logging;
-
-    public class CrossFormatValueCombiner : CrossValueCombiner
+    [CrossValueCombiner(Name = "Format")]
+    public sealed class CrossFormatValueCombiner : CrossValueCombiner
     {
+        public CrossFormatValueCombiner(ILogger<CrossFormatValueCombiner> logger)
+            :base(logger)
+        {
+        }
+
         public override bool TryGetValue(IEnumerable<ICrossSourceStep> steps, out object value)
         {
             var list = steps.ToList();
 
             if (list.Count < 1)
             {
-                CrossBindingLogger.Instance?.LogWarning("Format called with no parameters - will fail");
+                Logger.LogWarning("Format called with no parameters - will fail");
                 value = CrossBindingConstant.DoNothing;
                 return true;
             }
@@ -28,7 +34,7 @@ namespace Nivaes.App.Cross
                 return true;
             }
 
-            var formatString = formatObject == null ? string.Empty : formatObject.ToString();
+            var formatString = formatObject?.ToString() ?? string.Empty;
 
             var values = list.Skip(1).Select(s => s.GetValue()).ToArray();
 

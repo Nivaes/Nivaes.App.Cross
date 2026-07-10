@@ -19,22 +19,17 @@ namespace Nivaes.App.Cross.Droid
             this.AddEventListeners();
         }
 
-        public ICrossBindingContext BindingContext { get; set; }
-
-        private object _dataContext;
+        #region Data
+        public ICrossBindingContext? BindingContext 
+        { 
+            get; 
+            set; 
+        }
 
         public object? DataContext
         {
-            get
-            {
-                return _dataContext;
-            }
-            set
-            {
-                _dataContext = value;
-                if (BindingContext != null)
-                    BindingContext.DataContext = value;
-            }
+            get { return this.BindingContext?.DataContext; }
+            set { this.BindingContext?.DataContext = value; }
         }
 
         public virtual TViewModel? ViewModel
@@ -53,14 +48,15 @@ namespace Nivaes.App.Cross.Droid
         ICrossViewModel? ICrossView.ViewModel
         {
             get => ViewModel;
-            set => throw new NotImplementedException();
+            set => ViewModel = (TViewModel?)value;
         }
 
         public virtual void OnViewModelSet()
         {
         }
 
-        public string UniqueImmutableCacheTag => Tag;
+        public string? UniqueImmutableCacheTag => Tag;
+        #endregion
 
 
 

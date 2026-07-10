@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross;
 
-public class CrossValueConverterAttribute : Attribute
+public class CrossValueCombinerAttribute : Attribute
 {
     public string? Name { get; set; }
 }

@@ -83,14 +83,8 @@ namespace Nivaes.App.Cross.AppKitLib
 
         public string Text
         {
-            get
-            {
-                return this.TextField.StringValue;
-            }
-            set
-            {
-                this.TextField.StringValue = value;
-            }
+            get { return this.TextField.StringValue; }
+            set { this.TextField.StringValue = value; }
         }
 
         protected override void Dispose(bool disposing)
