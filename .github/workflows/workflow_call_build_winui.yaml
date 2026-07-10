@@ -16,7 +16,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    # - uses: ./.github/actions/setup-android
+    # - uses: ./.github/actions/setup-WinUI
     #   with:
     #     global-json-file: ./global.json
 
