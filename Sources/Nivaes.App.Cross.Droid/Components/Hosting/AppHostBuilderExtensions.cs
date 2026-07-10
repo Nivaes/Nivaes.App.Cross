@@ -48,8 +48,6 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxSavedStateConverter, MvxSavedStateConverter>();
             builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
             builder.Services.TryAddSingleton<IMvxAndroidViewFactory, MvxAndroidViewFactory>();
-            builder.Services.TryAddSingleton<IMvxLayoutInflaterHolderFactoryFactory, MvxLayoutInflaterFactoryFactory>();
-            builder.Services.TryAddSingleton<IMvxAndroidViewBinderFactory, MvxAndroidViewBinderFactory>();
             builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
 
             builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();

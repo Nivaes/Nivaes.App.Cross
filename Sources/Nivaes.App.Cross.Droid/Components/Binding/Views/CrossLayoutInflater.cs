@@ -10,6 +10,7 @@ using Java.Lang.Reflect;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
+using static Android.Graphics.ImageDecoder;
 using Boolean = Java.Lang.Boolean;
 using Exception = Java.Lang.Exception;
 using Object = Java.Lang.Object;
@@ -76,7 +77,6 @@ public class CrossLayoutInflater : LayoutInflater
     private readonly MvxBindingVisitor _bindingVisitor;
 
     private IMvxAndroidViewFactory? _androidViewFactory;
-    private IMvxLayoutInflaterHolderFactoryFactory? _layoutInflaterHolderFactoryFactory;
     private Field? _constructorArgs;
     private bool _setPrivateFactory;
 
@@ -133,7 +133,7 @@ public class CrossLayoutInflater : LayoutInflater
             var currentBindingContext = MvxAndroidBindingContextHelpers.Current();
             if (currentBindingContext != null)
             {
-                factory = FactoryFactory?.Create(currentBindingContext.DataContext);
+                factory = new MvxBindingLayoutInflaterFactory(currentBindingContext.DataContext);
 
                 // Set the current factory used to generate bindings
                 if (factory != null)
@@ -369,23 +369,6 @@ public class CrossLayoutInflater : LayoutInflater
             //}
 
             return _androidViewFactory;
-        }
-    }
-
-    protected IMvxLayoutInflaterHolderFactoryFactory? FactoryFactory
-    {
-        get
-        {
-            if (_layoutInflaterHolderFactoryFactory != null)
-                return _layoutInflaterHolderFactoryFactory;
-
-            var factoryFactory = IPlatformApplication.Current!.Services.GetRequiredService<IMvxLayoutInflaterHolderFactoryFactory>();
-            //if (Mvx.IoCProvider?.TryResolve(out IMvxLayoutInflaterHolderFactoryFactory? factoryFactory) == true)
-            //{
-            _layoutInflaterHolderFactoryFactory = factoryFactory;
-            //}
-
-            return _layoutInflaterHolderFactoryFactory;
         }
     }
 

@@ -13,10 +13,10 @@ public sealed class MvxBindingLayoutInflaterFactory
     private IMvxAndroidViewFactory? _androidViewFactory;
     private IMvxAndroidViewBinder _binder;
 
-    public MvxBindingLayoutInflaterFactory(object source)
+    public MvxBindingLayoutInflaterFactory(object? source)
     {
         _source = source;
-        _binder = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewBinderFactory>().Create(_source);
+        _binder = new MvxAndroidViewBinder(_source);
     }
 
     private IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewFactory>();
@@ -36,11 +36,9 @@ public sealed class MvxBindingLayoutInflaterFactory
 
     public View BindCreatedView(View view, Context context, IAttributeSet? attrs)
     {
-        if (view != null)
+        //if (view != null)
             _binder.BindView(view, context, attrs);
 
         return view;
     }
 }
-#nullable restore
-

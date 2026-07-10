@@ -24,11 +24,14 @@ namespace Nivaes.App.Cross.Droid
         #region Data
         public ICrossBindingContext? BindingContext { get; set; }
 
+        private object? _dataContext;
+
         public object? DataContext
         {
-            get => BindingContext?.DataContext;
+            get => _dataContext;
             set
             {
+                _dataContext = value;
                 if (BindingContext != null)
                     BindingContext.DataContext = value;
             }

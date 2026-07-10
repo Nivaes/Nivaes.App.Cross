@@ -160,7 +160,7 @@ public class CrossBindingContext
     #endregion
 
     #region DataContext
-    public object DataContext
+    public object? DataContext
     {
         get
         {

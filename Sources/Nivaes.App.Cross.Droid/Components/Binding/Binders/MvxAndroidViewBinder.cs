@@ -16,7 +16,7 @@ public sealed class MvxAndroidViewBinder
 
     private readonly object? _source;
 
-    public MvxAndroidViewBinder(object source)
+    public MvxAndroidViewBinder(object? source)
     {
         _source = source;
     }

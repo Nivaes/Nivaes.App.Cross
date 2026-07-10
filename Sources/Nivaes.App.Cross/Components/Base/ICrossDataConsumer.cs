@@ -2,5 +2,5 @@ namespace Nivaes.App.Cross;
 
 public interface ICrossDataConsumer
 {
-    object DataContext { get; set; }
+    object ?DataContext { get; set; }
 }

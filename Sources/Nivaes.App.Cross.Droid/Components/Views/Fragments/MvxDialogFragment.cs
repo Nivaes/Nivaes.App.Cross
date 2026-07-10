@@ -20,19 +20,22 @@ namespace Nivaes.App.Cross.Droid
         }
 
         #region Data
-        public ICrossBindingContext? BindingContext 
-        { 
-            get; 
-            set; 
-        }
+        public ICrossBindingContext? BindingContext { get; set; }
+
+        private object? _dataContext;
 
         public object? DataContext
         {
-            get { return this.BindingContext?.DataContext; }
-            set { this.BindingContext?.DataContext = value; }
+            get => _dataContext;
+            set
+            {
+                _dataContext = value;
+                if (BindingContext != null)
+                    BindingContext.DataContext = value;
+            }
         }
 
-        public virtual TViewModel? ViewModel
+        public TViewModel? ViewModel
         {
             get
             {

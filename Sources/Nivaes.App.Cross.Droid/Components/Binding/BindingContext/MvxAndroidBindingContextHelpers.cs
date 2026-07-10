@@ -14,7 +14,6 @@ public static class MvxAndroidBindingContextHelpers
         where T : class, ICrossBindingContext
     {
         var stack = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContextStack<T>>();
-        //if (Mvx.IoCProvider?.TryResolve<ICrossBindingContextStack<T>>(out var stack) == true)
 
         return stack?.Current!;
     }

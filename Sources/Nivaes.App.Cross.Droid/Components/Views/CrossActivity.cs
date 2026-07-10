@@ -19,11 +19,11 @@ public abstract class CrossActivity<TViewModel>
     }
 
     #region Data
-    public ICrossBindingContext BindingContext { get; set; }
+    public ICrossBindingContext? BindingContext { get; set; }
 
-    public object DataContext
+    public object? DataContext
     {
-        get => BindingContext.DataContext;
+        get => BindingContext?.DataContext;
         set
         {
             if (BindingContext != null)

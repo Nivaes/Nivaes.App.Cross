@@ -4,7 +4,8 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.AppKitLib
 {
     [Register("MvxTableCellView")]
-    public class MvxTableCellView : NSTableCellView, ICrossBindingContextOwner, ICrossDataConsumer
+    public class MvxTableCellView 
+        : NSTableCellView, ICrossBindingContextOwner, ICrossDataConsumer
     {
         // Called when created from unmanaged code
         [RequiresUnreferencedCode("This constructor creates bindings which use reflection and may not be preserved by trimming.")]
@@ -69,24 +70,28 @@ namespace Nivaes.App.Cross.AppKitLib
             this.CreateBindingContext(bindingText);
         }
 
+        #region Data
         public ICrossBindingContext? BindingContext
         {
             get;
             set;
         }
 
-        public object? DataContext
+         public object? DataContext
         {
             get { return this.BindingContext?.DataContext; }
             set { this.BindingContext?.DataContext = value; }
         }
+        
 
         public string Text
         {
             get { return this.TextField.StringValue; }
             set { this.TextField.StringValue = value; }
         }
+        #endregion
 
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -95,5 +100,6 @@ namespace Nivaes.App.Cross.AppKitLib
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }
