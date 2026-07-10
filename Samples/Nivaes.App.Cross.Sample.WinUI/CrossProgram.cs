@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.WinUI;
 
 public static class CrossProgram
 {
-    public static CrossApp CreateCrossApp(CrossApplication app)
+    public static CrossApp CreateCrossApp(CrossWinUIApplication app)
     {
         var appBuilder = CrossApp.CreateBuilder();
 
