@@ -57,6 +57,7 @@ namespace Nivaes.App.Cross
             lock (_sourceLocker)
             {
                 if (_sourceBinding != null)
+                    _sourceBinding = null;
                 {
                     _sourceBinding.Changed -= SourceBindingOnChanged;
                     _sourceBinding.Dispose();
