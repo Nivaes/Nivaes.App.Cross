@@ -3,10 +3,10 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross
 {
     [CrossValueCombiner(Name = "Inverted")]
-    public class MvxInvertedValueCombiner
-            : CrossBooleanValueCombiner
+    public class InvertedValueCombiner
+            : BooleanValueCombiner
     {
-        public MvxInvertedValueCombiner(ILogger<MvxInvertedValueCombiner> logger)
+        public InvertedValueCombiner(ILogger<InvertedValueCombiner> logger)
           : base(logger)
         {
         }
@@ -19,10 +19,10 @@ namespace Nivaes.App.Cross
     }
 
     [CrossValueCombiner(Name = "And")]
-    public class MvxAndValueCombiner
-        : CrossBooleanValueCombiner
+    public class AndValueCombiner
+        : BooleanValueCombiner
     {
-        public MvxAndValueCombiner(ILogger<MvxAndValueCombiner> logger)
+        public AndValueCombiner(ILogger<AndValueCombiner> logger)
           : base(logger)
         {
         }
@@ -35,10 +35,10 @@ namespace Nivaes.App.Cross
     }
 
     [CrossValueCombiner(Name = "Or")]
-    public class MvxOrValueCombiner
-        : CrossBooleanValueCombiner
+    public class OrValueCombiner
+        : BooleanValueCombiner
     {
-        public MvxOrValueCombiner(ILogger<MvxOrValueCombiner> logger)
+        public OrValueCombiner(ILogger<OrValueCombiner> logger)
           : base(logger)
         {
         }
@@ -51,10 +51,10 @@ namespace Nivaes.App.Cross
     }
 
     [CrossValueCombiner(Name = "Not")]
-    public class MvxNotValueCombiner
-        : CrossBooleanValueCombiner
+    public class NotValueCombiner
+        : BooleanValueCombiner
     {
-        public MvxNotValueCombiner(ILogger<CrossFormatValueCombiner> logger)
+        public NotValueCombiner(ILogger<CrossFormatValueCombiner> logger)
            : base(logger)
         {
         }
@@ -67,10 +67,10 @@ namespace Nivaes.App.Cross
     }
 
     [CrossValueCombiner(Name = "XOr")]
-    public class MvxXorValueCombiner
-        : CrossBooleanValueCombiner
+    public class XorValueCombiner
+        : BooleanValueCombiner
     {
-        public MvxXorValueCombiner(ILogger<MvxXorValueCombiner> logger)
+        public XorValueCombiner(ILogger<XorValueCombiner> logger)
           : base(logger)
         {
         }
@@ -83,10 +83,10 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public abstract class CrossBooleanValueCombiner
+    public abstract class BooleanValueCombiner
         : CrossValueCombiner
     {
-        protected CrossBooleanValueCombiner(ILogger logger)
+        protected BooleanValueCombiner(ILogger logger)
             : base(logger)
         {
         }
