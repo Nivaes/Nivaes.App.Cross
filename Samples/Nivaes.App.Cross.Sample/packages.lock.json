@@ -382,7 +382,6 @@
           "Nivaes.IoC.SourceGenerator": "0.3.3"
         }
       }
-    },
-    "net10.0/win-arm64": {}
+    }
   }
 }

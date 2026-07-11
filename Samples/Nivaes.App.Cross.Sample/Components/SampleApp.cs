@@ -6,8 +6,7 @@ using OpenTelemetry.Trace;
 
 namespace Nivaes.App.Cross.Sample;
 
-[RequiresUnreferencedCode("Application requires unreferenced code")]
-public class SampleApp : CrossApplication, ICrossApplication
+public class SampleApp : CrossApplication
 {
     private readonly TracerProvider _tracerProvider;
 
@@ -32,9 +31,9 @@ public class SampleApp : CrossApplication, ICrossApplication
     {
         using (Logger.BeginScope("Initialice app"))
         {
-            var source = new ActivitySource("SampleCrossClient");
+            var source = new ActivitySource("SampleCross");
 
-            using (var activity = source.StartActivity("SampleCrossClient"))
+            using (var activity = source.StartActivity("SampleCross"))
             {
                 activity?.SetTag("test", "true");
             }

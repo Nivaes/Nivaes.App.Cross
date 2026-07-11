@@ -19,7 +19,7 @@
 
 		<_SupportedOSPlatformAndroidVersion>24</_SupportedOSPlatformAndroidVersion>
 		
-		<_TargetPlatformWinodwsMinVersion>10.0.19041.0</_TargetPlatformWinodwsMinVersion>
+		<_TargetPlatformWinodwsMinVersion>10.0.17763.0</_TargetPlatformWinodwsMinVersion>
     </PropertyGroup>
 
 	<PropertyGroup>
@@ -29,7 +29,7 @@
 		<_CrossMacCatalystTargets>net10.0-maccatalyst</_CrossMacCatalystTargets>
 		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
-		<_CrossWindowsTargets>net10.0-windows10.0.22000.0</_CrossWindowsTargets>
+		<_CrossWindowsTargets>net10.0-windows10.0.19041.0</_CrossWindowsTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
