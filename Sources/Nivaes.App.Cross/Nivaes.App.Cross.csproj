@@ -38,6 +38,9 @@
 		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="Nivaes.IoC" />
 		<PackageReference Include="OpenTelemetry" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
@@ -74,10 +77,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Components\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
