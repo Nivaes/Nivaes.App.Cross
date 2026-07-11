@@ -5,13 +5,17 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2025-vs2026
+    strategy:
+      matrix:
+        include:
+          - runner: windows-2025-vs2026
+            rid: win-x64
+            platform: x64
+          - runner: windows-11-vs2026-arm
+            rid: win-arm64
+            platform: ARM64
 
-    # strategy:
-    #   matrix:
-    #     rid:
-    #       - win-x64
-    #       - win-arm64
+    runs-on: ${{ inputs.runner }}
 
     steps:
     - name: Dump GitHub context
@@ -57,37 +61,38 @@ jobs:
     #       /p:AppxBundle=Always `
     #       /p:UapAppxPackageBuildMode=SideloadOnly
 
-    - name: Build-x64
+    - name: Build
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
-            --property:RuntimeIdentifiers="win-x64" `
-            --property:Platform=x64 `
+            --property:RuntimeIdentifiers= ${{ inputs.rid }} `
+            --property:Platform= ${{ inputs.platform }} `
             --property:GenerateAppxPackageOnBuild=true `
             --no-incremental `
             --verbosity normal
 
-    - name: Build-arm64
-      run: |
-          dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
-            --configuration Release `
-            --property:RuntimeIdentifiers="win-arm64" `
-            --property:Platform=arm64 `
-            --property:GenerateAppxPackageOnBuild=true `
-            --no-incremental `
-            --verbosity normal
+    # - name: Build-arm64
+    #   run: |
+    #       dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
+    #         --configuration Release `
+    #         --property:BuildProjectReferences=false `
+    #         --property:RuntimeIdentifiers="win-arm64" `
+    #         --property:Platform=arm64 `
+    #         --property:GenerateAppxPackageOnBuild=true `
+    #         --no-incremental `
+    #         --verbosity normal
 
-    - name: Publish
-      run: |
-         msbuild samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj `
-              /t:Publish `
-              /p:NoBuild=true `
-              /p:Configuration=Release `
-              /p:GenerateAppxPackageOnBuild=true `
-              /p:AppxBundle=Always `
-              /p:AppxBundlePlatforms="x64|ARM64" `
-              /p:UapAppxPackageBuildMode=StoreUpload `
-              /p:AppxPackageSigningEnabled=false
+    # - name: Publish
+    #   run: |
+    #      msbuild samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj `
+    #           /t:Publish `
+    #           /p:NoBuild=true `
+    #           /p:Configuration=Release `
+    #           /p:GenerateAppxPackageOnBuild=true `
+    #           /p:AppxBundle=Always `
+    #           /p:AppxBundlePlatforms="x64|ARM64" `
+    #           /p:UapAppxPackageBuildMode=StoreUpload `
+    #           /p:AppxPackageSigningEnabled=false
 
     - uses: actions/upload-artifact@v4
       with:

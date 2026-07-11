@@ -3,16 +3,19 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
-		<SupportedOSPlatformVersion>$(_SupportedOSPlatformWindowsVersion)</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion>$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
 		
 		<AssemblyName>Nivaes.App.Cross</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross</RootNamespace>
 
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
 		<OptimizationPreference>Speed</OptimizationPreference>
 		<IsTrimmable>true</IsTrimmable>
-		<IsAotCompatible>true</IsAotCompatible>
 		<RunAOTAnalysis>true</RunAOTAnalysis>
+		<IsPackable>false</IsPackable>
+		<IsAotCompatible>true</IsAotCompatible>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<PropertyGroup>

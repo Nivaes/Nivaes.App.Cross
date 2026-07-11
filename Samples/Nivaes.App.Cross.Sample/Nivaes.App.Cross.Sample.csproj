@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		
 		<AssemblyName>Nivaes.App.Cross.Sample</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample</RootNamespace>
 
@@ -10,15 +11,13 @@
 		<Nullable>enable</Nullable>
 
 		<!--<TrimMode>full</TrimMode>-->
-
+		<OptimizationPreference>Speed</OptimizationPreference>
+		<IsTrimmable>true</IsTrimmable>
+		<RunAOTAnalysis>true</RunAOTAnalysis>
 		<IsPackable>false</IsPackable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging" />
@@ -34,14 +33,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj" >
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
-		</ProjectReference>
-		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
+		</ProjectReference>	
 	</ItemGroup>
 
 	<ItemGroup>
