@@ -60,8 +60,8 @@ jobs:
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
-            --property:RuntimeIdentifiers= ${{ matrix.rid }} `
-            --property:Platform= ${{ matrix.platform }} `
+            --property:RuntimeIdentifiers=${{ matrix.rid }} `
+            --property:Platform=${{ matrix.platform }} `
             --property:GenerateAppxPackageOnBuild=true `
             --no-incremental `
             --verbosity normal
