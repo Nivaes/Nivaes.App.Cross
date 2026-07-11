@@ -7,11 +7,11 @@ jobs:
   build:
     runs-on: windows-2025-vs2026
 
-    strategy:
-      matrix:
-        rid:
-          # - win-x64
-          - win-arm64
+    # strategy:
+    #   matrix:
+    #     rid:
+    #       - win-x64
+    #       - win-arm64
 
     steps:
     - name: Dump GitHub context
@@ -52,9 +52,9 @@ jobs:
       run: >
           msbuild Samples/Nivaes.App.Cross.Sample.WinUI
           /p:Configuration=release
-          /p:RuntimeIdentifier=${{ matrix.rid }}
+          /p:RuntimeIdentifier="win-x64|win-arm64"
           /p:GenerateAppxPackageOnBuild=true
-          /p:AppxBundle=Never
+          /p:AppxBundle=Always
           /p:UapAppxPackageBuildMode=SideloadOnly
 
     # - name: Build-x64
@@ -88,4 +88,4 @@ jobs:
       with:
         name: WinUIStorePackage
         path: |
-          **/AppPackages/**
+          **
