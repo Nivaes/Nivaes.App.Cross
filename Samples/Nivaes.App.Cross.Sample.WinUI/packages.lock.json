@@ -360,7 +360,6 @@
       "nivaes.app.cross.winui": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.Windows.SDK.BuildTools": "[10.0.28000.2270, )",
           "Microsoft.WindowsAppSDK": "[2.2.0, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.WinUI.SourceGenerator": "[1.0.0, )",
@@ -455,8 +454,8 @@
       "Microsoft.Windows.SDK.BuildTools": {
         "type": "CentralTransitive",
         "requested": "[10.0.28000.2270, )",
-        "resolved": "10.0.28000.2270",
-        "contentHash": "a7xlGBRfSyXQrjnzFMDd0FCOvyv9mA/oX0FNt4A5hAVvVy6w62NBxygDC/LHM1205dXH9Pv4u0D+Qr77GH8e4Q=="
+        "resolved": "10.0.26100.4654",
+        "contentHash": "2mgcOlj/t2RfSyyw+pVESfO+Tk1RkfQzto9Vrq42M1lUQIfQEwbi8QLha9GXWIOj+TFzeHIEJckIoF25mgiM8A=="
       },
       "Microsoft.WindowsAppSDK": {
         "type": "CentralTransitive",

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>$(_CrossWindowsTargets)</TargetFrameworks>
+		<TargetFramework>$(_CrossWindowsTargets)</TargetFramework>
 		<TargetPlatformMinVersion>$(_CrossWindowsPlatformMinVersion)</TargetPlatformMinVersion>
 
 		<AssemblyName>Nivaes.App.Cross.Sample.WinUI</AssemblyName>
