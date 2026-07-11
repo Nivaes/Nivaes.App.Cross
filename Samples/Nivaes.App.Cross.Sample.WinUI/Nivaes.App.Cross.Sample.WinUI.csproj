@@ -12,9 +12,10 @@
 		<Platforms>x64;ARM64</Platforms>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
-		<Nullable>enable</Nullable>
-
 		<AppxBundlePlatforms>x64;ARM64</AppxBundlePlatforms>
+
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>false</IsPackable>
