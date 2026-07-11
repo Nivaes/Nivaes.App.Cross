@@ -91,6 +91,6 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: WinUIStorePackage
+        name: WinUIStorePackage${{ matrix.platform }}
         path: |
-          **
+          **\*.msix
