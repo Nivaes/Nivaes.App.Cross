@@ -15,7 +15,7 @@ jobs:
             rid: win-arm64
             platform: ARM64
 
-    runs-on: ${{ inputs.runner }}
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - name: Dump GitHub context
@@ -32,16 +32,11 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet build Sources/Nivaes.App.Cross --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
-          dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
-          dotnet build Sources/Nivaes.App.Cross --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
-          dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
-          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime win-x64 --property:PublishReadyToRun=true
-          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime win-arm64 --property:PublishReadyToRun=true
+          dotnet build Sources/Nivaes.App.Cross --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -65,8 +60,8 @@ jobs:
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
-            --property:RuntimeIdentifiers= ${{ inputs.rid }} `
-            --property:Platform= ${{ inputs.platform }} `
+            --property:RuntimeIdentifiers= ${{ matrix.rid }} `
+            --property:Platform= ${{ matrix.platform }} `
             --property:GenerateAppxPackageOnBuild=true `
             --no-incremental `
             --verbosity normal
