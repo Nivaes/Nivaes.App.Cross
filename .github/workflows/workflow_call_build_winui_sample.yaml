@@ -51,7 +51,7 @@ jobs:
     - name: Build and Package
       run: >
           msbuild Samples/Nivaes.App.Cross.Sample.WinUI
-          /p:Configuration=$(CONFIGURATION)
+          /p:Configuration=release
           /p:RuntimeIdentifier=${{ matrix.rid }}
           /p:GenerateAppxPackageOnBuild=true
           /p:AppxBundle=Never
