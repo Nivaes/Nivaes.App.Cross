@@ -55,8 +55,8 @@
   <Folder Name="/Solution Items/.github/actions/setup-PWA/">
     <File Path=".github/actions/setup-PWA/action.yaml" />
   </Folder>
-  <Folder Name="/Solution Items/.github/actions/setup-winui/">
-    <File Path=".github/actions/setup-winui/action.yaml" />
+  <Folder Name="/Solution Items/.github/actions/setup-WinUI/">
+    <File Path=".github/actions/setup-WinUI/action.yaml" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/setup-xcode/">
     <File Path=".github/actions/setup-xcode/action.yaml" />

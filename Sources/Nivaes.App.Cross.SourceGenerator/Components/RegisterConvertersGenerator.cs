@@ -130,7 +130,7 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
             using System;
             using Nivaes.App.Cross;
             {rootNamespace}
-            public static class GeneratedConverterExtensions
+            internal static class GeneratedConverterExtensions
             {{
                 public static IServiceProvider RegisterConverters(IServiceProvider services)
                 {{

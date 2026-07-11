@@ -135,7 +135,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             using System;
             using Nivaes.App.Cross;
             {rootNamespace}
-            public static class GeneratedCombinerExtensions
+            internal static class GeneratedCombinerExtensions
             {{
                 public static IServiceProvider RegisterCombiners(IServiceProvider services)
                 {{

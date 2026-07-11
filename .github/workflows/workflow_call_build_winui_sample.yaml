@@ -5,7 +5,17 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - runner: windows-2025-vs2026
+            rid: win-x64
+            platform: x64
+          - runner: windows-11-vs2026-arm
+            rid: win-arm64
+            platform: ARM64
+
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - name: Dump GitHub context
@@ -22,9 +32,11 @@ jobs:
 
     - name: Restore Dependencies
       run: |
-          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
-          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config -r win-x64 --property:PublishReadyToRun=true
+          dotnet build Sources/Nivaes.App.Cross --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Sources/Nivaes.App.Cross.WinUI.SourceGenerator --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
+          dotnet restore Samples/Nivaes.App.Cross.Sample.WinUI --configfile .github/NuGet.config --runtime ${{ matrix.rid }} --property:PublishReadyToRun=true
       env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -34,24 +46,64 @@ jobs:
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
             --configuration Release `
-            --property:RuntimeIdentifiers="win-x64" `
-            --property:Platform=x64 `
-            --no-restore `
+            --property:RuntimeIdentifiers=${{ matrix.rid }} `
+            --property:Platform=${{ matrix.platform }} `
+            --property:GenerateAppxPackageOnBuild=true `
+            --no-incremental `
             --verbosity normal
 
-    - name: Publish
+    - name: Prepare artifact
+      shell: pwsh
       run: |
-         msbuild samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj `
-              /p:Configuration=Release `
-              /p:Platform=x64 `
-              /p:GenerateAppxPackageOnBuild=true `
-              /p:AppxBundle=Always `
-              /p:AppxBundlePlatforms="x64|ARM64" `
-              /p:UapAppxPackageBuildMode=StoreUpload `
-              /p:AppxPackageSigningEnabled=false
+        New-Item -ItemType Directory -Force artifact | Out-Null
+
+        Get-ChildItem -Recurse -Filter "*${{ matrix.platform }}.msix" |
+          Copy-Item -Destination artifact
 
     - uses: actions/upload-artifact@v4
       with:
-        name: WinUIStorePackage
-        path: |
-          **/AppPackages/**
+        name: msix-${{ matrix.platform }}
+        path: artifact
+  
+  packet-bundle:
+    needs: build
+    runs-on: windows-2025-vs2026
+
+    steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: packages
+
+      - name: Prepare bundle
+        shell: pwsh
+        run: |
+          mkdir bundle
+
+          Copy-Item packages\msix-x64\*.msix bundle
+          Copy-Item packages\msix-ARM64\*.msix bundle
+
+      - name: Locate MakeAppx
+        id: sdk
+        shell: pwsh
+        run: |
+          $makeappx = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin" `
+                        -Recurse `
+                        -Filter MakeAppx.exe |
+                        Sort-Object FullName -Descending |
+                        Select-Object -First 1
+
+          echo "MAKEAPPX=$($makeappx.FullName)" >> $env:GITHUB_ENV
+
+      - name: Create Bundle
+        shell: pwsh
+        run: |
+          & "$env:MAKEAPPX" bundle `
+              /d bundle `
+              /p bundle\Nivaes.App.Cross.Sample.msixbundle
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: msixbundle
+          path: bundle/*.msixbundle
+  

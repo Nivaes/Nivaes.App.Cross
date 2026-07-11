@@ -5,8 +5,12 @@
 
 		<AssemblyName>Nivaes.App.Cross.WinUI</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.WinUI</RootNamespace>
-		
+
+		<!--<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+		<Platforms>x64;ARM64</Platforms>-->
 		<UseWinUI>true</UseWinUI>
+		<WinUISDKReferences>false</WinUISDKReferences>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -21,7 +25,6 @@
 		<PackageId>Nivaes.App.Cross.WinUI</PackageId>
 		<Title>Nivaes app Cross WinUI</Title>
 		
-		
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<Product>Cross librery for WinUI3.</Product>
 		<Description>Cross librery for WinUI.</Description>
@@ -29,7 +32,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+		<!--<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />-->
 		<PackageReference Include="Microsoft.WindowsAppSDK" />
 		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>

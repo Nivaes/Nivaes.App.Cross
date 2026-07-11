@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>$(_CrossMacOSTargets)</TargetFramework>
-		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion>$(_SupportedOSPlatformMacOSVersion)</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
 		<AssemblyName>Nivaes.App.Sample.AppKit</AssemblyName>
 		<RootNamespace>Nivaes.App.Sample.AppKitLib</RootNamespace>
