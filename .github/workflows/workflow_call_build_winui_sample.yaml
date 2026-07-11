@@ -42,20 +42,6 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    # - name: Build
-    #   run: |
-    #       dotnet build Sources/Nivaes.App.Cross.SourceGenerator --configuration Release --no-restore
-    #       dotnet build Sources/Nivaes.App.Cross --property:RunAOTAnalysis=true --configuration Release --no-restore        
-
-    # - name: Build and Package
-    #   run: |
-    #       msbuild Samples/Nivaes.App.Cross.Sample.WinUI `
-    #       /p:Configuration=release `
-    #       /p:GenerateAppxPackageOnBuild=true `
-    #       /p:AppxBundlePlatforms="win-x64|win-arm64" `
-    #       /p:AppxBundle=Always `
-    #       /p:UapAppxPackageBuildMode=SideloadOnly
-
     - name: Build
       run: |
           dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
@@ -65,29 +51,6 @@ jobs:
             --property:GenerateAppxPackageOnBuild=true `
             --no-incremental `
             --verbosity normal
-
-    # - name: Build-arm64
-    #   run: |
-    #       dotnet build Samples/Nivaes.App.Cross.Sample.WinUI `
-    #         --configuration Release `
-    #         --property:BuildProjectReferences=false `
-    #         --property:RuntimeIdentifiers="win-arm64" `
-    #         --property:Platform=arm64 `
-    #         --property:GenerateAppxPackageOnBuild=true `
-    #         --no-incremental `
-    #         --verbosity normal
-
-    # - name: Publish
-    #   run: |
-    #      msbuild samples\Nivaes.App.Cross.Sample.WinUI\Nivaes.App.Cross.Sample.WinUI.csproj `
-    #           /t:Publish `
-    #           /p:NoBuild=true `
-    #           /p:Configuration=Release `
-    #           /p:GenerateAppxPackageOnBuild=true `
-    #           /p:AppxBundle=Always `
-    #           /p:AppxBundlePlatforms="x64|ARM64" `
-    #           /p:UapAppxPackageBuildMode=StoreUpload `
-    #           /p:AppxPackageSigningEnabled=false
 
     - name: Prepare artifact
       shell: pwsh
@@ -99,5 +62,48 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: WinUIStorePackage-${{ matrix.platform }}
+        name: msix-${{ matrix.platform }}
         path: artifact
+  
+  packet-bundle:
+    needs: build
+    runs-on: windows-2025-vs2026
+
+    steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: packages
+
+      - name: Prepare bundle
+        shell: pwsh
+        run: |
+          mkdir bundle
+
+          Copy-Item packages\msix-x64\*.msix bundle
+          Copy-Item packages\msix-ARM64\*.msix bundle
+
+      - name: Locate MakeAppx
+        id: sdk
+        shell: pwsh
+        run: |
+          $makeappx = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin" `
+                        -Recurse `
+                        -Filter MakeAppx.exe |
+                        Sort-Object FullName -Descending |
+                        Select-Object -First 1
+
+          echo "MAKEAPPX=$($makeappx.FullName)" >> $env:GITHUB_ENV
+
+      - name: Create Bundle
+        shell: pwsh
+        run: |
+          & "$env:MAKEAPPX" bundle `
+              /d bundle `
+              /p bundle\Nivaes.App.Cross.Sample.msixbundle
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: msixbundle
+          path: bundle/*.msixbundle
+  
