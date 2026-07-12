@@ -8,15 +8,15 @@ using Orientation = Android.Media.Orientation;
 
 namespace Nivaes.App.Cross.Droid
 {
-    [Activity(Name = "com.nivaes.MediaTakeActivity"
-        , Label = "@string/application_name"
-        , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize
-        )]
+    //[Activity(Name = "com.nivaes.MediaTakeActivity"
+    //    , Label = "@string/application_name"
+    //    , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize
+    //    )]
     [Register("com.nivaes.MediaTakeActivity")]
     internal class MediaTakeActivity
         : BaseMediaActivity
     {
-        private File mFile;
+        private File? mFile;
         private int mRequestCodeId;
 
         internal const string ExtraId = "nivaes.app.MediaTake.id";

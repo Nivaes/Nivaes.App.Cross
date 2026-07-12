@@ -11,9 +11,9 @@ using Uri = Android.Net.Uri;
 namespace Nivaes.App.Cross.Droid
 {
     //ToDo: Mover a libreria
-    [Activity(Name = "com.nivaes.MediaPickerActivity"
-        , Label = "@string/application_name"
-        , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    //[Activity(Name = "com.nivaes.MediaPickerActivity"
+    //    , Label = "@string/application_name"
+    //    , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     [Register("com.nivaes.MediaPickerActivity")]
     internal class MediaPickerActivity
         : BaseMediaActivity
