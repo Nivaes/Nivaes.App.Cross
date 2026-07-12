@@ -747,9 +747,8 @@ public class MvxMultiWindowViewPresenter
         }
         catch (Exception exception)
         {
-            Logger.LogTrace(exception, "Error seen during navigation request to {viewModelTypeName}",
-                request.ViewModelType?.Name ?? "No view model type specified.");
-            return Task.FromResult(false);
+            var message = request.ViewModelType?.Name ?? "(No view model type specified)";
+            throw new CrossException(exception, $"Error seen during navigation request to {message}.");
         }
     }
 
