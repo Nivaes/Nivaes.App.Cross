@@ -4,8 +4,8 @@
 		<TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
 		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
 		
-		<AssemblyName>Nivaes.App.Droid</AssemblyName>
-		<RootNamespace>Nivaes.App.Droid</RootNamespace>
+		<AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
+		<RootNamespace>Nivaes.App.Cross.Droid</RootNamespace>
 
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -75,6 +75,7 @@
 
 	<ItemGroup>
 		<Folder Include="Components\Views\Binding\" />
+		<Folder Include="Resources\NewFolder\" />
 	</ItemGroup>
 
 </Project>

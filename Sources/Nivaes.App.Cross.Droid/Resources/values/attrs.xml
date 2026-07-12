@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <bool name="isTablet">false</bool>
+
+    <declare-styleable name="AvatarImageBehavior">
+        <attr name="finalXPosition" format="dimension"/>
+        <attr name="finalYPosition" format="dimension"/>
+        <attr name="finalHeight" format="dimension"/>
+        <attr name="finalToolbarHeight" format="dimension"/>
+        <attr name="finalBorderWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="CropImageView">
+        <attr name="guidelines">
+            <enum name="on" value="2"/>
+            <enum name="onTouch" value="1"/>
+            <enum name="off" value="0"/>
+        </attr>
+        <attr name="shapeSelector">
+            <enum name ="rectangle" value="0"/>
+            <enum name ="circle" value="1"/>
+        </attr>
+        <attr name="fixAspectRatio" format="boolean"/>
+        <attr name="aspectRatioX" format="integer"/>
+        <attr name="aspectRatioY" format= "integer"/>
+        <attr name="imageResource" format="reference"/>
+    </declare-styleable>
+
+</resources>

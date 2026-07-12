@@ -1,13 +1,15 @@
+using Android.Content;
+using Android.Graphics;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
+using Java.Lang;
+using static Android.Graphics.Path;
+using Math = System.Math;
+using Path = Android.Graphics.Path;
+
 namespace Nivaes.App.Cross.Droid.GropImage
 {
-    using System;
-    using Android.Content;
-    using Android.Graphics;
-    using Android.Runtime;
-    using Android.Util;
-    using Android.Views;
-    using Java.Lang;
-    using Math = System.Math;
 
     [Register("com.nivaes.CropOverlayView")]
     public class CropOverlayView : View
@@ -423,11 +425,11 @@ namespace Nivaes.App.Cross.Droid.GropImage
                 float cy = (top + bottom) / 2;
                 float radius = (right - left) / 2;
 
-                circleSelectionPath.AddCircle(cx, cy, radius, Path.Direction.Cw);
+                circleSelectionPath.AddCircle(cx, cy, radius, Direction.Cw);
             }
             else
             {
-                circleSelectionPath.AddRect(left, top, right, bottom, Path.Direction.Ccw);
+                circleSelectionPath.AddRect(left, top, right, bottom, Direction.Ccw);
             }
 
             canvas.ClipPath(circleSelectionPath, Region.Op.Replace);
