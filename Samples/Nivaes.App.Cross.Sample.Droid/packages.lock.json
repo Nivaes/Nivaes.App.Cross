@@ -1167,7 +1167,7 @@
           "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
-          "Nivaes.Extensions": "[2.4.0-preview.1, )",
+          "Nivaes.Extensions": "[2.4.0.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
         }
@@ -1175,6 +1175,7 @@
       "nivaes.app.cross.droid": {
         "type": "Project",
         "dependencies": {
+          "AndHUD": "[2.1.0, )",
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.9, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
@@ -1214,6 +1215,12 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
+      },
+      "AndHUD": {
+        "type": "CentralTransitive",
+        "requested": "[2.1.0, )",
+        "resolved": "2.1.0",
+        "contentHash": "TdnJD0ouBJzCjLeM6FDGMLaq/8pgk+UGUljwVFnieIj2bM6h7ghYsj/rEXHEX1zqQWO+K3tgq3DEfFJULUgeDg=="
       },
       "FluentValidation": {
         "type": "CentralTransitive",
@@ -1314,9 +1321,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0-preview.1, )",
-        "resolved": "2.4.0-preview.1",
-        "contentHash": "7SgIfpPsRZpcLdtNJ3m27yjxAnjVO7Ez8UPA5xJB9lLXHAedVc0zZ2SRwVgbjCC/ulJuNiyXGbCDh2qA8QlJiw=="
+        "requested": "[2.4.0.1, )",
+        "resolved": "2.4.0.1",
+        "contentHash": "PDiPARYOvMdgZrG35MyyqS16BLqMlZ/qw9CF+VSqGMXT5PLIeioUw2o+SAL4gyOzOHT1Ruqfky1IAWSNeWyqTg=="
       },
       "Nivaes.IoC": {
         "type": "CentralTransitive",
