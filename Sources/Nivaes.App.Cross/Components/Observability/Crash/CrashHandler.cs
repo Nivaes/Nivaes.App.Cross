@@ -34,7 +34,7 @@ public abstract class CrashHandler : ICrashHandler
         try
         {
             var message = Serialize(ex);
-            await FileEncrypted.EncryptedWriteAllTextAsync(PathCrashFile, message, "crash");
+            await FileEncrypted.WriteAllTextAsync(PathCrashFile, message, "crash");
         }
         catch { }
     }
@@ -43,7 +43,7 @@ public abstract class CrashHandler : ICrashHandler
     {
         if (File.Exists(PathCrashFile))
         {
-            var message = await FileEncrypted.EncryptedReadAllTextAsync(PathCrashFile, "crash");
+            var message = await FileEncrypted.ReadAllTextAsync(PathCrashFile, "crash");
 
             Logger.LogCritical(message);
             LoggerProvider?.ForceFlush();

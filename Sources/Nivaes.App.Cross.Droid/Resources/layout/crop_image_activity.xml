@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+         android:fitsSystemWindows="true"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@color/black">
+
+    <Button
+        android:id="@+id/but_cancel"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/ic_arrow_back" />
+
+    <Button
+        android:id="@+id/but_done"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/ic_done" />
+
+    <com.nivaes.CropImageView
+            android:id="@+id/crop_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            app:fixAspectRatio="true"
+            app:guidelines="onTouch"
+            app:shapeSelector="circle"
+            app:aspectRatioX="1"
+            app:aspectRatioY="1"
+            app:imageResource="@drawable/crop_image_transparent"/>
+
+</RelativeLayout >

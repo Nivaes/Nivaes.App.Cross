@@ -6,8 +6,8 @@ namespace Nivaes.App.Cross.Hosting
 {
     public static class AppHostBuilderExtensions
     {
-        public static CrossAppBuilder UseCrossApp<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApp>(this CrossAppBuilder builder)
-        where TApp : class, ICrossApplication
+        public static CrossAppBuilder UseCrossApp<TApp>(this CrossAppBuilder builder)
+            where TApp : class, ICrossApplication
         {
             builder.Services.TryAddSingleton<ICrossApplication, TApp>();
             builder.SetupDefaults();
@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Hosting
             return builder;
         }
 
-        public static CrossAppBuilder UseCrossApp<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApp>(this CrossAppBuilder builder, Func<IServiceProvider, TApp> implementationFactory)
+        public static CrossAppBuilder UseCrossApp<TApp>(this CrossAppBuilder builder, Func<IServiceProvider, TApp> implementationFactory)
         where TApp : class, ICrossApplication
         {
             builder.Services.TryAddSingleton<ICrossApplication>(implementationFactory);
@@ -72,20 +72,6 @@ namespace Nivaes.App.Cross.Hosting
 
             builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
             builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
-
-
-
-            //var valueConverterRegistry = new CrossValueConverterRegistry();
-            //builder.Services.TryAddSingleton<ICrossValueConverterLookup>(valueConverterRegistry);
-            //builder.Services.TryAddSingleton<ICrossValueConverterRegistry>(valueConverterRegistry);
-            //builder.Services.TryAddSingleton<ICrossValueCombinerLookup, CrossValueCombinerRegistry>();
-            //builder.Services.TryAddSingleton<ICrossAutoValueConverters, CrossAutoValueConverters>();
-
-            //var valueCombinerRegistry = new CrossValueCombinerRegistry();
-            //builder.Services.TryAddSingleton<IMvxNamedInstanceLookup<ICrossValueCombiner>>(valueCombinerRegistry);
-            //builder.Services.TryAddSingleton<ICrossNamedInstanceRegistry<ICrossValueCombiner>>(valueCombinerRegistry);
-            //builder.Services.TryAddSingleton<ICrossValueCombinerLookup>(valueCombinerRegistry);
-            //builder.Services.TryAddSingleton<ICrossValueCombinerRegistry>(valueCombinerRegistry);
 
             return builder;
         }

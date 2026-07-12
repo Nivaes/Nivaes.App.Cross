@@ -29,6 +29,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AndHUD" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Xamarin.AndroidX.AppCompat" />
@@ -44,8 +45,6 @@
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
 		</ProjectReference>
-
-		<AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
 	</ItemGroup>
 
 	<ItemGroup>

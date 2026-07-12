@@ -39,6 +39,10 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.TryAddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
             builder.Services.TryAddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
 
+            builder.Services.TryAddSingleton<ILoadDataService, LoadDataService>();
+            builder.Services.TryAddSingleton<IBusyService, BusyService>();
+            builder.Services.TryAddSingleton<IMediaService, MediaService>();
+
             return builder;
         }
     }

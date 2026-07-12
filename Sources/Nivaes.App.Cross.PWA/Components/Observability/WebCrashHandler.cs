@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.PWA.Observability
             base.Register();
         }
 
-        protected override void SaveException(Exception ex, string description)
+        protected override Task SaveException(Exception ex, string description)
         {
             throw new NotImplementedException();
         }

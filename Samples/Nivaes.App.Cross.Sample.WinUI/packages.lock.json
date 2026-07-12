@@ -57,6 +57,29 @@
         "resolved": "10.29.0.143774",
         "contentHash": "YOBCHTjqb4ak7yjLQhQJ6S0+aTkgnuMcekjCrhWruyIIoWlB1C8W+Fgr18bWit+xx7Gd9sNl5sziOwh6D804Hg=="
       },
+      "CommunityToolkit.Common": {
+        "type": "Transitive",
+        "resolved": "8.2.1",
+        "contentHash": "LWuhy8cQKJ/MYcy3XafJ916U3gPH/YDvYoNGWyQWN11aiEKCZszzPOTJAOvBjP9yG8vHmIcCyPUt4L82OK47Iw=="
+      },
+      "CommunityToolkit.WinUI.Extensions": {
+        "type": "Transitive",
+        "resolved": "8.2.251219",
+        "contentHash": "7ydxHF7jRl889qymGihhng4Yy5hFCxTxw+iKFM4XBo27bBAJxzr45Iu7GIZrydY5lhEgsG+xE4ZCA6HccNFxNA==",
+        "dependencies": {
+          "CommunityToolkit.Common": "8.2.1",
+          "Microsoft.WindowsAppSDK": "1.6.250108002"
+        }
+      },
+      "CommunityToolkit.WinUI.Helpers": {
+        "type": "Transitive",
+        "resolved": "8.2.251219",
+        "contentHash": "Ksyd6yoItNnZSae3901n04pwM81h34kHPrR+pGYd5OxBAR7NVksFJBi1r2xcJV1Rg/bg+40blHJsZk85KgF/cw==",
+        "dependencies": {
+          "CommunityToolkit.WinUI.Extensions": "8.2.251219",
+          "Microsoft.WindowsAppSDK": "1.6.250108002"
+        }
+      },
       "MemoryPack": {
         "type": "Transitive",
         "resolved": "1.21.4",
@@ -329,7 +352,7 @@
           "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
-          "Nivaes.Extensions": "[2.3.8, )",
+          "Nivaes.Extensions": "[2.4.0-preview.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
         }
@@ -360,6 +383,7 @@
       "nivaes.app.cross.winui": {
         "type": "Project",
         "dependencies": {
+          "CommunityToolkit.WinUI.Collections": "[8.2.251219, )",
           "Microsoft.WindowsAppSDK": "[2.2.0, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.WinUI.SourceGenerator": "[1.0.0, )",
@@ -370,6 +394,16 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
+        }
+      },
+      "CommunityToolkit.WinUI.Collections": {
+        "type": "CentralTransitive",
+        "requested": "[8.2.251219, )",
+        "resolved": "8.2.251219",
+        "contentHash": "AeCraPPkPrFDuye/f6ncbJqqdEjKI0w/2fYTRgq8+aLQvHSwIR9oHXY/ZVKNorW841c608QzO80Nw4KH9Yz9xQ==",
+        "dependencies": {
+          "CommunityToolkit.WinUI.Helpers": "8.2.251219",
+          "Microsoft.WindowsAppSDK": "1.6.250108002"
         }
       },
       "FluentValidation": {
@@ -482,9 +516,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.3.8, )",
-        "resolved": "2.3.8",
-        "contentHash": "5hSY6ELR5UUoI2adAj7d3CXoDevuxN70uZJ6NjrOGg4fOXX7JIigUxvo+OfVfjh4xY3pQwd2wcq5qAYdE6GKtw=="
+        "requested": "[2.4.0-preview.1, )",
+        "resolved": "2.4.0-preview.1",
+        "contentHash": "7SgIfpPsRZpcLdtNJ3m27yjxAnjVO7Ez8UPA5xJB9lLXHAedVc0zZ2SRwVgbjCC/ulJuNiyXGbCDh2qA8QlJiw=="
       },
       "Nivaes.IoC": {
         "type": "CentralTransitive",

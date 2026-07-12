@@ -223,7 +223,7 @@
           "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
-          "Nivaes.Extensions": "[2.3.8, )",
+          "Nivaes.Extensions": "[2.4.0-preview.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
         }
@@ -352,9 +352,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.3.8, )",
-        "resolved": "2.3.8",
-        "contentHash": "5hSY6ELR5UUoI2adAj7d3CXoDevuxN70uZJ6NjrOGg4fOXX7JIigUxvo+OfVfjh4xY3pQwd2wcq5qAYdE6GKtw=="
+        "requested": "[2.4.0-preview.1, )",
+        "resolved": "2.4.0-preview.1",
+        "contentHash": "7SgIfpPsRZpcLdtNJ3m27yjxAnjVO7Ez8UPA5xJB9lLXHAedVc0zZ2SRwVgbjCC/ulJuNiyXGbCDh2qA8QlJiw=="
       },
       "Nivaes.IoC": {
         "type": "CentralTransitive",
@@ -647,7 +647,7 @@
           "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
-          "Nivaes.Extensions": "[2.3.8, )",
+          "Nivaes.Extensions": "[2.4.0-preview.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
         }
@@ -776,9 +776,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.3.8, )",
-        "resolved": "2.3.8",
-        "contentHash": "5hSY6ELR5UUoI2adAj7d3CXoDevuxN70uZJ6NjrOGg4fOXX7JIigUxvo+OfVfjh4xY3pQwd2wcq5qAYdE6GKtw=="
+        "requested": "[2.4.0-preview.1, )",
+        "resolved": "2.4.0-preview.1",
+        "contentHash": "7SgIfpPsRZpcLdtNJ3m27yjxAnjVO7Ez8UPA5xJB9lLXHAedVc0zZ2SRwVgbjCC/ulJuNiyXGbCDh2qA8QlJiw=="
       },
       "Nivaes.IoC": {
         "type": "CentralTransitive",

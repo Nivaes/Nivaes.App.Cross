@@ -67,9 +67,9 @@
       },
       "Nivaes.Extensions": {
         "type": "Direct",
-        "requested": "[2.3.8, )",
-        "resolved": "2.3.8",
-        "contentHash": "5hSY6ELR5UUoI2adAj7d3CXoDevuxN70uZJ6NjrOGg4fOXX7JIigUxvo+OfVfjh4xY3pQwd2wcq5qAYdE6GKtw=="
+        "requested": "[2.4.0-preview.1, )",
+        "resolved": "2.4.0-preview.1",
+        "contentHash": "7SgIfpPsRZpcLdtNJ3m27yjxAnjVO7Ez8UPA5xJB9lLXHAedVc0zZ2SRwVgbjCC/ulJuNiyXGbCDh2qA8QlJiw=="
       },
       "Nivaes.IoC": {
         "type": "Direct",
