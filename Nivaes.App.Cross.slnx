@@ -42,7 +42,6 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Solution Items/.github/">
-    <File Path=".github/dependabot.yml" />
     <File Path=".github/NuGet.config" />
   </Folder>
   <Folder Name="/Solution Items/.github/actions/" />
