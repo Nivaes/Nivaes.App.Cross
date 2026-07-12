@@ -6,6 +6,7 @@ using Android.Widget;
 
 namespace Nivaes.App.Cross.Droid
 {
+    // ToDo: Mover a libreria
     public class ZoomImageAnimation
     {
         private Animator currentAnimator;

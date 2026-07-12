@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
 {
-
     public abstract class CrossViewsContainer
         : ICrossViewsContainer
     {
