@@ -2,7 +2,7 @@
 
 namespace Nivaes.App.Cross.SourceGenerator.UnitTests
 {
-    public class RegisterConvertersGeneratorTests
+    public class RegisterCombinersGeneratorTests
     {
         [Fact]
         public async Task CompilesWithoutErrors()
@@ -22,28 +22,23 @@ namespace Nivaes.App.Cross.SourceGenerator.UnitTests
         }
 
         [Fact]
-        public async Task ProccesValueConverter()
+        public async Task ProccesValueCombiner()
         {
             var project = await TestProject.Project.ApplyToProgram(@"
                 using System.Globalization;
                 using Microsoft.Extensions.Logging;
 
-                public sealed class TestValueConverter : CrossValueConverter<string, string>
+                public sealed class TestValueCombiner : CrossValueCombiner
                 {
-                    public TestValueConverter(ILogger<TestValueConverter> logger)
+                    public TestValueCombiner(ILogger<TestValueCombiner> logger)
                         : base(logger)
                     { }
-
-                    protected override string Convert(string value, Type? targetType, object? parameter, CultureInfo? culture)
-                    {
-                        return value.ToLower();
-                    }
                 }");
 
             var newProject = await project.ApplyGenerator<RegisterConvertersGenerator>();
 
             var assembly = await newProject.CompileToRealAssembly();
-            var containerType1 = assembly.GetType("TestProject.TestValueConverter");
+            var containerType1 = assembly.GetType("TestProject.TestValueCombiner");
             containerType1.ShouldNotBeNull();
 
             var compilation = await newProject.GetCompilationAsync();
@@ -63,23 +58,18 @@ namespace Nivaes.App.Cross.SourceGenerator.UnitTests
                 using System.Globalization;
                 using Microsoft.Extensions.Logging;
                 
-                [CrossValueConverter(Name=""Test"")]
-                public sealed class TestValueConverter : CrossValueConverter<string, string>
+                [CrossValueCombiner(Name=""Test"")]
+                public sealed class TestValueCombiner : CrossValueCombiner
                 {
-                    public TestValueConverter(ILogger<TestValueConverter> logger)
+                    public TestValueCombiner(ILogger<TestValueCombiner> logger)
                         : base(logger)
                     { }
-
-                    protected override string Convert(string value, Type? targetType, object? parameter, CultureInfo? culture)
-                    {
-                        return value.ToLower();
-                    }
                 }");
 
             var newProject = await project.ApplyGenerator<RegisterConvertersGenerator>();
 
             var assembly = await newProject.CompileToRealAssembly();
-            var containerType1 = assembly.GetType("TestProject.TestValueConverter");
+            var containerType1 = assembly.GetType("TestProject.TestValueCombiner");
             containerType1.ShouldNotBeNull();
 
             var compilation = await newProject.GetCompilationAsync();
