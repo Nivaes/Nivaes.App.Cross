@@ -9,7 +9,7 @@ public class CrossWindowsViewDispatcher
 
     public CrossWindowsViewDispatcher(IMvxWindowsViewPresenter presenter, ICrossWindowsFrame rootFrame,
             ILogger<CrossWindowsViewDispatcher> logger)
-        : base(rootFrame.UnderlyingControl.DispatcherQueue, logger)
+        : base(rootFrame, logger)
     {
         _presenter = presenter;
     }

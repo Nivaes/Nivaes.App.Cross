@@ -8,10 +8,10 @@ public abstract class CrossWindowsMainThreadDispatcher
 {
     private readonly DispatcherQueue _uiDispatcher;
 
-    public CrossWindowsMainThreadDispatcher(DispatcherQueue uiDispatcher, ILogger<CrossWindowsMainThreadDispatcher> logger)
+    public CrossWindowsMainThreadDispatcher(ICrossWindowsFrame rootFrame, ILogger<CrossWindowsMainThreadDispatcher> logger)
         : base(logger)
     {
-        _uiDispatcher = uiDispatcher;
+        _uiDispatcher = rootFrame.UnderlyingControl.DispatcherQueue;
     }
 
     public override bool IsOnMainThread => _uiDispatcher.HasThreadAccess;

@@ -119,7 +119,6 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
             return overrideAttribute;
 
         IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
-        //IList<CrossBasePresentationAttribute> attributes = new List<CrossBasePresentationAttribute>() { new MvxActivityPresentationAttribute() };
         if (attributes.Count > 0)
         {
             CrossBasePresentationAttribute? attribute = null;

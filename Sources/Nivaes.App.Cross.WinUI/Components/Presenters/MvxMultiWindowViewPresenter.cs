@@ -29,19 +29,22 @@ public class MvxMultiWindowViewPresenter
 
     private readonly object _windowInformationLock = new();
 
-    private ICrossViewModelLoader? _viewModelLoader;
+    private readonly ICrossViewModelLoader _viewModelLoader;
 
     /// <summary>
     ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
     public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider,
-        ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
-        ICrossWindowsViewModelRequestTranslator requestTranslator, ILogger<MvxMultiWindowViewPresenter> logger)
+            ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
+            ICrossViewModelLoader viewModelLoader,
+            ICrossWindowsViewModelRequestTranslator requestTranslator, 
+            ILogger<MvxMultiWindowViewPresenter> logger)
         : base(crossViewsContainer, logger)
     {
         _serviceProvider = serviceProvider;
         _requestTranslator = requestTranslator;
+        _viewModelLoader = viewModelLoader;
 
         var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)
@@ -59,14 +62,14 @@ public class MvxMultiWindowViewPresenter
         }
     }
 
-    /// <summary>
-    ///     Get or sets the viewmodel loader instance.
-    /// </summary>
-    public ICrossViewModelLoader? ViewModelLoader
-    {
-        get => _viewModelLoader ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
-        set => _viewModelLoader = value;
-    }
+    ///// <summary>
+    /////     Get or sets the viewmodel loader instance.
+    ///// </summary>
+    //public ICrossViewModelLoader? ViewModelLoader
+    //{
+    //    get => _viewModelLoader ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+    //    set => _viewModelLoader = value;
+    //}
 
     /// <summary>
     ///     Creates a presentation attribute.
@@ -162,7 +165,7 @@ public class MvxMultiWindowViewPresenter
                 }
                 else
                 {
-                    mvxControl.ViewModel = ViewModelLoader?.LoadViewModel(request, null);
+                    mvxControl.ViewModel = _viewModelLoader?.LoadViewModel(request, null);
                 }
             }
 
@@ -341,12 +344,6 @@ public class MvxMultiWindowViewPresenter
     /// <returns>A text representation of the request.</returns>
     protected virtual string GetRequestText(CrossViewModelRequest request)
     {
-        //var requestTranslator = Mvx.IoCProvider?.Resolve<ICrossWindowsViewModelRequestTranslator>();
-        //if (requestTranslator == null)
-        //{
-        //    return "Request translator is not found";
-        //}
-
         string requestText;
         requestText = request is CrossViewModelInstanceRequest
             ? _requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance!)

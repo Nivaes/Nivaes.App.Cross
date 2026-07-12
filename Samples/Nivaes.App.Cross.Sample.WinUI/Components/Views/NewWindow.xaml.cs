@@ -4,7 +4,6 @@ using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
-[MvxViewFor(typeof(NewWindowViewModel))]
 [MvxNewWindowPresentation]
 public sealed partial class NewWindow
     : NewWindowPage, IMvxNeedWindow
