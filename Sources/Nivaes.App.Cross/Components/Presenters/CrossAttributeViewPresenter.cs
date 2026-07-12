@@ -14,17 +14,7 @@ public abstract class CrossAttributeViewPresenter
         ViewsContainer = crossViewsContainer;
     }
 
-    //private readonly Lazy<ICrossViewModelTypeFinder?> _viewModelTypeFinder =
-    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelTypeFinder>());
-
-    //private readonly Lazy<ICrossViewsContainer?> _viewsContainer =
-    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewsContainer>());
-
     private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
-
-    //public virtual ICrossViewModelTypeFinder? ViewModelTypeFinder => _viewModelTypeFinder.Value;
-
-    //public virtual ICrossViewsContainer? ViewsContainer => _viewsContainer.Value;
 
     public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
     {
@@ -94,9 +84,6 @@ public abstract class CrossAttributeViewPresenter
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
         ArgumentNullException.ThrowIfNull(request.ViewModelType, nameof(request.ViewModelType));
-
-        //if (ViewsContainer == null)
-        //    throw new InvalidOperationException($"Cannot get view types from null {nameof(ViewsContainer)}");
 
         var viewType = ViewsContainer.GetViewType(request.ViewModelType);
         if (viewType == null)

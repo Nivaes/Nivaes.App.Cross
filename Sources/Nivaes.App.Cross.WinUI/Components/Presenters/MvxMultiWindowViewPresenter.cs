@@ -76,7 +76,7 @@ public class MvxMultiWindowViewPresenter
     /// <returns></returns>
     public override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
-        Logger?.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
+        Logger.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
             viewType?.Name);
         return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
     }
@@ -86,14 +86,10 @@ public class MvxMultiWindowViewPresenter
     /// </summary>
     public override void RegisterAttributeTypes()
     {
-        AttributeTypesToActionsDictionary.Register<MvxPagePresentationAttribute>(ShowPage,
-            ClosePage);
-        AttributeTypesToActionsDictionary.Register<MvxSplitViewPresentationAttribute>(ShowSplitView,
-            CloseSplitView);
-        AttributeTypesToActionsDictionary.Register<MvxRegionPresentationAttribute>(ShowRegionView,
-            CloseRegionView);
-        AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialogAsync,
-            CloseDialog);
+        AttributeTypesToActionsDictionary.Register<MvxPagePresentationAttribute>(ShowPage, ClosePage);
+        AttributeTypesToActionsDictionary.Register<MvxSplitViewPresentationAttribute>(ShowSplitView, CloseSplitView);
+        AttributeTypesToActionsDictionary.Register<MvxRegionPresentationAttribute>(ShowRegionView, CloseRegionView);
+        AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialogAsync, CloseDialog);
         AttributeTypesToActionsDictionary.Add(
             typeof(MvxNewWindowPresentationAttribute),
             new CrossPresentationAttributeAction
