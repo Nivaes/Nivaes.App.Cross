@@ -29,12 +29,12 @@ public abstract class CrashHandler : ICrashHandler
         TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
     }
 
-    protected virtual void SaveException(Exception ex, string description)
+    protected virtual async Task SaveException(Exception ex, string description)
     {
         try
         {
             var message = Serialize(ex);
-            File.WriteAllText(PathCrashFile, message);
+            await FileEncrypted.EncryptedWriteAllTextAsync(PathCrashFile, message, "crash");
         }
         catch { }
     }
@@ -43,7 +43,7 @@ public abstract class CrashHandler : ICrashHandler
     {
         if (File.Exists(PathCrashFile))
         {
-            var message = await File.ReadAllTextAsync(PathCrashFile);
+            var message = await FileEncrypted.EncryptedReadAllTextAsync(PathCrashFile, "crash");
 
             Logger.LogCritical(message);
             LoggerProvider?.ForceFlush();
@@ -52,24 +52,24 @@ public abstract class CrashHandler : ICrashHandler
         }
     }
 
-    private void CurrentDomain_UnhandledException(
+    private async void CurrentDomain_UnhandledException(
         object sender,
         UnhandledExceptionEventArgs e)
     {
         var ex = (Exception)e.ExceptionObject;
 
-        SaveException(ex, "Unhandled exception occurred.");
+        await SaveException(ex, "Unhandled exception occurred.");
 
         Logger.LogCritical(ex, "Unhandled exception occurred.");
         LoggerProvider?.ForceFlush();
     }
 
-    private void TaskScheduler_UnobservedTaskException(
+    private async void TaskScheduler_UnobservedTaskException(
         object? sender,
         UnobservedTaskExceptionEventArgs e)
     {
         var ex = e.Exception;
-        SaveException(ex, "Unobserved task exception occurred.");
+        await SaveException(ex, "Unobserved task exception occurred.");
 
         Logger.LogCritical(ex, "Unobserved task exception occurred.");
         LoggerProvider?.ForceFlush();

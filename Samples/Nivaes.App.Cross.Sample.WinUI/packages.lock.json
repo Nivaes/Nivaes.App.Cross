@@ -1,7 +1,7 @@
 {
   "version": 2,
   "dependencies": {
-    "net10.0-windows10.0.22000": {
+    "net10.0-windows10.0.19041": {
       "AsyncFixer": {
         "type": "Direct",
         "requested": "[2.1.0, )",
@@ -329,7 +329,7 @@
           "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
-          "Nivaes.Extensions": "[2.3.6, )",
+          "Nivaes.Extensions": "[2.3.8, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
         }
@@ -482,9 +482,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.3.6, )",
-        "resolved": "2.3.6",
-        "contentHash": "eudWmjHud4ftuByv8QqDJnOrMuE1A+oGKET3a4GUqtIg33x/RMnYahMVjWOPSJo8hcymRWvGO+NrJc5bqEh1aA=="
+        "requested": "[2.3.8, )",
+        "resolved": "2.3.8",
+        "contentHash": "5hSY6ELR5UUoI2adAj7d3CXoDevuxN70uZJ6NjrOGg4fOXX7JIigUxvo+OfVfjh4xY3pQwd2wcq5qAYdE6GKtw=="
       },
       "Nivaes.IoC": {
         "type": "CentralTransitive",
@@ -546,7 +546,7 @@
         }
       }
     },
-    "net10.0-windows10.0.22000/win-arm64": {
+    "net10.0-windows10.0.19041/win-arm64": {
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
         "resolved": "1.0.3719.77",
@@ -570,7 +570,7 @@
         }
       }
     },
-    "net10.0-windows10.0.22000/win-x64": {
+    "net10.0-windows10.0.19041/win-x64": {
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
         "resolved": "1.0.3719.77",
