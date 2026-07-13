@@ -70,6 +70,7 @@ public class MacViewPresenterManager
         NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);
     }
 
+    [Obsolete]
     public override void RegisterAttributeTypes()
     {
         AttributeTypesToActionsDictionary.Register<MvxWindowPresentationAttribute>(
@@ -113,7 +114,7 @@ public class MacViewPresenterManager
                 (viewModel, attribute) => Close(viewModel));
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
+    [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowWindowViewController(
         NSViewController viewController,
         MvxWindowPresentationAttribute attribute,
@@ -230,6 +231,7 @@ public class MacViewPresenterManager
         return new MvxWindowController(window);
     }
 
+    [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowContentViewController(
         NSViewController viewController,
         CrossContentPresentationAttribute attribute,
@@ -245,6 +247,7 @@ public class MacViewPresenterManager
         return Task.FromResult(true);
     }
 
+    [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowModalViewController(
         NSViewController viewController,
         CrossModalPresentationAttribute attribute,
@@ -256,6 +259,7 @@ public class MacViewPresenterManager
         return Task.FromResult(true);
     }
 
+    [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowSheetViewController(
         NSViewController viewController,
         MvxSheetPresentationAttribute attribute,
@@ -267,6 +271,7 @@ public class MacViewPresenterManager
         return Task.FromResult(true);
     }
 
+    [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowTabViewController(
         NSViewController viewController,
         MvxTabPresentationAttribute attribute,
@@ -297,6 +302,7 @@ public class MacViewPresenterManager
         return window;
     }
 
+    [Obsolete("User PressenteAction", true)]
     public override Task<bool> Close(ICrossViewModel viewModel)
     {
         for (int i = Windows.Count - 1; i >= 0; i--)

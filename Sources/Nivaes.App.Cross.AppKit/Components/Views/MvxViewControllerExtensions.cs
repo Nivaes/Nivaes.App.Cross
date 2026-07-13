@@ -36,15 +36,15 @@ public static class MvxViewControllerExtensions
         return viewModel;
     }
 
-    public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxMacView view,
-                                                                        object parameterObject)
-        where TTargetViewModel : class, ICrossViewModel
-    {
-        return
-            view.CreateViewControllerFor<TTargetViewModel>(parameterObject == null
-                                                               ? null
-                                                               : parameterObject.ToSimplePropertyDictionary());
-    }
+    //public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxMacView view,
+    //                                                                    object parameterObject)
+    //    where TTargetViewModel : class, ICrossViewModel
+    //{
+    //    return
+    //        view.CreateViewControllerFor<TTargetViewModel>(parameterObject == null
+    //                                                           ? null
+    //                                                           : parameterObject.ToSimplePropertyDictionary());
+    //}
 
     public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
         this IMvxMacView view,
@@ -56,14 +56,15 @@ public static class MvxViewControllerExtensions
         return view.CreateViewControllerFor(request);
     }
 
-    public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
-        this IMvxCanCreateMacView view,
-        CrossViewModelRequest request)
-        where TTargetViewModel : class, ICrossViewModel
-    {
-        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxMacViewCreator>().CreateView(request);
-    }
+    //public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
+    //    this IMvxCanCreateMacView view,
+    //    CrossViewModelRequest request)
+    //    where TTargetViewModel : class, ICrossViewModel
+    //{
+    //    return IPlatformApplication.Current!.Services.GetRequiredService<IMvxMacViewCreator>().CreateView(request);
+    //}
 
+    [Obsolete("User PressenterAction")]
     public static IMvxMacView CreateViewControllerFor(
         this IMvxCanCreateMacView view,
         CrossViewModelRequest request)

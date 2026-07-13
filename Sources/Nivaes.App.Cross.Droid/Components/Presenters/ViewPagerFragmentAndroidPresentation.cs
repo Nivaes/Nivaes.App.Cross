@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.Droid
         public ViewPagerFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ILogger<TabLayoutAndroidPresentation> logger)
+                ILogger logger)
             : base(viewsContainer, androidCurrentTopActivity, logger)
         { }
 
