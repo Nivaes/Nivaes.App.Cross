@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+
+namespace Nivaes.App.Cross.WinUI
+{
+    public sealed class DialogWinUIPressenterAction
+        : WinUIPressenterAction<MvxDialogViewPresentationAttribute>
+    {
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ICrossViewModelLoader _viewModelLoader;
+
+        #region Constructor
+        public DialogWinUIPressenterAction(
+                IServiceProvider serviceProvider,
+                ICrossViewsContainer viewsContainer,
+                ICrossViewModelLoader viewModelLoader,
+                ILogger<DialogWinUIPressenterAction> logger)
+            : base(viewsContainer, logger)
+        {
+            _serviceProvider = serviceProvider;
+            _viewModelLoader = viewModelLoader;
+        }
+        #endregion
+
+        protected override async Task<bool> ShowAction(Type view, MvxDialogViewPresentationAttribute attribute, CrossViewModelRequest request)
+        {
+            try
+            {
+                var contentDialog = CreateControl(view, request, attribute) as ContentDialog;
+
+                if (contentDialog != null)
+                {
+                    var windowInfo = GetWindowInformation(request);
+                    if (windowInfo.RootFrame.UnderlyingControl is Frame frame)
+                    {
+                        contentDialog.XamlRoot = frame.XamlRoot;
+                    }
+
+                    await contentDialog.ShowAsync(attribute.Placement);
+                    if (contentDialog is ICrossView mvxControl && mvxControl.ViewModel != null)
+                    {
+                        windowInfo.RegisterSubViewModel(mvxControl.ViewModel);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception exception)
+            {
+                Logger?.LogError(exception, "Error seen during navigation request to {ViewModelTypeName}",
+                    request.ViewModelType?.Name);
+                return false;
+            }
+        }
+
+        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxDialogViewPresentationAttribute attribute)
+        {
+            var windowInformation = GetWindowInformation(viewModel);
+            if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
+            {
+                return Task.FromResult(false);
+            }
+
+            var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(frame.XamlRoot).FirstOrDefault(p =>
+            {
+                if (attribute.ViewType != null && attribute.ViewType.IsInstanceOfType(p.Child)
+                                               && p.Child is ICrossWindowsContentDialog dialog)
+                {
+                    return dialog.ViewModel == viewModel;
+                }
+
+                return false;
+            });
+
+            (popups?.Child as ContentDialog)?.Hide();
+            windowInformation.UnregisterSubViewModel(viewModel);
+            return Task.FromResult(true);
+        }
+
+        /// <summary>
+        ///     Creates a control for the given view type.
+        /// </summary>
+        /// <param name="viewType">The view type.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="attribute">Any attributes.</param>
+        /// <returns></returns>
+        /// <exception cref="CrossException"></exception>
+        private Control? CreateControl(Type viewType, CrossViewModelRequest request,
+            CrossBasePresentationAttribute attribute)
+        {
+            try
+            {
+                var control = ActivatorUtilities.CreateInstance(_serviceProvider, viewType) as Control;
+                if (control is ICrossView mvxControl)
+                {
+                    if (request is CrossViewModelInstanceRequest instanceRequest)
+                    {
+                        mvxControl.ViewModel = instanceRequest.ViewModelInstance;
+                    }
+                    else
+                    {
+                        mvxControl.ViewModel = _viewModelLoader?.LoadViewModel(request, null);
+                    }
+                }
+
+                return control;
+            }
+            catch (Exception ex)
+            {
+                throw new CrossException(ex,
+                    $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
+            }
+        }
+    }
+}

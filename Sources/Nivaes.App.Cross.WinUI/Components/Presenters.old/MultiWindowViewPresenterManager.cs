@@ -120,6 +120,7 @@ public class MultiWindowViewPresenterManager
     /// <summary>
     ///     Closes all windows, except the main window, and the view models belonging to those windows.
     /// </summary>
+    [Obsolete]
     public void CloseAllWindows()
     {
         List<WindowInformation> windows;
@@ -151,6 +152,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any attributes.</param>
     /// <returns></returns>
     /// <exception cref="CrossException"></exception>
+    [Obsolete]
     public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
         CrossBasePresentationAttribute attribute)
     {
@@ -183,6 +185,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="sender">The sender of the event.</param>
     /// <param name="backRequestedEventArgs">The event arguments.</param>
+    [Obsolete]
     protected virtual async void BackButtonOnBackRequested(object? sender,
         BackRequestedEventArgs backRequestedEventArgs)
     {
@@ -211,6 +214,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModel">The viewmodel to close the dialog for.</param>
     /// <param name="attribute">The presentation attributes.</param>
     /// <returns>True upon success, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
@@ -241,6 +245,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModel">The viewmodel to close the page for.</param>
     /// <param name="attribute">The presentation attributes</param>
     /// <returns>True if closed, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
@@ -279,6 +284,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any presentation attribute.</param>
     /// <returns>True if successful. False otherwise.</returns>
     /// <exception cref="CrossException">If no region is found for the given viewmodel.</exception>
+    [Obsolete("", true)]
     protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
@@ -330,6 +336,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModel">The viewmodel to close the splitview for.</param>
     /// <param name="attribute">Any presentation attribute.</param>
     /// <returns>True if successful, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> CloseSplitView(ICrossViewModel viewModel,
         MvxSplitViewPresentationAttribute attribute)
     {
@@ -342,6 +349,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="request">The request to convert.</param>
     /// <returns>A text representation of the request.</returns>
+    [Obsolete("", true)]
     protected virtual string GetRequestText(CrossViewModelRequest request)
     {
         string requestText;
@@ -358,6 +366,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="request">The request.</param>
     /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
+    [Obsolete("", true)]
     protected WindowInformation GetWindowInformation(CrossViewModelRequest request)
     {
         lock (_windowInformationLock)
@@ -379,6 +388,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="viewModel">The viewmodel to get the root frame for.</param>
     /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
+    [Obsolete]
     protected WindowInformation GetWindowInformation(ICrossViewModel viewModel)
     {
         lock (_windowInformationLock)
@@ -393,6 +403,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="window">The window to get the root frame for.</param>
     /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
+    [Obsolete("", true)]
     protected WindowInformation GetWindowInformation(Window window)
     {
         lock (_windowInformationLock)
@@ -404,6 +415,7 @@ public class MultiWindowViewPresenterManager
     /// <summary>
     ///     Updates the visibility state of the back button.
     /// </summary>
+    [Obsolete("", true)]
     protected virtual void HandleBackButtonVisibility()
     {
         if (Window.Current == null)
@@ -424,6 +436,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any presentation attribute.</param>
     /// <param name="request">The request to show the dialog for.</param>
     /// <returns>True if successful, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual async Task<bool> ShowDialogAsync(Type viewType, MvxDialogViewPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
@@ -465,6 +478,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any presentation attribute.</param>
     /// <param name="request">The request to show the page.</param>
     /// <returns>True if successful, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> ShowPage(Type viewType, CrossBasePresentationAttribute attribute,
         CrossViewModelRequest request)
     {
@@ -478,6 +492,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any presentation attributes.</param>
     /// <param name="request">The request.</param>
     /// <returns>True if successful, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> ShowRegionView(Type viewType, MvxRegionPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
@@ -512,6 +527,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">Any presentation attributes.</param>
     /// <param name="request">The request.</param>
     /// <returns>True if successful, false otherwise.</returns>
+    [Obsolete("", true)]
     protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
@@ -575,6 +591,7 @@ public class MultiWindowViewPresenterManager
     ///     If the current thread has access to <paramref name="dispatcher" />, <paramref name="function" /> will be
     ///     invoked directly.
     /// </remarks>
+    [Obsolete]
     private static Task EnqueueAsync(DispatcherQueue dispatcher, Action function,
         DispatcherQueuePriority priority = DispatcherQueuePriority.Normal)
     {
@@ -625,6 +642,7 @@ public class MultiWindowViewPresenterManager
         return TryEnqueue(dispatcher, function, priority);
     }
 
+    [Obsolete("", true)]
     private void CloseWindow(Window newWindow)
     {
         var windowInformation = GetWindowInformation(newWindow);
@@ -634,6 +652,7 @@ public class MultiWindowViewPresenterManager
         }
     }
 
+    [Obsolete("", true)]
     protected virtual async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
     {
         var newWindow = new Window();
@@ -732,7 +751,8 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewType">The type of the content.</param>
     /// <param name="request">The request to show the page.</param>
     /// <returns>True if successful, false otherwise.</returns>
-    // ReSharper disable once UnusedParameter.Local
+    // ReSharper disable once UnusedParameter.Local 
+    [Obsolete("", true)]
     private Task<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
     {
         try
