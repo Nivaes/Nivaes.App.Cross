@@ -16,12 +16,7 @@ namespace Nivaes.App.Cross.Droid
         #region Properties
         protected CrossViewModelRequest? PendingRequest { get; set; }
 
-        //public const string SharedElementsBundleKey = "__sharedElementsKey";
         private readonly IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;
-        protected readonly ICrossNavigationSerializer NavigationSerializer;
-
-        //protected IMvxAndroidViewModelRequestTranslator ViewModelRequestTranslator { get; }
-        //protected ICrossNavigationSerializer NavigationSerializer { get; }
 
         protected Activity CurrentActivity => _androidCurrentTopActivity.Activity as Activity;
 
@@ -41,14 +36,10 @@ namespace Nivaes.App.Cross.Droid
         protected AndroidPressenterAction(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
-                //IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
                 ILogger logger)
             : base(viewsContainer, logger)
         {
             _androidCurrentTopActivity = androidCurrentTopActivity;
-            NavigationSerializer = navigationSerializer;
-            //ViewModelRequestTranslator = viewModelRequestTranslator;
         }
         #endregion
 

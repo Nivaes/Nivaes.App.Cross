@@ -19,9 +19,8 @@ namespace Nivaes.App.Cross.Droid
         public ViewPagerFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         { }
 
         protected override Task<bool> ShowAction(Type view, ViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
@@ -183,9 +182,8 @@ namespace Nivaes.App.Cross.Droid
         public ViewPagerFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         {
         }
     }

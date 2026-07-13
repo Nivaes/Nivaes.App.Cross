@@ -18,9 +18,8 @@ namespace Nivaes.App.Cross.Droid
         public TabLayoutAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         {
         }
 

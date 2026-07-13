@@ -20,10 +20,9 @@ namespace Nivaes.App.Cross.Droid
         public ActivityAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
                 IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
                 ILogger<ActivityAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         {
             ViewModelRequestTranslator = viewModelRequestTranslator;
         }

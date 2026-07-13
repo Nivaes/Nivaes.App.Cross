@@ -30,10 +30,9 @@ namespace Nivaes.App.Cross.Droid
         public ShowDialogAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ICrossNavigationSerializer navigationSerializer,
                 //IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
                 ILogger<ShowDialogAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         {
         }
 

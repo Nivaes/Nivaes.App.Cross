@@ -14,13 +14,16 @@ namespace Nivaes.App.Cross.Droid
     public sealed class FragmentAndroidPresentation
         : AndroidPressenterAction<MvxFragmentPresentationAttribute>
     {
+        protected readonly ICrossNavigationSerializer NavigationSerializer;
+
         public FragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<MvxFragmentPresentationAttribute> logger)
-            : base(viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(viewsContainer, androidCurrentTopActivity, logger)
         {
+            NavigationSerializer = navigationSerializer;
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
