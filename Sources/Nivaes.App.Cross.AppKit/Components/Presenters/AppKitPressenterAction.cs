@@ -6,7 +6,7 @@ using Nivaes.App.Cross.AppKitLib;
 
 namespace Nivaes.App.Cross.AppKitOS
 {
-    public abstract class MacPressenterAction<TPressenterAttribute>
+    public abstract class AppKitPressenterAction<TPressenterAttribute>
                 : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : ICrossPresentationAttribute
     {
@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.AppKitOS
         protected readonly IMvxMacViewCreator ViewCreator;
 
         #region Constructor
-        protected MacPressenterAction(
+        protected AppKitPressenterAction(
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger logger)

@@ -6,14 +6,14 @@ using Nivaes.App.Cross.AppKitLib;
 
 namespace Nivaes.App.Cross.AppKitOS
 {
-    public sealed class ContentMacPressenterAction
-        : MacPressenterAction<CrossContentPresentationAttribute>
+    public sealed class ContentAppKitPressenterAction
+        : AppKitPressenterAction<CrossContentPresentationAttribute>
     {
         #region Constructor
-        public ContentMacPressenterAction(
+        public ContentAppKitPressenterAction(
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<ContentMacPressenterAction> logger)
+                ILogger<ContentAppKitPressenterAction> logger)
             : base(viewsContainer, viewCreator, logger)
         {
         }

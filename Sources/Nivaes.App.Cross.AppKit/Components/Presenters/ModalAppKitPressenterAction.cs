@@ -6,26 +6,26 @@ using Nivaes.App.Cross.AppKitLib;
 
 namespace Nivaes.App.Cross.AppKitOS
 {
-    public sealed class wheetMacPressenterAction
-        : MacPressenterAction<MvxSheetPresentationAttribute>
+    public sealed class ModalAppKitPressenterAction
+        : AppKitPressenterAction<CrossModalPresentationAttribute>
     {
         #region Constructor
-        public wheetMacPressenterAction(
+        public ModalAppKitPressenterAction(
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<wheetMacPressenterAction> logger)
+                ILogger<ModalAppKitPressenterAction> logger)
             : base(viewsContainer, viewCreator, logger)
         {
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxSheetPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override Task<bool> ShowAction(Type view, CrossModalPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
-            window.ContentViewController.PresentViewControllerAsSheet(viewController);
+            window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
             return Task.FromResult(true);
         }
     }
