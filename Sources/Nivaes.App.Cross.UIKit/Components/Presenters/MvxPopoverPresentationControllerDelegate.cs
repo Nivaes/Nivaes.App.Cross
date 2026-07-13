@@ -4,9 +4,9 @@ namespace Nivaes.App.Cross.UIKitLib
     public class MvxPopoverPresentationControllerDelegate
         : UIPopoverPresentationControllerDelegate
     {
-        private readonly IMvxIosViewPresenter _presenter;
+        private readonly IIosViewPresenterManager _presenter;
 
-        public MvxPopoverPresentationControllerDelegate(IMvxIosViewPresenter presenter)
+        public MvxPopoverPresentationControllerDelegate(IIosViewPresenterManager presenter)
         {
             _presenter = presenter;
         }

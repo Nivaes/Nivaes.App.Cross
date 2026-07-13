@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross.UIKitLib;
 
 public sealed class MvxModalPresentationControllerDelegate(
-        MvxIosViewPresenter presenter,
+        IosViewPresenterManager presenter,
         UIViewController viewController,
         MvxModalPresentationAttribute attribute)
     : UIAdaptivePresentationControllerDelegate

@@ -3,12 +3,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-public abstract class CrossAttributeViewPresenter
-    : CrossViewPresenter, ICrossAttributeViewPresenter
+public abstract class CrossAttributeViewPresenterManager
+    : CrossViewPresenterManager, ICrossAttributeViewPresenterManager
 {
     protected ICrossViewsContainer ViewsContainer { get; }
 
-    protected CrossAttributeViewPresenter(ICrossViewsContainer crossViewsContainer, ILogger logger)
+    protected CrossAttributeViewPresenterManager(ICrossViewsContainer crossViewsContainer, ILogger logger)
         : base(logger)
     {
         ViewsContainer = crossViewsContainer;
@@ -43,6 +43,7 @@ public abstract class CrossAttributeViewPresenter
         return Activator.CreateInstance(viewType);
     }
 
+    [Obsolete("Busca interfaces de la vista.", true)]
     public virtual CrossBasePresentationAttribute? GetOverridePresentationAttribute(
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
@@ -89,9 +90,9 @@ public abstract class CrossAttributeViewPresenter
         if (viewType == null)
             throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
 
-        var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-        if (overrideAttribute != null)
-            return overrideAttribute;
+        //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
+        //if (overrideAttribute != null)
+        //    return overrideAttribute;
 
         var attribute = viewType
             .GetCustomAttributes(typeof(CrossBasePresentationAttribute), true)

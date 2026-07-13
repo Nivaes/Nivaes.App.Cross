@@ -6,9 +6,20 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
 [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
+[MvxFragmentPresentationAttribute(
+            typeof(RootViewModel),
+            Resource.Id.content_frame,
+            false,
+            Resource.Animation.abc_fade_in,
+            Resource.Animation.abc_fade_out,
+            Resource.Animation.abc_fade_in,
+            Resource.Animation.abc_fade_out)]
 [RequiresUnreferencedCode("Bindings requires unreferenced code")]
-public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
+public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel> //, ICrossOverridePresentationAttribute
 {
+    public OverrideAttributeView()
+    { }
+
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         base.OnCreateView(inflater, container, savedInstanceState);
@@ -18,15 +29,15 @@ public class OverrideAttributeView : MvxFragment<OverrideAttributeViewModel>, IC
         return view;
     }
 
-    public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
-    {
-        return new MvxFragmentPresentationAttribute(
-            typeof(RootViewModel),
-            Resource.Id.content_frame,
-            false,
-            Resource.Animation.abc_fade_in,
-            Resource.Animation.abc_fade_out,
-            Resource.Animation.abc_fade_in,
-            Resource.Animation.abc_fade_out);
-    }
+    //public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+    //{
+    //    return new MvxFragmentPresentationAttribute(
+    //        typeof(RootViewModel),
+    //        Resource.Id.content_frame,
+    //        false,
+    //        Resource.Animation.abc_fade_in,
+    //        Resource.Animation.abc_fade_out,
+    //        Resource.Animation.abc_fade_in,
+    //        Resource.Animation.abc_fade_out);
+    //}
 }

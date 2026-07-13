@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross.Droid
 
             var bundle = new Bundle();
 
-            bundle.PutString(AndroidViewPresenter.ViewModelRequestBundleKey, serializedRequest);
+            bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
 
             return bundle;
         }

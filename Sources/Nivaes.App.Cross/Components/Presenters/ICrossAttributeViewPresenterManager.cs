@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System.Diagnostics.CodeAnalysis;
 
-    public interface ICrossAttributeViewPresenter : ICrossViewPresenter
+    public interface ICrossAttributeViewPresenterManager : ICrossViewPresenterManager
     {
         //ICrossViewModelTypeFinder? ViewModelTypeFinder { get; }
         //ICrossViewsContainer? ViewsContainer { get; }
@@ -16,6 +16,7 @@ namespace Nivaes.App.Cross
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
+        [Obsolete("No usar Override", true)]
         CrossBasePresentationAttribute? GetOverridePresentationAttribute(
             CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType);

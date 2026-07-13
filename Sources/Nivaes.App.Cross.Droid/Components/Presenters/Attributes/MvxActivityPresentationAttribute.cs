@@ -1,7 +1,8 @@
 namespace Nivaes.App.Cross.Droid;
 
 [AttributeUsage(AttributeTargets.Class)]
-public class MvxActivityPresentationAttribute : CrossBasePresentationAttribute
+public class MvxActivityPresentationAttribute 
+    : CrossBasePresentationAttribute
 {
     public MvxActivityPresentationAttribute()
     {

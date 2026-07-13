@@ -1,8 +1,7 @@
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.AppKitLib
 {
-    using Nivaes.App.Cross;
-    using ObjCRuntime;
-
     public class MvxEventSourceViewController
         : NSViewController, IMvxEventSourceViewController
     {
@@ -80,23 +79,23 @@ namespace Nivaes.App.Cross.AppKitLib
         {
             if (disposing)
             {
-                this.DisposeCalled.Raise(this);
+                this.DisposeCalled?.Raise(this);
             }
             base.Dispose(disposing);
         }
 
-        public event EventHandler ViewDidLoadCalled;
+        public event EventHandler? ViewDidLoadCalled;
 
-        public event EventHandler ViewDidLayoutCalled;
+        public event EventHandler? ViewDidLayoutCalled;
 
-        public event EventHandler ViewWillAppearCalled;
+        public event EventHandler? ViewWillAppearCalled;
 
-        public event EventHandler ViewDidAppearCalled;
+        public event EventHandler? ViewDidAppearCalled;
 
-        public event EventHandler ViewDidDisappearCalled;
+        public event EventHandler? ViewDidDisappearCalled;
 
-        public event EventHandler ViewWillDisappearCalled;
+        public event EventHandler? ViewWillDisappearCalled;
 
-        public event EventHandler DisposeCalled;
+        public event EventHandler? DisposeCalled;
     }
 }

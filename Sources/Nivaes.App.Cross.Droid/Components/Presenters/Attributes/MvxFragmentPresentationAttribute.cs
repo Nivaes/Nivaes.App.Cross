@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public class MvxFragmentPresentationAttribute
-: CrossBasePresentationAttribute
+    : CrossBasePresentationAttribute
 {
     public MvxFragmentPresentationAttribute()
     {

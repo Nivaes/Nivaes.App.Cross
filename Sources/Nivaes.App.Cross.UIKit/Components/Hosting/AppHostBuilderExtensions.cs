@@ -24,13 +24,14 @@ namespace Nivaes.App.Cross.UIKitLib
             builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
                     sp.GetRequiredService<MvxIosViewDispatcher>());
 
-            builder.Services.TryAddSingleton<IMvxIosViewPresenter>(sp =>
+            builder.Services.TryAddSingleton<IIosViewPresenterManager>(sp =>
             {
                 var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
                 var viewCreator = sp.GetRequiredService<IMvxIosViewCreator>();
-                var logger = sp.GetRequiredService<ILogger<MvxIosViewPresenter>>();
+                var logger = sp.GetRequiredService<ILogger<IosViewPresenterManager>>();
 
-                return new MvxIosViewPresenter(windows, viewsContainer, viewCreator, logger);
+
+                return new IosViewPresenterManager(windows, viewsContainer, viewCreator, logger);
             });
 
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();

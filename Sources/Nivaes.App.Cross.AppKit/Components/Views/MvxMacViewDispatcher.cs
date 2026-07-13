@@ -6,10 +6,10 @@ namespace Nivaes.App.Cross.AppKitLib
         : MvxMacUIThreadDispatcher
         , ICrossViewDispatcher
     {
-        private readonly IMvxMacViewPresenter _presenter;
+        private readonly IMacViewPresenterManager _presenter;
 
 
-        public MvxMacViewDispatcher(IMvxMacViewPresenter presenter, ILogger<MvxMacViewDispatcher> logger)
+        public MvxMacViewDispatcher(IMacViewPresenterManager presenter, ILogger<MvxMacViewDispatcher> logger)
             : base(logger)
         {
             _presenter = presenter;

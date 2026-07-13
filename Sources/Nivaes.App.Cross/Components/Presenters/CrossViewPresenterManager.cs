@@ -2,15 +2,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
 {
-    public abstract class CrossViewPresenter
-        : ICrossViewPresenter
+    public abstract class CrossViewPresenterManager
+        : ICrossViewPresenterManager
     {
         private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =
             new Dictionary<Type, Func<CrossPresentationHint, Task<bool>>>();
 
         protected readonly ILogger Logger;
 
-        public CrossViewPresenter(ILogger logger)
+        public CrossViewPresenterManager(ILogger logger)
         {
             Logger = logger;
         }

@@ -15,7 +15,7 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPresenter
+public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, IAndroidViewPresenterManager
 {
     public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
     public const string SharedElementsBundleKey = "__sharedElementsKey";
@@ -55,10 +55,10 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public AndroidViewPresenter(ICrossViewsContainer crossViewsContainer,
+    public AndroidViewPresenterManager(ICrossViewsContainer crossViewsContainer,
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, ICrossNavigationSerializer navigationSerializer,
         IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
-        ILogger<AndroidViewPresenter> logger)
+        ILogger<AndroidViewPresenterManager> logger)
         : base(crossViewsContainer, logger)
     {
         _androidCurrentTopActivity = androidCurrentTopActivity;
@@ -114,9 +114,9 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         if (viewType == null)
             throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
 
-        var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-        if (overrideAttribute != null)
-            return overrideAttribute;
+        //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
+        //if (overrideAttribute != null)
+        //    return overrideAttribute;
 
         IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
         if (attributes.Count > 0)
@@ -410,9 +410,6 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
 
     protected virtual Intent? CreateIntentForRequest(CrossViewModelRequest? request)
     {
-        //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewModelRequestTranslator? requestTranslator) != true || requestTranslator == null)
-        //    return null;
-
         if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
         {
             var intentWithKey = _viewModelRequestTranslator.GetIntentWithKeyFor(
@@ -1109,7 +1106,6 @@ public class AndroidViewPresenter : CrossAttributeViewPresenter, IAndroidViewPre
         }
         catch (System.Exception ex)
         {
-            Logger.Log(LogLevel.Error, ex, "Cannot create Fragment {FragmentName}", fragmentType.Name);
             throw new CrossException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
         }
     }

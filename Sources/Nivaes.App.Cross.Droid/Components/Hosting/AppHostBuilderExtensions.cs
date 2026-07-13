@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.Droid
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, Context applicationContext)
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
-            builder.Services.TryAddSingleton<IAndroidViewPresenter, AndroidViewPresenter>();
+            builder.Services.TryAddSingleton<IAndroidViewPresenterManager, AndroidViewPresenterManager>();
 
             builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
             builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();

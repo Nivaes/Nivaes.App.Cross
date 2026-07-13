@@ -5,9 +5,9 @@ namespace Nivaes.App.Cross.UIKitLib
     public class MvxIosViewDispatcher
         : MvxIosUIThreadDispatcher, ICrossViewDispatcher
     {
-        private readonly IMvxIosViewPresenter _presenter;
+        private readonly IIosViewPresenterManager _presenter;
 
-        public MvxIosViewDispatcher(IMvxIosViewPresenter presenter, ILogger<MvxIosViewDispatcher> logger)
+        public MvxIosViewDispatcher(IIosViewPresenterManager presenter, ILogger<MvxIosViewDispatcher> logger)
             : base(logger)
         {
             _presenter = presenter;

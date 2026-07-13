@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public class MvxIosViewPresenter
-        : CrossAttributeViewPresenter, IMvxIosViewPresenter
+    public class IosViewPresenterManager
+        : CrossAttributeViewPresenterManager, IIosViewPresenterManager
     {
         //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
         private readonly IMvxIosViewCreator _viewCreator;
@@ -26,8 +26,8 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public MvxIosViewPresenter(UIWindow window, ICrossViewsContainer crossViewsContainer,
-            IMvxIosViewCreator viewCreator, ILogger<MvxIosViewPresenter> logger)
+        public IosViewPresenterManager(UIWindow window, ICrossViewsContainer crossViewsContainer,
+            IMvxIosViewCreator viewCreator, ILogger<IosViewPresenterManager> logger)
             : base(crossViewsContainer, logger)
         {
             _viewCreator = viewCreator;

@@ -3,7 +3,8 @@ namespace Nivaes.App.Cross.Droid
     using System.Diagnostics.CodeAnalysis;
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class MvxDialogFragmentPresentationAttribute : MvxFragmentPresentationAttribute
+    public class MvxDialogFragmentPresentationAttribute 
+        : MvxFragmentPresentationAttribute
     {
         public MvxDialogFragmentPresentationAttribute()
         {

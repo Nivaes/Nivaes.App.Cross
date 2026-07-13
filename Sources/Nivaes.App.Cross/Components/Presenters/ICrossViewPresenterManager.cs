@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross
     using System;
     using System.Threading.Tasks;
 
-    public interface ICrossViewPresenter
+    public interface ICrossViewPresenterManager
     {
         Task<bool> Show(CrossViewModelRequest request);
 

@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
     [MvxWindowPresentation(PositionX = 300)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class RootView
-        : CrossViewController<RootViewModel>, ICrossOverridePresentationAttribute
+        : CrossViewController<RootViewModel> //, ICrossOverridePresentationAttribute
     {
         // prevents presentation in a new window when navigating back to root from a child
         private static bool WasPresentedInWindow = false;

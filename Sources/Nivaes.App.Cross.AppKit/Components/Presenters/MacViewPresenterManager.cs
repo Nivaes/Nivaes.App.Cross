@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.AppKitLib;
 
-public class MvxMacViewPresenter
-    : CrossAttributeViewPresenter, IMvxMacViewPresenter, ICrossAttributeViewPresenter
+public class MacViewPresenterManager
+    : CrossAttributeViewPresenterManager, IMacViewPresenterManager, ICrossAttributeViewPresenterManager
 {
     private readonly INSApplicationDelegate _applicationDelegate;
 
@@ -24,6 +24,7 @@ public class MvxMacViewPresenter
         return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
     }
 
+    [Obsolete("No usar Override", true)]
     public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
@@ -61,8 +62,8 @@ public class MvxMacViewPresenter
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MvxMacViewPresenter(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer,
-        ILogger<MvxMacViewPresenter> logger)
+    public MacViewPresenterManager(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer,
+        ILogger<MacViewPresenterManager> logger)
         : base(crossViewsContainer, logger)
     {
         _applicationDelegate = applicationDelegate;

@@ -5,22 +5,24 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
+[MvxModalPresentationAttribute(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen,
+            ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class OverrideAttributeView
-    : MvxViewController<OverrideAttributeViewModel>, ICrossOverridePresentationAttribute
+    : MvxViewController<OverrideAttributeViewModel> //, ICrossOverridePresentationAttribute
 {
     public OverrideAttributeView(NativeHandle handle) : base(handle)
     {
     }
 
-    public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
-    {
-        return new MvxModalPresentationAttribute
-        {
-            ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen,
-            ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        };
-    }
+    //public CrossBasePresentationAttribute PresentationAttribute(CrossViewModelRequest request)
+    //{
+    //    return new MvxModalPresentationAttribute
+    //    {
+    //        ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen,
+    //        ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+    //    };
+    //}
 
     public override void ViewDidLoad()
     {

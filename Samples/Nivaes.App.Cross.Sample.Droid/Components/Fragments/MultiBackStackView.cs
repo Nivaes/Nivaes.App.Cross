@@ -10,7 +10,6 @@ namespace Nivaes.App.Cross.Sample.Droid;
 AllowReordering = true,
 ViewModelType = typeof(MultiBackStackViewModel),
 SetAsPrimaryFragment = true)]
-[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackView
     : MvxFragment<MultiBackStackViewModel>
 {
@@ -98,8 +97,7 @@ public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewM
     }
 }
 
-[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
-public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel>, ICrossOverridePresentationAttribute
+public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerViewModel> //, ICrossOverridePresentationAttribute
 {
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {

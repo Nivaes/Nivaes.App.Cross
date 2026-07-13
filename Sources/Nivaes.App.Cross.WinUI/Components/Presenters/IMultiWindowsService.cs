@@ -1,10 +1,11 @@
+using Microsoft.UI.Xaml;
+
 namespace Nivaes.App.Cross.WinUI
 {
-    using Microsoft.UI.Xaml;
-
     /// <summary>
     /// Defines public services for the MultiWindow support.
     /// </summary>
+    
     public interface IMvxMultiWindowsService
     {
         /// <summary>
@@ -12,6 +13,7 @@ namespace Nivaes.App.Cross.WinUI
         /// </summary>
         /// <param name="viewModel">The viewmodel instance to find the window it belongs to for</param>
         /// <returns>The window found, or the application main window if not found.</returns>
+        [Obsolete("", true)]
         public Window GetWindow(ICrossViewModel viewModel);
     }
 }

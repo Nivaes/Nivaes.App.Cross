@@ -5,9 +5,9 @@ namespace Nivaes.App.Cross.WinUI;
 public class CrossWindowsViewDispatcher
     : CrossWindowsMainThreadDispatcher, ICrossViewDispatcher
 {
-    private readonly IMvxWindowsViewPresenter _presenter;
+    private readonly IWindowsViewPresenterManager _presenter;
 
-    public CrossWindowsViewDispatcher(IMvxWindowsViewPresenter presenter, ICrossWindowsFrame rootFrame,
+    public CrossWindowsViewDispatcher(IWindowsViewPresenterManager presenter, ICrossWindowsFrame rootFrame,
             ILogger<CrossWindowsViewDispatcher> logger)
         : base(rootFrame, logger)
     {

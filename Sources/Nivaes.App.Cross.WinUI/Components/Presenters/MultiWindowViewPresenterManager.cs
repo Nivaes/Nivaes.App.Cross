@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+namespace Nivaes.App.Cross.WinUI;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
@@ -10,13 +11,12 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using Window = Microsoft.UI.Xaml.Window;
 
-namespace Nivaes.App.Cross.WinUI;
 
 /// <summary>
 ///     Defines a view presenter with multi-windows support.
 /// </summary>
-public class MvxMultiWindowViewPresenter
-    : CrossAttributeViewPresenter, IMvxWindowsViewPresenter, IMvxMultiWindowsService
+public class MultiWindowViewPresenterManager
+    : CrossAttributeViewPresenterManager, IWindowsViewPresenterManager, IMvxMultiWindowsService
 {
     private const int DefaultWindowHeight = 456;
     private const int DefaultWindowWidth = 786;
@@ -32,14 +32,14 @@ public class MvxMultiWindowViewPresenter
     private readonly ICrossViewModelLoader _viewModelLoader;
 
     /// <summary>
-    ///     Initializes a new instance of <see cref="MvxMultiWindowViewPresenter" />.
+    ///     Initializes a new instance of <see cref="MultiWindowViewPresenterManager" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
-    public MvxMultiWindowViewPresenter(IServiceProvider serviceProvider,
+    public MultiWindowViewPresenterManager(IServiceProvider serviceProvider,
             ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
             ICrossViewModelLoader viewModelLoader,
             ICrossWindowsViewModelRequestTranslator requestTranslator, 
-            ILogger<MvxMultiWindowViewPresenter> logger)
+            ILogger<MultiWindowViewPresenterManager> logger)
         : base(crossViewsContainer, logger)
     {
         _serviceProvider = serviceProvider;
@@ -753,6 +753,7 @@ public class MvxMultiWindowViewPresenter
     }
 
     /// <inheritdoc />
+    [Obsolete("", true)]
     public Window GetWindow(ICrossViewModel viewModel)
     {
         return GetWindowInformation(viewModel).Window;

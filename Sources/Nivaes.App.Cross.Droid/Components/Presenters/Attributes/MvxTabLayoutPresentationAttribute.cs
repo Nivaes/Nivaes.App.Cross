@@ -4,7 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Nivaes.App.Cross.Droid;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-public class MvxTabLayoutPresentationAttribute : MvxViewPagerFragmentPresentationAttribute
+public class MvxTabLayoutPresentationAttribute 
+    : MvxViewPagerFragmentPresentationAttribute
 {
     public MvxTabLayoutPresentationAttribute()
     {

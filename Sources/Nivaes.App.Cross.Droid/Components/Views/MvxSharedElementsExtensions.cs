@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
         public static IDictionary<string, string> GetSharedElementTransitionNames(this Bundle bundle)
         {
             IDictionary<string, string> sharedElements = new Dictionary<string, string>();
-            var transitions = bundle.GetString(AndroidViewPresenter.SharedElementsBundleKey);
+            var transitions = bundle.GetString(AndroidViewPresenterManager.SharedElementsBundleKey);
 
             if (transitions != null)
             {
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
         /// <param name="view">The <see cref="View"/> to search for the tag.</param>
         public static void SetSharedElementsByTag(this Bundle bundle, View view)
         {
-            var transitions = bundle.GetString(AndroidViewPresenter.SharedElementsBundleKey);
+            var transitions = bundle.GetString(AndroidViewPresenterManager.SharedElementsBundleKey);
 
             foreach (var transition in transitions.Split('|'))
             {
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.Droid
         /// <param name="view">The <see cref="View"/> to search for the identifier.</param>
         public static void SetSharedElementsById(this Bundle bundle, View view)
         {
-            var transitions = bundle.GetString(AndroidViewPresenter.SharedElementsBundleKey);
+            var transitions = bundle.GetString(AndroidViewPresenterManager.SharedElementsBundleKey);
 
             foreach (var transition in transitions.Split('|'))
             {
