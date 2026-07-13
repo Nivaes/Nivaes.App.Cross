@@ -1,11 +1,10 @@
 #if IOS || MACCATALYST
-namespace Nivaes.App.Cross.UIKitLib
-{
-    using System;
-    using UIKit;
+using System;
+using UIKit;
 
-    [Obsolete("", true)]
-    public class MvxPopoverPresentationSourceProvider
+namespace Nivaes.App.Cross.UIKitLib
+{   
+    public class PopoverPresentationSourceProvider
         : IMvxPopoverPresentationSourceProvider
     {
         private readonly WeakReference<UIView?> _sourceViewWeakReference = new WeakReference<UIView?>(null);
@@ -19,9 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
                     return view;
 
                 // This is not a array Sonar. You are drunk...
-#pragma warning disable S1168 // Empty arrays and collections should be returned instead of null
                 return null;
-#pragma warning restore S1168 // Empty arrays and collections should be returned instead of null
             }
             set
             {
@@ -69,6 +66,5 @@ namespace Nivaes.App.Cross.UIKitLib
             }
         }
     }
-#nullable restore
 }
 #endif

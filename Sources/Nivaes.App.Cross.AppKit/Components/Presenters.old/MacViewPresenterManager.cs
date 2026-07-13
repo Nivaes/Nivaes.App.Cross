@@ -163,6 +163,7 @@ public class MacViewPresenterManager
         return Task.FromResult(true);
     }
 
+    [Obsolete("", true)]
     protected virtual void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
     {
         var positionX = (float)window.Frame.X;
@@ -178,6 +179,7 @@ public class MacViewPresenterManager
         window.TitleVisibility = attribute.TitleVisibility;
     }
 
+    [Obsolete("", true)]
     protected virtual NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)
     {
         NSWindow window;
@@ -198,7 +200,7 @@ public class MacViewPresenterManager
         return window;
     }
 
-    [RequiresUnreferencedCode("This method creates instances which use reflection and may not be preserved by trimming")]
+    [Obsolete("", true)]
     protected virtual MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
     {
         MvxWindowController? windowController;
@@ -226,6 +228,7 @@ public class MacViewPresenterManager
         return windowController;
     }
 
+    [Obsolete("", true)]
     protected virtual MvxWindowController CreateWindowController(NSWindow window)
     {
         return new MvxWindowController(window);

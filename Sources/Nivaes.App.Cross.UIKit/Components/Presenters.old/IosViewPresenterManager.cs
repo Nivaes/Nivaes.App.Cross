@@ -70,6 +70,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return (UIViewController?)_viewCreator.CreateViewOfType(viewType);
         }
 
+        [Obsolete]
         public override void RegisterAttributeTypes()
         {
             if (AttributeTypesToActionsDictionary == null)
@@ -189,6 +190,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 #if IOS || MACCATALYST
+        [Obsolete]
         protected virtual void RegisterPopoverAttributeType()
         {
             AttributeTypesToActionsDictionary.Register<MvxPopoverPresentationAttribute>(
@@ -208,6 +210,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 #endif
 
+        [Obsolete("", true)]
         protected virtual Task<bool> ShowRootViewController(
             UIViewController viewController,
             MvxRootPresentationAttribute attribute,
@@ -232,6 +235,7 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
+        [Obsolete("", true)]
         private async Task<bool> ShowRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute)
         {
             SetupWindowRootNavigation(viewController, attribute);
@@ -242,6 +246,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
+        [Obsolete("", true)]
         private async Task<bool> ShowSplitRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxSplitViewController splitController)
         {
@@ -256,6 +261,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
+        [Obsolete("", true)]
         private async Task<bool> ShowPageRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxPageViewController pageViewController)
         {
@@ -270,6 +276,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
+        [Obsolete("", true)]
         private async Task<bool> ShowTabBarRootViewController(
             UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxTabBarViewController tabBarController)
@@ -329,6 +336,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return false;
         }
 
+        [Obsolete]
         protected void SetupWindowRootNavigation(UIViewController viewController, MvxRootPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -385,6 +393,7 @@ namespace Nivaes.App.Cross.UIKitLib
             throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
+        [Obsolete]
         private Task<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
             if (ModalViewControllers.LastOrDefault() is UINavigationController modalNavController)
@@ -399,6 +408,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 #if IOS || MACCATALYST
+        [Obsolete]
         private Task<bool> ShowPopoverViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
             if (PopoverViewController is UINavigationController popoverNavController)
@@ -413,6 +423,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 #endif
 
+        [Obsolete("", true)]
         protected virtual Task<bool> ShowTabViewController(
             UIViewController viewController,
             MvxTabPresentationAttribute attribute,
@@ -460,12 +471,14 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete("", true)]
         protected virtual IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(
             UIViewController viewController, MvxModalPresentationAttribute attribute)
         {
             return new MvxModalPresentationControllerDelegate(this, viewController, attribute);
         }
 
+        [Obsolete]
         protected virtual Task<bool> ShowModalViewController(
             UIViewController viewController,
             MvxModalPresentationAttribute attribute,
@@ -500,6 +513,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 #if IOS || MACCATALYST
+        [Obsolete("", true)]
         protected virtual async Task<bool> ShowPopoverViewController(
             UIViewController viewController,
             MvxPopoverPresentationAttribute attribute,
@@ -564,6 +578,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete]
         protected virtual Task<bool> ShowDetailSplitViewController(
             UIViewController viewController,
             MvxSplitViewPresentationAttribute attribute,
@@ -579,6 +594,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseRootViewController(ICrossViewModel viewModel, MvxRootPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -589,6 +605,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(false);
         }
 
+        [Obsolete]
         protected virtual Task<bool> CloseChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -621,6 +638,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(false);
         }
 
+        [Obsolete]
         private bool CloseModalChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
         {
             foreach (var modalNav in ModalViewControllers.OfType<UINavigationController>())
@@ -632,6 +650,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return false;
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseTabViewController(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -643,6 +662,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(false);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> ClosePageViewController(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -654,6 +674,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(false);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -665,6 +686,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -676,6 +698,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(false);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseModalViewController(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
@@ -747,6 +770,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 #endif
 
+        [Obsolete]
         protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, MvxChildPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(navController);
@@ -783,6 +807,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return new MvxNavigationController(viewController);
         }
 
+        [Obsolete]
         protected virtual void PushViewControllerIntoStack(
             UINavigationController navigationController, UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
@@ -796,6 +821,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 TabBarViewController = tabBarController;
         }
 
+        [Obsolete("", true)]
         protected virtual void CloseMasterNavigationController()
         {
             if (MasterNavigationController == null)
@@ -810,6 +836,7 @@ namespace Nivaes.App.Cross.UIKitLib
             MasterNavigationController = null;
         }
 
+        [Obsolete("")]
         public virtual async Task<bool> CloseModalViewController(UIViewController viewController, MvxModalPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -827,6 +854,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
+        [Obsolete("", true)]
         public virtual async Task<bool> CloseModalViewControllers()
         {
             while (ModalViewControllers.Count > 0)
@@ -860,6 +888,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 #endif
 
+        [Obsolete("")]
         public virtual Task<bool> CloseTabBarViewController()
         {
             if (TabBarViewController == null)
@@ -875,6 +904,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete("", true)]
         protected virtual Task<bool> CloseSplitViewController()
         {
             if (SplitViewController == null)
@@ -889,6 +919,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
+        [Obsolete("", true)]
         protected void RemoveWindowSubviews()
         {
             foreach (var v in Window.Subviews)
@@ -900,6 +931,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowModalViewController(viewController, new MvxModalPresentationAttribute { Animated = animated }, null);
         }
 
+        [Obsolete("", true)]
         protected virtual void SetWindowRootViewController(UIViewController controller, MvxRootPresentationAttribute? attribute = null)
         {
             RemoveWindowSubviews();

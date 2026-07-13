@@ -69,7 +69,6 @@ public class MvxTabBarViewController<TViewModel>
         if (IsMovingFromParentViewController)
         {
             var iPresenter = IPlatformApplication.Current!.Services.GetRequiredService<IIosViewPresenterManager>();
-            //if (Mvx.IoCProvider?.TryResolve(out IMvxIosViewPresenter iPresenter) == true
             if (iPresenter is IosViewPresenterManager mvxIosViewPresenter)
             {
                 mvxIosViewPresenter.CloseTabBarViewController();

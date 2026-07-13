@@ -1,14 +1,13 @@
 namespace Nivaes.App.Cross.UIKitLib;
 
-[Obsolete("", true)]
-public sealed class MvxModalPresentationControllerDelegate(
-        IosViewPresenterManager presenter,
+public sealed class ModalPresentationControllerDelegate(
+        ModalUIKitPressenterAction presenterAction,
         UIViewController viewController,
         MvxModalPresentationAttribute attribute)
     : UIAdaptivePresentationControllerDelegate
 {
     public override void DidDismiss(UIPresentationController presentationController)
     {
-        _ = presenter.CloseModalViewController(viewController, attribute);
+        _ = presenterAction.CloseModalViewController(viewController, attribute);
     }
 }

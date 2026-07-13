@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.UIKitLib
+{
+    public abstract class RootUIKitPressenterAction
+            : UIKitPressenterAction<MvxRootPresentationAttribute>
+    {
+        #region Constructor
+        public RootUIKitPressenterAction(
+                ICrossViewsContainer viewsContainer,
+                IMvxIosViewCreator viewCreator,
+                ILogger<RootUIKitPressenterAction> logger)
+            : base(viewsContainer, viewCreator, logger)
+        {
+        }
+        #endregion
+
+        protected override Task<bool> ShowAction(Type view, MvxRootPresentationAttribute attribute, CrossViewModelRequest request)
+        {
+            var viewController = (UIViewController?)ViewCreator.CreateView(request);
+            if (viewController == null)
+            {
+                Logger.LogWarning(
+                    "Got null ViewController for request {Request}", request);
+
+                return Task.FromResult(false);
+            }
+            return ShowRootViewController(viewController, attribute, request);
+        }
+
+        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxRootPresentationAttribute attribute)
+        {
+            Logger.LogWarning("Ignored attempt to close the window root (ViewModel type: {ViewModelType})", viewModel.GetType().Name);
+
+            return Task.FromResult(false);
+        }
+    }
+}

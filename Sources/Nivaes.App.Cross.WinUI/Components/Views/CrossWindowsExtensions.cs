@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using Nivaes.App.Cross.WinUI.Components.Presenters.Attributes;
 
 namespace Nivaes.App.Cross.WinUI;
 

@@ -5,13 +5,11 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
-using Nivaes.App.Cross.WinUI.Components.Presenters.Attributes;
 using Windows.Graphics;
 using Windows.UI.Core;
 using Control = Microsoft.UI.Xaml.Controls.Control;
 using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using Window = Microsoft.UI.Xaml.Window;
-
 
 /// <summary>
 ///     Defines a view presenter with multi-windows support.
@@ -88,6 +86,7 @@ public class MultiWindowViewPresenterManager
     /// <summary>
     ///     Registers default attribute types.
     /// </summary>
+    [Obsolete]
     public override void RegisterAttributeTypes()
     {
         AttributeTypesToActionsDictionary.Register<MvxPagePresentationAttribute>(ShowPage, ClosePage);

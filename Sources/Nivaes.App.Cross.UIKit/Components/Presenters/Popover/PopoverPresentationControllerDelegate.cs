@@ -1,15 +1,14 @@
 #if IOS || MACCATALYST
 namespace Nivaes.App.Cross.UIKitLib
 {
-    [Obsolete("", true)]
-    public class MvxPopoverPresentationControllerDelegate
+    public class PopoverPresentationControllerDelegate
         : UIPopoverPresentationControllerDelegate
     {
-        private readonly IIosViewPresenterManager _presenter;
+        private readonly PopoverUIKitPressenterAction _presenterAction;
 
-        public MvxPopoverPresentationControllerDelegate(IIosViewPresenterManager presenter)
+        public PopoverPresentationControllerDelegate(PopoverUIKitPressenterAction presenter)
         {
-            _presenter = presenter;
+            _presenterAction = presenter;
         }
 
         public override UIModalPresentationStyle GetAdaptivePresentationStyle(UIPresentationController forPresentationController)
@@ -24,7 +23,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public override void DidDismissPopover(UIPopoverPresentationController popoverPresentationController)
         {
-            _presenter.ClosedPopoverViewController();
+            _presenterAction.ClosedPopoverViewController();
         }
     }
 }

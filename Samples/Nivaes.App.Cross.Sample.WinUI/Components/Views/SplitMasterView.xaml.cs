@@ -1,5 +1,4 @@
 using Nivaes.App.Cross.WinUI;
-using Nivaes.App.Cross.WinUI.Components.Presenters.Attributes;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 /// <summary>
