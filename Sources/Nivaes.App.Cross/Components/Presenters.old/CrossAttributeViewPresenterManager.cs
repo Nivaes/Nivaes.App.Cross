@@ -16,6 +16,7 @@ public abstract class CrossAttributeViewPresenterManager
 
     private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
+    [Obsolete("Busca interfaces de la vista.", true)]
     public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
     {
         get
@@ -112,6 +113,7 @@ public abstract class CrossAttributeViewPresenterManager
         return CreatePresentationAttribute(request.ViewModelType, viewType);
     }
 
+    [Obsolete("Migrate to PressenterAction", true)]
     protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
         CrossViewModelRequest? request, out CrossBasePresentationAttribute attribute)
     {
@@ -157,6 +159,7 @@ public abstract class CrossAttributeViewPresenterManager
         return false;
     }
 
+    [Obsolete("Migrate to PressenterAction", true)]
     public override Task<bool> Close(ICrossViewModel viewModel)
     {
         return GetPresentationAttributeAction(
@@ -165,6 +168,7 @@ public abstract class CrossAttributeViewPresenterManager
             .Invoke(viewModel, attribute) ?? Task.FromResult(false);
     }
 
+    [Obsolete("Migrate to PressenterAction", true)]
     public override Task<bool> Show(CrossViewModelRequest request)
     {
         var attributeAction = GetPresentationAttributeAction(request, out var attribute);

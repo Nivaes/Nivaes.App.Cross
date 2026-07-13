@@ -14,8 +14,7 @@ public class MvxViewPagerFragmentPresentationAttribute
     public MvxViewPagerFragmentPresentationAttribute(
         string title,
         int viewPagerResourceId,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-    Type? activityHostViewModelType = null,
+        Type? activityHostViewModelType = null,
         bool addToBackStack = false,
         Type? fragmentHostViewType = null,
         bool isCacheableFragment = false,

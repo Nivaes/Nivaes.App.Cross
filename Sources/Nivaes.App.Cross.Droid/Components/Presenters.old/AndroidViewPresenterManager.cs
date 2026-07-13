@@ -25,9 +25,6 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly IMvxAndroidViewModelRequestTranslator _viewModelRequestTranslator;
 
-
-    //protected IEnumerable<Assembly> AndroidViewAssemblies { get; set; }
-
     protected CrossViewModelRequest? PendingRequest { get; set; }
 
     protected virtual FragmentManager? CurrentFragmentManager
@@ -83,13 +80,6 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         }
     }
 
-    //protected Type? GetAssociatedViewModelType(
-    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] Type fromFragmentType)
-    //{
-    //    var viewModelType = ViewModelTypeFinder?.FindTypeOrNull(fromFragmentType);
-    //    return viewModelType ?? fromFragmentType.GetBasePresentationAttributes().First().ViewModelType;
-    //}
-
     [Obsolete("Carga por Roslyn")]
     public override void RegisterAttributeTypes()
     {
@@ -100,6 +90,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
     }
 
+    [Obsolete]
     public override CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -138,6 +129,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return CreatePresentationAttribute(request.ViewModelType, viewType);
     }
 
+    [Obsolete]
     private CrossBasePresentationAttribute? GetAttributeForFragmentPresentation(
         IEnumerable<MvxFragmentPresentationAttribute> fragmentAttributes)
     {
@@ -235,6 +227,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return base.ChangePresentation(hint);
     }
 
+    [Obsolete]
     private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
     {
         var request = new CrossViewModelRequest(pagePresentationHint.ViewModel);
@@ -261,6 +254,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return false;
     }
 
+    [Obsolete]
     protected virtual ViewPager? FindViewPagerInFragmentPresentation(
         MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
     {

@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Droid
         Intent GetIntentFor(CrossViewModelRequest request);
 
         // Important: if calling GetIntentWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
-        (Intent intent, int key) GetIntentWithKeyFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+        (Intent intent, int key) GetIntentWithKeyFor<TViewModel>(
             TViewModel existingViewModelToUse, CrossViewModelRequest? request)
                 where TViewModel : ICrossViewModel;
 
