@@ -19,14 +19,14 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxSheetPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxSheetPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
             window.ContentViewController.PresentViewControllerAsSheet(viewController);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

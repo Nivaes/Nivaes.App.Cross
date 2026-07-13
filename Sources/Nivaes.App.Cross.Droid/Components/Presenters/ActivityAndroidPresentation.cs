@@ -28,44 +28,44 @@ namespace Nivaes.App.Cross.Droid
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
-        protected override Task<bool> ShowAction(Type view, MvxActivityPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxActivityPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(view);
+            ArgumentNullException.ThrowIfNull(viewType);
             ArgumentNullException.ThrowIfNull(attribute);
             ArgumentNullException.ThrowIfNull(request);
 
             var intent = CreateIntentForRequest(request);
             if (intent == null)
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
 
             if (attribute.Extras != null)
                 intent.PutExtras(attribute.Extras);
 
             ShowIntent(intent, CreateActivityTransitionOptions(intent, attribute, request));
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxActivityPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxActivityPresentationAttribute attribute)
         {
             var currentView = CurrentActivity as ICrossView;
 
             if (currentView == null)
             {
                 Logger.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe has no current page");
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
                 Logger.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             // don't kill the dead
             if (CurrentActivity.IsActivityAlive())
                 CurrentActivity!.Finish();
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         private Bundle CreateActivityTransitionOptions(

@@ -19,14 +19,14 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, CrossModalPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, CrossModalPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
             window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

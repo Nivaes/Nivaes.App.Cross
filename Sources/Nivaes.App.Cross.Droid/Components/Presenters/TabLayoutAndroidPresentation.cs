@@ -23,13 +23,9 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override async Task<bool> ShowAction(Type view, MvxTabLayoutPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, MvxTabLayoutPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(view);
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(request);
-
-            var showViewPagerFragment = await base.ShowAction(view, attribute, request).ConfigureAwait(true);
+            var showViewPagerFragment = await base.ShowAction(viewType, attribute, request).ConfigureAwait(true);
             if (!showViewPagerFragment)
                 return false;
 

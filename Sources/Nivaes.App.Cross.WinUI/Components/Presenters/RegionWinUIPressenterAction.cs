@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type viewType, MvxRegionPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxRegionPresentationAttribute attribute, CrossViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {
@@ -39,20 +39,20 @@ namespace Nivaes.App.Cross.WinUI
                     containerView.Navigate(viewType, requestText);
 
                     containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
             }
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
 
             if (base.ViewsContainer == null)
             {
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             var viewType = base.ViewsContainer.GetViewType(viewModel.GetType());
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.WinUI
                 if (containerView == null)
                 {
                     // This can happen if a parent view is already removed.
-                    return Task.FromResult(false);
+                    return ValueTask.FromResult(false);
                 }
 
                 if (containerView.CanGoBack)
@@ -84,7 +84,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     windowInformation.UnregisterSubViewModel(viewModel);
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
             }
 

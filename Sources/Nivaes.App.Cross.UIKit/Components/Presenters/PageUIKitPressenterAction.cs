@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxPagePresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxPagePresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -26,20 +26,20 @@ namespace Nivaes.App.Cross.UIKitLib
                 Logger?.LogWarning(
                     "Got null ViewController for request {Request}", request);
 
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
             return ShowPageViewController(viewController, attribute, request);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
         {
             if (PageViewController != null && PageViewController.RemovePage(viewModel))
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
-        private Task<bool> ShowPageViewController(
+        private ValueTask<bool> ShowPageViewController(
             UIViewController viewController,
             MvxPagePresentationAttribute attribute,
             CrossViewModelRequest request)
@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross.UIKitLib
             PageViewController.AddPage(
                 viewController,
                 attribute);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

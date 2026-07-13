@@ -16,16 +16,16 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        protected abstract Task<bool> ShowAction(Type view, TPressenterAttribute attribute, CrossViewModelRequest request);
+        protected abstract ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, CrossViewModelRequest request);
 
-        protected abstract Task<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute);
+        protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute);
 
-        public Task<bool> ShowActon(Type view, ICrossPresentationAttribute attribute, CrossViewModelRequest request)
+        public ValueTask<bool> ShowActon(Type view, ICrossPresentationAttribute attribute, CrossViewModelRequest request)
         {
             return ShowActon(view, attribute, request);
         }
 
-        public Task<bool> CloseActon(ICrossViewModel viewModel, ICrossPresentationAttribute attribute)
+        public ValueTask<bool> CloseActon(ICrossViewModel viewModel, ICrossPresentationAttribute attribute)
         {
             return CloseActon(viewModel, attribute);
         }

@@ -19,8 +19,8 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, CrossContentPresentationAttribute attribute, CrossViewModelRequest request)
-        {
+        protected override ValueTask<bool> ShowAction(Type viewType, CrossContentPresentationAttribute attribute, CrossViewModelRequest request)
+        { 
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
             window.ContentView = viewController.View;
             window.ContentViewController = viewController;
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

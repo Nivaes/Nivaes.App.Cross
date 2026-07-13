@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type viewType, TPressenterAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, CrossViewModelRequest request)
         {
             return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
         }
@@ -33,8 +33,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="viewType">The type of the content.</param>
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        // ReSharper disable once UnusedParameter.Local
-        protected Task<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
+        protected ValueTask<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
         {
             try
             {
@@ -44,7 +43,7 @@ namespace Nivaes.App.Cross.WinUI
                 rootFrame.Navigate(viewType, requestText);
 
                 HandleBackButtonVisibility();
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
             catch (Exception exception)
             {
@@ -66,7 +65,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute); 
         }

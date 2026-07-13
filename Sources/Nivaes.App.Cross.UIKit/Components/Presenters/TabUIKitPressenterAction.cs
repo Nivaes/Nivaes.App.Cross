@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -26,20 +26,20 @@ namespace Nivaes.App.Cross.UIKitLib
                 Logger?.LogWarning(
                     "Got null ViewController for request {Request}", request);
 
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
             return ShowTabViewController(viewController, attribute, request);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
         {
             if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
-        private Task<bool> ShowTabViewController(
+        private ValueTask<bool> ShowTabViewController(
             UIViewController viewController,
             MvxTabPresentationAttribute attribute,
             CrossViewModelRequest request)
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.UIKitLib
             TabBarViewController.ShowTabView(
                 viewController,
                 attribute);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

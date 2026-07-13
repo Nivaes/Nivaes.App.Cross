@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.AppKitOS
             return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute)
         {
             for (int i = Windows.Count - 1; i >= 0; i--)
             {
@@ -43,7 +43,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 var tabViewController = window.ContentViewController as IMvxTabViewController;
                 if (tabViewController != null && tabViewController.CloseTabView(viewModel))
                 {
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
 
                 var controller = window.ContentViewController as ICrossViewController;
@@ -53,7 +53,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 if (presentedController != null)
                 {
                     controller.DismissViewController(presentedController);
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
 
                 // closing controller is content in a regular window
@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 {
                     Windows.Remove(window);
                     window.Close();
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
             }
 

@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.WinUI
                 var splitView = currentPage.Content.FindControl<SplitView>();
                 if (splitView == null)
                 {
-                    return Task.FromResult(false);
+                    return ValueTask.FromResult(false);
                 }
 
                 if (attribute.Position == SplitPanePosition.Content)
@@ -65,10 +65,10 @@ namespace Nivaes.App.Cross.WinUI
                 }
             }
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }       
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute);
         }

@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxModalPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxModalPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -26,15 +26,15 @@ namespace Nivaes.App.Cross.UIKitLib
                 Logger?.LogWarning(
                     "Got null ViewController for request {Request}", request);
 
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
             return ShowModalViewController(viewController, attribute, request);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
         {
             if (ModalViewControllers.Count == 0)
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
 
             // check for plain modals
             var modalToClose =
@@ -61,10 +61,10 @@ namespace Nivaes.App.Cross.UIKitLib
                 return CloseModalViewController(controllerToClose, attribute);
             }
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
-        protected virtual Task<bool> ShowModalViewController(
+        protected virtual ValueTask<bool> ShowModalViewController(
             UIViewController viewController,
             MvxModalPresentationAttribute attribute,
             CrossViewModelRequest? request)
@@ -94,7 +94,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
             ModalViewControllers.Add(viewController);
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         protected virtual IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(

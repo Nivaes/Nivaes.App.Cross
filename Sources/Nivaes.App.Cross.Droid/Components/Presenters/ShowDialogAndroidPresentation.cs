@@ -36,12 +36,8 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override Task<bool> ShowAction(Type view, MvxDialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxDialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(view);
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(request);
-
             if (CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");
 
@@ -85,12 +81,12 @@ namespace Nivaes.App.Cross.Droid
             dialog.Show(ft, fragmentName);
 
             OnFragmentChanged(ft, dialog, attribute, request);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
             
 
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -99,9 +95,9 @@ namespace Nivaes.App.Cross.Droid
             if (toClose is DialogFragment dialog)
             {
                 dialog.DismissAllowingStateLoss();
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
     }
 }

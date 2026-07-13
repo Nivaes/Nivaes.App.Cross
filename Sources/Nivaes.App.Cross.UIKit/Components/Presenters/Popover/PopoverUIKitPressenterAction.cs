@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxPopoverPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxPopoverPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -28,18 +28,18 @@ namespace Nivaes.App.Cross.UIKitLib
                 Logger?.LogWarning(
                     "Got null ViewController for request {Request}", request);
 
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
             return ShowPopoverViewController(viewController, attribute, request);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxPopoverPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPopoverPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (PopoverViewController == null)
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
 
             // check for plain popover
             if (PopoverViewController is IMvxIosView iosView && iosView.ViewModel == viewModel)
@@ -63,10 +63,10 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ClosePopoverViewController(controllerToClose, attribute);
             }
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
-        private async Task<bool> ShowPopoverViewController(
+        private async ValueTask<bool> ShowPopoverViewController(
             UIViewController viewController,
             MvxPopoverPresentationAttribute attribute,
             CrossViewModelRequest request)
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        public virtual async Task<bool> ClosePopoverViewController(UIViewController viewController, MvxPopoverPresentationAttribute attribute)
+        public virtual async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, MvxPopoverPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);

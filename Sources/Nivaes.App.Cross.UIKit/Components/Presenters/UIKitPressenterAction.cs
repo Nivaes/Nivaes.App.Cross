@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return new MvxChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 
-        protected Task<bool> ShowRootViewController(
+        protected ValueTask<bool> ShowRootViewController(
            UIViewController viewController,
            MvxRootPresentationAttribute attribute,
            CrossViewModelRequest request)
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
-        private async Task<bool> ShowRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute)
+        private async ValueTask<bool> ShowRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute)
         {
             SetupWindowRootNavigation(viewController, attribute);
 
@@ -103,7 +103,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        private async Task<bool> ShowSplitRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
+        private async ValueTask<bool> ShowSplitRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxSplitViewController splitController)
         {
             SplitViewController = splitController;
@@ -117,7 +117,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        private async Task<bool> ShowPageRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
+        private async ValueTask<bool> ShowPageRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxPageViewController pageViewController)
         {
             PageViewController = pageViewController;
@@ -131,7 +131,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        private async Task<bool> ShowTabBarRootViewController(
+        private async ValueTask<bool> ShowTabBarRootViewController(
             UIViewController viewController, MvxRootPresentationAttribute attribute,
             IMvxTabBarViewController tabBarController)
         {
@@ -165,7 +165,7 @@ namespace Nivaes.App.Cross.UIKitLib
             }
         }
 
-        protected Task<bool> ShowMasterSplitViewController(
+        protected ValueTask<bool> ShowMasterSplitViewController(
            UIViewController viewController,
            MvxSplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
@@ -177,7 +177,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowMasterView(viewController, attribute);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         protected virtual void CloseMasterNavigationController()
@@ -194,7 +194,7 @@ namespace Nivaes.App.Cross.UIKitLib
             MasterNavigationController = null;
         }
 
-        public virtual async Task<bool> CloseModalViewController(UIViewController viewController, MvxModalPresentationAttribute attribute)
+        public virtual async ValueTask<bool> CloseModalViewController(UIViewController viewController, MvxModalPresentationAttribute attribute)
         {
             if (viewController is UINavigationController modalNavController &&
                 modalNavController.ViewControllers != null)
@@ -286,7 +286,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 v.RemoveFromSuperview();
         }
 
-        protected Task<bool> ShowChildViewController(
+        protected ValueTask<bool> ShowChildViewController(
            UIViewController viewController,
            MvxChildPresentationAttribute attribute,
            CrossViewModelRequest request)
@@ -311,25 +311,25 @@ namespace Nivaes.App.Cross.UIKitLib
 
             if (TabBarViewController != null && TabBarViewController.ShowChildView(viewController))
             {
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             if (MasterNavigationController != null)
             {
                 PushViewControllerIntoStack(MasterNavigationController, viewController, attribute);
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
-        private Task<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
+        private ValueTask<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
             if (ModalViewControllers.LastOrDefault() is UINavigationController modalNavController)
             {
                 PushViewControllerIntoStack(modalNavController, viewController, attribute);
 
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             throw new CrossException(
@@ -337,13 +337,13 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 #if IOS || MACCATALYST
-        private Task<bool> ShowPopoverViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
+        private ValueTask<bool> ShowPopoverViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
         {
             if (PopoverViewController is UINavigationController popoverNavController)
             {
                 PushViewControllerIntoStack(popoverNavController, viewController, attribute);
 
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             throw new CrossException(

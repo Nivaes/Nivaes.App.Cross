@@ -27,19 +27,15 @@ namespace Nivaes.App.Cross.Droid
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
-        protected override Task<bool> ShowAction(Type view, MvxFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(view);
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(request);
-
             var fragmentAttribute = (MvxFragmentPresentationAttribute)attribute;
             // if attribute has a Fragment Host, then show it as nested and return
             if (fragmentAttribute.FragmentHostViewType != null)
             {
-                ShowNestedFragment(view, fragmentAttribute, request);
+                ShowNestedFragment(viewType, fragmentAttribute, request);
 
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             // if there is no Activity host associated, assume is the current activity
@@ -61,10 +57,10 @@ namespace Nivaes.App.Cross.Droid
 
                 PerformShowFragmentTransaction(CurrentActivity.SupportFragmentManager, attribute, request);
             }
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -74,22 +70,22 @@ namespace Nivaes.App.Cross.Droid
                 var fragmentHost = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragmentHost != null
                     && TryPerformCloseFragmentTransaction(fragmentHost.ChildFragmentManager, attribute))
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
             }
 
             // Close fragment. If it isn't successful, then close the current Activity
             if (CurrentFragmentManager != null && TryPerformCloseFragmentTransaction(CurrentFragmentManager, attribute))
             {
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             if (CurrentActivity.IsActivityAlive())
             {
                 CurrentActivity!.Finish();
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
         private void ShowNestedFragment(

@@ -27,11 +27,11 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async Task<bool> ShowAction(Type view, MvxDialogViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, MvxDialogViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
-                var contentDialog = CreateControl(view, request, attribute) as ContentDialog;
+                var contentDialog = CreateControl(viewType, request, attribute) as ContentDialog;
 
                 if (contentDialog != null)
                 {
@@ -60,12 +60,12 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, MvxDialogViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxDialogViewPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
             {
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(frame.XamlRoot).FirstOrDefault(p =>
@@ -81,7 +81,7 @@ namespace Nivaes.App.Cross.WinUI
 
             (popups?.Child as ContentDialog)?.Hide();
             windowInformation.UnregisterSubViewModel(viewModel);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         /// <summary>

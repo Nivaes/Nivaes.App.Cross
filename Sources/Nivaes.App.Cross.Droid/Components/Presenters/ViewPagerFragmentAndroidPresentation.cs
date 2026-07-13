@@ -23,12 +23,8 @@ namespace Nivaes.App.Cross.Droid
             : base(viewsContainer, androidCurrentTopActivity, logger)
         { }
 
-        protected override Task<bool> ShowAction(Type view, ViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, ViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(view);
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(request);
-
             // if the attribute doesn't supply any host, assume current activity!
             if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)
                 attribute.ActivityHostViewModelType = GetCurrentActivityViewModelType();
@@ -63,7 +59,7 @@ namespace Nivaes.App.Cross.Droid
                 {
                     PendingRequest = request;
                     ShowHostActivity(attribute);
-                    return Task.FromResult(false);
+                    return ValueTask.FromResult(false);
                 }
 
                 if (CurrentActivity.IsActivityAlive())
@@ -94,10 +90,10 @@ namespace Nivaes.App.Cross.Droid
                 );
             }
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
-        protected override Task<bool> CloseAction(ICrossViewModel viewModel, ViewPagerFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ViewPagerFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -136,11 +132,11 @@ namespace Nivaes.App.Cross.Droid
                     adapter.NotifyDataSetChanged();
 
                     OnFragmentPopped(ft, fragment, attribute);
-                    return Task.FromResult(true);
+                    return ValueTask.FromResult(true);
                 }
             }
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
         private MvxViewPagerFragmentInfo? FindFragmentInfoFromAttribute(

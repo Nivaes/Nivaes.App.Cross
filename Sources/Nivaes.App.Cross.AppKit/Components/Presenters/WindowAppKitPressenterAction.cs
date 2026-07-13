@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxWindowPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxWindowPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross.AppKitOS
             window.ContentView = viewController.View;
             window.ContentViewController = viewController;
             windowController.ShowWindow(null);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         private NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)

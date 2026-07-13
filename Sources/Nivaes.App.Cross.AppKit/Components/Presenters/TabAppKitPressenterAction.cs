@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override Task<bool> ShowAction(Type view, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
 
             tabViewController.ShowTabView(viewController, attribute.TabTitle);
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
     }
 }

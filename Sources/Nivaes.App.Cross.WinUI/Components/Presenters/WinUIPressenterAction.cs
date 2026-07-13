@@ -38,27 +38,27 @@ namespace Nivaes.App.Cross.WinUI
             return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 
-        protected Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
+        protected ValueTask<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             var currentView = windowInformation.RootFrame.Content as ICrossView;
             if (currentView == null)
             {
                 Logger?.LogWarning("Ignoring close for viewmodel - root frame has no current page");
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             if (currentView.ViewModel != viewModel)
             {
                 Logger?.LogWarning(
                     "Ignoring close for viewmodel - root frame's current page is not the view for the requested viewmodel");
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             if (!windowInformation.RootFrame.CanGoBack)
             {
                 Logger?.LogWarning("Ignoring close for viewmodel - root frame refuses to go back");
-                return Task.FromResult(false);
+                return ValueTask.FromResult(false);
             }
 
             windowInformation.RootFrame.GoBack();
@@ -66,7 +66,7 @@ namespace Nivaes.App.Cross.WinUI
             HandleBackButtonVisibility();
             windowInformation.UnregisterSubViewModel(viewModel);
 
-            return Task.FromResult(true);
+            return ValueTask.FromResult(true);
         }
 
         protected void CloseWindow(Window newWindow)
