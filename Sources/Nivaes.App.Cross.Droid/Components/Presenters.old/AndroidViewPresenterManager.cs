@@ -7,7 +7,6 @@ using AndroidX.ViewPager.Widget;
 using Google.Android.Material.Tabs;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Droid.Components.Presenters.ActivityPresentation;
 using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 using DialogFragment = AndroidX.Fragment.App.DialogFragment;
 using Fragment = AndroidX.Fragment.App.Fragment;

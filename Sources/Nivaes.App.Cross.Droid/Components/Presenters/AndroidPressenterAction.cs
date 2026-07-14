@@ -133,7 +133,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (viewType.IsSubclassOf(typeof(Fragment)))
             {
-                Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
+                Logger.LogTrace("PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
                 return new FragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
                 {
                     ViewType = viewType,
@@ -143,7 +143,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (viewType.IsSubclassOf(typeof(Activity)))
             {
-                Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
+                Logger.LogTrace("PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
                 return new ActivityPresentationAttribute
                 {
                     ViewType = viewType,

@@ -88,8 +88,6 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
             .Select(g => g.First())
             .OrderBy(x => x.Type.Name);
 
-
-
         var rootNamespace = string.IsNullOrWhiteSpace(input.rootNamespace) ? string.Empty : $"namespace {input.rootNamespace};";
 
         if (!types.Any())

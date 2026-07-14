@@ -11,7 +11,7 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public sealed class ShowDialogAndroidPresentation
+    public sealed class DialogFragmentAndroidPresentation
         : AndroidPressenterAction<DialogFragmentPresentationAttribute>
     {
         //public const string SharedElementsBundleKey = "__sharedElementsKey";
@@ -27,11 +27,10 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        public ShowDialogAndroidPresentation(
+        public DialogFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                //IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
-                ILogger<ShowDialogAndroidPresentation> logger)
+                ILogger<DialogFragmentAndroidPresentation> logger)
             : base(viewsContainer, androidCurrentTopActivity, logger)
         {
         }

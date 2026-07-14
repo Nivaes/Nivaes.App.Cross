@@ -1,4 +1,4 @@
-namespace Nivaes.App.Cross.Droid.Components.Presenters.ActivityPresentation;
+namespace Nivaes.App.Cross.Droid;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class ActivityPresentationAttribute 

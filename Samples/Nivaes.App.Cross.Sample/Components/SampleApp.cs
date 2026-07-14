@@ -20,7 +20,7 @@ public class SampleApp : CrossApplication
     {
         base.Setup();
         GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
-        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+        //GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     ///// <summary>

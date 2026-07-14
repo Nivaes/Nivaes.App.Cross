@@ -13,27 +13,26 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var converters = context.SyntaxProvider.CreateSyntaxProvider(
-                    predicate: static (node, _) => node is ClassDeclarationSyntax,
-                    transform: static (ctx, _) => GetConverterType(ctx))
-            .Where(static t => t is not null)!;
+        var converters = context.SyntaxProvider
+        .CreateSyntaxProvider(
+            predicate: static (node, _) => node is ClassDeclarationSyntax,
+            transform: static (ctx, _) => GetConverterType(ctx))
+        .Where(static c => c is not null)!;
 
         var rootNamespace = context.AnalyzerConfigOptionsProvider
-                .Select(static (options, _) =>
-                {
-                    options.GlobalOptions.TryGetValue(
-                        "build_property.RootNamespace",
-                        out var ns);
+            .Select(static (options, _) =>
+            {
+                options.GlobalOptions.TryGetValue(
+                    "build_property.RootNamespace",
+                    out var ns);
 
-                    return ns;
-                });
+                return ns;
+            });
 
         context.RegisterSourceOutput(
             converters.Collect().Combine(rootNamespace),
-            Generate
-            );
+            Generate);
     }
-
 
     private static ConverterInfo? GetConverterType(GeneratorSyntaxContext context)
     {
@@ -42,18 +41,57 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
         if (context.SemanticModel.GetDeclaredSymbol(classDeclaration) is not INamedTypeSymbol symbol)
             return null;
 
+        // Ignorar clases abstractas y genéricas
         if (symbol.IsAbstract || symbol.IsGenericType)
             return null;
 
-        if (!symbol.AllInterfaces.Any(i => i.ToDisplayString() == "Nivaes.App.Cross.IPressenterAction"))
+        var compilation = context.SemanticModel.Compilation;
+
+        var presenterActionInterface =
+            compilation.GetTypeByMetadataName("Nivaes.App.Cross.IPressenterAction");
+
+        var presenterActionBase =
+            compilation.GetTypeByMetadataName("Nivaes.App.Cross.PressenterAction`1");
+
+        if (presenterActionInterface is null || presenterActionBase is null)
             return null;
 
-        return new ConverterInfo(symbol, symbol);
+        // Debe implementar IPressenterAction
+        if (!symbol.AllInterfaces.Any(i =>
+            SymbolEqualityComparer.Default.Equals(i, presenterActionInterface)))
+        {
+            return null;
+        }
+
+        // Buscar PressenterAction<TPresentationAttribute> en la jerarquía de herencia
+        INamedTypeSymbol? current = symbol;
+        INamedTypeSymbol? presentationAttributeType = null;
+
+        while (current is not null)
+        {
+            if (current.IsGenericType &&
+                SymbolEqualityComparer.Default.Equals(
+                    current.OriginalDefinition,
+                    presenterActionBase))
+            {
+                presentationAttributeType = current.TypeArguments[0] as INamedTypeSymbol;
+                break;
+            }
+
+            current = current.BaseType;
+        }
+
+        if (presentationAttributeType is null)
+            return null;
+
+        return new ConverterInfo(
+            presentationAttributeType,
+            symbol);
     }
 
     private static void Generate(
-    SourceProductionContext context,
-    (ImmutableArray<ConverterInfo?> ressenterActions, string? rootNamespace) input)
+        SourceProductionContext context,
+        (ImmutableArray<ConverterInfo?> ressenterActions, string? rootNamespace) input)
     {
         var types = input.ressenterActions
             .Where(x => x != null)
