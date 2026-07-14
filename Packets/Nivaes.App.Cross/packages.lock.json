@@ -1109,6 +1109,7 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.9, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Xamarin.AndroidX.AppCompat": "[1.7.1.4, )",
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",
@@ -1596,6 +1597,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -1923,6 +1925,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -2230,7 +2233,8 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.AppKit.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Cross.Core": "[1.0.0, )"
+          "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )"
         }
       },
       "nivaes.app.cross.appkit.sourcegenerator": {
@@ -2576,6 +2580,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -3025,6 +3030,7 @@
           "CommunityToolkit.WinUI.Collections": "[8.2.251219, )",
           "Microsoft.WindowsAppSDK": "[2.2.0, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.WinUI.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }

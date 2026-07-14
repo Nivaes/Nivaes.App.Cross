@@ -207,7 +207,8 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.AppKit.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Cross.Core": "[1.0.0, )"
+          "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )"
         }
       },
       "nivaes.app.cross.appkit.sourcegenerator": {

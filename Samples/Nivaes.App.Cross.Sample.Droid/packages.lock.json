@@ -1179,6 +1179,7 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.9, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Xamarin.AndroidX.AppCompat": "[1.7.1.4, )",
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",

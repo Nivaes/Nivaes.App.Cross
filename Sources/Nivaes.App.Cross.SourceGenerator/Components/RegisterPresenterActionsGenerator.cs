@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace Nivaes.App.Cross.SourceGenerator;
 
 [Generator(LanguageNames.CSharp)]
-public class RegisterCombinersGenerator : IIncrementalGenerator
+public class RegisterPresenterActionsGenerator : IIncrementalGenerator
 {
     #region ConverterInfo
     private sealed class ConverterInfo
@@ -61,38 +61,38 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
         if (symbol.IsAbstract || symbol.IsGenericType)
             return null;
 
-        if (!symbol.AllInterfaces.Any(i => i.ToDisplayString() == "Nivaes.App.Cross.ICrossValueCombiner"))
+        if (!symbol.AllInterfaces.Any(i => i.ToDisplayString() == "Nivaes.App.Cross.IPressenterAction"))
             return null;
 
         string? name = null;
         bool register = true;
 
-        var attribute = symbol.GetAttributes()
-            .FirstOrDefault(a =>
-                a.AttributeClass?.ToDisplayString() == "Nivaes.App.Cross.CrossValueCombinerAttribute");
+        //var attribute = symbol.GetAttributes()
+        //    .FirstOrDefault(a =>
+        //        a.AttributeClass?.ToDisplayString() == "Nivaes.App.Cross.CrossValueCombinerAttribute");
 
-        if (attribute is not null)
-        {
-            // Busca la propiedad Name
-            foreach (var arg in attribute.NamedArguments)
-            {
-                if (arg.Key == "Name")
-                {
-                    name = arg.Value.Value as string;
-                    break;
-                }
-                else if (arg.Key == "Register")
-                {
-                    register = (bool?)arg.Value.Value ?? true;
-                }
-            }
+        //if (attribute is not null)
+        //{
+        //    // Busca la propiedad Name
+        //    foreach (var arg in attribute.NamedArguments)
+        //    {
+        //        if (arg.Key == "Name")
+        //        {
+        //            name = arg.Value.Value as string;
+        //            break;
+        //        }
+        //        else if (arg.Key == "Register")
+        //        {
+        //            register = (bool?)arg.Value.Value ?? true;
+        //        }
+        //    }
 
-            // Opcional: si Name también puede venir por constructor
-            if (name is null && attribute.ConstructorArguments.Length > 0)
-            {
-                name = attribute.ConstructorArguments[0].Value as string;
-            }
-        }
+        //    // Opcional: si Name también puede venir por constructor
+        //    if (name is null && attribute.ConstructorArguments.Length > 0)
+        //    {
+        //        name = attribute.ConstructorArguments[0].Value as string;
+        //    }
+        //}
 
         return new ConverterInfo(symbol, name, register);
     }
@@ -113,18 +113,17 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
         if (!types.Any())
             return;
 
-
         var sourceConverters = string.Join(Environment.NewLine,
             types.Where(combiner => combiner.Register).Select(combiner =>
                 {
                     if (string.IsNullOrWhiteSpace(combiner.Name))
-                        return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                        return $"PresenterActionsContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                     else
-                        return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
+                        return $"PresenterActionsContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
                 }
             ));
         var sourceRegisterConverters = $@"
-                    CombinersContainerManagerHelper.RegisterCombiners(new[]
+                    PresenterActionsContainerManagerHelper.RegisterPresenterActions(new[]
                     {{
                        {sourceConverters}
                     }});";
@@ -135,9 +134,9 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             using System;
             using Nivaes.App.Cross;
             {rootNamespace}
-            internal static class GeneratedCombinerExtensions
+            internal static class GeneratedPresenterActionsExtensions
             {{
-                public static IServiceProvider RegisterCombiners(IServiceProvider services)
+                public static IServiceProvider RegisterPresenterActions(IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 
@@ -147,7 +146,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
         ";
 
         context.AddSource(
-            "GeneratedCombinerExtensions.g.cs",
+            "GeneratedPresenterActionsExtensions.g.cs",
             SourceText.From(source, Encoding.UTF8));
     }
 }

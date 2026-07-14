@@ -255,6 +255,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -679,6 +680,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
