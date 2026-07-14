@@ -13,6 +13,8 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        //System.Diagnostics.Debugger.Launch();
+
         var converters = context.SyntaxProvider
         .CreateSyntaxProvider(
             predicate: static (node, _) => node is ClassDeclarationSyntax,
@@ -93,6 +95,8 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
         SourceProductionContext context,
         (ImmutableArray<ConverterInfo?> ressenterActions, string? rootNamespace) input)
     {
+        var aa = input.ressenterActions.ToArray();
+
         var types = input.ressenterActions
             .Where(x => x != null)
             .Cast<ConverterInfo>()

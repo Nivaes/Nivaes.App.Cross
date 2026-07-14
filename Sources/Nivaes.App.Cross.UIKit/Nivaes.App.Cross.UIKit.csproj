@@ -54,10 +54,10 @@
 
 	</ItemGroup>
 
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(IntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
