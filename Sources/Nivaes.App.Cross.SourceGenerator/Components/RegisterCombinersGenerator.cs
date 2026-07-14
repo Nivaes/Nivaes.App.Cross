@@ -118,13 +118,13 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
                 types.Where(combiner => combiner.Register).Select(combiner =>
                     {
                         if (string.IsNullOrWhiteSpace(combiner.Name))
-                            return $"CrossCombinersManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                            return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                         else
-                            return $"CrossCombinersManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
+                            return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
                     }
                 ));
             sourceRegisterConverters = $@"
-                    CrossCombinersManagerHelper.RegisterCombiners(new[]
+                    CombinersContainerManagerHelper.RegisterCombiners(new[]
                     {{
                        {sourceConverters}
                     }});";

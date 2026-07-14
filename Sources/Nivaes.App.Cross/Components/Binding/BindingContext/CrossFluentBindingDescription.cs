@@ -90,7 +90,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
 
         //return ByCombining(combinerName, properties);
 
-        if (Singleton<CrossCombinersManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CombinersKeyContainerManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }
@@ -106,7 +106,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
         //var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueCombinerRegistryFiller>();
         //var combinerName = filler.FindName(typeof(TValueCombiner));
 
-        if (Singleton<CrossCombinersManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CombinersKeyContainerManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }
@@ -118,7 +118,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
 
     public CrossFluentBindingDescription<TTarget, TSource> CommandParameter(object parameter)
     {
-        var converter = Singleton<CrossConvertersManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+        var converter = Singleton<ConvertersKeyContainerManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
 
         return WithConversion(converter, parameter);
     }
@@ -143,7 +143,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
     {
         //var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterRegistryFiller>();
         //var converterName = filler.FindName(typeof(TValueConverter));
-        if (Singleton<CrossConvertersManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
+        if (Singleton<ConvertersKeyContainerManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
         {
             return WithConversion(converter, converterParameter);
         }
@@ -261,7 +261,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
 
     public MvxFluentBindingDescription<TTarget> CommandParameter(object parameter)
     {
-        var converter = Singleton<CrossConvertersManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+        var converter = Singleton<ConvertersKeyContainerManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
 
         return WithConversion(converter, parameter);
     }
@@ -286,7 +286,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
     {
         //var filler = IPlatformApplication.Current!.Services.GetRequiredService<ICrossValueConverterRegistryFiller>();
         //var converterName = filler.FindName(typeof(TValueConverter));
-        if (Singleton<CrossConvertersManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
+        if (Singleton<ConvertersKeyContainerManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
         {
             return WithConversion(converter, converterParameter);
         }

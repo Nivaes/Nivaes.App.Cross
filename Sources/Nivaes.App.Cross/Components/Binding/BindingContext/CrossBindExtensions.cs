@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross
             ICrossValueConverter? converter = null;
             //var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
             if (converterName != null)
-                converter = Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
+                converter = Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
 
             return element.Bind(target, targetPropertyPath, sourcePropertyPath, converter, converterParameter,
                                 fallbackValue, mode);

@@ -28,17 +28,17 @@ public static class CrossProgram
     static CrossAppBuilder SetupViews(this CrossAppBuilder builder)
     {
         // ToDo: Cargar esto con roslyn.
-        ViewsStoreManager.RegisterViewModels(new[] {
-                    ViewsStoreManager.New<RootViewModel, RootView>(),
-                    ViewsStoreManager.New<ModalViewModel, ModalView>(),
-                    ViewsStoreManager.New<SheetViewModel, SheetView>(),
-                    ViewsStoreManager.New<ChildViewModel, ChildView>(),
-                    ViewsStoreManager.New<WindowViewModel,WindowView>(),
+        ViewsContainerManagerHelper.RegisterViewModels(new[] {
+                    ViewsContainerManagerHelper.New<RootViewModel, RootView>(),
+                    ViewsContainerManagerHelper.New<ModalViewModel, ModalView>(),
+                    ViewsContainerManagerHelper.New<SheetViewModel, SheetView>(),
+                    ViewsContainerManagerHelper.New<ChildViewModel, ChildView>(),
+                    ViewsContainerManagerHelper.New<WindowViewModel,WindowView>(),
                     //CrossViewsManagerHelper.New<ToolbarWindow, ToolbarWindow>(),
-                    ViewsStoreManager.New<Tab1ViewModel, Tab1View>(),
-                    ViewsStoreManager.New<Tab2ViewModel, Tab2View>(),
-                    ViewsStoreManager.New<Tab3ViewModel, Tab3View>(),
-                    ViewsStoreManager.New<TabsRootViewModel, TabsRootView>(),
+                    ViewsContainerManagerHelper.New<Tab1ViewModel, Tab1View>(),
+                    ViewsContainerManagerHelper.New<Tab2ViewModel, Tab2View>(),
+                    ViewsContainerManagerHelper.New<Tab3ViewModel, Tab3View>(),
+                    ViewsContainerManagerHelper.New<TabsRootViewModel, TabsRootView>(),
                 });
 
         return builder;

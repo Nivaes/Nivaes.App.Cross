@@ -47,7 +47,7 @@ public static class CrossViewExtensions
     {
         ArgumentNullException.ThrowIfNull(view);
 
-        if (Singleton<ViewsViewModelStore>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        if (Singleton<ViewsViewKeyContainerManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
         {
             return viewModelType;
         }

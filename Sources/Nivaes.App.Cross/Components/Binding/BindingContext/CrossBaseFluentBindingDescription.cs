@@ -226,7 +226,7 @@ namespace Nivaes.App.Cross
             //var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
             //return converter;
 
-            var converter = Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
+            var converter = Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
             return converter!;
         }
 

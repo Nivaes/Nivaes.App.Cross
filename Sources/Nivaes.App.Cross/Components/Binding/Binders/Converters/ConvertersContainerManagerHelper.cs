@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
 {
-    public static class CrossConvertersManagerHelper
+    public static class ConvertersContainerManagerHelper
     {
         public sealed class ConverterManagerItem
         {
-            internal CrossNameConvertersManager.KeyStoreItem NameConverters { [DebuggerHidden] get; [DebuggerHidden] set; }
-            internal CrossConvertersManager.KeyStoreItem Converters { [DebuggerHidden] get; [DebuggerHidden] set; }
+            internal NameConvertersKeyContainerManager.KeyStoreItem NameConverters { [DebuggerHidden] get; [DebuggerHidden] set; }
+            internal ConvertersKeyContainerManager.KeyStoreItem Converters { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
         public static ConverterManagerItem New<TConverter>(IServiceProvider services, string name)
@@ -18,8 +18,8 @@ namespace Nivaes.App.Cross
 
             return new ConverterManagerItem()
             {
-                NameConverters = new CrossNameConvertersManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
-                Converters = new CrossConvertersManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
+                NameConverters = new NameConvertersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
+                Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
             };
         }
 
@@ -31,8 +31,8 @@ namespace Nivaes.App.Cross
 
         public static void RegisterComverters(ConverterManagerItem[] items)
         {
-            Singleton<CrossNameConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
-            Singleton<CrossConvertersManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
+            Singleton<NameConvertersKeyContainerManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
+            Singleton<ConvertersKeyContainerManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
         }
 
         private static string FindName(Type type)

@@ -2,13 +2,13 @@
 
 namespace Nivaes.App.Cross;
 
-public sealed class CrossConvertersManager : KeyContainerManager<ICrossValueConverter>
+public sealed class ConvertersKeyContainerManager : KeyContainerManager<ICrossValueConverter>
 {
-    public CrossConvertersManager()
+    public ConvertersKeyContainerManager()
     {
     }
 
-    public CrossConvertersManager(KeyStoreItem[] presentations)
+    public ConvertersKeyContainerManager(KeyStoreItem[] presentations)
         : base(presentations)
     {
     }

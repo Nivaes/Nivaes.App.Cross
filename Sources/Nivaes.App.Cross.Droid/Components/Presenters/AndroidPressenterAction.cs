@@ -163,7 +163,7 @@ namespace Nivaes.App.Cross.Droid
             if (currentActivityType == null)
                 return null;
 
-            Singleton<ViewsViewModelStore>.Instance.TryGetValue(currentActivityType, out var viewModelType);
+            Singleton<ViewsViewKeyContainerManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
             return viewModelType;
         }
 

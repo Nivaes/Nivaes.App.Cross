@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
         [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
         public Type GetViewType(Type viewModelType)
         {
-            var viewsManager = Singleton<ViewModelViewsStore>.Instance;
+            var viewsManager = Singleton<ViewModelViewsKeyContainerManager>.Instance;
             if (viewsManager.TryGetValue(viewModelType, out var viewType))
             {
                 return viewType;

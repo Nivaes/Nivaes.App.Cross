@@ -2,13 +2,13 @@
 
 namespace Nivaes.App.Cross;
 
-public sealed class ViewsViewModelStore : KeyContainerManager<Type>
+public sealed class ViewsViewKeyContainerManager : KeyContainerManager<Type>
 {
-    public ViewsViewModelStore()
+    public ViewsViewKeyContainerManager()
     {
     }
 
-    public ViewsViewModelStore(KeyStoreItem[] presentations)
+    public ViewsViewKeyContainerManager(KeyStoreItem[] presentations)
         : base(presentations)
     {
     }

@@ -113,13 +113,13 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
                 types.Select(converter =>
                     {
                         if (string.IsNullOrWhiteSpace(converter.Name))
-                            return $"CrossConvertersManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                            return $"ConvertersContainerManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                         else
-                            return $"CrossConvertersManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{converter.Name}\"),";
+                            return $"ConvertersContainerManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{converter.Name}\"),";
                     }
                 ));
             sourceRegisterConverters = $@"
-                    CrossConvertersManagerHelper.RegisterComverters(new[]
+                    ConvertersContainerManagerHelper.RegisterComverters(new[]
                     {{
                        {sourceConverters}
                     }});";

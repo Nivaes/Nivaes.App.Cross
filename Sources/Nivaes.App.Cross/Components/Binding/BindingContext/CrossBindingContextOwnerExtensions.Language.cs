@@ -92,7 +92,7 @@ namespace Nivaes.App.Cross
                 ICrossValueConverter? converter = null;
 
                 if (converterName != null)
-                    converter = Singleton<CrossNameConvertersManager>.Instance.GetValue(converterName);
+                    converter = Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
 
                 var bindingDescription = new CrossBindingDescription
                 {
