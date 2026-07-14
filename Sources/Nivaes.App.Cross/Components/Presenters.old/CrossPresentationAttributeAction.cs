@@ -4,8 +4,8 @@ namespace Nivaes.App.Cross
 {
     public class CrossPresentationAttributeAction
     {
-        public Func<Type, ICrossPresentationAttribute, CrossViewModelRequest, Task<bool>>? ShowAction { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public Func<Type, IPresentationAttribute, CrossViewModelRequest, Task<bool>>? ShowAction { [DebuggerHidden] get; [DebuggerHidden] set; }
 
-        public Func<ICrossViewModel, ICrossPresentationAttribute, Task<bool>>? CloseAction { [DebuggerHidden] get; [DebuggerHidden] set; }
+        public Func<ICrossViewModel, IPresentationAttribute, Task<bool>>? CloseAction { [DebuggerHidden] get; [DebuggerHidden] set; }
     }
 }

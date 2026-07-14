@@ -4,7 +4,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxActivityPresentation]
+[ActivityPresentation]
 [Activity(Theme = "@style/AppTheme", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public class TabsRootView : CrossActivity<TabsRootViewModel>

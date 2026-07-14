@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
     using ObjCRuntime;
 
     [MvxFromStoryboard("Main")]
-    [MvxWindowPresentation(PositionX = 300)]
+    [WindowPresentation(PositionX = 300)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class RootView
         : CrossViewController<RootViewModel> //, ICrossOverridePresentationAttribute
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
             base.ViewDidDisappear();
         }
 
-        public CrossBasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
+        public BasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
         {
             if (!WasPresentedInWindow)
             {
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
                 return null;
             }
 
-            return new CrossContentPresentationAttribute
+            return new ContentPresentationAttribute
             {
                 WindowIdentifier = typeof(RootView).Name
             };

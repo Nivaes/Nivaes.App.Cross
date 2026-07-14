@@ -76,11 +76,11 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModelType"></param>
     /// <param name="viewType"></param>
     /// <returns></returns>
-    public override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+    public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
         Logger.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
             viewType?.Name);
-        return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+        return new PagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
     }
 
     /// <summary>
@@ -89,17 +89,17 @@ public class MultiWindowViewPresenterManager
     [Obsolete]
     public override void RegisterAttributeTypes()
     {
-        AttributeTypesToActionsDictionary.Register<MvxPagePresentationAttribute>(ShowPage, ClosePage);
-        AttributeTypesToActionsDictionary.Register<MvxSplitViewPresentationAttribute>(ShowSplitView, CloseSplitView);
-        AttributeTypesToActionsDictionary.Register<MvxRegionPresentationAttribute>(ShowRegionView, CloseRegionView);
-        AttributeTypesToActionsDictionary.Register<MvxDialogViewPresentationAttribute>(ShowDialogAsync, CloseDialog);
+        AttributeTypesToActionsDictionary.Register<PagePresentationAttribute>(ShowPage, ClosePage);
+        AttributeTypesToActionsDictionary.Register<SplitViewPresentationAttribute>(ShowSplitView, CloseSplitView);
+        AttributeTypesToActionsDictionary.Register<RegionPresentationAttribute>(ShowRegionView, CloseRegionView);
+        AttributeTypesToActionsDictionary.Register<DialogViewPresentationAttribute>(ShowDialogAsync, CloseDialog);
         AttributeTypesToActionsDictionary.Add(
-            typeof(MvxNewWindowPresentationAttribute),
+            typeof(NewWindowPresentationAttribute),
             new CrossPresentationAttributeAction
             {
                 ShowAction = async (_, attribute, request) =>
                 {
-                    if (attribute is not MvxNewWindowPresentationAttribute presentationAttribute)
+                    if (attribute is not NewWindowPresentationAttribute presentationAttribute)
                     {
                         return false;
                     }
@@ -154,7 +154,7 @@ public class MultiWindowViewPresenterManager
     /// <exception cref="CrossException"></exception>
     [Obsolete]
     public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
-        CrossBasePresentationAttribute attribute)
+        BasePresentationAttribute attribute)
     {
         try
         {
@@ -215,7 +215,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">The presentation attributes.</param>
     /// <returns>True upon success, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
+    protected virtual Task<bool> CloseDialog(ICrossViewModel viewModel, BasePresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
         if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
@@ -246,7 +246,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="attribute">The presentation attributes</param>
     /// <returns>True if closed, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
+    protected virtual Task<bool> ClosePage(ICrossViewModel viewModel, BasePresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
         var currentView = windowInformation.RootFrame.Content as ICrossView;
@@ -285,7 +285,7 @@ public class MultiWindowViewPresenterManager
     /// <returns>True if successful. False otherwise.</returns>
     /// <exception cref="CrossException">If no region is found for the given viewmodel.</exception>
     [Obsolete("", true)]
-    protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
+    protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, RegionPresentationAttribute attribute)
     {
         var windowInformation = GetWindowInformation(viewModel);
 
@@ -338,7 +338,7 @@ public class MultiWindowViewPresenterManager
     /// <returns>True if successful, false otherwise.</returns>
     [Obsolete("", true)]
     protected virtual Task<bool> CloseSplitView(ICrossViewModel viewModel,
-        MvxSplitViewPresentationAttribute attribute)
+        SplitViewPresentationAttribute attribute)
     {
         return ClosePage(viewModel, attribute);
     }
@@ -437,7 +437,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="request">The request to show the dialog for.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual async Task<bool> ShowDialogAsync(Type viewType, MvxDialogViewPresentationAttribute attribute,
+    protected virtual async Task<bool> ShowDialogAsync(Type viewType, DialogViewPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         try
@@ -479,7 +479,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="request">The request to show the page.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual Task<bool> ShowPage(Type viewType, CrossBasePresentationAttribute attribute,
+    protected virtual Task<bool> ShowPage(Type viewType, BasePresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
@@ -493,7 +493,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="request">The request.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual Task<bool> ShowRegionView(Type viewType, MvxRegionPresentationAttribute attribute,
+    protected virtual Task<bool> ShowRegionView(Type viewType, RegionPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         if (viewType.HasRegionAttribute())
@@ -528,7 +528,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="request">The request.</param>
     /// <returns>True if successful, false otherwise.</returns>
     [Obsolete("", true)]
-    protected virtual Task<bool> ShowSplitView(Type viewType, MvxSplitViewPresentationAttribute attribute,
+    protected virtual Task<bool> ShowSplitView(Type viewType, SplitViewPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         var windowInformation = GetWindowInformation(request);
@@ -653,7 +653,7 @@ public class MultiWindowViewPresenterManager
     }
 
     [Obsolete("", true)]
-    protected virtual async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
+    protected virtual async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, NewWindowPresentationAttribute attribute)
     {
         var newWindow = new Window();
 
@@ -727,7 +727,7 @@ public class MultiWindowViewPresenterManager
     }
 
     private static SizeInt32 GetScaledWindowSize(
-        MvxNewWindowPresentationAttribute attribute,
+        NewWindowPresentationAttribute attribute,
         Window newWindow,
         Microsoft.UI.Windowing.AppWindow appWindow)
     {

@@ -32,7 +32,7 @@ public abstract class CrossAttributeViewPresenterManager
 
     public abstract void RegisterAttributeTypes();
 
-    public abstract CrossBasePresentationAttribute CreatePresentationAttribute(
+    public abstract BasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
@@ -45,7 +45,7 @@ public abstract class CrossAttributeViewPresenterManager
     }
 
     [Obsolete("Busca interfaces de la vista.", true)]
-    public virtual CrossBasePresentationAttribute? GetOverridePresentationAttribute(
+    public virtual BasePresentationAttribute? GetOverridePresentationAttribute(
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
     {
@@ -82,7 +82,7 @@ public abstract class CrossAttributeViewPresenterManager
         }
     }
 
-    public virtual CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+    public virtual BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
         ArgumentNullException.ThrowIfNull(request.ViewModelType, nameof(request.ViewModelType));
@@ -96,10 +96,10 @@ public abstract class CrossAttributeViewPresenterManager
         //    return overrideAttribute;
 
         var attribute = viewType
-            .GetCustomAttributes(typeof(CrossBasePresentationAttribute), true)
+            .GetCustomAttributes(typeof(BasePresentationAttribute), true)
             .FirstOrDefault();
 
-        if (attribute is CrossBasePresentationAttribute basePresentationAttribute)
+        if (attribute is BasePresentationAttribute basePresentationAttribute)
         {
             if (basePresentationAttribute.ViewType == null)
                 basePresentationAttribute.ViewType = viewType;
@@ -115,7 +115,7 @@ public abstract class CrossAttributeViewPresenterManager
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
-        CrossViewModelRequest? request, out CrossBasePresentationAttribute attribute)
+        CrossViewModelRequest? request, out BasePresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 

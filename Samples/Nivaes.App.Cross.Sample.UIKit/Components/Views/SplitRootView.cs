@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
-    [MvxRootPresentation]
+    [RootPresentation]
     public partial class SplitRootView : MvxSplitViewController<SplitRootViewModel>
     {
         private bool _isPresentedFirstTime = true;

@@ -4,8 +4,8 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]
-    [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
+    [FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]
+    [FragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SecondChildView : MvxFragment<SecondChildViewModel>
     {

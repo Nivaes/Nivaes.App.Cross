@@ -12,7 +12,7 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 namespace Nivaes.App.Cross.Droid
 {
     public sealed class ShowDialogAndroidPresentation
-        : AndroidPressenterAction<MvxDialogFragmentPresentationAttribute>
+        : AndroidPressenterAction<DialogFragmentPresentationAttribute>
     {
         //public const string SharedElementsBundleKey = "__sharedElementsKey";
 
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxDialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, DialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
             if (CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.Droid
                 throw new InvalidOperationException("CurrentFragmentManager is null. Cannot create Fragment Transaction.");
 
             if (attribute.ViewType == null)
-                throw new InvalidOperationException($"{nameof(MvxDialogFragmentPresentationAttribute)}.ViewType is null");
+                throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
 
             var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
             IMvxFragmentView mvxFragmentView = CreateFragment(CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
@@ -86,7 +86,7 @@ namespace Nivaes.App.Cross.Droid
 
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DialogFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 

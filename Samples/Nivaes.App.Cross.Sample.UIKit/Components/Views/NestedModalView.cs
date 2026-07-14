@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxModalPresentation(WrapInNavigationController = true)]
+[ModalPresentation(WrapInNavigationController = true)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class NestedModalView : MvxViewController<NestedModalViewModel>
 {

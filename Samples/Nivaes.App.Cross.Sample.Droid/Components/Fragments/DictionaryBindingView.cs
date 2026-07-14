@@ -10,7 +10,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
                      Resource.Animation.abc_fade_in,
                      Resource.Animation.abc_fade_out,
                      Resource.Animation.abc_fade_in,

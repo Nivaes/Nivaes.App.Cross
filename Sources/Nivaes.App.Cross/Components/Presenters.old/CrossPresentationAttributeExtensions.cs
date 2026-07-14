@@ -4,21 +4,21 @@ namespace Nivaes.App.Cross
     {
         public static bool HasBasePresentationAttribute(this Type candidateType)
         {
-            var attributes = candidateType.GetCustomAttributes(typeof(CrossBasePresentationAttribute), true);
+            var attributes = candidateType.GetCustomAttributes(typeof(BasePresentationAttribute), true);
             return attributes.Length > 0;
         }
 
-        public static IEnumerable<CrossBasePresentationAttribute> GetBasePresentationAttributes(this Type fromViewType)
+        public static IEnumerable<BasePresentationAttribute> GetBasePresentationAttributes(this Type fromViewType)
         {
-            var attributes = fromViewType.GetCustomAttributes(typeof(CrossBasePresentationAttribute), true);
+            var attributes = fromViewType.GetCustomAttributes(typeof(BasePresentationAttribute), true);
 
             if (attributes.Length == 0)
-                throw new InvalidOperationException($"Type does not have {nameof(CrossBasePresentationAttribute)} attribute!");
+                throw new InvalidOperationException($"Type does not have {nameof(BasePresentationAttribute)} attribute!");
 
-            return attributes.Cast<CrossBasePresentationAttribute>();
+            return attributes.Cast<BasePresentationAttribute>();
         }
 
-        public static CrossBasePresentationAttribute? GetBasePresentationAttribute(this Type fromViewType)
+        public static BasePresentationAttribute? GetBasePresentationAttribute(this Type fromViewType)
         {
             return fromViewType.GetBasePresentationAttributes().FirstOrDefault();
         }
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
             this IDictionary<Type, CrossPresentationAttributeAction> attributeTypesToActionsDictionary,
             Func<Type, TMvxPresentationAttribute, CrossViewModelRequest, Task<bool>> showAction,
             Func<ICrossViewModel, TMvxPresentationAttribute, Task<bool>> closeAction)
-                where TMvxPresentationAttribute : class, ICrossPresentationAttribute
+                where TMvxPresentationAttribute : class, IPresentationAttribute
         {
             attributeTypesToActionsDictionary.Add(
                 typeof(TMvxPresentationAttribute),

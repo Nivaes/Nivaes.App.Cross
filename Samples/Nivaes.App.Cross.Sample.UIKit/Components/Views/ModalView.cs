@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
+[ModalPresentation(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen, ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ModalView
     : MvxViewController<ModalViewModel>

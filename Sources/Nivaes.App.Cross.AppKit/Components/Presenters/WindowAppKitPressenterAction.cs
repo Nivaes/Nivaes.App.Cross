@@ -8,7 +8,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitOS
 {
     public sealed class WindowAppKitPressenterAction
-        : AppKitPressenterAction<MvxWindowPresentationAttribute>
+        : AppKitPressenterAction<WindowPresentationAttribute>
     {
         /// <summary>
         /// NSWindow keeps only the *weak* reference to its NSWindowController. So, the controller will be
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxWindowPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, WindowPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross.AppKitOS
             return ValueTask.FromResult(true);
         }
 
-        private NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)
+        private NSWindow CreateWindow(WindowPresentationAttribute attribute)
         {
             NSWindow window;
             var positionX = attribute.PositionX;
@@ -94,7 +94,7 @@ namespace Nivaes.App.Cross.AppKitOS
             return window;
         }
 
-        private MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
+        private MvxWindowController CreateWindowController(WindowPresentationAttribute attribute)
         {
             MvxWindowController? windowController;
             if (!string.IsNullOrEmpty(attribute.StoryboardName))
@@ -110,8 +110,8 @@ namespace Nivaes.App.Cross.AppKitOS
                 {
                     throw new CrossException(
                         $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
-                        $"Please specify either the {nameof(MvxWindowPresentationAttribute.WindowControllerType)} or " +
-                        $"{nameof(MvxWindowPresentationAttribute.WindowControllerName)} property of the {nameof(MvxWindowPresentationAttribute)} " +
+                        $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
+                        $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
                         $"for the corresponding view model.");
                 }
                 // Instantiate using Reflection - failure is possible if blank constructor is missing
@@ -126,7 +126,7 @@ namespace Nivaes.App.Cross.AppKitOS
             return new MvxWindowController(window);
         }
 
-        private void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
+        private void UpdateWindow(WindowPresentationAttribute attribute, NSWindow window)
         {
             var positionX = (float)window.Frame.X;
             var positionY = (float)window.Frame.Y;

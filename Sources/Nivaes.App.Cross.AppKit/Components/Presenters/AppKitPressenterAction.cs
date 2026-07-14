@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.AppKitOS
 {
     public abstract class AppKitPressenterAction<TPressenterAttribute>
                 : PressenterAction<TPressenterAttribute>
-        where TPressenterAttribute : ICrossPresentationAttribute
+        where TPressenterAttribute : IPresentationAttribute
     {
         // ToDo: Windows ha de ser una colección común para todos los PressenterAction.
         protected List<NSWindow> Windows { get; } = new List<NSWindow>();
@@ -27,10 +27,10 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
             Logger.LogTrace($"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
-            return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
+            return new WindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
         }
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute)

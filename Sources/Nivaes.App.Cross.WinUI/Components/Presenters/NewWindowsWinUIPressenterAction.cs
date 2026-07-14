@@ -10,7 +10,7 @@ using Windows.Graphics;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class NewWindowWinUIPressenterAction
-        : PageWinUIPressenterAction<MvxNewWindowPresentationAttribute>
+        : PageWinUIPressenterAction<NewWindowPresentationAttribute>
     {
         private const string WindowTitle = "WindowTitle";
         private const int DefaultWindowHeight = 456;
@@ -27,9 +27,9 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, MvxNewWindowPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, NewWindowPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            if (attribute is not MvxNewWindowPresentationAttribute presentationAttribute)
+            if (attribute is not NewWindowPresentationAttribute presentationAttribute)
             {
                 return false;
             }
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.WinUI
             return await ShowNewWindowAsync(request, presentationAttribute);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxNewWindowPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, NewWindowPresentationAttribute attribute)
         {
             viewModel.ViewDisappearing();
             viewModel.ViewDisappeared();
@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }
 
-        private async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, MvxNewWindowPresentationAttribute attribute)
+        private async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, NewWindowPresentationAttribute attribute)
         {
             var newWindow = new Window();
 
@@ -120,7 +120,7 @@ namespace Nivaes.App.Cross.WinUI
         }
 
         private static SizeInt32 GetScaledWindowSize(
-            MvxNewWindowPresentationAttribute attribute,
+            NewWindowPresentationAttribute attribute,
             Window newWindow,
             Microsoft.UI.Windowing.AppWindow appWindow)
         {

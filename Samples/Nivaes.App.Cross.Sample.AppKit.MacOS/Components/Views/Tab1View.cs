@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
-[MvxTabPresentation(TabTitle = "Tab1")]
+[TabPresentation(TabTitle = "Tab1")]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class Tab1View : CrossViewController<Tab1ViewModel>
 {

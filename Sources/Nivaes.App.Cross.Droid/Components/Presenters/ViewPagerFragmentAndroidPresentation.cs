@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Droid
 {
     public abstract class ViewPagerFragmentAndroidPresentation<ViewPagerFragmentPresentationAttribute>
         : AndroidPressenterAction<ViewPagerFragmentPresentationAttribute>
-        where ViewPagerFragmentPresentationAttribute : MvxViewPagerFragmentPresentationAttribute
+        where ViewPagerFragmentPresentationAttribute : Droid.ViewPagerFragmentPresentationAttribute
     {
         public ViewPagerFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,
@@ -140,7 +140,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         private MvxViewPagerFragmentInfo? FindFragmentInfoFromAttribute(
-           MvxFragmentPresentationAttribute attribute,
+           FragmentPresentationAttribute attribute,
            MvxCachingFragmentStatePagerAdapter adapter)
         {
             ArgumentNullException.ThrowIfNull(attribute);
@@ -173,7 +173,7 @@ namespace Nivaes.App.Cross.Droid
     }
 
     public sealed class ViewPagerFragmentAndroidPresentation
-        : ViewPagerFragmentAndroidPresentation<MvxViewPagerFragmentPresentationAttribute>
+        : ViewPagerFragmentAndroidPresentation<ViewPagerFragmentPresentationAttribute>
     {
         public ViewPagerFragmentAndroidPresentation(
                 ICrossViewsContainer viewsContainer,

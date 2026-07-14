@@ -7,7 +7,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
-[CrossModalPresentation]
+[ModalPresentation]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ModalView : CrossViewController<ModalViewModel>
 {

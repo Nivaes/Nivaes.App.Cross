@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxFragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
+[FragmentPresentation(fragmentHostViewType: typeof(SplitDetailView), fragmentContentId: Resource.Id.tabs_frame, addToBackStack: true)]
 [RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class TabsRootBView : MvxFragment<TabsRootBViewModel>
 {

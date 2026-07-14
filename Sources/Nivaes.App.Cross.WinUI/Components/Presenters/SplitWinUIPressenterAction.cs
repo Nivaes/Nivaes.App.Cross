@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class SplitWinUIPressenterAction 
-        : WinUIPressenterAction<MvxSplitViewPresentationAttribute>
+        : WinUIPressenterAction<SplitViewPresentationAttribute>
     {
         #region Constructor
         public SplitWinUIPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }       
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute);
         }

@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.FormSheet)]
+[ModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.FormSheet)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ModalNavView : MvxViewController<ModalNavViewModel>
 {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class UIKitPressenterAction<TPressenterAttribute> : PressenterAction<TPressenterAttribute>
-        where TPressenterAttribute : ICrossPresentationAttribute
+        where TPressenterAttribute : IPresentationAttribute
     {
         protected readonly IMvxIosViewCreator ViewCreator;
 
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
             ArgumentNullException.ThrowIfNull(viewModelType);
             ArgumentNullException.ThrowIfNull(viewType);
@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross.UIKitLib
                     "PresentationAttribute nor MasterNavigationController found for {ViewTypeName}. Assuming Root presentation",
                     viewType?.Name);
 
-                return new MvxRootPresentationAttribute
+                return new RootPresentationAttribute
                 {
                     WrapInNavigationController = true,
                     ViewType = viewType,
@@ -66,12 +66,12 @@ namespace Nivaes.App.Cross.UIKitLib
 
             Logger?.LogTrace("PresentationAttribute not found for {ViewTypeName}. Assuming animated Child presentation", viewType?.Name);
 
-            return new MvxChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+            return new ChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 
         protected ValueTask<bool> ShowRootViewController(
            UIViewController viewController,
-           MvxRootPresentationAttribute attribute,
+           RootPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
-        private async ValueTask<bool> ShowRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute)
+        private async ValueTask<bool> ShowRootViewController(UIViewController viewController, RootPresentationAttribute attribute)
         {
             SetupWindowRootNavigation(viewController, attribute);
 
@@ -103,7 +103,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        private async ValueTask<bool> ShowSplitRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
+        private async ValueTask<bool> ShowSplitRootViewController(UIViewController viewController, RootPresentationAttribute attribute,
             IMvxSplitViewController splitController)
         {
             SplitViewController = splitController;
@@ -117,7 +117,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        private async ValueTask<bool> ShowPageRootViewController(UIViewController viewController, MvxRootPresentationAttribute attribute,
+        private async ValueTask<bool> ShowPageRootViewController(UIViewController viewController, RootPresentationAttribute attribute,
             IMvxPageViewController pageViewController)
         {
             PageViewController = pageViewController;
@@ -132,7 +132,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
         private async ValueTask<bool> ShowTabBarRootViewController(
-            UIViewController viewController, MvxRootPresentationAttribute attribute,
+            UIViewController viewController, RootPresentationAttribute attribute,
             IMvxTabBarViewController tabBarController)
         {
             TabBarViewController = tabBarController;
@@ -146,7 +146,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        protected void SetupWindowRootNavigation(UIViewController viewController, MvxRootPresentationAttribute attribute)
+        protected void SetupWindowRootNavigation(UIViewController viewController, RootPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -167,7 +167,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected ValueTask<bool> ShowMasterSplitViewController(
            UIViewController viewController,
-           MvxSplitViewPresentationAttribute attribute,
+           SplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -194,7 +194,7 @@ namespace Nivaes.App.Cross.UIKitLib
             MasterNavigationController = null;
         }
 
-        public virtual async ValueTask<bool> CloseModalViewController(UIViewController viewController, MvxModalPresentationAttribute attribute)
+        public virtual async ValueTask<bool> CloseModalViewController(UIViewController viewController, ModalPresentationAttribute attribute)
         {
             if (viewController is UINavigationController modalNavController &&
                 modalNavController.ViewControllers != null)
@@ -214,7 +214,7 @@ namespace Nivaes.App.Cross.UIKitLib
             {
                 var didClose =
                     await CloseModalViewController(ModalViewControllers[^1],
-                        new MvxModalPresentationAttribute()).ConfigureAwait(true);
+                        new ModalPresentationAttribute()).ConfigureAwait(true);
 
                 if (!didClose)
                     return false;
@@ -264,7 +264,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 ?? throw new CrossException($"No parent ViewController found.");
         }
 
-        protected void SetWindowRootViewController(UIViewController controller, MvxRootPresentationAttribute? attribute = null)
+        protected void SetWindowRootViewController(UIViewController controller, RootPresentationAttribute? attribute = null)
         {
             RemoveWindowSubviews();
 
@@ -288,7 +288,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected ValueTask<bool> ShowChildViewController(
            UIViewController viewController,
-           MvxChildPresentationAttribute attribute,
+           ChildPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -323,7 +323,7 @@ namespace Nivaes.App.Cross.UIKitLib
             throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
-        private ValueTask<bool> ShowModalViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
+        private ValueTask<bool> ShowModalViewControllerChild(UIViewController viewController, ChildPresentationAttribute attribute)
         {
             if (ModalViewControllers.LastOrDefault() is UINavigationController modalNavController)
             {
@@ -337,7 +337,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 #if IOS || MACCATALYST
-        private ValueTask<bool> ShowPopoverViewControllerChild(UIViewController viewController, MvxChildPresentationAttribute attribute)
+        private ValueTask<bool> ShowPopoverViewControllerChild(UIViewController viewController, ChildPresentationAttribute attribute)
         {
             if (PopoverViewController is UINavigationController popoverNavController)
             {
@@ -352,7 +352,7 @@ namespace Nivaes.App.Cross.UIKitLib
 #endif
 
         protected virtual void PushViewControllerIntoStack(
-            UINavigationController navigationController, UIViewController viewController, MvxChildPresentationAttribute attribute)
+            UINavigationController navigationController, UIViewController viewController, ChildPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(navigationController);
             ArgumentNullException.ThrowIfNull(viewController);

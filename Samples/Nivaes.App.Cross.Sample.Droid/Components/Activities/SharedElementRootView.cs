@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid.RecyclerView;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxActivityPresentation]
+[ActivityPresentation]
 [Activity(Theme = "@style/AppTheme")]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class SharedElementRootView
@@ -13,7 +13,7 @@ public sealed class SharedElementRootView
 {
     public int SelectedListItem { get; set; }
 
-    public IDictionary<string, View> FetchSharedElementsToAnimate(CrossBasePresentationAttribute attribute, CrossViewModelRequest request)
+    public IDictionary<string, View> FetchSharedElementsToAnimate(BasePresentationAttribute attribute, CrossViewModelRequest request)
     {
         IDictionary<string, View> sharedElements = new Dictionary<string, View>();
 

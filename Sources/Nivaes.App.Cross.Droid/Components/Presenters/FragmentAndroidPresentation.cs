@@ -12,7 +12,7 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 namespace Nivaes.App.Cross.Droid
 {
     public sealed class FragmentAndroidPresentation
-        : AndroidPressenterAction<MvxFragmentPresentationAttribute>
+        : AndroidPressenterAction<FragmentPresentationAttribute>
     {
         protected readonly ICrossNavigationSerializer NavigationSerializer;
 
@@ -20,16 +20,16 @@ namespace Nivaes.App.Cross.Droid
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ICrossNavigationSerializer navigationSerializer,
-                ILogger<MvxFragmentPresentationAttribute> logger)
+                ILogger<FragmentPresentationAttribute> logger)
             : base(viewsContainer, androidCurrentTopActivity, logger)
         {
             NavigationSerializer = navigationSerializer;
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, FragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            var fragmentAttribute = (MvxFragmentPresentationAttribute)attribute;
+            var fragmentAttribute = (FragmentPresentationAttribute)attribute;
             // if attribute has a Fragment Host, then show it as nested and return
             if (fragmentAttribute.FragmentHostViewType != null)
             {
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.Droid
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, FragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross.Droid
 
         private void ShowNestedFragment(
             Type view,
-            MvxFragmentPresentationAttribute attribute,
+            FragmentPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(view);
@@ -111,7 +111,7 @@ namespace Nivaes.App.Cross.Droid
 
         private void PerformShowFragmentTransaction(
             FragmentManager fragmentManager,
-            MvxFragmentPresentationAttribute attribute,
+            FragmentPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(attribute);
@@ -190,7 +190,7 @@ namespace Nivaes.App.Cross.Droid
 
         private bool TryPerformCloseFragmentTransaction(
             FragmentManager fragmentManager,
-            MvxFragmentPresentationAttribute fragmentAttribute)
+            FragmentPresentationAttribute fragmentAttribute)
         {
             ArgumentNullException.ThrowIfNull(fragmentAttribute);
 
@@ -222,7 +222,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         private void PopFragment(FragmentManager fragmentManager,
-                MvxFragmentPresentationAttribute fragmentAttribute,
+                FragmentPresentationAttribute fragmentAttribute,
                 Fragment fragmentToPop)
         {
             var ft = fragmentManager.BeginTransaction();
@@ -257,7 +257,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         private void PopOnBackstackEntries(
-                string fragmentName, FragmentManager fragmentManager, MvxFragmentPresentationAttribute fragmentAttribute)
+                string fragmentName, FragmentManager fragmentManager, FragmentPresentationAttribute fragmentAttribute)
         {
             var popBackStackFragmentName =
                 string.IsNullOrEmpty(fragmentAttribute.PopBackStackImmediateName.Trim())

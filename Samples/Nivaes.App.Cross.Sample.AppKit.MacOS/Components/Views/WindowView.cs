@@ -7,7 +7,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
-[MvxWindowPresentation("ToolbarWindow", "Main", Width = 500)]
+[WindowPresentation("ToolbarWindow", "Main", Width = 500)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class WindowView : CrossViewController<WindowViewModel>
 {

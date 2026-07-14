@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
-[CrossContentPresentation]
+[ContentPresentation]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ChildView
     : CrossViewController<ChildViewModel>

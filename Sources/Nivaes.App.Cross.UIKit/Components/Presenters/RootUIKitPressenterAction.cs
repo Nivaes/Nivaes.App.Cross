@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class RootUIKitPressenterAction
-            : UIKitPressenterAction<MvxRootPresentationAttribute>
+            : UIKitPressenterAction<RootPresentationAttribute>
     {
         #region Constructor
         public RootUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxRootPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, RootPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowRootViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxRootPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, RootPresentationAttribute attribute)
         {
             Logger.LogWarning("Ignored attempt to close the window root (ViewModel type: {ViewModelType})", viewModel.GetType().Name);
 

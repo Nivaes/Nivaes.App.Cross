@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxTabPresentation]
+[TabPresentation]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class Tab2View : MvxViewController<Tab2ViewModel>
 {

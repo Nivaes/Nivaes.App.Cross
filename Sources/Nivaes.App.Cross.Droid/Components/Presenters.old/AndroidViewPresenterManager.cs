@@ -7,6 +7,7 @@ using AndroidX.ViewPager.Widget;
 using Google.Android.Material.Tabs;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Droid.Components.Presenters.ActivityPresentation;
 using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 using DialogFragment = AndroidX.Fragment.App.DialogFragment;
 using Fragment = AndroidX.Fragment.App.Fragment;
@@ -83,15 +84,15 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Carga por Roslyn")]
     public override void RegisterAttributeTypes()
     {
-        AttributeTypesToActionsDictionary.Register<MvxActivityPresentationAttribute>(ShowActivity, CloseActivity);
-        AttributeTypesToActionsDictionary.Register<MvxFragmentPresentationAttribute>(ShowFragment, CloseFragment);
-        AttributeTypesToActionsDictionary.Register<MvxDialogFragmentPresentationAttribute>(ShowDialogFragment, CloseFragmentDialog);
-        AttributeTypesToActionsDictionary.Register<MvxTabLayoutPresentationAttribute>(ShowTabLayout, CloseViewPagerFragment);
-        AttributeTypesToActionsDictionary.Register<MvxViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
+        AttributeTypesToActionsDictionary.Register<ActivityPresentationAttribute>(ShowActivity, CloseActivity);
+        AttributeTypesToActionsDictionary.Register<FragmentPresentationAttribute>(ShowFragment, CloseFragment);
+        AttributeTypesToActionsDictionary.Register<DialogFragmentPresentationAttribute>(ShowDialogFragment, CloseFragmentDialog);
+        AttributeTypesToActionsDictionary.Register<TabLayoutPresentationAttribute>(ShowTabLayout, CloseViewPagerFragment);
+        AttributeTypesToActionsDictionary.Register<ViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
     }
 
     [Obsolete]
-    public override CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+    public override BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
 
@@ -103,14 +104,14 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         //if (overrideAttribute != null)
         //    return overrideAttribute;
 
-        IList<CrossBasePresentationAttribute> attributes = viewType.GetCustomAttributes<CrossBasePresentationAttribute>(true).ToList();
+        IList<BasePresentationAttribute> attributes = viewType.GetCustomAttributes<BasePresentationAttribute>(true).ToList();
         if (attributes.Count > 0)
         {
-            CrossBasePresentationAttribute? attribute = null;
+            BasePresentationAttribute? attribute = null;
 
             if (attributes.Count > 1)
             {
-                var fragmentAttributes = attributes.OfType<MvxFragmentPresentationAttribute>().ToArray();
+                var fragmentAttributes = attributes.OfType<FragmentPresentationAttribute>().ToArray();
 
                 // check if fragment can be displayed as child fragment first
                 attribute = GetAttributeForFragmentChildPresentation(fragmentAttributes);
@@ -130,10 +131,10 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     }
 
     [Obsolete]
-    private CrossBasePresentationAttribute? GetAttributeForFragmentPresentation(
-        IEnumerable<MvxFragmentPresentationAttribute> fragmentAttributes)
+    private BasePresentationAttribute? GetAttributeForFragmentPresentation(
+        IEnumerable<FragmentPresentationAttribute> fragmentAttributes)
     {
-        CrossBasePresentationAttribute? attribute = null;
+        BasePresentationAttribute? attribute = null;
 
         var currentActivityHostViewModelType = GetCurrentActivityViewModelType();
 
@@ -155,10 +156,10 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    private CrossBasePresentationAttribute? GetAttributeForFragmentChildPresentation(
-        IEnumerable<MvxFragmentPresentationAttribute> fragmentAttributes)
+    private BasePresentationAttribute? GetAttributeForFragmentChildPresentation(
+        IEnumerable<FragmentPresentationAttribute> fragmentAttributes)
     {
-        CrossBasePresentationAttribute? attribute = null;
+        BasePresentationAttribute? attribute = null;
 
         foreach (var item in fragmentAttributes.Where(
             att => att.FragmentHostViewType != null))
@@ -177,14 +178,14 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     }
 
     [Obsolete("Busca interfaces de la vista.", true)]
-    public override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+    public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
         ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
         if (viewType!.IsSubclassOf(typeof(DialogFragment)))
         {
             Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
-            return new MvxDialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
+            return new DialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
             {
                 ViewType = viewType,
                 ViewModelType = viewModelType
@@ -194,7 +195,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         if (viewType.IsSubclassOf(typeof(Fragment)))
         {
             Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
-            return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
+            return new FragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
             {
                 ViewType = viewType,
                 ViewModelType = viewModelType
@@ -204,7 +205,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         if (viewType.IsSubclassOf(typeof(Activity)))
         {
             Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
-            return new MvxActivityPresentationAttribute
+            return new ActivityPresentationAttribute
             {
                 ViewType = viewType,
                 ViewModelType = viewModelType
@@ -233,7 +234,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         var request = new CrossViewModelRequest(pagePresentationHint.ViewModel);
         var attribute = GetPresentationAttribute(request);
 
-        if (attribute is MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
+        if (attribute is ViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
         {
             var viewPager = FindViewPagerInFragmentPresentation(pagerFragmentAttribute);
             if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
@@ -256,7 +257,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete]
     protected virtual ViewPager? FindViewPagerInFragmentPresentation(
-        MvxViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
+        ViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
     {
         ArgumentNullException.ThrowIfNull(pagerFragmentAttribute);
 
@@ -298,7 +299,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> ShowActivity(
         Type view,
-        MvxActivityPresentationAttribute attribute,
+        ActivityPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -318,7 +319,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Bundle CreateActivityTransitionOptions(
-        Intent intent, MvxActivityPresentationAttribute attribute, CrossViewModelRequest request)
+        Intent intent, ActivityPresentationAttribute attribute, CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
         ArgumentNullException.ThrowIfNull(request);
@@ -374,7 +375,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     private (List<string> elements, List<Pair> transitionElementPairs) GetTransitionElements(
-        CrossBasePresentationAttribute attribute, CrossViewModelRequest request,
+        BasePresentationAttribute attribute, CrossViewModelRequest request,
         IMvxAndroidSharedElements sharedElementsActivity)
     {
         var elements = new List<string>();
@@ -447,7 +448,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         }
     }
 
-    protected virtual void ShowHostActivity(MvxFragmentPresentationAttribute attribute)
+    protected virtual void ShowHostActivity(FragmentPresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -468,7 +469,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> ShowFragment(
         Type view,
-        MvxFragmentPresentationAttribute attribute,
+        FragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -508,7 +509,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual void ShowNestedFragment(
         Type view,
-        MvxFragmentPresentationAttribute attribute,
+        FragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -530,7 +531,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual void PerformShowFragmentTransaction(
         FragmentManager fragmentManager,
-        MvxFragmentPresentationAttribute attribute,
+        FragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
@@ -613,7 +614,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     protected virtual void OnBeforeFragmentChanging(
         FragmentTransaction fragmentTransaction,
         Fragment fragment,
-        MvxFragmentPresentationAttribute attribute,
+        FragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(fragmentTransaction, nameof(fragmentTransaction));
@@ -656,23 +657,23 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+    protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
     {
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+    protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
     {
     }
 
-    protected virtual void OnFragmentPopped(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute)
+    protected virtual void OnFragmentPopped(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute)
     {
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> ShowDialogFragment(
         Type view,
-        MvxDialogFragmentPresentationAttribute attribute,
+        DialogFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -686,7 +687,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
             throw new InvalidOperationException("CurrentFragmentManager is null. Cannot create Fragment Transaction.");
 
         if (attribute.ViewType == null)
-            throw new InvalidOperationException($"{nameof(MvxDialogFragmentPresentationAttribute)}.ViewType is null");
+            throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
 
         var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
         IMvxFragmentView mvxFragmentView = CreateFragment(CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
@@ -728,7 +729,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> ShowViewPagerFragment(
         Type view,
-        MvxViewPagerFragmentPresentationAttribute attribute,
+        ViewPagerFragmentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -806,7 +807,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual async Task<bool> ShowTabLayout(
         Type view,
-        MvxTabLayoutPresentationAttribute attribute,
+        TabLayoutPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(view);
@@ -847,7 +848,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     #region Close implementations
     [Obsolete("Migrate to PressenterAction", true)]
-    protected virtual Task<bool> CloseActivity(ICrossViewModel viewModel, MvxActivityPresentationAttribute? attribute)
+    protected virtual Task<bool> CloseActivity(ICrossViewModel viewModel, ActivityPresentationAttribute? attribute)
     {
         var currentView = CurrentActivity as ICrossView;
 
@@ -872,7 +873,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> CloseFragmentDialog(
-        ICrossViewModel viewModel, MvxDialogFragmentPresentationAttribute attribute)
+        ICrossViewModel viewModel, DialogFragmentPresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -903,7 +904,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> CloseFragment(
-        ICrossViewModel viewModel, MvxFragmentPresentationAttribute attribute)
+        ICrossViewModel viewModel, FragmentPresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -934,7 +935,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual bool TryPerformCloseFragmentTransaction(
         FragmentManager fragmentManager,
-        MvxFragmentPresentationAttribute fragmentAttribute)
+        FragmentPresentationAttribute fragmentAttribute)
     {
         ArgumentNullException.ThrowIfNull(fragmentAttribute);
 
@@ -968,7 +969,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    private void PopFragment(FragmentManager fragmentManager, MvxFragmentPresentationAttribute fragmentAttribute,
+    private void PopFragment(FragmentManager fragmentManager, FragmentPresentationAttribute fragmentAttribute,
         Fragment fragmentToPop)
     {
         var ft = fragmentManager.BeginTransaction();
@@ -1004,7 +1005,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     private void PopOnBackstackEntries(
-        string fragmentName, FragmentManager fragmentManager, MvxFragmentPresentationAttribute fragmentAttribute)
+        string fragmentName, FragmentManager fragmentManager, FragmentPresentationAttribute fragmentAttribute)
     {
         var popBackStackFragmentName =
             string.IsNullOrEmpty(fragmentAttribute.PopBackStackImmediateName.Trim())
@@ -1021,7 +1022,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual Task<bool> CloseViewPagerFragment(
         ICrossViewModel? viewModel,
-        MvxViewPagerFragmentPresentationAttribute attribute)
+        ViewPagerFragmentPresentationAttribute attribute)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -1069,7 +1070,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
 
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual MvxViewPagerFragmentInfo? FindFragmentInfoFromAttribute(
-        MvxFragmentPresentationAttribute attribute,
+        FragmentPresentationAttribute attribute,
         MvxCachingFragmentStatePagerAdapter adapter)
     {
         ArgumentNullException.ThrowIfNull(attribute);
@@ -1104,7 +1105,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
     [Obsolete("Migrate to PressenterAction", true)]
     protected virtual IMvxFragmentView CreateFragment(
         FragmentManager fragmentManager,
-        CrossBasePresentationAttribute attribute,
+        BasePresentationAttribute attribute,
         Type fragmentType)
     {
         ArgumentNullException.ThrowIfNull(attribute);

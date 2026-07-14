@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
-    [MvxPagePresentation(WrapInNavigationController = false)]
+    [PagePresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class Page1View
         : MvxViewController<Page1ViewModel>

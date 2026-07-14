@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxRootPresentation(WrapInNavigationController = true)]
+[RootPresentation(WrapInNavigationController = true)]
 public partial class TabsRootView : MvxTabBarViewController<TabsRootViewModel>
 {
     private bool _isPresentedFirstTime = true;
@@ -24,7 +24,7 @@ public partial class TabsRootView : MvxTabBarViewController<TabsRootViewModel>
         }
     }
 
-    protected override void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
+    protected override void SetTitleAndTabBarItem(UIViewController viewController, TabPresentationAttribute attribute)
     {
         // you can override this method to set title or iconName
         if (string.IsNullOrEmpty(attribute.TabName))

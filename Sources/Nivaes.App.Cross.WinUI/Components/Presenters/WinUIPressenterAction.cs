@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     public abstract class WinUIPressenterAction<TPressenterAttribute> 
         : PressenterAction<TPressenterAttribute>
-        where TPressenterAttribute : ICrossPresentationAttribute
+        where TPressenterAttribute : IPresentationAttribute
     {
         // ToDo: Ha de compartirse con todos los PressenterAction?
         private readonly object _windowInformationLock = new();
@@ -32,13 +32,13 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
             Logger.LogTrace("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",  viewType?.Name);
-            return new MvxPagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+            return new PagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 
-        protected ValueTask<bool> ClosePage(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
+        protected ValueTask<bool> ClosePage(ICrossViewModel viewModel, BasePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             var currentView = windowInformation.RootFrame.Content as ICrossView;

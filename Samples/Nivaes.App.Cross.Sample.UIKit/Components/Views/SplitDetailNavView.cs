@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
     using ObjCRuntime;
 
     [MvxFromStoryboard("Main")]
-    [MvxSplitViewPresentation(WrapInNavigationController = true)]
+    [SplitViewPresentation(WrapInNavigationController = true)]
     public partial class SplitDetailNavView : MvxViewController<SplitDetailNavViewModel>
     {
         public SplitDetailNavView(NativeHandle handle) : base(handle)

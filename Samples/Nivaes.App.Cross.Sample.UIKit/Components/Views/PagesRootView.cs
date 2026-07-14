@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
-    [MvxRootPresentation(WrapInNavigationController = true)]
+    [RootPresentation(WrapInNavigationController = true)]
     public partial class PagesRootView : MvxPageViewController<PagesRootViewModel>
     {
         private bool _isPresentedFirstTime = true;

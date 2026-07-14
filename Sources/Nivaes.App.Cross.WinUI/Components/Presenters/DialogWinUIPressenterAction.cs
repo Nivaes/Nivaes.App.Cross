@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Media;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class DialogWinUIPressenterAction
-        : WinUIPressenterAction<MvxDialogViewPresentationAttribute>
+        : WinUIPressenterAction<DialogViewPresentationAttribute>
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ICrossViewModelLoader _viewModelLoader;
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, MvxDialogViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxDialogViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DialogViewPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
             if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <returns></returns>
         /// <exception cref="CrossException"></exception>
         private Control? CreateControl(Type viewType, CrossViewModelRequest request,
-            CrossBasePresentationAttribute attribute)
+            BasePresentationAttribute attribute)
         {
             try
             {

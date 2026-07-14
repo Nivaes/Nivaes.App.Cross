@@ -3,7 +3,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxActivityPresentation]
+[ActivityPresentation]
 [Activity(Label = "View for CustomBindingViewModel", Theme = "@style/AppTheme")]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class CustomBindingView : CrossActivity<CustomBindingViewModel>

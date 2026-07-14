@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
 {
     public abstract class AndroidPressenterAction<TPressenterAttribute>
         : PressenterAction<TPressenterAttribute>
-        where TPressenterAttribute : ICrossPresentationAttribute
+        where TPressenterAttribute : IPresentationAttribute
     {
         #region Properties
         protected CrossViewModelRequest? PendingRequest { get; set; }
@@ -97,7 +97,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected IMvxFragmentView CreateFragment(
             FragmentManager fragmentManager,
-            CrossBasePresentationAttribute attribute,
+            BasePresentationAttribute attribute,
             Type fragmentType)
         {
             ArgumentNullException.ThrowIfNull(attribute);
@@ -117,14 +117,14 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        protected override CrossBasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
             ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
 
             if (viewType!.IsSubclassOf(typeof(DialogFragment)))
             {
                 Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
-                return new MvxDialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
+                return new DialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
                 {
                     ViewType = viewType,
                     ViewModelType = viewModelType
@@ -134,7 +134,7 @@ namespace Nivaes.App.Cross.Droid
             if (viewType.IsSubclassOf(typeof(Fragment)))
             {
                 Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
-                return new MvxFragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
+                return new FragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
                 {
                     ViewType = viewType,
                     ViewModelType = viewModelType
@@ -144,7 +144,7 @@ namespace Nivaes.App.Cross.Droid
             if (viewType.IsSubclassOf(typeof(Activity)))
             {
                 Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
-                return new MvxActivityPresentationAttribute
+                return new ActivityPresentationAttribute
                 {
                     ViewType = viewType,
                     ViewModelType = viewModelType
@@ -167,7 +167,7 @@ namespace Nivaes.App.Cross.Droid
             return viewModelType;
         }
 
-        protected virtual void ShowHostActivity(MvxFragmentPresentationAttribute attribute)
+        protected virtual void ShowHostActivity(FragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -186,14 +186,14 @@ namespace Nivaes.App.Cross.Droid
         }
       
 
-        protected virtual void OnFragmentPopped(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute)
+        protected virtual void OnFragmentPopped(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute)
         {
         }
 
         protected virtual void OnBeforeFragmentChanging(
            FragmentTransaction fragmentTransaction,
            Fragment fragment,
-           MvxFragmentPresentationAttribute attribute,
+           FragmentPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(fragmentTransaction, nameof(fragmentTransaction));
@@ -235,11 +235,11 @@ namespace Nivaes.App.Cross.Droid
                 fragmentTransaction.SetTransitionStyle(attribute.TransitionStyle);
         }
 
-        protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+        protected virtual void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
         {
         }
 
-        protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, MvxFragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+        protected virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
         {
         }
     }

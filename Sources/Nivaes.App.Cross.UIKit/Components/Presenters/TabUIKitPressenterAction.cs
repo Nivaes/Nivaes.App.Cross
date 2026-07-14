@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class TabUIKitPressenterAction
-            : UIKitPressenterAction<MvxTabPresentationAttribute>
+            : UIKitPressenterAction<TabPresentationAttribute>
     {
         #region Constructor
         public TabUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TabPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowTabViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxTabPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TabPresentationAttribute attribute)
         {
             if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
                 return ValueTask.FromResult(true);
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private ValueTask<bool> ShowTabViewController(
             UIViewController viewController,
-            MvxTabPresentationAttribute attribute,
+            TabPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             if (TabBarViewController == null)

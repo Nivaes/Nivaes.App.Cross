@@ -4,9 +4,9 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
-[MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
-[MvxFragmentPresentationAttribute(
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
+[FragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame)]
+[FragmentPresentationAttribute(
             typeof(RootViewModel),
             Resource.Id.content_frame,
             false,

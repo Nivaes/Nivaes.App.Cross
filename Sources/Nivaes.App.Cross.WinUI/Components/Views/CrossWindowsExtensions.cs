@@ -32,7 +32,7 @@ public static class CrossWindowsExtensions
     public static bool HasRegionAttribute(this Type view)
     {
         var attributes = view
-            .GetCustomAttributes(typeof(MvxRegionPresentationAttribute), true);
+            .GetCustomAttributes(typeof(RegionPresentationAttribute), true);
 
         return attributes.Any();
     }
@@ -40,12 +40,12 @@ public static class CrossWindowsExtensions
     public static string GetRegionName(this Type view)
     {
         var attributes = view
-            .GetCustomAttributes(typeof(MvxRegionPresentationAttribute), true);
+            .GetCustomAttributes(typeof(RegionPresentationAttribute), true);
 
         if (!attributes.Any())
             throw new InvalidOperationException("The IMvxWindowsView has no region attribute.");
 
-        return ((MvxRegionPresentationAttribute)attributes.First()).Name;
+        return ((RegionPresentationAttribute)attributes.First()).Name;
     }
 
     public static T FindControl<T>(this UIElement parent, string name = null) where T : FrameworkElement

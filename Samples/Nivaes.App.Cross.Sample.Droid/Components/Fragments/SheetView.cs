@@ -6,7 +6,7 @@ using Nivaes.App.Cross.Droid.Material;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxDialogFragmentPresentation]
+[DialogFragmentPresentation]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public class SheetView : MvxBottomSheetDialogFragment<SheetViewModel>
 {

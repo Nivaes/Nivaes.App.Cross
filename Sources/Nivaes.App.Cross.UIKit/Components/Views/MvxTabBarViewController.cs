@@ -76,7 +76,7 @@ public class MvxTabBarViewController<TViewModel>
         }
     }
 
-    public virtual void ShowTabView(UIViewController viewController, MvxTabPresentationAttribute attribute)
+    public virtual void ShowTabView(UIViewController viewController, TabPresentationAttribute attribute)
     {
         if (!string.IsNullOrEmpty(attribute.TabAccessibilityIdentifier))
             viewController.View!.AccessibilityIdentifier = attribute.TabAccessibilityIdentifier;
@@ -97,7 +97,7 @@ public class MvxTabBarViewController<TViewModel>
         ViewControllers = currentTabs.ToArray();
     }
 
-    protected virtual void SetTitleAndTabBarItem(UIViewController viewController, MvxTabPresentationAttribute attribute)
+    protected virtual void SetTitleAndTabBarItem(UIViewController viewController, TabPresentationAttribute attribute)
     {
         _tabsCount++;
 

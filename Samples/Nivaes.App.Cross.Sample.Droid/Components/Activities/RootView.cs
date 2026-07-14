@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxActivityPresentation]
+[ActivityPresentation]
 [Activity(Theme = "@style/AppTheme",
     WindowSoftInputMode = SoftInput.AdjustPan)]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]

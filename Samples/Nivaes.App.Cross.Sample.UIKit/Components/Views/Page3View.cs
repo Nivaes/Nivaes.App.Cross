@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
-    [MvxPagePresentation(WrapInNavigationController = false)]
+    [PagePresentation(WrapInNavigationController = false)]
     public partial class Page3View : MvxViewController<Page3ViewModel>
     {
         public Page3View(NativeHandle handle) : base(handle)

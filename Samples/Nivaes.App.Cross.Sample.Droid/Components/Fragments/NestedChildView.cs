@@ -4,7 +4,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [MvxFragmentPresentation(fragmentHostViewType: typeof(SecondChildView), fragmentContentId: Resource.Id.nested_frame)]
+    [FragmentPresentation(fragmentHostViewType: typeof(SecondChildView), fragmentContentId: Resource.Id.nested_frame)]
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class NestedChildView : MvxFragment<NestedChildViewModel>
     {

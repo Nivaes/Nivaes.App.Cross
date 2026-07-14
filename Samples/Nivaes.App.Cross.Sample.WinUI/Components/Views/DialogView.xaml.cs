@@ -2,7 +2,7 @@ using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
-[MvxDialogViewPresentation]
+[DialogViewPresentation]
 public sealed partial class DialogView : DialogViewBase
 {
     public DialogView()

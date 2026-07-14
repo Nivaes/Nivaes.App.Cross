@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid;
 namespace Nivaes.App.Cross.Sample.Droid
 {
     //[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true)]
-    [MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true, popBackStackImmediateName: null, popBackStackImmediateFlag: MvxPopBackStack.None)]
+    [FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true, popBackStackImmediateName: null, popBackStackImmediateFlag: PopBackStack.None)]
     [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
     internal sealed class FragmentCloseView : MvxFragment<FragmentCloseViewModel>
     {

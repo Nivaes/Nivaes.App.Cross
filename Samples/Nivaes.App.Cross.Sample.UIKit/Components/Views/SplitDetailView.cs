@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxSplitViewPresentation]
+[SplitViewPresentation]
 public partial class SplitDetailView : MvxViewController<SplitDetailViewModel>
 {
     public SplitDetailView(NativeHandle handle) : base(handle)

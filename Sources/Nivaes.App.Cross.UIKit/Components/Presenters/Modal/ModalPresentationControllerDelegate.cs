@@ -3,7 +3,7 @@ namespace Nivaes.App.Cross.UIKitLib;
 public sealed class ModalPresentationControllerDelegate(
         ModalUIKitPressenterAction presenterAction,
         UIViewController viewController,
-        MvxModalPresentationAttribute attribute)
+        ModalPresentationAttribute attribute)
     : UIAdaptivePresentationControllerDelegate
 {
     public override void DidDismiss(UIPresentationController presentationController)

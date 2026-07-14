@@ -7,7 +7,7 @@ using Playground.Droid.Adapter;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
+    [FragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame)]
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SharedElementRootChildView : MvxFragment<SharedElementRootChildViewModel>
     {

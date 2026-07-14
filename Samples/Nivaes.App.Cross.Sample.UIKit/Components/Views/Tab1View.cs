@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
     using ObjCRuntime;
 
     [MvxFromStoryboard("Main")]
-    [MvxTabPresentation(WrapInNavigationController = true, TabIconName = "home", TabName = "Tab 1")]
+    [TabPresentation(WrapInNavigationController = true, TabIconName = "home", TabName = "Tab 1")]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class Tab1View
         : MvxViewController<Tab1ViewModel>

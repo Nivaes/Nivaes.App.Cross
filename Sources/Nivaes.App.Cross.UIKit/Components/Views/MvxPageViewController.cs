@@ -67,7 +67,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected virtual UIViewController? GetPreviousViewControllerPage(UIViewController rc) => IsFirstPage(rc) ? null : Pages[Pages.IndexOf(rc) - 1];
 
-        public virtual void AddPage(UIViewController viewController, MvxPagePresentationAttribute attribute)
+        public virtual void AddPage(UIViewController viewController, PagePresentationAttribute attribute)
         {
             // add Page
             Pages.Add(viewController);

@@ -2,7 +2,7 @@ using Nivaes.App.Cross.UIKitLib;
 
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
-[MvxRootPresentation(WrapInNavigationController = true)]
+[RootPresentation(WrapInNavigationController = true)]
 public sealed class RootView : MvxViewController<RootViewModel>
 {
     private UIButton? _btnTabs;

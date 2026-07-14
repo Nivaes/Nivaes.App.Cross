@@ -7,7 +7,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitOS
 {
     public sealed class ContentAppKitPressenterAction
-        : AppKitPressenterAction<CrossContentPresentationAttribute>
+        : AppKitPressenterAction<ContentPresentationAttribute>
     {
         #region Constructor
         public ContentAppKitPressenterAction(
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, CrossContentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, ContentPresentationAttribute attribute, CrossViewModelRequest request)
         { 
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 

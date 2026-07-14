@@ -4,7 +4,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame)]
 [RequiresUnreferencedCode("Bindings requires unreferenced code")]
 public class FluentBindingView : MvxFragment<FluentBindingViewModel>
 {

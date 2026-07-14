@@ -39,14 +39,14 @@ namespace Nivaes.App.Cross.UIKitLib
             PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
         }
 
-        public virtual void ShowDetailView(UIViewController viewController, MvxSplitViewPresentationAttribute attribute)
+        public virtual void ShowDetailView(UIViewController viewController, SplitViewPresentationAttribute attribute)
         {
             viewController = attribute.WrapInNavigationController ? new MvxNavigationController(viewController) : viewController;
 
             ShowDetailViewController(viewController, this);
         }
 
-        public virtual void ShowMasterView(UIViewController viewController, MvxSplitViewPresentationAttribute attribute)
+        public virtual void ShowMasterView(UIViewController viewController, SplitViewPresentationAttribute attribute)
         {
             var newStack = ViewControllers.ToList();
 
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ViewControllers = newStack.ToArray();
         }
 
-        public virtual bool CloseChildViewModel(ICrossViewModel viewModel, CrossBasePresentationAttribute attribute)
+        public virtual bool CloseChildViewModel(ICrossViewModel viewModel, BasePresentationAttribute attribute)
         {
             if (!ViewControllers.Any())
                 return false;

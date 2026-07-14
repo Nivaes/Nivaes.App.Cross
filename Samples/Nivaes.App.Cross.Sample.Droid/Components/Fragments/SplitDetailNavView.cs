@@ -3,7 +3,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [MvxFragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame, AddToBackStack = true)]
+    [FragmentPresentation(typeof(SplitRootViewModel), Resource.Id.split_content_frame, AddToBackStack = true)]
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SplitDetailNavView : BaseSplitDetailView<SplitDetailNavViewModel>
     {

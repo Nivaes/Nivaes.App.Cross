@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     public abstract class PageWinUIPressenterAction<TPressenterAttribute>
         : WinUIPressenterAction<TPressenterAttribute>
-        where TPressenterAttribute : ICrossPresentationAttribute
+        where TPressenterAttribute : IPresentationAttribute
     {
         #region Constructor
         public PageWinUIPressenterAction(
@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross.WinUI
     }
 
     public sealed class PageWinUIPressenterAction
-        : PageWinUIPressenterAction<MvxPagePresentationAttribute>
+        : PageWinUIPressenterAction<PagePresentationAttribute>
     {
         #region Constructor
         public PageWinUIPressenterAction(
@@ -65,7 +65,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PagePresentationAttribute attribute)
         {
             return ClosePage(viewModel, attribute); 
         }

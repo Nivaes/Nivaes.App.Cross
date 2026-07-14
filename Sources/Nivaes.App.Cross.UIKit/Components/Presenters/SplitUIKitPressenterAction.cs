@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class SplitUIKitPressenterAction
-            : UIKitPressenterAction<MvxSplitViewPresentationAttribute>
+            : UIKitPressenterAction<SplitViewPresentationAttribute>
     {
         #region Constructor
         public SplitUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxSplitViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             var splitAttribute = attribute;
             return splitAttribute.Position switch
@@ -53,7 +53,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected virtual ValueTask<bool> ShowDetailSplitViewController(
            UIViewController viewController,
-           MvxSplitViewPresentationAttribute attribute,
+           SplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
             if (SplitViewController == null)
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(true);
         }
 
-        protected virtual ValueTask<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected virtual ValueTask<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(true);
         }
 
-        protected virtual ValueTask<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, MvxSplitViewPresentationAttribute attribute)
+        protected virtual ValueTask<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);

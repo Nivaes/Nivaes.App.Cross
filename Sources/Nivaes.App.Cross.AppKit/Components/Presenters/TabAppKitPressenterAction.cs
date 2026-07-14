@@ -7,7 +7,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitOS
 {
     public sealed class TabAppKitPressenterAction
-        : AppKitPressenterAction<MvxTabPresentationAttribute>
+        : AppKitPressenterAction<TabPresentationAttribute>
     {
         #region Constructor
         public TabAppKitPressenterAction(
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxTabPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TabPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 

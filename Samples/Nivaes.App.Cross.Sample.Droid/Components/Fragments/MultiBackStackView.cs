@@ -6,7 +6,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
 AllowReordering = true,
 ViewModelType = typeof(MultiBackStackViewModel),
 SetAsPrimaryFragment = true)]
@@ -62,7 +62,7 @@ public sealed class MultiBackStackView
     }
 }
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
     FragmentHostViewType = typeof(MultiBackStackView),
     AllowReordering = true,
     ViewModelType = typeof(MultiBackStackTab1ViewModel))]
@@ -80,7 +80,7 @@ public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewM
 
 }
 
-[MvxFragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
+[FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
     FragmentHostViewType = typeof(MultiBackStackView),
     AllowReordering = true,
     ViewModelType = typeof(MultiBackStackTab2ViewModel))]
@@ -109,11 +109,11 @@ public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerVie
         return view!;
     }
 
-    public CrossBasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
+    public BasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
     {
         if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
         {
-            return new MvxFragmentPresentationAttribute()
+            return new FragmentPresentationAttribute()
             {
                 ViewModelType = typeof(MultiBackStackInnerViewModel),
                 ActivityHostViewModelType = typeof(RootViewModel),

@@ -7,7 +7,7 @@ using Playground.Droid.Extensions;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-[MvxActivityPresentation]
+[ActivityPresentation]
 [Activity(
     Theme = "@style/AppTheme",
     LaunchMode = LaunchMode.SingleTop,

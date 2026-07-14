@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxSplitViewPresentation(MasterDetailPosition.Master)]
+[SplitViewPresentation(MasterDetailPosition.Master)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class SplitMasterView : MvxViewController<SplitMasterViewModel>
 {

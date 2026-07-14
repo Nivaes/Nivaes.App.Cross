@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [MvxFragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame, true)]
+    [FragmentPresentation(typeof(SharedElementRootViewModel), Resource.Id.shared_content_frame, true)]
     [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class SharedElementSecondChildView : MvxFragment<SharedElementSecondChildViewModel>
     {

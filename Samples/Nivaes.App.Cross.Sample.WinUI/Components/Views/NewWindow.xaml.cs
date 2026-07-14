@@ -4,7 +4,7 @@ using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
-[MvxNewWindowPresentation]
+[NewWindowPresentation]
 public sealed partial class NewWindow
     : NewWindowPage, IMvxNeedWindow
 {

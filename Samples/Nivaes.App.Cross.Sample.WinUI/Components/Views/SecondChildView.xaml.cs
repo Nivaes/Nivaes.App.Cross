@@ -2,7 +2,7 @@ using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
-[MvxRegionPresentation("NestedFrame")]
+[RegionPresentation("NestedFrame")]
 public sealed partial class SecondChildView : SecondChildViewPage
 {
     public SecondChildView()

@@ -7,7 +7,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitOS
 {
     public sealed class wheetMacPressenterAction
-        : AppKitPressenterAction<MvxSheetPresentationAttribute>
+        : AppKitPressenterAction<SheetPresentationAttribute>
     {
         #region Constructor
         public wheetMacPressenterAction(
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxSheetPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SheetPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 

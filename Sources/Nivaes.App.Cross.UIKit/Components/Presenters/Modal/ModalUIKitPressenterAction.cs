@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class ModalUIKitPressenterAction
-            : UIKitPressenterAction<MvxModalPresentationAttribute>
+            : UIKitPressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
         public ModalUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxModalPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, ModalPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowModalViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxModalPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ModalPresentationAttribute attribute)
         {
             if (ModalViewControllers.Count == 0)
                 return ValueTask.FromResult(false);
@@ -66,7 +66,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected virtual ValueTask<bool> ShowModalViewController(
             UIViewController viewController,
-            MvxModalPresentationAttribute attribute,
+            ModalPresentationAttribute attribute,
             CrossViewModelRequest? request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -98,7 +98,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
         protected virtual IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(
-           UIViewController viewController, MvxModalPresentationAttribute attribute)
+           UIViewController viewController, ModalPresentationAttribute attribute)
         {
             return new ModalPresentationControllerDelegate(this, viewController, attribute);
         }

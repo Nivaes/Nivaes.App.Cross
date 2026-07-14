@@ -10,8 +10,8 @@ public class AppDelegate : MvxApplicationDelegate
 {
     public AppDelegate()
     {
-        MvxWindowPresentationAttribute.DefaultWidth = 512;
-        MvxWindowPresentationAttribute.DefaultHeight = 512;
+        WindowPresentationAttribute.DefaultWidth = 512;
+        WindowPresentationAttribute.DefaultHeight = 512;
     }
 
     protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);

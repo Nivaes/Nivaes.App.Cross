@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class PopoverUIKitPressenterAction
-            : UIKitPressenterAction<MvxPopoverPresentationAttribute>
+            : UIKitPressenterAction<PopoverPresentationAttribute>
     {
         #region Constructor
         public PopoverUIKitPressenterAction(
@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxPopoverPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, PopoverPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowPopoverViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPopoverPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PopoverPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewModel);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private async ValueTask<bool> ShowPopoverViewController(
             UIViewController viewController,
-            MvxPopoverPresentationAttribute attribute,
+            PopoverPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        public virtual async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, MvxPopoverPresentationAttribute attribute)
+        public virtual async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, PopoverPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);

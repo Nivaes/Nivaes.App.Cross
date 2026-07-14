@@ -10,14 +10,14 @@ namespace Nivaes.App.Cross
         void RegisterAttributeTypes();
 
         //TODO: Maybe move those to helper class
-        CrossBasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request);
+        BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request);
 
-        CrossBasePresentationAttribute CreatePresentationAttribute(
+        BasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType);
 
         [Obsolete("No usar Override", true)]
-        CrossBasePresentationAttribute? GetOverridePresentationAttribute(
+        BasePresentationAttribute? GetOverridePresentationAttribute(
             CrossViewModelRequest request,
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType);
     }

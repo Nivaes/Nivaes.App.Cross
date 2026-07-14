@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class PageUIKitPressenterAction
-            : UIKitPressenterAction<MvxPagePresentationAttribute>
+            : UIKitPressenterAction<PagePresentationAttribute>
     {
         #region Constructor
         public PageUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxPagePresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, PagePresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowPageViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxPagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PagePresentationAttribute attribute)
         {
             if (PageViewController != null && PageViewController.RemovePage(viewModel))
                 return ValueTask.FromResult(true);
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private ValueTask<bool> ShowPageViewController(
             UIViewController viewController,
-            MvxPagePresentationAttribute attribute,
+            PagePresentationAttribute attribute,
             CrossViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);

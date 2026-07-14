@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public abstract class ChildUIKitPressenterAction
-            : UIKitPressenterAction<MvxChildPresentationAttribute>
+            : UIKitPressenterAction<ChildPresentationAttribute>
     {
         #region Constructor
         public ChildUIKitPressenterAction(
@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxChildPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, ChildPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowChildViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ChildPresentationAttribute attribute)
         {
 #if IOS || MACCATALYST
             // if a popover is presented
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(false);
         }
 
-        protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, MvxChildPresentationAttribute attribute)
+        protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, ChildPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(navController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -89,7 +89,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return false;
         }
 
-        private bool CloseModalChildViewController(ICrossViewModel viewModel, MvxChildPresentationAttribute attribute)
+        private bool CloseModalChildViewController(ICrossViewModel viewModel, ChildPresentationAttribute attribute)
         {
             foreach (var modalNav in ModalViewControllers.OfType<UINavigationController>())
             {

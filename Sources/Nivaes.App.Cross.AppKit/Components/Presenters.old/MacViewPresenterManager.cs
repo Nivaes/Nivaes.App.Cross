@@ -16,16 +16,16 @@ public class MacViewPresenterManager
     /// </summary>
     protected readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
 
-    public override CrossBasePresentationAttribute CreatePresentationAttribute(
+    public override BasePresentationAttribute CreatePresentationAttribute(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
     {
         Logger.Log(LogLevel.Trace, $"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
-        return new MvxWindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
+        return new WindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
     }
 
     [Obsolete("No usar Override", true)]
-    public override CrossBasePresentationAttribute GetOverridePresentationAttribute(
+    public override BasePresentationAttribute GetOverridePresentationAttribute(
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
     {
@@ -73,43 +73,43 @@ public class MacViewPresenterManager
     [Obsolete]
     public override void RegisterAttributeTypes()
     {
-        AttributeTypesToActionsDictionary.Register<MvxWindowPresentationAttribute>(
+        AttributeTypesToActionsDictionary.Register<WindowPresentationAttribute>(
                 (viewType, attribute, request) =>
                 {
                     var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowWindowViewController(viewController, (MvxWindowPresentationAttribute)attribute, request);
+                    return ShowWindowViewController(viewController, (WindowPresentationAttribute)attribute, request);
                 },
                 (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<CrossContentPresentationAttribute>(
+        AttributeTypesToActionsDictionary.Register<ContentPresentationAttribute>(
                 (viewType, attribute, request) =>
                 {
                     var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowContentViewController(viewController, (CrossContentPresentationAttribute)attribute, request);
+                    return ShowContentViewController(viewController, (ContentPresentationAttribute)attribute, request);
                 },
                 (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<CrossModalPresentationAttribute>(
+        AttributeTypesToActionsDictionary.Register<ModalPresentationAttribute>(
                 (viewType, attribute, request) =>
                 {
                     var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowModalViewController(viewController, (CrossModalPresentationAttribute)attribute, request);
+                    return ShowModalViewController(viewController, (ModalPresentationAttribute)attribute, request);
                 },
                 (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<MvxSheetPresentationAttribute>(
+        AttributeTypesToActionsDictionary.Register<SheetPresentationAttribute>(
                 (viewType, attribute, request) =>
                 {
                     var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowSheetViewController(viewController, (MvxSheetPresentationAttribute)attribute, request);
+                    return ShowSheetViewController(viewController, (SheetPresentationAttribute)attribute, request);
                 },
                 (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<MvxTabPresentationAttribute>(
+        AttributeTypesToActionsDictionary.Register<TabPresentationAttribute>(
                 (viewType, attribute, request) =>
                 {
                     var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowTabViewController(viewController, (MvxTabPresentationAttribute)attribute, request);
+                    return ShowTabViewController(viewController, (TabPresentationAttribute)attribute, request);
                 },
                 (viewModel, attribute) => Close(viewModel));
     }
@@ -117,7 +117,7 @@ public class MacViewPresenterManager
     [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowWindowViewController(
         NSViewController viewController,
-        MvxWindowPresentationAttribute attribute,
+        WindowPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         NSWindow window = null;
@@ -164,7 +164,7 @@ public class MacViewPresenterManager
     }
 
     [Obsolete("", true)]
-    protected virtual void UpdateWindow(MvxWindowPresentationAttribute attribute, NSWindow window)
+    protected virtual void UpdateWindow(WindowPresentationAttribute attribute, NSWindow window)
     {
         var positionX = (float)window.Frame.X;
         var positionY = (float)window.Frame.Y;
@@ -180,7 +180,7 @@ public class MacViewPresenterManager
     }
 
     [Obsolete("", true)]
-    protected virtual NSWindow CreateWindow(MvxWindowPresentationAttribute attribute)
+    protected virtual NSWindow CreateWindow(WindowPresentationAttribute attribute)
     {
         NSWindow window;
         var positionX = attribute.PositionX;
@@ -201,7 +201,7 @@ public class MacViewPresenterManager
     }
 
     [Obsolete("", true)]
-    protected virtual MvxWindowController CreateWindowController(MvxWindowPresentationAttribute attribute)
+    protected virtual MvxWindowController CreateWindowController(WindowPresentationAttribute attribute)
     {
         MvxWindowController? windowController;
         if (!string.IsNullOrEmpty(attribute.StoryboardName))
@@ -217,8 +217,8 @@ public class MacViewPresenterManager
             {
                 throw new CrossException(
                     $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
-                    $"Please specify either the {nameof(MvxWindowPresentationAttribute.WindowControllerType)} or " +
-                    $"{nameof(MvxWindowPresentationAttribute.WindowControllerName)} property of the {nameof(MvxWindowPresentationAttribute)} " +
+                    $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
+                    $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
                     $"for the corresponding view model.");
             }
             // Instantiate using Reflection - failure is possible if blank constructor is missing
@@ -237,7 +237,7 @@ public class MacViewPresenterManager
     [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowContentViewController(
         NSViewController viewController,
-        CrossContentPresentationAttribute attribute,
+        ContentPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
@@ -253,7 +253,7 @@ public class MacViewPresenterManager
     [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowModalViewController(
         NSViewController viewController,
-        CrossModalPresentationAttribute attribute,
+        ModalPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
@@ -265,7 +265,7 @@ public class MacViewPresenterManager
     [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowSheetViewController(
         NSViewController viewController,
-        MvxSheetPresentationAttribute attribute,
+        SheetPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
@@ -277,7 +277,7 @@ public class MacViewPresenterManager
     [Obsolete("User PressenterAction")]
     protected virtual Task<bool> ShowTabViewController(
         NSViewController viewController,
-        MvxTabPresentationAttribute attribute,
+        TabPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
         var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);

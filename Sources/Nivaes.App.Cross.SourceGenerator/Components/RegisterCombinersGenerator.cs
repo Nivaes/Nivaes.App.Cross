@@ -9,23 +9,7 @@ namespace Nivaes.App.Cross.SourceGenerator;
 [Generator(LanguageNames.CSharp)]
 public class RegisterCombinersGenerator : IIncrementalGenerator
 {
-    #region ConverterInfo
-    private sealed class ConverterInfo
-    {
-        public ConverterInfo(INamedTypeSymbol type, string? name, bool register)
-        {
-            Type = type;
-            Name = name;
-            Register = register;
-        }
-
-        public INamedTypeSymbol Type { get; }
-
-        public string? Name { get; }
-
-        public bool Register { get; }
-    }
-    #endregion
+    private record struct ConverterInfo(INamedTypeSymbol Type, string? Name, bool Register);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {

@@ -5,25 +5,26 @@ namespace Nivaes.App.Cross
 {
     public static class PresenterActionsContainerManagerHelper
     {
-        public sealed class ConverterManagerItem
+        public sealed class PresentationAttributePresenterActionItem
         {
-            internal PresenterActionsKeyContainerManager.KeyStoreItem PresenterActions { [DebuggerHidden] get; [DebuggerHidden] set; }
+            internal PresentationAttributePresenterActionsKeyContainerManager.KeyStoreItem PresentationAttributePresenterActions { [DebuggerHidden] get; [DebuggerHidden] set; }
         }
 
-        public static ConverterManagerItem New<TPressenterAction>(IServiceProvider services)
-                        where TPressenterAction : IPressenterAction
+        public static PresentationAttributePresenterActionItem New<TPresentationAttribute, TPressenterAction>(IServiceProvider services)
+            where TPresentationAttribute : IPresentationAttribute
+            where TPressenterAction : IPressenterAction
         {
-            var converter = ActivatorUtilities.CreateInstance<TPressenterAction>(services);
+            var pressenterAction = ActivatorUtilities.CreateInstance<IPressenterAction>(services);
 
-            return new ConverterManagerItem()
+            return new PresentationAttributePresenterActionItem()
             {
-                PresenterActions = new PresenterActionsKeyContainerManager.KeyStoreItem { Key = typeof(TPressenterAction).GetHashCode(), Value = converter }
+                PresentationAttributePresenterActions = new KeyContainerManager<IPressenterAction>.KeyStoreItem { Key = typeof(TPresentationAttribute).GetHashCode(), Value = pressenterAction }
             };
         }
 
-        public static void RegisterPresenterActions(ConverterManagerItem[] items)
+        public static void RegisterPresenterActions(PresentationAttributePresenterActionItem[] items)
         {
-            Singleton<PresenterActionsKeyContainerManager>.Instance.Merge(items.Select(x => x.PresenterActions).ToArray());
+            Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.Merge(items.Select(x => x.PresentationAttributePresenterActions).ToArray());
         }
     }
 }

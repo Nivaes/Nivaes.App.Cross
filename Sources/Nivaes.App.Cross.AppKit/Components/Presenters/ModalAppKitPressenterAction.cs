@@ -7,7 +7,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitOS
 {
     public sealed class ModalAppKitPressenterAction
-        : AppKitPressenterAction<CrossModalPresentationAttribute>
+        : AppKitPressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
         public ModalAppKitPressenterAction(
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.AppKitOS
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, CrossModalPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, ModalPresentationAttribute attribute, CrossViewModelRequest request)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 

@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
-    [MvxTabPresentation(WrapInNavigationController = false)]
+    [TabPresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class Tab3View : MvxViewController<Tab3ViewModel>, IMvxTabBarItemViewController
     {

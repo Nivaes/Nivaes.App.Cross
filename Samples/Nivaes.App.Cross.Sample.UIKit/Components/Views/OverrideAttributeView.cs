@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxModalPresentationAttribute(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen,
+[ModalPresentationAttribute(ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen,
             ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve)]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class OverrideAttributeView

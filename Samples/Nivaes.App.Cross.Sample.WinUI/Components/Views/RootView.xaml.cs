@@ -2,7 +2,7 @@ using Nivaes.App.Cross.WinUI;
 
 namespace Nivaes.App.Cross.Sample.WinUI;
 
-[MvxPagePresentation]
+[PagePresentation]
 public sealed partial class RootView : RootViewPage
 {
     public RootView()

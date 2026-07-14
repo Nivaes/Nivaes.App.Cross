@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class RegionWinUIPressenterAction 
-        : WinUIPressenterAction<MvxRegionPresentationAttribute>
+        : WinUIPressenterAction<RegionPresentationAttribute>
     {
         #region Constructor
         public RegionWinUIPressenterAction(
@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MvxRegionPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, CrossViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {
@@ -46,7 +46,7 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MvxRegionPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, RegionPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(viewModel);
 

@@ -5,7 +5,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.UIKitLib;
 
 [MvxFromStoryboard("Main")]
-[MvxChildPresentation]
+[ChildPresentation]
 [RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ChildView
     : MvxViewController<ChildViewModel>
