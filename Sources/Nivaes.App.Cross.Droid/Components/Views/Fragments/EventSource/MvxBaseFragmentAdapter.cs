@@ -1,11 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Android.Content;
+using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Nivaes.App.Cross;
-    using Fragment = AndroidX.Fragment.App.Fragment;
-
     public class MvxBaseFragmentAdapter
     {
         private readonly ICrossEventSourceFragment _eventSource;
@@ -60,7 +58,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-        protected virtual void HandleCreateCalled(object? sender, CrossValueEventArgs<Bundle> e)
+        protected virtual void HandleCreateCalled(object? sender, CrossValueEventArgs<Bundle?> e)
         {
         }
 

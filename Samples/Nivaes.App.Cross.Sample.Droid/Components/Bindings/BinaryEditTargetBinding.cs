@@ -3,7 +3,6 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid
 {
-    [RequiresUnreferencedCode("Bindings requires unreferenced code")]
     public class BinaryEditTargetBinding
         : MvxAndroidTargetBinding<BinaryEdit, int>
     {

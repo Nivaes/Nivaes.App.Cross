@@ -47,20 +47,11 @@ public static class CrossViewExtensions
     {
         ArgumentNullException.ThrowIfNull(view);
 
-        if (Singleton<CrossViewsViewModelManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        if (Singleton<ViewsViewModelStore>.Instance.TryGetValue(view.GetType(), out var viewModelType))
         {
             return viewModelType;
         }
 
-        //var associatedTypeFinder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelTypeFinder>();
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelTypeFinder? associatedTypeFinder) == true)
-        //return associatedTypeFinder?.FindTypeOrNull(view.GetType());
-
-        //CrossLogHost.Default?.Log(LogLevel.Trace,
-        //    "No view model type finder available - assuming we are looking for a splash screen - returning null");
-
-        //return typeof(CrossNullViewModel);
         return null;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App.Cross;
+﻿namespace Nivaes.App.Cross.Components.Presenters.Data;
 
 public class PresentationData
 {

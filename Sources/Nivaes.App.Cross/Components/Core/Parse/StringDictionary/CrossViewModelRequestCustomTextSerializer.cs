@@ -3,10 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 namespace Nivaes.App.Cross;
 
 public class CrossViewModelRequestCustomTextSerializer
-: ICrossTextSerializer
+    : ICrossTextSerializer
 {
-    //protected Lazy<ICrossViewModelByNameLookup?> ByNameLookup { get; } =
-    //    new(() => Mvx.IoCProvider?.Resolve<ICrossViewModelByNameLookup>());
 
     private readonly Lazy<CrpssStringDictionaryWriter> _stringDictionaryWriter =
         new(() => new CrpssStringDictionaryWriter());
@@ -49,7 +47,6 @@ public class CrossViewModelRequestCustomTextSerializer
         return dictionary;
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
     protected virtual CrossViewModelRequest DeserializeViewModelRequest(string inputText)
     {
         var dictionary = _stringDictionaryParser.Value.Parse(inputText);
@@ -88,11 +85,9 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual Type? DeserializeViewModelType(string viewModelTypeName)
     {
-        if (!Singleton<CrossNameViewModelsManager>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
+        if (!Singleton<NameViewModelsStore>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
         {
-            throw new CrossException(
-                "Failed to find viewmodel for {0}",
-                viewModelTypeName);
+            throw new CrossException("Failed to find viewmodel for {0}", viewModelTypeName);
         }
 
         return toReturn;

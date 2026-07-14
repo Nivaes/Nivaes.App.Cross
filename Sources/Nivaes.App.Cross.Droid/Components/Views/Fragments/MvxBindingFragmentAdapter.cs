@@ -19,8 +19,7 @@ public class MvxBindingFragmentAdapter
             throw new ArgumentException("eventSource must be an IMvxFragmentView", nameof(eventSource));
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
-    protected override void HandleCreateCalled(object? sender, CrossValueEventArgs<Bundle>? e)
+    protected override void HandleCreateCalled(object? sender, CrossValueEventArgs<Bundle?>? e)
     {
         // Create is called after Fragment is attached to Activity
         // it's safe to assume that Fragment has activity
@@ -52,7 +51,6 @@ public class MvxBindingFragmentAdapter
             FragmentView?.OnCreate(mvxBundle, request);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
     {
         Bundle? bundle = null;
@@ -75,7 +73,6 @@ public class MvxBindingFragmentAdapter
         return (bundle, request);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming.")]
     private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
     {
         var serializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();

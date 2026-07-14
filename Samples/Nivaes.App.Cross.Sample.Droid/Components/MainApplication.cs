@@ -28,7 +28,6 @@ public class MainApplication
     {
         base.RegisterServices(services);
 
-        services
-               .TargetBindingFactoryRegistry();
+        services.TargetBindingFactoryRegistry();
     }
 }
