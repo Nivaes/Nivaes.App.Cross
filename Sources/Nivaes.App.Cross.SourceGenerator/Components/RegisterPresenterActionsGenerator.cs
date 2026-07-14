@@ -125,7 +125,7 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
             {rootNamespace}
             internal static class GeneratedPresenterActionsExtensions
             {{
-                public static IServiceProvider RegisterPresenterActions(IServiceProvider services)
+                public static IServiceProvider RegisterPresenterActions(this IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 

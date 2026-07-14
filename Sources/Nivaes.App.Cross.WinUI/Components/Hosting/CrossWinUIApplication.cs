@@ -83,6 +83,9 @@ public abstract class CrossWinUIApplication
 
         MainWindow!.Activate();
 
+        RegisterServices(_services);
+        RegisterPresenterActions(_services);
+
         var navigationService = _services.GetRequiredService<ICrossNavigationService>();
         await initializeViewModelType.NavigateToFirstViewModel(navigationService);
     }
@@ -135,6 +138,15 @@ public abstract class CrossWinUIApplication
     {
         // ToDo: Integrar con log.
         throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+    }
+
+    protected virtual void RegisterServices(IServiceProvider services)
+    {
+    }
+
+    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    {
+        services.RegisterPresenterActions();
     }
 
     // ToDO: Buscar donde registar ICrossSuspensionManager.

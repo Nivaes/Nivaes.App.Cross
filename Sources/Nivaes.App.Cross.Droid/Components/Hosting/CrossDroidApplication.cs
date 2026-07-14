@@ -51,6 +51,7 @@ namespace Nivaes.App.Cross.Droid
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);
 
             RegisterServices(_services);
+            RegisterPresenterActions(_services);
 
             //this.SetApplicationHandler(_application, applicationContext);
 
@@ -70,6 +71,11 @@ namespace Nivaes.App.Cross.Droid
             services
                 .TargetBindingFactoryRegistry()
                 .BindingNameRegister();
+        }
+
+        protected virtual void RegisterPresenterActions(IServiceProvider services)
+        {
+            services.RegisterPresenterActions();
         }
 
         public override void OnLowMemory()

@@ -71,6 +71,7 @@ public abstract class CrossSceneDelegate
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         RegisterServices(_services);
+        RegisterPresenterActions(_services);
 
         var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
@@ -85,6 +86,11 @@ public abstract class CrossSceneDelegate
         services
             .TargetBindingFactoryRegistry()
             .BindingNameRegister();
+    }
+
+    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    {
+        services.RegisterPresenterActions();
     }
 
     [Export("sceneDidDisconnect:")]

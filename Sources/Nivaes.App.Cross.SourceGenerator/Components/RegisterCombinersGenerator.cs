@@ -121,7 +121,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             {rootNamespace}
             internal static class GeneratedCombinerExtensions
             {{
-                public static IServiceProvider RegisterCombiners(IServiceProvider services)
+                public static IServiceProvider RegisterCombiners(this IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 

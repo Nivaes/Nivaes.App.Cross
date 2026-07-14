@@ -15,10 +15,18 @@ public abstract class CrossApplication : ICrossApplication
         Logger = logger;
     }
 
-    public virtual void Setup()
+    public void Setup()
     {
-        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
-        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+        RegisterConverters();
+        RegisterCombiners();
+    }
+
+    protected virtual void RegisterConverters() {
+        ServiceProvider.RegisterConverters();
+    }
+
+    protected virtual void RegisterCombiners() {
+        ServiceProvider.RegisterCombiners();
     }
 
     public abstract ICrossViewModelStar Initialize();
@@ -31,4 +39,6 @@ public abstract class CrossApplication : ICrossApplication
     public virtual void Reset()
     {
     }
+
+   
 }

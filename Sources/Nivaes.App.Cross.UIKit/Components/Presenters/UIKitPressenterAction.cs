@@ -5,7 +5,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class UIKitPressenterAction<TPressenterAttribute> : PressenterAction<TPressenterAttribute>
+    public abstract class UIKitPressenterAction<TPressenterAttribute> 
+        : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         protected readonly IMvxIosViewCreator ViewCreator;

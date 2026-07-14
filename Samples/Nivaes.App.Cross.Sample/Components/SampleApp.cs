@@ -16,11 +16,16 @@ public class SampleApp : CrossApplication
         _tracerProvider = tracerProvider;
     }
 
-    public override void Setup()
+    protected override void RegisterConverters()
     {
-        base.Setup();
-        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
-        //GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+        base.RegisterConverters();
+        ServiceProvider.RegisterConverters();
+    }
+
+    protected override void RegisterCombiners()
+    {
+        base.RegisterCombiners();
+        //ServiceProvider.RegisterCombiners();
     }
 
     ///// <summary>

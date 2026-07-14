@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
+using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.AppKitLib;
@@ -54,6 +55,7 @@ public abstract class MvxApplicationDelegate :
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         RegisterServices(_services);
+        RegisterPresenterActions(_services);
 
         var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
@@ -66,6 +68,11 @@ public abstract class MvxApplicationDelegate :
         services
             .TargetBindingFactoryRegistry()
             .BindingNameRegister();
+    }
+
+    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    {
+        services.RegisterPresenterActions();
     }
 
     [Obsolete]
