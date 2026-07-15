@@ -364,7 +364,6 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "OpenTelemetry": "[1.16.0, )",
           "OpenTelemetry.Exporter.Console": "[1.16.0, )",
@@ -374,19 +373,12 @@
           "OpenTelemetry.Instrumentation.Runtime": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.winui": {
         "type": "Project",
         "dependencies": {
           "CommunityToolkit.WinUI.Collections": "[8.2.251219, )",
           "Microsoft.WindowsAppSDK": "[2.2.0, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.WinUI.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }

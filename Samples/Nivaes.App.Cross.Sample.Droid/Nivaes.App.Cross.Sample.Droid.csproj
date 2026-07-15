@@ -38,7 +38,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
 			<IncludeAssets>analyzers</IncludeAssets>
 			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>

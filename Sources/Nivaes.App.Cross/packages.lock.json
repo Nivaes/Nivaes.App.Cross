@@ -263,12 +263,6 @@
           "OpenTelemetry.Api": "1.16.0"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "CentralTransitive",
         "requested": "[5.6.0, )",

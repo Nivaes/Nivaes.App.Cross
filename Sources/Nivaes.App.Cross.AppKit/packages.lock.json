@@ -212,12 +212,6 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "FluentValidation": {
         "type": "CentralTransitive",
         "requested": "[12.1.1, )",

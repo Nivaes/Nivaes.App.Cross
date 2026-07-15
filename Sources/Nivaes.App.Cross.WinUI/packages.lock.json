@@ -370,12 +370,6 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.winui.sourcegenerator": {
         "type": "Project",
         "dependencies": {

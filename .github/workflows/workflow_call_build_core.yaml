@@ -16,15 +16,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
 
-    - name: setup-xcode 
-      uses: ./.github/actions/setup-core
-      with:
-        global-json-file: ./global.json
-
-    - name: Install workload
-      run: |
-        dotnet workload install android
-
     - name: Restore Dependencies
       run: |
           dotnet restore Sources/Nivaes.App.Cross.SourceGenerator --configfile .github/NuGet.config

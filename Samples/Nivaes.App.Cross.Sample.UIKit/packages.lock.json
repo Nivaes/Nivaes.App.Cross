@@ -220,7 +220,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -235,7 +234,6 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "OpenTelemetry": "[1.16.0, )",
           "OpenTelemetry.Exporter.Console": "[1.16.0, )",
@@ -245,17 +243,10 @@
           "OpenTelemetry.Instrumentation.Runtime": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -645,7 +636,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -660,7 +650,6 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "OpenTelemetry": "[1.16.0, )",
           "OpenTelemetry.Exporter.Console": "[1.16.0, )",
@@ -670,17 +659,10 @@
           "OpenTelemetry.Instrumentation.Runtime": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
