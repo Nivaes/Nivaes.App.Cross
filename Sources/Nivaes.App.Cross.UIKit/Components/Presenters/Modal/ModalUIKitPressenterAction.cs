@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class ModalUIKitPressenterAction
+    public sealed class ModalUIKitPressenterAction
             : UIKitPressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(false);
         }
 
-        protected virtual ValueTask<bool> ShowModalViewController(
+        private ValueTask<bool> ShowModalViewController(
             UIViewController viewController,
             ModalPresentationAttribute attribute,
             CrossViewModelRequest? request)
@@ -97,7 +97,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(true);
         }
 
-        protected virtual IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(
+        protected IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(
            UIViewController viewController, ModalPresentationAttribute attribute)
         {
             return new ModalPresentationControllerDelegate(this, viewController, attribute);

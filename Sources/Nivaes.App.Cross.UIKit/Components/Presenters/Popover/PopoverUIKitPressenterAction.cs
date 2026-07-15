@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class PopoverUIKitPressenterAction
+    public sealed class PopoverUIKitPressenterAction
             : UIKitPressenterAction<PopoverPresentationAttribute>
     {
         #region Constructor
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        public virtual async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, PopoverPresentationAttribute attribute)
+        private async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, PopoverPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);

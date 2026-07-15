@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class TabUIKitPressenterAction
+    public sealed class TabUIKitPressenterAction
             : UIKitPressenterAction<TabPresentationAttribute>
     {
         #region Constructor

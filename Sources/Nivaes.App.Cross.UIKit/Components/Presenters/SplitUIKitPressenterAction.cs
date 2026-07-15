@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class SplitUIKitPressenterAction
+    public sealed class SplitUIKitPressenterAction
             : UIKitPressenterAction<SplitViewPresentationAttribute>
     {
         #region Constructor
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
-        protected virtual ValueTask<bool> ShowDetailSplitViewController(
+        private ValueTask<bool> ShowDetailSplitViewController(
            UIViewController viewController,
            SplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
@@ -63,7 +63,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(true);
         }
 
-        protected virtual ValueTask<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
+        private ValueTask<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(true);
         }
 
-        protected virtual ValueTask<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
+        private ValueTask<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
             if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);

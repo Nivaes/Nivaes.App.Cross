@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class ChildUIKitPressenterAction
+    public sealed class ChildUIKitPressenterAction
             : UIKitPressenterAction<ChildPresentationAttribute>
     {
         #region Constructor
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return ValueTask.FromResult(false);
         }
 
-        protected virtual bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, ChildPresentationAttribute attribute)
+        private bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, ChildPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(navController);
             ArgumentNullException.ThrowIfNull(attribute);
