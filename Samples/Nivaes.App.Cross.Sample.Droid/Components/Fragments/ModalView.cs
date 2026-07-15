@@ -30,7 +30,7 @@ public class ModalView : MvxDialogFragment<ModalViewModel>
 
     public override void OnPause()
     {
-        var top = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
+        var top = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>();
         var activity = top.Activity;
 
         base.OnPause();
