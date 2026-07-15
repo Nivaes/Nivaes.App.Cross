@@ -1,8 +1,9 @@
+using Nivaes.App.Cross;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using Nivaes.App.Cross;
-
-    public class TabPresentationAttribute : BasePresentationAttribute
+    public class TabPresentationAttribute 
+        : BasePresentationAttribute
     {
         public string? TabName { get; set; }
 

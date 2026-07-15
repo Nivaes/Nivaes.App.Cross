@@ -15,7 +15,7 @@ public abstract class CrossApplication : ICrossApplication
         Logger = logger;
     }
 
-    public void Setup()
+    void ICrossApplication.Setup()
     {
         RegisterConverters();
         RegisterCombiners();

@@ -14,7 +14,7 @@ public abstract class CrossApplication
     //internal Frame? RootFrame { get; set; }
     //internal Window? MainWindow { get; private set; }
 
-    public IServiceProvider Services
+    public IServiceProvider ServiceProvider
     {
         get => _services!;
         protected set => _services = value;
