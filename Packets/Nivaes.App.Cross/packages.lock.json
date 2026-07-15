@@ -1094,7 +1094,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -1109,7 +1108,6 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.9, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Xamarin.AndroidX.AppCompat": "[1.7.1.4, )",
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",
@@ -1119,12 +1117,6 @@
         }
       },
       "nivaes.app.cross.droid.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
-      "nivaes.app.cross.sourcegenerator": {
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
@@ -1394,9 +1386,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.9, )",
-        "resolved": "10.0.9",
-        "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
+        "requested": "[10.0.10, )",
+        "resolved": "10.0.10",
+        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -1576,7 +1568,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -1584,17 +1575,10 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -1719,9 +1703,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.9, )",
-        "resolved": "10.0.9",
-        "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
+        "requested": "[10.0.10, )",
+        "resolved": "10.0.10",
+        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -1901,7 +1885,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -1909,17 +1892,10 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -2044,9 +2020,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.9, )",
-        "resolved": "10.0.9",
-        "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
+        "requested": "[10.0.10, )",
+        "resolved": "10.0.10",
+        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -2224,8 +2200,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.AppKit.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )"
+          "Nivaes.App.Cross.Core": "[1.0.0, )"
         }
       },
       "nivaes.app.cross.appkit.sourcegenerator": {
@@ -2240,18 +2215,11 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
-        }
-      },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "FluentValidation": {
@@ -2368,9 +2336,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.9, )",
-        "resolved": "10.0.9",
-        "contentHash": "4Iw41e2h7I4t70SJcX2GCmbyKJIlA273Cfm9RJMM050/3VBejGAG1KcthP5Z2L6SQcbfbf6BhNWO26+ZG+GzMg=="
+        "requested": "[10.0.10, )",
+        "resolved": "10.0.10",
+        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -2550,7 +2518,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
@@ -2558,17 +2525,10 @@
           "OpenTelemetry": "[1.16.0, )"
         }
       },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
-        }
-      },
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
@@ -2995,18 +2955,11 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.9, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.9, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
-        }
-      },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "nivaes.app.cross.winui": {
@@ -3015,7 +2968,6 @@
           "CommunityToolkit.WinUI.Collections": "[8.2.251219, )",
           "Microsoft.WindowsAppSDK": "[2.2.0, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.WinUI.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }
