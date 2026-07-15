@@ -88,8 +88,9 @@ namespace Nivaes.App.Cross
         //    }
         //}
 
-        public ICrossViewModel LoadViewModel<TParameter>(CrossViewModelRequest request, TParameter param, ICrossBundle? savedState,
-           ICrossNavigateEventArgs? navigationArgs = null)
+        public ICrossViewModel? LoadViewModel<TParameter>(CrossViewModelRequest request, TParameter param, 
+                ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
+           where TParameter : notnull
         {
             //if (request.ViewModelType == null || request.ViewModelType == typeof(CrossNullViewModel))
             //{

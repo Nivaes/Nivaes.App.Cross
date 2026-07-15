@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.WinUI
         where TPressenterAttribute : IPresentationAttribute
     {
         // ToDo: Ha de compartirse con todos los PressenterAction?
-        private readonly object _windowInformationLock = new();
+        private readonly Lock _windowInformationLock = new Lock();
 
         // ToDo: Ha de compartirse con todos los PressenterAction?
         private readonly WindowInformation _mainFrame;

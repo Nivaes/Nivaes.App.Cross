@@ -6,6 +6,7 @@ namespace Nivaes.App.Cross
     {
         //ICrossViewModelTypeFinder? ViewModelTypeFinder { get; }
         //ICrossViewsContainer? ViewsContainer { get; }
+        [Obsolete]
         IDictionary<Type, CrossPresentationAttributeAction>? AttributeTypesToActionsDictionary { get; }
         void RegisterAttributeTypes();
 

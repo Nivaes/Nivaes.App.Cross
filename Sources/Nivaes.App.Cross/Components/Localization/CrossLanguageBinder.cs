@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross;
 public class CrossLanguageBinder(string? namespaceName = null, string? typeName = null)
     : ICrossLanguageBinder
 {
-    private readonly object _lockObject = new();
+    private readonly Lock _lockObject = new();
     private ICrossTextProvider? _cachedTextProvider;
 
     public CrossLanguageBinder(Type owningObject)

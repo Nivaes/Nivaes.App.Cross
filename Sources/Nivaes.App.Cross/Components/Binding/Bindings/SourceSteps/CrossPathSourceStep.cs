@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     {
         private ICrossSourceBinding? _sourceBinding;
 
-        private readonly object _sourceLocker = new object();
+        private readonly Lock _sourceLocker = new ();
 
         public CrossPathSourceStep(CrossPathSourceStepDescription description)
             : base(description)

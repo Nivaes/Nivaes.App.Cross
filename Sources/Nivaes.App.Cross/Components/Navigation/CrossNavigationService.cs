@@ -75,9 +75,6 @@ public class CrossNavigationService
         CrossViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(request);
-        ArgumentNullException.ThrowIfNull(viewModel);
-
         var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);
         OnWillNavigate(this, args);
 

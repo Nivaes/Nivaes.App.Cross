@@ -26,7 +26,7 @@ public class MultiWindowViewPresenterManager
     private readonly List<WindowInformation> _windowInformation = new();
     private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
 
-    private readonly object _windowInformationLock = new();
+    private readonly Lock _windowInformationLock = new();
 
     private readonly ICrossViewModelLoader _viewModelLoader;
 

@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxCollectionViewSourceAnimated : MvxCollectionViewSource
     {
-        private readonly object collectionChangedLock = new object();
+        private readonly Lock collectionChangedLock = new();
         private readonly ILogger? _logger;
 
         private Task runningChangeTask = Task.FromResult(true);

@@ -33,6 +33,7 @@ namespace Nivaes.App.Cross
                 .FirstOrDefault();
         }
 
+        [Obsolete]
         public static void Register<TMvxPresentationAttribute>(
             this IDictionary<Type, CrossPresentationAttributeAction> attributeTypesToActionsDictionary,
             Func<Type, TMvxPresentationAttribute, CrossViewModelRequest, Task<bool>> showAction,

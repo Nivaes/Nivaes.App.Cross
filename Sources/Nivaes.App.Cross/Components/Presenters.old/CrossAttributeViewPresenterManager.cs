@@ -14,6 +14,7 @@ public abstract class CrossAttributeViewPresenterManager
         ViewsContainer = crossViewsContainer;
     }
 
+    [Obsolete("", true)]
     private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
     [Obsolete("Busca interfaces de la vista.", true)]

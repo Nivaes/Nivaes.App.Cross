@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Droid
     public class MvxFilteringAdapter
         : MvxAdapter, IFilterable
     {
-        private readonly object _syncLock = new object();
+        private readonly Lock _syncLock = new();
 
         private class MyFilter : Filter
         {

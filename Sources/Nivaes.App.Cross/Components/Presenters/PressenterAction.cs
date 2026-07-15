@@ -30,6 +30,7 @@ namespace Nivaes.App.Cross
             return CloseActon(viewModel, attribute);
         }
 
+        [Obsolete]
         private CrossPresentationAttributeAction GetPresentationAttributeAction(
             CrossViewModelRequest? request, out BasePresentationAttribute attribute)
         {

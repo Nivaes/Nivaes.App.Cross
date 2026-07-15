@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.WinUI
         private const string WindowTitle = "WindowTitle";
         private const int DefaultWindowHeight = 456;
         private const int DefaultWindowWidth = 786;
-        private readonly object _windowInformationLock = new();
+        private readonly Lock _windowInformationLock = new();
         private readonly List<WindowInformation> _windowInformation = new();
 
         #region Constructor
