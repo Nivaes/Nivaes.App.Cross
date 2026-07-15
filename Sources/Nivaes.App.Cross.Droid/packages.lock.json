@@ -1228,7 +1228,6 @@
           "FluentValidation": "[12.1.1, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
-          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[0.9.16, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
