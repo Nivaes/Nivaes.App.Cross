@@ -20,27 +20,6 @@ public static class CrossProgram
 
         appBuilder.Services.AddMetrics();
 
-        appBuilder.SetupViews();
-
         return appBuilder.Build();
-    }
-
-    static CrossAppBuilder SetupViews(this CrossAppBuilder builder)
-    {
-        // ToDo: Cargar esto con roslyn.
-        ViewsContainerManagerHelper.RegisterViewModels(new[] {
-                    ViewsContainerManagerHelper.New<RootViewModel, RootView>(),
-                    ViewsContainerManagerHelper.New<NewWindowViewModel, NewWindow>(),
-                    ViewsContainerManagerHelper.New<ChildViewModel, ChildView>(),
-                    ViewsContainerManagerHelper.New<ModalViewModel, DialogView>(),
-                    ViewsContainerManagerHelper.New<SecondChildViewModel, SecondChildView>(),
-                    ViewsContainerManagerHelper.New<RegionViewModel, RegionView>(),
-                    ViewsContainerManagerHelper.New<SplitDetailViewModel, SplitDetailView>(),
-                    ViewsContainerManagerHelper.New<SplitMasterViewModel, SplitMasterView>(),
-                    ViewsContainerManagerHelper.New<SplitRootViewModel, SplitRootView>(),
-                    ViewsContainerManagerHelper.New<ModalViewModel, DialogView>(),
-                });
-
-        return builder;
-    }
+    }   
 }

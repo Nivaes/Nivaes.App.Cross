@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
         protected override void RegisterViewsActions()
         {
             base.RegisterViewsActions();
-            GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+            GeneratedViewsExtensions.RegisterViewsActions();
         }
     }
 }

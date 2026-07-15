@@ -29,8 +29,6 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
                 return ns;
             });
 
-        //System.Diagnostics.Debugger.Launch();
-
         context.RegisterSourceOutput(
             converters.Collect().Combine(rootNamespace),
             Generate);
@@ -69,14 +67,21 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
         INamedTypeSymbol? current = symbol;
         INamedTypeSymbol? viewModelAttributeType = null;
 
+        //System.Diagnostics.Debugger.Launch();
+
         while (current is not null)
         {
-            if (current.IsGenericType &&
-                SymbolEqualityComparer.Default.Equals(
-                    current.OriginalDefinition,
-                    viewBase))
+            var crossView = symbol.AllInterfaces
+                .FirstOrDefault(i =>
+                    i.IsGenericType &&
+                    SymbolEqualityComparer.Default.Equals(
+                        i.OriginalDefinition,
+                        viewBase));
+
+            if (crossView != null)
             {
-                viewModelAttributeType = current.TypeArguments[0] as INamedTypeSymbol;
+                viewModelAttributeType =
+                    (INamedTypeSymbol)crossView.TypeArguments[0];
                 break;
             }
 
@@ -107,7 +112,7 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
         var sourceConverters = string.Join(Environment.NewLine,
             types.Select(type =>
                 {
-                    return $"ViewsContainerManagerHelper.New<{type.ViewModelType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.ViewType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                    return $"ViewsContainerManagerHelper.New<{type.ViewModelType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.ViewType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(),";
                 }
             ));
 
@@ -128,11 +133,9 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
             {rootNamespace}
             internal static class GeneratedViewsExtensions
             {{
-                public static IServiceProvider RegisterViewsActions(IServiceProvider services)
+                public static void RegisterViewsActions()
                 {{
                     {sourceRegisterConverters}
-
-                    return services;
                 }}
             }}
         ";

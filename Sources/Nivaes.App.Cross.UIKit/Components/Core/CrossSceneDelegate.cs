@@ -111,7 +111,7 @@ public abstract class CrossSceneDelegate
 
     protected virtual void RegisterViewsActions()
     {
-        UIKitLib.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+        UIKitLib.GeneratedViewsExtensions.RegisterViewsActions();
     }
 
     [Export("sceneDidDisconnect:")]

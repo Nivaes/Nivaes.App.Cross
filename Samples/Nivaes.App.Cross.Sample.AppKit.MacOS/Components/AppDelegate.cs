@@ -20,6 +20,6 @@ public class AppDelegate : MvxApplicationDelegate
     protected override void RegisterViewsActions()
     {
         base.RegisterViewsActions();
-        GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+        GeneratedViewsExtensions.RegisterViewsActions();
     }
 }

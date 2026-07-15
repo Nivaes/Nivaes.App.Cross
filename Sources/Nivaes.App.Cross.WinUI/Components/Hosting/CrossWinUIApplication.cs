@@ -161,7 +161,7 @@ public abstract class CrossWinUIApplication
 
     protected virtual void RegisterViewsActions()
     {
-        WinUI.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+        WinUI.GeneratedViewsExtensions.RegisterViewsActions();
     }
 
 

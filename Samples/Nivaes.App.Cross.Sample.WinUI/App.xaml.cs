@@ -25,6 +25,6 @@ public sealed partial class App
     protected override void RegisterViewsActions()
     {
         base.RegisterViewsActions();
-        GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+        GeneratedViewsExtensions.RegisterViewsActions();
     }
 }

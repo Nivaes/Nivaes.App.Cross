@@ -98,7 +98,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual void RegisterViewsActions()
         {
-            Droid.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+            Droid.GeneratedViewsExtensions.RegisterViewsActions();
         }
 
         public override void OnLowMemory()

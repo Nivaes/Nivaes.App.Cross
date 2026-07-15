@@ -94,7 +94,7 @@ public abstract class MvxApplicationDelegate :
 
     protected virtual void RegisterViewsActions()
     {
-        AppKitLib.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+        AppKitLib.GeneratedViewsExtensions.RegisterViewsActions();
     }
 
     [Obsolete]
