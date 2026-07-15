@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross.Sample.Droid;
     , ScreenOrientation = ScreenOrientation.Portrait)]
 [Register("nivaes.cross.sample.SplashScreen")]
 public sealed class SplashScreen 
-    : StartActivity<StartViewModel>
+    : StartActivity
 {
     public SplashScreen()
         : base(Resource.Layout.SplashScreen)

@@ -2,12 +2,12 @@ using Android.Runtime;
 using Android.Views;
 using AndroidX.Lifecycle;
 using Microsoft.Extensions.DependencyInjection;
+using Activity = AndroidX.AppCompat.App.AppCompatActivity;
 
 namespace Nivaes.App.Cross.Droid;
 
-public abstract class StartActivity<TViewModel>
-    : CrossActivity<TViewModel>
-    where TViewModel: StartViewModel 
+public abstract class StartActivity
+    : Activity
 {
     protected const int NoContent = 0;
 
@@ -17,7 +17,6 @@ public abstract class StartActivity<TViewModel>
 
     protected StartActivity(int resourceId = NoContent)
     {
-        //RegisterSetup();
         _resourceId = resourceId;
     }
 
@@ -51,7 +50,6 @@ public abstract class StartActivity<TViewModel>
     protected override async void OnResume()
     {
         base.OnResume();
-        //await RunAppStartAsync(_bundle);
 
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
@@ -79,8 +77,4 @@ public abstract class StartActivity<TViewModel>
     {
         return hint;
     }
-
-    //protected virtual void RegisterSetup()
-    //{
-    //}
 }
