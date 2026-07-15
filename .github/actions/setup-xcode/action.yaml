@@ -6,6 +6,13 @@ inputs:
     description: Path to global.json
     required: false
     default: global.json
+#   repository_owner:
+#     description: Repository outner
+#     required: true
+# secrets:
+#   github_token:
+#     description: github token
+#     required: true
 
 runs:
   using: composite
@@ -18,9 +25,9 @@ runs:
         # cache: true
         # cache-dependency-path: |
         #   **/packages.lock.json
-        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      #   source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      # env:
+      #   NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Install xcode
       uses: maxim-lobanov/setup-xcode@v1
