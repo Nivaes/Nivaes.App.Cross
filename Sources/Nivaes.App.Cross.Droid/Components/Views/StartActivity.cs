@@ -1,12 +1,13 @@
 using Android.Runtime;
 using Android.Views;
+using AndroidX.Lifecycle;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross.Droid;
 
-[Register("nivaes.cross.StartActivity")]
-public abstract class CrossStartActivity
-    : CrossActivity<CrossStartActivityViewModel>
+public abstract class StartActivity<TViewModel>
+    : CrossActivity<TViewModel>
+    where TViewModel: StartViewModel 
 {
     protected const int NoContent = 0;
 
@@ -14,19 +15,13 @@ public abstract class CrossStartActivity
 
     private Bundle? _bundle;
 
-    //public new CrossNullViewModel ViewModel
-    //{
-    //    get { return base.ViewModel as CrossNullViewModel; }
-    //    set { base.ViewModel = value; }
-    //}
-
-    protected CrossStartActivity(int resourceId = NoContent)
+    protected StartActivity(int resourceId = NoContent)
     {
         //RegisterSetup();
         _resourceId = resourceId;
     }
 
-    protected CrossStartActivity(IntPtr javaReference, JniHandleOwnership transfer)
+    protected StartActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)
     {
     }

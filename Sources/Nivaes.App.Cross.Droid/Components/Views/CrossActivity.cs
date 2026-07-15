@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Droid;
 
 public abstract class CrossActivity<TViewModel>
     : CrossEventSourceActivity, ICrossActivity, IMvxAndroidView<TViewModel>
-    where TViewModel : ICrossViewModel
+    where TViewModel: ICrossViewModel
 {
     protected CrossActivity(IntPtr javaReference, JniHandleOwnership transfer)
         : base(javaReference, transfer)

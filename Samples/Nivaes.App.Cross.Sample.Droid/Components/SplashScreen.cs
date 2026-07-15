@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Android.Content.PM;
+using Android.Runtime;
 using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
@@ -11,9 +12,9 @@ namespace Nivaes.App.Cross.Sample.Droid;
     , Theme = "@style/AppTheme.Splash"
     , NoHistory = true
     , ScreenOrientation = ScreenOrientation.Portrait)]
-[RequiresUnreferencedCode("CrossStartActivity require unreferenced code")]
+[Register("nivaes.cross.sample.SplashScreen")]
 public sealed class SplashScreen 
-    : CrossStartActivity
+    : StartActivity<StartViewModel>
 {
     public SplashScreen()
         : base(Resource.Layout.SplashScreen)

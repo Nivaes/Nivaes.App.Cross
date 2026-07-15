@@ -40,13 +40,10 @@ public static class CrossViewExtensions
         }
     }
 
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)]
-    public static Type? FindAssociatedViewModelTypeOrNull<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] TViewType>(
+    public static Type? FindAssociatedViewModelTypeOrNull<TViewType>(
             this TViewType view)
         where TViewType : ICrossView
     {
-        ArgumentNullException.ThrowIfNull(view);
-
         if (Singleton<ViewsViewKeyContainerManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
         {
             return viewModelType;
