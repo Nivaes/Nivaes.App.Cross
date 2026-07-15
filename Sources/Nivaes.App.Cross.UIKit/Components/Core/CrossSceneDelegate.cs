@@ -69,10 +69,7 @@ public abstract class CrossSceneDelegate
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
-        RegisterServices();
-        RegisterConverters();
-        RegisterCombiners();
-        RegisterPresenterActions();
+        Regiesters();
 
         var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
@@ -80,6 +77,14 @@ public abstract class CrossSceneDelegate
         Window?.MakeKeyAndVisible();
 
         FireLifetimeChanged(CrossLifetimeEvent.Launching);
+    }
+    private void Regiesters()
+    {
+        RegisterServices();
+        RegisterConverters();
+        RegisterCombiners();
+        RegisterPresenterActions();
+        RegisterViewsActions();
     }
 
     protected virtual void RegisterServices()
@@ -102,6 +107,11 @@ public abstract class CrossSceneDelegate
     protected virtual void RegisterPresenterActions()
     {
         UIKitLib.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
+    }
+
+    protected virtual void RegisterViewsActions()
+    {
+        UIKitLib.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
     }
 
     [Export("sceneDidDisconnect:")]

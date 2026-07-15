@@ -239,6 +239,7 @@
         "dependencies": {
           "Microsoft.Extensions.Diagnostics": "[10.0.9, )",
           "Nivaes.App.Cross.Sample": "[1.0.0, )",
+          "Nivaes.App.Cross.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Cross.UIKit": "[1.0.0, )",
           "Nivaes.App.Shared": "[0.9.16, )"
         }

@@ -47,12 +47,6 @@ public abstract class CrossWindowsPage<TViewModel>
 
     public ICrossWindowsFrame WrappedFrame => new CrossWindowsFrame(Frame);
 
-    ICrossViewModel? ICrossView.ViewModel
-    {
-        get => ViewModel;
-        set => ViewModel = (TViewModel?)value;
-    }
-
     public TViewModel? ViewModel
     {
         get
@@ -69,6 +63,8 @@ public abstract class CrossWindowsPage<TViewModel>
             OnViewModelSet();
         }
     }
+
+    ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
 
     protected virtual void OnViewModelSet()
     {

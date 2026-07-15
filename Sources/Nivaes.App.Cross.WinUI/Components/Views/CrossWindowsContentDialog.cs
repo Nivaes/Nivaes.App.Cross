@@ -3,10 +3,11 @@ namespace Nivaes.App.Cross.WinUI
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
 
-    public class CrossWindowsContentDialog
+    public abstract class CrossWindowsContentDialog<TViewModel>
         : ContentDialog
-        , ICrossWindowsContentDialog
+        , ICrossWindowsContentDialog<TViewModel>
         , IDisposable
+        where TViewModel : class, ICrossViewModel
     {
         public CrossWindowsContentDialog()
         {
@@ -48,7 +49,7 @@ namespace Nivaes.App.Cross.WinUI
             ViewModel?.ViewDestroy();
         }
 
-        public ICrossViewModel? ViewModel
+        public TViewModel? ViewModel
         {
             get => field;
             set
@@ -61,6 +62,8 @@ namespace Nivaes.App.Cross.WinUI
                 OnViewModelSet();
             }
         }
+
+        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
 
         protected virtual void OnViewModelSet()
         {
@@ -88,17 +91,6 @@ namespace Nivaes.App.Cross.WinUI
                 Closing -= MvxWindowsContentDialog_Closing;
                 Unloaded -= MvxWindowsContentDialog_Unloaded;
             }
-        }
-    }
-
-    public class CrossWindowsContentDialog<TViewModel>
-        : CrossWindowsContentDialog
-        , ICrossWindowsContentDialog<TViewModel> where TViewModel : class, ICrossViewModel
-    {
-        public new TViewModel ViewModel
-        {
-            get => (TViewModel)base.ViewModel;
-            set => base.ViewModel = value;
         }
     }
 }

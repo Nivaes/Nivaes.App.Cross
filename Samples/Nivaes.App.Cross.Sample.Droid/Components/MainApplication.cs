@@ -30,4 +30,10 @@ public class MainApplication
 
         ServiceProvider.TargetBindingFactoryRegistry();
     }
+
+    protected override void RegisterViewsActions()
+    {
+        base.RegisterViewsActions();
+        GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+    }
 }

@@ -7,17 +7,17 @@ using Microsoft.CodeAnalysis.Text;
 namespace Nivaes.App.Cross.SourceGenerator;
 
 [Generator(LanguageNames.CSharp)]
-public class RegisterPresenterActionsGenerator : IIncrementalGenerator
+public class RegisterViewsActionsGenerator : IIncrementalGenerator
 {
-    private record struct ConverterInfo(INamedTypeSymbol PressentationAttributeType, INamedTypeSymbol PressentationActionType);
+    private record struct ConverterInfo(INamedTypeSymbol ViewModelType, INamedTypeSymbol ViewType);
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var converters = context.SyntaxProvider
-        .CreateSyntaxProvider(
-            predicate: static (node, _) => node is ClassDeclarationSyntax,
-            transform: static (ctx, _) => GetConverterType(ctx))
-        .Where(static c => c is not null)!;
+            .CreateSyntaxProvider(
+                predicate: static (node, _) => node is ClassDeclarationSyntax,
+                transform: static (ctx, _) => GetConverterType(ctx))
+            .Where(static c => c is not null)!;
 
         var rootNamespace = context.AnalyzerConfigOptionsProvider
             .Select(static (options, _) =>
@@ -28,6 +28,8 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
 
                 return ns;
             });
+
+        //System.Diagnostics.Debugger.Launch();
 
         context.RegisterSourceOutput(
             converters.Collect().Combine(rootNamespace),
@@ -47,45 +49,45 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
 
         var compilation = context.SemanticModel.Compilation;
 
-        var presenterActionInterface =
-            compilation.GetTypeByMetadataName("Nivaes.App.Cross.IPressenterAction");
+        var viewInterface =
+            compilation.GetTypeByMetadataName("Nivaes.App.Cross.ICrossView");
 
-        var presenterActionBase =
-            compilation.GetTypeByMetadataName("Nivaes.App.Cross.PressenterAction`1");
+        var viewBase =
+            compilation.GetTypeByMetadataName("Nivaes.App.Cross.ICrossView`1");
 
-        if (presenterActionInterface is null || presenterActionBase is null)
+        if (viewInterface is null || viewBase is null)
             return null;
 
-        // Debe implementar IPressenterAction
+        // Debe implementar ICrossView
         if (!symbol.AllInterfaces.Any(i =>
-            SymbolEqualityComparer.Default.Equals(i, presenterActionInterface)))
+            SymbolEqualityComparer.Default.Equals(i, viewInterface)))
         {
             return null;
         }
 
-        // Buscar PressenterAction<TPresentationAttribute> en la jerarquía de herencia
+        // Buscar ICrossView<TViewModel> en la jerarquía de herencia
         INamedTypeSymbol? current = symbol;
-        INamedTypeSymbol? presentationAttributeType = null;
+        INamedTypeSymbol? viewModelAttributeType = null;
 
         while (current is not null)
         {
             if (current.IsGenericType &&
                 SymbolEqualityComparer.Default.Equals(
                     current.OriginalDefinition,
-                    presenterActionBase))
+                    viewBase))
             {
-                presentationAttributeType = current.TypeArguments[0] as INamedTypeSymbol;
+                viewModelAttributeType = current.TypeArguments[0] as INamedTypeSymbol;
                 break;
             }
 
             current = current.BaseType;
         }
 
-        if (presentationAttributeType is null)
+        if (viewModelAttributeType is null)
             return null;
 
         return new ConverterInfo(
-            presentationAttributeType,
+            viewModelAttributeType,
             symbol);
     }
 
@@ -98,14 +100,14 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
         var types = input.ressenterActions
             .Where(x => x != null)
             .Cast<ConverterInfo>()
-            .OrderBy(x => x.PressentationActionType.Name);
+            .OrderBy(x => x.ViewType.Name);
 
         var rootNamespace = string.IsNullOrWhiteSpace(input.rootNamespace) ? string.Empty : $"namespace {input.rootNamespace};";
 
         var sourceConverters = string.Join(Environment.NewLine,
             types.Select(type =>
                 {
-                    return $"PresenterActionsContainerManagerHelper.New<{type.PressentationAttributeType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.PressentationActionType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                    return $"ViewsContainerManagerHelper.New<{type.ViewModelType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.ViewType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                 }
             ));
 
@@ -113,7 +115,7 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
         if (!string.IsNullOrWhiteSpace(sourceConverters))
         {
             sourceRegisterConverters = $@"
-                    PresenterActionsContainerManagerHelper.RegisterPresenterActions(new[]
+                    ViewsContainerManagerHelper.RegisterViewModels(new[]
                     {{
                        {sourceConverters}
                     }});";
@@ -124,9 +126,9 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
             using System;
             using Nivaes.App.Cross;
             {rootNamespace}
-            internal static class GeneratedPresenterActionsExtensions
+            internal static class GeneratedViewsExtensions
             {{
-                public static IServiceProvider RegisterPresenterActions(IServiceProvider services)
+                public static IServiceProvider RegisterViewsActions(IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 
@@ -136,7 +138,7 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
         ";
 
         context.AddSource(
-            "GeneratedPresenterActionsExtensions.g.cs",
+            "GeneratedViewsExtensions.g.cs",
             SourceText.From(source, Encoding.UTF8));
     }
 }

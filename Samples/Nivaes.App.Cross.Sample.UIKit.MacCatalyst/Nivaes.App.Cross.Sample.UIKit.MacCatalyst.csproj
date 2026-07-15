@@ -8,11 +8,11 @@
 
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
-		
+
 		<ApplicationId>com.nivaes.cross.maccatalyst.sample</ApplicationId>
-        <ApplicationTitle>NivaesCross</ApplicationTitle>
-        <ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
-        <ValidateXcodeVersion>false</ValidateXcodeVersion>
+		<ApplicationTitle>NivaesCross</ApplicationTitle>
+		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
+		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 
 		<PublishTrimmed>true</PublishTrimmed>
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
@@ -34,31 +34,44 @@
 		<SupportedOSPlatformVersion>$(_SupportedOSPlatformTvOSVersion)</SupportedOSPlatformVersion>
 		<TargetPlatformVersion>$(_TargetPlatformTvOSVersion)</TargetPlatformVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<BundleResource Remove="Resources\home%402x.png" />
+		<BundleResource Remove="Resources\home%403x.png" />
+		<BundleResource Remove="Resources\home.png" />
+		<BundleResource Remove="Resources\ic_tabbar_menu%402x.png" />
+		<BundleResource Remove="Resources\ic_tabbar_menu%403x.png" />
+		<BundleResource Remove="Resources\ic_tabbar_menu.png" />
+		<BundleResource Remove="Resources\settings%402x.png" />
+		<BundleResource Remove="Resources\settings%403x.png" />
+		<BundleResource Remove="Resources\settings.png" />
+	</ItemGroup>
 	
 	<ItemGroup>
-	  <BundleResource Remove="Resources\home%402x.png" />
-	  <BundleResource Remove="Resources\home%403x.png" />
-	  <BundleResource Remove="Resources\home.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu%402x.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu%403x.png" />
-	  <BundleResource Remove="Resources\ic_tabbar_menu.png" />
-	  <BundleResource Remove="Resources\settings%402x.png" />
-	  <BundleResource Remove="Resources\settings%403x.png" />
-	  <BundleResource Remove="Resources\settings.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon16.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon256.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon512.png" />
+		<ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
 	</ItemGroup>
-  <ItemGroup>
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon16.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon256.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon512.png" />
-	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
-	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj" />
 		<TrimmerRootAssembly Include="Nivaes.App.Cross.Sample.UIKit" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+		</ProjectReference>
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
@@ -72,7 +85,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Components\" />
+		<Folder Include="Components\" />
 	</ItemGroup>
-  
+
 </Project>

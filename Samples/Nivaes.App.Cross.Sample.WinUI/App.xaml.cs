@@ -21,4 +21,10 @@ public sealed partial class App
             Title = "MvvmCross WinUI 3 Playground"
         };
     }
+
+    protected override void RegisterViewsActions()
+    {
+        base.RegisterViewsActions();
+        GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
+    }
 }

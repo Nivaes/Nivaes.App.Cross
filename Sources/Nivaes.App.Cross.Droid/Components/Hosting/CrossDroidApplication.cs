@@ -50,10 +50,7 @@ namespace Nivaes.App.Cross.Droid
             var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);
 
-            RegisterServices();
-            RegisterConverters();
-            RegisterCombiners();
-            RegisterPresenterActions();
+            Regiesters();
 
             //this.SetApplicationHandler(_application, applicationContext);
 
@@ -66,6 +63,15 @@ namespace Nivaes.App.Cross.Droid
             //var navigationService = _services.GetRequiredService<ICrossNavigationService>();
 
             //await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+        }
+
+        private void Regiesters()
+        {
+            RegisterServices();
+            RegisterConverters();
+            RegisterCombiners();
+            RegisterPresenterActions();
+            RegisterViewsActions();
         }
 
         protected virtual void RegisterServices()
@@ -88,6 +94,11 @@ namespace Nivaes.App.Cross.Droid
         protected virtual void RegisterPresenterActions()
         {
             Droid.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
+        }
+
+        protected virtual void RegisterViewsActions()
+        {
+            Droid.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
         }
 
         public override void OnLowMemory()

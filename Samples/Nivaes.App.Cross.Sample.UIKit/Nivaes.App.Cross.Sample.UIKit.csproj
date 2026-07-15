@@ -41,6 +41,17 @@
 		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.UIKit\Nivaes.App.Cross.UIKit.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample\Nivaes.App.Cross.Sample.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Sources\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<PrivateAssets>runtime; build; native; contentfiles; buildtransitive</PrivateAssets>
+			<IncludeAssets>analyzers</IncludeAssets>
+			<ExcludeAssets>runtime; build; native; contentfiles; buildtransitive</ExcludeAssets>
+		</ProjectReference>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Update="Roslynator.Analyzers">
 			<PrivateAssets>all</PrivateAssets>

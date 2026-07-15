@@ -6,7 +6,6 @@ using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.AppKitLib;
 
-[RequiresUnreferencedCode("This class may use types that are not preserved by trimming")]
 public abstract class MvxApplicationDelegate :
     NSApplicationDelegate, IMvxApplicationDelegate, IPlatformApplication
 {
@@ -53,16 +52,23 @@ public abstract class MvxApplicationDelegate :
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
-        RegisterServices();
-        RegisterConverters();
-        RegisterCombiners();
-        RegisterPresenterActions();
+        Regiesters();
 
         var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
     }
+
+    private void Regiesters()
+    {
+        RegisterServices();
+        RegisterConverters();
+        RegisterCombiners();
+        RegisterPresenterActions();
+        RegisterViewsActions();
+    }
+
 
     protected virtual void RegisterServices()
     {
@@ -84,6 +90,11 @@ public abstract class MvxApplicationDelegate :
     protected virtual void RegisterPresenterActions()
     {
         AppKitLib.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
+    }
+
+    protected virtual void RegisterViewsActions()
+    {
+        AppKitLib.GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
     }
 
     [Obsolete]

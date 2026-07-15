@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.UIKitLib;
+using Nivaes.App.CrossSample.UIKitLib;
 
 namespace Nivaes.App.Cross.Sample.UIKitLib
 {
@@ -16,6 +17,12 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
 
             ServiceProvider
                .TargetBindingFactoryRegistry();
+        }
+
+        protected override void RegisterViewsActions()
+        {
+            base.RegisterViewsActions();
+            GeneratedViewsExtensions.RegisterViewsActions(ServiceProvider);
         }
     }
 }

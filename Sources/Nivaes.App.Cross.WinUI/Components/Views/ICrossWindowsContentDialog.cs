@@ -7,6 +7,7 @@ public interface ICrossWindowsContentDialog
 
 public interface ICrossWindowsContentDialog<TViewModel>
     : ICrossWindowsContentDialog
-    , ICrossView<TViewModel> where TViewModel : class, ICrossViewModel
+    , ICrossView<TViewModel> 
+    where TViewModel : class, ICrossViewModel
 {
 }
