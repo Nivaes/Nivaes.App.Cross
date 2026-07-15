@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<!--<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>-->
-		<TargetFrameworks>$(_CrossiOSTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_CrossiOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>
 		<AssemblyName>Nivaes.App.Cross.UIKit</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.UIKitLib</RootNamespace>
 
