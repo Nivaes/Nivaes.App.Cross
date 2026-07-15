@@ -15,25 +15,28 @@ runs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ${{ inputs.global-json-file }}
-        cache: true
-        cache-dependency-path: |
-          **/packages.lock.json
+        # cache: true
+        # cache-dependency-path: |
+        #   **/packages.lock.json
+        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Install xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: 26.2
 
-    - name: Cache workloads
-      id: workload-cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/.dotnet
-          ~/.nuget/packages
-        key: workloads-${{ runner.os }}-${{ hashFiles('global.json') }}
-        restore-keys: |
-          workloads-${{ runner.os }}-
+    # - name: Cache workloads
+    #   id: workload-cache
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: |
+    #       ~/.dotnet
+    #       ~/.nuget/packages
+    #     key: workloads-${{ runner.os }}-${{ hashFiles('global.json') }}
+    #     restore-keys: |
+    #       workloads-${{ runner.os }}-
 
     - name: Install workload
       if: steps.workload-cache.outputs.cache-hit != 'true'
