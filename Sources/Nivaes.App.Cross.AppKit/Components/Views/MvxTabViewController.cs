@@ -2,8 +2,9 @@ namespace Nivaes.App.Cross.AppKitLib
 {
     using ObjCRuntime;
 
-    public class MvxTabViewController
-        : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView
+    public abstract class MvxTabViewController<TViewModel>
+        : MvxEventSourceTabViewController, IMvxTabViewController, IMvxMacView<TViewModel>
+        where TViewModel : class, ICrossViewModel
     {
         protected MvxTabViewController()
             : base()
@@ -62,15 +63,18 @@ namespace Nivaes.App.Cross.AppKitLib
             set { this.BindingContext?.DataContext = value; }
         }
 
-        public ICrossViewModel? ViewModel
+        public TViewModel? ViewModel
         {
-            get { return (ICrossViewModel?)this.DataContext; }
+            get { return (TViewModel?)this.DataContext; }
             set { this.DataContext = value; }
         }
+
+        ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
 
         public CrossViewModelRequest? Request { get; set; }
 
         public ICrossBindingContext? BindingContext { get; set; }
+       
 
         public override void ViewDidLoad()
         {
@@ -112,34 +116,6 @@ namespace Nivaes.App.Cross.AppKitLib
         {
             base.RemoveFromParentViewController();
             ViewModel?.ViewDestroy();
-        }
-    }
-
-    public class MvxTabViewController<TViewModel> : MvxTabViewController, IMvxMacView<TViewModel>
-        where TViewModel : class, ICrossViewModel
-    {
-        public MvxTabViewController()
-        {
-        }
-
-        public MvxTabViewController(NativeHandle handle)
-            : base(handle)
-        {
-        }
-
-        protected MvxTabViewController(NSObjectFlag flag)
-            : base(flag)
-        {
-        }
-
-        public MvxTabViewController(NSCoder coder) : base(coder)
-        {
-        }
-
-        public new TViewModel ViewModel
-        {
-            get { return (TViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
         }
 
         public CrossFluentBindingDescriptionSet<IMvxMacView<TViewModel>, TViewModel> CreateBindingSet()
