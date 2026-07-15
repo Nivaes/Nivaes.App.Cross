@@ -96,18 +96,6 @@ public abstract class MvxApplicationDelegate :
         AppKitLib.GeneratedViewsExtensions.RegisterViewsActions();
     }
 
-    [Obsolete]
-    protected virtual void RunAppStart(object hint = null)
-    {
-        var startup = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossAppStart>();
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
-        if (!startup.IsStarted)
-        {
-            startup.Start(GetAppStartHint(hint));
-        }
-    }
-
     protected virtual object? GetAppStartHint(object? hint = null)
     {
         return hint;

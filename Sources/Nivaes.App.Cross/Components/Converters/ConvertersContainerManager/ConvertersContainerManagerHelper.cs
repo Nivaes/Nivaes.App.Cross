@@ -14,13 +14,20 @@ namespace Nivaes.App.Cross
         public static ConverterManagerItem New<TConverter>(IServiceProvider services, string name)
                         where TConverter : ICrossValueConverter
         {
-            var converter = ActivatorUtilities.CreateInstance<TConverter>(services);
-
-            return new ConverterManagerItem()
+            try
             {
-                NameConverters = new NameConvertersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
-                Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
-            };
+                var converter = ActivatorUtilities.CreateInstance<TConverter>(services);
+
+                return new ConverterManagerItem()
+                {
+                    NameConverters = new NameConvertersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
+                    Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
+                };
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new CrossException(ex, $"Could not create an instance of type {typeof(TConverter)}");
+            }
         }
 
         public static ConverterManagerItem New<TConverter>(IServiceProvider services)

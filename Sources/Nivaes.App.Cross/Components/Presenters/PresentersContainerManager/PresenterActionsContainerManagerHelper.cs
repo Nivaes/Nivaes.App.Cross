@@ -14,12 +14,19 @@ namespace Nivaes.App.Cross
             where TPresentationAttribute : IPresentationAttribute
             where TPressenterAction : IPressenterAction
         {
-            var pressenterAction = ActivatorUtilities.CreateInstance<IPressenterAction>(services);
-
-            return new PresentationAttributePresenterActionItem()
+            try
             {
-                PresentationAttributePresenterActions = new KeyContainerManager<IPressenterAction>.KeyStoreItem { Key = typeof(TPresentationAttribute).GetHashCode(), Value = pressenterAction }
-            };
+                var pressenterAction = ActivatorUtilities.CreateInstance<TPressenterAction>(services);
+
+                return new PresentationAttributePresenterActionItem()
+                {
+                    PresentationAttributePresenterActions = new KeyContainerManager<IPressenterAction>.KeyStoreItem { Key = typeof(TPresentationAttribute).GetHashCode(), Value = pressenterAction }
+                };
+            }
+            catch(InvalidOperationException ex)
+            {
+                throw new CrossException(ex, $"Could not create an instance of type {typeof(TPressenterAction)}");
+            }
         }
 
         public static void RegisterPresenterActions(PresentationAttributePresenterActionItem[] items)

@@ -14,13 +14,20 @@ namespace Nivaes.App.Cross
         public static CombinersManagerItem New<TCombiner>(IServiceProvider services, string name)
             where TCombiner : ICrossValueCombiner
         {
-            var combiner = ActivatorUtilities.CreateInstance<TCombiner>(services);
-
-            return new CombinersManagerItem()
+            try
             {
-                NameCombiners = new NameCombinersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = combiner },
-                Combiners = new CombinersKeyContainerManager.KeyStoreItem { Key = combiner.GetType().GetHashCode(), Value = combiner }
-            };
+                var combiner = ActivatorUtilities.CreateInstance<TCombiner>(services);
+
+                return new CombinersManagerItem()
+                {
+                    NameCombiners = new NameCombinersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = combiner },
+                    Combiners = new CombinersKeyContainerManager.KeyStoreItem { Key = combiner.GetType().GetHashCode(), Value = combiner }
+                };
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new CrossException(ex, $"Could not create an instance of type {typeof(TCombiner)}");
+            }
         }
 
         public static CombinersManagerItem New<TCombiner>(IServiceProvider services)
