@@ -63,7 +63,5 @@ namespace Nivaes.App.Cross.Droid
 
             return builder;
         }
-
-
     }
 }
