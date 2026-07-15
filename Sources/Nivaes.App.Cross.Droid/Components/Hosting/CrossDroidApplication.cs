@@ -87,7 +87,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected virtual void RegisterPresenterActions()
         {
-            ServiceProvider.RegisterPresenterActions();
+            Droid.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
         }
 
         public override void OnLowMemory()

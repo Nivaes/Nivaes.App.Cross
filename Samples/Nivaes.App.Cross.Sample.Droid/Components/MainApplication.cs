@@ -24,10 +24,10 @@ public class MainApplication
         base.OnCreate();
     }
 
-    protected override void RegisterServices(IServiceProvider services)
+    protected override void RegisterServices()
     {
-        base.RegisterServices(services);
+        base.RegisterServices();
 
-        services.TargetBindingFactoryRegistry();
+        ServiceProvider.TargetBindingFactoryRegistry();
     }
 }

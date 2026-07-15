@@ -44,10 +44,10 @@ public class ParentContentViewModel
 
     public override void Prepare()
     {
-        var vm = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
+        var vm = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>().LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as ChildContentViewModel;
         vm.Test = "Child 1";
         ChildViewModel1 = vm;
-        var bc = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>()
+        var bc = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>()
                 .LoadViewModel(CrossViewModelRequest<ChildContentViewModel>.GetDefaultRequest(), null) as
             ChildContentViewModel;
         bc.Test = "Child 2";

@@ -10,11 +10,11 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
     {
         protected override CrossApp CreateCrossApp(UIWindow window) => CrossProgram.CreateCrossApp(window);
 
-        protected override void RegisterServices(IServiceProvider services)
+        protected override void RegisterServices()
         {
-            base.RegisterServices(services);
+            base.RegisterServices();
 
-            services
+            ServiceProvider
                .TargetBindingFactoryRegistry();
         }
     }

@@ -83,7 +83,7 @@ public abstract class MvxApplicationDelegate :
 
     protected virtual void RegisterPresenterActions()
     {
-        ServiceProvider.RegisterPresenterActions();
+        AppKitLib.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
     }
 
     [Obsolete]

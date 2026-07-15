@@ -19,13 +19,13 @@ public class SampleApp : CrossApplication
     protected override void RegisterConverters()
     {
         base.RegisterConverters();
-        ServiceProvider.RegisterConverters();
+        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
     }
 
     protected override void RegisterCombiners()
     {
         base.RegisterCombiners();
-        //ServiceProvider.RegisterCombiners();
+        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     ///// <summary>

@@ -26,6 +26,6 @@ public class NavigationCloseViewModel
 
     private Task TryToCloseNewViewModelAsync()
     {
-        return _mvxNavigationService.Close(IPlatformApplication.Current!.Services.GetRequiredService<SecondChildViewModel>());
+        return _mvxNavigationService.Close(IPlatformApplication.Current!.ServiceProvider.GetRequiredService<SecondChildViewModel>());
     }
 }
