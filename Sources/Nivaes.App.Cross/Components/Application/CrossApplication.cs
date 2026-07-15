@@ -22,11 +22,11 @@ public abstract class CrossApplication : ICrossApplication
     }
 
     protected virtual void RegisterConverters() {
-        ServiceProvider.RegisterConverters();
+        GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
     }
 
     protected virtual void RegisterCombiners() {
-        ServiceProvider.RegisterCombiners();
+        GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
     public abstract ICrossViewModelStar Initialize();

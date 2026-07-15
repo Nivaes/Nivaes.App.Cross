@@ -75,8 +75,8 @@ public abstract class CrossWinUIApplication
 
         MainWindow!.Activate();
 
-        RegisterServices(_services);
-        RegisterPresenterActions(_services);
+        RegisterServices();
+        RegisterPresenterActions();
 
         var navigationService = _services.GetRequiredService<ICrossNavigationService>();
         await initializeViewModelType.NavigateToFirstViewModel(navigationService);
@@ -144,11 +144,11 @@ public abstract class CrossWinUIApplication
 
     protected virtual void RegisterCombiners()
     {
-        //ServiceProvider.RegisterCombiners();
+        WinUI.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
     protected virtual void RegisterPresenterActions()
     {
-        ServiceProvider.RegisterPresenterActions();
+        WinUI.GeneratedPresenterActionsExtensions.RegisterPresenterActions(ServiceProvider);
     }
 
     // ToDO: Buscar donde registar ICrossSuspensionManager.

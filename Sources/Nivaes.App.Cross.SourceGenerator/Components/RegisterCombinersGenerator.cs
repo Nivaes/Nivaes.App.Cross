@@ -34,7 +34,6 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             );
     }
 
-
     private static ConverterInfo? GetConverterType(GeneratorSyntaxContext context)
     {
         var classDeclaration = (ClassDeclarationSyntax)context.Node;
@@ -122,7 +121,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             {rootNamespace}
             internal static class GeneratedCombinerExtensions
             {{
-                public static IServiceProvider RegisterCombiners(this IServiceProvider services)
+                public static IServiceProvider RegisterCombiners(IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 

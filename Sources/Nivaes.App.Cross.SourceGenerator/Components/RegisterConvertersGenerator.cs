@@ -117,7 +117,7 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
             {rootNamespace}
             internal static class GeneratedConverterExtensions
             {{
-                public static IServiceProvider RegisterConverters(this IServiceProvider services)
+                public static IServiceProvider RegisterConverters(IServiceProvider services)
                 {{
                     {sourceRegisterConverters}
 
