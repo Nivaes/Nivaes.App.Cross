@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross
         {
             _dataContext = bindingRequest.Source;
             _bindingDescription = bindingRequest.Description;
-            var targetBindingFactory = IPlatformApplication.Current!.Services.GetRequiredService<ICrossTargetBindingFactory>();
+            var targetBindingFactory = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossTargetBindingFactory>();
             _targetBinding = targetBindingFactory.CreateBinding(bindingRequest.Target!, bindingRequest.Description!.TargetName!);
 
             ObserveTargetChangesIfNeeded();

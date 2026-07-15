@@ -13,7 +13,7 @@ public static class MvxAndroidBindingContextHelpers
     public static T Current<T>()
         where T : class, ICrossBindingContext
     {
-        var stack = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContextStack<T>>();
+        var stack = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingContextStack<T>>();
 
         return stack?.Current!;
     }

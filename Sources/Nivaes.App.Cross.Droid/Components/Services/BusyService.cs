@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.Droid
         [DebuggerStepThrough]
         public async ValueTask Show(string pregressText, Func<Task> action)
         {
-            var activity = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity;
+            var activity = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity;
 
             AndHUD.Shared.Show(activity, pregressText);
 
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
         [DebuggerStepThrough]
         public async ValueTask<T> Show<T>(string pregressText, Func<Task<T>> action)
         {
-            var activity = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity;
+            var activity = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity;
 
             AndHUD.Shared.Show(activity, pregressText);
             var task = await (action?.Invoke().ContinueWith((t) =>

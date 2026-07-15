@@ -46,7 +46,7 @@ public class TabLayoutPresentationAttribute
               fragmentHostViewType,
               isCacheableFragment)
     {
-        var globals = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
+        var globals = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidGlobals>();
 
         if (!string.IsNullOrEmpty(tabLayoutResourceName) &&
             //Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&

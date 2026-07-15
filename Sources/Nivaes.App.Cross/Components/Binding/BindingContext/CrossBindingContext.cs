@@ -153,7 +153,7 @@ public class CrossBindingContext
     {
         get
         {
-            _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
+            _binder = _binder ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBinder>();
             return _binder;
         }
     }

@@ -8,17 +8,17 @@ public static partial class CrossBindingContextOwnerExtensions
     {
         public void CreateBindingContext()
         {
-            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>();
+            view.BindingContext = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingContext>();
         }
 
         public void CreateBindingContext(string bindingText)
         {
-            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>().Init(null, view, bindingText);
+            view.BindingContext = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingContext>().Init(null, view, bindingText);
         }
 
         public void CreateBindingContext(IEnumerable<CrossBindingDescription> bindings)
         {
-            view.BindingContext = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingContext>().Init(null, view, bindings);
+            view.BindingContext = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingContext>().Init(null, view, bindings);
         }
         public void DelayBind(params ICrossApplicable[] applicables)
         {

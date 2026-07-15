@@ -69,7 +69,7 @@ public class FragmentPresentationAttribute
         bool setAsPrimaryFragment = false
     )
     {
-        var globals = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
+        var globals = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidGlobals>();
         //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&
         if (globals.ApplicationContext.Resources != null)
         {

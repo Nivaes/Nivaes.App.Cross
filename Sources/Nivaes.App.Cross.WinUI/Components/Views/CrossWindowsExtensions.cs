@@ -24,7 +24,7 @@ public static class CrossWindowsExtensions
     {
         if (key > 0)
         {
-            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
             viewModelLoader.RemoveSubViewModelWithKey(key);
         }
     }
@@ -81,7 +81,7 @@ public static class CrossWindowsExtensions
                                                 string requestText,
                                                 ICrossBundle bundle)
     {
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelLoader>();
         return viewModelLoader?.Load(requestText, bundle);
     }
 }

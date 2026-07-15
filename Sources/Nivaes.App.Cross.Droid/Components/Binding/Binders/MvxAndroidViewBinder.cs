@@ -12,7 +12,7 @@ public sealed class MvxAndroidViewBinder
 {
     private readonly List<KeyValuePair<object, ICrossUpdateableBinding>> _viewBindings = new List<KeyValuePair<object, ICrossUpdateableBinding>>();
     private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() =>
-          IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidBindingResource>());
+          IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidBindingResource>());
 
     private readonly object? _source;
 
@@ -23,7 +23,7 @@ public sealed class MvxAndroidViewBinder
 
     private ICrossBinder? _binder;
 
-    private ICrossBinder? Binder => _binder ?? (_binder = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>());
+    private ICrossBinder? Binder => _binder ?? (_binder = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBinder>());
 
     public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _viewBindings;
   

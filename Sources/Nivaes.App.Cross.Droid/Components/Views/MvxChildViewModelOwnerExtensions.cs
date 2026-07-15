@@ -24,12 +24,12 @@ namespace Nivaes.App.Cross.Droid
 
         public static Intent CreateIntentFor(this IMvxAndroidView view, CrossViewModelRequest request)
         {
-            return IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
+            return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
         }
 
         public static Intent CreateIntentFor(this IMvxChildViewModelOwner view, ICrossViewModel subViewModel)
         {
-            var requestTranslator = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
+            var requestTranslator = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
             var (intent, key) = requestTranslator.GetIntentWithKeyFor(subViewModel, null);
 
             view.OwnedSubViewModelIndicies.Add(key);
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.Droid
 
         public static void ClearOwnedSubIndicies(this IMvxChildViewModelOwner view)
         {
-            var translator = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
+            var translator = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelRequestTranslator>();
             foreach (var ownedSubViewModelIndex in view.OwnedSubViewModelIndicies)
             {
                 translator.RemoveSubViewModelWithKey(ownedSubViewModelIndex);

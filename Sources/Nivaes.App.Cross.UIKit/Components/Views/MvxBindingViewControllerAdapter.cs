@@ -15,7 +15,7 @@ public class MvxBindingViewControllerAdapter
         if (!(eventSource is IMvxIosView))
             throw new ArgumentException($"{nameof(eventSource)} should be a {nameof(IMvxIosView)}", nameof(eventSource));
 
-        var bindingContext = IPlatformApplication.Current!.Services.GetService<ICrossBindingContext>();
+        var bindingContext = IPlatformApplication.Current!.ServiceProvider.GetService<ICrossBindingContext>();
         if (bindingContext != null)
             IosView?.BindingContext = bindingContext;
     }

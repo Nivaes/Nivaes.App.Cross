@@ -67,7 +67,7 @@ public sealed class AndroidViewsContainer
             throw new CrossException("Unable to load viewmodel - no type hint provided");
         }
 
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
 
         var viewModelRequest = CrossViewModelRequest.GetDefaultRequest(viewModelTypeHint);
         var viewModel = viewModelLoader.LoadViewModel(viewModelRequest, savedState);
@@ -89,7 +89,7 @@ public sealed class AndroidViewsContainer
         if (viewModelRequest == null)
             return null;
 
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
 
         return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
     }

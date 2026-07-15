@@ -29,7 +29,7 @@ public abstract class MvxResourceObjectLoader<TResource>
     public TResource Load(string namespaceKey, string typeKey, string entryKey)
     {
         var streamLocation = GetStreamLocation(namespaceKey, typeKey, entryKey);
-        var resourceLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossResourceLoader>();
+        var resourceLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossResourceLoader>();
         TResource resource = default(TResource);
         resourceLoader.GetResourceStream(streamLocation, (stream) =>
             {

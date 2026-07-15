@@ -94,10 +94,6 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
 
         var rootNamespace = string.IsNullOrWhiteSpace(input.rootNamespace) ? string.Empty : $"namespace {input.rootNamespace};";
 
-        if (!types.Any())
-            return;
-
-
         var sourceConverters = string.Join(Environment.NewLine,
             types.Where(combiner => combiner.Register).Select(combiner =>
                 {
@@ -107,11 +103,16 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
                         return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
                 }
             ));
-        var sourceRegisterConverters = $@"
+
+        string sourceRegisterConverters = string.Empty;
+        if (!string.IsNullOrWhiteSpace(sourceConverters))
+        {
+            sourceRegisterConverters = $@"
                     CombinersContainerManagerHelper.RegisterCombiners(new[]
                     {{
                        {sourceConverters}
                     }});";
+        }
 
 
         var source = @$"// This file generated for Nivaes.App.Cross.

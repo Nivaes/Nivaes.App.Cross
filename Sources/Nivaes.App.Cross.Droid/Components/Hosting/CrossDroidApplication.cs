@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
 
         public static CrossDroidApplication Current { [DebuggerHidden] get; [DebuggerHidden] private set; } = null!;
 
-        public IServiceProvider Services { [DebuggerHidden] get => _services!; }
+        public IServiceProvider ServiceProvider { [DebuggerHidden] get => _services!; }
 
         public ICrossApplication Application { [DebuggerHidden] get => _application!; }
 
@@ -50,8 +50,10 @@ namespace Nivaes.App.Cross.Droid
             var currentTopActivity = _services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             base.RegisterActivityLifecycleCallbacks(currentTopActivity);
 
-            RegisterServices(_services);
-            RegisterPresenterActions(_services);
+            RegisterServices();
+            RegisterConverters();
+            RegisterCombiners();
+            RegisterPresenterActions();
 
             //this.SetApplicationHandler(_application, applicationContext);
 
@@ -66,16 +68,26 @@ namespace Nivaes.App.Cross.Droid
             //await initializeViewModelType.NavigateToFirstViewModel(navigationService);
         }
 
-        protected virtual void RegisterServices(IServiceProvider services)
+        protected virtual void RegisterServices()
         {
-            services
+            ServiceProvider
                 .TargetBindingFactoryRegistry()
                 .BindingNameRegister();
         }
 
-        protected virtual void RegisterPresenterActions(IServiceProvider services)
+        protected virtual void RegisterConverters()
         {
-            services.RegisterPresenterActions();
+            Droid.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
+        }
+
+        protected virtual void RegisterCombiners()
+        {
+            Droid.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+        }
+
+        protected virtual void RegisterPresenterActions()
+        {
+            ServiceProvider.RegisterPresenterActions();
         }
 
         public override void OnLowMemory()

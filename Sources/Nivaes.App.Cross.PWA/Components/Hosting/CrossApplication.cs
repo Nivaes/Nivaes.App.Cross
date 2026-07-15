@@ -9,7 +9,7 @@ public abstract class CrossApplication
 
     ICrossApplication? _application;
 
-    IServiceProvider IPlatformApplication.Services => _services!;
+    IServiceProvider IPlatformApplication.ServiceProvider => _services!;
 
     //internal Frame? RootFrame { get; set; }
     //internal Window? MainWindow { get; private set; }

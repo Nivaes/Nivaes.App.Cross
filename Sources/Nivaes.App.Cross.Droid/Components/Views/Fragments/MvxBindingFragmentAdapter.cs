@@ -75,7 +75,7 @@ public class MvxBindingFragmentAdapter
 
     private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
     {
-        var serializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();
+        var serializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
 
         request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
         return request;
@@ -83,7 +83,7 @@ public class MvxBindingFragmentAdapter
 
     private static ICrossBundle ReadAndroidBundle(Bundle? bundle)
     {
-        var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+        var converter = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSavedStateConverter>();
         if (bundle != null)
             return converter?.Read(bundle) ?? new CrossBundle();
 
@@ -99,7 +99,7 @@ public class MvxBindingFragmentAdapter
 
     protected override void HandleResumeCalled(object? sender, EventArgs e)
     {
-        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+        var cache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMultipleViewModelCache>();
         //if (Mvx.IoCProvider?.TryResolve(out IMvxMultipleViewModelCache? cache) == true && cache != null &&
         if (FragmentView?.ViewModel != null)
         {
@@ -116,7 +116,7 @@ public class MvxBindingFragmentAdapter
         var mvxBundle = FragmentView?.CreateSaveStateBundle();
         if (mvxBundle != null)
         {
-            var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+            var converter = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSavedStateConverter>();
 
             converter?.Write(e.Value, mvxBundle);
         }
@@ -124,7 +124,7 @@ public class MvxBindingFragmentAdapter
         if (FragmentView == null)
             return;
 
-        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+        var cache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMultipleViewModelCache>();
         cache?.Cache(FragmentView.ViewModel!, FragmentView.UniqueImmutableCacheTag);
     }
 

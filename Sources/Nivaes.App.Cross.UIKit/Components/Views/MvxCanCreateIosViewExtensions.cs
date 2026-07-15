@@ -26,19 +26,19 @@ public static class MvxCanCreateIosViewExtensions
         this IMvxCanCreateIosView view,
         CrossViewModelRequest request)
     {
-        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateView(request);
+        return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxIosViewCreator>().CreateView(request);
     }
 
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType)
     {
-        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>().CreateViewOfType(viewType);
+        return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxIosViewCreator>().CreateViewOfType(viewType);
     }
 
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view,
         ICrossViewModel viewModel)
     {
-        return IPlatformApplication.Current!.Services.GetRequiredService<IMvxIosViewCreator>()?.CreateView(viewModel);
+        return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxIosViewCreator>()?.CreateView(viewModel);
     }
 }

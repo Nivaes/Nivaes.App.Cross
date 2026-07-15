@@ -265,7 +265,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
                 if (itemsSourcePosition >= 0 && itemsSourcePosition < items.Count)
                     return items[itemsSourcePosition];
 
-                var logger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>()
+                var logger = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ILoggerFactory>()
                     .CreateLogger($"{nameof(MvxRecyclerAdapter)}.{nameof(MvxRecyclerAdapter.GetItem)}");
 
                 logger.Log(LogLevel.Error,

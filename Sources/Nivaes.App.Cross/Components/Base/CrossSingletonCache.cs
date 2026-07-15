@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross
                 if (_inpcInterceptorResolveAttempted)
                     return _inpcInterceptor;
 
-                _inpcInterceptor = IPlatformApplication.Current!.Services.GetRequiredService<ICrossInpcInterceptor>();
+                _inpcInterceptor = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossInpcInterceptor>();
 
                 _inpcInterceptorResolveAttempted = true;
                 return _inpcInterceptor;
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross
         {
             get
             {
-                _parser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossStringToTypeParser>();
+                _parser ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossStringToTypeParser>();
                 return _parser;
             }
         }
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross
         {
             get
             {
-                _settings ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossSettings>();
+                _settings ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossSettings>();
                 return _settings;
             }
         }

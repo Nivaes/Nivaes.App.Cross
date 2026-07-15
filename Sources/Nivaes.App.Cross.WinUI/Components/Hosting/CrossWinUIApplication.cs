@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -15,27 +16,18 @@ public abstract class CrossWinUIApplication
 
     ICrossApplication? _application;
 
-    //IServiceProvider IPlatformApplication.Services => _services!;
-
     internal Frame? RootFrame { get; set; }
     internal Window? MainWindow { get; private set; }
 
-    public IServiceProvider Services
+    public IServiceProvider ServiceProvider
     {
-        get => _services!;
-        protected set => _services = value;
+        [DebuggerHidden] get => _services!;
     }
 
     public ICrossApplication Application
     {
-        get => _application!;
-        protected set => _application = value;
+        [DebuggerHidden] get => _application!;
     }
-
-    //protected CrossWinUIApplication()
-    //{
-    //    //RegisterSetup();
-    //}
 
     protected abstract CrossApp CreateCrossApp();
 
@@ -140,13 +132,23 @@ public abstract class CrossWinUIApplication
         throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
     }
 
-    protected virtual void RegisterServices(IServiceProvider services)
+    protected virtual void RegisterServices()
     {
+        WinUI.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
     }
 
-    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    protected virtual void RegisterConverters()
     {
-        services.RegisterPresenterActions();
+        WinUI.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+    }
+
+    protected virtual void RegisterCombiners()
+    {
+        //ServiceProvider.RegisterCombiners();
+    }
+    protected virtual void RegisterPresenterActions()
+    {
+        ServiceProvider.RegisterPresenterActions();
     }
 
     // ToDO: Buscar donde registar ICrossSuspensionManager.

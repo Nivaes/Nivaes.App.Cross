@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.Hosting;
 
@@ -15,16 +16,14 @@ public abstract class CrossSceneDelegate
 
     [Export("window")] public UIWindow? Window { get; private set; }
 
-    public IServiceProvider Services
+    public IServiceProvider ServiceProvider
     {
-        get => _services!;
-        protected set => _services = value;
+        [DebuggerHidden] get => _services!;
     }
 
     public ICrossApplication Application
     {
-        get => _application!;
-        protected set => _application = value;
+        [DebuggerHidden] get => _application!;
     }
 
     public CrossSceneDelegate()
@@ -70,10 +69,12 @@ public abstract class CrossSceneDelegate
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
-        RegisterServices(_services);
-        RegisterPresenterActions(_services);
+        RegisterServices();
+        RegisterConverters();
+        RegisterCombiners();
+        RegisterPresenterActions();
 
-        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
+        var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         Window?.MakeKeyAndVisible();
@@ -81,16 +82,26 @@ public abstract class CrossSceneDelegate
         FireLifetimeChanged(CrossLifetimeEvent.Launching);
     }
 
-    protected virtual void RegisterServices(IServiceProvider services)
+    protected virtual void RegisterServices()
     {
-        services
+        ServiceProvider
             .TargetBindingFactoryRegistry()
             .BindingNameRegister();
     }
 
-    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    protected virtual void RegisterConverters()
     {
-        services.RegisterPresenterActions();
+        UIKitLib.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
+    }
+
+    protected virtual void RegisterCombiners()
+    {
+        UIKitLib.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+    }
+
+    protected virtual void RegisterPresenterActions()
+    {
+        ServiceProvider.RegisterPresenterActions();
     }
 
     [Export("sceneDidDisconnect:")]

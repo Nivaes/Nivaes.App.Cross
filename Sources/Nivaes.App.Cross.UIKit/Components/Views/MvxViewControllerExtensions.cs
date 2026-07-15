@@ -18,7 +18,7 @@ public static class MvxViewControllerExtensions
             CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
                 "LoadViewModelRequest is null - assuming this is a TabBar type situation where ViewDidLoad is called during construction... patching the request now - but watch out for problems with virtual calls during construction");
 
-            var currentRequest = IPlatformApplication.Current!.Services.GetRequiredService<ICrossCurrentRequest>();
+            var currentRequest = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossCurrentRequest>();
             //if (Mvx.IoCProvider?.TryResolve(out ICrossCurrentRequest? currentRequest) == true &&
             if (currentRequest?.CurrentRequest != null)
             {
@@ -34,7 +34,7 @@ public static class MvxViewControllerExtensions
             return instanceRequest.ViewModelInstance;
         }
 
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
         if (iosView.Request != null &&
             viewModelLoader != null)
         {

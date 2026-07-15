@@ -13,7 +13,7 @@ public class MvxContentJsonDictionaryTextProvider
     {
         get
         {
-            _resourceLoader = _resourceLoader ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossResourceLoader>();
+            _resourceLoader = _resourceLoader ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossResourceLoader>();
             return _resourceLoader;
         }
     }

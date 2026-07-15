@@ -29,7 +29,7 @@ public static class CrossActivityViewExtensions
 
         ICrossViewModel? cached = null;
 
-        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
+        var cache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSingleViewModelCache>();
         cached = cache?.GetAndClear(bundle);
 
         var view = (ICrossView)androidView;
@@ -42,7 +42,7 @@ public static class CrossActivityViewExtensions
         if (bundle == null)
             return null;
 
-        var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+        var converter = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSavedStateConverter>();
 
         var savedState = converter.Read(bundle);
         return savedState;
@@ -60,8 +60,8 @@ public static class CrossActivityViewExtensions
         view.OnViewDestroy();
 
         //var appStart = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
-        var application = IPlatformApplication.Current!.Services.GetRequiredService<ICrossApplication>();
-        var topActivity = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
+        var application = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossApplication>();
+        var topActivity = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>();
 
 
         //if (Mvx.IoCProvider?.TryResolve<ICrossAppStart>(out var appStart) != true ||
@@ -119,7 +119,7 @@ public static class CrossActivityViewExtensions
         this IMvxAndroidView androidView,
         Action<IMvxAndroidActivityLifetimeListener, Activity> report)
     {
-        var activityLifetimeListener = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidActivityLifetimeListener>();
+        var activityLifetimeListener = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidActivityLifetimeListener>();
 
         report(activityLifetimeListener, androidView.ToActivity());
     }
@@ -143,7 +143,7 @@ public static class CrossActivityViewExtensions
 
         var viewType = androidView.GetType();
 
-        var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelLoader>();
         if (!Singleton<ViewsViewKeyContainerManager>.Instance.TryGetValue(viewType, out viewModelType))
         {
             throw new CrossException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);

@@ -12,7 +12,7 @@ public class CrossBindingDescriptionParser
     {
         get
         {
-            _bindingParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingParser>();
+            _bindingParser ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingParser>();
             return _bindingParser;
         }
     }
@@ -23,7 +23,7 @@ public class CrossBindingDescriptionParser
     {
         get
         {
-            _languageBindingParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossLanguageBindingParser>();
+            _languageBindingParser ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossLanguageBindingParser>();
             return _languageBindingParser;
         }
     }

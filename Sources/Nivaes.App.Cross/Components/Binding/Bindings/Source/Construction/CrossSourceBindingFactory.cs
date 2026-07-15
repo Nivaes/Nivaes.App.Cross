@@ -11,7 +11,7 @@ public class CrossSourceBindingFactory
     private ICrossSourcePropertyPathParser? _propertyPathParser;
 
 
-    protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourcePropertyPathParser>();
+    protected ICrossSourcePropertyPathParser? SourcePropertyPathParser => _propertyPathParser ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossSourcePropertyPathParser>();
 
     private readonly List<ICrossSourceBindingFactoryExtension> _extensions = [];
 

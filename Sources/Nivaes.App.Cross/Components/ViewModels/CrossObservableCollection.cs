@@ -264,7 +264,7 @@ public class CrossObservableCollection<T>
         if (_dispatcher != null)
             return _dispatcher.ExecuteOnMainThreadAsync(action);
 
-        var dispatcher = IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+        var dispatcher = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
 
         //if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
         //    return Task.CompletedTask;

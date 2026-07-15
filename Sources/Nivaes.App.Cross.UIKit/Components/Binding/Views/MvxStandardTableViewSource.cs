@@ -82,7 +82,7 @@ public class MvxStandardTableViewSource
         if (string.IsNullOrEmpty(bindingText))
             return DefaultBindingDescription;
 
-        return IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>().Parse(bindingText);
+        return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingDescriptionParser>().Parse(bindingText);
     }
 
     [RequiresUnreferencedCode("This method creates bindings which use reflection and may not be preserved by trimming.")]

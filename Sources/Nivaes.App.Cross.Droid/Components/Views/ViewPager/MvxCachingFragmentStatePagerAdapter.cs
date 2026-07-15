@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.Droid
         protected MvxCachingFragmentStatePagerAdapter(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
-            _activityType = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            _activityType = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Activity types are preserved by the Android presenter infrastructure.")]
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.Droid
             List<MvxViewPagerFragmentInfo> fragmentsInfo) : base(fragmentManager)
         {
             FragmentsInfo = fragmentsInfo;
-            _activityType = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
+            _activityType = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>().Activity.GetType();
         }
 
         [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "Fragment types are preserved by the Android presenter infrastructure.")]
@@ -98,14 +98,14 @@ namespace Nivaes.App.Cross.Droid
                 return instanceRequest.ViewModelInstance;
             }
 
-            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
 
             return viewModelLoader.LoadViewModel(fragmentInfo.Request, null);
         }
 
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            var navigationSerializer = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationSerializer>();
+            var navigationSerializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
 
             var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
 

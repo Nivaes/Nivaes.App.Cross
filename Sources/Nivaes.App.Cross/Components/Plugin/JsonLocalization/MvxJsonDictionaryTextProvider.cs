@@ -18,7 +18,7 @@ public abstract class MvxJsonDictionaryTextProvider
     {
         get
         {
-            _jsonConvert = _jsonConvert ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossJsonConverter>();
+            _jsonConvert = _jsonConvert ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossJsonConverter>();
             return _jsonConvert;
         }
     }

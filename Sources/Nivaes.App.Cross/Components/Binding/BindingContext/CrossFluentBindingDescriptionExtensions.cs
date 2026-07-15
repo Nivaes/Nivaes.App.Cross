@@ -11,7 +11,7 @@ public static class CrossFluentBindingDescriptionExtensions
             IDictionary<TFrom, TTo> converterParameter)
                 where TFrom : notnull
         {
-            var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
+            var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.ServiceProvider);
 
             return bindingDescription.WithConversion(
                     converter, new Tuple<IDictionary<TFrom, TTo>, TTo?, bool>(
@@ -24,7 +24,7 @@ public static class CrossFluentBindingDescriptionExtensions
                 TTo fallback)
                     where TFrom : notnull
         {
-            var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.Services);
+            var converter = ActivatorUtilities.CreateInstance<CrossDictionaryValueConverter<TFrom, TTo>>(IPlatformApplication.Current!.ServiceProvider);
 
             return bindingDescription.WithConversion(
                 converter, new Tuple<IDictionary<TFrom, TTo>, TTo, bool>(converterParameter, fallback, true))

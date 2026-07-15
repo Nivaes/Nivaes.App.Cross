@@ -10,7 +10,7 @@ public static class CrossLoggerHost
 
     static CrossLoggerHost()
     {
-        _defaultLogger = IPlatformApplication.Current!.Services.GetRequiredService<ILoggerFactory>();
+        _defaultLogger = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ILoggerFactory>();
     }
 
     public static ILogger GetLogger(string categoryName,

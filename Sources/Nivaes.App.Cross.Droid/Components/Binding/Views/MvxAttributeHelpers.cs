@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid;
 
 public static class MvxAttributeHelpers
 {
-    private static readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidBindingResource>());
+    private static readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource = new Lazy<IMvxAndroidBindingResource>(() => IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidBindingResource>());
 
     public static int ReadDropDownListItemTemplateId(Context context, IAttributeSet attrs)
     {

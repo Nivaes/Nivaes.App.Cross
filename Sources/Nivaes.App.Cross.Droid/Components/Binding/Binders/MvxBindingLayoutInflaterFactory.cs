@@ -19,7 +19,7 @@ public sealed class MvxBindingLayoutInflaterFactory
         _binder = new MvxAndroidViewBinder(_source);
     }
 
-    private IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewFactory>();
+    private IMvxAndroidViewFactory? AndroidViewFactory => _androidViewFactory ??= IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewFactory>();
 
     public IList<KeyValuePair<object, ICrossUpdateableBinding>> CreatedBindings => _binder.CreatedBindings;
 

@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
 
     public abstract class CrossMainThreadDispatchingObject
     {
-        protected ICrossMainThreadAsyncDispatcher AsyncDispatcher => IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+        protected ICrossMainThreadAsyncDispatcher AsyncDispatcher => IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
 
         protected readonly ILogger Logger;
 

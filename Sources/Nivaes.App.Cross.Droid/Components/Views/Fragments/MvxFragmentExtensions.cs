@@ -27,7 +27,7 @@ public static class MvxFragmentExtensions
         {
             //IMvxMultipleViewModelCache? cache = null;
 
-            var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxMultipleViewModelCache>();
+            var cache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMultipleViewModelCache>();
             //if (Mvx.IoCProvider?.TryResolve(out cache) == true && fragmentView.ViewModel != null)
             if (fragmentView.ViewModel != null)
             {
@@ -98,7 +98,7 @@ public static class MvxFragmentExtensions
             if (request == null)
                 request = CrossViewModelRequest.GetDefaultRequest(viewModelType!);
 
-            var viewModelCache = IPlatformApplication.Current!.Services.GetRequiredService<ICrossChildViewModelCache>();
+            var viewModelCache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossChildViewModelCache>();
             if (viewModelCache.Exists(viewModelType!))
             {
                 var viewModelCached = viewModelCache.Get(viewModelType!);
@@ -106,7 +106,7 @@ public static class MvxFragmentExtensions
                 return viewModelCached!;
             }
 
-            var loaderService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+            var loaderService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
             var viewModel = loaderService.LoadViewModel(request, savedState);
 
             return viewModel;
@@ -151,7 +151,7 @@ public static class MvxFragmentExtensions
 
         public void LoadViewModelFrom(CrossViewModelRequest request, ICrossBundle? savedState = null)
         {
-            var loader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossViewModelLoader>();
+            var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
 
             //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
             //    return;

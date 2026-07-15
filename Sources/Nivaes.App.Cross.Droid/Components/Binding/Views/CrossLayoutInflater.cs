@@ -361,7 +361,7 @@ public class CrossLayoutInflater : LayoutInflater
             if (_androidViewFactory != null)
                 return _androidViewFactory;
 
-            var viewFactory = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidViewFactory>();
+            var viewFactory = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewFactory>();
 
             //if (Mvx.IoCProvider?.TryResolve(out IMvxAndroidViewFactory? viewFactory) == true)
             //{

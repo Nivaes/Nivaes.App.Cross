@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         /// <param name="okbtnText">The okbtn text.</param>
         public void Alert(string message, string title, string okbtnText)
         {
-            var top = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidCurrentTopActivity>();
+            var top = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidCurrentTopActivity>();
             var act = top.Activity;
 
             new AlertDialog.Builder(act)

@@ -100,7 +100,7 @@ public abstract class CrossWindowsPage<TViewModel>
 
         if (_reqData != string.Empty)
         {
-            var viewModelLoader = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelLoader>();
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelLoader>();
             ViewModel = (TViewModel?)viewModelLoader?.Load(e.Parameter.ToString(), LoadStateBundle(e));
             ViewModel?.ViewCreated();
         }
@@ -116,7 +116,7 @@ public abstract class CrossWindowsPage<TViewModel>
         var bundle = this.CreateSaveStateBundle();
         SaveStateBundle(e, bundle);
 
-        var translator = IPlatformApplication.Current!.Services.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
+        var translator = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {
@@ -151,7 +151,7 @@ public abstract class CrossWindowsPage<TViewModel>
         // O buscar la manera de acceder al contenerdor de dependencias desde una vista.    
         get
         {
-            _suspensionManager = _suspensionManager ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSuspensionManager>();
+            _suspensionManager = _suspensionManager ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossSuspensionManager>();
             return _suspensionManager;
         }
     }

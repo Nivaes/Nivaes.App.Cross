@@ -60,7 +60,7 @@ public class ViewPagerFragmentPresentationAttribute
     {
         Title = title;
 
-        var globals = IPlatformApplication.Current!.Services.GetRequiredService<IMvxAndroidGlobals>();
+        var globals = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidGlobals>();
 
         if (!string.IsNullOrEmpty(viewPagerResourceName) &&
             //Mvx.IoCProvider?.TryResolve(out IMvxAndroidGlobals globals) == true &&

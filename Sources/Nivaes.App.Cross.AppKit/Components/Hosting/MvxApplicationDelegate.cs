@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Nivaes.App.Cross.AppKitOS;
@@ -13,16 +14,14 @@ public abstract class MvxApplicationDelegate :
 
     private ICrossApplication? _application;
 
-    public IServiceProvider Services
+    public IServiceProvider ServiceProvider
     {
-        get => _services!;
-        protected set => _services = value;
+        [DebuggerHidden] get => _services!;
     }
 
     public ICrossApplication Application
     {
-        get => _application!;
-        protected set => _application = value;
+        [DebuggerHidden] get => _application!;
     }
 
     protected MvxApplicationDelegate()
@@ -54,31 +53,43 @@ public abstract class MvxApplicationDelegate :
         IPlatformApplication.Current!.Application.Setup();
         var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
-        RegisterServices(_services);
-        RegisterPresenterActions(_services);
+        RegisterServices();
+        RegisterConverters();
+        RegisterCombiners();
+        RegisterPresenterActions();
 
-        var navigationService = IPlatformApplication.Current!.Services.GetRequiredService<ICrossNavigationService>();
+        var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
         initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
     }
 
-    protected virtual void RegisterServices(IServiceProvider services)
+    protected virtual void RegisterServices()
     {
-        services
+        ServiceProvider
             .TargetBindingFactoryRegistry()
             .BindingNameRegister();
     }
 
-    protected virtual void RegisterPresenterActions(IServiceProvider services)
+    protected virtual void RegisterConverters()
     {
-        services.RegisterPresenterActions();
+        AppKitLib.GeneratedConverterExtensions.RegisterConverters(ServiceProvider);
+    }
+
+    protected virtual void RegisterCombiners()
+    {
+        AppKitLib.GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+    }
+
+    protected virtual void RegisterPresenterActions()
+    {
+        ServiceProvider.RegisterPresenterActions();
     }
 
     [Obsolete]
     protected virtual void RunAppStart(object hint = null)
     {
-        var startup = IPlatformApplication.Current!.Services.GetRequiredService<ICrossAppStart>();
+        var startup = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossAppStart>();
 
         //if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true && !startup.IsStarted)
         if (!startup.IsStarted)

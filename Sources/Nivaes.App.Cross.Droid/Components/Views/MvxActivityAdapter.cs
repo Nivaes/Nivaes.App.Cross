@@ -75,18 +75,18 @@ public class MvxActivityAdapter : MvxBaseActivityAdapter
         var mvxBundle = AndroidView?.CreateSaveStateBundle();
         if (mvxBundle != null)
         {
-            var converter = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSavedStateConverter>();
+            var converter = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSavedStateConverter>();
             converter.Write(eventArgs.Value, mvxBundle);
         }
 
-        var cache = IPlatformApplication.Current!.Services.GetRequiredService<IMvxSingleViewModelCache>();
+        var cache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxSingleViewModelCache>();
         cache.Cache(AndroidView!.ViewModel!, eventArgs.Value);
     }
 
     protected override void EventSourceOnActivityResultCalled(
         object? sender, CrossValueEventArgs<MvxActivityResultParameters> eventArgs)
     {
-        var sink = IPlatformApplication.Current!.Services.GetRequiredService<IMvxIntentResultSink>();
+        var sink = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxIntentResultSink>();
 
         //if (Mvx.IoCProvider?.TryResolve<IMvxIntentResultSink>(out var sink) == true)
         //{

@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross
 
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                var parser = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
+                var parser = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingDescriptionParser>();
                 var parsedDescription = parser?.ParseSingle(_freeText);
 
                 if (inputs.Converter == null
@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross
 
             public CrossSourceStepDescription CreateSourceStep(CrossSourceStepDescription inputs)
             {
-                var parser = IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
+                var parser = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingDescriptionParser>();
                 var innerSteps = _useParser ?
                     _properties.Select(p => parser.ParseSingle(p).Source) :
                     _properties.Select(p => new CrossPathSourceStepDescription { SourcePropertyPath = p });

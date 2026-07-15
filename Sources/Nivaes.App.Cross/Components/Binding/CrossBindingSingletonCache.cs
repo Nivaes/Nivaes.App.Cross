@@ -25,7 +25,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _bindingDescriptionParser = _bindingDescriptionParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingDescriptionParser>();
+            _bindingDescriptionParser = _bindingDescriptionParser ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingDescriptionParser>();
             return _bindingDescriptionParser;
         }
     }
@@ -34,7 +34,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _languageParser = _languageParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossLanguageBindingParser>();
+            _languageParser = _languageParser ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossLanguageBindingParser>();
             return _languageParser;
         }
     }
@@ -43,7 +43,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _propertyExpressionParser = _propertyExpressionParser ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossPropertyExpressionParser>();
+            _propertyExpressionParser = _propertyExpressionParser ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossPropertyExpressionParser>();
             return _propertyExpressionParser;
         }
     }
@@ -52,7 +52,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _defaultBindingName = _defaultBindingName ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBindingNameLookup>();
+            _defaultBindingName = _defaultBindingName ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBindingNameLookup>();
             return _defaultBindingName;
         }
     }
@@ -61,7 +61,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _binder = _binder ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossBinder>();
+            _binder = _binder ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossBinder>();
             return _binder;
         }
     }
@@ -70,7 +70,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceBindingFactory>();
+            _sourceBindingFactory = _sourceBindingFactory ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossSourceBindingFactory>();
             return _sourceBindingFactory;
         }
     }
@@ -79,7 +79,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _sourceStepFactory = _sourceStepFactory ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossSourceStepFactory>();
+            _sourceStepFactory = _sourceStepFactory ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossSourceStepFactory>();
             return _sourceStepFactory;
         }
     }
@@ -88,7 +88,7 @@ public class CrossBindingSingletonCache
     {
         get
         {
-            _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.Services.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+            _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
             return _mainThreadDispatcher;
         }
     }
