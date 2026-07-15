@@ -69,7 +69,6 @@ public abstract class MvxApplicationDelegate :
         RegisterViewsActions();
     }
 
-
     protected virtual void RegisterServices()
     {
         ServiceProvider
