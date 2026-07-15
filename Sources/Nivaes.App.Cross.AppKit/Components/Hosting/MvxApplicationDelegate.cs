@@ -50,12 +50,10 @@ public abstract class MvxApplicationDelegate :
 
         _application = _services.GetRequiredService<ICrossApplication>();
         IPlatformApplication.Current!.Application.Setup();
-        var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
 
         Regiesters();
 
-        var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
-        initializeViewModelType.NavigateToFirstViewModel(navigationService).GetAwaiter().GetResult();
+        IPlatformApplication.Current!.Application.Initialize();
 
         //_services?.InvokeLifecycleEvents<iOSLifecycle.WillFinishLaunching>(del => del(application, launchOptions));
     }

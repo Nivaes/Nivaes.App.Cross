@@ -52,26 +52,8 @@ public abstract class StartActivity
         base.OnResume();
 
         IPlatformApplication.Current!.Application.Setup();
-        var initializeViewModelType = IPlatformApplication.Current!.Application.Initialize();
-
-        var navigationService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>();
-        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+        IPlatformApplication.Current!.Application.Initialize();
     }
-
-    //protected virtual async Task RunAppStartAsync(Bundle bundle)
-    //{
-    //    if (Mvx.IoCProvider?.TryResolve(out ICrossAppStart startup) == true)
-    //    {
-    //        if (!startup.IsStarted)
-    //        {
-    //            await startup.StartAsync(GetAppStartHint(bundle));
-    //        }
-    //        else
-    //        {
-    //            Finish();
-    //        }
-    //    }
-    //}
 
     protected virtual object? GetAppStartHint(object? hint = null)
     {

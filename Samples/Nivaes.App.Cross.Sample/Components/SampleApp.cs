@@ -1,17 +1,18 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Components.ViewModels;
 using OpenTelemetry.Trace;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class SampleApp : CrossApplication
+public class SampleApp 
+    : CrossApplication
 {
     private readonly TracerProvider _tracerProvider;
 
-    public SampleApp(IServiceProvider serviceProvider, ILogger<SampleApp> logger, TracerProvider tracerProvider)
-        : base(serviceProvider, logger)
+    public SampleApp(IServiceProvider serviceProvider, ICrossNavigationService naviegateService,
+            ILogger<SampleApp> logger, TracerProvider tracerProvider)
+        : base(serviceProvider, naviegateService, logger)
     {
         _tracerProvider = tracerProvider;
     }
@@ -28,11 +29,7 @@ public class SampleApp : CrossApplication
         GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
-    ///// <summary>
-    ///// Breaking change in v6: This method is called on a background thread. Use
-    ///// Startup for any UI bound actions
-    ///// </summary>
-    public override ICrossViewModelStar Initialize()
+    public override void Initialize()
     {
         using (Logger.BeginScope("Initialice app"))
         {
@@ -43,7 +40,7 @@ public class SampleApp : CrossApplication
                 activity?.SetTag("test", "true");
             }
 
-            return new CrossViewModelStar<RootViewModel>();
+            NavigationService.Navigate<RootViewModel>();
         }
     }
 }

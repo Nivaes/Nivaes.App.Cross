@@ -1,12 +1,10 @@
-﻿using Nivaes.App.Cross.Components.ViewModels;
-
-namespace Nivaes.App.Cross;
+﻿namespace Nivaes.App.Cross;
 
 public interface ICrossApplication
 {
     void Setup();
 
-    ICrossViewModelStar Initialize();
+    void Initialize();
 
     void Startup();
 

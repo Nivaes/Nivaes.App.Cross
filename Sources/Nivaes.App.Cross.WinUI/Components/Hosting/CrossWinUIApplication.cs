@@ -71,14 +71,13 @@ public abstract class CrossWinUIApplication
         //_services.InvokeLifecycleEvents<WindowsLifecycle.OnLaunched>(del => del(this, args));
 
         _application.Setup();
-        var initializeViewModelType = _application.Initialize();
+        
 
         MainWindow!.Activate();
 
         Regiesters();
 
-        var navigationService = _services.GetRequiredService<ICrossNavigationService>();
-        await initializeViewModelType.NavigateToFirstViewModel(navigationService);
+        _application.Initialize();
     }
 
     //protected virtual void RunAppStart(string arguments)

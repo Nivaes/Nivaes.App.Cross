@@ -1,17 +1,19 @@
-﻿using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.Components.ViewModels;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
 public abstract class CrossApplication : ICrossApplication
 {
-    protected IServiceProvider ServiceProvider { [DebuggerHidden] get; }
+    protected readonly IServiceProvider ServiceProvider;
+    protected readonly ICrossNavigationService NavigationService;
     protected readonly ILogger Logger;
 
-    protected CrossApplication(IServiceProvider serviceProvider, ILogger logger)
+    protected CrossApplication(IServiceProvider serviceProvider,
+                               ICrossNavigationService navigationService, 
+                               ILogger logger)
     {
         ServiceProvider = serviceProvider;
+        NavigationService = navigationService;
         Logger = logger;
     }
 
@@ -29,7 +31,7 @@ public abstract class CrossApplication : ICrossApplication
         GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
     }
 
-    public abstract ICrossViewModelStar Initialize();
+    public abstract void Initialize();
 
     public virtual void Startup()
     {
@@ -39,6 +41,4 @@ public abstract class CrossApplication : ICrossApplication
     public virtual void Reset()
     {
     }
-
-   
 }
