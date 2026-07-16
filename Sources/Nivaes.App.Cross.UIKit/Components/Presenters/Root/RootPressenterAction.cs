@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class RootUIKitPressenterAction
-            : UIKitPressenterAction<RootPresentationAttribute>
+    public sealed class RootPressenterAction
+            : PressenterAction<RootPresentationAttribute>
     {
         #region Constructor
-        public RootUIKitPressenterAction(
+        public RootPressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<RootUIKitPressenterAction> logger)
+                ILogger<RootPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }

@@ -26,12 +26,11 @@ namespace Nivaes.App.Cross
             new CrossTypeAndNamePair(typeof(TTarget), _targetFakePropertyName)
         };
 
-        [RequiresUnreferencedCode("This method creates bindings using reflection which may not be preserved by trimming")]
         public ICrossTargetBinding? CreateBinding(object target, string targetName)
         {
             if (target is not TTarget castTarget)
             {
-                CrossBindingLogger.Instance?.LogError("Passed an invalid target for MvxCustomBindingFactory");
+                CrossBindingLogger.GetLogger<CrossCustomBindingFactory<TTarget>>().LogError("Passed an invalid target for MvxCustomBindingFactory");
                 return null;
             }
 

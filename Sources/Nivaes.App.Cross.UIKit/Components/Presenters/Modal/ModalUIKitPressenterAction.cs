@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public sealed class ModalUIKitPressenterAction
-            : UIKitPressenterAction<ModalPresentationAttribute>
+            : PressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
         public ModalUIKitPressenterAction(

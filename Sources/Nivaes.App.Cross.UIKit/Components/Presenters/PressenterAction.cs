@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public abstract class UIKitPressenterAction<TPressenterAttribute> 
-        : PressenterAction<TPressenterAttribute>
+    public abstract class PressenterAction<TPressenterAttribute> 
+        : Cross.PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         protected readonly IMvxIosViewCreator ViewCreator;
@@ -17,13 +14,13 @@ namespace Nivaes.App.Cross.UIKitLib
         protected UINavigationController? MasterNavigationController { get; set; }
 
         // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected IMvxTabBarViewController? TabBarViewController { get; set; }
+        //protected IMvxTabBarViewController? TabBarViewController { get; set; }
 
         // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
         protected List<UIViewController> ModalViewControllers { get; } = [];
 
         // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected IMvxSplitViewController? SplitViewController { get; set; }
+        //protected IMvxSplitViewController? SplitViewController { get; set; }
 
         // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
         protected IMvxPageViewController? PageViewController { get; set; }
@@ -34,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
 #endif
 
         #region Constructor
-        public UIKitPressenterAction(
+        public PressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
@@ -48,11 +45,8 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
-            ArgumentNullException.ThrowIfNull(viewModelType);
-            ArgumentNullException.ThrowIfNull(viewType);
-
             if (MasterNavigationController == null &&
-                TabBarViewController?.CanShowChildView() != true)
+                Context.TabBarViewController?.CanShowChildView() != true)
             {
                 Logger?.LogTrace(
                     "PresentationAttribute nor MasterNavigationController found for {ViewTypeName}. Assuming Root presentation",
@@ -76,9 +70,6 @@ namespace Nivaes.App.Cross.UIKitLib
            RootPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
             return viewController switch
             {
                 // check if viewController is a TabBarController
@@ -108,7 +99,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private async ValueTask<bool> ShowSplitRootViewController(UIViewController viewController, RootPresentationAttribute attribute,
             IMvxSplitViewController splitController)
         {
-            SplitViewController = splitController;
+            Context.SplitViewController = splitController;
 
             // set root
             SetupWindowRootNavigation(viewController, attribute);
@@ -137,7 +128,7 @@ namespace Nivaes.App.Cross.UIKitLib
             UIViewController viewController, RootPresentationAttribute attribute,
             IMvxTabBarViewController tabBarController)
         {
-            TabBarViewController = tabBarController;
+            Context.TabBarViewController = tabBarController;
 
             // set root
             SetupWindowRootNavigation(viewController, attribute);
@@ -150,9 +141,6 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected void SetupWindowRootNavigation(UIViewController viewController, RootPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
             if (attribute.WrapInNavigationController)
             {
                 MasterNavigationController = CreateNavigationController(viewController);
@@ -172,13 +160,10 @@ namespace Nivaes.App.Cross.UIKitLib
            SplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            if (SplitViewController == null)
+            if (Context.SplitViewController == null)
                 throw new AppException("Trying to show a master page without a SplitViewController, this is not possible!");
 
-            SplitViewController.ShowMasterView(viewController, attribute);
+            Context.SplitViewController.ShowMasterView(viewController, attribute);
             return ValueTask.FromResult(true);
         }
 
@@ -227,30 +212,30 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public virtual Task<bool> CloseTabBarViewController()
         {
-            if (TabBarViewController == null)
+            if (Context.TabBarViewController == null)
                 return Task.FromResult(true);
 
-            if (TabBarViewController is UITabBarController tabsController
+            if (Context.TabBarViewController is UITabBarController tabsController
                 && tabsController.ViewControllers != null)
             {
                 foreach (var item in tabsController.ViewControllers)
                     item.DidMoveToParentViewController(null);
             }
-            TabBarViewController = null;
+            Context.TabBarViewController = null;
             return Task.FromResult(true);
         }
 
         protected virtual Task<bool> CloseSplitViewController()
         {
-            if (SplitViewController == null)
+            if (Context.SplitViewController == null)
                 return Task.FromResult(true);
 
-            if (SplitViewController is UISplitViewController splitController)
+            if (Context.SplitViewController is UISplitViewController splitController)
             {
                 foreach (var item in splitController.ViewControllers)
                     item.DidMoveToParentViewController(null);
             }
-            SplitViewController = null;
+            Context.SplitViewController = null;
             return Task.FromResult(true);
         }
 
@@ -293,9 +278,6 @@ namespace Nivaes.App.Cross.UIKitLib
            ChildPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
             if (viewController is IMvxSplitViewController)
                 throw new AppException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
@@ -311,7 +293,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ShowModalViewControllerChild(viewController, attribute);
             }
 
-            if (TabBarViewController != null && TabBarViewController.ShowChildView(viewController))
+            if (Context.TabBarViewController != null && Context.TabBarViewController.ShowChildView(viewController))
             {
                 return ValueTask.FromResult(true);
             }
@@ -356,15 +338,10 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual void PushViewControllerIntoStack(
             UINavigationController navigationController, UIViewController viewController, ChildPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(navigationController);
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
             navigationController.PushViewController(viewController, attribute.Animated);
 
             if (viewController is IMvxTabBarViewController tabBarController)
-                TabBarViewController = tabBarController;
+                Context.TabBarViewController = tabBarController;
         }
-
     }
 }

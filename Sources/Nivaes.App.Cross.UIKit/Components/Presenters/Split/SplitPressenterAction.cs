@@ -5,15 +5,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class SplitUIKitPressenterAction
-            : UIKitPressenterAction<SplitViewPresentationAttribute>
+    public sealed class SplitPressenterAction
+            : PressenterAction<SplitViewPresentationAttribute>
     {
         #region Constructor
-        public SplitUIKitPressenterAction(
+        public SplitPressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<SplitUIKitPressenterAction> logger)
+                ILogger<SplitPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }
@@ -57,16 +57,16 @@ namespace Nivaes.App.Cross.UIKitLib
            SplitViewPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
-            if (SplitViewController == null)
+            if (Context.SplitViewController == null)
                 throw new AppException("Trying to show a detail page without a SplitViewController, this is not possible!");
 
-            SplitViewController.ShowDetailView(viewController, attribute);
+            Context.SplitViewController.ShowDetailView(viewController, attribute);
             return ValueTask.FromResult(true);
         }
 
         private ValueTask<bool> CloseMasterSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
-            if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
+            if (Context.SplitViewController != null && Context.SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(true);
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private ValueTask<bool> CloseDetailSplitViewController(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
         {
-            if (SplitViewController != null && SplitViewController.CloseChildViewModel(viewModel, attribute))
+            if (Context.SplitViewController != null && Context.SplitViewController.CloseChildViewModel(viewModel, attribute))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);

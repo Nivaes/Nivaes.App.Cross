@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross
             ParseEquals(block);
 
             if (description.ConverterParameter != null)
-                CrossBindingLogger.Instance?.LogWarning("Overwriting existing ConverterParameter");
+                CrossBindingLogger.GetLogger<CrossSwissBindingParser>().LogWarning("Overwriting existing ConverterParameter");
 
             description.ConverterParameter = ReadValue();
         }
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross
                 ParseEquals(block);
 
                 if (!string.IsNullOrEmpty(description.Converter))
-                    CrossBindingLogger.Instance?.LogWarning("Overwriting existing Converter with CommandParameter");
+                    CrossBindingLogger.GetLogger<CrossSwissBindingParser>().LogWarning("Overwriting existing Converter with CommandParameter");
 
                 description.Converter = "CommandParameter";
                 description.ConverterParameter = ReadValue();

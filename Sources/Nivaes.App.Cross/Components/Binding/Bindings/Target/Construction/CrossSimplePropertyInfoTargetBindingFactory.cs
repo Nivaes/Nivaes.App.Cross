@@ -1,20 +1,16 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-
     public class CrossSimplePropertyInfoTargetBindingFactory
         : ICrossPluginTargetBindingFactory
     {
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
         private readonly Type _bindingType;
         private readonly CrossPropertyInfoTargetBindingFactory _innerFactory;
 
-        [RequiresUnreferencedCode("This constructor creates bindings using reflection which may not be preserved by trimming")]
-        public CrossSimplePropertyInfoTargetBindingFactory(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type bindingType,
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType,
+        public CrossSimplePropertyInfoTargetBindingFactory(Type bindingType, Type targetType,
             string targetName)
         {
             _bindingType = bindingType;
@@ -33,14 +29,13 @@ namespace Nivaes.App.Cross
 
         #endregion IMvxPluginTargetBindingFactory Members
 
-        [RequiresUnreferencedCode("This method uses Activator.CreateInstance to create binding instances, which may not be preserved by trimming")]
-        private ICrossTargetBinding CreateTargetBinding(object target, PropertyInfo targetPropertyInfo)
+        private ICrossTargetBinding? CreateTargetBinding(object target, PropertyInfo targetPropertyInfo)
         {
             var targetBindingCandidate = Activator.CreateInstance(_bindingType, target, targetPropertyInfo);
             var targetBinding = targetBindingCandidate as ICrossTargetBinding;
             if (targetBinding == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("The TargetBinding created did not support IMvxTargetBinding");
+                CrossBindingLogger.GetLogger<CrossSimplePropertyInfoTargetBindingFactory>().LogWarning("The TargetBinding created did not support IMvxTargetBinding");
                 var disposable = targetBindingCandidate as IDisposable;
                 disposable?.Dispose();
             }

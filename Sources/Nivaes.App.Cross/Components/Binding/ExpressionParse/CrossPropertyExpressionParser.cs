@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross
         public ICrossParsedExpression Parse<TObj, TRet>(Expression<Func<TObj, TRet>> propertyPath)
         {
             if (propertyPath.Body is MethodCallExpression
-                && (propertyPath.Body as MethodCallExpression).Method.Name.Contains("Bind"))
+                && ((MethodCallExpression)propertyPath.Body).Method.Name.Contains("Bind"))
             {
                 return ParseBindExtensionMethod(propertyPath as LambdaExpression, default(TObj));
             }

@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
     {
         protected abstract CrossSerializableBindingDescription ParseBindingDescription();
 
-        public bool TryParseBindingDescription(string text, out CrossSerializableBindingDescription requestedDescription)
+        public bool TryParseBindingDescription(string text, out CrossSerializableBindingDescription? requestedDescription)
         {
             try
             {
@@ -21,13 +21,13 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLogger.Instance?.LogError(exception, "Problem parsing binding");
+                CrossBindingLogger.GetLogger<CrossBindingParser>().LogError(exception, "Problem parsing binding");
                 requestedDescription = null;
                 return false;
             }
         }
 
-        public bool TryParseBindingSpecification(string text, out CrossSerializableBindingSpecification requestedBindings)
+        public bool TryParseBindingSpecification(string text, out CrossSerializableBindingSpecification? requestedBindings)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception exception)
             {
-                CrossBindingLogger.Instance?.LogError(exception, "Problem parsing binding");
+                CrossBindingLogger.GetLogger<CrossBindingParser>().LogError(exception, "Problem parsing binding");
                 requestedBindings = null;
                 return false;
             }

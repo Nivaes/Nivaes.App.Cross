@@ -1,8 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossConvertingTargetBinding(object target)
         : CrossTargetBinding(target)
     {
@@ -14,10 +14,8 @@ namespace Nivaes.App.Cross
 
         protected abstract void SetValueImpl(object target, object? value);
 
-        [RequiresUnreferencedCode("This method performs type conversions which may not be preserved by trimming")]
         public override void SetValue(object? value)
         {
-            //CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogTrace("Receiving SetValue to {Value}", value);
             var t = Target;
             if (t == null)
             {
@@ -59,7 +57,6 @@ namespace Nivaes.App.Cross
             }
         }
 
-        [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming.")]
         protected virtual bool ShouldSkipSetValueForViewSpecificReasons(object target, object? value)
         {
             return false;
@@ -83,7 +80,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            CrossBindingLogger.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;
@@ -124,7 +121,7 @@ namespace Nivaes.App.Cross
             var target = Target;
             if (target == null)
             {
-                CrossBindingLogger.Instance?.LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
+                CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogWarning("Weak Target is null in {TypeName} - skipping set", GetType().Name);
                 return;
             }
 
@@ -176,7 +173,7 @@ namespace Nivaes.App.Cross
             if (_isUpdatingTarget || _isUpdatingSource)
                 return;
 
-            CrossBindingLogger.Instance?.LogTrace("Firing changed to {NewValue}", newValue);
+            CrossBindingLogger.GetLogger<CrossConvertingTargetBinding>().LogTrace("Firing changed to {NewValue}", newValue);
             try
             {
                 _isUpdatingSource = true;

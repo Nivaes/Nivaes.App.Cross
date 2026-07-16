@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public sealed class PageUIKitPressenterAction
-            : UIKitPressenterAction<PagePresentationAttribute>
+            : PressenterAction<PagePresentationAttribute>
     {
         #region Constructor
         public PageUIKitPressenterAction(

@@ -54,8 +54,6 @@ namespace Nivaes.App.Cross
                 return CanExecuteImpl(parameter);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer03:Fire-and-forget async-void methods or delegates", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "<Pending>")]
         public async void Execute(object? parameter)
         {
             try
@@ -101,6 +99,7 @@ namespace Nivaes.App.Cross
                     _concurrentExecutions++;
                     started = true;
                 }
+
                 if (!_allowConcurrentExecutions)
                 {
                     RaiseCanExecuteChanged();

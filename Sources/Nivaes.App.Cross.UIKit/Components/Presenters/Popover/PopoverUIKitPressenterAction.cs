@@ -1,21 +1,18 @@
 ﻿#if IOS || MACCATALYST
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
     public sealed class PopoverUIKitPressenterAction
-            : UIKitPressenterAction<PopoverPresentationAttribute>
+            : PressenterAction<PopoverPresentationAttribute>
     {
         #region Constructor
         public PopoverUIKitPressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<SplitUIKitPressenterAction> logger)
+                ILogger<SplitPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }

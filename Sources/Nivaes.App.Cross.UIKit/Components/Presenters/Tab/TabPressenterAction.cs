@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class TabUIKitPressenterAction
-            : UIKitPressenterAction<TabPresentationAttribute>
+    public sealed class TabPressenterAction
+            : PressenterAction<TabPresentationAttribute>
     {
         #region Constructor
-        public TabUIKitPressenterAction(
+        public TabPressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<TabUIKitPressenterAction> logger)
+                ILogger<TabPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }
@@ -34,7 +31,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TabPresentationAttribute attribute)
         {
-            if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
+            if (Context.TabBarViewController != null && Context.TabBarViewController.CloseTabViewModel(viewModel))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);
@@ -45,7 +42,7 @@ namespace Nivaes.App.Cross.UIKitLib
             TabPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            if (TabBarViewController == null)
+            if (Context.TabBarViewController == null)
                 throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
@@ -58,7 +55,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
 
-            TabBarViewController.ShowTabView(
+            Context.TabBarViewController.ShowTabView(
                 viewController,
                 attribute);
             return ValueTask.FromResult(true);

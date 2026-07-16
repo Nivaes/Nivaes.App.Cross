@@ -24,15 +24,7 @@ namespace Nivaes.App.Cross.UIKitLib
             builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
                     sp.GetRequiredService<MvxIosViewDispatcher>());
 
-            builder.Services.TryAddSingleton<IIosViewPresenterManager>(sp =>
-            {
-                var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
-                var viewCreator = sp.GetRequiredService<IMvxIosViewCreator>();
-                var logger = sp.GetRequiredService<ILogger<IosViewPresenterManager>>();
-
-
-                return new IosViewPresenterManager(windows, viewsContainer, viewCreator, logger);
-            });
+            builder.Services.TryAddSingleton<IIosViewPresenterManager, IosViewPresenterManager>();
             builder.Services.AddSingleton<PressenterActionContext>(sp => new PressenterActionContext(windows));
             
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();

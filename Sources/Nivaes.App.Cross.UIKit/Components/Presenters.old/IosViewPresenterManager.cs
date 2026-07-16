@@ -7,10 +7,12 @@ namespace Nivaes.App.Cross.UIKitLib
     public class IosViewPresenterManager
         : CrossAttributeViewPresenterManager, IIosViewPresenterManager
     {
+        private readonly PressenterActionContext Context;
+
         //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
         private readonly IMvxIosViewCreator _viewCreator;
 
-        protected UIWindow Window { get; }
+        //protected UIWindow Window { get; }
 
         public UINavigationController? MasterNavigationController { get; protected set; }
 
@@ -20,29 +22,26 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public List<UIViewController> ModalViewControllers { get; } = [];
 
-        public IMvxTabBarViewController? TabBarViewController { get; protected set; }
+        //public IMvxTabBarViewController? TabBarViewController { get; protected set; }
 
         public IMvxPageViewController? PageViewController { get; protected set; }
 
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
-        public IosViewPresenterManager(UIWindow window, ICrossViewsContainer crossViewsContainer,
-            IMvxIosViewCreator viewCreator, ILogger<IosViewPresenterManager> logger)
+        public IosViewPresenterManager(
+                    PressenterActionContext context,
+                    ICrossViewsContainer crossViewsContainer,
+                    IMvxIosViewCreator viewCreator, ILogger<IosViewPresenterManager> logger)
             : base(crossViewsContainer, logger)
         {
+            Context = context;
             _viewCreator = viewCreator;
-            Window = window;
         }
 
-        public override BasePresentationAttribute CreatePresentationAttribute(
-                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
-                [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewType)
+        public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
-            ArgumentNullException.ThrowIfNull(viewModelType);
-            ArgumentNullException.ThrowIfNull(viewType);
-
             if (MasterNavigationController == null &&
-                TabBarViewController?.CanShowChildView() != true)
+                Context.TabBarViewController?.CanShowChildView() != true)
             {
                 Logger?.LogTrace(
                     "PresentationAttribute nor MasterNavigationController found for {ViewTypeName}. Assuming Root presentation",
@@ -281,7 +280,7 @@ namespace Nivaes.App.Cross.UIKitLib
             UIViewController viewController, RootPresentationAttribute attribute,
             IMvxTabBarViewController tabBarController)
         {
-            TabBarViewController = tabBarController;
+            Context.TabBarViewController = tabBarController;
 
             // set root
             SetupWindowRootNavigation(viewController, attribute);
@@ -304,7 +303,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
         {
-            if (!(TabBarViewController is UITabBarController tabsController) ||
+            if (!(Context.TabBarViewController is UITabBarController tabsController) ||
                 tabsController.ViewControllers == null)
             {
                 return false;
@@ -377,7 +376,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ShowModalViewControllerChild(viewController, attribute);
             }
 
-            if (TabBarViewController != null && TabBarViewController.ShowChildView(viewController))
+            if (Context.TabBarViewController != null && Context.TabBarViewController.ShowChildView(viewController))
             {
                 return Task.FromResult(true);
             }
@@ -430,7 +429,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
 
-            if (TabBarViewController == null)
+            if (Context.TabBarViewController == null)
                 throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
@@ -443,7 +442,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
 
-            TabBarViewController.ShowTabView(
+            Context.TabBarViewController.ShowTabView(
                 viewController,
                 attribute);
             return Task.FromResult(true);
@@ -557,7 +556,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private UIViewController GetParentViewController()
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
-            return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
+            return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Context.Window.RootViewController
                 ?? throw new AppException($"No parent ViewController found.");
         }
 
@@ -623,7 +622,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return Task.FromResult(true);
 
             // if the current root is a TabBarViewController, delegate close responsibility to it
-            if (TabBarViewController?.CloseChildViewModel(viewModel) == true)
+            if (Context.TabBarViewController?.CloseChildViewModel(viewModel) == true)
                 return Task.FromResult(true);
 
             if (SplitViewController?.CloseChildViewModel(viewModel, attribute) == true)
@@ -651,10 +650,7 @@ namespace Nivaes.App.Cross.UIKitLib
         [Obsolete("", true)]
         protected virtual Task<bool> CloseTabViewController(ICrossViewModel viewModel, TabPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(viewModel);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            if (TabBarViewController != null && TabBarViewController.CloseTabViewModel(viewModel))
+            if (Context.TabBarViewController != null && Context.TabBarViewController.CloseTabViewModel(viewModel))
                 return Task.FromResult(true);
 
             return Task.FromResult(false);
@@ -816,7 +812,7 @@ namespace Nivaes.App.Cross.UIKitLib
             navigationController.PushViewController(viewController, attribute.Animated);
 
             if (viewController is IMvxTabBarViewController tabBarController)
-                TabBarViewController = tabBarController;
+                Context.TabBarViewController = tabBarController;
         }
 
         [Obsolete("", true)]
@@ -889,16 +885,16 @@ namespace Nivaes.App.Cross.UIKitLib
         [Obsolete("")]
         public virtual Task<bool> CloseTabBarViewController()
         {
-            if (TabBarViewController == null)
+            if (Context.TabBarViewController == null)
                 return Task.FromResult(true);
 
-            if (TabBarViewController is UITabBarController tabsController
+            if (Context.TabBarViewController is UITabBarController tabsController
                 && tabsController.ViewControllers != null)
             {
                 foreach (var item in tabsController.ViewControllers)
                     item.DidMoveToParentViewController(null);
             }
-            TabBarViewController = null;
+            Context.TabBarViewController = null;
             return Task.FromResult(true);
         }
 
@@ -920,7 +916,7 @@ namespace Nivaes.App.Cross.UIKitLib
         [Obsolete("", true)]
         protected void RemoveWindowSubviews()
         {
-            foreach (var v in Window.Subviews)
+            foreach (var v in Context.Window.Subviews)
                 v.RemoveFromSuperview();
         }
 
@@ -936,13 +932,13 @@ namespace Nivaes.App.Cross.UIKitLib
 
             if (attribute == null || attribute.AnimationOptions == UIViewAnimationOptions.TransitionNone)
             {
-                Window.RootViewController = controller;
+                Context.Window.RootViewController = controller;
                 return;
             }
 
             UIView.Transition(
-                Window, attribute.AnimationDuration, attribute.AnimationOptions,
-                () => Window.RootViewController = controller, null
+                Context.Window, attribute.AnimationDuration, attribute.AnimationOptions,
+                () => Context.Window.RootViewController = controller, null
             );
         }
 

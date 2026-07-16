@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
     public sealed class ChildUIKitPressenterAction
-            : UIKitPressenterAction<ChildPresentationAttribute>
+            : PressenterAction<ChildPresentationAttribute>
     {
         #region Constructor
         public ChildUIKitPressenterAction(
@@ -48,7 +45,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
 
             // if the current root is a TabBarViewController, delegate close responsibility to it
-            if (TabBarViewController?.CloseChildViewModel(viewModel) == true)
+            if (Context.TabBarViewController?.CloseChildViewModel(viewModel) == true)
                 return ValueTask.FromResult(true);
 
             if (SplitViewController?.CloseChildViewModel(viewModel, attribute) == true)
