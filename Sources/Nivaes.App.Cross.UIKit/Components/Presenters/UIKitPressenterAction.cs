@@ -11,8 +11,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         protected readonly IMvxIosViewCreator ViewCreator;
 
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected UIWindow Window { get; }
+        protected readonly PressenterActionContext Context;
 
         // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
         protected UINavigationController? MasterNavigationController { get; set; }
@@ -36,11 +35,13 @@ namespace Nivaes.App.Cross.UIKitLib
 
         #region Constructor
         public UIKitPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger logger)
             : base(viewsContainer, logger)
         {
+            Context = context;
             ViewCreator = viewCreator;
         }
         #endregion
@@ -261,7 +262,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected UIViewController GetParentViewController()
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
-            return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
+            return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Context.Window.RootViewController
                 ?? throw new AppException($"No parent ViewController found.");
         }
 
@@ -271,19 +272,19 @@ namespace Nivaes.App.Cross.UIKitLib
 
             if (attribute == null || attribute.AnimationOptions == UIViewAnimationOptions.TransitionNone)
             {
-                Window.RootViewController = controller;
+                Context.Window.RootViewController = controller;
                 return;
             }
 
             UIView.Transition(
-                Window, attribute.AnimationDuration, attribute.AnimationOptions,
-                () => Window.RootViewController = controller, null
+                Context.Window, attribute.AnimationDuration, attribute.AnimationOptions,
+                () => Context.Window.RootViewController = controller, null
             );
         }
 
         protected void RemoveWindowSubviews()
         {
-            foreach (var v in Window.Subviews)
+            foreach (var v in Context.Window.Subviews)
                 v.RemoveFromSuperview();
         }
 

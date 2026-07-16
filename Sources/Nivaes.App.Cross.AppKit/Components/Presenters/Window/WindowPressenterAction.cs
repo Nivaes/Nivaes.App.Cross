@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
-    public sealed class WindowAppKitPressenterAction
+    public sealed class WindowPressenterAction
         : AppKitPressenterAction<WindowPresentationAttribute>
     {
         /// <summary>
@@ -18,11 +14,12 @@ namespace Nivaes.App.Cross.AppKitOS
         private readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
 
         #region Constructor
-        public WindowAppKitPressenterAction(
+        public WindowPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<WindowAppKitPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+                ILogger<WindowPressenterAction> logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

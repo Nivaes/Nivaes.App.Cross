@@ -10,10 +10,11 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public ChildUIKitPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<ChildUIKitPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

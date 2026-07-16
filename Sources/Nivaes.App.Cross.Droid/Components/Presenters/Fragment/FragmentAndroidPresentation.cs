@@ -17,11 +17,12 @@ namespace Nivaes.App.Cross.Droid
         protected readonly ICrossNavigationSerializer NavigationSerializer;
 
         public FragmentAndroidPresentation(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<FragmentPresentationAttribute> logger)
-            : base(viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, androidCurrentTopActivity, logger)
         {
             NavigationSerializer = navigationSerializer;
         }

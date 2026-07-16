@@ -12,10 +12,11 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public PopoverUIKitPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<SplitUIKitPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

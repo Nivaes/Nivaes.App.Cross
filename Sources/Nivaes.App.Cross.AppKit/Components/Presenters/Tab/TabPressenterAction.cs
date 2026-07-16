@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
-    public sealed class TabAppKitPressenterAction
+    public sealed class TabPressenterAction
         : AppKitPressenterAction<TabPresentationAttribute>
     {
         #region Constructor
-        public TabAppKitPressenterAction(
+        public TabPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<TabAppKitPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+                ILogger<TabPressenterAction> logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

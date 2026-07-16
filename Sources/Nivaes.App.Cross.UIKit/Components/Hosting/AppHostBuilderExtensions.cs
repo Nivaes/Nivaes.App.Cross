@@ -33,7 +33,8 @@ namespace Nivaes.App.Cross.UIKitLib
 
                 return new IosViewPresenterManager(windows, viewsContainer, viewCreator, logger);
             });
-
+            builder.Services.AddSingleton<PressenterActionContext>(sp => new PressenterActionContext(windows));
+            
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
             builder.Services.TryAddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
 

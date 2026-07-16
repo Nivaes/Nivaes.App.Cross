@@ -1,14 +1,6 @@
-﻿using Android.Content;
-using Android.OS;
-using Android.Util;
-using AndroidX.ViewPager.Widget;
-using Java.Util.Logging;
+﻿using AndroidX.ViewPager.Widget;
 using Microsoft.Extensions.Logging;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-using Fragment = AndroidX.Fragment.App.Fragment;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -17,10 +9,11 @@ namespace Nivaes.App.Cross.Droid
         where ViewPagerFragmentPresentationAttribute : Droid.ViewPagerFragmentPresentationAttribute
     {
         public ViewPagerFragmentAndroidPresentation(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ILogger logger)
-            : base(viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, androidCurrentTopActivity, logger)
         { }
 
         protected override ValueTask<bool> ShowAction(Type viewType, ViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
@@ -176,10 +169,11 @@ namespace Nivaes.App.Cross.Droid
         : ViewPagerFragmentAndroidPresentation<ViewPagerFragmentPresentationAttribute>
     {
         public ViewPagerFragmentAndroidPresentation(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, androidCurrentTopActivity, logger)
         {
         }
     }

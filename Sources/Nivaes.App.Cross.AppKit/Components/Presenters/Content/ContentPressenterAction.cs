@@ -4,17 +4,18 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.AppKitLib;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
-    public sealed class ContentAppKitPressenterAction
+    public sealed class ContentPressenterAction
         : AppKitPressenterAction<ContentPresentationAttribute>
     {
         #region Constructor
-        public ContentAppKitPressenterAction(
+        public ContentPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<ContentAppKitPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+                ILogger<ContentPressenterAction> logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

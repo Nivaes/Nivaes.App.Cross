@@ -13,11 +13,12 @@ namespace Nivaes.App.Cross.WinUI
     {
         #region Constructor
         public RegionWinUIPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger<RegionWinUIPressenterAction> logger)
-            : base(viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
         {
         }
         #endregion

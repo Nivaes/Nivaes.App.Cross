@@ -14,6 +14,8 @@ namespace Nivaes.App.Cross.Droid
         where TPressenterAttribute : IPresentationAttribute
     {
         #region Properties
+        protected readonly PressenterActionContext Contex;
+
         protected CrossViewModelRequest? PendingRequest { get; set; }
 
         private readonly IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;
@@ -34,11 +36,13 @@ namespace Nivaes.App.Cross.Droid
 
         #region Constructor
         protected AndroidPressenterAction(
+                PressenterActionContext contex,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ILogger logger)
             : base(viewsContainer, logger)
         {
+            Contex = contex;
             _androidCurrentTopActivity = androidCurrentTopActivity;
         }
         #endregion

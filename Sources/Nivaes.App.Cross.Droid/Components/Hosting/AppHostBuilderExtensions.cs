@@ -21,6 +21,7 @@ namespace Nivaes.App.Cross.Droid
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
             builder.Services.TryAddSingleton<IAndroidViewPresenterManager, AndroidViewPresenterManager>();
+            builder.Services.AddSingleton<PressenterActionContext>();
 
             builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
             builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();

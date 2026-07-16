@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
     public abstract class AppKitPressenterAction<TPressenterAttribute>
                 : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
+        protected readonly PressenterActionContext Context;
+
         // ToDo: Windows ha de ser una colección común para todos los PressenterAction.
         protected List<NSWindow> Windows { get; } = new List<NSWindow>();
         protected NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
@@ -18,11 +16,13 @@ namespace Nivaes.App.Cross.AppKitOS
 
         #region Constructor
         protected AppKitPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger logger)
             : base(viewsContainer, logger)
         {
+            Context = context;
             ViewCreator = viewCreator;
         }
         #endregion

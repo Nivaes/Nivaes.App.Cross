@@ -18,11 +18,12 @@ public sealed class ActivityAndroidPresentation
     private readonly IMvxAndroidViewModelRequestTranslator ViewModelRequestTranslator;
 
     public ActivityAndroidPresentation(
+        PressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
             IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ILogger<ActivityAndroidPresentation> logger)
-        : base(viewsContainer, androidCurrentTopActivity, logger)
+        : base(contex, viewsContainer, androidCurrentTopActivity, logger)
     {
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }

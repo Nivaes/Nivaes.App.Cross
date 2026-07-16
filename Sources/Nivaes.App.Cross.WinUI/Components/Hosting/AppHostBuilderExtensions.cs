@@ -26,6 +26,7 @@ namespace Nivaes.App.Cross.WinUI
 
             builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             builder.Services.TryAddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();
+            builder.Services.AddSingleton<PressenterActionContext>();
             builder.Services.TryAddSingleton<ICrossViewsContainer, CrossWindowsViewsContainer>();
 
             builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();

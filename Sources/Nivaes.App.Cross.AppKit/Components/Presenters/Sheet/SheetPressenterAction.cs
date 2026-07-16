@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
-    public sealed class wheetMacPressenterAction
+    public sealed class SheetMacPressenterAction
         : AppKitPressenterAction<SheetPresentationAttribute>
     {
         #region Constructor
-        public wheetMacPressenterAction(
+        public SheetMacPressenterAction(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<wheetMacPressenterAction> logger)
-            : base(viewsContainer, viewCreator, logger)
+                ILogger<SheetMacPressenterAction> logger)
+            : base(context, viewsContainer, viewCreator, logger)
         {
         }
         #endregion

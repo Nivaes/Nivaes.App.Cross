@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Nivaes.App.Cross.AppKitOS
+namespace Nivaes.App.Cross.AppKitLib
 {
-    public sealed class ModalAppKitPressenterAction
+    public sealed class ModalPressenterAction
         : AppKitPressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
-        public ModalAppKitPressenterAction(
+        public ModalPressenterAction(
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
-                ILogger<ModalAppKitPressenterAction> logger)
+                ILogger<ModalPressenterAction> logger)
             : base(viewsContainer, viewCreator, logger)
         {
         }

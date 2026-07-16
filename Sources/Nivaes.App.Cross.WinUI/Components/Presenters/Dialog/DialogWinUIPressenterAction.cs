@@ -16,13 +16,14 @@ namespace Nivaes.App.Cross.WinUI
 
         #region Constructor
         public DialogWinUIPressenterAction(
+                PressenterActionContext context,
                 IServiceProvider serviceProvider,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ICrossViewModelLoader viewModelLoader,
                 ILogger<DialogWinUIPressenterAction> logger)
-            : base(viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
         {
             _serviceProvider = serviceProvider;
             _viewModelLoader = viewModelLoader;

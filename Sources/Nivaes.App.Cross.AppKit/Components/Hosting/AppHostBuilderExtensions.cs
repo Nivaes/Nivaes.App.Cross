@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.AppKitLib.Observability;
+using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
 using Nivaes.App.Cross.Observability;
 
@@ -32,6 +33,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
                 return new MacViewPresenterManager(applicationDelegation, viewsContainer, logger);
             });
+            builder.Services.AddSingleton<PressenterActionContext>();
 
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxMacViewsContainer>();
 

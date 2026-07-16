@@ -28,10 +28,11 @@ namespace Nivaes.App.Cross.Droid
         }
 
         public DialogFragmentAndroidPresentation(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ILogger<DialogFragmentAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, androidCurrentTopActivity, logger)
         {
         }
 
