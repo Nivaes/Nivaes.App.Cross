@@ -80,7 +80,7 @@ namespace Nivaes.App.Cross
             return current;
         }
 
-        private static ICrossParsedExpression ParseBindExtensionMethod(LambdaExpression propertyPath, object controlType)
+        private static ICrossParsedExpression ParseBindExtensionMethod(LambdaExpression propertyPath, object? controlType)
         {
             var compiled = propertyPath.Compile();
             var virtualPropertyName = compiled.DynamicInvoke(controlType) as string;

@@ -17,18 +17,18 @@ public static partial class CrossBindingContextOwnerExtensions
             return new CrossFluentBindingDescriptionSet<TTarget, TSource>(target, clearBindingKey);
         }
 
-        public MvxFluentBindingDescription<TTarget> CreateBinding(
+        public FluentBindingDescription<TTarget> CreateBinding(
     )
         {
-            return new MvxFluentBindingDescription<TTarget>(target, target);
+            return new FluentBindingDescription<TTarget>(target, target);
         }
     }
 
-    public static MvxFluentBindingDescription<TTarget> CreateBinding<
+    public static FluentBindingDescription<TTarget> CreateBinding<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TTarget>(
             this ICrossBindingContextOwner contextOwner, TTarget target)
                 where TTarget : class
     {
-        return new MvxFluentBindingDescription<TTarget>(contextOwner, target);
+        return new FluentBindingDescription<TTarget>(contextOwner, target);
     }
 }

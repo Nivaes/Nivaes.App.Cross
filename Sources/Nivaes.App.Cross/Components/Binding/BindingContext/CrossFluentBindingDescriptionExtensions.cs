@@ -5,9 +5,9 @@ namespace Nivaes.App.Cross;
 
 public static class CrossFluentBindingDescriptionExtensions
 {
-    extension<[DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource>(CrossFluentBindingDescription<TTarget, TSource> bindingDescription) where TTarget : class
+    extension<[DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.Interfaces)] TTarget, TSource>(FluentBindingDescription<TTarget, TSource> bindingDescription) where TTarget : class
     {
-        public CrossFluentBindingDescription<TTarget, TSource> WithDictionaryConversion<TFrom, TTo>(
+        public FluentBindingDescription<TTarget, TSource> WithDictionaryConversion<TFrom, TTo>(
             IDictionary<TFrom, TTo> converterParameter)
                 where TFrom : notnull
         {
@@ -19,7 +19,7 @@ public static class CrossFluentBindingDescriptionExtensions
                     .OneWay();
         }
 
-        public CrossFluentBindingDescription<TTarget, TSource> WithDictionaryConversion<TFrom, TTo>(
+        public FluentBindingDescription<TTarget, TSource> WithDictionaryConversion<TFrom, TTo>(
                 IDictionary<TFrom, TTo> converterParameter,
                 TTo fallback)
                     where TFrom : notnull

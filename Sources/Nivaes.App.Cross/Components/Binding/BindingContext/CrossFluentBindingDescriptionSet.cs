@@ -3,8 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
-public class CrossFluentBindingDescriptionSet<
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TOwningTarget, TSource>
+public class CrossFluentBindingDescriptionSet<TOwningTarget, TSource>
         : CrossApplicable, IDisposable
             where TOwningTarget : class, ICrossBindingContextOwner
 {
@@ -20,24 +19,23 @@ public class CrossFluentBindingDescriptionSet<
     {
         _clearBindingKey = clearBindingKey;
     }
-    public CrossFluentBindingDescription<TOwningTarget, TSource> Bind()
+    public FluentBindingDescription<TOwningTarget, TSource> Bind()
     {
-        var toReturn = new CrossFluentBindingDescription<TOwningTarget, TSource>(
+        var toReturn = new FluentBindingDescription<TOwningTarget, TSource>(
             _bindingContextOwner, _bindingContextOwner);
         _applicables.Add(toReturn);
         return toReturn;
     }
 
-    public CrossFluentBindingDescription<TChildTarget, TSource> Bind<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TChildTarget>(TChildTarget childTarget)
+    public FluentBindingDescription<TChildTarget, TSource> Bind<TChildTarget>(TChildTarget childTarget)
             where TChildTarget : class
     {
-        var toReturn = new CrossFluentBindingDescription<TChildTarget, TSource>(_bindingContextOwner, childTarget);
+        var toReturn = new FluentBindingDescription<TChildTarget, TSource>(_bindingContextOwner, childTarget);
         _applicables.Add(toReturn);
         return toReturn;
     }
 
-    public CrossFluentBindingDescription<TChildTarget, TSource> Bind<
+    public FluentBindingDescription<TChildTarget, TSource> Bind<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TChildTarget>(
             TChildTarget childTarget,
             string bindingDescription)
@@ -48,8 +46,7 @@ public class CrossFluentBindingDescriptionSet<
         return toReturn;
     }
 
-    public CrossFluentBindingDescription<TChildTarget, TSource> Bind<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] TChildTarget>(
+    public FluentBindingDescription<TChildTarget, TSource> Bind<TChildTarget>(
             TChildTarget childTarget, CrossBindingDescription bindingDescription)
                 where TChildTarget : class
     {
@@ -58,7 +55,6 @@ public class CrossFluentBindingDescriptionSet<
         return toReturn;
     }
 
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
     public override void Apply()
     {
         foreach (var applicable in _applicables)
@@ -66,7 +62,6 @@ public class CrossFluentBindingDescriptionSet<
         base.Apply();
     }
 
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
     public void ApplyWithClearBindingKey(object clearBindingKey)
     {
         foreach (var applicable in _applicables)
@@ -77,7 +72,7 @@ public class CrossFluentBindingDescriptionSet<
             }
             else
             {
-                CrossBindingLogger.Instance?.LogWarning(
+                CrossBindingLogger.GetLogger<CrossFluentBindingDescriptionSet<TOwningTarget, TSource>>().LogWarning(
                     "Fluent binding description must implement {InterfaceName} in order to add {Description}",
                     nameof(ICrossBaseFluentBindingDescription),
                     nameof(ICrossBaseFluentBindingDescription.ClearBindingKey));
@@ -89,14 +84,12 @@ public class CrossFluentBindingDescriptionSet<
         base.Apply();
     }
 
-    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Bindings inherently use reflection. This is by design and callers are warned through usage of binding methods.")]
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
 
-    [RequiresUnreferencedCode("Binding functionality accesses members dynamically through reflection.")]
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)
