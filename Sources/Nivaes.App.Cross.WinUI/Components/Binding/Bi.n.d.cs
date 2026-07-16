@@ -56,7 +56,7 @@ namespace Nivaes.App.Cross.WinUI
             IMvxBindingCreator toReturn = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxBindingCreator>();
             //if (!Mvx.IoCProvider.TryResolve<IMvxBindingCreator>(out toReturn))
             //{
-            //    throw new CrossException("Unable to resolve the binding creator - have you initialized Windows Binding");
+            //    throw new AppException("Unable to resolve the binding creator - have you initialized Windows Binding");
             //}
 
             return toReturn;

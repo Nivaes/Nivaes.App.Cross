@@ -23,7 +23,7 @@ public class CrossLanguageBinder(string? namespaceName = null, string? typeName 
             var cachedTextProvider = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossTextProvider>();
             //if (Mvx.IoCProvider?.TryResolve(out ICrossTextProvider? cachedTextProvider) != true)
             //{
-            //    throw new CrossException(
+            //    throw new AppException(
             //        "Missing text provider - please initialize IoC with a suitable IMvxTextProvider");
             //}
 

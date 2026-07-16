@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross
         //    }
         //    catch (Exception ex)
         //    {
-        //        throw new CrossException(ex,
+        //        throw new AppException(ex,
         //            $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
         //    }
         //}
@@ -136,7 +136,7 @@ namespace Nivaes.App.Cross
 
         //    if (viewModelLocator == null)
         //    {
-        //        throw new CrossException($"Sorry - somehow there's no viewmodel locator registered for {request.ViewModelType}");
+        //        throw new AppException($"Sorry - somehow there's no viewmodel locator registered for {request.ViewModelType}");
         //    }
 
         //    return viewModelLocator;
