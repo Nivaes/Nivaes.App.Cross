@@ -167,10 +167,8 @@ namespace Nivaes.App.Cross.Droid
             return viewModelType;
         }
 
-        protected virtual void ShowHostActivity(FragmentPresentationAttribute attribute)
+        protected virtual async void ShowHostActivity(FragmentPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(attribute);
-
             if (attribute.ActivityHostViewModelType == null)
                 throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
@@ -182,9 +180,8 @@ namespace Nivaes.App.Cross.Droid
             if (PendingRequest != null)
                 hostViewModelRequest.PresentationValues = PendingRequest.PresentationValues;
 
-            Show(hostViewModelRequest);
+            await Show(hostViewModelRequest);
         }
-      
 
         protected virtual void OnFragmentPopped(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute)
         {
@@ -196,11 +193,6 @@ namespace Nivaes.App.Cross.Droid
            FragmentPresentationAttribute attribute,
            CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(fragmentTransaction, nameof(fragmentTransaction));
-            ArgumentNullException.ThrowIfNull(fragment, nameof(fragment));
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(request);
-
             if (CurrentActivity.IsActivityAlive() && CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity)
             {
                 var elements = new List<string>();

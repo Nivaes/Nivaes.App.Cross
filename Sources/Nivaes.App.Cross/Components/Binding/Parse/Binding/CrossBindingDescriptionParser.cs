@@ -33,15 +33,7 @@ public class CrossBindingDescriptionParser
         if (string.IsNullOrWhiteSpace(converterName))
             return null;
 
-        if (Singleton<NameConvertersKeyContainerManager>.Instance.TryGetValue(converterName, out var converter))
-        {
-            return converter;
-        }
-        else
-        {
-            CrossBindingLogger.GetLogger<CrossBindingDescriptionParser>().LogWarning($"Could not find named converter for {converterName}");
-            return null;
-        }
+        return Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
     }
 
     protected ICrossValueCombiner? FindCombiner(string? combinerName)

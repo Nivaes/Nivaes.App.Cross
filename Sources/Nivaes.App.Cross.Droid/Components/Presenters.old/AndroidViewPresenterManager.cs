@@ -173,8 +173,6 @@ public class AndroidViewPresenterManager
     [Obsolete("Busca interfaces de la vista.", true)]
     public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
     {
-        ArgumentNullException.ThrowIfNull(viewModelType, nameof(viewModelType));
-
         if (viewType!.IsSubclassOf(typeof(DialogFragment)))
         {
             Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
@@ -250,8 +248,6 @@ public class AndroidViewPresenterManager
     protected virtual ViewPager? FindViewPagerInFragmentPresentation(
         ViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
     {
-        ArgumentNullException.ThrowIfNull(pagerFragmentAttribute);
-
         ViewPager? viewPager = null;
 
         // check for a ViewPager inside a Fragment
@@ -292,10 +288,6 @@ public class AndroidViewPresenterManager
         ActivityPresentationAttribute attribute,
         CrossViewModelRequest request)
     {
-        ArgumentNullException.ThrowIfNull(view);
-        ArgumentNullException.ThrowIfNull(attribute);
-        ArgumentNullException.ThrowIfNull(request);
-
         var intent = CreateIntentForRequest(request);
         if (intent == null)
             return Task.FromResult(false);

@@ -22,6 +22,7 @@ public abstract class CrossAttributeViewPresenterManager
     {
         get
         {
+            throw new NotImplementedException();
             if (_attributeTypesActionsDictionary == null)
             {
                 _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
@@ -31,6 +32,7 @@ public abstract class CrossAttributeViewPresenterManager
         }
     }
 
+    [Obsolete("", true)]
     public abstract void RegisterAttributeTypes();
 
     public abstract BasePresentationAttribute CreatePresentationAttribute(
@@ -40,8 +42,6 @@ public abstract class CrossAttributeViewPresenterManager
     public virtual object? CreateOverridePresentationAttributeViewInstance(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
     {
-        ArgumentNullException.ThrowIfNull(viewType, nameof(viewType));
-
         return Activator.CreateInstance(viewType);
     }
 
@@ -50,9 +50,6 @@ public abstract class CrossAttributeViewPresenterManager
         CrossViewModelRequest request,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
-        ArgumentNullException.ThrowIfNull(viewType, nameof(viewType));
-
         var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
         if (!hasInterface)
             return null;
@@ -85,9 +82,6 @@ public abstract class CrossAttributeViewPresenterManager
 
     public virtual BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
-        ArgumentNullException.ThrowIfNull(request.ViewModelType, nameof(request.ViewModelType));
-
         var viewType = ViewsContainer.GetViewType(request.ViewModelType);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
@@ -154,20 +148,18 @@ public abstract class CrossAttributeViewPresenterManager
         return false;
     }
 
-    //[Obsolete("Migrate to PressenterAction", true)]
-    public override ValueTask<bool> Close(ICrossViewModel viewModel)
-    {
-        var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
-
-        return pressentationAction.CloseActon(viewModel, attribute);
-    }
-
-    //[Obsolete("Migrate to PressenterAction", true)]
     public override ValueTask<bool> Show(CrossViewModelRequest request)
     {
         var pressentationAction = GetPresentationAction(request, out var attribute);
 
         return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
+    }
+
+    public override ValueTask<bool> Close(ICrossViewModel viewModel)
+    {
+        var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
+
+        return pressentationAction.CloseAction(viewModel, attribute);
     }
 
     protected virtual IPressenterAction GetPresentationAction(
@@ -179,12 +171,7 @@ public abstract class CrossAttributeViewPresenterManager
 
         attribute = presentationAttribute;
 
-        if (Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.TryGetValue(attributeType, out var pressenterAction))
-        {
-            return pressenterAction;
-        }
-
-        throw new AppException($"The pressenterAction {attributeType.FullName} was not found.");
+        return Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.GetValue(attributeType);
     }
 
     //public override async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)

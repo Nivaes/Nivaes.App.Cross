@@ -69,12 +69,12 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }
 
-        protected void CloseWindow(Window newWindow)
+        protected async void CloseWindow(Window newWindow)
         {
             var windowInformation = GetWindowInformation(newWindow);
             if (windowInformation.ViewModel != null)
             {
-                Close(windowInformation.ViewModel);
+                await Close(windowInformation.ViewModel);
             }
         }
 

@@ -4,6 +4,6 @@
     {
         ValueTask<bool> ShowAction(Type viewType, IPresentationAttribute attribute, CrossViewModelRequest request);
 
-        ValueTask<bool> CloseActon(ICrossViewModel viewModel, IPresentationAttribute attribute);
+        ValueTask<bool> CloseAction(ICrossViewModel viewModel, IPresentationAttribute attribute);
     }
 }
