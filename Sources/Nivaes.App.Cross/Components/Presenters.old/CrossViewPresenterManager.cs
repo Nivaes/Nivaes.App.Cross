@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross
     public abstract class CrossViewPresenterManager
         : ICrossViewPresenterManager
     {
-        private readonly Dictionary<Type, Func<CrossPresentationHint, Task<bool>>> _presentationHintHandlers =
-            new Dictionary<Type, Func<CrossPresentationHint, Task<bool>>>();
+        private readonly Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>> _presentationHintHandlers =
+           new Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>>();
 
         protected readonly ILogger Logger;
 
@@ -15,30 +15,26 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
+        public void AddPresentationHintHandler<THint>(Func<THint, ValueTask<bool>> action)
             where THint : CrossPresentationHint
         {
-            ArgumentNullException.ThrowIfNull(action, nameof(action));
-
             _presentationHintHandlers[typeof(THint)] = hint => action((THint)hint);
         }
 
-        protected Task<bool> HandlePresentationChange(CrossPresentationHint hint)
+        protected ValueTask<bool> HandlePresentationChange(CrossPresentationHint hint)
         {
-            ArgumentNullException.ThrowIfNull(hint, nameof(hint));
-
             if (_presentationHintHandlers.TryGetValue(hint.GetType(), out var handler))
             {
                 return handler(hint);
             }
 
-            return Task.FromResult(false);
+            return ValueTask.FromResult(false);
         }
 
-        public abstract Task<bool> Show(CrossViewModelRequest request);
+        public abstract ValueTask<bool> Show(CrossViewModelRequest request);
 
-        public abstract Task<bool> ChangePresentation(CrossPresentationHint hint);
+        public abstract ValueTask<bool> ChangePresentation(CrossPresentationHint hint);
 
-        public abstract Task<bool> Close(ICrossViewModel viewModel);
+        public abstract ValueTask<bool> Close(ICrossViewModel viewModel);
     }
 }

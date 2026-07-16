@@ -1,10 +1,8 @@
 namespace Nivaes.App.Cross
 {
-    using System;
-
     public interface ICrossMainThreadDispatcher
     {
-        [Obsolete("Use IMvxMainThreadAsyncDispatcher.ExecuteOnMainThreadAsync instead")]
+        [Obsolete("Use IMvxMainThreadAsyncDispatcher.ExecuteOnMainThreadAsync instead", true)]
         bool RequestMainThreadAction(Action action, bool maskExceptions = true);
         bool IsOnMainThread { get; }
     }

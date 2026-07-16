@@ -20,14 +20,16 @@ namespace Nivaes.App.Cross
 
         protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute);
 
-        public ValueTask<bool> ShowActon(Type view, IPresentationAttribute attribute, CrossViewModelRequest request)
+        [DebuggerHidden]
+        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            return ShowActon(view, attribute, request);
+            return ShowAction(view, (TPressenterAttribute)attribute, request);
         }
 
+        [DebuggerHidden]
         public ValueTask<bool> CloseActon(ICrossViewModel viewModel, IPresentationAttribute attribute)
         {
-            return CloseActon(viewModel, attribute);
+            return CloseActon(viewModel, (TPressenterAttribute)attribute);
         }
 
         [Obsolete]

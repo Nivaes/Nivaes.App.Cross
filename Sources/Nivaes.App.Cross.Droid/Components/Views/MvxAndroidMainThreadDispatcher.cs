@@ -15,6 +15,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
+        [Obsolete("", true)]
         public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)

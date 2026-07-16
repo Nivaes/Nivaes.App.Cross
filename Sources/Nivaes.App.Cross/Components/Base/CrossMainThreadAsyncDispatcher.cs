@@ -50,6 +50,39 @@ namespace Nivaes.App.Cross
             await Task.Run(async () => await completion.Task);
         }
 
+        //public ValueTask<bool> ExecuteOnMainThreadAsync(Action action, bool maskExceptions = true)
+        //{
+        //    if (action == null)
+        //        return ValueTask.FromResult(false);
+
+        //    return ExecuteOnMainThreadAsync(action, maskExceptions);
+        //}
+
+        //public async ValueTask<bool> ExecuteOnMainThreadAsync(Func<ValueTask<bool>> action, bool maskExceptions = true)
+        //{
+        //    if (action is null)
+        //        return false;
+
+        //    var completion = new TaskCompletionSource<bool>(
+        //        TaskCreationOptions.RunContinuationsAsynchronously);
+
+        //    RequestMainThreadAction(async () =>
+        //    {
+        //        try
+        //        {
+        //            completion.TrySetResult(await action().ConfigureAwait(false));
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            completion.TrySetException(ex);
+        //        }
+        //    }, maskExceptions);
+
+        //    return completion.Task.IsCompletedSuccessfully
+        //        ? completion.Task.Result
+        //        : await completion.Task.ConfigureAwait(false);
+        //}
+
         public abstract override bool IsOnMainThread { get; }
     }
 }

@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.UIKitLib
             {
                 Logger.LogTrace("Navigate requested to {ViewModelType}", request?.ViewModelType);
 
-                return _presenter.Show(request!);
+                return _presenter.Show(request!).AsTask();
             }
             await ExecuteOnMainThreadAsync(action);
             return true;

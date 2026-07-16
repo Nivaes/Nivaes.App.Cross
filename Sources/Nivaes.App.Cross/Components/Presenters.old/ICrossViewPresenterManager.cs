@@ -1,17 +1,14 @@
 namespace Nivaes.App.Cross
 {
-    using System;
-    using System.Threading.Tasks;
-
     public interface ICrossViewPresenterManager
     {
-        Task<bool> Show(CrossViewModelRequest request);
+        ValueTask<bool> Show(CrossViewModelRequest request);
 
-        Task<bool> ChangePresentation(CrossPresentationHint hint);
+        ValueTask<bool> ChangePresentation(CrossPresentationHint hint);
 
-        void AddPresentationHintHandler<THint>(Func<THint, Task<bool>> action)
+        void AddPresentationHintHandler<THint>(Func<THint, ValueTask<bool>> action)
             where THint : CrossPresentationHint;
 
-        Task<bool> Close(ICrossViewModel viewModel);
+        ValueTask<bool> Close(ICrossViewModel viewModel);
     }
 }

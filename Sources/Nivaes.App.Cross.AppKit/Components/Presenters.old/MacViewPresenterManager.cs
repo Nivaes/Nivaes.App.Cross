@@ -73,45 +73,45 @@ public class MacViewPresenterManager
     [Obsolete]
     public override void RegisterAttributeTypes()
     {
-        AttributeTypesToActionsDictionary.Register<WindowPresentationAttribute>(
-                (viewType, attribute, request) =>
-                {
-                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowWindowViewController(viewController, (WindowPresentationAttribute)attribute, request);
-                },
-                (viewModel, attribute) => Close(viewModel));
+        //AttributeTypesToActionsDictionary.Register<WindowPresentationAttribute>(
+        //        (viewType, attribute, request) =>
+        //        {
+        //            var viewController = (NSViewController)this.CreateViewControllerFor(request);
+        //            return ShowWindowViewController(viewController, (WindowPresentationAttribute)attribute, request);
+        //        },
+        //        (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<ContentPresentationAttribute>(
-                (viewType, attribute, request) =>
-                {
-                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowContentViewController(viewController, (ContentPresentationAttribute)attribute, request);
-                },
-                (viewModel, attribute) => Close(viewModel));
+        //AttributeTypesToActionsDictionary.Register<ContentPresentationAttribute>(
+        //        (viewType, attribute, request) =>
+        //        {
+        //            var viewController = (NSViewController)this.CreateViewControllerFor(request);
+        //            return ShowContentViewController(viewController, (ContentPresentationAttribute)attribute, request);
+        //        },
+        //        (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<ModalPresentationAttribute>(
-                (viewType, attribute, request) =>
-                {
-                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowModalViewController(viewController, (ModalPresentationAttribute)attribute, request);
-                },
-                (viewModel, attribute) => Close(viewModel));
+        //AttributeTypesToActionsDictionary.Register<ModalPresentationAttribute>(
+        //        (viewType, attribute, request) =>
+        //        {
+        //            var viewController = (NSViewController)this.CreateViewControllerFor(request);
+        //            return ShowModalViewController(viewController, (ModalPresentationAttribute)attribute, request);
+        //        },
+        //        (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<SheetPresentationAttribute>(
-                (viewType, attribute, request) =>
-                {
-                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowSheetViewController(viewController, (SheetPresentationAttribute)attribute, request);
-                },
-                (viewModel, attribute) => Close(viewModel));
+        //AttributeTypesToActionsDictionary.Register<SheetPresentationAttribute>(
+        //        (viewType, attribute, request) =>
+        //        {
+        //            var viewController = (NSViewController)this.CreateViewControllerFor(request);
+        //            return ShowSheetViewController(viewController, (SheetPresentationAttribute)attribute, request);
+        //        },
+        //        (viewModel, attribute) => Close(viewModel));
 
-        AttributeTypesToActionsDictionary.Register<TabPresentationAttribute>(
-                (viewType, attribute, request) =>
-                {
-                    var viewController = (NSViewController)this.CreateViewControllerFor(request);
-                    return ShowTabViewController(viewController, (TabPresentationAttribute)attribute, request);
-                },
-                (viewModel, attribute) => Close(viewModel));
+        //AttributeTypesToActionsDictionary.Register<TabPresentationAttribute>(
+        //        (viewType, attribute, request) =>
+        //        {
+        //            var viewController = (NSViewController)this.CreateViewControllerFor(request);
+        //            return ShowTabViewController(viewController, (TabPresentationAttribute)attribute, request);
+        //        },
+        //        (viewModel, attribute) => Close(viewModel));
     }
 
     [Obsolete("User PressenterAction")]
@@ -306,7 +306,7 @@ public class MacViewPresenterManager
     }
 
     [Obsolete("User PressenteAction", true)]
-    public override Task<bool> Close(ICrossViewModel viewModel)
+    public override ValueTask<bool> Close(ICrossViewModel viewModel)
     {
         for (int i = Windows.Count - 1; i >= 0; i--)
         {
@@ -316,7 +316,7 @@ public class MacViewPresenterManager
             var tabViewController = window.ContentViewController as IMvxTabViewController;
             if (tabViewController != null && tabViewController.CloseTabView(viewModel))
             {
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             var controller = window.ContentViewController as ICrossViewController;
@@ -326,7 +326,7 @@ public class MacViewPresenterManager
             if (presentedController != null)
             {
                 controller.DismissViewController(presentedController);
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
 
             // closing controller is content in a regular window
@@ -334,7 +334,7 @@ public class MacViewPresenterManager
             {
                 Windows.Remove(window);
                 window.Close();
-                return Task.FromResult(true);
+                return ValueTask.FromResult(true);
             }
         }
 

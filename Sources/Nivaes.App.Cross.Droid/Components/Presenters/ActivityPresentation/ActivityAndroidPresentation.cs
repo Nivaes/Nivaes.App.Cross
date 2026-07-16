@@ -66,12 +66,6 @@ public sealed class ActivityAndroidPresentation
     private Bundle CreateActivityTransitionOptions(
        Intent intent, ActivityPresentationAttribute attribute, CrossViewModelRequest request)
     {
-        ArgumentNullException.ThrowIfNull(attribute);
-        ArgumentNullException.ThrowIfNull(request);
-
-
-        ArgumentNullException.ThrowIfNull(intent, nameof(intent));
-
         var bundle = Bundle.Empty!;
 
         if (!(CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity))
@@ -119,8 +113,6 @@ public sealed class ActivityAndroidPresentation
 
     private void ShowIntent(Intent intent, Bundle? bundle)
     {
-        ArgumentNullException.ThrowIfNull(intent, nameof(intent));
-
         var activity = CurrentActivity;
         if (activity!.IsActivityDead())
         {

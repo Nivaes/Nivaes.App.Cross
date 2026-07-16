@@ -70,7 +70,7 @@ namespace Nivaes.App.Cross.AppKitOS
 
         protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
         {
-            NSWindow window = null;
+            NSWindow? window = null;
 
             if (!string.IsNullOrEmpty(identifier))
                 window = Windows.Find(w => w.Identifier == identifier);

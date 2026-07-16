@@ -1,7 +1,5 @@
 namespace Nivaes.App.Cross
 {
-    using System.Collections.Generic;
-
     public abstract class CrossPresentationHint
     {
         protected CrossPresentationHint(CrossBundle? body = default)

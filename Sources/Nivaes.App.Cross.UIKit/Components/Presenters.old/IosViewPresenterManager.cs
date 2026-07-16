@@ -292,14 +292,12 @@ namespace Nivaes.App.Cross.UIKitLib
             return true;
         }
 
-        public override Task<bool> ChangePresentation(CrossPresentationHint hint)
+        public override ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
         {
-            ArgumentNullException.ThrowIfNull(hint);
-
             return hint switch
             {
                 CrossPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
-                    Task.FromResult(true),
+                    ValueTask.FromResult(true),
                 _ => base.ChangePresentation(hint)
             };
         }

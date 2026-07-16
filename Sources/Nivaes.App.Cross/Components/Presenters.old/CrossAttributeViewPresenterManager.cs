@@ -140,7 +140,7 @@ public abstract class CrossAttributeViewPresenterManager
         throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
     }
 
-    public override async Task<bool> ChangePresentation(CrossPresentationHint hint)
+    public override async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
     {
         if (await HandlePresentationChange(hint).ConfigureAwait(true))
             return true;
@@ -154,23 +154,66 @@ public abstract class CrossAttributeViewPresenterManager
         return false;
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
-    public override Task<bool> Close(ICrossViewModel viewModel)
+    //[Obsolete("Migrate to PressenterAction", true)]
+    public override ValueTask<bool> Close(ICrossViewModel viewModel)
     {
-        return GetPresentationAttributeAction(
-                new CrossViewModelInstanceRequest(viewModel), out var attribute)
-            .CloseAction?
-            .Invoke(viewModel, attribute) ?? Task.FromResult(false);
+        var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
+
+        return pressentationAction.CloseActon(viewModel, attribute);
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
-    public override Task<bool> Show(CrossViewModelRequest request)
+    //[Obsolete("Migrate to PressenterAction", true)]
+    public override ValueTask<bool> Show(CrossViewModelRequest request)
     {
-        var attributeAction = GetPresentationAttributeAction(request, out var attribute);
+        var pressentationAction = GetPresentationAction(request, out var attribute);
 
-        if (attributeAction.ShowAction != null && attribute.ViewType != null)
-            return attributeAction.ShowAction.Invoke(attribute.ViewType, attribute, request);
-
-        return Task.FromResult(false);
+        return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
     }
+
+    protected virtual IPressenterAction GetPresentationAction(
+        CrossViewModelRequest? request, out BasePresentationAttribute attribute)
+    {
+        var presentationAttribute = GetPresentationAttribute(request);
+        presentationAttribute.ViewModelType = request.ViewModelType;
+        var attributeType = presentationAttribute.GetType();
+
+        attribute = presentationAttribute;
+
+        if (Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.TryGetValue(attributeType, out var pressenterAction))
+        {
+            return pressenterAction;
+        }
+
+        throw new AppException($"The pressenterAction {attributeType.FullName} was not found.");
+    }
+
+    //public override async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
+    //{
+    //    if (await HandlePresentationChange(hint).ConfigureAwait(true))
+    //        return true;
+
+    //    if (hint is CrossClosePresentationHint presentationHint)
+    //    {
+    //        return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
+    //    }
+
+    //    Logger.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+    //    return false;
+    //}
+
+    ////[Obsolete("Migrate to PressenterAction", true)]
+    //public override ValueTask<bool> Close(ICrossViewModel viewModel)
+    //{
+    //    var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
+
+    //   return pressentationAction.CloseActon(viewModel, attribute);
+    //}
+
+    ////[Obsolete("Migrate to PressenterAction", true)]
+    //public override ValueTask<bool> Show(CrossViewModelRequest request)
+    //{
+    //    var pressentationAction = GetPresentationAction(request, out var attribute);
+
+    //    return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
+    //}
 }

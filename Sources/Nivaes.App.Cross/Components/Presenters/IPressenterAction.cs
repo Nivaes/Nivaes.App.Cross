@@ -1,10 +1,9 @@
 ﻿namespace Nivaes.App.Cross
 {
-    public  interface IPressenterAction
+    public interface IPressenterAction
     {
-        public abstract ValueTask<bool> ShowActon(Type viewType, IPresentationAttribute attribute, CrossViewModelRequest request);
+        ValueTask<bool> ShowAction(Type viewType, IPresentationAttribute attribute, CrossViewModelRequest request);
 
-        public abstract ValueTask<bool> CloseActon(ICrossViewModel viewModel, IPresentationAttribute attribute);
-
+        ValueTask<bool> CloseActon(ICrossViewModel viewModel, IPresentationAttribute attribute);
     }
 }

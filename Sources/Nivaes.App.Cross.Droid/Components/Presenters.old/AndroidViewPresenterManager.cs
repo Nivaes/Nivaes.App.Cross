@@ -15,7 +15,8 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid;
 
-public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, IAndroidViewPresenterManager
+public class AndroidViewPresenterManager 
+    : CrossAttributeViewPresenterManager, IAndroidViewPresenterManager
 {
     public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
     public const string SharedElementsBundleKey = "__sharedElementsKey";
@@ -80,7 +81,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         }
     }
 
-    [Obsolete("Carga por Roslyn")]
+    [Obsolete("Carga por Roslyn", true)]
     public override void RegisterAttributeTypes()
     {
         AttributeTypesToActionsDictionary.Register<ActivityPresentationAttribute>(ShowActivity, CloseActivity);
@@ -207,14 +208,12 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         throw new InvalidOperationException($"Don't know how to create a presentation attribute for type {viewType}");
     }
 
-    public override Task<bool> ChangePresentation(CrossPresentationHint hint)
+    public override ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
     {
-        ArgumentNullException.ThrowIfNull(hint, nameof(hint));
-
         if (hint is CrossPagePresentationHint pagePresentationHint)
         {
             var result = ChangePagePresentation(pagePresentationHint);
-            return Task.FromResult(result);
+            return ValueTask.FromResult(result);
         }
 
         return base.ChangePresentation(hint);

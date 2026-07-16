@@ -25,5 +25,15 @@ namespace Nivaes.App.Cross.Droid
             await ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
             return true;
         }
+
+        //public ValueTask<bool> ShowViewModel(CrossViewModelRequest request)
+        //{
+        //    return ExecuteOnMainThreadAsync(() => _presenter.Show(request));
+        //}
+
+        //public ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
+        //{
+        //    return ExecuteOnMainThreadAsync(() => _presenter.ChangePresentation(hint));
+        //}
     }
 }

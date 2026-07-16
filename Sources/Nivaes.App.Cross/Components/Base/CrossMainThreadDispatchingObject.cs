@@ -43,5 +43,25 @@ namespace Nivaes.App.Cross
 
             return AsyncDispatcher.ExecuteOnMainThreadAsync(action, maskExceptions);
         }
+
+        //protected ValueTask<bool> InvokeOnMainThreadAsync(Action action, bool maskExceptions = true)
+        //{
+        //    if (AsyncDispatcher == null)
+        //    {
+        //        try
+        //        {
+        //            action();
+        //        }
+        //        catch
+        //        {
+        //            if (!maskExceptions)
+        //                throw;
+        //        }
+
+        //        return ValueTask.FromResult(true);
+        //    }
+
+        //    return AsyncDispatcher.ExecuteOnMainThreadAsync(action, maskExceptions);
+        //}
     }
 }
