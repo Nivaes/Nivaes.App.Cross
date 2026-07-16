@@ -2,6 +2,7 @@ namespace Nivaes.App.Cross
 {
     using System;
 
+    [Obsolete("Use AppException")]
     public class CrossException
         : Exception
     {

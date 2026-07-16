@@ -2,13 +2,13 @@
 
 namespace Nivaes.App.Cross;
 
-public sealed class ViewsViewKeyContainerManager : KeyContainerManager<Type>
+public sealed class ViewViewModelsKeyContainerManager : KeyContainerManager<Type>
 {
-    public ViewsViewKeyContainerManager()
+    public ViewViewModelsKeyContainerManager()
     {
     }
 
-    public ViewsViewKeyContainerManager(KeyStoreItem[] presentations)
+    public ViewViewModelsKeyContainerManager(KeyStoreItem[] presentations)
         : base(presentations)
     {
     }
@@ -21,6 +21,6 @@ public sealed class ViewsViewKeyContainerManager : KeyContainerManager<Type>
 
     public bool TryGetValue(Type viewModelType, [MaybeNullWhen(false)] out Type presentationType)
     {
-        return base.TryGetValue(viewModelType.GetHashCode(), out presentationType);
+        return base.TryGetValue(viewModelType.TypeHandle.Value, out presentationType);
     }
 }

@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
                 return new ConverterManagerItem()
                 {
                     NameConverters = new NameConvertersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
-                    Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).GetHashCode(), Value = converter }
+                    Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).TypeHandle.Value, Value = converter }
                 };
             }
             catch (InvalidOperationException ex)

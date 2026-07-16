@@ -21,6 +21,6 @@ public sealed class ViewModelViewsKeyContainerManager : KeyContainerManager<Type
 
     public bool TryGetValue(Type viewModelType, [MaybeNullWhen(false)] out Type presentationType)
     {
-        return base.TryGetValue(viewModelType.GetHashCode(), out presentationType);
+        return base.TryGetValue(viewModelType.TypeHandle.Value, out presentationType);
     }
 }

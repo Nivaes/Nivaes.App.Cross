@@ -14,7 +14,6 @@ namespace Nivaes.App.Cross
         }
 
         // ToDo: Quitar esta clase y mover la busqueda de vistas.
-        [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)]
         public Type GetViewType(Type viewModelType)
         {
             var viewsManager = Singleton<ViewModelViewsKeyContainerManager>.Instance;

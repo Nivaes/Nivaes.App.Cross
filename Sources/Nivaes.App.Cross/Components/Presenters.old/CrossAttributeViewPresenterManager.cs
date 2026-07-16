@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross;
 public abstract class CrossAttributeViewPresenterManager
     : CrossViewPresenterManager, ICrossAttributeViewPresenterManager
 {
-    protected ICrossViewsContainer ViewsContainer { get; }
+    protected readonly ICrossViewsContainer ViewsContainer;
 
     protected CrossAttributeViewPresenterManager(ICrossViewsContainer crossViewsContainer, ILogger logger)
         : base(logger)
@@ -92,10 +92,6 @@ public abstract class CrossAttributeViewPresenterManager
         if (viewType == null)
             throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
 
-        //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-        //if (overrideAttribute != null)
-        //    return overrideAttribute;
-
         var attribute = viewType
             .GetCustomAttributes(typeof(BasePresentationAttribute), true)
             .FirstOrDefault();
@@ -118,8 +114,6 @@ public abstract class CrossAttributeViewPresenterManager
     protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
         CrossViewModelRequest? request, out BasePresentationAttribute attribute)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
-
         var presentationAttribute = GetPresentationAttribute(request);
         presentationAttribute.ViewModelType = request.ViewModelType;
         var attributeType = presentationAttribute.GetType();

@@ -7,7 +7,7 @@
             internal NameViewsKeyContainerManager.KeyStoreItem NameViews { get; set; }
             internal NameViewModelsKeyContainerManager.KeyStoreItem NameViewModels { get; set; }
             internal ViewModelViewsKeyContainerManager.KeyStoreItem TypeViewModels { get; set; }
-            internal ViewsViewKeyContainerManager.KeyStoreItem TypeViews { get; set; }
+            internal ViewViewModelsKeyContainerManager.KeyStoreItem TypeViews { get; set; }
         }
 
         public static ViewManagerItem New<TViewModel, TView>()
@@ -18,8 +18,8 @@
             {
                 NameViews = new NameViewsKeyContainerManager.KeyStoreItem { Key = typeof(TView).FullName!.GetHashCode(), Value = typeof(TView) },
                 NameViewModels = new NameViewModelsKeyContainerManager.KeyStoreItem { Key = typeof(TViewModel).FullName!.GetHashCode(), Value = typeof(TViewModel) },
-                TypeViews = new ViewsViewKeyContainerManager.KeyStoreItem { Key = typeof(TView).GetHashCode(), Value = typeof(TViewModel) },
-                TypeViewModels = new ViewModelViewsKeyContainerManager.KeyStoreItem { Key = typeof(TViewModel).GetHashCode(), Value = typeof(TView) },
+                TypeViews = new ViewViewModelsKeyContainerManager.KeyStoreItem { Key = typeof(TView).TypeHandle.Value, Value = typeof(TViewModel) },
+                TypeViewModels = new ViewModelViewsKeyContainerManager.KeyStoreItem { Key = typeof(TViewModel).TypeHandle.Value, Value = typeof(TView) },
             };
         }
 
@@ -28,7 +28,7 @@
             Singleton<NameViewsKeyContainerManager>.Instance.Merge(items.Select(x => x.NameViews).ToArray());
             Singleton<NameViewModelsKeyContainerManager>.Instance.Merge(items.Select(x => x.NameViewModels).ToArray());
             Singleton<ViewModelViewsKeyContainerManager>.Instance.Merge(items.Select(x => x.TypeViewModels).ToArray());
-            Singleton<ViewsViewKeyContainerManager>.Instance.Merge(items.Select(x => x.TypeViews).ToArray());
+            Singleton<ViewViewModelsKeyContainerManager>.Instance.Merge(items.Select(x => x.TypeViews).ToArray());
         }
     }
 }

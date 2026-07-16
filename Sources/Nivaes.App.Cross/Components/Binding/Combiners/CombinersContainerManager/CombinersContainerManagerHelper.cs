@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
                 return new CombinersManagerItem()
                 {
                     NameCombiners = new NameCombinersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = combiner },
-                    Combiners = new CombinersKeyContainerManager.KeyStoreItem { Key = combiner.GetType().GetHashCode(), Value = combiner }
+                    Combiners = new CombinersKeyContainerManager.KeyStoreItem { Key = combiner.GetType().TypeHandle.Value, Value = combiner }
                 };
             }
             catch (InvalidOperationException ex)

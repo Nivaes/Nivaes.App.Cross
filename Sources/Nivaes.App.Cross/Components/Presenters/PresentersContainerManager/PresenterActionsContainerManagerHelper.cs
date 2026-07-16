@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross
 
                 return new PresentationAttributePresenterActionItem()
                 {
-                    PresentationAttributePresenterActions = new KeyContainerManager<IPressenterAction>.KeyStoreItem { Key = typeof(TPresentationAttribute).GetHashCode(), Value = pressenterAction }
+                    PresentationAttributePresenterActions = new KeyContainerManager<IPressenterAction>.KeyStoreItem { Key = typeof(TPresentationAttribute).TypeHandle.Value, Value = pressenterAction }
                 };
             }
             catch(InvalidOperationException ex)

@@ -28,12 +28,12 @@ public sealed class PresentationAttributePresenterActionsKeyContainerManager : K
         }
         else
         {
-            throw new CrossException($"Unregistered {pressenterActionType.FullName} type of presenter action.");
+            throw new AppException($"Unregistered {pressenterActionType.FullName} type of presenter action.");
         }
     }
 
     public bool TryGetValue(Type pressenterActionType, [MaybeNullWhen(false)] out IPressenterAction pressenterAction)
     {
-        return base.TryGetValue(pressenterActionType.GetHashCode(), out pressenterAction);
+        return base.TryGetValue(pressenterActionType.TypeHandle.Value, out pressenterAction);
     }
 }

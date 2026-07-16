@@ -15,6 +15,6 @@ public sealed class CombinersKeyContainerManager : KeyContainerManager<ICrossVal
 
     public bool TryGetValue(Type converterType, [MaybeNullWhen(false)] out ICrossValueCombiner presentationType)
     {
-        return base.TryGetValue(converterType.GetHashCode(), out presentationType);
+        return base.TryGetValue(converterType.TypeHandle.Value, out presentationType);
     }
 }

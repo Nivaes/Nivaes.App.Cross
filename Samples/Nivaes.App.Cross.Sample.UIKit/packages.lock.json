@@ -33,13 +33,13 @@
       },
       "Nivaes.App.Shared": {
         "type": "Direct",
-        "requested": "[0.9.16, )",
-        "resolved": "0.9.16",
-        "contentHash": "H5wsMosz0ZwpXzVFlqgpDRC9k2bebfq7uiiQKT6kXlhAM7L5BDYKxURvamaGAI5t4XptcjNQVx48Ze5di++1cA==",
+        "requested": "[1.0.0.3, )",
+        "resolved": "1.0.0.3",
+        "contentHash": "I+Pkjfe+x2nQgncQGM48qInq+nNUkzzSjKuuy0LgXKXq/4MkyRiTpL+jRxNDLLXPZTNODiYYu1WVNpbHxQBnBQ==",
         "dependencies": {
           "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "0.9.16",
-          "Nivaes.Extensions": "2.3.6"
+          "Nivaes.App.Shared.SourceGenerator": "1.0.0.3",
+          "Nivaes.Extensions": "2.4.0.1"
         }
       },
       "Roslynator.Analyzers": {
@@ -75,8 +75,8 @@
       },
       "Microsoft.Bcl.Memory": {
         "type": "Transitive",
-        "resolved": "10.0.9",
-        "contentHash": "Ot6xtHSjibECjp8mP41wch9GUSeGTXtUUc7M2MthKtiFmvPBMpvp6d8RwBJOtg/ia5PE0iR05PRy1ZVBAOmaeQ=="
+        "resolved": "10.0.10",
+        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -185,10 +185,10 @@
       },
       "Nivaes.App.Shared.SourceGenerator": {
         "type": "Transitive",
-        "resolved": "0.9.16",
-        "contentHash": "PfZexnioS7un2HsrI3rFemogYFNUf7610FkaOoYQpNnr8Zgj1tbn7Ed1smpYgF6EN7ybpN1TcYkgweh+PW1izQ==",
+        "resolved": "1.0.0.3",
+        "contentHash": "iRX47cQDx/EB08wIQCpfjfadr/k3JM54wUR7dyrMkC+q/YvX4LRknNQpqgHmKsyhEBgsBe9z3Kr/6uPGrelh9g==",
         "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.9",
+          "Microsoft.Bcl.Memory": "10.0.10",
           "Microsoft.CodeAnalysis.CSharp": "5.6.0"
         }
       },
@@ -221,7 +221,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[0.9.16, )",
+          "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
@@ -234,7 +234,7 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Shared": "[0.9.16, )",
+          "Nivaes.App.Shared": "[1.0.0.3, )",
           "OpenTelemetry": "[1.16.0, )",
           "OpenTelemetry.Exporter.Console": "[1.16.0, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.16.0, )",
@@ -248,7 +248,7 @@
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[0.9.16, )"
+          "Nivaes.App.Shared": "[1.0.0.3, )"
         }
       },
       "Nivaes.App.Cross.UIKitOS.SourceGenerator": {
@@ -449,13 +449,13 @@
       },
       "Nivaes.App.Shared": {
         "type": "Direct",
-        "requested": "[0.9.16, )",
-        "resolved": "0.9.16",
-        "contentHash": "H5wsMosz0ZwpXzVFlqgpDRC9k2bebfq7uiiQKT6kXlhAM7L5BDYKxURvamaGAI5t4XptcjNQVx48Ze5di++1cA==",
+        "requested": "[1.0.0.3, )",
+        "resolved": "1.0.0.3",
+        "contentHash": "I+Pkjfe+x2nQgncQGM48qInq+nNUkzzSjKuuy0LgXKXq/4MkyRiTpL+jRxNDLLXPZTNODiYYu1WVNpbHxQBnBQ==",
         "dependencies": {
           "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "0.9.16",
-          "Nivaes.Extensions": "2.3.6"
+          "Nivaes.App.Shared.SourceGenerator": "1.0.0.3",
+          "Nivaes.Extensions": "2.4.0.1"
         }
       },
       "Roslynator.Analyzers": {
@@ -491,8 +491,8 @@
       },
       "Microsoft.Bcl.Memory": {
         "type": "Transitive",
-        "resolved": "10.0.9",
-        "contentHash": "Ot6xtHSjibECjp8mP41wch9GUSeGTXtUUc7M2MthKtiFmvPBMpvp6d8RwBJOtg/ia5PE0iR05PRy1ZVBAOmaeQ=="
+        "resolved": "10.0.10",
+        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -601,10 +601,10 @@
       },
       "Nivaes.App.Shared.SourceGenerator": {
         "type": "Transitive",
-        "resolved": "0.9.16",
-        "contentHash": "PfZexnioS7un2HsrI3rFemogYFNUf7610FkaOoYQpNnr8Zgj1tbn7Ed1smpYgF6EN7ybpN1TcYkgweh+PW1izQ==",
+        "resolved": "1.0.0.3",
+        "contentHash": "iRX47cQDx/EB08wIQCpfjfadr/k3JM54wUR7dyrMkC+q/YvX4LRknNQpqgHmKsyhEBgsBe9z3Kr/6uPGrelh9g==",
         "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.9",
+          "Microsoft.Bcl.Memory": "10.0.10",
           "Microsoft.CodeAnalysis.CSharp": "5.6.0"
         }
       },
@@ -637,7 +637,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[0.9.16, )",
+          "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
           "Nivaes.IoC": "[0.3.3, )",
           "OpenTelemetry": "[1.16.0, )"
@@ -650,7 +650,7 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Shared": "[0.9.16, )",
+          "Nivaes.App.Shared": "[1.0.0.3, )",
           "OpenTelemetry": "[1.16.0, )",
           "OpenTelemetry.Exporter.Console": "[1.16.0, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.16.0, )",
@@ -664,7 +664,7 @@
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[0.9.16, )"
+          "Nivaes.App.Shared": "[1.0.0.3, )"
         }
       },
       "Nivaes.App.Cross.UIKitOS.SourceGenerator": {

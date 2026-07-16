@@ -67,11 +67,13 @@ namespace Nivaes.App.Cross.Droid
 
         private void Regiesters()
         {
-            RegisterServices();
-            RegisterConverters();
-            RegisterCombiners();
-            RegisterPresenterActions();
-            RegisterViewsActions();
+            Parallel.Invoke(
+                RegisterServices,
+                RegisterConverters,
+                RegisterCombiners,
+                RegisterPresenterActions,
+                RegisterViewsActions
+             );
         }
 
         protected virtual void RegisterServices()

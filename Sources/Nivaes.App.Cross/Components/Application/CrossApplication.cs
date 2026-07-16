@@ -19,8 +19,10 @@ public abstract class CrossApplication : ICrossApplication
 
     void ICrossApplication.Setup()
     {
-        RegisterConverters();
-        RegisterCombiners();
+        Parallel.Invoke(
+            RegisterConverters,
+            RegisterCombiners
+        );
     }
 
     protected virtual void RegisterConverters() {

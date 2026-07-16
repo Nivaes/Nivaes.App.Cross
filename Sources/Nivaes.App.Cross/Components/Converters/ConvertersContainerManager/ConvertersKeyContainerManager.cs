@@ -34,6 +34,6 @@ public sealed class ConvertersKeyContainerManager : KeyContainerManager<ICrossVa
 
     public bool TryGetValue(Type converterType, [MaybeNullWhen(false)] out ICrossValueConverter converter)
     {
-        return base.TryGetValue(converterType.GetHashCode(), out converter);
+        return base.TryGetValue(converterType.TypeHandle.Value, out converter);
     }
 }

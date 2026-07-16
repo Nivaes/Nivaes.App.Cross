@@ -90,18 +90,11 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         AttributeTypesToActionsDictionary.Register<ViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
     }
 
-    [Obsolete]
     public override BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
-        ArgumentNullException.ThrowIfNull(request);
-
         var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
         if (viewType == null)
             throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
-
-        //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-        //if (overrideAttribute != null)
-        //    return overrideAttribute;
 
         IList<BasePresentationAttribute> attributes = viewType.GetCustomAttributes<BasePresentationAttribute>(true).ToList();
         if (attributes.Count > 0)
@@ -129,7 +122,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return CreatePresentationAttribute(request.ViewModelType, viewType);
     }
 
-    [Obsolete]
+    //[Obsolete]
     private BasePresentationAttribute? GetAttributeForFragmentPresentation(
         IEnumerable<FragmentPresentationAttribute> fragmentAttributes)
     {
@@ -154,7 +147,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return attribute;
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
+    //[Obsolete("Migrate to PressenterAction", true)]
     private BasePresentationAttribute? GetAttributeForFragmentChildPresentation(
         IEnumerable<FragmentPresentationAttribute> fragmentAttributes)
     {
@@ -279,8 +272,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return viewPager;
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+    //[Obsolete("Migrate to PressenterAction", true)]
     protected Type? GetCurrentActivityViewModelType()
     {
         Type? currentActivityType = null;
@@ -290,7 +282,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         if (currentActivityType == null)
             return null;
 
-        Singleton<ViewsViewKeyContainerManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
+        Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
         return viewModelType;
     }
 
@@ -1124,7 +1116,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         }
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
+    //[Obsolete("Migrate to PressenterAction", true)]
     protected virtual Fragment? GetFragmentByViewType(Type? type)
     {
         if (type == null)
@@ -1144,7 +1136,7 @@ public class AndroidViewPresenterManager : CrossAttributeViewPresenterManager, I
         return FindFragmentInChildren(fragmentName, CurrentFragmentManager);
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
+    ////[Obsolete("Migrate to PressenterAction", true)]
     protected virtual Fragment? FindFragmentInChildren(string? fragmentName, FragmentManager? fragmentManager)
     {
         if (string.IsNullOrWhiteSpace(fragmentName))
