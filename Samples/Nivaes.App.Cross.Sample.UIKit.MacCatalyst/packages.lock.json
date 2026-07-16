@@ -170,14 +170,6 @@
           "Microsoft.CodeAnalysis.CSharp": "5.6.0"
         }
       },
-      "Nivaes.IoC.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "0.3.3",
-        "contentHash": "Gtu79V5eY6+aZzfOppM8N/VyskTV83OX2vssm/bsISJtx3VEuAoW0N/f7KtYJYLwwdiwgVCvdy3T30wJaovN+g==",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
-      },
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.16.0",
@@ -201,7 +193,7 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "[0.3.3, )",
+          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -356,15 +348,6 @@
         "requested": "[2.4.0.1, )",
         "resolved": "2.4.0.1",
         "contentHash": "PDiPARYOvMdgZrG35MyyqS16BLqMlZ/qw9CF+VSqGMXT5PLIeioUw2o+SAL4gyOzOHT1Ruqfky1IAWSNeWyqTg=="
-      },
-      "Nivaes.IoC": {
-        "type": "CentralTransitive",
-        "requested": "[0.3.3, )",
-        "resolved": "0.3.3",
-        "contentHash": "7Q6E1RKrXzJ1rV9qZTCrxGgLDfYY1R0LdCC60tB3FEB3SRS3EC60hv4/zwM/G7/nVFAi5OP0qTNJZj4PV7rqcw==",
-        "dependencies": {
-          "Nivaes.IoC.SourceGenerator": "0.3.3"
-        }
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",

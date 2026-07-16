@@ -19,7 +19,6 @@
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.2.0" />
     <PackageVersion Include="AsyncFixer" Version="2.1.0" />
     <PackageVersion Include="Nivaes.Extensions" Version="2.4.0.1" />
-    <PackageVersion Include="Nivaes.IoC" Version="0.3.3" />
     <PackageVersion Include="OpenTelemetry" Version="1.16.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.16.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0" />

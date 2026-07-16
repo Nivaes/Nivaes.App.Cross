@@ -1,7 +1,5 @@
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using Nivaes.App.Cross.AppKitOS;
 using Nivaes.App.Cross.Hosting;
 
 namespace Nivaes.App.Cross.AppKitLib;

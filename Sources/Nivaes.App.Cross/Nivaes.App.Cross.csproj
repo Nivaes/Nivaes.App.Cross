@@ -39,7 +39,6 @@
 		<PackageReference Include="Nivaes.App.Secrets" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<PackageReference Include="Nivaes.Extensions" />
-		<PackageReference Include="Nivaes.IoC" />
 		<PackageReference Include="OpenTelemetry" />
 	</ItemGroup>
 

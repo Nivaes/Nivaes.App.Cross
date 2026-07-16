@@ -16,10 +16,11 @@ namespace Nivaes.App.Cross.Droid
         : ViewPagerFragmentAndroidPresentation<TabLayoutPresentationAttribute>
     {
         public TabLayoutAndroidPresentation(
+                PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, androidCurrentTopActivity, logger)
         {
         }
 
