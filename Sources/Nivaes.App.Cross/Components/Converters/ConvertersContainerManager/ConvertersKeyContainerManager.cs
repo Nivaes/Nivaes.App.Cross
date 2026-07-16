@@ -28,7 +28,7 @@ public sealed class ConvertersKeyContainerManager : KeyContainerManager<ICrossVa
         }
         else
         {
-            throw new CrossException($"Unregistered {converterType.FullName} type of converter.");
+            throw new AppException($"Unregistered {converterType.FullName} type of converter.");
         }
     }
 

@@ -40,13 +40,13 @@ public static class MvxViewControllerExtensions
         {
             var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);
             if (viewModel == null)
-                throw new CrossException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
+                throw new AppException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
 
             CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
                 $"LoadViewModel loaded ({viewModel.GetType().Name})");
             return viewModel;
         }
 
-        throw new CrossException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
+        throw new AppException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
     }
 }

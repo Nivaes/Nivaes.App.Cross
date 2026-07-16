@@ -142,7 +142,7 @@ namespace Nivaes.App.Cross
             MoveNext();
 
             if (IsComplete)
-                throw new CrossException("Unterminated () pair for converter {0}", block);
+                throw new AppException("Unterminated () pair for converter {0}", block);
 
             ParseChildBindingDescriptionInto(description);
             SkipWhitespace();
@@ -158,7 +158,7 @@ namespace Nivaes.App.Cross
                     break;
 
                 default:
-                    throw new CrossException("Unexpected character {0} while parsing () contents", CurrentChar);
+                    throw new AppException("Unexpected character {0} while parsing () contents", CurrentChar);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Nivaes.App.Cross
             SkipWhitespace();
 
             if (CurrentChar != ')')
-                throw new CrossException("Unterminated () pair for converter {0}");
+                throw new AppException("Unterminated () pair for converter {0}");
 
             MoveNext();
         }
@@ -191,7 +191,7 @@ namespace Nivaes.App.Cross
                 description.Literal != null &&
                 description.Function != null)
             {
-                throw new CrossException(
+                throw new AppException(
                     "Make sure you are using ';' to separate multiple bindings. You cannot specify Path/Literal/Combiner more than once - position {0} in {1}",
                     CurrentIndex, FullText);
             }
@@ -237,7 +237,7 @@ namespace Nivaes.App.Cross
                         if (DetectOperator())
                             ParseOperatorWithLeftHand(description);
                         else
-                            throw new CrossException(
+                            throw new AppException(
                                 "Unexpected character {0} at position {1} in {2} - expected string-end, ',' or ';'",
                                 CurrentChar,
                                 CurrentIndex,
@@ -250,7 +250,7 @@ namespace Nivaes.App.Cross
         protected virtual CrossSerializableBindingDescription ParseOperatorWithLeftHand(
             CrossSerializableBindingDescription description)
         {
-            throw new CrossException("Operators not expected in base SwissBinding");
+            throw new AppException("Operators not expected in base SwissBinding");
         }
 
         protected virtual bool DetectOperator() => false;

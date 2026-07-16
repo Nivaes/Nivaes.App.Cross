@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross
                             remainingTokens);
                     }
                 default:
-                    throw new CrossException("Unexpected property chaining - seen token type {0}",
+                    throw new AppException("Unexpected property chaining - seen token type {0}",
                         propertyToken.GetType().FullName);
             }
         }
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross
                 return new CrossDirectToSourceBinding(source);
             }
 
-            throw new CrossException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);
+            throw new AppException("Unexpected property source - seen token type {0}", propertyToken.GetType().FullName);
         }
 
         protected PropertyInfo? FindPropertyInfo<

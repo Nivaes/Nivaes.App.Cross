@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross
         protected CrossSingleton()
         {
             if (Instance != null)
-                throw new CrossException("You cannot create more than one instance of MvxSingleton");
+                throw new AppException("You cannot create more than one instance of MvxSingleton");
 
             Instance = this as TInterface;
         }

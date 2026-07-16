@@ -30,7 +30,7 @@ public abstract class MvxResourceLoader
         //#endif
         catch (Exception ex)
         {
-            throw new CrossException(ex, "Cannot load resource {0}", resourcePath);
+            throw new AppException(ex, "Cannot load resource {0}", resourcePath);
         }
     }
 

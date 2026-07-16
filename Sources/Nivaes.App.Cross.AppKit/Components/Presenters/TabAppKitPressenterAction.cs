@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.AppKitOS
             var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
             if (window.ContentViewController is not IMvxTabViewController tabViewController)
-                throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
+                throw new AppException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
 
             tabViewController.ShowTabView(viewController, attribute.TabTitle);
             return ValueTask.FromResult(true);

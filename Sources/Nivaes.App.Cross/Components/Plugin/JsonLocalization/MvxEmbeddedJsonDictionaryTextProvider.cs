@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, "Cannot load resource {0}", path);
+                throw new AppException(ex, "Cannot load resource {0}", path);
             }
         }
     }

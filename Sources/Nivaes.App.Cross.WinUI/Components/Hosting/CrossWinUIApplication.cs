@@ -127,7 +127,7 @@ public abstract class CrossWinUIApplication
     protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
     {
         // ToDo: Integrar con log.
-        throw new CrossException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
+        throw new AppException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
     }
 
     private void Regiesters()

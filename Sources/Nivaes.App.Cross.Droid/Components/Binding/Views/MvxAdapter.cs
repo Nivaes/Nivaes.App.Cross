@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
             BindingContext = bindingContext;
             if (BindingContext == null)
             {
-                throw new CrossException(
+                throw new AppException(
                     "bindingContext is null during MvxAdapter creation - " +
                     "Adapter's should only be created when a specific binding " +
                     "context has been placed on the stack");

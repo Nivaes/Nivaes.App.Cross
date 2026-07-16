@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.UIKitLib
         public MvxIosVersion(int[] parts)
         {
             if (parts == null || parts.Length == 0)
-                throw new CrossException("Invalid parts in constructor for MvxIosVersion");
+                throw new AppException("Invalid parts in constructor for MvxIosVersion");
 
             Parts = parts;
             Major = parts[0];

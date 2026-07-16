@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
                 return viewType;
             }
 
-            throw new CrossException($"Could not find view for {viewModelType}");
+            throw new AppException($"Could not find view for {viewModelType}");
         }
     }
 }

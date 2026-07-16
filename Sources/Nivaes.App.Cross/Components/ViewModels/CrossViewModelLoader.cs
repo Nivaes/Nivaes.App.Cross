@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
 
             }
 
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 
@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 
@@ -106,7 +106,7 @@ namespace Nivaes.App.Cross
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
 

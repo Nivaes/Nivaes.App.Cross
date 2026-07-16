@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.WinUI
             catch (Exception exception)
             {
                 var message = request.ViewModelType?.Name ?? "(No view model type specified)";
-                throw new CrossException(exception, $"Error seen during navigation request to {message}.");
+                throw new AppException(exception, $"Error seen during navigation request to {message}.");
             }
         }
     }

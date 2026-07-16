@@ -75,7 +75,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (PopoverViewController != null)
-                throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
+                throw new AppException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
 
             // Content size should be set to a target view controller, not the navigation one
             if (attribute.PreferredContentSize != default)

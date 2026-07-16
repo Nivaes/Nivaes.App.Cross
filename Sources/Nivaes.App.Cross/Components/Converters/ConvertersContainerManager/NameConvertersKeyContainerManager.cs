@@ -21,7 +21,7 @@ public sealed class NameConvertersKeyContainerManager : KeyContainerManager<ICro
         }
         else
         {
-            throw new CrossException($"Unregistered {converterName} type of converter.");
+            throw new AppException($"Unregistered {converterName} type of converter.");
         }
     }
 

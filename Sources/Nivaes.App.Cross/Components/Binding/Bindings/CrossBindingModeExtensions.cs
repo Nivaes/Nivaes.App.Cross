@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross
                     return false;
 
                 default:
-                    throw new CrossException("Unexpected ActualBindingMode");
+                    throw new AppException("Unexpected ActualBindingMode");
             }
         }
 
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross
                     return true;
 
                 default:
-                    throw new CrossException("Unexpected ActualBindingMode");
+                    throw new AppException("Unexpected ActualBindingMode");
             }
         }
 
@@ -70,7 +70,7 @@ namespace Nivaes.App.Cross
                     return false;
 
                 default:
-                    throw new CrossException("Unexpected ActualBindingMode");
+                    throw new AppException("Unexpected ActualBindingMode");
             }
         }
     }

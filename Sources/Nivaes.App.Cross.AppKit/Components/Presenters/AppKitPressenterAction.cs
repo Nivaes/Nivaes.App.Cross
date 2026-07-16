@@ -65,7 +65,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 }
             }
 
-            throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
+            throw new AppException($"Could not find and close a view for '{viewModel.GetType()}'");
         }
 
         protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
@@ -79,7 +79,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 window = MainWindow ?? Windows.LastOrDefault();
 
             if (window == null)
-                throw new CrossException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
+                throw new AppException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
 
             return window;
         }

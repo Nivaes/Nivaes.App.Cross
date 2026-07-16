@@ -113,7 +113,7 @@ namespace Nivaes.App.Cross.Droid
             }
             catch (System.Exception ex)
             {
-                throw new CrossException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
+                throw new AppException(ex, $"Cannot create Fragment '{fragmentType.Name}'");
             }
         }
 
@@ -176,7 +176,7 @@ namespace Nivaes.App.Cross.Droid
 
             var viewType = ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
-                throw new CrossException("The host activity doesn't inherit Activity");
+                throw new AppException("The host activity doesn't inherit Activity");
 
             var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
             if (PendingRequest != null)

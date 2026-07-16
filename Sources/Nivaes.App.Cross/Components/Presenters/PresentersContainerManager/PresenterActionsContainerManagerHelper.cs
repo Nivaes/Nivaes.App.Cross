@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross
             }
             catch(InvalidOperationException ex)
             {
-                throw new CrossException(ex, $"Could not create an instance of type {typeof(TPressenterAction)}");
+                throw new AppException(ex, $"Could not create an instance of type {typeof(TPressenterAction)}");
             }
         }
 

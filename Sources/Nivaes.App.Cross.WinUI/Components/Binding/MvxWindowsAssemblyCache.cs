@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.WinUI
             var instance = new MvxWindowsAssemblyCache();
 
             if (Instance != instance)
-                throw new CrossException("Error initialising MvxWindowsAssemblyCache");
+                throw new AppException("Error initialising MvxWindowsAssemblyCache");
         }
 
         public MvxWindowsAssemblyCache()

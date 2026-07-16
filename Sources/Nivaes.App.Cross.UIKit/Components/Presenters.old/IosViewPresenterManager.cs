@@ -365,7 +365,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (viewController is IMvxSplitViewController)
-                throw new CrossException("A SplitViewController cannot be presented as a child. Consider using Root instead");
+                throw new AppException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
 #if IOS || MACCATALYST
             if (PopoverViewController != null)
@@ -390,7 +390,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return Task.FromResult(true);
             }
 
-            throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
+            throw new AppException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
         [Obsolete]
@@ -403,7 +403,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return Task.FromResult(true);
             }
 
-            throw new CrossException(
+            throw new AppException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
         }
 
@@ -418,7 +418,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return Task.FromResult(true);
             }
 
-            throw new CrossException(
+            throw new AppException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain popover view presented!");
         }
 #endif
@@ -433,7 +433,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (TabBarViewController == null)
-                throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
+                throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
             {
@@ -460,7 +460,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (PageViewController == null)
-                throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
+                throw new AppException("Trying to show a page without a PageViewController, this is not possible!");
 
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
@@ -523,7 +523,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (PopoverViewController != null)
-                throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
+                throw new AppException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
 
             // Content size should be set to a target view controller, not the navigation one
             if (attribute.PreferredContentSize != default)
@@ -560,7 +560,7 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
             return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
-                ?? throw new CrossException($"No parent ViewController found.");
+                ?? throw new AppException($"No parent ViewController found.");
         }
 
         protected virtual Task<bool> ShowMasterSplitViewController(
@@ -572,7 +572,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController == null)
-                throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
+                throw new AppException("Trying to show a master page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowMasterView(viewController, attribute);
             return Task.FromResult(true);
@@ -588,7 +588,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController == null)
-                throw new CrossException("Trying to show a detail page without a SplitViewController, this is not possible!");
+                throw new AppException("Trying to show a detail page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowDetailView(viewController, attribute);
             return Task.FromResult(true);

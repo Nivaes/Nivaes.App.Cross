@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.Droid
             }
 
             if (viewPager == null || tabLayout == null)
-                throw new CrossException("ViewPager or TabLayout not found");
+                throw new AppException("ViewPager or TabLayout not found");
 
             tabLayout.SetupWithViewPager(viewPager);
             return true;

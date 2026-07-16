@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross
         {
             if (!_subFactories.TryGetValue(description.GetType(), out ICrossSourceStepFactory? subFactory))
             {
-                throw new CrossException("Failed to get factory for step type {0}", description.GetType().Name);
+                throw new AppException("Failed to get factory for step type {0}", description.GetType().Name);
             }
 
             return subFactory.Create(description);

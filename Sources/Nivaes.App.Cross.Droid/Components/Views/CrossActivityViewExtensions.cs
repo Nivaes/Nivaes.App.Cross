@@ -128,7 +128,7 @@ public static class CrossActivityViewExtensions
     {
         var activity = androidView as Activity;
         if (activity == null)
-            throw new CrossException("OnViewCreate called from an IMvxView which is not an Android Activity");
+            throw new AppException("OnViewCreate called from an IMvxView which is not an Android Activity");
         return activity;
     }
 
@@ -139,14 +139,14 @@ public static class CrossActivityViewExtensions
         var viewModelType = androidView.FindAssociatedViewModelTypeOrNull();
 
         if (viewModelType == null)
-            throw new CrossException($"Not ViewModel asociate to {androidView.GetType().FullName}");
+            throw new AppException($"Not ViewModel asociate to {androidView.GetType().FullName}");
 
         var viewType = androidView.GetType();
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelLoader>();
         if (!Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(viewType, out viewModelType))
         {
-            throw new CrossException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);
+            throw new AppException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);
         }
 
         return viewModelLoader!.Load(activity.Intent!, savedState, viewModelType);

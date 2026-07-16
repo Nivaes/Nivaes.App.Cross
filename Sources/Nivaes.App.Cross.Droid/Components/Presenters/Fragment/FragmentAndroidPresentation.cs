@@ -132,7 +132,7 @@ namespace Nivaes.App.Cross.Droid
 
             var fragment = fragmentView?.ToFragment();
             if (fragment == null)
-                throw new CrossException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
+                throw new AppException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
 
             // MvxNavigationService provides an already instantiated ViewModel here
             if (request is CrossViewModelInstanceRequest instanceRequest)

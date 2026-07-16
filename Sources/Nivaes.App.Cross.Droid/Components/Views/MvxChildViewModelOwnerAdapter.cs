@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid
         {
             if (!(eventSource is IMvxChildViewModelOwner))
             {
-                throw new CrossException("You cannot use a MvxChildViewModelOwnerAdapter on {0}",
+                throw new AppException("You cannot use a MvxChildViewModelOwnerAdapter on {0}",
                                        eventSource.GetType().Name);
             }
         }

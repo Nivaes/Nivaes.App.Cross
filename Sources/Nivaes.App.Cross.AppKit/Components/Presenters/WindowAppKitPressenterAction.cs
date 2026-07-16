@@ -108,7 +108,7 @@ namespace Nivaes.App.Cross.AppKitOS
                 var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
                 if (controllerType is null)
                 {
-                    throw new CrossException(
+                    throw new AppException(
                         $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
                         $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
                         $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +

@@ -91,7 +91,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="request">The request.</param>
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
-        /// <exception cref="CrossException"></exception>
+        /// <exception cref="AppException"></exception>
         private Control? CreateControl(Type viewType, CrossViewModelRequest request,
             BasePresentationAttribute attribute)
         {
@@ -114,7 +114,7 @@ namespace Nivaes.App.Cross.WinUI
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex,
+                throw new AppException(ex,
                     $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
             }
         }

@@ -96,7 +96,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
         }
         else
         {
-            throw new CrossException($"Unregistered {typeof(TValueCombiner).FullName} type combiner.");
+            throw new AppException($"Unregistered {typeof(TValueCombiner).FullName} type combiner.");
         }
     }
 
@@ -112,7 +112,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
         }
         else
         {
-            throw new CrossException($"Unregistered {typeof(TValueCombiner).FullName} type combiner.");
+            throw new AppException($"Unregistered {typeof(TValueCombiner).FullName} type combiner.");
         }
     }
 
@@ -149,7 +149,7 @@ public class CrossFluentBindingDescription<[DynamicallyAccessedMembers(Dynamical
         }
         else
         {
-            throw new CrossException($"Unregistered {typeof(TValueConverter).FullName} type converter.");
+            throw new AppException($"Unregistered {typeof(TValueConverter).FullName} type converter.");
         }
     }
 
@@ -292,7 +292,7 @@ public class MvxFluentBindingDescription<[DynamicallyAccessedMembers(Dynamically
         }
         else
         {
-            throw new CrossException($"Unregistered {typeof(TValueConverter).FullName} type converter.");
+            throw new AppException($"Unregistered {typeof(TValueConverter).FullName} type converter.");
         }
     }
 

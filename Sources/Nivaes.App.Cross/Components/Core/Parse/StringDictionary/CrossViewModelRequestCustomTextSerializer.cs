@@ -20,7 +20,7 @@ public class CrossViewModelRequestCustomTextSerializer
         if (toSerialise is IDictionary<string, string> stringDictionary)
             return Serialize(stringDictionary);
 
-        throw new CrossException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
+        throw new AppException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
     }
 
     [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
@@ -38,7 +38,7 @@ public class CrossViewModelRequestCustomTextSerializer
         if (typeof(IDictionary<string, string>).IsAssignableFrom(type))
             return DeserializeStringDictionary(inputText);
 
-        throw new CrossException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
+        throw new AppException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
     }
 
     protected virtual IDictionary<string, string> DeserializeStringDictionary(string inputText)
@@ -87,7 +87,7 @@ public class CrossViewModelRequestCustomTextSerializer
     {
         if (!Singleton<NameViewModelsKeyContainerManager>.Instance.TryGetValue(viewModelTypeName, out var toReturn))
         {
-            throw new CrossException("Failed to find viewmodel for {0}", viewModelTypeName);
+            throw new AppException("Failed to find viewmodel for {0}", viewModelTypeName);
         }
 
         return toReturn;
@@ -96,7 +96,7 @@ public class CrossViewModelRequestCustomTextSerializer
     private static string SafeGetValue(IDictionary<string, string> dictionary, string key)
     {
         if (!dictionary.TryGetValue(key, out var value))
-            throw new CrossException("Dictionary missing required key/value pair for key {0}", key);
+            throw new AppException("Dictionary missing required key/value pair for key {0}", key);
         return value;
     }
 }

@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross
                 default:
                     if (description.ConverterParameter != null)
                     {
-                        throw new CrossException(
+                        throw new AppException(
                             "Problem parsing Language Binding near '{0}', Key set to '{1}', position {2} in {3}",
                             block, description.ConverterParameter, CurrentIndex, FullText);
                     }
@@ -110,7 +110,7 @@ namespace Nivaes.App.Cross
                         return description;
 
                     default:
-                        throw new CrossException(
+                        throw new AppException(
                             "Unexpected character {0} at position {1} in {2} - expected string-end, ',' or ';'",
                             CurrentChar,
                             CurrentIndex,

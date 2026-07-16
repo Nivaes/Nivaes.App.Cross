@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 CurrentRequest = request;
                 var viewType = GetViewType(request.ViewModelType!);
                 if (viewType == null)
-                    throw new CrossException($"View Type not found for {request.ViewModelType}");
+                    throw new AppException($"View Type not found for {request.ViewModelType}");
 
                 var view = CreateViewOfType(viewType);
                 view.Request = request;
@@ -59,12 +59,12 @@ namespace Nivaes.App.Cross.UIKitLib
                 }
                 catch (Exception ex)
                 {
-                    throw new CrossException(ex, $"Loading view of type {viewType.Name} from storyboard '{storyboardName}' failed: {2}");
+                    throw new AppException(ex, $"Loading view of type {viewType.Name} from storyboard '{storyboardName}' failed: {2}");
                 }
             }
 
             if (ActivatorUtilities.CreateInstance(_serviceProvider, viewType) is not IMvxIosView view)
-                throw new CrossException($"View not loaded for {viewType}");
+                throw new AppException($"View not loaded for {viewType}");
 
             return view;
         }

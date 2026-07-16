@@ -215,7 +215,7 @@ public class MacViewPresenterManager
             var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
             if (controllerType is null)
             {
-                throw new CrossException(
+                throw new AppException(
                     $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
                     $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
                     $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
@@ -283,7 +283,7 @@ public class MacViewPresenterManager
         var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
         if (window.ContentViewController is not IMvxTabViewController tabViewController)
-            throw new CrossException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
+            throw new AppException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
 
         tabViewController.ShowTabView(viewController, attribute.TabTitle);
         return Task.FromResult(true);
@@ -300,7 +300,7 @@ public class MacViewPresenterManager
             window = MainWindow ?? Windows.LastOrDefault();
 
         if (window == null)
-            throw new CrossException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
+            throw new AppException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
 
         return window;
     }
@@ -338,7 +338,7 @@ public class MacViewPresenterManager
             }
         }
 
-        throw new CrossException($"Could not find and close a view for '{viewModel.GetType()}'");
+        throw new AppException($"Could not find and close a view for '{viewModel.GetType()}'");
     }
 
     protected void OnWindowWillCloseNotification(object? sender, NSNotificationEventArgs e)

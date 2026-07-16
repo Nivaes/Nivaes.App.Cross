@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.UIKitLib
             CrossViewModelRequest request)
         {
             if (TabBarViewController == null)
-                throw new CrossException("Trying to show a tab without a TabBarViewController, this is not possible!");
+                throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
             if (viewController is IMvxTabBarItemViewController tabBarItem)
             {

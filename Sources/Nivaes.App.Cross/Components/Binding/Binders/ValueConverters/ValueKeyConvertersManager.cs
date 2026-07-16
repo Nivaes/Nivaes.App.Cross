@@ -22,7 +22,7 @@ public sealed class ValueKeyConvertersManager : KeyContainerManager<ICrossValueC
         }
         else
         {
-            throw new CrossException($"Unregistered {viewModelType.FullName} type of autoValueConverter.");
+            throw new AppException($"Unregistered {viewModelType.FullName} type of autoValueConverter.");
         }
     }
 

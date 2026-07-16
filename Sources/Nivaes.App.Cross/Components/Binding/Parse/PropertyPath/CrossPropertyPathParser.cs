@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross
             }
             else
             {
-                throw new CrossException("Unexpected character {0} at position {1} in targetProperty text {2}",
+                throw new AppException("Unexpected character {0} at position {1} in targetProperty text {2}",
                     currentChar,
                     CurrentIndex, FullText);
             }
@@ -86,21 +86,21 @@ namespace Nivaes.App.Cross
         {
             if (CurrentChar != '[')
             {
-                throw new CrossException(
+                throw new AppException(
                     "Internal error - ParseIndexer should only be called with a string starting with [");
             }
 
             MoveNext();
             if (IsComplete)
             {
-                throw new CrossException("Invalid indexer targetProperty text {0}", FullText);
+                throw new AppException("Invalid indexer targetProperty text {0}", FullText);
             }
 
             SkipWhitespaceAndPeriods();
 
             if (IsComplete)
             {
-                throw new CrossException("Invalid indexer targetProperty text {0}", FullText);
+                throw new AppException("Invalid indexer targetProperty text {0}", FullText);
             }
 
             if (CurrentChar == '\'' || CurrentChar == '\"')
@@ -119,12 +119,12 @@ namespace Nivaes.App.Cross
             SkipWhitespaceAndPeriods();
             if (IsComplete)
             {
-                throw new CrossException("Invalid termination of indexer targetProperty text in {0}", FullText);
+                throw new AppException("Invalid termination of indexer targetProperty text in {0}", FullText);
             }
 
             if (CurrentChar != ']')
             {
-                throw new CrossException(
+                throw new AppException(
                     "Unexpected character {0} at position {1} in targetProperty text {2} - expected terminator",
                     CurrentChar,
                     CurrentIndex, FullText);

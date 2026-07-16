@@ -37,14 +37,14 @@ namespace Nivaes.App.Cross
             var key = ReadValue();
             if (key is not string keyString)
             {
-                throw new CrossException($"Unexpected object in key for key/value pair {key?.GetType().Name} at position {CurrentIndex}");
+                throw new AppException($"Unexpected object in key for key/value pair {key?.GetType().Name} at position {CurrentIndex}");
             }
 
             SkipWhitespace();
 
             if (CurrentChar != '=')
             {
-                throw new CrossException($"Unexpected character in key/value pair {CurrentChar} at position {CurrentIndex}");
+                throw new AppException($"Unexpected character in key/value pair {CurrentChar} at position {CurrentIndex}");
             }
 
             MoveNext();
@@ -61,7 +61,7 @@ namespace Nivaes.App.Cross
             }
             else
             {
-                throw new CrossException($"Unexpected object in value for key/value pair {value.GetType().Name} for key {key} at position {CurrentIndex}");
+                throw new AppException($"Unexpected object in value for key/value pair {value.GetType().Name} for key {key} at position {CurrentIndex}");
             }
         }
     }

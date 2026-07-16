@@ -38,7 +38,7 @@ public static class MvxFragmentExtensions
 
             var fragment = fragmentView.ToFragment();
             if (fragment == null)
-                throw new CrossException($"{nameof(OnCreate)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+                throw new AppException($"{nameof(OnCreate)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
 
             if (fragment.Activity == null)
                 return;
@@ -116,7 +116,7 @@ public static class MvxFragmentExtensions
         {
             var actualFragment = fragmentView.ToFragment();
             if (actualFragment == null)
-                throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+                throw new AppException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
 
             if (fragmentView.BindingContext == null)
             {
@@ -134,7 +134,7 @@ public static class MvxFragmentExtensions
         {
             var actualFragment = fragmentView.ToFragment();
             if (actualFragment == null)
-                throw new CrossException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
+                throw new AppException($"{nameof(EnsureBindingContextIsSet)} called on an {nameof(IMvxFragmentView)} which is not an Android Fragment: {fragmentView}");
 
             if (fragmentView.BindingContext == null)
             {
@@ -233,7 +233,7 @@ public static class MvxFragmentExtensions
             }
             catch (Exception ex)
             {
-                throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+                throw new AppException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
             }
         }
     }

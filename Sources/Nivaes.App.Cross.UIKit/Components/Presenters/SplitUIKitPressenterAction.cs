@@ -57,7 +57,7 @@ namespace Nivaes.App.Cross.UIKitLib
            CrossViewModelRequest request)
         {
             if (SplitViewController == null)
-                throw new CrossException("Trying to show a detail page without a SplitViewController, this is not possible!");
+                throw new AppException("Trying to show a detail page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowDetailView(viewController, attribute);
             return ValueTask.FromResult(true);

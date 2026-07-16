@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross
             var targetTypes = Description.Combiner.SubStepTargetTypes(_subSteps, TargetType);
             var targetTypeList = targetTypes.ToList();
             if (targetTypeList.Count != _subSteps.Count)
-                throw new CrossException("Description.Combiner provided incorrect length TargetType list");
+                throw new AppException("Description.Combiner provided incorrect length TargetType list");
 
             for (var i = 0; i < targetTypeList.Count; i++)
             {

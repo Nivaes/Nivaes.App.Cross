@@ -28,12 +28,12 @@ public class CrossDefaultViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new CrossException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
+            throw new AppException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
         {
-            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
+            throw new AppException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -57,12 +57,12 @@ public class CrossDefaultViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new CrossException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
+            throw new AppException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
         }
 
         if (viewModel == null)
         {
-            throw new CrossException($"Not resolve viewModel of type {viewModelType.Name}.");
+            throw new AppException($"Not resolve viewModel of type {viewModelType.Name}.");
         }
 
         RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
@@ -134,7 +134,7 @@ public class CrossDefaultViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            throw new AppException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
         }
     }
 
@@ -174,7 +174,7 @@ public class CrossDefaultViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new CrossException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
+            throw new AppException(ex, "Problem running viewModel lifecycle of type {0}", viewModel.GetType().Name);
         }
     }
 }

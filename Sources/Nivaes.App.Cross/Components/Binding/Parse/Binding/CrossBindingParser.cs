@@ -64,17 +64,17 @@ namespace Nivaes.App.Cross
         protected void ParseEquals(string block)
         {
             if (IsComplete)
-                throw new CrossException("Cannot terminate binding expression during option {0} in {1}",
+                throw new AppException("Cannot terminate binding expression during option {0} in {1}",
                                        block,
                                        FullText);
             if (CurrentChar != '=')
-                throw new CrossException("Must follow binding option {0} with an '=' in {1}",
+                throw new AppException("Must follow binding option {0} with an '=' in {1}",
                                        block,
                                        FullText);
 
             MoveNext();
             if (IsComplete)
-                throw new CrossException("Cannot terminate binding expression during option {0} in {1}",
+                throw new AppException("Cannot terminate binding expression during option {0} in {1}",
                                        block,
                                        FullText);
         }

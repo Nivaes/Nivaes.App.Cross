@@ -161,7 +161,7 @@ namespace Nivaes.App.Cross
         protected void SetFreeTextPropertyPath(string sourcePropertyPath)
         {
             if (_sourceSpec != null)
-                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
+                throw new AppException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new FreeTextSourceSpec(sourcePropertyPath);
         }
@@ -169,7 +169,7 @@ namespace Nivaes.App.Cross
         protected void SetKnownTextPropertyPath(string sourcePropertyPath)
         {
             if (_sourceSpec != null)
-                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
+                throw new AppException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new KnownPathSourceSpec(sourcePropertyPath);
         }
@@ -177,7 +177,7 @@ namespace Nivaes.App.Cross
         protected void SetCombiner(ICrossValueCombiner combiner, string[] properties, bool useParser)
         {
             if (_sourceSpec != null)
-                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
+                throw new AppException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new CombinerSourceSpec(combiner, properties, useParser);
         }
@@ -185,7 +185,7 @@ namespace Nivaes.App.Cross
         protected void SourceOverwrite(CrossBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
-                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
+                throw new AppException("You cannot set the source path of a Fluent binding more than once");
 
             _bindingDescription.Mode = bindingDescription.Mode;
             _bindingDescription.TargetName = bindingDescription.TargetName;
@@ -196,7 +196,7 @@ namespace Nivaes.App.Cross
         protected void FullOverwrite(CrossBindingDescription bindingDescription)
         {
             if (_sourceSpec != null)
-                throw new CrossException("You cannot set the source path of a Fluent binding more than once");
+                throw new AppException("You cannot set the source path of a Fluent binding more than once");
 
             _sourceSpec = new FullySourceSpec(bindingDescription.Source);
         }
@@ -285,7 +285,7 @@ namespace Nivaes.App.Cross
 
             if (string.IsNullOrEmpty(defaultTargetName))
             {
-                throw new CrossException(
+                throw new AppException(
                     "Default Target Name, could not be found for Target: {0}. Did you register a default?",
                     typeof(TTarget));
             }

@@ -54,7 +54,7 @@ public class CrossSourceBindingFactory
     {
         if (tokens == null || tokens.Count == 0)
         {
-            throw new CrossException("empty token list passed to CreateBinding");
+            throw new AppException("empty token list passed to CreateBinding");
         }
 
         var currentToken = tokens[0];

@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross
             description.Function = block;
             MoveNext();
             if (IsComplete)
-                throw new CrossException("Unterminated () pair for combiner {0}", block);
+                throw new AppException("Unterminated () pair for combiner {0}", block);
 
             var terminationFound = false;
             var sources = new List<CrossSerializableBindingDescription>();
@@ -68,7 +68,7 @@ namespace Nivaes.App.Cross
                 sources.Add(ParseBindingDescription(ParentIsLookingForComma.ParentIsLookingForComma));
                 SkipWhitespace();
                 if (IsComplete)
-                    throw new CrossException("Unterminated () while parsing combiner {0}", block);
+                    throw new AppException("Unterminated () while parsing combiner {0}", block);
 
                 switch (CurrentChar)
                 {
@@ -82,7 +82,7 @@ namespace Nivaes.App.Cross
                         break;
 
                     default:
-                        throw new CrossException("Unexpected character {0} while parsing () combiner contents for {1}", CurrentChar, block);
+                        throw new AppException("Unexpected character {0} while parsing () combiner contents for {1}", CurrentChar, block);
                 }
             }
 
@@ -115,7 +115,7 @@ namespace Nivaes.App.Cross
             }
 
             if (combinerName == null)
-                throw new CrossException("Unexpected operator starting with {0}", CurrentChar);
+                throw new AppException("Unexpected operator starting with {0}", CurrentChar);
 
             MoveNext(moveForwards);
 
@@ -162,7 +162,7 @@ namespace Nivaes.App.Cross
 
                 SkipWhitespace();
                 if (IsComplete || CurrentChar != ')')
-                    throw new CrossException("Unterminated () pair");
+                    throw new AppException("Unterminated () pair");
                 MoveNext();
                 SkipWhitespace();
             }

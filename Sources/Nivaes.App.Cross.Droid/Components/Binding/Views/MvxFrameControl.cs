@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (!(context is IMvxLayoutInflaterHolder))
             {
-                throw new CrossException("The owning Context for a MvxFrameControl must implement LayoutInflater");
+                throw new AppException("The owning Context for a MvxFrameControl must implement LayoutInflater");
             }
 
             _bindingContext = new MvxAndroidBindingContext(context, (IMvxLayoutInflaterHolder)context);

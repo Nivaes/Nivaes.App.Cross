@@ -151,7 +151,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="request">The request.</param>
     /// <param name="attribute">Any attributes.</param>
     /// <returns></returns>
-    /// <exception cref="CrossException"></exception>
+    /// <exception cref="AppException"></exception>
     [Obsolete]
     public virtual Control? CreateControl(Type viewType, CrossViewModelRequest request,
         BasePresentationAttribute attribute)
@@ -175,7 +175,7 @@ public class MultiWindowViewPresenterManager
         }
         catch (Exception ex)
         {
-            throw new CrossException(ex,
+            throw new AppException(ex,
                 $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
         }
     }
@@ -283,7 +283,7 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModel">The viewmodel to close the region for.</param>
     /// <param name="attribute">Any presentation attribute.</param>
     /// <returns>True if successful. False otherwise.</returns>
-    /// <exception cref="CrossException">If no region is found for the given viewmodel.</exception>
+    /// <exception cref="AppException">If no region is found for the given viewmodel.</exception>
     [Obsolete("", true)]
     protected virtual Task<bool> CloseRegionView(ICrossViewModel viewModel, RegionPresentationAttribute attribute)
     {
@@ -768,7 +768,7 @@ public class MultiWindowViewPresenterManager
         catch (Exception exception)
         {
             var message = request.ViewModelType?.Name ?? "(No view model type specified)";
-            throw new CrossException(exception, $"Error seen during navigation request to {message}.");
+            throw new AppException(exception, $"Error seen during navigation request to {message}.");
         }
     }
 

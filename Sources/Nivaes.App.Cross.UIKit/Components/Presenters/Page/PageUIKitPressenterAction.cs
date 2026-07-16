@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (PageViewController == null)
-                throw new CrossException("Trying to show a page without a PageViewController, this is not possible!");
+                throw new AppException("Trying to show a page without a PageViewController, this is not possible!");
 
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);

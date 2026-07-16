@@ -37,11 +37,11 @@ namespace Nivaes.App.Cross.Droid
             {
                 var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
-                    throw new CrossException("Fragment not found", attribute.FragmentHostViewType.Name);
+                    throw new AppException("Fragment not found", attribute.FragmentHostViewType.Name);
 
                 if (fragment.View == null)
                 {
-                    throw new CrossException("Fragment.View is null. Please consider calling Navigate later in your code",
+                    throw new AppException("Fragment.View is null. Please consider calling Navigate later in your code",
                         attribute.FragmentHostViewType.Name);
                 }
 
@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.Droid
 
             // no more cases to check. Just throw if ViewPager wasn't found
             if (viewPager == null)
-                throw new CrossException("ViewPager not found");
+                throw new AppException("ViewPager not found");
 
             var tag = attribute.Tag ?? attribute.ViewType?.FragmentJavaName();
             var fragmentInfo = new MvxViewPagerFragmentInfo(attribute.Title, tag, attribute.ViewType, request);
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
-                    throw new CrossException("Fragment not found", attribute.FragmentHostViewType.Name);
+                    throw new AppException("Fragment not found", attribute.FragmentHostViewType.Name);
 
                 viewPager = fragment.View?.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
                 fragmentManager = fragment.ChildFragmentManager;

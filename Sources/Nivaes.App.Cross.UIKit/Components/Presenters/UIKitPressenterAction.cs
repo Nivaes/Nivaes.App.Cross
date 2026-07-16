@@ -175,7 +175,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (SplitViewController == null)
-                throw new CrossException("Trying to show a master page without a SplitViewController, this is not possible!");
+                throw new AppException("Trying to show a master page without a SplitViewController, this is not possible!");
 
             SplitViewController.ShowMasterView(viewController, attribute);
             return ValueTask.FromResult(true);
@@ -262,7 +262,7 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
             return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Window.RootViewController
-                ?? throw new CrossException($"No parent ViewController found.");
+                ?? throw new AppException($"No parent ViewController found.");
         }
 
         protected void SetWindowRootViewController(UIViewController controller, RootPresentationAttribute? attribute = null)
@@ -296,7 +296,7 @@ namespace Nivaes.App.Cross.UIKitLib
             ArgumentNullException.ThrowIfNull(attribute);
 
             if (viewController is IMvxSplitViewController)
-                throw new CrossException("A SplitViewController cannot be presented as a child. Consider using Root instead");
+                throw new AppException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
 #if IOS || MACCATALYST
             if (PopoverViewController != null)
@@ -321,7 +321,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
             }
 
-            throw new CrossException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
+            throw new AppException($"Trying to show View type: {viewController.GetType().Name} as child, but there is no current stack!");
         }
 
         private ValueTask<bool> ShowModalViewControllerChild(UIViewController viewController, ChildPresentationAttribute attribute)
@@ -333,7 +333,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
             }
 
-            throw new CrossException(
+            throw new AppException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain modal view presented!");
         }
 
@@ -347,7 +347,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
             }
 
-            throw new CrossException(
+            throw new AppException(
                 $"Trying to show View type: {viewController.GetType().Name} as child, but there is currently a plain popover view presented!");
         }
 #endif

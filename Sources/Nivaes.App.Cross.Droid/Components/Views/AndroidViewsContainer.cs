@@ -64,7 +64,7 @@ public sealed class AndroidViewsContainer
     {
         if (viewModelTypeHint == null)
         {
-            throw new CrossException("Unable to load viewmodel - no type hint provided");
+            throw new AppException("Unable to load viewmodel - no type hint provided");
         }
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
@@ -116,7 +116,7 @@ public sealed class AndroidViewsContainer
         var viewType = GetViewType(request.ViewModelType!);
         if (viewType == null)
         {
-            throw new CrossException("View Type not found for " + request.ViewModelType);
+            throw new AppException("View Type not found for " + request.ViewModelType);
         }
 
         var intent = new Intent(_applicationContext, viewType);

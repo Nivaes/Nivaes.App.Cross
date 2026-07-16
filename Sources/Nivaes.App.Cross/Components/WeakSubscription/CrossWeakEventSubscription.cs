@@ -120,7 +120,7 @@ namespace Nivaes.App.Cross
         private void AddEventHandler()
         {
             if (_subscribed)
-                throw new CrossException("Should not call AddEventHandler twice");
+                throw new AppException("Should not call AddEventHandler twice");
 
             if (_sourceReference.TryGetTarget(out var source))
             {
@@ -247,7 +247,7 @@ namespace Nivaes.App.Cross
         private void AddEventHandler()
         {
             if (_subscribed)
-                throw new CrossException("Should not call AddEventHandler() twice");
+                throw new AppException("Should not call AddEventHandler() twice");
 
             if (_sourceReference.TryGetTarget(out var source))
             {
