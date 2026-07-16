@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
 using Windows.UI.Core;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public abstract class WinUIPressenterAction<TPressenterAttribute> 
+    public abstract class WinUIPressenterAction<TPressenterAttribute>
         : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         // ToDo: Ha de compartirse con todos los PressenterAction?
-        private readonly Lock _windowInformationLock = new Lock();
+        private readonly Lock _windowInformationLock = new();
 
         // ToDo: Ha de compartirse con todos los PressenterAction?
         private readonly WindowInformation _mainFrame;
@@ -25,16 +26,32 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public WinUIPressenterAction(
                 ICrossViewsContainer viewsContainer,
+                ICrossWindowsFrame rootFrame,
+                ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger logger)
             : base(viewsContainer, logger)
         {
-            //_mainFrame = new WindowInformation(window!, rootFrame, null);
+            _requestTranslator = requestTranslator;
+            var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
+            //if (window != null)
+            //{
+            //    window.AppWindow.Closing += (_, __) => CloseAllWindows();
+            //}
+
+            _mainFrame = new WindowInformation(window!, rootFrame, null);
+
+            //_logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
+
+            //if (Window.Current != null)
+            //{
+            //    SystemNavigationManager.GetForCurrentView().BackRequested += BackButtonOnBackRequested;
+            //}
         }
         #endregion
 
         protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
-            Logger.LogTrace("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",  viewType?.Name);
+            Logger.LogTrace("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation", viewType?.Name);
             return new PagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 

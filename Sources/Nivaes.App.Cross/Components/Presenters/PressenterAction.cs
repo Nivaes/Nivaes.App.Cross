@@ -3,9 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
 {
-    public abstract class PressenterAction<TPressenterAttribute>
+    public abstract class PressenterAction<TPresentationAttribute>
         : IPressenterAction
-        where TPressenterAttribute : IPresentationAttribute
+        where TPresentationAttribute : IPresentationAttribute
     {
         protected readonly ICrossViewsContainer ViewsContainer;
         protected readonly ILogger Logger;
@@ -16,20 +16,20 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        protected abstract ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, CrossViewModelRequest request);
+        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, CrossViewModelRequest request);
 
-        protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute);
+        protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPresentationAttribute attribute);
 
         [DebuggerHidden]
         public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            return ShowAction(view, (TPressenterAttribute)attribute, request);
+            return ShowAction(view, (TPresentationAttribute)attribute, request);
         }
 
         [DebuggerHidden]
         public ValueTask<bool> CloseAction(ICrossViewModel viewModel, IPresentationAttribute attribute)
         {
-            return CloseAction(viewModel, (IPresentationAttribute)(TPressenterAttribute)attribute);
+            return CloseAction(viewModel, (TPresentationAttribute)attribute);
         }
 
         private IPressenterAction GetPresentationAttributeAction(

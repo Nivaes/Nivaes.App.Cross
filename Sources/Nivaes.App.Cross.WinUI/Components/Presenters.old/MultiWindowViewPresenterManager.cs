@@ -35,7 +35,8 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
     public MultiWindowViewPresenterManager(IServiceProvider serviceProvider,
-            ICrossWindowsFrame rootFrame, ICrossViewsContainer crossViewsContainer,
+            ICrossWindowsFrame rootFrame, 
+            ICrossViewsContainer crossViewsContainer,
             ICrossViewModelLoader viewModelLoader,
             ICrossWindowsViewModelRequestTranslator requestTranslator, 
             ILogger<MultiWindowViewPresenterManager> logger)
@@ -120,7 +121,6 @@ public class MultiWindowViewPresenterManager
     /// <summary>
     ///     Closes all windows, except the main window, and the view models belonging to those windows.
     /// </summary>
-    [Obsolete]
     public void CloseAllWindows()
     {
         List<WindowInformation> windows;
@@ -185,9 +185,7 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="sender">The sender of the event.</param>
     /// <param name="backRequestedEventArgs">The event arguments.</param>
-    [Obsolete]
-    protected virtual async void BackButtonOnBackRequested(object? sender,
-        BackRequestedEventArgs backRequestedEventArgs)
+    protected virtual async void BackButtonOnBackRequested(object? sender, BackRequestedEventArgs backRequestedEventArgs)
     {
         if (backRequestedEventArgs.Handled)
         {
@@ -403,7 +401,6 @@ public class MultiWindowViewPresenterManager
     /// </summary>
     /// <param name="window">The window to get the root frame for.</param>
     /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
-    [Obsolete("", true)]
     protected WindowInformation GetWindowInformation(Window window)
     {
         lock (_windowInformationLock)
@@ -642,7 +639,6 @@ public class MultiWindowViewPresenterManager
         return TryEnqueue(dispatcher, function, priority);
     }
 
-    [Obsolete("", true)]
     private void CloseWindow(Window newWindow)
     {
         var windowInformation = GetWindowInformation(newWindow);

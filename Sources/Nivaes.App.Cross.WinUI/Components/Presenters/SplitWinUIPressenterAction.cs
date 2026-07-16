@@ -12,8 +12,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public SplitWinUIPressenterAction(
                 ICrossViewsContainer viewsContainer,
+                ICrossWindowsFrame rootFrame,
+                ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger<SplitWinUIPressenterAction> logger)
-            : base(viewsContainer, logger)
+            : base(viewsContainer, rootFrame, requestTranslator,  logger)
         {
         }
         #endregion
