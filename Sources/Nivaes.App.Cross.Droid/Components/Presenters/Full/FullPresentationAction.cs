@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Formats.Tar;
-using System.Text;
-using Android.Views;
-using Java.Util.Logging;
-using Microsoft.Extensions.Logging;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+﻿using Microsoft.Extensions.Logging;
 using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid
 {
@@ -23,10 +13,9 @@ namespace Nivaes.App.Cross.Droid
         public FullPresentationAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
-                IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<FullPresentationAction> logger)
-            : base(context, viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+            : base(context, viewsContainer, navigationSerializer, logger)
         {
             NavigationSerializer = navigationSerializer;
         }

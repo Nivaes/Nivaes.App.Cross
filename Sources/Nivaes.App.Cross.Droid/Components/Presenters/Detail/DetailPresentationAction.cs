@@ -12,11 +12,10 @@ public sealed class DetailPresentationAction
     public DetailPresentationAction(
         PressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
-            IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<DetailPresentationAction> logger)
-        : base(contex, viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+        : base(contex, viewsContainer, navigationSerializer, logger)
     {
     }
 
@@ -86,7 +85,7 @@ public sealed class DetailPresentationAction
         var fragmentName = attribute.ViewType.FragmentJavaName();
 
         IMvxFragmentView fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
-        fragment = fragment ?? base.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
 
         var fragmentView = fragment.ToFragment();
         if (request is CrossViewModelInstanceRequest instanceRequest)

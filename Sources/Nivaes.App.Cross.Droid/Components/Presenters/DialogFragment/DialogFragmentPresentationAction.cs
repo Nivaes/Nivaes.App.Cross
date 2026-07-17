@@ -12,18 +12,9 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 namespace Nivaes.App.Cross.Droid
 {
     public sealed class DialogFragmentPresentationAction
-        : PressenterAction<DialogFragmentPresentationAttribute>
+        : PressenterAction<DialogFragmentPresentationAttribute>, IFragmentPresentationAction
     {
-        //protected FragmentManager? CurrentFragmentManager
-        //{
-        //    get
-        //    {
-        //        if (CurrentActivity.IsActivityDead())
-        //            return null;
-
-        //        return CurrentActivity!.SupportFragmentManager;
-        //    }
-        //}
+        private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
         public DialogFragmentPresentationAction(
                 IPressenterActionContext context,
@@ -46,7 +37,7 @@ namespace Nivaes.App.Cross.Droid
                 throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
 
             var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
-            IMvxFragmentView mvxFragmentView = CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+            IMvxFragmentView mvxFragmentView = thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
             var dialog = (DialogFragment)mvxFragmentView;
 
             // MvxNavigationService provides an already instantiated ViewModel here,
@@ -64,14 +55,14 @@ namespace Nivaes.App.Cross.Droid
 
             var ft = base.Context.CurrentFragmentManager.BeginTransaction();
 
-            OnBeforeFragmentChanging(ft, dialog, attribute, request);
+            thisFragment.OnBeforeFragmentChanging(ft, dialog, attribute, request);
 
             ft.SetReorderingAllowed(attribute.AllowReordering);
 
             if (attribute.AddToBackStack)
                 ft.AddToBackStack(fragmentName);
 
-            OnFragmentChanging(ft, dialog, attribute, request);
+            thisFragment.OnFragmentChanging(ft, dialog, attribute, request);
 
             if (attribute.SetAsPrimaryFragment)
                 ft.SetPrimaryNavigationFragment(dialog);

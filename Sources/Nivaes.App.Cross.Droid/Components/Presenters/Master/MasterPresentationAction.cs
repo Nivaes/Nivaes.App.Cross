@@ -11,11 +11,9 @@ public sealed class MasterPresentationAction
     public MasterPresentationAction(
         PressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
-            IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-            IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<MasterPresentationAction> logger)
-        : base(contex, viewsContainer, androidCurrentTopActivity, navigationSerializer, logger)
+        : base(contex, viewsContainer, navigationSerializer, logger)
     {
     }
 

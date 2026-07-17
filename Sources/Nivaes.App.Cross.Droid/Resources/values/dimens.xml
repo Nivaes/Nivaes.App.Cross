@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <!-- Standard dimensions -->
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <!-- App dimensions -->
+
+    <dimen name="forms_field_top_margin">10dp</dimen>
+
+    <dimen name="car_margin">5dp</dimen>
+    <dimen name="car_radius">4dp</dimen>
+    <dimen name="car_elevation">3dp</dimen>
+    <dimen name="car_image_person">60dp</dimen>
+
+    <dimen name="list_primary_text_dimen">16sp</dimen>
+    <dimen name="list_secondary_text_dimen">12sp</dimen>
+    <dimen name="text_header">20sp</dimen>
+
+    <dimen name="toolbar_text_dimen">15sp</dimen>
+    <dimen name="toolbar_big_text_dimen">40sp</dimen>
+ 
+    <dimen name="button_login_height">60dp</dimen>
+    <dimen name="text_no_selected_defaul_detail">24sp</dimen>
+
+    <dimen name ="floatin_action_button_margin">17dp</dimen>
+
+    <dimen name="full_name_toolbar_text_size">16sp</dimen>
+
+    <!-- Semantic definitions -->
+
+    <dimen name="element_margin_smallest">1dp</dimen>
+    <dimen name="element_margin_tinier">3dp</dimen>
+    <dimen name="element_margin_tiny">5dp</dimen>
+    <dimen name="element_margin_small">10dp</dimen>
+    <dimen name="element_margin_medium">15dp</dimen>
+    <dimen name="element_margin_large">20dp</dimen>
+    <dimen name="element_margin_huge">25dp</dimen>
+
+    <dimen name="libreria_diment">52dp</dimen>
+
+    <dimen name="navigation_drawer_width">290dp</dimen>
+
+    <!-- font definitions -->
+
+    <dimen name="text_very_tinier">10sp</dimen>
+    <dimen name="text_tinier">11sp</dimen>
+    <dimen name="text_tiny">13sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_medium">15sp</dimen>
+    <dimen name="text_large">16sp</dimen>
+    <dimen name="text_huge">17sp</dimen>
+    <dimen name="text_very_huge">18sp</dimen>
+    <dimen name="text_very_very_huge">20sp</dimen>
+
+
+</resources>
