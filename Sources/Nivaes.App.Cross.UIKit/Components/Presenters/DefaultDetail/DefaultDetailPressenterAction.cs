@@ -1,0 +1,46 @@
+﻿#if IOS || MACCATALYST
+using Microsoft.Extensions.Logging;
+
+namespace Nivaes.App.Cross.UIKitLib
+{
+    public sealed class DefaultDetailPressenterAction
+            : PressenterAction<DefaultDetailPresentationAttribute>
+    {
+      
+
+        #region Constructor
+        public DefaultDetailPressenterAction(
+                PressenterActionContext context,
+                ICrossViewsContainer viewsContainer,
+                IMvxIosViewCreator viewCreator,
+                ILogger<DefaultDetailPressenterAction> logger)
+            : base(context, viewsContainer, viewCreator, logger)
+        {
+        }
+        #endregion
+
+        protected override ValueTask<bool> ShowAction(Type viewType, DefaultDetailPresentationAttribute attribute, CrossViewModelRequest request)
+        {
+            var viewController = (UIViewController)ViewCreator.CreateView(request);
+            return ShowDefaultDetailViewController(viewController, (DefaultDetailPresentationAttribute)attribute, request);
+        }
+
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DefaultDetailPresentationAttribute attribute)
+        {
+            base.Logger.LogWarning($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
+
+            return ValueTask.FromResult(false);
+        }
+        private ValueTask<bool> ShowDefaultDetailViewController(
+         UIViewController viewController,
+         DefaultDetailPresentationAttribute attribute,
+         CrossViewModelRequest request)
+        {
+            base.MasterNavigationController = base.CreateNavigationController(viewController);
+            Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDefaultDetailView(base.MasterNavigationController);
+
+            return ValueTask.FromResult(true);
+        }
+    }
+}
+#endif

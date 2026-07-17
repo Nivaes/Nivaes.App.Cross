@@ -343,5 +343,36 @@ namespace Nivaes.App.Cross.UIKitLib
             if (viewController is IMvxTabBarViewController tabBarController)
                 Context.TabBarViewController = tabBarController;
         }
+
+#if IOS || MACCATALYST
+        protected void CreateSlideMenuController(UIViewController viewController)
+        {
+            MvxNavigationController leftController = CreateMenuController((UIViewController)Context.MenuLeftViewController!);
+            MvxNavigationController rightController = CreateMenuController((UIViewController)Context.MenuRigthViewController!);
+
+            Context.SlideMenuController = new SlideMenuViewController(viewController, leftController, rightController)
+            {
+                AnimationType = SlideAnimation.Default
+            };
+
+            SetWindowSlideMenuViewController();
+
+            Context.SlideMenuController.RemoveRightGestures();
+        }
+
+        private MvxNavigationController CreateMenuController(UIViewController viewController)
+        {
+            if (viewController != null)
+                return new MvxNavigationController(viewController);
+            else
+                return new MvxNavigationController();
+        }
+
+        protected void SetWindowSlideMenuViewController()
+        {
+            Context.Window.RootViewController = Context.SlideMenuController;
+            Context.Window.MakeKeyAndVisible();
+        }
+#endif
     }
 }

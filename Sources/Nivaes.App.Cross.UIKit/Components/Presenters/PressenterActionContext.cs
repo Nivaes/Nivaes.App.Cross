@@ -4,9 +4,17 @@
     {
         public UIWindow Window { get; }
 
-        public IMvxTabBarViewController? TabBarViewController { get; set; }
+        public IMvxTabBarViewController? TabBarViewController;
 
-        public IMvxSplitViewController? SplitViewController { get; set; }
+        public IMvxSplitViewController? SplitViewController;
+
+#if IOS || MACCATALYST
+        public SlideMenuViewController? SlideMenuController;
+#endif
+        public UINavigationController? MainNavitagionController;
+        public IMenuViewController? MenuLeftViewController;
+        public IMenuViewController? MenuRigthViewController;
+        public List<UIMasterDetailSplitViewController> MasterDetailSplitViewControllers = new();
 
         public PressenterActionContext(UIWindow window)
         {

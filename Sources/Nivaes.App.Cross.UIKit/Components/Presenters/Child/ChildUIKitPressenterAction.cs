@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (Context.TabBarViewController?.CloseChildViewModel(viewModel) == true)
                 return ValueTask.FromResult(true);
 
-            if (SplitViewController?.CloseChildViewModel(viewModel, attribute) == true)
+            if (Context.SplitViewController?.CloseChildViewModel(viewModel, attribute) == true)
                 return ValueTask.FromResult(true);
 
             // if the current root is a NavigationController, close it in the stack

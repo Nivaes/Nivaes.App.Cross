@@ -5,15 +5,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class ModalUIKitPressenterAction
+    public sealed class ModalPressenterAction
             : PressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
-        public ModalUIKitPressenterAction(
+        public ModalPressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<ModalUIKitPressenterAction> logger)
+                ILogger<ModalPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }

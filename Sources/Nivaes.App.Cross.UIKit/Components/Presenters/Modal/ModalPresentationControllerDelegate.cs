@@ -1,7 +1,7 @@
 namespace Nivaes.App.Cross.UIKitLib;
 
 public sealed class ModalPresentationControllerDelegate(
-        ModalUIKitPressenterAction presenterAction,
+        ModalPressenterAction presenterAction,
         UIViewController viewController,
         ModalPresentationAttribute attribute)
     : UIAdaptivePresentationControllerDelegate
