@@ -4,19 +4,21 @@ using FragmentManager = AndroidX.Fragment.App.FragmentManager;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public abstract class ViewPagerFragmentAndroidPresentation<ViewPagerFragmentPresentationAttribute>
-        : AndroidPressenterAction<ViewPagerFragmentPresentationAttribute>
-        where ViewPagerFragmentPresentationAttribute : Droid.ViewPagerFragmentPresentationAttribute
+    public abstract class ViewPagerFragmentPresentationAction<TViewPagerFragmentPresentationAttribute>
+        : PressenterAction<TViewPagerFragmentPresentationAttribute>
+        where TViewPagerFragmentPresentationAttribute : ViewPagerFragmentPresentationAttribute
     {
-        public ViewPagerFragmentAndroidPresentation(
+        private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
+
+        public ViewPagerFragmentPresentationAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
-                IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
+                ICrossNavigationSerializer navigationSerializer,
                 ILogger logger)
-            : base(context, viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, navigationSerializer, logger)
         { }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, ViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TViewPagerFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
             // if the attribute doesn't supply any host, assume current activity!
             if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)
@@ -28,7 +30,7 @@ namespace Nivaes.App.Cross.Droid
             // check for a ViewPager inside a Fragment
             if (attribute.FragmentHostViewType != null)
             {
-                var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
+                var fragment = thisFragment.GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
                     throw new AppException("Fragment not found", attribute.FragmentHostViewType.Name);
 
@@ -55,9 +57,9 @@ namespace Nivaes.App.Cross.Droid
                     return ValueTask.FromResult(false);
                 }
 
-                if (CurrentActivity.IsActivityAlive())
-                    viewPager = CurrentActivity!.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
-                fragmentManager = CurrentFragmentManager;
+                if (base.Context.CurrentActivity.IsActivityAlive())
+                    viewPager = base.Context.CurrentActivity!.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                fragmentManager = base.Context.CurrentFragmentManager;
             }
 
             // no more cases to check. Just throw if ViewPager wasn't found
@@ -86,7 +88,7 @@ namespace Nivaes.App.Cross.Droid
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ViewPagerFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TViewPagerFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -95,7 +97,7 @@ namespace Nivaes.App.Cross.Droid
 
             if (attribute.FragmentHostViewType != null)
             {
-                var fragment = GetFragmentByViewType(attribute.FragmentHostViewType);
+                var fragment = thisFragment.GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragment == null)
                     throw new AppException("Fragment not found", attribute.FragmentHostViewType.Name);
 
@@ -104,9 +106,9 @@ namespace Nivaes.App.Cross.Droid
             }
             else
             {
-                if (CurrentActivity.IsActivityAlive())
-                    viewPager = CurrentActivity!.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
-                fragmentManager = CurrentFragmentManager;
+                if (base.Context.CurrentActivity.IsActivityAlive())
+                    viewPager = base.Context.CurrentActivity!.FindViewById<ViewPager>(attribute.ViewPagerResourceId);
+                fragmentManager = base.Context.CurrentFragmentManager;
             }
 
             if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter && fragmentManager != null)
@@ -124,7 +126,7 @@ namespace Nivaes.App.Cross.Droid
                     ft.CommitAllowingStateLoss();
                     adapter.NotifyDataSetChanged();
 
-                    OnFragmentPopped(ft, fragment, attribute);
+                    thisFragment.OnFragmentPopped(ft, fragment, attribute);
                     return ValueTask.FromResult(true);
                 }
             }
@@ -165,15 +167,15 @@ namespace Nivaes.App.Cross.Droid
         }
     }
 
-    public sealed class ViewPagerFragmentAndroidPresentation
-        : ViewPagerFragmentAndroidPresentation<ViewPagerFragmentPresentationAttribute>
+    public sealed class ViewPagerFragmentPresentationAction
+        : ViewPagerFragmentPresentationAction<ViewPagerFragmentPresentationAttribute>
     {
-        public ViewPagerFragmentAndroidPresentation(
+        public ViewPagerFragmentPresentationAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
-                IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
+                ICrossNavigationSerializer navigationSerializer,
                 ILogger<TabLayoutAndroidPresentation> logger)
-            : base(context, viewsContainer, androidCurrentTopActivity, logger)
+            : base(context, viewsContainer, navigationSerializer, logger)
         {
         }
     }

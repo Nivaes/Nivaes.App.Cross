@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
         where TPresentationAttribute : IPresentationAttribute
     {
         protected readonly ICrossViewsContainer ViewsContainer;
-        protected readonly ILogger Logger;
+        public ILogger Logger { get; }
 
         protected PressenterAction(ICrossViewsContainer viewsContainer, ILogger logger)
         {

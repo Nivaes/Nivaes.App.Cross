@@ -11,44 +11,42 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public sealed class DialogFragmentAndroidPresentation
-        : AndroidPressenterAction<DialogFragmentPresentationAttribute>
+    public sealed class DialogFragmentPresentationAction
+        : PressenterAction<DialogFragmentPresentationAttribute>
     {
-        //public const string SharedElementsBundleKey = "__sharedElementsKey";
+        //protected FragmentManager? CurrentFragmentManager
+        //{
+        //    get
+        //    {
+        //        if (CurrentActivity.IsActivityDead())
+        //            return null;
 
-        protected FragmentManager? CurrentFragmentManager
-        {
-            get
-            {
-                if (CurrentActivity.IsActivityDead())
-                    return null;
+        //        return CurrentActivity!.SupportFragmentManager;
+        //    }
+        //}
 
-                return CurrentActivity!.SupportFragmentManager;
-            }
-        }
-
-        public DialogFragmentAndroidPresentation(
-                PressenterActionContext context,
+        public DialogFragmentPresentationAction(
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
-                IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
-                ILogger<DialogFragmentAndroidPresentation> logger)
-            : base(context, viewsContainer, androidCurrentTopActivity, logger)
+                ICrossNavigationSerializer navigationSerializer,
+                ILogger<DialogFragmentPresentationAction> logger)
+            : base(context, viewsContainer, navigationSerializer, logger)
         {
         }
 
         protected override ValueTask<bool> ShowAction(Type viewType, DialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
         {
-            if (CurrentActivity == null)
+            if (base.Context.CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");
 
-            if (CurrentFragmentManager == null)
+            if (base.Context.CurrentFragmentManager == null)
                 throw new InvalidOperationException("CurrentFragmentManager is null. Cannot create Fragment Transaction.");
 
             if (attribute.ViewType == null)
                 throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
 
             var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
-            IMvxFragmentView mvxFragmentView = CreateFragment(CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+            IMvxFragmentView mvxFragmentView = CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
             var dialog = (DialogFragment)mvxFragmentView;
 
             // MvxNavigationService provides an already instantiated ViewModel here,
@@ -64,7 +62,7 @@ namespace Nivaes.App.Cross.Droid
 
             dialog.Cancelable = attribute.Cancelable;
 
-            var ft = CurrentFragmentManager.BeginTransaction();
+            var ft = base.Context.CurrentFragmentManager.BeginTransaction();
 
             OnBeforeFragmentChanging(ft, dialog, attribute, request);
 
@@ -82,8 +80,6 @@ namespace Nivaes.App.Cross.Droid
 
             OnFragmentChanged(ft, dialog, attribute, request);
             return ValueTask.FromResult(true);
-            
-
         }
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DialogFragmentPresentationAttribute attribute)
@@ -91,7 +87,7 @@ namespace Nivaes.App.Cross.Droid
             ArgumentNullException.ThrowIfNull(attribute);
 
             string tag = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
-            var toClose = CurrentFragmentManager?.FindFragmentByTag(tag);
+            var toClose = base.Context.CurrentFragmentManager?.FindFragmentByTag(tag);
             if (toClose is DialogFragment dialog)
             {
                 dialog.DismissAllowingStateLoss();

@@ -2,27 +2,21 @@
 using Android.OS;
 using Android.Util;
 using Microsoft.Extensions.Logging;
-using Activity = AndroidX.AppCompat.App.AppCompatActivity;
-using DialogFragment = AndroidX.Fragment.App.DialogFragment;
-using Fragment = AndroidX.Fragment.App.Fragment;
-using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
-
 
 namespace Nivaes.App.Cross.Droid;
 
-public sealed class ActivityAndroidPresentation
-    : AndroidPressenterAction<ActivityPresentationAttribute>
+public sealed class ActivityPresentationAction
+    : PressenterAction<ActivityPresentationAttribute>
 {
     //public const string SharedElementsBundleKey = "__sharedElementsKey";
     private readonly IMvxAndroidViewModelRequestTranslator ViewModelRequestTranslator;
 
-    public ActivityAndroidPresentation(
-        PressenterActionContext contex,
+    public ActivityPresentationAction(
+            IPressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
             IMvxAndroidCurrentTopActivity androidCurrentTopActivity,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
-            ILogger<ActivityAndroidPresentation> logger)
+            ILogger<ActivityPresentationAction> logger)
         : base(contex, viewsContainer, androidCurrentTopActivity, logger)
     {
         ViewModelRequestTranslator = viewModelRequestTranslator;
@@ -43,7 +37,7 @@ public sealed class ActivityAndroidPresentation
 
     protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ActivityPresentationAttribute attribute)
     {
-        var currentView = CurrentActivity as ICrossView;
+        var currentView = base.Context.CurrentActivity as ICrossView;
 
         if (currentView == null)
         {
@@ -58,8 +52,8 @@ public sealed class ActivityAndroidPresentation
         }
 
         // don't kill the dead
-        if (CurrentActivity.IsActivityAlive())
-            CurrentActivity!.Finish();
+        if (base.Context.CurrentActivity.IsActivityAlive())
+            base.Context.CurrentActivity!.Finish();
 
         return ValueTask.FromResult(true);
     }
@@ -69,7 +63,7 @@ public sealed class ActivityAndroidPresentation
     {
         var bundle = Bundle.Empty!;
 
-        if (!(CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity))
+        if (!(base.Context.CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity))
         {
             return bundle;
         }
@@ -80,7 +74,7 @@ public sealed class ActivityAndroidPresentation
             return bundle;
         }
 
-        if (CurrentActivity.IsActivityAlive())
+        if (base.Context.CurrentActivity.IsActivityAlive())
         {
             var (elements, transitionElementPairs) =
                 GetTransitionElements(attribute, request, sharedElementsActivity);
@@ -103,7 +97,7 @@ public sealed class ActivityAndroidPresentation
         Intent intent, IEnumerable<Pair> transitionElementPairs, IEnumerable<string> elements)
     {
         var activityOptions = ActivityOptions.MakeSceneTransitionAnimation(
-            CurrentActivity, transitionElementPairs.ToArray());
+            base.Context.CurrentActivity, transitionElementPairs.ToArray());
         if (activityOptions == null)
             return null;
 
@@ -114,7 +108,7 @@ public sealed class ActivityAndroidPresentation
 
     private void ShowIntent(Intent intent, Bundle? bundle)
     {
-        var activity = CurrentActivity;
+        var activity = base.Context.CurrentActivity;
         if (activity!.IsActivityDead())
         {
             Logger.Log(LogLevel.Error, "Cannot Resolve current top activity. Creating new activity from Application Context");

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Nivaes.App.Droid.BaseDetailActivity&lt;TViewModel&gt;">
+    <Position X="6.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseDetailActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.BaseDetailView" Collapsed="true">
+    <Position X="16.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAACAAAAACAAAAAAEBAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseDetailView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.BaseMasterView" Collapsed="true">
+    <Position X="14.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AESAABAAAAAAAkAAAACAAAAACAAAAAEEAAAAgAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseMasterView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.BasePreferenceView" Collapsed="true">
+    <Position X="13" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BasePreferenceView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.BasePreferenceView&lt;TViewModel&gt;" Collapsed="true">
+    <Position X="13" Y="12.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BasePreferenceView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.PrimaryActivity">
+    <Position X="0.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAgAAAAA=</HashCode>
+      <FileName>Components\Views\Base\PrimaryActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.BaseActivity&lt;TViewModel&gt;">
+    <Position X="3" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAABACAAAAAghAgIAAAAAgCAAgAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.MainDetailActivity">
+    <Position X="6.25" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Components\Views\Base\MainDetailActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.BaseView" Collapsed="true">
+    <Position X="15.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAABAAgAAAAACAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.AppCompat.MvxAppCompatPreferenceActivity" Collapsed="true">
+    <Position X="12.75" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAAAAgAEAgAEAAIEiAAAAACAGAAABAAAAA=</HashCode>
+      <FileName>Components\Views\Base\Preferences\MvxAppCompatPreferenceActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.BaseMasterDetailView&lt;TMasterDetailViewModel&gt;" Collapsed="true">
+    <Position X="11.25" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAgAAAAACAAAAAAAABAAAAAEAAA=</HashCode>
+      <FileName>Components\Views\Base\BaseMasterDetailView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.SecondaryActivity">
+    <Position X="3" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\SecondaryActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nivaes.App.Droid.PrimaryMasterDetailView" Collapsed="true">
+    <Position X="13" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\PrimaryMasterDetailView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nivaes.App.Droid.SecondaryMasterDetailView" Collapsed="true">
+    <Position X="10" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Views\Base\SecondaryMasterDetailView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
