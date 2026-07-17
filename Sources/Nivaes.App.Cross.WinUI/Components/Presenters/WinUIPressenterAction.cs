@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.WinUI
         : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
-        private readonly PressenterActionContext Context;
+        private readonly IPressenterActionContext Context;
 
         // ToDo: Ha de compartirse con todos los PressenterAction?
         private readonly Lock _windowInformationLock = new();
@@ -27,7 +27,7 @@ namespace Nivaes.App.Cross.WinUI
 
         #region Constructor
         public WinUIPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,

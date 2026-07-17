@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI
 
         #region Constructor
         public DialogWinUIPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 IServiceProvider serviceProvider,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,

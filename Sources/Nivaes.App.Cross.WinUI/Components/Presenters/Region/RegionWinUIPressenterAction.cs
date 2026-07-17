@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.WinUI
     {
         #region Constructor
         public RegionWinUIPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,

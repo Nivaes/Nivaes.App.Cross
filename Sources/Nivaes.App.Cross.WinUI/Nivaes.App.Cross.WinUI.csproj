@@ -71,8 +71,5 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\Presenters\Attributes\" />
-	</ItemGroup>
 
 </Project>
