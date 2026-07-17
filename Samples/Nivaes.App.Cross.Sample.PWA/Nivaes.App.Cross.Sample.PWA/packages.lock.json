@@ -190,8 +190,13 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
+        }
+      },
+      "nivaes.app.cross.pwa.sourcegenerator": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "nivaes.app.cross.sample.pwa.client": {
@@ -211,6 +216,12 @@
           "OpenTelemetry.Instrumentation.AspNetCore": "[1.16.0, )",
           "OpenTelemetry.Instrumentation.Http": "[1.16.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.16.0, )"
+        }
+      },
+      "nivaes.app.cross.sourcegenerator": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "FluentValidation": {
