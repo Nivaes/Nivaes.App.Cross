@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.UIKitLib;
 
 public class MvxTabBarViewController<TViewModel>
-        : MvxBaseTabBarViewController<TViewModel>, IMvxTabBarViewController
+        : MvxBaseTabBarViewController<TViewModel>, ITabBarViewController
     where TViewModel : class, ICrossViewModel
 {
     public MvxTabBarViewController() : base()

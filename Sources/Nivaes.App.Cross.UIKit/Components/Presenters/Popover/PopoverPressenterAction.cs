@@ -4,12 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class PopoverUIKitPressenterAction
+    public sealed class PopoverPressenterAction
             : PressenterAction<PopoverPresentationAttribute>
     {
         #region Constructor
-        public PopoverUIKitPressenterAction(
-                PressenterActionContext context,
+        public PopoverPressenterAction(
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<SplitPressenterAction> logger)
@@ -33,21 +33,18 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PopoverPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(viewModel);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            if (PopoverViewController == null)
+            if (Context.PopoverViewController == null)
                 return ValueTask.FromResult(false);
 
             // check for plain popover
-            if (PopoverViewController is IMvxIosView iosView && iosView.ViewModel == viewModel)
+            if (Context.PopoverViewController is IMvxIosView iosView && iosView.ViewModel == viewModel)
             {
-                return ClosePopoverViewController(PopoverViewController, attribute);
+                return ClosePopoverViewController(Context.PopoverViewController, attribute);
             }
 
             // check for popover navigation stack
             UIViewController? controllerToClose = null;
-            if (PopoverViewController is UINavigationController vc)
+            if (Context.PopoverViewController is UINavigationController vc)
             {
                 var root = vc.ViewControllers?.FirstOrDefault();
                 if (root is IMvxIosView rootIosView && rootIosView.ViewModel == viewModel)
@@ -69,10 +66,7 @@ namespace Nivaes.App.Cross.UIKitLib
             PopoverPresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            if (PopoverViewController != null)
+            if (Context.PopoverViewController != null)
                 throw new AppException($"Trying to show View type: {viewController.GetType().Name} as popover, but there is already a popover present!");
 
             // Content size should be set to a target view controller, not the navigation one
@@ -98,7 +92,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 presentationController.Delegate = new PopoverPresentationControllerDelegate(this);
             }
 
-            PopoverViewController = viewController;
+            Context.PopoverViewController = viewController;
 
             var parentViewController = GetParentViewController();
             await parentViewController.PresentViewControllerAsync(viewController, attribute.Animated).ConfigureAwait(true);
@@ -107,9 +101,6 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private async ValueTask<bool> ClosePopoverViewController(UIViewController viewController, PopoverPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
             if (viewController is UINavigationController { ViewControllers: not null } popoverNavController)
             {
                 foreach (var item in popoverNavController.ViewControllers)
@@ -117,14 +108,14 @@ namespace Nivaes.App.Cross.UIKitLib
             }
 
             await viewController.DismissViewControllerAsync(attribute.Animated).ConfigureAwait(true);
-            PopoverViewController = null;
+            Context.PopoverViewController = null;
             return true;
         }
 
         // Called if popover was dismissed by tapping outside view.
         public void ClosedPopoverViewController()
         {
-            PopoverViewController = null;
+            Context.PopoverViewController = null;
         }
     }
 }

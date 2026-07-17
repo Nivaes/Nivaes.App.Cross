@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public TabPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<TabPressenterAction> logger)
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (Context.TabBarViewController == null)
                 throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
-            if (viewController is IMvxTabBarItemViewController tabBarItem)
+            if (viewController is ITabBarItemViewController tabBarItem)
             {
                 attribute.TabName = tabBarItem.TabName;
                 attribute.TabIconName = tabBarItem.TabIconName;

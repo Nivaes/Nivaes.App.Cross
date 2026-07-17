@@ -5,40 +5,40 @@ namespace Nivaes.App.Cross.UIKitLib
     using Foundation;
     using ObjCRuntime;
 
-    public class MvxPageViewController<TViewModel>
+    public class PageViewController<TViewModel>
             : MvxBasePageViewController<TViewModel>, IMvxIosView<TViewModel>, IMvxPageViewController
         where TViewModel : class, ICrossViewModel
     {
         #region Constructors
-        public MvxPageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
+        public PageViewController(UIPageViewControllerTransitionStyle style = UIPageViewControllerTransitionStyle.Scroll, UIPageViewControllerNavigationOrientation navigationOrientation = UIPageViewControllerNavigationOrientation.Horizontal, UIPageViewControllerSpineLocation spineLocation = UIPageViewControllerSpineLocation.None) : base(style, navigationOrientation, spineLocation)
         {
         }
 
-        public MvxPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation, float interPageSpacing) : base(style, navigationOrientation, spineLocation, interPageSpacing)
+        public PageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerSpineLocation spineLocation, float interPageSpacing) : base(style, navigationOrientation, spineLocation, interPageSpacing)
         {
         }
 
-        public MvxPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation) : base(style, navigationOrientation)
+        public PageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation) : base(style, navigationOrientation)
         {
         }
 
-        public MvxPageViewController(NSCoder coder) : base(coder)
+        public PageViewController(NSCoder coder) : base(coder)
         {
         }
 
-        protected MvxPageViewController(NSObjectFlag t) : base(t)
+        protected PageViewController(NSObjectFlag t) : base(t)
         {
         }
 
-        protected internal MvxPageViewController(NativeHandle handle) : base(handle)
+        protected internal PageViewController(NativeHandle handle) : base(handle)
         {
         }
 
-        public MvxPageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public PageViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
         {
         }
 
-        public MvxPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
+        public PageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) : base(style, navigationOrientation, options)
         {
         }
         #endregion

@@ -20,11 +20,11 @@ namespace Nivaes.App.Cross.UIKitLib
             return null;
         }
 
-        public static void AddLeftBarButtonWithImage(this UIViewController controller, UIImage image)
+        public static void AddLeftBarButtonWithImage(this UIViewController controller, UIImage? image)
         {
-            if (controller == null) throw new ArgumentNullException(nameof(controller));
+            ArgumentNullException.ThrowIfNull(image);
 
-            UIBarButtonItem leftBarButton = new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, (object sender, EventArgs e) =>
+            UIBarButtonItem leftBarButton = new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, (object? sender, EventArgs e) =>
             {
                 controller.ToggleLeft();
             });
@@ -33,11 +33,11 @@ namespace Nivaes.App.Cross.UIKitLib
         }
 
 
-        public static void AddRightBarButtonWithImage(this UIViewController controller, UIImage image)
+        public static void AddRightBarButtonWithImage(this UIViewController controller, UIImage? image)
         {
-            if (controller == null) throw new ArgumentNullException(nameof(controller));
+            ArgumentNullException.ThrowIfNull(image);
 
-            UIBarButtonItem rightBarButton = new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, (object sender, EventArgs e) =>
+            UIBarButtonItem rightBarButton = new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, (object? sender, EventArgs e) =>
             {
                 controller.ToggleRight();
             });

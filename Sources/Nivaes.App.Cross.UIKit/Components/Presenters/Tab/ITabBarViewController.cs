@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public interface IMvxTabBarViewController
+    public interface ITabBarViewController
     {
         void ShowTabView(UIViewController viewController, TabPresentationAttribute attribute);
 

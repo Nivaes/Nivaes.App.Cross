@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public FullPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<FullPressenterAction> logger)
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.UIKitLib
            CrossViewModelRequest request)
         {
             // check if viewController is a TabBarController
-            if (viewController is IMvxTabBarViewController tabBarController)
+            if (viewController is ITabBarViewController tabBarController)
             {
                 Context.TabBarViewController = tabBarController;
 
@@ -62,7 +62,7 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             //base.MasterNavigationController = MainNavitagionController = base.CreateNavigationController(viewController);
 
-            CreateSlideMenuController(base.MasterNavigationController);
+            CreateSlideMenuController(Context.MasterNavigationController);
 
             viewController.AddLeftBarButtonWithImage(UIImage.FromBundle("ic_menu"));
         }

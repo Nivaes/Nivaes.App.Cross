@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public ModalPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<ModalPressenterAction> logger)
@@ -34,12 +34,12 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ModalPresentationAttribute attribute)
         {
-            if (ModalViewControllers.Count == 0)
+            if (Context.ModalViewControllers.Count == 0)
                 return ValueTask.FromResult(false);
 
             // check for plain modals
             var modalToClose =
-                ModalViewControllers.Find(v => v is IMvxIosView iosView && iosView.ViewModel == viewModel);
+                Context.ModalViewControllers.Find(v => v is IMvxIosView iosView && iosView.ViewModel == viewModel);
             if (modalToClose != null)
             {
                 return CloseModalViewController(modalToClose, attribute);
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
             // check for modal navigation stacks
             UIViewController? controllerToClose = null;
-            foreach (var vc in ModalViewControllers.OfType<UINavigationController>())
+            foreach (var vc in Context.ModalViewControllers.OfType<UINavigationController>())
             {
                 var root = vc.ViewControllers?.FirstOrDefault();
                 if (root != null && root.GetIMvxIosView()?.ViewModel == viewModel)
@@ -93,7 +93,7 @@ namespace Nivaes.App.Cross.UIKitLib
             var parentViewController = GetParentViewController();
             parentViewController.PresentViewController(viewController, attribute.Animated, null);
 
-            ModalViewControllers.Add(viewController);
+            Context.ModalViewControllers.Add(viewController);
 
             return ValueTask.FromResult(true);
         }

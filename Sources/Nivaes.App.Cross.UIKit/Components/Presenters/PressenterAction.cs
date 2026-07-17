@@ -6,33 +6,13 @@ namespace Nivaes.App.Cross.UIKitLib
         : Cross.PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
-        protected readonly IMvxIosViewCreator ViewCreator;
+        protected readonly IPressenterActionContext Context;
 
-        protected readonly PressenterActionContext Context;
-
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected UINavigationController? MasterNavigationController { get; set; }
-
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        //protected IMvxTabBarViewController? TabBarViewController { get; set; }
-
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected List<UIViewController> ModalViewControllers { get; } = [];
-
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        //protected IMvxSplitViewController? SplitViewController { get; set; }
-
-        // ToDo: Ha de ser comun para todos los UIKitPressenterAction.
-        protected IMvxPageViewController? PageViewController { get; set; }
-
-#if IOS || MACCATALYST
-        // ToDo: ¿Tiene que se común para todos los PressenterAction?
-        public UIViewController? PopoverViewController { get; protected set; }
-#endif
+        protected readonly IMvxIosViewCreator ViewCreator;       
 
         #region Constructor
         public PressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger logger)
@@ -45,7 +25,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
         {
-            if (MasterNavigationController == null &&
+            if (Context.MasterNavigationController == null &&
                 Context.TabBarViewController?.CanShowChildView() != true)
             {
                 Logger?.LogTrace(
@@ -73,7 +53,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return viewController switch
             {
                 // check if viewController is a TabBarController
-                IMvxTabBarViewController tabBarController =>
+                ITabBarViewController tabBarController =>
                     ShowTabBarRootViewController(viewController, attribute, tabBarController),
                 // check if viewController is a PageViewController
                 IMvxPageViewController pageViewController =>
@@ -113,7 +93,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private async ValueTask<bool> ShowPageRootViewController(UIViewController viewController, RootPresentationAttribute attribute,
             IMvxPageViewController pageViewController)
         {
-            PageViewController = pageViewController;
+            Context.PageViewController = pageViewController;
 
             // set root
             SetupWindowRootNavigation(viewController, attribute);
@@ -126,7 +106,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private async ValueTask<bool> ShowTabBarRootViewController(
             UIViewController viewController, RootPresentationAttribute attribute,
-            IMvxTabBarViewController tabBarController)
+            ITabBarViewController tabBarController)
         {
             Context.TabBarViewController = tabBarController;
 
@@ -143,9 +123,9 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             if (attribute.WrapInNavigationController)
             {
-                MasterNavigationController = CreateNavigationController(viewController);
+                Context.MasterNavigationController = CreateNavigationController(viewController);
 
-                SetWindowRootViewController(MasterNavigationController, attribute);
+                SetWindowRootViewController(Context.MasterNavigationController, attribute);
             }
             else
             {
@@ -169,16 +149,16 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected virtual void CloseMasterNavigationController()
         {
-            if (MasterNavigationController == null)
+            if (Context.MasterNavigationController == null)
                 return;
 
-            if (MasterNavigationController.ViewControllers != null)
+            if (Context.MasterNavigationController.ViewControllers != null)
             {
-                foreach (var item in MasterNavigationController.ViewControllers)
+                foreach (var item in Context.MasterNavigationController.ViewControllers)
                     item.DidMoveToParentViewController(null);
             }
 
-            MasterNavigationController = null;
+            Context.MasterNavigationController = null;
         }
 
         public virtual async ValueTask<bool> CloseModalViewController(UIViewController viewController, ModalPresentationAttribute attribute)
@@ -191,16 +171,16 @@ namespace Nivaes.App.Cross.UIKitLib
             }
 
             await viewController.DismissViewControllerAsync(attribute.Animated).ConfigureAwait(true);
-            ModalViewControllers.Remove(viewController);
+            Context.ModalViewControllers.Remove(viewController);
             return true;
         }
 
         public virtual async Task<bool> CloseModalViewControllers()
         {
-            while (ModalViewControllers.Count > 0)
+            while (Context.ModalViewControllers.Count > 0)
             {
                 var didClose =
-                    await CloseModalViewController(ModalViewControllers[^1],
+                    await CloseModalViewController(Context.ModalViewControllers[^1],
                         new ModalPresentationAttribute()).ConfigureAwait(true);
 
                 if (!didClose)
@@ -239,15 +219,15 @@ namespace Nivaes.App.Cross.UIKitLib
             return Task.FromResult(true);
         }
 
-        protected MvxNavigationController CreateNavigationController(UIViewController viewController)
+        protected NavigationController CreateNavigationController(UIViewController viewController)
         {
-            return new MvxNavigationController(viewController);
+            return new NavigationController(viewController);
         }
 
         protected UIViewController GetParentViewController()
         {
             //Ensure to get a ViewController that is not being dismissed. See related bugs https://github.com/MvvmCross/MvvmCross/issues/4781
-            return ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Context.Window.RootViewController
+            return Context.ModalViewControllers.LastOrDefault(x => !x.IsBeingDismissed) ?? Context.Window.RootViewController
                 ?? throw new AppException($"No parent ViewController found.");
         }
 
@@ -282,13 +262,13 @@ namespace Nivaes.App.Cross.UIKitLib
                 throw new AppException("A SplitViewController cannot be presented as a child. Consider using Root instead");
 
 #if IOS || MACCATALYST
-            if (PopoverViewController != null)
+            if (Context.PopoverViewController != null)
             {
                 return ShowPopoverViewControllerChild(viewController, attribute);
             }
 #endif
 
-            if (ModalViewControllers.Count > 0)
+            if (Context.ModalViewControllers.Count > 0)
             {
                 return ShowModalViewControllerChild(viewController, attribute);
             }
@@ -298,9 +278,9 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
             }
 
-            if (MasterNavigationController != null)
+            if (Context.MasterNavigationController != null)
             {
-                PushViewControllerIntoStack(MasterNavigationController, viewController, attribute);
+                PushViewControllerIntoStack(Context.MasterNavigationController, viewController, attribute);
                 return ValueTask.FromResult(true);
             }
 
@@ -309,7 +289,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private ValueTask<bool> ShowModalViewControllerChild(UIViewController viewController, ChildPresentationAttribute attribute)
         {
-            if (ModalViewControllers.LastOrDefault() is UINavigationController modalNavController)
+            if (Context.ModalViewControllers.LastOrDefault() is UINavigationController modalNavController)
             {
                 PushViewControllerIntoStack(modalNavController, viewController, attribute);
 
@@ -323,7 +303,7 @@ namespace Nivaes.App.Cross.UIKitLib
 #if IOS || MACCATALYST
         private ValueTask<bool> ShowPopoverViewControllerChild(UIViewController viewController, ChildPresentationAttribute attribute)
         {
-            if (PopoverViewController is UINavigationController popoverNavController)
+            if (Context.PopoverViewController is UINavigationController popoverNavController)
             {
                 PushViewControllerIntoStack(popoverNavController, viewController, attribute);
 
@@ -340,15 +320,15 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             navigationController.PushViewController(viewController, attribute.Animated);
 
-            if (viewController is IMvxTabBarViewController tabBarController)
+            if (viewController is ITabBarViewController tabBarController)
                 Context.TabBarViewController = tabBarController;
         }
 
 #if IOS || MACCATALYST
         protected void CreateSlideMenuController(UIViewController viewController)
         {
-            MvxNavigationController leftController = CreateMenuController((UIViewController)Context.MenuLeftViewController!);
-            MvxNavigationController rightController = CreateMenuController((UIViewController)Context.MenuRigthViewController!);
+            NavigationController leftController = CreateMenuController((UIViewController)Context.MenuLeftViewController!);
+            NavigationController rightController = CreateMenuController((UIViewController)Context.MenuRigthViewController!);
 
             Context.SlideMenuController = new SlideMenuViewController(viewController, leftController, rightController)
             {
@@ -360,12 +340,12 @@ namespace Nivaes.App.Cross.UIKitLib
             Context.SlideMenuController.RemoveRightGestures();
         }
 
-        private MvxNavigationController CreateMenuController(UIViewController viewController)
+        private NavigationController CreateMenuController(UIViewController viewController)
         {
             if (viewController != null)
-                return new MvxNavigationController(viewController);
+                return new NavigationController(viewController);
             else
-                return new MvxNavigationController();
+                return new NavigationController();
         }
 
         protected void SetWindowSlideMenuViewController()

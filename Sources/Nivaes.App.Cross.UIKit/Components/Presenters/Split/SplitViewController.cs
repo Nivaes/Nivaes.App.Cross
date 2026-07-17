@@ -5,30 +5,30 @@ namespace Nivaes.App.Cross.UIKitLib
     using ObjCRuntime;
     using UIKit;
 
-    public class MvxSplitViewController
+    public class SplitViewController
         : MvxBaseSplitViewController, IMvxSplitViewController
     {
-        public MvxSplitViewController() : base()
+        public SplitViewController() : base()
         {
         }
 
-        public MvxSplitViewController(NSCoder coder) : base(coder)
+        public SplitViewController(NSCoder coder) : base(coder)
         {
         }
 
-        protected MvxSplitViewController(NSObjectFlag t) : base(t)
+        protected SplitViewController(NSObjectFlag t) : base(t)
         {
         }
 
-        protected internal MvxSplitViewController(NativeHandle handle) : base(handle)
+        protected internal SplitViewController(NativeHandle handle) : base(handle)
         {
         }
 
-        public MvxSplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public SplitViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
         {
         }
 
-        public MvxSplitViewController(UISplitViewControllerStyle style) : base(style)
+        public SplitViewController(UISplitViewControllerStyle style) : base(style)
         {
         }
 
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public virtual void ShowDetailView(UIViewController viewController, SplitViewPresentationAttribute attribute)
         {
-            viewController = attribute.WrapInNavigationController ? new MvxNavigationController(viewController) : viewController;
+            viewController = attribute.WrapInNavigationController ? new NavigationController(viewController) : viewController;
 
             ShowDetailViewController(viewController, this);
         }
@@ -50,7 +50,7 @@ namespace Nivaes.App.Cross.UIKitLib
         {
             var newStack = ViewControllers.ToList();
 
-            viewController = attribute.WrapInNavigationController ? new MvxNavigationController(viewController) : viewController;
+            viewController = attribute.WrapInNavigationController ? new NavigationController(viewController) : viewController;
 
             if (newStack.Any())
                 newStack.RemoveAt(0);
@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross.UIKitLib
     }
 
     public class MvxSplitViewController<TViewModel>
-        : MvxSplitViewController, IMvxIosView<TViewModel>
+        : SplitViewController, IMvxIosView<TViewModel>
         where TViewModel : class, ICrossViewModel
     {
         public MvxSplitViewController()

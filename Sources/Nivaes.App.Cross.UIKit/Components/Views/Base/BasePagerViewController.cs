@@ -2,7 +2,7 @@
 {
     /// <summary> A base view controller </summary>
     public abstract class BasePagerViewController<TViewModel>
-        : BaseViewController<TViewModel>, IMvxTabBarItemViewController
+        : BaseViewController<TViewModel>, ITabBarItemViewController
         where TViewModel : BasePagerViewModel
     {
         public virtual string? TabName => base.Title;

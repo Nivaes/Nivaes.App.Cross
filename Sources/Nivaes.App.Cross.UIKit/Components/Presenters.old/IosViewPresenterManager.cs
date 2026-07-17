@@ -221,7 +221,7 @@ namespace Nivaes.App.Cross.UIKitLib
             return viewController switch
             {
                 // check if viewController is a TabBarController
-                IMvxTabBarViewController tabBarController =>
+                ITabBarViewController tabBarController =>
                     ShowTabBarRootViewController(viewController, attribute, tabBarController),
                 // check if viewController is a PageViewController
                 IMvxPageViewController pageViewController =>
@@ -278,7 +278,7 @@ namespace Nivaes.App.Cross.UIKitLib
         [Obsolete("", true)]
         private async Task<bool> ShowTabBarRootViewController(
             UIViewController viewController, RootPresentationAttribute attribute,
-            IMvxTabBarViewController tabBarController)
+            ITabBarViewController tabBarController)
         {
             Context.TabBarViewController = tabBarController;
 
@@ -432,7 +432,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (Context.TabBarViewController == null)
                 throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");
 
-            if (viewController is IMvxTabBarItemViewController tabBarItem)
+            if (viewController is ITabBarItemViewController tabBarItem)
             {
                 attribute.TabName = tabBarItem.TabName;
                 attribute.TabIconName = tabBarItem.TabIconName;
@@ -794,11 +794,11 @@ namespace Nivaes.App.Cross.UIKitLib
             return false;
         }
 
-        protected virtual MvxNavigationController CreateNavigationController(UIViewController viewController)
+        protected virtual NavigationController CreateNavigationController(UIViewController viewController)
         {
             ArgumentNullException.ThrowIfNull(viewController);
 
-            return new MvxNavigationController(viewController);
+            return new NavigationController(viewController);
         }
 
         [Obsolete]
@@ -811,7 +811,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
             navigationController.PushViewController(viewController, attribute.Animated);
 
-            if (viewController is IMvxTabBarViewController tabBarController)
+            if (viewController is ITabBarViewController tabBarController)
                 Context.TabBarViewController = tabBarController;
         }
 

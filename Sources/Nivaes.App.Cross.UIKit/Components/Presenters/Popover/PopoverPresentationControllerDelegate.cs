@@ -4,9 +4,9 @@ namespace Nivaes.App.Cross.UIKitLib
     public class PopoverPresentationControllerDelegate
         : UIPopoverPresentationControllerDelegate
     {
-        private readonly PopoverUIKitPressenterAction _presenterAction;
+        private readonly PopoverPressenterAction _presenterAction;
 
-        public PopoverPresentationControllerDelegate(PopoverUIKitPressenterAction presenter)
+        public PopoverPresentationControllerDelegate(PopoverPressenterAction presenter)
         {
             _presenterAction = presenter;
         }

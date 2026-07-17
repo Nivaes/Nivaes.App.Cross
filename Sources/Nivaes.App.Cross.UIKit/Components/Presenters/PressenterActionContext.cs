@@ -1,20 +1,30 @@
 ﻿namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class PressenterActionContext
+    public sealed class PressenterActionContext 
+        : IPressenterActionContext
     {
         public UIWindow Window { get; }
 
-        public IMvxTabBarViewController? TabBarViewController;
+        public UINavigationController? MasterNavigationController { get; set; }
 
-        public IMvxSplitViewController? SplitViewController;
+        public ITabBarViewController? TabBarViewController { get; set; }
+
+        public IMvxSplitViewController? SplitViewController { get; set; }
+
+        public IMvxPageViewController? PageViewController { get; set; }
 
 #if IOS || MACCATALYST
-        public SlideMenuViewController? SlideMenuController;
+        public UIViewController? PopoverViewController { get; set; }
+
+        public SlideMenuViewController? SlideMenuController { get; set; }
 #endif
-        public UINavigationController? MainNavitagionController;
-        public IMenuViewController? MenuLeftViewController;
-        public IMenuViewController? MenuRigthViewController;
-        public List<UIMasterDetailSplitViewController> MasterDetailSplitViewControllers = new();
+        public UINavigationController? MainNavitagionController { get; set; }
+        public IMenuViewController? MenuLeftViewController { get; set; }
+        public IMenuViewController? MenuRigthViewController { get; set; }
+
+        public List<UIViewController> ModalViewControllers => new();
+
+        public List<UIMasterDetailSplitViewController> MasterDetailSplitViewControllers => new();
 
         public PressenterActionContext(UIWindow window)
         {

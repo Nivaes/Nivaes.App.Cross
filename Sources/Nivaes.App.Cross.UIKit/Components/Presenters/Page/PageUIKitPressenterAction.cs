@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public PageUIKitPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<PageUIKitPressenterAction> logger)
@@ -34,7 +34,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PagePresentationAttribute attribute)
         {
-            if (PageViewController != null && PageViewController.RemovePage(viewModel))
+            if (Context.PageViewController != null && Context.PageViewController.RemovePage(viewModel))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);
@@ -45,16 +45,13 @@ namespace Nivaes.App.Cross.UIKitLib
             PagePresentationAttribute attribute,
             CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(viewController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            if (PageViewController == null)
+            if (Context.PageViewController == null)
                 throw new AppException("Trying to show a page without a PageViewController, this is not possible!");
 
             if (attribute.WrapInNavigationController)
                 viewController = CreateNavigationController(viewController);
 
-            PageViewController.AddPage(
+            Context.PageViewController.AddPage(
                 viewController,
                 attribute);
             return ValueTask.FromResult(true);

@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross.UIKitLib;
 
-public interface IMvxTabBarItemViewController
+public interface ITabBarItemViewController
 {
     string TabName { get; }
     string TabIconName { get; }

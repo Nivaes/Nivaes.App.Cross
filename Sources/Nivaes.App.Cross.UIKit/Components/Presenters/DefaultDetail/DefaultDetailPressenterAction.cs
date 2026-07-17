@@ -6,11 +6,9 @@ namespace Nivaes.App.Cross.UIKitLib
     public sealed class DefaultDetailPressenterAction
             : PressenterAction<DefaultDetailPresentationAttribute>
     {
-      
-
         #region Constructor
         public DefaultDetailPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<DefaultDetailPressenterAction> logger)
@@ -36,8 +34,8 @@ namespace Nivaes.App.Cross.UIKitLib
          DefaultDetailPresentationAttribute attribute,
          CrossViewModelRequest request)
         {
-            base.MasterNavigationController = base.CreateNavigationController(viewController);
-            Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDefaultDetailView(base.MasterNavigationController);
+            Context.MasterNavigationController = base.CreateNavigationController(viewController);
+            Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDefaultDetailView(Context.MasterNavigationController);
 
             return ValueTask.FromResult(true);
         }

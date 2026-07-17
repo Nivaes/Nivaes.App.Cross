@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public MasterPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<MasterPressenterAction> logger)
@@ -73,7 +73,7 @@ namespace Nivaes.App.Cross.UIKitLib
                         true,
                         null);
 
-                base.ModalViewControllers.Add(masterDetailSplitViewController);
+                Context.ModalViewControllers.Add(masterDetailSplitViewController);
 
                 viewController.NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_back"), UIBarButtonItemStyle.Plain, (object sender, EventArgs e) =>
                 {
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.UIKitLib
             splitViewController.DismissViewController(true, null);
 
             Context.MasterDetailSplitViewControllers.Remove(splitViewController);
-            ModalViewControllers.Remove(splitViewController);
+            Context.ModalViewControllers.Remove(splitViewController);
         }
     }
 }

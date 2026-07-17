@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public ChildUIKitPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<ChildUIKitPressenterAction> logger)
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.UIKitLib
         {
 #if IOS || MACCATALYST
             // if a popover is presented
-            if (PopoverViewController is UINavigationController popoverNav &&
+            if (Context.PopoverViewController is UINavigationController popoverNav &&
                 TryCloseViewControllerInsideStack(popoverNav, viewModel, attribute))
             {
                 return ValueTask.FromResult(true);
@@ -41,7 +41,7 @@ namespace Nivaes.App.Cross.UIKitLib
 #endif
 
             // if there are modals presented
-            if (ModalViewControllers.Count > 0 && CloseModalChildViewController(viewModel, attribute))
+            if (Context.ModalViewControllers.Count > 0 && CloseModalChildViewController(viewModel, attribute))
                 return ValueTask.FromResult(true);
 
             // if the current root is a TabBarViewController, delegate close responsibility to it
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 return ValueTask.FromResult(true);
 
             // if the current root is a NavigationController, close it in the stack
-            if (MasterNavigationController != null && TryCloseViewControllerInsideStack(MasterNavigationController, viewModel, attribute))
+            if (Context.MasterNavigationController != null && TryCloseViewControllerInsideStack(Context.MasterNavigationController, viewModel, attribute))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);
@@ -60,11 +60,6 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private bool TryCloseViewControllerInsideStack(UINavigationController navController, ICrossViewModel toClose, ChildPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(navController);
-            ArgumentNullException.ThrowIfNull(attribute);
-
-            ArgumentNullException.ThrowIfNull(toClose);
-
             // check for top view controller
             var topView = navController.TopViewController;
             if (topView is IMvxIosView iosView && iosView.ViewModel == toClose)
@@ -89,7 +84,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private bool CloseModalChildViewController(ICrossViewModel viewModel, ChildPresentationAttribute attribute)
         {
-            foreach (var modalNav in ModalViewControllers.OfType<UINavigationController>())
+            foreach (var modalNav in Context.ModalViewControllers.OfType<UINavigationController>())
             {
                 if (TryCloseViewControllerInsideStack(modalNav, viewModel, attribute))
                     return true;

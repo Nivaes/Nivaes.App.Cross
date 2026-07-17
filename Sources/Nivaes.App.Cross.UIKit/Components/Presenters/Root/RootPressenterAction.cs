@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public RootPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<RootPressenterAction> logger)

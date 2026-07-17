@@ -4,34 +4,34 @@ namespace Nivaes.App.Cross.UIKitLib
     using Foundation;
     using ObjCRuntime;
 
-    public class MvxNavigationController
+    public class NavigationController
         : UINavigationController
     {
-        public MvxNavigationController()
+        public NavigationController()
         {
         }
 
-        public MvxNavigationController(UIViewController rootViewController) : base(rootViewController)
+        public NavigationController(UIViewController rootViewController) : base(rootViewController)
         {
         }
 
-        public MvxNavigationController(NSCoder coder) : base(coder)
+        public NavigationController(NSCoder coder) : base(coder)
         {
         }
 
-        public MvxNavigationController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        public NavigationController(string nibName, NSBundle bundle) : base(nibName, bundle)
         {
         }
 
-        public MvxNavigationController(Type navigationBarType, Type toolbarType) : base(navigationBarType, toolbarType)
+        public NavigationController(Type navigationBarType, Type toolbarType) : base(navigationBarType, toolbarType)
         {
         }
 
-        protected MvxNavigationController(NSObjectFlag t) : base(t)
+        protected NavigationController(NSObjectFlag t) : base(t)
         {
         }
 
-        protected internal MvxNavigationController(NativeHandle handle) : base(handle)
+        protected internal NavigationController(NativeHandle handle) : base(handle)
         {
         }
 

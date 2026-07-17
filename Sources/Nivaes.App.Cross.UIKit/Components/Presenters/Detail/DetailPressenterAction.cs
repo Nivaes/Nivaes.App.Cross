@@ -6,11 +6,9 @@ namespace Nivaes.App.Cross.UIKitLib
     public sealed class DetailPressenterAction
             : PressenterAction<DetailPresentationAttribute>
     {
-      
-
         #region Constructor
         public DetailPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<DetailPressenterAction> logger)
@@ -27,7 +25,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DetailPresentationAttribute attribute)
         {
-            base.Logger.LogWarning($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
+            Logger.LogWarning($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
 
             return ValueTask.FromResult(false);
         }
@@ -37,8 +35,8 @@ namespace Nivaes.App.Cross.UIKitLib
           DetailPresentationAttribute attribute,
           CrossViewModelRequest request)
         {
-            base.MasterNavigationController = base.CreateNavigationController(viewController);
-            Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDetailView(base.MasterNavigationController);
+            Context.MasterNavigationController = base.CreateNavigationController(viewController);
+            Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDetailView(Context.MasterNavigationController);
 
             return ValueTask.FromResult(true);
         }
