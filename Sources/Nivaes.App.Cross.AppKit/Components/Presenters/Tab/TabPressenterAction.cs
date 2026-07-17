@@ -3,7 +3,7 @@
 namespace Nivaes.App.Cross.AppKitLib
 {
     public sealed class TabPressenterAction
-        : AppKitPressenterAction<TabPresentationAttribute>
+        : PressenterAction<TabPresentationAttribute>
     {
         #region Constructor
         public TabPressenterAction(

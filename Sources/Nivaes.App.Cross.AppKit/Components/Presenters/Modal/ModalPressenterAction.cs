@@ -3,7 +3,7 @@
 namespace Nivaes.App.Cross.AppKitLib
 {
     public sealed class ModalPressenterAction
-        : AppKitPressenterAction<ModalPresentationAttribute>
+        : PressenterAction<ModalPresentationAttribute>
     {
         #region Constructor
         public ModalPressenterAction(

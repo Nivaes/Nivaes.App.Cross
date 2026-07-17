@@ -8,8 +8,8 @@ using Windows.UI.Core;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public abstract class WinUIPressenterAction<TPressenterAttribute>
-        : PressenterAction<TPressenterAttribute>
+    public abstract class PressenterAction<TPressenterAttribute>
+        : Cross.PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         private readonly IPressenterActionContext Context;
@@ -26,7 +26,7 @@ namespace Nivaes.App.Cross.WinUI
         private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
 
         #region Constructor
-        public WinUIPressenterAction(
+        public PressenterAction(
                 IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,

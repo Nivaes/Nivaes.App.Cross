@@ -7,7 +7,7 @@ using Nivaes.App.Cross.AppKitLib;
 namespace Nivaes.App.Cross.AppKitLib
 {
     public sealed class ContentPressenterAction
-        : AppKitPressenterAction<ContentPresentationAttribute>
+        : PressenterAction<ContentPresentationAttribute>
     {
         #region Constructor
         public ContentPressenterAction(

@@ -2,20 +2,16 @@
 
 namespace Nivaes.App.Cross.AppKitLib
 {
-    public abstract class AppKitPressenterAction<TPressenterAttribute>
-                : PressenterAction<TPressenterAttribute>
+    public abstract class PressenterAction<TPressenterAttribute>
+                : Cross.PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         protected readonly PressenterActionContext Context;
 
-        // ToDo: Windows ha de ser una colección común para todos los PressenterAction.
-        protected List<NSWindow> Windows { get; } = new List<NSWindow>();
-        protected NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
-
         protected readonly IMvxMacViewCreator ViewCreator;
 
         #region Constructor
-        protected AppKitPressenterAction(
+        protected PressenterAction(
                 PressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
@@ -35,9 +31,9 @@ namespace Nivaes.App.Cross.AppKitLib
 
         protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute)
         {
-            for (int i = Windows.Count - 1; i >= 0; i--)
+            for (int i = Context.Windows.Count - 1; i >= 0; i--)
             {
-                var window = Windows[i];
+                var window = Context.Windows[i];
 
                 // closing controller is a tab
                 var tabViewController = window.ContentViewController as IMvxTabViewController;
@@ -59,7 +55,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 // closing controller is content in a regular window
                 if (controller != null && ((ICrossView)controller).ViewModel == viewModel)
                 {
-                    Windows.Remove(window);
+                    Context.Windows.Remove(window);
                     window.Close();
                     return ValueTask.FromResult(true);
                 }
@@ -73,10 +69,10 @@ namespace Nivaes.App.Cross.AppKitLib
             NSWindow? window = null;
 
             if (!string.IsNullOrEmpty(identifier))
-                window = Windows.Find(w => w.Identifier == identifier);
+                window = Context.Windows.Find(w => w.Identifier == identifier);
 
             if (window == null)
-                window = MainWindow ?? Windows.LastOrDefault();
+                window = Context.MainWindow ?? Context.Windows.LastOrDefault();
 
             if (window == null)
                 throw new AppException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");

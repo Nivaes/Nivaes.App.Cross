@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.AppKitLib
 {
     public sealed class WindowPressenterAction
-        : AppKitPressenterAction<WindowPresentationAttribute>
+        : PressenterAction<WindowPresentationAttribute>
     {
         /// <summary>
         /// NSWindow keeps only the *weak* reference to its NSWindowController. So, the controller will be

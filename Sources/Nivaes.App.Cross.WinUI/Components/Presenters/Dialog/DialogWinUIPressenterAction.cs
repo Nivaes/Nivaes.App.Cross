@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Media;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class DialogWinUIPressenterAction
-        : WinUIPressenterAction<DialogViewPresentationAttribute>
+        : PressenterAction<DialogViewPresentationAttribute>
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ICrossViewModelLoader _viewModelLoader;

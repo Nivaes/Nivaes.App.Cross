@@ -5,7 +5,7 @@ using UIKit;
 namespace Nivaes.App.Cross.UIKitLib
 {   
     public class PopoverPresentationSourceProvider
-        : IMvxPopoverPresentationSourceProvider
+        : IPopoverPresentationSourceProvider
     {
         private readonly WeakReference<UIView?> _sourceViewWeakReference = new WeakReference<UIView?>(null);
         private readonly WeakReference<UIBarButtonItem?> _sourceBarButtonItemWeakReference = new WeakReference<UIBarButtonItem?>(null);
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (SourceView == null && SourceBarButtonItem == null)
             {
                 throw new InvalidOperationException(
-                    $"{nameof(IMvxPopoverPresentationSourceProvider)} should contain a source for popover."
+                    $"{nameof(IPopoverPresentationSourceProvider)} should contain a source for popover."
                 );
             }
 

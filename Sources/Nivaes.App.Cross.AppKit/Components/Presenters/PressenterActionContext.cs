@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Nivaes.App.Cross.AppKitLib;
 
-namespace Nivaes.App.Cross.AppKitLib
+public class PressenterActionContext
+    : IPressenterActionContext
 {
-    public class PressenterActionContext
-    {
-        List<NSWindow> Windows { get; } = new List<NSWindow>();
-    }
+    public List<NSWindow> Windows { get; } = new();
+
+    public NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 }

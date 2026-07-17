@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class RegionWinUIPressenterAction 
-        : WinUIPressenterAction<RegionPresentationAttribute>
+        : PressenterAction<RegionPresentationAttribute>
     {
         #region Constructor
         public RegionWinUIPressenterAction(

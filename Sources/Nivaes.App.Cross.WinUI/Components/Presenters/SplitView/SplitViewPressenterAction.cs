@@ -6,16 +6,16 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public sealed class SplitWinUIPressenterAction 
-        : WinUIPressenterAction<SplitViewPresentationAttribute>
+    public sealed class SplitViewPressenterAction 
+        : PressenterAction<SplitViewPresentationAttribute>
     {
         #region Constructor
-        public SplitWinUIPressenterAction(
+        public SplitViewPressenterAction(
                 IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
-                ILogger<SplitWinUIPressenterAction> logger)
+                ILogger<SplitViewPressenterAction> logger)
             : base(context, viewsContainer, rootFrame, requestTranslator,  logger)
         {
         }

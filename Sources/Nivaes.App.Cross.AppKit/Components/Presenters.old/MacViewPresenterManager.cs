@@ -112,195 +112,195 @@ public class MacViewPresenterManager
         //        (viewModel, attribute) => Close(viewModel));
     }
 
-    [Obsolete("User PressenterAction")]
-    protected virtual Task<bool> ShowWindowViewController(
-        NSViewController viewController,
-        WindowPresentationAttribute attribute,
-        CrossViewModelRequest request)
-    {
-        NSWindow window = null;
-        MvxWindowController windowController = null;
+    //[Obsolete("User PressenterAction")]
+    //protected virtual Task<bool> ShowWindowViewController(
+    //    NSViewController viewController,
+    //    WindowPresentationAttribute attribute,
+    //    CrossViewModelRequest request)
+    //{
+    //    NSWindow window = null;
+    //    MvxWindowController windowController = null;
 
-        if (!string.IsNullOrEmpty(attribute.WindowControllerName))
-        {
-            windowController = CreateWindowController(attribute);
-            window = windowController.Window;
-        }
+    //    if (!string.IsNullOrEmpty(attribute.WindowControllerName))
+    //    {
+    //        windowController = CreateWindowController(attribute);
+    //        window = windowController.Window;
+    //    }
 
-        if (window == null)
-        {
-            window = CreateWindow(attribute);
+    //    if (window == null)
+    //    {
+    //        window = CreateWindow(attribute);
 
-            if (windowController == null)
-            {
-                windowController = CreateWindowController(window);
-                windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
-            }
-            windowController.Window = window;
-        }
-        else
-        {
-            UpdateWindow(attribute, window);
-        }
+    //        if (windowController == null)
+    //        {
+    //            windowController = CreateWindowController(window);
+    //            windowController.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
+    //        }
+    //        windowController.Window = window;
+    //    }
+    //    else
+    //    {
+    //        UpdateWindow(attribute, window);
+    //    }
 
-        if (!Windows.Contains(window))
-            Windows.Add(window);
+    //    if (!Windows.Contains(window))
+    //        Windows.Add(window);
 
-        // ConditionalWeakTable automatically removes entries when the key (window) is garbage collected,
-        // so we don't need to manually remove items when windows are closed
-        _windowsToWindowControllers.AddOrUpdate(window, windowController);
+    //    // ConditionalWeakTable automatically removes entries when the key (window) is garbage collected,
+    //    // so we don't need to manually remove items when windows are closed
+    //    _windowsToWindowControllers.AddOrUpdate(window, windowController);
 
-        window.Identifier = attribute.Identifier ?? viewController.GetType().Name;
+    //    window.Identifier = attribute.Identifier ?? viewController.GetType().Name;
 
-        if (!string.IsNullOrEmpty(viewController.Title))
-            window.Title = viewController.Title;
+    //    if (!string.IsNullOrEmpty(viewController.Title))
+    //        window.Title = viewController.Title;
 
-        window.ContentView = viewController.View;
-        window.ContentViewController = viewController;
-        windowController.ShowWindow(null);
-        return Task.FromResult(true);
-    }
+    //    window.ContentView = viewController.View;
+    //    window.ContentViewController = viewController;
+    //    windowController.ShowWindow(null);
+    //    return Task.FromResult(true);
+    //}
 
-    [Obsolete("", true)]
-    protected virtual void UpdateWindow(WindowPresentationAttribute attribute, NSWindow window)
-    {
-        var positionX = (float)window.Frame.X;
-        var positionY = (float)window.Frame.Y;
-        var width = (float)window.Frame.Width;
-        var height = (float)window.Frame.Height;
+    //[Obsolete("", true)]
+    //protected virtual void UpdateWindow(WindowPresentationAttribute attribute, NSWindow window)
+    //{
+    //    var positionX = (float)window.Frame.X;
+    //    var positionY = (float)window.Frame.Y;
+    //    var width = (float)window.Frame.Width;
+    //    var height = (float)window.Frame.Height;
 
-        var newFrame = new CGRect(positionX, positionY, width, height);
-        window.SetFrame(newFrame, false);
+    //    var newFrame = new CGRect(positionX, positionY, width, height);
+    //    window.SetFrame(newFrame, false);
 
-        window.StyleMask = attribute.WindowStyle;
-        window.BackingType = attribute.BufferingType;
-        window.TitleVisibility = attribute.TitleVisibility;
-    }
+    //    window.StyleMask = attribute.WindowStyle;
+    //    window.BackingType = attribute.BufferingType;
+    //    window.TitleVisibility = attribute.TitleVisibility;
+    //}
 
-    [Obsolete("", true)]
-    protected virtual NSWindow CreateWindow(WindowPresentationAttribute attribute)
-    {
-        NSWindow window;
-        var positionX = attribute.PositionX;
-        var positionY = attribute.PositionY;
-        var width = attribute.Width;
-        var height = attribute.Height;
+    //[Obsolete("", true)]
+    //protected virtual NSWindow CreateWindow(WindowPresentationAttribute attribute)
+    //{
+    //    NSWindow window;
+    //    var positionX = attribute.PositionX;
+    //    var positionY = attribute.PositionY;
+    //    var width = attribute.Width;
+    //    var height = attribute.Height;
 
-        window = new NSWindow(
-            new CGRect(positionX, positionY, width, height),
-            attribute.WindowStyle,
-            attribute.BufferingType,
-            false,
-            NSScreen.MainScreen)
-        {
-            TitleVisibility = attribute.TitleVisibility,
-        };
-        return window;
-    }
+    //    window = new NSWindow(
+    //        new CGRect(positionX, positionY, width, height),
+    //        attribute.WindowStyle,
+    //        attribute.BufferingType,
+    //        false,
+    //        NSScreen.MainScreen)
+    //    {
+    //        TitleVisibility = attribute.TitleVisibility,
+    //    };
+    //    return window;
+    //}
 
-    [Obsolete("", true)]
-    protected virtual MvxWindowController CreateWindowController(WindowPresentationAttribute attribute)
-    {
-        MvxWindowController? windowController;
-        if (!string.IsNullOrEmpty(attribute.StoryboardName))
-        {
-            // Instantiate from storyboard
-            var storyboard = NSStoryboard.FromName(attribute.StoryboardName, null);
-            windowController = (MvxWindowController)storyboard.InstantiateControllerWithIdentifier(attribute.WindowControllerName);
-        }
-        else
-        {
-            var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
-            if (controllerType is null)
-            {
-                throw new AppException(
-                    $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
-                    $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
-                    $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
-                    $"for the corresponding view model.");
-            }
-            // Instantiate using Reflection - failure is possible if blank constructor is missing
-            windowController = (MvxWindowController?)Activator.CreateInstance(controllerType);
-        }
-        windowController!.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
-        return windowController;
-    }
+    //[Obsolete("", true)]
+    //protected virtual MvxWindowController CreateWindowController(WindowPresentationAttribute attribute)
+    //{
+    //    MvxWindowController? windowController;
+    //    if (!string.IsNullOrEmpty(attribute.StoryboardName))
+    //    {
+    //        // Instantiate from storyboard
+    //        var storyboard = NSStoryboard.FromName(attribute.StoryboardName, null);
+    //        windowController = (MvxWindowController)storyboard.InstantiateControllerWithIdentifier(attribute.WindowControllerName);
+    //    }
+    //    else
+    //    {
+    //        var controllerType = attribute.WindowControllerType ?? Type.GetType(attribute.WindowControllerName);
+    //        if (controllerType is null)
+    //        {
+    //            throw new AppException(
+    //                $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
+    //                $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
+    //                $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
+    //                $"for the corresponding view model.");
+    //        }
+    //        // Instantiate using Reflection - failure is possible if blank constructor is missing
+    //        windowController = (MvxWindowController?)Activator.CreateInstance(controllerType);
+    //    }
+    //    windowController!.ShouldCascadeWindows = attribute.ShouldCascadeWindows;
+    //    return windowController;
+    //}
 
-    [Obsolete("", true)]
-    protected virtual MvxWindowController CreateWindowController(NSWindow window)
-    {
-        return new MvxWindowController(window);
-    }
+    //[Obsolete("", true)]
+    //protected virtual MvxWindowController CreateWindowController(NSWindow window)
+    //{
+    //    return new MvxWindowController(window);
+    //}
 
-    [Obsolete("User PressenterAction")]
-    protected virtual Task<bool> ShowContentViewController(
-        NSViewController viewController,
-        ContentPresentationAttribute attribute,
-        CrossViewModelRequest request)
-    {
-        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+    //[Obsolete("User PressenterAction")]
+    //protected virtual Task<bool> ShowContentViewController(
+    //    NSViewController viewController,
+    //    ContentPresentationAttribute attribute,
+    //    CrossViewModelRequest request)
+    //{
+    //    var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
-        if (!string.IsNullOrEmpty(viewController.Title))
-            window.Title = viewController.Title;
+    //    if (!string.IsNullOrEmpty(viewController.Title))
+    //        window.Title = viewController.Title;
 
-        window.ContentView = viewController.View;
-        window.ContentViewController = viewController;
-        return Task.FromResult(true);
-    }
+    //    window.ContentView = viewController.View;
+    //    window.ContentViewController = viewController;
+    //    return Task.FromResult(true);
+    //}
 
-    [Obsolete("User PressenterAction")]
-    protected virtual Task<bool> ShowModalViewController(
-        NSViewController viewController,
-        ModalPresentationAttribute attribute,
-        CrossViewModelRequest request)
-    {
-        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+    //[Obsolete("User PressenterAction")]
+    //protected virtual Task<bool> ShowModalViewController(
+    //    NSViewController viewController,
+    //    ModalPresentationAttribute attribute,
+    //    CrossViewModelRequest request)
+    //{
+    //    var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
-        window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
-        return Task.FromResult(true);
-    }
+    //    window.ContentViewController.PresentViewControllerAsModalWindow(viewController);
+    //    return Task.FromResult(true);
+    //}
 
-    [Obsolete("User PressenterAction")]
-    protected virtual Task<bool> ShowSheetViewController(
-        NSViewController viewController,
-        SheetPresentationAttribute attribute,
-        CrossViewModelRequest request)
-    {
-        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+    //[Obsolete("User PressenterAction")]
+    //protected virtual Task<bool> ShowSheetViewController(
+    //    NSViewController viewController,
+    //    SheetPresentationAttribute attribute,
+    //    CrossViewModelRequest request)
+    //{
+    //    var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
-        window.ContentViewController.PresentViewControllerAsSheet(viewController);
-        return Task.FromResult(true);
-    }
+    //    window.ContentViewController.PresentViewControllerAsSheet(viewController);
+    //    return Task.FromResult(true);
+    //}
 
-    [Obsolete("User PressenterAction")]
-    protected virtual Task<bool> ShowTabViewController(
-        NSViewController viewController,
-        TabPresentationAttribute attribute,
-        CrossViewModelRequest request)
-    {
-        var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
+    //[Obsolete("User PressenterAction")]
+    //protected virtual Task<bool> ShowTabViewController(
+    //    NSViewController viewController,
+    //    TabPresentationAttribute attribute,
+    //    CrossViewModelRequest request)
+    //{
+    //    var window = FindPresentingWindow(attribute.WindowIdentifier, viewController);
 
-        if (window.ContentViewController is not IMvxTabViewController tabViewController)
-            throw new AppException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
+    //    if (window.ContentViewController is not IMvxTabViewController tabViewController)
+    //        throw new AppException($"Trying to display a tab but there is no TabViewController to host it! View type: {viewController.GetType()}");
 
-        tabViewController.ShowTabView(viewController, attribute.TabTitle);
-        return Task.FromResult(true);
-    }
+    //    tabViewController.ShowTabView(viewController, attribute.TabTitle);
+    //    return Task.FromResult(true);
+    //}
 
-    protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
-    {
-        NSWindow window = null;
+    //protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)
+    //{
+    //    NSWindow window = null;
 
-        if (!string.IsNullOrEmpty(identifier))
-            window = Windows.Find(w => w.Identifier == identifier);
+    //    if (!string.IsNullOrEmpty(identifier))
+    //        window = Windows.Find(w => w.Identifier == identifier);
 
-        if (window == null)
-            window = MainWindow ?? Windows.LastOrDefault();
+    //    if (window == null)
+    //        window = MainWindow ?? Windows.LastOrDefault();
 
-        if (window == null)
-            throw new AppException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
+    //    if (window == null)
+    //        throw new AppException($"Could not find a window with identifier '{identifier}' to display view '{viewController.GetType()}'");
 
-        return window;
+    //    return window;
     }
 
     [Obsolete("User PressenteAction", true)]

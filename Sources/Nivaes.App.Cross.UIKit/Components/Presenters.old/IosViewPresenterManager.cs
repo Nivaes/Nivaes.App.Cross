@@ -472,7 +472,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual IUIAdaptivePresentationControllerDelegate CreateModalPresentationControllerDelegate(
             UIViewController viewController, ModalPresentationAttribute attribute)
         {
-            return new MvxModalPresentationControllerDelegate(this, viewController, attribute);
+            return new ModalPresentationControllerDelegate(this, viewController, attribute);
         }
 
         [Obsolete]
@@ -540,9 +540,9 @@ namespace Nivaes.App.Cross.UIKitLib
             if (presentationController != null)
             {
                 presentationController.PermittedArrowDirections = attribute.PermittedArrowDirections;
-                var sourceProvider = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxPopoverPresentationSourceProvider>();
+                var sourceProvider = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IPopoverPresentationSourceProvider>();
                 sourceProvider?.SetSource(presentationController);
-                presentationController.Delegate = new MvxPopoverPresentationControllerDelegate(this);
+                presentationController.Delegate = new PopoverPresentationControllerDelegate(this);
             }
 
             PopoverViewController = viewController;

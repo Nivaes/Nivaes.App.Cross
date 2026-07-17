@@ -3,7 +3,7 @@
 namespace Nivaes.App.Cross.AppKitLib
 {
     public sealed class SheetMacPressenterAction
-        : AppKitPressenterAction<SheetPresentationAttribute>
+        : PressenterAction<SheetPresentationAttribute>
     {
         #region Constructor
         public SheetMacPressenterAction(

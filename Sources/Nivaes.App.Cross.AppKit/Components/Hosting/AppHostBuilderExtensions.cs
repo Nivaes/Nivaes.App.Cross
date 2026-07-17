@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
                 return new MacViewPresenterManager(applicationDelegation, viewsContainer, logger);
             });
-            builder.Services.AddSingleton<PressenterActionContext>();
+            builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
             builder.Services.TryAddSingleton<ICrossViewsContainer, MvxMacViewsContainer>();
 

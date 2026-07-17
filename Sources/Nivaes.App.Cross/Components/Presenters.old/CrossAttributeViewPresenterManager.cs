@@ -14,26 +14,26 @@ public abstract class CrossAttributeViewPresenterManager
         ViewsContainer = crossViewsContainer;
     }
 
-    [Obsolete("", true)]
-    private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
+    //[Obsolete("", true)]
+    //private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
 
-    [Obsolete("Busca interfaces de la vista.", true)]
-    public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
-    {
-        get
-        {
-            throw new NotImplementedException();
-            if (_attributeTypesActionsDictionary == null)
-            {
-                _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
-                RegisterAttributeTypes();
-            }
-            return _attributeTypesActionsDictionary;
-        }
-    }
+    //[Obsolete("Busca interfaces de la vista.", true)]
+    //public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
+    //{
+    //    get
+    //    {
+    //        throw new NotImplementedException();
+    //        if (_attributeTypesActionsDictionary == null)
+    //        {
+    //            _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
+    //            RegisterAttributeTypes();
+    //        }
+    //        return _attributeTypesActionsDictionary;
+    //    }
+    //}
 
-    [Obsolete("", true)]
-    public abstract void RegisterAttributeTypes();
+    //[Obsolete("", true)]
+    //public abstract void RegisterAttributeTypes();
 
     public abstract BasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,
@@ -104,35 +104,35 @@ public abstract class CrossAttributeViewPresenterManager
         return CreatePresentationAttribute(request.ViewModelType, viewType);
     }
 
-    [Obsolete("Migrate to PressenterAction", true)]
-    protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
-        CrossViewModelRequest? request, out BasePresentationAttribute attribute)
-    {
-        var presentationAttribute = GetPresentationAttribute(request);
-        presentationAttribute.ViewModelType = request.ViewModelType;
-        var attributeType = presentationAttribute.GetType();
+    //[Obsolete("Migrate to PressenterAction", true)]
+    //protected virtual CrossPresentationAttributeAction GetPresentationAttributeAction(
+    //    CrossViewModelRequest? request, out BasePresentationAttribute attribute)
+    //{
+    //    var presentationAttribute = GetPresentationAttribute(request);
+    //    presentationAttribute.ViewModelType = request.ViewModelType;
+    //    var attributeType = presentationAttribute.GetType();
 
-        attribute = presentationAttribute;
+    //    attribute = presentationAttribute;
 
-        if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
-        {
-            if (attributeAction.ShowAction == null)
-            {
-                throw new InvalidOperationException(
-                    $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
-            }
+    //    if (AttributeTypesToActionsDictionary.TryGetValue(attributeType, out var attributeAction))
+    //    {
+    //        if (attributeAction.ShowAction == null)
+    //        {
+    //            throw new InvalidOperationException(
+    //                $"attributeAction.ShowAction is null for attribute: {attributeType.Name}");
+    //        }
 
-            if (attributeAction.CloseAction == null)
-            {
-                throw new InvalidOperationException(
-                    $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
-            }
+    //        if (attributeAction.CloseAction == null)
+    //        {
+    //            throw new InvalidOperationException(
+    //                $"attributeAction.CloseAction is null for attribute: {attributeType.Name}");
+    //        }
 
-            return attributeAction;
-        }
+    //        return attributeAction;
+    //    }
 
-        throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
-    }
+    //    throw new KeyNotFoundException($"The type {attributeType.Name} is not configured in the presenter dictionary");
+    //}
 
     public override async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
     {
