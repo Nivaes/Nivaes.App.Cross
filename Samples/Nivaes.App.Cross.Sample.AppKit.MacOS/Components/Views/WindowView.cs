@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
 [WindowPresentation("ToolbarWindow", "Main", Width = 500)]
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class WindowView : CrossViewController<WindowViewModel>
 {
     public WindowView(NativeHandle handle) : base(handle)

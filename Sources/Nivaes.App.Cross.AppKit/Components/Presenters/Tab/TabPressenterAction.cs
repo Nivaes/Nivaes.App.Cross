@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.AppKitLib
     {
         #region Constructor
         public TabPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger<TabPressenterAction> logger)

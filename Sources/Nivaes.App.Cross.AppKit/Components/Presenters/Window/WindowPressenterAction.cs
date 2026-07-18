@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
         #region Constructor
         public WindowPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger<WindowPressenterAction> logger)

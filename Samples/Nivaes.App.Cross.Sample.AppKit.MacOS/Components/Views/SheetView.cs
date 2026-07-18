@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
 [SheetPresentation]
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class SheetView : CrossViewController<SheetViewModel>
 {
     public SheetView(NativeHandle handle) : base(handle)

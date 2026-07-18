@@ -6,7 +6,6 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
 [ContentPresentation]
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ChildView
     : CrossViewController<ChildViewModel>
 {
