@@ -10,10 +10,9 @@ public sealed class MasterPresentationAction
 
     public MasterPresentationAction(
             IPressenterActionContext contex,
-            ICrossViewsContainer viewsContainer,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<MasterPresentationAction> logger)
-        : base(contex, viewsContainer, navigationSerializer, logger)
+        : base(contex, navigationSerializer, logger)
     {
     }
 
@@ -69,7 +68,9 @@ public sealed class MasterPresentationAction
 
     private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, CrossViewModelRequest request)
     {
-        var viewType = ViewsContainer.GetViewType(attribute.FragmentHostMasterDetailViewModelType);
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                        .GetValue(attribute.FragmentHostMasterDetailViewModelType);
+
         if (!viewType.IsSubclassOf(typeof(Fragment)))
             throw new AppException("The host fragment doesnt inherit Fragment");
 

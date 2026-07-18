@@ -9,10 +9,9 @@ namespace Nivaes.App.Cross.UIKitLib
         #region Constructor
         public DefaultDetailPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<DefaultDetailPressenterAction> logger)
-            : base(context, viewsContainer, viewCreator, logger)
+            : base(context, viewCreator, logger)
         {
         }
         #endregion

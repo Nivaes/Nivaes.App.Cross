@@ -8,10 +8,9 @@ namespace Nivaes.App.Cross.AppKitLib
         #region Constructor
         public ModalPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger<ModalPressenterAction> logger)
-            : base(context, viewsContainer, viewCreator, logger)
+            : base(context, viewCreator, logger)
         {
         }
         #endregion

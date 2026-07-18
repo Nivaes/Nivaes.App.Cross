@@ -8,16 +8,12 @@ namespace Nivaes.App.Cross.Droid
     {
         private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
-        protected readonly ICrossNavigationSerializer NavigationSerializer;
-
         public FullPresentationAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<FullPresentationAction> logger)
-            : base(context, viewsContainer, navigationSerializer, logger)
+            : base(context, navigationSerializer, logger)
         {
-            NavigationSerializer = navigationSerializer;
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.

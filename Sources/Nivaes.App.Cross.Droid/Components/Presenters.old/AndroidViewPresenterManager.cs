@@ -45,12 +45,12 @@ public class AndroidViewPresenterManager
 
     protected ICrossNavigationSerializer? NavigationSerializer => _navigationSerializer;
 
-    public AndroidViewPresenterManager(ICrossViewsContainer crossViewsContainer,
+    public AndroidViewPresenterManager(
         IMvxAndroidCurrentTopActivity androidCurrentTopActivity, IMvxAndroidActivityLifetimeListener activityLifetimeListener, 
         ICrossNavigationSerializer navigationSerializer,
         IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
         ILogger<AndroidViewPresenterManager> logger)
-        : base(crossViewsContainer, logger)
+        : base(logger)
     {
         _androidCurrentTopActivity = androidCurrentTopActivity;
         _activityLifetimeListener = activityLifetimeListener;
@@ -83,9 +83,8 @@ public class AndroidViewPresenterManager
 
     public override BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
-        var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
-        if (viewType == null)
-            throw new InvalidOperationException($"Could not get view type for ViewModel Type: {request.ViewModelType}");
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(request.ViewModelType);
 
         IList<BasePresentationAttribute> attributes = viewType.GetCustomAttributes<BasePresentationAttribute>(true).ToList();
         if (attributes.Count > 0)
@@ -427,10 +426,12 @@ public class AndroidViewPresenterManager
         if (attribute.ActivityHostViewModelType == null)
             throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
-        var viewType = base.ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(attribute.ActivityHostViewModelType);
+
         if (viewType?.IsSubclassOf(typeof(Activity)) != true)
             throw new AppException("The host activity doesn't inherit Activity");
-
+        
         var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
         if (PendingRequest != null)
             hostViewModelRequest.PresentationValues = PendingRequest.PresentationValues;

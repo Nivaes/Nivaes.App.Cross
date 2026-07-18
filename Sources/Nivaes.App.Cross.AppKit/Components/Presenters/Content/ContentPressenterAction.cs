@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Nivaes.App.Cross.AppKitLib;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.AppKitLib
 {
@@ -12,10 +8,9 @@ namespace Nivaes.App.Cross.AppKitLib
         #region Constructor
         public ContentPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger<ContentPressenterAction> logger)
-            : base(context, viewsContainer, viewCreator, logger)
+            : base(context, viewCreator, logger)
         {
         }
         #endregion

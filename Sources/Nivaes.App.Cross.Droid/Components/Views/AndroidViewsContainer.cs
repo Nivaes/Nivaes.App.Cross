@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
-public sealed class AndroidViewsContainer
-    : CrossViewsContainer, IAndroidViewsContainer
+internal sealed class AndroidViewsContainer
+    : IAndroidViewsContainer
 {
     private const string ExtrasKey = "LaunchDataKey";
     private const string SubViewModelKey = "SubViewModelKey";
@@ -14,14 +14,16 @@ public sealed class AndroidViewsContainer
     private readonly ICrossNavigationSerializer _navigationSerializer;
     private readonly ICrossChildViewModelCache _childViewModelCache;
 
+    private readonly ILogger Logger;
+
     public AndroidViewsContainer(Context applicationContext,
         ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,
         ILogger<AndroidViewsContainer> logger)
-        : base(logger)
     {
         _applicationContext = applicationContext;
         _navigationSerializer = navigationSerializer;
         _childViewModelCache = childViewModelCache;
+        Logger = logger;
     }
 
     #region Implementation of IMvxAndroidViewModelRequestTranslator
@@ -45,7 +47,7 @@ public sealed class AndroidViewsContainer
 
         if (TryGetEmbeddedViewModel(intent, out var mvxViewModel))
         {
-            base.Logger.Log(LogLevel.Trace, "Embedded ViewModel used");
+            Logger.Log(LogLevel.Trace, "Embedded ViewModel used");
             return mvxViewModel;
         }
 
@@ -113,19 +115,10 @@ public sealed class AndroidViewsContainer
 
     public Intent GetIntentFor(CrossViewModelRequest request)
     {
-        var viewType = GetViewType(request.ViewModelType!);
-        if (viewType == null)
-        {
-            throw new AppException("View Type not found for " + request.ViewModelType);
-        }
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+            .GetValue(request.ViewModelType);
 
         var intent = new Intent(_applicationContext, viewType);
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossNavigationSerializer? navigationSerializer) != true ||
-        //    navigationSerializer == null)
-        //{
-        //    return intent;
-        //}
 
         var requestText = _navigationSerializer.Serializer.SerializeObject(request);
         intent.PutExtra(ExtrasKey, requestText);

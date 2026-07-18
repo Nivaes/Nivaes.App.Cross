@@ -4,7 +4,7 @@ using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.AppKitLib.Observability
 {
-    public class AppKitCrashHandler : CrashHandler
+    internal class AppKitCrashHandler : CrashHandler
     {
         protected override string PathCrashFile => Path.Combine(
               Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),

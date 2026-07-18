@@ -13,10 +13,9 @@ namespace Nivaes.App.Cross.UIKitLib
         #region Constructor
         public PressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger logger)
-            : base(viewsContainer, logger)
+            : base(logger)
         {
             Context = context;
             ViewCreator = viewCreator;

@@ -15,11 +15,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public PageWinUIPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger logger)
-            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, rootFrame, requestTranslator, logger)
         {
         }
         #endregion
@@ -62,11 +61,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public PageWinUIPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger<PageWinUIPressenterAction> logger)
-            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, rootFrame, requestTranslator, logger)
         {
         }
         #endregion

@@ -28,9 +28,9 @@ public class MacViewPresenterManager
 
     protected virtual NSWindow MainWindow => NSApplication.SharedApplication.MainWindow;
 
-    public MacViewPresenterManager(INSApplicationDelegate applicationDelegate, ICrossViewsContainer crossViewsContainer,
+    public MacViewPresenterManager(INSApplicationDelegate applicationDelegate, 
         ILogger<MacViewPresenterManager> logger)
-        : base(crossViewsContainer, logger)
+        : base(logger)
     {
         _applicationDelegate = applicationDelegate;
         NSWindow.Notifications.ObserveWillClose(OnWindowWillCloseNotification);

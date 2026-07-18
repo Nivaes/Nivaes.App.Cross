@@ -28,11 +28,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public PressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger logger)
-            : base(viewsContainer, logger)
+            : base(logger)
         {
             Context = context;
             _requestTranslator = requestTranslator;

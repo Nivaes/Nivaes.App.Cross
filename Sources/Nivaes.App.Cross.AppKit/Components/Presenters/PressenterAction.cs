@@ -13,17 +13,16 @@ namespace Nivaes.App.Cross.AppKitLib
         #region Constructor
         protected PressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger logger)
-            : base(viewsContainer, logger)
+            : base(logger)
         {
             Context = context;
             ViewCreator = viewCreator;
         }
         #endregion
 
-        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
         {
             Logger.LogTrace($"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
             return new WindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
@@ -79,6 +78,5 @@ namespace Nivaes.App.Cross.AppKitLib
 
             return window;
         }
-
     }
 }

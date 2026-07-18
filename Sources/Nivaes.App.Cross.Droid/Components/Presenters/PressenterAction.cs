@@ -39,10 +39,9 @@ namespace Nivaes.App.Cross.Droid
         #region Constructor
         protected PressenterAction(
                 IPressenterActionContext contex,
-                ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger logger)
-            : base(viewsContainer, logger)
+            : base(logger)
         {
             Context = contex;
             //_androidCurrentTopActivity = androidCurrentTopActivity;
@@ -103,7 +102,9 @@ namespace Nivaes.App.Cross.Droid
             if (attribute.ActivityHostViewModelType == null)
                 throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
-            var viewType = ViewsContainer?.GetViewType(attribute.ActivityHostViewModelType);
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(attribute.ActivityHostViewModelType);
+
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
                 throw new AppException("The host activity doesn't inherit Activity");
 

@@ -11,11 +11,10 @@ public sealed class DetailPresentationAction
 
     public DetailPresentationAction(
             IPressenterActionContext contex,
-            ICrossViewsContainer viewsContainer,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<DetailPresentationAction> logger)
-        : base(contex, viewsContainer, navigationSerializer, logger)
+        : base(contex, navigationSerializer, logger)
     {
     }
 
@@ -101,9 +100,9 @@ public sealed class DetailPresentationAction
 
     private void ShowAlternativeDetailHostActivity(DetailPresentationAttribute attribute)
     {
-        if (attribute == null) throw new ArgumentNullException(nameof(attribute));
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(attribute.AlternativeDetailActivityHostViewModelType);
 
-        var viewType = ViewsContainer.GetViewType(attribute.AlternativeDetailActivityHostViewModelType);
         if (!viewType.IsSubclassOf(typeof(Android.App.Activity)))
             throw new AppException("The host activity doesn't inherit Activity");
 

@@ -6,17 +6,18 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.UIKitLib
 {
     public class MvxIosViewsContainer
-        : CrossViewsContainer
-        , IMvxIosViewsContainer
+        : IMvxIosViewsContainer
     {
         private readonly IServiceProvider _serviceProvider;
+
+        private readonly ILogger _logger;
 
         public CrossViewModelRequest? CurrentRequest { get; private set; }
 
         public MvxIosViewsContainer(IServiceProvider serviceProvider, ILogger<MvxIosViewsContainer> logger)
-            : base(logger)
         {
             _serviceProvider = serviceProvider;
+            _logger = logger;
         }
 
         public virtual IMvxIosView CreateView(CrossViewModelRequest request)
@@ -24,9 +25,8 @@ namespace Nivaes.App.Cross.UIKitLib
             try
             {
                 CurrentRequest = request;
-                var viewType = GetViewType(request.ViewModelType!);
-                if (viewType == null)
-                    throw new AppException($"View Type not found for {request.ViewModelType}");
+                var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                            .GetValue(request.ViewModelType);
 
                 var view = CreateViewOfType(viewType);
                 view.Request = request;

@@ -1,8 +1,7 @@
 namespace Nivaes.App.Cross.AppKitLib
 {
     public interface IMvxMacViewsContainer
-         : ICrossViewsContainer
-         , IMvxMacViewCreator
+         : IMvxMacViewCreator
          , IMvxCurrentRequest
     {
     }

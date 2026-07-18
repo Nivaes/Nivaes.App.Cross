@@ -4,7 +4,7 @@ using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.PWA.Observability
 {
-    public class WebCrashHandler : CrashHandler
+    internal class WebCrashHandler : CrashHandler
     {
         protected override string PathCrashFile => throw new NotImplementedException();
 

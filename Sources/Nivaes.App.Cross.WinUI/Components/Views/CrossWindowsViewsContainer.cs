@@ -4,27 +4,34 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.WinUI;
 
 internal class CrossWindowsViewsContainer
-    : CrossViewsContainer
-    , ICrossStoreViewsContainer
+    : ICrossStoreViewsContainer
 {
     private const string ExtrasKey = "MvxLaunchData";
     private const string SubViewModelKey = "MvxSubViewModelKey";
 
-    private IServiceProvider _serviceProvider;
+    private readonly ICrossViewModelLoader _viewModelLoader;
+    private readonly ICrossNavigationSerializer _navigationSerializer;
+    private readonly ICrossChildViewModelCache _childViewModelCache;
+    private readonly ILogger _logger;
 
-    public CrossWindowsViewsContainer(IServiceProvider serviceProvider, ILogger<CrossWindowsViewsContainer> logger)
-        : base(logger)
+    public CrossWindowsViewsContainer(
+        ICrossViewModelLoader viewModelLoader,
+        ICrossNavigationSerializer navigationSerializer,
+        ICrossChildViewModelCache childViewModelCache,
+        ILogger<CrossWindowsViewsContainer> logger)
     {
-        _serviceProvider = serviceProvider;
+        _viewModelLoader = viewModelLoader;
+        _navigationSerializer = navigationSerializer;
+        _childViewModelCache = childViewModelCache;
+        _logger = logger;
     }
 
     public ICrossViewModel Load(string requestText, ICrossBundle savedState)
     {
-        var converter = _serviceProvider.GetService<ICrossNavigationSerializer>();
-        var dictionary = converter.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
+        var dictionary = _navigationSerializer.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
         dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
-        var request = converter.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest!);
+        var request = _navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest!);
 
         if (dictionary.TryGetValue(SubViewModelKey, out string? viewModelKey))
         {
@@ -35,52 +42,48 @@ internal class CrossWindowsViewsContainer
             return viewModel!;
         }
 
-        var loaderService = _serviceProvider.GetService<ICrossViewModelLoader>();
-        return loaderService!.LoadViewModel(request!, savedState);
+        return _viewModelLoader.LoadViewModel(request!, savedState);
     }
 
     #region Implementation of IMvxWindowsViewModelRequestTranslator
     public string GetRequestTextFor(CrossViewModelRequest request)
     {
         var returnData = new Dictionary<string, string>();
-        var converter = _serviceProvider.GetService<ICrossNavigationSerializer>();
 
-        returnData.Add(ExtrasKey, converter!.Serializer.SerializeObject(request));
+        returnData.Add(ExtrasKey, _navigationSerializer!.Serializer.SerializeObject(request));
 
-        var requestText = converter.Serializer.SerializeObject(returnData);
+        var requestText = _navigationSerializer.Serializer.SerializeObject(returnData);
         return requestText;
     }
 
     public string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse)
     {
         var returnData = new Dictionary<string, string>();
-        var converter = _serviceProvider.GetService<ICrossNavigationSerializer>();
+        
         var request = CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
 
-        var key = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossChildViewModelCache>()!.Cache(existingViewModelToUse);
-        returnData.Add(ExtrasKey, converter!.Serializer!.SerializeObject(request));
+        var key = _childViewModelCache.Cache(existingViewModelToUse);
+        returnData.Add(ExtrasKey, _navigationSerializer!.Serializer!.SerializeObject(request));
         returnData.Add(SubViewModelKey, key!.ToString()!);
 
-        var requestText = converter.Serializer.SerializeObject(returnData);
+        var requestText = _navigationSerializer.Serializer.SerializeObject(returnData);
 
         return requestText;
     }
 
     public void RemoveSubViewModelWithKey(int key)
     {
-        var cache = _serviceProvider.GetService<ICrossChildViewModelCache>();
-        cache?.Remove(key);
+        _childViewModelCache.Remove(key);
     }
 
     public int RequestTextGetKey(string requestText)
     {
         var returnValue = 0;
-        var converter = _serviceProvider.GetService<ICrossNavigationSerializer>();
 
-        var dictionary = converter!.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
+        var dictionary = _navigationSerializer!.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
 
         dictionary!.TryGetValue(ExtrasKey, out string? serializedRequest);
-        var request = converter!.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest!);
+        var request = _navigationSerializer!.Serializer.DeserializeObject<CrossViewModelRequest>(serializedRequest!);
 
         if (dictionary.TryGetValue(SubViewModelKey, out string? viewModelKey))
         {

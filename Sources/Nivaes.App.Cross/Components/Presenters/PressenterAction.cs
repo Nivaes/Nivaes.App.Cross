@@ -7,12 +7,10 @@ namespace Nivaes.App.Cross
         : IPressenterAction
         where TPresentationAttribute : IPresentationAttribute
     {
-        protected readonly ICrossViewsContainer ViewsContainer;
         public ILogger Logger { get; }
 
-        protected PressenterAction(ICrossViewsContainer viewsContainer, ILogger logger)
+        protected PressenterAction(ILogger logger)
         {
-            ViewsContainer = viewsContainer;
             Logger = logger;
         }
 
@@ -35,8 +33,6 @@ namespace Nivaes.App.Cross
         private IPressenterAction GetPresentationAttributeAction(
             CrossViewModelRequest? request, out BasePresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(request, nameof(request));
-
             var presentationAttribute = GetPresentationAttribute(request);
             presentationAttribute.ViewModelType = request.ViewModelType;
             var attributeType = presentationAttribute.GetType();
@@ -48,12 +44,8 @@ namespace Nivaes.App.Cross
 
         private BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
-            ArgumentNullException.ThrowIfNull(request, nameof(request));
-            ArgumentNullException.ThrowIfNull(request.ViewModelType, nameof(request.ViewModelType));
-
-            var viewType = ViewsContainer.GetViewType(request.ViewModelType);
-            if (viewType == null)
-                throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                    .GetValue(request.ViewModelType);
 
             //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
             //if (overrideAttribute != null)
@@ -77,7 +69,7 @@ namespace Nivaes.App.Cross
             return CreatePresentationAttribute(request.ViewModelType, viewType);
         }
 
-        protected abstract BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType);
+        protected abstract BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
 
         protected ValueTask<bool> Show(CrossViewModelRequest request)
         {

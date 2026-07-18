@@ -27,7 +27,6 @@ namespace Nivaes.App.Cross.UIKitLib
             builder.Services.TryAddSingleton<IIosViewPresenterManager, IosViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext>(sp => new PressenterActionContext(windows));
             
-            builder.Services.TryAddSingleton<ICrossViewsContainer, MvxIosViewsContainer>();
             builder.Services.TryAddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
 
             builder.Services.TryAddSingleton<ICrashHandler, UIKitCrashHandler>();

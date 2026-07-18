@@ -14,11 +14,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public RegionWinUIPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger<RegionWinUIPressenterAction> logger)
-            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, rootFrame, requestTranslator, logger)
         {
         }
         #endregion
@@ -53,12 +52,9 @@ namespace Nivaes.App.Cross.WinUI
         {
             var windowInformation = GetWindowInformation(viewModel);
 
-            if (base.ViewsContainer == null)
-            {
-                return ValueTask.FromResult(false);
-            }
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+               .GetValue(viewModel.GetType());
 
-            var viewType = base.ViewsContainer.GetViewType(viewModel.GetType());
             if (viewType.HasRegionAttribute())
             {
                 var containerView =

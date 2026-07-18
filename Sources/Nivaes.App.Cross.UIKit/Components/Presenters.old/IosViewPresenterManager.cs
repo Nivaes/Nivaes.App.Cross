@@ -29,9 +29,8 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public IosViewPresenterManager(
                     IPressenterActionContext context,
-                    ICrossViewsContainer crossViewsContainer,
                     IMvxIosViewCreator viewCreator, ILogger<IosViewPresenterManager> logger)
-            : base(crossViewsContainer, logger)
+            : base(logger)
         {
             Context = context;
             _viewCreator = viewCreator;
@@ -63,8 +62,6 @@ namespace Nivaes.App.Cross.UIKitLib
         public override object? CreateOverridePresentationAttributeViewInstance(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
         {
-            ArgumentNullException.ThrowIfNull(viewType);
-
             return (UIViewController?)_viewCreator.CreateViewOfType(viewType);
         }      
 

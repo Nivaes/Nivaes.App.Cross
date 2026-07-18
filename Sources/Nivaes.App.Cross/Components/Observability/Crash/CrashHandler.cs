@@ -4,7 +4,7 @@ using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.Observability;
 
-public abstract class CrashHandler : ICrashHandler
+internal abstract class CrashHandler : ICrashHandler
 {
     protected abstract string PathCrashFile { get; }
 

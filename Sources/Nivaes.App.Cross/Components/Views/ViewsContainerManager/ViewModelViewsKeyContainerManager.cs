@@ -23,4 +23,14 @@ public sealed class ViewModelViewsKeyContainerManager : KeyContainerManager<Type
     {
         return base.TryGetValue(viewModelType.TypeHandle.Value, out presentationType);
     }
+
+    public Type GetValue(Type viewModelType)
+    {
+        if (!TryGetValue(viewModelType, out var viewType))
+        {
+            throw new AppException($"Not fount ViewType asociate to {viewModelType.FullName}.");
+        } 
+        
+        return viewType;
+    }
 }

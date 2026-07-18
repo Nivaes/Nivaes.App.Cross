@@ -18,10 +18,9 @@ namespace Nivaes.App.Cross.Droid
 
         public DialogFragmentPresentationAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<DialogFragmentPresentationAction> logger)
-            : base(context, viewsContainer, navigationSerializer, logger)
+            : base(context, navigationSerializer, logger)
         {
         }
 

@@ -26,15 +26,11 @@ namespace Nivaes.App.Cross.AppKitLib
 
             builder.Services.TryAddSingleton<IMacViewPresenterManager>(sp =>
             {
-                var viewsContainer = sp.GetRequiredService<ICrossViewsContainer>();
-                var viewCreator = sp.GetRequiredService<IMvxMacViewCreator>();
                 var logger = sp.GetRequiredService<ILogger<MacViewPresenterManager>>();
 
-                return new MacViewPresenterManager(applicationDelegation, viewsContainer, logger);
+                return new MacViewPresenterManager(applicationDelegation, logger);
             });
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
-
-            builder.Services.TryAddSingleton<ICrossViewsContainer, MvxMacViewsContainer>();
 
             builder.Services.TryAddSingleton<ICrashHandler, AppKitCrashHandler>();
             builder.Services.TryAddSingleton<IMvxMacViewCreator, MvxMacViewsContainer>();

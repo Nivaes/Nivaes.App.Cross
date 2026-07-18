@@ -21,11 +21,10 @@ namespace Nivaes.App.Cross.WinUI
         #region Constructor
         public NewWindowWinUIPressenterAction(
                 IPressenterActionContext context,
-                ICrossViewsContainer viewsContainer,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger<NewWindowWinUIPressenterAction> logger)
-            : base(context, viewsContainer, rootFrame, requestTranslator, logger)
+            : base(context, rootFrame, requestTranslator, logger)
         {
         }
         #endregion
@@ -53,12 +52,8 @@ namespace Nivaes.App.Cross.WinUI
         {
             var newWindow = new Window();
 
-            var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
-            if (viewType == null)
-            {
-                Logger.LogError("Could not find View for ViewModelType: {ViewModelType}", request.ViewModelType);
-                return false;
-            }
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(request.ViewModelType);
 
             var frame = new CrossWindowsFrame(new Frame());
             await ShowPage(frame, viewType, request);

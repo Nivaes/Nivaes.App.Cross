@@ -5,15 +5,12 @@ namespace Nivaes.App.Cross
     public abstract class CrossViewPresenterManager
         : ICrossViewPresenterManager
     {
-        protected readonly ICrossViewsContainer ViewsContainer;
-
         private readonly Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>> _presentationHintHandlers = new();
 
         protected readonly ILogger Logger;
 
-        public CrossViewPresenterManager(ICrossViewsContainer crossViewsContainer, ILogger logger)
+        public CrossViewPresenterManager(ILogger logger)
         {
-            ViewsContainer = crossViewsContainer;
             Logger = logger;
         }
 
@@ -42,9 +39,8 @@ namespace Nivaes.App.Cross
 
         public virtual BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
         {
-            var viewType = ViewsContainer.GetViewType(request.ViewModelType);
-            if (viewType == null)
-                throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+                .GetValue(request.ViewModelType);
 
             var attribute = viewType
                 .GetCustomAttributes(typeof(BasePresentationAttribute), true)
@@ -78,21 +74,21 @@ namespace Nivaes.App.Cross
             return false;
         }
 
-        public virtual ValueTask<bool> Show(CrossViewModelRequest request)
+        public ValueTask<bool> Show(CrossViewModelRequest request)
         {
             var pressentationAction = GetPresentationAction(request, out var attribute);
 
             return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
         }
 
-        public virtual ValueTask<bool> Close(ICrossViewModel viewModel)
+        public ValueTask<bool> Close(ICrossViewModel viewModel)
         {
             var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
 
             return pressentationAction.CloseAction(viewModel, attribute);
         }
 
-        protected virtual IPressenterAction GetPresentationAction(
+        protected IPressenterAction GetPresentationAction(
             CrossViewModelRequest? request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);

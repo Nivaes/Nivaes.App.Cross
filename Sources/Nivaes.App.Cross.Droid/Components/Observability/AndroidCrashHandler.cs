@@ -6,7 +6,7 @@ using OpenTelemetry.Trace;
 
 namespace Nivaes.App.Cross.Droid.Observability
 {
-    public class AndroidCrashHandler : CrashHandler
+    internal class AndroidCrashHandler : CrashHandler
     {
         protected override string PathCrashFile => Path.Combine(
                      Application.Context.FilesDir?.AbsolutePath!,
@@ -23,13 +23,13 @@ namespace Nivaes.App.Cross.Droid.Observability
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
         }
 
-        private void AndroidEnvironment_UnhandledExceptionRaiser(
+        private async void AndroidEnvironment_UnhandledExceptionRaiser(
             object? sender,
             RaiseThrowableEventArgs e)
         {
             var ex = e.Exception;
 
-            SaveException(ex, "Unhandled Java exception occurred.");
+            await SaveException(ex, "Unhandled Java exception occurred.");
 
             base.Logger.LogCritical(ex, "Unhandled Java exception occurred.");
             LoggerProvider?.ForceFlush();

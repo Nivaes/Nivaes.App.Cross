@@ -13,8 +13,6 @@ public class CrossNavigationService
 
     public ICrossViewDispatcher ViewDispatcher { [DebuggerHidden] get; }
 
-    protected ICrossViewsContainer? ViewsContainer { [DebuggerHidden] get; }
-
     protected Dictionary<Regex, Type> Routes { [DebuggerHidden] get; } = new();
 
     protected ICrossViewModelLoader ViewModelLoader { [DebuggerHidden] get; [DebuggerHidden] set; }
@@ -34,12 +32,10 @@ public class CrossNavigationService
     public CrossNavigationService(
         ICrossViewModelLoader viewModelLoader,
         ICrossViewDispatcher viewDispatcher,
-        ICrossViewsContainer crossViewsContainer,
         ILogger<CrossNavigationService> logger)
     {
         ViewModelLoader = viewModelLoader;
         ViewDispatcher = viewDispatcher;
-        ViewsContainer = crossViewsContainer;
         _logger = logger;
     }
 
@@ -63,12 +59,18 @@ public class CrossNavigationService
     public virtual Task<bool> CanNavigate<TViewModel>()
         where TViewModel : ICrossViewModel
     {
-        return Task.FromResult(ViewsContainer?.GetViewType(typeof(TViewModel)) != null);
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+            .GetValue(typeof(TViewModel));
+
+        return Task.FromResult(viewType != null);
     }
 
     public virtual Task<bool> CanNavigate(Type viewModelType)
     {
-        return Task.FromResult(ViewsContainer?.GetViewType(viewModelType) != null);
+        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+            .GetValue(viewModelType);
+
+        return Task.FromResult(viewType != null);
     }
 
     protected virtual async Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
