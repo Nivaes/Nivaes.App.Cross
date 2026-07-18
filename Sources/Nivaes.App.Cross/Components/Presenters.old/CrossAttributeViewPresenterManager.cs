@@ -45,41 +45,6 @@ public abstract class CrossAttributeViewPresenterManager
         return Activator.CreateInstance(viewType);
     }
 
-    [Obsolete("Busca interfaces de la vista.", true)]
-    public virtual BasePresentationAttribute? GetOverridePresentationAttribute(
-        CrossViewModelRequest request,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.Interfaces)] Type viewType)
-    {
-        var hasInterface = viewType.GetInterfaces().Contains(typeof(ICrossOverridePresentationAttribute));
-        if (!hasInterface)
-            return null;
-
-        var viewInstance =
-            CreateOverridePresentationAttributeViewInstance(viewType) as ICrossOverridePresentationAttribute;
-        try
-        {
-            var presentationAttribute = viewInstance?.PresentationAttribute(request);
-            if (presentationAttribute == null)
-                return null;
-
-            if (presentationAttribute.ViewType == null)
-            {
-                presentationAttribute.ViewType = viewType;
-            }
-
-            if (presentationAttribute.ViewModelType == null)
-            {
-                presentationAttribute.ViewModelType = request.ViewModelType;
-            }
-
-            return presentationAttribute;
-        }
-        finally
-        {
-            (viewInstance as IDisposable)?.Dispose();
-        }
-    }
-
     public virtual BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
         var viewType = ViewsContainer.GetViewType(request.ViewModelType);

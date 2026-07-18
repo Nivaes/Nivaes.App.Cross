@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
     [MvxFromStoryboard("Main")]
     [TabPresentation(WrapInNavigationController = false)]
     [RequiresUnreferencedCode("Bindings require unreferenced code")]
-    public partial class Tab3View : MvxViewController<Tab3ViewModel>, IMvxTabBarItemViewController
+    public partial class Tab3View : MvxViewController<Tab3ViewModel>, ITabBarItemViewController
     {
         public Tab3View(NativeHandle handle) : base(handle)
         {

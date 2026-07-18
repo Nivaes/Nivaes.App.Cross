@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
 {
     [MvxFromStoryboard("Main")]
     [RootPresentation(WrapInNavigationController = true)]
-    public partial class PagesRootView : MvxPageViewController<PagesRootViewModel>
+    public partial class PagesRootView : PageViewController<PagesRootViewModel>
     {
         private bool _isPresentedFirstTime = true;
 

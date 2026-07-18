@@ -53,8 +53,8 @@ namespace Nivaes.App.Cross.AppKitLib
                 UpdateWindow(attribute, window);
             }
 
-            if (!Windows.Contains(window))
-                Windows.Add(window);
+            if (!Context.Windows.Contains(window))
+                Context.Windows.Add(window);
 
             // ConditionalWeakTable automatically removes entries when the key (window) is garbage collected,
             // so we don't need to manually remove items when windows are closed

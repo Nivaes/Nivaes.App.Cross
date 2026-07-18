@@ -32,21 +32,5 @@ namespace Nivaes.App.Cross
                 .Select(x => x.ViewModelType)
                 .FirstOrDefault();
         }
-
-        [Obsolete]
-        public static void Register<TMvxPresentationAttribute>(
-            this IDictionary<Type, CrossPresentationAttributeAction> attributeTypesToActionsDictionary,
-            Func<Type, TMvxPresentationAttribute, CrossViewModelRequest, Task<bool>> showAction,
-            Func<ICrossViewModel, TMvxPresentationAttribute, Task<bool>> closeAction)
-                where TMvxPresentationAttribute : class, IPresentationAttribute
-        {
-            attributeTypesToActionsDictionary.Add(
-                typeof(TMvxPresentationAttribute),
-                new CrossPresentationAttributeAction
-                {
-                    ShowAction = (view, attribute, request) => showAction(view, (attribute as TMvxPresentationAttribute)!, request),
-                    CloseAction = (viewModel, attribute) => closeAction(viewModel, (attribute as TMvxPresentationAttribute)!)
-                });
-        }
     }
 }

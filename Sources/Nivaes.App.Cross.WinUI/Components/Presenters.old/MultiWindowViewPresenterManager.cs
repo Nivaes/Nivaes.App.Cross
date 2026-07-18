@@ -85,40 +85,6 @@ public class MultiWindowViewPresenterManager
     }
 
     /// <summary>
-    ///     Registers default attribute types.
-    /// </summary>
-    [Obsolete]
-    public override void RegisterAttributeTypes()
-    {
-        AttributeTypesToActionsDictionary.Register<PagePresentationAttribute>(ShowPage, ClosePage);
-        AttributeTypesToActionsDictionary.Register<SplitViewPresentationAttribute>(ShowSplitView, CloseSplitView);
-        AttributeTypesToActionsDictionary.Register<RegionPresentationAttribute>(ShowRegionView, CloseRegionView);
-        AttributeTypesToActionsDictionary.Register<DialogViewPresentationAttribute>(ShowDialogAsync, CloseDialog);
-        AttributeTypesToActionsDictionary.Add(
-            typeof(NewWindowPresentationAttribute),
-            new CrossPresentationAttributeAction
-            {
-                ShowAction = async (_, attribute, request) =>
-                {
-                    if (attribute is not NewWindowPresentationAttribute presentationAttribute)
-                    {
-                        return false;
-                    }
-
-                    return await ShowNewWindowAsync(request, presentationAttribute);
-                },
-                CloseAction = (viewModel, _) =>
-                {
-                    viewModel.ViewDisappearing();
-                    viewModel.ViewDisappeared();
-                    viewModel.ViewDestroy();
-                    viewModel.DisposeIfDisposable();
-                    return Task.FromResult(true);
-                }
-            });
-    }
-
-    /// <summary>
     ///     Closes all windows, except the main window, and the view models belonging to those windows.
     /// </summary>
     public void CloseAllWindows()

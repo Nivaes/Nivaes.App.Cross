@@ -81,16 +81,6 @@ public class AndroidViewPresenterManager
         }
     }
 
-    [Obsolete("Carga por Roslyn", true)]
-    public override void RegisterAttributeTypes()
-    {
-        AttributeTypesToActionsDictionary.Register<ActivityPresentationAttribute>(ShowActivity, CloseActivity);
-        AttributeTypesToActionsDictionary.Register<FragmentPresentationAttribute>(ShowFragment, CloseFragment);
-        AttributeTypesToActionsDictionary.Register<DialogFragmentPresentationAttribute>(ShowDialogFragment, CloseFragmentDialog);
-        AttributeTypesToActionsDictionary.Register<TabLayoutPresentationAttribute>(ShowTabLayout, CloseViewPagerFragment);
-        AttributeTypesToActionsDictionary.Register<ViewPagerFragmentPresentationAttribute>(ShowViewPagerFragment, CloseViewPagerFragment);
-    }
-
     public override BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
     {
         var viewType = base.ViewsContainer?.GetViewType(request.ViewModelType!);
