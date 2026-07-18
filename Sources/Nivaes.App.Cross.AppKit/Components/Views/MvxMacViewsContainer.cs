@@ -51,6 +51,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 }
             }
 
+            var aa = viewType.FullName;
             var view = Activator.CreateInstance(viewType) as IMvxMacView;
             if (view == null)
                 throw new AppException("View not loaded for " + viewType);

@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS;
 
 [MvxFromStoryboard("Main")]
 [ModalPresentation]
-[RequiresUnreferencedCode("Bindings require unreferenced code")]
 public partial class ModalView : CrossViewController<ModalViewModel>
 {
     public ModalView(NativeHandle handle) : base(handle)

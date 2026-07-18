@@ -6,13 +6,13 @@ namespace Nivaes.App.Cross.AppKitLib
                 : Cross.PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
-        protected readonly PressenterActionContext Context;
+        protected readonly IPressenterActionContext Context;
 
         protected readonly IMvxMacViewCreator ViewCreator;
 
         #region Constructor
         protected PressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger logger)

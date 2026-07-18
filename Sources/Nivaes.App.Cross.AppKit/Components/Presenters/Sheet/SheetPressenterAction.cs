@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.AppKitLib
     {
         #region Constructor
         public SheetMacPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxMacViewCreator viewCreator,
                 ILogger<SheetMacPressenterAction> logger)

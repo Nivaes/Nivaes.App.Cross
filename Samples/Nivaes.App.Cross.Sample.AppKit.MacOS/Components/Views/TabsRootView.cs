@@ -5,7 +5,6 @@ using ObjCRuntime;
 namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 {
     [WindowPresentation(PositionX = 150)]
-    [RequiresUnreferencedCode("Bindings require unreferenced code")]
     public partial class TabsRootView
         : MvxTabViewController<TabsRootViewModel>
     {
@@ -14,6 +13,9 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
         public TabsRootView(NativeHandle handle) : base(handle)
         {
         }
+
+        public TabsRootView()
+        {}
 
         public override void LoadView()
         {
