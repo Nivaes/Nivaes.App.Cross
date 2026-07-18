@@ -99,7 +99,7 @@ namespace Nivaes.App.Cross.Droid
 
             // save MvxViewModelRequest in the Fragment's Arguments
             var bundle = new Bundle();
-            var serializedRequest = NavigationSerializer?.Serializer.SerializeObject(request);
+            var serializedRequest = NavigationSerializer.Serializer.SerializeObject(request);
             if (!string.IsNullOrEmpty(serializedRequest))
                 bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
 

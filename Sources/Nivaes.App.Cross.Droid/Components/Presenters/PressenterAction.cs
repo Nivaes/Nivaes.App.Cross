@@ -18,22 +18,7 @@ namespace Nivaes.App.Cross.Droid
 
         protected CrossViewModelRequest? PendingRequest { get; set; }
 
-        //private readonly IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;
-
         public ICrossNavigationSerializer NavigationSerializer { get; }
-
-        //protected Activity CurrentActivity => _androidCurrentTopActivity.Activity as Activity;
-
-        //protected virtual FragmentManager? CurrentFragmentManager
-        //{
-        //    get
-        //    {
-        //        if (CurrentActivity.IsActivityDead())
-        //            return null;
-
-        //        return CurrentActivity!.SupportFragmentManager;
-        //    }
-        //}
         #endregion
 
         #region Constructor
@@ -44,7 +29,6 @@ namespace Nivaes.App.Cross.Droid
             : base(logger)
         {
             Context = contex;
-            //_androidCurrentTopActivity = androidCurrentTopActivity;
             NavigationSerializer = navigationSerializer;
         }
         #endregion
