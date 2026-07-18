@@ -36,7 +36,7 @@ internal class CrossWindowsViewsContainer
         if (dictionary.TryGetValue(SubViewModelKey, out string? viewModelKey))
         {
             var key = int.Parse(viewModelKey);
-            var viewModel = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossChildViewModelCache>()!.Get(key);
+            var viewModel = _childViewModelCache.Get(key);
             if (savedState != null)
                 viewModel!.ReloadState(savedState);
             return viewModel!;
@@ -63,7 +63,7 @@ internal class CrossWindowsViewsContainer
         var request = CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
 
         var key = _childViewModelCache.Cache(existingViewModelToUse);
-        returnData.Add(ExtrasKey, _navigationSerializer!.Serializer!.SerializeObject(request));
+        returnData.Add(ExtrasKey, _navigationSerializer.Serializer.SerializeObject(request));
         returnData.Add(SubViewModelKey, key!.ToString()!);
 
         var requestText = _navigationSerializer.Serializer.SerializeObject(returnData);

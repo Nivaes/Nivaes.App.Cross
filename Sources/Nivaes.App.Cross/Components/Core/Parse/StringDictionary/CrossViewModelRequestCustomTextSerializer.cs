@@ -23,13 +23,11 @@ public class CrossViewModelRequestCustomTextSerializer
         throw new AppException("This serializer only knows about MvxViewModelRequest and IDictionary<string,string>");
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
     public T DeserializeObject<T>(string inputText)
     {
         return (T)DeserializeObject(typeof(T), inputText);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
     public object DeserializeObject(Type type, string inputText)
     {
         if (type == typeof(CrossViewModelRequest))
@@ -65,8 +63,6 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual string Serialize(CrossViewModelRequest toSerialise)
     {
-        ArgumentNullException.ThrowIfNull(toSerialise, nameof(toSerialise));
-
         var dictionary = new Dictionary<string, string>
         {
             ["Type"] = SerializeViewModelName(toSerialise.ViewModelType),
@@ -78,8 +74,6 @@ public class CrossViewModelRequestCustomTextSerializer
 
     protected virtual string SerializeViewModelName(Type? viewModelType)
     {
-        ArgumentNullException.ThrowIfNull(viewModelType?.FullName, nameof(viewModelType));
-
         return viewModelType.FullName;
     }
 
