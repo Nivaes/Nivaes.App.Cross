@@ -16,7 +16,7 @@ using FragmentTransaction = AndroidX.Fragment.App.FragmentTransaction;
 namespace Nivaes.App.Cross.Droid;
 
 public class AndroidViewPresenterManager 
-    : CrossAttributeViewPresenterManager, IAndroidViewPresenterManager
+    : CrossViewPresenterManager, IAndroidViewPresenterManager
 {
     public const string ViewModelRequestBundleKey = "__mvxViewModelRequest";
     public const string SharedElementsBundleKey = "__sharedElementsKey";

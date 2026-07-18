@@ -95,8 +95,5 @@
 			<CustomToolNamespace>Nivaes.App</CustomToolNamespace>
 		</EmbeddedResource>
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\Presenters.old\ViewPresenter\" />
-	</ItemGroup>
 	
 </Project>

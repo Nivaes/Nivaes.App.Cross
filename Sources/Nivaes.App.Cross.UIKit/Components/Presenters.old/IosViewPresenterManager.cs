@@ -1,11 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
     public class IosViewPresenterManager
-        : CrossAttributeViewPresenterManager, IIosViewPresenterManager
+        : CrossViewPresenterManager, IIosViewPresenterManager
     {
         private readonly IPressenterActionContext Context;
 

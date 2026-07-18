@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.AppKitLib;
 
 public class MacViewPresenterManager
-    : CrossAttributeViewPresenterManager, IMacViewPresenterManager //, ICrossAttributeViewPresenterManager
+    : CrossViewPresenterManager, IMacViewPresenterManager //, ICrossAttributeViewPresenterManager
 {
     private readonly INSApplicationDelegate _applicationDelegate;
 

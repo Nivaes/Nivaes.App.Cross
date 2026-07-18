@@ -5,14 +5,23 @@ namespace Nivaes.App.Cross
     public abstract class CrossViewPresenterManager
         : ICrossViewPresenterManager
     {
-        private readonly Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>> _presentationHintHandlers =
-           new Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>>();
+        protected readonly ICrossViewsContainer ViewsContainer;
+
+        private readonly Dictionary<Type, Func<CrossPresentationHint, ValueTask<bool>>> _presentationHintHandlers = new();
 
         protected readonly ILogger Logger;
 
-        public CrossViewPresenterManager(ILogger logger)
+        public CrossViewPresenterManager(ICrossViewsContainer crossViewsContainer, ILogger logger)
         {
+            ViewsContainer = crossViewsContainer;
             Logger = logger;
+        }
+
+        public abstract BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType);
+
+        public virtual object? CreateOverridePresentationAttributeViewInstance(Type viewType)
+        {
+            return Activator.CreateInstance(viewType);
         }
 
         public void AddPresentationHintHandler<THint>(Func<THint, ValueTask<bool>> action)
@@ -31,10 +40,68 @@ namespace Nivaes.App.Cross
             return ValueTask.FromResult(false);
         }
 
-        public abstract ValueTask<bool> Show(CrossViewModelRequest request);
+        public virtual BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+        {
+            var viewType = ViewsContainer.GetViewType(request.ViewModelType);
+            if (viewType == null)
+                throw new InvalidOperationException($"Could not get View Type for ViewModel Type {request.ViewModelType}");
 
-        public abstract ValueTask<bool> ChangePresentation(CrossPresentationHint hint);
+            var attribute = viewType
+                .GetCustomAttributes(typeof(BasePresentationAttribute), true)
+                .FirstOrDefault();
 
-        public abstract ValueTask<bool> Close(ICrossViewModel viewModel);
+            if (attribute is BasePresentationAttribute basePresentationAttribute)
+            {
+                if (basePresentationAttribute.ViewType == null)
+                    basePresentationAttribute.ViewType = viewType;
+
+                if (basePresentationAttribute.ViewModelType == null)
+                    basePresentationAttribute.ViewModelType = request.ViewModelType;
+
+                return basePresentationAttribute;
+            }
+
+            return CreatePresentationAttribute(request.ViewModelType, viewType);
+        }
+
+        public virtual async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
+        {
+            if (await HandlePresentationChange(hint).ConfigureAwait(true))
+                return true;
+
+            if (hint is CrossClosePresentationHint presentationHint)
+            {
+                return await Close(presentationHint.ViewModelToClose).ConfigureAwait(true);
+            }
+
+            Logger.Log(LogLevel.Warning, "Hint ignored {Name}", hint.GetType().Name);
+            return false;
+        }
+
+        public virtual ValueTask<bool> Show(CrossViewModelRequest request)
+        {
+            var pressentationAction = GetPresentationAction(request, out var attribute);
+
+            return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
+        }
+
+        public virtual ValueTask<bool> Close(ICrossViewModel viewModel)
+        {
+            var pressentationAction = GetPresentationAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
+
+            return pressentationAction.CloseAction(viewModel, attribute);
+        }
+
+        protected virtual IPressenterAction GetPresentationAction(
+            CrossViewModelRequest? request, out BasePresentationAttribute attribute)
+        {
+            var presentationAttribute = GetPresentationAttribute(request);
+            presentationAttribute.ViewModelType = request.ViewModelType;
+            var attributeType = presentationAttribute.GetType();
+
+            attribute = presentationAttribute;
+
+            return Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.GetValue(attributeType);
+        }
     }
 }

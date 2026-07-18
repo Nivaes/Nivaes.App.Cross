@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-namespace Nivaes.App.Cross.WinUI;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
@@ -11,11 +10,13 @@ using Control = Microsoft.UI.Xaml.Controls.Control;
 using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using Window = Microsoft.UI.Xaml.Window;
 
+namespace Nivaes.App.Cross.WinUI;
+
 /// <summary>
 ///     Defines a view presenter with multi-windows support.
 /// </summary>
 public class MultiWindowViewPresenterManager
-    : CrossAttributeViewPresenterManager, IWindowsViewPresenterManager, IMvxMultiWindowsService
+    : CrossViewPresenterManager, IWindowsViewPresenterManager //, IMvxMultiWindowsService
 {
     private const int DefaultWindowHeight = 456;
     private const int DefaultWindowWidth = 786;
