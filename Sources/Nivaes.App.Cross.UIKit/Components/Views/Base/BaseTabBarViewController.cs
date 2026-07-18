@@ -2,7 +2,7 @@
 {
     /// <summary> A base view controller </summary>
     public abstract class BaseTabBarViewController<TViewModel>
-        : MvxTabBarViewController<TViewModel>
+        : TabBarViewController<TViewModel>
         where TViewModel : BaseViewModel
     {
         public virtual string TabName => base.Title;

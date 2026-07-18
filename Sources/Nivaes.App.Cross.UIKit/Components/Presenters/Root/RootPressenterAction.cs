@@ -21,8 +21,7 @@ namespace Nivaes.App.Cross.UIKitLib
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
             {
-                Logger.LogWarning(
-                    "Got null ViewController for request {Request}", request);
+                Logger.LogWarning("Got null ViewController for request {Request}", request);
 
                 return ValueTask.FromResult(false);
             }

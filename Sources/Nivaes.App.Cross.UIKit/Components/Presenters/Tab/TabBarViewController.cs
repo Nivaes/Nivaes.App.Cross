@@ -3,33 +3,33 @@ using ObjCRuntime;
 
 namespace Nivaes.App.Cross.UIKitLib;
 
-public class MvxTabBarViewController<TViewModel>
+public class TabBarViewController<TViewModel>
         : MvxBaseTabBarViewController<TViewModel>, ITabBarViewController
     where TViewModel : class, ICrossViewModel
 {
-    public MvxTabBarViewController() : base()
+    public TabBarViewController() : base()
     {
         // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
         // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null
         ViewDidLoad();
     }
 
-    public MvxTabBarViewController(NSCoder coder) : base(coder)
+    public TabBarViewController(NSCoder coder) : base(coder)
     {
         // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
         // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null
         ViewDidLoad();
     }
 
-    protected MvxTabBarViewController(NSObjectFlag t) : base(t)
+    protected TabBarViewController(NSObjectFlag t) : base(t)
     {
     }
 
-    protected internal MvxTabBarViewController(NativeHandle handle) : base(handle)
+    protected internal TabBarViewController(NativeHandle handle) : base(handle)
     {
     }
 
-    public MvxTabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+    public TabBarViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
     {
         // WORKAROUND: UIKit makes a first ViewDidLoad call, because a TabViewController expects it's view (tabs) to be drawn 
         // on construction. Therefore we need to call ViewDidLoad "manually", otherwise ViewModel will be null

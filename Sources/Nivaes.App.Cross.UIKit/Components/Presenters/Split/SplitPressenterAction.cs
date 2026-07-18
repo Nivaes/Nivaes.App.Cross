@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
@@ -10,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         #region Constructor
         public SplitPressenterAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
                 ILogger<SplitPressenterAction> logger)

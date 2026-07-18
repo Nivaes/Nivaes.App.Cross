@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     public class IosViewPresenterManager
         : CrossAttributeViewPresenterManager, IIosViewPresenterManager
     {
-        private readonly PressenterActionContext Context;
+        private readonly IPressenterActionContext Context;
 
         //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
         private readonly IMvxIosViewCreator _viewCreator;
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.UIKitLib
         public IMvxSplitViewController? SplitViewController { get; protected set; }
 
         public IosViewPresenterManager(
-                    PressenterActionContext context,
+                    IPressenterActionContext context,
                     ICrossViewsContainer crossViewsContainer,
                     IMvxIosViewCreator viewCreator, ILogger<IosViewPresenterManager> logger)
             : base(crossViewsContainer, logger)

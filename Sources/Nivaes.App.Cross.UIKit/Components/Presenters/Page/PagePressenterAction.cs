@@ -5,15 +5,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class PageUIKitPressenterAction
+    public sealed class PagePressenterAction
             : PressenterAction<PagePresentationAttribute>
     {
         #region Constructor
-        public PageUIKitPressenterAction(
+        public PagePressenterAction(
                 IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<PageUIKitPressenterAction> logger)
+                ILogger<PagePressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }

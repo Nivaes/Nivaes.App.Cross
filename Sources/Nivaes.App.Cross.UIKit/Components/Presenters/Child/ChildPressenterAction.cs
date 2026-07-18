@@ -2,15 +2,15 @@
 
 namespace Nivaes.App.Cross.UIKitLib
 {
-    public sealed class ChildUIKitPressenterAction
+    public sealed class ChildPressenterAction
             : PressenterAction<ChildPresentationAttribute>
     {
         #region Constructor
-        public ChildUIKitPressenterAction(
+        public ChildPressenterAction(
                 IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 IMvxIosViewCreator viewCreator,
-                ILogger<ChildUIKitPressenterAction> logger)
+                ILogger<ChildPressenterAction> logger)
             : base(context, viewsContainer, viewCreator, logger)
         {
         }
