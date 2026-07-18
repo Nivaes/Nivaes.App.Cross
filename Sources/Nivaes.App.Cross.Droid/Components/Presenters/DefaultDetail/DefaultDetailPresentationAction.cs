@@ -9,7 +9,7 @@ public sealed class DefaultDetailPresentationAction
     private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
     public DefaultDetailPresentationAction(
-        PressenterActionContext contex,
+            IPressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<DefaultDetailPresentationAction> logger)

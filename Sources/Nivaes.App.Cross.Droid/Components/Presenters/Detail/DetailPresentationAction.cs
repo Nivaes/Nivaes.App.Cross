@@ -10,7 +10,7 @@ public sealed class DetailPresentationAction
     private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
     public DetailPresentationAction(
-        PressenterActionContext contex,
+            IPressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ICrossNavigationSerializer navigationSerializer,

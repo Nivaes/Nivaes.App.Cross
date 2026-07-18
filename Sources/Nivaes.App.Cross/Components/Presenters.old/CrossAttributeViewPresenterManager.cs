@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross;
 
 public abstract class CrossAttributeViewPresenterManager
-    : CrossViewPresenterManager, ICrossAttributeViewPresenterManager
+    : CrossViewPresenterManager 
 {
     protected readonly ICrossViewsContainer ViewsContainer;
 
@@ -13,27 +13,6 @@ public abstract class CrossAttributeViewPresenterManager
     {
         ViewsContainer = crossViewsContainer;
     }
-
-    //[Obsolete("", true)]
-    //private IDictionary<Type, CrossPresentationAttributeAction>? _attributeTypesActionsDictionary;
-
-    //[Obsolete("Busca interfaces de la vista.", true)]
-    //public virtual IDictionary<Type, CrossPresentationAttributeAction> AttributeTypesToActionsDictionary
-    //{
-    //    get
-    //    {
-    //        throw new NotImplementedException();
-    //        if (_attributeTypesActionsDictionary == null)
-    //        {
-    //            _attributeTypesActionsDictionary = new Dictionary<Type, CrossPresentationAttributeAction>();
-    //            RegisterAttributeTypes();
-    //        }
-    //        return _attributeTypesActionsDictionary;
-    //    }
-    //}
-
-    //[Obsolete("", true)]
-    //public abstract void RegisterAttributeTypes();
 
     public abstract BasePresentationAttribute CreatePresentationAttribute(
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type? viewModelType,

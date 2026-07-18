@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross.Droid
         private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
         public FragmentPresentationAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<FragmentPresentationAttribute> logger)

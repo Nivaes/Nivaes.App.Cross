@@ -9,7 +9,7 @@ public sealed class MasterPresentationAction
     private IFragmentPresentationAction thisAction => (IFragmentPresentationAction)this;
 
     public MasterPresentationAction(
-        PressenterActionContext contex,
+            IPressenterActionContext contex,
             ICrossViewsContainer viewsContainer,
             ICrossNavigationSerializer navigationSerializer,
             ILogger<MasterPresentationAction> logger)

@@ -1089,7 +1089,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -1549,7 +1548,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -1852,7 +1850,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -2168,7 +2165,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -2457,7 +2453,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },
@@ -2880,7 +2875,6 @@
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
-          "Nivaes.IoC": "(, )",
           "OpenTelemetry": "[1.16.0, )"
         }
       },

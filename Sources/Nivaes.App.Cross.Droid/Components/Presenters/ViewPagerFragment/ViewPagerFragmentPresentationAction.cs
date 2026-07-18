@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
         private IFragmentPresentationAction thisFragment => (IFragmentPresentationAction)this;
 
         public ViewPagerFragmentPresentationAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger logger)
@@ -171,7 +171,7 @@ namespace Nivaes.App.Cross.Droid
         : ViewPagerFragmentPresentationAction<ViewPagerFragmentPresentationAttribute>
     {
         public ViewPagerFragmentPresentationAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<TabLayoutAndroidPresentation> logger)

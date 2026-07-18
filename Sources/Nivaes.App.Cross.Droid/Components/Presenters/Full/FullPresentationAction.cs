@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross.Droid
         protected readonly ICrossNavigationSerializer NavigationSerializer;
 
         public FullPresentationAction(
-                PressenterActionContext context,
+                IPressenterActionContext context,
                 ICrossViewsContainer viewsContainer,
                 ICrossNavigationSerializer navigationSerializer,
                 ILogger<FullPresentationAction> logger)
