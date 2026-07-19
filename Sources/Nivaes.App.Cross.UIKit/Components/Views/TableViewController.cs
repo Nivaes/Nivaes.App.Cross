@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.UIKitLib
             set { DataContext = value; }
         }
 
-        public CrossViewModelRequest? Request { get; set; }
+        public ViewModelRequest? Request { get; set; }
 
         public ICrossBindingContext? BindingContext { get; set; }
 

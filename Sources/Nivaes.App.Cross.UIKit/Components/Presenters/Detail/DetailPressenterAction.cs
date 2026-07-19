@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, ViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowDetailViewController(viewController, attribute, request);
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowDetailViewController(
           UIViewController viewController,
           DetailPresentationAttribute attribute,
-          CrossViewModelRequest request)
+          ViewModelRequest request)
         {
             Context.MasterNavigationController = base.CreateNavigationController(viewController);
             Context.MasterDetailSplitViewControllers.LastOrDefault()?.ShowDetailView(Context.MasterNavigationController);

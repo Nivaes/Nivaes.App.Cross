@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross.Droid
         Activity CurrentActivity { get; }
         FragmentManager? CurrentFragmentManager { get; }
 
-        CrossViewModelRequest? PendingDetailFragmentRequests { get; set; }
-        CrossViewModelRequest? PendingDefaultDetailRequests { get; set; }
+        ViewModelRequest? PendingDetailFragmentRequests { get; set; }
+        ViewModelRequest? PendingDefaultDetailRequests { get; set; }
     }
 }

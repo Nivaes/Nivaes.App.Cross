@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
-using Microsoft.UI.Xaml;
-using Nivaes.App.Cross.WinUI;
-using Windows.UI.Core;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.WinUI
 {
@@ -23,7 +17,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, ViewModelRequest request)
         {
             return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
         }
@@ -35,7 +29,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="viewType">The type of the content.</param>
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        protected ValueTask<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, CrossViewModelRequest request)
+        protected ValueTask<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, ViewModelRequest request)
         {
             try
             {

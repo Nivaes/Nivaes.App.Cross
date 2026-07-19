@@ -109,10 +109,10 @@ public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerVie
         return view!;
     }
 
-    public BasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
+    public BasePresentationAttribute? PresentationAttribute(ViewModelRequest request)
     {
-        if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
-        {
+        //if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
+        //{
             return new FragmentPresentationAttribute()
             {
                 ViewModelType = typeof(MultiBackStackInnerViewModel),
@@ -121,12 +121,13 @@ public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerVie
                 FragmentContentId = Resource.Id.content_frame,
                 AddToBackStack = true,
                 AllowReordering = true,
-                Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
+                //Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
+                Tag = request.ViewModelType.Name + ((MultiBackStackInnerViewModel)request.ViewModel).Depth
             };
-        }
-        else
-        {
-            return null;
-        }
+        //}
+        //else
+        //{
+        //    return null;
+        //}
     }
 }

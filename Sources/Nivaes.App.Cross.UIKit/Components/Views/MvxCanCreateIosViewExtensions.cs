@@ -18,13 +18,13 @@ public static class MvxCanCreateIosViewExtensions
         where TTargetViewModel : class, ICrossViewModel
     {
         var parameterBundle = new CrossBundle(parameterValues);
-        var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
+        var request = new ViewModelRequest<TTargetViewModel>(parameterBundle, null);
         return viewCreator.CreateView(request);
     }
 
     public static IMvxIosView? CreateViewControllerFor(
         this IMvxCanCreateIosView view,
-        CrossViewModelRequest request)
+        ViewModelRequest request)
     {
         return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxIosViewCreator>().CreateView(request);
     }

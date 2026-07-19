@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Droid
 
         #endregion TranslationResult enum
 
-        public MvxTranslatedIntent(CrossViewModelRequest viewModelRequest)
+        public MvxTranslatedIntent(ViewModelRequest viewModelRequest)
         {
             ViewModelRequest = viewModelRequest;
             Result = TranslationResult.Request;
@@ -26,6 +26,6 @@ namespace Nivaes.App.Cross.Droid
 
         public TranslationResult Result { get; private set; }
         public ICrossViewModel? ExistingViewModel { get; private set; }
-        public CrossViewModelRequest ViewModelRequest { get; private set; }
+        public ViewModelRequest ViewModelRequest { get; private set; }
     }
 }

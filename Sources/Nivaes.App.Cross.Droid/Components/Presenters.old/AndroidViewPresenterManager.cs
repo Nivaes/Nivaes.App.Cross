@@ -26,7 +26,7 @@ public class AndroidViewPresenterManager
 
     private readonly IMvxAndroidViewModelRequestTranslator _viewModelRequestTranslator;
 
-    protected CrossViewModelRequest? PendingRequest { get; set; }
+    protected ViewModelRequest? PendingRequest { get; set; }
 
     protected virtual Activity? CurrentActivity => _androidCurrentTopActivity.Activity as Activity;
 
@@ -79,7 +79,7 @@ public class AndroidViewPresenterManager
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    public override BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+    public override BasePresentationAttribute GetPresentationAttribute(ViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                 .GetValue(request.ViewModelType);
@@ -208,7 +208,7 @@ public class AndroidViewPresenterManager
     [Obsolete("", true)]
     private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
     {
-        var request = new CrossViewModelRequest(pagePresentationHint.ViewModel);
+        var request = new ViewModelRequest(pagePresentationHint.ViewModel);
         var attribute = GetPresentationAttribute(request);
 
         if (attribute is ViewPagerFragmentPresentationAttribute pagerFragmentAttribute)
@@ -281,7 +281,7 @@ public class AndroidViewPresenterManager
         if (viewType?.IsSubclassOf(typeof(Activity)) != true)
             throw new AppException("The host activity doesn't inherit Activity");
         
-        var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
+        var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
         if (PendingRequest != null)
             hostViewModelRequest.PresentationValues = PendingRequest.PresentationValues;
 
@@ -293,7 +293,7 @@ public class AndroidViewPresenterManager
     protected virtual Task<bool> ShowViewPagerFragment(
         Type view,
         ViewPagerFragmentPresentationAttribute attribute,
-        CrossViewModelRequest request)
+        ViewModelRequest request)
     {
         // if the attribute doesn't supply any host, assume current activity!
         if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)

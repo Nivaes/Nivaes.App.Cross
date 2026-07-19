@@ -13,7 +13,7 @@ public sealed class SharedElementRootView
 {
     public int SelectedListItem { get; set; }
 
-    public IDictionary<string, View> FetchSharedElementsToAnimate(BasePresentationAttribute attribute, CrossViewModelRequest request)
+    public IDictionary<string, View> FetchSharedElementsToAnimate(BasePresentationAttribute attribute, ViewModelRequest request)
     {
         IDictionary<string, View> sharedElements = new Dictionary<string, View>();
 

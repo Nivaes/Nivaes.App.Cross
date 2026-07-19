@@ -12,7 +12,6 @@ namespace Nivaes.App.Cross.WinUI
         : PressenterAction<DialogViewPresentationAttribute>
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly ICrossViewModelLoader _viewModelLoader;
 
         #region Constructor
         public DialogWinUIPressenterAction(
@@ -20,16 +19,14 @@ namespace Nivaes.App.Cross.WinUI
                 IServiceProvider serviceProvider,
                 ICrossWindowsFrame rootFrame,
                 ICrossWindowsViewModelRequestTranslator requestTranslator,
-                ICrossViewModelLoader viewModelLoader,
                 ILogger<DialogWinUIPressenterAction> logger)
             : base(context, rootFrame, requestTranslator, logger)
         {
             _serviceProvider = serviceProvider;
-            _viewModelLoader = viewModelLoader;
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, ViewModelRequest request)
         {
             try
             {
@@ -94,7 +91,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
         /// <exception cref="AppException"></exception>
-        private Control? CreateControl(Type viewType, CrossViewModelRequest request,
+        private Control? CreateControl(Type viewType, ViewModelRequest request,
             BasePresentationAttribute attribute)
         {
             try
@@ -102,14 +99,15 @@ namespace Nivaes.App.Cross.WinUI
                 var control = ActivatorUtilities.CreateInstance(_serviceProvider, viewType) as Control;
                 if (control is ICrossView mvxControl)
                 {
-                    if (request is CrossViewModelInstanceRequest instanceRequest)
-                    {
-                        mvxControl.ViewModel = instanceRequest.ViewModelInstance;
-                    }
-                    else
-                    {
-                        mvxControl.ViewModel = _viewModelLoader?.LoadViewModel(request, null);
-                    }
+                    //if (request is CrossViewModelInstanceRequest instanceRequest)
+                    //{
+                    //    mvxControl.ViewModel = instanceRequest.ViewModelInstance;
+                    //}
+                    //else
+                    //{
+                    //    mvxControl.ViewModel = _viewModelLoader?.LoadViewModel(request, null);
+                    //}
+                    mvxControl.ViewModel = request.ViewModel;
                 }
 
                 return control;

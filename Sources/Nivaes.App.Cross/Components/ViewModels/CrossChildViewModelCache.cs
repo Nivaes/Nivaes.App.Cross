@@ -4,6 +4,7 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Linq;
 
+    [Obsolete("")]
     public class CrossChildViewModelCache
         : ICrossChildViewModelCache
     {

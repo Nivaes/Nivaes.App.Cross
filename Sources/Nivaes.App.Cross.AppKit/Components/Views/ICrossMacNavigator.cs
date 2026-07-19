@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross;
 
 public interface ICrossMacNavigator
 {
-    void NavigateTo(CrossViewModelRequest request);
+    void NavigateTo(ViewModelRequest request);
 
     void ChangePresentation(CrossPresentationHint hint);
 }

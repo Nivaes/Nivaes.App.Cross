@@ -16,7 +16,7 @@ public sealed class DefaultDetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, DefaultDetailPresentationAttribute attribute, CrossViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, DefaultDetailPresentationAttribute attribute, ViewModelRequest request)
     {
         var fragmentManager = base.Context.CurrentFragmentManager;
         if (fragmentManager == null)
@@ -32,10 +32,11 @@ public sealed class DefaultDetailPresentationAction
         fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
 
         var fragmentView = fragment.ToFragment();
-        if (request is CrossViewModelInstanceRequest instanceRequest)
-        {
-            fragment.ViewModel = instanceRequest.ViewModelInstance;
-        }
+        //if (request is CrossViewModelInstanceRequest instanceRequest)
+        //{
+        //    fragment.ViewModel = instanceRequest.ViewModelInstance;
+        //}
+        fragment.ViewModel = request.ViewModel;
 
         var ft = fragmentHost.ChildFragmentManager.BeginTransaction();
 

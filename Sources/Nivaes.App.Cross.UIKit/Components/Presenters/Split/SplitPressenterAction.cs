@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, ViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowDetailSplitViewController(
            UIViewController viewController,
            SplitViewPresentationAttribute attribute,
-           CrossViewModelRequest request)
+           ViewModelRequest request)
         {
             if (Context.SplitViewController == null)
                 throw new AppException("Trying to show a detail page without a SplitViewController, this is not possible!");

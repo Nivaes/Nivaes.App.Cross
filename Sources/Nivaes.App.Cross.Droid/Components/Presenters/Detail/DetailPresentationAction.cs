@@ -18,7 +18,7 @@ public sealed class DetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, CrossViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, ViewModelRequest request)
     {
         var detailView = base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId);
 
@@ -36,7 +36,7 @@ public sealed class DetailPresentationAction
 
     private void ShowAlternativeDetailFragment(Type viewType,
             DetailPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -71,7 +71,7 @@ public sealed class DetailPresentationAction
     private void ShowEmbeddendDetailFragment(
            Type viewType,
            DetailPresentationAttribute attribute,
-           CrossViewModelRequest request)
+           ViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -87,10 +87,11 @@ public sealed class DetailPresentationAction
         fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
 
         var fragmentView = fragment.ToFragment();
-        if (request is CrossViewModelInstanceRequest instanceRequest)
-        {
-            fragment.ViewModel = instanceRequest.ViewModelInstance;
-        }
+        //if (request is CrossViewModelInstanceRequest instanceRequest)
+        //{
+        //    fragment.ViewModel = instanceRequest.ViewModelInstance;
+        //}
+        fragment.ViewModel = request.ViewModel;
 
         var ft = fragmentHost.ChildFragmentManager.BeginTransaction();
 
@@ -106,7 +107,7 @@ public sealed class DetailPresentationAction
         if (!viewType.IsSubclassOf(typeof(Android.App.Activity)))
             throw new AppException("The host activity doesn't inherit Activity");
 
-        var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.AlternativeDetailActivityHostViewModelType);
+        var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.AlternativeDetailActivityHostViewModelType);
         hostViewModelRequest.PresentationValues = base.PendingRequest.PresentationValues;
         Show(hostViewModelRequest);
     }

@@ -4,19 +4,18 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Nivaes.App.Cross;
 
 /// <inheritdoc cref="ICrossViewModelLocator"/>
-public class CrossDefaultViewModelLocator
-    : ICrossViewModelLocator
+internal sealed class CrossViewModelLocator
+    //: ICrossViewModelLocator
 {
     private IServiceProvider _serviceProvider;
 
-    public CrossDefaultViewModelLocator(IServiceProvider serviceProvider)
+    public CrossViewModelLocator(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
 
-    // ToDo: ¿Tiene sentido sobrecargar esta clase?
-    public virtual ICrossViewModel Load(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
+    public ICrossViewModel Load(
+        Type viewModelType,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs = null)
@@ -41,8 +40,7 @@ public class CrossDefaultViewModelLocator
         return viewModel;
     }
 
-    // ToDo: ¿Tiene sentido sobrecargar esta clase?
-    public virtual ICrossViewModel<TParameter> Load<TParameter>(
+    public ICrossViewModel<TParameter> Load<TParameter>(
         Type viewModelType,
         TParameter param,
         ICrossBundle? parameterValues,
@@ -70,7 +68,7 @@ public class CrossDefaultViewModelLocator
         return viewModel;
     }
 
-    public virtual ICrossViewModel Reload(
+    public ICrossViewModel Reload(
         ICrossViewModel viewModel,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
@@ -81,7 +79,7 @@ public class CrossDefaultViewModelLocator
         return viewModel;
     }
 
-    public virtual ICrossViewModel<TParameter> Reload<TParameter>(
+    public ICrossViewModel<TParameter> Reload<TParameter>(
         ICrossViewModel<TParameter> viewModel,
         TParameter param,
         ICrossBundle? parameterValues,
@@ -93,24 +91,22 @@ public class CrossDefaultViewModelLocator
         return viewModel;
     }
 
-    protected virtual void CallCustomInitMethods(ICrossViewModel viewModel, ICrossBundle? parameterValues)
+    private void CallCustomInitMethods(ICrossViewModel viewModel, ICrossBundle? parameterValues)
     {
         viewModel.CallBundleMethods("Init", parameterValues);
     }
 
-    protected virtual void CallReloadStateMethods(ICrossViewModel viewModel, ICrossBundle? savedState)
+    private void CallReloadStateMethods(ICrossViewModel viewModel, ICrossBundle? savedState)
     {
         viewModel.CallBundleMethods("ReloadState", savedState);
     }
 
-    protected void RunViewModelLifecycle(
+    private void RunViewModelLifecycle(
         ICrossViewModel viewModel,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs)
     {
-        ArgumentNullException.ThrowIfNull(viewModel, nameof(viewModel));
-
         try
         {
             CallCustomInitMethods(viewModel, parameterValues);
@@ -138,15 +134,13 @@ public class CrossDefaultViewModelLocator
         }
     }
 
-    protected void RunViewModelLifecycle<TParameter>(
+    private void RunViewModelLifecycle<TParameter>(
         ICrossViewModel<TParameter> viewModel,
         TParameter param,
         ICrossBundle? parameterValues,
         ICrossBundle? savedState,
         ICrossNavigateEventArgs? navigationArgs)
     {
-        ArgumentNullException.ThrowIfNull(viewModel, nameof(viewModel));
-
         try
         {
             CallCustomInitMethods(viewModel, parameterValues);

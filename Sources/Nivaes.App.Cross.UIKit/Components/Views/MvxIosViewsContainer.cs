@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         private readonly ILogger _logger;
 
-        public CrossViewModelRequest? CurrentRequest { get; private set; }
+        public ViewModelRequest? CurrentRequest { get; private set; }
 
         public MvxIosViewsContainer(IServiceProvider serviceProvider, ILogger<MvxIosViewsContainer> logger)
         {
@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.UIKitLib
             _logger = logger;
         }
 
-        public virtual IMvxIosView CreateView(CrossViewModelRequest request)
+        public virtual IMvxIosView CreateView(ViewModelRequest request)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         public virtual IMvxIosView CreateView(ICrossViewModel viewModel)
         {
-            var request = new CrossViewModelInstanceRequest(viewModel);
+            var request = new ViewModelRequest(viewModel);
             var view = CreateView(request);
             return view;
         }

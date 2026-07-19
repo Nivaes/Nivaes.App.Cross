@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, ViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {
@@ -30,11 +30,12 @@ namespace Nivaes.App.Cross.WinUI
                 var requestText = GetRequestText(request);
                 var containerView =
                     windowInformation.RootFrame.UnderlyingControl.FindControl<Frame>(viewType.GetRegionName());
-                if (request is CrossViewModelInstanceRequestWithSource targetRequest &&
-                    targetRequest.ViewModelInstance != null)
-                {
-                    windowInformation.RegisterSubViewModel(targetRequest.ViewModelInstance);
-                }
+                //if (request is CrossViewModelInstanceRequestWithSource targetRequest &&
+                //    targetRequest.ViewModelInstance != null)
+                //{
+                //    windowInformation.RegisterSubViewModel(targetRequest.ViewModelInstance);
+                //}
+                windowInformation.RegisterSubViewModel(request.ViewModel);
 
                 if (containerView != null)
                 {

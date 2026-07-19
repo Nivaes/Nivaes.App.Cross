@@ -24,7 +24,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, DialogFragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, DialogFragmentPresentationAttribute attribute, ViewModelRequest request)
         {
             if (base.Context.CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");
@@ -41,14 +41,15 @@ namespace Nivaes.App.Cross.Droid
 
             // MvxNavigationService provides an already instantiated ViewModel here,
             // therefore just assign it
-            if (request is CrossViewModelInstanceRequest instanceRequest)
-            {
-                mvxFragmentView.ViewModel = instanceRequest.ViewModelInstance;
-            }
-            else
-            {
-                mvxFragmentView.LoadViewModelFrom(request);
-            }
+            //if (request is CrossViewModelInstanceRequest instanceRequest)
+            //{
+            //    mvxFragmentView.ViewModel = instanceRequest.ViewModelInstance;
+            //}
+            //else
+            //{
+            //    mvxFragmentView.LoadViewModelFrom(request);
+            //}
+            mvxFragmentView.ViewModel = request.ViewModel;
 
             dialog.Cancelable = attribute.Cancelable;
 

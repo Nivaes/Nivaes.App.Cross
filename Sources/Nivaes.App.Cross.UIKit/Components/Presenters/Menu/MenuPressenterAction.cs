@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MenuPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, MenuPresentationAttribute attribute, ViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowMenuViewController(viewController, attribute, request);
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowMenuViewController(
                 UIViewController viewController,
                 MenuPresentationAttribute attribute,
-                CrossViewModelRequest request)
+                ViewModelRequest request)
         {
             if (attribute == null) throw new ArgumentNullException(nameof(attribute));
 

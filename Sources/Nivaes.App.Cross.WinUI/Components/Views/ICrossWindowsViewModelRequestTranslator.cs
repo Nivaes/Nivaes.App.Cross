@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross.WinUI;
 
 public interface ICrossWindowsViewModelRequestTranslator
 {
-    string GetRequestTextFor(CrossViewModelRequest request);
+    string GetRequestTextFor(ViewModelRequest request);
 
     // Important: if calling GetRequestTextWithKeyFor then you must later call RemoveSubViewModelWithKey on the returned key
     string GetRequestTextWithKeyFor(ICrossViewModel existingViewModelToUse);

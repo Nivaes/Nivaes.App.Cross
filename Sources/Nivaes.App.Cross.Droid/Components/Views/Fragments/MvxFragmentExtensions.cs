@@ -23,7 +23,7 @@ public static class MvxFragmentExtensions
 
     extension(IMvxFragmentView fragmentView)
     {
-        public void OnCreate(ICrossBundle bundle, CrossViewModelRequest? request = null)
+        public void OnCreate(ICrossBundle bundle, ViewModelRequest? request = null)
         {
             //IMvxMultipleViewModelCache? cache = null;
 
@@ -78,7 +78,7 @@ public static class MvxFragmentExtensions
             return viewModelType;
         }
 
-        public ICrossViewModel? LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, CrossViewModelRequest? request = null)
+        public ICrossViewModel? LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, ViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
             //if (viewModelType == typeof(CrossNullViewModel))
@@ -96,7 +96,7 @@ public static class MvxFragmentExtensions
             }
 
             if (request == null)
-                request = CrossViewModelRequest.GetDefaultRequest(viewModelType!);
+                request = ViewModelRequest.GetDefaultRequest(viewModelType!);
 
             var viewModelCache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossChildViewModelCache>();
             if (viewModelCache.Exists(viewModelType!))
@@ -106,8 +106,8 @@ public static class MvxFragmentExtensions
                 return viewModelCached!;
             }
 
-            var loaderService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
-            var viewModel = loaderService.LoadViewModel(request, savedState);
+            var loaderService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
+            var viewModel = loaderService.LoadViewModel(request.ViewModelType, null, savedState);
 
             return viewModel;
         }
@@ -149,14 +149,11 @@ public static class MvxFragmentExtensions
             }
         }
 
-        public void LoadViewModelFrom(CrossViewModelRequest request, ICrossBundle? savedState = null)
+        public void LoadViewModelFrom(ViewModelRequest request, ICrossBundle? savedState = null)
         {
-            var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
+            var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
 
-            //if (Mvx.IoCProvider?.TryResolve(out ICrossViewModelLoader? loader) != true)
-            //    return;
-
-            var viewModel = loader?.LoadViewModel(request, savedState);
+            var viewModel = loader?.LoadViewModel(request.ViewModelType, null, savedState);
             if (viewModel == null)
             {
                 CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).LogWarning("ViewModel not loaded for {ViewModelType}",
@@ -216,7 +213,7 @@ public static class MvxFragmentExtensions
     extension(ICrossViewModel viewModel)
     {
         public void RunViewModelLifecycle(ICrossBundle savedState,
-        CrossViewModelRequest request)
+        ViewModelRequest request)
         {
             try
             {

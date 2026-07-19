@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.Droid
         void ShowNestedFragment(
             Type viewType,
             FragmentPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             // current implementation only supports one level of nesting 
 
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross.Droid
         void PerformShowFragmentTransaction(
             FragmentManager fragmentManager,
             FragmentPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             var fragmentName = attribute.Tag ?? attribute.ViewType!.FragmentJavaName();
 
@@ -92,10 +92,11 @@ namespace Nivaes.App.Cross.Droid
                 throw new AppException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
 
             // MvxNavigationService provides an already instantiated ViewModel here
-            if (request is CrossViewModelInstanceRequest instanceRequest)
-            {
-                fragmentView!.ViewModel = instanceRequest.ViewModelInstance;
-            }
+            //if (request is CrossViewModelInstanceRequest instanceRequest)
+            //{
+            //    fragmentView!.ViewModel = instanceRequest.ViewModelInstance;
+            //}
+            fragmentView!.ViewModel = request.ViewModel;
 
             // save MvxViewModelRequest in the Fragment's Arguments
             var bundle = new Bundle();
@@ -186,7 +187,7 @@ namespace Nivaes.App.Cross.Droid
            FragmentTransaction fragmentTransaction,
            Fragment fragment,
            FragmentPresentationAttribute attribute,
-           CrossViewModelRequest request)
+           ViewModelRequest request)
         {
             if (Context.CurrentActivity.IsActivityAlive() && Context.CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity)
             {
@@ -222,10 +223,10 @@ namespace Nivaes.App.Cross.Droid
                 fragmentTransaction.SetTransitionStyle(attribute.TransitionStyle);
         }
 
-        void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+        void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request)
         {
         }
 
-        void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request);
+        void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request);
     }
 }

@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, NewWindowPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, NewWindowPresentationAttribute attribute, ViewModelRequest request)
         {
             if (attribute is not NewWindowPresentationAttribute presentationAttribute)
             {
@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }
 
-        private async Task<bool> ShowNewWindowAsync(CrossViewModelRequest request, NewWindowPresentationAttribute attribute)
+        private async Task<bool> ShowNewWindowAsync(ViewModelRequest request, NewWindowPresentationAttribute attribute)
         {
             var newWindow = new Window();
 

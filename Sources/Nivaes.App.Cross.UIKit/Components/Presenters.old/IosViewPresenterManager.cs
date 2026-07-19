@@ -112,7 +112,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual Task<bool> ShowChildViewController(
             UIViewController viewController,
             ChildPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -180,7 +180,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual Task<bool> ShowTabViewController(
             UIViewController viewController,
             TabPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -207,7 +207,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual Task<bool> ShowPageViewController(
             UIViewController viewController,
             PagePresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -234,7 +234,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual Task<bool> ShowMasterSplitViewController(
             UIViewController viewController,
             SplitViewPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);
@@ -250,7 +250,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected virtual Task<bool> ShowDetailSplitViewController(
             UIViewController viewController,
             SplitViewPresentationAttribute attribute,
-            CrossViewModelRequest request)
+            ViewModelRequest request)
         {
             ArgumentNullException.ThrowIfNull(viewController);
             ArgumentNullException.ThrowIfNull(attribute);

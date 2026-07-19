@@ -23,62 +23,49 @@ public static class MvxViewControllerExtensions
             macView.Request = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxCurrentRequest>().CurrentRequest;
         }
 
-        var instanceRequest = macView.Request as CrossViewModelInstanceRequest;
+        var instanceRequest = macView.Request as ViewModelRequest;
         if (instanceRequest != null)
         {
-            return instanceRequest.ViewModelInstance!;
+            return instanceRequest.ViewModel;
         }
 
-        var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
-        var viewModel = loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
-        if (viewModel == null)
-            throw new AppException("ViewModel not loaded for " + macView.Request.ViewModelType);
-        return viewModel;
+        //var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
+        //var viewModel = loader.LoadViewModel(macView.Request, null /* no saved state on iOS currently */);
+        //if (viewModel == null)
+        //    throw new AppException("ViewModel not loaded for " + macView.Request.ViewModelType);
+        //return viewModel;
+        return macView.Request.ViewModel;
     }
 
-    //public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxMacView view,
-    //                                                                    object parameterObject)
-    //    where TTargetViewModel : class, ICrossViewModel
-    //{
-    //    return
-    //        view.CreateViewControllerFor<TTargetViewModel>(parameterObject == null
-    //                                                           ? null
-    //                                                           : parameterObject.ToSimplePropertyDictionary());
-    //}
-
+    [Obsolete("User PressenterAction", true)]
     public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
         this IMvxMacView view,
         IDictionary<string, string>? parameterValues = null)
         where TTargetViewModel : class, ICrossViewModel
     {
         var parameterBundle = new CrossBundle(parameterValues);
-        var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
+        var request = new ViewModelRequest<TTargetViewModel>(parameterBundle, null);
         return view.CreateViewControllerFor(request);
     }
 
-    //public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
-    //    this IMvxCanCreateMacView view,
-    //    CrossViewModelRequest request)
-    //    where TTargetViewModel : class, ICrossViewModel
-    //{
-    //    return IPlatformApplication.Current!.Services.GetRequiredService<IMvxMacViewCreator>().CreateView(request);
-    //}
 
-    [Obsolete("User PressenterAction")]
+    [Obsolete("User PressenterAction",true)]
     public static IMvxMacView CreateViewControllerFor(
         this IMvxCanCreateMacView view,
-        CrossViewModelRequest request)
+        ViewModelRequest request)
     {
         return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMacViewCreator>().CreateView(request);
     }
 
+    [Obsolete("User PressenterAction", true)]
     public static IMvxMacView CreateViewControllerFor(
         this IMvxCanCreateMacView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType,
-        CrossViewModelRequest request)
+        ViewModelRequest request)
     {
         return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMacViewCreator>().CreateViewOfType(viewType, request);
     }
 
+    [Obsolete("User PressenterAction", true)]
     public static IMvxMacView CreateViewControllerFor(
         this IMvxCanCreateMacView view,
         ICrossViewModel viewModel)

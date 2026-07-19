@@ -44,17 +44,17 @@ public class MvxBindingFragmentAdapter
             return;
         }
 
-        (Bundle? bundle, CrossViewModelRequest? request) = GetAndroidBundleAndRequest(e);
+        (Bundle? bundle, ViewModelRequest? request) = GetAndroidBundleAndRequest(e);
 
         var mvxBundle = ReadAndroidBundle(bundle);
         if (FragmentView?.ViewModel == null)
             FragmentView?.OnCreate(mvxBundle, request);
     }
 
-    private (Bundle? bundle, CrossViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
+    private (Bundle? bundle, ViewModelRequest? request) GetAndroidBundleAndRequest(CrossValueEventArgs<Bundle>? bundleArgs)
     {
         Bundle? bundle = null;
-        CrossViewModelRequest? request = null;
+        ViewModelRequest? request = null;
         if (bundleArgs?.Value != null)
         {
             // saved state
@@ -73,11 +73,11 @@ public class MvxBindingFragmentAdapter
         return (bundle, request);
     }
 
-    private static CrossViewModelRequest? ReadRequest(CrossViewModelRequest? request, string json)
+    private static ViewModelRequest? ReadRequest(ViewModelRequest? request, string json)
     {
         var serializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
 
-        request = serializer?.Serializer.DeserializeObject<CrossViewModelRequest>(json);
+        request = serializer?.Serializer.DeserializeObject<ViewModelRequest>(json);
         return request;
     }
 

@@ -3,7 +3,8 @@ namespace Nivaes.App.Cross
     using System.Collections.Generic;
     using System.Text;
 
-    public class CrpssStringDictionaryWriter : ICrossStringDictionaryWriter
+    [Obsolete("", true)]
+    public class CrossStringDictionaryWriter : ICrossStringDictionaryWriter
     {
         public string Write(IDictionary<string, string>? dictionary)
         {

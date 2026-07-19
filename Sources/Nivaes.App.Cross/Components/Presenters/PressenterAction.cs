@@ -14,12 +14,12 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, CrossViewModelRequest request);
+        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, ViewModelRequest request);
 
         protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPresentationAttribute attribute);
 
         [DebuggerHidden]
-        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, CrossViewModelRequest request)
+        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, ViewModelRequest request)
         {
             return ShowAction(view, (TPresentationAttribute)attribute, request);
         }
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
         }
 
         private IPressenterAction GetPresentationAttributeAction(
-            CrossViewModelRequest? request, out BasePresentationAttribute attribute)
+            ViewModelRequest? request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
             presentationAttribute.ViewModelType = request.ViewModelType;
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross
             return Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.GetValue(attributeType);
         }
 
-        private BasePresentationAttribute GetPresentationAttribute(CrossViewModelRequest request)
+        private BasePresentationAttribute GetPresentationAttribute(ViewModelRequest request)
         {
             var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                     .GetValue(request.ViewModelType);
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross
 
         protected abstract BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
 
-        protected ValueTask<bool> Show(CrossViewModelRequest request)
+        protected ValueTask<bool> Show(ViewModelRequest request)
         {
             var pressentationAction = GetPresentationAttributeAction(request, out var attribute);
 
@@ -80,7 +80,7 @@ namespace Nivaes.App.Cross
 
         protected ValueTask<bool> Close(ICrossViewModel viewModel)
         {
-            var pressentationAction = GetPresentationAttributeAction(new CrossViewModelInstanceRequest(viewModel), out var attribute);
+            var pressentationAction = GetPresentationAttributeAction(new ViewModelRequest(viewModel), out var attribute);
 
             return pressentationAction.CloseAction(viewModel, attribute);
         }

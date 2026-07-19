@@ -7,8 +7,6 @@ namespace Nivaes.App.Cross.Sample;
 public class RootViewModel
     : CrossNavigationResultAwaitingViewModel<SampleModel>
 {
-    private readonly ICrossViewModelLoader _mvxViewModelLoader;
-
     private int _counter = 2;
 
     private string _welcomeText = "Default welcome";
@@ -20,13 +18,10 @@ public class RootViewModel
 
     public RootViewModel(
             ICrossNavigationService navigationService,
-            ICrossViewModelLoader mvxViewModelLoader,
             ICrossResultViewModelManager resultViewModelManager,
             ILogger<RootViewModel> logger)
         : base(navigationService, resultViewModelManager, logger)
     {
-        _mvxViewModelLoader = mvxViewModelLoader;
-
         ShowChildCommand = new CrossAsyncCommand(() =>
         {
             return NavigationService.Navigate<ChildViewModel>();
@@ -125,8 +120,6 @@ public class RootViewModel
     public ICrossAsyncCommand ShowCodeBehindViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<CodeBehindViewModel>());
 
     public ICrossAsyncCommand ShowNavigationCloseCommand => new CrossAsyncCommand(() => NavigationService.Navigate<NavigationCloseViewModel>());
-
-    public ICrossAsyncCommand ShowContentViewCommand => new CrossAsyncCommand(() => NavigationService.Navigate<ParentContentViewModel>());
 
     public ICrossAsyncCommand ShowConvertersCommand => new CrossAsyncCommand(() => NavigationService.Navigate<ConvertersViewModel>());
 

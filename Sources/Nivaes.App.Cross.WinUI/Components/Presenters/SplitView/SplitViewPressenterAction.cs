@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, ViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
@@ -43,10 +43,11 @@ namespace Nivaes.App.Cross.WinUI
                     var requestText = GetRequestText(request);
                     nestedFrame.Navigate(viewType, requestText);
 
-                    if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
-                    {
-                        windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
-                    }
+                    //if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
+                    //{
+                    //    windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
+                    //}
+                    windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
                 else if (attribute.Position == SplitPanePosition.Pane)
                 {
@@ -60,10 +61,11 @@ namespace Nivaes.App.Cross.WinUI
                     var requestText = GetRequestText(request);
                     nestedFrame.Navigate(viewType, requestText);
 
-                    if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
-                    {
-                        windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
-                    }
+                    //if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
+                    //{
+                    //    windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
+                    //}
+                    windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
             }
 

@@ -15,7 +15,7 @@ public class CrossNavigationService
 
     protected Dictionary<Regex, Type> Routes { [DebuggerHidden] get; } = new();
 
-    protected ICrossViewModelLoader ViewModelLoader { [DebuggerHidden] get; [DebuggerHidden] set; }
+    //private ICrossViewModelLoader ViewModelLoader { [DebuggerHidden] get; [DebuggerHidden] set; }
 
     public event EventHandler<ICrossNavigateEventArgs>? WillNavigate;
 
@@ -30,11 +30,11 @@ public class CrossNavigationService
     public event EventHandler<ChangePresentationEventArgs>? DidChangePresentation;
 
     public CrossNavigationService(
-        ICrossViewModelLoader viewModelLoader,
+        //ICrossViewModelLoader viewModelLoader,
         ICrossViewDispatcher viewDispatcher,
         ILogger<CrossNavigationService> logger)
     {
-        ViewModelLoader = viewModelLoader;
+        //ViewModelLoader = viewModelLoader;
         ViewDispatcher = viewDispatcher;
         _logger = logger;
     }
@@ -74,7 +74,7 @@ public class CrossNavigationService
     }
 
     protected virtual async Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
-        CrossViewModelRequest request, ICrossViewModel viewModel,
+        ViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);
@@ -94,102 +94,31 @@ public class CrossNavigationService
         return true;
     }
 
-    //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    //public virtual async Task<bool> Navigate(
-    //    string path, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-    //{
-    //    var request = await NavigationRouteRequest(path, presentationBundle).ConfigureAwait(false);
-    //    if (request.ViewModelInstance == null)
-    //    {
-    //        _log.Value?.Log(LogLevel.Warning, "Navigation Route Request doesn't have a ViewModelInstance");
-    //        return false;
-    //    }
-
-    //    return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
-    //}
-
-    //[RequiresUnreferencedCode("This method uses reflection which may not be preserved during trimming")]
-    //public virtual async Task<bool> Navigate<TParameter>(
-    //        string path,
-    //        TParameter param,
-    //        ICrossBundle? presentationBundle = null,
-    //        CancellationToken cancellationToken = default)
-    //{
-    //    var request = await NavigationRouteRequest(path, param, presentationBundle).ConfigureAwait(false);
-    //    if (request.ViewModelInstance == null)
-    //    {
-    //        _log.Value?.Log(LogLevel.Warning, "Navigation Route Request doesn't have a ViewModelInstance");
-    //        return false;
-    //    }
-    //    return await Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken).ConfigureAwait(false);
-    //}
-
-    //public virtual Task<bool> Navigate(
-    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-    //    ICrossBundle? presentationBundle = null,
-    //    CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequest(viewModelType)
-    //    {
-    //        PresentationValues = presentationBundle?.SafeGetData()
-    //    };
-    //    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-    //    return Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken);
-    //}
-
-    //public virtual Task<bool> Navigate<TParameter>(
-    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-    //    TParameter param,
-    //    ICrossBundle? presentationBundle = null,
-    //    CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequest(viewModelType)
-    //    {
-    //        PresentationValues = presentationBundle?.SafeGetData()
-    //    };
-    //    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, param, null);
-    //    return Navigate(request, request.ViewModelInstance, presentationBundle, cancellationToken);
-    //}
-
-    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(
+    public virtual Task<bool> Navigate<TViewModel>(
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
+        var request = new ViewModelRequest(typeof(TViewModel))
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+        //request.ViewModel = ViewModelLoader.LoadViewModel(request, null);
+        return Navigate<TViewModel>(request, request.ViewModel, presentationBundle, cancellationToken);
     }
 
-    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel, TParameter>(
+    public virtual Task<bool> Navigate<TViewModel, TParameter>(
         TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel<TParameter>
     {
-        var request = new CrossViewModelInstanceRequest(typeof(TViewModel))
+        throw new NotImplementedException("Ver como tratar el param");
+        var request = new ViewModelRequest(typeof(TViewModel))
         {
+            //Param = param,
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(request, param, null);
-        return Navigate<TViewModel>(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+        //request.ViewModel = ViewModelLoader.LoadViewModel<TParameter>(request, param, null);
+        return Navigate<TViewModel>(request, request.ViewModel, presentationBundle, cancellationToken);
     }
-
-    //public virtual Task<bool> Navigate(
-    //    ICrossViewModel viewModel, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
-    //    ViewModelLoader.ReloadViewModel(viewModel, request, null);
-    //    return Navigate(request, viewModel, presentationBundle, cancellationToken);
-    //}
-
-    //public virtual Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param,
-    //    ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequest(viewModel) { PresentationValues = presentationBundle?.SafeGetData() };
-    //    ViewModelLoader.ReloadViewModel(viewModel, param, request, null);
-    //    return Navigate(request, viewModel, presentationBundle, cancellationToken);
-    //}
 
     public virtual async Task<bool> ChangePresentation(
         CrossPresentationHint hint, CancellationToken cancellationToken = default)
@@ -280,14 +209,14 @@ public class CrossNavigationService
             where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
-        //return Navigate(typeof(TViewModel), param, source, presentationBundle, cancellationToken);
+        throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
 
         var mvxViewModelInstanceRequest = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
-        return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
+        //mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
+        return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModel, presentationBundle, cancellationToken);
     }
 
     public Task<TResult> Navigate<TViewModel, TResult>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default) where TViewModel : ICrossViewModelResult<TResult>
@@ -300,60 +229,6 @@ public class CrossNavigationService
         throw new NotImplementedException();
     }
 
-    ///// <summary>
-    /////     Loads a view model targeting the window for the given source.
-    ///// </summary>
-    ///// <typeparam name="TParameter">The parameter</typeparam>
-    ///// <param name="viewModelType">The viewmodel type.</param>
-    ///// <param name="param">The parameter value.</param>
-    ///// <param name="source">
-    /////     This is used to find the window to execute the navigate in.
-    /////     This is usually the viewmodel instance which calls this method. 
-    ///// </param>
-    ///// <param name="presentationBundle">The presentation bungle.</param>
-    ///// <param name="cancellationToken">Any cancellation token.</param>
-    ///// <returns>True if navigation was successful.</returns>
-    //public virtual Task<bool> Navigate<TParameter>(
-    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-    //    TParameter param,
-    //    ICrossViewModel source,
-    //    ICrossBundle? presentationBundle = null,
-    //    CancellationToken cancellationToken = default)
-    //        where TParameter : notnull
-    //{
-    //    var mvxViewModelInstanceRequest = new CrossViewModelInstanceRequestWithSource(viewModelType, source)
-    //    {
-    //        PresentationValues = presentationBundle?.SafeGetData()
-    //    };
-    //    mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel(mvxViewModelInstanceRequest, param, null);
-    //    return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModelInstance, presentationBundle, cancellationToken);
-    //}
-
-    ///// <summary>
-    /////     Navigates to a view for the given type.
-    ///// </summary>
-    ///// <param name="viewModelType">The type of the viewmodel to navigate to.</param>
-    ///// <param name="source">
-    /////     This is used to find the window to execute the navigate in.
-    /////     This is usually the viewmodel instance which calls this method. 
-    ///// </param>
-    ///// <param name="presentationBundle">A presentation bundle.</param>
-    ///// <param name="cancellationToken">The cancellation token.</param>
-    ///// <returns></returns>
-    //public virtual Task<bool> Navigate(
-    //    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewModelType,
-    //    ICrossViewModel source,
-    //    ICrossBundle? presentationBundle = null,
-    //    CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequestWithSource(viewModelType, source)
-    //    {
-    //        PresentationValues = presentationBundle?.SafeGetData()
-    //    };
-    //    request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-    //    return NavigateAsync(request, request.ViewModelInstance, presentationBundle, cancellationToken);
-    //}
-
     /// <summary>
     ///     Navigates to the viewmodel for the given type.
     /// </summary>
@@ -365,60 +240,19 @@ public class CrossNavigationService
     /// <param name="presentationBundle">The presentation bundle.</param>
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
-    public virtual Task<bool> Navigate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(ICrossViewModel source,
+    public virtual Task<bool> Navigate<TViewModel>(ICrossViewModel source,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
+        throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
+
         var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return NavigateAsync(request, request.ViewModelInstance, presentationBundle, cancellationToken);
+        //request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        return NavigateAsync(request, request.ViewModel, presentationBundle, cancellationToken);
     }
-
-    ///// <summary>
-    /////     Navigates to a view for the given viewmodel.
-    ///// </summary>
-    ///// <param name="viewModel">The viewmodel to navigate to.</param>
-    ///// <param name="source">
-    /////     This is used to find the window to execute the navigate in.
-    /////     This is usually the viewmodel instance which calls this method. 
-    ///// </param>
-    ///// <param name="presentationBundle">The presentation bundle.</param>
-    ///// <param name="cancellationToken">Any cancellation token.</param>
-    ///// <returns>True if successful, false otherwise.</returns>
-    //[UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure and GetType() is safe here.")]
-    //public virtual Task<bool> Navigate(
-    //    ICrossViewModel viewModel, ICrossViewModel source, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-    //{
-    //    var request = new CrossViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
-    //    ViewModelLoader.ReloadViewModel(viewModel, request, null);
-    //    return NavigateAsync(request, viewModel, presentationBundle, cancellationToken);
-    //}
-
-    ///// <summary>
-    /////     Navigates to a view for the given viewmodel.
-    ///// </summary>
-    ///// <typeparam name="TParameter">The parameter type.</typeparam>
-    ///// <param name="viewModel">The viewmodel to navigate to.</param>
-    ///// <param name="param">Any parameters.</param>
-    ///// <param name="source">
-    /////     This is used to find the window to execute the navigate in.
-    /////     This is usually the viewmodel instance which calls this method. 
-    ///// </param>
-    ///// <param name="presentationBundle">The presentation bundle.</param>
-    ///// <param name="cancellationToken">Any cancellation token.</param>
-    ///// <returns>True if successful, false otherwise.</returns>
-    //[UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "ViewModel types are preserved by the navigation infrastructure and GetType() is safe here.")]
-    //public virtual Task<bool> Navigate<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, ICrossViewModel source,
-    //    ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
-    //    where TParameter : notnull
-    //{
-    //    var request = new CrossViewModelInstanceRequestWithSource(viewModel.GetType(), source) { PresentationValues = presentationBundle?.SafeGetData() };
-    //    ViewModelLoader.ReloadViewModel(viewModel, param, request, null);
-    //    return NavigateAsync(request, viewModel, presentationBundle, cancellationToken);
-    //}
 
     /// <summary>
     ///     Shows the ViewModel for the given request.
@@ -429,7 +263,7 @@ public class CrossNavigationService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>True is successful. False otherwise.</returns>
     protected virtual async Task<bool> NavigateAsync(
-        CrossViewModelRequest request, ICrossViewModel viewModel,
+        ViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);

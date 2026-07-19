@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         #region Properties
         public IPressenterActionContext Context { get; }
 
-        protected CrossViewModelRequest? PendingRequest { get; set; }
+        protected ViewModelRequest? PendingRequest { get; set; }
 
         public ICrossNavigationSerializer NavigationSerializer { get; }
         #endregion
@@ -92,14 +92,14 @@ namespace Nivaes.App.Cross.Droid
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
                 throw new AppException("The host activity doesn't inherit Activity");
 
-            var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
+            var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.ActivityHostViewModelType);
             if (PendingRequest != null)
                 hostViewModelRequest.PresentationValues = PendingRequest.PresentationValues;
 
             await Show(hostViewModelRequest);
         }
 
-        public virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, CrossViewModelRequest? request)
+        public virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request)
         {
             if (fragment is IBaseMasterDetailView masterDetailView)
             {

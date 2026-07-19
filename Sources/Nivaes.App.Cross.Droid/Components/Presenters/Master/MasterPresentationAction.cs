@@ -16,7 +16,7 @@ public sealed class MasterPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, CrossViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, ViewModelRequest request)
     {
         if (attribute.FragmentHostViewType != null)
         {
@@ -66,7 +66,7 @@ public sealed class MasterPresentationAction
         return ValueTask.FromResult(true);
     }
 
-    private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, CrossViewModelRequest request)
+    private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, ViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                         .GetValue(attribute.FragmentHostMasterDetailViewModelType);
@@ -74,7 +74,7 @@ public sealed class MasterPresentationAction
         if (!viewType.IsSubclassOf(typeof(Fragment)))
             throw new AppException("The host fragment doesnt inherit Fragment");
 
-        var hostViewModelRequest = CrossViewModelRequest.GetDefaultRequest(attribute.FragmentHostMasterDetailViewModelType);
+        var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.FragmentHostMasterDetailViewModelType);
         base.Show(hostViewModelRequest);
     }
 }

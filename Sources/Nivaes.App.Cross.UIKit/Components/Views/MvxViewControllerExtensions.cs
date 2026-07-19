@@ -26,27 +26,28 @@ public static class MvxViewControllerExtensions
             }
         }
 
-        if (iosView.Request is CrossViewModelInstanceRequest instanceRequest &&
-            instanceRequest.ViewModelInstance != null)
-        {
-            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
-                $"LoadViewModel ({instanceRequest.ViewModelInstance.GetType().Name}) instance already set - returning it directly without loading from locator");
-            return instanceRequest.ViewModelInstance;
-        }
+        return iosView.Request.ViewModel;
+        //if (iosView.Request is CrossViewModelInstanceRequest instanceRequest &&
+        //    instanceRequest.ViewModelInstance != null)
+        //{
+        //    CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
+        //        $"LoadViewModel ({instanceRequest.ViewModelInstance.GetType().Name}) instance already set - returning it directly without loading from locator");
+        //    return instanceRequest.ViewModelInstance;
+        //}
 
-        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
-        if (iosView.Request != null &&
-            viewModelLoader != null)
-        {
-            var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);
-            if (viewModel == null)
-                throw new AppException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
+        //var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
+        //if (iosView.Request != null &&
+        //    viewModelLoader != null)
+        //{
+        //    var viewModel = viewModelLoader.LoadViewModel(iosView.Request, null /* no saved state on iOS currently */);
+        //    if (viewModel == null)
+        //        throw new AppException($"ViewModel not loaded for {iosView.Request.ViewModelType}");
 
-            CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
-                $"LoadViewModel loaded ({viewModel.GetType().Name})");
-            return viewModel;
-        }
+        //    CrossLoggerHost.GetLogger(nameof(MvxViewControllerExtensions)).LogTrace(
+        //        $"LoadViewModel loaded ({viewModel.GetType().Name})");
+        //    return viewModel;
+        //}
 
-        throw new AppException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
+        //throw new AppException("ViewModel not loaded for null Request on {0}", iosView.GetType().Name);
     }
 }

@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
         ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
 
-        public CrossViewModelRequest? Request { get; set; }
+        public ViewModelRequest? Request { get; set; }
 
         public ICrossBindingContext? BindingContext { get; set; }
        

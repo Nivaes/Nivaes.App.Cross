@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.UIKitLib
         ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
         #endregion
 
-        public CrossViewModelRequest? Request { get; set; } = default;
+        public ViewModelRequest? Request { get; set; } = default;
 
         public override void ViewDidLoad()
         {

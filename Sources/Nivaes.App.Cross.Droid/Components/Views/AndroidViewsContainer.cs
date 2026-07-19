@@ -69,10 +69,10 @@ internal sealed class AndroidViewsContainer
             throw new AppException("Unable to load viewmodel - no type hint provided");
         }
 
-        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
 
-        var viewModelRequest = CrossViewModelRequest.GetDefaultRequest(viewModelTypeHint);
-        var viewModel = viewModelLoader.LoadViewModel(viewModelRequest, savedState);
+        //var viewModelRequest = ViewModelRequest.GetDefaultRequest(viewModelTypeHint);
+        var viewModel = viewModelLoader.LoadViewModel(viewModelTypeHint, null, savedState);
         return viewModel;
     }
 
@@ -82,18 +82,18 @@ internal sealed class AndroidViewsContainer
         if (extraData == null)
             return null;
 
-        var viewModelRequest = _navigationSerializer.Serializer.DeserializeObject<CrossViewModelRequest>(extraData);
+        var viewModelRequest = _navigationSerializer.Serializer.DeserializeObject<ViewModelRequest>(extraData);
         return ViewModelFromRequest(viewModelRequest, savedState);
     }
 
-    private ICrossViewModel? ViewModelFromRequest(CrossViewModelRequest? viewModelRequest, ICrossBundle? savedState)
+    private ICrossViewModel? ViewModelFromRequest(ViewModelRequest? viewModelRequest, ICrossBundle? savedState)
     {
         if (viewModelRequest == null)
             return null;
 
-        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
+        var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
 
-        return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
+        return viewModelLoader.LoadViewModel(viewModelRequest.ViewModelType, null, savedState);
     }
 
     private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? mvxViewModel)
@@ -113,7 +113,7 @@ internal sealed class AndroidViewsContainer
         return false;
     }
 
-    public Intent GetIntentFor(CrossViewModelRequest request)
+    public Intent GetIntentFor(ViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
             .GetValue(request.ViewModelType);
@@ -127,7 +127,7 @@ internal sealed class AndroidViewsContainer
         return intent;
     }
 
-    private void AdjustIntentForPresentation(Intent intent, CrossViewModelRequest request)
+    private void AdjustIntentForPresentation(Intent intent, ViewModelRequest request)
     {
         //todo we want to do things here... clear top, remove history item, etc
         //#warning ClearTop is not enough :/ Need to work on an Intent based scheme like http://stackoverflow.com/questions/3007998/on-logout-clear-activity-history-stack-preventing-back-button-from-opening-l
@@ -137,10 +137,10 @@ internal sealed class AndroidViewsContainer
 
     public (Intent intent, int key) GetIntentWithKeyFor<TViewModel>(
             TViewModel existingViewModelToUse,
-            CrossViewModelRequest? request)
+            ViewModelRequest? request)
         where TViewModel : ICrossViewModel
     {
-        request ??= CrossViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
+        request ??= ViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
         var intent = GetIntentFor(request);
 
         //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) != true || viewModelCache == null)

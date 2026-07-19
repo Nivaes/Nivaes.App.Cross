@@ -1,5 +1,6 @@
 namespace Nivaes.App.Cross
 {
+    [Obsolete("")]
     public class CrossStringDictionaryNavigationSerializer
         : ICrossNavigationSerializer
     {

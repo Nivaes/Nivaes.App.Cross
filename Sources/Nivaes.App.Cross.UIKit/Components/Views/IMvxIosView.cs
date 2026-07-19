@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.UIKitLib
         , IMvxCanCreateIosView
         , ICrossBindingContextOwner
     {
-        CrossViewModelRequest? Request { get; set; }
+        ViewModelRequest? Request { get; set; }
     }
 
     public interface IMvxIosView<TViewModel>

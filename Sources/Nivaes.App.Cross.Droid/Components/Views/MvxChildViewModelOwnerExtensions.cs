@@ -18,11 +18,11 @@ namespace Nivaes.App.Cross.Droid
             where TTargetViewModel : class, ICrossViewModel
         {
             var parameterBundle = new CrossBundle(parameterValues);
-            var request = new CrossViewModelRequest<TTargetViewModel>(parameterBundle, null);
+            var request = new ViewModelRequest<TTargetViewModel>(parameterBundle, null);
             return view.CreateIntentFor(request);
         }
 
-        public static Intent CreateIntentFor(this IMvxAndroidView view, CrossViewModelRequest request)
+        public static Intent CreateIntentFor(this IMvxAndroidView view, ViewModelRequest request)
         {
             return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
         }

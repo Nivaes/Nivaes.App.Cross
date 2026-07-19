@@ -69,7 +69,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        public CrossViewModelRequest? Request { get; set; }
+        public ViewModelRequest? Request { get; set; }
 
 
         public override void ViewDidLoad()

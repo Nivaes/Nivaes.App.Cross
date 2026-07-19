@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
             base.ViewDidDisappear();
         }
 
-        public BasePresentationAttribute? PresentationAttribute(CrossViewModelRequest request)
+        public BasePresentationAttribute? PresentationAttribute(ViewModelRequest request)
         {
             if (!WasPresentedInWindow)
             {

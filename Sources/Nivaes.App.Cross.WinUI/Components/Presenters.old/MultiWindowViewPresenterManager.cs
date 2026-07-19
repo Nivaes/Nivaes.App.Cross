@@ -29,22 +29,18 @@ public class MultiWindowViewPresenterManager
 
     private readonly Lock _windowInformationLock = new();
 
-    private readonly ICrossViewModelLoader _viewModelLoader;
-
     /// <summary>
     ///     Initializes a new instance of <see cref="MultiWindowViewPresenterManager" />.
     /// </summary>
     /// <param name="rootFrame">The root frame.</param>
     public MultiWindowViewPresenterManager(IServiceProvider serviceProvider,
             ICrossWindowsFrame rootFrame, 
-            ICrossViewModelLoader viewModelLoader,
             ICrossWindowsViewModelRequestTranslator requestTranslator, 
             ILogger<MultiWindowViewPresenterManager> logger)
         : base(logger)
     {
         _serviceProvider = serviceProvider;
         _requestTranslator = requestTranslator;
-        _viewModelLoader = viewModelLoader;
 
         var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)

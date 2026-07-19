@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 var type = view.GetViewModelType();
                 if (type != null)
                 {
-                    view.Request = new CrossViewModelRequest(type, parameterBundle, null);
+                    view.Request = new ViewModelRequest(type, parameterBundle, null);
                 }
             }
         }

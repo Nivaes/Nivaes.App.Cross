@@ -2,19 +2,20 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public class CrossViewModelRequestCustomTextSerializer
     : ICrossTextSerializer
 {
 
-    private readonly Lazy<CrpssStringDictionaryWriter> _stringDictionaryWriter =
-        new(() => new CrpssStringDictionaryWriter());
+    private readonly Lazy<CrossStringDictionaryWriter> _stringDictionaryWriter =
+        new(() => new CrossStringDictionaryWriter());
 
     private readonly Lazy<CrossStringDictionaryParser> _stringDictionaryParser =
         new(() => new CrossStringDictionaryParser());
 
     public string SerializeObject(object toSerialise)
     {
-        if (toSerialise is CrossViewModelRequest viewModelRequest)
+        if (toSerialise is ViewModelRequest viewModelRequest)
             return Serialize(viewModelRequest);
 
         if (toSerialise is IDictionary<string, string> stringDictionary)
@@ -30,7 +31,7 @@ public class CrossViewModelRequestCustomTextSerializer
 
     public object DeserializeObject(Type type, string inputText)
     {
-        if (type == typeof(CrossViewModelRequest))
+        if (type == typeof(ViewModelRequest))
             return DeserializeViewModelRequest(inputText);
 
         if (typeof(IDictionary<string, string>).IsAssignableFrom(type))
@@ -45,14 +46,17 @@ public class CrossViewModelRequestCustomTextSerializer
         return dictionary;
     }
 
-    protected virtual CrossViewModelRequest DeserializeViewModelRequest(string inputText)
+    protected virtual ViewModelRequest DeserializeViewModelRequest(string inputText)
     {
         var dictionary = _stringDictionaryParser.Value.Parse(inputText);
-        var toReturn = new CrossViewModelRequest();
         var viewModelTypeName = SafeGetValue(dictionary, "Type");
-        toReturn.ViewModelType = DeserializeViewModelType(viewModelTypeName);
-        toReturn.ParameterValues = _stringDictionaryParser.Value.Parse(SafeGetValue(dictionary, "Params"));
-        toReturn.PresentationValues = _stringDictionaryParser.Value.Parse(SafeGetValue(dictionary, "Pres"));
+        var viewModelType = DeserializeViewModelType(viewModelTypeName);
+
+        var toReturn = new ViewModelRequest(viewModelType)
+        {
+            ParameterValues = _stringDictionaryParser.Value.Parse(SafeGetValue(dictionary, "Params")),
+            PresentationValues = _stringDictionaryParser.Value.Parse(SafeGetValue(dictionary, "Pres")),
+        };
         return toReturn;
     }
 
@@ -61,7 +65,7 @@ public class CrossViewModelRequestCustomTextSerializer
         return _stringDictionaryWriter.Value.Write(toSerialise);
     }
 
-    protected virtual string Serialize(CrossViewModelRequest toSerialise)
+    protected virtual string Serialize(ViewModelRequest toSerialise)
     {
         var dictionary = new Dictionary<string, string>
         {

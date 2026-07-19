@@ -29,8 +29,8 @@ namespace Nivaes.App.Cross.Hosting
 
             // ToDo: Initialize default services for hosting, logging, configuration, etc. if needed.
             builder.Services.TryAddSingleton<ICrossNavigationService, CrossNavigationService>();
-            builder.Services.TryAddSingleton<ICrossViewModelLoader, CrossViewModelLoader>();
-            builder.Services.TryAddSingleton<ICrossViewModelLocator, CrossDefaultViewModelLocator>();
+            builder.Services.TryAddSingleton<CrossViewModelLoader>();
+            builder.Services.TryAddSingleton<CrossViewModelLocator>();
 
             builder.Services.TryAddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
 

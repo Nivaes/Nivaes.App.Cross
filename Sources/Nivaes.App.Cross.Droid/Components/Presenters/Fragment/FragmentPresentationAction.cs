@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, FragmentPresentationAttribute attribute, CrossViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, FragmentPresentationAttribute attribute, ViewModelRequest request)
         {
             var fragmentAttribute = (FragmentPresentationAttribute)attribute;
             // if attribute has a Fragment Host, then show it as nested and return

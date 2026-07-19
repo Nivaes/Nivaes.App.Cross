@@ -21,7 +21,7 @@ public sealed class ActivityPresentationAction
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, ActivityPresentationAttribute attribute, CrossViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, ActivityPresentationAttribute attribute, ViewModelRequest request)
     {           
         var intent = CreateIntentForRequest(request);
         if (intent == null)
@@ -58,7 +58,7 @@ public sealed class ActivityPresentationAction
     }
 
     private Bundle CreateActivityTransitionOptions(
-       Intent intent, ActivityPresentationAttribute attribute, CrossViewModelRequest request)
+       Intent intent, ActivityPresentationAttribute attribute, ViewModelRequest request)
     {
         var bundle = Bundle.Empty!;
 
@@ -131,23 +131,30 @@ public sealed class ActivityPresentationAction
         }
     }
 
-    private Intent? CreateIntentForRequest(CrossViewModelRequest? request)
+    private Intent? CreateIntentForRequest(ViewModelRequest request)
     {
-        if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
-        {
-            var intentWithKey = ViewModelRequestTranslator.GetIntentWithKeyFor(
-                viewModelInstanceRequest.ViewModelInstance!,
-                viewModelInstanceRequest
-            );
+        //if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
+        //{
+        //var intentWithKey = ViewModelRequestTranslator.GetIntentWithKeyFor(
+        //    viewModelInstanceRequest.ViewModelInstance!,
+        //    viewModelInstanceRequest
+        //);
 
-            return intentWithKey.intent;
-        }
+        //return intentWithKey.intent;
+        //}
 
-        return ViewModelRequestTranslator.GetIntentFor(request!);
+        var intentWithKey = ViewModelRequestTranslator.GetIntentWithKeyFor(
+            request.ViewModel, request
+        );
+
+        return intentWithKey.intent;
+
+
+        //return ViewModelRequestTranslator.GetIntentFor(request!);
     }
 
     private (List<string> elements, List<Pair> transitionElementPairs) GetTransitionElements(
-        BasePresentationAttribute attribute, CrossViewModelRequest request,
+        BasePresentationAttribute attribute, ViewModelRequest request,
         IMvxAndroidSharedElements sharedElementsActivity)
     {
         var elements = new List<string>();

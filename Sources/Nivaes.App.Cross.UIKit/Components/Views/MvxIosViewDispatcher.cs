@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.UIKitLib
             _presenter = presenter;
         }
 
-        public async Task<bool> ShowViewModel(CrossViewModelRequest request)
+        public async Task<bool> ShowViewModel(ViewModelRequest request)
         {
             Task action()
             {

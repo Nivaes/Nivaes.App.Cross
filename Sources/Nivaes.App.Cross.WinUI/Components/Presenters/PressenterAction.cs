@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross.WinUI
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
-        protected WindowInformation GetWindowInformation(CrossViewModelRequest request)
+        protected WindowInformation GetWindowInformation(ViewModelRequest request)
         {
             lock (_windowInformationLock)
             {
@@ -153,14 +153,15 @@ namespace Nivaes.App.Cross.WinUI
         /// </summary>
         /// <param name="request">The request to convert.</param>
         /// <returns>A text representation of the request.</returns>
-        protected virtual string GetRequestText(CrossViewModelRequest request)
+        protected virtual string GetRequestText(ViewModelRequest request)
         {
-            string requestText;
-            requestText = request is CrossViewModelInstanceRequest
-                ? _requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance!)
-                : _requestTranslator.GetRequestTextFor(request);
+            throw new NotImplementedException();
+            //string requestText;
+            //requestText = request is CrossViewModelInstanceRequest
+            //    ? _requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance!)
+            //    : _requestTranslator.GetRequestTextFor(request);
 
-            return requestText;
+            //return requestText;
         }
 
         /// <summary>
