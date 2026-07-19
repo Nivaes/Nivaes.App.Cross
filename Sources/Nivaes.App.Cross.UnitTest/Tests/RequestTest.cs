@@ -1,25 +1,17 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-namespace Nivaes.App.Cross.UnitTest
+﻿namespace Nivaes.App.Cross.UnitTest
 {
-    public class RequestTest
+    public class RequestTest : IClassFixture<TestPlatformFixture>
     {
+        private readonly TestPlatformFixture _testPlatformFixture;
+
+        public RequestTest(TestPlatformFixture testPlatformFixture) 
+        {
+            _testPlatformFixture = testPlatformFixture;
+        }
+
         [Fact]
         public void RequestGenerationTest()
         {
-            var services = new ServiceCollection();
-
-            services.AddSingleton<CrossViewModelLoader>();
-            services.AddSingleton<CrossViewModelLocator>();
-            services.AddLogging();
-
-            IPlatformApplication.Current =
-                new TestPlatformApplication(services.BuildServiceProvider());
-
-            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-
             var request = new ViewModelRequest(typeof(MoqViewModel))
             {
 
@@ -28,6 +20,137 @@ namespace Nivaes.App.Cross.UnitTest
             request.ShouldNotBeNull();
             request.ViewModel.ShouldNotBeNull();
             request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+        }
+
+        [Fact]
+        public void SerializaRequestTest()
+        {
+            var request = new ViewModelRequest(typeof(MoqViewModel))
+            {
+
+            };
+            request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+
+            var buffer = ViewModelRequestSerializer.Serializer(request);
+            buffer.ShouldNotBeNull();
+            buffer.Length.ShouldBeGreaterThan(0);
+
+            var requestCopy = ViewModelRequestSerializer.Deserialize(buffer);
+            requestCopy.ShouldNotBeNull();
+            requestCopy.ViewModelType.ShouldBe(typeof(MoqViewModel));
+        }
+
+        [Fact]
+        public void SerializaRequestMultiplesTest()
+        {
+            #region Load
+            for (int i = 0; i < 10; i++)
+            {
+                var request = new ViewModelRequest(typeof(MoqViewModel));
+                request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+                var buffer = ViewModelRequestSerializer.Serializer(request);
+                buffer.ShouldNotBeNull();
+                buffer.Length.ShouldBeGreaterThan(0);
+            }
+
+            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer1 = ViewModelRequestSerializer.Serializer(request1);
+            buffer1.ShouldNotBeNull();
+            buffer1.Length.ShouldBeGreaterThan(0);
+
+            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer2 = ViewModelRequestSerializer.Serializer(request2);
+            buffer2.ShouldNotBeNull();
+            buffer2.Length.ShouldBeGreaterThan(0);
+
+            for (int i = 0; i < 4; i++)
+            {
+                var request = new ViewModelRequest(typeof(MoqViewModel));
+                request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+                var buffer = ViewModelRequestSerializer.Serializer(request);
+                buffer.ShouldNotBeNull();
+                buffer.Length.ShouldBeGreaterThan(0);
+            }
+
+            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer3 = ViewModelRequestSerializer.Serializer(request3);
+            buffer3.ShouldNotBeNull();
+            buffer3.Length.ShouldBeGreaterThan(0);
+
+            var request4 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer4 = ViewModelRequestSerializer.Serializer(request4);
+            buffer1.ShouldNotBeNull();
+            buffer1.Length.ShouldBeGreaterThan(0);
+            #endregion
+
+            var request1Copy = ViewModelRequestSerializer.Deserialize(buffer1);
+            request1Copy.ShouldNotBeNull();
+            request1Copy.ViewModelType.ShouldBe(typeof(MoqViewModel));
+            request1Copy.ViewModel.ShouldBe(request1.ViewModel);
+            request1Copy.ViewModel.GetHashCode().ShouldBe(request1.ViewModel.GetHashCode());
+        }
+
+        [Fact]
+        public void SerializaRequestMultiplesAndDeleteTest()
+        {
+            #region Load
+            for (int i = 0; i < 10; i++)
+            {
+                var request = new ViewModelRequest(typeof(MoqViewModel));
+                request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+                var buffer = ViewModelRequestSerializer.Serializer(request);
+                buffer.ShouldNotBeNull();
+                buffer.Length.ShouldBeGreaterThan(0);
+            }
+
+            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer1 = ViewModelRequestSerializer.Serializer(request1);
+            buffer1.ShouldNotBeNull();
+            buffer1.Length.ShouldBeGreaterThan(0);
+
+            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer2 = ViewModelRequestSerializer.Serializer(request2);
+            buffer2.ShouldNotBeNull();
+            buffer2.Length.ShouldBeGreaterThan(0);
+
+            for (int i = 0; i < 4; i++)
+            {
+                var request = new ViewModelRequest(typeof(MoqViewModel));
+                request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+                var buffer = ViewModelRequestSerializer.Serializer(request);
+                buffer.ShouldNotBeNull();
+                buffer.Length.ShouldBeGreaterThan(0);
+            }
+
+            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer3 = ViewModelRequestSerializer.Serializer(request3);
+            buffer3.ShouldNotBeNull();
+            buffer3.Length.ShouldBeGreaterThan(0);
+
+            var request4 = new ViewModelRequest(typeof(MoqViewModel));
+            request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
+            var buffer4 = ViewModelRequestSerializer.Serializer(request4);
+            buffer1.ShouldNotBeNull();
+            buffer1.Length.ShouldBeGreaterThan(0);
+            #endregion
+
+            var request1Copy = ViewModelRequestSerializer.Deserialize(buffer1);
+            request1Copy.ShouldNotBeNull();
+            request1Copy.ViewModelType.ShouldBe(typeof(MoqViewModel));
+            request1Copy.ViewModel.ShouldBe(request1.ViewModel);
+            request1Copy.ViewModel.GetHashCode().ShouldBe(request1.ViewModel.GetHashCode());
+
+            Should.Throw<AppException>(()=>
+            {
+                var request2Copy = ViewModelRequestSerializer.Deserialize(buffer1);
+            } );
         }
     }
 }

@@ -39,7 +39,7 @@ internal class CrossWindowsViewsContainer
             var viewModel = _childViewModelCache.Get(key);
             if (savedState != null)
                 viewModel!.ReloadState(savedState);
-            return viewModel!;
+             return viewModel!;
         }
 
         throw new AppException($"Not {SubViewModelKey} found.");

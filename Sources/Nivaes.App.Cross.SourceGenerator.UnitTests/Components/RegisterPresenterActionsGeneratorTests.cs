@@ -35,11 +35,11 @@ namespace Nivaes.App.Cross.SourceGenerator.UnitTests
 
                 public sealed class TestPressenterAction : PressenterAction<TestPresentationAttribute>
                 {
-                    public TestPressenterAction(ICrossViewsContainer viewsContainer, ILogger<TestPressenterAction> logger)
-                        :base(viewsContainer, logger)
+                    public TestPressenterAction(ILogger<TestPressenterAction> logger)
+                        :base(logger)
                     { }
 
-                    protected override ValueTask<bool> ShowAction(Type viewType, TestPresentationAttribute attribute, CrossViewModelRequest request)
+                    protected override ValueTask<bool> ShowAction(Type viewType, TestPresentationAttribute attribute, ViewModelRequest request)
                     {
                         throw new NotImplementedException();
                     }

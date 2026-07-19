@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nivaes.App.Cross.UnitTest.Components
+namespace Nivaes.App.Cross.UnitTest
 {
     class MoqView : ICrossView<MoqViewModel>
     {

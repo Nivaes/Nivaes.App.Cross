@@ -211,12 +211,12 @@ public class CrossNavigationService
     {
         throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
 
-        var mvxViewModelInstanceRequest = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
-        {
-            PresentationValues = presentationBundle?.SafeGetData()
-        };
-        //mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
-        return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModel, presentationBundle, cancellationToken);
+        //var mvxViewModelInstanceRequest = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
+        //{
+        //    PresentationValues = presentationBundle?.SafeGetData()
+        //};
+        ////mvxViewModelInstanceRequest.ViewModelInstance = ViewModelLoader.LoadViewModel<TParameter>(mvxViewModelInstanceRequest, param, null);
+        //return NavigateAsync(mvxViewModelInstanceRequest, mvxViewModelInstanceRequest.ViewModel, presentationBundle, cancellationToken);
     }
 
     public Task<TResult> Navigate<TViewModel, TResult>(ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default) where TViewModel : ICrossViewModelResult<TResult>
@@ -246,12 +246,12 @@ public class CrossNavigationService
     {
         throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
 
-        var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
-        {
-            PresentationValues = presentationBundle?.SafeGetData()
-        };
-        //request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        return NavigateAsync(request, request.ViewModel, presentationBundle, cancellationToken);
+        //var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
+        //{
+        //    PresentationValues = presentationBundle?.SafeGetData()
+        //};
+        ////request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
+        //return NavigateAsync(request, request.ViewModel, presentationBundle, cancellationToken);
     }
 
     /// <summary>

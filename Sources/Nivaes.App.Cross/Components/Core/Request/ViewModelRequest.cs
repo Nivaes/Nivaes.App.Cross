@@ -7,11 +7,6 @@ namespace Nivaes.App.Cross
 {
     public class ViewModelRequest
     {
-        [Obsolete]
-        public ViewModelRequest()
-        {
-        }
-
         public ViewModelRequest(Type viewModelType)
         {
             ViewModelType = viewModelType;

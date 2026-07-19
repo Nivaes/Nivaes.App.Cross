@@ -155,13 +155,13 @@ namespace Nivaes.App.Cross.WinUI
         /// <returns>A text representation of the request.</returns>
         protected virtual string GetRequestText(ViewModelRequest request)
         {
-            throw new NotImplementedException();
-            //string requestText;
-            //requestText = request is CrossViewModelInstanceRequest
-            //    ? _requestTranslator.GetRequestTextWithKeyFor(((CrossViewModelInstanceRequest)request).ViewModelInstance!)
-            //    : _requestTranslator.GetRequestTextFor(request);
+            //throw new NotImplementedException();
+            string requestText;
+            requestText = request is ViewModelRequest
+                ? _requestTranslator.GetRequestTextWithKeyFor(((ViewModelRequest)request).ViewModel)
+                : _requestTranslator.GetRequestTextFor(request);
 
-            //return requestText;
+            return requestText;
         }
 
         /// <summary>
