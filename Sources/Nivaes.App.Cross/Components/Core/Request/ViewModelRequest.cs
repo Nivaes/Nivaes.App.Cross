@@ -33,7 +33,6 @@ namespace Nivaes.App.Cross
             _viewModel = new Lazy<ICrossViewModel>(viewModel);
         }
 
-
         #region ViewModel
         public Type ViewModelType
         {

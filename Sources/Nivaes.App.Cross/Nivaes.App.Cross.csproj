@@ -58,6 +58,7 @@
 		<InternalsVisibleTo Include="Nivaes.App.Cross.AppKit" />
 		<InternalsVisibleTo Include="Nivaes.App.Cross.WinUI" />
 		<InternalsVisibleTo Include="Nivaes.App.Cross.PWA" />
+		<InternalsVisibleTo Include="Nivaes.App.Cross.UnitTest" />
 	</ItemGroup>
 
 	<PropertyGroup>

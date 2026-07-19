@@ -38,6 +38,12 @@
           "Microsoft.TestPlatform.TestHost": "18.8.1"
         }
       },
+      "Rocks": {
+        "type": "Direct",
+        "requested": "[10.3.0, )",
+        "resolved": "10.3.0",
+        "contentHash": "NF/0aJ2Fdti2QRqo128M1VOuZfBc91z9kQsR2QaJk28br3LFgLhSTS1fz81UjgfZtD3d91k8aeXSQOuExZDcVg=="
+      },
       "Roslynator.Analyzers": {
         "type": "Direct",
         "requested": "[4.15.0, )",
@@ -493,12 +499,6 @@
           "Nivaes.App.Shared": "[1.0.0.3, )",
           "Nivaes.Extensions": "[2.4.0.1, )",
           "OpenTelemetry": "[1.16.0, )"
-        }
-      },
-      "nivaes.app.cross.sourcegenerator": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "FluentValidation": {
