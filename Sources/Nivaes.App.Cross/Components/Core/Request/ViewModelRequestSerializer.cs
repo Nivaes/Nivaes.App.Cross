@@ -28,12 +28,12 @@ namespace Nivaes.App.Cross
             return ms.ToArray();
         }
 
-        public static ViewModelRequest Deserialize(byte[] buffer) 
+        public static ViewModelRequest Deserialize(byte[] buffer, out uint id) 
         {
             using var ms = new MemoryStream(buffer);
             using var reader = new BinaryReader(ms);
 
-            var id = reader.ReadUInt32();
+            id = reader.ReadUInt32();
             if (ViewModelRequestCache.TryGetValue(id, out var viewModel))
             {
                 return new ViewModelRequest(viewModel!)
@@ -43,6 +43,11 @@ namespace Nivaes.App.Cross
             }
 
             throw new AppException("ViewModelReques not field");
+        }
+
+        public static ViewModelRequest Deserialize(byte[] buffer)
+        {
+            return Deserialize(buffer, out var id);
         }
 
         public static uint DeserializeId(byte[] buffer)

@@ -4,6 +4,6 @@ namespace Nivaes.App.Cross.Droid
 
     public interface IMvxChildViewModelOwner
     {
-        List<int> OwnedSubViewModelIndicies { get; }
+        List<uint> OwnedSubViewModelIndicies { get; }
     }
 }

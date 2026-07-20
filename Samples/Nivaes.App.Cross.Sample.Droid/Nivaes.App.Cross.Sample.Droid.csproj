@@ -25,6 +25,17 @@
 		<!--<AndroidFastDeploymentType>true</AndroidFastDeploymentType>-->
 	</PropertyGroup>
 	<ItemGroup>
+	  <AndroidJavaSource Remove="Components\ViewModel\**" />
+	  <AndroidLibrary Remove="Components\ViewModel\**" />
+	  <AndroidNativeLibrary Remove="Components\ViewModel\**" />
+	  <Compile Remove="Components\ViewModel\**" />
+	  <EmbeddedResource Remove="Components\ViewModel\**" />
+	  <JavaSourceJar Remove="Components\ViewModel\**" />
+	  <None Remove="Components\ViewModel\**" />
+	  <ProguardConfiguration Remove="Components\ViewModel\**" />
+	  <TransformFile Remove="Components\ViewModel\**" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Diagnostics" />
 		<PackageReference Include="Nivaes.App.Shared" />
 		<!--<PackageReference Include="Xamarin.Android.Glide" />-->
@@ -61,8 +72,5 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\ViewModel\" />
 	</ItemGroup>
 </Project>

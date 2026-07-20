@@ -10,7 +10,6 @@ namespace Nivaes.App.Cross.Droid
 
         protected Fragment? Fragment => _eventSource as Fragment;
 
-        [RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]
         protected MvxBaseFragmentAdapter(ICrossEventSourceFragment eventSource)
         {
             if (eventSource is null)

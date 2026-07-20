@@ -10,9 +10,8 @@ public sealed class MasterPresentationAction
 
     public MasterPresentationAction(
             IPressenterActionContext contex,
-            ICrossNavigationSerializer navigationSerializer,
             ILogger<MasterPresentationAction> logger)
-        : base(contex, navigationSerializer, logger)
+        : base(contex, logger)
     {
     }
 

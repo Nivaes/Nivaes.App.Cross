@@ -34,7 +34,6 @@ namespace Nivaes.App.Cross.Hosting
 
             builder.Services.TryAddSingleton<ICrossResultViewModelManager, CrossResultViewModelManager>();
 
-            builder.Services.TryAddSingleton<ICrossNavigationSerializer, CrossStringDictionaryNavigationSerializer>();
             builder.Services.TryAddTransient<ICrossBindingContext, CrossTaskBasedBindingContext>();
 
             builder.SetupBinding();
@@ -45,7 +44,6 @@ namespace Nivaes.App.Cross.Hosting
         static CrossAppBuilder SetupBinding(this CrossAppBuilder builder)
         {
             // ToDo: Refactorizar esto (posiblemente merezca la pena crear un almacen separado para binding)
-            builder.Services.TryAddSingleton<ICrossChildViewModelCache, CrossChildViewModelCache>();
             builder.Services.TryAddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
             builder.Services.TryAddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
             builder.Services.TryAddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();

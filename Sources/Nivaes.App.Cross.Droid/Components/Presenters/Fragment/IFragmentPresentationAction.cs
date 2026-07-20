@@ -13,8 +13,6 @@ namespace Nivaes.App.Cross.Droid
     {
         IPressenterActionContext Context { get; }
 
-        ICrossNavigationSerializer NavigationSerializer { get; }
-
         ILogger Logger { get; }
 
         IMvxFragmentView CreateFragment(
@@ -91,18 +89,12 @@ namespace Nivaes.App.Cross.Droid
             if (fragment == null)
                 throw new AppException($"Fragment {fragmentName} is null. Cannot perform Fragment Transaction.");
 
-            // MvxNavigationService provides an already instantiated ViewModel here
-            //if (request is CrossViewModelInstanceRequest instanceRequest)
-            //{
-            //    fragmentView!.ViewModel = instanceRequest.ViewModelInstance;
-            //}
             fragmentView!.ViewModel = request.ViewModel;
 
             // save MvxViewModelRequest in the Fragment's Arguments
             var bundle = new Bundle();
-            var serializedRequest = NavigationSerializer.Serializer.SerializeObject(request);
-            if (!string.IsNullOrEmpty(serializedRequest))
-                bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
+            var serializedRequest = ViewModelRequestSerializer.Serializer(request);
+            bundle.PutByteArray(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
 
             if (fragment.Arguments == null)
             {

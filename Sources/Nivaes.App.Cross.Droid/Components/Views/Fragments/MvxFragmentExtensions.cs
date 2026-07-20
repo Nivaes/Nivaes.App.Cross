@@ -81,8 +81,6 @@ public static class MvxFragmentExtensions
         public ICrossViewModel? LoadViewModel(ICrossBundle savedState, Type fragmentParentActivityType, ViewModelRequest? request = null)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelType(fragmentParentActivityType);
-            //if (viewModelType == typeof(CrossNullViewModel))
-            //    return new CrossNullViewModel();
 
             if (viewModelType == null)
                 return null;
@@ -98,12 +96,10 @@ public static class MvxFragmentExtensions
             if (request == null)
                 request = ViewModelRequest.GetDefaultRequest(viewModelType!);
 
-            var viewModelCache = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossChildViewModelCache>();
-            if (viewModelCache.Exists(viewModelType!))
+            if(ViewModelRequestCache.TryGetValue(viewModelType!, out var cached))
             {
-                var viewModelCached = viewModelCache.Get(viewModelType!);
-                viewModelCache.Remove(viewModelType!);
-                return viewModelCached!;
+                ViewModelRequestCache.Delete(cached!.Value.id);
+                return cached!.Value.viewModel;
             }
 
             var loaderService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();

@@ -15,17 +15,16 @@ public record CrossBundle(IDictionary<string, string>? data)
 
     public void Write(object toStore)
     {
-        ArgumentNullException.ThrowIfNull(toStore);
         Data.Write(toStore);
     }
 
-    public T? Read<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>()
+    public T? Read<T>()
         where T : new()
     {
         return Data.Read<T>();
     }
 
-    public object? Read([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type type)
+    public object? Read(Type type)
     {
         return Data.Read(type);
     }

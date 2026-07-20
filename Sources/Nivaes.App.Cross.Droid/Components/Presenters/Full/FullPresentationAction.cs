@@ -10,9 +10,8 @@ namespace Nivaes.App.Cross.Droid
 
         public FullPresentationAction(
                 IPressenterActionContext context,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger<FullPresentationAction> logger)
-            : base(context, navigationSerializer, logger)
+            : base(context, logger)
         {
         }
 

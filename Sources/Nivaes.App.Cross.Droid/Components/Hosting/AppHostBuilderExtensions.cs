@@ -29,11 +29,9 @@ namespace Nivaes.App.Cross.Droid
             // ToDo: Unificar interfaces.
             builder.Services.TryAddSingleton<AndroidViewsContainer>(sp =>
             {
-                var navigationSerializer = sp.GetRequiredService<ICrossNavigationSerializer>();
-                var childViewModelCache = sp.GetRequiredService<ICrossChildViewModelCache>();
                 var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
 
-                return new AndroidViewsContainer(applicationContext, navigationSerializer, childViewModelCache, logger);
+                return new AndroidViewsContainer(applicationContext, logger);
             });
             builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
                 sp.GetRequiredService<AndroidViewsContainer>());

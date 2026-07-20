@@ -6,7 +6,6 @@ using Fragment = AndroidX.Fragment.App.Fragment;
 
 namespace Nivaes.App.Cross.Droid;
 
-[RequiresUnreferencedCode("This class uses reflection which may not be preserved during trimming.")]
 public class MvxBindingFragmentAdapter
     : MvxBaseFragmentAdapter
 {
@@ -75,10 +74,11 @@ public class MvxBindingFragmentAdapter
 
     private static ViewModelRequest? ReadRequest(ViewModelRequest? request, string json)
     {
-        var serializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
+        throw new NotImplementedException("No se cuando se ejecuta esto");
+        //var serializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
 
-        request = serializer?.Serializer.DeserializeObject<ViewModelRequest>(json);
-        return request;
+        //request = serializer?.Serializer.DeserializeObject<ViewModelRequest>(json);
+        //return request;
     }
 
     private static ICrossBundle ReadAndroidBundle(Bundle? bundle)

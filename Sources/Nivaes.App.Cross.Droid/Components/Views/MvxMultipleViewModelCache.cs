@@ -1,8 +1,7 @@
+using System.Collections.Concurrent;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Collections.Concurrent;
-
     public class MvxMultipleViewModelCache
         : IMvxMultipleViewModelCache
     {

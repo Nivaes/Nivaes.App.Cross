@@ -17,19 +17,15 @@ namespace Nivaes.App.Cross.Droid
         public IPressenterActionContext Context { get; }
 
         protected ViewModelRequest? PendingRequest { get; set; }
-
-        public ICrossNavigationSerializer NavigationSerializer { get; }
         #endregion
 
         #region Constructor
         protected PressenterAction(
                 IPressenterActionContext contex,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger logger)
             : base(logger)
         {
             Context = contex;
-            NavigationSerializer = navigationSerializer;
         }
         #endregion
 

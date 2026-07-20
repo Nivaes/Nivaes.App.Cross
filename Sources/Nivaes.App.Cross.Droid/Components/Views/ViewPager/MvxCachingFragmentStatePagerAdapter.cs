@@ -106,15 +106,16 @@ namespace Nivaes.App.Cross.Droid
 
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            var navigationSerializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
+            throw new NotImplementedException("No se cuando se ejecuta esto");
+            //var navigationSerializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
 
-            var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
+            //var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
 
-            var bundle = new Bundle();
+            //var bundle = new Bundle();
 
-            bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
+            //bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
 
-            return bundle;
+            //return bundle;
         }
 
         public override IParcelable SaveState()

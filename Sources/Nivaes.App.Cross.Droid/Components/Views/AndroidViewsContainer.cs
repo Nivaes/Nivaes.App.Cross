@@ -7,22 +7,17 @@ namespace Nivaes.App.Cross.Droid;
 internal sealed class AndroidViewsContainer
     : IAndroidViewsContainer
 {
-    private const string ExtrasKey = "LaunchDataKey";
-    private const string SubViewModelKey = "SubViewModelKey";
+    private const string ExtrasKey = "_LaunchDataKey";
+    private const string SubViewModelKey = "_ViewModelId";
 
     private readonly Context _applicationContext;
-    private readonly ICrossNavigationSerializer _navigationSerializer;
-    private readonly ICrossChildViewModelCache _childViewModelCache;
 
     private readonly ILogger Logger;
 
     public AndroidViewsContainer(Context applicationContext,
-        ICrossNavigationSerializer navigationSerializer, ICrossChildViewModelCache childViewModelCache,
         ILogger<AndroidViewsContainer> logger)
     {
         _applicationContext = applicationContext;
-        _navigationSerializer = navigationSerializer;
-        _childViewModelCache = childViewModelCache;
         Logger = logger;
     }
 
@@ -78,11 +73,12 @@ internal sealed class AndroidViewsContainer
 
     private ICrossViewModel? CreateViewModelFromIntent(Intent intent, ICrossBundle? savedState)
     {
-        var extraData = intent.Extras?.GetString(ExtrasKey);
+        var extraData = intent.Extras?.GetByteArray(ExtrasKey);
         if (extraData == null)
             return null;
 
-        var viewModelRequest = _navigationSerializer.Serializer.DeserializeObject<ViewModelRequest>(extraData);
+        var viewModelRequest = ViewModelRequestSerializer.Deserialize(extraData!);
+
         return ViewModelFromRequest(viewModelRequest, savedState);
     }
 
@@ -96,20 +92,17 @@ internal sealed class AndroidViewsContainer
         return viewModelLoader.LoadViewModel(viewModelRequest.ViewModelType, null, savedState);
     }
 
-    private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? mvxViewModel)
+    private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? viewModel)
     {
-        var embeddedViewModelKey = intent.Extras?.GetInt(SubViewModelKey);
-        if (embeddedViewModelKey != null && embeddedViewModelKey.Value != 0)
+        var requestBuffer = intent.Extras?.GetByteArray(SubViewModelKey);
+        if(requestBuffer != null)
         {
-            mvxViewModel = _childViewModelCache.Get(embeddedViewModelKey.Value);
-            if (mvxViewModel != null)
-            {
-                RemoveSubViewModelWithKey(embeddedViewModelKey.Value);
-                return true;
-            }
+            var request = ViewModelRequestSerializer.Deserialize(requestBuffer, out var id);
+            viewModel = request.ViewModel;
+            ViewModelRequestCache.Delete(id);
         }
 
-        mvxViewModel = null;
+        viewModel = null;
         return false;
     }
 
@@ -120,22 +113,13 @@ internal sealed class AndroidViewsContainer
 
         var intent = new Intent(_applicationContext, viewType);
 
-        var requestText = _navigationSerializer.Serializer.SerializeObject(request);
-        intent.PutExtra(ExtrasKey, requestText);
-        AdjustIntentForPresentation(intent, request);
+        var requestBuffer = ViewModelRequestSerializer.Serializer(request);
+        intent.PutExtra(ExtrasKey, requestBuffer);
 
         return intent;
     }
 
-    private void AdjustIntentForPresentation(Intent intent, ViewModelRequest request)
-    {
-        //todo we want to do things here... clear top, remove history item, etc
-        //#warning ClearTop is not enough :/ Need to work on an Intent based scheme like http://stackoverflow.com/questions/3007998/on-logout-clear-activity-history-stack-preventing-back-button-from-opening-l
-        //            if (request.ClearTop)
-        //                intent.AddFlags(ActivityFlags.ClearTop);
-    }
-
-    public (Intent intent, int key) GetIntentWithKeyFor<TViewModel>(
+    public (Intent intent, uint requestId) GetIntentWithKeyFor<TViewModel>(
             TViewModel existingViewModelToUse,
             ViewModelRequest? request)
         where TViewModel : ICrossViewModel
@@ -143,23 +127,15 @@ internal sealed class AndroidViewsContainer
         request ??= ViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
         var intent = GetIntentFor(request);
 
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) != true || viewModelCache == null)
-        //{
-        //    return (intent, -1);
-        //}
+        ViewModelRequestCache.TryGetValue(existingViewModelToUse, out var requestId);
 
-        var key = _childViewModelCache.Cache(existingViewModelToUse);
-        intent.PutExtra(SubViewModelKey, key);
-        return (intent, key);
+        intent.PutExtra(SubViewModelKey, (int)requestId);
+        return (intent, requestId ?? 0);
     }
 
-    public void RemoveSubViewModelWithKey(int key)
+    public void RemoveSubViewModelWithKey(uint requestId)
     {
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossChildViewModelCache? viewModelCache) == true && viewModelCache != null)
-        //{
-        _childViewModelCache.Remove(key);
-        //}
+        ViewModelRequestCache.Delete(requestId);
     }
-
     #endregion Implementation of IMvxAndroidViewModelRequestTranslator
 }

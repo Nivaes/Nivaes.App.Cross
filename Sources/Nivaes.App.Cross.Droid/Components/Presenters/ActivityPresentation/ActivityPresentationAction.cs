@@ -13,10 +13,9 @@ public sealed class ActivityPresentationAction
 
     public ActivityPresentationAction(
             IPressenterActionContext contex,
-            ICrossNavigationSerializer navigationSerializer,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
             ILogger<ActivityPresentationAction> logger)
-        : base(contex, navigationSerializer, logger)
+        : base(contex, logger)
     {
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }

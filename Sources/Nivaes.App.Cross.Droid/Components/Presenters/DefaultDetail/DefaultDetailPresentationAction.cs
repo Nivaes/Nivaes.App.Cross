@@ -10,9 +10,8 @@ public sealed class DefaultDetailPresentationAction
 
     public DefaultDetailPresentationAction(
             IPressenterActionContext contex,
-            ICrossNavigationSerializer navigationSerializer,
             ILogger<DefaultDetailPresentationAction> logger)
-        : base(contex, navigationSerializer, logger)
+        : base(contex, logger)
     {
     }
 

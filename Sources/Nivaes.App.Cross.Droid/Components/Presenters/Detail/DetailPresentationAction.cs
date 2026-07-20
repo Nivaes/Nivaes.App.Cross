@@ -12,9 +12,8 @@ public sealed class DetailPresentationAction
     public DetailPresentationAction(
             IPressenterActionContext contex,
             IMvxAndroidViewModelRequestTranslator viewModelRequestTranslator,
-            ICrossNavigationSerializer navigationSerializer,
             ILogger<DetailPresentationAction> logger)
-        : base(contex, navigationSerializer, logger)
+        : base(contex, logger)
     {
     }
 

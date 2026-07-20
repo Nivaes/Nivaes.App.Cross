@@ -34,6 +34,50 @@
             }
         }
 
+        public static bool TryGetValue(ICrossViewModel value, out uint? id)
+        {
+            lock (_lock)
+            {
+                var entries = _entries;
+
+                for (nint i = entries.Length - 1; i >= 0; i--)
+                {
+                    ref readonly var entry = ref entries[i];
+
+                    if (ReferenceEquals(entry.Value, value))
+                    {
+                        id = entry.Id;
+                        return true;
+                    }
+                }
+
+                id = null;
+                return false;
+            }
+        }
+
+        public static bool TryGetValue(Type viewModelType, out (uint id, ICrossViewModel viewModel)? returnValue)
+        {
+            lock (_lock)
+            {
+                var entries = _entries;
+
+                for (nint i = entries.Length - 1; i >= 0; i--)
+                {
+                    ref readonly var entry = ref entries[i];
+
+                    if (ReferenceEquals(entry.Value.GetType(), viewModelType))
+                    {
+                        returnValue = (entry.Id, entry.Value);
+                        return true;
+                    }
+                }
+
+                returnValue = null;
+                return false;
+            }
+        }
+
         public static uint Add(ICrossViewModel value)
         {
             lock (_lock)

@@ -11,9 +11,8 @@ namespace Nivaes.App.Cross.Droid
 
         public FragmentPresentationAction(
                 IPressenterActionContext context,
-                ICrossNavigationSerializer navigationSerializer,
                 ILogger<FragmentPresentationAttribute> logger)
-            : base(context, navigationSerializer, logger)
+            : base(context, logger)
         {
         }
 

@@ -1,10 +1,10 @@
+using System.Globalization;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+
 namespace Nivaes.App.Cross
 {
-    using System.Globalization;
-    using System.Reflection;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Observability;
-
     public class CrossStringToTypeParser
         : ICrossStringToTypeParser, ICrossFillableStringToTypeParser
     {

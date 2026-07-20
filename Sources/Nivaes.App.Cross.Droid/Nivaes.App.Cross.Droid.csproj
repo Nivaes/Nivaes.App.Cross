@@ -29,6 +29,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <AndroidJavaSource Remove="Components\Views\Binding\**" />
+	  <AndroidLibrary Remove="Components\Views\Binding\**" />
+	  <AndroidNativeLibrary Remove="Components\Views\Binding\**" />
+	  <Compile Remove="Components\Views\Binding\**" />
+	  <EmbeddedResource Remove="Components\Views\Binding\**" />
+	  <JavaSourceJar Remove="Components\Views\Binding\**" />
+	  <None Remove="Components\Views\Binding\**" />
+	  <ProguardConfiguration Remove="Components\Views\Binding\**" />
+	  <TransformFile Remove="Components\Views\Binding\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AndHUD" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
 		<PackageReference Include="Nivaes.App.Shared" />
@@ -84,10 +96,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Components\Views\Binding\" />
 	</ItemGroup>
 
 </Project>
