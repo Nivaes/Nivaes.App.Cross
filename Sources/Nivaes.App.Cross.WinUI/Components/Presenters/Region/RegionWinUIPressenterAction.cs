@@ -27,9 +27,9 @@ namespace Nivaes.App.Cross.WinUI
             if (viewType.HasRegionAttribute())
             {
                 var windowInformation = GetWindowInformation(request);
-                var requestText = GetRequestText(request);
-                var containerView =
-                    windowInformation.RootFrame.UnderlyingControl.FindControl<Frame>(viewType.GetRegionName());
+                
+                //var requestText = GetRequestText(request);
+                var containerView = windowInformation.RootFrame.UnderlyingControl.FindControl<Frame>(viewType.GetRegionName());
                 //if (request is CrossViewModelInstanceRequestWithSource targetRequest &&
                 //    targetRequest.ViewModelInstance != null)
                 //{
@@ -39,7 +39,9 @@ namespace Nivaes.App.Cross.WinUI
 
                 if (containerView != null)
                 {
-                    containerView.Navigate(viewType, requestText);
+                    var requestBuffer = ViewModelRequestSerializer.Serializer(request);
+
+                    containerView.Navigate(viewType, requestBuffer);
 
                     containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
                     return ValueTask.FromResult(true);

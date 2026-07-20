@@ -18,7 +18,7 @@
             {
                 var entries = _entries;
 
-                for (int i = 0; i < entries.Length; i++)
+                for (int i = entries.Length - 1; i >= 0; i--)
                 {
                     ref readonly var entry = ref entries[i];
 

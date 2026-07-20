@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross
         public Type ViewModelType
         {
             get;
-            set;
+            //set;
         }
 
         private Lazy<ICrossViewModel> _viewModel;
@@ -69,17 +69,15 @@ namespace Nivaes.App.Cross
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append($"MvxViewModelRequest - ViewModelType: '{ViewModelType}'");
+            sb.Append($"ViewModelRequest - ViewModelType: '{ViewModelType}'");
             if (ParameterValues != null)
             {
-                sb.Append(
-                    $", ParameterValues: '{string.Join(", ", ParameterValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
+                sb.Append($", ParameterValues: '{string.Join(", ", ParameterValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
             }
 
             if (PresentationValues != null)
             {
-                sb.Append(
-                    $", PresentationValues: '{string.Join(", ", PresentationValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
+                sb.Append($", PresentationValues: '{string.Join(", ", PresentationValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
             }
 
             return sb.ToString();

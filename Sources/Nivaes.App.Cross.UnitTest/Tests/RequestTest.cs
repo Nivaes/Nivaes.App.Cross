@@ -92,6 +92,7 @@
             request1Copy.ViewModelType.ShouldBe(typeof(MoqViewModel));
             request1Copy.ViewModel.ShouldBe(request1.ViewModel);
             request1Copy.ViewModel.GetHashCode().ShouldBe(request1.ViewModel.GetHashCode());
+            request1Copy.ViewModelType.ShouldBe(request1.ViewModelType);
         }
 
         [Fact]
@@ -146,6 +147,7 @@
             request1Copy.ViewModelType.ShouldBe(typeof(MoqViewModel));
             request1Copy.ViewModel.ShouldBe(request1.ViewModel);
             request1Copy.ViewModel.GetHashCode().ShouldBe(request1.ViewModel.GetHashCode());
+            request1Copy.ViewModelType.ShouldBe(request1.ViewModelType);
 
             Should.Throw<AppException>(()=>
             {

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -87,20 +88,21 @@ public abstract class CrossWindowsPage<TViewModel>
         SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
     }
 
-    private string _reqData = string.Empty;
+    private byte[]? _reqData = null;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
         ViewModel?.ViewCreated();
 
-        if (_reqData != string.Empty)
+        if (_reqData != null)
         {
-            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelLoader>();
-            ViewModel = (TViewModel?)viewModelLoader?.Load(e.Parameter.ToString(), LoadStateBundle(e));
-            ViewModel?.ViewCreated();
+            Debugger.Break(); // Mirar lo que carga aquí.
+            //var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelLoader>();
+            //ViewModel = (TViewModel?)viewModelLoader?.Load(e.Parameter.ToString(), LoadStateBundle(e));
+            //ViewModel?.ViewCreated();
         }
-        _reqData = (string)e.Parameter;
+        _reqData = (byte[])e.Parameter;
 
         this.OnViewCreate(_reqData, () => LoadStateBundle(e));
     }
@@ -116,7 +118,9 @@ public abstract class CrossWindowsPage<TViewModel>
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {
-            var key = translator.RequestTextGetKey(_reqData);
+            Debugger.Break(); // Si se tiene que borrar aquí, hay que modificar el RequestCache.
+            //var key = translator.RequestTextGetKey(_reqData);
+            var key = 0;
             this.OnViewDestroy(key);
         }
         else

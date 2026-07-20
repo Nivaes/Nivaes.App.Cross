@@ -147,22 +147,22 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
-        /// <summary>
-        ///     Converts a request to a string format.
-        ///     A Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
-        /// </summary>
-        /// <param name="request">The request to convert.</param>
-        /// <returns>A text representation of the request.</returns>
-        protected virtual string GetRequestText(ViewModelRequest request)
-        {
-            //throw new NotImplementedException();
-            string requestText;
-            requestText = request is ViewModelRequest
-                ? _requestTranslator.GetRequestTextWithKeyFor(((ViewModelRequest)request).ViewModel)
-                : _requestTranslator.GetRequestTextFor(request);
+        ///// <summary>
+        /////     Converts a request to a string format.
+        /////     A Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
+        ///// </summary>
+        ///// <param name="request">The request to convert.</param>
+        ///// <returns>A text representation of the request.</returns>
+        //protected virtual string GetRequestText(ViewModelRequest request)
+        //{
+        //    //throw new NotImplementedException();
+        //    string requestText;
+        //    requestText = request is ViewModelRequest
+        //        ? _requestTranslator.GetRequestTextWithKeyFor(((ViewModelRequest)request).ViewModel)
+        //        : _requestTranslator.GetRequestTextFor(request);
 
-            return requestText;
-        }
+        //    return requestText;
+        //}
 
         /// <summary>
         ///     Updates the visibility state of the back button.

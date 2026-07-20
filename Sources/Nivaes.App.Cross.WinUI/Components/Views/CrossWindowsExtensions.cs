@@ -6,9 +6,9 @@ namespace Nivaes.App.Cross.WinUI;
 
 public static class CrossWindowsExtensions
 {
-    public static void OnViewCreate(this ICrossWindowsView storeView, string requestText, Func<ICrossBundle> bundleLoader)
+    public static void OnViewCreate(this ICrossWindowsView storeView, byte[] requestBuffer, Func<ICrossBundle> bundleLoader)
     {
-        storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestText, bundleLoader()); });
+        storeView.OnViewCreate(() => { return storeView.LoadViewModel(requestBuffer, bundleLoader()); });
     }
 
     public static void OnViewCreate(this ICrossWindowsView storeView, Func<ICrossViewModel> viewModelLoader)
@@ -78,10 +78,10 @@ public static class CrossWindowsExtensions
     }
 
     private static ICrossViewModel LoadViewModel(this ICrossWindowsView storeView,
-                                                string requestText,
+                                                byte[] requestBuffer,
                                                 ICrossBundle bundle)
     {
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelLoader>();
-        return viewModelLoader?.Load(requestText, bundle);
+        return viewModelLoader?.Load(requestBuffer, bundle);
     }
 }

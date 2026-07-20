@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Text;
 
@@ -15,6 +16,14 @@ namespace Nivaes.App.Cross
 
             int id = RequestCache.Add(request.ViewModel);
             writer.Write(id);
+
+            if (request.ParameterValues != null) {
+                Debugger.Break();
+            }
+            if (request.PresentationValues != null)
+            {
+                Debugger.Break();
+            }
 
             return ms.ToArray();
         }

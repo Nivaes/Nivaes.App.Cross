@@ -33,10 +33,10 @@ namespace Nivaes.App.Cross.WinUI
         {
             try
             {
-                var requestText = GetRequestText(request);
+                //var requestText = GetRequestText(request);
+                var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                //Frame won't allow serialization of it's nav-state if it gets a non-simple type as a nav param
-                rootFrame.Navigate(viewType, requestText);
+                rootFrame.Navigate(viewType, requestBuffer);
 
                 HandleBackButtonVisibility();
                 return ValueTask.FromResult(true);
