@@ -45,9 +45,6 @@ namespace Nivaes.App.Cross
             ICrossBundle? savedState, 
             ICrossNavigateEventArgs? navigationArgs = null)
         {
-            //if (request.ViewModelType == null)
-            //    return null;  // ToDo: Puede haber un viewModelType == null?
-
             var bundleParameterValues = new CrossBundle(parameterValues);
             try
             {

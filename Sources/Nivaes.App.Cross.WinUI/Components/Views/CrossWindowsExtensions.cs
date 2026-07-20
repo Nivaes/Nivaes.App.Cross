@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -20,13 +21,15 @@ public static class CrossWindowsExtensions
         storeView.ViewModel = viewModel;
     }
 
-    public static void OnViewDestroy(this ICrossWindowsView storeView, int key)
+    public static void OnViewDestroy(this ICrossWindowsView storeView, uint requestId)
     {
-        if (key > 0)
-        {
-            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
-            viewModelLoader.RemoveSubViewModelWithKey(key);
-        }
+        //if (requestId > 0)
+        //{
+        //    Debugger.Break();
+        //    //var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
+        //    //viewModelLoader.RemoveSubViewModelWithKey(key);
+        //}
+        ViewModelRequestCache.Delete(requestId);
     }
 
     public static bool HasRegionAttribute(this Type view)

@@ -244,14 +244,12 @@ public class CrossNavigationService
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
-
-        //var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
-        //{
-        //    PresentationValues = presentationBundle?.SafeGetData()
-        //};
-        ////request.ViewModelInstance = ViewModelLoader.LoadViewModel(request, null);
-        //return NavigateAsync(request, request.ViewModel, presentationBundle, cancellationToken);
+        var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
+        {
+            PresentationValues = presentationBundle?.SafeGetData()
+        };
+        //request.ViewModel = ViewModelLoader.LoadViewModel(request, null);
+        return NavigateAsync(request, request.ViewModel, presentationBundle, cancellationToken);
     }
 
     /// <summary>

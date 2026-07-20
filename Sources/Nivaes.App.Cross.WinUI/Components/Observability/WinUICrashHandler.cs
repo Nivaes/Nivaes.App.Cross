@@ -21,11 +21,11 @@ namespace Nivaes.App.Cross.WinUI.Observability
             app.UnhandledException += App_UnhandledException;
         }
 
-        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        private async void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.Exception;
 
-            SaveException(ex, "Unhandled exception occurred.");
+            await SaveException(ex, "Unhandled exception occurred.");
 
             Logger.LogCritical(ex, "Unhandled exception occurred.");
             LoggerProvider?.ForceFlush();

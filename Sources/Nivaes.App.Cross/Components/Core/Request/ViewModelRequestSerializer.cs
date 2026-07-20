@@ -14,7 +14,7 @@ namespace Nivaes.App.Cross
             using var ms = new MemoryStream();
             using var writer = new BinaryWriter(ms, Encoding.UTF8, leaveOpen: true);
 
-            int id = RequestCache.Add(request.ViewModel);
+            var id = ViewModelRequestCache.Add(request.ViewModel);
             writer.Write(id);
 
             if (request.ParameterValues != null) {
@@ -33,8 +33,8 @@ namespace Nivaes.App.Cross
             using var ms = new MemoryStream(buffer);
             using var reader = new BinaryReader(ms);
 
-            var id = reader.ReadInt32();
-            if (RequestCache.TryGetValue(id, out var viewModel))
+            var id = reader.ReadUInt32();
+            if (ViewModelRequestCache.TryGetValue(id, out var viewModel))
             {
                 return new ViewModelRequest(viewModel!)
                 {
@@ -43,6 +43,14 @@ namespace Nivaes.App.Cross
             }
 
             throw new AppException("ViewModelReques not field");
+        }
+
+        public static uint DeserializeId(byte[] buffer)
+        {
+            using var ms = new MemoryStream(buffer);
+            using var reader = new BinaryReader(ms);
+
+            return reader.ReadUInt32();
         }
     }
 }

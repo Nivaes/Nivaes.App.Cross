@@ -28,8 +28,6 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.TryAddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
-            builder.Services.TryAddSingleton<ICrossWindowsViewModelRequestTranslator, CrossWindowsViewsContainer>();
-
             builder.Services.TryAddSingleton<ICrashHandler, WinUICrashHandler>();
 
             // Plugins

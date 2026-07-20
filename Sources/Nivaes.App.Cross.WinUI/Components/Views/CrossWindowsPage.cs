@@ -114,14 +114,14 @@ public abstract class CrossWindowsPage<TViewModel>
         var bundle = this.CreateSaveStateBundle();
         SaveStateBundle(e, bundle);
 
-        var translator = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
+        //var translator = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossWindowsViewModelRequestTranslator>();
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {
             Debugger.Break(); // Si se tiene que borrar aquí, hay que modificar el RequestCache.
             //var key = translator.RequestTextGetKey(_reqData);
-            var key = 0;
-            this.OnViewDestroy(key);
+            var idRequest = ViewModelRequestSerializer.DeserializeId(_reqData);
+            this.OnViewDestroy(idRequest);
         }
         else
         {
@@ -129,14 +129,19 @@ public abstract class CrossWindowsPage<TViewModel>
             if (backstack.Count > 0)
             {
                 var currentEntry = backstack[backstack.Count - 1];
-                var key = translator.RequestTextGetKey(currentEntry.Parameter.ToString());
-                if (key == 0)
-                {
-                    var newParamter = translator.GetRequestTextWithKeyFor(ViewModel);
-                    var entry = new PageStackEntry(currentEntry.SourcePageType, newParamter, currentEntry.NavigationTransitionInfo);
-                    backstack.Remove(currentEntry);
-                    backstack.Add(entry);
-                }
+                var request = ViewModelRequestSerializer.Deserialize((byte[])currentEntry.Parameter);
+                //var key = translator.RequestTextGetKey(currentEntry.Parameter.ToString());
+                //if (key == 0)
+                //{
+                //    var newParamter = translator.GetRequestTextWithKeyFor(ViewModel);
+
+                //ToDo: Es necesario hacer una copia del Request?
+                var newRequest = new ViewModelRequest(request.ViewModel);
+                var newRequestBuffer = ViewModelRequestSerializer.Serializer(newRequest);
+                var entry = new PageStackEntry(currentEntry.SourcePageType, newRequestBuffer, currentEntry.NavigationTransitionInfo);
+                backstack.Remove(currentEntry);
+                backstack.Add(entry);
+                //}
             }
         }
     }

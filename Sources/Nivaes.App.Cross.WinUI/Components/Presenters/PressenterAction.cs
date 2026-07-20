@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
 using Windows.UI.Core;
 
@@ -22,19 +18,15 @@ namespace Nivaes.App.Cross.WinUI
 
         // ToDo: Ha de compartirse con todos los PressenterAction?
         private readonly List<WindowInformation> _windowInformation = new();
-        // ToDo: Ha de compartirse con todos los PressenterAction?
-        private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
 
         #region Constructor
         public PressenterAction(
                 IPressenterActionContext context,
                 ICrossWindowsFrame rootFrame,
-                ICrossWindowsViewModelRequestTranslator requestTranslator,
                 ILogger logger)
             : base(logger)
         {
             Context = context;
-            _requestTranslator = requestTranslator;
             var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
             //if (window != null)
             //{

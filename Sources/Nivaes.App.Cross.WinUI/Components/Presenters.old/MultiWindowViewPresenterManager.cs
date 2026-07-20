@@ -25,7 +25,6 @@ public class MultiWindowViewPresenterManager
     private readonly IServiceProvider _serviceProvider;
     private readonly WindowInformation _mainFrame;
     private readonly List<WindowInformation> _windowInformation = new();
-    private readonly ICrossWindowsViewModelRequestTranslator _requestTranslator;
 
     private readonly Lock _windowInformationLock = new();
 
@@ -35,12 +34,10 @@ public class MultiWindowViewPresenterManager
     /// <param name="rootFrame">The root frame.</param>
     public MultiWindowViewPresenterManager(IServiceProvider serviceProvider,
             ICrossWindowsFrame rootFrame, 
-            ICrossWindowsViewModelRequestTranslator requestTranslator, 
             ILogger<MultiWindowViewPresenterManager> logger)
         : base(logger)
     {
         _serviceProvider = serviceProvider;
-        _requestTranslator = requestTranslator;
 
         var window = (Microsoft.UI.Xaml.Application.Current as CrossWinUIApplication)?.MainWindow;
         if (window != null)

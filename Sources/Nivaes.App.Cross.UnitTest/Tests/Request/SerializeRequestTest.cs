@@ -1,25 +1,12 @@
-﻿namespace Nivaes.App.Cross.UnitTest
+﻿namespace Nivaes.App.Cross.UnitTest.Request
 {
-    public class RequestTest : IClassFixture<TestPlatformFixture>
+    public class SerializeRequestTest : IClassFixture<TestPlatformFixture>
     {
         private readonly TestPlatformFixture _testPlatformFixture;
 
-        public RequestTest(TestPlatformFixture testPlatformFixture) 
+        public SerializeRequestTest(TestPlatformFixture testPlatformFixture) 
         {
             _testPlatformFixture = testPlatformFixture;
-        }
-
-        [Fact]
-        public void RequestGenerationTest()
-        {
-            var request = new ViewModelRequest(typeof(MoqViewModel))
-            {
-
-            };
-
-            request.ShouldNotBeNull();
-            request.ViewModel.ShouldNotBeNull();
-            request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
         }
 
         [Fact]
@@ -148,6 +135,9 @@
             request1Copy.ViewModel.ShouldBe(request1.ViewModel);
             request1Copy.ViewModel.GetHashCode().ShouldBe(request1.ViewModel.GetHashCode());
             request1Copy.ViewModelType.ShouldBe(request1.ViewModelType);
+
+            var id = ViewModelRequestSerializer.DeserializeId(buffer1);
+            ViewModelRequestCache.Delete(id);
 
             Should.Throw<AppException>(()=>
             {
