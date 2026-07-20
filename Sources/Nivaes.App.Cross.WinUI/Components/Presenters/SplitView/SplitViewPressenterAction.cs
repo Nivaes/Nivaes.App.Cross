@@ -39,14 +39,9 @@ namespace Nivaes.App.Cross.WinUI
                         splitView.Content = nestedFrame;
                     }
 
-                    //var requestText = GetRequestText(request);
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
                     nestedFrame.Navigate(viewType, requestBuffer);
 
-                    //if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
-                    //{
-                    //    windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
-                    //}
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
                 else if (attribute.Position == SplitPanePosition.Pane)
@@ -59,13 +54,8 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
-                    //var requestText = GetRequestText(request);
                     nestedFrame.Navigate(viewType, requestBuffer);
 
-                    //if (request is CrossViewModelInstanceRequest instanceReq && instanceReq.ViewModelInstance != null)
-                    //{
-                    //    windowInformation.RegisterSubViewModel(instanceReq.ViewModelInstance);
-                    //}
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
             }
@@ -77,7 +67,5 @@ namespace Nivaes.App.Cross.WinUI
         {
             return ClosePage(viewModel, attribute);
         }
-
-
     }
 }

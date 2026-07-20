@@ -130,18 +130,13 @@ public abstract class CrossWindowsPage<TViewModel>
             {
                 var currentEntry = backstack[backstack.Count - 1];
                 var request = ViewModelRequestSerializer.Deserialize((byte[])currentEntry.Parameter);
-                //var key = translator.RequestTextGetKey(currentEntry.Parameter.ToString());
-                //if (key == 0)
-                //{
-                //    var newParamter = translator.GetRequestTextWithKeyFor(ViewModel);
 
-                //ToDo: Es necesario hacer una copia del Request?
+                //ToDo: ¿Es necesario hacer una copia del Request?
                 var newRequest = new ViewModelRequest(request.ViewModel);
                 var newRequestBuffer = ViewModelRequestSerializer.Serializer(newRequest);
                 var entry = new PageStackEntry(currentEntry.SourcePageType, newRequestBuffer, currentEntry.NavigationTransitionInfo);
                 backstack.Remove(currentEntry);
                 backstack.Add(entry);
-                //}
             }
         }
     }

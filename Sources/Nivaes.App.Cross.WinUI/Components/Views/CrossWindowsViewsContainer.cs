@@ -28,29 +28,12 @@ internal class CrossWindowsViewsContainer
 
     public ICrossViewModel Load(byte[] requestBuffer, ICrossBundle savedState)
     {
-        //var dictionary = _navigationSerializer.Serializer.DeserializeObject<Dictionary<string, string>>(requestText);
-
-        //dictionary.TryGetValue(ExtrasKey, out string serializedRequest);
-        //var request = _navigationSerializer.Serializer.DeserializeObject<ViewModelRequest>(serializedRequest!);
-
-        //if (dictionary.TryGetValue(SubViewModelKey, out string? viewModelKey))
-        //{
-        //    var key = int.Parse(viewModelKey);
-        //    var viewModel = _childViewModelCache.Get(key);
-        //    if (savedState != null)
-        //        viewModel!.ReloadState(savedState);
-        //     return viewModel!;
-        //}
-
         var request = ViewModelRequestSerializer.Deserialize(requestBuffer);
 
         if (savedState != null)
             request.ViewModel.ReloadState(savedState);
 
         return request.ViewModel;
-
-        //throw new AppException($"Not {SubViewModelKey} found.");
-        //return _viewModelLoader.LoadViewModel(request!, savedState);
     }
 
     #region Implementation of IMvxWindowsViewModelRequestTranslator
