@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class BaseViewModel
     : CrossNavigationViewModel
 {
-    public BaseViewModel(ILogger<BaseViewModel> logger, CrossNavigationService navigationService)
-        : base(navigationService, logger)
+    public BaseViewModel(ILogger<BaseViewModel> logger)
+        : base(logger)
     {
     }
 }

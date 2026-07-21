@@ -34,7 +34,18 @@ namespace Nivaes.App.Cross.Sample
                 {
                     r.AddService(
                         serviceName: $"CrossSample: {RuntimeInformation.OSDescription}",
-                        serviceVersion: "{0.1}");
+                        serviceVersion: "0.1",
+                        serviceInstanceId: Environment.MachineName);
+
+                    r.AddAttributes(new[]
+                    {
+                        new KeyValuePair<string, object>("os.description", RuntimeInformation.OSDescription),
+                        new KeyValuePair<string, object>("os.architecture", RuntimeInformation.OSArchitecture.ToString()),
+                        new KeyValuePair<string, object>("process.architecture", RuntimeInformation.ProcessArchitecture.ToString()),
+                        new KeyValuePair<string, object>("framework", RuntimeInformation.FrameworkDescription),
+                        new KeyValuePair<string, object>("machine.name", Environment.MachineName),
+                        new KeyValuePair<string, object>("environment", builder.Environment.EnvironmentName),
+                    });
                 })
                 .WithMetrics(metrics =>
                 {

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
@@ -7,15 +8,16 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel
         : CrossViewModel
     {
-        protected readonly CrossNavigationService NavigationService;
+        private static Lazy<CrossNavigationService> _navigationService = 
+            new Lazy<CrossNavigationService>(()=> IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossNavigationService>());
+
+        protected CrossNavigationService NavigationService => _navigationService.Value;
 
         protected Activity? Trace;
 
-        protected CrossNavigationViewModel(CrossNavigationService navigationService, ILogger logger)
+        protected CrossNavigationViewModel(ILogger logger)
             : base(logger)
         {
-            NavigationService = navigationService;
-
             Logger.LogTrace($"Started {this.GetType().FullName}");
 
             // Send Trace.
@@ -63,8 +65,8 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel<TParameter>
         : CrossNavigationViewModel, ICrossViewModel<TParameter>
     {
-        protected CrossNavigationViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected CrossNavigationViewModel(ILogger logger)
+            : base(logger)
         {
         }
 
@@ -77,10 +79,9 @@ namespace Nivaes.App.Cross
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
         protected CrossNavigationResultAwaitingViewModel(
-                CrossNavigationService navigationService,
                 ICrossResultViewModelManager resultViewModelManager,
                 ILogger logger)
-            : base(navigationService, logger)
+            : base(logger)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -114,10 +115,9 @@ namespace Nivaes.App.Cross
         : CrossNavigationResultAwaitingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected CrossNavigationResultAwaitingViewModel(
-                ILogger logger,
-                CrossNavigationService navigationService,
-                ICrossResultViewModelManager resultViewModelManager)
-            : base(navigationService, resultViewModelManager, logger)
+                ICrossResultViewModelManager resultViewModelManager,
+                ILogger logger)
+            : base(resultViewModelManager, logger)
         {
         }
 
@@ -127,8 +127,8 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModelResult<TResult>
         : CrossNavigationViewModel, ICrossViewModelResult<TResult>
     {
-        protected CrossNavigationViewModelResult(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected CrossNavigationViewModelResult(ILogger logger)
+            : base(logger)
         {
         }
 
@@ -146,8 +146,8 @@ namespace Nivaes.App.Cross
     public abstract class CrossNavigationViewModel<TParameter, TResult> :
         CrossNavigationViewModelResult<TResult>, ICrossViewModel<TParameter, TResult>
     {
-        protected CrossNavigationViewModel(CrossNavigationService navigationService, ILogger logger) :
-            base(navigationService, logger)
+        protected CrossNavigationViewModel(ILogger logger) :
+            base(logger)
         {
         }
 
@@ -159,11 +159,10 @@ namespace Nivaes.App.Cross
     {
         protected ICrossResultViewModelManager ResultViewModelManager { get; }
 
-        protected CrossNavigationResultSettingViewModel(
-                ILogger logger,
-                CrossNavigationService navigationService,
-                ICrossResultViewModelManager resultViewModelManager)
-            : base(navigationService, logger)
+        protected CrossNavigationResultSettingViewModel(               
+                ICrossResultViewModelManager resultViewModelManager,
+                ILogger logger)
+            : base(logger)
         {
             ResultViewModelManager = resultViewModelManager;
         }
@@ -178,10 +177,10 @@ namespace Nivaes.App.Cross
         : CrossNavigationResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
     {
         protected CrossNavigationResultSettingViewModel(
-                ILogger logger,
-                CrossNavigationService navigationService,
-                ICrossResultViewModelManager resultViewModelManager)
-            : base(logger, navigationService, resultViewModelManager)
+                ICrossResultViewModelManager resultViewModelManager,
+                ILogger logger
+                )
+            : base(resultViewModelManager, logger)
         {
         }
 

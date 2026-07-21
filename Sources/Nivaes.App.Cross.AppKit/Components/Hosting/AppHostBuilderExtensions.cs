@@ -18,11 +18,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, INSApplicationDelegate applicationDelegation)
         {
-            builder.Services.TryAddSingleton<MvxMacViewDispatcher>();
-            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
-                    sp.GetRequiredService<MvxMacViewDispatcher>());
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
-                    sp.GetRequiredService<MvxMacViewDispatcher>());
+            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxMacViewDispatcher>();           
 
             builder.Services.TryAddSingleton<IMacViewPresenterManager>(sp =>
             {

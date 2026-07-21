@@ -21,8 +21,8 @@ namespace Nivaes.App.Cross
         public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
         #endregion
 
-        protected DialogViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected DialogViewModel(ILogger logger)
+            : base(logger)
         { }
 
         public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
@@ -39,8 +39,8 @@ namespace Nivaes.App.Cross
         public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
         #endregion
 
-        protected DialogViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected DialogViewModel(ILogger logger)
+            : base(logger)
         { }
 
         public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
@@ -57,8 +57,8 @@ namespace Nivaes.App.Cross
         public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
         #endregion
 
-        protected DialogViewModelResult(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected DialogViewModelResult(ILogger logger)
+            : base(logger)
         { }
 
         public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>
@@ -75,8 +75,8 @@ namespace Nivaes.App.Cross
         public virtual string CancelButtonLabel => DialogLocalizationString.CancelButtonLabel;
         #endregion
 
-        protected DialogViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected DialogViewModel(ILogger logger)
+            : base(logger)
         { }
 
         public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () =>

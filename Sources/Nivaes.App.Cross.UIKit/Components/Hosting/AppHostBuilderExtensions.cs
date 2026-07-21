@@ -18,11 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, UIWindow windows)
         {
-            builder.Services.TryAddSingleton<MvxIosViewDispatcher>();
-            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
-                    sp.GetRequiredService<MvxIosViewDispatcher>());
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
-                    sp.GetRequiredService<MvxIosViewDispatcher>());
+            builder.Services.TryAddSingleton<MvxIosViewDispatcher, MvxIosViewDispatcher>();
 
             builder.Services.TryAddSingleton<IIosViewPresenterManager, IosViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext>(sp => new PressenterActionContext(windows));

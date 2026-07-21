@@ -3,13 +3,9 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.Sample;
 
 public sealed class ChildWithResultViewModel(
-        ILogger<ChildWithResultViewModel> logger,
-        CrossNavigationService navigationService,
-        ICrossResultViewModelManager resultViewModelManager)
-    : CrossNavigationResultSettingViewModel<SampleModel, SampleModel>(
-        logger,
-        navigationService,
-        resultViewModelManager)
+        ICrossResultViewModelManager resultViewModelManager,
+        ILogger<ChildWithResultViewModel> logger)
+    : CrossNavigationResultSettingViewModel<SampleModel, SampleModel>(resultViewModelManager, logger)
 {
     private SampleModel _model = null!;
 

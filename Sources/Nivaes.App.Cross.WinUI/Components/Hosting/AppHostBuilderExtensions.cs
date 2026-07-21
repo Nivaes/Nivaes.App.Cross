@@ -18,11 +18,7 @@ namespace Nivaes.App.Cross.WinUI
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, CrossWinUIApplication app)
         {
             // ToDo: Unificar interfaces.
-            builder.Services.TryAddSingleton<CrossWindowsViewDispatcher>();
-            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
-                sp.GetRequiredService<CrossWindowsViewDispatcher>());
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher>(sp =>
-                sp.GetRequiredService<CrossWindowsViewDispatcher>());
+            builder.Services.TryAddSingleton<CrossWindowsViewDispatcher, CrossWindowsViewDispatcher>();
 
             builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
             builder.Services.TryAddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();

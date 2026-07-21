@@ -19,7 +19,7 @@ public class CrossBindingSingletonCache
     private ICrossSourceStepFactory? _sourceStepFactory;
 
 
-    private ICrossMainThreadAsyncDispatcher? _mainThreadDispatcher;
+    private ICrossMainThreadDispatcher? _mainThreadDispatcher;
 
     public ICrossBindingDescriptionParser BindingDescriptionParser
     {
@@ -84,11 +84,11 @@ public class CrossBindingSingletonCache
         }
     }
 
-    public ICrossMainThreadAsyncDispatcher MainThreadDispatcher
+    public ICrossMainThreadDispatcher MainThreadDispatcher
     {
         get
         {
-            _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
+            _mainThreadDispatcher = _mainThreadDispatcher ?? IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadDispatcher>();
             return _mainThreadDispatcher;
         }
     }

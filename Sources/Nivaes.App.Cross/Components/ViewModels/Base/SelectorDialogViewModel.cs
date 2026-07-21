@@ -10,8 +10,8 @@ namespace Nivaes.App.Cross
     public abstract class SelectorDialogViewModel
         : DialogViewModel, ISelectorDialogViewModel
     {
-        protected SelectorDialogViewModel(CrossNavigationService navigationService, ILogger logger)
-          : base(navigationService, logger)
+        protected SelectorDialogViewModel(ILogger logger)
+          : base(logger)
         { }
     }
 
@@ -19,24 +19,24 @@ namespace Nivaes.App.Cross
        : DialogViewModel<TParameter>, ISelectorDialogViewModel
             where TParameter : class
     {
-        protected SelectorDialogViewModel(CrossNavigationService navigationService, ILogger logger)
-          : base(navigationService, logger)
+        protected SelectorDialogViewModel(ILogger logger)
+          : base(logger)
         { }
     }
 
     public abstract class SelectorDialogViewModelResult<TResult>
        : DialogViewModelResult<TResult>, ISelectorDialogViewModel
     {
-        protected SelectorDialogViewModelResult(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected SelectorDialogViewModelResult(ILogger logger)
+            : base(logger)
         { }
     }
 
     public abstract class SelectorDialogViewModel<TParameter, TResult>
         : DialogViewModel<TParameter, TResult>, ISelectorDialogViewModel
     {
-        protected SelectorDialogViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected SelectorDialogViewModel(ILogger logger)
+            : base(logger)
         { }
     }
 }

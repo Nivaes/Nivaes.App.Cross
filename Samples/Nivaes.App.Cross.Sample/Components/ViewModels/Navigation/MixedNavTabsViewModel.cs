@@ -1,13 +1,13 @@
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross;
+
 namespace Playground.Core.ViewModels
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
     public class MixedNavTabsViewModel
         : CrossNavigationViewModel
     {
-        public MixedNavTabsViewModel(CrossNavigationService navigationService, ILogger<MixedNavTabsViewModel> logger)
-            : base(navigationService, logger)
+        public MixedNavTabsViewModel(ILogger<MixedNavTabsViewModel> logger)
+            : base(logger)
         {
         }
 

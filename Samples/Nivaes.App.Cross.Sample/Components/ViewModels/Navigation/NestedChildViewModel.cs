@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class NestedChildViewModel
     : CrossNavigationViewModel
 {
-    public NestedChildViewModel(ILogger<NestedChildViewModel> logger, CrossNavigationService navigationService)
-        : base(navigationService, logger)
+    public NestedChildViewModel(ILogger<NestedChildViewModel> logger)
+        : base(logger)
     {
         CloseCommand = new CrossAsyncCommand(() => NavigationService.Close(this));
         PopToChildCommand = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPopPresentationHint(typeof(ChildViewModel))));

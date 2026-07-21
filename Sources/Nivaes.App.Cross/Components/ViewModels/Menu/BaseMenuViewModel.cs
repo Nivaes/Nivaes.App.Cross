@@ -6,8 +6,8 @@ namespace Nivaes.App.Cross
         : BaseViewModel
     {
         #region Life cycle
-        public BaseMenuViewModel(CrossNavigationService navigationService, ILogger logger)
-          : base(navigationService, logger)
+        public BaseMenuViewModel(ILogger logger)
+          : base(logger)
         { }
         #endregion
     }

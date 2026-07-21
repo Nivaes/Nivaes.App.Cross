@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross
     public sealed class PrimaryViewModel
         : BaseMainViewModel
     {
-        public PrimaryViewModel(CrossNavigationService navigationService, ILogger logger)
-          : base(navigationService, logger)
+        public PrimaryViewModel(ILogger logger)
+          : base(logger)
         { }
     }
 }

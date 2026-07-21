@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
@@ -103,8 +104,7 @@ public abstract class CrossCommandBase
     {
         _commandHelper = new CrossWeakCommandHelper();
 
-        var alwaysOnUIThread =
-            CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread ?? true;
+        var alwaysOnUIThread = CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread ?? true;
         ShouldAlwaysRaiseCECOnUserInterfaceThread = alwaysOnUIThread;
     }
 

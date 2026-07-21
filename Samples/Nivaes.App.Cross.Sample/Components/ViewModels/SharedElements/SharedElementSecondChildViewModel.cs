@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class SharedElementSecondChildViewModel
     : BaseViewModel
 {
-    public SharedElementSecondChildViewModel(ILogger<SharedElementSecondChildViewModel> logger, CrossNavigationService navigationService)
-        : base(logger, navigationService)
+    public SharedElementSecondChildViewModel(ILogger<SharedElementSecondChildViewModel> logger)
+        : base(logger)
     {
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 namespace Nivaes.App.Cross.AppKitLib
 {
     public abstract class MvxMacUIThreadDispatcher
-        : CrossMainThreadAsyncDispatcher
+        : CrossMainThreadDispatcher
     {
         private readonly SynchronizationContext _uiSynchronizationContext;
 
@@ -19,12 +19,16 @@ namespace Nivaes.App.Cross.AppKitLib
             bool maskExceptions = true)
         {
             if (IsOnMainThread)
+            {
                 ExceptionMaskedAction(action, maskExceptions);
+            }
             else
+            {
                 NSApplication.SharedApplication.BeginInvokeOnMainThread(() =>
                 {
                     ExceptionMaskedAction(action, maskExceptions);
                 });
+            }
             return true;
         }
 

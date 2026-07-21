@@ -1,8 +1,7 @@
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.Sample
 {
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross;
-
     public class CodeBehindViewModel
         : CrossViewModel
     {

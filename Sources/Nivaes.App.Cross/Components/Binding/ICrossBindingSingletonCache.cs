@@ -13,6 +13,6 @@ namespace Nivaes.App.Cross
 
         ICrossSourceStepFactory SourceStepFactory { get; }
 
-        ICrossMainThreadAsyncDispatcher MainThreadDispatcher { get; }
+        ICrossMainThreadDispatcher MainThreadDispatcher { get; }
     }
 }

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.UIKitLib
@@ -8,10 +7,7 @@ namespace Nivaes.App.Cross.UIKitLib
     {
         private readonly IPressenterActionContext Context;
 
-        //private readonly MvxIosMajorVersionChecker _iosVersion13Checker = new(13);
         private readonly IMvxIosViewCreator _viewCreator;
-
-        //protected UIWindow Window { get; }
 
         public UINavigationController? MasterNavigationController { get; protected set; }
 
@@ -59,20 +55,22 @@ namespace Nivaes.App.Cross.UIKitLib
             return new ChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
         }
 
-        public override object? CreateOverridePresentationAttributeViewInstance(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type viewType)
+        public override object? CreateOverridePresentationAttributeViewInstance(Type viewType)
         {
             return (UIViewController?)_viewCreator.CreateViewOfType(viewType);
         }      
 
         public override ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
         {
-            return hint switch
+            if (hint is CrossPagePresentationHint pagePresentationHint)
             {
-                CrossPagePresentationHint pagePresentationHint when ChangePagePresentation(pagePresentationHint) =>
-                    ValueTask.FromResult(true),
-                _ => base.ChangePresentation(hint)
-            };
+                if (ChangePagePresentation(pagePresentationHint))
+                {
+                    return ValueTask.FromResult(true);
+                }
+            }
+
+            return base.ChangePresentation(hint);
         }
 
         private bool ChangePagePresentation(CrossPagePresentationHint pagePresentationHint)
@@ -106,8 +104,6 @@ namespace Nivaes.App.Cross.UIKitLib
 
             return false;
         }
-
-       
 
         protected virtual Task<bool> ShowChildViewController(
             UIViewController viewController,

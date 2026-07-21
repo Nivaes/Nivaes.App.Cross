@@ -11,9 +11,11 @@ namespace Nivaes.App.Cross
         #endregion
 
         #region Life cycle
-        public InitializingAppViewModel(IIdentifyService identifyService, IMediaService mediaService,
-                CrossNavigationService navigationService, ILogger<InitializingAppViewModel> logger)
-            : base(navigationService, logger)
+        public InitializingAppViewModel(
+                IIdentifyService identifyService, 
+                IMediaService mediaService,
+                ILogger<InitializingAppViewModel> logger)
+            : base(logger)
         {
             mIdentifyService = identifyService;
             mMediaService = mediaService;

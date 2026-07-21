@@ -10,8 +10,8 @@ namespace Nivaes.App.Cross
     public abstract class BaseDetailViewModel
         : BaseMainViewModel, IBaseDetailViewModel
     {
-        protected BaseDetailViewModel(CrossNavigationService navigationService, ILogger logger)
-          : base(navigationService, logger)
+        protected BaseDetailViewModel(ILogger logger)
+          : base(logger)
         { }
     }
 
@@ -19,24 +19,24 @@ namespace Nivaes.App.Cross
         : BaseMainViewModel<TParameter>, IBaseDetailViewModel
             where TParameter : class
     {
-        protected BaseDetailViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected BaseDetailViewModel(ILogger logger)
+            : base(logger)
         { }
     }
 
     public abstract class BaseDetailViewModelResult<TResult>
         : BaseMainViewModelResult<TResult>, IBaseDetailViewModel
     {
-        protected BaseDetailViewModelResult(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected BaseDetailViewModelResult(ILogger logger)
+            : base(logger)
         { }
     }
 
     public abstract class BaseDetailViewModel<TParameter, TResult>
         : BaseMainViewModel<TParameter, TResult>, IBaseDetailViewModel
     {
-        protected BaseDetailViewModel(CrossNavigationService navigationService, ILogger logger)
-            : base(navigationService, logger)
+        protected BaseDetailViewModel(ILogger logger)
+            : base(logger)
         { }
     }
 }

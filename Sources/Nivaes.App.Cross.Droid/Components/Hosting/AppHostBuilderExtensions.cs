@@ -51,7 +51,6 @@ namespace Nivaes.App.Cross.Droid
 
             builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
 
-            builder.Services.TryAddSingleton<ICrossMainThreadAsyncDispatcher, MvxAndroidViewDispatcher>();
             builder.Services.TryAddSingleton<IMvxMultipleViewModelCache, MvxMultipleViewModelCache>();
 
             // Plugins

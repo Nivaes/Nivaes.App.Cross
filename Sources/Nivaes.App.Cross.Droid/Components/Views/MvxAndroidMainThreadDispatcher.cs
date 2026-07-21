@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.Droid
     using Microsoft.Extensions.Logging;
 
     public class MvxAndroidMainThreadDispatcher
-        : CrossMainThreadAsyncDispatcher
+        : CrossMainThreadDispatcher
     {
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 

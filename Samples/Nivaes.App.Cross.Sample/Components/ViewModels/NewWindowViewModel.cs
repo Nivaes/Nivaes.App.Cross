@@ -7,8 +7,8 @@ public class NewWindowViewModel
 {
     private string _welcomeText = "Default welcome";
 
-    public NewWindowViewModel(ILogger<NewWindowViewModel> logger, CrossNavigationService navigationService)
-        : base(navigationService, logger)
+    public NewWindowViewModel(ILogger<NewWindowViewModel> logger)
+        : base(logger)
     {
     }
 

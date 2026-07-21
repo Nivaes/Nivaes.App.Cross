@@ -1,10 +1,10 @@
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross
 {
-    using System.ComponentModel;
-    using System.Linq.Expressions;
-    using System.Runtime.CompilerServices;
-    using Microsoft.Extensions.Logging;
-
     public abstract class CrossNotifyPropertyChanged
         : CrossMainThreadDispatchingObject, ICrossNotifyPropertyChanged
     {
@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 
-            void ExceptionMasked() => CrossMainThreadDispatcher.ExceptionMaskedAction(RaiseChange, true);
+            void ExceptionMasked() => MainThreadDispatcher.ExceptionMaskedAction(RaiseChange, true);
 
             if (ShouldAlwaysRaiseInpcOnUserInterfaceThread())
             {

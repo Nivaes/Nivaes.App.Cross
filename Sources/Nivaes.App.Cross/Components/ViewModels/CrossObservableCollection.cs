@@ -257,19 +257,16 @@ public class CrossObservableCollection<T>
             new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
     }
 
-    private ICrossMainThreadAsyncDispatcher _dispatcher;
+    private ICrossMainThreadDispatcher _dispatcher;
 
     protected virtual Task InvokeOnMainThread(Action action)
     {
         if (_dispatcher != null)
             return _dispatcher.ExecuteOnMainThreadAsync(action);
 
-        var dispatcher = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadAsyncDispatcher>();
-
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossMainThreadAsyncDispatcher dispatcher) != true || dispatcher == null)
-        //    return Task.CompletedTask;
-
+        var dispatcher = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossMainThreadDispatcher>();
         _dispatcher = dispatcher;
+
         return _dispatcher.ExecuteOnMainThreadAsync(action);
     }
 

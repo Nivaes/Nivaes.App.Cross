@@ -17,10 +17,9 @@ public class RootViewModel
     }
 
     public RootViewModel(
-            CrossNavigationService navigationService,
             ICrossResultViewModelManager resultViewModelManager,
             ILogger<RootViewModel> logger)
-        : base(navigationService, resultViewModelManager, logger)
+        : base(resultViewModelManager, logger)
     {
         ShowChildCommand = new CrossAsyncCommand(() =>
         {

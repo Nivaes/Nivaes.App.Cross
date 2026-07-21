@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class PagesRootViewModel
     : CrossNavigationViewModel
 {
-    public PagesRootViewModel(CrossNavigationService navigationService, ILogger<PagesRootViewModel> logger)
-        : base(navigationService, logger)
+    public PagesRootViewModel(ILogger<PagesRootViewModel> logger)
+        : base(logger)
     {
         ShowInitialViewModelsCommand = new CrossAsyncCommand(ShowInitialViewModels);
     }

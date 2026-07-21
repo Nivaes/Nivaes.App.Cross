@@ -5,8 +5,8 @@ namespace Nivaes.App.Cross.Sample;
 public class SharedElementRootViewModel
     : BaseViewModel
 {
-    public SharedElementRootViewModel(ILogger<SharedElementRootViewModel> logger, CrossNavigationService navigationService)
-        : base(logger, navigationService)
+    public SharedElementRootViewModel(ILogger<SharedElementRootViewModel> logger)
+        : base(logger)
     {
     }
 }
