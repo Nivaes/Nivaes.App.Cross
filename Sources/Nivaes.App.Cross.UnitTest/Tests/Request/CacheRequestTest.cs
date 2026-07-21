@@ -15,7 +15,7 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }

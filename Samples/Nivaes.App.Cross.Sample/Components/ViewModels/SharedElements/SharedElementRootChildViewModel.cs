@@ -38,7 +38,7 @@ public class SharedElementRootChildViewModel
     }
     #endregion
 
-    public SharedElementRootChildViewModel(ILogger<SharedElementRootChildViewModel> logger, ICrossNavigationService navigationService)
+    public SharedElementRootChildViewModel(ILogger<SharedElementRootChildViewModel> logger, CrossNavigationService navigationService)
         : base(logger, navigationService)
     {
     }

@@ -11,7 +11,7 @@ namespace Nivaes.App.Cross
         : BaseViewModel, IMasterViewModel
     {
         #region Constructor
-        protected MasterViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected MasterViewModel(CrossNavigationService navigationService, ILogger logger)
            : base(navigationService, logger)
         { }
         #endregion
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross
             where TParameter : class
     {
         #region Constructor
-        protected MasterViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected MasterViewModel(CrossNavigationService navigationService, ILogger logger)
            : base(navigationService, logger)
         { }
         #endregion

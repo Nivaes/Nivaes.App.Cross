@@ -1,13 +1,11 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Java.Nio;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid;
 
 public class MvxSavedStateConverter : IMvxSavedStateConverter
 {
-    private const string ExtrasKey = "_Saved";
+    private const string ExtrasKey = "_saved";
     private readonly ILogger _logger;
 
     public MvxSavedStateConverter(ILogger<MvxSavedStateConverter> logger)

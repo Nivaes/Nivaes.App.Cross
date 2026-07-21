@@ -84,10 +84,17 @@ namespace Nivaes.App.Cross
         }
     }
 
+    
+
     public class ViewModelRequest<TViewModel>
         : ViewModelRequest 
         where TViewModel : ICrossViewModel
     {
+        public ViewModelRequest()
+            : base(typeof(TViewModel))
+        {
+        }
+
         public ViewModelRequest(TViewModel viewModel) 
             : base(viewModel)
         {
@@ -97,10 +104,27 @@ namespace Nivaes.App.Cross
             : base(typeof(TViewModel), parameterBundle, presentationBundle)
         {
         }
+    }
 
-        public static ViewModelRequest GetDefaultRequest()
+    public class ViewModelRequestParameter<TParameter>
+         : ViewModelRequest
+         where TParameter : notnull
+    {
+        public TParameter Parameter;
+
+        //public ViewModelRequest()
+        //    : base(typeof(TViewModel))
+        //{
+        //}
+
+        public ViewModelRequestParameter(ICrossViewModel viewModel)
+            : base(viewModel)
         {
-            return GetDefaultRequest(typeof(TViewModel));
         }
+
+        //public ViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
+        //    : base(typeof(TViewModel), parameterBundle, presentationBundle)
+        //{
+        //}
     }
 }

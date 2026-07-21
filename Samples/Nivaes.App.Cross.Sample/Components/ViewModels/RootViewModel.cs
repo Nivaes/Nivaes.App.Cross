@@ -17,7 +17,7 @@ public class RootViewModel
     }
 
     public RootViewModel(
-            ICrossNavigationService navigationService,
+            CrossNavigationService navigationService,
             ICrossResultViewModelManager resultViewModelManager,
             ILogger<RootViewModel> logger)
         : base(navigationService, resultViewModelManager, logger)

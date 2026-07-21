@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Sample;
 
 public class MixedNavMasterRootContentViewModel : CrossNavigationViewModel
 {
-    public MixedNavMasterRootContentViewModel(ILogger<MixedNavMasterRootContentViewModel> logger, ICrossNavigationService navigationService)
+    public MixedNavMasterRootContentViewModel(ILogger<MixedNavMasterRootContentViewModel> logger, CrossNavigationService navigationService)
         : base(navigationService, logger)
     {
         ShowModalCommand = new CrossAsyncCommand(() => NavigationService.Navigate<ModalNavViewModel>());

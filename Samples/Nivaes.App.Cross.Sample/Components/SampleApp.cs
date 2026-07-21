@@ -10,7 +10,7 @@ public class SampleApp
 {
     private readonly TracerProvider _tracerProvider;
 
-    public SampleApp(IServiceProvider serviceProvider, ICrossNavigationService naviegateService,
+    public SampleApp(IServiceProvider serviceProvider, CrossNavigationService naviegateService,
             ILogger<SampleApp> logger, TracerProvider tracerProvider)
         : base(serviceProvider, naviegateService, logger)
     {

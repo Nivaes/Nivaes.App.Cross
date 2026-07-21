@@ -5,11 +5,11 @@ namespace Nivaes.App.Cross;
 public abstract class CrossApplication : ICrossApplication
 {
     protected readonly IServiceProvider ServiceProvider;
-    protected readonly ICrossNavigationService NavigationService;
+    protected readonly CrossNavigationService NavigationService;
     protected readonly ILogger Logger;
 
     protected CrossApplication(IServiceProvider serviceProvider,
-                               ICrossNavigationService navigationService, 
+                               CrossNavigationService navigationService, 
                                ILogger logger)
     {
         ServiceProvider = serviceProvider;

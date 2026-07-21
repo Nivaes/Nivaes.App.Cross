@@ -5,7 +5,7 @@ namespace Playground.Core.ViewModels
 
     public class MixedNavResultDetailViewModel : CrossNavigationViewModel
     {
-        public MixedNavResultDetailViewModel(ILogger<MixedNavResultDetailViewModel> logger, ICrossNavigationService navigationService)
+        public MixedNavResultDetailViewModel(ILogger<MixedNavResultDetailViewModel> logger, CrossNavigationService navigationService)
             : base(navigationService, logger)
         {
             CloseViewModelCommand = new CrossAsyncCommand(() => NavigationService.Close(this));

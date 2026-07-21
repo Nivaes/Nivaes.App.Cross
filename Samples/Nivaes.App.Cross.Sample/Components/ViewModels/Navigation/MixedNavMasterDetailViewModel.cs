@@ -16,7 +16,7 @@ public class MixedNavMasterDetailViewModel : CrossNavigationViewModel
         public Type? ViewModelType { get; init; }
     }
 
-    public MixedNavMasterDetailViewModel(ILogger<MixedNavMasterDetailViewModel> logger, ICrossNavigationService navigationService)
+    public MixedNavMasterDetailViewModel(ILogger<MixedNavMasterDetailViewModel> logger, CrossNavigationService navigationService)
         : base(navigationService, logger)
     {
         Menu = new[] {

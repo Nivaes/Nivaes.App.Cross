@@ -6,7 +6,7 @@ namespace Playground.Core.ViewModels
     public class MixedNavTabsViewModel
         : CrossNavigationViewModel
     {
-        public MixedNavTabsViewModel(ICrossNavigationService navigationService, ILogger<MixedNavTabsViewModel> logger)
+        public MixedNavTabsViewModel(CrossNavigationService navigationService, ILogger<MixedNavTabsViewModel> logger)
             : base(navigationService, logger)
         {
         }

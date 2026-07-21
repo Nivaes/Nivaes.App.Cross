@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Sample;
 
 public sealed class ChildWithResultViewModel(
         ILogger<ChildWithResultViewModel> logger,
-        ICrossNavigationService navigationService,
+        CrossNavigationService navigationService,
         ICrossResultViewModelManager resultViewModelManager)
     : CrossNavigationResultSettingViewModel<SampleModel, SampleModel>(
         logger,

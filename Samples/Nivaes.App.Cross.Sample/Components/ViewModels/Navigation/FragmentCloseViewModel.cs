@@ -6,7 +6,7 @@ public class FragmentCloseViewModel : BaseViewModel
 {
     private static int _counter = 0;
 
-    public FragmentCloseViewModel(ILogger<FragmentCloseViewModel> logger, ICrossNavigationService navigationService)
+    public FragmentCloseViewModel(ILogger<FragmentCloseViewModel> logger, CrossNavigationService navigationService)
         : base(logger, navigationService)
     {
         ForwardCommand = new CrossAsyncCommand(() => NavigationService.Navigate<FragmentCloseViewModel>());

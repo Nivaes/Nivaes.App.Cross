@@ -18,7 +18,7 @@ public class DictionaryBindingViewModel : BaseViewModel
 
     ICrossCommand _incrementCommand;
 
-    public DictionaryBindingViewModel(ILogger<DictionaryBindingViewModel> logger, ICrossNavigationService navigationService)
+    public DictionaryBindingViewModel(ILogger<DictionaryBindingViewModel> logger, CrossNavigationService navigationService)
         : base(logger, navigationService)
     {
     }

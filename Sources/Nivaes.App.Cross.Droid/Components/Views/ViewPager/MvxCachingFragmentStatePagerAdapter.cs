@@ -48,30 +48,26 @@ namespace Nivaes.App.Cross.Droid
                 fragmentClass.Name
             );
 
-            if (fragment is not IMvxFragmentView mvxFragment)
+            if (fragment is not IMvxFragmentView fragmentView)
             {
                 return fragment;
             }
 
-            if (mvxFragment.GetType().IsFragmentCacheable(_activityType) && fragmentSavedState != null)
+            if (fragmentView.GetType().IsFragmentCacheable(_activityType) && fragmentSavedState != null)
             {
                 return fragment;
             }
 
-            mvxFragment.ViewModel = GetViewModel(fragmentInfo);
+            fragmentView.ViewModel = fragmentInfo.Request.ViewModel;
 
             fragment.Arguments = GetArguments(fragmentInfo);
 
-            // If the MvxViewPagerFragmentInfo for this position doesn't have the ViewModel, overwrite it with a new MvxViewPagerFragmentInfo that has the ViewModel we just created.
-            // Not doing this means the ViewModel gets recreated every time the Fragment gets recreated!
-
-            throw new NotImplementedException("No se que hace el codigo siguiente.");
-            //if (fragmentInfo is { Request: not CrossViewModelInstanceRequest })
-            //{
-            //    var viewModelInstanceRequest = new CrossViewModelInstanceRequest(mvxFragment.ViewModel);
-            //    var newFragInfo = new MvxViewPagerFragmentInfo(fragmentInfo.Title, fragmentInfo.Tag, fragmentInfo.FragmentType, viewModelInstanceRequest);
-            //    FragmentsInfo[position] = newFragInfo;
-            //}
+            if (fragmentInfo is { Request: not ViewModelRequest })
+            {
+                var viewModelInstanceRequest = new ViewModelRequest(fragmentView.ViewModel);
+                var newFragInfo = new MvxViewPagerFragmentInfo(fragmentInfo.Title, fragmentInfo.Tag, fragmentInfo.FragmentType, viewModelInstanceRequest);
+                FragmentsInfo[position] = newFragInfo;
+            }
 
             return fragment;
         }
@@ -91,31 +87,15 @@ namespace Nivaes.App.Cross.Droid
             return FragmentsInfo[position].Tag;
         }
 
-        private static ICrossViewModel GetViewModel(MvxViewPagerFragmentInfo fragmentInfo)
-        {
-            return fragmentInfo.Request.ViewModel;
-            //if (fragmentInfo.Request is CrossViewModelInstanceRequest instanceRequest)
-            //{
-            //    return instanceRequest.ViewModelInstance;
-            //}
-
-            //var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossViewModelLoader>();
-
-            //return viewModelLoader.LoadViewModel(fragmentInfo.Request, null);
-        }
-
         private static Bundle GetArguments(MvxViewPagerFragmentInfo fragmentInfo)
         {
-            throw new NotImplementedException("No se cuando se ejecuta esto");
-            //var navigationSerializer = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationSerializer>();
+            var requestBuffer = ViewModelRequestSerializer.Serializer(fragmentInfo.Request);
 
-            //var serializedRequest = navigationSerializer.Serializer.SerializeObject(fragmentInfo.Request);
+            var bundle = new Bundle();
 
-            //var bundle = new Bundle();
+            bundle.PutByteArray(AndroidViewPresenterManager.ViewModelRequestBundleKey, requestBuffer);
 
-            //bundle.PutString(AndroidViewPresenterManager.ViewModelRequestBundleKey, serializedRequest);
-
-            //return bundle;
+            return bundle;
         }
 
         public override IParcelable SaveState()

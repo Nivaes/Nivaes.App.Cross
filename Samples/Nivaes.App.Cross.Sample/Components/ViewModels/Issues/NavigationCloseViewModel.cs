@@ -6,9 +6,9 @@ namespace Nivaes.App.Cross.Sample;
 public class NavigationCloseViewModel
     : CrossViewModel
 {
-    private readonly ICrossNavigationService _mvxNavigationService;
+    private readonly CrossNavigationService _mvxNavigationService;
 
-    public NavigationCloseViewModel(ICrossNavigationService mvxNavigationService, ILogger<NavigationCloseViewModel> logger)
+    public NavigationCloseViewModel(CrossNavigationService mvxNavigationService, ILogger<NavigationCloseViewModel> logger)
         : base(logger)
     {
         _mvxNavigationService = mvxNavigationService;

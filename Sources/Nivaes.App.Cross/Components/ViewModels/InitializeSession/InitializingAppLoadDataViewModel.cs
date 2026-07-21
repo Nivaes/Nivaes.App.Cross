@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross
         #region Life cycle
         public InitializingAppLoadDataViewModel(IIdentifyService identifyService,
                     //ISyncronizationService syncronizationService,
-                    ICrossNavigationService navigationService, ILogger logger)
+                    CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             //mSyncronizationService = syncronizationService;

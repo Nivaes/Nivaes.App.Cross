@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Sample;
 
-public class MultiBackStackViewModel(ILogger<MultiBackStackViewModel> logger, ICrossNavigationService navigationService)
+public class MultiBackStackViewModel(ILogger<MultiBackStackViewModel> logger, CrossNavigationService navigationService)
     : CrossNavigationViewModel(navigationService, logger)
 {
     private bool _initialNavigationDone = false;
@@ -36,7 +36,7 @@ public class MultiBackStackViewModel(ILogger<MultiBackStackViewModel> logger, IC
     }
 }
 
-public class MultiBackStackTab1ViewModel(ICrossNavigationService navigationService, ILogger<MultiBackStackTab1ViewModel> logger)
+public class MultiBackStackTab1ViewModel(CrossNavigationService navigationService, ILogger<MultiBackStackTab1ViewModel> logger)
     : CrossNavigationViewModel(navigationService, logger)
 {
     public ICrossCommand GoDeeperCommand { get; init; } = new CrossAsyncCommand(async () => await navigationService.Navigate<MultiBackStackInnerViewModel>());
@@ -58,7 +58,7 @@ public class MultiBackStackInnerViewModel : CrossNavigationViewModel<int>
         set => SetProperty(ref _depth, value);
     }
 
-    public MultiBackStackInnerViewModel(ICrossNavigationService navigationService, ILogger<MultiBackStackInnerViewModel> logFactory)
+    public MultiBackStackInnerViewModel(CrossNavigationService navigationService, ILogger<MultiBackStackInnerViewModel> logFactory)
         : base(navigationService, logFactory)
     {
         GoDeeperCommand = new CrossAsyncCommand(async () => await NavigationService.Navigate<MultiBackStackInnerViewModel, int>(Depth + 1));

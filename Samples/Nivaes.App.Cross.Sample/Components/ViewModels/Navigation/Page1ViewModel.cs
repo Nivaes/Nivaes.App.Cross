@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross.Sample
     {
         public CrossCommand<int> HeaderTappedCommand { get; }
 
-        public Page1ViewModel(ICrossNavigationService navigationService, ILogger<Page1ViewModel> logger)
+        public Page1ViewModel(CrossNavigationService navigationService, ILogger<Page1ViewModel> logger)
             : base(navigationService, logger)
         {
             HeaderTappedCommand = new CrossCommand<int>(DoHeaderTappedCommand);

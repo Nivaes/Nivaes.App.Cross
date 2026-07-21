@@ -4,7 +4,7 @@ namespace Nivaes.App.Cross.Sample;
 
 public class MixedNavFirstViewModel : CrossNavigationViewModel
 {
-    public MixedNavFirstViewModel(ILogger<MixedNavFirstViewModel> logger, ICrossNavigationService navigationService)
+    public MixedNavFirstViewModel(ILogger<MixedNavFirstViewModel> logger, CrossNavigationService navigationService)
         : base(navigationService, logger)
     {
     }

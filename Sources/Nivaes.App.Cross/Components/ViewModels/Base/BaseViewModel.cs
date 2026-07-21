@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross
     public abstract class BaseViewModel
         : CrossNavigationViewModel, IBaseViewModel, IInternalBaseViewModel
     {
-        protected BaseViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BaseViewModel(CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             ValidateController = new ValidateController(this);
@@ -59,7 +59,7 @@ namespace Nivaes.App.Cross
 
         public IValidator? Validator { get; set; }
 
-        protected BaseViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BaseViewModel(CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             ValidateController = new ValidateController(this);
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross
 
         public IValidator? Validator { get; set; }
 
-        protected BaseViewModelResult(ICrossNavigationService navigationService, ILogger logger)
+        protected BaseViewModelResult(CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             ValidateController = new ValidateController(this);
@@ -121,7 +121,7 @@ namespace Nivaes.App.Cross
 
         public IValidator? Validator { get; set; }
 
-        protected BaseViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BaseViewModel(CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         {
             ValidateController = new ValidateController(this);

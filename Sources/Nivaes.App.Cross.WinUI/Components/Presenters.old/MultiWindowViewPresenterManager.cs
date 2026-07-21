@@ -113,7 +113,7 @@ public class MultiWindowViewPresenterManager
 
         if (currentView.ViewModel != null)
         {
-            var navigationService = _serviceProvider.GetService<ICrossNavigationService>();
+            var navigationService = _serviceProvider.GetService<CrossNavigationService>();
             backRequestedEventArgs.Handled = await navigationService!.Close(currentView.ViewModel);
         }
     }

@@ -10,7 +10,7 @@ public class ChildViewModel : CrossNavigationViewModel<SampleModel>
     private string? _brokenTextValue;
     private string? _anotherBrokenTextValue;
 
-    public ChildViewModel(ICrossNavigationService navigationService, ILogger<ChildViewModel> logger)
+    public ChildViewModel(CrossNavigationService navigationService, ILogger<ChildViewModel> logger)
         : base(navigationService, logger)
     {
         CloseCommand = new CrossAsyncCommand(DoCloseCommand);

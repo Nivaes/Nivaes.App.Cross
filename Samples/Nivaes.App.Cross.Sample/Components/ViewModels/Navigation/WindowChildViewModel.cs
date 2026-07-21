@@ -7,7 +7,7 @@ public class WindowChildViewModel
 {
     private WindowChildParam? _param;
 
-    public WindowChildViewModel(ILogger<WindowChildViewModel> logger, ICrossNavigationService navigationService)
+    public WindowChildViewModel(ILogger<WindowChildViewModel> logger, CrossNavigationService navigationService)
         : base(navigationService, logger)
     {
     }

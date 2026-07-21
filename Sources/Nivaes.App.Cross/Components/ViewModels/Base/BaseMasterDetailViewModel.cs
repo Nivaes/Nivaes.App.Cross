@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross
     public abstract class BaseMasterDetailViewModel
         : BaseMainViewModel
     {
-        protected BaseMasterDetailViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BaseMasterDetailViewModel(CrossNavigationService navigationService, ILogger logger)
             : base(navigationService, logger)
         { }
     }

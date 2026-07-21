@@ -51,7 +51,7 @@ public sealed class MultiBackStackView
                 if (!_navigatedToTab2)
                 {
                     _navigatedToTab2 = true;
-                    IPlatformApplication.Current!.ServiceProvider.GetRequiredService<ICrossNavigationService>().Navigate<MultiBackStackTab2ViewModel>();
+                    IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossNavigationService>().Navigate<MultiBackStackTab2ViewModel>();
                 }
                 else
                 {

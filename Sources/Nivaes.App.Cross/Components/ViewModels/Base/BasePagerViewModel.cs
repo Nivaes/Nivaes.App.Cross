@@ -10,7 +10,7 @@ namespace Nivaes.App.Cross
     public abstract class BasePagerViewModel
         : BaseViewModel, IBasePagerViewModel
     {
-        protected BasePagerViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BasePagerViewModel(CrossNavigationService navigationService, ILogger logger)
           : base(navigationService, logger)
         { }
     }
@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross
        : BaseViewModel<TParameter>, IBasePagerViewModel
             where TParameter : class
     {
-        protected BasePagerViewModel(ICrossNavigationService navigationService, ILogger logger)
+        protected BasePagerViewModel(CrossNavigationService navigationService, ILogger logger)
           : base(navigationService, logger)
         { }
     }
