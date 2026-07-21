@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Cross.Observability;
 
@@ -26,20 +25,20 @@ public class CrossWeakCommandHelper
     : ICrossCommandHelper
 {
     private readonly List<WeakReference> _eventHandlers = [];
-    private readonly object _syncRoot = new();
+    private readonly Lock _lock = new();
 
     public event EventHandler? CanExecuteChanged
     {
         add
         {
-            lock (_syncRoot)
+            lock (_lock)
             {
                 _eventHandlers.Add(new WeakReference(value));
             }
         }
         remove
         {
-            lock (_syncRoot)
+            lock (_lock)
             {
                 foreach (var thing in _eventHandlers)
                 {
@@ -56,7 +55,7 @@ public class CrossWeakCommandHelper
 
     private IEnumerable<EventHandler> SafeCopyEventHandlerList()
     {
-        lock (_syncRoot)
+        lock (_lock)
         {
             var toReturn = new List<EventHandler>();
             var deadEntries = new List<WeakReference>();
@@ -102,17 +101,8 @@ public abstract class CrossCommandBase
     protected CrossCommandBase(ILogger logger)
         : base(logger)
     {
-        //if (Mvx.IoCProvider?.TryResolve(out ICrossCommandHelper? commandHelper) == true && commandHelper != null)
-        //{
-        //    _commandHelper = commandHelper;
-        //}
-        //else
-        //{
-        // fallback on MvxWeakCommandHelper if no IoC has been set up
         _commandHelper = new CrossWeakCommandHelper();
-        //}
 
-        // default to true if no Singleton Cache has been set up
         var alwaysOnUIThread =
             CrossSingletonCache.Instance?.Settings?.AlwaysRaiseInpcOnUserInterfaceThread ?? true;
         ShouldAlwaysRaiseCECOnUserInterfaceThread = alwaysOnUIThread;
@@ -171,7 +161,7 @@ public class CrossCommand
         => Execute(null);
 }
 
-public class CrossCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
+public class CrossCommand<T>
     : CrossCommandBase
     , ICrossCommand, ICrossCommand<T>
 {

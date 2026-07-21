@@ -5,7 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
 {
-    public class ViewModelRequest
+    public interface IViewModelRequest
+    { }
+
+    public record class ViewModelRequest
+        : IViewModelRequest
     {
         public ViewModelRequest(Type viewModelType)
         {
@@ -32,15 +36,14 @@ namespace Nivaes.App.Cross
         public Type ViewModelType
         {
             get;
-            //set;
         }
 
         private Lazy<ICrossViewModel> _viewModel;
 
-        private ICrossViewModel LoadViewModel()
+        protected virtual ICrossViewModel LoadViewModel()
         {
             var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-            return viewModelLoader.LoadViewModel(ViewModelType, null, null);
+            return viewModelLoader.LoadViewModel(ViewModelType, ParameterValues, null, null);
         }
 
         public ICrossViewModel ViewModel
@@ -84,10 +87,8 @@ namespace Nivaes.App.Cross
         }
     }
 
-    
-
-    public class ViewModelRequest<TViewModel>
-        : ViewModelRequest 
+    public record ViewModelRequest<TViewModel>
+        : ViewModelRequest
         where TViewModel : ICrossViewModel
     {
         public ViewModelRequest()
@@ -106,25 +107,28 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class ViewModelRequestParameter<TParameter>
-         : ViewModelRequest
+    public record ViewModelRequest<TViewModel, TParameter>
+         : ViewModelRequest<TViewModel>
+         where TViewModel : ICrossViewModel<TParameter>
          where TParameter : notnull
     {
-        public TParameter Parameter;
+        public TParameter Parameter { get; set; }
 
-        //public ViewModelRequest()
-        //    : base(typeof(TViewModel))
-        //{
-        //}
-
-        public ViewModelRequestParameter(ICrossViewModel viewModel)
-            : base(viewModel)
+        public ViewModelRequest(TParameter parameter)
         {
+            Parameter = parameter;
         }
 
-        //public ViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
-        //    : base(typeof(TViewModel), parameterBundle, presentationBundle)
-        //{
-        //}
+        public ViewModelRequest(TViewModel viewModel, TParameter parameter)
+            : base(viewModel)
+        { 
+            Parameter = parameter;
+        }
+
+        protected override ICrossViewModel LoadViewModel()
+        {
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
+            return viewModelLoader.LoadViewModel<TParameter>(ViewModelType, ParameterValues, Parameter, null, null);
+        }
     }
 }

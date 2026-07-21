@@ -1,7 +1,6 @@
 namespace Nivaes.App.Cross
 {
     internal sealed class CrossViewModelLoader
-        //: ICrossViewModelLoader
     {
         private CrossViewModelLocator _viewModelLocator;
 
@@ -10,21 +9,18 @@ namespace Nivaes.App.Cross
             _viewModelLocator = viewModelLocator;
         }
 
-        // Reload should be used to re-run cached ViewModels lifecycle if required.
         public ICrossViewModel ReloadViewModel(ICrossViewModel viewModel, ViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
         {
             var parameterValues = new CrossBundle(request.ParameterValues);
             try
             {
-                viewModel = _viewModelLocator.Reload(viewModel, parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Reload(viewModel, parameterValues, savedState, navigationArgs);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
 
             }
-
-            return viewModel;
         }
 
         public ICrossViewModel ReloadViewModel<TParameter>(ICrossViewModel<TParameter> viewModel, TParameter param, ViewModelRequest request, ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
@@ -40,8 +36,9 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel LoadViewModel(Type viewModelType,
-            IDictionary<string, string> parameterValues, 
+        public ICrossViewModel LoadViewModel(
+            Type viewModelType,
+            IDictionary<string, string>? parameterValues,
             ICrossBundle? savedState, 
             ICrossNavigateEventArgs? navigationArgs = null)
         {
@@ -56,23 +53,21 @@ namespace Nivaes.App.Cross
             }
         }
 
-        public ICrossViewModel? LoadViewModel<TParameter>(
-                ViewModelRequest request,
+        public ICrossViewModel LoadViewModel<TParameter>(
+                Type viewModelType,
+                IDictionary<string, string>? parameterValues,
                 TParameter param, 
                 ICrossBundle? savedState, ICrossNavigateEventArgs? navigationArgs = null)
            where TParameter : notnull
         {
-            //if (request.ViewModelType == null)
-            //    return null; // ToDo: Puede haber un viewModelType == null?
-
-            var parameterValues = new CrossBundle(request.ParameterValues);
+            var bundleParameterValues = new CrossBundle(parameterValues);
             try
             {
-                return _viewModelLocator.Load<TParameter>(request.ViewModelType, param, parameterValues, savedState, navigationArgs);
+                return _viewModelLocator.Load<TParameter>(viewModelType, param, bundleParameterValues, savedState, navigationArgs);
             }
             catch (Exception ex)
             {
-                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
+                throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {viewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
         }
     }

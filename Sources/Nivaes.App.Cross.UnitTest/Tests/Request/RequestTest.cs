@@ -12,7 +12,7 @@
         [Fact]
         public void RequestGenerationTest()
         {
-            var request = new ViewModelRequest(typeof(MoqViewModel))
+            var request = new ViewModelRequest<MoqViewModel>()
             {
 
             };

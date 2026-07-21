@@ -12,7 +12,7 @@
         [Fact]
         public void SerializaRequestTest()
         {
-            var request = new ViewModelRequest(typeof(MoqViewModel))
+            var request = new ViewModelRequest<MoqViewModel>()
             {
 
             };
@@ -33,20 +33,20 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var buffer = ViewModelRequestSerializer.Serializer(request);
                 buffer.ShouldNotBeNull();
                 buffer.Length.ShouldBeGreaterThan(0);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            var request1 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer1 = ViewModelRequestSerializer.Serializer(request1);
             buffer1.ShouldNotBeNull();
             buffer1.Length.ShouldBeGreaterThan(0);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer2 = ViewModelRequestSerializer.Serializer(request2);
             buffer2.ShouldNotBeNull();
@@ -54,20 +54,20 @@
 
             for (int i = 0; i < 4; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var buffer = ViewModelRequestSerializer.Serializer(request);
                 buffer.ShouldNotBeNull();
                 buffer.Length.ShouldBeGreaterThan(0);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer3 = ViewModelRequestSerializer.Serializer(request3);
             buffer3.ShouldNotBeNull();
             buffer3.Length.ShouldBeGreaterThan(0);
 
-            var request4 = new ViewModelRequest(typeof(MoqViewModel));
+            var request4 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer4 = ViewModelRequestSerializer.Serializer(request4);
             buffer1.ShouldNotBeNull();
@@ -88,20 +88,20 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var buffer = ViewModelRequestSerializer.Serializer(request);
                 buffer.ShouldNotBeNull();
                 buffer.Length.ShouldBeGreaterThan(0);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            var request1 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer1 = ViewModelRequestSerializer.Serializer(request1);
             buffer1.ShouldNotBeNull();
             buffer1.Length.ShouldBeGreaterThan(0);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer2 = ViewModelRequestSerializer.Serializer(request2);
             buffer2.ShouldNotBeNull();
@@ -109,20 +109,20 @@
 
             for (int i = 0; i < 4; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var buffer = ViewModelRequestSerializer.Serializer(request);
                 buffer.ShouldNotBeNull();
                 buffer.Length.ShouldBeGreaterThan(0);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer3 = ViewModelRequestSerializer.Serializer(request3);
             buffer3.ShouldNotBeNull();
             buffer3.Length.ShouldBeGreaterThan(0);
 
-            var request4 = new ViewModelRequest(typeof(MoqViewModel));
+            var request4 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var buffer4 = ViewModelRequestSerializer.Serializer(request4);
             buffer1.ShouldNotBeNull();

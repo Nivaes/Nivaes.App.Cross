@@ -101,7 +101,7 @@ namespace Nivaes.App.Cross.WinUI
             lock (_windowInformationLock)
             {
                 var frame = _mainFrame;
-                if (request is CrossViewModelInstanceRequestWithSource targetRequest)
+                if (request is IViewModelRequestSource targetRequest)
                 {
                     frame = _windowInformation.Find(wi => wi.IsFor(targetRequest.Source)) ??
                             _mainFrame;

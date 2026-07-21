@@ -94,11 +94,14 @@ public sealed class CrossNavigationService
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
-        var request = new ViewModelRequest(typeof(TViewModel))
+        var request = new ViewModelRequest<TViewModel>()
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        //request.ViewModel = ViewModelLoader.LoadViewModel(request, null);
+
+        //if (cancellationToken.IsCancellationRequested)
+        //    return Task.FromResult(false);
+
         return Navigate<TViewModel>(request, request.ViewModel, presentationBundle, cancellationToken);
     }
 
@@ -127,26 +130,26 @@ public sealed class CrossNavigationService
     }
 
     public Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter param, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        TParameter parameter, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel<TParameter>
         where TParameter : notnull
     {
-        ArgumentNullException.ThrowIfNull(param);
+        ArgumentNullException.ThrowIfNull(parameter);
 
-        var request = new ViewModelRequest(typeof(TViewModel))
+        var request = new ViewModelRequest<TViewModel, TParameter>(parameter)
         {
-            //Param = param,
+            Parameter = parameter,
             PresentationValues = presentationBundle?.SafeGetData()
         };
-        return Navigate<TViewModel, TParameter>(param, request, request.ViewModel, presentationBundle, cancellationToken);
+        return Navigate<TViewModel, TParameter>(parameter, request, request.ViewModel, presentationBundle, cancellationToken);
     }
 
     private async Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter param,
+        TParameter parameter,
         ViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(param);
+        ArgumentNullException.ThrowIfNull(parameter);
         ArgumentNullException.ThrowIfNull(request);
 
         var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);
@@ -171,7 +174,7 @@ public sealed class CrossNavigationService
     /// </summary>
     /// <typeparam name="TViewModel">The viewmodel type.</typeparam>
     /// <typeparam name="TParameter">The parameter type.</typeparam>
-    /// <param name="param">The parameter value.</param>
+    /// <param name="parameter">The parameter value.</param>
     /// <param name="source">
     ///     This is used to find the window to execute the navigate in.
     ///     This is usually the viewmodel instance which calls this method. 
@@ -180,12 +183,12 @@ public sealed class CrossNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if navigation was successful.</returns>
     public Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter param, ICrossViewModel source, ICrossBundle? presentationBundle = null,
+        TParameter parameter, ICrossViewModel source, ICrossBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
             where TViewModel : ICrossViewModel<TParameter>
             where TParameter : notnull
     {
-        ArgumentNullException.ThrowIfNull(param);
+        ArgumentNullException.ThrowIfNull(parameter);
         ArgumentNullException.ThrowIfNull(source);
 
         throw new NotImplementedException("No se para que sirve source y hay que unificar CrossViewModelInstanceRequestWithSource con ViewModelReques");
@@ -228,6 +231,7 @@ public sealed class CrossNavigationService
         ICrossBundle? presentationBundle = null,
         CancellationToken cancellationToken = default)
         where TViewModel : ICrossResultSettingViewModel<TResult>, ICrossViewModel<TParameter>
+        where TParameter : notnull
     {
         ArgumentNullException.ThrowIfNull(fromViewModel);
         ArgumentNullException.ThrowIfNull(resultViewModelManager);
@@ -280,7 +284,7 @@ public sealed class CrossNavigationService
     {
         ArgumentNullException.ThrowIfNull(source);
 
-        var request = new CrossViewModelInstanceRequestWithSource(typeof(TViewModel), source)
+        var request = new ViewModelRequestSource<TViewModel>(source)
         {
             PresentationValues = presentationBundle?.SafeGetData()
         };

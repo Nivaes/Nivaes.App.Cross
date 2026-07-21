@@ -20,25 +20,25 @@
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel))
+            var request1 = new ViewModelRequest<MoqViewModel>()
             {
                 ParameterValues = new Dictionary<string, string> {["Uno"] = "Uno" }
             };
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id1 = ViewModelRequestCache.Add(request1.ViewModel);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request2.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id2 = ViewModelRequestCache.Add(request2.ViewModel);
 
             for (int i = 0; i < 5; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request3.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id3 = ViewModelRequestCache.Add(request3.ViewModel);
             #endregion
@@ -54,30 +54,30 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel))
+            var request1 = new ViewModelRequest<MoqViewModel>()
             {
                 ParameterValues = new Dictionary<string, string> { ["Uno"] = "Uno" }
             };
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id1 = ViewModelRequestCache.Add(request1.ViewModel);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request2.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id2 = ViewModelRequestCache.Add(request2.ViewModel);
 
             for (int i = 0; i < 5; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request3.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id3 = ViewModelRequestCache.Add(request3.ViewModel);
             #endregion
@@ -93,27 +93,27 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            var request1 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id1 = ViewModelRequestCache.Add(request1.ViewModel);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request2.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id2 = ViewModelRequestCache.Add(request2.ViewModel);
 
             for (int i = 0; i < 5; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request3.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id3 = ViewModelRequestCache.Add(request3.ViewModel);
             #endregion
@@ -127,27 +127,27 @@
             #region Load
             for (int i = 0; i < 10; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request1 = new ViewModelRequest(typeof(MoqViewModel));
+            var request1 = new ViewModelRequest<MoqViewModel>();
             request1.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id1 = ViewModelRequestCache.Add(request1.ViewModel);
 
-            var request2 = new ViewModelRequest(typeof(MoqViewModel));
+            var request2 = new ViewModelRequest<MoqViewModel>();
             request2.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id2 = ViewModelRequestCache.Add(request2.ViewModel);
 
             for (int i = 0; i < 5; i++)
             {
-                var request = new ViewModelRequest(typeof(MoqViewModel));
+                var request = new ViewModelRequest<MoqViewModel>();
                 request.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
                 var id = ViewModelRequestCache.Add(request.ViewModel);
             }
 
-            var request3 = new ViewModelRequest(typeof(MoqViewModel));
+            var request3 = new ViewModelRequest<MoqViewModel>();
             request3.ViewModel.GetType().ShouldBe(typeof(MoqViewModel));
             var id3 = ViewModelRequestCache.Add(request3.ViewModel);
             #endregion

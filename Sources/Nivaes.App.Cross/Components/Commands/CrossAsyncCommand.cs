@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross
     public abstract class CrossAsyncCommandBase
         : CrossCommandBase
     {
-        private readonly Lock _syncRoot = new();
+        private readonly Lock _lock = new();
         private readonly bool _allowConcurrentExecutions;
         private CancellationTokenSource? _cts;
         private int _concurrentExecutions;
@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross
 
         public void Cancel()
         {
-            lock (_syncRoot)
+            lock (_lock)
             {
                 if (_cts == null)
                 {
@@ -85,7 +85,7 @@ namespace Nivaes.App.Cross
             bool started = false;
             try
             {
-                lock (_syncRoot)
+                lock (_lock)
                 {
                     if (_concurrentExecutions == 0)
                     {
@@ -127,7 +127,7 @@ namespace Nivaes.App.Cross
             {
                 if (started)
                 {
-                    lock (_syncRoot)
+                    lock (_lock)
                     {
                         _concurrentExecutions--;
                         if (_concurrentExecutions == 0)
@@ -176,7 +176,7 @@ namespace Nivaes.App.Cross
         public CrossAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null, bool allowConcurrentExecutions = false)
             : base(allowConcurrentExecutions)
         {
-            ArgumentNullException.ThrowIfNull(execute, nameof(execute));
+            ArgumentNullException.ThrowIfNull(execute);
 
             _execute = _ => execute();
             _canExecute = canExecute;
@@ -201,12 +201,12 @@ namespace Nivaes.App.Cross
             return _execute(CancelToken);
         }
 
-        public static CrossAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public static CrossAsyncCommand<T?> CreateCommand<T>(Func<T?, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
             return new CrossAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
         }
 
-        public static CrossAsyncCommand<T?> CreateCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
+        public static CrossAsyncCommand<T?> CreateCommand<T>(Func<T?, CancellationToken, Task> execute, Func<T?, bool>? canExecute = null, bool allowConcurrentExecutions = false)
         {
             return new CrossAsyncCommand<T?>(execute, canExecute, allowConcurrentExecutions);
         }
@@ -217,7 +217,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public class CrossAsyncCommand<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>
+    public class CrossAsyncCommand<T>
         : CrossAsyncCommandBase, ICrossCommand, ICrossAsyncCommand<T>
     {
         private readonly Func<T?, CancellationToken, Task> _execute;

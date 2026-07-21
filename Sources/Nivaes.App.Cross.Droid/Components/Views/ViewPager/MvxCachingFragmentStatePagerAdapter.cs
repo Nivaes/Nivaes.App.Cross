@@ -153,7 +153,7 @@ namespace Nivaes.App.Cross.Droid
             {
                 var parcelable = (ViewPagerFragmentInfoParcelable)fragmentInfoParcelables[i];
 
-                MvxViewPagerFragmentInfo fragInfo = null;
+                MvxViewPagerFragmentInfo? fragInfo = null;
 
                 if (i < fragments.Count && fragments[i] is IMvxFragmentView mvxFragment && mvxFragment.ViewModel != null)
                 {

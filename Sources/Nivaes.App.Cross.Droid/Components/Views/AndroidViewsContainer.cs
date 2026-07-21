@@ -55,7 +55,7 @@ internal sealed class AndroidViewsContainer
         return DirectLoad(savedState, viewModelTypeHint);
     }
 
-    private ICrossViewModel? DirectLoad(
+    private ICrossViewModel DirectLoad(
         ICrossBundle? savedState,
         Type? viewModelTypeHint)
     {
@@ -65,10 +65,7 @@ internal sealed class AndroidViewsContainer
         }
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-
-        //var viewModelRequest = ViewModelRequest.GetDefaultRequest(viewModelTypeHint);
-        var viewModel = viewModelLoader.LoadViewModel(viewModelTypeHint, null, savedState);
-        return viewModel;
+        return viewModelLoader.LoadViewModel(viewModelTypeHint, null, savedState);
     }
 
     private ICrossViewModel? CreateViewModelFromIntent(Intent intent, ICrossBundle? savedState)
@@ -88,7 +85,6 @@ internal sealed class AndroidViewsContainer
             return null;
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-
         return viewModelLoader.LoadViewModel(viewModelRequest.ViewModelType, null, savedState);
     }
 
