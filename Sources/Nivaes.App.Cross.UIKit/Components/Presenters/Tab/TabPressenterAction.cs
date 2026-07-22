@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TabPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TabPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -39,7 +39,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowTabViewController(
             UIViewController viewController,
             TabPresentationAttribute attribute,
-            ViewModelRequest request)
+            IViewModelRequest request)
         {
             if (Context.TabBarViewController == null)
                 throw new AppException("Trying to show a tab without a TabBarViewController, this is not possible!");

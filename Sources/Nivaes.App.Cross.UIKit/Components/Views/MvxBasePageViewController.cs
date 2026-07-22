@@ -77,7 +77,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        public ViewModelRequest? Request { get; set; }
+        public IViewModelRequest? Request { get; set; }
 
 
         public override void ViewDidLoad()

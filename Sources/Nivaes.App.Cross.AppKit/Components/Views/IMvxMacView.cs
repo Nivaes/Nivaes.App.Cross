@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.AppKitLib
             , IMvxCanCreateMacView
             , ICrossBindingContextOwner
     {
-        ViewModelRequest? Request { get; set; }
+        IViewModelRequest? Request { get; set; }
     }
 
     public interface IMvxMacView<TViewModel>

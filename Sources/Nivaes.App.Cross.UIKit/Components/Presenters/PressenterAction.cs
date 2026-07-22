@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected ValueTask<bool> ShowRootViewController(
            UIViewController viewController,
            RootPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             return viewController switch
             {
@@ -137,7 +137,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected ValueTask<bool> ShowMasterSplitViewController(
            UIViewController viewController,
            SplitViewPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             if (Context.SplitViewController == null)
                 throw new AppException("Trying to show a master page without a SplitViewController, this is not possible!");
@@ -255,7 +255,7 @@ namespace Nivaes.App.Cross.UIKitLib
         protected ValueTask<bool> ShowChildViewController(
            UIViewController viewController,
            ChildPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             if (viewController is IMvxSplitViewController)
                 throw new AppException("A SplitViewController cannot be presented as a child. Consider using Root instead");

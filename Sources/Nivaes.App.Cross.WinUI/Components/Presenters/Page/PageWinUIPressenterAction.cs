@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, IViewModelRequest request)
         {
             return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
         }
@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="viewType">The type of the content.</param>
         /// <param name="request">The request to show the page.</param>
         /// <returns>True if successful, false otherwise.</returns>
-        protected ValueTask<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, ViewModelRequest request)
+        protected ValueTask<bool> ShowPage(ICrossWindowsFrame rootFrame, Type viewType, IViewModelRequest request)
         {
             try
             {

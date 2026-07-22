@@ -25,7 +25,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, ViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, IViewModelRequest request)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
         /// <exception cref="AppException"></exception>
-        private Control? CreateControl(Type viewType, ViewModelRequest request,
+        private Control? CreateControl(Type viewType, IViewModelRequest request,
             BasePresentationAttribute attribute)
         {
             try

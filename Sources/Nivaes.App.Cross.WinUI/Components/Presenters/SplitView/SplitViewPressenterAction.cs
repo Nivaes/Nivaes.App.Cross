@@ -19,7 +19,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, IViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)

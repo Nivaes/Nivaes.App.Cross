@@ -20,7 +20,7 @@ public sealed class ActivityPresentationAction
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, ActivityPresentationAttribute attribute, ViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, ActivityPresentationAttribute attribute, IViewModelRequest request)
     {           
         var intent = CreateIntentForRequest(request);
         if (intent == null)
@@ -57,7 +57,7 @@ public sealed class ActivityPresentationAction
     }
 
     private Bundle CreateActivityTransitionOptions(
-       Intent intent, ActivityPresentationAttribute attribute, ViewModelRequest request)
+       Intent intent, ActivityPresentationAttribute attribute, IViewModelRequest request)
     {
         var bundle = Bundle.Empty!;
 
@@ -130,7 +130,7 @@ public sealed class ActivityPresentationAction
         }
     }
 
-    private Intent? CreateIntentForRequest(ViewModelRequest request)
+    private Intent? CreateIntentForRequest(IViewModelRequest request)
     {
         //if (request is CrossViewModelInstanceRequest viewModelInstanceRequest)
         //{
@@ -142,9 +142,7 @@ public sealed class ActivityPresentationAction
         //return intentWithKey.intent;
         //}
 
-        var intentWithKey = ViewModelRequestTranslator.GetIntentWithKeyFor(
-            request.ViewModel, request
-        );
+        var intentWithKey = ViewModelRequestTranslator.GetIntentWithKeyFor(request.ViewModel, request);
 
         return intentWithKey.intent;
 
@@ -153,7 +151,7 @@ public sealed class ActivityPresentationAction
     }
 
     private (List<string> elements, List<Pair> transitionElementPairs) GetTransitionElements(
-        BasePresentationAttribute attribute, ViewModelRequest request,
+        BasePresentationAttribute attribute, IViewModelRequest request,
         IMvxAndroidSharedElements sharedElementsActivity)
     {
         var elements = new List<string>();

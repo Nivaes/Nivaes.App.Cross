@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, FullPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, FullPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowFullViewController(viewController, attribute, request);
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private async ValueTask<bool> ShowFullViewController(
            UIViewController viewController,
            FullPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             // check if viewController is a TabBarController
             if (viewController is ITabBarViewController tabBarController)

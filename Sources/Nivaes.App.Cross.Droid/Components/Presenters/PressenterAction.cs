@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         #region Properties
         public IPressenterActionContext Context { get; }
 
-        protected ViewModelRequest? PendingRequest { get; set; }
+        protected IViewModelRequest? PendingRequest { get; set; }
         #endregion
 
         #region Constructor
@@ -95,7 +95,8 @@ namespace Nivaes.App.Cross.Droid
             await Show(hostViewModelRequest);
         }
 
-        public virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request)
+        public virtual void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, 
+            FragmentPresentationAttribute? attribute, IViewModelRequest? request)
         {
             if (fragment is IBaseMasterDetailView masterDetailView)
             {

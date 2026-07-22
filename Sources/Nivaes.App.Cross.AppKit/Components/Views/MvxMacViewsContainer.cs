@@ -7,7 +7,7 @@ namespace Nivaes.App.Cross.AppKitLib
     internal class MvxMacViewsContainer
         : IMvxMacViewsContainer
     {
-        public ViewModelRequest? CurrentRequest { get; private set; }
+        public IViewModelRequest? CurrentRequest { get; private set; }
         private readonly ILogger _logger;
 
         public MvxMacViewsContainer(ILogger<MvxMacViewsContainer> logger)
@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.AppKitLib
             _logger = logger;
         }
 
-        public virtual IMvxMacView CreateView(ViewModelRequest request)
+        public virtual IMvxMacView CreateView(IViewModelRequest request)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Nivaes.App.Cross.AppKitLib
             }
         }
 
-        public virtual IMvxMacView CreateViewOfType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType, ViewModelRequest request)
+        public virtual IMvxMacView CreateViewOfType(Type viewType, IViewModelRequest request)
         {
             var storyboardAttribute = viewType.GetCustomAttribute<MvxFromStoryboardAttribute>();
             if (storyboardAttribute != null)

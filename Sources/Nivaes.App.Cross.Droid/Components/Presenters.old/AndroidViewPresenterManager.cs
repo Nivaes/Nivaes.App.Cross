@@ -79,7 +79,7 @@ public class AndroidViewPresenterManager
     }
 
     [Obsolete("Migrate to PressenterAction", true)]
-    public override BasePresentationAttribute GetPresentationAttribute(ViewModelRequest request)
+    public override BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                 .GetValue(request.ViewModelType);

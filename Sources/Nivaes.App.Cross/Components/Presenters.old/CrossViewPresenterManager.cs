@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross
             return ValueTask.FromResult(false);
         }
 
-        public virtual BasePresentationAttribute GetPresentationAttribute(ViewModelRequest request)
+        public virtual BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
         {
             var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                 .GetValue(request.ViewModelType);
@@ -74,7 +74,7 @@ namespace Nivaes.App.Cross
             return false;
         }
 
-        public ValueTask<bool> Show(ViewModelRequest request)
+        public ValueTask<bool> Show(IViewModelRequest request)
         {
             var pressentationAction = GetPresentationAction(request, out var attribute);
 
@@ -89,7 +89,7 @@ namespace Nivaes.App.Cross
         }
 
         protected IPressenterAction GetPresentationAction(
-            ViewModelRequest? request, out BasePresentationAttribute attribute)
+            IViewModelRequest request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
             presentationAttribute.ViewModelType = request.ViewModelType;

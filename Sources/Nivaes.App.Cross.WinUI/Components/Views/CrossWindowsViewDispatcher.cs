@@ -15,7 +15,7 @@ public class CrossWindowsViewDispatcher
         _presenter = presenter;
     }
 
-    public async Task<bool> ShowViewModel(ViewModelRequest request)
+    public async Task<bool> ShowViewModel(IViewModelRequest request)
     {
         await ExecuteOnMainThreadAsync(() => _presenter.Show(request));
         return true;

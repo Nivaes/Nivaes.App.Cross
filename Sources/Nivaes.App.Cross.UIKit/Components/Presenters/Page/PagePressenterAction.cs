@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, PagePresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, PagePresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowPageViewController(
             UIViewController viewController,
             PagePresentationAttribute attribute,
-            ViewModelRequest request)
+            IViewModelRequest request)
         {
             if (Context.PageViewController == null)
                 throw new AppException("Trying to show a page without a PageViewController, this is not possible!");

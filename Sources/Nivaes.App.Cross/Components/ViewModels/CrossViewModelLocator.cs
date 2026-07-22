@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross;
@@ -26,12 +25,38 @@ public sealed class CrossViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new AppException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
+            throw new AppException(ex, $"Could not generate the ViewModel of the type {viewModelType.FullName}");
         }
 
         if (viewModel == null)
         {
-            throw new AppException($"Not resolve viewModel of type {viewModelType.Name}.");
+            throw new AppException($"Not resolve viewModel of type {viewModelType.FullName}.");
+        }
+
+        RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
+
+        return viewModel;
+    }
+
+    public TViewModel Load<TViewModel>(
+       ICrossBundle? parameterValues,
+       ICrossBundle? savedState,
+       ICrossNavigateEventArgs? navigationArgs = null)
+       where TViewModel : ICrossViewModel
+    {
+        TViewModel? viewModel;
+        try
+        {
+            viewModel = (TViewModel?)ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
+        }
+        catch (Exception ex)
+        {
+            throw new AppException(ex, $"Could not generate the ViewModel of the type {typeof(TViewModel).FullName}");
+        }
+
+        if (viewModel == null)
+        {
+            throw new AppException($"Not resolve viewModel of type {typeof(TViewModel).FullName}.");
         }
 
         RunViewModelLifecycle(viewModel, parameterValues, savedState, navigationArgs);
@@ -54,12 +79,40 @@ public sealed class CrossViewModelLocator
         }
         catch (Exception ex)
         {
-            throw new AppException(ex, $"Problem creating viewModel of type {viewModelType.Name}");
+            throw new AppException(ex, $"Could not generate the ViewModel of the type  {viewModelType.Name}");
         }
 
         if (viewModel == null)
         {
             throw new AppException($"Not resolve viewModel of type {viewModelType.Name}.");
+        }
+
+        RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);
+
+        return viewModel;
+    }
+
+    public TViewModel Load<TViewModel, TParameter>(
+        TParameter param,
+        ICrossBundle? parameterValues,
+        ICrossBundle? savedState,
+        ICrossNavigateEventArgs? navigationArgs = null)
+        where TViewModel : ICrossViewModel<TParameter>
+        where TParameter : notnull
+    {
+        TViewModel? viewModel;
+        try
+        {
+            viewModel = (TViewModel?)ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
+        }
+        catch (Exception ex)
+        {
+            throw new AppException(ex, $"Could not generate the ViewModel of the type {typeof(TViewModel).FullName}");
+        }
+
+        if (viewModel == null)
+        {
+            throw new AppException($"Not resolve viewModel of type {typeof(TViewModel).FullName}.");
         }
 
         RunViewModelLifecycle(viewModel, param, parameterValues, savedState, navigationArgs);

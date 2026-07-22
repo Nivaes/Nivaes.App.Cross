@@ -2,7 +2,7 @@
 {
     public interface IPressenterAction
     {
-        ValueTask<bool> ShowAction(Type viewType, IPresentationAttribute attribute, ViewModelRequest request);
+        ValueTask<bool> ShowAction(Type viewType, IPresentationAttribute attribute, IViewModelRequest request);
 
         ValueTask<bool> CloseAction(ICrossViewModel viewModel, IPresentationAttribute attribute);
     }

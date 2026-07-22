@@ -38,7 +38,7 @@ public static class MvxViewControllerExtensions
     }
 
     [Obsolete("User PressenterAction", true)]
-    public static IMvxMacView CreateViewControllerFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
+    public static IMvxMacView CreateViewControllerFor<TTargetViewModel>(
         this IMvxMacView view,
         IDictionary<string, string>? parameterValues = null)
         where TTargetViewModel : class, ICrossViewModel
@@ -52,14 +52,14 @@ public static class MvxViewControllerExtensions
     [Obsolete("User PressenterAction",true)]
     public static IMvxMacView CreateViewControllerFor(
         this IMvxCanCreateMacView view,
-        ViewModelRequest request)
+        IViewModelRequest request)
     {
         return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMacViewCreator>().CreateView(request);
     }
 
     [Obsolete("User PressenterAction", true)]
     public static IMvxMacView CreateViewControllerFor(
-        this IMvxCanCreateMacView view, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type viewType,
+        this IMvxCanCreateMacView view,Type viewType,
         ViewModelRequest request)
     {
         return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxMacViewCreator>().CreateViewOfType(viewType, request);

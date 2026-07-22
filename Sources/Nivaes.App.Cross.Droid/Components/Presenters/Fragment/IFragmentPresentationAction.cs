@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.Droid
         void ShowNestedFragment(
             Type viewType,
             FragmentPresentationAttribute attribute,
-            ViewModelRequest request)
+            IViewModelRequest request)
         {
             // current implementation only supports one level of nesting 
 
@@ -72,7 +72,7 @@ namespace Nivaes.App.Cross.Droid
         void PerformShowFragmentTransaction(
             FragmentManager fragmentManager,
             FragmentPresentationAttribute attribute,
-            ViewModelRequest request)
+            IViewModelRequest request)
         {
             var fragmentName = attribute.Tag ?? attribute.ViewType!.FragmentJavaName();
 
@@ -179,7 +179,7 @@ namespace Nivaes.App.Cross.Droid
            FragmentTransaction fragmentTransaction,
            Fragment fragment,
            FragmentPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             if (Context.CurrentActivity.IsActivityAlive() && Context.CurrentActivity is IMvxAndroidSharedElements sharedElementsActivity)
             {
@@ -215,10 +215,10 @@ namespace Nivaes.App.Cross.Droid
                 fragmentTransaction.SetTransitionStyle(attribute.TransitionStyle);
         }
 
-        void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request)
+        void OnFragmentChanging(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, IViewModelRequest? request)
         {
         }
 
-        void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, ViewModelRequest? request);
+        void OnFragmentChanged(FragmentTransaction? fragmentTransaction, Fragment? fragment, FragmentPresentationAttribute? attribute, IViewModelRequest? request);
     }
 }

@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
-        protected override ValueTask<bool> ShowAction(Type viewType, FullPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, FullPresentationAttribute attribute, IViewModelRequest request)
         {
             if (attribute.FragmentHostViewType != null)
             {

@@ -2,7 +2,7 @@ namespace Nivaes.App.Cross
 {
     public interface ICrossViewPresenterManager
     {
-        ValueTask<bool> Show(ViewModelRequest request);
+        ValueTask<bool> Show(IViewModelRequest request);
 
         ValueTask<bool> Close(ICrossViewModel viewModel);
 

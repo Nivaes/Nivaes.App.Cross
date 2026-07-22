@@ -14,12 +14,12 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, ViewModelRequest request);
+        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, IViewModelRequest request);
 
         protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPresentationAttribute attribute);
 
         [DebuggerHidden]
-        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, ViewModelRequest request)
+        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, IViewModelRequest request)
         {
             return ShowAction(view, (TPresentationAttribute)attribute, request);
         }
@@ -31,7 +31,7 @@ namespace Nivaes.App.Cross
         }
 
         private IPressenterAction GetPresentationAttributeAction(
-            ViewModelRequest? request, out BasePresentationAttribute attribute)
+            IViewModelRequest? request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
             presentationAttribute.ViewModelType = request.ViewModelType;
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross
             return Singleton<PresentationAttributePresenterActionsKeyContainerManager>.Instance.GetValue(attributeType);
         }
 
-        private BasePresentationAttribute GetPresentationAttribute(ViewModelRequest request)
+        private BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
         {
             var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                     .GetValue(request.ViewModelType);
@@ -71,7 +71,7 @@ namespace Nivaes.App.Cross
 
         protected abstract BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
 
-        protected ValueTask<bool> Show(ViewModelRequest request)
+        protected ValueTask<bool> Show(IViewModelRequest request)
         {
             var pressentationAction = GetPresentationAttributeAction(request, out var attribute);
 

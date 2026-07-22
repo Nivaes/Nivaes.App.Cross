@@ -6,8 +6,8 @@ namespace Nivaes.App.Cross.Droid
     public class PressenterActionContext
         : IPressenterActionContext
     {
-        public ViewModelRequest? PendingDetailFragmentRequests { get; set; }
-        public ViewModelRequest? PendingDefaultDetailRequests { get; set; }
+        public IViewModelRequest? PendingDetailFragmentRequests { get; set; }
+        public IViewModelRequest? PendingDefaultDetailRequests { get; set; }
 
         private readonly IMvxAndroidCurrentTopActivity _androidCurrentTopActivity;       
 

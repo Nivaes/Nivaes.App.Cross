@@ -6,13 +6,13 @@ namespace Nivaes.App.Cross.Droid
 {
     public static class MvxChildViewModelOwnerExtensions
     {
-        public static Intent CreateIntentFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(this IMvxAndroidView view, object parameterObject)
+        public static Intent CreateIntentFor<TTargetViewModel>(this IMvxAndroidView view, object parameterObject)
             where TTargetViewModel : class, ICrossViewModel
         {
             return view.CreateIntentFor<TTargetViewModel>(parameterObject.ToSimplePropertyDictionary());
         }
 
-        public static Intent CreateIntentFor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTargetViewModel>(
+        public static Intent CreateIntentFor<TTargetViewModel>(
                 this IMvxAndroidView view,
                 IDictionary<string, string> parameterValues = null)
             where TTargetViewModel : class, ICrossViewModel
@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.Droid
             return view.CreateIntentFor(request);
         }
 
-        public static Intent CreateIntentFor(this IMvxAndroidView view, ViewModelRequest request)
+        public static Intent CreateIntentFor(this IMvxAndroidView view, IViewModelRequest request)
         {
             return IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelRequestTranslator>().GetIntentFor(request);
         }

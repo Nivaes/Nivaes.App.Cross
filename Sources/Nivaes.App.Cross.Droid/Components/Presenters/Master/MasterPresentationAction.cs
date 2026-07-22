@@ -15,7 +15,7 @@ public sealed class MasterPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, ViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, IViewModelRequest request)
     {
         if (attribute.FragmentHostViewType != null)
         {
@@ -65,7 +65,7 @@ public sealed class MasterPresentationAction
         return ValueTask.FromResult(true);
     }
 
-    private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, ViewModelRequest request)
+    private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, IViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                         .GetValue(attribute.FragmentHostMasterDetailViewModelType);

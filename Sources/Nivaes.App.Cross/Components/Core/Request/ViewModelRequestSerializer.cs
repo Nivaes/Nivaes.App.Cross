@@ -9,7 +9,7 @@ namespace Nivaes.App.Cross
 {
     internal static class ViewModelRequestSerializer
     {
-        public static byte[] Serializer(ViewModelRequest request)
+        public static byte[] Serializer(IViewModelRequest request)
         {           
             using var ms = new MemoryStream();
             using var writer = new BinaryWriter(ms, Encoding.UTF8, leaveOpen: true);
@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross
             return ms.ToArray();
         }
 
-        public static ViewModelRequest Deserialize(byte[] buffer, out uint id) 
+        public static IViewModelRequest Deserialize(byte[] buffer, out uint id) 
         {
             using var ms = new MemoryStream(buffer);
             using var reader = new BinaryReader(ms);
@@ -45,7 +45,7 @@ namespace Nivaes.App.Cross
             throw new AppException("ViewModelReques not field");
         }
 
-        public static ViewModelRequest Deserialize(byte[] buffer)
+        public static IViewModelRequest Deserialize(byte[] buffer)
         {
             return Deserialize(buffer, out var id);
         }

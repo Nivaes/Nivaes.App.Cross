@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -29,10 +29,8 @@ namespace Nivaes.App.Cross.UIKitLib
             var splitAttribute = attribute;
             return splitAttribute.Position switch
             {
-                MasterDetailPosition.Master =>
-                    ShowMasterSplitViewController(viewController, splitAttribute, request),
-                MasterDetailPosition.Detail =>
-                    ShowDetailSplitViewController(viewController, splitAttribute, request),
+                MasterDetailPosition.Master => ShowMasterSplitViewController(viewController, splitAttribute, request),
+                MasterDetailPosition.Detail => ShowDetailSplitViewController(viewController, splitAttribute, request),
                 _ => ValueTask.FromResult(true)
             };
         }
@@ -51,7 +49,7 @@ namespace Nivaes.App.Cross.UIKitLib
         private ValueTask<bool> ShowDetailSplitViewController(
            UIViewController viewController,
            SplitViewPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
         {
             if (Context.SplitViewController == null)
                 throw new AppException("Trying to show a detail page without a SplitViewController, this is not possible!");

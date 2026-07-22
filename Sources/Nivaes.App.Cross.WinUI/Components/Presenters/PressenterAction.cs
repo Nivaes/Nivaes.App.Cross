@@ -96,7 +96,7 @@ namespace Nivaes.App.Cross.WinUI
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The root frame, if no special root frame from a window is found the mainframe is returned.</returns>
-        protected WindowInformation GetWindowInformation(ViewModelRequest request)
+        protected WindowInformation GetWindowInformation(IViewModelRequest request)
         {
             lock (_windowInformationLock)
             {

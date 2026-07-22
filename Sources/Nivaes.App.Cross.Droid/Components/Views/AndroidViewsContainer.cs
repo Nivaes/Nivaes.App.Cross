@@ -79,7 +79,7 @@ internal sealed class AndroidViewsContainer
         return ViewModelFromRequest(viewModelRequest, savedState);
     }
 
-    private ICrossViewModel? ViewModelFromRequest(ViewModelRequest? viewModelRequest, ICrossBundle? savedState)
+    private ICrossViewModel? ViewModelFromRequest(IViewModelRequest? viewModelRequest, ICrossBundle? savedState)
     {
         if (viewModelRequest == null)
             return null;
@@ -102,7 +102,7 @@ internal sealed class AndroidViewsContainer
         return false;
     }
 
-    public Intent GetIntentFor(ViewModelRequest request)
+    public Intent GetIntentFor(IViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
             .GetValue(request.ViewModelType);
@@ -117,7 +117,7 @@ internal sealed class AndroidViewsContainer
 
     public (Intent intent, uint requestId) GetIntentWithKeyFor<TViewModel>(
             TViewModel existingViewModelToUse,
-            ViewModelRequest? request)
+            IViewModelRequest? request)
         where TViewModel : ICrossViewModel
     {
         request ??= ViewModelRequest.GetDefaultRequest(existingViewModelToUse.GetType());
@@ -125,7 +125,7 @@ internal sealed class AndroidViewsContainer
 
         ViewModelRequestCache.TryGetValue(existingViewModelToUse, out var requestId);
 
-        intent.PutExtra(SubViewModelKey, (int)requestId);
+        intent.PutExtra(SubViewModelKey, (int)requestId!);
         return (intent, requestId ?? 0);
     }
 

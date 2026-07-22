@@ -9,7 +9,28 @@ namespace Nivaes.App.Cross
     {
         Type ViewModelType { get; }
 
+        ICrossViewModel ViewModel { get; }
+
         IDictionary<string, string>? ParameterValues { get; }
+
+        IDictionary<string, string>? PresentationValues { get; }
+
+        public string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"ViewModelRequest - ViewModelType: '{ViewModelType}'");
+            if (ParameterValues != null)
+            {
+                sb.Append($", ParameterValues: '{string.Join(", ", ParameterValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
+            }
+
+            if (PresentationValues != null)
+            {
+                sb.Append($", PresentationValues: '{string.Join(", ", PresentationValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
+            }
+
+            return sb.ToString();
+        }
     }
 
     public record class ViewModelRequest
@@ -42,13 +63,13 @@ namespace Nivaes.App.Cross
             get;
         }
 
-        private Lazy<ICrossViewModel> _viewModel;
-
         protected virtual ICrossViewModel LoadViewModel()
         {
             var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
             return viewModelLoader.LoadViewModel(ViewModelType, ParameterValues, null, null);
         }
+
+        private Lazy<ICrossViewModel> _viewModel;
 
         public ICrossViewModel ViewModel
         {
@@ -72,60 +93,74 @@ namespace Nivaes.App.Cross
         {
             return new ViewModelRequest(viewModelType, null, null);
         }
-
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append($"ViewModelRequest - ViewModelType: '{ViewModelType}'");
-            if (ParameterValues != null)
-            {
-                sb.Append($", ParameterValues: '{string.Join(", ", ParameterValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
-            }
-
-            if (PresentationValues != null)
-            {
-                sb.Append($", PresentationValues: '{string.Join(", ", PresentationValues.Select(kv => $"{{{kv.Key}: {kv.Value}}}"))}'");
-            }
-
-            return sb.ToString();
-        }
     }
 
     public record ViewModelRequest<TViewModel>
-        : ViewModelRequest
+        : IViewModelRequest
         where TViewModel : ICrossViewModel
     {
         public ViewModelRequest()
-            : base(typeof(TViewModel))
         {
+            _viewModel = new Lazy<TViewModel>(LoadViewModel);
         }
 
         public ViewModelRequest(TViewModel viewModel) 
-            : base(viewModel)
         {
         }
 
         public ViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
-            : base(typeof(TViewModel), parameterBundle, presentationBundle)
         {
+        }
+
+
+
+        #region ViewModel
+        public Type ViewModelType => typeof(TViewModel);
+
+        protected virtual TViewModel LoadViewModel()
+        {
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
+            return viewModelLoader.LoadViewModel<TViewModel>(ParameterValues, null, null);
+        }
+
+        private Lazy<TViewModel> _viewModel;
+
+        public TViewModel ViewModel
+        {
+            get => _viewModel.Value;
+        }
+
+        ICrossViewModel IViewModelRequest.ViewModel => ViewModel;
+        #endregion
+
+        public IDictionary<string, string>? ParameterValues
+        {
+            get;
+            set;
+        }
+
+        public IDictionary<string, string>? PresentationValues
+        {
+            get;
+            set;
         }
     }
 
-    public record ViewModelRequest<TViewModel, TParameter>
-         : ViewModelRequest<TViewModel>
-         where TViewModel : ICrossViewModel<TParameter>
+    public record ViewModelRequestParameter<TParameter>
+         : ViewModelRequest
          where TParameter : notnull
     {
         public TParameter Parameter { get; set; }
 
-        public ViewModelRequest(TParameter parameter)
+        public ViewModelRequestParameter(Type viewModelType, TParameter parameter)
+            :base(viewModelType)
         {
             Parameter = parameter;
         }
 
-        public ViewModelRequest(TViewModel viewModel, TParameter parameter)
+        public ViewModelRequestParameter(ICrossViewModel viewModel, TParameter parameter)
             : base(viewModel)
-        { 
+        {
             Parameter = parameter;
         }
 
@@ -133,6 +168,31 @@ namespace Nivaes.App.Cross
         {
             var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
             return viewModelLoader.LoadViewModel<TParameter>(ViewModelType, ParameterValues, Parameter, null, null);
+        }
+    }
+
+    public record ViewModelRequestParameter<TViewModel, TParameter>
+         : ViewModelRequest<TViewModel>
+         where TViewModel : ICrossViewModel<TParameter>
+         where TParameter : notnull
+    {
+        public TParameter Parameter { get; set; }
+
+        public ViewModelRequestParameter(TParameter parameter)
+        {
+            Parameter = parameter;
+        }
+
+        public ViewModelRequestParameter(TViewModel viewModel, TParameter parameter)
+            : base(viewModel)
+        { 
+            Parameter = parameter;
+        }
+
+        protected override TViewModel LoadViewModel()
+        {
+            var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
+            return viewModelLoader.LoadViewModel<TViewModel, TParameter>(ParameterValues, Parameter, null, null);
         }
     }
 }

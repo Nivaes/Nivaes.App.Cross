@@ -17,7 +17,7 @@ public sealed class DetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, ViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, IViewModelRequest request)
     {
         var detailView = base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId);
 
@@ -35,7 +35,7 @@ public sealed class DetailPresentationAction
 
     private void ShowAlternativeDetailFragment(Type viewType,
             DetailPresentationAttribute attribute,
-            ViewModelRequest request)
+            IViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 
@@ -70,7 +70,7 @@ public sealed class DetailPresentationAction
     private void ShowEmbeddendDetailFragment(
            Type viewType,
            DetailPresentationAttribute attribute,
-           ViewModelRequest request)
+           IViewModelRequest request)
     {
         ArgumentNullException.ThrowIfNull(attribute);
 

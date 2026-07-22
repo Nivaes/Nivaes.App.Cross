@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, ViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, IViewModelRequest request)
         {
             if (viewType.HasRegionAttribute())
             {

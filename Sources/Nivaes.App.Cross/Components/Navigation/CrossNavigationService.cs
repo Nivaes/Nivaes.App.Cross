@@ -91,7 +91,8 @@ public sealed class CrossNavigationService
     }
 
     public Task<bool> Navigate<TViewModel>(
-        ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+            ICrossBundle? presentationBundle = null, 
+            CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
         var request = new ViewModelRequest<TViewModel>()
@@ -99,20 +100,18 @@ public sealed class CrossNavigationService
             PresentationValues = presentationBundle?.SafeGetData()
         };
 
-        //if (cancellationToken.IsCancellationRequested)
-        //    return Task.FromResult(false);
-
-        return Navigate<TViewModel>(request, request.ViewModel, presentationBundle, cancellationToken);
+        return Navigate<TViewModel>(request, presentationBundle, cancellationToken);
     }
 
     private async Task<bool> Navigate<TViewModel>(
-        ViewModelRequest request, ICrossViewModel viewModel,
-        ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+            IViewModelRequest request, 
+            ICrossBundle? presentationBundle = null, 
+            CancellationToken cancellationToken = default)
+        where TViewModel : ICrossViewModel
     {
         ArgumentNullException.ThrowIfNull(request);
-        ArgumentNullException.ThrowIfNull(viewModel);
 
-        var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);
+        var args = new CrossNavigateEventArgs(request.ViewModel, NavigationMode.Show, cancellationToken);
         OnWillNavigate(this, args);
 
         if (args.Cancel)
@@ -122,21 +121,23 @@ public sealed class CrossNavigationService
         if (!hasNavigated)
             return false;
 
-        if (viewModel.InitializeTask?.Task != null)
-            await viewModel.InitializeTask.Task.ConfigureAwait(false);
+        if (request.ViewModel.InitializeTask?.Task != null)
+            await request.ViewModel.InitializeTask.Task.ConfigureAwait(false);
 
         OnDidNavigate(this, args);
         return true;
     }
 
     public Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter parameter, ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+            TParameter parameter,
+            ICrossBundle? presentationBundle = null, 
+            CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel<TParameter>
         where TParameter : notnull
     {
         ArgumentNullException.ThrowIfNull(parameter);
 
-        var request = new ViewModelRequest<TViewModel, TParameter>(parameter)
+        var request = new ViewModelRequestParameter<TViewModel, TParameter>(parameter)
         {
             Parameter = parameter,
             PresentationValues = presentationBundle?.SafeGetData()
@@ -145,9 +146,11 @@ public sealed class CrossNavigationService
     }
 
     private async Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter parameter,
-        ViewModelRequest request, ICrossViewModel viewModel,
-        ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+            TParameter parameter,
+            IViewModelRequest request, 
+            ICrossViewModel viewModel,
+            ICrossBundle? presentationBundle = null, 
+            CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(parameter);
         ArgumentNullException.ThrowIfNull(request);
@@ -183,10 +186,12 @@ public sealed class CrossNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if navigation was successful.</returns>
     public Task<bool> Navigate<TViewModel, TParameter>(
-        TParameter parameter, ICrossViewModel source, ICrossBundle? presentationBundle = null,
-        CancellationToken cancellationToken = default)
-            where TViewModel : ICrossViewModel<TParameter>
-            where TParameter : notnull
+            TParameter parameter, 
+            ICrossViewModel source, 
+            ICrossBundle? presentationBundle = null,
+            CancellationToken cancellationToken = default)
+        where TViewModel : ICrossViewModel<TParameter>
+        where TParameter : notnull
     {
         ArgumentNullException.ThrowIfNull(parameter);
         ArgumentNullException.ThrowIfNull(source);
@@ -279,7 +284,8 @@ public sealed class CrossNavigationService
     /// <param name="cancellationToken">Any cancellation token.</param>
     /// <returns>True if successful, false otherwise.</returns>
     public Task<bool> Navigate<TViewModel>(ICrossViewModel source,
-        ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
+        ICrossBundle? presentationBundle = null, 
+        CancellationToken cancellationToken = default)
         where TViewModel : ICrossViewModel
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -301,7 +307,7 @@ public sealed class CrossNavigationService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>True is successful. False otherwise.</returns>
     private async Task<bool> NavigateAsync(
-        ViewModelRequest request, ICrossViewModel viewModel,
+        IViewModelRequest request, ICrossViewModel viewModel,
         ICrossBundle? presentationBundle = null, CancellationToken cancellationToken = default)
     {
         var args = new CrossNavigateEventArgs(viewModel, NavigationMode.Show, cancellationToken);

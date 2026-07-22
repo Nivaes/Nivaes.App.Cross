@@ -59,7 +59,7 @@ public class CrossViewController<TViewModel>
     ICrossViewModel? ICrossView.ViewModel { get => ViewModel; set => ViewModel = (TViewModel?)value; }
     #endregion
 
-    public ViewModelRequest? Request { get; set; }
+    public IViewModelRequest? Request { get; set; }
 
     public override void ViewDidLoad()
     {
