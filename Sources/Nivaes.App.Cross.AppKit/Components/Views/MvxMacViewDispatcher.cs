@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.AppKitLib
 {
-    public class MvxMacViewDispatcher
+    public sealed class MvxMacViewDispatcher
         : MvxMacUIThreadDispatcher
         , ICrossViewDispatcher
     {
