@@ -20,7 +20,7 @@ namespace Nivaes.App.Cross.Droid
         {
             var stringId = Secure.GetString(mContext.ContentResolver, Secure.AndroidId);
 
-            var buffer = Encoding.UTF8.GetBytes(stringId);
+            var buffer = Encoding.UTF8.GetBytes(stringId!);
 
             byte[] hash = MD5.Create().ComputeHash(buffer);
 
@@ -29,7 +29,7 @@ namespace Nivaes.App.Cross.Droid
 
         string IDeviceService.GetVersionApp()
         {
-            return mContext.PackageManager.GetPackageInfo(mContext.PackageName, 0).VersionName;
+            return mContext.PackageManager!.GetPackageInfo(mContext.PackageName!, 0)!.VersionName!;
         }
 
         void IDeviceService.RestartApp()

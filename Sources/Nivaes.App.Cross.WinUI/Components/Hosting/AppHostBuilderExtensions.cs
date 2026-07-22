@@ -42,6 +42,12 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.AddSingleton<IBusyService, BusyService>();
             builder.Services.AddSingleton<IMediaService, MediaService>();
 
+            builder.Services.AddSingleton<IBusyService, BusyService>();
+            builder.Services.AddSingleton<IDialogService, DialogService>();
+            builder.Services.AddSingleton<IDeviceService, DeviceService>();
+            builder.Services.AddSingleton<IMediaService, MediaService>();
+            builder.Services.AddSingleton<ILoadDataService, LoadDataService>();
+
             return builder;
         }
     }

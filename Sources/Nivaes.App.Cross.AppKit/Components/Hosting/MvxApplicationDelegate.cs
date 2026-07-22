@@ -58,11 +58,13 @@ public abstract class MvxApplicationDelegate :
 
     private void Regiesters()
     {
-        RegisterServices();
-        RegisterConverters();
-        RegisterCombiners();
-        RegisterPresenterActions();
-        RegisterViewsActions();
+        Parallel.Invoke(
+            RegisterServices,
+            RegisterConverters,
+            RegisterCombiners,
+            RegisterPresenterActions,
+            RegisterViewsActions
+        );
     }
 
     protected virtual void RegisterServices()

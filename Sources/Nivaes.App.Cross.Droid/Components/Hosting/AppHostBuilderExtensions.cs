@@ -19,44 +19,50 @@ namespace Nivaes.App.Cross.Droid
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, Context applicationContext)
         {
-            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
-            builder.Services.TryAddSingleton<ICrossMainThreadDispatcher, MvxAndroidViewDispatcher>();
+            builder.Services.AddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
+            builder.Services.AddSingleton<ICrossMainThreadDispatcher, MvxAndroidViewDispatcher>();
 
-            builder.Services.TryAddSingleton<IAndroidViewPresenterManager, AndroidViewPresenterManager>();
+            builder.Services.AddSingleton<IAndroidViewPresenterManager, AndroidViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
-            builder.Services.TryAddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
-            builder.Services.TryAddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();
+            builder.Services.AddSingleton<IMvxAndroidCurrentTopActivity, MvxCurrentTopActivity>();
+            builder.Services.AddSingleton<IMvxAndroidActivityLifetimeListener, MvxAndroidLifetimeMonitor>();
 
             // ToDo: Unificar interfaces.
-            builder.Services.TryAddSingleton<AndroidViewsContainer>(sp =>
+            builder.Services.AddSingleton<AndroidViewsContainer>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<AndroidViewsContainer>>();
 
                 return new AndroidViewsContainer(applicationContext, logger);
             });
-            builder.Services.TryAddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
+            builder.Services.AddSingleton<IMvxAndroidViewModelRequestTranslator>(sp =>
                 sp.GetRequiredService<AndroidViewsContainer>());
-            builder.Services.TryAddSingleton<IMvxAndroidViewModelLoader>(sp =>
+            builder.Services.AddSingleton<IMvxAndroidViewModelLoader>(sp =>
                 sp.GetRequiredService<AndroidViewsContainer>());
 
             builder.Services.AddSingleton<ICrashHandler, AndroidCrashHandler>();
-            builder.Services.TryAddSingleton<ICrossBindingContextStack<IMvxAndroidBindingContext>, MvxAndroidBindingContextStack>();
-            builder.Services.TryAddSingleton<IMvxSingleViewModelCache, MvxSingleViewModelCache>();
-            builder.Services.TryAddSingleton<IMvxIntentResultSink, MvxIntentResultSink>();
-            builder.Services.TryAddSingleton<IMvxSavedStateConverter, MvxSavedStateConverter>();
-            builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
-            builder.Services.TryAddSingleton<IMvxAndroidViewFactory, MvxAndroidViewFactory>();
-            builder.Services.TryAddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
+            builder.Services.AddSingleton<ICrossBindingContextStack<IMvxAndroidBindingContext>, MvxAndroidBindingContextStack>();
+            builder.Services.AddSingleton<IMvxSingleViewModelCache, MvxSingleViewModelCache>();
+            builder.Services.AddSingleton<IMvxIntentResultSink, MvxIntentResultSink>();
+            builder.Services.AddSingleton<IMvxSavedStateConverter, MvxSavedStateConverter>();
+            builder.Services.AddSingleton<ICrossBinder, CrossFromTextBinder>();
+            builder.Services.AddSingleton<IMvxAndroidViewFactory, MvxAndroidViewFactory>();
+            builder.Services.AddSingleton<IMvxAndroidBindingResource, MvxAndroidBindingResource>();
 
-            builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();
+            builder.Services.AddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();
 
-            builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
-            builder.Services.TryAddSingleton<IMvxMultipleViewModelCache, MvxMultipleViewModelCache>();
+            builder.Services.AddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
+            builder.Services.AddSingleton<IMvxMultipleViewModelCache, MvxMultipleViewModelCache>();
 
             // Plugins
-            builder.Services.TryAddSingleton<ICrossNativeColor, MvxAndroidColor>();
-            builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossDroidVisibility>();
+            builder.Services.AddSingleton<ICrossNativeColor, MvxAndroidColor>();
+            builder.Services.AddSingleton<ICrossNativeVisibility, CrossDroidVisibility>();
+
+            builder.Services.AddSingleton<IBusyService, BusyService>();
+            builder.Services.AddSingleton<IDialogService, DialogService>();
+            builder.Services.AddSingleton<IDeviceService, DeviceService>();
+            builder.Services.AddSingleton<IMediaService, MediaService>();
+            builder.Services.AddSingleton<ILoadDataService, LoadDataService>();
 
             return builder;
         }

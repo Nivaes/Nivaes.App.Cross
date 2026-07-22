@@ -2,6 +2,7 @@
   <ItemGroup>
     <PackageVersion Include="AndHUD" Version="2.1.0" />
     <PackageVersion Include="Aspire.Hosting.Maui" Version="13.4.6-preview.1.26319.6" />
+    <PackageVersion Include="BTProgressHUD" Version="2.3.1" />
     <PackageVersion Include="CommunityToolkit.WinUI.Collections" Version="8.2.251219" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.10" />

@@ -8,6 +8,12 @@
         "resolved": "2.1.0",
         "contentHash": "OOHNlH7GF39qk0Pv4cIQWA99hUh3nujDgGE2nADPpw88lD7s2qwlxEhuJIBfstC8ng3B1yY6SQy2JW/tddlMAQ=="
       },
+      "BTProgressHUD": {
+        "type": "Direct",
+        "requested": "[2.3.1, )",
+        "resolved": "2.3.1",
+        "contentHash": "6NhcgX2fzdAFMaPwA84LJ6DDnqpSUGE2nHK5T7YY8TTqCUSEfRf0/Y9pn7qk/aC6h+8wufDAP3SI56Cw5pOmyQ=="
+      },
       "Microsoft.CodeAnalysis.NetAnalyzers": {
         "type": "Direct",
         "requested": "[10.0.302, )",
@@ -308,6 +314,12 @@
         "requested": "[2.1.0, )",
         "resolved": "2.1.0",
         "contentHash": "OOHNlH7GF39qk0Pv4cIQWA99hUh3nujDgGE2nADPpw88lD7s2qwlxEhuJIBfstC8ng3B1yY6SQy2JW/tddlMAQ=="
+      },
+      "BTProgressHUD": {
+        "type": "Direct",
+        "requested": "[2.3.1, )",
+        "resolved": "2.3.1",
+        "contentHash": "6NhcgX2fzdAFMaPwA84LJ6DDnqpSUGE2nHK5T7YY8TTqCUSEfRf0/Y9pn7qk/aC6h+8wufDAP3SI56Cw5pOmyQ=="
       },
       "Microsoft.CodeAnalysis.NetAnalyzers": {
         "type": "Direct",

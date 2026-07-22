@@ -35,6 +35,11 @@ namespace Nivaes.App.Cross.UIKitLib
             builder.Services.AddSingleton<ICrossNativeColor, MvxIosColor>();
             builder.Services.AddSingleton<ICrossNativeVisibility, MvxIosVisibility>();
 
+            builder.Services.AddSingleton<IBusyService, BusyService>();
+            builder.Services.AddSingleton<IDialogService, DialogService>();
+            builder.Services.AddSingleton<IDeviceService, DeviceService>();
+            builder.Services.AddSingleton<IMediaService, MediaService>();
+            builder.Services.AddSingleton<ILoadDataService, LoadDataService>();
 
             return builder;
         }

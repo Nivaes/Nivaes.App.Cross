@@ -25,7 +25,7 @@
         {
             ArgumentNullException.ThrowIfNull(action);
 
-            Popup busyPopup = null;
+            Popup? busyPopup = null;
             try
             {
                 //busyPopup = ShowBusy(pregressText);
@@ -46,7 +46,7 @@
         {
             ArgumentNullException.ThrowIfNull(action);
 
-            Popup busyPopup = null;
+            Popup? busyPopup = null;
             try
             {
                 //busyPopup = ShowBusy(pregressText);
@@ -64,7 +64,7 @@
 
         private Popup ShowBusy(string pregressText)
         {
-            Popup busyPopup = null;
+            Popup? busyPopup = null;
 
             var parent = (FrameworkElement)Window.Current.Content;
             var child = new BusyContentControl

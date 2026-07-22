@@ -246,6 +246,7 @@
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
+          "BTProgressHUD": "[2.3.1, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[1.0.0.3, )"
@@ -256,6 +257,12 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
+      },
+      "BTProgressHUD": {
+        "type": "CentralTransitive",
+        "requested": "[2.3.1, )",
+        "resolved": "2.3.1",
+        "contentHash": "6NhcgX2fzdAFMaPwA84LJ6DDnqpSUGE2nHK5T7YY8TTqCUSEfRf0/Y9pn7qk/aC6h+8wufDAP3SI56Cw5pOmyQ=="
       },
       "FluentValidation": {
         "type": "CentralTransitive",
@@ -654,6 +661,7 @@
       "nivaes.app.cross.uikit": {
         "type": "Project",
         "dependencies": {
+          "BTProgressHUD": "[2.3.1, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
           "Nivaes.App.Shared": "[1.0.0.3, )"
@@ -664,6 +672,12 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
+      },
+      "BTProgressHUD": {
+        "type": "CentralTransitive",
+        "requested": "[2.3.1, )",
+        "resolved": "2.3.1",
+        "contentHash": "6NhcgX2fzdAFMaPwA84LJ6DDnqpSUGE2nHK5T7YY8TTqCUSEfRf0/Y9pn7qk/aC6h+8wufDAP3SI56Cw5pOmyQ=="
       },
       "FluentValidation": {
         "type": "CentralTransitive",
