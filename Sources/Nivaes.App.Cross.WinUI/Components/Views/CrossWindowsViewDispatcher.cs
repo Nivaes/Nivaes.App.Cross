@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.WinUI;
 
+// ToDo: unificar CrossWindowsViewDispatcher con CrossWindowsMainThreadDispatcher
 public class CrossWindowsViewDispatcher
     : CrossWindowsMainThreadDispatcher, ICrossViewDispatcher
 {
