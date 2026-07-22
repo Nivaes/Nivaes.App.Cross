@@ -44,13 +44,13 @@ namespace Nivaes.App.Cross.Hosting
         static CrossAppBuilder SetupBinding(this CrossAppBuilder builder)
         {
             // ToDo: Refactorizar esto (posiblemente merezca la pena crear un almacen separado para binding)
-            builder.Services.TryAddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
-            builder.Services.TryAddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
-            builder.Services.TryAddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();
+            builder.Services.AddSingleton<ICrossBindingDescriptionParser, CrossBindingDescriptionParser>();
+            builder.Services.AddSingleton<ICrossBindingParser, CrossTibetBindingParser>();
+            builder.Services.AddSingleton<ICrossSourceBindingFactory, CrossSourceBindingFactory>();
 
             var targetBindingFactoryRegistry = new CrossTargetBindingFactoryRegistry();
-            builder.Services.TryAddSingleton<ICrossTargetBindingFactoryRegistry>(targetBindingFactoryRegistry);
-            builder.Services.TryAddSingleton<ICrossTargetBindingFactory>(targetBindingFactoryRegistry);
+            builder.Services.AddSingleton<ICrossTargetBindingFactoryRegistry>(targetBindingFactoryRegistry);
+            builder.Services.AddSingleton<ICrossTargetBindingFactory>(targetBindingFactoryRegistry);
 
             builder.Services.TryAddSingleton<ICrossSourcePropertyPathParser, CrossSourcePropertyPathParser>();
 
@@ -59,17 +59,17 @@ namespace Nivaes.App.Cross.Hosting
             sourceStepFactory.AddOrOverwrite(typeof(CrossCombinerSourceStepDescription), new CrossCombinerSourceStepFactory());
             sourceStepFactory.AddOrOverwrite(typeof(CrossPathSourceStepDescription), new CrossPathSourceStepFactory());
             sourceStepFactory.AddOrOverwrite(typeof(CrossLiteralSourceStepDescription), new CrossLiteralSourceStepFactory());
-            builder.Services.TryAddSingleton<ICrossSourceStepFactoryRegistry>(sourceStepFactory);
-            builder.Services.TryAddSingleton<ICrossSourceStepFactory>(sourceStepFactory);
+            builder.Services.AddSingleton<ICrossSourceStepFactoryRegistry>(sourceStepFactory);
+            builder.Services.AddSingleton<ICrossSourceStepFactory>(sourceStepFactory);
 
             builder.Services.AddTransient<ICrossPropertyExpressionParser, CrossPropertyExpressionParser>();
 
             var bindingNameRegistry = new CrossBindingNameRegistry();
-            builder.Services.TryAddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
-            builder.Services.TryAddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
+            builder.Services.AddSingleton<ICrossBindingNameLookup>(bindingNameRegistry);
+            builder.Services.AddSingleton<ICrossBindingNameRegistry>(bindingNameRegistry);
 
-            builder.Services.TryAddSingleton<ICrossBinder, CrossFromTextBinder>();
-            builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
+            builder.Services.AddSingleton<ICrossBinder, CrossFromTextBinder>();
+            builder.Services.AddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
 
             return builder;
         }

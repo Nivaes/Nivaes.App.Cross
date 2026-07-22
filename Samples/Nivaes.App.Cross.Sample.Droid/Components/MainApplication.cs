@@ -5,7 +5,7 @@ using Nivaes.App.Cross.Hosting;
 namespace Nivaes.App.Cross.Sample.Droid;
 
 [Application(
-#if DEBUG    
+#if DEBUG
     UsesCleartextTraffic = true
 #endif
 )]

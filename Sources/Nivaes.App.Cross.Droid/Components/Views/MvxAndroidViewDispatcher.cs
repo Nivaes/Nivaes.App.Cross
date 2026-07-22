@@ -2,7 +2,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross.Droid
 {
-    public class MvxAndroidViewDispatcher
+    // ToDo unificar  MvxAndroidViewDispatcher y MvxAndroidMainThreadDispatcher
+    public sealed class MvxAndroidViewDispatcher
         : MvxAndroidMainThreadDispatcher
         , ICrossViewDispatcher
     {

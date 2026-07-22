@@ -1,16 +1,16 @@
+using System;
+using System.Threading;
+using Android.App;
+using Microsoft.Extensions.Logging;
+
 namespace Nivaes.App.Cross.Droid
 {
-    using System;
-    using System.Threading;
-    using Android.App;
-    using Microsoft.Extensions.Logging;
-
-    public class MvxAndroidMainThreadDispatcher
+    public abstract class MvxAndroidMainThreadDispatcher
         : CrossMainThreadDispatcher
     {
         public override bool IsOnMainThread => Application.SynchronizationContext == SynchronizationContext.Current;
 
-        public MvxAndroidMainThreadDispatcher(ILogger<MvxAndroidMainThreadDispatcher> logger)
+        public MvxAndroidMainThreadDispatcher(ILogger logger)
             : base(logger)
         {
         }

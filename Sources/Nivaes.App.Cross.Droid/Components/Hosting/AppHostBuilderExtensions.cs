@@ -20,6 +20,8 @@ namespace Nivaes.App.Cross.Droid
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, Context applicationContext)
         {
             builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxAndroidViewDispatcher>();
+            builder.Services.TryAddSingleton<ICrossMainThreadDispatcher, MvxAndroidViewDispatcher>();
+
             builder.Services.TryAddSingleton<IAndroidViewPresenterManager, AndroidViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
@@ -50,7 +52,6 @@ namespace Nivaes.App.Cross.Droid
             builder.Services.TryAddSingleton<IMvxViewTypeResolver, CrossViewTypeResolver>();
 
             builder.Services.TryAddSingleton<ICrossSourceBindingFactoryExtension, CrossPropertySourceBindingFactoryExtension>();
-
             builder.Services.TryAddSingleton<IMvxMultipleViewModelCache, MvxMultipleViewModelCache>();
 
             // Plugins
