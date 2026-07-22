@@ -41,33 +41,25 @@ namespace Nivaes.App.Cross
 
         public Task ExecuteOnMainThreadAsync(Action action, bool maskExceptions = true)
         {
-            var asyncAction = new Func<Task>(() =>
+            return ExecuteOnMainThreadAsync(() =>
             {
                 action();
                 return Task.CompletedTask;
-            });
-            return ExecuteOnMainThreadAsync(asyncAction, maskExceptions);
+            }, maskExceptions);
         }
 
         public async Task ExecuteOnMainThreadAsync(Func<Task> action, bool maskExceptions = true)
         {
             var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-            var syncAction = new Action(async () =>
-            {
-                await action();
-                completion.SetResult(true);
-            });
-            RequestMainThreadAction(syncAction, maskExceptions);
+          
+            RequestMainThreadAction(async() =>
+                {
+                    await action();
+                    completion.SetResult(true);
+                }, maskExceptions);
 
-            // If we're already on main thread, then the action will
-            // have already completed at this point, so can just return
-            if (completion.Task.IsCompleted)
-                return;
-
-            // Make sure we don't introduce weird locking issues  
-            // blocking on the completion source by jumping onto
-            // a new thread to wait
-            await Task.Run(async () => await completion.Task);
+            if (!completion.Task.IsCompleted)
+                await completion.Task.ConfigureAwait(false);
         }
 
         public abstract bool IsOnMainThread { get; }

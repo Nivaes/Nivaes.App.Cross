@@ -18,18 +18,22 @@ namespace Nivaes.App.Cross.UIKitLib
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, UIWindow windows)
         {
-            builder.Services.TryAddSingleton<MvxIosViewDispatcher, MvxIosViewDispatcher>();
+            builder.Services.AddSingleton<MvxIosViewDispatcher>();
+            builder.Services.AddSingleton<ICrossViewDispatcher>(sp => sp.GetRequiredService<MvxIosViewDispatcher>());
+            builder.Services.AddSingleton<ICrossMainThreadDispatcher>(sp => sp.GetRequiredService<MvxIosViewDispatcher>());
 
-            builder.Services.TryAddSingleton<IIosViewPresenterManager, IosViewPresenterManager>();
+            builder.Services.AddSingleton<MvxIosViewDispatcher, MvxIosViewDispatcher>();
+
+            builder.Services.AddSingleton<IIosViewPresenterManager, IosViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext>(sp => new PressenterActionContext(windows));
-            
-            builder.Services.TryAddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
 
-            builder.Services.TryAddSingleton<ICrashHandler, UIKitCrashHandler>();
+            builder.Services.AddSingleton<IMvxIosViewCreator, MvxIosViewsContainer>();
+
+            builder.Services.AddSingleton<ICrashHandler, UIKitCrashHandler>();
 
             // Plugins
-            builder.Services.TryAddSingleton<ICrossNativeColor, MvxIosColor>();
-            builder.Services.TryAddSingleton<ICrossNativeVisibility, MvxIosVisibility>();
+            builder.Services.AddSingleton<ICrossNativeColor, MvxIosColor>();
+            builder.Services.AddSingleton<ICrossNativeVisibility, MvxIosVisibility>();
 
 
             return builder;

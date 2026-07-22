@@ -15,6 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 throw new AppException("SynchronizationContext must not be null - check to make sure Dispatcher is created on UI thread");
         }
 
+        [Obsolete]
         public override bool RequestMainThreadAction(Action action, bool maskExceptions = true)
         {
             if (IsOnMainThread)

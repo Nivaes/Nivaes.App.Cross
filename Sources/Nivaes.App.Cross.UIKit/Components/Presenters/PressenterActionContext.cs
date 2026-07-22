@@ -22,9 +22,9 @@
         public IMenuViewController? MenuLeftViewController { get; set; }
         public IMenuViewController? MenuRigthViewController { get; set; }
 
-        public List<UIViewController> ModalViewControllers => new();
+        public List<UIViewController> ModalViewControllers { get; } = [];
 
-        public List<UIMasterDetailSplitViewController> MasterDetailSplitViewControllers => new();
+        public List<UIMasterDetailSplitViewController> MasterDetailSplitViewControllers { get; } = [];
 
         public PressenterActionContext(UIWindow window)
         {
