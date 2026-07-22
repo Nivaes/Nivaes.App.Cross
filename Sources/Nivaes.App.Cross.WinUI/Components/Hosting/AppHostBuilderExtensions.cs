@@ -18,29 +18,29 @@ namespace Nivaes.App.Cross.WinUI
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, CrossWinUIApplication app)
         {
             // ToDo: Unificar interfaces.
-            builder.Services.TryAddSingleton<CrossWindowsViewDispatcher>();
-            builder.Services.TryAddSingleton<ICrossViewDispatcher>(sp =>
+            builder.Services.AddSingleton<CrossWindowsViewDispatcher>();
+            builder.Services.AddSingleton<ICrossViewDispatcher>(sp =>
                 sp.GetRequiredService<CrossWindowsViewDispatcher>());
-            builder.Services.TryAddSingleton<ICrossMainThreadDispatcher>(sp =>
+            builder.Services.AddSingleton<ICrossMainThreadDispatcher>(sp =>
                 sp.GetRequiredService<CrossWindowsViewDispatcher>());
 
 
-            builder.Services.TryAddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
-            builder.Services.TryAddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();
+            builder.Services.AddSingleton<ICrossWindowsFrame>(sp => new CrossWindowsFrame(app.RootFrame!));
+            builder.Services.AddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
-            builder.Services.TryAddSingleton<ICrashHandler, WinUICrashHandler>();
+            builder.Services.AddSingleton<ICrashHandler, WinUICrashHandler>();
 
             // Plugins
-            builder.Services.TryAddSingleton<ICrossNativeColor, CrossWinUIColor>();
-            builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossWinUIVisibility>();
+            builder.Services.AddSingleton<ICrossNativeColor, CrossWinUIColor>();
+            builder.Services.AddSingleton<ICrossNativeVisibility, CrossWinUIVisibility>();
 
-            builder.Services.TryAddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
-            builder.Services.TryAddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
+            builder.Services.AddSingleton<ICrossSuspensionManager, CrossSuspensionManager>();
+            builder.Services.AddSingleton<ICrossWindowsViewModelLoader, CrossWindowsViewsContainer>();
 
-            builder.Services.TryAddSingleton<ILoadDataService, LoadDataService>();
-            builder.Services.TryAddSingleton<IBusyService, BusyService>();
-            builder.Services.TryAddSingleton<IMediaService, MediaService>();
+            builder.Services.AddSingleton<ILoadDataService, LoadDataService>();
+            builder.Services.AddSingleton<IBusyService, BusyService>();
+            builder.Services.AddSingleton<IMediaService, MediaService>();
 
             return builder;
         }

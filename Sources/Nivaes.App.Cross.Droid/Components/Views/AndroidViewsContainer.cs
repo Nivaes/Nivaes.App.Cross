@@ -85,7 +85,7 @@ internal sealed class AndroidViewsContainer
             return null;
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-        return viewModelLoader.LoadViewModel(viewModelRequest.ViewModelType, null, savedState);
+        return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
     }
 
     private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? viewModel)

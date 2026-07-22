@@ -1,6 +1,6 @@
 namespace Nivaes.App.Cross
 {
-    internal sealed class CrossViewModelLoader
+    public sealed class CrossViewModelLoader
     {
         private CrossViewModelLocator _viewModelLocator;
 
@@ -34,6 +34,14 @@ namespace Nivaes.App.Cross
             {
                 throw new AppException(ex, $"Failed to construct and initialize ViewModel for type {request.ViewModelType} from locator {_viewModelLocator.GetType().Name} - check InnerException for more information");
             }
+        }
+
+        public ICrossViewModel LoadViewModel(
+            IViewModelRequest request,
+            ICrossBundle? savedState,
+            ICrossNavigateEventArgs? navigationArgs = null)
+        {
+            return LoadViewModel(request.ViewModelType, request.ParameterValues, savedState, navigationArgs);
         }
 
         public ICrossViewModel LoadViewModel(

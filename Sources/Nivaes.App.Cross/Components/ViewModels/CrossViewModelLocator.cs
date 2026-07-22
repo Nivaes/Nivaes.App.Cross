@@ -4,8 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Nivaes.App.Cross;
 
 /// <inheritdoc cref="ICrossViewModelLocator"/>
-internal sealed class CrossViewModelLocator
-    //: ICrossViewModelLocator
+public sealed class CrossViewModelLocator
 {
     private IServiceProvider _serviceProvider;
 

@@ -6,7 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Nivaes.App.Cross
 {
     public interface IViewModelRequest
-    { }
+    {
+        Type ViewModelType { get; }
+
+        IDictionary<string, string>? ParameterValues { get; }
+    }
 
     public record class ViewModelRequest
         : IViewModelRequest

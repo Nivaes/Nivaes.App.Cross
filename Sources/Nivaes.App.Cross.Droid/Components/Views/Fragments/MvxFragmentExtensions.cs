@@ -103,7 +103,7 @@ public static class MvxFragmentExtensions
             }
 
             var loaderService = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-            var viewModel = loaderService.LoadViewModel(request.ViewModelType, null, savedState);
+            var viewModel = loaderService.LoadViewModel(request, savedState);
 
             return viewModel;
         }
@@ -149,7 +149,7 @@ public static class MvxFragmentExtensions
         {
             var loader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
 
-            var viewModel = loader?.LoadViewModel(request.ViewModelType, null, savedState);
+            var viewModel = loader?.LoadViewModel(request, savedState);
             if (viewModel == null)
             {
                 CrossLoggerHost.GetLogger(nameof(MvxFragmentExtensions)).LogWarning("ViewModel not loaded for {ViewModelType}",
