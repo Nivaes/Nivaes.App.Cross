@@ -18,9 +18,12 @@ namespace Nivaes.App.Cross.AppKitLib
 
         static CrossAppBuilder SetupDefaults(this CrossAppBuilder builder, INSApplicationDelegate applicationDelegation)
         {
-            builder.Services.TryAddSingleton<ICrossViewDispatcher, MvxMacViewDispatcher>();           
+            
+                
+            builder.Services.AddSingleton<ICrossViewDispatcher, MvxMacViewDispatcher>();
+            builder.Services.AddSingleton<ICrossMainThreadDispatcher, MvxMacViewDispatcher>();
 
-            builder.Services.TryAddSingleton<IMacViewPresenterManager>(sp =>
+            builder.Services.AddSingleton<IMacViewPresenterManager>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<MacViewPresenterManager>>();
 
@@ -28,12 +31,12 @@ namespace Nivaes.App.Cross.AppKitLib
             });
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
-            builder.Services.TryAddSingleton<ICrashHandler, AppKitCrashHandler>();
-            builder.Services.TryAddSingleton<IMvxMacViewCreator, MvxMacViewsContainer>();
+            builder.Services.AddSingleton<ICrashHandler, AppKitCrashHandler>();
+            builder.Services.AddSingleton<IMvxMacViewCreator, MvxMacViewsContainer>();
 
             // Plugins
-            builder.Services.TryAddSingleton<ICrossNativeColor, CrossMacColor>();
-            builder.Services.TryAddSingleton<ICrossNativeVisibility, CrossMacVisibility>();
+            builder.Services.AddSingleton<ICrossNativeColor, CrossMacColor>();
+            builder.Services.AddSingleton<ICrossNativeVisibility, CrossMacVisibility>();
 
 
             return builder;
