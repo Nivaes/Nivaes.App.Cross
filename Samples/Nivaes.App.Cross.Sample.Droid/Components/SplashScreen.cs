@@ -5,14 +5,12 @@ using Nivaes.App.Cross.Droid;
 
 namespace Nivaes.App.Cross.Sample.Droid;
 
-//[Activity(
-//    Label = "Nivaes.App.Droid"
-//    , MainLauncher = true
-//    , Icon = "@mipmap/icon"
-//    , Theme = "@style/AppTheme.Splash"
-//    , NoHistory = true
-//    , ScreenOrientation = ScreenOrientation.Portrait)]
-[Register("nivaes.cross.sample.SplashScreen")]
+[Activity(Name = "com.nivaes.SplashScreen"
+       , Label = "@string/app_name"
+       , MainLauncher = true
+       , Icon = "@drawable/ic_launcher"
+       , Theme = "@style/AppTheme.Splash"
+       , NoHistory = true)]
 public sealed class SplashScreen 
     : StartActivity
 {
