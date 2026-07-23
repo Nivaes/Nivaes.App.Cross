@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.WinUI.Observability
 
         private async void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            var ex = (Exception)e.Exception;
+            var ex = e.Exception;
 
             await SaveException(ex, "Unhandled exception occurred.");
 

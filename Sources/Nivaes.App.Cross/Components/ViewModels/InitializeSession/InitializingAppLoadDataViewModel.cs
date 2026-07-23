@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross
         #region Life cycle
         public InitializingAppLoadDataViewModel(
                     IIdentifyService identifyService,
-                    ILogger logger)
+                    ILogger<InitializingAppLoadDataViewModel> logger)
             : base(logger)
         {
             mIdentifyService = identifyService;
