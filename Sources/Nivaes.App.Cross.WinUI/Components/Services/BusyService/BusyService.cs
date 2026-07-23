@@ -1,11 +1,9 @@
-﻿namespace Nivaes.App.Cross.WinUI
-{
-    using System;
-    using System.Diagnostics;
-    using System.Threading.Tasks;
-    using Microsoft.UI.Xaml;
-    using Microsoft.UI.Xaml.Controls.Primitives;
+﻿using System.Diagnostics;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
+namespace Nivaes.App.Cross.WinUI
+{
     public class BusyService : IBusyService
     {
         [DebuggerStepThrough]
@@ -14,13 +12,13 @@
             return Show(string.Empty, action);
         }
 
-        [DebuggerStepThrough]
+        [DebuggerHidden]
         public ValueTask<T> Show<T>(Func<Task<T>> action)
         {
             return Show<T>(string.Empty, action);
         }
 
-        //[DebuggerStepThrough]
+        //[DebuggerHidden]
         public async ValueTask Show(string pregressText, Func<Task> action)
         {
             ArgumentNullException.ThrowIfNull(action);
@@ -28,9 +26,8 @@
             Popup? busyPopup = null;
             try
             {
-                //busyPopup = ShowBusy(pregressText);
-
-                //busyPopup.IsOpen = true;
+                busyPopup = ShowBusy(pregressText);
+                busyPopup.IsOpen = true;
 
                 await action.Invoke();
             }
@@ -41,7 +38,7 @@
             }
         }
 
-        //[DebuggerStepThrough]
+        //[DebuggerHidden]
         public async ValueTask<T> Show<T>(string pregressText, Func<Task<T>> action)
         {
             ArgumentNullException.ThrowIfNull(action);
@@ -66,7 +63,7 @@
         {
             Popup? busyPopup = null;
 
-            var parent = (FrameworkElement)Window.Current.Content;
+            //var parent = (FrameworkElement)Window.Current.Content;
             var child = new BusyContentControl
             {
                 Message = pregressText
@@ -77,16 +74,16 @@
                 Child = child
             };
 
-            parent.SizeChanged += (o, e) =>
-            {
-                busyPopup.HorizontalOffset = (e.NewSize.Width - child.ActualWidth) / 2;
-                busyPopup.VerticalOffset = (e.NewSize.Height - child.ActualHeight) / 2;
-            };
-            busyPopup.Opened += (o, e) =>
-            {
-                busyPopup.HorizontalOffset = (parent.ActualWidth - child.ActualWidth) / 2;
-                busyPopup.VerticalOffset = (parent.ActualHeight - child.ActualHeight) / 2;
-            };
+            //parent.SizeChanged += (o, e) =>
+            //{
+            //    busyPopup.HorizontalOffset = (e.NewSize.Width - child.ActualWidth) / 2;
+            //    busyPopup.VerticalOffset = (e.NewSize.Height - child.ActualHeight) / 2;
+            //};
+            //busyPopup.Opened += (o, e) =>
+            //{
+            //    busyPopup.HorizontalOffset = (parent.ActualWidth - child.ActualWidth) / 2;
+            //    busyPopup.VerticalOffset = (parent.ActualHeight - child.ActualHeight) / 2;
+            //};
 
             return busyPopup;
         }

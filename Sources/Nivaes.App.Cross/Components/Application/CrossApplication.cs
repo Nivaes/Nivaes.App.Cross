@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross;
 
@@ -17,8 +18,9 @@ public abstract class CrossApplication : ICrossApplication
         Logger = logger;
     }
 
-    void ICrossApplication.Setup()
+    async void ICrossApplication.Setup()
     {
+        await RegisterDatabase();
         Parallel.Invoke(
             RegisterConverters,
             RegisterCombiners
@@ -31,6 +33,11 @@ public abstract class CrossApplication : ICrossApplication
 
     protected virtual void RegisterCombiners() {
         GeneratedCombinerExtensions.RegisterCombiners(ServiceProvider);
+    }
+
+    protected virtual ValueTask RegisterDatabase()
+    {
+        return ValueTask.CompletedTask;
     }
 
     public abstract void Initialize();
