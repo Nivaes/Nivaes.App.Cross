@@ -33,13 +33,13 @@
       },
       "Nivaes.App.Shared": {
         "type": "Direct",
-        "requested": "[1.0.0.3, )",
-        "resolved": "1.0.0.3",
-        "contentHash": "I+Pkjfe+x2nQgncQGM48qInq+nNUkzzSjKuuy0LgXKXq/4MkyRiTpL+jRxNDLLXPZTNODiYYu1WVNpbHxQBnBQ==",
+        "requested": "[1.0.1.2, )",
+        "resolved": "1.0.1.2",
+        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
         "dependencies": {
           "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.0.3",
-          "Nivaes.Extensions": "2.4.0.1"
+          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
+          "Nivaes.Extensions": "2.4.0.2"
         }
       },
       "Roslynator.Analyzers": {
@@ -50,9 +50,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.29.0.143774, )",
-        "resolved": "10.29.0.143774",
-        "contentHash": "YOBCHTjqb4ak7yjLQhQJ6S0+aTkgnuMcekjCrhWruyIIoWlB1C8W+Fgr18bWit+xx7Gd9sNl5sziOwh6D804Hg=="
+        "requested": "[10.30.0.144632, )",
+        "resolved": "10.30.0.144632",
+        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
       },
       "Xamarin.Android.Glide": {
         "type": "Direct",
@@ -97,10 +97,10 @@
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
-        "resolved": "5.6.0",
-        "contentHash": "eWYNB5e92PSdkQ0xcmy2aLtrvBXNydnVi0Hj/VjaAely6XBqA3By+ClGAJaj4d16pzQmrXPLLK9RDVuS1Ec9xQ==",
+        "resolved": "5.0.0",
+        "contentHash": "ZXRAdvH6GiDeHRyd3q/km8Z44RoM6FBWHd+gen/la81mVnAdHTEsEkO5J0TCNXBymAcx5UYKt5TvgKBhaLJEow==",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Analyzers": "5.3.0"
+          "Microsoft.CodeAnalysis.Analyzers": "3.11.0"
         }
       },
       "Microsoft.Extensions.Configuration": {
@@ -249,11 +249,11 @@
       },
       "Nivaes.App.Shared.SourceGenerator": {
         "type": "Transitive",
-        "resolved": "1.0.0.3",
-        "contentHash": "iRX47cQDx/EB08wIQCpfjfadr/k3JM54wUR7dyrMkC+q/YvX4LRknNQpqgHmKsyhEBgsBe9z3Kr/6uPGrelh9g==",
+        "resolved": "1.0.1.2",
+        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
         "dependencies": {
           "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.6.0"
+          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
         }
       },
       "OpenTelemetry.Api": {
@@ -1173,8 +1173,8 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.0.3, )",
-          "Nivaes.Extensions": "[2.4.0.1, )",
+          "Nivaes.App.Shared": "[1.0.1.2, )",
+          "Nivaes.Extensions": "[2.4.0.2, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -1185,7 +1185,7 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.0.3, )",
+          "Nivaes.App.Shared": "[1.0.1.2, )",
           "Xamarin.AndroidX.AppCompat": "[1.7.1.4, )",
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",
           "Xamarin.AndroidX.Preference": "[1.2.1.18, )",
@@ -1196,7 +1196,7 @@
       "nivaes.app.cross.droid.sourcegenerator": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
+          "Microsoft.CodeAnalysis.CSharp": "[5.0.0, )"
         }
       },
       "nivaes.app.cross.sample": {
@@ -1206,7 +1206,7 @@
           "Microsoft.Extensions.Logging.Console": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Debug": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.0.3, )",
+          "Nivaes.App.Shared": "[1.0.1.2, )",
           "OpenTelemetry": "[1.17.0, )",
           "OpenTelemetry.Exporter.Console": "[1.17.0, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.17.0, )",
@@ -1230,17 +1230,17 @@
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "CentralTransitive",
         "requested": "[5.6.0, )",
-        "resolved": "5.3.0",
-        "contentHash": "KuLhbZwB0L8JikL86AE5VWEp3RLNjIcp+j8yz9EJ/UBgRz4+qDEjHg/tluRFbpYpD/e37BqaaNFbQ0vqawBwWQ=="
+        "resolved": "3.11.0",
+        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "r1DrKQ/L0xTw03wJrLr36AMQNslyaeEKBFyFmQcOKa8HX3YvmhY//JEUafb6IR/m0gmaUVCfBTWitKJRNb7YAA==",
+        "requested": "[5.0.0, )",
+        "resolved": "5.0.0",
+        "contentHash": "5DSyJ9bk+ATuDy7fp2Zt0mJStDVKbBoiz1DyfAwSa+k4H4IwykAUcV3URelw5b8/iVbfSaOwkwmPUZH6opZKCw==",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Analyzers": "5.3.0",
-          "Microsoft.CodeAnalysis.Common": "[5.6.0]"
+          "Microsoft.CodeAnalysis.Analyzers": "3.11.0",
+          "Microsoft.CodeAnalysis.Common": "[5.0.0]"
         }
       },
       "Microsoft.Extensions.Configuration.UserSecrets": {
@@ -1320,9 +1320,9 @@
       },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.1, )",
-        "resolved": "2.4.0.1",
-        "contentHash": "PDiPARYOvMdgZrG35MyyqS16BLqMlZ/qw9CF+VSqGMXT5PLIeioUw2o+SAL4gyOzOHT1Ruqfky1IAWSNeWyqTg=="
+        "requested": "[2.4.0.2, )",
+        "resolved": "2.4.0.2",
+        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
