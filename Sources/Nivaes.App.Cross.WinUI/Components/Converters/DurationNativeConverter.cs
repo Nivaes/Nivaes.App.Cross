@@ -1,4 +1,6 @@
-﻿namespace Nivaes.App.Cross.WinUI
+﻿using System.Windows;
+
+namespace Nivaes.App.Cross.WinUI
 {
     public class DurationNativeConverter
         : MvxNativeValueConverter<DurationConverter>

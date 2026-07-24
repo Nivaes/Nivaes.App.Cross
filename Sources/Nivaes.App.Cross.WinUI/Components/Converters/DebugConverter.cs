@@ -1,8 +1,8 @@
-﻿namespace Nivaes.App.Cross.WinUI
-{
-    using System;
-    using Microsoft.UI.Xaml.Data;
+﻿using System;
+using Microsoft.UI.Xaml.Data;
 
+namespace Nivaes.App.Cross.WinUI
+{
     public class DebugConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
