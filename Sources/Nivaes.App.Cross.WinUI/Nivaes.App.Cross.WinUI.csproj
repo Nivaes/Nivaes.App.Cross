@@ -35,6 +35,7 @@
 		<!--<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />-->
 		<PackageReference Include="CommunityToolkit.WinUI.Collections" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
 		<PackageReference Include="Nivaes.App.Shared" />
 	</ItemGroup>
 	

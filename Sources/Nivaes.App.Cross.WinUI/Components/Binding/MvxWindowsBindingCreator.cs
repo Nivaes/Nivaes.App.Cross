@@ -64,7 +64,7 @@ namespace Nivaes.App.Cross.WinUI
                 return null;
 
             // TODO - consider caching this wrapper - it is a tiny bit wasteful creating a wrapper for each binding
-            return new MvxNativeValueConverter(converter);
+            return new NativeValueConverter(converter);
         }
 
         protected static BindingMode ConvertMode(CrossBindingMode mode, Type propertyType)

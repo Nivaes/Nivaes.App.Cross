@@ -47,6 +47,15 @@
           "Microsoft.WindowsAppSDK.WinUI": "2.3.0"
         }
       },
+      "Microsoft.Xaml.Behaviors.WinUI.Managed": {
+        "type": "Direct",
+        "requested": "[3.0.1, )",
+        "resolved": "3.0.1",
+        "contentHash": "2YetkQhWIKCTwex5kH+VaZO+jcUUxGT6ofrQqYsWAPl6nCSZsIU2yXDSzUiXegfTLson1i4SqPLoBfDeVLNCMQ==",
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.WinUI": "1.8.250906003"
+        }
+      },
       "Nivaes.App.Shared": {
         "type": "Direct",
         "requested": "[1.0.1.2, )",

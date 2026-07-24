@@ -9,8 +9,6 @@ namespace Nivaes.App.Cross
     public static class CrossCoreExtensions
     {
         // core implementation of ConvertToBoolean
-        [UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' requirements",
-            Justification = "The types returned by Nullable.GetUnderlyingType on a type with DynamicallyAccessedMemberTypes.PublicParameterlessConstructor are safe to process")]
         public static bool ConvertToBooleanCore<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T>(this T? result)
         {
             if (EqualityComparer<T?>.Default.Equals(result, default))
@@ -34,9 +32,7 @@ namespace Nivaes.App.Cross
         }
 
         // core implementation of MakeSafeValue
-        public static object? MakeSafeValueCore(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
-            object? value)
+        public static object? MakeSafeValueCore(this Type propertyType, object? value)
         {
             if (value == null)
             {
@@ -46,6 +42,7 @@ namespace Nivaes.App.Cross
             var safeValue = value;
             if (!propertyType.IsInstanceOfType(value))
             {
+                System.Diagnostics.Debugger.Break();  //ToDo: ¿Cuando se ejecuta esto?
                 if (propertyType == typeof(string))
                 {
                     safeValue = value.ToString();
