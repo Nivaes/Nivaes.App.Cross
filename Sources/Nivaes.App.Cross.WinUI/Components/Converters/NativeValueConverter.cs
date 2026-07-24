@@ -6,14 +6,14 @@ using Nivaes.App.Cross.Observability;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public class MvxNativeValueConverter
+    public class NativeValueConverter
         : IValueConverter
     {
         private readonly ICrossValueConverter _wrapped;
 
         protected ICrossValueConverter Wrapped => _wrapped;
 
-        public MvxNativeValueConverter(ICrossValueConverter wrapped)
+        public NativeValueConverter(ICrossValueConverter wrapped)
         {
             _wrapped = wrapped;
         }
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.WinUI
         {
             if (toReturn == CrossBindingConstant.DoNothing)
             {
-                CrossLoggerHost.GetLogger<MvxNativeValueConverter>().LogTrace(
+                CrossLoggerHost.GetLogger<NativeValueConverter>().LogTrace(
                     "DoNothing does not have an equivalent in WinRT - returning UnsetValue instead");
 
                 return DependencyProperty.UnsetValue;
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.WinUI
     }
 
     public class MvxNativeValueConverter<T>
-        : MvxNativeValueConverter
+        : NativeValueConverter
         where T : ICrossValueConverter, new()
     {
         protected new T Wrapped => (T)base.Wrapped;
