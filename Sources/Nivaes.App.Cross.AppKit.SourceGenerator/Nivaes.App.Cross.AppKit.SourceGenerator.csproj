@@ -9,6 +9,11 @@
 	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
 
+	  <IncludeBuildOutput>false</IncludeBuildOutput>
+	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	  <IsRoslynComponent>true</IsRoslynComponent>
+	  <PublishAot>false</PublishAot>
+
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -26,7 +31,7 @@
 
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
-		<None Include="Docs\Readme.md" Pack="true" PackagePath="\"/>
+		<None Include="Docs\Readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>

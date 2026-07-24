@@ -6,8 +6,10 @@
 	  <AssemblyName>Nivaes.App.Cross.UIKit.SourceGenerator</AssemblyName>
 	  <RootNamespace>Nivaes.App.Cross.UIKitLib.SourceGenerator</RootNamespace>
 
-	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	  <IncludeBuildOutput>false</IncludeBuildOutput>
+	  <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	  <IsRoslynComponent>true</IsRoslynComponent>
+	  <PublishAot>false</PublishAot>
 
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
