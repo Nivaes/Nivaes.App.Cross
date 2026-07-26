@@ -1,0 +1,58 @@
+﻿<app:ShellViewPage
+     x:Class="Nivaes.App.Cross.WinUI.ShellView"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:app="using:Nivaes.App.Cross.WinUI"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     NavigationCacheMode="Enabled"
+     mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="XboxContentSafeRect.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Rectangle
+            x:Name="XboxContentSafeRect"
+            Width="48"
+            Fill="{ThemeResource NavigationViewDefaultPaneBackground}"
+            Visibility="Collapsed" />
+      
+        <NavigationView
+                x:Name="NavigationView"
+                Grid.Column="1"
+                AlwaysShowHeader="false"
+                IsBackButtonVisible="Collapsed"
+                IsTabStop="False"
+                Loaded="OnNavigationViewLoaded">
+            <Frame x:Name="PageContent" />
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Vertical">
+                    <NavigationViewItem x:Name="AccountNavigatonViewItem"
+                                        Icon="Contact" IsSelected="True"
+                                        Tapped="OnContactNavigationViewItemTapped">
+                        <StackPanel Orientation="Vertical">
+                            <!--<TextBlock Text="{x:Bind ViewModel.ShellModel.Account.FullName, Mode=OneTime}"/>
+                            <TextBlock Text="{x:Bind ViewModel.ShellModel.Account.Email, Mode=OneTime}"  FontSize="9"/>-->
+                            <TextBlock Text="Usuario"/>
+                            <TextBlock Text="Mail"  FontSize="9"/>
+                        </StackPanel>
+                    </NavigationViewItem>
+                </StackPanel>
+            </NavigationView.PaneFooter>
+        </NavigationView>
+    </Grid>
+
+</app:ShellViewPage>
+

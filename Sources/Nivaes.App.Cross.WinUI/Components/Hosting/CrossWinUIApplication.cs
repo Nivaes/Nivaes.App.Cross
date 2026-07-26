@@ -16,8 +16,9 @@ public abstract class CrossWinUIApplication
 
     ICrossApplication? _application;
 
-    internal Frame? RootFrame { get; set; }
-    internal Window? MainWindow { get; private set; }
+    internal Frame? RootFrame { get; private set; }
+
+    public Window? MainWindow { get; private set; }
 
     public IServiceProvider ServiceProvider
     {
@@ -80,25 +81,10 @@ public abstract class CrossWinUIApplication
         _application.Initialize();
     }
 
-    //protected virtual void RunAppStart(string arguments)
+    //protected virtual Window CreateWindow()
     //{
-    //    var instance = CrossWindowsSetupSingleton.EnsureSingletonAvailable(RootFrame, arguments, "Suspend");
-
-    //    if (RootFrame.Content == null)
-    //    {
-    //        instance.EnsureInitialized();
-
-    //        if (Mvx.IoCProvider.TryResolve(out ICrossAppStart? startup) && !(startup?.IsStarted ?? false))
-    //        {
-    //            startup?.Start(GetAppStartHint(arguments));
-    //        }
-    //    }
+    //    return new Window();
     //}
-
-    protected virtual Window CreateWindow()
-    {
-        return new Window();
-    }
 
     protected virtual Frame CreateFrame()
     {
@@ -107,7 +93,8 @@ public abstract class CrossWinUIApplication
 
     private Frame InitializeFrame()
     {
-        MainWindow ??= CreateWindow();
+        //MainWindow ??= new MainWindow(); //CreateWindow();
+        MainWindow ??= new Window();
 
         var rootFrame = MainWindow.Content as Frame;
 
@@ -126,7 +113,6 @@ public abstract class CrossWinUIApplication
 
     protected virtual void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
     {
-        // ToDo: Integrar con log.
         throw new AppException($"Failed to load Page {e.SourcePageType.FullName}", e.Exception);
     }
 
@@ -163,26 +149,5 @@ public abstract class CrossWinUIApplication
     protected virtual void RegisterViewsActions()
     {
         WinUI.GeneratedViewsExtensions.RegisterViewsActions();
-    }
-
-
-    // ToDO: Buscar donde registar ICrossSuspensionManager.
-    //private void InitializeContainer(IServiceProvider serviceProvider)
-    //{
-    //    var suspensionManager = new CrossSuspensionManager();
-    //    var container = Singleton<CrossIoCServiceContainer>.Instance;
-    //    container.Merge(new WinUISubcontainer());
-
-    //    container.AddInstance<ICrossSuspensionManager>(suspensionManager);
-
-    //    //if (_suspensionManagerSessionStateKey != null)
-    //    //    suspensionManager.RegisterFrame(RootFrame, _suspensionManagerSessionStateKey);
-
-    //    container.AddInstance<ICrossWindowsViewModelLoader>(new CrossWindowsViewsContainer(_services!));
-    //    container.AddInstance<IServiceProvider>(serviceProvider);
-
-
-
-    //    //container.AddInstance<ICrossViewModelByNameLookup> (new CrossViewModelByNameLookup());
-    //}
+    }    
 }

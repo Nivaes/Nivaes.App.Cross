@@ -1,6 +1,6 @@
 ﻿namespace Nivaes.App.Cross.Components.Presenters;
 
-public class PresentationData
+public record PresentationData
 {
     public Type ViewModelType
     {

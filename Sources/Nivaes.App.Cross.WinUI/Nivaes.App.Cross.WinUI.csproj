@@ -74,5 +74,10 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Components\Views\MainWindows\MainWindow.xaml">
+	    <SubType>Designer</SubType>
+	  </Page>
+	</ItemGroup>
 
 </Project>

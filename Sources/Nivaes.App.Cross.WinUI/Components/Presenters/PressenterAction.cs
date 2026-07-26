@@ -35,8 +35,6 @@ namespace Nivaes.App.Cross.WinUI
 
             _mainFrame = new WindowInformation(window!, rootFrame, null);
 
-            //_logger = CrossLogHost.GetLog<MvxWindowsViewPresenter>();
-
             //if (Window.Current != null)
             //{
             //    SystemNavigationManager.GetForCurrentView().BackRequested += BackButtonOnBackRequested;
