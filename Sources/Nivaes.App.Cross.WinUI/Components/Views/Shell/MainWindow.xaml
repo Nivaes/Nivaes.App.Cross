@@ -12,7 +12,7 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid
+    <!--<Grid
         x:Name="RootGrid"
         Loaded="RootGrid_Loaded"
         PointerPressed="RootGrid_PointerPressed">
@@ -36,7 +36,7 @@
             Loaded="OnNavigationViewControlLoaded">
             
         </NavigationView>
-    </Grid>
+    </Grid>-->
 
     <!--<Grid
         x:Name="RootGrid"

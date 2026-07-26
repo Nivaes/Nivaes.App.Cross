@@ -8,35 +8,54 @@
      NavigationCacheMode="Enabled"
      mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.Setters>
-                        <Setter Target="XboxContentSafeRect.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
-        <Rectangle
-            x:Name="XboxContentSafeRect"
-            Width="48"
-            Fill="{ThemeResource NavigationViewDefaultPaneBackground}"
-            Visibility="Collapsed" />
-      
+    <Grid 
+        x:Name="RootGrid"
+        Loaded="RootGrid_Loaded"
+        PointerPressed="RootGrid_PointerPressed"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TitleBar x:Name="_titleBar"
+                 Title="WinUI 3 Cross"
+                 BackRequested="TitleBar_BackRequested"
+                 IsBackButtonVisible="{x:Bind _rootFrame.CanGoBack, Mode=OneWay}"
+                 IsPaneToggleButtonVisible="True"
+                 PaneToggleRequested="TitleBar_PaneToggleRequested">
+            <TitleBar.Resources>
+                <HorizontalAlignment x:Key="TitleBarContentHorizontalAlignment">Stretch</HorizontalAlignment>
+            </TitleBar.Resources>
+            <TitleBar.Content>
+                <AutoSuggestBox
+                         x:Name="controlsSearchBox"
+                         MaxWidth="580"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         x:FieldModifier="public"
+                         KeyboardAcceleratorPlacementMode="Hidden"
+                         PlaceholderText="Commans..."
+                         QueryIcon="Find"
+                         QuerySubmitted="OnControlsSearchBoxQuerySubmitted"
+                         TextChanged="OnControlsSearchBoxTextChanged">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                             Key="F"
+                             Invoked="CtrlF_Invoked"
+                             Modifiers="Control" />
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
+            </TitleBar.Content>
+        </TitleBar>
         <NavigationView
-                x:Name="NavigationView"
-                Grid.Column="1"
-                AlwaysShowHeader="false"
+                x:Name="_navigationView"
+                Grid.Row="1"
+                Canvas.ZIndex="0"
                 IsBackButtonVisible="Collapsed"
+                IsPaneToggleButtonVisible="False"
                 IsTabStop="False"
                 Loaded="OnNavigationViewLoaded">
-            <Frame x:Name="PageContent" />
+            <Frame x:Name="_rootFrame" />
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Vertical">
                     <NavigationViewItem x:Name="AccountNavigatonViewItem"

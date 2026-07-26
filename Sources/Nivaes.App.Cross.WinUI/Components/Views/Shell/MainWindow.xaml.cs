@@ -25,76 +25,76 @@ namespace Nivaes.App.Cross.WinUI
     public sealed partial class MainWindow 
         : Window
     {
-        public NavigationView NavigationView
-        {
-            get { return NavigationViewControl; }
-        }
+        //public NavigationView NavigationView
+        //{
+        //    get { return NavigationViewControl; }
+        //}
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            // We need to set the minimum size here because the XamlRoot is not available in the constructor.
-            WindowHelper.SetWindowMinSize(this, 640, 500);
+        //private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    // We need to set the minimum size here because the XamlRoot is not available in the constructor.
+        //    WindowHelper.SetWindowMinSize(this, 640, 500);
 
-            if (sender is FrameworkElement rootGrid && rootGrid.XamlRoot is not null)
-            {
-                rootGrid.XamlRoot.Changed += RootGridXamlRoot_Changed;
-            }
+        //    if (sender is FrameworkElement rootGrid && rootGrid.XamlRoot is not null)
+        //    {
+        //        rootGrid.XamlRoot.Changed += RootGridXamlRoot_Changed;
+        //    }
 
-            //NavigationOrientationHelper.UpdateNavigationViewForElement(NavigationOrientationHelper.IsLeftMode());
-            //TitleBarHelper.ApplySystemThemeToCaptionButtons(this, RootGrid.ActualTheme);
-        }
+        //    //NavigationOrientationHelper.UpdateNavigationViewForElement(NavigationOrientationHelper.IsLeftMode());
+        //    //TitleBarHelper.ApplySystemThemeToCaptionButtons(this, RootGrid.ActualTheme);
+        //}
 
-        private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            //PointerPointProperties props = e.GetCurrentPoint(null).Properties;
+        //private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
+        //{
+        //    //PointerPointProperties props = e.GetCurrentPoint(null).Properties;
 
-            //if (props.IsXButton1Pressed)
-            //{
-            //    if (rootFrame.CanGoBack)
-            //    {
-            //        rootFrame.GoBack();
-            //        e.Handled = true;
-            //    }
-            //}
-            //else if (props.IsXButton2Pressed)
-            //{
-            //    if (rootFrame.CanGoForward)
-            //    {
-            //        rootFrame.GoForward();
-            //        e.Handled = true;
-            //    }
-            //}
-        }
+        //    //if (props.IsXButton1Pressed)
+        //    //{
+        //    //    if (rootFrame.CanGoBack)
+        //    //    {
+        //    //        rootFrame.GoBack();
+        //    //        e.Handled = true;
+        //    //    }
+        //    //}
+        //    //else if (props.IsXButton2Pressed)
+        //    //{
+        //    //    if (rootFrame.CanGoForward)
+        //    //    {
+        //    //        rootFrame.GoForward();
+        //    //        e.Handled = true;
+        //    //    }
+        //    //}
+        //}
 
-        private void RootGridXamlRoot_Changed(XamlRoot sender, XamlRootChangedEventArgs args)
-        {
-            WindowHelper.SetWindowMinSize(this, 640, 500);
-        }
+        //private void RootGridXamlRoot_Changed(XamlRoot sender, XamlRootChangedEventArgs args)
+        //{
+        //    WindowHelper.SetWindowMinSize(this, 640, 500);
+        //}
 
-        private void OnPaneDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
-        {
-            if (sender.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
-            {
-                titleBar.IsPaneToggleButtonVisible = false;
-            }
-            else
-            {
-                titleBar.IsPaneToggleButtonVisible = true;
-            }
-        }
+        //private void OnPaneDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+        //{
+        //    if (sender.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
+        //    {
+        //        titleBar.IsPaneToggleButtonVisible = false;
+        //    }
+        //    else
+        //    {
+        //        titleBar.IsPaneToggleButtonVisible = true;
+        //    }
+        //}
 
-        private void OnNavigationViewControlLoaded(object sender, RoutedEventArgs e)
-        {
-            //// Delay necessary to ensure NavigationView visual state can match navigation
-            //Task.Delay(500).ContinueWith(_ => this.NavigationViewLoaded?.Invoke(), TaskScheduler.FromCurrentSynchronizationContext());
+        //private void OnNavigationViewControlLoaded(object sender, RoutedEventArgs e)
+        //{
+        //    //// Delay necessary to ensure NavigationView visual state can match navigation
+        //    //Task.Delay(500).ContinueWith(_ => this.NavigationViewLoaded?.Invoke(), TaskScheduler.FromCurrentSynchronizationContext());
 
-            //var navigationView = sender as NavigationView;
-            //navigationView?.RegisterPropertyChangedCallback(NavigationView.IsPaneOpenProperty, OnIsPaneOpenChanged);
-        }
+        //    //var navigationView = sender as NavigationView;
+        //    //navigationView?.RegisterPropertyChangedCallback(NavigationView.IsPaneOpenProperty, OnIsPaneOpenChanged);
+        //}
     }
 }
