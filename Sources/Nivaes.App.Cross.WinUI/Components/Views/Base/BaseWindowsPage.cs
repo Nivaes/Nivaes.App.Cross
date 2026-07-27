@@ -5,6 +5,7 @@ using Windows.UI.ViewManagement;
 
 namespace Nivaes.App.Cross.WinUI
 {
+    [Obsolete("Usar CrossWindowsPage")]
     public abstract class BaseWindowsPage<TViewModel>
         : CrossWindowsPage<TViewModel>
         where TViewModel : ICrossViewModel
@@ -14,15 +15,15 @@ namespace Nivaes.App.Cross.WinUI
 
         protected BaseWindowsPage()
         {
-            base.Loading += (o, e) =>
-            {
-                if (!CanBackStack)
-                {
-                    base.ClearBackStack();
-                }
-            };
+            //base.Loading += (o, e) =>
+            //{
+            //    if (!CanBackStack)
+            //    {
+            //        base.ClearBackStack();
+            //    }
+            //};
 
-            SetColors();
+            //SetColors();
         }
 
         #region Colors

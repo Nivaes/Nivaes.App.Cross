@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.Xaml.Interactivity;
 
 namespace Nivaes.App.Cross.WinUI
@@ -20,10 +21,10 @@ namespace Nivaes.App.Cross.WinUI
 
         protected override void OnDetaching()
         {
-            base.OnDetaching();
-
             base.AssociatedObject.SelectionChanged -= OnSelectedItenChanged;
             base.AssociatedObject.Tapped -= OnTaped;
+
+            base.OnDetaching();
         }
 
         #region SelectedItemCommand
@@ -50,6 +51,12 @@ namespace Nivaes.App.Cross.WinUI
 
                 if (command != null)
                 {
+                    //var container = (SelectorItem)base.AssociatedObject.ContainerFromItem(e.AddedItems);
+                    //var image = container.FindControl<Image>();
+                    //ConnectedAnimationService
+                    //    .GetForCurrentView()
+                    //    .PrepareToAnimate("ForwardConnectedAnimation", image);
+
                     var selectedItem = base.AssociatedObject.SelectedItem;
 
                     if (command.CanExecute(selectedItem))

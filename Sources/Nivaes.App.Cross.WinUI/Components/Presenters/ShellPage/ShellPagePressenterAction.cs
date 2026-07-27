@@ -35,10 +35,6 @@ namespace Nivaes.App.Cross.WinUI
                 {
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                    //EntranceNavigationTransitionInfo
-                    //DrillInNavigationTransitionInfo
-                    //SlideNavigationTransitionInfo
-                    //SuppressNavigationTransitionInfo
                     containerView.Navigate(viewType, requestBuffer, new SuppressNavigationTransitionInfo());
 
                     containerView.HorizontalAlignment = HorizontalAlignment.Stretch;

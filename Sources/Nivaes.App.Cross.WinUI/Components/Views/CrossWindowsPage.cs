@@ -18,22 +18,22 @@ public abstract class CrossWindowsPage<TViewModel>
 
     public CrossWindowsPage()
     {
-        Loading += MvxWindowsPage_Loading;
-        Loaded += MvxWindowsPage_Loaded;
-        Unloaded += MvxWindowsPage_Unloaded;
+        Loading += WindowsPage_Loading;
+        Loaded += WindowsPage_Loaded;
+        Unloaded += WindowsPage_Unloaded;
     }
 
-    private void MvxWindowsPage_Loading(FrameworkElement sender, object args)
+    private void WindowsPage_Loading(FrameworkElement sender, object args)
     {
         ViewModel?.ViewAppearing();
     }
 
-    private void MvxWindowsPage_Loaded(object sender, RoutedEventArgs e)
+    private void WindowsPage_Loaded(object sender, RoutedEventArgs e)
     {
         ViewModel?.ViewAppeared();
     }
 
-    private void MvxWindowsPage_Unloaded(object sender, RoutedEventArgs e)
+    private void WindowsPage_Unloaded(object sender, RoutedEventArgs e)
     {
         ViewModel?.ViewDestroy();
     }
@@ -118,9 +118,7 @@ public abstract class CrossWindowsPage<TViewModel>
 
         if (e.NavigationMode == Microsoft.UI.Xaml.Navigation.NavigationMode.Back)
         {
-            Debugger.Break(); // Si se tiene que borrar aquí, hay que modificar el RequestCache.
-            //var key = translator.RequestTextGetKey(_reqData);
-            var idRequest = ViewModelRequestSerializer.DeserializeId(_reqData);
+            var idRequest = ViewModelRequestSerializer.DeserializeId(_reqData ?? new byte[0]);
             this.OnViewDestroy(idRequest);
         }
         else
@@ -209,9 +207,9 @@ public abstract class CrossWindowsPage<TViewModel>
     {
         if (disposing)
         {
-            Loading -= MvxWindowsPage_Loading;
-            Loaded -= MvxWindowsPage_Loaded;
-            Unloaded -= MvxWindowsPage_Unloaded;
+            Loading -= WindowsPage_Loading;
+            Loaded -= WindowsPage_Loaded;
+            Unloaded -= WindowsPage_Unloaded;
         }
     }
 }
