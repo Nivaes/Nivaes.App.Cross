@@ -10,7 +10,7 @@ using Windows.Graphics;
 namespace Nivaes.App.Cross.WinUI
 {
     public sealed class NewWindowWinUIPressenterAction
-        : PageWinUIPressenterAction<NewWindowPresentationAttribute>
+        : PagePressenterAction<NewWindowPresentationAttribute>
     {
         private const string WindowTitle = "WindowTitle";
         private const int DefaultWindowHeight = 456;

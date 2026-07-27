@@ -13,13 +13,15 @@ namespace Nivaes.App.Cross.WinUI
     public sealed partial class ShellView
         : ShellViewPage
     {
-        private readonly Window _mainWindows; 
+        private readonly Window _mainWindows;
+
+        public Frame RootFrame => _rootFrame;
 
         //private NavigationView NavigationView => NavigationViewControl;
         //protected Frame PageContentCore => PageContent;
         private NavigationViewItem? mSelectedItem;
 
-        private List<NavigationViewItemBase> mMenuItem;
+        private List<NavigationViewItemBase>? mMenuItem;
 
         public ShellView()
         {
@@ -113,7 +115,7 @@ namespace Nivaes.App.Cross.WinUI
 
             _navigationView.MenuItemsSource = mMenuItem;
 
-            mSelectedItem = (NavigationViewItem)mMenuItem.FirstOrDefault();
+            mSelectedItem = (NavigationViewItem?)mMenuItem.FirstOrDefault();
             _navigationView.SelectedItem = mSelectedItem;
 
             ((NavigationViewItem)_navigationView.SettingsItem).Tapped += NavigationViewItemSettingsItemSelected;

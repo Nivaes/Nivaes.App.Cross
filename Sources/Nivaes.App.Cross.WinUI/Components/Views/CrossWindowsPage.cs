@@ -80,13 +80,13 @@ public abstract class CrossWindowsPage<TViewModel>
             backStack.RemoveAt(0);
         }
 
-        UpdateBackButtonVisibility();
+        //UpdateBackButtonVisibility();
     }
 
-    protected virtual void UpdateBackButtonVisibility()
-    {
-        SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-    }
+    //protected virtual void UpdateBackButtonVisibility()
+    //{
+    //    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+    //}
 
     private byte[]? _reqData = null;
 

@@ -2,12 +2,12 @@
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public abstract class PageWinUIPressenterAction<TPressenterAttribute>
+    public abstract class PagePressenterAction<TPressenterAttribute>
         : PressenterAction<TPressenterAttribute>
         where TPressenterAttribute : IPresentationAttribute
     {
         #region Constructor
-        public PageWinUIPressenterAction(
+        public PagePressenterAction(
                 IPressenterActionContext context,
                 ICrossWindowsFrame rootFrame,
                 ILogger logger)
@@ -32,7 +32,6 @@ namespace Nivaes.App.Cross.WinUI
         {
             try
             {
-                //var requestText = GetRequestText(request);
                 var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
                 rootFrame.Navigate(viewType, requestBuffer);
@@ -49,7 +48,7 @@ namespace Nivaes.App.Cross.WinUI
     }
 
     public sealed class PageWinUIPressenterAction
-        : PageWinUIPressenterAction<PagePresentationAttribute>
+        : PagePressenterAction<PagePresentationAttribute>
     {
         #region Constructor
         public PageWinUIPressenterAction(

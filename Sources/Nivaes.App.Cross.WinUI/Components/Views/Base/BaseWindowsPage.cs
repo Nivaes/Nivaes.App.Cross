@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.WinUI
             {
                 if (!CanBackStack)
                 {
-                    //base.ClearBackStack();
+                    base.ClearBackStack();
                 }
             };
 

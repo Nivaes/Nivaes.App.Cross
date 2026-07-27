@@ -8,17 +8,17 @@ using Microsoft.UI.Xaml.Media;
 
 namespace Nivaes.App.Cross.WinUI
 {
-    public sealed class DialogWinUIPressenterAction
+    public sealed class DialogPressenterAction
         : PressenterAction<DialogViewPresentationAttribute>
     {
         private readonly IServiceProvider _serviceProvider;
 
         #region Constructor
-        public DialogWinUIPressenterAction(
+        public DialogPressenterAction(
                 IPressenterActionContext context,
                 IServiceProvider serviceProvider,
                 ICrossWindowsFrame rootFrame,
-                ILogger<DialogWinUIPressenterAction> logger)
+                ILogger<DialogPressenterAction> logger)
             : base(context, rootFrame, logger)
         {
             _serviceProvider = serviceProvider;

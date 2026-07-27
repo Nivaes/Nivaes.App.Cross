@@ -59,13 +59,14 @@
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Vertical">
                     <NavigationViewItem x:Name="AccountNavigatonViewItem"
-                                        Icon="Contact" IsSelected="True"
+                                        Icon="Contact" 
+                                        IsSelected="True"
                                         Tapped="OnContactNavigationViewItemTapped">
                         <StackPanel Orientation="Vertical">
                             <!--<TextBlock Text="{x:Bind ViewModel.ShellModel.Account.FullName, Mode=OneTime}"/>
                             <TextBlock Text="{x:Bind ViewModel.ShellModel.Account.Email, Mode=OneTime}"  FontSize="9"/>-->
                             <TextBlock Text="Usuario"/>
-                            <TextBlock Text="Mail"  FontSize="9"/>
+                            <TextBlock Text="aaa@bb.com"  FontSize="9"/>
                         </StackPanel>
                     </NavigationViewItem>
                 </StackPanel>

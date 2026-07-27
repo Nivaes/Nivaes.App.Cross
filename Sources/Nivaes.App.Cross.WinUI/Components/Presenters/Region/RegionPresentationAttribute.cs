@@ -3,10 +3,10 @@ namespace Nivaes.App.Cross.WinUI;
 public sealed class RegionPresentationAttribute
     : BasePresentationAttribute
 {
-    public RegionPresentationAttribute(string? regionName = null)
+    public RegionPresentationAttribute(string regionName)
     {
-        Name = regionName;
+        RegionName = regionName;
     }
 
-    public string? Name { get; private set; }
+    public string? RegionName { get; private set; }
 }

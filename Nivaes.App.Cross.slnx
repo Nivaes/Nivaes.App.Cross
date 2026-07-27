@@ -3,6 +3,7 @@
     <File Path="Docs/DebugiOS.md" />
     <File Path="Docs/InstallMacOS.md" />
     <File Path="Docs/Estructura.md" />
+    <File Path="Docs/Presenters.md" />
   </Folder>
   <Folder Name="/Orquestation/">
     <Project Path="Orquestation/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost/Nivaes.App.Cross.AppHost.csproj" />
