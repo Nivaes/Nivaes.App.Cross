@@ -51,8 +51,6 @@ namespace Nivaes.App.Cross.Droid
 
         protected override ValueTask<bool> CloseAction(IViewModelRequest request, FragmentPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(attribute);
-
             // try to close nested fragment first
             if (attribute.FragmentHostViewType != null)
             {

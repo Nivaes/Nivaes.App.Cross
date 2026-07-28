@@ -37,22 +37,14 @@ namespace Nivaes.App.Cross
 
         public abstract BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request);
 
-        public virtual BasePresentationAttribute? GetPresentationAttribute(IViewModelRequest request)
+        public virtual BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
         {
-            //var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(request.ViewModelType);
-
             var attribute = request.ViewType
                 .GetCustomAttributes(typeof(BasePresentationAttribute), true)
                 .FirstOrDefault();
 
             if (attribute is BasePresentationAttribute basePresentationAttribute)
             {
-            //    if (basePresentationAttribute.ViewType == null)
-            //        basePresentationAttribute.ViewType = viewType;
-
-            //    if (basePresentationAttribute.ViewModelType == null)
-            //        basePresentationAttribute.ViewModelType = request.ViewModelType;
-
                 return basePresentationAttribute;
             }
 
@@ -92,7 +84,6 @@ namespace Nivaes.App.Cross
             IViewModelRequest request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
-            //presentationAttribute.ViewModelType = request.ViewModelType;
             var attributeType = presentationAttribute.GetType();
 
             attribute = presentationAttribute;

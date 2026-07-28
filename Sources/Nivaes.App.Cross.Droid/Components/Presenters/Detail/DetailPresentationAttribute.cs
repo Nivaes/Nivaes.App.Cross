@@ -13,6 +13,6 @@
         /// <summary>
         /// Alternative Fragment parent activity ViewModel Type from detail. This activity is shown if the current hosting activity viewmodel is different.
         /// </summary>
-        public Type AlternativeDetailActivityHostViewModelType { get; set; }
+        public Type? AlternativeDetailActivityHostViewModelType { get; set; }
     }
 }

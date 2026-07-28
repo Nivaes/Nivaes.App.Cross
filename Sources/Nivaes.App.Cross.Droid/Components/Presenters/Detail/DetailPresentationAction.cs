@@ -61,7 +61,7 @@ public sealed class DetailPresentationAction
             if (base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId) == null)
                 throw new NullReferenceException("FrameLayout to show Fragment not found");
 
-            thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute);
+            thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager!, attribute);
         }
     }
 
@@ -73,20 +73,16 @@ public sealed class DetailPresentationAction
 
         var fragmentManager = base.Context.CurrentFragmentManager;
 
-        var fragmentHost = ((IDetailPresentationAction)this).FindFragmentHost(attribute.FragmentContentId, fragmentManager);
+        var fragmentHost = ((IDetailPresentationAction)this).FindFragmentHost(attribute.FragmentContentId, fragmentManager!);
         if (fragmentHost == null)
             return;
 
         var fragmentName = request.ViewType.FragmentJavaName();
 
-        IMvxFragmentView fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
+        var fragment = (IMvxFragmentView?)fragmentManager!.FindFragmentByTag(fragmentName);
         fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
 
         var fragmentView = fragment.ToFragment();
-        //if (request is CrossViewModelInstanceRequest instanceRequest)
-        //{
-        //    fragment.ViewModel = instanceRequest.ViewModelInstance;
-        //}
         fragment.ViewModel = request.ViewModel;
 
         var ft = fragmentHost.ChildFragmentManager.BeginTransaction();
@@ -104,7 +100,7 @@ public sealed class DetailPresentationAction
             throw new AppException("The host activity doesn't inherit Activity");
 
         var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.AlternativeDetailActivityHostViewModelType);
-        hostViewModelRequest.PresentationValues = base.PendingRequest.PresentationValues;
+        hostViewModelRequest.PresentationValues = base.PendingRequest!.PresentationValues;
         Show(hostViewModelRequest);
     }
 }

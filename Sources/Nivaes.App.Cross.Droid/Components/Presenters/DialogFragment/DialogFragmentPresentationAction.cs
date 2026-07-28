@@ -31,23 +31,10 @@ namespace Nivaes.App.Cross.Droid
             if (base.Context.CurrentFragmentManager == null)
                 throw new InvalidOperationException("CurrentFragmentManager is null. Cannot create Fragment Transaction.");
 
-            //if (attribute.ViewType == null)
-            //    throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
-
             var fragmentName = attribute.Tag ?? request.ViewType.FragmentJavaName();
             IMvxFragmentView mvxFragmentView = thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
             var dialog = (DialogFragment)mvxFragmentView;
 
-            // MvxNavigationService provides an already instantiated ViewModel here,
-            // therefore just assign it
-            //if (request is CrossViewModelInstanceRequest instanceRequest)
-            //{
-            //    mvxFragmentView.ViewModel = instanceRequest.ViewModelInstance;
-            //}
-            //else
-            //{
-            //    mvxFragmentView.LoadViewModelFrom(request);
-            //}
             mvxFragmentView.ViewModel = request.ViewModel;
 
             dialog.Cancelable = attribute.Cancelable;
@@ -74,8 +61,6 @@ namespace Nivaes.App.Cross.Droid
 
         protected override ValueTask<bool> CloseAction(IViewModelRequest request, DialogFragmentPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(attribute);
-
             string tag = attribute.Tag ?? request.ViewType.FragmentJavaName();
             var toClose = base.Context.CurrentFragmentManager?.FindFragmentByTag(tag);
             if (toClose is DialogFragment dialog)
