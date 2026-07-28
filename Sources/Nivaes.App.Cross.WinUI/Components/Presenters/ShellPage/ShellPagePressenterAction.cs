@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, ShellPagePresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(ShellPagePresentationAttribute attribute, IViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
 
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.WinUI
                 {
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                    containerView.Navigate(viewType, requestBuffer, new SuppressNavigationTransitionInfo());
+                    containerView.Navigate(attribute.ViewType, requestBuffer, new SuppressNavigationTransitionInfo());
 
                     containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
                     return ValueTask.FromResult(true);
@@ -43,13 +43,13 @@ namespace Nivaes.App.Cross.WinUI
                 else
                 {
                     //throw new AppException($"Not containerView found for {viewType.FullName}");
-                    Logger.LogError($"Not containerView found for {viewType.FullName}");
+                    Logger.LogError($"Not containerView found for {attribute.ViewType.FullName}");
                     return ValueTask.FromResult(false);
                 }
             }
             else
             {
-                Logger.LogError($"Not {nameof(ShellView)} found to pressenter {viewType.FullName}");
+                Logger.LogError($"Not {nameof(ShellView)} found to pressenter {attribute.ViewType.FullName}");
                 return ValueTask.FromResult(false);
             }
         }

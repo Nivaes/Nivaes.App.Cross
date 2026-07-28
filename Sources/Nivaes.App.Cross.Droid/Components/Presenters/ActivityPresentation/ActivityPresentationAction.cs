@@ -20,7 +20,7 @@ public sealed class ActivityPresentationAction
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, ActivityPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(ActivityPresentationAttribute attribute, IViewModelRequest request)
     {           
         var intent = CreateIntentForRequest(request);
         if (intent == null)

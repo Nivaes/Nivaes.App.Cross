@@ -15,7 +15,7 @@ public sealed class DefaultDetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, DefaultDetailPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(DefaultDetailPresentationAttribute attribute, IViewModelRequest request)
     {
         var fragmentManager = base.Context.CurrentFragmentManager;
         if (fragmentManager == null)

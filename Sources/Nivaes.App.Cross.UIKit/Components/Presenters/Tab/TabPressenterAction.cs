@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TabPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(TabPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)

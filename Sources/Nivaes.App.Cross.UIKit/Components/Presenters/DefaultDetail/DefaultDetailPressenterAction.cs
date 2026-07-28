@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, DefaultDetailPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(DefaultDetailPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowDefaultDetailViewController(viewController, (DefaultDetailPresentationAttribute)attribute, request);

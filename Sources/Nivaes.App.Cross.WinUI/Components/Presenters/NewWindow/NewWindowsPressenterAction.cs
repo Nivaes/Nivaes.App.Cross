@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, NewWindowPresentationAttribute attribute, IViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(NewWindowPresentationAttribute attribute, IViewModelRequest request)
         {
             if (attribute is not NewWindowPresentationAttribute presentationAttribute)
             {

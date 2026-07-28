@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
             : base(context, logger)
         { }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TViewPagerFragmentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(TViewPagerFragmentPresentationAttribute attribute, IViewModelRequest request)
         {
             // if the attribute doesn't supply any host, assume current activity!
             if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)

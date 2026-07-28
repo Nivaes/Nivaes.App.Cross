@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(MasterPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowMasterViewController(viewController, attribute, request);

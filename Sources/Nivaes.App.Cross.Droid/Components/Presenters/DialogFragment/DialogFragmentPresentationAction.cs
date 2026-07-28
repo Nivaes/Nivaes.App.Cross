@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(Type viewType, DialogFragmentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(DialogFragmentPresentationAttribute attribute, IViewModelRequest request)
         {
             if (base.Context.CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");

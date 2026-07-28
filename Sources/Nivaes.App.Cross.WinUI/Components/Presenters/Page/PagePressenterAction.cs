@@ -16,9 +16,9 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, TPressenterAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(TPressenterAttribute attribute, IViewModelRequest request)
         {
-            return ShowPage(GetWindowInformation(request).RootFrame, viewType, request);
+            return ShowPage(GetWindowInformation(request).RootFrame, attribute.ViewType, request);
         }
 
         /// <summary>

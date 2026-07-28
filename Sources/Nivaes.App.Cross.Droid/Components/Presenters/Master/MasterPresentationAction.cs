@@ -15,11 +15,11 @@ public sealed class MasterPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, MasterPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(MasterPresentationAttribute attribute, IViewModelRequest request)
     {
         if (attribute.FragmentHostViewType != null)
         {
-            thisAction.ShowNestedFragment(viewType, attribute, request);
+            thisAction.ShowNestedFragment(attribute.ViewType, attribute, request);
 
             return ValueTask.FromResult(true); ;
         }
@@ -43,7 +43,7 @@ public sealed class MasterPresentationAction
                     throw new NullReferenceException("FrameLayout to show Fragment not found");
 
                 base.Context.PendingDetailFragmentRequests = request;
-                ShowMasterHostFragment(viewType, attribute, request);
+                ShowMasterHostFragment(attribute, request);
             }
             else
             {
@@ -51,7 +51,7 @@ public sealed class MasterPresentationAction
                 {
                     var fragmentHost = thisAction.GetFragmentByViewType(attribute.FragmentHostMasterDetailViewType);
                     if (fragmentHost == null)
-                        throw new NullReferenceException($"Master frameLayout to show Fragment {viewType.Name} not found");
+                        throw new NullReferenceException($"Master frameLayout to show Fragment {attribute.ViewType.Name} not found");
 
                     thisAction.PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
                 }
@@ -65,7 +65,7 @@ public sealed class MasterPresentationAction
         return ValueTask.FromResult(true);
     }
 
-    private void ShowMasterHostFragment(Type view, MasterPresentationAttribute attribute, IViewModelRequest request)
+    private void ShowMasterHostFragment(MasterPresentationAttribute attribute, IViewModelRequest request)
     {
         var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
                         .GetValue(attribute.FragmentHostMasterDetailViewModelType);

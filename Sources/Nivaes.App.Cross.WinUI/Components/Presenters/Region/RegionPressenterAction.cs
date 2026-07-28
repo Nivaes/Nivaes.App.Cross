@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, RegionPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(RegionPresentationAttribute attribute, IViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
           
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.WinUI
             {
                 var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                containerView.Navigate(viewType, requestBuffer);
+                containerView.Navigate(attribute.ViewType, requestBuffer);
 
                 containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
                 return ValueTask.FromResult(true);
@@ -38,7 +38,7 @@ namespace Nivaes.App.Cross.WinUI
             else
             {
                 //throw new AppException($"Not containerView found for {viewType.FullName}");
-                Logger.LogError($"Not containerView found for {viewType.FullName}");
+                Logger.LogError($"Not containerView found for {attribute.ViewType.FullName}");
                 return ValueTask.FromResult(false);
             }            
         }

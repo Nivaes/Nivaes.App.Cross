@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml.Controls;
 
 namespace Nivaes.App.Cross.WinUI
@@ -19,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, SplitViewPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(SplitViewPresentationAttribute attribute, IViewModelRequest request)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
@@ -40,7 +37,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
-                    nestedFrame.Navigate(viewType, requestBuffer);
+                    nestedFrame.Navigate(attribute.ViewType, requestBuffer);
 
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
@@ -54,7 +51,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
-                    nestedFrame.Navigate(viewType, requestBuffer);
+                    nestedFrame.Navigate(attribute.ViewType, requestBuffer);
 
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }

@@ -17,17 +17,17 @@ public sealed class DetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(Type viewType, DetailPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(DetailPresentationAttribute attribute, IViewModelRequest request)
     {
         var detailView = base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId);
 
         if (detailView == null || base.PendingRequest != null)
         {
-            ShowAlternativeDetailFragment(viewType, attribute, request);
+            ShowAlternativeDetailFragment(attribute.ViewType, attribute, request);
         }
         else
         {
-            ShowEmbeddendDetailFragment(viewType, attribute, request);
+            ShowEmbeddendDetailFragment(attribute.ViewType, attribute, request);
         }
 
         return ValueTask.FromResult(true);

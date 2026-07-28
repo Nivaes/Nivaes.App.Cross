@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(Type viewType, MenuPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(MenuPresentationAttribute attribute, IViewModelRequest request)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowMenuViewController(viewController, attribute, request);

@@ -25,11 +25,11 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(Type viewType, DialogViewPresentationAttribute attribute, IViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(DialogViewPresentationAttribute attribute, IViewModelRequest request)
         {
             try
             {
-                var contentDialog = CreateControl(viewType, request, attribute) as ContentDialog;
+                var contentDialog = CreateControl(attribute.ViewType, request, attribute) as ContentDialog;
 
                 if (contentDialog != null)
                 {
