@@ -43,21 +43,12 @@ namespace Nivaes.App.Cross
 
         private BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
         {
-            //var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-            //        .GetValue(request.ViewModelType);
-
             var attribute = request.ViewType
                 .GetCustomAttributes(typeof(BasePresentationAttribute), true)
                 .FirstOrDefault();
 
             if (attribute is BasePresentationAttribute basePresentationAttribute)
             {
-                //if (basePresentationAttribute.ViewType == null)
-                //    basePresentationAttribute.ViewType = viewType;
-
-                //if (basePresentationAttribute.ViewModelType == null)
-                //    basePresentationAttribute.ViewModelType = request.ViewModelType;
-
                 return basePresentationAttribute;
             }
 
