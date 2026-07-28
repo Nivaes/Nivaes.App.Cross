@@ -40,6 +40,19 @@ namespace Nivaes.App.Cross.WinUI
                 typeof(SelectorBehavior),
                 new PropertyMetadata(null));
 
+        public object SelectedItemCommandParameter
+        {
+            get => (ICommand)base.GetValue(SelectedItemCommandParameterProperty);
+            set => base.SetValue(SelectedItemCommandParameterProperty, value);
+        }
+
+        public static readonly DependencyProperty SelectedItemCommandParameterProperty =
+            DependencyProperty.RegisterAttached(
+                nameof(SelectedItemCommandParameter),
+                typeof(ICommand),
+                typeof(SelectorBehavior),
+                new PropertyMetadata(null));
+
         private DateTime _lastSelectedItenAction = DateTime.UtcNow;
 
         private void OnSelectedItenChanged(object sender, SelectionChangedEventArgs e)
@@ -50,16 +63,12 @@ namespace Nivaes.App.Cross.WinUI
 
                 if (command != null)
                 {
-                    //var container = (SelectorItem)base.AssociatedObject.ContainerFromItem(e.AddedItems);
-                    //var image = container.FindControl<Image>();
-                    //ConnectedAnimationService
-                    //    .GetForCurrentView()
-                    //    .PrepareToAnimate("ForwardConnectedAnimation", image);
+                    var parameter = SelectedItemCommandParameter;
+                    if(parameter == null)
+                        parameter = base.AssociatedObject.SelectedItem;
 
-                    var selectedItem = base.AssociatedObject.SelectedItem;
-
-                    if (command.CanExecute(selectedItem))
-                        command.Execute(selectedItem);
+                    if (command.CanExecute(parameter))
+                        command.Execute(parameter);
 
                     _lastSelectedItenAction = DateTime.UtcNow.AddSeconds(0.5);
                 }
@@ -81,6 +90,19 @@ namespace Nivaes.App.Cross.WinUI
                 typeof(Selector),
                 new PropertyMetadata(null));
 
+        public object TapedCommandParameter
+        {
+            get => (ICommand)base.GetValue(TapedCommandParameterProperty);
+            set => base.SetValue(TapedCommandParameterProperty, value);
+        }
+
+        public static readonly DependencyProperty TapedCommandParameterProperty =
+            DependencyProperty.RegisterAttached(
+                nameof(TapedCommandParameter),
+                typeof(ICommand),
+                typeof(Selector),
+                new PropertyMetadata(null));
+
         private DateTime _lastTapedAction = DateTime.UtcNow;
         private static object? _lastSelectedObject;
 
@@ -92,14 +114,16 @@ namespace Nivaes.App.Cross.WinUI
 
                 if (command != null)
                 {
-                    var selectedItem = base.AssociatedObject.SelectedItem;
+                    var parameter = SelectedItemCommandParameter;
+                    if(parameter == null)
+                        parameter = base.AssociatedObject.SelectedItem;
 
-                    if (_lastSelectedObject != selectedItem)
+                    if (_lastSelectedObject != parameter)
                     {
-                        _lastSelectedObject = selectedItem;
+                        _lastSelectedObject = parameter;
 
-                        if (command.CanExecute(selectedItem))
-                            command.Execute(selectedItem);
+                        if (command.CanExecute(parameter))
+                            command.Execute(parameter);
                     }
 
                     _lastTapedAction = DateTime.UtcNow.AddSeconds(0.5);
