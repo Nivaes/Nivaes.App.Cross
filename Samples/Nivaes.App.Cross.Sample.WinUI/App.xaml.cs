@@ -14,13 +14,13 @@ public sealed partial class App
 
     protected override CrossApp CreateCrossApp() => CrossProgram.CreateCrossApp(this);
 
-    protected override Window CreateWindow()
-    {
-        return new Window()
-        {
-            Title = "MvvmCross WinUI 3 Playground"
-        };
-    }
+    //protected override Window CreateWindow()
+    //{
+    //    return new Window()
+    //    {
+    //        Title = "MvvmCross WinUI 3 Playground"
+    //    };
+    //}
 
     protected override void RegisterViewsActions()
     {
