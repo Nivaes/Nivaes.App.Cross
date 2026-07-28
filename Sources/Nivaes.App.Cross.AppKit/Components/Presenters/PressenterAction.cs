@@ -22,13 +22,13 @@ namespace Nivaes.App.Cross.AppKitLib
         }
         #endregion
 
-        protected override BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
         {
-            Logger.LogTrace($"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
-            return new WindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
+            Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.Name}. Assuming new window presentation", request.ViewType.Name);
+            return new WindowPresentationAttribute();
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPressenterAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, TPressenterAttribute attribute)
         {
             for (int i = Context.Windows.Count - 1; i >= 0; i--)
             {
@@ -36,7 +36,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
                 // closing controller is a tab
                 var tabViewController = window.ContentViewController as IMvxTabViewController;
-                if (tabViewController != null && tabViewController.CloseTabView(viewModel))
+                if (tabViewController != null && tabViewController.CloseTabView(request.ViewModel))
                 {
                     return ValueTask.FromResult(true);
                 }
@@ -44,7 +44,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 var controller = window.ContentViewController as ICrossViewController;
 
                 // if closing controller is a sheet or modal, it must have a presenting parent
-                var presentedController = controller!.PresentedViewControllers?.FirstOrDefault(c => ((ICrossView)c).ViewModel == viewModel);
+                var presentedController = controller!.PresentedViewControllers?.FirstOrDefault(c => ((ICrossView)c).ViewModel == request.ViewModel);
                 if (presentedController != null)
                 {
                     controller.DismissViewController(presentedController);
@@ -52,7 +52,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 }
 
                 // closing controller is content in a regular window
-                if (controller != null && ((ICrossView)controller).ViewModel == viewModel)
+                if (controller != null && ((ICrossView)controller).ViewModel == request.ViewModel)
                 {
                     Context.Windows.Remove(window);
                     window.Close();
@@ -60,7 +60,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 }
             }
 
-            throw new AppException($"Could not find and close a view for '{viewModel.GetType()}'");
+            throw new AppException($"Could not find and close a view for '{request.ViewModel.GetType()}'");
         }
 
         protected virtual NSWindow FindPresentingWindow(string identifier, NSViewController viewController)

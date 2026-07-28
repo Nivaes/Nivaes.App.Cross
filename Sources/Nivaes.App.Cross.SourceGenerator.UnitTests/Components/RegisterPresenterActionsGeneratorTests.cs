@@ -48,7 +48,7 @@ namespace Nivaes.App.Cross.SourceGenerator.UnitTests
                         throw new NotImplementedException();
                     }
 
-                    protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+                    protected override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
                     {
                         throw new NotImplementedException();
                     }

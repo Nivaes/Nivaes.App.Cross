@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(PagePresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, PagePresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,9 +31,9 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowPageViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, PagePresentationAttribute attribute)
         {
-            if (Context.PageViewController != null && Context.PageViewController.RemovePage(viewModel))
+            if (Context.PageViewController != null && Context.PageViewController.RemovePage(request.ViewModel))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);

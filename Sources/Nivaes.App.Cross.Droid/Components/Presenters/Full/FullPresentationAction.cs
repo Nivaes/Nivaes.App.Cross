@@ -16,11 +16,11 @@ namespace Nivaes.App.Cross.Droid
         }
 
         // ToDo: Poner ICrossPresentationAttribute como generico.
-        protected override ValueTask<bool> ShowAction(FullPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, FullPresentationAttribute attribute)
         {
             if (attribute.FragmentHostViewType != null)
             {
-                thisFragment.ShowNestedFragment(attribute.ViewType, attribute, request);
+                thisFragment.ShowNestedFragment(request.ViewType, attribute, request);
 
                 return ValueTask.FromResult(true);
             }
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.Droid
             if (attribute.ActivityHostViewModelType != currentHostViewModelType)
             {
                 Logger.LogTrace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
-                    attribute.ActivityHostViewModelType, attribute.ViewModelType);
+                    attribute.ActivityHostViewModelType, request.ViewModelType);
 
                 base.PendingRequest = request;
                 base.ShowHostActivity(attribute);
@@ -43,11 +43,11 @@ namespace Nivaes.App.Cross.Droid
                 if (attribute.FragmentHostFullView != null &&
                     (fragmentHost = thisFragment.GetFragmentByViewType(attribute.FragmentHostFullView)) != null)
                 {
-                    thisFragment.PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
+                    thisFragment.PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute);
                 }
                 else
                 {
-                    thisFragment.PerformShowFragmentTransaction(base.Context.CurrentFragmentManager, attribute, request);
+                    thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute);
                 }
             }
 

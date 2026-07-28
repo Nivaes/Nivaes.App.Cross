@@ -15,22 +15,21 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(TabPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, TabPresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
             {
-                Logger?.LogWarning(
-                    "Got null ViewController for request {Request}", request);
+                Logger?.LogWarning($"Got null ViewController for request {request}");
 
                 return ValueTask.FromResult(false);
             }
             return ShowTabViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TabPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, TabPresentationAttribute attribute)
         {
-            if (Context.TabBarViewController != null && Context.TabBarViewController.CloseTabViewModel(viewModel))
+            if (Context.TabBarViewController != null && Context.TabBarViewController.CloseTabViewModel(request.ViewModel))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);

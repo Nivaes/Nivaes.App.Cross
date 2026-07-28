@@ -56,8 +56,7 @@ public static class MvxFragmentExtensions
             return fragmentView as Fragment;
         }
 
-        [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        public Type FindAssociatedViewModelType(Type fragmentActivityParentType)
+        private Type FindAssociatedViewModelType(Type fragmentActivityParentType)
         {
             var viewModelType = fragmentView.FindAssociatedViewModelTypeOrNull();
 
@@ -68,11 +67,13 @@ public static class MvxFragmentExtensions
                 if (!type.HasBasePresentationAttribute())
                     throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not have {nameof(FragmentPresentationAttribute)} attribute set!");
 
+                System.Diagnostics.Debugger.Break(); // Mirar el valor de ViewModelType.
                 var cacheableFragmentAttribute = type.GetBasePresentationAttribute();
-                if (cacheableFragmentAttribute?.ViewModelType == null)
-                    throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not use {nameof(FragmentPresentationAttribute)} with ViewModel Type constructor.");
+                
+                //if (cacheableFragmentAttribute?.ViewModelType == null)
+                //    throw new InvalidOperationException($"Your fragment of type {type.FullName} is not generic and it does not use {nameof(FragmentPresentationAttribute)} with ViewModel Type constructor.");
 
-                viewModelType = cacheableFragmentAttribute.ViewModelType;
+                //viewModelType = cacheableFragmentAttribute.ViewModelType;
             }
 
             return viewModelType;

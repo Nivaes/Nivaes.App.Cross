@@ -16,10 +16,10 @@ public class MacViewPresenterManager
     /// </summary>
     protected readonly ConditionalWeakTable<NSWindow, NSWindowController> _windowsToWindowControllers = new();
 
-    public override BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType)
+    public override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
     {
-        Logger.Log(LogLevel.Trace, $"PresentationAttribute not found for {viewType.Name}. Assuming new window presentation", viewType.Name);
-        return new WindowPresentationAttribute { ViewModelType = viewModelType, ViewType = viewType };
+        Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.Name}. Assuming new window presentation");
+        return new WindowPresentationAttribute();
     }
 
     protected virtual INSApplicationDelegate ApplicationDelegate => _applicationDelegate;

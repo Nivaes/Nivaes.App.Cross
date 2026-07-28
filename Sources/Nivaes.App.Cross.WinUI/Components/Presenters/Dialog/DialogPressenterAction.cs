@@ -25,11 +25,11 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(DialogViewPresentationAttribute attribute, IViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(IViewModelRequest request, DialogViewPresentationAttribute attribute)
         {
             try
             {
-                var contentDialog = CreateControl(attribute.ViewType, request, attribute) as ContentDialog;
+                var contentDialog = CreateControl(request.ViewType, request, attribute) as ContentDialog;
 
                 if (contentDialog != null)
                 {
@@ -58,9 +58,9 @@ namespace Nivaes.App.Cross.WinUI
             }
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DialogViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, DialogViewPresentationAttribute attribute)
         {
-            var windowInformation = GetWindowInformation(viewModel);
+            var windowInformation = GetWindowInformation(request.ViewModel);
             if (windowInformation.RootFrame.UnderlyingControl is not Frame frame)
             {
                 return ValueTask.FromResult(false);
@@ -68,17 +68,17 @@ namespace Nivaes.App.Cross.WinUI
 
             var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(frame.XamlRoot).FirstOrDefault(p =>
             {
-                if (attribute.ViewType != null && attribute.ViewType.IsInstanceOfType(p.Child)
+                if (request.ViewType != null && request.ViewType.IsInstanceOfType(p.Child)
                                                && p.Child is ICrossWindowsContentDialog dialog)
                 {
-                    return dialog.ViewModel == viewModel;
+                    return dialog.ViewModel == request.ViewModel;
                 }
 
                 return false;
             });
 
             (popups?.Child as ContentDialog)?.Hide();
-            windowInformation.UnregisterSubViewModel(viewModel);
+            windowInformation.UnregisterSubViewModel(request.ViewModel);
             return ValueTask.FromResult(true);
         }
 

@@ -104,7 +104,7 @@ namespace Nivaes.App.Cross
                 PropertyChanged?.Invoke(this, changedArgs);
             }
 
-            void ExceptionMasked() => MainThreadDispatcher.ExceptionMaskedAction(RaiseChange, false);
+            void ExceptionMasked() => MainThreadDispatcher.ExceptionMaskedAction(RaiseChange, true);
 
             if (ShouldAlwaysRaiseInpcOnUserInterfaceThread())
             {

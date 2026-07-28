@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(SplitViewPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, SplitViewPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(request);
             if (windowInformation.RootFrame.Content is ICrossWindowsView currentPage)
@@ -37,7 +37,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
-                    nestedFrame.Navigate(attribute.ViewType, requestBuffer);
+                    nestedFrame.Navigate(request.ViewType, requestBuffer);
 
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
@@ -51,7 +51,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
-                    nestedFrame.Navigate(attribute.ViewType, requestBuffer);
+                    nestedFrame.Navigate(request.ViewType, requestBuffer);
 
                     windowInformation.RegisterSubViewModel(request.ViewModel);
                 }
@@ -60,9 +60,9 @@ namespace Nivaes.App.Cross.WinUI
             return ValueTask.FromResult(true);
         }       
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, SplitViewPresentationAttribute attribute)
         {
-            return ClosePage(viewModel, attribute);
+            return ClosePage(request.ViewModel, attribute);
         }
     }
 }

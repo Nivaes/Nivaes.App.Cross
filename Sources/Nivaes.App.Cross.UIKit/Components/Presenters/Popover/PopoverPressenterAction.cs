@@ -17,26 +17,25 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(PopoverPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, PopoverPresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
             {
-                Logger?.LogWarning(
-                    "Got null ViewController for request {Request}", request);
+                Logger?.LogWarning("Got null ViewController for request {Request}", request);
 
                 return ValueTask.FromResult(false);
             }
             return ShowPopoverViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PopoverPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, PopoverPresentationAttribute attribute)
         {
             if (Context.PopoverViewController == null)
                 return ValueTask.FromResult(false);
 
             // check for plain popover
-            if (Context.PopoverViewController is IMvxIosView iosView && iosView.ViewModel == viewModel)
+            if (Context.PopoverViewController is IMvxIosView iosView && iosView.ViewModel == request.ViewModel)
             {
                 return ClosePopoverViewController(Context.PopoverViewController, attribute);
             }
@@ -46,7 +45,7 @@ namespace Nivaes.App.Cross.UIKitLib
             if (Context.PopoverViewController is UINavigationController vc)
             {
                 var root = vc.ViewControllers?.FirstOrDefault();
-                if (root is IMvxIosView rootIosView && rootIosView.ViewModel == viewModel)
+                if (root is IMvxIosView rootIosView && rootIosView.ViewModel == request.ViewModel)
                 {
                     controllerToClose = vc;
                 }

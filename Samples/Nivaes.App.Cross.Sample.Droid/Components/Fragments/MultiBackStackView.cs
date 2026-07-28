@@ -8,7 +8,6 @@ namespace Nivaes.App.Cross.Sample.Droid;
 
 [FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
 AllowReordering = true,
-ViewModelType = typeof(MultiBackStackViewModel),
 SetAsPrimaryFragment = true)]
 public sealed class MultiBackStackView
     : MvxFragment<MultiBackStackViewModel>
@@ -64,9 +63,7 @@ public sealed class MultiBackStackView
 
 [FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
     FragmentHostViewType = typeof(MultiBackStackView),
-    AllowReordering = true,
-    ViewModelType = typeof(MultiBackStackTab1ViewModel))]
-[RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
+    AllowReordering = true)]
 public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewModel>
 {
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
@@ -82,8 +79,7 @@ public sealed class MultiBackStackTab1View : MvxFragment<MultiBackStackTab1ViewM
 
 [FragmentPresentation(typeof(RootViewModel), Resource.Id.content_frame, true,
     FragmentHostViewType = typeof(MultiBackStackView),
-    AllowReordering = true,
-    ViewModelType = typeof(MultiBackStackTab2ViewModel))]
+    AllowReordering = true)]
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public sealed class MultiBackStackTab2View : MvxFragment<MultiBackStackTab2ViewModel>
 {
@@ -109,25 +105,24 @@ public sealed class MultiBackStackInnerView : MvxFragment<MultiBackStackInnerVie
         return view!;
     }
 
-    public BasePresentationAttribute? PresentationAttribute(ViewModelRequest request)
-    {
-        //if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
-        //{
-            return new FragmentPresentationAttribute()
-            {
-                ViewModelType = typeof(MultiBackStackInnerViewModel),
-                ActivityHostViewModelType = typeof(RootViewModel),
-                FragmentHostViewType = typeof(MultiBackStackView),
-                FragmentContentId = Resource.Id.content_frame,
-                AddToBackStack = true,
-                AllowReordering = true,
-                //Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
-                Tag = request.ViewModelType.Name + ((MultiBackStackInnerViewModel)request.ViewModel).Depth
-            };
-        //}
-        //else
-        //{
-        //    return null;
-        //}
-    }
+    //public BasePresentationAttribute? PresentationAttribute(ViewModelRequest request)
+    //{
+    //    //if (request is CrossViewModelInstanceRequest { ViewModelInstance: MultiBackStackInnerViewModel viewModel, ViewModelType: { } viewModelType })
+    //    //{
+    //        return new FragmentPresentationAttribute()
+    //        {
+    //            ActivityHostViewModelType = typeof(RootViewModel),
+    //            FragmentHostViewType = typeof(MultiBackStackView),
+    //            FragmentContentId = Resource.Id.content_frame,
+    //            AddToBackStack = true,
+    //            AllowReordering = true,
+    //            //Tag = viewModelType.Name + viewModel.Depth // unique tag so the restoration restores all of them
+    //            Tag = request.ViewModelType.Name + ((MultiBackStackInnerViewModel)request.ViewModel).Depth
+    //        };
+    //    //}
+    //    //else
+    //    //{
+    //    //    return null;
+    //    //}
+    //}
 }

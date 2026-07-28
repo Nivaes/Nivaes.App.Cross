@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.AppKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(WindowPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, WindowPresentationAttribute attribute)
         {
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 
@@ -32,7 +32,7 @@ namespace Nivaes.App.Cross.AppKitLib
 
             if (!string.IsNullOrEmpty(attribute.WindowControllerName))
             {
-                windowController = CreateWindowController(attribute);
+                windowController = CreateWindowController(request, attribute);
                 window = windowController.Window;
             }
 
@@ -90,7 +90,7 @@ namespace Nivaes.App.Cross.AppKitLib
             return window;
         }
 
-        private MvxWindowController CreateWindowController(WindowPresentationAttribute attribute)
+        private MvxWindowController CreateWindowController(IViewModelRequest request, WindowPresentationAttribute attribute)
         {
             MvxWindowController? windowController;
             if (!string.IsNullOrEmpty(attribute.StoryboardName))
@@ -105,7 +105,7 @@ namespace Nivaes.App.Cross.AppKitLib
                 if (controllerType is null)
                 {
                     throw new AppException(
-                        $"Could not determine window controller type for the {attribute.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
+                        $"Could not determine window controller type for the {request.ViewModelType?.Name ?? "<unknown vm>"} view model. " +
                         $"Please specify either the {nameof(WindowPresentationAttribute.WindowControllerType)} or " +
                         $"{nameof(WindowPresentationAttribute.WindowControllerName)} property of the {nameof(WindowPresentationAttribute)} " +
                         $"for the corresponding view model.");

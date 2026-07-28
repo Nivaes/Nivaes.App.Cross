@@ -16,9 +16,9 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(TPressenterAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, TPressenterAttribute attribute)
         {
-            return ShowPage(GetWindowInformation(request).RootFrame, attribute.ViewType, request);
+            return ShowPage(GetWindowInformation(request).RootFrame, request.ViewType, request);
         }
 
         /// <summary>
@@ -60,9 +60,9 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, PagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, PagePresentationAttribute attribute)
         {
-            return ClosePage(viewModel, attribute); 
+            return ClosePage(request.ViewModel, attribute); 
         }
     }
 }

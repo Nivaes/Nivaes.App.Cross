@@ -42,10 +42,10 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
         {
-            Logger.LogTrace("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation", viewType?.Name);
-            return new PagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+            Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.FullName}. Assuming new page presentation");
+            return new PagePresentationAttribute();
         }
 
         protected ValueTask<bool> ClosePage(ICrossViewModel viewModel, BasePresentationAttribute attribute)

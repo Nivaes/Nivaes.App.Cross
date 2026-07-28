@@ -15,11 +15,11 @@ public sealed class MasterPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(MasterPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(IViewModelRequest request, MasterPresentationAttribute attribute)
     {
         if (attribute.FragmentHostViewType != null)
         {
-            thisAction.ShowNestedFragment(attribute.ViewType, attribute, request);
+            thisAction.ShowNestedFragment(request.ViewType, attribute, request);
 
             return ValueTask.FromResult(true); ;
         }
@@ -31,7 +31,7 @@ public sealed class MasterPresentationAction
         if (attribute.ActivityHostViewModelType != currentHostViewModelType)
         {
             Logger.LogTrace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
-                attribute.ActivityHostViewModelType, attribute.ViewModelType);
+                attribute.ActivityHostViewModelType, request.ViewModelType);
             base.PendingRequest = request;
             base.ShowHostActivity(attribute);
         }
@@ -51,13 +51,13 @@ public sealed class MasterPresentationAction
                 {
                     var fragmentHost = thisAction.GetFragmentByViewType(attribute.FragmentHostMasterDetailViewType);
                     if (fragmentHost == null)
-                        throw new NullReferenceException($"Master frameLayout to show Fragment {attribute.ViewType.Name} not found");
+                        throw new NullReferenceException($"Master frameLayout to show Fragment {request.ViewType.Name} not found");
 
-                    thisAction.PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
+                    thisAction.PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute);
                 }
                 else
                 {
-                    thisAction.PerformShowFragmentTransaction(base.Context.CurrentFragmentManager, attribute, request);
+                    thisAction.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute);
                 }
             }
         }

@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.Droid
             : base(context, logger)
         { }
 
-        protected override ValueTask<bool> ShowAction(TViewPagerFragmentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, TViewPagerFragmentPresentationAttribute attribute)
         {
             // if the attribute doesn't supply any host, assume current activity!
             if (attribute.FragmentHostViewType == null && attribute.ActivityHostViewModelType == null)
@@ -64,8 +64,8 @@ namespace Nivaes.App.Cross.Droid
             if (viewPager == null)
                 throw new AppException("ViewPager not found");
 
-            var tag = attribute.Tag ?? attribute.ViewType?.FragmentJavaName();
-            var fragmentInfo = new MvxViewPagerFragmentInfo(attribute.Title, tag, attribute.ViewType, request);
+            var tag = attribute.Tag ?? request.ViewType?.FragmentJavaName();
+            var fragmentInfo = new MvxViewPagerFragmentInfo(attribute.Title, tag, request.ViewType, request);
 
             if (viewPager.Adapter is MvxCachingFragmentStatePagerAdapter adapter)
             {
@@ -86,10 +86,8 @@ namespace Nivaes.App.Cross.Droid
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TViewPagerFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, TViewPagerFragmentPresentationAttribute attribute)
         {
-            ArgumentNullException.ThrowIfNull(attribute);
-
             ViewPager? viewPager = null;
             FragmentManager? fragmentManager;
 
@@ -112,7 +110,7 @@ namespace Nivaes.App.Cross.Droid
             if (viewPager?.Adapter is MvxCachingFragmentStatePagerAdapter adapter && fragmentManager != null)
             {
                 var ft = fragmentManager.BeginTransaction();
-                var fragmentInfo = FindFragmentInfoFromAttribute(attribute, adapter);
+                var fragmentInfo = FindFragmentInfoFromAttribute(request, attribute, adapter);
                 if (fragmentInfo != null)
                 {
                     var fragment = fragmentManager.FindFragmentByTag(fragmentInfo.Tag);
@@ -133,12 +131,10 @@ namespace Nivaes.App.Cross.Droid
         }
 
         private MvxViewPagerFragmentInfo? FindFragmentInfoFromAttribute(
+           IViewModelRequest request,
            FragmentPresentationAttribute attribute,
            MvxCachingFragmentStatePagerAdapter adapter)
         {
-            ArgumentNullException.ThrowIfNull(attribute);
-            ArgumentNullException.ThrowIfNull(adapter);
-
             MvxViewPagerFragmentInfo? fragmentInfo = null;
             if (attribute.Tag != null)
             {
@@ -153,12 +149,12 @@ namespace Nivaes.App.Cross.Droid
 
             bool IsMatch(MvxViewPagerFragmentInfo? info)
             {
-                if (attribute.ViewType == null) return false;
+                if (request.ViewType == null) return false;
 
-                var viewTypeMatches = info?.FragmentType == attribute.ViewType;
+                var viewTypeMatches = info?.FragmentType == request.ViewType;
 
-                if (attribute.ViewModelType != null)
-                    return viewTypeMatches && info?.Request?.ViewModelType == attribute.ViewModelType;
+                if (request.ViewModelType != null)
+                    return viewTypeMatches && info?.Request?.ViewModelType == request.ViewModelType;
 
                 return viewTypeMatches;
             }

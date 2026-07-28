@@ -7,6 +7,8 @@ namespace Nivaes.App.Cross
 {
     public interface IViewModelRequest
     {
+        Type ViewType { get; }
+
         Type ViewModelType { get; }
 
         ICrossViewModel ViewModel { get; }
@@ -15,7 +17,7 @@ namespace Nivaes.App.Cross
 
         IDictionary<string, string>? PresentationValues { get; }
 
-        public string ToString()
+        public string? ToString()
         {
             var sb = new StringBuilder();
             sb.Append($"ViewModelRequest - ViewModelType: '{ViewModelType}'");
@@ -33,7 +35,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public record class ViewModelRequest
+    public class ViewModelRequest
         : IViewModelRequest
     {
         public ViewModelRequest(Type viewModelType)
@@ -56,6 +58,21 @@ namespace Nivaes.App.Cross
             ViewModelType = viewModel.GetType();
             _viewModel = new Lazy<ICrossViewModel>(viewModel);
         }
+
+        #region View
+        private Type? _viewType;
+
+        public Type ViewType
+        {
+            get
+            {
+                if(_viewType == null)
+                    _viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(ViewModelType);
+
+                return _viewType;
+            }
+        }
+        #endregion
 
         #region ViewModel
         public Type ViewModelType
@@ -95,7 +112,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public record ViewModelRequest<TViewModel>
+    public class ViewModelRequest<TViewModel>
         : IViewModelRequest
         where TViewModel : ICrossViewModel
     {
@@ -106,13 +123,27 @@ namespace Nivaes.App.Cross
 
         public ViewModelRequest(TViewModel viewModel) 
         {
+            _viewModel = new Lazy<TViewModel>(viewModel);
         }
 
         public ViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
         {
         }
 
+        #region View
+        private Type? _viewType;
 
+        public Type ViewType
+        {
+            get
+            {
+                if (_viewType == null)
+                    _viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(ViewModelType);
+
+                return _viewType;
+            }
+        }
+        #endregion
 
         #region ViewModel
         public Type ViewModelType => typeof(TViewModel);
@@ -146,7 +177,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public record ViewModelRequestParameter<TParameter>
+    public class ViewModelRequestParameter<TParameter>
          : ViewModelRequest
          where TParameter : notnull
     {
@@ -171,7 +202,7 @@ namespace Nivaes.App.Cross
         }
     }
 
-    public record ViewModelRequestParameter<TViewModel, TParameter>
+    public class ViewModelRequestParameter<TViewModel, TParameter>
          : ViewModelRequest<TViewModel>
          where TViewModel : ICrossViewModel<TParameter>
          where TParameter : notnull

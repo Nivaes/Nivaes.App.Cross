@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(RegionPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, RegionPresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(request);
           
@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.WinUI
             {
                 var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                containerView.Navigate(attribute.ViewType, requestBuffer);
+                containerView.Navigate(request.ViewType, requestBuffer);
 
                 containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
                 return ValueTask.FromResult(true);
@@ -38,17 +38,17 @@ namespace Nivaes.App.Cross.WinUI
             else
             {
                 //throw new AppException($"Not containerView found for {viewType.FullName}");
-                Logger.LogError($"Not containerView found for {attribute.ViewType.FullName}");
+                Logger.LogError($"Not containerView found for {request.ViewType.FullName}");
                 return ValueTask.FromResult(false);
             }            
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, RegionPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, RegionPresentationAttribute attribute)
         {
-            var windowInformation = GetWindowInformation(viewModel);
+            var windowInformation = GetWindowInformation(request.ViewModel);
 
             var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-               .GetValue(viewModel.GetType());
+               .GetValue(request.ViewModelType);
 
 
             var containerView = windowInformation.RootFrame.UnderlyingControl?.FindControl<Frame>(attribute.RegionName);
@@ -75,12 +75,12 @@ namespace Nivaes.App.Cross.WinUI
                     containerView.HorizontalAlignment = HorizontalAlignment.Left;
                 }
 
-                windowInformation.UnregisterSubViewModel(viewModel);
+                windowInformation.UnregisterSubViewModel(request.ViewModel);
                 return ValueTask.FromResult(true);
             }
 
 
-            return ClosePage(viewModel, attribute);
+            return ClosePage(request.ViewModel, attribute);
         }
     }
 }

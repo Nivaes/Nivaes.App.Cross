@@ -14,8 +14,6 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public abstract BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType);
-
         public virtual object? CreateOverridePresentationAttributeViewInstance(Type viewType)
         {
             return Activator.CreateInstance(viewType);
@@ -37,27 +35,28 @@ namespace Nivaes.App.Cross
             return ValueTask.FromResult(false);
         }
 
-        public virtual BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
-        {
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                .GetValue(request.ViewModelType);
+        public abstract BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request);
 
-            var attribute = viewType
+        public virtual BasePresentationAttribute? GetPresentationAttribute(IViewModelRequest request)
+        {
+            //var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(request.ViewModelType);
+
+            var attribute = request.ViewType
                 .GetCustomAttributes(typeof(BasePresentationAttribute), true)
                 .FirstOrDefault();
 
             if (attribute is BasePresentationAttribute basePresentationAttribute)
             {
-                if (basePresentationAttribute.ViewType == null)
-                    basePresentationAttribute.ViewType = viewType;
+            //    if (basePresentationAttribute.ViewType == null)
+            //        basePresentationAttribute.ViewType = viewType;
 
-                if (basePresentationAttribute.ViewModelType == null)
-                    basePresentationAttribute.ViewModelType = request.ViewModelType;
+            //    if (basePresentationAttribute.ViewModelType == null)
+            //        basePresentationAttribute.ViewModelType = request.ViewModelType;
 
                 return basePresentationAttribute;
             }
 
-            return CreatePresentationAttribute(request.ViewModelType, viewType);
+            return CreatePresentationAttribute(request);
         }
 
         public virtual async ValueTask<bool> ChangePresentation(CrossPresentationHint hint)
@@ -78,21 +77,22 @@ namespace Nivaes.App.Cross
         {
             var pressentationAction = GetPresentationAction(request, out var attribute);
 
-            return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
+            return pressentationAction.ShowAction(request, attribute);
         }
 
         public ValueTask<bool> Close(ICrossViewModel viewModel)
         {
-            var pressentationAction = GetPresentationAction(new ViewModelRequest(viewModel), out var attribute);
+            var request = new ViewModelRequest(viewModel);
+            var pressentationAction = GetPresentationAction(request, out var attribute);
 
-            return pressentationAction.CloseAction(viewModel, attribute);
+            return pressentationAction.CloseAction(request, attribute);
         }
 
         protected IPressenterAction GetPresentationAction(
             IViewModelRequest request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
-            presentationAttribute.ViewModelType = request.ViewModelType;
+            //presentationAttribute.ViewModelType = request.ViewModelType;
             var attributeType = presentationAttribute.GetType();
 
             attribute = presentationAttribute;

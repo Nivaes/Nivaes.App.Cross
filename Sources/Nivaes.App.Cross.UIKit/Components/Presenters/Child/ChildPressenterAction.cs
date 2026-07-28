@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(ChildPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, ChildPresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -28,30 +28,30 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowChildViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ChildPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, ChildPresentationAttribute attribute)
         {
 #if IOS || MACCATALYST
             // if a popover is presented
             if (Context.PopoverViewController is UINavigationController popoverNav &&
-                TryCloseViewControllerInsideStack(popoverNav, viewModel, attribute))
+                TryCloseViewControllerInsideStack(popoverNav, request.ViewModel, attribute))
             {
                 return ValueTask.FromResult(true);
             }
 #endif
 
             // if there are modals presented
-            if (Context.ModalViewControllers.Count > 0 && CloseModalChildViewController(viewModel, attribute))
+            if (Context.ModalViewControllers.Count > 0 && CloseModalChildViewController(request.ViewModel, attribute))
                 return ValueTask.FromResult(true);
 
             // if the current root is a TabBarViewController, delegate close responsibility to it
-            if (Context.TabBarViewController?.CloseChildViewModel(viewModel) == true)
+            if (Context.TabBarViewController?.CloseChildViewModel(request.ViewModel) == true)
                 return ValueTask.FromResult(true);
 
-            if (Context.SplitViewController?.CloseChildViewModel(viewModel, attribute) == true)
+            if (Context.SplitViewController?.CloseChildViewModel(request.ViewModel, attribute) == true)
                 return ValueTask.FromResult(true);
 
             // if the current root is a NavigationController, close it in the stack
-            if (Context.MasterNavigationController != null && TryCloseViewControllerInsideStack(Context.MasterNavigationController, viewModel, attribute))
+            if (Context.MasterNavigationController != null && TryCloseViewControllerInsideStack(Context.MasterNavigationController, request.ViewModel, attribute))
                 return ValueTask.FromResult(true);
 
             return ValueTask.FromResult(false);

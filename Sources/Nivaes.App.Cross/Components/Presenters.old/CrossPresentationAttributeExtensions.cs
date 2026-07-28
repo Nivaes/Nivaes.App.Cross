@@ -22,15 +22,5 @@ namespace Nivaes.App.Cross
         {
             return fromViewType.GetBasePresentationAttributes().FirstOrDefault();
         }
-
-        public static Type? GetViewModelType(this Type viewType)
-        {
-            if (!viewType.HasBasePresentationAttribute())
-                return null;
-
-            return viewType.GetBasePresentationAttributes()
-                .Select(x => x.ViewModelType)
-                .FirstOrDefault();
-        }
     }
 }

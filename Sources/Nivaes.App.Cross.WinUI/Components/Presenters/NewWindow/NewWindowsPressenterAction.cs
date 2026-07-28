@@ -28,7 +28,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override async ValueTask<bool> ShowAction(NewWindowPresentationAttribute attribute, IViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(IViewModelRequest request, NewWindowPresentationAttribute attribute)
         {
             if (attribute is not NewWindowPresentationAttribute presentationAttribute)
             {
@@ -38,12 +38,12 @@ namespace Nivaes.App.Cross.WinUI
             return await ShowNewWindowAsync(request, presentationAttribute);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, NewWindowPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, NewWindowPresentationAttribute attribute)
         {
-            viewModel.ViewDisappearing();
-            viewModel.ViewDisappeared();
-            viewModel.ViewDestroy();
-            viewModel.DisposeIfDisposable();
+            request.ViewModel.ViewDisappearing();
+            request.ViewModel.ViewDisappeared();
+            request.ViewModel.ViewDestroy();
+            request.ViewModel.DisposeIfDisposable();
             return ValueTask.FromResult(true);
         }
 

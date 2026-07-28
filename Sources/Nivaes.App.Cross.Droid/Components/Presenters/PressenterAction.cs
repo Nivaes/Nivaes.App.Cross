@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using AndroidX.Core.ViewTree;
 using Java.Lang;
 using Microsoft.Extensions.Logging;
 using Activity = AndroidX.AppCompat.App.AppCompatActivity;
@@ -29,39 +30,27 @@ namespace Nivaes.App.Cross.Droid
         }
         #endregion
 
-        protected override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        protected override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
         {
-            if (viewType!.IsSubclassOf(typeof(DialogFragment)))
+            if (request.ViewType.IsSubclassOf(typeof(DialogFragment)))
             {
-                Logger.Log(LogLevel.Trace, "PresentationAttribute not found for {ViewName}. Assuming DialogFragment presentation", viewType.Name);
-                return new DialogFragmentPresentationAttribute(enterAnimation: int.MinValue)
-                {
-                    ViewType = viewType,
-                    ViewModelType = viewModelType
-                };
+                Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.Name}. Assuming DialogFragment presentation");
+                return new DialogFragmentPresentationAttribute(enterAnimation: int.MinValue);
             }
 
-            if (viewType.IsSubclassOf(typeof(Fragment)))
+            if (request.ViewType.IsSubclassOf(typeof(Fragment)))
             {
-                Logger.LogTrace("PresentationAttribute not found for {ViewName}. Assuming Fragment presentation", viewType.Name);
-                return new FragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content)
-                {
-                    ViewType = viewType,
-                    ViewModelType = viewModelType
-                };
+                Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.Name}. Assuming Fragment presentation");
+                return new FragmentPresentationAttribute(GetCurrentActivityViewModelType(), global::Android.Resource.Id.Content);
             }
 
-            if (viewType.IsSubclassOf(typeof(Activity)))
+            if (request.ViewType.IsSubclassOf(typeof(Activity)))
             {
-                Logger.LogTrace("PresentationAttribute not found for {ViewName}. Assuming Activity presentation", viewType.Name);
-                return new ActivityPresentationAttribute
-                {
-                    ViewType = viewType,
-                    ViewModelType = viewModelType
-                };
+                Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.Name}. Assuming Activity presentation");
+                return new ActivityPresentationAttribute();
             }
 
-            throw new InvalidOperationException($"Don't know how to create a presentation attribute for type {viewType}");
+            throw new InvalidOperationException($"Don't know how to create a presentation attribute for type {{request.ViewType.Name}}");
         }
 
         protected Type? GetCurrentActivityViewModelType()

@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(DialogFragmentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, DialogFragmentPresentationAttribute attribute)
         {
             if (base.Context.CurrentActivity == null)
                 throw new InvalidOperationException("CurrentActivity is null");
@@ -31,11 +31,11 @@ namespace Nivaes.App.Cross.Droid
             if (base.Context.CurrentFragmentManager == null)
                 throw new InvalidOperationException("CurrentFragmentManager is null. Cannot create Fragment Transaction.");
 
-            if (attribute.ViewType == null)
-                throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
+            //if (attribute.ViewType == null)
+            //    throw new InvalidOperationException($"{nameof(DialogFragmentPresentationAttribute)}.ViewType is null");
 
-            var fragmentName = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
-            IMvxFragmentView mvxFragmentView = thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+            var fragmentName = attribute.Tag ?? request.ViewType.FragmentJavaName();
+            IMvxFragmentView mvxFragmentView = thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
             var dialog = (DialogFragment)mvxFragmentView;
 
             // MvxNavigationService provides an already instantiated ViewModel here,
@@ -72,11 +72,11 @@ namespace Nivaes.App.Cross.Droid
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DialogFragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, DialogFragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
-            string tag = attribute.Tag ?? attribute.ViewType.FragmentJavaName();
+            string tag = attribute.Tag ?? request.ViewType.FragmentJavaName();
             var toClose = base.Context.CurrentFragmentManager?.FindFragmentByTag(tag);
             if (toClose is DialogFragment dialog)
             {

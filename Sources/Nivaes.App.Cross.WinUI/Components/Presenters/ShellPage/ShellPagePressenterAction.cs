@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.WinUI
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(ShellPagePresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, ShellPagePresentationAttribute attribute)
         {
             var windowInformation = GetWindowInformation(request);
 
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.WinUI
                 {
                     var requestBuffer = ViewModelRequestSerializer.Serializer(request);
 
-                    containerView.Navigate(attribute.ViewType, requestBuffer, new SuppressNavigationTransitionInfo());
+                    containerView.Navigate(request.ViewType, requestBuffer, new SuppressNavigationTransitionInfo());
 
                     containerView.HorizontalAlignment = HorizontalAlignment.Stretch;
                     return ValueTask.FromResult(true);
@@ -43,22 +43,22 @@ namespace Nivaes.App.Cross.WinUI
                 else
                 {
                     //throw new AppException($"Not containerView found for {viewType.FullName}");
-                    Logger.LogError($"Not containerView found for {attribute.ViewType.FullName}");
+                    Logger.LogError($"Not containerView found for {request.ViewType.FullName}");
                     return ValueTask.FromResult(false);
                 }
             }
             else
             {
-                Logger.LogError($"Not {nameof(ShellView)} found to pressenter {attribute.ViewType.FullName}");
+                Logger.LogError($"Not {nameof(ShellView)} found to pressenter {request.ViewType.FullName}");
                 return ValueTask.FromResult(false);
             }
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ShellPagePresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, ShellPagePresentationAttribute attribute)
         {
-            var windowInformation = GetWindowInformation(viewModel);
+            var windowInformation = GetWindowInformation(request.ViewModel);
 
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(viewModel.GetType());
+            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(request.ViewModel.GetType());
 
             var shellView = windowInformation.RootFrame.Content as ShellView;
 
@@ -86,12 +86,12 @@ namespace Nivaes.App.Cross.WinUI
                     containerView.HorizontalAlignment = HorizontalAlignment.Left;
                 }
 
-                windowInformation.UnregisterSubViewModel(viewModel);
+                windowInformation.UnregisterSubViewModel(request.ViewModel);
                 return ValueTask.FromResult(true);
             }
 
 
-            return ClosePage(viewModel, attribute);
+            return ClosePage(request.ViewModel, attribute);
         }
     }
 }

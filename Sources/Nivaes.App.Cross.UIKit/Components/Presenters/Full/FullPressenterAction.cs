@@ -16,15 +16,15 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction( FullPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, FullPresentationAttribute attribute)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowFullViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, FullPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, FullPresentationAttribute attribute)
         {
-            base.Logger.LogWarning($"Ignored attempt to close the window root (ViewModel type: {viewModel.GetType().Name}");
+            Logger.LogWarning($"Ignored attempt to close the window root (ViewModel type: {request.ViewModelType.Name}");
 
             return ValueTask.FromResult(false);
         }

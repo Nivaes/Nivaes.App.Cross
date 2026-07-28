@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(SplitViewPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, SplitViewPresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -35,14 +35,14 @@ namespace Nivaes.App.Cross.UIKitLib
             };
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, SplitViewPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, SplitViewPresentationAttribute attribute)
         {
             var splitAttribute = attribute;
             return splitAttribute.Position switch
             {
-                MasterDetailPosition.Master => CloseMasterSplitViewController(viewModel, splitAttribute),
-                MasterDetailPosition.Detail => CloseDetailSplitViewController(viewModel, splitAttribute),
-                _ => CloseDetailSplitViewController(viewModel, splitAttribute)
+                MasterDetailPosition.Master => CloseMasterSplitViewController(request.ViewModel, splitAttribute),
+                MasterDetailPosition.Detail => CloseDetailSplitViewController(request.ViewModel, splitAttribute),
+                _ => CloseDetailSplitViewController(request.ViewModel, splitAttribute)
             };
         }
 

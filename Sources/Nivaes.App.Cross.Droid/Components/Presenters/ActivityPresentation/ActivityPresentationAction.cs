@@ -20,7 +20,7 @@ public sealed class ActivityPresentationAction
         ViewModelRequestTranslator = viewModelRequestTranslator;
     }
 
-    protected override ValueTask<bool> ShowAction(ActivityPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(IViewModelRequest request, ActivityPresentationAttribute attribute)
     {           
         var intent = CreateIntentForRequest(request);
         if (intent == null)
@@ -33,7 +33,7 @@ public sealed class ActivityPresentationAction
         return ValueTask.FromResult(true);
     }
 
-    protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ActivityPresentationAttribute attribute)
+    protected override ValueTask<bool> CloseAction(IViewModelRequest request, ActivityPresentationAttribute attribute)
     {
         var currentView = base.Context.CurrentActivity as ICrossView;
 
@@ -43,7 +43,7 @@ public sealed class ActivityPresentationAction
             return ValueTask.FromResult(false);
         }
 
-        if (currentView.ViewModel != viewModel)
+        if (currentView.ViewModel != request.ViewModel)
         {
             Logger.Log(LogLevel.Warning, "Ignoring close for viewmodel - rootframe's current page is not the view for the requested viewmodel");
             return ValueTask.FromResult(false);

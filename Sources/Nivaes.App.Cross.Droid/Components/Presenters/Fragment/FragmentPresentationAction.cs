@@ -16,13 +16,13 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override ValueTask<bool> ShowAction(FragmentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, FragmentPresentationAttribute attribute)
         {
             var fragmentAttribute = (FragmentPresentationAttribute)attribute;
             // if attribute has a Fragment Host, then show it as nested and return
             if (fragmentAttribute.FragmentHostViewType != null)
             {
-                thisFragment.ShowNestedFragment(attribute.ViewType, fragmentAttribute, request);
+                thisFragment.ShowNestedFragment(request.ViewType, fragmentAttribute, request);
 
                 return ValueTask.FromResult(true);
             }
@@ -35,7 +35,7 @@ namespace Nivaes.App.Cross.Droid
             if (fragmentAttribute.ActivityHostViewModelType != currentHostViewModelType)
             {
                 Logger.LogWarning("Activity host with ViewModelType {ActivityHostViewModelType} is not CurrentTopActivity. Showing Activity before showing Fragment for {ViewModelType}",
-                    fragmentAttribute.ActivityHostViewModelType, attribute.ViewModelType);
+                    fragmentAttribute.ActivityHostViewModelType, request.ViewModelType);
                 PendingRequest = request;
                 ShowHostActivity(attribute);
             }
@@ -44,12 +44,12 @@ namespace Nivaes.App.Cross.Droid
                 if (base.Context.CurrentActivity!.FindViewById(attribute.FragmentContentId) == null)
                     throw new InvalidOperationException("FrameLayout to show Fragment not found");
 
-                thisFragment.PerformShowFragmentTransaction(base.Context.CurrentActivity.SupportFragmentManager, attribute, request);
+                thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentActivity.SupportFragmentManager, attribute);
             }
             return ValueTask.FromResult(true);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, FragmentPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, FragmentPresentationAttribute attribute)
         {
             ArgumentNullException.ThrowIfNull(attribute);
 
@@ -58,12 +58,12 @@ namespace Nivaes.App.Cross.Droid
             {
                 var fragmentHost = thisFragment.GetFragmentByViewType(attribute.FragmentHostViewType);
                 if (fragmentHost != null
-                    && TryPerformCloseFragmentTransaction(fragmentHost.ChildFragmentManager, attribute))
+                    && TryPerformCloseFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute))
                     return ValueTask.FromResult(true);
             }
 
             // Close fragment. If it isn't successful, then close the current Activity
-            if (base.Context.CurrentFragmentManager != null && TryPerformCloseFragmentTransaction(base.Context.CurrentFragmentManager, attribute))
+            if (base.Context.CurrentFragmentManager != null && TryPerformCloseFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute))
             {
                 return ValueTask.FromResult(true);
             }
@@ -78,12 +78,13 @@ namespace Nivaes.App.Cross.Droid
         }
 
         private bool TryPerformCloseFragmentTransaction(
+            IViewModelRequest request,
             FragmentManager fragmentManager,
             FragmentPresentationAttribute fragmentAttribute)
         {
             try
             {
-                var fragmentName = fragmentAttribute.Tag ?? fragmentAttribute.ViewType.FragmentJavaName();
+                var fragmentName = fragmentAttribute.Tag ?? request.ViewType.FragmentJavaName();
                 if (fragmentManager.BackStackEntryCount > 0)
                 {
                     PopOnBackstackEntries(fragmentName, fragmentManager, fragmentAttribute);

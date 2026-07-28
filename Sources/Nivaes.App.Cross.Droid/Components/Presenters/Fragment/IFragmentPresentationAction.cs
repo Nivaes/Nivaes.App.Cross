@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.Droid
             if (!fragmentHost.IsVisible)
                 Logger.Log(LogLevel.Warning, $"Fragment host is not visible when trying to show View {viewType.Name} as Nested Fragment");
 
-            PerformShowFragmentTransaction(fragmentHost.ChildFragmentManager, attribute, request);
+            PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute);
         }
 
         Fragment? GetFragmentByViewType(Type? type)
@@ -70,11 +70,11 @@ namespace Nivaes.App.Cross.Droid
         }
 
         void PerformShowFragmentTransaction(
+            IViewModelRequest request,
             FragmentManager fragmentManager,
-            FragmentPresentationAttribute attribute,
-            IViewModelRequest request)
+            FragmentPresentationAttribute attribute)
         {
-            var fragmentName = attribute.Tag ?? attribute.ViewType!.FragmentJavaName();
+            var fragmentName = attribute.Tag ?? request.ViewType!.FragmentJavaName();
 
             IMvxFragmentView? fragmentView = null;
             if (attribute.IsCacheableFragment)
@@ -82,8 +82,8 @@ namespace Nivaes.App.Cross.Droid
                 fragmentView = (IMvxFragmentView?)fragmentManager.FindFragmentByTag(fragmentName);
             }
 
-            if (fragmentView == null && attribute.ViewType != null)
-                fragmentView = CreateFragment(fragmentManager, attribute, attribute.ViewType);
+            if (fragmentView == null && request.ViewType != null)
+                fragmentView = CreateFragment(fragmentManager, attribute, request.ViewType);
 
             var fragment = fragmentView?.ToFragment();
             if (fragment == null)

@@ -17,28 +17,26 @@ public sealed class DetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(DetailPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(IViewModelRequest request, DetailPresentationAttribute attribute)
     {
         var detailView = base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId);
 
         if (detailView == null || base.PendingRequest != null)
         {
-            ShowAlternativeDetailFragment(attribute.ViewType, attribute, request);
+            ShowAlternativeDetailFragment(attribute, request);
         }
         else
         {
-            ShowEmbeddendDetailFragment(attribute.ViewType, attribute, request);
+            ShowEmbeddendDetailFragment(attribute, request);
         }
 
         return ValueTask.FromResult(true);
     }
 
-    private void ShowAlternativeDetailFragment(Type viewType,
+    private void ShowAlternativeDetailFragment(
             DetailPresentationAttribute attribute,
             IViewModelRequest request)
     {
-        ArgumentNullException.ThrowIfNull(attribute);
-
         if (base.PendingRequest == null)
         {
             base.PendingRequest = request;
@@ -54,7 +52,7 @@ public sealed class DetailPresentationAction
         if (attribute.AlternativeDetailActivityHostViewModelType != currentHostViewModelType)
         {
             Logger.LogTrace("Activity host with ViewModelType {0} is not CurrentTopActivity. Showing Activity before showing Fragment for {1}",
-                attribute.AlternativeDetailActivityHostViewModelType, attribute.ViewModelType);
+                attribute.AlternativeDetailActivityHostViewModelType, request.ViewModelType);
             base.PendingRequest = request;
             base.ShowHostActivity(attribute);
         }
@@ -63,12 +61,11 @@ public sealed class DetailPresentationAction
             if (base.Context.CurrentActivity.FindViewById(attribute.FragmentContentId) == null)
                 throw new NullReferenceException("FrameLayout to show Fragment not found");
 
-            thisFragment.PerformShowFragmentTransaction(base.Context.CurrentFragmentManager, attribute, request);
+            thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute);
         }
     }
 
     private void ShowEmbeddendDetailFragment(
-           Type viewType,
            DetailPresentationAttribute attribute,
            IViewModelRequest request)
     {
@@ -80,10 +77,10 @@ public sealed class DetailPresentationAction
         if (fragmentHost == null)
             return;
 
-        var fragmentName = attribute.ViewType.FragmentJavaName();
+        var fragmentName = request.ViewType.FragmentJavaName();
 
         IMvxFragmentView fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
-        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
 
         var fragmentView = fragment.ToFragment();
         //if (request is CrossViewModelInstanceRequest instanceRequest)

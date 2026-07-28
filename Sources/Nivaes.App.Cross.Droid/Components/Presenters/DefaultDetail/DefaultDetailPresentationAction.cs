@@ -15,7 +15,7 @@ public sealed class DefaultDetailPresentationAction
     {
     }
 
-    protected override ValueTask<bool> ShowAction(DefaultDetailPresentationAttribute attribute, IViewModelRequest request)
+    protected override ValueTask<bool> ShowAction(IViewModelRequest request, DefaultDetailPresentationAttribute attribute)
     {
         var fragmentManager = base.Context.CurrentFragmentManager;
         if (fragmentManager == null)
@@ -25,10 +25,10 @@ public sealed class DefaultDetailPresentationAction
         if (fragmentHost == null)
             return ValueTask.FromResult(true);
 
-        var fragmentName = attribute.ViewType.FragmentJavaName();
+        var fragmentName = request.ViewType.FragmentJavaName();
 
         IMvxFragmentView fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
-        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, attribute.ViewType);
+        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
 
         var fragmentView = fragment.ToFragment();
         //if (request is CrossViewModelInstanceRequest instanceRequest)
@@ -45,7 +45,7 @@ public sealed class DefaultDetailPresentationAction
         return ValueTask.FromResult(true);
     }
 
-    protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, DefaultDetailPresentationAttribute attribute)
+    protected override ValueTask<bool> CloseAction(IViewModelRequest request, DefaultDetailPresentationAttribute attribute)
     {
         return ValueTask.FromResult(true);
     }

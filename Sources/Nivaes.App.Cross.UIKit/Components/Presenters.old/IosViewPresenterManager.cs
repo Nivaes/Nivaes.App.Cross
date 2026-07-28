@@ -32,27 +32,21 @@ namespace Nivaes.App.Cross.UIKitLib
             _viewCreator = viewCreator;
         }
 
-        public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+        public override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
         {
             if (MasterNavigationController == null &&
                 Context.TabBarViewController?.CanShowChildView() != true)
             {
-                Logger?.LogTrace(
-                    "PresentationAttribute nor MasterNavigationController found for {ViewTypeName}. Assuming Root presentation",
-                    viewType?.Name);
+                Logger?.LogWarning($"PresentationAttribute nor MasterNavigationController found for {request.ViewType.FullName}. Assuming Root presentation");
 
                 return new RootPresentationAttribute
                 {
                     WrapInNavigationController = true,
-                    ViewType = viewType,
-                    ViewModelType = viewModelType
                 };
             }
 
-            Logger?.LogTrace(
-                "PresentationAttribute not found for {ViewTypeName}. Assuming animated Child presentation", viewType?.Name);
-
-            return new ChildPresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+            Logger?.LogWarning("PresentationAttribute not found for {request.ViewType.FullName}. Assuming animated Child presentation");
+            return new ChildPresentationAttribute();
         }
 
         public override object? CreateOverridePresentationAttributeViewInstance(Type viewType)

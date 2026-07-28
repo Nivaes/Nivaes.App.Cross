@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(ModalPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, ModalPresentationAttribute attribute)
         {
             var viewController = (UIViewController?)ViewCreator.CreateView(request);
             if (viewController == null)
@@ -31,14 +31,14 @@ namespace Nivaes.App.Cross.UIKitLib
             return ShowModalViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, ModalPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, ModalPresentationAttribute attribute)
         {
             if (Context.ModalViewControllers.Count == 0)
                 return ValueTask.FromResult(false);
 
             // check for plain modals
             var modalToClose =
-                Context.ModalViewControllers.Find(v => v is IMvxIosView iosView && iosView.ViewModel == viewModel);
+                Context.ModalViewControllers.Find(v => v is IMvxIosView iosView && iosView.ViewModel == request.ViewModel);
             if (modalToClose != null)
             {
                 return CloseModalViewController(modalToClose, attribute);
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.UIKitLib
             foreach (var vc in Context.ModalViewControllers.OfType<UINavigationController>())
             {
                 var root = vc.ViewControllers?.FirstOrDefault();
-                if (root != null && root.GetIMvxIosView()?.ViewModel == viewModel)
+                if (root != null && root.GetIMvxIosView()?.ViewModel == request.ViewModel)
                 {
                     controllerToClose = vc;
                     break;

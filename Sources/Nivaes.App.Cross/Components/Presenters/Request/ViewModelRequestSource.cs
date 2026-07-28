@@ -8,7 +8,7 @@ namespace Nivaes.App.Cross
     /// <summary>
     ///     Extension of MvxViewModelInstanceRequest with a target.
     /// </summary>
-    internal record ViewModelRequestSource<TViewModel> 
+    internal class ViewModelRequestSource<TViewModel> 
         : ViewModelRequest<TViewModel>, IViewModelRequestSource
         where TViewModel : ICrossViewModel
     {

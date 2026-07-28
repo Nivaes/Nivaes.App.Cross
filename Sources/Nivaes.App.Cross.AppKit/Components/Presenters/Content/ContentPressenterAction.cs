@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.AppKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(ContentPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, ContentPresentationAttribute attribute)
         { 
             var viewController = (NSViewController)ViewCreator.CreateView(request);
 

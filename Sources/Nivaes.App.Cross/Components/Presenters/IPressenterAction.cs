@@ -2,8 +2,8 @@
 {
     public interface IPressenterAction
     {
-        ValueTask<bool> ShowAction(Type viewType, IPresentationAttribute attribute, IViewModelRequest request);
+        ValueTask<bool> ShowAction(IViewModelRequest request, IPresentationAttribute attribute);
 
-        ValueTask<bool> CloseAction(ICrossViewModel viewModel, IPresentationAttribute attribute);
+        ValueTask<bool> CloseAction(IViewModelRequest request, IPresentationAttribute attribute);
     }
 }

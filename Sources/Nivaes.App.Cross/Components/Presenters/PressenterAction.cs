@@ -14,27 +14,26 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        protected abstract ValueTask<bool> ShowAction(Type viewType, TPresentationAttribute attribute, IViewModelRequest request);
+        protected abstract ValueTask<bool> ShowAction(IViewModelRequest request, TPresentationAttribute attribute);
 
-        protected abstract ValueTask<bool> CloseAction(ICrossViewModel viewModel, TPresentationAttribute attribute);
+        protected abstract ValueTask<bool> CloseAction(IViewModelRequest request, TPresentationAttribute attribute);
 
         [DebuggerHidden]
-        public ValueTask<bool> ShowAction(Type view, IPresentationAttribute attribute, IViewModelRequest request)
+        public ValueTask<bool> ShowAction(IViewModelRequest request, IPresentationAttribute attribute)
         {
-            return ShowAction(view, (TPresentationAttribute)attribute, request);
+            return ShowAction(request, (TPresentationAttribute)attribute);
         }
 
         [DebuggerHidden]
-        public ValueTask<bool> CloseAction(ICrossViewModel viewModel, IPresentationAttribute attribute)
+        public ValueTask<bool> CloseAction(IViewModelRequest request, IPresentationAttribute attribute)
         {
-            return CloseAction(viewModel, (TPresentationAttribute)attribute);
+            return CloseAction(request, (TPresentationAttribute)attribute);
         }
 
         private IPressenterAction GetPresentationAttributeAction(
             IViewModelRequest? request, out BasePresentationAttribute attribute)
         {
             var presentationAttribute = GetPresentationAttribute(request);
-            presentationAttribute.ViewModelType = request.ViewModelType;
             var attributeType = presentationAttribute.GetType();
 
             attribute = presentationAttribute;
@@ -44,45 +43,42 @@ namespace Nivaes.App.Cross
 
         private BasePresentationAttribute GetPresentationAttribute(IViewModelRequest request)
         {
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                    .GetValue(request.ViewModelType);
+            //var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
+            //        .GetValue(request.ViewModelType);
 
-            //var overrideAttribute = GetOverridePresentationAttribute(request, viewType);
-            //if (overrideAttribute != null)
-            //    return overrideAttribute;
-
-            var attribute = viewType
+            var attribute = request.ViewType
                 .GetCustomAttributes(typeof(BasePresentationAttribute), true)
                 .FirstOrDefault();
 
             if (attribute is BasePresentationAttribute basePresentationAttribute)
             {
-                if (basePresentationAttribute.ViewType == null)
-                    basePresentationAttribute.ViewType = viewType;
+                //if (basePresentationAttribute.ViewType == null)
+                //    basePresentationAttribute.ViewType = viewType;
 
-                if (basePresentationAttribute.ViewModelType == null)
-                    basePresentationAttribute.ViewModelType = request.ViewModelType;
+                //if (basePresentationAttribute.ViewModelType == null)
+                //    basePresentationAttribute.ViewModelType = request.ViewModelType;
 
                 return basePresentationAttribute;
             }
 
-            return CreatePresentationAttribute(request.ViewModelType, viewType);
+            return CreatePresentationAttribute(request);
         }
 
-        protected abstract BasePresentationAttribute CreatePresentationAttribute(Type viewModelType, Type viewType);
+        protected abstract BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request);
 
         protected ValueTask<bool> Show(IViewModelRequest request)
         {
             var pressentationAction = GetPresentationAttributeAction(request, out var attribute);
 
-            return pressentationAction.ShowAction(attribute.ViewType!, attribute, request);
+            return pressentationAction.ShowAction(request, attribute);
         }
 
         protected ValueTask<bool> Close(ICrossViewModel viewModel)
         {
+            var request = new ViewModelRequest(viewModel);
             var pressentationAction = GetPresentationAttributeAction(new ViewModelRequest(viewModel), out var attribute);
 
-            return pressentationAction.CloseAction(viewModel, attribute);
+            return pressentationAction.CloseAction(request, attribute);
         }
     }
 }

@@ -8,12 +8,20 @@ namespace Nivaes.App.Cross
     public abstract class BasePresentationAttribute
         : Attribute, IPresentationAttribute
     {
-        /// <inheritdoc />
-        [Obsolete("Usar PresentationData.ViewModelType")]
-        public Type? ViewModelType { [DebuggerHidden] get; [DebuggerHidden] set; }
+        ///// <inheritdoc />
+        //[Obsolete("Usar PresentationData.ViewModelType")]
+        //public Type? ViewModelType 
+        //{ 
+        //    get;
+        //    set;
+        //}
 
-        /// <inheritdoc />
-        [Obsolete("Usar PresentationData.ViewType")]
-        public Type? ViewType { [DebuggerHidden] get; [DebuggerHidden] set; }
+        ///// <inheritdoc />
+        //[Obsolete("Usar PresentationData.ViewType")]
+        //public Type? ViewType 
+        //{ 
+        //    get; 
+        //    set; 
+        //}
     }
 }

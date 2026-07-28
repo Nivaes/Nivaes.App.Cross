@@ -59,11 +59,10 @@ public class MultiWindowViewPresenterManager
     /// <param name="viewModelType"></param>
     /// <param name="viewType"></param>
     /// <returns></returns>
-    public override BasePresentationAttribute CreatePresentationAttribute(Type? viewModelType, Type? viewType)
+    public override BasePresentationAttribute CreatePresentationAttribute(IViewModelRequest request)
     {
-        Logger.LogInformation("PresentationAttribute not found for {ViewTypeName}. Assuming new page presentation",
-            viewType?.Name);
-        return new PagePresentationAttribute { ViewType = viewType, ViewModelType = viewModelType };
+        Logger.LogWarning($"PresentationAttribute not found for {request.ViewType.FullName}. Assuming new page presentation");
+        return new PagePresentationAttribute();
     }
 
     /// <summary>

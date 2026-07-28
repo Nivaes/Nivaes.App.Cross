@@ -16,9 +16,9 @@ namespace Nivaes.App.Cross.Droid
         {
         }
 
-        protected override async ValueTask<bool> ShowAction(TabLayoutPresentationAttribute attribute, IViewModelRequest request)
+        protected override async ValueTask<bool> ShowAction(IViewModelRequest request, TabLayoutPresentationAttribute attribute)
         {
-            var showViewPagerFragment = await ShowAction(attribute, request).ConfigureAwait(true);
+            var showViewPagerFragment = await ShowAction(request, attribute).ConfigureAwait(true);
             if (!showViewPagerFragment)
                 return false;
 

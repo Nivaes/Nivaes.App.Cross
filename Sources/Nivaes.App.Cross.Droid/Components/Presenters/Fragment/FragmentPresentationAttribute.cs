@@ -12,8 +12,7 @@ public class FragmentPresentationAttribute
     }
 
     public FragmentPresentationAttribute(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-    Type? activityHostViewModelType = null,
+        Type? activityHostViewModelType = null,
         int fragmentContentId = global::Android.Resource.Id.Content,
         bool addToBackStack = false,
         int enterAnimation = int.MinValue,
@@ -50,8 +49,7 @@ public class FragmentPresentationAttribute
     }
 
     public FragmentPresentationAttribute(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-    Type? activityHostViewModelType = null,
+        Type? activityHostViewModelType = null,
         string? fragmentContentResourceName = null,
         bool addToBackStack = false,
         string? enterAnimation = null,
@@ -115,7 +113,6 @@ public class FragmentPresentationAttribute
     /// <summary>
     /// Fragment parent activity ViewModel Type. This activity is shown if the current hosting activity viewmodel is different.
     /// </summary>
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     public Type? ActivityHostViewModelType { get; set; }
 
     /// <summary>

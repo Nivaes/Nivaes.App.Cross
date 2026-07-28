@@ -74,18 +74,18 @@ internal sealed class AndroidViewsContainer
         if (extraData == null)
             return null;
 
-        var viewModelRequest = ViewModelRequestSerializer.Deserialize(extraData!);
+        var request = ViewModelRequestSerializer.Deserialize(extraData);
 
-        return ViewModelFromRequest(viewModelRequest, savedState);
+        return ViewModelFromRequest(request, savedState);
     }
 
-    private ICrossViewModel? ViewModelFromRequest(IViewModelRequest? viewModelRequest, ICrossBundle? savedState)
+    private ICrossViewModel? ViewModelFromRequest(IViewModelRequest? request, ICrossBundle? savedState)
     {
-        if (viewModelRequest == null)
+        if (request == null)
             return null;
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<CrossViewModelLoader>();
-        return viewModelLoader.LoadViewModel(viewModelRequest, savedState);
+        return viewModelLoader.LoadViewModel(request, savedState);
     }
 
     private bool TryGetEmbeddedViewModel(Intent intent, out ICrossViewModel? viewModel)

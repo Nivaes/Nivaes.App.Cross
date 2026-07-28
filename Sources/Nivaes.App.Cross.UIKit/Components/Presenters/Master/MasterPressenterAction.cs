@@ -16,13 +16,13 @@ namespace Nivaes.App.Cross.UIKitLib
         }
         #endregion
 
-        protected override ValueTask<bool> ShowAction(MasterPresentationAttribute attribute, IViewModelRequest request)
+        protected override ValueTask<bool> ShowAction(IViewModelRequest request, MasterPresentationAttribute attribute)
         {
             var viewController = (UIViewController)ViewCreator.CreateView(request);
             return ShowMasterViewController(viewController, attribute, request);
         }
 
-        protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, MasterPresentationAttribute attribute)
+        protected override ValueTask<bool> CloseAction(IViewModelRequest request, MasterPresentationAttribute attribute)
         {
             if (attribute.PanelType == PanelType.Secondary)
             {
@@ -76,7 +76,7 @@ namespace Nivaes.App.Cross.UIKitLib
 
                 viewController.NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_back"), UIBarButtonItemStyle.Plain, (object sender, EventArgs e) =>
                 {
-                    CloseMasterViewController(Context.MasterDetailSplitViewControllers.LastOrDefault());
+                    CloseMasterViewController(Context.MasterDetailSplitViewControllers.Last());
                 });
             }
 
