@@ -39,11 +39,11 @@ namespace Nivaes.App.Cross.SourceGenerator.UnitTests
                         :base(logger)
                     { }
 
-                    protected override ValueTask<bool> ShowAction(Type viewType, TestPresentationAttribute attribute, ViewModelRequest request)
+                    protected override ValueTask<bool> ShowAction(IViewModelRequest request, TestPresentationAttribute attribute)
                     {
                         throw new NotImplementedException();
                     }
-                    protected override ValueTask<bool> CloseAction(ICrossViewModel viewModel, TestPresentationAttribute attribute)
+                    protected override ValueTask<bool> CloseAction(IViewModelRequest request, TestPresentationAttribute attribute)
                     {
                         throw new NotImplementedException();
                     }
