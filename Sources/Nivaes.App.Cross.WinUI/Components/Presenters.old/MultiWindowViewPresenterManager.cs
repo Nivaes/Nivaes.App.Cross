@@ -16,7 +16,7 @@ namespace Nivaes.App.Cross.WinUI;
 ///     Defines a view presenter with multi-windows support.
 /// </summary>
 public class MultiWindowViewPresenterManager
-    : CrossViewPresenterManager, IWindowsViewPresenterManager //, IMvxMultiWindowsService
+    : CrossViewPresenterManager, IWindowsViewPresenterManager
 {
     private const int DefaultWindowHeight = 456;
     private const int DefaultWindowWidth = 786;
