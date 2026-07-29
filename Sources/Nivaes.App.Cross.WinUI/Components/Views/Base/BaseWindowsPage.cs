@@ -11,19 +11,19 @@ namespace Nivaes.App.Cross.WinUI
         where TViewModel : ICrossViewModel
     {
         protected virtual bool IsTransparentBar => false;
-        protected virtual bool CanBackStack => true;
+        protected override bool CanBackStack => true;
 
         protected BaseWindowsPage()
         {
-            //base.Loading += (o, e) =>
-            //{
-            //    if (!CanBackStack)
-            //    {
-            //        base.ClearBackStack();
-            //    }
-            //};
+            base.Loading += (o, e) =>
+            {
+                if (!CanBackStack)
+                {
+                    base.ClearBackStack();
+                }
+            };
 
-            //SetColors();
+            SetColors();
         }
 
         #region Colors

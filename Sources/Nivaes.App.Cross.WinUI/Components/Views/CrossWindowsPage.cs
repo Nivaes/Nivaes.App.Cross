@@ -16,6 +16,8 @@ public abstract class CrossWindowsPage<TViewModel>
 {
     private TViewModel? _viewModel;
 
+    protected virtual bool CanBackStack => true;
+
     public CrossWindowsPage()
     {
         Loading += WindowsPage_Loading;
@@ -26,6 +28,11 @@ public abstract class CrossWindowsPage<TViewModel>
     private void WindowsPage_Loading(FrameworkElement sender, object args)
     {
         ViewModel?.ViewAppearing();
+
+        if (!CanBackStack)
+        {
+            ClearBackStack();
+        }
     }
 
     private void WindowsPage_Loaded(object sender, RoutedEventArgs e)

@@ -29,7 +29,13 @@ namespace Nivaes.App.Cross.WinUI
         {
             try
             {
-                var contentDialog = CreateControl(request.ViewType, request, attribute) as ContentDialog;
+                var content = CreateControl(request, attribute);
+                var contentDialog = content as ContentDialog;
+                if (contentDialog == null)
+                {
+                    contentDialog = new ContentDialog();
+                    contentDialog.Content = content;
+                }
 
                 if (contentDialog != null)
                 {
@@ -40,9 +46,9 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     await contentDialog.ShowAsync(attribute.Placement);
-                    if (contentDialog is ICrossView mvxControl && mvxControl.ViewModel != null)
+                    if (contentDialog is ICrossView controlView && controlView.ViewModel != null)
                     {
-                        windowInfo.RegisterSubViewModel(mvxControl.ViewModel);
+                        windowInfo.RegisterSubViewModel(controlView.ViewModel);
                     }
 
                     return true;
@@ -90,31 +96,21 @@ namespace Nivaes.App.Cross.WinUI
         /// <param name="attribute">Any attributes.</param>
         /// <returns></returns>
         /// <exception cref="AppException"></exception>
-        private Control? CreateControl(Type viewType, IViewModelRequest request,
-            BasePresentationAttribute attribute)
+        private Control? CreateControl(IViewModelRequest request, BasePresentationAttribute attribute)
         {
             try
             {
-                var control = ActivatorUtilities.CreateInstance(_serviceProvider, viewType) as Control;
-                if (control is ICrossView mvxControl)
+                var control = ActivatorUtilities.CreateInstance(_serviceProvider, request.ViewType) as Control;
+                if (control is ICrossView controlView)
                 {
-                    //if (request is CrossViewModelInstanceRequest instanceRequest)
-                    //{
-                    //    mvxControl.ViewModel = instanceRequest.ViewModelInstance;
-                    //}
-                    //else
-                    //{
-                    //    mvxControl.ViewModel = _viewModelLoader?.LoadViewModel(request, null);
-                    //}
-                    mvxControl.ViewModel = request.ViewModel;
+                    controlView.ViewModel = request.ViewModel;
                 }
 
                 return control;
             }
             catch (Exception ex)
             {
-                throw new AppException(ex,
-                    $"Cannot create Control '{viewType.FullName}'. Are you use the wrong base class?");
+                throw new AppException(ex, $"Cannot create Control '{request.ViewType.FullName}'. Are you use the wrong base class?");
             }
         }
     }

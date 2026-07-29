@@ -1,7 +1,7 @@
 ﻿namespace Nivaes.App.Cross.WinUI
 {
     public abstract class BaseMasterView<TViewModel>
-        : BaseWindowsPage<TViewModel>
+        : CrossWindowsPage<TViewModel>
         where TViewModel : IMasterViewModel, ICrossViewModel
     {
     }
