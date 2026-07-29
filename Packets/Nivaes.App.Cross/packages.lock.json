@@ -22,33 +22,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.30.0.144632, )",
-        "resolved": "10.30.0.144632",
-        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
-      },
-      "Microsoft.Bcl.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
+        "requested": "[10.31.0.145097, )",
+        "resolved": "10.31.0.145097",
+        "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -201,15 +177,6 @@
         "type": "Transitive",
         "resolved": "10.0.10",
         "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
-      },
-      "Nivaes.App.Shared.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "1.0.1.2",
-        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
-        "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
       },
       "OpenTelemetry.Api": {
         "type": "Transitive",
@@ -1096,8 +1063,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
-          "Nivaes.Extensions": "[2.4.0.2, )",
+          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -1108,12 +1074,11 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "[10.0.10, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
           "Nivaes.App.Cross.Droid.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
           "Xamarin.AndroidX.AppCompat": "[1.7.1.4, )",
           "Xamarin.AndroidX.Leanback": "[1.2.0.4, )",
           "Xamarin.AndroidX.Preference": "[1.2.1.18, )",
           "Xamarin.AndroidX.SwipeRefreshLayout": "[1.2.0.3, )",
-          "Xamarin.Google.Android.Material": "[1.14.0.5, )"
+          "Xamarin.Google.Android.Material": "[1.14.0.6, )"
         }
       },
       "nivaes.app.cross.droid.sourcegenerator": {
@@ -1133,12 +1098,6 @@
         "requested": "[12.1.1, )",
         "resolved": "12.1.1",
         "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
-      },
-      "Microsoft.CodeAnalysis.Analyzers": {
-        "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "3.11.0",
-        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
@@ -1201,22 +1160,11 @@
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
       },
-      "Nivaes.App.Shared": {
-        "type": "CentralTransitive",
-        "requested": "[1.0.1.2, )",
-        "resolved": "1.0.1.2",
-        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
-          "Nivaes.Extensions": "2.4.0.2"
-        }
-      },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.2, )",
-        "resolved": "2.4.0.2",
-        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
+        "requested": "[2.4.0.4, )",
+        "resolved": "2.4.0.4",
+        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
@@ -1336,9 +1284,9 @@
       },
       "Xamarin.Google.Android.Material": {
         "type": "CentralTransitive",
-        "requested": "[1.14.0.5, )",
-        "resolved": "1.14.0.5",
-        "contentHash": "ORxIVscXHmZ6C6zQ+AG3PyikW2BWA2RsqfW++5ZdCiXHpPGc5rZS41ev/Wxk7jyqUDY9YF9TwhePhToCFBed6Q==",
+        "requested": "[1.14.0.6, )",
+        "resolved": "1.14.0.6",
+        "contentHash": "xC0oD3awmOwrW0OZesBjwN3kCBSN7tPduRht5Kmy9Dea/OwhQjr4GunT1MsTYcNT3VCruYa1mcYdN13n9Wwg0w==",
         "dependencies": {
           "Xamarin.AndroidX.Activity": "1.13.0.1",
           "Xamarin.AndroidX.Annotation": "1.10.0.1",
@@ -1390,33 +1338,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.30.0.144632, )",
-        "resolved": "10.30.0.144632",
-        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
-      },
-      "Microsoft.Bcl.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
+        "requested": "[10.31.0.145097, )",
+        "resolved": "10.31.0.145097",
+        "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -1532,15 +1456,6 @@
         "resolved": "10.0.10",
         "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
       },
-      "Nivaes.App.Shared.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "1.0.1.2",
-        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
-        "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
-      },
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.17.0",
@@ -1562,8 +1477,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
-          "Nivaes.Extensions": "[2.4.0.2, )",
+          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -1572,8 +1486,7 @@
         "dependencies": {
           "BTProgressHUD": "[2.3.1, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )"
+          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )"
         }
       },
       "Nivaes.App.Cross.UIKitOS.SourceGenerator": {
@@ -1593,12 +1506,6 @@
         "requested": "[12.1.1, )",
         "resolved": "12.1.1",
         "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
-      },
-      "Microsoft.CodeAnalysis.Analyzers": {
-        "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "3.11.0",
-        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
@@ -1649,22 +1556,11 @@
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
       },
-      "Nivaes.App.Shared": {
-        "type": "CentralTransitive",
-        "requested": "[1.0.1.2, )",
-        "resolved": "1.0.1.2",
-        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
-          "Nivaes.Extensions": "2.4.0.2"
-        }
-      },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.2, )",
-        "resolved": "2.4.0.2",
-        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
+        "requested": "[2.4.0.4, )",
+        "resolved": "2.4.0.4",
+        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
@@ -1706,33 +1602,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.30.0.144632, )",
-        "resolved": "10.30.0.144632",
-        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
-      },
-      "Microsoft.Bcl.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
+        "requested": "[10.31.0.145097, )",
+        "resolved": "10.31.0.145097",
+        "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -1848,15 +1720,6 @@
         "resolved": "10.0.10",
         "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
       },
-      "Nivaes.App.Shared.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "1.0.1.2",
-        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
-        "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
-      },
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.17.0",
@@ -1878,8 +1741,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
-          "Nivaes.Extensions": "[2.4.0.2, )",
+          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -1888,8 +1750,7 @@
         "dependencies": {
           "BTProgressHUD": "[2.3.1, )",
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )"
+          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )"
         }
       },
       "Nivaes.App.Cross.UIKitOS.SourceGenerator": {
@@ -1909,12 +1770,6 @@
         "requested": "[12.1.1, )",
         "resolved": "12.1.1",
         "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
-      },
-      "Microsoft.CodeAnalysis.Analyzers": {
-        "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "3.11.0",
-        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
@@ -1965,22 +1820,11 @@
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
       },
-      "Nivaes.App.Shared": {
-        "type": "CentralTransitive",
-        "requested": "[1.0.1.2, )",
-        "resolved": "1.0.1.2",
-        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
-          "Nivaes.Extensions": "2.4.0.2"
-        }
-      },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.2, )",
-        "resolved": "2.4.0.2",
-        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
+        "requested": "[2.4.0.4, )",
+        "resolved": "2.4.0.4",
+        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
@@ -2022,33 +1866,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.30.0.144632, )",
-        "resolved": "10.30.0.144632",
-        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
-      },
-      "Microsoft.Bcl.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
+        "requested": "[10.31.0.145097, )",
+        "resolved": "10.31.0.145097",
+        "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -2164,15 +1984,6 @@
         "resolved": "10.0.10",
         "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
       },
-      "Nivaes.App.Shared.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "1.0.1.2",
-        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
-        "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
-      },
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.17.0",
@@ -2207,8 +2018,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
-          "Nivaes.Extensions": "[2.4.0.2, )",
+          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -2217,12 +2027,6 @@
         "requested": "[12.1.1, )",
         "resolved": "12.1.1",
         "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
-      },
-      "Microsoft.CodeAnalysis.Analyzers": {
-        "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "3.11.0",
-        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
@@ -2273,22 +2077,11 @@
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
       },
-      "Nivaes.App.Shared": {
-        "type": "CentralTransitive",
-        "requested": "[1.0.1.2, )",
-        "resolved": "1.0.1.2",
-        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
-          "Nivaes.Extensions": "2.4.0.2"
-        }
-      },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.2, )",
-        "resolved": "2.4.0.2",
-        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
+        "requested": "[2.4.0.4, )",
+        "resolved": "2.4.0.4",
+        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
@@ -2330,33 +2123,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.30.0.144632, )",
-        "resolved": "10.30.0.144632",
-        "contentHash": "e4n1kWNoFAuXcYR4uEGyMi4I5vKHcjAVmIw6k6y57UWJA1o6cxkeHmcE45xfCphM4k4G0Yo8yMhOT637AmofJw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
-      },
-      "Microsoft.Bcl.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/PxGfVdy8P15x9TUyAyWfzR92DcRVRCMs4nMnVS6bldRaDTJJPG9ECJPlF0lbkeZdqwM5eSkOQ214YwvcimAWQ=="
+        "requested": "[10.31.0.145097, )",
+        "resolved": "10.31.0.145097",
+        "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -2472,15 +2241,6 @@
         "resolved": "10.0.10",
         "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
       },
-      "Nivaes.App.Shared.SourceGenerator": {
-        "type": "Transitive",
-        "resolved": "1.0.1.2",
-        "contentHash": "v4j4xFsu7jTMr2/hWq+w6cmp9Ksy7ktUgw1pVAZr9FPMDsvy6IJQhwYJY1WYDdPknIKm9TBDElsK1gHopSDZDQ==",
-        "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.10",
-          "Microsoft.CodeAnalysis.CSharp": "5.0.0"
-        }
-      },
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.17.0",
@@ -2502,8 +2262,7 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )",
-          "Nivaes.Extensions": "[2.4.0.2, )",
+          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -2511,8 +2270,7 @@
         "type": "Project",
         "dependencies": {
           "Nivaes.App.Cross.Core": "[1.0.0, )",
-          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )",
-          "Nivaes.App.Shared": "[1.0.1.2, )"
+          "Nivaes.App.Cross.UIKitOS.SourceGenerator": "[1.0.0, )"
         }
       },
       "Nivaes.App.Cross.UIKitOS.SourceGenerator": {
@@ -2526,12 +2284,6 @@
         "requested": "[12.1.1, )",
         "resolved": "12.1.1",
         "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
-      },
-      "Microsoft.CodeAnalysis.Analyzers": {
-        "type": "CentralTransitive",
-        "requested": "[5.6.0, )",
-        "resolved": "3.11.0",
-        "contentHash": "v/EW3UE8/lbEYHoC2Qq7AR/DnmvpgdtAMndfQNmpuIMx/Mto8L5JnuCfdBYtgvalQOtfNCnxFejxuRrryvUTsg=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
@@ -2582,22 +2334,11 @@
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
       },
-      "Nivaes.App.Shared": {
-        "type": "CentralTransitive",
-        "requested": "[1.0.1.2, )",
-        "resolved": "1.0.1.2",
-        "contentHash": "JBWwgeA4+27OTw1duoPSWQWMsPWxXi1NyCspq5lYUs81Bn3bfrX0tB4PfITdh+YuSwVZ7ihtgll7Hcd9DNPpoQ==",
-        "dependencies": {
-          "MemoryPack": "1.21.4",
-          "Nivaes.App.Shared.SourceGenerator": "1.0.1.2",
-          "Nivaes.Extensions": "2.4.0.2"
-        }
-      },
       "Nivaes.Extensions": {
         "type": "CentralTransitive",
-        "requested": "[2.4.0.2, )",
-        "resolved": "2.4.0.2",
-        "contentHash": "IDV6n0fWGSr/vWL8Ga+t1Wes/mE/uFAIkMJDfePKvVkhTPbFzEnjB3u4NirDSW2WS9PRIADFHbJSYlzmFFP6WQ=="
+        "requested": "[2.4.0.4, )",
+        "resolved": "2.4.0.4",
+        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
