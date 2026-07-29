@@ -33,7 +33,7 @@ namespace Nivaes.App
 
         public ValidateProperty GetValidateProperty(string propertyName)
         {
-            if (!mProperties.TryGetValue(propertyName, out ValidateProperty validateProperty))
+            if (!mProperties.TryGetValue(propertyName, out ValidateProperty? validateProperty))
             {
                 validateProperty = new ValidateProperty();
                 mProperties.Add(propertyName, validateProperty);

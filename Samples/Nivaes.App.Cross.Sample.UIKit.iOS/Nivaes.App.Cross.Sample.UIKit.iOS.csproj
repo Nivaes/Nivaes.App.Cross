@@ -65,9 +65,6 @@
 	  <ImageAsset Remove="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Nivaes.App.Shared" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Nivaes.App.Cross.Sample.UIKit\Nivaes.App.Cross.Sample.UIKit.csproj" />
 		<TrimmerRootAssembly Include="Nivaes.App.Cross.Sample.UIKit" />
 	</ItemGroup>

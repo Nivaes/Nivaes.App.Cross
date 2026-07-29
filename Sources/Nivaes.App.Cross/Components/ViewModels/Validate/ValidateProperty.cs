@@ -1,9 +1,9 @@
-﻿namespace Nivaes.App
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace Nivaes.App
+{
     public class ValidateProperty
         : Model
     {
