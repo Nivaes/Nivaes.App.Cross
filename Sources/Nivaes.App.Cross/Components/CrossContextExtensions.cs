@@ -28,14 +28,4 @@ public static class CrossContextExtensions
 
         return scopedContext;
     }
-
-    //public static void InitializeScopedServices(this ICrossContext scopedContext)
-    //{
-    //    var scopedServices = scopedContext.Services.GetServices<ICrossInitializeScopedService>();
-    //    if (scopedServices is null)
-    //        return;
-
-    //    foreach (var service in scopedServices)
-    //        service.Initialize(scopedContext.Services);
-    //}
 }

@@ -34,56 +34,7 @@ namespace Nivaes.App.Cross.Hosting
             _metricsBuilder = metricsBuilder;
 
             _properties = new Dictionary<object, object>();
-
-            //            if (useDefaults)
-            //            {
-            //                // Register required services
-            //                this.ConfigureMauiHandlers(configureDelegate: null);
-
-            //                this.ConfigureFonts();
-            //                this.ConfigureImageSources();
-            //                this.ConfigureAnimations();
-            //                this.ConfigureCrossPlatformLifecycleEvents();
-            //                this.ConfigureWindowEvents();
-            //                this.ConfigureDispatching();
-            //                this.ConfigureEnvironmentVariables();
-            //                this.ConfigureMauiDiagnostics();
-
-            //                this.UseEssentials();
-
-            //#if WINDOWS
-            //				this.Services.TryAddEnumerable(ServiceDescriptor.Transient<IMauiInitializeService, MauiCoreInitializer>());
-            //#endif
-            //            }
         }
-
-        //        class MauiCoreInitializer : ICrossInitializeService
-        //        {
-        //            public void Initialize(IServiceProvider services)
-        //            {
-        //#if WINDOWS
-        //				// WORKAROUND: use the MAUI dispatcher instead of the OS dispatcher to
-        //				// avoid crashing: https://github.com/microsoft/WindowsAppSDK/issues/2451
-        //				var dispatcher = services.GetRequiredApplicationDispatcher();
-        //				if (dispatcher.IsDispatchRequired)
-        //					dispatcher.Dispatch(() => SetupResources());
-        //				else
-        //					SetupResources();
-
-        //				static void SetupResources()
-        //				{
-        //					if (UI.Xaml.Application.Current?.Resources is not UI.Xaml.ResourceDictionary resources)
-        //						return;
-
-        //					// WinUI
-        //					resources.AddLibraryResources<UI.Xaml.Controls.XamlControlsResources>();
-
-        //					// Microsoft.Maui
-        //					resources.AddLibraryResources("MicrosoftMauiCoreIncluded", "ms-appx:///Microsoft.Maui/Platform/Windows/Styles/Resources.xbf");
-        //				}
-        //#endif
-        //            }
-        //        }
 
         public IServiceCollection Services => _services;
 
