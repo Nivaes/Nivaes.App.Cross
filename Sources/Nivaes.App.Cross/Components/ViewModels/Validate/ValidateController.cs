@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using FluentValidation.Internal;
-
-namespace Nivaes.App.Cross
+﻿namespace Nivaes.App.Cross
 {
     public class ValidateController
     {
@@ -43,28 +40,29 @@ namespace Nivaes.App.Cross
 
         public async void Validate(string propertyName)
         {
-            if (mBaseViewModel.Validator == null)
-                return;
+            throw new NotImplementedException();
+            //if (mBaseViewModel.Validator == null)
+            //    return;
 
-            try
-            {
-                var results = await mBaseViewModel.Validator.ValidateAsync(
-                        new ValidationContext<IInternalBaseViewModel>(mBaseViewModel, new PropertyChain(), new MemberNameValidatorSelector(new string[] { propertyName })),
-                        new CancellationTokenSource(300).Token
-                    ).ConfigureAwait(false);
+            //try
+            //{
+            //    var results = await mBaseViewModel.Validator.ValidateAsync(
+            //            new ValidationContext<IInternalBaseViewModel>(mBaseViewModel, new PropertyChain(), new MemberNameValidatorSelector(new string[] { propertyName })),
+            //            new CancellationTokenSource(300).Token
+            //        ).ConfigureAwait(false);
 
-                if (results.IsValid)
-                {
-                    GetValidateProperty(propertyName).Errors = Array.Empty<string>();
-                }
-                else
-                {
-                    GetValidateProperty(propertyName).Errors = results.Errors.Select(v => v.ErrorMessage);
-                }
-            }
-            catch (OperationCanceledException)
-            {
-            }
+            //    if (results.IsValid)
+            //    {
+            //        GetValidateProperty(propertyName).Errors = Array.Empty<string>();
+            //    }
+            //    else
+            //    {
+            //        GetValidateProperty(propertyName).Errors = results.Errors.Select(v => v.ErrorMessage);
+            //    }
+            //}
+            //catch (OperationCanceledException)
+            //{
+            //}
         }
     }
 }

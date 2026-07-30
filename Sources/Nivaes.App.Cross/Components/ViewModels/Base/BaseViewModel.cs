@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Cross
 {
@@ -10,7 +9,7 @@ namespace Nivaes.App.Cross
 
         ValidateController ValidateController { get; }
 
-        IValidator? Validator { get; set; }
+        //IValidator? Validator { get; set; }
     }
 
     internal interface IInternalBaseViewModel
@@ -32,7 +31,7 @@ namespace Nivaes.App.Cross
 
         public ValidateController ValidateController { get; private set; }
 
-        public IValidator? Validator { get; set; }
+        //public IValidator? Validator { get; set; }
 
         public override void ViewAppeared()
         {
@@ -57,7 +56,7 @@ namespace Nivaes.App.Cross
 
         public ValidateController ValidateController { get; private set; }
 
-        public IValidator? Validator { get; set; }
+        //public IValidator? Validator { get; set; }
 
         protected BaseViewModel(ILogger logger)
             : base(logger)
@@ -88,7 +87,7 @@ namespace Nivaes.App.Cross
 
         public ValidateController ValidateController { get; private set; }
 
-        public IValidator? Validator { get; set; }
+        //public IValidator? Validator { get; set; }
 
         protected BaseViewModelResult(
             ILogger logger)
@@ -120,7 +119,7 @@ namespace Nivaes.App.Cross
 
         public ValidateController ValidateController { get; private set; }
 
-        public IValidator? Validator { get; set; }
+        //public IValidator? Validator { get; set; }
 
         protected BaseViewModel(ILogger logger)
             : base(logger)
