@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nivaes.App
+namespace Nivaes.App.Cross
 {
     public class ValidateProperty
         : Model

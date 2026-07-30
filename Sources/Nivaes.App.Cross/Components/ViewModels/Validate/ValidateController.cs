@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Internal;
-using Nivaes.App.Cross;
 
-namespace Nivaes.App
+namespace Nivaes.App.Cross
 {
     public class ValidateController
     {

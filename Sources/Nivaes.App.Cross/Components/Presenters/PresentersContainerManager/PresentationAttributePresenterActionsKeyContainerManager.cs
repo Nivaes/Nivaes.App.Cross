@@ -28,7 +28,7 @@ public sealed class PresentationAttributePresenterActionsKeyContainerManager : K
         }
         else
         {
-            throw new App.AppException($"Unregistered {pressenterActionType.FullName} type of presenter action.");
+            throw new AppException($"Unregistered {pressenterActionType.FullName} type of presenter action.");
         }
     }
 

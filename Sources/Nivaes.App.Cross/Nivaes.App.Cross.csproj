@@ -42,6 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\App\Sources\Nivaes.Extensions.Candidates\Nivaes.Extensions.Candidates.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -94,6 +95,9 @@
 			<LastGenOutput>DialogLocalizationString.Designer.cs</LastGenOutput>
 			<CustomToolNamespace>Nivaes.App</CustomToolNamespace>
 		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Components\DataModel\" />
 	</ItemGroup>
 	
 </Project>

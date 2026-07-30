@@ -1,12 +1,12 @@
-﻿namespace Nivaes.App
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Reflection;
-    using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows.Input;
 
+namespace Nivaes.App
+{
     /// <summary>Controller for event listener.</summary>
     public sealed class DataModelPropertyChangedController : IDisposable
     {
