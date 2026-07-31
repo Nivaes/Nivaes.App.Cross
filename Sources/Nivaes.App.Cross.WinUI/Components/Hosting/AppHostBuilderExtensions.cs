@@ -28,6 +28,7 @@ namespace Nivaes.App.Cross.WinUI
             builder.Services.AddSingleton<IWindowsViewPresenterManager, MultiWindowViewPresenterManager>();
             builder.Services.AddSingleton<IPressenterActionContext, PressenterActionContext>();
 
+            builder.Services.AddSingleton<IShellService, ShellService>();
             builder.Services.AddSingleton<ICrashHandler, WinUICrashHandler>();
 
             // Plugins

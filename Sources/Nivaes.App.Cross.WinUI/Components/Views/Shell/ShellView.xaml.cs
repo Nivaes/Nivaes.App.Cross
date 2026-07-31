@@ -19,9 +19,9 @@ namespace Nivaes.App.Cross.WinUI
 
         //private NavigationView NavigationView => NavigationViewControl;
         //protected Frame PageContentCore => PageContent;
-        private NavigationViewItem? mSelectedItem;
+        private NavigationViewItem? _selectedItem;
 
-        private List<NavigationViewItemBase>? mMenuItem;
+        private List<NavigationViewItemBase>? _menuItems;
 
         public ShellView()
         {
@@ -91,7 +91,7 @@ namespace Nivaes.App.Cross.WinUI
 
         private void CreateMenuItems()
         {
-            mMenuItem = new List<NavigationViewItemBase>();
+            _menuItems = new List<NavigationViewItemBase>();
 
             foreach (var item in ViewModel!.ShellModel.PrimaryItems)
             {
@@ -99,10 +99,10 @@ namespace Nivaes.App.Cross.WinUI
 
                 viewItem.Tapped += NavigationViewItemSelected;
 
-                mMenuItem.Add(viewItem);
+                _menuItems.Add(viewItem);
             }
 
-            mMenuItem.Add(new NavigationViewItemSeparator());
+            _menuItems.Add(new NavigationViewItemSeparator());
 
             foreach (var item in ViewModel.ShellModel.SecondaryItems)
             {
@@ -110,13 +110,13 @@ namespace Nivaes.App.Cross.WinUI
 
                 viewItem.Tapped += NavigationViewItemSelected;
 
-                mMenuItem.Add(viewItem);
+                _menuItems.Add(viewItem);
             }
 
-            _navigationView.MenuItemsSource = mMenuItem;
+            _navigationView.MenuItemsSource = _menuItems;
 
-            mSelectedItem = (NavigationViewItem?)mMenuItem.FirstOrDefault();
-            _navigationView.SelectedItem = mSelectedItem;
+            _selectedItem = _menuItems.FirstOrDefault() as NavigationViewItem;
+            _navigationView.SelectedItem = _selectedItem;
 
             ((NavigationViewItem)_navigationView.SettingsItem).Tapped += NavigationViewItemSettingsItemSelected;
         }
@@ -156,12 +156,12 @@ namespace Nivaes.App.Cross.WinUI
 
             if (item.Tag is ShellNavigationItem menuItem)
             {
-                if (menuItem.Reselectable || mSelectedItem != item)
+                if (menuItem.Reselectable || _selectedItem != item)
                 {
                     var command = menuItem.Command;
                     await command.ExecuteAsync();
 
-                    mSelectedItem = item;
+                    _selectedItem = item;
                     _navigationView.SelectedItem = item;
                 }
             }
