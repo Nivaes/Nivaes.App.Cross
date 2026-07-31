@@ -99,7 +99,13 @@ namespace Nivaes.App.Cross.WinUI
             {
                 foreach (var item in itemEnumerator.Current)
                 {
-                    var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
+                    var viewItem = new NavigationViewItem() 
+                    {
+                        Content = item.Label, 
+                        Icon = item.Icon, 
+                        Tag = item,
+                        IsEnabled = item.Command != null
+                    };
 
                     viewItem.Tapped += NavigationViewItemSelected;
 
@@ -152,17 +158,19 @@ namespace Nivaes.App.Cross.WinUI
         {
             var item = (NavigationViewItem)sender;
 
-            if (item.Tag is ShellNavigationItem menuItem)
-            {
-                if (menuItem.Reselectable || _selectedItem != item)
+                if (item.Tag is ShellNavigationItem menuItem)
                 {
-                    var command = menuItem.Command;
-                    await command.ExecuteAsync();
-
-                    _selectedItem = item;
-                    _navigationView.SelectedItem = item;
+                    if (menuItem.Reselectable || _selectedItem != item)
+                    {
+                        var command = menuItem.Command;
+                        if (command != null)
+                        {
+                            await command.ExecuteAsync();
+                        }
+                        _selectedItem = item;
+                        _navigationView.SelectedItem = item;
+                    }
                 }
-            }
         }
 
         private void BackInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)

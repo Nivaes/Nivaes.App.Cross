@@ -22,7 +22,7 @@ namespace Nivaes.App.Cross.WinUI
             Icon = new FontIcon { FontSize = 16, Glyph = ((char)symbol).ToString() };
         }
 
-        public ShellNavigationItem(string label, IconElement icon, ICrossAsyncCommand command, bool reselectable = false)
+        public ShellNavigationItem(string label, IconElement? icon, ICrossAsyncCommand command, bool reselectable = false)
             : this(label, command, reselectable)
         {
             Icon = icon;

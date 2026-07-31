@@ -337,7 +337,6 @@
       "Nivaes.App.Cross.Core": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "(, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
