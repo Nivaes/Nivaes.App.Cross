@@ -10,5 +10,9 @@ namespace Nivaes.App.Cross
           : base(logger)
         { }
         #endregion
+
+        public abstract ICrossAsyncCommand ShowAccountCommand { get; }
+
+        public abstract ICrossAsyncCommand ShowSettingsCommand { get; }
     }
 }

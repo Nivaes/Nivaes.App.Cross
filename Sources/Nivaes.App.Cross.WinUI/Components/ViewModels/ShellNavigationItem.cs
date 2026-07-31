@@ -8,9 +8,9 @@ namespace Nivaes.App.Cross.WinUI
         #region Properties
         public string Label { get; private set; }
 
-        public ICrossAsyncCommand Command { get; private set; }
+        public ICrossAsyncCommand? Command { get; private set; }
 
-        public IconElement Icon { get; private set; }
+        public IconElement? Icon { get; private set; }
 
         public bool Reselectable { get; private set; }
         #endregion

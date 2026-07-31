@@ -19,9 +19,9 @@ namespace Nivaes.App.Cross.WinUI
 
         //private NavigationView NavigationView => NavigationViewControl;
         //protected Frame PageContentCore => PageContent;
-        private NavigationViewItem? mSelectedItem;
+        private NavigationViewItem? _selectedItem;
 
-        private List<NavigationViewItemBase>? mMenuItem;
+        private List<NavigationViewItemBase>? _menuItems;
 
         public ShellView()
         {
@@ -91,32 +91,30 @@ namespace Nivaes.App.Cross.WinUI
 
         private void CreateMenuItems()
         {
-            mMenuItem = new List<NavigationViewItemBase>();
+            _menuItems = new List<NavigationViewItemBase>();
 
-            foreach (var item in ViewModel!.ShellModel.PrimaryItems)
+            using var itemEnumerator = ViewModel!.ShellModel.Items.GetEnumerator();
+            var items = itemEnumerator.MoveNext();
+            while (true)
             {
-                var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
+                foreach (var item in itemEnumerator.Current)
+                {
+                    var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
 
-                viewItem.Tapped += NavigationViewItemSelected;
+                    viewItem.Tapped += NavigationViewItemSelected;
 
-                mMenuItem.Add(viewItem);
+                    _menuItems.Add(viewItem);
+                }
+                if (itemEnumerator.MoveNext())
+                    _menuItems.Add(new NavigationViewItemSeparator());
+                else
+                    break;
             }
 
-            mMenuItem.Add(new NavigationViewItemSeparator());
+            _navigationView.MenuItemsSource = _menuItems;
 
-            foreach (var item in ViewModel.ShellModel.SecondaryItems)
-            {
-                var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
-
-                viewItem.Tapped += NavigationViewItemSelected;
-
-                mMenuItem.Add(viewItem);
-            }
-
-            _navigationView.MenuItemsSource = mMenuItem;
-
-            mSelectedItem = (NavigationViewItem?)mMenuItem.FirstOrDefault();
-            _navigationView.SelectedItem = mSelectedItem;
+            _selectedItem = _menuItems.FirstOrDefault() as NavigationViewItem;
+            _navigationView.SelectedItem = _selectedItem;
 
             ((NavigationViewItem)_navigationView.SettingsItem).Tapped += NavigationViewItemSettingsItemSelected;
         }
@@ -156,12 +154,12 @@ namespace Nivaes.App.Cross.WinUI
 
             if (item.Tag is ShellNavigationItem menuItem)
             {
-                if (menuItem.Reselectable || mSelectedItem != item)
+                if (menuItem.Reselectable || _selectedItem != item)
                 {
                     var command = menuItem.Command;
                     await command.ExecuteAsync();
 
-                    mSelectedItem = item;
+                    _selectedItem = item;
                     _navigationView.SelectedItem = item;
                 }
             }
@@ -277,7 +275,7 @@ namespace Nivaes.App.Cross.WinUI
     }
 
     public abstract class ShellViewPage
-        : BaseWindowsPage<ShellViewModel>
+        : CrossWindowsPage<ShellViewModel>
     {
     }
 }
