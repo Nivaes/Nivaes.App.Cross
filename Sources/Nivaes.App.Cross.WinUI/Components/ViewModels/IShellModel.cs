@@ -6,9 +6,7 @@ namespace Nivaes.App.Cross.WinUI
 {
     public interface IShellModel
     {
-        IEnumerable<ShellNavigationItem> PrimaryItems { get; }
-
-        IEnumerable<ShellNavigationItem> SecondaryItems { get; }
+        IEnumerable<IEnumerable<ShellNavigationItem>> Items { get; }
 
         ICrossAsyncCommand ShowSettingsCommand { get; }
 

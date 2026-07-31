@@ -93,24 +93,22 @@ namespace Nivaes.App.Cross.WinUI
         {
             _menuItems = new List<NavigationViewItemBase>();
 
-            foreach (var item in ViewModel!.ShellModel.PrimaryItems)
+            using var itemEnumerator = ViewModel!.ShellModel.Items.GetEnumerator();
+            var items = itemEnumerator.MoveNext();
+            while (true)
             {
-                var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
+                foreach (var item in itemEnumerator.Current)
+                {
+                    var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
 
-                viewItem.Tapped += NavigationViewItemSelected;
+                    viewItem.Tapped += NavigationViewItemSelected;
 
-                _menuItems.Add(viewItem);
-            }
-
-            _menuItems.Add(new NavigationViewItemSeparator());
-
-            foreach (var item in ViewModel.ShellModel.SecondaryItems)
-            {
-                var viewItem = new NavigationViewItem() { Content = item.Label, Icon = item.Icon, Tag = item };
-
-                viewItem.Tapped += NavigationViewItemSelected;
-
-                _menuItems.Add(viewItem);
+                    _menuItems.Add(viewItem);
+                }
+                if (itemEnumerator.MoveNext())
+                    _menuItems.Add(new NavigationViewItemSeparator());
+                else
+                    break;
             }
 
             _navigationView.MenuItemsSource = _menuItems;
@@ -277,7 +275,7 @@ namespace Nivaes.App.Cross.WinUI
     }
 
     public abstract class ShellViewPage
-        : BaseWindowsPage<ShellViewModel>
+        : CrossWindowsPage<ShellViewModel>
     {
     }
 }
