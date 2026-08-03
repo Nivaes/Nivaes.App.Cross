@@ -46,7 +46,6 @@ namespace Nivaes.App.Cross.WinUI
 
         public override async Task Initialize()
         {
-            //Account = await mAccountConnectorService.GetAccount();
         }
         #endregion
     }
