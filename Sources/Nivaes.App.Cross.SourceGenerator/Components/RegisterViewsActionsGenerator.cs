@@ -100,11 +100,11 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
         SourceProductionContext context,
         (ImmutableArray<ConverterInfo?> ressenterActions, string? rootNamespace) input)
     {
-        var aa = input.ressenterActions.ToArray();
-
         var types = input.ressenterActions
             .Where(x => x != null)
             .Cast<ConverterInfo>()
+            .GroupBy(x => x.ViewType)
+            .Select(g => g.First())
             .OrderBy(x => x.ViewType.Name);
 
         var rootNamespace = string.IsNullOrWhiteSpace(input.rootNamespace) ? string.Empty : $"namespace {input.rootNamespace};";
