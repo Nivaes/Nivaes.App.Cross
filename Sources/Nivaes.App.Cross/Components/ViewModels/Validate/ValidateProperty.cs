@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel;
 
 namespace Nivaes.App.Cross
 {
     public class ValidateProperty
-        : Model
+        : INotifyPropertyChanged
     {
-        private IEnumerable<string> mErrors = Array.Empty<string>();
+        private IEnumerable<string> _errors = Array.Empty<string>();
 
         public IEnumerable<string> Errors
         {
-            get => mErrors;
+            get => _errors;
             set
             {
-                if (base.SetProperty(ref mErrors, value))
+                if (_errors != value)
                 {
-                    base.RaisePropertyChanged(nameof(IsValid));
+                    _errors = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Errors)));
                 }
             }
         }
 
-        public bool IsValid => !mErrors.Any();
+        public bool IsValid => !_errors.Any();
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
