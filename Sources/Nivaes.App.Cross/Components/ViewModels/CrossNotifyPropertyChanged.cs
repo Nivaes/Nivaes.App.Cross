@@ -160,6 +160,7 @@ namespace Nivaes.App.Cross
             return true;
         }
 
+        [Obsolete]
         protected virtual CrossInpcInterceptionResult InterceptRaisePropertyChanged(PropertyChangedEventArgs changedArgs)
         {
             if (CrossSingletonCache.Instance != null)
@@ -174,6 +175,7 @@ namespace Nivaes.App.Cross
             return CrossInpcInterceptionResult.NotIntercepted;
         }
 
+        [Obsolete]
         protected virtual CrossInpcInterceptionResult InterceptRaisePropertyChanging(PropertyChangingEventArgs changingArgs)
         {
             if (CrossSingletonCache.Instance != null)
