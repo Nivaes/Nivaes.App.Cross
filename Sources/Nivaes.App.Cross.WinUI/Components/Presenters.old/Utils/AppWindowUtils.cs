@@ -64,4 +64,15 @@ public static class AppWindowUtils
         WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
         return AppWindow.GetFromWindowId(wndId);
     }
+
+    public static ElementTheme RequestedTheme
+    {
+        get => ((Application.Current as CrossWinUIApplication)?.MainWindow!.Content as FrameworkElement)?.RequestedTheme ?? ElementTheme.Default;
+        set 
+        {
+            var mainWindow = (Application.Current as CrossWinUIApplication)?.MainWindow;
+            var content = mainWindow?.Content as FrameworkElement;
+            content!.RequestedTheme = value;
+        }
+    }
 }
