@@ -481,7 +481,6 @@
       "Nivaes.App.Cross.Core": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "(, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
@@ -493,14 +492,14 @@
       "nivaes.app.cross.sourcegenerator": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[5.0.0, )"
+          "Microsoft.CodeAnalysis.CSharp": "[5.6.0, )"
         }
       },
       "nivaes.extensions.candidates": {
         "type": "Project",
         "dependencies": {
           "MemoryPack": "[1.21.4, )",
-          "Nivaes.Extensions": "[2.4.0.2, )"
+          "Nivaes.Extensions": "[2.4.0.4, )"
         }
       },
       "Microsoft.CodeAnalysis.Analyzers": {
@@ -511,7 +510,7 @@
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "CentralTransitive",
-        "requested": "[5.0.0, )",
+        "requested": "[5.6.0, )",
         "resolved": "5.6.0",
         "contentHash": "r1DrKQ/L0xTw03wJrLr36AMQNslyaeEKBFyFmQcOKa8HX3YvmhY//JEUafb6IR/m0gmaUVCfBTWitKJRNb7YAA==",
         "dependencies": {

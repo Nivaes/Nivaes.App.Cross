@@ -164,7 +164,6 @@
       "Nivaes.App.Cross.Core": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "(, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.Extensions": "[2.4.0.4, )",
           "Nivaes.Extensions.Candidates": "[0.7.75-dev-017, )",
@@ -194,7 +193,7 @@
         "type": "Project",
         "dependencies": {
           "MemoryPack": "[1.21.4, )",
-          "Nivaes.Extensions": "[2.4.0.2, )"
+          "Nivaes.Extensions": "[2.4.0.4, )"
         }
       },
       "Microsoft.AspNetCore.Components.WebAssembly": {
