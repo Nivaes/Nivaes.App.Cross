@@ -221,7 +221,7 @@
         "type": "Project",
         "dependencies": {
           "MemoryPack": "[1.21.4, )",
-          "Nivaes.Extensions": "[2.4.0.4, )"
+          "Nivaes.Extensions": "[2.4.0.2, )"
         }
       },
       "Microsoft.Extensions.Logging": {
