@@ -32,10 +32,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<!--<PackageReference Include="CommunityToolkit.WinUI.Behaviors" />-->
 		<PackageReference Include="ColorCode.WinUI" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics" />
-		<!--<PackageReference Include="CommunityToolkit.WinUI.Collections" />-->
 		<PackageReference Include="Microsoft.WindowsAppSDK" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
 	</ItemGroup>
@@ -72,11 +70,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Components\Views\MainWindows\MainWindow.xaml">
-	    <SubType>Designer</SubType>
-	  </Page>
 	</ItemGroup>
 
 </Project>

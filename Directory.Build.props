@@ -29,7 +29,7 @@
 		<_CrossMacCatalystTargets>net10.0-maccatalyst</_CrossMacCatalystTargets>
 		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
 		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
-		<_WindowsTargets>net10.0-windows10.0.26100.0</_WindowsTargets>
+		<_WindowsTargets>net10.0-windows10.0.19041.0</_WindowsTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>

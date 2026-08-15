@@ -43,7 +43,7 @@
         "type": "Direct",
         "requested": "[10.0.2, )",
         "resolved": "10.0.2",
-        "contentHash": "IdUDSSjbE4INgRhleKfdRwaYIXjlSNfNn8Ty1uF+q5fwl5WDOaOnCckj/9kj2eGdQsGbRgqbJkiwwJb97bRoNw=="
+        "contentHash": "ZDAtI9V2EQajyccTZ67JtJWMCIpK3ZFgwqNHyfMieossRdB90WJ+IbYVKObLOLIv9Vkc3eJcrJD2CeffsF/nUA=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
