@@ -8,12 +8,14 @@ namespace Nivaes.App.Cross.Sample;
 public class SampleApp 
     : CrossApplication
 {
+    private readonly CrossNavigationService NavigationService;
     private readonly TracerProvider _tracerProvider;
 
-    public SampleApp(IServiceProvider serviceProvider, CrossNavigationService naviegateService,
+    public SampleApp(IServiceProvider serviceProvider, CrossNavigationService navigationService,
             ILogger<SampleApp> logger, TracerProvider tracerProvider)
-        : base(serviceProvider, naviegateService, logger)
+        : base(serviceProvider, logger)
     {
+        NavigationService = navigationService;
         _tracerProvider = tracerProvider;
     }
 
