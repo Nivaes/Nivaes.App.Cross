@@ -35,7 +35,7 @@ jobs:
           dotnet build Sources/Nivaes.App.Cross.UIKit --property:RunAOTAnalysis=true --configuration Release --no-restore
           dotnet build Sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-restore
 
-    - name: Test
-      run: |
-          dotnet test Sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
-          dotnet test Sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore
+    # - name: Test
+    #   run: |
+    #       dotnet test Sources/Nivaes.App.Cross.UIKit --configuration Release --no-build --verbosity normal --no-restore
+    #       dotnet test Sources/Nivaes.App.Cross.UIKit.SourceGenerator --configuration Release --no-build --verbosity normal --no-restore

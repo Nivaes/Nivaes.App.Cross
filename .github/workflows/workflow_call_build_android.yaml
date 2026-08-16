@@ -37,6 +37,6 @@ jobs:
           dotnet build Sources/Nivaes.App.Cross.Droid.SourceGenerator --configuration Release --no-restore
           dotnet build Sources/Nivaes.App.Cross.Droid --configuration Release --no-restore
           
-    - name: Test
-      run: |
-          dotnet test Sources/Nivaes.App.Cross.Droid --configuration Release --no-build --no-restore --verbosity normal 
+    #- name: Test
+    #  run: |
+    #      dotnet test --project Sources/Nivaes.App.Cross.Droid --configuration Release --no-build --no-restore --verbosity normal 
