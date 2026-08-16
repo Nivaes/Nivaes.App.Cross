@@ -187,11 +187,9 @@
       "Nivaes.App.Cross.Core": {
         "type": "Project",
         "dependencies": {
-          "C:\\Apl\\NivLib\\App\\Sources\\Nivaes.Extensions.Candidates\\Nivaes.Extensions.Candidates.csproj": "[1.0.0, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.Extensions": "[2.4.0.4, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -282,12 +280,6 @@
         "requested": "[0.1.5, )",
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
-      },
-      "Nivaes.Extensions": {
-        "type": "CentralTransitive",
-        "requested": "[2.4.0.4, )",
-        "resolved": "2.4.0.4",
-        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
