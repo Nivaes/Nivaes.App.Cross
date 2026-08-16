@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>$(_WindowsTargets)</TargetFrameworks>
-		<TargetPlatformMinVersion>$(_TargetPlatformWinodwsMinVersion)</TargetPlatformMinVersion>
+		<TargetPlatformMinVersion>$(_TargetPlatformWindowsMinVersion)</TargetPlatformMinVersion>
 
 		<AssemblyName>Nivaes.App.Cross.WinUI</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.WinUI</RootNamespace>

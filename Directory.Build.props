@@ -19,7 +19,7 @@
 
 		<_SupportedOSPlatformAndroidVersion>24</_SupportedOSPlatformAndroidVersion>
 
-		<_TargetPlatformWinodwsMinVersion>10.0.17763.0</_TargetPlatformWinodwsMinVersion>
+		<_TargetPlatformWindowsMinVersion>10.0.17763.0</_TargetPlatformWindowsMinVersion>
     </PropertyGroup>
 
 	<PropertyGroup>
