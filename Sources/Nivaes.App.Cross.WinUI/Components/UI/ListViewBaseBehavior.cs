@@ -76,9 +76,12 @@ namespace Nivaes.App.Cross.WinUI
                     {
                         var image = container.FindControl<FrameworkElement>(ConnectedAnimatedElementName);
 
-                        ConnectedAnimationService
-                            .GetForCurrentView()
-                            .PrepareToAnimate(AnimatedKey, image);
+                        if (image != null)
+                        {
+                            ConnectedAnimationService
+                                .GetForCurrentView()
+                                .PrepareToAnimate(AnimatedKey, image);
+                        }
                     }
 
                     if (command.CanExecute(selectedItem))

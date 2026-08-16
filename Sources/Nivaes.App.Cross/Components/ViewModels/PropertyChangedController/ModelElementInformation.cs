@@ -1,4 +1,4 @@
-﻿namespace Nivaes.App
+﻿namespace Nivaes.App.Cross
 {
     /// <summary>Information of element.</summary>
     internal sealed class ModelElementInformation

@@ -40,7 +40,7 @@
 
         public async void Validate(string propertyName)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //if (mBaseViewModel.Validator == null)
             //    return;
 

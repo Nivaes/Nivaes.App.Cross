@@ -1,10 +1,10 @@
-﻿namespace Nivaes.App
-{
-    using System.Collections;
-    using System.Collections.Specialized;
+﻿using System.Collections;
+using System.Collections.Specialized;
 
+namespace Nivaes.App.Cross
+{
     /// <summary>Represents the method that will handle the <see cref="System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged"/> event raised when a property is changed on a component.</summary>
-    public delegate void ExNotifyCollectionChangedEventHandler(object sender, ExNotifyCollectionChangedEventArgs e);
+    public delegate void ExNotifyCollectionChangedEventHandler(object? sender, ExNotifyCollectionChangedEventArgs e);
 
     /// <summary>Provides data for the <see cref="System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged"/> event.</summary>
     public sealed class ExNotifyCollectionChangedEventArgs : NotifyCollectionChangedEventArgs
@@ -49,7 +49,7 @@
         /// <param name="action">The action that caused the event. This must be set to <see cref="System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />.</param>
         /// <param name="newItems">The new items that are replacing the original items.</param>
         /// <param name="oldItems">The original items that are replaced.</param>
-        internal ExNotifyCollectionChangedEventArgs(object source, object rootSource, string path,
+        internal ExNotifyCollectionChangedEventArgs(object? source, object rootSource, string path,
                 NotifyCollectionChangedAction action, IList newItems, IList oldItems) :
             base(action, newItems, oldItems)
         {
@@ -61,7 +61,7 @@
 
         #region Properties
         /// <summary>Source of event.</summary>
-        public object Source { get; private set; }
+        public object? Source { get; private set; }
 
         /// <summary>Root elemento of source of event.</summary>
         public object RootSource { get; private set; }

@@ -1,9 +1,9 @@
-﻿namespace Nivaes.App
-{
-    using System.ComponentModel;
+﻿using System.ComponentModel;
 
+namespace Nivaes.App.Cross
+{
     /// <summary>Represents the method that will handle the <see cref="System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event raised when a property is changed on a component.</summary>
-    public delegate void ExPropertyChangedEventHandler(object sender, ExPropertyChangedEventArgs e);
+    public delegate void ExPropertyChangedEventHandler(object? sender, ExPropertyChangedEventArgs e);
 
     /// <summary>Provides data for the <see cref="System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.</summary>
     public sealed class ExPropertyChangedEventArgs

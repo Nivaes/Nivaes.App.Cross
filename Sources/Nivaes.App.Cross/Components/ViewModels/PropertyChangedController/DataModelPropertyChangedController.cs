@@ -5,29 +5,29 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Input;
 
-namespace Nivaes.App
+namespace Nivaes.App.Cross
 {
     /// <summary>Controller for event listener.</summary>
     public sealed class DataModelPropertyChangedController : IDisposable
     {
         #region Properties
-        private List<IWeakEventListener> mWeakEventListeners;
+        private List<IWeakEventListener>? _weakEventListeners;
 
-        private readonly object mRootSource;
+        private readonly object _rootSource;
 
-        private readonly ExPropertyChangedEventHandler mPropertyChangedEventHandler;
+        private readonly ExPropertyChangedEventHandler _propertyChangedEventHandler;
 
-        private readonly ExNotifyCollectionChangedEventHandler mNotifyCollectionChangedEventArgs;
+        private readonly ExNotifyCollectionChangedEventHandler? _notifyCollectionChangedEventArgs;
         #endregion
 
         #region Constructor
         /// <summary>Create a new instance of <see cref="DataModelPropertyChangedController"/>.</summary>
         public DataModelPropertyChangedController(object source, ExPropertyChangedEventHandler propertyChangedEventHandler)
         {
-            mPropertyChangedEventHandler = propertyChangedEventHandler ?? throw new ArgumentNullException(nameof(propertyChangedEventHandler));
-            mRootSource = source ?? throw new ArgumentNullException(nameof(source));
+            _propertyChangedEventHandler = propertyChangedEventHandler ?? throw new ArgumentNullException(nameof(propertyChangedEventHandler));
+            _rootSource = source ?? throw new ArgumentNullException(nameof(source));
 
-            mWeakEventListeners = new List<IWeakEventListener>();
+            _weakEventListeners = new List<IWeakEventListener>();
 
             var elements = ListTree(source);
 
@@ -42,7 +42,7 @@ namespace Nivaes.App
                 ExPropertyChangedEventHandler propertyChangedEventHandler, ExNotifyCollectionChangedEventHandler notifyCollectionChangedEventHandler)
             : this(source, propertyChangedEventHandler)
         {
-            mNotifyCollectionChangedEventArgs = notifyCollectionChangedEventHandler ?? throw new ArgumentNullException(nameof(notifyCollectionChangedEventHandler));
+            _notifyCollectionChangedEventArgs = notifyCollectionChangedEventHandler ?? throw new ArgumentNullException(nameof(notifyCollectionChangedEventHandler));
         }
         #endregion
 
@@ -60,7 +60,7 @@ namespace Nivaes.App
                         {
                             OnEventAction = (instance, source, eventArgs) =>
                             {
-                                mNotifyCollectionChangedEventArgs?.Invoke(source, new ExNotifyCollectionChangedEventArgs(source, mRootSource, path, eventArgs.Action, eventArgs.NewItems, eventArgs.OldItems));
+                                _notifyCollectionChangedEventArgs?.Invoke(source, new ExNotifyCollectionChangedEventArgs(source, _rootSource, path, eventArgs.Action, eventArgs.NewItems!, eventArgs.OldItems!));
                             },
                             OnDetachAction = (listener) =>
                             {
@@ -70,7 +70,7 @@ namespace Nivaes.App
 
                     notifyCollectionChanged.CollectionChanged += weak.OnEvent;
 
-                    mWeakEventListeners.Add(weak);
+                    _weakEventListeners?.Add(weak);
                 }
             }
             else
@@ -83,7 +83,7 @@ namespace Nivaes.App
                         {
                             OnEventAction = (instance, source, eventArgs) =>
                             {
-                                mPropertyChangedEventHandler?.Invoke(source, new ExPropertyChangedEventArgs(eventArgs.PropertyName, source, mRootSource, path));
+                                _propertyChangedEventHandler?.Invoke(source, new ExPropertyChangedEventArgs(eventArgs.PropertyName!, source!, _rootSource, path));
                             },
                             OnDetachAction = (listener) =>
                             {
@@ -93,7 +93,7 @@ namespace Nivaes.App
 
                     notifyPropertyChanged.PropertyChanged += weak.OnEvent;
 
-                    mWeakEventListeners.Add(weak);
+                    _weakEventListeners?.Add(weak);
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace Nivaes.App
                 string newPath = path + "[].";
                 while (true)
                 {
-                    object objectSource;
+                    object? objectSource;
                     try
                     {
                         objectSource = property.GetValue(source, new object[] { ++i });
@@ -173,14 +173,14 @@ namespace Nivaes.App
         {
             if (disposing)
             {
-                if (mWeakEventListeners != null)
+                if (_weakEventListeners != null)
                 {
-                    foreach (var weakEventListener in mWeakEventListeners)
+                    foreach (var weakEventListener in _weakEventListeners)
                     {
                         weakEventListener.Detach();
                     }
 
-                    mWeakEventListeners = null;
+                    _weakEventListeners = null;
                 }
             }
         }
