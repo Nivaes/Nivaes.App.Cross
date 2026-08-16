@@ -40,7 +40,7 @@
 
         public async void Validate(string propertyName)
         {
-            System.Diagnostics.Debugger.Break();
+            //System.Diagnostics.Debugger.Break();
             
             //if (mBaseViewModel.Validator == null)
             //    return;
