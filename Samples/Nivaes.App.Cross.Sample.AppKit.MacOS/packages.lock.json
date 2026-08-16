@@ -1,7 +1,7 @@
 {
   "version": 2,
   "dependencies": {
-    "net10.0-macos26.2": {
+    "net10.0-macos26.5": {
       "AsyncFixer": {
         "type": "Direct",
         "requested": "[2.1.0, )",
@@ -27,9 +27,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.10, )",
-        "resolved": "10.0.10",
-        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
+        "requested": "[10.0.11, )",
+        "resolved": "10.0.11",
+        "contentHash": "IBf7lbovvjGWVWXZX5cJ/cO0WXbId0Zq4BuSeT94mGZuOAP66oMeH9PTBZ9Jpp3Jb6jtK0qm/NyUbPRo1gC/wQ=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -42,25 +42,6 @@
         "requested": "[10.31.0.145097, )",
         "resolved": "10.31.0.145097",
         "contentHash": "Kz/B+7NsmSaRgHWdd9exXHLFNAS9Dt1LmLqwiAdUHybV/z/stcOFlaGSzflekLMu7hVog0aUek2ihTiFlu06Zw=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -206,11 +187,11 @@
       "Nivaes.App.Cross.Core": {
         "type": "Project",
         "dependencies": {
+          "C:\\Apl\\NivLib\\App\\Sources\\Nivaes.Extensions.Candidates\\Nivaes.Extensions.Candidates.csproj": "[1.0.0, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
           "Nivaes.Extensions": "[2.4.0.4, )",
-          "Nivaes.Extensions.Candidates": "[0.7.75-dev-017, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -227,13 +208,6 @@
           "OpenTelemetry.Extensions.Hosting": "[1.17.0, )",
           "OpenTelemetry.Instrumentation.Http": "[1.17.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.17.0, )"
-        }
-      },
-      "nivaes.extensions.candidates": {
-        "type": "Project",
-        "dependencies": {
-          "MemoryPack": "[1.21.4, )",
-          "Nivaes.Extensions": "[2.4.0.4, )"
         }
       },
       "Microsoft.CodeAnalysis.CSharp": {
@@ -376,6 +350,6 @@
         }
       }
     },
-    "net10.0-macos26.2/osx-x64": {}
+    "net10.0-macos26.5/osx-x64": {}
   }
 }
