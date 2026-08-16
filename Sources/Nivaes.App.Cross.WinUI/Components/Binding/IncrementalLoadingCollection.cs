@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using Windows.Foundation;
@@ -10,48 +12,61 @@ namespace Nivaes.App.Cross.WinUI
     public class IncrementalLoadingCollection<T>
          : ObservableCollection<T>, ISupportIncrementalLoading
     {
-        private readonly Func<int, int, Task<IEnumerable<T>>> mLoadDatas;
+        private readonly Func<int, int, Task<IEnumerable<T>>> _loadDatas;
 
-        private readonly int mPage;
+        private readonly int _page;
 
-        private readonly bool mInsertItemFirstPosition;
+        private readonly bool _insertItemFirstPosition;
 
         public IncrementalLoadingCollection(Func<int, int, Task<IEnumerable<T>>> loadDatas, int page = 20, bool insertItemFirstPosition = false)
         {
-            mLoadDatas = loadDatas;
-            mPage = page;
-            mInsertItemFirstPosition = insertItemFirstPosition;
+            _loadDatas = loadDatas;
+            _page = page;
+            _insertItemFirstPosition = insertItemFirstPosition;
         }
 
         public bool HasMoreItems { get; private set; } = true;
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            var dispatcher = Window.Current.Dispatcher;
+            var dispatcher = (Application.Current as CrossWinUIApplication)?.MainWindow?.DispatcherQueue;
 
-            return Task.Run(
-                async () =>
+            if (dispatcher == null)
+                throw new AppException($"App must inherit from {nameof(CrossWinUIApplication)}");
+
+            return AsyncInfo.Run<LoadMoreItemsResult>(async cancellationToken =>
                 {
-                    var datas = await mLoadDatas?.Invoke(base.Count, (int)count);
+                    var datas = await _loadDatas.Invoke(base.Count, (int)count);
                     uint n = 0;
                     if (datas != null && datas.Any())
                     {
-                        await dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                           () =>
+                        var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+
+                        dispatcher.TryEnqueue(DispatcherQueuePriority.Normal, () =>
                            {
-                               foreach (var item in datas)
+                               try
                                {
-                                   if (mInsertItemFirstPosition)
+                                   foreach (var item in datas)
                                    {
-                                       base.Insert(0, item);
+                                       if (_insertItemFirstPosition)
+                                       {
+                                           base.Insert(0, item);
+                                       }
+                                       else
+                                       {
+                                           base.Add(item);
+                                       }
                                    }
-                                   else
-                                   {
-                                       base.Add(item);
-                                   }
+                                   tcs.SetResult();
+                               }
+                               catch (Exception ex)
+                               {
+                                   tcs.SetException(new AppException("Failed to load more items.", ex));
                                }
 
                            });
+
+                        await tcs.Task;
 
                         n = (uint)datas.Count();
                     }
@@ -61,7 +76,7 @@ namespace Nivaes.App.Cross.WinUI
                     }
 
                     return new LoadMoreItemsResult() { Count = n };
-                }).AsAsyncOperation();
+                });
         }
     }
 }
