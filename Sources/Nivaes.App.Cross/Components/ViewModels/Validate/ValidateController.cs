@@ -17,7 +17,7 @@
                 new DataModelPropertyChangedController(mBaseViewModel, DataPropertyChanged);
         }
 
-        private void DataPropertyChanged(object sender, ExPropertyChangedEventArgs e)
+        private void DataPropertyChanged(object? sender, ExPropertyChangedEventArgs e)
         {
             if (e.FullPropertyName.StartsWith(nameof(CrossViewModel.InitializeTask)))
                 return;
@@ -40,7 +40,8 @@
 
         public async void Validate(string propertyName)
         {
-            //throw new NotImplementedException();
+            System.Diagnostics.Debugger.Break();
+            
             //if (mBaseViewModel.Validator == null)
             //    return;
 
