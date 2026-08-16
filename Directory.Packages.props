@@ -5,11 +5,11 @@
     <PackageVersion Include="BTProgressHUD" Version="2.3.1" />
     <PackageVersion Include="ColorCode.WinUI" Version="2.0.15" />
     <PackageVersion Include="CommunityToolkit.WinUI.Collections" Version="8.2.251219" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.11" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.11" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="10.0.10" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="10.0.10" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
@@ -23,7 +23,7 @@
     <PackageVersion Include="OpenTelemetry" Version="1.17.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.17.0" />
     <PackageVersion Include="Rocks" Version="10.3.0" />
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.16.0" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="4.16.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.400" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.32.0.713" />
