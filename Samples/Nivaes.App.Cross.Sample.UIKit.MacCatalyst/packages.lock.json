@@ -16,9 +16,9 @@
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
-        "requested": "[10.0.10, )",
-        "resolved": "10.0.10",
-        "contentHash": "f5VCIE7AJpd5YvzNTeMGVzQIgyE9tX+AreTYwQF+REbu+DZo/2Ae+jNSwhPEYrVz6RRkd7y8ubXjk6Nn6Ka+Cg=="
+        "requested": "[10.0.11, )",
+        "resolved": "10.0.11",
+        "contentHash": "IBf7lbovvjGWVWXZX5cJ/cO0WXbId0Zq4BuSeT94mGZuOAP66oMeH9PTBZ9Jpp3Jb6jtK0qm/NyUbPRo1gC/wQ=="
       },
       "Roslynator.Analyzers": {
         "type": "Direct",
@@ -31,25 +31,6 @@
         "requested": "[10.32.0.713, )",
         "resolved": "10.32.0.713",
         "contentHash": "7GiMslvghy0n0t7r2oEAVbBeKTnYTXUOQPtZCwuN5FvtM+9vxf4BR4FVrq5o4KYUziHF/5NLR5SHQ3guBqYPow=="
-      },
-      "MemoryPack": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "wy3JTBNBsO8LfQcBvvYsWr3lm2Oakolrfu0UQ3oSJSEiD+7ye0GUhYTaXuYYBowqsXBXWD9gf2218ae0JRiYVQ==",
-        "dependencies": {
-          "MemoryPack.Core": "1.21.4",
-          "MemoryPack.Generator": "1.21.4"
-        }
-      },
-      "MemoryPack.Core": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "6RszGorZ0ejNmp37ZcboPBMvvPCuNW2jlrdQfcs/lMzE5b3pmPF6hsm/laDc34hRlbAST1ZxaX/DvYu2DF5sBQ=="
-      },
-      "MemoryPack.Generator": {
-        "type": "Transitive",
-        "resolved": "1.21.4",
-        "contentHash": "g14EsSS85yn0lHTi0J9ivqlZMf09A2iI51fmI+0KkzIzyCbWOBWPi5mdaY7YWmXprk12aYh9u/qfWHQUYthlwg=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -185,8 +166,6 @@
           "Microsoft.Extensions.Hosting.Abstractions": "[10.0.10, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.10, )",
           "Nivaes.App.Secrets": "[0.1.5, )",
-          "Nivaes.Extensions": "[2.4.0.4, )",
-          "Nivaes.Extensions.Candidates": "[0.7.75-dev-017, )",
           "OpenTelemetry": "[1.17.0, )"
         }
       },
@@ -225,13 +204,6 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[5.0.0, )"
-        }
-      },
-      "nivaes.extensions.candidates": {
-        "type": "Project",
-        "dependencies": {
-          "MemoryPack": "[1.21.4, )",
-          "Nivaes.Extensions": "[2.4.0.4, )"
         }
       },
       "BTProgressHUD": {
@@ -323,12 +295,6 @@
         "requested": "[0.1.5, )",
         "resolved": "0.1.5",
         "contentHash": "BuuGo2uctq4G5QTqbibtHKOWMliUnU7z8iOgvjzdI3gd6GsKBwWeiRyHyEnAVxGGWKXdJnKPCo484r1x+7CZFw=="
-      },
-      "Nivaes.Extensions": {
-        "type": "CentralTransitive",
-        "requested": "[2.4.0.4, )",
-        "resolved": "2.4.0.4",
-        "contentHash": "ONLb48n56Izo6sei8WidNnvriZUirN6ln8GWQXdK4pX7x82e57DWuZN6l5/DErnqDa77wl4+afQyEmE44cY/7g=="
       },
       "OpenTelemetry": {
         "type": "CentralTransitive",
