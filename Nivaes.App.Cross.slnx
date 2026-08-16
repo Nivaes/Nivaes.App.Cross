@@ -81,7 +81,7 @@
   <Folder Name="/Sources/">
     <Project Path="Sources/Nivaes.App.Cross.SourceGenerator.UnitTests/Nivaes.App.Cross.SourceGenerator.UnitTests.csproj" Id="c33e33f3-21bb-4286-a752-f3a4a6525325" />
     <Project Path="Sources/Nivaes.App.Cross.SourceGenerator/Nivaes.App.Cross.SourceGenerator.csproj" />
-    <Project Path="Sources/Nivaes.App.Cross.UnitTest/Nivaes.App.Cross.UnitTest.csproj" Id="59a96e39-260d-404a-8504-4a3043692c32" />
+    <Project Path="Sources/Nivaes.App.Cross.UnitTests/Nivaes.App.Cross.UnitTests.csproj" Id="59a96e39-260d-404a-8504-4a3043692c32" />
     <Project Path="Sources/Nivaes.App.Cross/Nivaes.App.Cross.csproj" />
   </Folder>
   <Folder Name="/Sources/AppKit/">
