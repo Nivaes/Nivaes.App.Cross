@@ -42,6 +42,7 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
 		<PackageReference Include="Nivaes.App.Secrets" />
+		<PackageReference Include="Nivaes.Extensions" />
 		<PackageReference Include="OpenTelemetry" />
 	</ItemGroup>
 
