@@ -5,102 +5,98 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.Xaml.Interactivity;
 
-namespace Nivaes.App.Cross.WinUI
+namespace Nivaes.App.Cross.WinUI;
+
+public class ListViewBaseBehavior
+    : Behavior<ListViewBase>
 {
-    public class ListViewBaseBehavior
-        : Behavior<ListViewBase>
+    public static string AnimatedKey = "_ForwardConnectedAnimation";
+
+    protected override void OnAttached()
     {
-        public static string AnimatedKey = "_ForwardConnectedAnimation";
+        base.OnAttached();
 
-        protected override void OnAttached()
-        {
-            base.OnAttached();
+        base.AssociatedObject.IsItemClickEnabled = true;
+        base.AssociatedObject.ItemClick += OnItemClick;
+    }
 
-            base.AssociatedObject.IsItemClickEnabled = true;
-            base.AssociatedObject.ItemClick += OnItemClick;
-        }
+    protected override void OnDetaching()
+    {
+        base.AssociatedObject.ItemClick -= OnItemClick;
 
-        protected override void OnDetaching()
-        {
-            base.AssociatedObject.ItemClick -= OnItemClick;
+        base.OnDetaching();
+    }
 
-            base.OnDetaching();
-        }
+    #region AnimatedElementName
+    public static readonly DependencyProperty ConnectedAnimatedElementNameProperty =
+        DependencyProperty.Register(
+        nameof(ConnectedAnimatedElementName),
+        typeof(string),
+        typeof(ListViewBaseBehavior),
+        new PropertyMetadata(null));
 
-        #region ItemClick
+    public string ConnectedAnimatedElementName
+    {
+        get => (string)GetValue(ConnectedAnimatedElementNameProperty);
+        set => SetValue(ConnectedAnimatedElementNameProperty, value);
+    }
+    #endregion
 
-        #region AnimatedElementName
-        public static readonly DependencyProperty ConnectedAnimatedElementNameProperty =
-            DependencyProperty.Register(
-            nameof(ConnectedAnimatedElementName),
-            typeof(string),
+    #region ItemClick
+    public ICommand ItemClickCommand
+    {
+        get => (ICommand)base.GetValue(ItemClickCommandProperty);
+        set => base.SetValue(ItemClickCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty ItemClickCommandProperty =
+        DependencyProperty.RegisterAttached(
+            nameof(ItemClickCommand),
+            typeof(ICommand),
             typeof(ListViewBaseBehavior),
             new PropertyMetadata(null));
 
-        public string ConnectedAnimatedElementName
+    private DateTime _lastItemClickAction = DateTime.UtcNow;
+
+    private void OnItemClick(object sender, ItemClickEventArgs e)
+    {
+        if (_lastItemClickAction < DateTime.UtcNow)
         {
-            get => (string)GetValue(ConnectedAnimatedElementNameProperty);
-            set => SetValue(ConnectedAnimatedElementNameProperty, value);
-        }
-        #endregion
+            var command = ItemClickCommand;
 
-        #region ItemClick
-        public ICommand ItemClickCommand
-        {
-            get => (ICommand)base.GetValue(ItemClickCommandProperty);
-            set => base.SetValue(ItemClickCommandProperty, value);
-        }
-
-        public static readonly DependencyProperty ItemClickCommandProperty =
-            DependencyProperty.RegisterAttached(
-                nameof(ItemClickCommand),
-                typeof(ICommand),
-                typeof(ListViewBaseBehavior),
-                new PropertyMetadata(null));
-        #endregion
-
-        private DateTime _lastItemClickAction = DateTime.UtcNow;
-
-        private void OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (_lastItemClickAction < DateTime.UtcNow)
+            if (command != null)
             {
-                var command = ItemClickCommand;
+                var container = (SelectorItem)base.AssociatedObject.ContainerFromItem(e.ClickedItem);
+                var selectedItem = e.ClickedItem;
 
-                if (command != null)
+                if (!string.IsNullOrEmpty(ConnectedAnimatedElementName))
                 {
-                    var container = (SelectorItem)base.AssociatedObject.ContainerFromItem(e.ClickedItem);
-                    var selectedItem = e.ClickedItem;
+                    var image = container.FindControl<FrameworkElement>(ConnectedAnimatedElementName);
 
-                    if (!string.IsNullOrEmpty(ConnectedAnimatedElementName))
+                    if (image != null)
                     {
-                        var image = container.FindControl<FrameworkElement>(ConnectedAnimatedElementName);
-
-                        if (image != null)
-                        {
-                            ConnectedAnimationService
-                                .GetForCurrentView()
-                                .PrepareToAnimate(AnimatedKey, image);
-                        }
+                        ConnectedAnimationService
+                            .GetForCurrentView()
+                            .PrepareToAnimate(AnimatedKey, image);
                     }
-
-                    if (command.CanExecute(selectedItem))
-                        command.Execute(selectedItem);
-
-                    _lastItemClickAction = DateTime.UtcNow.AddSeconds(0.5);
                 }
+
+                if (command.CanExecute(selectedItem))
+                    command.Execute(selectedItem);
+
+                _lastItemClickAction = DateTime.UtcNow.AddSeconds(0.5);
             }
         }
-        #endregion
+    }
+    #endregion
 
-        public static void AnimationStart(UIElement destination, IEnumerable<UIElement> coordinatedElements)
+    public static void AnimationStart(UIElement destination, IEnumerable<UIElement> coordinatedElements)
+    {
+        ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation(AnimatedKey);
+        if (imageAnimation != null)
         {
-            ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation(AnimatedKey);
-            if (imageAnimation != null)
-            {
-                imageAnimation.TryStart(destination, coordinatedElements);
+            imageAnimation.TryStart(destination, coordinatedElements);
 
-            }
         }
     }
 }
