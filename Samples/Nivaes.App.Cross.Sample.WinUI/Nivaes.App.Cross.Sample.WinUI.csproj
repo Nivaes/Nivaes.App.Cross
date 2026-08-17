@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>$(_WindowsTargets)</TargetFrameworks>
-		<TargetPlatformMinVersion>$(_TargetPlatformWinodwsMinVersion)</TargetPlatformMinVersion>
+		<TargetPlatformMinVersion>$(_TargetPlatformWindowsMinVersion)</TargetPlatformMinVersion>
 
 		<AssemblyName>Nivaes.App.Cross.Sample.WinUI</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.WinUI</RootNamespace>
