@@ -147,6 +147,7 @@ namespace Nivaes.App.Cross.WinUI
 
         private async void NavigationViewItemSettingsItemSelected(object sender, TappedRoutedEventArgs e)
         {
+            _selectedItem = null;
             var showSettingsCommand = ViewModel!.ShellModel.ShowSettingsCommand;
             if (showSettingsCommand != null && showSettingsCommand.CanExecute())
             {
