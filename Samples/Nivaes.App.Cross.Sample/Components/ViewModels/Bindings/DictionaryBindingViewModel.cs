@@ -11,12 +11,13 @@ public class DictionaryBindingViewModel : BaseViewModel
         set => SetProperty(ref _value, value);
     }
 
-    ICrossAsyncCommand _closeCommand;
+    private ICrossAsyncCommand? _closeCommand;
+
     public ICrossAsyncCommand CloseCommand =>
         _closeCommand ?? (_closeCommand = new CrossAsyncCommand(async () => await NavigationService.Close(this)));
 
 
-    ICrossCommand _incrementCommand;
+    private ICrossCommand? _incrementCommand;
 
     public DictionaryBindingViewModel(ILogger<DictionaryBindingViewModel> logger)
         : base(logger)

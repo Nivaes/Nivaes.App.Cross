@@ -40,7 +40,7 @@ namespace Nivaes.App.Cross
         protected override void OnDataContextChanged()
         {
             ClearPathSourceBinding();
-            _sourceBinding = SourceBindingFactory.CreateBinding(DataContext, Description.SourcePropertyPath);
+            _sourceBinding = SourceBindingFactory.CreateBinding(DataContext!, Description.SourcePropertyPath!);
             if (_sourceBinding != null)
             {
                 _sourceBinding.Changed += SourceBindingOnChanged;

@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross
         public IEnumerable<ICrossUpdateableBinding> LanguageBind(object? source, object target, string? bindingText)
         {
             var bindingDescriptions =
-                Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(bindingText);
+                Singleton<CrossBindingSingletonCache>.Instance.BindingDescriptionParser.LanguageParse(bindingText!);
             return Bind(source, target, bindingDescriptions);
         }
 

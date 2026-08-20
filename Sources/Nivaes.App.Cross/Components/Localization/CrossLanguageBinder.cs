@@ -33,7 +33,7 @@ public class CrossLanguageBinder(string? namespaceName = null, string? typeName 
 
     public virtual string? GetText(string entryKey)
     {
-        return GetText(namespaceName, typeName, entryKey);
+        return GetText(namespaceName!, typeName!, entryKey);
     }
 
     public virtual string? GetText(string entryKey, params object[] args)
@@ -42,7 +42,7 @@ public class CrossLanguageBinder(string? namespaceName = null, string? typeName 
         return format == null ? null : string.Format(format, args);
     }
 
-    protected virtual string? GetText(string? namespaceKey, string? typeKey, string entryKey)
+    protected virtual string? GetText(string namespaceKey, string typeKey, string entryKey)
     {
         return GetTextProvider()?.GetText(namespaceKey, typeKey, entryKey);
     }

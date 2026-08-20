@@ -128,6 +128,7 @@ namespace Nivaes.App.Cross
 
         public ViewModelRequest(ICrossBundle? parameterBundle, ICrossBundle? presentationBundle)
         {
+            _viewModel = new Lazy<TViewModel>();
         }
 
         #region View

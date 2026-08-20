@@ -134,7 +134,7 @@ namespace Nivaes.App.Cross.Sample
 
         private void DoMarkFavoriteCommand(AnimalViewModel? animal)
         {
-            animal.Favorite = !animal.Favorite;
+            animal?.Favorite = !animal.Favorite;
         }
 
         public abstract class AnimalViewModel : CrossNotifyPropertyChanged

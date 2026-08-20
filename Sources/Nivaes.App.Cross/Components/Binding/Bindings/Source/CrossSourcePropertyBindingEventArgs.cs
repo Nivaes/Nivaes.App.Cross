@@ -1,22 +1,19 @@
-namespace Nivaes.App.Cross
+namespace Nivaes.App.Cross;
+
+public class CrossSourcePropertyBindingEventArgs
+    : EventArgs
 {
-    using System;
+    private readonly object? _value;
 
-    public class CrossSourcePropertyBindingEventArgs
-        : EventArgs
+    public CrossSourcePropertyBindingEventArgs(object value)
     {
-        private readonly object _value;
-
-        public CrossSourcePropertyBindingEventArgs(object value)
-        {
-            _value = value;
-        }
-
-        public CrossSourcePropertyBindingEventArgs(ICrossSourceBinding propertySourceBinding)
-        {
-            _value = propertySourceBinding.GetValue();
-        }
-
-        public object Value => _value;
+        _value = value;
     }
+
+    public CrossSourcePropertyBindingEventArgs(ICrossSourceBinding propertySourceBinding)
+    {
+        _value = propertySourceBinding.GetValue();
+    }
+
+    public object? Value => _value;
 }

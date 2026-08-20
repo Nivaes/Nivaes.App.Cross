@@ -25,7 +25,6 @@ public class CrossSourceBindingFactory
         _logger = logger;
     }
 
-    [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
     protected bool TryCreateBindingFromExtensions(
         object source, ICrossPropertyToken propertyToken,
         List<ICrossPropertyToken> remainingTokens, out ICrossSourceBinding? result)
@@ -42,14 +41,12 @@ public class CrossSourceBindingFactory
         return false;
     }
 
-    [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
     public ICrossSourceBinding? CreateBinding(object source, string combinedPropertyName)
     {
         var tokens = SourcePropertyPathParser?.Parse(combinedPropertyName);
         return CreateBinding(source, tokens);
     }
 
-    [RequiresUnreferencedCode("This method uses reflection to create bindings, which may not be preserved in trimming scenarios")]
     public ICrossSourceBinding? CreateBinding(object source, IList<ICrossPropertyToken>? tokens)
     {
         if (tokens == null || tokens.Count == 0)

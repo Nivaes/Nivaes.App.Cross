@@ -257,7 +257,7 @@ public class CrossObservableCollection<T>
             new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItems, start));
     }
 
-    private ICrossMainThreadDispatcher _dispatcher;
+    private ICrossMainThreadDispatcher? _dispatcher;
 
     protected virtual Task InvokeOnMainThread(Action action)
     {

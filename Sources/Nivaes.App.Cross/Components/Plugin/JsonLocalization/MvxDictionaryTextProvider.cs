@@ -3,6 +3,7 @@ namespace Nivaes.App.Cross;
 public class MvxDictionaryTextProvider : MvxTextProvider
 {
     private readonly Dictionary<string, string> _entries = new Dictionary<string, string>();
+
     private readonly bool _maskErrors;
 
     public MvxDictionaryTextProvider(bool maskErrors)
@@ -19,11 +20,10 @@ public class MvxDictionaryTextProvider : MvxTextProvider
     public override string GetText(string namespaceKey, string typeKey, string name)
     {
         var key = MakeLookupKey(namespaceKey, typeKey, name);
-        string value;
-        if (_entries.TryGetValue(key, out value))
+        
+        if (_entries.TryGetValue(key, out var value))
             return value;
 
-        //MvxPluginLog.Instance?.Log(LogLevel.Trace, "Text value missing for " + key);
         if (_maskErrors)
             return key;
 
@@ -34,10 +34,8 @@ public class MvxDictionaryTextProvider : MvxTextProvider
     {
         var key = MakeLookupKey(namespaceKey, typeKey, name);
 
-        if (_entries.TryGetValue(key, out textValue))
+        if (_entries.TryGetValue(key, out textValue!))
             return true;
-
-        //MvxPluginLog.Instance?.Log(LogLevel.Trace, "Text value missing for " + key);
 
         textValue = key;
         return false;

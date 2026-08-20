@@ -16,11 +16,10 @@ public class FluentBindingViewModel : BaseViewModel
 
     public MvxInteraction<bool> ClearBindingInteraction { get; } = new MvxInteraction<bool>();
 
-    string _textValue;
-    public string TextValue
+    public string? TextValue
     {
-        get => _textValue;
-        set => SetProperty(ref _textValue, value);
+        get => field;
+        set => SetProperty(ref field, value);
     }
 
     void ClearBindings()

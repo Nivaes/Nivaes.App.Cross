@@ -13,12 +13,12 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public virtual object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public virtual object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             return CrossBindingConstant.UnsetValue;
         }
 
-        public virtual object ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public virtual object ConvertBack(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             return CrossBindingConstant.UnsetValue;
         }
@@ -34,11 +34,11 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
-                return Convert((TFrom)value, targetType, parameter, culture)!;
+                return Convert((TFrom)value!, targetType, parameter, culture)!;
             }
             catch (Exception e)
             {
@@ -53,11 +53,11 @@ namespace Nivaes.App.Cross
             throw new NotImplementedException();
         }
 
-        public object? ConvertBack(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? ConvertBack(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {
-                return ConvertBack((TTo)value, targetType, parameter, culture)!;
+                return ConvertBack((TTo)value!, targetType, parameter, culture)!;
             }
             catch (Exception e)
             {
@@ -83,7 +83,7 @@ namespace Nivaes.App.Cross
             Logger = logger;
         }
 
-        public object? Convert(object value, Type? targetType, object? parameter, CultureInfo? culture)
+        public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
         {
             try
             {

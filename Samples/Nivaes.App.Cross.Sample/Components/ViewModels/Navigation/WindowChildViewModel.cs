@@ -13,7 +13,7 @@ public class WindowChildViewModel
     }
 
     public int? ParentNo => _param?.ParentNo;
-    public string Text => $"I'm No.{_param?.ChildNo}. My parent is No.{_param.ParentNo}";
+    public string Text => $"I'm No.{_param?.ChildNo}. My parent is No.{_param?.ParentNo}";
 
     public ICrossAsyncCommand CloseCommand => new CrossAsyncCommand(async () => await NavigationService.Close(this));
 

@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross
             { '^', "XOr" }
         };
 
-        private char[] _terminatingCharacters;
+        private char[] _terminatingCharacters = [];
 
         protected override IEnumerable<char> TerminatingCharacters() =>
             _terminatingCharacters ?? (_terminatingCharacters = base.TerminatingCharacters().Union(OperatorCharacters).ToArray());
@@ -40,8 +40,7 @@ namespace Nivaes.App.Cross
             if (IsComplete)
                 return;
 
-            object literal;
-            if (TryReadValue(AllowNonQuotedText.DoNotAllow, out literal))
+            if (TryReadValue(AllowNonQuotedText.DoNotAllow, out var literal))
             {
                 // for null, replace with LiteralNull
                 literal = literal ?? LiteralNull;
@@ -89,11 +88,11 @@ namespace Nivaes.App.Cross
             description.Sources = sources.ToArray();
         }
 
-        private Tuple<uint, string> ParseTwoCharacterOperator()
+        private Tuple<uint, string?> ParseTwoCharacterOperator()
         {
             uint moveFowards = 0;
             var twoCharacterOperatorString = SafePeekString(2);
-            var gotCombinerName = TwoCharacterOperatorCombinerNames.TryGetValue(twoCharacterOperatorString, out string combinerName);
+            var gotCombinerName = TwoCharacterOperatorCombinerNames.TryGetValue(twoCharacterOperatorString, out var combinerName);
             if (gotCombinerName)
                 moveFowards = 2;
 

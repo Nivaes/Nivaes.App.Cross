@@ -12,9 +12,9 @@ namespace Nivaes.App.Cross
 
         public Guid IdAccount { get; private set; }
 
-        public string IdentityToken { get; private set; }
+        public string? IdentityToken { get; private set; }
 
-        public string RefreshToken { get; private set; }
+        public string? RefreshToken { get; private set; }
 
         public DateTime ExpiresIn { get; private set; }
 
