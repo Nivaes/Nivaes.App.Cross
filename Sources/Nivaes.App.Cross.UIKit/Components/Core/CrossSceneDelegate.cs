@@ -141,7 +141,6 @@ public abstract class CrossSceneDelegate
     {
     }
 
-
     private void FireLifetimeChanged(CrossLifetimeEvent which)
     {
         var handler = LifetimeChanged;

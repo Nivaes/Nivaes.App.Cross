@@ -5,7 +5,8 @@ using OpenTelemetry.Logs;
 
 namespace Nivaes.App.Cross.WinUI.Observability
 {
-    internal class WinUICrashHandler : CrashHandler
+    internal class WinUICrashHandler 
+        : CrashHandler
     {
         protected override string PathCrashFile => Path.Combine(
             Windows.Storage.ApplicationData.Current.LocalFolder.Path,
