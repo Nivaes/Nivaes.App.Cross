@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj"/>
+		<ProjectReference Include="..\Nivaes.App.Cross.SourceGenerator\Nivaes.App.Cross.SourceGenerator.csproj" />
 		<ProjectReference Include="..\Nivaes.App.Cross\Nivaes.App.Cross.csproj" />
 	</ItemGroup>
 
