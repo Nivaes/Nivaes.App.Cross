@@ -14,10 +14,10 @@ public class RegisterPresenterActionsGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var converters = context.SyntaxProvider
-        .CreateSyntaxProvider(
-            predicate: static (node, _) => node is ClassDeclarationSyntax,
-            transform: static (ctx, _) => GetConverterType(ctx))
-        .Where(static c => c is not null)!;
+            .CreateSyntaxProvider(
+                predicate: static (node, _) => node is ClassDeclarationSyntax,
+                transform: static (ctx, _) => GetConverterType(ctx))
+            .Where(static c => c is not null)!;
 
         var rootNamespace = context.AnalyzerConfigOptionsProvider
             .Select(static (options, _) =>
