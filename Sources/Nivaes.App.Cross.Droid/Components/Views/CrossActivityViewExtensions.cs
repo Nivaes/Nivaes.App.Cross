@@ -144,7 +144,8 @@ public static class CrossActivityViewExtensions
         var viewType = androidView.GetType();
 
         var viewModelLoader = IPlatformApplication.Current!.ServiceProvider.GetRequiredService<IMvxAndroidViewModelLoader>();
-        if (!Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(viewType, out viewModelType))
+        
+        if(Singleton<ViewsContainers>.Instance.ViewViewModels.TryGetValue(viewType, out viewModelType))
         {
             throw new AppException($"No ViewModel class specified for {viewType} in LoadViewModel", androidView.GetType().Name);
         }

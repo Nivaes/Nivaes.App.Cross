@@ -93,13 +93,12 @@ public sealed class DetailPresentationAction
 
     private void ShowAlternativeDetailHostActivity(DetailPresentationAttribute attribute)
     {
-        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                .GetValue(attribute.AlternativeDetailActivityHostViewModelType);
+        var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[attribute.AlternativeDetailActivityHostViewModelType!];
 
         if (!viewType.IsSubclassOf(typeof(Android.App.Activity)))
             throw new AppException("The host activity doesn't inherit Activity");
 
-        var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.AlternativeDetailActivityHostViewModelType);
+        var hostViewModelRequest = ViewModelRequest.GetDefaultRequest(attribute.AlternativeDetailActivityHostViewModelType!);
         hostViewModelRequest.PresentationValues = base.PendingRequest!.PresentationValues;
         Show(hostViewModelRequest);
     }

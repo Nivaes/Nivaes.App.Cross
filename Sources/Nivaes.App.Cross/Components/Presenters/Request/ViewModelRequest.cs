@@ -66,8 +66,10 @@ namespace Nivaes.App.Cross
         {
             get
             {
-                if(_viewType == null)
-                    _viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(ViewModelType);
+                if (_viewType == null)
+                {
+                    _viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[ViewModelType];
+                }
 
                 return _viewType;
             }
@@ -139,7 +141,9 @@ namespace Nivaes.App.Cross
             get
             {
                 if (_viewType == null)
-                    _viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(ViewModelType);
+                {
+                    _viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[ViewModelType];
+                }
 
                 return _viewType;
             }

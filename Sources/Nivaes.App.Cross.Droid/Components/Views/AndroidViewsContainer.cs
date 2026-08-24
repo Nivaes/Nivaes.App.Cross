@@ -104,8 +104,7 @@ internal sealed class AndroidViewsContainer
 
     public Intent GetIntentFor(IViewModelRequest request)
     {
-        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-            .GetValue(request.ViewModelType);
+        var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[request.ViewModelType];
 
         var intent = new Intent(_applicationContext, viewType);
 

@@ -62,7 +62,8 @@ namespace Nivaes.App.Cross.Droid
             if (currentActivityType == null)
                 return null;
 
-            Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
+            Singleton<ViewsContainers>.Instance.ViewViewModels.TryGetValue(currentActivityType, out var viewModelType);
+
             return viewModelType;
         }
 
@@ -71,8 +72,8 @@ namespace Nivaes.App.Cross.Droid
             if (attribute.ActivityHostViewModelType == null)
                 throw new ArgumentException("ActivityHostViewModelType not set on attribute");
 
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                .GetValue(attribute.ActivityHostViewModelType);
+             var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[attribute.ActivityHostViewModelType];
+                
 
             if (viewType?.IsSubclassOf(typeof(Activity)) != true)
                 throw new AppException("The host activity doesn't inherit Activity");

@@ -58,7 +58,7 @@ namespace Nivaes.App.Cross.WinUI
         {
             var windowInformation = GetWindowInformation(request.ViewModel);
 
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance.GetValue(request.ViewModel.GetType());
+            var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[request.ViewModel.GetType()];
 
             var shellView = windowInformation.RootFrame.Content as ShellView;
 

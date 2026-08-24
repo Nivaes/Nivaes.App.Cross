@@ -20,8 +20,7 @@ namespace Nivaes.App.Cross.AppKitLib
             try
             {
                 CurrentRequest = request;
-                var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                            .GetValue(request.ViewModelType);
+                var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[request.ViewModelType];
 
                 var view = CreateViewOfType(viewType, request);
                 view.Request = request;

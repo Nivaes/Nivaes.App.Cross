@@ -112,7 +112,7 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
         var sourceConverters = string.Join(Environment.NewLine,
             types.Select(type =>
                 {
-                    return $"ViewsContainerManagerHelper.New<{type.ViewModelType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.ViewType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(),";
+                    return $"ViewsContainerHelper.New<{type.ViewModelType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}, {type.ViewType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(),";
                 }
             ));
 
@@ -120,7 +120,7 @@ public class RegisterViewsActionsGenerator : IIncrementalGenerator
         if (!string.IsNullOrWhiteSpace(sourceConverters))
         {
             sourceRegisterConverters = $@"
-                    ViewsContainerManagerHelper.RegisterViewModels(new[]
+                    ViewsContainerHelper.RegisterViewModels(new[]
                     {{
                        {sourceConverters}
                     }});";

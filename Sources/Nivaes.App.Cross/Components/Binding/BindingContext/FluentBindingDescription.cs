@@ -86,7 +86,7 @@ public class FluentBindingDescription<TTarget, TSource>
     public FluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params Expression<Func<TSource, object>>[] properties)
         where TValueCombiner : ICrossValueCombiner
     {
-        if (Singleton<CombinersKeyContainerManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CombinersContainers>.Instance.Combiners.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }
@@ -99,7 +99,7 @@ public class FluentBindingDescription<TTarget, TSource>
     public FluentBindingDescription<TTarget, TSource> ByCombining<TValueCombiner>(params string[] properties)
         where TValueCombiner : ICrossValueCombiner
     {
-        if (Singleton<CombinersKeyContainerManager>.Instance.TryGetValue(typeof(TValueCombiner), out var combiner))
+        if (Singleton<CombinersContainers>.Instance.Combiners.TryGetValue(typeof(TValueCombiner), out var combiner))
         {
             return ByCombining(combiner, properties);
         }
@@ -111,7 +111,7 @@ public class FluentBindingDescription<TTarget, TSource>
 
     public FluentBindingDescription<TTarget, TSource> CommandParameter(object parameter)
     {
-        var converter = Singleton<ConvertersKeyContainerManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+        var converter = Singleton<ConvertersContainers>.Instance.Converters[typeof(CrossCommandParameterValueConverter)];
 
         return WithConversion(converter, parameter);
     }
@@ -134,7 +134,7 @@ public class FluentBindingDescription<TTarget, TSource>
     public FluentBindingDescription<TTarget, TSource> WithConversion<TValueConverter>(object? converterParameter = null)
         where TValueConverter : ICrossValueConverter
     {
-        if (Singleton<ConvertersKeyContainerManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
+        if (Singleton<ConvertersContainers>.Instance.Converters.TryGetValue(typeof(TValueConverter), out var converter))
         {
             return WithConversion(converter, converterParameter);
         }
@@ -252,7 +252,7 @@ public class FluentBindingDescription<TTarget>
 
     public FluentBindingDescription<TTarget> CommandParameter(object parameter)
     {
-        var converter = Singleton<ConvertersKeyContainerManager>.Instance.GetValue<CrossCommandParameterValueConverter>();
+        var converter = Singleton<ConvertersContainers>.Instance.Converters[typeof(CrossCommandParameterValueConverter)];
 
         return WithConversion(converter, parameter);
     }
@@ -275,7 +275,7 @@ public class FluentBindingDescription<TTarget>
     public FluentBindingDescription<TTarget> WithConversion<TValueConverter>(object? converterParameter = null)
         where TValueConverter : ICrossValueConverter
     {
-        if (Singleton<ConvertersKeyContainerManager>.Instance.TryGetValue(typeof(TValueConverter), out var converter))
+        if (Singleton<ConvertersContainers>.Instance.Converters.TryGetValue(typeof(TValueConverter), out var converter))
         {
             return WithConversion(converter, converterParameter);
         }

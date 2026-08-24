@@ -101,7 +101,8 @@ public class AndroidViewPresenterManager
         if (currentActivityType == null)
             return null;
 
-        Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(currentActivityType, out var viewModelType);
+        Singleton<ViewsContainers>.Instance.ViewViewModels.TryGetValue(currentActivityType, out var viewModelType);
+
         return viewModelType;
     }
 }

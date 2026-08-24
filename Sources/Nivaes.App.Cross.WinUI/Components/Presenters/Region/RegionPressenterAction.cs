@@ -47,9 +47,7 @@ namespace Nivaes.App.Cross.WinUI
         {
             var windowInformation = GetWindowInformation(request.ViewModel);
 
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-               .GetValue(request.ViewModelType);
-
+            var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[request.ViewModelType];
 
             var containerView = windowInformation.RootFrame.UnderlyingControl?.FindControl<Frame>(attribute.RegionName);
 

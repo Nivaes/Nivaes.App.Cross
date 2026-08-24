@@ -6,9 +6,8 @@ namespace Nivaes.App.Cross
 {
     public static class CrossBindingExtensions
     {
-        extension(ICrossEditableTextView mvxEditableTextView)
+        extension(ICrossEditableTextView editableTextView)
         {
-            [RequiresUnreferencedCode("This method uses reflection to get type information and perform conversions which may not be preserved by trimming")]
             public bool ShouldSkipSetValueAsHaveNearlyIdenticalNumericText(object target, object? value)
             {
                 if (value == null)
@@ -22,7 +21,7 @@ namespace Nivaes.App.Cross
                     valueType == typeof(float) ||
                     valueType == typeof(decimal))
                 {
-                    var currentValue = mvxEditableTextView.CurrentText;
+                    var currentValue = editableTextView.CurrentText;
                     if (currentValue == null)
                         return false;
 
@@ -48,21 +47,19 @@ namespace Nivaes.App.Cross
             return result.ConvertToBooleanCore();
         }
 
-        [RequiresUnreferencedCode("This method uses reflection to perform type conversions which may not be preserved by trimming")]
-        public static object? MakeSafeValue(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type propertyType,
-            object? value)
+        [Obsolete("Si se usa hay que implementar en ConvertersContainers, para poder buscar por dos valores.")]
+        public static object? MakeSafeValue(this Type propertyType, object? value)
         {
             if (value == null)
             {
                 return propertyType.CreateDefault();
             }
 
-            //var autoConverter = Singleton<CrossBindingSingletonCache>.Instance?.AutoValueConverters.Find(value.GetType(), propertyType);
-            if (Singleton<ValueKeyConvertersManager>.Instance.TryGetValue(value.GetType(), propertyType, out var autoConverter))
-            {
-                return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
-            }
+            throw new NotImplementedException("Si llega hasta aquí, mirar como se buscan converter con dos valores");
+            //if(Singleton<ConvertersContainers>.Instance.Converters.TryGetValue((value.GetType(), propertyType), out var autoConverter))
+            //{
+            //    return autoConverter.Convert(value, propertyType, null, CultureInfo.CurrentUICulture);
+            //}
 
             return propertyType.MakeSafeValueCore(value);
         }

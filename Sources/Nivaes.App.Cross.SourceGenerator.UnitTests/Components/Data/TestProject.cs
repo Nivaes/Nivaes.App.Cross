@@ -55,7 +55,6 @@ namespace TestProject
             MetadataReference.CreateFromFile(typeof(ILogger<>).Assembly.Location),
             //MetadataReference.CreateFromFile(typeof(CrossConvertersManagerHelper).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(IServiceProvider).Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(KeyContainerManager<>).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(ICrossValueConverter).Assembly.Location),
             //MetadataReference.CreateFromFile(typeof(StringToLowerValueConverter).Assembly.Location),
         };

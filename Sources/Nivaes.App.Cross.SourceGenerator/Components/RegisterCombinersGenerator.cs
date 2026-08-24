@@ -97,9 +97,9 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
             types.Where(combiner => combiner.Register).Select(combiner =>
                 {
                     if (string.IsNullOrWhiteSpace(combiner.Name))
-                        return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                        return $"CombinersContainerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                     else
-                        return $"CombinersContainerManagerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
+                        return $"CombinersContainerHelper.New<{combiner.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{combiner.Name}\"),";
                 }
             ));
 
@@ -107,7 +107,7 @@ public class RegisterCombinersGenerator : IIncrementalGenerator
         if (!string.IsNullOrWhiteSpace(sourceConverters))
         {
             sourceRegisterConverters = $@"
-                    CombinersContainerManagerHelper.RegisterCombiners(new[]
+                    CombinersContainerHelper.RegisterCombiners(new[]
                     {{
                        {sourceConverters}
                     }});";

@@ -44,7 +44,8 @@ public static class CrossViewExtensions
             this TViewType view)
         where TViewType : ICrossView
     {
-        if (Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        //if (Singleton<ViewViewModelsKeyContainerManager>.Instance.TryGetValue(view.GetType(), out var viewModelType))
+        if(Singleton<ViewsContainers>.Instance.ViewModelViews.TryGetValue(view.GetType(), out var viewModelType))
         {
             return viewModelType;
         }

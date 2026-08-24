@@ -67,8 +67,7 @@ public sealed class MasterPresentationAction
 
     private void ShowMasterHostFragment(MasterPresentationAttribute attribute, IViewModelRequest request)
     {
-        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                        .GetValue(attribute.FragmentHostMasterDetailViewModelType);
+        var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[attribute.FragmentHostMasterDetailViewModelType];
 
         if (!viewType.IsSubclassOf(typeof(Fragment)))
             throw new AppException("The host fragment doesnt inherit Fragment");

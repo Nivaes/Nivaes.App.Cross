@@ -3,12 +3,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
 {
-    public static class ConvertersContainerManagerHelper
+    public static class ConvertersContainerHelper
     {
         public sealed class ConverterManagerItem
         {
-            internal NameConvertersKeyContainerManager.KeyStoreItem NameConverters { [DebuggerHidden] get; [DebuggerHidden] set; }
-            internal ConvertersKeyContainerManager.KeyStoreItem Converters { [DebuggerHidden] get; [DebuggerHidden] set; }
+            required public string Name;
+
+            required public Type Type;
+
+            required public ICrossValueConverter Converter;
         }
 
         public static ConverterManagerItem New<TConverter>(IServiceProvider services, string name)
@@ -18,10 +21,11 @@ namespace Nivaes.App.Cross
             {
                 var converter = ActivatorUtilities.CreateInstance<TConverter>(services);
 
-                return new ConverterManagerItem()
+                return new ConverterManagerItem
                 {
-                    NameConverters = new NameConvertersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = converter },
-                    Converters = new ConvertersKeyContainerManager.KeyStoreItem { Key = typeof(TConverter).TypeHandle.Value, Value = converter }
+                    Name = name,
+                    Type = typeof(TConverter),
+                    Converter = converter
                 };
             }
             catch (InvalidOperationException ex)
@@ -38,8 +42,13 @@ namespace Nivaes.App.Cross
 
         public static void RegisterComverters(ConverterManagerItem[] items)
         {
-            Singleton<NameConvertersKeyContainerManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
-            Singleton<ConvertersKeyContainerManager>.Instance.Merge(items.Select(x => x.NameConverters).ToArray());
+            var containers = Singleton<ConvertersContainers>.Instance;
+
+            foreach (var item in items) 
+            {
+                containers.NameConverters.Add(item.Name, item.Converter);
+                containers.Converters.Add(item.Type, item.Converter);
+            }
         }
 
         private static string FindName(Type type)

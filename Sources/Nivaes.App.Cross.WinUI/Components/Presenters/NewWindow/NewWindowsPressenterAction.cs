@@ -51,8 +51,7 @@ namespace Nivaes.App.Cross.WinUI
         {
             var newWindow = new Window();
 
-            var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-                .GetValue(request.ViewModelType);
+            var viewType = Singleton<ViewsContainers>.Instance.ViewModelViews[request.ViewModelType];
 
             var frame = new CrossWindowsFrame(new Frame());
             await ShowPage(frame, viewType, request);

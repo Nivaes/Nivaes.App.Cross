@@ -33,7 +33,7 @@ public class CrossBindingDescriptionParser
         if (string.IsNullOrWhiteSpace(converterName))
             return null;
 
-        return Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
+        return Singleton<ConvertersContainers>.Instance.NameConverters[converterName];
     }
 
     protected ICrossValueCombiner? FindCombiner(string? combinerName)
@@ -41,7 +41,7 @@ public class CrossBindingDescriptionParser
         if (string.IsNullOrWhiteSpace(combinerName))
             return null;
 
-        if (Singleton<NameCombinersKeyContainerManager>.Instance.TryGetValue(combinerName, out var combiner))
+        if (Singleton<CombinersContainers>.Instance.NameCombiners.TryGetValue(combinerName, out var combiner))
         {
             return combiner;
         }

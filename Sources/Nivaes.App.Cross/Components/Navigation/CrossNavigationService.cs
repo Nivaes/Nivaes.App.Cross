@@ -1,11 +1,5 @@
-using System.Data.Common;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using OpenTelemetry;
-using OpenTelemetry.Resources;
 
 namespace Nivaes.App.Cross;
 
@@ -84,10 +78,8 @@ public sealed class CrossNavigationService
     public Task<bool> CanNavigate<TViewModel>()
         where TViewModel : ICrossViewModel
     {
-        var viewType = Singleton<ViewModelViewsKeyContainerManager>.Instance
-            .GetValue(typeof(TViewModel));
-
-        return Task.FromResult(viewType != null);
+        var canNavigate = Singleton<ViewsContainers>.Instance.ViewModelViews.ContainsKey(typeof(TViewModel));
+        return Task.FromResult(canNavigate);
     }
 
     public Task<bool> Navigate<TViewModel>(

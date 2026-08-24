@@ -54,9 +54,8 @@ namespace Nivaes.App.Cross
                                             CrossBindingMode mode = CrossBindingMode.Default)
         {
             ICrossValueConverter? converter = null;
-            //var converter = Singleton<CrossBindingSingletonCache>.Instance.ValueConverterLookup.Find(converterName);
             if (converterName != null)
-                converter = Singleton<NameConvertersKeyContainerManager>.Instance.GetValue(converterName);
+                converter = Singleton<ConvertersContainers>.Instance.NameConverters[converterName];
 
             return element.Bind(target, targetPropertyPath, sourcePropertyPath, converter, converterParameter,
                                 fallbackValue, mode);

@@ -94,9 +94,9 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
             types.Select(converter =>
                 {
                     if (string.IsNullOrWhiteSpace(converter.Name))
-                        return $"ConvertersContainerManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
+                        return $"ConvertersContainerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services),";
                     else
-                        return $"ConvertersContainerManagerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{converter.Name}\"),";
+                        return $"ConvertersContainerHelper.New<{converter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}>(services, \"{converter.Name}\"),";
                 }
             ));
 
@@ -104,7 +104,7 @@ public class RegisterConvertersGenerator : IIncrementalGenerator
         if (!string.IsNullOrWhiteSpace(sourceConverters))
         {
             sourceRegisterConverters = $@"
-                    ConvertersContainerManagerHelper.RegisterComverters(new[]
+                    ConvertersContainerHelper.RegisterComverters(new[]
                     {{
                        {sourceConverters}
                     }});";

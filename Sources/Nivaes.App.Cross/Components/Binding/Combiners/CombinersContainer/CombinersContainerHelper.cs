@@ -3,12 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Nivaes.App.Cross
 {
-    public static class CombinersContainerManagerHelper
+    public static class CombinersContainerHelper
     {
         public sealed class CombinersManagerItem
         {
-            internal NameCombinersKeyContainerManager.KeyStoreItem NameCombiners { [DebuggerHidden] get; [DebuggerHidden] set; }
-            internal CombinersKeyContainerManager.KeyStoreItem Combiners { [DebuggerHidden] get; [DebuggerHidden] set; }
+            required public string NameCombiner;
+            required public Type TypeCombiner;
+            required public ICrossValueCombiner Combiner;
         }
 
         public static CombinersManagerItem New<TCombiner>(IServiceProvider services, string name)
@@ -16,12 +17,11 @@ namespace Nivaes.App.Cross
         {
             try
             {
-                var combiner = ActivatorUtilities.CreateInstance<TCombiner>(services);
-
-                return new CombinersManagerItem()
+                return new CombinersManagerItem
                 {
-                    NameCombiners = new NameCombinersKeyContainerManager.KeyStoreItem { Key = name.GetHashCode(), Value = combiner },
-                    Combiners = new CombinersKeyContainerManager.KeyStoreItem { Key = combiner.GetType().TypeHandle.Value, Value = combiner }
+                    NameCombiner = name,
+                    TypeCombiner = typeof(TCombiner),
+                    Combiner = ActivatorUtilities.CreateInstance<TCombiner>(services)
                 };
             }
             catch (InvalidOperationException ex)
@@ -38,8 +38,13 @@ namespace Nivaes.App.Cross
 
         public static void RegisterCombiners(CombinersManagerItem[] items)
         {
-            Singleton<NameCombinersKeyContainerManager>.Instance.Merge(items.Select(x => x.NameCombiners).ToArray());
-            Singleton<CombinersKeyContainerManager>.Instance.Merge(items.Select(x => x.Combiners).ToArray());
+            var combinersContainer = Singleton<CombinersContainers>.Instance;
+
+            foreach(var item in items)
+            {
+                combinersContainer.NameCombiners.Add(item.NameCombiner, item.Combiner);
+                combinersContainer.Combiners.Add(item.TypeCombiner, item.Combiner);
+            }
         }
 
         private static string FindName(Type type)
