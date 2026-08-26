@@ -2,6 +2,7 @@
 
 namespace Nivaes.App.Cross
 {
+    [Obsolete("", true)]
     public static class ValueConvertersManager
     {
         public sealed class AutoValueConvertersManagerItem

@@ -2,6 +2,7 @@
 
 namespace Nivaes.App.Cross;
 
+[Obsolete("", true)]
 public sealed class ValueKeyConvertersManager : KeyContainerManager<ICrossValueConverter>
 {
     public ValueKeyConvertersManager()

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nivaes.App.Cross.UnitTest
+﻿namespace Nivaes.App.Cross.UnitTest
 {
     public sealed class TestPlatformApplication : IPlatformApplication
     {
