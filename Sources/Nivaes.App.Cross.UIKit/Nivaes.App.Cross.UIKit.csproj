@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>$(_iOSTargets);$(_CrossMacCatalystTargets);$(_CrossTvOSTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_iOSTargets);$(_MacCatalystTargets);$(_TvOSTargets)</TargetFrameworks>
 		<AssemblyName>Nivaes.App.Cross.UIKit</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.UIKitLib</RootNamespace>
 

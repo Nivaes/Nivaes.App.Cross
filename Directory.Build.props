@@ -25,21 +25,21 @@
 	<PropertyGroup>
 		<_CommonTargets>net10.0</_CommonTargets>
 		<_AndroidTargets>net10.0-android</_AndroidTargets>
+		<_MacOSTargets>net10.0-macos</_MacOSTargets>
 		<_iOSTargets>net10.0-ios</_iOSTargets>
-		<_CrossMacCatalystTargets>net10.0-maccatalyst</_CrossMacCatalystTargets>
-		<_CrossMacOSTargets>net10.0-macos</_CrossMacOSTargets>
-		<_CrossTvOSTargets>net10.0-tvos</_CrossTvOSTargets>
+		<_MacCatalystTargets>net10.0-maccatalyst</_MacCatalystTargets>
+		<_TvOSTargets>net10.0-tvos</_TvOSTargets>
 		<_WindowsTargets>net10.0-windows10.0.19041.0</_WindowsTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<_TargetFrameworks>$(_CommonTargets)</_TargetFrameworks>
 		<!-- Windows-specific targets -->
-		<_TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_AndroidTargets);$(_iOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_TargetFrameworks>
+		<_TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('windows')) ">$(_AndroidTargets);$(_iOSTargets);$(_MacCatalystTargets);$(_MacOSTargets);$(_TvOSTargets);$(_CrossWindowsTargets);$(TargetFrameworks)</_TargetFrameworks>
 		<!-- Linux-specific targets -->
 		<_TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('linux')) ">$(_AndroidTargets);$(TargetFrameworks)</_TargetFrameworks>
 		<!-- Mac-specific targets -->
-		<_TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_AndroidTargets);$(_iOSTargets);$(_CrossMacCatalystTargets);$(_CrossMacOSTargets);$(_CrossTvOSTargets);$(TargetFrameworks)</_TargetFrameworks>
+		<_TargetFrameworks Condition=" $([MSBuild]::IsOSPlatform('osx')) ">$(_AndroidTargets);$(_iOSTargets);$(_MacCatalystTargets);$(_MacOSTargets);$(_TvOSTargets);$(TargetFrameworks)</_TargetFrameworks>
 	</PropertyGroup>
 	
 	<PropertyGroup>
