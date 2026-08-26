@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(_CrossAndroidTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_AndroidTargets)</TargetFrameworks>
 		<SupportedOSPlatformVersion>$(_SupportedOSPlatformAndroidVersion)</SupportedOSPlatformVersion>
 		
 		<AssemblyName>Nivaes.App.Cross.Droid</AssemblyName>
@@ -46,6 +46,11 @@
 		<PackageReference Include="Xamarin.AndroidX.AppCompat" />
 		<PackageReference Include="Xamarin.AndroidX.Leanback" />
 		<PackageReference Include="Xamarin.AndroidX.SwipeRefreshLayout" />
+		<!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />-->
+		<PackageReference Include="Xamarin.AndroidX.Fragment" />
+		<PackageReference Include="Xamarin.AndroidX.Preference" />
+		<!--<PackageReference Include="Xamarin.AndroidX.ViewPager" />-->
+		<PackageReference Include="Xamarin.Google.Android.Material" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,14 +78,6 @@
 	
 	<ItemGroup>
 		<None Include="Images\icon.png" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />-->
-		<!--<PackageReference Include="Xamarin.AndroidX.Fragment" />-->
-		<PackageReference Include="Xamarin.AndroidX.Preference" />
-		<!--<PackageReference Include="Xamarin.AndroidX.ViewPager" />-->
-		<PackageReference Include="Xamarin.Google.Android.Material" />
 	</ItemGroup>
 
 	<ItemGroup>

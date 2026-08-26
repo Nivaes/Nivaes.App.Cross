@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_CommonTargets)</TargetFrameworks>
 
 		<IsPackable>false</IsPackable>
 		<ImplicitUsings>enable</ImplicitUsings>
