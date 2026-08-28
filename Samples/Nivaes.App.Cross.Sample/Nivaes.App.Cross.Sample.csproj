@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+		<TargetFrameworks>$(_CommonTargets)</TargetFrameworks>
 		
 		<AssemblyName>Nivaes.App.Cross.Sample</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample</RootNamespace>

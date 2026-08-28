@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>$(_CrossAndroidTargets)</TargetFramework>
+		<TargetFramework>$(_AndroidTargets)</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<AssemblyName>Nivaes.App.Cross.Sample.Droid</AssemblyName>
 		<RootNamespace>Nivaes.App.Cross.Sample.Droid</RootNamespace>
