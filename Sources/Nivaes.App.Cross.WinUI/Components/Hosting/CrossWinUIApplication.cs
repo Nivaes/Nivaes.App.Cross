@@ -73,7 +73,6 @@ public abstract class CrossWinUIApplication
 
         _application.Setup();
         
-
         MainWindow!.Activate();
 
         Regiesters();
