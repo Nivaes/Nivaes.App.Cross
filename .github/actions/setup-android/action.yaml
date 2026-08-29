@@ -15,6 +15,7 @@ runs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ${{ inputs.global-json-file }}
+        workloads: android
         # cache: true
         # cache-dependency-path: |
         #   **/packages.lock.json
@@ -36,8 +37,8 @@ runs:
     #     restore-keys: |
     #       workloads-${{ runner.os }}-
 
-    - name: Install workload
-      shell: bash
-      run: |
-         dotnet workload install android
+    # - name: Install workload
+    #   shell: bash
+    #   run: |
+    #      dotnet workload install android
 

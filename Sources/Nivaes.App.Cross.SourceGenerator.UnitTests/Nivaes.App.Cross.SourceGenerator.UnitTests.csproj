@@ -11,6 +11,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="Shouldly" />
 		<PackageReference Include="xunit.runner.visualstudio">
