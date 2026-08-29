@@ -27,7 +27,7 @@ runs:
       uses: actions/setup-dotnet@v5
       with:
         global-json-file: ${{ inputs.global-json-file }}
-        workload: ios, maccatalyst, tvos, macos
+        workloads: ios, maccatalyst, tvos, macos
         # cache: true
         # cache-dependency-path: |
         #   **/packages.lock.json
