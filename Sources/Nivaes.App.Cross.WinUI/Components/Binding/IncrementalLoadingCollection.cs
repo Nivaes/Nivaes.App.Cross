@@ -33,9 +33,11 @@ namespace Nivaes.App.Cross.WinUI
             if (dispatcher == null)
                 throw new AppException($"App must inherit from {nameof(CrossWinUIApplication)}");
 
+            var loadCount = count == 1 ? 20 : count;
+
             return AsyncInfo.Run<LoadMoreItemsResult>(async cancellationToken =>
                 {
-                    var datas = await _loadDatas.Invoke(base.Count, (int)count);
+                    var datas = await _loadDatas.Invoke(base.Count, (int)loadCount);
                     uint n = 0;
                     if (datas != null && datas.Any())
                     {
