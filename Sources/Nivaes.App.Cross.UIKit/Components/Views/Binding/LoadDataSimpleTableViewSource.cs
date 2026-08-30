@@ -6,7 +6,7 @@ namespace Nivaes.App.Cross.UIKitLib
         : MvxSimpleTableViewSource
     {
         #region Properties
-        public override IEnumerable ItemsSource
+        public override IEnumerable? ItemsSource
         {
             get => base.ItemsSource;
             set
@@ -23,12 +23,12 @@ namespace Nivaes.App.Cross.UIKitLib
             : base(handle)
         { }
 
-        public LoadDataSimpleTableViewSource(UITableView tableView, string nibName, string cellIdentifier = null,
-                                        NSBundle bundle = null, bool registerNibForCellReuse = true)
+        public LoadDataSimpleTableViewSource(UITableView tableView, string nibName, string? cellIdentifier = null,
+                                        NSBundle? bundle = null, bool registerNibForCellReuse = true)
           : base(tableView, nibName, cellIdentifier, bundle, registerNibForCellReuse)
         { }
 
-        public LoadDataSimpleTableViewSource(UITableView tableView, Type cellType, string cellIdentifier = null)
+        public LoadDataSimpleTableViewSource(UITableView tableView, Type cellType, string? cellIdentifier = null)
             : base(tableView, cellType, cellIdentifier)
         { }
         #endregion
@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.UIKitLib
                 {
                     if (tableViewSource.ItemsSource is ILoadingDataObservableCollection dataObservableCollection)
                     {
-                        var last = tableView.IndexPathsForVisibleRows.LastOrDefault();
+                        var last = tableView.IndexPathsForVisibleRows!.LastOrDefault();
                         if (last != null && last.Item >= dataObservableCollection.CountMargin)
                         {
                             await dataObservableCollection.LoadDatas().ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace Nivaes.App.Cross.UIKitLib
         #endregion
 
         #region Data
-        private async void LoadDatas(IEnumerable itemsSource)
+        private async void LoadDatas(IEnumerable? itemsSource)
         {
             if (itemsSource is ILoadingDataObservableCollection dataObservableCollection)
             {

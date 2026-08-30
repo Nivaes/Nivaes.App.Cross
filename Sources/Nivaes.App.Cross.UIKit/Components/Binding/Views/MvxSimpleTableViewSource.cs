@@ -1,18 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Cross.Observability;
+using ObjCRuntime;
+
 namespace Nivaes.App.Cross.UIKitLib
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Foundation;
-    using Microsoft.Extensions.Logging;
-    using Nivaes.App.Cross.Observability;
-    using ObjCRuntime;
-    using UIKit;
-
     public class MvxSimpleTableViewSource
         : MvxTableViewSource
     {
         private readonly NSString? _cellIdentifier;
-        //private readonly MvxIosMajorVersionChecker _iosVersion6Checker = new MvxIosMajorVersionChecker(6);
 
         protected virtual NSString? CellIdentifier => _cellIdentifier;
 
@@ -36,7 +32,7 @@ namespace Nivaes.App.Cross.UIKitLib
             }
         }
 
-        public MvxSimpleTableViewSource(UITableView tableView, Type cellType, string cellIdentifier = null)
+        public MvxSimpleTableViewSource(UITableView tableView, Type cellType, string? cellIdentifier = null)
             : base(tableView)
         {
             // if no cellIdentifier supplied, then use the cell type name as cellId
