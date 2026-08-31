@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Nivaes.App.Cross.Hosting
 {
-    public sealed class CrossApp : ICrossApp, IDisposable, IAsyncDisposable
+    public sealed class CrossApp : ICrossApp, IHost, IDisposable, IAsyncDisposable
     {
         private readonly IServiceProvider _services;
+
+        private List<Task>? _backgroundServiceTasks;
 
         internal CrossApp(IServiceProvider services)
         {
@@ -42,10 +45,32 @@ namespace Nivaes.App.Cross.Hosting
             }
         }
 
+        public async Task StartAsync(CancellationToken cancellationToken = default)
+        {
+            var services = _services.GetRequiredService<IEnumerable<IHostedService>>();
+            foreach (var service in services)
+            {
+                if (service is BackgroundService backgroundService)
+                {
+                    await backgroundService.StartAsync(CancellationToken.None);
+                }
+            }
+        }
+
+        public async Task StopAsync(CancellationToken cancellationToken = default)
+        {
+            var services = _services.GetRequiredService<IEnumerable<IHostedService>>();
+            foreach (var service in services)
+            {
+                if (service is BackgroundService backgroundService)
+                {
+                    await backgroundService.StopAsync(CancellationToken.None);
+                }
+            }
+        }
+
         private void DisposeConfiguration()
         {
-            // Explicitly dispose the Configuration, since it is added as a singleton object that the ServiceProvider
-            // won't dispose.
             (Configuration as IDisposable)?.Dispose();
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.System.Power;
 using Nivaes.App.Cross.Hosting;
 using Application = Microsoft.UI.Xaml.Application;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
@@ -12,11 +13,13 @@ namespace Nivaes.App.Cross.WinUI;
 public abstract class CrossWinUIApplication
     : Application, IPlatformApplication
 {
-    IServiceProvider? _services;
+    private IServiceProvider? _services;
 
-    ICrossApplication? _application;
+    private ICrossApplication? _application;
 
     internal Frame? RootFrame { get; private set; }
+
+    private CrossApp? _crossApp;
 
     public Window? MainWindow { get; private set; }
 
@@ -28,6 +31,17 @@ public abstract class CrossWinUIApplication
     public ICrossApplication Application
     {
         [DebuggerHidden] get => _application!;
+    }
+
+    public CrossWinUIApplication()
+    {
+        PowerManager.EnergySaverStatusChanged += PowerManager_EnergySaverStatusChanged;
+    }
+
+    private async void PowerManager_EnergySaverStatusChanged(object? sender, object e)
+    {
+        if(_crossApp != null)
+            await _crossApp.StopAsync();
     }
 
     protected abstract CrossApp CreateCrossApp();
@@ -47,9 +61,9 @@ public abstract class CrossWinUIApplication
 
         IPlatformApplication.Current = this;
 
-        var crossApp = CreateCrossApp();
+        _crossApp = CreateCrossApp();
 
-        var rootContext = new CrossContext(crossApp.Services);
+        var rootContext = new CrossContext(_crossApp.Services);
 
         var applicationContext = rootContext.MakeApplicationScope(this);
 
@@ -64,6 +78,14 @@ public abstract class CrossWinUIApplication
         //InitializeContainer(crossApp.Services);
 
         _application = _services.GetRequiredService<ICrossApplication>();
+
+        await _crossApp.StartAsync();
+
+        //var aa = Task.Run(async () =>
+        //{
+        //    await Task.Delay(30000);
+        //    await _crossApp.StopAsync();
+        //});
 
         //this.SetApplicationHandler(_application, applicationContext);
 

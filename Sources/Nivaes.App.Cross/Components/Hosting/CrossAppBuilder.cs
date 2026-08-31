@@ -20,8 +20,6 @@ namespace Nivaes.App.Cross.Hosting
 
         internal CrossAppBuilder(bool useDefaults)
         {
-            // Lazy-load these classes, so they aren't created if they are never used.
-            // Don't capture the 'this' variable in AddSingleton, so MauiAppBuilder can be GC'd.
             var configuration = new Lazy<ConfigurationManager>(() => new ConfigurationManager());
             var hostEnvironment = new Lazy<CrossHostEnvironment>(() => new CrossHostEnvironment());
             var metricsBuilder = new Lazy<CrossMetricsBuilder>(() => new CrossMetricsBuilder(Services));
