@@ -79,7 +79,7 @@ public abstract class CrossWinUIApplication
 
         _application = _services.GetRequiredService<ICrossApplication>();
 
-        await _crossApp.StartAsync();
+        _ = _crossApp.StartAsync();
 
         //var aa = Task.Run(async () =>
         //{
