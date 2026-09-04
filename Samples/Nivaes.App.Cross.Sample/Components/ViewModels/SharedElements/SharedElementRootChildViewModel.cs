@@ -5,7 +5,7 @@ namespace Nivaes.App.Cross.Sample;
 public class SharedElementRootChildViewModel
     : BaseViewModel
 {
-    public override Task Initialize()
+    public override ValueTask Initialize()
     {
         Items = new CrossObservableCollection<ListItemViewModel>
         {

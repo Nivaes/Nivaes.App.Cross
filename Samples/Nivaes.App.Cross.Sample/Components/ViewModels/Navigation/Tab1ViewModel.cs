@@ -19,9 +19,9 @@ public class Tab1ViewModel
         OpenTab2Command = new CrossAsyncCommand(() => NavigationService.ChangePresentation(new CrossPagePresentationHint(typeof(Tab2ViewModel))));
     }
 
-    public override Task Initialize()
+    public override async ValueTask Initialize()
     {
-        return Task.Delay(3000);
+        await Task.Delay(3000);
     }
 
     private string? _parameter;

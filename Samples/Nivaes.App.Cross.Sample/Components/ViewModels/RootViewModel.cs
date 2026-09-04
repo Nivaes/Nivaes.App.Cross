@@ -162,7 +162,7 @@ public class RootViewModel
 
     public string? TotalTime { get; set; }
 
-    public override Task Initialize()
+    public override ValueTask Initialize()
     {
         Logger.LogTrace("Initialize");
 

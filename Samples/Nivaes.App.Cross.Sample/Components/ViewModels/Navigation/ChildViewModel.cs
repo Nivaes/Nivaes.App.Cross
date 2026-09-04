@@ -35,7 +35,7 @@ public class ChildViewModel : CrossNavigationViewModel<SampleModel>
             throw new System.NotImplementedException();
     }
 
-    public override async Task Initialize()
+    public override async ValueTask Initialize()
     {
         await base.Initialize();
 
