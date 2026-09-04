@@ -45,8 +45,8 @@ public class FluentBindingView : MvxFragment<FluentBindingViewModel>
     void BindTextInput()
     {
         var bindingSet = CreateBindingSet();
-        bindingSet?.Bind(_inputText).For(v => v.Text).To(vm => vm.TextValue);
-        bindingSet?.Bind(_outputText).For(v => v.Text).To(vm => vm.TextValue);
+        bindingSet?.Bind(_inputText!).For(v => v.Text!).To(vm => vm.TextValue!);
+        bindingSet?.Bind(_outputText!).For(v => v.Text!).To(vm => vm.TextValue!);
         bindingSet?.Bind(this).For(v => v.ClearBindingInteraction!).To(vm => vm.ClearBindingInteraction);
         bindingSet?.ApplyWithClearBindingKey(nameof(FluentBindingView));
     }

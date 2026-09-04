@@ -22,8 +22,8 @@ public sealed class SharedElementRootView
         {
             var selectedViewHolder = recyclerView.FindViewHolderForAdapterPosition(SelectedListItem);
 
-            var selectedMvxLogo = selectedViewHolder.ItemView.FindViewById<ImageView>(Resource.Id.img_logo);
-            sharedElements.Add(nameof(Resource.Id.img_logo), selectedMvxLogo);
+            var selectedMvxLogo = selectedViewHolder!.ItemView.FindViewById<ImageView>(Resource.Id.img_logo);
+            sharedElements.Add(nameof(Resource.Id.img_logo), selectedMvxLogo!);
         }
 
         return sharedElements;

@@ -30,7 +30,7 @@ namespace Nivaes.App.Cross.Sample.AppKitOS.MacOS
 
             if (_firstTime)
             {
-                ViewModel.ShowInitialViewModelsCommand.Execute(null);
+                ViewModel?.ShowInitialViewModelsCommand.Execute(null);
                 _firstTime = false;
             }
         }

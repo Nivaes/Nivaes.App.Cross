@@ -38,10 +38,10 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
 
             Add(_tableView);
 
-            _tableView.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor).Active = true;
-            _tableView.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor).Active = true;
-            _tableView.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor).Active = true;
-            _tableView.BottomAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.BottomAnchor).Active = true;
+            _tableView.LeadingAnchor.ConstraintEqualTo(View!.LeadingAnchor).Active = true;
+            _tableView.TrailingAnchor.ConstraintEqualTo(View!.TrailingAnchor).Active = true;
+            _tableView.TopAnchor.ConstraintEqualTo(View!.SafeAreaLayoutGuide.TopAnchor).Active = true;
+            _tableView.BottomAnchor.ConstraintEqualTo(View!.SafeAreaLayoutGuide.BottomAnchor).Active = true;
 
             var set = CreateBindingSet();
             set.Bind(_source).To(vm => vm.Sections);
@@ -53,10 +53,10 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
         private sealed class HeaderCell : MvxTableViewCell, IExpandableHeaderCell
         {
             public static NSString Identifier = new NSString(nameof(HeaderCell));
-            private static UIImage _arrowImage;
-            private UILabel _title;
-            private UIImageView _arrow;
-            private UISwitch _switch;
+            private static UIImage? _arrowImage;
+            private UILabel? _title;
+            private UIImageView? _arrow;
+            private UISwitch? _switch;
 
             public HeaderCell(NativeHandle handle) : base(handle)
             {
@@ -107,7 +107,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
                 _switch.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
 
                 var set = this.CreateBindingSet<HeaderCell, Page1ViewModel.SectionViewModel>();
-                set.Bind(_title).To(vm => vm.Title);
+                set.Bind(_title).To(vm => vm.Title!);
                 set.Bind(_arrow).For(v => v.BindHidden()).To(vm => vm.ShowsControl);
                 set.Bind(_switch).For(v => v.BindVisible()).To(vm => vm.ShowsControl);
                 set.Bind(_switch).To(vm => vm.On);
@@ -116,12 +116,12 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
 
             public void OnCollapsed()
             {
-                _arrow.Transform = CGAffineTransform.MakeIdentity();
+                _arrow!.Transform = CGAffineTransform.MakeIdentity();
             }
 
             public void OnExpanded()
             {
-                _arrow.Transform = CGAffineTransform.MakeRotation(180 * ((float)Math.PI / 180.0f));
+                _arrow!.Transform = CGAffineTransform.MakeRotation(180 * ((float)Math.PI / 180.0f));
             }
         }
 
@@ -129,7 +129,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
         private sealed class ItemCell : MvxTableViewCell
         {
             public static NSString Identifier = new NSString(nameof(ItemCell));
-            private UILabel _title;
+            private UILabel? _title;
 
             public ItemCell(NativeHandle handle) : base(handle)
             {
@@ -155,7 +155,7 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
                 _title.CenterYAnchor.ConstraintEqualTo(ContentView.CenterYAnchor).Active = true;
 
                 var set = this.CreateBindingSet<ItemCell, Page1ViewModel.SectionItemViewModel>();
-                set.Bind(_title).To(vm => vm.Title);
+                set.Bind(_title).To(vm => vm.Title!);
                 set.Apply();
             }
         }
@@ -168,14 +168,14 @@ namespace Nivaes.App.Cross.Sample.UIKitLib
             {
             }
 
-            protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
+            protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object? item)
             {
-                return TableView.DequeueReusableCell(ItemCell.Identifier);
+                return TableView.DequeueReusableCell(ItemCell.Identifier)!;
             }
 
             protected override UITableViewCell GetOrCreateHeaderCellFor(UITableView tableView, nint section)
             {
-                return tableView.DequeueReusableCell(HeaderCell.Identifier);
+                return tableView.DequeueReusableCell(HeaderCell.Identifier)!;
             }
         }
     }

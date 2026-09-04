@@ -15,9 +15,9 @@ namespace Nivaes.App.Cross.Sample.Droid;
 [RequiresUnreferencedCode("Uses Bindings which require unreferenced code")]
 public class SplitRootView : CrossActivity<SplitRootViewModel>
 {
-    public DrawerLayout DrawerLayout { get; set; }
+    public DrawerLayout? DrawerLayout { get; set; }
 
-    protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+    protected override void OnCreate(Android.OS.Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
 
@@ -27,7 +27,7 @@ public class SplitRootView : CrossActivity<SplitRootViewModel>
 
         if (savedInstanceState == null)
         {
-            ViewModel.ShowInitialMenuCommand.Execute();
+            ViewModel!.ShowInitialMenuCommand.Execute();
             ViewModel.ShowDetailCommand.Execute();
         }
 

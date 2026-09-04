@@ -15,7 +15,7 @@ public sealed class SharedElementSecondView
 
         SetContentView(Resource.Layout.SharedElementSecondView);
 
-        Bundle extras = Intent.Extras;
-        extras.SetSharedElementsById(FindViewById(Android.Resource.Id.Content));
+        Bundle? extras = Intent?.Extras;
+        extras?.SetSharedElementsById(FindViewById(Android.Resource.Id.Content)!);
     }
 }

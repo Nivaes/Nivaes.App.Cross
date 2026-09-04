@@ -27,7 +27,7 @@ public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
         var descriptionLabel = view.FindViewById<TextView>(Resource.Id.txt_description);
 
         var bindingSet = CreateBindingSet();
-        bindingSet.Bind(background).For(v => v.Background).To(vm => vm.Value)
+        bindingSet.Bind(background!).For(v => v.Background!).To(vm => vm.Value)
             .WithDictionaryConversion(new Dictionary<int, Drawable>
             {
                 [0] = new ColorDrawable(Color.Blue),
@@ -36,7 +36,7 @@ public class DictionaryBindingView : MvxFragment<DictionaryBindingViewModel>
                 [3] = new ColorDrawable(Color.Violet)
             });
 
-        bindingSet.Bind(descriptionLabel).To(vm => vm.Value)
+        bindingSet.Bind(descriptionLabel!).To(vm => vm.Value)
             .WithDictionaryConversion(new Dictionary<int, string>
             {
                 [0] = "Description for blue",

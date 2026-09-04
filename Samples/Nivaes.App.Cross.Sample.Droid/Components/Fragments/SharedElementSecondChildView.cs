@@ -13,7 +13,7 @@ namespace Nivaes.App.Cross.Sample.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            SharedElementEnterTransition = TransitionInflater.From(Activity).InflateTransition(Android.Resource.Transition.Move);
+            SharedElementEnterTransition = TransitionInflater.From(Activity)!.InflateTransition(Android.Resource.Transition.Move);
         }
 
         public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
@@ -21,7 +21,7 @@ namespace Nivaes.App.Cross.Sample.Droid
             base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(Resource.Layout.SharedElementSecondChildView, null);
-            Arguments.SetSharedElementsById(view);
+            Arguments!.SetSharedElementsById(view!);
 
             return view;
         }

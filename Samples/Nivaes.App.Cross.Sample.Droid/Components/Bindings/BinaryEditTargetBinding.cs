@@ -12,7 +12,7 @@ namespace Nivaes.App.Cross.Sample.Droid
 
         public override void SubscribeToEvents()
         {
-            Target.MyCountChanged += TargetOnMyCountChanged;
+            Target!.MyCountChanged += TargetOnMyCountChanged;
         }
 
         private void TargetOnMyCountChanged(object? sender, EventArgs eventArgs)

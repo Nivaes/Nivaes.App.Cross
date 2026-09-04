@@ -42,7 +42,7 @@ namespace Nivaes.App.Cross.Sample.Droid
 
             ((SharedElementRootView?)Activity)?.SelectedListItem = e.Position;
 
-            ViewModel.SelectItemExecution((ListItemViewModel)e.DataContext!);
+            ViewModel!.SelectItemExecution((ListItemViewModel)e.DataContext!);
         }
     }
 }

@@ -28,7 +28,7 @@ public class TabsRootBView : MvxFragment<TabsRootBViewModel>
 
         if (savedInstanceState == null)
         {
-            ViewModel.ShowInitialViewModelsCommand.Execute();
+            ViewModel!.ShowInitialViewModelsCommand.Execute();
         }
     }
 }

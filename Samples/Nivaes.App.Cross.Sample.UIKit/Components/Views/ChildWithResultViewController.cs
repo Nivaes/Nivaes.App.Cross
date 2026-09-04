@@ -40,19 +40,19 @@ public sealed class ChildWithResultViewController : MvxViewController<ChildWithR
         Add(_close);
 
         NSLayoutConstraint.ActivateConstraints([
-            _message.TopAnchor.ConstraintEqualTo(View.SafeAreaLayoutGuide.TopAnchor, 16),
-        _message.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-        _message.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -16),
+            _message.TopAnchor.ConstraintEqualTo(View!.SafeAreaLayoutGuide.TopAnchor, 16),
+        _message.LeadingAnchor.ConstraintEqualTo(View!.LeadingAnchor, 16),
+        _message.TrailingAnchor.ConstraintEqualTo(View!.TrailingAnchor, -16),
         _message.HeightAnchor.ConstraintEqualTo(40),
 
         _value.TopAnchor.ConstraintEqualTo(_message.BottomAnchor, 16),
-        _value.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-        _value.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16),
+        _value.LeadingAnchor.ConstraintEqualTo(View!.LeadingAnchor, 16),
+        _value.TrailingAnchor.ConstraintEqualTo(View!.TrailingAnchor, 16),
         _value.HeightAnchor.ConstraintEqualTo(40),
 
         _close.TopAnchor.ConstraintEqualTo(_value.BottomAnchor, 16),
-        _close.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 16),
-        _close.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, 16)
+        _close.LeadingAnchor.ConstraintEqualTo(View!.LeadingAnchor, 16),
+        _close.TrailingAnchor.ConstraintEqualTo(View!.TrailingAnchor, 16)
         ]);
     }
 
@@ -60,15 +60,15 @@ public sealed class ChildWithResultViewController : MvxViewController<ChildWithR
     {
         if (textfield.Equals(_message))
         {
-            _message.ResignFirstResponder();
-            _value.BecomeFirstResponder();
+            _message!.ResignFirstResponder();
+            _value!.BecomeFirstResponder();
             return true;
         }
 
         if (textfield.Equals(_value))
         {
-            _message.ResignFirstResponder();
-            _value.ResignFirstResponder();
+            _message!.ResignFirstResponder();
+            _value!.ResignFirstResponder();
             return true;
         }
 
@@ -80,9 +80,9 @@ public sealed class ChildWithResultViewController : MvxViewController<ChildWithR
         base.ViewDidLoad();
 
         var set = CreateBindingSet();
-        set.Bind(_message).To(vm => vm.Message).TwoWay();
-        set.Bind(_value).To(vm => vm.Value).TwoWay();
-        set.Bind(_close).To(vm => vm.CloseCommand);
+        set.Bind(_message!).To(vm => vm.Message).TwoWay();
+        set.Bind(_value!).To(vm => vm.Value).TwoWay();
+        set.Bind(_close!).To(vm => vm.CloseCommand);
         set.Apply();
     }
 
@@ -90,6 +90,6 @@ public sealed class ChildWithResultViewController : MvxViewController<ChildWithR
     {
         base.ViewDidAppear(animated);
 
-        _message.BecomeFirstResponder();
+        _message!.BecomeFirstResponder();
     }
 }

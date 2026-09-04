@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Sample.Droid
         {
         }
 
-        protected ModalNavView(IntPtr javaReference, JniHandleOwnership transfer)
+        public ModalNavView(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {
         }

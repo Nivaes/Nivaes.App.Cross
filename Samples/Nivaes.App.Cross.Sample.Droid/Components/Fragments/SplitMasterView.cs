@@ -35,7 +35,7 @@ public class SplitMasterView
 
     private Task Navigate(int itemId)
     {
-        ((SplitRootView)Activity).DrawerLayout.CloseDrawers();
+        ((SplitRootView?)Activity)?.DrawerLayout!.CloseDrawers();
         return Task.Delay(TimeSpan.FromMilliseconds(250));
 
         //switch (itemId)
