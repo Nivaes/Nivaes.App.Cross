@@ -76,9 +76,9 @@ namespace Nivaes.App.Cross
         {
         }
 
-        public virtual Task Initialize()
+        public virtual ValueTask Initialize()
         {
-            return Task.FromResult(true);
+            return ValueTask.CompletedTask;
         }
 
         private CrossNotifyTask? _initializeTask;

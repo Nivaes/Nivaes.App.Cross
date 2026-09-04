@@ -178,7 +178,7 @@ public sealed class CrossViewModelLocator
             if (navigationArgs?.Cancel == true)
                 return;
 
-            viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
+            viewModel.InitializeTask = CrossNotifyTask.Create(async () => await viewModel.Initialize().ConfigureAwait(false));
         }
         catch (Exception ex)
         {
@@ -216,7 +216,7 @@ public sealed class CrossViewModelLocator
             if (navigationArgs?.Cancel == true)
                 return;
 
-            viewModel.InitializeTask = CrossNotifyTask.Create(() => viewModel.Initialize());
+            viewModel.InitializeTask = CrossNotifyTask.Create(async () => await viewModel.Initialize().ConfigureAwait(false));
         }
         catch (Exception ex)
         {

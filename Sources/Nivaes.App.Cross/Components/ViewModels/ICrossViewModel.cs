@@ -27,7 +27,7 @@ public interface ICrossViewModel
 
     void Prepare();
 
-    Task Initialize();
+    ValueTask Initialize();
 
     CrossNotifyTask? InitializeTask { get; set; }
 }
