@@ -117,7 +117,7 @@ namespace Nivaes.App.Cross.Droid
                 if (!fragmentAttribute.PopEnterAnimation.Equals(int.MinValue) &&
                     !fragmentAttribute.PopExitAnimation.Equals(int.MinValue))
                 {
-                    ft.SetCustomAnimations(
+                    ft!.SetCustomAnimations(
                         fragmentAttribute.EnterAnimation,
                         fragmentAttribute.ExitAnimation,
                         fragmentAttribute.PopEnterAnimation,
@@ -125,16 +125,16 @@ namespace Nivaes.App.Cross.Droid
                 }
                 else
                 {
-                    ft.SetCustomAnimations(
+                    ft!.SetCustomAnimations(
                         fragmentAttribute.EnterAnimation,
                         fragmentAttribute.ExitAnimation);
                 }
             }
 
             if (fragmentAttribute.TransitionStyle != int.MinValue)
-                ft.SetTransitionStyle(fragmentAttribute.TransitionStyle);
+                ft!.SetTransitionStyle(fragmentAttribute.TransitionStyle);
 
-            ft.Remove(fragmentToPop);
+            ft!.Remove(fragmentToPop);
             ft.CommitAllowingStateLoss();
 
             thisFragment.OnFragmentPopped(ft, fragmentToPop, fragmentAttribute);

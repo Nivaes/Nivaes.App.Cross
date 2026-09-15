@@ -41,13 +41,13 @@ namespace Nivaes.App.Cross.Droid
             {
                 Fragment fragmentHost;
                 if (attribute.FragmentHostFullView != null &&
-                    (fragmentHost = thisFragment.GetFragmentByViewType(attribute.FragmentHostFullView)) != null)
+                    (fragmentHost = thisFragment.GetFragmentByViewType(attribute.FragmentHostFullView!)!) != null)
                 {
-                    thisFragment.PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute);
+                    thisFragment.PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager!, attribute);
                 }
                 else
                 {
-                    thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager, attribute);
+                    thisFragment.PerformShowFragmentTransaction(request, base.Context.CurrentFragmentManager!, attribute);
                 }
             }
 

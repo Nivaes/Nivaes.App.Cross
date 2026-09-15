@@ -15,7 +15,7 @@ namespace Nivaes.App.Cross.Droid
 
         ILogger Logger { get; }
 
-        IMvxFragmentView CreateFragment(
+        IMvxFragmentView? CreateFragment(
            FragmentManager fragmentManager,
            BasePresentationAttribute attribute,
            Type fragmentType)
@@ -23,7 +23,7 @@ namespace Nivaes.App.Cross.Droid
             try
             {
                 var fragmentClass = Class.FromType(fragmentType);
-                var fragment = (IMvxFragmentView)fragmentManager.FragmentFactory.Instantiate(
+                var fragment = (IMvxFragmentView?)fragmentManager.FragmentFactory!.Instantiate(
                     fragmentClass.ClassLoader!, fragmentClass.Name);
                 return fragment;
             }
@@ -47,7 +47,7 @@ namespace Nivaes.App.Cross.Droid
             if (!fragmentHost.IsVisible)
                 Logger.Log(LogLevel.Warning, $"Fragment host is not visible when trying to show View {viewType.Name} as Nested Fragment");
 
-            PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager, attribute);
+            PerformShowFragmentTransaction(request, fragmentHost.ChildFragmentManager!, attribute);
         }
 
         Fragment? GetFragmentByViewType(Type? type)
@@ -108,9 +108,9 @@ namespace Nivaes.App.Cross.Droid
 
             var ft = fragmentManager.BeginTransaction();
 
-            OnBeforeFragmentChanging(ft, fragment, attribute, request);
+            OnBeforeFragmentChanging(ft!, fragment, attribute, request);
 
-            ft.SetReorderingAllowed(attribute.AllowReordering);
+            ft!.SetReorderingAllowed(attribute.AllowReordering);
 
             if (attribute.AddToBackStack)
                 ft.AddToBackStack(fragmentName);
@@ -150,10 +150,10 @@ namespace Nivaes.App.Cross.Droid
                 return null;
             }
 
-            foreach (var parentFragmentManager in fragmentManager.Fragments.Select(f => f.ChildFragmentManager))
+            foreach (var parentFragmentManager in fragmentManager.Fragments!.Select(f => f.ChildFragmentManager))
             {
                 // Let's try again finding it
-                var fragment = parentFragmentManager.FindFragmentByTag(fragmentName);
+                var fragment = parentFragmentManager!.FindFragmentByTag(fragmentName);
 
                 if (fragment == null)
                 {
