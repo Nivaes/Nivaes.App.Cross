@@ -5,18 +5,18 @@ namespace Nivaes.App.Cross.Droid
 {
     internal class EditTextValidate
     {
-        private bool mActivate = false;
-        private readonly string mPropertyName;
-        private readonly EditText mEditText;
-        private readonly IBaseViewModel mDataContext;
+        private bool _activate = false;
+        private readonly string _propertyName;
+        private readonly EditText _editText;
+        private readonly IBaseViewModel _dataContext;
 
         public EditTextValidate(EditText editText, IBaseViewModel dataContext, string propertyName)
         {
-            mDataContext = dataContext;
-            mEditText = editText;
-            mPropertyName = propertyName;
+            _dataContext = dataContext;
+            _editText = editText;
+            _propertyName = propertyName;
 
-            mEditText.FocusChange += EditTextFocusChange;
+            _editText.FocusChange += EditTextFocusChange;
 
             var property = Property;
             if (property != null)
@@ -35,14 +35,14 @@ namespace Nivaes.App.Cross.Droid
         {
             if (!e.HasFocus)
             {
-                if (!mActivate)
+                if (!_activate)
                 {
-                    if (mDataContext is IBaseViewModel baseViewModel)
+                    if (_dataContext is IBaseViewModel baseViewModel)
                     {
-                        baseViewModel.ValidateController.Validate(mPropertyName);
+                        baseViewModel.ValidateController.Validate(_propertyName);
                     }
 
-                    mActivate = true;
+                    _activate = true;
                     ExecuteActions();
                 }
             }
@@ -50,30 +50,30 @@ namespace Nivaes.App.Cross.Droid
 
         private void ExecuteActions()
         {
-            if (mActivate)
+            if (_activate)
             {
                 var property = Property;
                 if (property == null || property.IsValid)
                 {
-                    mEditText.Error = string.Empty;
+                    _editText.Error = string.Empty;
                 }
                 else
                 {
-                    mEditText.Error = property.Errors.FirstOrDefault();
+                    _editText.Error = property.Errors.FirstOrDefault();
                 }
             }
         }
 
         #region Property
-        private ValidateProperty mProperty;
+        private ValidateProperty? mProperty;
 
-        private ValidateProperty Property
+        private ValidateProperty? Property
         {
             get
             {
                 if (mProperty == null)
                 {
-                    mProperty = mDataContext.ValidateController.GetValidateProperty(mPropertyName);
+                    mProperty = _dataContext.ValidateController.GetValidateProperty(_propertyName!);
                 }
                 return mProperty;
             }

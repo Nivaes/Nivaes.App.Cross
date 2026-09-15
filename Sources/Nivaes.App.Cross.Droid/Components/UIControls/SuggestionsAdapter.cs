@@ -17,7 +17,7 @@ namespace Nivaes.App.Cross.Droid
 
             Java.Lang.Object func(string s) => new Java.Lang.String(s);
 
-            var curtor = (MatrixCursor)base.Cursor;
+            var curtor = (MatrixCursor)base.Cursor!;
             int n = 0;
             var enumerator = values.GetEnumerator();
             while (enumerator.MoveNext())
@@ -26,13 +26,13 @@ namespace Nivaes.App.Cross.Droid
             }
         }
 
-        public override View NewView(Context context, ICursor cursor, ViewGroup parent)
+        public override View? NewView(Context? context, ICursor? cursor, ViewGroup? parent)
         {
-            LayoutInflater inflater = LayoutInflater.From(context);
-            return inflater.Inflate(Android.Resource.Layout.SimpleListItem1, parent, false);
+            var inflater = LayoutInflater.From(context);
+            return inflater!.Inflate(Android.Resource.Layout.SimpleListItem1, parent, false);
         }
 
-        public override void BindView(View view, Context context, ICursor cursor)
+        public override void BindView(View? view, Context? context, ICursor? cursor)
         {
             ArgumentNullException.ThrowIfNull(view);
             ArgumentNullException.ThrowIfNull(context);
@@ -46,9 +46,9 @@ namespace Nivaes.App.Cross.Droid
             tv.SetBackgroundColor(Color.White);
         }
 
-        public string GetValue()
+        public string? GetValue()
         {
-            int textIndex = base.Cursor.GetColumnIndex(SearchManager.SuggestColumnText1);
+            int textIndex = base.Cursor!.GetColumnIndex(SearchManager.SuggestColumnText1);
             return base.Cursor.GetString(textIndex);
         }
     }
