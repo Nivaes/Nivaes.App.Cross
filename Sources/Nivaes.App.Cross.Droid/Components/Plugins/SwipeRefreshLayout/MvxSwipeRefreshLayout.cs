@@ -18,7 +18,7 @@ namespace Nivaes.App.Cross.Droid.SwipeRefreshLayout
         {
         }
 
-        public MvxSwipeRefreshLayout(Context context, IAttributeSet attributes)
+        public MvxSwipeRefreshLayout(Context context, IAttributeSet? attributes)
             : base(context, attributes)
         {
         }
@@ -49,7 +49,7 @@ namespace Nivaes.App.Cross.Droid.SwipeRefreshLayout
             Refresh += OnRefresh;
         }
 
-        protected virtual void ExecuteRefreshCommand(ICommand command)
+        protected virtual void ExecuteRefreshCommand(ICommand? command)
         {
             if (command == null)
                 return;

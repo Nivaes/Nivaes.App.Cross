@@ -30,21 +30,21 @@ namespace Nivaes.App.Cross.Droid.Material
         {
         }
 
-        public override bool OnStartNestedScroll(CoordinatorLayout coordinatorLayout, Object child,
-            View directTargetChild, View target, int axes, int type)
+        public override bool OnStartNestedScroll(CoordinatorLayout? coordinatorLayout, Object? child,
+            View? directTargetChild, View? target, int axes, int type)
         {
             return axes == ViewCompat.ScrollAxisVertical ||
                    base.OnStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type);
         }
 
-        public override void OnNestedScroll(CoordinatorLayout coordinatorLayout, Object child, View target,
+        public override void OnNestedScroll(CoordinatorLayout? coordinatorLayout, Object? child, View? target,
             int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type)
         {
             base.OnNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
 
             var viewChild = child.JavaCast<View>();
 
-            if (!viewChild.Enabled)
+            if (!viewChild!.Enabled)
                 return;
 
             if (isBottomBarVisible && scrolledDistance >= MinimalScrollDistance)

@@ -27,8 +27,8 @@ public sealed class DefaultDetailPresentationAction
 
         var fragmentName = request.ViewType.FragmentJavaName();
 
-        IMvxFragmentView fragment = (IMvxFragmentView)fragmentManager.FindFragmentByTag(fragmentName);
-        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager, attribute, request.ViewType);
+        IMvxFragmentView? fragment = (IMvxFragmentView?)fragmentManager.FindFragmentByTag(fragmentName);
+        fragment = fragment ?? thisFragment.CreateFragment(base.Context.CurrentActivity.SupportFragmentManager!, attribute, request.ViewType);
 
         var fragmentView = fragment.ToFragment();
         //if (request is CrossViewModelInstanceRequest instanceRequest)
@@ -37,9 +37,9 @@ public sealed class DefaultDetailPresentationAction
         //}
         fragment.ViewModel = request.ViewModel;
 
-        var ft = fragmentHost.ChildFragmentManager.BeginTransaction();
+        var ft = fragmentHost.ChildFragmentManager!.BeginTransaction();
 
-        ft.Replace(attribute.FragmentContentId, (Fragment)fragment, fragmentName);
+        ft!.Replace(attribute.FragmentContentId, (Fragment)fragment, fragmentName);
         ft.CommitAllowingStateLoss();
 
         return ValueTask.FromResult(true);

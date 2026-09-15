@@ -281,7 +281,7 @@ namespace Nivaes.App.Cross.Droid.RecyclerView
 
         protected virtual int GetViewPosition(object item)
         {
-            var itemsSourcePosition = _itemsSource.GetPosition(item);
+            var itemsSourcePosition = _itemsSource!.GetPosition(item);
             return GetViewPosition(itemsSourcePosition);
         }
 
