@@ -1,6 +1,6 @@
 {
   "sdk": {
-    "version": "10.0.401",
+    "version": "11.0.100",
     "rollForward": "latestPatch"
   },
   "test": {
@@ -10,12 +10,12 @@
     "Aspire.AppHost.Sdk": "13.5.4"
   },
   "ios": {
-    "version": "26.2"
+    "version": "27.2"
   },
   "maccatalyst": {
-    "version": "26.2"
+    "version": "27.2"
   },
   "tvos": {
-    "version": "26.2"
+    "version": "27.2"
   }
 }

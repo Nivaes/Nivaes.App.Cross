@@ -82,4 +82,12 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-maccatalyst'">
 	  <PackageReference Include="BTProgressHUD" />
 	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net11.0-ios'">
+	  <PackageReference Include="BTProgressHUD" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net11.0-maccatalyst'">
+	  <PackageReference Include="BTProgressHUD" />
+	</ItemGroup>
 </Project>

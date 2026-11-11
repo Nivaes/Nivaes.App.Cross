@@ -13,7 +13,8 @@
 		<ApplicationId>com.nivaes.cross.ios.sample</ApplicationId>
 		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 
-		<PublishTrimmed>true</PublishTrimmed>
+		<!--<PublishTrimmed>true</PublishTrimmed>-->
+		<MtouchLink>SdkOnly</MtouchLink>
 		<TrimMode Condition="'$(Configuration)' == 'Release'">full</TrimMode>
 		<IsPackable>false</IsPackable>
 		<IsAotCompatible>true</IsAotCompatible>

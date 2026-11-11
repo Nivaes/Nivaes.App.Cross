@@ -9,13 +9,13 @@
 		<_SupportedOSPlatformMacOSVersion>13.0</_SupportedOSPlatformMacOSVersion>
 
 		<_SupportedOSPlatformiOSVersion>15.8</_SupportedOSPlatformiOSVersion>
-		<_TargetPlatformiOSVersion>26.0</_TargetPlatformiOSVersion>
+		<_TargetPlatformiOSVersion>27.2</_TargetPlatformiOSVersion>
 
 		<_SupportedOSPlatformMacCatalystVersion>15.0</_SupportedOSPlatformMacCatalystVersion>
-		<_TargetPlatformMacCatalystVersion>26.0</_TargetPlatformMacCatalystVersion>
+		<_TargetPlatformMacCatalystVersion>27.2</_TargetPlatformMacCatalystVersion>
 
 		<_SupportedOSPlatformTvOSVersion>15.8</_SupportedOSPlatformTvOSVersion>
-		<_TargetPlatformTvOSVersion>26.0</_TargetPlatformTvOSVersion>
+		<_TargetPlatformTvOSVersion>27.2</_TargetPlatformTvOSVersion>
 
 		<_SupportedOSPlatformAndroidVersion>24</_SupportedOSPlatformAndroidVersion>
 
@@ -23,13 +23,13 @@
     </PropertyGroup>
 
 	<PropertyGroup>
-		<_CommonTargets>net10.0</_CommonTargets>
-		<_AndroidTargets>net10.0-android</_AndroidTargets>
-		<_MacOSTargets>net10.0-macos</_MacOSTargets>
-		<_iOSTargets>net10.0-ios</_iOSTargets>
-		<_MacCatalystTargets>net10.0-maccatalyst</_MacCatalystTargets>
-		<_TvOSTargets>net10.0-tvos</_TvOSTargets>
-		<_WindowsTargets>net10.0-windows10.0.19041.0</_WindowsTargets>
+		<_CommonTargets>net11.0</_CommonTargets>
+		<_AndroidTargets>net11.0-android</_AndroidTargets>
+		<_MacOSTargets>net11.0-macos</_MacOSTargets>
+		<_iOSTargets>net11.0-ios</_iOSTargets>
+		<_MacCatalystTargets>net11.0-maccatalyst</_MacCatalystTargets>
+		<_TvOSTargets>net11.0-tvos</_TvOSTargets>
+		<_WindowsTargets>net11.0-windows10.0.19041.0</_WindowsTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
